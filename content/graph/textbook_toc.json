@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1223
+      "sections": 1230
     }
   },
   "tocRoot": {
@@ -2324,6 +2324,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Source-Mined Benchmark Bound Vector",
+                    "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
+                    "markdownSection": "Source-Mined Benchmark Bound Vector",
+                    "sectionKey": "source mined benchmark bound vector",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Closure Program Interface (Observable Decision Layer)",
                     "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
                     "markdownSection": "Closure Program Interface (Observable Decision Layer)",
@@ -3020,6 +3028,22 @@
                 "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
                 "markdownSection": "Standard Model Recovery Discipline",
                 "sectionKey": "standard model recovery discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Gauge-Covariance Recovery Target",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "Gauge-Covariance Recovery Target",
+                "sectionKey": "gauge covariance recovery target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Scattering-Amplitude Comparison Target",
+                "markdownPath": "content/markdown/aaa/interactions/gauge-structure-emergence.md",
+                "markdownSection": "Scattering-Amplitude Comparison Target",
+                "sectionKey": "scattering amplitude comparison target",
                 "headingLevel": 2
               },
               {
@@ -4230,6 +4254,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Order-Parameter Defects and Critical Transport",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Order-Parameter Defects and Critical Transport",
+                "sectionKey": "order parameter defects and critical transport",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Hall and Topological Response Benchmarks",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
                 "markdownSection": "Hall and Topological Response Benchmarks",
@@ -5039,6 +5071,14 @@
                 "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
                 "markdownSection": "QFT Locality Residual",
                 "sectionKey": "qft locality residual",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Scattering-Amplitude Factorization Guardrail",
+                "markdownPath": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
+                "markdownSection": "Scattering-Amplitude Factorization Guardrail",
+                "sectionKey": "scattering amplitude factorization guardrail",
                 "headingLevel": 2
               },
               {
@@ -7863,6 +7903,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Public Gravitational-Wave Benchmark Protocol",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
+                    "markdownSection": "Public Gravitational-Wave Benchmark Protocol",
+                    "sectionKey": "public gravitational wave benchmark protocol",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Tier 0 / Tier 1 Campaign Packet",
                     "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
                     "markdownSection": "Tier 0 / Tier 1 Campaign Packet",
@@ -8021,6 +8069,14 @@
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
                 "markdownSection": "Assessment Table",
                 "sectionKey": "assessment table",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "2026-05-19 Assessment Notes",
+                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
+                "markdownSection": "2026-05-19 Assessment Notes",
+                "sectionKey": "2026 05 19 assessment notes",
                 "headingLevel": 2
               },
               {

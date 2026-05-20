@@ -259,6 +259,134 @@ $$
 
 with monopole, dipole, and higher directional terms tested against the same Noether-Sea variables that determine the clock and transport maps. A residual dipole must not be hidden inside $H(z)$, $w(z)$, or calibration constants.
 
+## Survey Benchmark Translation
+
+The CMB / BAO / supernova source family sharpens the redshift-distance mapping into a multi-rung translation problem. Standard cosmology packages report distances and parameters as if $a(t)$ and $H(t)$ were the native background variables. In this mapping file they are observer-level summary variables extracted from the same source, endpoint, path-history, and calibration record. The comparison target is therefore not a scalar best-fit $H_0$, but a ladder of mutually compatible extractions:
+
+$$
+\mathfrak D_X[\theta_{\mathrm{sea}},\nu_X]
+\longrightarrow
+\left(
+z_X,\,
+D_L^X,\,
+D_A^X,\,
+D_M^X,\,
+D_H^X,\,
+D_V^X,\,
+r_d^X,\,
+\mu_X,\,
+H_{\mathrm{eff},X}
+\right),
+$$
+
+where $\nu_X$ carries survey provenance, calibration choices, masks, redshift corrections, and covariance construction. The superscript $X$ labels the observable family, not a different medium state. Closure requires the projections of $\theta_{\mathrm{sea}}$ consumed by CMB, BAO, SN, local-ladder, lensing, and growth rows to agree on their shared coordinates.
+
+### BAO Standard-Ruler Row
+
+For BAO comparisons retain the standard observer-level distances
+
+$$
+D_H(z)=\frac{c_0}{H(z)},
+\qquad
+D_M(z)=(1+z)D_A(z),
+\qquad
+D_V(z)=
+\left[
+zD_M^2(z)D_H(z)
+\right]^{1/3}.
+$$
+
+The BAO data-product vector is then
+
+$$
+\mathbf b_{\mathrm{BAO}}^\theta(z_i)
+=
+\left(
+\frac{D_M^\theta(z_i)}{r_d^\theta},
+\frac{D_H^\theta(z_i)}{r_d^\theta},
+\frac{D_V^\theta(z_i)}{r_d^\theta}
+\right),
+$$
+
+with missing components removed for an isotropic-only bin. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $r_d^\theta$ is not a primitive ruler painted onto an expanding void. It is the effective acoustic-calibration length recovered from the pre-recombination thermalization and propagation branch. The closure test is whether the same branch that fixes CMB acoustic structure also fixes the BAO ruler used by DESI-style distance rows.
+
+### Supernova and Local-Ladder Row
+
+For supernovae and SH0ES-style ladder comparisons, the observer-level distance modulus remains
+
+$$
+\mu^\theta(z,\hat{\mathbf n})
+=
+5\log_{10}
+\left(
+\frac{D_L^\theta(z,\hat{\mathbf n})}{\mathrm{Mpc}}
+\right)
++25
++\Delta_{\mathrm{cal}}^\theta(\nu_{\mathrm{SN}}),
+$$
+
+where $\Delta_{\mathrm{cal}}^\theta$ records calibration and standardization context rather than a physical redshift term. The local inferred coefficient should be extracted from the corrected propagation residual,
+
+$$
+H_{\mathrm{eff,ladder}}^\theta(\hat{\mathbf n})
+=
+c_0
+\left.
+\frac{\partial Z_{\mathrm{prop},X}(R,\hat{\mathbf n})}{\partial R}
+\right|_{R\in\mathcal L},
+$$
+
+where $\mathcal L$ is the declared low-redshift ladder range after peculiar-velocity and environment cuts. This prevents Cepheid/SN calibration, local flow correction, endpoint cadence, and path-history propagation from being collapsed into one undiagnosed $H_0$ offset.
+
+### CMB Anchor Row
+
+The CMB comparison supplies both thermal and geometric summaries:
+
+$$
+\mathbf c_{\mathrm{CMB}}^\theta
+=
+\left(
+\theta_*^\theta,\,
+\omega_b^\theta,\,
+\omega_c^\theta,\,
+\tau^\theta,\,
+A_s^\theta,\,
+n_s^\theta,\,
+\mathbf C_{\ell,\mathrm{TTTEEE}}^\theta,\,
+\mathbf C_L^{\phi\phi,\theta}
+\right).
+$$
+
+These entries remain effective variables. They constrain the thermalization depth, acoustic scale, damping, lensing, and growth handoff that any redshift-distance branch must inherit. A branch that fits local supernova distances but cannot reproduce CMB blackbody quality, CMB acoustic structure, or CMB lensing from the same medium record has not closed the distance ladder.
+
+### Growth and Frame Consistency
+
+Late-time growth rows such as DES weak lensing, DESI RSD, and future Euclid cosmology products should be attached to the same ladder by
+
+$$
+\mathbf g_{\mathrm{growth}}^\theta(z,k)
+=
+\left(
+S_8^\theta,\,
+f\sigma_8^\theta(z,k),\,
+P^\theta(k,z),\,
+\mathbf C_L^{\phi\phi,\theta}
+\right).
+$$
+
+The repeated $C_L^{\phi\phi}$ entry is intentional: it is the overlap between CMB lensing and late-time growth. If the distance ladder prefers one Noether-Sea projection while growth prefers another, the failure belongs to shared-state closure, not to a hidden change of ontology.
+
+Frame consistency is the directional version of the same rule. CMB dipole correction, matter dipoles, SN residual directionality, BAO anisotropy, and local $H_0$ scatter must be compared as projections of one frame-state record:
+
+$$
+\mathbf y_i-\mathbf m_i(\theta_{\mathrm{frame}},\nu_i),
+\qquad
+i\in
+\{\mathrm{CMB},\mathrm{MD},\mathrm{SN},\mathrm{BAO},H_0\}.
+$$
+
+The allowed difference between rows is the data-product context $\nu_i$, not a new rest frame for each observable family.
+
 ## Task Queue
 
 1. `redshift_factorization_record` — Derive or falsify the candidate map $1+z_X\approx(\Gamma_{N,E}/\Gamma_{N,R})\mathcal{P}_{E\to R}/(B_X\mathcal{L}_{E\to R})$ from the shared Noether-Sea core cadence, source-branch, launch-geometry, and path-history records. Status: `draft`.

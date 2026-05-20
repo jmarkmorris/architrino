@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `12`
-- Value: `10.56`
+- Rank: `13`
+- Value: `10.14`
 - Cost: `4.2`
-- ROI: `2.51`
+- ROI: `2.41`
 - Status: `queued`
 
 ## Task Queue
@@ -22,10 +22,6 @@ Treat [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-r
 This workstream owns the reduced-map proof path for dyadic resonance selection. It should keep archive heuristics subordinate to finite-$\eta$ phase-amplitude stability tests and to the breather-certificate discipline described below.
 
 When the reduced map is used as a probability or stability laboratory, this workstream consumes the shared [transfer-operator and basin-measure theorem](../quantum-closure/transfer-operator-basin-measure.md). Dyadic lock owns the finite-$\eta$ phase-amplitude map and fixed-point diagnostics; the shared quantum packet owns the invariant or metastable measure grammar that decides whether dyadic basins can support downstream probability claims.
-
-## OpenAlex Baseline
-
-[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for nonlinear oscillations, synchronization, phase locking, recurrence, and reduced-map stability diagnostics.
 
 ## Detailed Priority Files
 

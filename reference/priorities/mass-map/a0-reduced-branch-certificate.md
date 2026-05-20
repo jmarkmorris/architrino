@@ -545,11 +545,12 @@ $$
 \mathcal{R}_{\text{avg}},
 \mathcal{R}_{\text{lock}},
 \mathcal{R}_{\text{leak}},
+\mathcal{R}_{\text{corr}},
 \mathcal{R}_{\text{Floquet}}
 \right).
 $$
 
-Every component must include units or normalization, tolerance, refinement status, and the branch label $\Lambda$ that produced it. A scan that reports only a best geometry without this residual vector is not a certificate.
+Here $\mathcal{R}_{\text{corr}}$ is the correction residual for any non-circular carrier correction $\mathbf{d}_\ell(t)$ or richer branch-native interaction basis used to close the carrier equation. If a row keeps $\mathbf{d}_\ell=0$, this component must be reported as not applicable for a diagnostic Tier 0 row or as failed for a Tier 1 row whose carrier residuals remain above tolerance. Every component must include units or normalization, tolerance, refinement status, and the branch label $\Lambda$ that produced it. A scan that reports only a best geometry without this residual vector is not a certificate.
 
 ## Reduced Certificate Proposition
 
@@ -559,7 +560,7 @@ For fixed $\eta>0$, a branch label $\Lambda$ is a reduced $A_0$ branch certifica
 2. nonresonant terms assigned to $\mathcal{R}_{\text{avg}}$ with declared order and tolerance;
 3. near-separator and resonance terms retained in $\mathcal{R}_{\text{lock}}$;
 4. leakage terms assigned to $\mathcal{R}_{\text{leak}}$ with the leading far-field channel named;
-5. reduced closure equations for state, phase, center, speed ordering, and energy ledger;
+5. reduced closure equations for state, phase, center, speed ordering, energy ledger, and any non-circular correction residual $\mathcal{R}_{\text{corr}}$;
 6. a reduced monodromy or finite-difference return-map diagnostic with $\Delta_{\mathbf{k}}>0$ after symmetry modes are removed.
 
 If these gates pass below declared tolerances, the packet certifies a reduced branch candidate. It does not certify the full six-worldline theorem, does not authorize particle-mass fitting, and does not remove the later $\eta\to0^+$ proof burden.
@@ -1066,6 +1067,139 @@ $$
 $$
 or a richer root/interaction basis that reduces the same residual without observed particle benchmarks.
 
+### Residual-Balanced Carrier Correction Route
+
+The smallest correction route is to keep the root ledger, locked fold-layer routing, and quotient-row label fixed, and replace only the diagnostic circular / elliptic carrier by a symmetry-reduced periodic carrier:
+$$
+\mathbf{s}_{\ell,\sigma}^{\mathrm{corr}}(t)
+=
+\mathbf{C}_\ell(t)
++
+\frac{\sigma}{2}
+\left(
+\mathbf{r}^{0}_\ell(t)+\mathbf{d}_\ell(t)
+\right),
+\qquad
+\sigma\in\{+1,-1\}.
+$$
+The correction $\mathbf{d}_\ell(t)$ is a relative-layer correction, not a new force term. It must satisfy
+$$
+\mathbf{d}_\ell(t+T_{\mathbf{k}})=\mathbf{d}_\ell(t),
+\qquad
+\mathbf{d}_\ell'(t+T_{\mathbf{k}})=\mathbf{d}_\ell'(t),
+\qquad
+\int_0^{T_{\mathbf{k}}}\mathbf{d}_\ell(t)\,dt=\mathbf{0},
+$$
+and it must be orthogonal to the modes that merely re-label the branch chart:
+$$
+\Pi_{G_{\mathrm{sym}}}\mathbf{d}_\ell=0.
+$$
+Here $G_{\mathrm{sym}}$ includes time-origin shift, global Euclidean translations and rotations, and the layer-local radius, phase, and plane-orientation directions already represented in $z_\Lambda$. This prevents $\mathbf{d}_\ell$ from hiding a changed branch label inside a correction term.
+
+Let
+$$
+\mathbf{g}_\ell(t;\alpha_{\mathrm{rel}})
+=
+\Pi_\ell
+\left(
+\mathbf{a}_{\mathrm{carrier}}(t)
+-
+\sum_{\rho}
+\alpha_\rho B_\rho(t)
+\right)
+$$
+be the layer-projected residual-balance forcing from `a0-tier1-residual-balance-ledger/v1`. The first correction equation is the periodic boundary-value problem
+$$
+\mathbf{d}_\ell''(t)
+=
+Q_\ell\mathbf{g}_\ell(t;\alpha_{\mathrm{rel}}),
+\qquad
+Q_\ell=1-\Pi_{G_{\mathrm{sym}}},
+$$
+with the solvability condition
+$$
+\int_0^{T_{\mathbf{k}}}
+Q_\ell\mathbf{g}_\ell(t;\alpha_{\mathrm{rel}})\,dt
+=
+\mathbf{0}.
+$$
+If the mean projected forcing is nonzero for every admissible $\alpha_{\mathrm{rel}}$, the failure is not a numerical one-period failure; it is a compact-fixture correction no-go for this scalar relation basis. If the mean condition passes, the periodic solution can be computed in the nonzero Fourier modes of the sampled branch data:
+$$
+\widehat{\mathbf{d}}_{\ell,m}
+=
+-
+\frac{
+\widehat{Q_\ell\mathbf{g}}_{\ell,m}
+}{
+\left(2\pi m/T_{\mathbf{k}}\right)^2
+},
+\qquad
+m\ne0,
+$$
+after omitting modes absorbed by $z_\Lambda$.
+
+This changes the residual ledger by adding a correction component
+$$
+\mathcal{R}_{\mathrm{corr}}
+=
+\max_\ell
+\left(
+\frac{
+\left\|
+\mathbf{d}_\ell''-Q_\ell\mathbf{g}_\ell
+\right\|_{L^2(0,T_{\mathbf{k}})}
+}{
+\max(\|\mathbf{a}_{\mathrm{carrier},\ell}\|_{L^2},\epsilon_{\mathrm{corr}})
+}
++
+\frac{
+\left\|
+\int_0^{T_{\mathbf{k}}}Q_\ell\mathbf{g}_\ell\,dt
+\right\|
+}{
+\max(\int_0^{T_{\mathbf{k}}}\|\mathbf{a}_{\mathrm{carrier},\ell}\|\,dt,\epsilon_{\mathrm{corr}})
+}
+\right).
+$$
+The corrected one-period residual vector is therefore
+$$
+\mathcal{R}_{\mathrm{1p,corr}}^\eta
+=
+\left(
+R_{\text{state}},
+R_{\text{root}},
+R_{\text{phase}},
+R_E,
+R_{\text{drift}},
+R_{\text{speed}},
+R_{\text{lock}},
+R_{\text{corr}}
+\right).
+$$
+A row may proceed to monodromy only if $R_{\text{corr}}$ and the original one-period residuals all pass after the corrected carrier is rerun through causal-root solving. Passing the acceleration projection alone is not enough, because $\mathbf{d}_\ell(t)$ changes the root times, Jacobians, phase residuals, speed ordering, and center-drift ledger.
+
+If this periodic correction fails, the next branch-native alternative is not another scalar relation-weight fit. The basis must split the active causal-root ledger more finely before solving the same normal equation. The first admissible refinement is to replace
+$$
+\{B_{\mathrm{self}},B_{\mathrm{partner}},B_{\mathrm{inter}}\}
+$$
+by branch-data basis vectors resolved by relation class, receiver layer, polarity, root branch key, and radial/tangential projection:
+$$
+B_{\rho,\ell,\sigma,\mu,\nu}(t),
+\qquad
+\rho\in\{\mathrm{self},\mathrm{partner},\mathrm{inter}\},
+\qquad
+\nu\in\{r,\theta\}.
+$$
+Those weights remain branch-native only if their equality constraints are declared before fitting: pro/anti symmetry inside a layer, shared weights for quotient-equivalent root keys, no dependence on particle masses or measured $\alpha$, and no promotion of $K_L$ into the active self-branch count. The richer basis is falsified if it cannot reduce the same residual surface below tolerance while preserving these constraints and the corrected one-period root ledger.
+
+First executable step: consume the existing residual-balance ledger, compute $Q_\ell\mathbf{g}_\ell$ on the sampled one-period window, report the mean solvability residual, build the truncated periodic $\mathbf{d}_\ell(t)$ when solvable, and rerun $\mathcal{P}_{\eta,\Lambda,K_L,\mathbf{d},\alpha_{\mathrm{rel}}}$. The corrected branch fails closed if any one of the following occurs:
+
+- $\int Q_\ell\mathbf{g}_\ell\,dt$ remains above tolerance for every admissible $\alpha_{\mathrm{rel}}$;
+- the constructed $\mathbf{d}_\ell(t)$ is dominated by modes removed into $z_\Lambda$ rather than by genuine non-circular motion;
+- rerunning causal-root solving changes the locked fold-layer keys, active root counts, or quotient-row identity outside tolerance;
+- $R_{\text{state}}$, $R_{\text{root}}$, $R_{\text{phase}}$, $R_E$, $R_{\text{drift}}$, $R_{\text{speed}}$, $R_{\text{lock}}$, or $R_{\text{corr}}$ exceeds tolerance;
+- the same corrected branch does not persist across the declared $\eta$ ladder.
+
 ## Tier 2: Energy and Shielding Extraction
 
 Tier 2 begins only after Tier 1 passes.
@@ -1135,11 +1269,11 @@ The first Tier 0 implementation packet is complete enough for handoff. The curre
 
 The fold-layer-locked one-period Tier 1 attempt is now also complete as a fail-closed diagnostic. It preserves the two locked self-root fold-layer keys in $\mathcal{R}_{\text{lock}}$, runs the under-cap retained-step budget, emits one-period residual ledgers, and refuses accepted-history output. Its direct residual failure and residual-balance no-go make the compact circular / elliptic carrier chart inadequate as a closed branch equation.
 
-The active next implementation packet is the residual-balanced carrier-correction target. It should consume `a0-tier1-residual-balance-ledger/v1`, keep the locked fold-layer row as $\mathcal{R}_{\text{lock}}$, and derive the smallest branch-native correction equation that can be rerun without particle benchmarks:
+The active next implementation packet is now the periodic residual-balanced carrier-correction runner. It should consume `a0-tier1-residual-balance-ledger/v1`, keep the locked fold-layer row as $\mathcal{R}_{\text{lock}}$, and implement the smallest branch-native correction equation that can be rerun without particle benchmarks:
 $$
 \mathbf{d}_\ell''(t)
 =
-\Pi_\ell
+Q_\ell\Pi_\ell
 \left(
 \mathbf{a}_{\mathrm{carrier}}(t)
 -
@@ -1147,14 +1281,14 @@ $$
 \alpha_\rho B_\rho(t)
 \right).
 $$
-If this projected correction is not closed by a periodic $\mathbf{d}_\ell(t)$ after symmetry, translation, and phase-origin modes are removed, the next result should be a stronger no-go for the compact fixture rather than a promoted branch.
+The runner must first test the mean solvability condition for this periodic boundary-value problem. If the projected forcing is not closed by a periodic $\mathbf{d}_\ell(t)$ after symmetry, translation, phase-origin, radius, and plane-orientation modes are removed, the next result should be a stronger no-go for the compact fixture rather than a promoted branch.
 
 The next pass should produce:
 
-1. a correction-basis equation or scanner for $\mathbf{d}_\ell(t)$ using only branch-native residual data;
-2. an explicit decision on whether the scalar relation basis must be replaced by a richer root/interaction basis;
+1. a mean-solvability and Fourier-mode scanner for $\mathbf{d}_\ell(t)$ using only branch-native residual data;
+2. an explicit decision on whether the scalar relation basis must be replaced by the basis $B_{\rho,\ell,\sigma,\mu,\nu}(t)$ resolved by root branch key and projection channel;
 3. a corrected fold-layer-locked one-period attempt, if the correction basis is executable;
-4. one-period residual ledgers for state return, root closure, phase closure, speed ordering, energy-like speed balance, drift, lock stability, and residual balance;
+4. one-period residual ledgers for state return, root closure, phase closure, speed ordering, energy-like speed balance, drift, lock stability, and correction residual $R_{\text{corr}}$;
 5. quotient-row identity carried through the corrected branch row before accepted-history emission;
 6. monodromy / $\Delta_{\mathbf{k}}$ and $\eta$-ladder continuation only after the corrected one-period residuals pass;
 7. finite envelope-Hessian extraction only after the same corrected branch passes, with $k_R$, $k_\xi$, $k_{R\xi}$, $c_R$, and $c_\xi$ emitted as branch evidence rather than toy stiffnesses;

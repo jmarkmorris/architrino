@@ -36,6 +36,67 @@ in the homogeneous isotropic limit.
 
 This target is a constitutive closure problem. It is not a new fit parameter and not a replacement for the branch certificate.
 
+## Tensor Projection Contract
+
+For a small perturbation around the homogeneous reference cell, define the dimensionless tensor residual
+
+$$
+\Delta_{\mathcal M}^{ab}
+\equiv
+c_{\text{eff},0}^2
+\left(
+\mathcal{M}_{\text{sea}}^{ab}
+-
+\frac{h^{ab}}{c_{\text{eff},0}^2}
+\right),
+$$
+
+where $c_{\text{eff},0}=c_f$ in the required input cell. Split this residual into its trace and trace-free pieces:
+
+$$
+\delta\mathcal{M}_{0}
+\equiv
+\frac{1}{3}h_{ab}\Delta_{\mathcal M}^{ab},
+\qquad
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\equiv
+\left(
+\delta^a{}_c\delta^b{}_d
+-
+\frac{1}{3}h^{ab}h_{cd}
+\right)
+\Delta_{\mathcal M}^{cd}.
+$$
+
+For any retained probe direction $\hat e$, the directional response channel is
+
+$$
+\delta\mathcal{M}_{2}(\hat e)
+\equiv
+\hat e_a\hat e_b\delta\mathcal{M}_{\mathrm{tf}}^{ab}.
+$$
+
+The acceleration and gradient probes must agree on these projected coefficients, not only on the scalar normalization:
+
+$$
+\left(
+\delta\mathcal{M}_{0},\,
+\delta\mathcal{M}_{2}(\hat e_1),\,
+\delta\mathcal{M}_{2}(\hat e_2),\,
+\delta\mathcal{M}_{2}(\hat e_3)
+\right)_{\mathrm{accel}}
+=
+\left(
+\delta\mathcal{M}_{0},\,
+\delta\mathcal{M}_{2}(\hat e_1),\,
+\delta\mathcal{M}_{2}(\hat e_2),\,
+\delta\mathcal{M}_{2}(\hat e_3)
+\right)_{\mathrm{grad}}
++\mathcal{R}_{\mathrm{AG}}.
+$$
+
+The certificate must bound $\mathcal{R}_{\mathrm{AG}}$ and must report whether any trace-free signal is sourced by branch strain, Noether-Sea delay anisotropy, or unresolved leakage. A null directional sector is admissible only when the trace-free projection is below the declared signal, birefringence, dispersion, and preferred-frame residual budgets.
+
 ## Probe Families
 
 ### Acceleration Probe
@@ -79,6 +140,7 @@ Tier 3 passes only if:
 3. the homogeneous isotropic limit approaches $h^{ab}/c_{\text{eff}}^2$ within tolerance;
 4. acceleration and gradient probes agree on the shielded-energy coefficient to first order;
 5. anisotropy and leakage residuals are reported, not absorbed into $\alpha$.
+6. trace and trace-free tensor projections are reported with the same direction labels used by the pressure-response replay.
 
 ## Failure Codes
 
@@ -88,6 +150,8 @@ Tier 3 passes only if:
 | `nonlinear-response` | response is not linear over the declared small-probe range |
 | `tensor-anisotropy` | homogeneous limit does not approach $h^{ab}/c_{\text{eff}}^2$ |
 | `accel-gradient-mismatch` | acceleration and gradient probes do not share the shielded-energy coefficient |
+| `projection-incomplete` | trace or trace-free projections are missing or use inconsistent direction labels |
+| `null-sector-leakage` | a directional tensor residual exceeds signal, birefringence, dispersion, or preferred-frame bounds |
 | `response-fit-contaminated` | $\alpha$ or tensor entries absorb unresolved leakage or particle benchmark data |
 
 ## Promotion Rule

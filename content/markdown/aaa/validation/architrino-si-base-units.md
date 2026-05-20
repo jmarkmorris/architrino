@@ -30,7 +30,40 @@ The **new SI** defines all units via **exact values** of seven constants:
 | Avogadro constant | $N_A$ | $6.02214076 \times 10^{23}$ mol⁻¹ | mole (mol) |
 | Luminous efficacy of 540 THz radiation | $K_{\text{cd}}$ | 683 lm/W | candela (cd) |
 
-**Key insight:** These are **not measurements**—they are **definitions**. The universe doesn't "have" these values; we've **chosen** them as the basis for our measurement system.
+**Key insight:** These SI rows are definitions, not measurements. Their exactness is a property of the unit system. A physical closure claim still has to recover the observer-level records that make those definitions useful: spectral frequencies, charge inventories, action increments, thermal energy scales, and signal propagation.
+
+### CODATA 2022 Benchmark Discipline
+
+The 2022 CODATA constants tables add a second layer to the SI discussion. Exact SI-defining constants, adjusted constants, and derived conversion factors should not be mixed as if they carried the same evidential status.
+
+| Class | Examples | How $\mathbb{A}\mathbb{A}\mathbb{A}$ should use it |
+| --- | --- | --- |
+| Exact SI definitions | $c$, $h$, $e$, $k_B$, $N_A$, $\Delta\nu_{\mathrm{Cs}}$ | Treat as unit conventions and observer-level target scales. A derivation must recover why the same convention is stable across clocks, rulers, charges, action records, and thermodynamic records. |
+| Adjusted dimensionless or near-direct benchmarks | $\alpha$, $\alpha^{-1}$, $m_p/m_e$, magnetic-moment ratios | Use as high-pressure residual rows because they are mostly independent of arbitrary unit scale. |
+| Adjusted dimensional benchmarks | $G$, $m_e c^2$, $m_p c^2$, $m_n c^2$, $m_\mu c^2$, $R_\infty$ | Use only after the substrate-to-observer unit map is declared. These rows test mass, gravity, and spectral closure, but they cannot be inserted as primitive inputs. |
+| Derived conversion factors | $\ell_P$, $m_P$, $t_P$, electron volt relationships, atomic-mass relationships | Use as consistency checks, not independent constraints, because their uncertainties inherit the constants used to construct them. |
+
+The current numerical anchors are severe in different ways. The fine-structure constant is
+$$
+\alpha=7.2973525643\times10^{-3},
+\qquad
+u_r(\alpha)\approx1.51\times10^{-10},
+$$
+while the Newtonian constant is
+$$
+G=6.67430\times10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}},
+\qquad
+u_r(G)\approx2.25\times10^{-5}.
+$$
+Thus $\alpha$ is a much sharper dimensionless target than $G$, while Planck-unit rows such as $\ell_P$, $m_P$, and $t_P$ inherit roughly half of the relative uncertainty of $G$ through square-root dependence. A Planck-alignment claim should therefore not over-read the apparent precision of derived Planck-unit numbers.
+
+The standard uncertainty convention matters for scoring. For a measured or adjusted row $X$, use
+$$
+Z_X
+=
+\frac{X_{\mathbb{A}\mathbb{A}\mathbb{A}}-X_{\mathrm{CODATA}}}{u(X_{\mathrm{CODATA}})}
+$$
+when the same observable has been derived from the same record. For exact SI rows, do not form a false zero-uncertainty residual; instead test whether the unit map and the adjusted rows that depend on it close simultaneously.
 
 ---
 

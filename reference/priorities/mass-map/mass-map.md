@@ -4,19 +4,21 @@
 
 - Kind: `priority`
 - Rank: `4`
-- Value: `28.64`
+- Value: `29.05`
 - Cost: `4.9`
-- ROI: `5.84`
+- ROI: `5.93`
 - Status: `active`
 
 ## Task Queue
 
-1. `derive_first_attractor_family` — Use the May 18, 2026 fold-layer-locked $A_0$ one-period failure and residual-balance no-go to derive a non-circular carrier correction $\mathbf{d}_\ell(t)$ or richer branch-native interaction basis, then rerun one-period residual closure before monodromy, eta-ladder persistence, energy, shielding, finite envelope-Hessian extraction, or accepted-history emission. Status: `next`; compact-fixture source coverage, under-cap attempt budget, direct one-period runner, and scalar relation-weight no-go implemented May 18, 2026. Depends on: none.
-2. `derive_zeta` — Derive $\zeta(A)$ and target a baseline electron-mass prediction. Status: `pending`. Depends on: `derive_first_attractor_family`.
-3. `exposure_quotient_theorem` — Generalize shielding extraction into a sector exposure/quotient theorem for mass, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility. Status: `pending`. Depends on: `derive_zeta`.
+1. `derive_first_attractor_family` — Implement the May 20, 2026 mean-solvability / Fourier-mode scanner for the non-circular carrier correction $\mathbf{d}_\ell(t)$, then rerun one-period residual closure before monodromy, $\eta$-ladder persistence, energy, shielding, finite envelope-Hessian extraction, or accepted-history emission. Status: `next`; compact-fixture source coverage, under-cap attempt budget, direct one-period runner, scalar relation-weight no-go, and the residual-balanced correction route are now specified. Depends on: none.
+2. `derive_zeta` — Derive $\zeta(A)$ through the scalar exposure contract, including hidden-label invariance for $\zeta_d(A_0)E_{\text{internal}}[d]$, and target a baseline electron-mass prediction only after the branch, energy, shielding, and medium-response records pass. Status: `pending`. Depends on: `derive_first_attractor_family`.
+3. `exposure_quotient_theorem` — Generalize shielding extraction into a sector exposure/quotient theorem for mass, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility. Status: `pending`; the $A_0$ scalar worked-case theorem target now includes the no-hidden-mass-handle condition. Depends on: `derive_zeta`.
 4. `mass_hierarchy_check` — Test the first mass map against hierarchy ratios and hadron constraints. Status: `pending`. Depends on: `exposure_quotient_theorem`.
 
 Post-promotion cleanup note: `medium_transport_thresholds` was promoted into [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) and [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md) in the May 2026 promotion batch. Quantitative extraction of $\mathcal{R}_{\text{tr}}$ remains a dependency of the attractor-family and medium-response work above.
+
+May 20, 2026 coordination note: the mass-map priority bucket now has four stricter downstream handoffs. The $A_0$ branch packet owns $\mathcal{R}_{\text{corr}}$ and the periodic carrier-correction scanner target; the scalar exposure packet owns hidden-label invariance for $\zeta(A_0)E_{\text{internal}}(A_0)$; the medium-response packet owns trace / trace-free tensor projections for $\mathcal{M}_{\text{sea}}^{ab}$; and the pressure / transport packets own branch-derived pressure slopes plus reversible/loss-channel transport rows. These are still priority-side theorem and simulation targets, not reader-facing mass predictions.
 
 ## Scope
 
@@ -24,39 +26,23 @@ This is the parameter-closure and first mass-formula bucket. Treat [parameter-le
 
 This file is the workstream control surface for mass-side integration. It should decide what belongs in canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, what remains an active theorem target, and what must be routed to other priority workstreams before any stronger mass claim is deployed.
 
-## OpenAlex Baseline
-
-[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for mass generation, Higgs-sector scalar benchmarks, hadron masses, effective mass, and medium-response constraints.
-
-The May 19, 2026 completion pass exhausted that review set as an active queue. Its import rule is now explicit: every external mass benchmark must declare which tuple slot it tests,
-$$
-\left(
-E_{\text{internal}}(A),
-\zeta(A),
-\mathcal{M}_{\text{sea}}^{ab},
-m_{\text{obs}}(A),
-\Delta_{\text{hier}}(A)
-\right),
-$$
-and none may be used as input to the $A_0$ branch, shielding coefficient, or medium-response tensor before closure. Higgs, ATLAS, and CMS test scalar response; Wilson confinement, light-hadron masses, and neutron-proton splitting test confinement and hadron mass decomposition; many-particle effective-mass theory tests medium response; nuclear-force reviews test residual binding.
-
 ## Detailed Priority Files
 
 | File | Role | Target AAA notes |
 | --- | --- | --- |
-| [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) | Tier 0 / Tier 1 finite branch-search certificate for the first neutral rest-branch Noether-core attractor family. | [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md) |
-| [$A_0$ Energy and Shielding Extraction Packet](a0-energy-shielding-extraction.md) | Tier 2 handoff target from a future accepted branch into $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, anisotropic leakage, and extraction failure codes. | [energy](../../../content/markdown/aaa/dynamics/energy.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) |
-| [Exposure-Quotient Theorem](exposure-quotient-theorem.md) | Shared theorem packet for turning internal/far-field ledgers into sector-visible response through projection and quotient maps. | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) |
-| [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) | Tier 3 acceleration and gradient probe target for $\mathcal{M}_{\text{sea}}^{ab}$, gated by future branch closure, stability, energy, and shielding passes. | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [gr-phenomenology](../../../content/markdown/aaa/spacetime/gr-phenomenology.md) |
-| [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) | Critical-transport packet that keeps reversible medium-dressed inertia separate from dissipative resistance and radiation/action-shedding thresholds. | [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
+| [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) | Tier 0 / Tier 1 finite branch-search certificate for the first neutral rest-branch Noether-core attractor family; now includes $\mathcal{R}_{\text{corr}}$ and the residual-balanced $\mathbf{d}_\ell(t)$ scanner route. | [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md) |
+| [$A_0$ Energy and Shielding Extraction Packet](a0-energy-shielding-extraction.md) | Tier 2 handoff target from a future accepted branch into $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, anisotropic leakage, hidden-label invariance, and extraction failure codes. | [energy](../../../content/markdown/aaa/dynamics/energy.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) |
+| [Exposure-Quotient Theorem](exposure-quotient-theorem.md) | Shared theorem packet for turning internal/far-field ledgers into sector-visible response through projection and quotient maps, with an $A_0$ scalar worked-case no-hidden-mass-handle target. | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) |
+| [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) | Tier 3 acceleration and gradient probe target for $\mathcal{M}_{\text{sea}}^{ab}$, gated by future branch closure, stability, energy, shielding, and trace / trace-free tensor projection passes. | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [gr-phenomenology](../../../content/markdown/aaa/spacetime/gr-phenomenology.md) |
+| [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) | Critical-transport packet that keeps reversible medium-dressed inertia separate from dissipative resistance, radiation/action-shedding thresholds, and unlogged transport loss channels. | [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
 | [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) | Candidate pressure-loading law connecting atomic/lattice pressure to $n$, $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, assembly strain, and $\mathcal{M}_{\text{sea}}^{ab}$, with iron/nickel metallic lattices and the Earth-core iron residual packet as first test cases. | [noether-sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) |
-| [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) | Branch-conditional coefficient identities for the pressure law, reducing $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, strain, and $\mathcal{M}_{\text{sea}}^{ab}$ to shared isotropic and anisotropic pressure combinations with explicit null-sector bounds. | None until branch closure; supports [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) and [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) |
-| [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) | Candidate derivation of $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, support-function headroom $s_n$, packing-limited pressure hardening, and branch scaling targets for dense Noether-Sea pressure replay. | None until branch closure; supports [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md), [Noether-Core Scaling and Packing Scaffold](../dyadic-lock/noether-core-scaling-and-packing.md), and [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) |
-| [Noether-Core Envelope Hessian Toy Branch](noether-core-envelope-hessian-toy-branch.md) | Reduced $2\times2$ Hessian packet for $(\ln R_\perp,\ln\xi)$, deriving $k_{\mathrm{env}}^{(V)}$, branch stability conditions, density-constrained deformation, and shape-response cancellation conditions. | None until branch closure; supports [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) and [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) |
-| [Fe/Cr Toy Pressure Replay](pressure-replay-fe-cr-toy.md) | Scaffold-only two-material replay table for the pressure law, including a shared-row toy residual and heavy/control slope check. | None until empirical replay; supports [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) |
-| [Fe/Silicate Dense-Medium Segregation](fe-silicate-dense-medium-segregation.md) | Candidate proof and executable toy replay scaffold for deriving or falsifying $\partial_n\Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}<0$ without treating Earth-core conditions as an iron-nucleus source. | [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [medium-exclusion-volume](../../../content/markdown/aaa/spacetime/medium-exclusion-volume.md) |
-| [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) | Real-data replay schema for Fe/Cr or Ni/Co pressure tests, including material-state records, residual extraction, covariance, shared-row fit, heavy-scaling scan, and null-sector bounds. | None until empirical replay; supports [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) |
-| [Fe/Cr Empirical Pressure Replay Skeleton](pressure-replay-fe-cr-empirical-skeleton.md) | First blank empirical packet for Fe/Cr pressure replay, fixing fit-runner inputs and recording the missing-data ledger before any residual interpretation. | None until empirical replay; supports [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) |
+| [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) | Branch-conditional coefficient identities for the pressure law, reducing $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, strain, and $\mathcal{M}_{\text{sea}}^{ab}$ to shared isotropic and anisotropic pressure combinations with explicit trace / trace-free projection and null-sector bounds. | None until branch closure; supports [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) and [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) |
+| [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) | Candidate derivation of $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, support-function headroom $s_n$, packing-limited pressure hardening, and branch-derived pressure slopes for dense Noether-Sea pressure replay. | None until branch closure; supports [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md), [Noether-Core Scaling and Packing Scaffold](../dyadic-lock/noether-core-scaling-and-packing.md), and [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) |
+| [Noether-Core Envelope Hessian Toy Branch](noether-core-envelope-hessian-toy-branch.md) | Reduced $2\times2$ Hessian packet for $(\ln R_\perp,\ln\xi)$, deriving $k_{\mathrm{env}}^{(V)}$, branch stability conditions, density-constrained deformation, positive-Hessian feasibility, and shape-response cancellation conditions. | None until branch closure; supports [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) and [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) |
+| [Fe/Cr Toy Pressure Replay](pressure-replay-fe-cr-toy.md) | Scaffold-only two-material replay table for the pressure law, including a shared-row toy residual, heavy/control slope check, and branch-derived slope acceptance residual. | None until empirical replay; supports [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) |
+| [Fe/Silicate Dense-Medium Segregation](fe-silicate-dense-medium-segregation.md) | Candidate proof and executable toy replay scaffold for deriving or falsifying $\partial_n\Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}<0$ without treating Earth-core conditions as an iron-nucleus source; now gated by a two-margin segregation and transport-reversibility condition. | [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [medium-exclusion-volume](../../../content/markdown/aaa/spacetime/medium-exclusion-volume.md) |
+| [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) | Real-data replay schema for Fe/Cr or Ni/Co pressure tests, including material-state records, residual extraction, transport-reversibility rows, covariance, shared-row fit, heavy-scaling scan, and null-sector bounds. | None until empirical replay; supports [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) |
+| [Fe/Cr Empirical Pressure Replay Skeleton](pressure-replay-fe-cr-empirical-skeleton.md) | First blank empirical packet for Fe/Cr pressure replay, fixing fit-runner inputs, transport-reversibility requirements, and the missing-data ledger before any residual interpretation. | None until empirical replay; supports [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) |
 
 ## Promotion Map
 
@@ -96,6 +82,40 @@ Here $\zeta(A)$ is the shielding or exposure coefficient and $c_{\text{eff}}$ is
 - Effective boson mass scale must split photon-like and weak-corridor cases. Photon-like planar channels lose stable volumetric rest-clock closure and therefore occupy the massless null branch; $W/Z$ corridors retain a localized recoupling burden whose longitudinal or mixed-axis structure appears as a short-lived massive vector channel.
 - Higgs-sector mass language is downstream of the mass map. The ATLAS scalar benchmark may be used only after the branch, shielding, and medium-response records are fixed without particle-mass input. The closure target is not merely $M_H^{\mathrm{breath}}\approx126.0\,\mathrm{GeV}$; the same scalar response must also recover $\hat{\mu}=1.4\pm0.3$, the channel-rate ledger for $ZZ^{(*)}4\ell$, $\gamma\gamma$, and $WW^{(*)}\ell\nu\ell\nu$, and the absence of additional accepted scalar windows. If those terms require separate tuning, the mass map has not recovered the Higgs sector.
 - Avoid treating Noether-Sea response as ordinary dissipative drag unless dissipation is actually being modeled. The preferred derivation language is medium-dressed inertial response.
+
+## PDG 2025 Mass Benchmark Surface
+
+The current PDG API / pdgLive 2025 rows define a downstream mass benchmark surface for the first mass map. They are not branch-search inputs. The active release metadata is `edition=2025`, `data_release_timestamp=2025-11-26 19:33:17 PST`, and citation `S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update`.
+
+The mass-map residual should separate elementary-lepton, hadron, quark-scheme, vector-corridor, and scalar-response rows:
+
+| Benchmark family | Current rows to preserve | Mass-map role |
+| --- | --- | --- |
+| Charged leptons | $m_e=0.51099895000\pm0.00000000015\,\mathrm{MeV}$, $m_\mu=105.6583755\pm0.0000023\,\mathrm{MeV}$, $m_\tau=1776.93\pm0.09\,\mathrm{MeV}$ | First hierarchy checks after $A_0$, $E_{\text{internal}}$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are fixed. |
+| Proton and neutron | $m_p=938.27208816\pm0.00000029\,\mathrm{MeV}$, $m_n=939.5654205\pm0.0000005\,\mathrm{MeV}$, $\tau_n=878.4\pm0.5\,\mathrm{s}$ | Hadronic binding and isospin-splitting checks; neutron lifetime belongs to weak-reaction closure, not rest-mass calibration. |
+| Pions and kaons | $m_{\pi^\pm}=139.57039\pm0.00018\,\mathrm{MeV}$, $\tau_{\pi^\pm}=(2.6033\pm0.0005)\times10^{-8}\,\mathrm{s}$; $m_{\pi^0}=134.9768\pm0.0005\,\mathrm{MeV}$, $\tau_{\pi^0}=(8.43\pm0.13)\times10^{-17}\,\mathrm{s}$; $m_{K^\pm}=493.677\pm0.015\,\mathrm{MeV}$, $\tau_{K^\pm}=(1.2380\pm0.0020)\times10^{-8}\,\mathrm{s}$ | Light-meson confinement, chiral/isospin splitting, and weak/electromagnetic decay-channel checks. |
+| Quarks | $\overline m_u(2\,\mathrm{GeV})=2.16\pm0.07\,\mathrm{MeV}$, $\overline m_d(2\,\mathrm{GeV})=4.70\pm0.07\,\mathrm{MeV}$, $\overline m_s(2\,\mathrm{GeV})=93.5\pm0.8\,\mathrm{MeV}$, $\overline m_c(\overline m_c)=1.2730\pm0.0046\,\mathrm{GeV}$, $\overline m_b(\overline m_b)=4.183\pm0.007\,\mathrm{GeV}$, $m_t^{\mathrm{direct}}=172.56\pm0.31\,\mathrm{GeV}$ | Scheme-declared quark mass targets for geometry-first flavor checks; these are not direct stable-assembly rest masses. |
+| Vector and scalar modes | $M_W=80.3692\pm0.0133\,\mathrm{GeV}$, $\Gamma_W=2.14\pm0.05\,\mathrm{GeV}$; $M_Z=91.1880\pm0.0020\,\mathrm{GeV}$, $\Gamma_Z=2.4955\pm0.0023\,\mathrm{GeV}$; $M_H=125.20\pm0.11\,\mathrm{GeV}$, $\Gamma_H=3.7^{+1.9}_{-1.4}\,\mathrm{MeV}$ | Corridor recoupling and scalar-response tests downstream of exposure/quotient and medium-response extraction. |
+| Neutrino absolute-mass limits | $m_{\nu_e}^{\mathrm{eff}}<0.8\,\mathrm{eV}$ at $90\%$ CL, $m_{\nu_\mu}^{\mathrm{eff}}<0.19\,\mathrm{MeV}$ at $90\%$ CL, $m_{\nu_\tau}^{\mathrm{eff}}<18.2\,\mathrm{MeV}$ at $95\%$ CL | Upper-limit constraints on neutral-sector branch families; PMNS mass differences belong to weak-sector overlap closure. |
+
+The benchmark should be evaluated by a declared residual map
+
+$$
+\mathcal{R}_{m}^{\mathrm{PDG}}(A,S)
+=
+\left[
+C_{\mathrm{PDG}}^{-1/2}
+\left(
+\mathbf{y}_{m}^{\mathrm{PDG}}
+-
+\mathbf{y}_{m}^{\mathrm{map}}(A,S)
+\right)
+\right]_{\mathrm{declared}},
+$$
+
+where $A$ is the accepted assembly branch data and $S$ is the declared Noether-Sea state. The covariance object $C_{\mathrm{PDG}}$ must retain PDG scale factors, asymmetric uncertainty rows, confidence limits, and review-level correlation statements when they are available. If only a summary-table uncertainty is carried forward, the row must explicitly mark `correlation-unresolved` rather than pretending that every benchmark is independent.
+
+Quark and QCD rows carry an extra convention burden. The 2024 QCD review states that light quark masses are commonly quoted in the $\overline{\mathrm{MS}}$ scheme near $2\,\mathrm{GeV}$, while heavy quark masses are often quoted as $\overline m_q(\overline m_q)$ or as pole/direct masses, and that modern $\alpha_s$ results should be quoted at a reference scale such as $M_Z$ rather than as a standalone $\Lambda_{\mathrm{QCD}}$ value. The mass map must therefore recover a scheme-translation path, not merely a list of scalar masses.
 
 ## Assembly-Level Reduction Status
 
@@ -174,6 +194,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 - For scorecard purposes, this is the main Parameter Closure + Mass Formulas bucket.
 - If the goal is the fastest score lift, pair this workstream with [chapter-authoring](../chapter-authoring/chapter-authoring.md) for Parameter Closure + Coverage.
 - Keep the constants question attached to the mass map only when it sharpens the derivation. Otherwise it belongs in background notes, not in the active deliverable.
+- Use the CODATA benchmark contract in [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) as a downstream scoring surface, not as a source of branch inputs. The first mass map may compare against $\alpha$, $m_p/m_e$, $m_e c^2$, $m_\mu c^2$, and hadronic mass rows only after $A_0$, $E_{\text{internal}}$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ have been fixed without those rows.
 
 ## Concrete Deliverables
 
@@ -451,7 +472,7 @@ The reduced branch certificate is the executable handoff between this workstream
 ## Open Decisions
 
 - Decide which quantities survive as shared inputs across the whole mass-side program, especially $\kappa$ and the physical role of $\eta$.
-- Decide whether the first mass map should also constrain the bridge to $h$ and $G$, or whether those constants should remain downstream until the mass derivation is stable.
+- Decide whether the first mass map should also constrain the bridge to $h$ and $G$, or whether those constants should remain downstream until the mass derivation is stable. The default after CODATA triage is downstream: $h$ is an exact SI action convention whose physical pressure comes through action, spectra, and $\alpha$ closure; $G$ and Planck-unit rows belong to the gravity/metric bridge unless the same accepted mass-side branch supplies the needed unit map.
 
 ## Related Priorities
 

@@ -24,6 +24,26 @@ The lane does not replace [strong-field-closure](../strong-field-closure/strong-
 
 WIMP/neutralino language in this lane is comparison language only. It may organize relic abundance, scattering, annihilation, direct detection, indirect detection, and null-result constraints, but it must not identify a native assembly with a supersymmetric neutralino or treat supersymmetry as Noether-core ontology without a separate ledger-preserving transformation theorem.
 
+## Topological and Analogue-Medium Caveat
+
+The Tier 2 condensed-matter sources add a useful dark-sector guardrail. Analogue horizons, protected edge modes, vortices, and topological defects can create long-lived or weakly exposed transport channels in their native systems, but they do not by themselves define a dark-sector assembly. In this workstream, such language is comparison material until the candidate supplies internal assembly variables, exposed channel, release route, and dark-visible re-entry condition.
+
+A topological or defect comparison may be retained only as a label inside a fuller candidate record,
+
+$$
+\mathcal{D}_{\mathrm{dark}}
+=
+\left(
+A_{\mathrm{int}},
+\mathcal{B}_{\mathrm{dark}},
+\mathcal{I}_{\mathrm{top}},
+\Delta_{\mathrm{dark}},
+\mathcal{R}_{\mathrm{reentry}}
+\right),
+$$
+
+where $A_{\mathrm{int}}$ is the internal action or assembly record, $\mathcal{B}_{\mathrm{dark}}$ is the candidate branch, $\mathcal{I}_{\mathrm{top}}$ is an effective invariant or defect label if one exists, $\Delta_{\mathrm{dark}}$ is the stability or exposure gap, and $\mathcal{R}_{\mathrm{reentry}}$ is the residual for visible-channel re-entry. If $\mathcal{I}_{\mathrm{top}}$ is present without the other entries, the candidate remains analogy-only and should not be promoted.
+
 ## Detailed Priority Files
 
 | File | Role | Primary promotion targets |

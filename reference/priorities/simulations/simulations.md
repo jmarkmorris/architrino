@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `3`
-- Value: `25.42`
+- Rank: `2`
+- Value: `27.75`
 - Cost: `4.1`
-- ROI: `6.20`
+- ROI: `6.77`
 - Status: `active`
 
 ## Task Queue
@@ -15,16 +15,13 @@
 2. `convergence_and_provenance` — Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs. Status: `pending`. Depends on: `tier0_tier1_runs`.
 3. `eta_positive_package` — Consolidate the formal $\eta > 0$ existence and continuation package. Status: `pending`. Depends on: `tier0_tier1_runs`.
 4. `hydrogen_gamma_n_record_extraction` — The hydrogen $\Gamma_N$ spectral coefficient-row scan now derives $\Lambda_{ab}$, observer frequency, and replay envelope gap entries from recovered principal labels, `frequency_scale`, and `line_inferred_ln_Gamma_N`; the remaining proof/simulation burden is to derive or bound $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ from the same hydrogen spectral channel ledger, replace the scaffolded static response vector only with a constitutive response row for the same Noether-Sea cell, and replace the shared line-inferred cadence stretch only with electron-envelope gaps from the hydrogen branch. Residual recoil, hyperfine structure, photon-channel propagation, and source-branch effects must remain outside $\Gamma_N$ unless a declared residual budget carries them. Status: `pending`. Depends on: `hydrogen_fermion_sea_boundary` and medium-response rows from `mass-map`.
+5. `gw_public_waveform_packet` — Build a public-data gravitational-wave benchmark packet from GWOSC/LVK event records. The packet must replay GW150914-class short binary-black-hole strain, GW170817-class long binary-neutron-star inspiral and photon-channel speed timing, and current GWTC-4.0 catalog provenance with versioned strain files, detector masks, PE samples, waveform family, calibration notes, artifact hashes, and predeclared waveform/energy/speed residuals. Status: `pending`. Depends on: gravitational-wave effective-metric and event-ledger closure rows.
 
 ## Scope
 
 Lock the simulation and numerics side tightly enough to support the analytic closure program. This includes tier-0 / tier-1 runs, convergence, maximum-curvature orbit behavior, and the formal $\eta > 0$ package.
 
 This file remains the control surface for the simulations workstream. No sibling detailed priority file is needed yet; concrete campaign packets can be added later if a run family becomes too large for this queue.
-
-## OpenAlex Baseline
-
-[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 source-mining baseline for this rank-3 workstream. The useful external backbone is state-dependent delay solution-manifold theory, numerical delay-equation convergence, neutral or derivative-sensitive regularization, and delayed-electrodynamics two-body history problems. The immediate corpus promotion from that pass is the finite-$\eta$ branch-transition criterion now added to [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md).
 
 ## Promotion Map
 
@@ -34,6 +31,7 @@ This file remains the control surface for the simulations workstream. No sibling
 | `convergence_and_provenance` | This file | [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md) and [synthetic-observables](../../../content/markdown/aaa/validation/simulations/synthetic-observables.md) | Convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs are reproducible enough to audit a promoted result. |
 | `eta_positive_package` | This file | [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | The formal $\eta > 0$ package states existence, uniqueness, continuation criteria, and no-runaway bounds for the relevant causal-wake model. |
 | `hydrogen_gamma_n_record_extraction` | This file | [hydrogen-gamma-n-spectral-row-toy-scan](../../../content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md), [atomic-spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | The scaffolded hydrogen row is promoted only when $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, envelope gaps, observer frequencies, and static response inputs come from one declared hydrogen spectral channel record and the same clock-rate conversion survives refinement. |
+| `gw_public_waveform_packet` | [gravitational-waves](../cross-theory-mapping/gravitational-waves.md) | [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) and future strong-field validation rows | A public gravitational-wave packet compares predicted detector strain, phase, event energy ledger, photon/gravity timing, and provenance against versioned GWOSC/LVK records rather than against unversioned plots or hand-tuned templates. |
 
 ## Simulation Campaign Object
 
@@ -227,6 +225,63 @@ $$
 \mathsf{eta\_continuation\_failure},
 \mathsf{artifact\_incomplete}\}.
 $$
+
+## Public Gravitational-Wave Benchmark Campaign
+
+A gravitational-wave benchmark campaign is a specialization of $\mathcal{C}_{\mathrm{sim}}$:
+$$
+\mathcal{C}_{\mathrm{GWOSC}}
+=
+\big(
+\mathsf{event\_id},
+\mathsf{catalog},
+\mathsf{event\_version},
+\mathcal{D},
+\mathcal{S}_{h},
+\mathcal{P}_{\mathrm{PE}},
+\mathcal{P}_{\mathrm{wave}},
+\mathcal{Q}_{\mathrm{det}},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}},
+\mathcal{R}_{\mathrm{GW}},
+\Pi_{\mathrm{wave}},
+\mathcal{F}
+\big),
+$$
+where $\mathcal{D}$ is the detector set, $\mathcal{S}_{h}$ is the versioned public strain-file set, $\mathcal{P}_{\mathrm{PE}}$ names posterior samples and parameter-estimation lifecycle rows, $\mathcal{P}_{\mathrm{wave}}$ names the waveform family or numerical-relativity provenance used for comparison, $\mathcal{Q}_{\mathrm{det}}$ carries calibration, data-quality, injection-mask, down-sampling, and glitch-treatment records, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event conservation ledger, $\mathcal{R}_{\mathrm{GW}}$ is the predeclared waveform residual vector, and $\Pi_{\mathrm{wave}}$ maps each plotted or fitted sample back to public artifacts.
+
+The executable diagnostic is
+$$
+\mathcal{D}_{\mathrm{GW}}
+=
+\big(
+D_h,D_\phi,D_E,D_{c_g},D_{\mathrm{det}},D_{\mathrm{PE}},D_{\mathrm{prov}}
+\big),
+$$
+with
+$$
+D_h=\frac{R_h}{\tau_h},
+\qquad
+D_\phi=\frac{R_\phi}{\tau_\phi},
+\qquad
+D_E=\frac{R_E}{\tau_E},
+\qquad
+D_{c_g}=\frac{|R_{c_g}|}{\tau_{c_g}}.
+$$
+$D_{\mathrm{det}}$, $D_{\mathrm{PE}}$, and $D_{\mathrm{prov}}$ are binary completeness ratios whose value is `0` only when detector masks/calibration, PE release metadata, and artifact hashes are all present. A packet can support a promoted gravitational-wave claim only if
+$$
+\max_a\mathcal{D}_{\mathrm{GW},a}\le 1
+$$
+and the public-data provenance row was fixed before the waveform comparison. If a packet reweights posterior samples, changes waveform family, excludes a detector, changes the analysis band, or substitutes cleaned data after seeing the residuals, the change must appear as a new event-version row rather than an in-place correction.
+
+The first benchmark triad is:
+
+| Packet row | Required public-data role | Failure routed if missing |
+| --- | --- | --- |
+| `GW150914_short_bbh` | Short inspiral-merger-ringdown strain, two-detector arrival timing, radiated-energy ledger, numerical-relativity waveform provenance, and ringdown handoff. | $\mathsf{artifact\_incomplete}$ or $\mathsf{hidden\_tuning}$ |
+| `GW170817_long_bns` | Long inspiral strain, three-detector timing, glitch/cleaning provenance, chirp-mass phase benchmark, and PE waveform-family record. | $\mathsf{provenance\_discontinuity}$ or $\mathsf{mesh\_nonconvergence}$ |
+| `GW170817_GRB_speed` | Photon/gravity timing residual with luminosity distance, observed delay, and intrinsic source-emission lag nuisance. | $\mathsf{hidden\_tuning}$ or $\mathsf{conservation\_drift}$ |
+
+This campaign is a success marker under the existing simulation provenance and conservation gates, not a new gate family. Its incremental value is that public strain, PE samples, waveform provenance, and multimessenger timing make strong-field radiation tests replayable without importing GR waveform success as $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
 ## Executable Diagnostic Contract
 

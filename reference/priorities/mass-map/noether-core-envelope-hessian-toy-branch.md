@@ -376,6 +376,52 @@ $$
 
 This is not a new validation gate. It is the local null-sector bookkeeping already required when an isotropic pressure row induces a shape-ratio response.
 
+### Positive-Hessian Replay Feasibility Lemma
+
+The reduced Hessian supplies a branch-derived pressure slope only when the replay target lies on the Hessian affine line and the branch has positive density response. Let a scalar replay or shared-row reduction demand a candidate pair
+
+$$
+\mathbf{v}_*
+=
+\begin{pmatrix}
+A_*\\
+B_*
+\end{pmatrix}
+$$
+
+for the density-normalized envelope response. A toy positive Hessian can realize this pair only if
+
+$$
+\boxed{
+c_RA_*+c_\xi B_*=1.
+}
+$$
+
+Conversely, if this affine condition holds, then there exists a positive matrix $H_{\mathrm{env}}$ realizing $\mathbf{v}_*$ as a toy response. This converse is only an algebraic feasibility statement: it says positive-Hessian sign constraints alone do not falsify $\mathbf{v}_*$. The promotion burden is stronger and branch-specific:
+
+$$
+\boxed{
+\begin{gathered}
+k_R>0,\qquad k_\xi>0,\qquad
+\Delta_H>0,\qquad D_H>0,\\
+A_H=A_*,\qquad B_H=B_*,\qquad
+\text{finite branch evidence accepted.}
+\end{gathered}
+}
+$$
+
+The proof of the algebraic converse is short. Put $M=H_{\mathrm{env}}^{-1}$. The normalized response requires
+
+$$
+\frac{M\mathbf c}{\mathbf c^TM\mathbf c}
+=
+\mathbf v_*.
+$$
+
+If $\mathbf c^T\mathbf v_*=1$, choose $\mu>0$ and require $M\mathbf c=\mu\mathbf v_*$. Since $\mathbf c^TM\mathbf c=\mu>0$, a symmetric positive matrix with that action on $\mathbf c$ can be completed by assigning any positive stiffness on the one-dimensional complement. This constructs a toy $M>0$ and therefore a toy $H_{\mathrm{env}}>0$.
+
+The lemma explains why independent pressure fit knobs are not branch evidence. A fitted pair $(A_*,B_*)$ that fails $c_RA_*+c_\xi B_*=1$ cannot come from the declared support-function volume mode. A fitted pair that passes the affine condition is still only a target until an accepted finite branch emits the Hessian entries. The scanner must therefore intake the entries as branch output, not as a row-local replacement for $\kappa_n$, $\kappa_\lambda$, or $\kappa_R$.
+
 ## Modulus Handoff
 
 The envelope contribution to the pressure modulus is

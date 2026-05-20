@@ -66,6 +66,88 @@ $$
 (1-\Pi_0)\mathcal{L}.
 $$
 
+## Scalar Exposure Contract
+
+The Tier 2 output must instantiate the scalar worked case in the shared exposure-quotient packet. The extraction row therefore carries both the retained continuous far-field ledger and the discarded exact labels:
+
+$$
+\mathcal{L}_{A_0}^{\mathrm{row}}
+=
+\left(
+\mathcal{L},
+D_{0,\mathrm{hid}},
+\Pi_0,
+Q_0
+\right).
+$$
+
+The discarded label set $D_{0,\mathrm{hid}}$ may include phase origin, constituent ordering, branch-preserving root names, global rotations, and pro/anti cancellation labels only when restoring any such label cannot change the mass-facing scalar beyond tolerance. For each restored label $d\in D_{0,\mathrm{hid}}$, the packet must compute or bound
+
+$$
+\zeta_d(A_0)
+=
+\frac{\|\Pi_0\mathcal{L}[d]\|}
+{\|\mathcal{L}_{\text{naive}}[d]\|},
+\qquad
+M_{0,d}^{\mathrm{src}}
+=
+\zeta_d(A_0)E_{\text{internal}}[d].
+$$
+
+The hidden-label acceptance equations are
+
+$$
+\sup_{d_1,d_2\in D_{0,\mathrm{hid}}}
+\left|
+\zeta_{d_1}(A_0)-\zeta_{d_2}(A_0)
+\right|
+\le
+\epsilon_{0,\mathrm{disc}},
+$$
+
+and
+
+$$
+\sup_{d_1,d_2\in D_{0,\mathrm{hid}}}
+\frac{
+\left|
+M_{0,d_1}^{\mathrm{src}}
+-
+M_{0,d_2}^{\mathrm{src}}
+\right|
+}{
+E_{\text{internal}}(A_0)+\varepsilon_E
+}
+\le
+\epsilon_{0,\mathrm{handle}}.
+$$
+
+Here $\varepsilon_E>0$ is a declared numerical floor used only to avoid division by zero in failed or degenerate runs. A passing row must also report the refinement drift
+
+$$
+\epsilon_{0,\mathrm{ref}}
+\ge
+\sup_{\nu}
+\left|
+\zeta^{(\nu+1)}(A_0)
+-
+\zeta^{(\nu)}(A_0)
+\right|
+$$
+
+for the declared refinement index $\nu$ over extraction radius, angular resolution, $\Delta t$, history depth, and $\eta$. The scalar exposure error contract is
+
+$$
+\epsilon_{0,\mathrm{tot}}
+=
+\epsilon_{\text{aniso}}
++\epsilon_{0,\mathrm{ref}}
++\epsilon_{0,\mathrm{disc}}
++\epsilon_{0,\mathrm{handle}}.
+$$
+
+These diagnostics are validation outputs, not construction inputs. They may reject $\zeta(A_0)$ after the extraction, but they may not select a branch representative, angular window, far-field radius, or normalization to improve agreement with an observed mass.
+
 ## Acceptance Gates
 
 Tier 2 passes only if:
@@ -74,7 +156,8 @@ Tier 2 passes only if:
 2. the far-field leading channel is stable under extraction radius and angular resolution;
 3. $\zeta(A_0)$ is computed from the accepted branch without observed particle masses, electron radius, charged-lepton ratios, or measured $\alpha$ as inputs;
 4. $\mathcal{L}_{\text{aniso}}$ is reported rather than hidden;
-5. the output preserves enough state to rerun the extraction from the branch packet.
+5. every discarded exact label satisfies the hidden-label acceptance equations above;
+6. the output preserves enough state to rerun the extraction from the branch packet.
 
 ## Failure Codes
 
@@ -85,6 +168,7 @@ Tier 2 passes only if:
 | `shielding-radius-drift` | far-field coefficient changes with extraction radius |
 | `shielding-angular-drift` | far-field coefficient changes with angular resolution |
 | `leakage-unreported` | anisotropic leakage exists but is not emitted |
+| `hidden-branch-mass-handle` | a discarded branch label changes $\zeta(A_0)E_{\text{internal}}(A_0)$ beyond $\epsilon_{0,\mathrm{handle}}$ |
 | `benchmark-contaminated` | observed mass or hierarchy data entered before extraction |
 
 ## Promotion Rule

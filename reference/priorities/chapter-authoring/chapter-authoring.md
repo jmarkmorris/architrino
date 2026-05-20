@@ -3,15 +3,15 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `15`
-- Value: `4.19`
+- Rank: `17`
+- Value: `4.03`
 - Cost: `2.7`
-- ROI: `1.55`
+- ROI: `1.49`
 - Status: `queued`
 
 ## Task Queue
 
-1. `mine_source_material` — Mine legacy and external source material only where it materially saves time. Status: `pending`. Depends on: `fill_thin_chapters`.
+1. `mine_source_material` — Mine legacy and external source material. Status: `pending`. 
 
 ## Scope
 
@@ -31,38 +31,15 @@ During the current core geometrical theory push, do not treat chapter coverage a
 ## Source Mining Feeds
 
 - Mine material from WordPress and other prior social material (twitter).
-- Mine old PowerPoint decks, cleaning them up only when migration into the web site or $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus is worthwhile.
-- Mine archived papers, arXiv-style papers, and local PDF paper collections for definitions, examples, derivation routes, and source leads.
+- Mine old PowerPoint decks.
+- Mine arXiv-style papers for definitions, examples, derivation routes, and source leads.
 - Mine YouTube videos and course playlists when transcripts, slides, or lecture notes can be reduced into concrete chapter material.
-- Mine David Kaiser's MIT OCW `STS.042J/8.225J` course sequence, especially Lecture 23, `The Birth of Particle Cosmology`, plus the surrounding late-course particle-cosmology lectures.
 
 ## Candidate Source-Mining Backlog
 
 Use this backlog as a triage surface, not as a requirement factory. A source earns mining time only when it can yield at least one concrete artifact: a numerical benchmark, derivation route, worked example, source lead, canonical table or figure, visual explanation, or reader-facing bridge for the active $\mathbb{A}\mathbb{A}\mathbb{A}$ theory stack.
 
-### Tier 1: Closure Benchmarks And Numerical Anchors
-
-| Source family | Mine first | $\mathbb{A}\mathbb{A}\mathbb{A}$ value | Priority destination |
-| --- | --- | --- | --- |
-| Particle Data Group, [Review of Particle Physics](https://pdg.lbl.gov/) and `pdgLive` | Current 2025 update plus the 2024 review tables; particle masses, widths, lifetimes, CKM/PMNS, neutrinos, QCD, electroweak fits, cosmological parameters, constants, and statistics reviews. | Replaces the already mined 2018 PDG snapshot with current benchmark values and uncertainty conventions. | [standard-model-closure](../standard-model-closure/standard-model-closure.md), [mass-map](../mass-map/mass-map.md), [validation-gates](../validation-gates/validation-gates.md) |
-| NIST/CODATA [fundamental constants](https://physics.nist.gov/cuu/Constants/) and uncertainty guides | 2022 CODATA constants; $G$, $\alpha$, $\hbar c$, particle mass ratios, SI conversion factors, and uncertainty notation. | Anchors parameter-scale closure and prevents informal constants from leaking into equations. | [mass-map](../mass-map/mass-map.md), [master-equation-closure](../master-equation-closure/master-equation-closure.md), [validation-gates](../validation-gates/validation-gates.md) |
-| Living Reviews / Clifford Will / SME-style Lorentz-test baselines | [The Confrontation between General Relativity and Experiment](https://link.springer.com/article/10.12942/lrr-2014-4), modern PPN tests, preferred-frame bounds, and [Data Tables for Lorentz and CPT Violation](https://physics.nmu.edu/~nrussell/research/datatables.htm). | Sharpens the Lorentz / GR bridge into concrete PPN, synchronization, clock-retuning, and leakage bounds. | [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md), [master-equation-closure](../master-equation-closure/master-equation-closure.md), [cross-theory-mapping](../cross-theory-mapping/cross-theory-mapping.md) |
-| GWOSC / LVK gravitational-wave public data | [GWOSC catalogs and APIs](https://gwosc.org/eventapi/), strain data, parameter-estimation releases, waveform tutorials, and event visualizations. | Gives strong-field, radiation, inspiral, ringdown, and energy-accounting benchmarks with open data. | [strong-field-closure](../strong-field-closure/strong-field-closure.md), [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md), [simulations](../simulations/simulations.md) |
-| CMB / BAO / low-redshift cosmology data | [Planck Legacy Archive maps](https://wiki.cosmos.esa.int/planck-legacy-archive/index.php/Maps), [NASA LAMBDA](https://lambda.gsfc.nasa.gov/), [DESI BAO cosmology products](https://data.desi.lbl.gov/doc/releases/dr1/vac/bao-cosmo-params/), ACT lensing and power-spectrum papers, SH0ES, Pantheon+, DES, and Euclid public releases when available. | Separates $\Lambda$CDM-era observer variables from $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology while preserving redshift, distance, transfer-function, and tension benchmarks. | [cosmology-closure](../cosmology-closure/cosmology-closure.md), [cross-theory-mapping](../cross-theory-mapping/cosmological-redshift-distance-ladder.md), [validation-gates](../validation-gates/validation-gates.md) |
-| Event Horizon Telescope public data and image papers | [EHT public data](https://eventhorizontelescope.org/for-astronomers/data), M87*, Sgr A*, polarization, visibility-domain reconstructions, and jet-launch follow-up papers. | Supplies image-level and visibility-level strong-field constraints without treating black-hole imagery as a loose analogy. | [strong-field-closure](../strong-field-closure/strong-field-closure.md), [cross-theory-mapping](../cross-theory-mapping/gravitational-lensing.md), [validation-gates](../validation-gates/validation-gates.md) |
-
-### Tier 2: Derivation, Proof, And Theory-Bridge Sources
-
-| Source family | Mine first | $\mathbb{A}\mathbb{A}\mathbb{A}$ value | Priority destination |
-| --- | --- | --- | --- |
-| MIT OCW and MIT-hosted relativity notes beyond Tong | MIT [8.962 General Relativity](https://ocw.mit.edu/courses/8-962-general-relativity-spring-2020/), Scott Hughes' [typed notes](https://web.mit.edu/sahughes/www/8.962/index.html), and Alan Guth-era lecture notes/slides. | Independent derivation scaffolds for curvature, stress-energy, gravitational radiation, cosmology, and gravitational energy. | [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md), [strong-field-closure](../strong-field-closure/strong-field-closure.md), [chapter-authoring](chapter-authoring.md) |
-| Review journals and survey families discoverable through OpenAlex | Reviews of Modern Physics, Living Reviews in Relativity, Physics Reports, Annual Review of Astronomy and Astrophysics, Annual Review of Nuclear and Particle Science, and high-citation arXiv reviews. | Better source discovery than random keyword mining; use citation counts as prioritization signals, not as proof of relevance. | All ranked workstreams, especially [master-equation-closure](../master-equation-closure/master-equation-closure.md), [proof-programs](../proof-programs/proof-programs.md), and [standard-model-closure](../standard-model-closure/standard-model-closure.md) |
-| CERN Academic Training, CERN Yellow Reports, and summer-student lecture material | [CERN Academic Training Lectures](https://cds.cern.ch/collection/Academic%20Training%20Lectures?ln=en), Standard Model, detectors, Higgs, flavor, dark matter, dark energy, and inflation lecture sequences. | Turns Standard Model and detector explanations into concrete provenance examples: what enters, what exits, what is measured, and which variables are reconstructed. | [standard-model-closure](../standard-model-closure/standard-model-closure.md), [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md), [cross-theory-mapping](../cross-theory-mapping/cross-theory-mapping.md) |
-| TASI / Les Houches / ICTP lecture notes | TASI cosmological perturbations, inflation, early-universe cosmology, dark matter, amplitudes, SMEFT, neutrinos, black holes, and lattice/QCD lecture notes. | Dense bridge material between graduate pedagogy and review literature; often includes equations, exercises, and source leads. | [cosmology-closure](../cosmology-closure/cosmology-closure.md), [quantum-closure](../quantum-closure/quantum-closure.md), [standard-model-closure](../standard-model-closure/standard-model-closure.md) |
-| Independent QFT / gauge / amplitudes references | Srednicki's [Quantum Field Theory draft](https://web.physics.ucsb.edu/~mark/ms-qft-DRAFT.pdf), Arkani-Hamed scattering-amplitude lectures, positive-geometry papers, and gauge/topological-field notes. | Comparison framework for gauge covariance, scattering, locality emergence, color/kinematics structure, and geometry-first amplitude language; do not import as ontology. | [standard-model-closure](../standard-model-closure/geometry-first-program.md), [proof-programs](../proof-programs/proof-programs.md), [quantum-closure](../quantum-closure/quantum-closure.md) |
-| Condensed-matter, analogue-gravity, and topological-defect sources | Volovik-style emergent-medium material, analogue-gravity reviews, topological phases, vortices, defects, elasticity, pressure response, and transport papers. | Useful only when the source supplies order parameters, transport equations, quantized-defect analogues, criticality, or constitutive response. Avoid analogy-only promotion. | [mass-map](../mass-map/mass-map.md), [dark-sector](../dark-sector/dark-sector.md), spacetime and Noether-Sea corpus targets through priority promotion |
-
-### Tier 3: Video And Seminar Archives
+### Video And Seminar Archives
 
 | Source family | Mine first | $\mathbb{A}\mathbb{A}\mathbb{A}$ value | Mining rule |
 | --- | --- | --- | --- |
@@ -72,43 +49,26 @@ Use this backlog as a triage surface, not as a requirement factory. A source ear
 | CERN videos and public detector lectures | Detector walkthroughs, event reconstruction, trigger systems, Standard Model lectures, and open-data tutorials. | High value for end-to-end measurement provenance: collision, detector response, reconstruction, particle ID, uncertainty. | Prefer official slides and open-data notebooks over popular summaries. |
 | Sean Carroll, Quanta, Royal Institution, and similar long-form interviews/lectures | Episodes with primary researchers on black holes, cosmology tensions, quantum foundations, amplitudes, and Standard Model anomalies. | Mostly explanatory and source-lead value, not closure evidence. | Mine only when transcripts are available and the episode points to papers, equations, or clear reader explanations. |
 
-### Tier 4: Image, Diagram, And Data Mining
-
-| Source family | Mine first | $\mathbb{A}\mathbb{A}\mathbb{A}$ value | Mining rule |
-| --- | --- | --- | --- |
-| CMB maps and spectra | Planck component maps, CMB lensing maps, temperature/polarization power spectra, WMAP comparison images, and likelihood documentation. | Visual bridge for effective cosmological variables, transfer functions, redshift, and observer-level $\Lambda$CDM summaries. | Preserve data provenance and avoid decorative use. |
-| Collider event displays | [CERN Open Data CMS event display](https://opendata.cern.ch/visualise/events/CMS), ATLAS/CMS public images, event-selection tutorials, and detector-slice diagrams. | Explains Standard Model reconstruction and measurement without relying on cartoon particle language. | Use as provenance diagrams; record collision channel, visible objects, and reconstruction variables. |
-| Gravitational-wave visual products | GWOSC waveform plots, spectrograms, sky-localization maps, parameter-corner plots, and public notebooks. | Direct visual bridge for radiation, inspiral, merger, ringdown, and parameter inference. | Mine alongside the underlying event metadata, not as standalone illustrations. |
-| EHT imagery and visibility-domain products | M87* and Sgr A* images, polarization maps, visibility amplitudes, closure phases, and reconstruction comparison figures. | Strong-field visual benchmark for compact-object shadows, plasma environment, and observer reconstruction. | Separate measured image products from GR model interpretation. |
-| Large-scale structure visuals | SDSS/DESI galaxy maps, BAO summary plots, weak-lensing maps, supernova Hubble diagrams, and distance-ladder diagrams. | Helps readers see which cosmological quantities are observations, which are fitted model variables, and which are $\mathbb{A}\mathbb{A}\mathbb{A}$ translation targets. | Mine source data and caption logic; do not treat survey-map aesthetics as evidence. |
-| Educational simulations and public-domain teaching diagrams | [PhET simulations](https://phet.colorado.edu/?lang=en), OpenStax figures, Feynman Lectures diagrams, and MIT OCW public-domain NASA/mission images. | Supports chapter explanations for waves, interference, relativity, fields, and measurement. | Use for explanatory scaffolding only; verify license before reusing an image. |
-
-### OpenAlex Sweep Lanes To Add Under Priority Folders
-
-| Priority folder | OpenAlex lane | Expected artifact |
-| --- | --- | --- |
-| [master-equation-closure](../master-equation-closure/master-equation-closure.md) | State-dependent delay equations, neutral functional equations, variational principles with delay, event-driven root finding, direct-action electrodynamics. | History-chart theorem targets, smoothness obligations, and action-level wake-history accounting. |
-| [proof-programs](../proof-programs/proof-programs.md) | Choreographies, computer-assisted periodic-orbit proofs, interval methods, topological degree, validated ODE/DDE numerics. | Candidate-cycle certificate grammar and residual/collocation acceptance rows. |
-| [simulations](../simulations/simulations.md) | DDE solvers, validated integration, adaptive event handling, stiff regularization, convergence testing, negative controls. | Simulation acceptance predicates and convergence/failure-mode rows under existing gates. |
-| [mass-map](../mass-map/mass-map.md) | High-pressure condensed matter, elastic moduli, equation-of-state data, shielding/screening analogues, lattice/DFT benchmarks. | Medium-response tensor probes, pressure-response coefficients, and scale estimates. |
-| [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md) | Lorentz tests, clock synchronization, effective metrics, PPN, redshift-distance tests, radiation reaction. | Moving-assembly, clock-retuning, synchronization, and preferred-frame leakage targets. |
-| [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md) | Spinor geometry, geometric phase, angular momentum in fields, polarization, Bell and Stern-Gerlach experiments. | Noether-core angular-momentum ledger, spinor closure route, photon/measurement prerequisites. |
-| [standard-model-closure](../standard-model-closure/standard-model-closure.md) | SMEFT, anomaly cancellation, confinement, flux tubes, flavor mixing, neutrino oscillations, electroweak fits. | Geometry-first gauge closure, weak-sector provenance, CKM/PMNS compatibility, and nuclear-binding bridge rows. |
-| [quantum-closure](../quantum-closure/quantum-closure.md) | Born-rule derivations, transfer operators, quantum trajectories, decoherence, pilot-wave stress tests, Bell experiments. | Basin-measure theorem targets and detector-response kernels. |
-| [cosmology-closure](../cosmology-closure/cosmology-closure.md) | CMB perturbations, BAO, BBN, distance ladder, redshift drift, growth of structure, Hubble-tension reviews. | Effective-variable translation targets and falsifiable transfer-function constraints. |
-| [strong-field-closure](../strong-field-closure/strong-field-closure.md) | Black-hole perturbation theory, numerical relativity, EHT constraints, compact-object alternatives, gravitational-wave catalogs. | Strong-field observable ledger tied to images, waveforms, and ringdown spectra. |
 
 ### Immediate Mining Order
 
-1. Current PDG plus NIST/CODATA: quickest way to refresh constants, particle values, units, and uncertainty conventions.
-2. GWOSC, EHT, Planck/LAMBDA, and DESI: strongest open-data bridge for gravity, radiation, strong-field, and $\Lambda$CDM-era constraints.
-3. MIT 8.962, CERN Academic Training, TASI, PIRSA, and KITP: highest-yield derivation and source-lead reservoirs.
-4. Feynman Lectures, OpenStax, PhET, and public lecture material: use only for explanation, diagrams, and student-facing worked intuition.
+1. PIRSA, KITP, IAS / Cornell / Simons, and CERN public detector videos: mine transcript/slide pairs only when the source yields a named equation, theorem target, benchmark, source lead, or detector-provenance example.
 
 ## Mining Completed
 
 | Source mined | Date mined |
 | --- | --- |
+| MIT OCW / MIT-hosted GR family: MIT [8.962 General Relativity](https://ocw.mit.edu/courses/8-962-general-relativity-spring-2020/), Scott Hughes [8.962 typed notes](https://web.mit.edu/sahughes/www/8.962/SP2020/index.html), MIT [8.962 Spring 2018 Guth / Turner notes and slides](https://web.mit.edu/8.962/www/notes.html), and MIT [8.286 Early Universe](https://ocw.mit.edu/courses/8-286-the-early-universe-fall-2013/) lecture material | May 19, 2026 |
+| CERN Academic Training / Yellow Reports / summer-student family: [CERN Academic Training Lectures](https://cds.cern.ch/collection/Academic%20Training%20Lectures), [Particle Detectors](https://cds.cern.ch/record/282619), [Standard Model physics at the LHC](https://cds.cern.ch/record/319691), [CERN Yellow Reports School Proceedings](https://e-publishing.cern.ch/index.php/CYRSP/issue/archive), ATLAS reconstruction, Higgs, and invisible-Higgs records | May 19, 2026 |
+| TASI / Les Houches / ICTP lecture-note family: [TASI Inflation](https://arxiv.org/abs/0907.5424), [TASI Cosmological Perturbations](https://arxiv.org/abs/1302.4640), [TASI Dark Matter](https://arxiv.org/abs/0901.4090), [TASI Early Universe Cosmology](https://arxiv.org/abs/1807.08749), [Neutrinos in Astrophysics and Cosmology](https://arxiv.org/abs/2102.10183), [TASI Scattering Amplitudes](https://arxiv.org/abs/1708.03872), and [TASI Effective Field Theory](https://arxiv.org/abs/1006.2142) | May 19, 2026 |
+| Independent QFT / gauge / amplitudes family: Mark Srednicki, [Quantum Field Theory draft](https://web.physics.ucsb.edu/~mark/ms-qft-DRAFT.pdf), [Scattering Amplitudes and the Positive Grassmannian](https://arxiv.org/abs/1212.5605), [The Amplituhedron](https://arxiv.org/abs/1312.2007), [Positive Geometries and Canonical Forms](https://arxiv.org/abs/1703.04541), [BCJ color/kinematics](https://arxiv.org/abs/0805.3993), and David Tong [soliton / gauge-topology notes](https://www.damtp.cam.ac.uk/user/tong/soliton.html) | May 19, 2026 |
+| Condensed-matter / analogue-gravity / topological-defect family: Carlos Barcelo, Stefano Liberati, and Matt Visser, [Analogue Gravity](https://arxiv.org/abs/gr-qc/0505065), Matt Visser, [Acoustic black holes](https://arxiv.org/abs/gr-qc/9712010), G. E. Volovik induced-gravity and field-theory-in-superfluid-${}^3\mathrm{He}$ papers, Mermin topological defects, Kosterlitz-Thouless vortex-pair material, and TKNN quantized Hall conductance | May 19, 2026 |
+| Particle Data Group, [Review of Particle Physics](https://pdg.lbl.gov/) 2024 with 2025 update, `pdgLive`, 2025 API / SQLite data, and QCD / electroweak / CKM / neutrino / statistics review surfaces | May 19, 2026 |
+| Living Reviews / PPN / Lorentz-test baseline family: Clifford M. Will, [The Confrontation between General Relativity and Experiment](https://link.springer.com/article/10.12942/lrr-2014-4), modern RMS / optical-cavity tests, and SME [Data Tables for Lorentz and CPT Violation](https://physics.nmu.edu/~nrussell/research/datatables.htm) | May 19, 2026 |
+| GWOSC / LVK public gravitational-wave data family: [O4a release](https://gwosc.org/O4/O4a/), [GWTC-4.0](https://gwosc.org/GWTC-4.0/), GW150914, GW170817, strain, data-quality, parameter-estimation, waveform, and multimessenger timing records | May 19, 2026 |
+| CMB / BAO / low-redshift cosmology data family: NASA LAMBDA / Planck, DESI DR2 BAO cosmology products, ACT DR6 spectra and lensing products, Pantheon+ / SH0ES, DES Year 3, and Euclid Q1 release-readiness | May 19, 2026 |
+| Event Horizon Telescope public data and image-paper family: [EHT public data](https://eventhorizontelescope.org/for-astronomers/data), 2017 public release, M87$^*$, Sgr A$^*$, polarization, visibility-domain, shadow/ring, and variability papers | May 19, 2026 |
+| NIST/CODATA [Fundamental Physical Constants](https://physics.nist.gov/cuu/Constants/), 2022 CODATA adjustment complete listing, plus standard / relative standard uncertainty definitions | May 19, 2026 |
 | Curt Jaimungal's long-form physicist interviews, source window January 1, 2025 through May 17, 2026 | May 17, 2026 |
 | David Tong, [Dynamics and Relativity](https://davidtong.org/pdfs/teaching/dynamics-and-relativity/dynrel.pdf) | May 18, 2026 |
 | David Tong, [Classical Dynamics](https://davidtong.org/pdfs/teaching/classical-dynamics/clas.pdf) | May 18, 2026 |
@@ -208,9 +168,9 @@ Use this backlog as a triage surface, not as a requirement factory. A source ear
 | John A. Wheeler and Richard P. Feynman, [Interaction with the Absorber as the Mechanism of Radiation](https://doi.org/10.1103/RevModPhys.17.157) | May 19, 2026 |
 | John A. Wheeler and Richard P. Feynman, [Classical Electrodynamics in Terms of Direct Interparticle Action](https://doi.org/10.1103/RevModPhys.21.425) | May 19, 2026 |
 | Fred Hoyle and Jayant V. Narlikar, [Cosmology and action-at-a-distance electrodynamics](https://www.osti.gov/biblio/27874) | May 19, 2026 |
-| Edward H. Kerner, [Hamiltonian Formulation of Action-at-a-Distance in Electrodynamics](https://openalex.org/W2065112792) | May 19, 2026 |
+| Edward H. Kerner, Hamiltonian Formulation of Action-at-a-Distance in Electrodynamics | May 19, 2026 |
 | Gary Andersen and Hans C. von Baeyer, [Almost Circular Orbits in Classical Action-at-a-Distance Electrodynamics](https://doi.org/10.1103/PhysRevD.5.802) | May 19, 2026 |
-| Gary Andersen and Hans C. von Baeyer, [Solutions of the Two-Body Problem in Classical Action-at-a-Distance Electrodynamics: Straight-Line Motion](https://openalex.org/W1973687901) | May 19, 2026 |
+| Gary Andersen and Hans C. von Baeyer, Solutions of the Two-Body Problem in Classical Action-at-a-Distance Electrodynamics: Straight-Line Motion | May 19, 2026 |
 | Clifford M. Will, [The Confrontation between General Relativity and Experiment](https://link.springer.com/article/10.12942/lrr-2014-4) | May 19, 2026 |
 | Don Colladay and V. Alan Kostelecky, [Lorentz-Violating Extension of the Standard Model](https://arxiv.org/abs/hep-ph/9809521) | May 19, 2026 |
 | Bruno Bertotti, Luciano Iess, and Paolo Tortora, [A test of general relativity using radio links with the Cassini spacecraft](https://doi.org/10.1038/nature01997) | May 19, 2026 |
@@ -232,7 +192,7 @@ Use this backlog as a triage surface, not as a requirement factory. A source ear
 | Nicola Guglielmi and Ernst Hairer, [Numerical approaches for state-dependent neutral delay equations with discontinuities](https://www.unige.ch/~hairer/preprints/paper-gh.pdf) | May 19, 2026 |
 | Odo Diekmann, Stephan A. van Gils, Sjoerd M. Verduyn Lunel, and Hans-Otto Walther, [Delay Equations](https://doi.org/10.1007/978-1-4612-4206-2) | May 19, 2026 |
 | R. D. Driver, [A two-body problem of classical electrodynamics: the one-dimensional case](https://doi.org/10.1016/0003-4916(63)90227-6) | May 19, 2026 |
-| R. D. Driver, [A functional-differential system of neutral type arising in a two-body problem of classical electrodynamics](https://openalex.org/W14240986) | May 19, 2026 |
+| R. D. Driver, A functional-differential system of neutral type arising in a two-body problem of classical electrodynamics | May 19, 2026 |
 | John Mallet-Paret and Roger D. Nussbaum, [Boundary layer phenomena for differential-delay equations with state dependent time lags: II.](https://doi.org/10.1515/crll.1996.477.129) | May 19, 2026 |
 | John Mallet-Paret and Roger D. Nussbaum, [Boundary layer phenomena for differential-delay equations with state-dependent time lags: III](https://doi.org/10.1016/S0022-0396(02)00088-8) | May 19, 2026 |
 | Peter W. Higgs, [Broken Symmetries and the Masses of Gauge Bosons](https://doi.org/10.1103/PhysRevLett.13.508) | May 19, 2026 |
@@ -249,14 +209,67 @@ Use this backlog as a triage surface, not as a requirement factory. A source ear
 | V. N. Gribov, [Quantization of non-Abelian gauge theories](https://doi.org/10.1016/0550-3213(78)90175-X) | May 19, 2026 |
 | Peter J. Olver, [Applications of Lie Groups to Differential Equations](https://doi.org/10.1007/978-1-4612-4350-2) | May 19, 2026 |
 | Henrique Gomes and Aldo Riello, [The quasilocal degrees of freedom of Yang-Mills theory](https://arxiv.org/abs/1910.04222) | May 19, 2026 |
-| OpenAlex tri-binary Review Set row: Richard P. Feynman, [Space-Time Approach to Quantum Electrodynamics](https://openalex.org/W2081796865) | May 19, 2026 |
-| OpenAlex tri-binary Review Set row: Freeman Dyson, [The Radiation Theories of Tomonaga, Schwinger, and Feynman](https://openalex.org/W2227286462) | May 19, 2026 |
-| OpenAlex tri-binary Review Set row: J. C. Ward, [An Identity in Quantum Electrodynamics](https://openalex.org/W2093390414) | May 19, 2026 |
-| OpenAlex tri-binary Review Set row: Y. Takahashi, [On the Generalized Ward Identity](https://openalex.org/W2033551171) | May 19, 2026 |
-| OpenAlex tri-binary Review Set row: [Photon cross sections and attenuation coefficients](https://openalex.org/W54778000) | May 19, 2026 |
-| OpenAlex tri-binary Review Set row: Torbjörn Sjöstrand et al., [An Introduction to PYTHIA 8.2](https://openalex.org/W2125102738) | May 19, 2026 |
-| OpenAlex tri-binary Review Set row: J. Allison et al., [Recent developments in Geant4](https://openalex.org/W1990869665) | May 19, 2026 |
-| OpenAlex tri-binary Review Set row: Planck Collaboration, [Planck 2018 CMB results](https://openalex.org/W3098899650) | May 19, 2026 |
-| OpenAlex residual-routing Review Set row: R. E. Cutkosky, [Singularities and Discontinuities of Feynman Amplitudes](https://openalex.org/W2056443041) | May 19, 2026 |
-| OpenAlex residual-routing Review Set row: Christian Bierlich et al., [A comprehensive guide to the physics and usage of PYTHIA 8.3](https://openalex.org/W4308821586) | May 19, 2026 |
-| OpenAlex residual-routing Review Set row: T. Gleisberg et al., [Event generation with SHERPA 1.1](https://openalex.org/W2016801295) | May 19, 2026 |
+| Tri-binary review row: Richard P. Feynman, Space-Time Approach to Quantum Electrodynamics | May 19, 2026 |
+| Tri-binary review row: Freeman Dyson, The Radiation Theories of Tomonaga, Schwinger, and Feynman | May 19, 2026 |
+| Tri-binary review row: J. C. Ward, An Identity in Quantum Electrodynamics | May 19, 2026 |
+| Tri-binary review row: Y. Takahashi, On the Generalized Ward Identity | May 19, 2026 |
+| Tri-binary review row: Photon cross sections and attenuation coefficients | May 19, 2026 |
+| Tri-binary review row: Torbjörn Sjöstrand et al., An Introduction to PYTHIA 8.2 | May 19, 2026 |
+| Tri-binary review row: J. Allison et al., Recent developments in Geant4 | May 19, 2026 |
+| Tri-binary review row: Planck Collaboration, Planck 2018 CMB results | May 19, 2026 |
+| Residual-routing review row: R. E. Cutkosky, Singularities and Discontinuities of Feynman Amplitudes | May 19, 2026 |
+| Residual-routing review row: Christian Bierlich et al., A comprehensive guide to the physics and usage of PYTHIA 8.3 | May 19, 2026 |
+| Residual-routing review row: T. Gleisberg et al., Event generation with SHERPA 1.1 | May 19, 2026 |
+| Dyadic-lock review row: John Guckenheimer and Philip Holmes, Nonlinear Oscillations, Dynamical Systems, and Bifurcations of Vector Fields | May 19, 2026 |
+| Dyadic-lock review row: Arkady Pikovsky, Michael Rosenblum, and Jurgen Kurths, Synchronization a universal concept in nonlinear sciences | May 19, 2026 |
+| Dyadic-lock review row: Steven H. Strogatz, Nonlinear Dynamics and Chaos: With Applications to Physics, Biology, Chemistry, and Engineering | May 19, 2026 |
+| Dyadic-lock review row: Arthur T. Winfree, The Geometry of Biological Time | May 19, 2026 |
+| Dyadic-lock review row: Juan A. Acebron et al., The Kuramoto model: A simple paradigm for synchronization phenomena | May 19, 2026 |
+| Dyadic-lock review row: Norbert Marwan et al., Recurrence plots for the analysis of complex systems | May 19, 2026 |
+| Angular-momentum/spin review row: John S. Bell, On the Einstein Podolsky Rosen paradox | May 19, 2026 |
+| Angular-momentum/spin review row: John F. Clauser et al., Proposed experiment to test local hidden-variable theories | May 19, 2026 |
+| Angular-momentum/spin review row: Otto Stern and Walther Gerlach, Der experimentelle Nachweis der Richtungsquantelung im Magnetfeld | May 19, 2026 |
+| Angular-momentum/spin review row: Michael V. Berry, Quantal phase factors accompanying adiabatic changes | May 19, 2026 |
+| Angular-momentum/spin review row: Simon Kochen and Ernst P. Specker, The problem of hidden variables in quantum mechanics | May 19, 2026 |
+| Angular-momentum/spin review row: Alain Aspect et al., Experimental test of Bell's inequalities using time-varying analyzers | May 19, 2026 |
+| Angular-momentum/spin review row: Alois Mair et al., Entanglement of the orbital angular momentum states of photons | May 19, 2026 |
+| Angular-momentum/spin review row: Dmitry Budker and Michael Romalis, Optical magnetometry | May 19, 2026 |
+| Validation-gates review row: Sidney Coleman and Jeffrey Mandula, All possible symmetries of the S matrix | May 19, 2026 |
+| Validation-gates review row: Steven Weinberg and Edward Witten, Limits on massless particles | May 19, 2026 |
+| Validation-gates review row: Clifford M. Will, The Confrontation between General Relativity and Experiment | May 19, 2026 |
+| Validation-gates review row: Bruno Bertotti, Luciano Iess, and Paolo Tortora, A test of general relativity using radio links with the Cassini spacecraft | May 19, 2026 |
+| Validation-gates review row: Particle Data Group, Review of Particle Physics 2022 | May 19, 2026 |
+| Validation-gates review row: Planck Collaboration, Planck 2018 cosmological parameters | May 19, 2026 |
+| Validation-gates review row: ATLAS Collaboration, Observation of a new particle in the search for the Standard Model Higgs boson with the ATLAS detector at the LHC | May 19, 2026 |
+| Standard-model review row: Steven Weinberg, A Model of Leptons | May 19, 2026 |
+| Standard-model review row: Sheldon L. Glashow, Partial-symmetries of weak interactions | May 19, 2026 |
+| Standard-model review row: Makoto Kobayashi and Toshihide Maskawa, CP-Violation in the Renormalizable Theory of Weak Interaction | May 19, 2026 |
+| Standard-model review row: T2K Collaboration, Indication of Electron Neutrino Appearance from an Accelerator-produced Off-axis Muon Neutrino Beam | May 19, 2026 |
+| Standard-model review row: David J. Gross and Frank Wilczek, Ultraviolet Behavior of Non-Abelian Gauge Theories | May 19, 2026 |
+| Standard-model review row: CMS Collaboration, Observation of a new boson at a mass of 125 GeV with the CMS experiment at the LHC | May 19, 2026 |
+| Strong-field review row: Stephen W. Hawking, Particle creation by black holes | May 19, 2026 |
+| Strong-field review row: Jacob D. Bekenstein, Black holes and entropy | May 19, 2026 |
+| Strong-field review row: Robert M. Wald, Black hole entropy is the Noether charge | May 19, 2026 |
+| Strong-field review row: Don N. Page, Average entropy of a subsystem | May 19, 2026 |
+| Strong-field review row: LIGO Scientific Collaboration and Virgo Collaboration, Observation of Gravitational Waves from a Binary Black Hole Merger | May 19, 2026 |
+| Strong-field review row: Event Horizon Telescope Collaboration, First M87 Event Horizon Telescope Results. I. The Shadow of the Supermassive Black Hole | May 19, 2026 |
+| Strong-field review row: R. D. Blandford and R. L. Znajek, Electromagnetic extraction of energy from Kerr black holes | May 19, 2026 |
+| Strong-field review row: Strong-field GR observational tests | May 19, 2026 |
+| Quantum-closure review row: David Bohm, A Suggested Interpretation of the Quantum Theory in Terms of Hidden Variables. I | May 19, 2026 |
+| Quantum-closure review row: Andrew M. Gleason, Measures on the closed subspaces of a Hilbert space | May 19, 2026 |
+| Quantum-closure review row: Wojciech H. Zurek, Decoherence, einselection, and the quantum origins of the classical | May 19, 2026 |
+| Quantum-closure review row: Wojciech H. Zurek, Quantum Darwinism | May 19, 2026 |
+| Transfer-operator review row: Lasota-Mackey, stochastic aspects of dynamics | May 19, 2026 |
+| Transfer-operator review row: Spectral analysis of nonlinear flows | May 19, 2026 |
+| Transfer-operator review row: Data-driven approximation of the Koopman operator | May 19, 2026 |
+| Transfer-operator review row: Koopman invariant subspaces for control | May 19, 2026 |
+| Transfer-operator review row: Markov models of molecular kinetics | May 19, 2026 |
+| Transfer-operator review row: Transfer-operator coherent structures | May 19, 2026 |
+| Transfer-operator review row: Transfer operator approach to chaotic-attractor crisis | May 19, 2026 |
+| Cosmology-closure review row: Planck Collaboration, Planck 2018 results. I. Overview and the cosmological legacy of Planck | May 19, 2026 |
+| Cosmology-closure review row: Adam G. Riess et al., Observational Evidence from Supernovae for an Accelerating Universe and a Cosmological Constant | May 19, 2026 |
+| Cosmology-closure review row: Supernova Cosmology Project, Measurements of Omega and Lambda from 42 High-Redshift Supernovae | May 19, 2026 |
+| Cosmology-closure review row: Daniel J. Eisenstein et al., Detection of the Baryon Acoustic Peak in the Large-Scale Correlation Function of SDSS Luminous Red Galaxies | May 19, 2026 |
+| Cosmology-closure review row: Adam G. Riess et al., A 2.4% Determination of the Local Value of the Hubble Constant | May 19, 2026 |
+| Cosmology-closure review row: Julien Lesgourgues, The Cosmic Linear Anisotropy Solving System (CLASS) | May 19, 2026 |
+| Cosmology-closure review row: DES Collaboration, Dark Energy Survey Year 3 Results: Cosmological Constraints from Galaxy Clustering and Weak Lensing | May 19, 2026 |

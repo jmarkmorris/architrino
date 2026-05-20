@@ -271,6 +271,21 @@ $$
 \mathrm{BR}_{\mathrm{map}} \rightarrow \mathrm{BR}_{\mathrm{PDG}}
 $$
 
+For weak-channel rows that report a mass, width, branching fraction, lifetime, or mixing entry, the observer-facing comparison must keep the published uncertainty convention as part of the target. A compact residual is
+
+$$
+\mathcal R_{\mathrm{weak}}
+=
+C_{\mathrm{weak}}^{-1/2}
+\left(
+\mathbf y_{\mathrm{PDG}}
+-
+\mathbf y_{\mathrm{map}}
+\right),
+$$
+
+where $\mathbf y_{\mathrm{PDG}}$ may include $M_W$, $\Gamma_W$, $M_Z$, $\Gamma_Z$, weak mixing angles, CKM entries, PMNS entries, lifetimes, or branching fractions, and $C_{\mathrm{weak}}$ is the declared covariance or uncertainty rule for those rows. If a row is an upper limit, an asymmetric uncertainty, or a result with separated statistical and systematic errors, the channel must preserve that convention instead of converting it into an unmarked symmetric error.
+
 For low-energy charged weak processes the same mapping must also recover the contracted current-current limit
 $$
 \mathcal{L}_{\mathrm{map}}^{\mathrm{low}}

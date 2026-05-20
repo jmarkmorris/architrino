@@ -288,6 +288,64 @@ Use this table to close the constitutive loop against modern benchmarks.
 
 Numeric pass/fail thresholds are taken from [validation/constraint-ledger.md](../validation/constraint-ledger.md).
 
+## Source-Mined Benchmark Bound Vector
+
+The Will-style weak-field comparison is not a single "GR matches" flag. It is a bound vector on distinct leakage channels:
+$$
+\mathbf{b}_{\mathrm{Will}}
+=
+\begin{pmatrix}
+2.3\times 10^{-5}\\
+8\times 10^{-5}\\
+4\times 10^{-5}\\
+2\times 10^{-9}\\
+4\times 10^{-20}
+\end{pmatrix},
+$$
+ordered as
+$$
+\left(
+|\gamma_{\mathrm{PPN}}-1|,
+|\beta_{\mathrm{PPN}}-1|,
+|\alpha_1|,
+|\alpha_2|,
+|\alpha_3|
+\right).
+$$
+The first row is the Cassini time-delay bound on $\gamma_{\mathrm{PPN}}-1$; the second uses the perihelion-shift row for $\beta_{\mathrm{PPN}}-1$; the preferred-frame rows use the best listed weak-field/strong-field analogue bounds. Strong-field pulsar bounds should not be silently reclassified as solar-system PPN measurements, but they are valid closure pressure: any $\mathbb{A}\mathbb{A}\mathbb{A}$ drift leakage that survives in ordinary clocks, orbits, or pulsar timing must project below the corresponding row unless a separate strong-field screening mechanism is derived.
+
+The decision residual is therefore the componentwise normalized vector
+$$
+\mathbf{q}_{\mathrm{PPN}}
+=
+\operatorname{diag}(\mathbf{b}_{\mathrm{Will}})^{-1}
+\begin{pmatrix}
+\gamma_{\mathrm{PPN}}-1\\
+\beta_{\mathrm{PPN}}-1\\
+\alpha_1\\
+\alpha_2\\
+\alpha_3
+\end{pmatrix}.
+$$
+Weak-field closure requires
+$$
+\|\mathbf{q}_{\mathrm{PPN}}\|_\infty \le 1
+$$
+before any strong-field deviation is advertised as a prediction. This is stricter than matching Shapiro delay alone because it forces the same constitutive metric row to suppress preferred-frame terms in $g_{0i}^{\mathrm{eff}}$ and $g_{00}^{\mathrm{eff}}$.
+
+The SME-style Lorentz-test family supplies a second, non-PPN layer. Photon-sector cavity tests constrain two-way orientation-dependent frequency shifts at the $\Delta\nu/\nu\sim10^{-18}$ level, while the SME data tables organize photon, matter, neutrino, and gravity coefficients in the standard Sun-centered frame. For this chapter the safe import is not a new ontology. It is the validation rule that any effective metric or clock/ruler channel must report which SME-like residual it would excite:
+$$
+\epsilon_{\mathrm{SME}}^{\mathrm{eff}}
+=
+\max\left(
+\|\tilde\kappa_{e-}^{\mathrm{eff}}\|,
+\|\tilde\kappa_{o+}^{\mathrm{eff}}\|,
+|\tilde\kappa_{\mathrm{tr}}^{\mathrm{eff}}|,
+\|\bar{s}^{\mu\nu}_{\mathrm{eff}}\|
+\right),
+$$
+with $\tilde\kappa_{\bullet}^{\mathrm{eff}}$ used as photon-sector comparison coefficients and $\bar{s}^{\mu\nu}_{\mathrm{eff}}$ used as a gravity-sector comparison coefficient. These are observer-level projection diagnostics; they are not substrate coefficients added to the Euclidean void.
+
 ## Closure Program Interface (Observable Decision Layer)
 
 This chapter is the observable-side gate for the emergent-metric closure.
@@ -453,13 +511,17 @@ $$
 \mathcal{L}(\mathbf{\theta})=\mathbf{p}_{\mathrm{PPN}}^{\mathsf T}\mathbf{W}\,\mathbf{p}_{\mathrm{PPN}},
 $$
 where $\mathbf{W}$ is the precision matrix from ledger tolerances.
-With representative Tier-1 bounds
-$|\gamma_{\mathrm{PPN}}-1|,\ |\beta_{\mathrm{PPN}}-1|\lesssim 10^{-5}$ and
-$|\alpha_i|\lesssim 10^{-17}$,
+With the source-mined benchmark vector above,
 $$
 \mathbf{W}
 =
-\operatorname{diag}\!\left(10^{10},\,10^{10},\,10^{34},\,10^{34},\,10^{34}\right).
+\operatorname{diag}\!\left(
+(2.3\times10^{-5})^{-2},
+(8\times10^{-5})^{-2},
+(4\times10^{-5})^{-2},
+(2\times10^{-9})^{-2},
+(4\times10^{-20})^{-2}
+\right).
 $$
 
 Forward-only evaluation rule:

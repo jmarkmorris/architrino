@@ -82,6 +82,74 @@ T(k)\sim k^{-2}\ \text{for }k\gg k_{\mathrm{eq}},
 $$
 up to the declared baryon acoustic, neutrino/free-streaming, and nonlinear corrections. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not an import of metric expansion ontology. It is the observer-level shape test that the same medium-state history must pass while computing $G_{\text{eff}}(a,k)$, CMB lensing, $f\sigma_8$, and high-redshift halo statistics.
 
+### Component Transfer and Free-Streaming Interface
+
+Linear perturbation theory is useful only when its variables are kept at the effective observer level. For each component $x$ in the comparison packet, use
+$$
+\mathbf{y}_x^\theta(k,z)
+=
+\left(
+\delta_x^\theta,\,
+\theta_x^\theta,\,
+\sigma_x^\theta,\,
+\delta p_x^\theta
+\right),
+$$
+where $\delta_x$ is the density contrast, $\theta_x$ is the velocity-divergence variable, $\sigma_x$ is the anisotropic-stress variable, and $\delta p_x$ is the pressure perturbation. A transfer-function branch is then a map
+$$
+\mathbf{y}_x^\theta(k,z)
+=
+\mathsf{T}_x^\theta(k,z;\theta_{\mathrm{sea}})
+\,\mathbf{y}_{\mathrm{init}}^\theta(k),
+\qquad
+P_{xy}^\theta(k,z)
+=
+T_x^\theta(k,z)T_y^\theta(k,z)P_{\mathrm{seed}}^\theta(k),
+$$
+with the same $\theta_{\mathrm{sea}}$ used for CMB lensing, BAO, BBN, and low-redshift growth. In an adiabatic comparison packet the initial component contrasts must satisfy
+$$
+\frac{\delta\rho_x^\theta}
+{\bar\rho_x^\theta+\bar p_x^\theta}
+=
+\frac{\delta\rho_y^\theta}
+{\bar\rho_y^\theta+\bar p_y^\theta},
+\qquad
+\delta_b^\theta
+=
+\delta_{\mathrm{dm}}^\theta
+=
+\frac{3}{4}\delta_\nu^\theta
+=
+\frac{3}{4}\delta_\gamma^\theta,
+$$
+unless the branch explicitly declares an isocurvature source and carries it through the CMB, BBN, and matter-power residuals.
+
+Neutrino and warm-dark-sector signals sharpen the small-scale transfer test. For ordinary massive neutrinos,
+$$
+f_\nu^\theta
+\equiv
+\frac{\Omega_\nu^\theta}{\Omega_m^\theta}
+\approx
+\frac{\Sigma m_\nu^\theta}
+{94\,\mathrm{eV}\,\Omega_m^\theta h_\theta^2},
+\qquad
+\frac{\Delta P_\delta^\theta}{P_\delta^\theta}
+\approx
+-8f_\nu^\theta
+$$
+below the free-streaming scale. For a sterile-neutrino or warm neutral-assembly comparison branch, retain the production-history dependence explicitly:
+$$
+\lambda_{\mathrm{FS}}^\theta
+=
+\int_0^{t_{\mathrm{eq}}^\theta}
+\frac{v^\theta(t)}{a_\theta(t)}\,dt
+\approx
+1.2\,\mathrm{Mpc}
+\left(\frac{1\,\mathrm{keV}}{m_s^\theta}\right)
+\left(\frac{\langle p/T\rangle_\theta}{3.15}\right).
+$$
+The key variable is not mass alone but the momentum distribution inherited from the production channel. A branch that changes $\langle p/T\rangle_\theta$, $f_\nu^\theta$, or $\lambda_{\mathrm{FS}}^\theta$ independently of its BBN and CMB records has split the shared cosmology state.
+
 ### Linear and Nonlinear Dark-Sector Split
 
 Hybrid dark-sector comparisons make one useful mathematical demand explicit: the linear growth record and the nonlinear rotation-curve record must be separated before they are recombined. A nearly pressureless fluid, scalar, or neutral-assembly population can reproduce the expansion history, acoustic peak loading, and linear matter power spectrum if its effective equation of state and sound speed are small,

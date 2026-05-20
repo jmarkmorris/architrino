@@ -2,10 +2,6 @@
 
 This detailed priority file supports [Noether-Core Stability and First Mass Map](mass-map.md). It generalizes shielding extraction into a sector exposure/quotient theorem: what part of internal Noether-core geometry becomes externally visible to a sector.
 
-## OpenAlex Baseline
-
-[exposure-quotient-openalex-baseline.md](exposure-quotient-openalex-baseline.md) records the May 18, 2026 OpenAlex review set for symmetry, reduction, gauge redundancy, and quotient-observable discipline.
-
 ## Core Theorem Target
 
 The common exposure form is:
@@ -290,7 +286,17 @@ Proof route: branch-ledger provenance makes $\mathcal{L}_A$ a derived assembly o
 
 ## Worked $A_0$ Scalar Shielding Case
 
-For the isotropic mass-facing scalar sector, take $S=0$ and take the continuous ledger space to be the selected far-field wake channel $\mathfrak{L}_{A_0}=L^2(S^2,d\Omega)$ after the $A_0$ branch label, causal-root ledger, and cycle window have been fixed. [$A_0$ Energy and Shielding Extraction](a0-energy-shielding-extraction.md) defines the emitted ledger
+For the isotropic mass-facing scalar sector, take $S=0$ and take the continuous ledger space to be the selected far-field wake channel after the $A_0$ branch label, causal-root ledger, and cycle window have been fixed:
+
+$$
+\mathfrak{L}_{A_0}
+=
+L^2(S^2,d\Omega)
+\times
+\mathfrak{D}_{A_0}.
+$$
+
+Here $\mathfrak{D}_{A_0}$ contains the exact discrete branch data carried by the accepted packet: branch phase origin, constituent ordering, root-ledger names, pro/anti cancellation labels, layer naming, and any other exact label needed to rerun the extraction. [$A_0$ Energy and Shielding Extraction](a0-energy-shielding-extraction.md) defines the emitted continuous ledger
 
 $$
 \mathcal{L}(\hat{\mathbf{R}})
@@ -342,6 +348,52 @@ $$
 {\|\mathcal{L}_{\text{naive}}\|}.
 $$
 
+### Scalar Worked-Case Theorem Target
+
+Let $D_{0,\mathrm{hid}}\subseteq\mathfrak{D}_{A_0}$ be the discrete labels discarded by the scalar mass-facing projection and quotient. For each $d\in D_{0,\mathrm{hid}}$, let $\mathcal{L}[d]$, $\mathcal{L}_{\text{naive}}[d]$, and $E_{\text{internal}}[d]$ denote the same accepted $A_0$ extraction with the discarded label restored for validation. Define
+
+$$
+\zeta_d(A_0)
+=
+\frac{\|\Pi_0\mathcal{L}[d]\|}
+{\|\mathcal{L}_{\text{naive}}[d]\|},
+\qquad
+M_{0,d}^{\mathrm{src}}
+=
+\zeta_d(A_0)E_{\text{internal}}[d].
+$$
+
+The scalar theorem target is to prove that the exposed source $M_0^{\mathrm{src}}$ factors through the quotient:
+
+$$
+Q_0\Pi_0\mathcal{L}[d_1]
+=
+Q_0\Pi_0\mathcal{L}[d_2]
+\quad\Longrightarrow\quad
+\left|
+M_{0,d_1}^{\mathrm{src}}
+-
+M_{0,d_2}^{\mathrm{src}}
+\right|
+\le
+\epsilon_{0,\mathrm{handle}}E_{\text{internal}}(A_0)
+$$
+
+for every $d_1,d_2\in D_{0,\mathrm{hid}}$. This is the no-hidden-mass-handle condition: a discarded branch label may remain hidden only when restoring it cannot change the mass-facing exposed source beyond tolerance. If the condition fails, the label is not a harmless quotient label; it is a sector-visible branch selector and must be retained, split into a tensor/anisotropic exposure, or reported as a failed scalar mass-facing extraction.
+
+The extractor itself must be benchmark-blind. In packet form this means
+
+$$
+\operatorname{Inputs}(\mathsf{Extract}_0)
+\cap
+\{m_e,m_\mu,m_\tau,\alpha_{\mathrm{obs}},r_e,
+\text{charged-lepton ratios},\text{target mass table}\}
+=
+\varnothing,
+$$
+
+where $\mathsf{Extract}_0$ is the map from the accepted $A_0$ branch packet, refinement schedule, far-field wake channel, $\Pi_0$, and $Q_0$ to $(\zeta(A_0),\mathcal{L}_{\text{aniso}},M_0^{\mathrm{src}})$. A benchmark may test the output after extraction; it may not select the hidden label, normalization, angular window, extraction radius, or quotient representative.
+
 The scalar case is admissible only if
 
 $$
@@ -358,7 +410,38 @@ $$
 \epsilon_{\text{aniso}},
 $$
 
-and if $\zeta(A_0)$ is stable under extraction radius, angular resolution, $\Delta t$, history depth, and $\eta$ refinement. If the anisotropic ratio exceeds tolerance, the scalar shielding coefficient is not promotable; the sector must either report an anisotropic/tensor response or fail the scalar mass-facing exposure gate.
+and if $\zeta(A_0)$ is stable under extraction radius, angular resolution, $\Delta t$, history depth, and $\eta$ refinement. The complete scalar leakage contract is
+
+$$
+\epsilon_{0,\mathrm{tot}}
+=
+\epsilon_{\text{aniso}}
++\epsilon_{0,\mathrm{ref}}
++\epsilon_{0,\mathrm{disc}}
++\epsilon_{0,\mathrm{handle}},
+$$
+
+with
+
+$$
+\epsilon_{0,\mathrm{ref}}
+\ge
+\sup_{\nu}
+\left|
+\zeta^{(\nu+1)}(A_0)
+-
+\zeta^{(\nu)}(A_0)
+\right|,
+\qquad
+\epsilon_{0,\mathrm{disc}}
+\ge
+\sup_{d_1,d_2\in D_{0,\mathrm{hid}}}
+\left|
+\zeta_{d_1}(A_0)-\zeta_{d_2}(A_0)
+\right|.
+$$
+
+If the anisotropic ratio exceeds tolerance, the scalar shielding coefficient is not promotable; the sector must either report an anisotropic/tensor response or fail the scalar mass-facing exposure gate. If $\epsilon_{0,\mathrm{handle}}$ exceeds tolerance, the scalar $\zeta(A_0)$ is not allowed to absorb the branch choice; the packet fails as a hidden branch mass handle rather than becoming a fitted mass parameter.
 
 ## Sector Ownership Rule
 
@@ -397,6 +480,7 @@ The theorem can promote into [particle-masses](../../../content/markdown/aaa/ass
 | `gauge-breaking-leakage` | $\sup_{g\in G_S}d_{\mathfrak{V}_S/\!\sim_S}(Q_S\Pi_S(g\cdot\mathcal{L}_A),Q_S\Pi_S\mathcal{L}_A)>\epsilon_{S,\mathrm{gauge}}$. | The exposed response depends on gauge, relabeling, or frame choices that should have been unobservable. |
 | `anisotropic-exposure` | $\|(1-\Pi_0)\mathcal{L}\|/\|\mathcal{L}_{\text{naive}}\|>\epsilon_{\text{aniso}}$ in the scalar shielding case. | $\zeta(A_0)$ is not a scalar isotropic response; the packet must report anisotropic/tensor exposure or fail the scalar gate. |
 | `discrete-label-leakage` | $\lambda_{S,\mathrm{disc}}(A)>\epsilon_{S,\mathrm{disc}}$ for a discrete label discarded by $\Pi_S$. | A hidden label changes the observer-level sector benchmark; the label must be retained, quotiented differently, or routed to its owning sector. |
+| `hidden-branch-mass-handle` | There exist $d_1,d_2\in D_{0,\mathrm{hid}}$ with $Q_0\Pi_0\mathcal{L}[d_1]=Q_0\Pi_0\mathcal{L}[d_2]$ but $\left|M_{0,d_1}^{\mathrm{src}}-M_{0,d_2}^{\mathrm{src}}\right|>\epsilon_{0,\mathrm{handle}}E_{\text{internal}}(A_0)$. | A discarded branch label changes the mass-facing exposed source, so the scalar quotient has become a fitted mass handle. Retain the label, split the exposure, or fail the scalar mass-facing packet. |
 | `benchmark-fitted-exposure` | The construction of $\mathcal{L}_A$, $\Pi_S$, or $Q_S$ uses the target observer benchmark before the branch ledger and projection are derived. | The response is a fit, not a sector exposure theorem instance. |
 | `split-exposure-domain` | Weak chirality, CKM/PMNS overlap, weak-corridor provenance, color exceptionality, photon support, or mass-facing response requires a separate projection/quotient grammar for the same declared sector. | The sector has not consumed the shared exposure theorem; promotion must remain local to the failing packet. |
 | `vector-corridor-misprojection` | A massive or short-lived vector corridor applies the photon transverse quotient while its recovered mass scale or weak provenance depends on retained longitudinal or mixed-axis content. | The vector-corridor response has been misclassified as photon-like transverse support; the corridor projection must be redefined or the claim fails. |

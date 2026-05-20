@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `10`
-- Value: `16.23`
+- Rank: `11`
+- Value: `15.86`
 - Cost: `4.6`
-- ROI: `3.53`
+- ROI: `3.45`
 - Status: `active`
 
 ## Task Queue
@@ -82,10 +82,6 @@ $$
 $$
 
 is nonempty. Local sector success is therefore not mature until at least one shared closure record preserves the local result while also passing the weak, quantum, gravity, hadronic, radiation, and cosmology acceptance sets.
-
-## OpenAlex Baseline
-
-[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for no-go applicability, particle/cosmology benchmarks, GR tests, and Bell-family pressure.
 
 ## Detailed Priority Files
 

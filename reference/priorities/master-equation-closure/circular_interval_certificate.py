@@ -832,6 +832,42 @@ def tail_obstruction_summary(beta_tail: float) -> dict:
         "full_signed_linear_margin_at_tail": full_signed_margin,
         "positive_sine_remainder_budget_rows": positive_budget_rows,
         "full_signed_max_K_0_at_beta_tail": full_signed_margin,
+        "tail_blockers": [
+            {
+                "chart": "positive_sine",
+                "missing_inequality": (
+                    "For beta >= beta_tail, prove "
+                    "S_+(beta) >= -beta/12 - K_log*log(beta) - K_0, "
+                    "where S_+ is the normalized positive-sine self tangential "
+                    "sum over every active sheet outside declared Jacobian-null windows."
+                ),
+                "budget_test": (
+                    "K_log*log(beta_tail)+K_0 < "
+                    f"{positive_margin:.12f}"
+                ),
+                "missing_envelope": (
+                    "A uniform branchwise bound for the endpoint-displacement "
+                    "and denominator-defect sum "
+                    "sum beta^2*cos(y)/(xi^2*|1-beta*cos(y)|)+beta/12 "
+                    "after all fold-window exclusions."
+                ),
+            },
+            {
+                "chart": "full_signed",
+                "missing_inequality": (
+                    "For beta >= beta_tail, prove "
+                    "S_|sin|(beta) >= -K_0, where S_|sin| is the normalized "
+                    "full signed self tangential sum after adjacent left/right "
+                    "sheet cancellation outside declared Jacobian-null windows."
+                ),
+                "budget_test": f"K_0 < {full_signed_margin:.12f}",
+                "missing_envelope": (
+                    "A uniform cancellation remainder bound for all signed-lobe "
+                    "sheet pairs, including the terminal orphan branch and the "
+                    "Jacobian-denominator defect near the excluded fold edges."
+                ),
+            },
+        ],
         "positive_sine_required_remainder_bound": (
             "Find constants K_log and K_0 such that "
             f"K_log*log(beta)+K_0 < {positive_margin:.12f} at beta_tail "
@@ -845,9 +881,9 @@ def tail_obstruction_summary(beta_tail: float) -> dict:
         "budget_constants_emitted": True,
         "closed_remainder": False,
         "remaining_obligation": (
-            "Supply an explicit bound on the O(log beta) and O(1) remainders "
-            "from the branchwise large-beta estimates before using the "
-            "asymptotic obstruction as a theorem-grade tail proof."
+            "Supply explicit branchwise envelope constants for the two missing "
+            "tail inequalities before using the asymptotic obstruction as a "
+            "theorem-grade tail proof."
         ),
     }
 
@@ -987,8 +1023,8 @@ def theorem_readiness(
             "status": "passed" if tail_obstruction["closed_remainder"] else "blocked",
             "technical_value": (
                 "Admissible K_log/K_0 budget constants are reported at the "
-                "tail handoff, but the branchwise O(log beta) and O(1) "
-                "remainders are not yet derived."
+                "tail handoff, but the branchwise endpoint-displacement and "
+                "denominator-defect envelopes are not yet derived."
             ),
         },
     ]
@@ -1279,6 +1315,24 @@ def emit_markdown(certificate: dict) -> str:
         [
             "",
             f"Full-signed $K_0$ budget at the tail: `{tail['full_signed_max_K_0_at_beta_tail']:.6f}`.",
+            "",
+            "### Tail Analytic Blocker",
+            "",
+            "| Chart | Missing inequality | Budget test | Missing envelope |",
+            "| --- | --- | --- | --- |",
+        ]
+    )
+    for blocker in tail["tail_blockers"]:
+        lines.append(
+            "| {chart} | {missing_inequality} | {budget_test} | {missing_envelope} |".format(
+                chart=blocker["chart"],
+                missing_inequality=blocker["missing_inequality"],
+                budget_test=blocker["budget_test"],
+                missing_envelope=blocker["missing_envelope"],
+            )
+        )
+    lines.extend(
+        [
             "",
             tail["remaining_obligation"],
             "",

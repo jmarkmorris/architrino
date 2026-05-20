@@ -3,10 +3,10 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Rank: `11`
-- Value: `18.69`
+- Rank: `12`
+- Value: `18.27`
 - Cost: `6.2`
-- ROI: `3.01`
+- ROI: `2.95`
 - Status: `tolerance-rule-scaffolded`
 
 ## Task Queue
@@ -27,13 +27,133 @@ The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in pl
 
 The hydrogen boundary question is now a staged standard-model-to-atomic bridge. Its value is not another validation gate; it is the first clean local map between four charged fermion assemblies, the proton's color-singlet closure, the electron resonance envelope, and the ambient Noether-Sea coarse-graining used as local spacetime.
 
-## OpenAlex Baseline
-
-[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for electroweak, flavor, QCD, confinement, scalar-sector, and nuclear-bridge constraints.
-
 ## Scalar-Boson Acceptance Target
 
 The Higgs discovery benchmark is a required Standard Model-facing recovery target, not evidence for primitive Higgs ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The acceptance target is a shared scalar residual combining ATLAS mass, inclusive signal strength, channel-rate compatibility, and excluded-scalar-window pressure. The benchmark fails if the native scalar mode is fit only by mass, if production and branching channels require independent tuning, or if extra scalar strength survives in search windows where ATLAS reports no accepted resonance.
+
+## CERN Collider-Provenance Benchmark
+
+The Tier 2 CERN Academic Training / CERN Yellow Report source family adds a detector-provenance pressure that mass and width rows do not capture by themselves. The recurring collider pattern is not "a particle appears in the detector." It is an inference chain from incoming beam state, pileup, hard reaction, detector response, reconstruction, calibration, and statistical fit into observer-level quantities. This pressure belongs in the Standard Model closure residual as observer provenance, not as substrate ontology.
+
+Source-mined records for this benchmark include the CERN Academic Training lecture collection, the Academic Training `Particle detectors` lectures, the Academic Training `Standard Model physics at the LHC` record, the CERN Yellow Reports: School Proceedings archive, the 2019 ESHEP `LHC Run-2 and future prospects` lecture, the 2019 ESHEP `Cosmology and dark matter` lecture, the 2023 ESHEP `Flavour physics and CP violation` lecture, the ATLAS jet and missing transverse momentum reconstruction note, the ATLAS Higgs discovery record, and the ATLAS VBF photon plus missing-transverse-momentum invisible-Higgs search.
+
+The first detector-provenance record to attach to a Standard Model benchmark is
+
+$$
+\mathcal{D}_{\mathrm{LHC}}
+=
+\left(
+B_{\mathrm{beam}},
+\mathcal{P}_{\mathrm{pileup}},
+\mathcal{O}_{\mathrm{reco}},
+\mathbf{p}_T^{\mathrm{miss}},
+\mathcal{V}_{\mathrm{prim/sec}},
+\mathcal{C}_{\mathrm{cal}},
+\mathcal{U}_{\mathrm{syst}}
+\right).
+$$
+
+Here $B_{\mathrm{beam}}$ records beam species and $\sqrt{s}$, $\mathcal{P}_{\mathrm{pileup}}$ records additional interactions and primary-vertex assignment, $\mathcal{O}_{\mathrm{reco}}$ is the reconstructed object set, $\mathbf{p}_T^{\mathrm{miss}}$ is the transverse imbalance, $\mathcal{V}_{\mathrm{prim/sec}}$ records primary and displaced secondary vertices, $\mathcal{C}_{\mathrm{cal}}$ records calibrations, and $\mathcal{U}_{\mathrm{syst}}$ records nuisance parameters and systematic uncertainties. This is a provenance object for observer evidence. It is not a replacement for the event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$.
+
+The reconstructed object set should be treated as
+
+$$
+\mathcal{O}_{\mathrm{reco}}
+=
+\left\{
+e,\mu,\gamma,\tau_h,
+h^\pm,h^0,
+j,
+T_{b/c}(j)
+\right\},
+$$
+
+where $h^\pm$ and $h^0$ are charged and neutral hadron candidates, $j$ denotes a reconstructed jet, and $T_{b/c}(j)$ is a heavy-flavor tag on a jet rather than a directly observed quark. The shared missing-transverse-momentum convention is the closure equation
+
+$$
+\mathbf{p}_T^{\mathrm{miss}}
+=
+-
+\left(
+\sum_{o\in\mathcal{O}_{\mathrm{hard}}}
+\mathbf{p}_{T,o}
++
+\mathbf{p}_T^{\mathrm{soft}}
+\right),
+\qquad
+E_T^{\mathrm{miss}}
+=
+\left\|\mathbf{p}_T^{\mathrm{miss}}\right\|.
+$$
+
+The soft term must be tied to the primary event vertex and pileup rejection convention before it is compared to neutrino, invisible-Higgs, dark-sector, or detector-mismeasurement hypotheses. The immediate Standard Model closure use is a detector-aware residual
+
+$$
+\mathcal{R}_{\mathrm{SM,det}}(\Theta)
+=
+\left(
+\mathcal{R}_{\mathrm{masses}},
+\mathcal{R}_{\mathrm{widths}},
+\mathcal{R}_{\mathrm{rates}},
+\mathcal{R}_{\mathrm{objects}},
+\mathcal{R}_{\mathrm{miss}},
+\mathcal{R}_{\mathrm{tags}},
+\mathcal{R}_{\mathrm{limits}}
+\right),
+$$
+
+where $\mathcal{R}_{\mathrm{objects}}$ compares reconstructed lepton, photon, hadron, jet, and vertex channels; $\mathcal{R}_{\mathrm{miss}}$ compares missing-transverse-momentum distributions and their soft-term conventions; $\mathcal{R}_{\mathrm{tags}}$ compares heavy-flavor inference from impact parameters, secondary vertices, decay lengths, and semileptonic signatures; and $\mathcal{R}_{\mathrm{limits}}$ records excluded windows or upper limits such as invisible-Higgs branching bounds.
+
+| CERN source signal | Closure use | Failure condition |
+| --- | --- | --- |
+| Particle-flow reconstruction combines tracks and calorimeter clusters into charged hadrons, neutral hadrons, electrons, photons, and muons. | The event ledger must distinguish visible reconstructed objects from invisible or unclustered balance terms. | A reaction map treats a reconstructed particle-flow candidate list as the ontic product list. |
+| Jets and $E_T^{\mathrm{miss}}$ summarize hadronic final states and transverse imbalance, with pileup and soft-term corrections. | Missing momentum becomes a provenance equation and nuisance-sensitive residual, not a free invisible-sector input. | Neutrino, dark-matter, or invisible-Higgs claims absorb detector imbalance without the object and soft-term ledger. |
+| Heavy-flavor tags infer $b$ or $c$ jets from displaced secondary vertices, large impact parameters, hadron mass, and semileptonic decays. | Flavor closure must predict a branch that survives reconstruction and tagging efficiencies. | A quark-flavor claim is treated as directly observed rather than tag-calibrated. |
+| Higgs searches combine $\gamma\gamma$, $ZZ^{(*)}4\ell$, $WW^{(*)}\ell\nu\ell\nu$, heavy-fermion channels, and excluded windows. | The scalar-boson acceptance target remains one coupled production, branching, mass, and limit residual. | The scalar mode is fit only by mass or only by one clean channel. |
+| VBF photon plus missing-transverse-momentum events use a photon, forward jets, and transverse imbalance to test $Z\gamma$ production and invisible or partially invisible Higgs channels. | Invisible or dark-sector branches must close through visible recoil objects plus $\mathbf{p}_T^{\mathrm{miss}}$. | An invisible channel is asserted without recoil, trigger, forward-jet, and statistical-limit provenance. |
+
+New failure modes:
+
+- `sm.detector_ontology_blend`: reconstructed detector objects are treated as substrate products.
+- `sm.missing_momentum_free_sink`: $\mathbf{p}_T^{\mathrm{miss}}$ is used as an unbalanced energy sink rather than a calibrated transverse-balance residual.
+- `sm.flavor_tag_direct_observation`: a $b$ or $c$ tag is treated as direct quark observation rather than vertex/track/lifetime inference.
+- `sm.scalar_mass_only_fit`: Higgs recovery uses $M_H$ without coupled production, branching, excluded-window, and detector-provenance rows.
+
+## Current PDG Benchmark Contract
+
+The current Particle Data Group source family is a downstream recovery surface, not an input ledger for branch selection. The active benchmark source is the 2025 PDG API / pdgLive release, cited by PDG as S. Navas et al. (Particle Data Group), Phys. Rev. D 110, 030001 (2024) and 2025 update, with data release timestamp `2025-11-26 19:33:17 PST`. The 2024 Review chapters remain the review-level source for uncertainty conventions, QCD running, electroweak-fit interpretation, CKM/PMNS context, and statistics practice.
+
+The Standard Model closure residual should carry at least these observer-facing rows:
+
+| Sector | PDG benchmark row | Closure use | Input prohibition |
+| --- | --- | --- | --- |
+| Charged leptons | $m_e=0.51099895000\pm0.00000000015\,\mathrm{MeV}$, $m_\mu=105.6583755\pm0.0000023\,\mathrm{MeV}$, $m_\tau=1776.93\pm0.09\,\mathrm{MeV}$; $\tau_\mu=(2.1969811\pm0.0000022)\times10^{-6}\,\mathrm{s}$, $\tau_\tau=(2.903\pm0.005)\times10^{-13}\,\mathrm{s}$ | Mass hierarchy, weak-decay clock, and charged-lepton lifetime checks. | Do not tune $A_0$, shielding, or weak-corridor constants to charged-lepton masses or lifetimes. |
+| Light hadrons | $m_p=938.27208816\pm0.00000029\,\mathrm{MeV}$, $m_n=939.5654205\pm0.0000005\,\mathrm{MeV}$, $m_{\pi^\pm}=139.57039\pm0.00018\,\mathrm{MeV}$, $m_{\pi^0}=134.9768\pm0.0005\,\mathrm{MeV}$, $m_{K^\pm}=493.677\pm0.015\,\mathrm{MeV}$ | Hadronic confinement, residual nuclear-force, isospin-splitting, and decay-threshold checks. | Do not use hadron masses to choose quark geometry or confinement energetics before the native branch ledger is fixed. |
+| Quarks | $\overline m_u(2\,\mathrm{GeV})=2.16\pm0.07\,\mathrm{MeV}$, $\overline m_d(2\,\mathrm{GeV})=4.70\pm0.07\,\mathrm{MeV}$, $\overline m_s(2\,\mathrm{GeV})=93.5\pm0.8\,\mathrm{MeV}$, $\overline m_c(\overline m_c)=1.2730\pm0.0046\,\mathrm{GeV}$, $\overline m_b(\overline m_b)=4.183\pm0.007\,\mathrm{GeV}$, $m_t^{\mathrm{direct}}=172.56\pm0.31\,\mathrm{GeV}$ | Quark mass-basis geometry, flavor hierarchy, confinement-scale, and top-loop electroweak checks. | Do not treat scheme-dependent quark masses as primitive rest-assembly masses; the scheme and scale are part of the benchmark row. |
+| Electroweak bosons and scalar | $M_W=80.3692\pm0.0133\,\mathrm{GeV}$, $\Gamma_W=2.14\pm0.05\,\mathrm{GeV}$, $M_Z=91.1880\pm0.0020\,\mathrm{GeV}$, $\Gamma_Z=2.4955\pm0.0023\,\mathrm{GeV}$, $M_H=125.20\pm0.11\,\mathrm{GeV}$, $\Gamma_H=3.7^{+1.9}_{-1.4}\,\mathrm{MeV}$ | Weak-corridor mass, neutral-current line shape, scalar-response, and branching-width checks. | Do not fit $W/Z/H$ masses independently from the same weak-exposure, recoupling, and scalar-response map. |
+| QCD running | $\alpha_s(M_Z^2)=0.1180\pm0.0009$ in the 2024 QCD review world-average discussion; the 2024 electroweak fit gives $\alpha_s(M_Z)=0.1187\pm0.0017$ for the global electroweak fit. | Strong-sector running, confinement energetics, and electroweak fit covariance checks. | Do not use one scalar $\alpha_s$ target without declaring whether it is the QCD world average or the electroweak-fit extraction. |
+| Flavor and neutrino | CKM first-row unitarity check $|V_{ud}|^2+|V_{us}|^2+|V_{ub}|^2=0.9984\pm0.0007$ with a reported $2.3\sigma$ tension in the 2024 CKM review; 2025 neutrino rows include $\sin^2\theta_{12}=0.307\pm0.012$, $\sin^2\theta_{13}=0.0216\pm0.0006$, $\delta_{\mathrm{CP}}=1.21^{+0.19}_{-0.22}\pi$, and $\Delta m_{21}^2=(7.50\pm0.19)\times10^{-5}\,\mathrm{eV}^2$ | Unified weak-exposure, CKM/PMNS overlap, CP-phase, and neutrino mass-difference checks. | Do not let overlap-integral kernels see CKM/PMNS entries until the exposure measure, basis states, and normalization have been fixed. |
+
+The compact residual object is
+
+$$
+\mathcal{R}_{\mathrm{PDG}}(\Theta)
+=
+\left(
+\frac{\mathbf{m}_{\mathrm{obs}}-\mathbf{m}_{\mathrm{map}}(\Theta)}
+{\boldsymbol{\sigma}_{m}},
+\frac{\boldsymbol{\Gamma}_{\mathrm{obs}}-\boldsymbol{\Gamma}_{\mathrm{map}}(\Theta)}
+{\boldsymbol{\sigma}_{\Gamma}},
+\frac{\mathbf{V}_{\mathrm{CKM,obs}}-\mathbf{V}_{\mathrm{CKM,map}}(\Theta)}
+{\boldsymbol{\sigma}_{\mathrm{CKM}}},
+\frac{\mathbf{U}_{\mathrm{PMNS,obs}}-\mathbf{U}_{\mathrm{PMNS,map}}(\Theta)}
+{\boldsymbol{\sigma}_{\mathrm{PMNS}}},
+\frac{\alpha_s^{\mathrm{obs}}-\alpha_s^{\mathrm{map}}(\Theta)}
+{\sigma_{\alpha_s}}
+\right).
+$$
+
+Here $\Theta$ denotes already-declared $\mathbb{A}\mathbb{A}\mathbb{A}$ branch, shielding, exposure, and medium-response data. A benchmark row with a PDG scale factor, asymmetric uncertainty, confidence limit, or mixed statistical/systematic uncertainty must carry that convention into the likelihood or residual definition rather than being symmetrized silently. The 2024 statistics review gives the matching convention for fit reporting: likelihood or $\chi^2$ combinations should state nuisance parameters, covariance/correlation structure, limits and confidence levels, and whether a quoted one-standard-deviation interval comes from $\Delta\chi^2=1$ rather than a literal $68.3\%$ probability statement.
 
 ## Hydrogen Boundary Closure Object
 

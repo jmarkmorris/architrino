@@ -4,9 +4,9 @@
 
 - Kind: `priority`
 - Rank: `1`
-- Value: `37.80`
+- Value: `37.90`
 - Cost: `5.5`
-- ROI: `6.87`
+- ROI: `6.89`
 - Status: `active`
 
 ## Task Queue
@@ -14,6 +14,7 @@
 1. `circular_asymptotics` — Extend higher-winding and large-$\beta$ circular self-force asymptotics. Status: `in_progress`; the branchwise large-$\beta$ self-hit estimates, derivative-sensitive residual packet, high-speed circular obstruction, sampled finite-band branch table, executable outward-rounded interval support certificate, trig-free residual backend, checked root-bracket rows, complete finite-band inactive-gap ledger, theorem-readiness matrix, interval-certificate packet, and Jacobian-null finite-crossing criteria now advance the self-hit side, but the theorem-grade bare-kernel circular MCB verdict remains open until the large-$\beta$ tail remainder constants are closed. Depends on: none.
 2. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth, using the promoted variable-pitch formulas, radial-turn inequality, and weighted tangential obstruction test. Status: `next`. Depends on: `circular_asymptotics`.
 3. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
+4. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
 
 ## Scope
 
@@ -21,19 +22,14 @@ Keep dynamics, geometry, and mapping centered on [master-equation.md](../../../c
 
 This file remains the control surface for the workstream. No sibling detailed priority file is needed yet; if the program grows, the natural split is one action-kernel / Noether-boundary packet, one circular/spiral closure packet, and one Lorentz/GR bridge packet.
 
-## OpenAlex Baseline
-
-[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 source-mining baseline for this rank-1 workstream. The useful external backbone is functional differential equation theory for history-space well-posedness, state-dependent delay smoothness for active-root charts, direct-action electrodynamics for action-level conservation accounting, and Lorentz/PPN/preferred-frame tests for the bridge acceptance surface. The immediate corpus promotion from that pass is the state-dependent delay compatibility condition now added to [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md).
-
-The May 19, 2026 completion pass exhausted the active OpenAlex queue rows and sharpened three local proof burdens. Branch charts evolve on the compatibility manifold $\mathcal{X}_{\mathfrak{B}}=\{\phi:\dot{\phi}(0)=\mathcal{G}_{\mathfrak{B}}(\phi)\}$ rather than on arbitrary retained histories. Radiation/reaction claims must close the provenance residual $\mathcal{R}^{(\eta)}_{\mathrm{prov}}(W)$ using the same branch rows and Noether wake-history charge as the force residual. The Lorentz/GR bridge must report separated moving-assembly, two-way anisotropy, PPN, SME-style leakage, and high-energy channel residuals rather than collapsing them into one qualitative Lorentz-recovery statement.
-
 ## Promotion Map
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `circular_asymptotics` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding and large-$\beta$ circular self-force asymptotics are extended beyond the current leading-order footholds. |
-| `spiral_branch_chart_test` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | One admissible variable-pitch candidate reports partner and self roots, positive Jacobian floors, finite memory depth, radial-turn status, and weighted tangential-drive verdict. |
-| `lorentz_gr_bridge` | This file | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving tri-binary contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
+| `circular_asymptotics` | This file and [circular-interval-certificate-report](circular-interval-certificate-report.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding and large-$\beta$ circular self-force asymptotics are extended beyond the current leading-order footholds. |
+| `spiral_branch_chart_test` | [spiral-branch-chart-certificate](spiral-branch-chart-certificate.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | One admissible variable-pitch candidate reports partner and self roots, positive Jacobian floors, finite memory depth, radial-turn status, and weighted tangential-drive verdict. |
+| `lorentz_gr_bridge` | [lorentz-gr-bridge-handoff](lorentz-gr-bridge-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving tri-binary contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
+| `lorentz_test_residual_handoff` | [lorentz-test-residual-handoff](lorentz-test-residual-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [lorentz-invariance-test-suite](../cross-theory-mapping/lorentz-invariance-test-suite.md) | RMS, PPN, and SME-style residual rows are exported only after the Lorentz/GR bridge supplies one shared branch, clock, ruler, signal, and medium-response artifact. |
 
 ## Completed Kernel Handoff
 
@@ -96,7 +92,7 @@ Status update. The branch-history packet below is now the required baseline for 
 
 ## Circular Derivative-Sensitive Branch-History Packet
 
-Purpose. This packet converts `circular_asymptotics` from a pointwise circular root count into a retained-history branch chart. It consumes the OpenAlex delayed-functional baseline by requiring every circular partner and self contribution to be classified as delayed-state, derivative-sensitive, or blocked by a Jacobian-null window before its force-balance residue is used.
+Purpose. This packet converts `circular_asymptotics` from a pointwise circular root count into a retained-history branch chart. It consumes the delayed-functional mining synthesis by requiring every circular partner and self contribution to be classified as delayed-state, derivative-sensitive, or blocked by a Jacobian-null window before its force-balance residue is used.
 
 History tube. Fix a symmetric circular two-body history $\Gamma_{\mathrm{circ}}(\beta)$ on a speed band $\mathcal{B}_{\beta}=[\beta_-,\beta_+]$ and memory horizon $h$. The retained circular chart is
 $$
@@ -427,36 +423,56 @@ Tail scaffold. At $\beta_{\mathrm{tail}}=\beta_8^\star=26.684798$, the positive-
 
 Inactive-gap rows. The executable now emits complete finite-band inactive-gap rows for each certified chart. The default run reports positive active-complement lower bounds between $2.580747\times10^{-11}$ and $2.098537\times10^{-9}$, positive no-root lobe lower bounds between $3.744780\times10^{-10}$ and $2.120456\times10^{-9}$ wherever a no-root lobe domain exists, and an explicit declared exclusion for the $\xi=0$ self-coincidence endpoint, which is not used as an active self-force row.
 
-Tail remainder priority capture. The remaining high-value proof packet is a branchwise tail constant derivation, not another finite-band checker. The proof must bound the positive-sine self-tail remainder by explicit constants $K_{\log},K_0$ with $K_{\log}\log\beta_{\mathrm{tail}}+K_0<8.591208140575$, and bound the full signed tail by $K_0<10.814941315726$, using the same active-root asymptotics and Jacobian-window exclusions as the finite certificate. A successful packet should update [circular_interval_certificate.py](circular_interval_certificate.py) so `--require-theorem-grade` fails only if the derived tail constants violate those budgets.
+Tail remainder blocker packet. The remaining high-value proof packet is a branchwise tail constant derivation, not another finite-band checker and not a numerical budget fit. Let
+$$
+S_+(\beta)
+=
+\sum_{\alpha\in\mathcal{A}_{s}^{+}(\beta)}
+\frac{\beta^2\cos y_\alpha}
+{\xi_\alpha^2|1-\beta\cos y_\alpha|}
+$$
+denote the normalized positive-sine self tangential sum, with $\xi_\alpha=k_\alpha\pi+y_\alpha$ and $0<y_\alpha<\pi$, outside the declared Jacobian-null windows. The positive-sine tail closes only after proving explicit constants $K_{\log},K_0$ such that, for every $\beta\ge\beta_{\mathrm{tail}}$ on the certified chart,
+$$
+S_+(\beta)
+\ge
+-\frac{\beta}{12}
+-K_{\log}\log\beta
+-K_0
+$$
+and
+$$
+K_{\log}\log\beta_{\mathrm{tail}}+K_0<8.591208140575.
+$$
+The exact missing estimate is the uniform endpoint-displacement and denominator-defect envelope
+$$
+\sum_{\alpha\in\mathcal{A}_{s}^{+}(\beta)}
+\frac{\beta^2\cos y_\alpha}
+{\xi_\alpha^2|1-\beta\cos y_\alpha|}
++\frac{\beta}{12}
+\ge
+-K_{\log}\log\beta-K_0.
+$$
+The current packet does not prove this inequality; it only identifies the budget it must satisfy.
 
-Continuation prompt captured for the next technical pass:
-
-```text
-Cody, use the AAA corpus advancement skill in self-running exploration mode.
-
-Context:
-- The circular interval certificate now passes finite sample targets, outward-rounded finite interval targets, stable active-root ledgers, the trig-free residual backend, checked root-bracket inclusion, and complete finite-band inactive-gap rows.
-- The theorem-grade guard still fails only at `closed_large_beta_tail_remainder`.
-
-Task:
-- Derive explicit branchwise large-$\beta$ tail remainder constants for the positive-sine and full signed circular self charts.
-- Use the existing budgets at $\beta_{\mathrm{tail}}=\beta_8^\star=26.684798$: positive-sine requires $K_{\log}\log\beta_{\mathrm{tail}}+K_0<8.591208140575$ and full signed requires $K_0<10.814941315726$.
-- If the constants close, update `circular_interval_certificate.py`, regenerate `circular-interval-certificate-report.md`, and update this priority file. If they do not close, record the exact inequality that fails and the next mathematical route.
-
-Scope:
-- `reference/priorities/master-equation-closure/circular_interval_certificate.py`
-- `reference/priorities/master-equation-closure/circular-interval-certificate-report.md`
-- `reference/priorities/master-equation-closure/master-equation-closure.md`
-
-Constraints:
-- Preserve TeX exactly.
-- Use canonical AAA terminology.
-- Do not promote theorem-grade unless the tail constants are derived and the executable guard passes.
-- Edit authority: direct edit batch authorized.
-
-Expected output:
-- A tail proof packet with constants, validation output, and either theorem-grade promotion or a precise remaining analytic blocker.
-```
+For the full signed chart, with
+$$
+S_{|\sin|}(\beta)
+=
+\sum_{\alpha\in\mathcal{A}_{s}^{|\sin|}(\beta)}
+\frac{\beta^2s_\alpha\cos y_\alpha}
+{\xi_\alpha^2|1-\beta s_\alpha\cos y_\alpha|},
+$$
+the tail closes only after proving
+$$
+S_{|\sin|}(\beta)\ge -K_0
+\quad\text{for all}\quad
+\beta\ge\beta_{\mathrm{tail}},
+$$
+with
+$$
+K_0<10.814941315726.
+$$
+The exact missing estimate is the signed-lobe cancellation remainder after pairing adjacent left/right sheets, including the terminal orphan branch and the denominator defect near excluded fold edges. A viable next mathematical route is an Euler-Maclaurin or Abel-summation packet on the ordered lobe endpoints, with the Jacobian-window exclusions carried as explicit removed intervals; the proof must bound absolute denominator defects before using signed cancellation.
 
 Promotion rule. If the executable certificate proves all target margins and attaches the large-$\beta$ tail with a stated $\beta_{\mathrm{tail}}$ and closed remainder, then the equal-magnitude bare circular ansatz has no tangential-zero branch chart outside $\mathcal{N}_{J,\varepsilon}$. At that point the reader-facing master-equation chapter may promote a finite-band circular no-go proposition. If any margin fails, the failed interval becomes the only surviving finite-band circular candidate and must be re-evaluated with smaller Jacobian windows, exact interval root refinement, or a later tail handoff.
 
@@ -901,7 +917,7 @@ Keep the maximum-curvature-wall question tied to both tracks. The Jacobian-null 
 - Derive the constitutive closure from the coarse-grained medium itself rather than postulating it:
   - take the continuum limit of the $\eta$-regularized delayed action and effective medium Lagrangian seriously;
   - compute the relevant continuum stress-strain or equivalent constitutive variables of the causal medium;
-  - derive the PPN numbers $\gamma$, $\beta$, and $\alpha_i$ to Cassini / LLR precision;
+  - derive the PPN numbers $\gamma$, $\beta$, and $\alpha_i$ to the Will benchmark rows: $|\gamma_{\mathrm{PPN}}-1|\le2.3\times10^{-5}$, $|\beta_{\mathrm{PPN}}-1|\le8\times10^{-5}$, $|\alpha_1|\le4\times10^{-5}$, $|\alpha_2|\le2\times10^{-9}$, and $|\alpha_3|\le4\times10^{-20}$;
   - recover the weak-field targets $\gamma_{\mathrm{eff}} = 1$, $\beta_{\mathrm{eff}} = 1$, and vanishing preferred-frame coefficients $\alpha_1$, $\alpha_2$, $\alpha_3$;
   - and show Shapiro delay and light-bending equivalence to GR at the advertised $10^{-5}$ level.
 
@@ -996,6 +1012,83 @@ $$
 Preferred-frame leakage may also appear as clock/shape sidebands, drift-dependent channel splitting $c_{\text{eff}}-c_f$, photon-channel splitting $c_\gamma-c_{\text{eff}}$, or weak-field coefficients $(\alpha_1,\alpha_2,\alpha_3)$ after metric dressing. Those downstream leakage terms may falsify the bridge, but they do not define the moving-assembly extraction.
 
 Failure modes for this packet are concrete: no stable translated attractor on the drift band, loss of Jacobian floor or inactive-root gaps, unbounded memory depth, branch transition treated as smooth drift, residuals above the leakage bounds, a clock period and ruler semiaxis extracted from different branch ledgers, identification of $c_f$ with $c_\star$ without a dressing map, or Lorentz agreement obtained only by tuning a PPN coefficient or per-observable clock/ruler rule after the moving branch has been extracted.
+
+## RMS/SME Residual Handoff
+
+The Lorentz test suite consumes the moving-assembly packet through residual rows, not through a declaration that the observer sector is Lorentzian. For the same retained branch $q$, define
+$$
+\mathbf{R}_{\mathrm{RMS}}^{(q)}
+=
+\begin{pmatrix}
+R_{\mathrm{MM}}^{(q)}\\
+R_{\mathrm{KT}}^{(q)}\\
+R_{\mathrm{IS}}^{(q)}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\bar\delta^{(q)}-\bar\beta^{(q)}\\
+\bar\beta^{(q)}-\bar\alpha^{(q)}\\
+\bar\alpha^{(q)}
+\end{pmatrix},
+$$
+where the barred coefficients are offsets from the special-relativistic Robertson-Mansouri-Sexl values in the homogeneous drift expansion. The theorem target is
+$$
+\mathbf{R}_{\mathrm{RMS}}^{(q)}=\mathbf{0}+O(\epsilon_{\mathrm{LV}})
+$$
+with the same branch also satisfying the two-way residual bound
+$$
+\sup_{\beta,\hat{\mathbf n}}
+\left|\Delta_{\mathrm{tw}}^{(q)}(\beta,\hat{\mathbf n})\right|
+\lesssim10^{-18}
+$$
+when projected into direct photon-sector cavity observables.
+
+The weak-field metric export is the PPN vector
+$$
+\mathbf{p}_{\mathrm{PPN}}^{(q)}
+=
+\begin{pmatrix}
+\gamma_{\mathrm{PPN}}^{(q)}-1\\
+\beta_{\mathrm{PPN}}^{(q)}-1\\
+\alpha_1^{(q)}\\
+\alpha_2^{(q)}\\
+\alpha_3^{(q)}
+\end{pmatrix},
+$$
+which must be normalized against
+$$
+\mathbf{b}_{\mathrm{Will}}
+=
+\begin{pmatrix}
+2.3\times10^{-5}\\
+8\times10^{-5}\\
+4\times10^{-5}\\
+2\times10^{-9}\\
+4\times10^{-20}
+\end{pmatrix}.
+$$
+The bridge passes the source-mined weak-field row only if
+$$
+\left\|
+\operatorname{diag}(\mathbf{b}_{\mathrm{Will}})^{-1}
+\mathbf{p}_{\mathrm{PPN}}^{(q)}
+\right\|_\infty
+\le1.
+$$
+
+The SME-style export is a comparison projection:
+$$
+\mathbf{R}_{\mathrm{SME}}^{(q)}
+=
+\left(
+\tilde\kappa_{e-}^{(q)},
+\tilde\kappa_{o+}^{(q)},
+\tilde\kappa_{\mathrm{tr}}^{(q)},
+\bar{s}^{\mu\nu(q)},
+\mathbf{c}_{\mathrm{matter}}^{(q)}
+\right).
+$$
+These rows are not added to the substrate law. They are the coefficient-space shadow cast by the branch into the standard Sun-centered frame used by SME data tables. A successful master-equation bridge should report them even when every entry is consistent with zero, because absent rows are indistinguishable from untested leakage.
 
 ## Lorentz/GR Bridge Contract
 
@@ -1152,7 +1245,8 @@ Interface falsifier. If a downstream basin weight, shielding coefficient, or res
 
 ## Empirical Stakes
 
-- The absolute-time and Euclidean-void ontology survives only if the exact compensation works at modern Lorentz-violation bounds below $10^{-17}$.
+- The absolute-time and Euclidean-void ontology survives only if the exact compensation works at the relevant modern Lorentz-violation bound for each channel.
+- The source-mined bounds are channel-specific: two-way photon orientation tests reach the $10^{-18}$ scale, while PPN preferred-frame rows range from $4\times10^{-5}$ for $\alpha_1$ to $4\times10^{-20}$ for $\alpha_3$.
 - If the contraction or clock-slowing law requires ad hoc tuning of $\kappa$, $\eta$, or axial-structure-specific detail, the bridge fails.
 - Match GR in the weak field first, then let strong-field deviations emerge as predictions rather than assertions.
 

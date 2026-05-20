@@ -173,6 +173,43 @@ $$
 
 within its uncertainty unless a branch-state split is declared. If a measured observable does not isolate one residual channel, $E_{M,r}$ may mix entries, but the mixing matrix must be fixed before the pressure fit.
 
+## Transport Reversibility Columns
+
+Each pressure row must also declare whether it is a reversible medium-response row or a thresholded transport row before the shared fit is interpreted. The row-level transport record is
+
+$$
+\mathcal{T}_{M,r}^{P}
+=
+\left(
+\mathcal{R}_{\mathrm{tr},M,r},
+\mathcal{R}_{\mathrm{tr},*,M,r},
+\Delta E_{\mathrm{exc},M,r},
+\Delta E_{\mathrm{heat},M,r},
+\Delta E_{\mathrm{rad},M,r},
+\Delta E_{\mathrm{branch},M,r},
+\Delta E_{\mathrm{rem},M,r}
+\right).
+$$
+
+A row is eligible for a branch-preserving pressure replay only when
+
+$$
+\mathcal{R}_{\mathrm{tr},M,r}
+<
+\mathcal{R}_{\mathrm{tr},*,M,r}
+\quad\text{and}\quad
+\Delta E_{\mathrm{exc},M,r}
++
+\Delta E_{\mathrm{heat},M,r}
++
+\Delta E_{\mathrm{rad},M,r}
++
+\Delta E_{\mathrm{branch},M,r}
+=0
+$$
+
+within the declared uncertainty. A row with $\mathcal{R}_{\mathrm{tr},M,r}\ge\mathcal{R}_{\mathrm{tr},*,M,r}$ is not automatically invalid physics, but it is no longer a clean pressure-loading row for reversible Noether-Sea response. It must be segmented, masked, or reported as a threshold-event row with the opened excitation, heating, radiation-like shedding, branch-transition, or remnant channel declared.
+
 ## Channel Mask and Covariance
 
 Not every replay will measure all six channels. Let $D_{M,r}$ be the diagonal mask that keeps only available residual entries. The retained covariance is
@@ -335,6 +372,7 @@ The first empirical packet should use these top-level fields:
 | `extractor` | $E_{M,r}$ matrices and sign conventions |
 | `channel_mask` | $D_{M,r}$ availability masks and reasons for missing channels |
 | `covariance` | $\Sigma_{M,r}$ and retained $\Sigma_{M,r}^{(D)}$ |
+| `transport_reversibility` | $\mathcal{T}_{M,r}^{P}$ rows, branch-preserving status, and any threshold-event segmentation or masking |
 | `fit_results` | $\mathcal{R}_{\mathrm{row}}$, $\mathcal{R}_{\mathrm{sep}}$, $\mathcal{R}_{\mathrm{split}}$, $\nu_{\mathrm{dof}}$, fitted $B_P$, and any separated-row comparison |
 | `heavy_scaling` | $\mathcal{A}_{Y}^{H/L}$ by retained channel and the shared $\eta_Z$ status |
 | `null_bounds` | $\mathcal{R}_{\mathrm{null}}^{P}$ entries and $\epsilon_P$ |
@@ -344,16 +382,17 @@ The first empirical packet should use these top-level fields:
 
 - **Pass:** every fit-eligible retained channel satisfies $\mathcal{R}_{\mathrm{row}}\le\epsilon_{\mathrm{row}}$, $\mathcal{R}_{\mathrm{split}}=0$, and $\mathcal{R}_{\mathrm{null}}^{P}\le\epsilon_P$, with one shared $\eta_Z$ if $\eta_Z$ is scanned.
 - **Demote:** separated rows materially improve the fit, channelwise $\eta_Z$ values are required, or ordinary condensed-matter correction uncertainty can absorb the residuals.
-- **Fail:** the fit requires null-sector violation, branch-state mixing without segmentation, a sign reversal without a logged state change, or observable-local coefficients.
+- **Fail:** the fit requires null-sector violation, branch-state mixing without segmentation, transport-threshold rows treated as reversible rows, a sign reversal without a logged state change, or observable-local coefficients.
 - **Bound-only:** residuals are consistent with zero, the channel count is rank-deficient, or missing covariance prevents a fit claim. The packet may still report upper bounds on $a_S$, $m_S$, $\eta_Z$, and pressure sensitivity of $\Gamma_N$.
 
 ## First Replay Build Order
 
 1. Build a Fe/Cr packet over the cleanest shared bcc pressure interval, or declare why Ni/Co has the better state match.
 2. Freeze $\mathcal{S}_{M,r}$, $\mathbf{q}_{M,r}$, $E_{M,r}$, $D_{M,r}$, and $\Sigma_{M,r}$ before fitting $B_P$.
-3. Fit $B_P$ only on retained residual channels after standard corrections are subtracted.
-4. Compare against $B_H$ and $B_L$ separated rows.
-5. Run the heavy/control slope check for every retained channel.
-6. Apply null-sector bounds before any promotion or theory elevation.
+3. Freeze $\mathcal{T}_{M,r}^{P}$ and remove, split, or mask threshold-event rows before fitting branch-preserving pressure response.
+4. Fit $B_P$ only on retained residual channels after standard corrections are subtracted.
+5. Compare against $B_H$ and $B_L$ separated rows.
+6. Run the heavy/control slope check for every retained channel.
+7. Apply null-sector bounds before any promotion or theory elevation.
 
 The first blank empirical packet is [Fe/Cr Empirical Pressure Replay Skeleton](pressure-replay-fe-cr-empirical-skeleton.md). It selects Fe/Cr from the local priority stack, keeps all missing material inputs explicit, and fixes the fit-input contract before data insertion.

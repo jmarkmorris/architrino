@@ -27,5 +27,9 @@
     "epsilon_dof": 1e-12
   },
   "rows": [],
+  "transport_reversibility": {
+    "status": "missing",
+    "rows": []
+  },
   "null_bounds": {}
 }

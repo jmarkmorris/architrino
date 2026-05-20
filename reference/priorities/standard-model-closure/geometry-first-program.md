@@ -51,6 +51,116 @@ The reader-facing color chapter should summarize the accepted algebra and confin
 - Test whether the CP phase can be recovered as a holonomy or torsion consequence, including the current closure target $\cos\delta = s_{13}/(s_{12}s_{23})$.
 - Derive confinement-scale behavior from topological or strain energetics of flux tubes, braids, or other line defects, aiming for linear tension $V \propto r$ or $\sigma_{\mathrm{eff}} L$ and finite relaxed bounds for closed color-singlet configurations.
 
+## QFT / Gauge / Amplitudes Comparison Scaffolds
+
+Tier 2 source mining adds comparison scaffolds from independent QFT, gauge, scattering-amplitude, positive-geometry, and topological-field sources. These are not substrate ontology. They are theorem targets for the observer-level Standard Model recovery map.
+
+Mined source anchors:
+
+- Srednicki QFT draft: `https://web.physics.ucsb.edu/~mark/ms-qft-DRAFT.pdf`
+- Scattering amplitudes and the positive Grassmannian: `https://arxiv.org/abs/1212.5605`
+- The amplituhedron: `https://arxiv.org/abs/1312.2007`
+- Positive geometries and canonical forms: `https://arxiv.org/abs/1703.04541`
+- BCJ color/kinematics relations: `https://arxiv.org/abs/0805.3993`
+- Tong soliton/gauge-topology notes: `https://www.damtp.cam.ac.uk/user/tong/soliton.html`
+
+### Gauge-covariance recovery target
+
+For a retained Standard Model-facing branch $\theta$, the effective gauge chart must reconstruct an observer-level connection and curvature,
+$$
+D_\mu^\theta=\partial_\mu-i g_\theta A_{\mathrm{eff},\mu}^\theta,
+\qquad
+F_{\mu\nu}^\theta=\frac{i}{g_\theta}[D_\mu^\theta,D_\nu^\theta].
+$$
+Under an allowed effective chart change $U(x)$, the recovery target is
+$$
+\Psi_\theta' = U\Psi_\theta,
+\qquad
+D_\mu^{\theta'}\Psi_\theta'=U D_\mu^\theta\Psi_\theta,
+\qquad
+F_{\mu\nu}^{\theta'}=U F_{\mu\nu}^\theta U^{-1}.
+$$
+A compact covariance residual is
+$$
+\mathcal{R}_{\mathrm{cov}}(\theta;U)
+=
+\sup_{\Psi\in\mathcal{D}_\theta}
+\frac{
+\left\|
+D^{\theta'}(U\Psi)-U D^\theta\Psi
+\right\|
+}{
+\left\|D^\theta\Psi\right\|+\varepsilon_{\mathrm{op}}
+}.
+$$
+The branch passes this comparison only if $\mathcal{R}_{\mathrm{cov}}\le\varepsilon_{\mathrm{cov}}$ on the declared low-energy record domain. If covariance is achieved only by changing the underlying Noether-Sea state, axial inventory, or branch ledger while keeping the same observer labels, the map has confused gauge redundancy with physical variation.
+
+### Amplitude factorization and locality-emergence target
+
+The S-matrix comparison target is pole factorization. For a channel $I$ with intermediate invariant $P_I^2$ and accepted transient channel $h$, the extracted effective amplitude should satisfy
+$$
+\mathcal{A}_{n,\theta}
+\xrightarrow{P_I^2\to m_h^2}
+\sum_h
+\mathcal{A}_{L,\theta}^{(h)}
+\frac{i}{P_I^2-m_h^2+i0}
+\mathcal{A}_{R,\theta}^{(h)}
++ \mathcal{A}_{\mathrm{reg},\theta}.
+$$
+The framework-native proof obligation is to derive the residue from the same event-window provenance ledger, transient assembly record, branch Jacobians, and final-state density that define the reaction channel. The boundary of the observer-level amplitude should correspond to a real factorization of the retained causal-wake history, not to a fitted pole inserted after the fact.
+
+### Color/kinematics compatibility target
+
+The existing color-exceptionality tensors already satisfy
+$$
+Q_H+Q_M+Q_L=0.
+$$
+BCJ-style color/kinematics duality suggests a sharper comparison target: whenever three color factors satisfy an oriented Jacobi relation, the corresponding kinematic numerators should satisfy the same oriented relation after all allowed contact-term moves have been assigned to the branch chart,
+$$
+c_i+c_j+c_k=0
+\quad\Longrightarrow\quad
+n_i^\theta+n_j^\theta+n_k^\theta\to0.
+$$
+For the geometry-first program this becomes a test of whether the H/M/L axis-exceptionality algebra and the causal-root numerator ledger are two projections of one branch geometry. A provisional residual is
+$$
+\mathcal{R}_{\mathrm{CK}}(\theta)
+=
+\sup_{(i,j,k)\in\mathcal{J}_\theta}
+\frac{
+\left\|n_i^\theta+n_j^\theta+n_k^\theta\right\|
+}{
+\left\|n_i^\theta\right\|+\left\|n_j^\theta\right\|+\left\|n_k^\theta\right\|+\varepsilon_{\mathrm{num}}
+}.
+$$
+This is a comparison scaffold, not a claim that the Standard Model color algebra is fundamental ontology. It fails if numerator identities appear only after sector-specific fitting unrelated to the causal-root and color-exceptionality ledgers.
+
+### Positive-geometry boundary target
+
+The positive Grassmannian and amplituhedron sources add a disciplined way to think about scattering locality as a boundary property. The native target is not to import an auxiliary geometry as substrate. It is to ask whether a completed branch-chart family admits positive coordinates $\alpha_b>0$ on a record domain whose comparison form has only logarithmic boundary singularities,
+$$
+\Omega_{\theta}
+\sim
+\bigwedge_{b\in B_\theta} d\log \alpha_b,
+$$
+with residues on physical boundaries equal to the factorized lower-channel forms and spurious internal boundaries cancelling in the summed record. The first safe target is a positive-coordinate causal-root branch-chart test for a low-point electroweak or color process. If this succeeds, the positive-geometry language becomes a compact certificate for factorization and spurious-pole cancellation; if it fails, it remains only a useful external comparison.
+
+### Topological-sector integrality target
+
+Gauge/topological-field notes supply a second guardrail: some effective gauge sectors are classified by integer winding or Chern data. For any branch $\theta$ promoted as a non-Abelian gauge-topology recovery, the effective curvature must support an integer-sector residual such as
+$$
+k_\theta
+=
+\frac{1}{8\pi^2}
+\int_{\mathcal{D}_\theta}
+\operatorname{tr}\!\left(F_{\mathrm{eff}}\wedge F_{\mathrm{eff}}\right),
+\qquad
+\mathcal{R}_{\mathrm{top}}(\theta)
+=
+\inf_{N\in\mathbb{Z}}
+\left|k_\theta-N\right|.
+$$
+This residual belongs to the observer-level gauge recovery map. It should be derived from closed causal-wake provenance, axial-layer holonomy, and Noether-Sea response rather than from an assumed principal-bundle ontology.
+
 ## Geometry-First Internal Objects (Provisional)
 
 The labels in this section are provisional calculation scaffolds, not canon terminology. The purpose is to force one internal geometry to carry four readouts at once: weak `V-A` exposure, CKM/PMNS overlap, CP phase, and confinement-facing color closure.

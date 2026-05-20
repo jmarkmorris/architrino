@@ -123,6 +123,62 @@ $$
 $$
 with $E_D$ the deuterium binding energy and $\eta$ the baryon-to-photon ledger variable. These equations are observer-level benchmarks for the thermal record. A native local-reactor branch may reinterpret where the history occurs, but it must reproduce the same freeze-out, deuterium-bottleneck, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ residuals without fitting them in separate source zones.
 
+### Weak-Rate and Relativistic-Species Gate
+
+The neutrino and weak-rate side of BBN is a hard interface, not optional explanatory color. A candidate local-reactor record $\theta$ must compute the weak conversion channels within the same thermal and source-window history that supplies photon loading and baryon provenance:
+$$
+\lambda_{n\to p}^{\theta}:\quad
+\begin{cases}
+n+e^+\to p+\bar{\nu}_e,\\
+n+\nu_e\to p+e^-,\\
+n\to p+e^-+\bar{\nu}_e,
+\end{cases}
+\qquad
+\lambda_{p\to n}^{\theta}:\quad
+\begin{cases}
+p+\bar{\nu}_e\to n+e^+,\\
+p+e^-\to n+\nu_e,\\
+p+e^-+\bar{\nu}_e\to n.
+\end{cases}
+$$
+The freeze-out comparison is controlled by when these rates fall below the effective BBN clock,
+$$
+\lambda_{n\to p}^{\theta}(T)
+\sim
+\lambda_{p\to n}^{\theta}(T)
+\sim
+H_{\mathrm{eff,BBN}}^\theta(T),
+$$
+where $H_{\mathrm{eff,BBN}}^\theta$ is the observer-level cooling and dilution rate inferred from the local transport record, not expansion of the Euclidean void. Any extra relativistic component changes the same clock through
+$$
+H_{\mathrm{eff,BBN}}^\theta
+\propto
+\left(
+\rho_\gamma^\theta
++\rho_{e^\pm}^\theta
++\rho_{\nu_\alpha}^\theta
++\rho_{\nu_s}^\theta
++\cdots
+\right)^{1/2},
+$$
+so the relativistic-species residual must be tracked as
+$$
+N_{\text{eff}}^\theta
+\equiv
+\frac{\rho_{\mathrm{rel}}^\theta-\rho_\gamma^\theta}
+{\rho_{\nu,1}^\theta}.
+$$
+The equilibrium neutron-to-proton comparison then reads
+$$
+\frac{n_n^\theta}{n_p^\theta}
+\approx
+\exp\!\left(
+-\frac{\Delta m_{np}c_0^2}{k_BT}
+-\xi_{\nu_e}^\theta
+\right),
+$$
+where $\xi_{\nu_e}^\theta$ is retained only when the branch declares a neutrino-sector asymmetry. A viable branch must therefore recover the same $n_n/n_p$, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ surfaces from one local source-window record. A sterile or hidden relativistic sector that improves one isotope while shifting the weak-rate clock, neutrino asymmetry, or photon loading independently fails this gate.
+
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ SMBH-Local Nucleation Chain
 
 The BBN story is one continuous mechanism:

@@ -66,6 +66,148 @@ The effective gauge chapter supplies a formal connection spine. This packet shou
 | $SU(3)$ color connection | Preserve the axis-exceptionality algebra already closed in the color chapter. |
 | Gauge-breaking bounds | Ensure preferred-frame or medium-response corrections do not introduce leading-order gauge-breaking operators. |
 
+## PDG Weak-Sector Benchmark Vector
+
+The PDG weak-sector rows sharpen the closure burden because they force one weak-exposure domain to carry low-energy current-current behavior, vector-boson masses and widths, neutral-current mixing, CKM overlap, PMNS overlap, and statistical fit conventions at once. The native exposure object must therefore report an observer benchmark vector
+
+$$
+\mathcal{B}_{W}^{\mathrm{PDG}}
+=
+\left(
+G_F,
+M_W,\Gamma_W,M_Z,\Gamma_Z,
+s_W^2,\bar{s}_{\ell}^{\,2},
+\mathbf{V}_{\mathrm{CKM}},
+\mathbf{U}_{\mathrm{PMNS}},
+\Delta_{\mathrm{EWfit}}
+\right),
+$$
+
+with benchmark values drawn from the current PDG 2025 API rows and the 2024 Review fit tables. The 2024 electroweak review gives $G_F=1.1663788(6)\times10^{-5}\,\mathrm{GeV}^{-2}$, $s_W^2=0.22348\pm0.00010$, $\hat{s}_Z^2=0.23129\pm0.00004$, and $\bar{s}_{\ell}^{\,2}=0.23161\pm0.00004$ for the main fit convention. The current PDG 2025 rows give $M_W=80.3692\pm0.0133\,\mathrm{GeV}$, $\Gamma_W=2.14\pm0.05\,\mathrm{GeV}$, $M_Z=91.1880\pm0.0020\,\mathrm{GeV}$, and $\Gamma_Z=2.4955\pm0.0023\,\mathrm{GeV}$. The 2024 global electroweak fit reports $\chi^2/\mathrm{d.o.f.}=49.5/47$ with probability $37\%$ after excluding the CDF II $W$-mass row from the main fit; including that row is a separate stress test with sharply worse fit quality.
+
+For CKM recovery, the first reduced target is the magnitude matrix from the 2024 CKM review:
+
+$$
+\left|V_{\mathrm{CKM}}\right|
+=
+\begin{pmatrix}
+0.97435\pm0.00016 & 0.22501\pm0.00068 & 0.003732^{+0.000090}_{-0.000085}\\
+0.22487\pm0.00068 & 0.97349\pm0.00016 & 0.04183^{+0.00079}_{-0.00069}\\
+0.00858^{+0.00019}_{-0.00017} & 0.04111^{+0.00077}_{-0.00068} & 0.999118^{+0.000029}_{-0.000034}
+\end{pmatrix},
+$$
+
+with Wolfenstein parameters
+
+$$
+\lambda=0.22501\pm0.00068,\quad
+A=0.826^{+0.016}_{-0.015},\quad
+\bar{\rho}=0.1591\pm0.0094,\quad
+\bar{\eta}=0.3523^{+0.0073}_{-0.0071},
+$$
+
+and $J=3.12^{+0.13}_{-0.12}\times10^{-5}$. Direct first-row closure must track
+
+$$
+\Delta_{\mathrm{CKM1}}
+=
+\left(
+|V_{ud}|^2+|V_{us}|^2+|V_{ub}|^2
+\right)-1
+=
+-0.0016\pm0.0007,
+$$
+
+where the review describes the corresponding tension as $2.3\sigma$. This is a validation residual, not a license to retune the weak-exposure measure.
+
+For PMNS recovery, the current 2025 PDG rows provide the first benchmark vector
+
+$$
+\mathbf{p}_{\mathrm{PMNS}}
+=
+\left(
+\sin^2\theta_{12},
+\sin^2\theta_{13},
+\sin^2\theta_{23}^{\mathrm{NO}},
+\sin^2\theta_{23}^{\mathrm{IO}},
+\Delta m_{21}^2,
+\Delta m_{32,\mathrm{NO}}^2,
+\Delta m_{32,\mathrm{IO}}^2,
+\delta_{\mathrm{CP}}
+\right),
+$$
+
+with
+
+$$
+\mathbf{p}_{\mathrm{PMNS}}
+=
+\left(
+0.307\pm0.012,\,
+0.0216\pm0.0006,\,
+0.534^{+0.015}_{-0.019},\,
+0.537\pm0.020,\,
+(7.50\pm0.19)\times10^{-5}\,\mathrm{eV}^2,\,
+(2.451\pm0.026)\times10^{-3}\,\mathrm{eV}^2,\,
+(-2.527\pm0.034)\times10^{-3}\,\mathrm{eV}^2,\,
+1.21^{+0.19}_{-0.22}\pi
+\right).
+$$
+
+The neutrino benchmark is a mixing and mass-difference target. Absolute-mass rows remain separate limits: $m_{\nu_e}^{\mathrm{eff}}<0.8\,\mathrm{eV}$ at $90\%$ CL, $m_{\nu_\mu}^{\mathrm{eff}}<0.19\,\mathrm{MeV}$ at $90\%$ CL, and $m_{\nu_\tau}^{\mathrm{eff}}<18.2\,\mathrm{MeV}$ at $95\%$ CL in the current PDG rows.
+
+## CERN Weak, Higgs, and Flavor Event Burdens
+
+The CERN Academic Training / Yellow Report source family sharpens this packet by showing how weak, Higgs, and flavor claims enter as reconstructed event signatures. The weak-sector closure object must therefore expose not only a mass or mixing number, but also the observer channel by which that number is inferred.
+
+The minimal observer weak-signature record is
+
+$$
+\mathcal{S}_W^{\mathrm{obs}}
+=
+\left(
+\ell,
+\mathbf{p}_T^{\mathrm{miss}},
+j_{\mathrm{VBF}},
+j_{\mathrm{ISR}},
+T_{b/c}(j),
+\mathcal{V}_{\mathrm{sec}},
+m_{\mathrm{inv}},
+m_T,
+\mathcal{C}_{\mathrm{fit}}
+\right),
+$$
+
+where $\ell$ is a reconstructed charged lepton, $\mathbf{p}_T^{\mathrm{miss}}$ is the missing-transverse-momentum vector, $j_{\mathrm{VBF}}$ and $j_{\mathrm{ISR}}$ are vector-boson-fusion and initial-state-radiation jet roles when used, $T_{b/c}(j)$ is heavy-flavor tagging, $\mathcal{V}_{\mathrm{sec}}$ is displaced-vertex information, $m_{\mathrm{inv}}$ and $m_T$ are invariant or transverse masses, and $\mathcal{C}_{\mathrm{fit}}$ is the profile-likelihood, nuisance, or limit convention. These are detector and inference variables; the native burden is to map them back to weak exposure, corridor provenance, overlap measures, and event-ledger closure.
+
+| CERN source signal | Weak-sector burden | Failure condition |
+| --- | --- | --- |
+| Missing transverse momentum is reconstructed as a negative transverse vector sum over identified objects plus a soft term. | Neutrino and invisible-channel rows must include the object list, soft term, pileup convention, and recoil terms before assigning a weak or dark-sector branch. | $\mathbf{p}_T^{\mathrm{miss}}$ is treated as direct evidence for an unobserved assembly without detector-balance provenance. |
+| VBF photon plus missing-transverse-momentum analyses use a photon and forward jets to measure $Z\gamma jj$ and bound invisible or partially invisible Higgs channels. | Higgs and weak neutral-current closure must handle visible recoil, forward-jet topology, missing momentum, and upper limits in one residual. | The weak/scalar map fits a visible channel while leaving invisible limits or recoil topology outside the same exposure grammar. |
+| Flavor and CP-violation lectures emphasize CKM structure, hadronic weak decays, neutral-meson mixing, and effective Hamiltonians. | CKM overlap integrals must predict hadronic weak-decay classes and CP phases, not only a static matrix magnitude. | The overlap kernel fits CKM entries without a decay-channel, mixing, or CP-violation provenance row. |
+| Heavy-flavor jets are inferred through displaced secondary vertices, impact parameters, hadron mass, and semileptonic signatures. | The flavor branch must survive detector tagging as a calibrated inference from lifetime and vertex geometry. | A heavy quark branch is declared observed without the tag-efficiency and mistag ledger. |
+| Neutrino lectures frame oscillation data as mass, mixing, flavor projection, and matter-effect phenomenology. | PMNS recovery must couple source reaction, propagation phase, detector flavor projection, and weak exposure in the same domain. | PMNS rows are imported as fit parameters without source and detector weak-reaction ledgers. |
+
+The heavy-flavor tag should be modeled as an observer inference functional
+
+$$
+T_{b/c}(j)
+=
+F_{\mathrm{tag}}
+\left(
+d_0,
+\mathcal{V}_{\mathrm{sec}},
+m_{\mathrm{SV}},
+L_{\mathrm{decay}},
+N_{\mathrm{trk}},
+\ell_{\mathrm{semi}},
+p_T,
+\eta
+\right),
+$$
+
+with calibration and mistag rates attached. Here $d_0$ is impact-parameter information, $\mathcal{V}_{\mathrm{sec}}$ is the secondary-vertex record, $m_{\mathrm{SV}}$ is secondary-vertex mass, $L_{\mathrm{decay}}$ is decay-length information, $N_{\mathrm{trk}}$ is track multiplicity, and $\ell_{\mathrm{semi}}$ records semileptonic signatures. The native flavor closure target is not $T_{b/c}$ itself. It is a branch-provenance derivation whose observer projection reproduces $T_{b/c}$ and its calibration dependencies.
+
 ## Promotion Targets
 
 | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ file | Promotion condition |

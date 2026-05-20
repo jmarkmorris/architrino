@@ -4,9 +4,9 @@
 
 - Kind: `deferred-priority`
 - Rank: `16`
-- Value: `10.57`
+- Value: `11.28`
 - Cost: `7.3`
-- ROI: `1.45`
+- ROI: `1.54`
 - Status: `deferred`
 
 ## Task Queue
@@ -30,10 +30,6 @@ Populate the missing quantum closure notes only after the work becomes testable.
 This file remains the deferred control surface for quantum closure. The sibling [transfer-operator-basin-measure](transfer-operator-basin-measure.md) packet owns the shared theorem grammar for `transfer_operator` and `invariant_measure`. The Decider packet now has two roles: first, to formalize the field-speed middle binary as a universal Noether-core metastability substrate, and second, to decide which added control structure turns metastability into a Switch or Decider. The philosophy handoff is deliberately narrow: built-in metastability explains why threshold alternatives are native to assemblies, while free-will language remains admissible only as compatibilist threshold governance with work, feedback, and record constraints. The pilot-wave / algorithmic-resonance packet preserves separate downstream transfer-operator stress tests. None of these topics move ahead of Born-rule, measurement-response, photon Gate B, or Bell closure; they keep those opportunities from disappearing while the upstream gates mature.
 
 Measurement-record formation consumes the shared [residual-routing event-ledger theorem](../tri-binary-causal-closure/residual-routing-event-ledger.md) only after the transfer-operator and invariant-measure objects are explicit enough to say which basin outcome becomes a physical apparatus record.
-
-## OpenAlex Baseline
-
-[openalex-baseline.md](openalex-baseline.md) records the May 18, 2026 OpenAlex review set for Bell-family tests, contextuality, decoherence, measure constraints, and pilot-wave comparison sources.
 
 ## Detailed Priority Files
 
@@ -86,6 +82,74 @@ Quantum closure does not define angular momentum, spin, helicity, or Bell correl
 6. The Stern-Gerlach-like measurement response must use finite-time apparatus coupling, basin resolution, apparatus recoil, wake exchange, and local Noether-Sea recoil. It must not read a preassigned spin arrow.
 7. Photon Gate B is a separate vector-channel ledger: transverse projector, helicity $\pm1$, material analyzer projector, invariant unresolved-material measure, analyzer coupling, Malus' law, no longitudinal free photon mode, and no-signaling polarization statistics. Photon-polarization Bell tests use the polarization angle law, not the spin-$\tfrac{1}{2}$ singlet curve.
 8. Only after those packets exist may this workstream derive pair provenance, compute Bell correlations, and decide whether the substrate response passes the Bell / CHSH / Tsirelson gate.
+
+## Tier 2 Lecture-Note Benchmark Interfaces
+
+The TASI / Les Houches high-energy lecture-note family supplies benchmark equations for quantum closure, but these are stress tests and comparison interfaces. They should not be promoted as substrate ontology until the delayed assembly dynamics, detector kernels, and event ledgers derive the corresponding objects.
+
+### Neutrino Flavor Transition Target
+
+The neutrino oscillation packet gives a clean finite-baseline transition benchmark for the transfer-operator program. A derived assembly-level flavor ledger should be able to project to
+$$
+P(\nu_\alpha\to\nu_\beta)
+=
+\delta_{\alpha\beta}
+-4\sum_{i>j}
+\mathrm{Re}
+\left(
+U_{\alpha i}^\ast U_{\beta i}
+U_{\alpha j}U_{\beta j}^\ast
+\right)
+\sin^2\!\left(
+\frac{\Delta m_{ij}^2L}{4E}
+\right)
++2\sum_{i>j}
+\mathrm{Im}
+\left(
+U_{\alpha i}^\ast U_{\beta i}
+U_{\alpha j}U_{\beta j}^\ast
+\right)
+\sin\!\left(
+\frac{\Delta m_{ij}^2L}{2E}
+\right).
+$$
+This is an observer-level probability surface. The native proof burden is to identify the assembly provenance variables, phase-history record, detector response, and invariant measure whose pushforward yields this transition surface without treating flavor labels as primitive switches.
+
+### Scattering-Amplitude Locality and Factorization
+
+The amplitudes benchmark says that local tree-level scattering has only the allowed simple factorization singularities. The minimal four-point target is
+$$
+\lim_{s\to0}s\,A_4
+=
+A_3A_3,
+$$
+with no unphysical $1/s^2$ pole in the same channel. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this becomes an event-ledger and transient-assembly test: any effective scattering amplitude derived from causal-wake dynamics must factor through admissible intermediate assemblies, conserve the reaction ledger, and avoid spurious singular channels introduced by an over-compressed coarse-graining.
+
+### EFT / SMEFT Matching Target
+
+The effective-field-theory benchmark compresses unresolved heavy structure into local operators:
+$$
+\mathcal{L}_{\mathrm{eff}}
+=
+\mathcal{L}_{d\le4}
++
+\sum_i
+\frac{C_i\,O_i}
+{\Lambda^{d_i-4}}.
+$$
+In this workstream, the coefficients $C_i$ are not free metaphysical parameters. They are observer-level summaries to be matched against assembly branch data, wake exchange, and Noether-Sea response. The useful closure target is a matching map
+$$
+\mathcal{M}_{\mathbb{A}\mathbb{A}\mathbb{A}\to\mathrm{EFT}}:
+\left(
+\Pi_{\mathrm{branch}},\,
+\Pi_{\mathrm{wake}},\,
+\Pi_{\mathrm{detector}},\,
+\theta_{\mathrm{sea}}
+\right)
+\longmapsto
+\{C_i(\mu)\},
+$$
+followed by a unitarity and breakdown-scale check. If the inferred EFT coefficients grow past the scale where amplitudes violate unitarity, the comparison has located the effective description's failure surface, not a new substrate law.
 
 ## Bell Final-Gate Dependency Map
 

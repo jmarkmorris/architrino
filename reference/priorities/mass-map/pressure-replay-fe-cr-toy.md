@@ -1027,6 +1027,100 @@ This is a branch-certificate scaffold, not empirical evidence. Its value is that
 
 This is the first concrete compensated-row branch target. It is not a validation result: it becomes a candidate only after a positive Hessian branch supplies $k_R$, $k_\xi$, $k_{R\xi}$, $c_R$, $c_\xi$, the readout $(q_R,q_\xi)$, and null-sector residuals that keep the induced shape response admissible.
 
+### Replay Acceptance Proposition
+
+The Fe/Cr toy replay now has a branch-native acceptance condition. Define
+
+$$
+\Delta_G
+\equiv
+G_\Gamma-\frac{G_\chi}{1+\gamma_{\text{eff}}},
+\qquad
+L_H
+\equiv
+d_n+d_\lambda A_H-d_RQ_H,
+\qquad
+C_H
+\equiv
+b_n-b_\lambda A_H-b_RQ_H.
+$$
+
+For the toy GR-matching branch, $G_\chi=0.36>0$ and $\Delta_G=0.42>0$. A compensated pressure row is admissible for a declared readout only if all of the following hold:
+
+$$
+\boxed{
+\begin{gathered}
+k_R>0,\qquad k_\xi>0,\qquad \Delta_H>0,\qquad D_H>0,\\
+0<s_n^{\mathrm{sf}}\le1,\qquad K_{\mathrm{pack}}^{\mathrm{sf}}>0,\\
+G_\chi C_H=\Delta_G L_H,\qquad
+\kappa_n=\frac{G_\chi}{L_H}>0,\\
+\text{branch evidence is finite-branch evidence, not toy algebra.}
+\end{gathered}
+}
+$$
+
+The coefficient signs are therefore fixed once $G_\chi$ is fixed. In the current toy convention $G_\chi>0$, so $L_H>0$ is required for positive density response. Because $\Delta_G>0$, scalar feasibility then forces $C_H>0$ as well. A row with $L_H=0$ while $G_\chi\ne0$ has no finite $\kappa_n$; a row with $L_H<0$ has the wrong density sign; a row with $C_H$ of the opposite sign fails the shared cadence equation.
+
+The shape channel adds the scalar-versus-bounded distinction:
+
+$$
+\boxed{
+\text{strict scalar row: }B_H=0,
+\qquad
+\text{bounded row: }
+\max_r
+\left|
+\frac{G_\chi B_H}{L_H}
+\Theta_r
+\right|
+\le\epsilon_{\xi}^{P}.
+}
+$$
+
+Finally, the pressure-side slope vector must be the branch-derived one:
+
+$$
+\boxed{
+\left(
+\kappa_n^P,\,
+\kappa_\lambda^P,\,
+\kappa_R^P
+\right)
+=
+\kappa_n
+\left(
+1,\,
+A_H,\,
+-Q_H
+\right).
+}
+$$
+
+A replay that instead chooses $\kappa_n^P$, $\kappa_\lambda^P$, and $\kappa_R^P$ independently has failed the pressure replay even if the scalar residual becomes small. Its diagnostic residual is
+
+$$
+\boxed{
+\mathcal{R}_{\mathrm{slope}}
+=
+\left\|
+\left(
+\kappa_n^P,\,
+\kappa_\lambda^P,\,
+\kappa_R^P
+\right)
+-
+\kappa_n
+\left(
+1,\,
+A_H,\,
+-Q_H
+\right)
+\right\|.
+}
+$$
+
+For a same-branch claim, $\mathcal{R}_{\mathrm{slope}}$ must vanish within the declared tolerance. If it does not, the response belongs to a branch split, a changed readout, an ordinary material correction, or a failed Noether-Sea pressure-row interpretation.
+
 The current finite-branch intake verdict is negative. The compact $A_0$ fold-layer-locked one-period attempt in [A0 Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) fails direct one-period residual closure and does not compute the quotient monodromy, positive $\Delta_{\mathbf{k}}$, or $\eta$-ladder persistence. Its residual-balance ledger also gives a relation-weight-only no-go with relative residual about `0.755`, so it cannot supply a finite envelope Hessian. With `--require-branch-evidence`, both default scanner scenarios fail as toy rows rather than accepted branch rows. Therefore the broader compensated family remains optional but unpromoted; nonzero $a_n$, $a_\lambda$, or $a_R$ are not required by the endpoint constraints, and they remain disfavored as independent fit knobs until a finite branch derives the corresponding pressure-side entries.
 
 Anisotropic pressure terms remain outside this scalar endpoint equation. The replay must keep
