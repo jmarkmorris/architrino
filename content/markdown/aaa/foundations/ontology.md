@@ -119,6 +119,19 @@ In this ontology hub, the key commitment is:
 
 The resulting observer descriptions can be indispensable without being final ontology. Effective metric reconstruction, wave function transition, and particle records are inferential summaries of accessible interactions, not replacements for the substrate and assembly account.
 
+### Bell Nonlocality Placement
+
+Bell-family experiments are not treated as evidence for ontological randomness, backward causation, or faster-than-$c_f$ signal transfer. They are treated as a hard observer-level correlation constraint on any deterministic completion. The complete state on $\Sigma_t$ remains definite in the $\mathbb{U}_{\text{now}}$ universe-state perspective, while a Physical Observer has access only to pair records, detector settings, coincidence windows, and statistical summaries.
+
+The placement is therefore level-specific. If $\mathbb{A}\mathbb{A}\mathbb{A}$ passes the Bell gate, the required "nonlocality" is Bell-technical non-separability of the retained pair-provenance and apparatus-response variables, not an instantaneous causal influence between detectors. The observer-level compression must fail the factorizable local-response form
+$$
+P(a,b\mid \hat{m}_A,\hat{m}_B,\lambda)
+=
+P(a\mid \hat{m}_A,\lambda)\,
+P(b\mid \hat{m}_B,\lambda),
+$$
+while still preserving measurement independence and no-signaling. A mere shared-source story is not enough: if the retained provenance screens the two detector wings into independent local laws, the account has fallen back into the Bell-local class. The detailed derivation and residual tests belong to [Bell's Theorem](../theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../theory-bridges/entanglement-nonlocality.md).
+
 The routing boundary is:
 
 - [Observer Framework](../spacetime/observer-framework.md) owns complete-state versus Physical Observer access.
@@ -126,6 +139,7 @@ The routing boundary is:
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) owns moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and preferred-frame leakage bounds.
 - [Emergent Metric](../spacetime/emergent-metric.md) owns metric reconstruction from observer clocks, rulers, and signals.
 - [Wavefunction Ontology](../quantum/wavefunction-ontology.md) and [Measurement Ontology](../quantum/measurement-ontology.md) own quantum-state and measurement descriptions at the observer-accessible layer.
+- [Bell's Theorem](../theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../theory-bridges/entanglement-nonlocality.md) own Bell-family correlation recovery, no-signaling, measurement-independence, and pair-provenance closure tests.
 
 ## Terminology Discipline (Locked Definitions)
 

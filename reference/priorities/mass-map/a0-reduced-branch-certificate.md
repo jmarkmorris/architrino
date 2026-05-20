@@ -1376,26 +1376,37 @@ Corrected one-period rerun note, May 20, 2026:
 node scripts/mass-map/a0-tier1-fold-layer-locked-one-period-attempt.mjs --intake /tmp/a0-tier1-one-period-continuation-prototype-codex-review.json --source /tmp/a0-tier1-continuation-source-prototype-codex-review.json --correction-packet /tmp/a0-tier1-carrier-correction-packet-final-omit-none.json --pretty --out /tmp/a0-tier1-fold-layer-locked-one-period-attempt-corrected-omit-none.json
 ```
 
-The one-period runner now has a reusable retained Fourier correction evaluator and a `--correction-packet` rerun path. For the `--omit-modes none` packet, row `1` reaches `correction_context_ready`, carries eight retained modes for each of `I`, `M`, and `O`, applies the center-preserving body updates to the initial state, path-history lookup, direct acceleration, emitted samples, and residual-balance source lookup, and reports `corrected_integrator_present: true`. The corrected artifact still sets `accepted_history_boundary: false`.
+The one-period runner now has a reusable retained Fourier correction evaluator and a `--correction-packet` rerun path. For the `--omit-modes none` packet, row `1` reaches `correction_context_ready`, carries eight retained modes for each of `I`, `M`, and `O`, applies the center-preserving body updates to the initial state, path-history lookup, direct acceleration, emitted samples, and residual-balance source lookup, and reports `corrected_integrator_present: true`. A follow-up patch also corrected the direct prehistory lookup so delayed source states in the acceleration path receive the same correction context. The corrected artifact still sets `accepted_history_boundary: false`.
 
 The corrected run is a controlled negative result, not an accepted branch. Its status is `failed_direct_one_period_residuals`. It improves several direct diagnostics relative to the uncorrected run:
 
-- maximum direct root residual drops from about `42.67` to about `23.49`;
-- maximum speed-ordering residual drops from about `29.93` to about `3.05`;
-- energy-like speed residual drops from about `26.68` to about `0.131`;
-- center drift passes, with maximum center drift about $8.96\times10^{-17}$.
+- maximum direct root residual drops from about `42.67` to about `40.12`;
+- maximum speed-ordering residual drops from about `29.93` to about `1.59`;
+- energy-like speed residual drops from about `26.68` to about `0.872`;
+- center drift passes, with maximum center drift about $1.23\times10^{-17}$.
 
 The remaining blockers are decisive:
 
-- $R_{\text{state}}\approx1.008$ still fails against tolerance `0.02`;
-- maximum direct root residual $\approx23.49$ still fails against tolerance $10^{-6}$;
+- $R_{\text{state}}\approx0.942$ still fails against tolerance `0.02`;
+- maximum direct root residual $\approx40.12$ still fails against tolerance $10^{-6}$;
 - speed ordering still fails against tolerance `0.02`;
 - residual balance worsens from about `0.755` to about `0.993`;
 - quotient monodromy, $\Delta_{\mathbf{k}}$, and the $\eta$ ladder remain not computed because the corrected one-period residuals did not pass.
 
 Fail-closed control: feeding the runner the default-policy blocked correction packet produces `blocked_packet_fields_missing` for row `1`, with neither the direct nor corrected integrator marked present. The corrected path therefore does not silently fall back to the uncorrected carrier.
 
-Mathematical implication: the no-omitted-mode scalar Fourier correction removes the bulk center drift and improves the scale of some one-period residuals, but it does not close the compact $A_0$ branch equation. Since the residual-balance ledger worsens after this correction, the next branch-native move is not another scalar relation-weight fit. The basis must split the active causal-root ledger into $B_{\rho,\ell,\sigma,\mu,\nu}(t)$, with equality constraints declared before fitting, or the compact fixture should be recorded as a stronger corrected-carrier no-go.
+Refined-basis no-go, May 20, 2026:
+
+The runner now also emits `a0-tier1-refined-residual-basis-ledger/v1` as `residual_ledgers.refined_residual_balance`. The refined ledger resolves the residual-balance fit by relation class, receiver layer, source layer, pro/anti polarity pair, and instantaneous radial / tangential projection channel, while keeping these equality constraints explicit:
+
+- pro/anti symmetry inside a receiver layer;
+- shared weights for quotient-equivalent root classes;
+- locked fold-layer keys excluded from the active basis;
+- benchmark inputs excluded.
+
+On `/tmp/a0-tier1-fold-layer-locked-one-period-attempt-corrected-omit-none-v2.json`, the refined ledger reports `30` equality-constrained basis groups, `30` raw root-key classes, `144` equations, and `16` sample buckets. It reduces the corrected residual-balance relative residual from about `0.993` to about `0.426`, but this still fails the declared `0.02` tolerance. The status is therefore `refined_basis_no_go`, not a correction-packet pass.
+
+Mathematical implication: the no-omitted-mode scalar Fourier correction removes the bulk center drift and improves the scale of some one-period residuals, but it does not close the compact $A_0$ branch equation. The first equality-constrained split of the active causal-root ledger into $B_{\rho,\ell,\sigma,\mu,\nu}(t)$ improves residual balance but still fails by more than an order of magnitude. The next branch-native move is no longer another scalar relation-weight fit; it is either a stricter compact-fixture no-go under these equality constraints or a declared branch-chart revision that changes the admissible equality classes before any further corrected rerun.
 
 ## Promotion Rule
 

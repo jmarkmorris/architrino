@@ -34,6 +34,7 @@
 - `fold_mollifier_kernel_and_row_tube_attempt` produced `certificate/fold_mollifier_kernel_candidate.md` and `certificate/fold_row_tube_coverage_attempt.md`. The first supplies a compact-support $C^1$ candidate with exact $M_\delta=15/16$; the second rejects the existing refined intervals as certified row-tube/source-slice coverage.
 - `fold_full_interval_fallback_pass` produced `certificate/fold_full_interval_fallback_legality.md`, `certificate/fold_full_interval_constants_certificate.json`, and `certificate/fold_parent_after_full_interval_status.md`. It accepts finite fixed-parameter fold constants for all sixteen fold rows, explicitly excludes row-tube $O(\eta^{1/2})$ scaling and direct-quadrature claims, and leaves the six fold-adjacent parent boundary complements as the live pre-ledger blocker.
 - `fold_parent_complement_attempts` produced `certificate/fold_parent_w_complement_closure_attempt.md`, `certificate/fold_parent_u_complement_closure_attempt.md`, and `certificate/fold_parent_complement_partition_attempt.md`. These packets identify the remaining blocker more sharply: the natural parent-complement strips have zero/touching null-coordinate gaps and no recorded exact fold-family membership.
+- `fold_parent_endpoint_and_membership_attempts` produced `certificate/fold_parent_endpoint_exclusion_legality.md`, `certificate/fold_parent_fold_family_membership_attempt.md`, and `certificate/fold_parent_contract_decision_packet.md`. These packets reject both currently allowed parent-complement routes for the 20 named strips and isolate a proof-policy decision before any live ledger update.
 
 ## Scope
 
@@ -168,9 +169,10 @@ fold-layer atlas supplies positive curvature floors, positive exit floors, and
 coarse parity data for all four separators. The accepted full-interval fallback
 now supplies finite fixed-parameter fold impulse ceilings for all sixteen fold
 rows. The live partition still rejects because the six remaining fold-adjacent
-parent boundary leftovers have not been closed beyond zero/touching strip
-contacts or exact fold-family membership, and the live `causal_ledger.json` has
-not been rewritten.
+parent boundary leftovers have not been closed: endpoint exclusion is not part
+of the current parent-complement contract, exact fold-family membership fails
+for the 20 named strips, and the live `causal_ledger.json` has not been
+rewritten.
 
 The current packet is now summarized in `certificate/pass_fail_ledger.md`. The fold-ceiling calculation has an accepted fixed-parameter fallback in `certificate/fold_full_interval_constants_certificate.json`, recording
 $$
@@ -180,7 +182,7 @@ A_{\Sigma,\eta,\epsilon_c},
 \qquad
 I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}
 $$
-for $\Sigma_1,\ldots,\Sigma_4$. The next proof calculation is endpoint-aware parent-boundary complement closure: consume the six fold-adjacent parent-boundary leftovers by proving valid endpoint exclusions or exact fold-family coverage, without leaking fold rows into simple-root branch sums.
+for $\Sigma_1,\ldots,\Sigma_4$. The next proof step is a parent-complement proof-policy decision: either add and prove an endpoint-exclusion alternative, add a regular-boundary fold-coverage theorem, or keep the current contract unchanged and reject this packet before branch-chart certification.
 
 The fold-ceiling diagnostic pass now proves the conditional finite form
 $$
@@ -188,7 +190,7 @@ I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}
 \le
 C_\Sigma\eta^{1/2}A_{\Sigma,\eta,\epsilon_c}
 $$
-for fixed $\eta>0$, $\epsilon_c>0$, and finite mollifier/row-tube constants. It also records diagnostic full-rectangle bounds in `certificate/fold_impulse_constants.json`. The follow-up audit resolves the packet coupling convention as $g=1.0=\Gamma=\kappa\epsilon^2$, and `certificate/fold_mollifier_kernel_candidate.md` supplies a concrete compact-support $C^1$ shell candidate with $M_\delta=15/16$. The full-interval fallback then accepts finite constants at fixed $\eta=0.02$ and $\epsilon_c=0.05$, while `certificate/fold_row_tube_coverage_attempt.md` still rejects the stronger row-tube/source-slice scaling route. `certificate/fold_parent_complement_partition_attempt.md` shows that the natural parent-complement strip partition is not strict range-empty because the null-coordinate ranges touch at endpoints. The correct pre-ledger state remains rejected because those endpoint contacts or exact fold-family memberships are unresolved, not because the fixed-parameter fold ceiling is absent.
+for fixed $\eta>0$, $\epsilon_c>0$, and finite mollifier/row-tube constants. It also records diagnostic full-rectangle bounds in `certificate/fold_impulse_constants.json`. The follow-up audit resolves the packet coupling convention as $g=1.0=\Gamma=\kappa\epsilon^2$, and `certificate/fold_mollifier_kernel_candidate.md` supplies a concrete compact-support $C^1$ shell candidate with $M_\delta=15/16$. The full-interval fallback then accepts finite constants at fixed $\eta=0.02$ and $\epsilon_c=0.05$, while `certificate/fold_row_tube_coverage_attempt.md` still rejects the stronger row-tube/source-slice scaling route. `certificate/fold_parent_complement_partition_attempt.md` shows that the natural parent-complement strip partition is not strict range-empty because the null-coordinate ranges touch at endpoints. `certificate/fold_parent_endpoint_exclusion_legality.md` and `certificate/fold_parent_fold_family_membership_attempt.md` then reject both currently allowed parent-complement routes. The correct pre-ledger state remains rejected pending the proof-policy decision in `certificate/fold_parent_contract_decision_packet.md`.
 
 The first itinerary gate has a coarse parity pass for the doubled four-arc generic itinerary. This pass is necessary rather than sufficient: it verifies the separator-level fold arithmetic, but it does not yet certify active self-image roots, inactive-root gaps, Jacobian floors, or returned residuals. If the branch enumeration forces a different itinerary, this gate must be rerun.
 

@@ -267,6 +267,34 @@ d_{\mathcal{A}}\!\left(
 $$
 where $d_{\mathcal{A}}=0$ only when the branch label, active root counts, separator events, memory-depth record, and provenance rows match. A successful Lorentz-looking square root does not pass the certificate if $d_{\mathcal{A}}^{(q)}$ is nonzero.
 
+The first moving-branch coefficient row is
+$$
+\mathcal{D}_{\beta,q}^{\mathrm{mov}}
+=
+I+d_2^{(q)}\beta^2P_{\parallel}
++
+O(\beta^4),
+\qquad
+\Omega_M(\beta,q)
+=
+\Omega_M^{(0)}
+\left(
+1+s_2^{(q)}\beta^2
+\right)
++
+O(\beta^4).
+$$
+Its normalized coefficient residual is
+$$
+R_{\mathrm{coeff}}^{(q)}
+=
+\max\left(
+\frac{\left|d_2^{(q)}+\frac12\right|}{\epsilon_d},
+\frac{\left|s_2^{(q)}+\frac12\right|}{\epsilon_s}
+\right).
+$$
+This row is accepted only when $d_2^{(q)}$ and $s_2^{(q)}$ are extracted from the same returned-section residual on the same $\mathcal{G}_{A,q}$, $\mathcal{A}_q$, $\nu_J^{(q)}$, $g_{\mathrm{inactive}}^{(q)}$, $h_{\mathrm{mem}}^{(q)}$, and $\Delta_{\mathbf{k}}^{(q)}$ rows, while inter-layer phase residuals and $\Delta_{\text{tw}}^{(q)}$ remain inside the declared leakage scale. A branch that fits the deformation coefficient and clock coefficient separately fails before it reaches the Lorentz residual row.
+
 On windows with positive gaps
 $$
 \nu_J^{(q)}\ge \nu_{\min}>0,\qquad
@@ -280,6 +308,7 @@ $$
 =
 \max\left(
 \frac{d_{\mathcal{A}}^{(q)}}{\epsilon_{\mathcal{A}}},
+R_{\mathrm{coeff}}^{(q)},
 \frac{\left\|\mathcal{R}_{\mathrm{Lor},q}\right\|_W}{\epsilon_{\mathrm{LV}}},
 \frac{\left\|\mathcal{M}_{\mathrm{sea},q}^{ab}-h^{ab}/c_{\text{eff}}^2\right\|_W}{\epsilon_{\mathrm{mass}}},
 \frac{R_{\mathrm{div}T}^{(q)}+R_{\mathrm{Pois}}^{(q)}+R_{\mathrm{EFE}}^{(q)}+R_{\mathrm{var}}^{(q)}}{\epsilon_{\mathrm{GR}}},
@@ -299,6 +328,42 @@ Failure modes:
 - `residual.speed_conflation`: $c_f$, $c_{\text{eff}}$, $c_\gamma$, and locally measured light speed are identified without the required Noether-Sea dressing map.
 - `residual.observable_refit`: the normalized closure residual is made acceptable only by changing coefficients between clock, ruler, photon, metric, mass-response, or event rows.
 - `event.ledger_residual`: a residual is hidden as recoil, medium update, radiation, remnant state, or product inventory instead of closing $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$.
+
+### First $A_0$ Seed Population Status
+
+The first available seed for $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ is the reduced $A_0$ branch-search packet, with
+$$
+q=A_0^{\mathrm{red}}(\Lambda),
+\qquad
+W=[0,T_{\mathbf{k}}],
+\qquad
+\mathcal{D}_{\beta}=\{0\}.
+$$
+This is a source-status population row, not a passed certificate. The $A_0$ packet defines the finite-rest-branch data that a future accepted row must emit, while its current compact corrected-carrier attempt remains fail-closed.
+
+| Certificate component | $A_0$ source status | Certificate consequence |
+| --- | --- | --- |
+| $q$, $W$, $\mathcal{G}_{A,q}$ | Defined as diagnostic reduced branch row `1`, branch label $\Lambda$, one closed-cycle window $T_{\mathbf{k}}$, and finite causal-root ledger $\mathcal{G}_{A_0}$ required by the reduced certificate packet. | Populatable as a schema row only, with fail-closed source status. |
+| $c_f$, $c_{\text{eff}}$, $c_\gamma$, $c_0$ | $c_f$ is declared for speed-ordering tests in the weak homogeneous Noether-Sea cell; $c_{\text{eff}}$, $c_\gamma$, and $c_0$ remain unresolved dressing / observer-speed slots. | Do not identify primitive and dressed speeds in the $A_0$ seed row. |
+| $\mathcal{A}_q$, $\nu_J^{(q)}$, $g_{\mathrm{inactive}}^{(q)}$, $h_{\mathrm{mem}}^{(q)}$ | Allowed Tier 0 / Tier 1 inputs from a certified branch-chart object $\mathfrak{B}$, but the current compact $A_0$ candidate does not pass the residual rows needed to accept them. | Keep as `blocked_pending_accepted_branch_chart`. |
+| $\Delta_{\mathbf{k}}^{(q)}$ | The quotient monodromy and $\eta$ ladder remain not computed because the corrected one-period residuals fail. | Keep as `not_computed`; do not infer stability from integer closure. |
+| $\mathcal{D}_{\beta,q}^{\mathrm{mov}}$, $T_q(\mathbf{w})$, $R_{\mathrm{coeff}}^{(q)}$, $\mathcal{R}_{\mathrm{Lor},q}$ | The reduced $A_0$ row is a rest-branch seed with $\mathcal{D}_{\beta}=\{0\}$; it does not supply a moving drift band or coefficient extraction. | Keep the Lorentz and moving-coefficient rows blocked until a moving continuation preserves the same finite ledger. |
+| $\mathcal{M}_{\mathrm{sea},q}^{ab}$, $E_{\mathrm{internal}}(A_0)$, $\zeta(A_0)$ | Explicitly downstream Tier 2 / Tier 3 extraction objects after branch closure and stability. | Do not use them as inputs or fitted handles in this certificate row. |
+| $\mathfrak{S}^{(q)}(W)$ and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$ | No sector event is active in the rest-branch seed row. | Keep null unless a routed transition, radiation event, measurement record, reaction, transport excitation, or strong-field release is being certified on the same branch. |
+
+Current fail-closed note: the compact $A_0$ no-omitted-mode scalar Fourier correction has status `failed_direct_one_period_residuals`. It removes bulk center drift and improves some one-period residual scales, but it does not close the branch. The diagnostic row reports
+$$
+R_{\text{state}}\approx1.008,
+\qquad
+\max R_{\text{root}}\approx23.49,
+\qquad
+R_{\text{speed}}\approx3.05,
+\qquad
+R_{\text{balance}}\approx0.993,
+\qquad
+\|\Delta\mathbf{C}_{A_0}\|_{\max}\approx8.96\times10^{-17}.
+$$
+The center-drift row passes, while state return, direct root closure, speed ordering, and residual balance fail; $\Delta_{\mathbf{k}}$ and the $\eta$ ladder remain uncomputed. This means the row is valuable as a source boundary for $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$, not as a causal-closure success. The next branch-native move is an equality-constrained basis split $B_{\rho,\ell,\sigma,\mu,\nu}(t)$ by relation class, receiver layer, polarity, root branch key, and radial / tangential projection channel, or else a stronger compact-fixture no-go.
 
 ## Related Priorities
 

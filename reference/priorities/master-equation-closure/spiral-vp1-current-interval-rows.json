@@ -132,14 +132,41 @@
       }
     },
     "tangential_drive": {
-      "status": "blocked",
-      "source": "spiral-vp1-tangential-interval-proof.md",
-      "claim_level": "pointwise reduction target, interval evaluator pending",
+      "status": "certified_fail",
+      "source": "spiral_branch_chart_certificate.py --tangential-interval-slabs 256",
+      "claim_level": "outward interval pointwise-sum lower certificate",
       "data": {
-        "pointwise_target": 0.05008,
-        "implied_integral_lower_bound": 0.026221826681962806,
+        "evidence_kind": "outward_pointwise_sum_lower",
+        "elementary_bound_backend": "nextafter-directed double interval arithmetic with trigonometric critical-point enclosures",
+        "active_labels": [
+          "P_1",
+          "P_2",
+          "P_3",
+          "S_1"
+        ],
+        "theta_interval": [
+          -0.5235987755982988,
+          0.5235987755982988
+        ],
+        "slabs": 256,
+        "root_pad_initial": 1e-08,
+        "max_root_pad": 0.00131072,
+        "max_root_interval_width": 0.0030529442635458537,
+        "min_active_j_abs_lower": 1.66274266841616,
+        "root_boundary_sign_verified": true,
+        "branch_contribution_lower_bounds": {
+          "P_1": 0.43757169217231273,
+          "P_2": -0.31272674429402547,
+          "P_3": 0.02954611165387916,
+          "S_1": -0.11032240952308903
+        },
+        "pointwise_sum_lower_bound": 0.06960732213899794,
+        "pointwise_sum_upper_bound": 0.09555651875657238,
+        "weight_integral": 0.5235987755982988,
+        "weighted_integral_lower_bound": 0.036446308644655666,
         "sampled_integral": 0.04013001776065915,
-        "summary": "The row is reduced to four branch contribution lower bounds implying T(theta)>=0.05008, but those contribution rows still need outward interval evaluation before tangential_drive can become certified_fail."
+        "decision_rule": "certified_fail if weighted_integral_lower_bound >= 0",
+        "summary": "A 256-slab outward interval pointwise-sum evaluation on the retained P_1,P_2,P_3,S_1 chart proves T(theta)>=0.06960732213899794 and D_T(I_*)>=0.036446308644655666, so VP-1 is certified as failing the negative tangential-drive row."
       }
     },
     "dependency_status": {
