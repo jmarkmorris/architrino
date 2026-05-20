@@ -4,9 +4,9 @@
 
 - Kind: `priority`
 - Rank: `11`
-- Value: `15.22`
+- Value: `14.95`
 - Cost: `4.6`
-- ROI: `3.31`
+- ROI: `3.25`
 - Status: `active`
 
 ## Task Queue
