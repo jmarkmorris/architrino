@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1230
+      "sections": 1231
     }
   },
   "tocRoot": {
@@ -1079,6 +1079,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
                 "markdownSection": "Claim Scope",
                 "sectionKey": "claim scope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Causal-Closure Certificate Target",
+                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
+                "markdownSection": "Causal-Closure Certificate Target",
+                "sectionKey": "causal closure certificate target",
                 "headingLevel": 2
               },
               {

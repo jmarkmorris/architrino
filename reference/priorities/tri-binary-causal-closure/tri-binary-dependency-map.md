@@ -349,6 +349,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Output: computable invariants for branch preservation, emission, absorption, annihilation, decay, and transverse-rank collapse.
 - Proof burden: construct a certification language compatible with the finite certificate packet and later simulations. The collinear-breather pass/fail ledger should be treated as the prototype: each failure row must preserve the exact obstruction rather than being converted into a vague roadmap sentence.
 - $A_0$ handoff: use the reduced branch graph $\mathcal{G}_{A_0}$ as the first finite closure graph, with partner, self, and inter-layer edges, separator parity events, phase windings, and leakage channels recorded before any shielding or mass interpretation.
+- Branch-certificate handoff: the same certification language must populate $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ in the priority control file, including the finite closure graph, declared speed conventions, active causal-root ledger, branch-Jacobian floor, inactive-root gap, finite memory depth, stability gap, moving deformation map, mass-response tensor, Lorentz residual, effective-metric export, sector residual rows, and event ledger. A topological certificate that cannot populate those rows remains a local closure-graph diagnostic rather than a causal-closure certificate.
 - Priority route: `breather-proof`, `simulations`.
 - Current disposition: `priority`.
 
@@ -365,7 +366,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 9. Momentum skew with Noether-Sea dressing tensor.
 10. Effective metric and Cartan connection reconstruction.
 11. Equivalence and weak-field GR matching.
-12. Topological certification.
+12. Topological certification and shared branch-certificate population.
 
 ## Deployment Handoff Table
 

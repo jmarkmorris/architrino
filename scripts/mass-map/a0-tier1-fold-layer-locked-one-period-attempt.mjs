@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { createCarrierCorrectionEvaluator } from "./a0-tier1-carrier-correction-evaluator.mjs";
 
 const BODY_IDS = ["I+", "I-", "M+", "M-", "O+", "O-"];
 const LAYERS = ["I", "M", "O"];
@@ -36,6 +37,7 @@ function parseArgs(argv) {
   const args = {
     intake: null,
     source: null,
+    correctionPacket: null,
     rows: "all",
     stepCap: DEFAULT_STEP_CAP,
     sampleCount: DEFAULT_SAMPLE_COUNT,
@@ -64,6 +66,8 @@ function parseArgs(argv) {
       args.intake = argv[++i];
     } else if (arg === "--source") {
       args.source = argv[++i];
+    } else if (arg === "--correction-packet") {
+      args.correctionPacket = argv[++i];
     } else if (arg === "--rows") {
       args.rows = argv[++i];
     } else if (arg === "--step-cap") {
@@ -113,6 +117,8 @@ function printHelp() {
 Options:
   --intake PATH          JSON from a0-tier1-one-period-continuation-prototype.mjs.
   --source PATH          Optional continuation-source prototype JSON for source-row identity.
+  --correction-packet PATH
+                         Optional a0-tier1-carrier-correction-packet/v1 JSON for corrected carrier rerun.
   --rows VALUE           "all" or a comma-separated row list. Defaults to "all".
   --step-cap N           Maximum direct trajectory steps. Defaults to ${DEFAULT_STEP_CAP}.
   --sample-count N       Downsampled output trajectory samples on [0,T]. Defaults to ${DEFAULT_SAMPLE_COUNT}.
@@ -426,7 +432,46 @@ function stateFromSample(sample, bodyId) {
   };
 }
 
-function historyStateAt({ array, dt, currentStep, prehistorySamples }, t, bodyId) {
+function correctedStateForBody(baseState, bodyId, t, correctionContext) {
+  if (!correctionContext?.ok || !baseState) {
+    return baseState;
+  }
+  const correction = correctionContext.evaluator.bodyCorrection(bodyId, t);
+  return {
+    position: add(baseState.position, correction.position),
+    velocity: add(baseState.velocity, correction.velocity),
+  };
+}
+
+function correctedSample(sample, correctionContext) {
+  if (!correctionContext?.ok || !sample) {
+    return sample;
+  }
+  return {
+    ...sample,
+    bodies: Object.fromEntries(
+      BODY_IDS.map((bodyId) => [
+        bodyId,
+        correctedStateForBody(sample.bodies?.[bodyId], bodyId, sample.t, correctionContext),
+      ])
+    ),
+  };
+}
+
+function correctedInitialStates(samples, correctionContext) {
+  const initial = initialStates(samples);
+  if (!initial || !correctionContext?.ok) {
+    return initial;
+  }
+  return Object.fromEntries(
+    BODY_IDS.map((bodyId) => [
+      bodyId,
+      correctedStateForBody(initial[bodyId], bodyId, 0, correctionContext),
+    ])
+  );
+}
+
+function historyStateAt({ array, dt, currentStep, prehistorySamples, correctionContext }, t, bodyId) {
   if (t >= 0 && currentStep > 0) {
     const raw = t / dt;
     const left = Math.max(0, Math.min(currentStep, Math.floor(raw)));
@@ -442,7 +487,7 @@ function historyStateAt({ array, dt, currentStep, prehistorySamples }, t, bodyId
       velocity: interpolateVector(leftState.velocity, rightState.velocity, alpha),
     };
   }
-  return stateFromSample(interpolateSample(prehistorySamples, t), bodyId);
+  return correctedStateForBody(stateFromSample(interpolateSample(prehistorySamples, t), bodyId), bodyId, t, correctionContext);
 }
 
 function sampleFromArray(array, step, t) {
@@ -538,6 +583,135 @@ function plannedSteps(row) {
   );
 }
 
+function correctionArtifactContext(correctionPacket, correctionPacketPath) {
+  return {
+    packet: correctionPacket,
+    path: correctionPacketPath,
+    provided: Boolean(correctionPacket),
+    schema: correctionPacket?.artifact_schema ?? null,
+  };
+}
+
+function correctionContextForRow(artifactContext, row) {
+  if (!artifactContext?.provided) {
+    return {
+      requested: false,
+      ok: false,
+      status: "not_requested",
+      failure_code: null,
+      evaluator: null,
+      packet_path: null,
+      packet_schema: null,
+    };
+  }
+  const evaluator = createCarrierCorrectionEvaluator(artifactContext.packet, { rowNumber: row.row });
+  if (!evaluator.ok) {
+    return {
+      requested: true,
+      ok: false,
+      status: evaluator.status,
+      failure_code: evaluator.failure_code,
+      evaluator: null,
+      evaluator_diagnostics: evaluator,
+      packet_path: artifactContext.path,
+      packet_schema: artifactContext.schema,
+    };
+  }
+  const periodResidual = Number.isFinite(row.period)
+    ? Math.abs(evaluator.period - row.period) / Math.max(Math.abs(row.period), Number.EPSILON)
+    : null;
+  if (periodResidual !== null && periodResidual > 1e-9) {
+    return {
+      requested: true,
+      ok: false,
+      status: "blocked_correction_period_mismatch",
+      failure_code: "correction-period-mismatch",
+      evaluator: null,
+      evaluator_diagnostics: {
+        status: evaluator.status,
+        row: evaluator.row,
+        correction_period: evaluator.period,
+        intake_period: row.period,
+        correction_period_residual: periodResidual,
+      },
+      packet_path: artifactContext.path,
+      packet_schema: artifactContext.schema,
+    };
+  }
+  return {
+    requested: true,
+    ok: true,
+    status: "correction_context_ready",
+    failure_code: null,
+    evaluator,
+    evaluator_diagnostics: null,
+    packet_path: artifactContext.path,
+    packet_schema: artifactContext.schema,
+  };
+}
+
+function correctionPeriodResidual(row, correctionContext) {
+  if (!correctionContext?.ok || !Number.isFinite(row.period) || !Number.isFinite(correctionContext.evaluator.period)) {
+    return null;
+  }
+  return Math.abs(correctionContext.evaluator.period - row.period) / Math.max(Math.abs(row.period), Number.EPSILON);
+}
+
+function correctionRetainedModeCount(correctionContext) {
+  if (!correctionContext?.ok) {
+    return null;
+  }
+  return Object.values(correctionContext.evaluator.layer_mode_counts).reduce((sum, count) => sum + count, 0);
+}
+
+function correctionMagnitudeSnapshot(correctionContext, t) {
+  if (!correctionContext?.ok) {
+    return { displacement: 0, velocity: 0, acceleration: 0 };
+  }
+  let displacement = 0;
+  let velocity = 0;
+  let acceleration = 0;
+  for (const bodyId of BODY_IDS) {
+    const correction = correctionContext.evaluator.bodyCorrection(bodyId, t);
+    displacement = Math.max(displacement, norm(correction.position));
+    velocity = Math.max(velocity, norm(correction.velocity));
+    acceleration = Math.max(acceleration, norm(correction.acceleration));
+  }
+  return { displacement, velocity, acceleration };
+}
+
+function correctionDiagnostics(row, correctionContext, extrema = {}) {
+  return {
+    correction_mode: correctionContext?.requested ? "carrier_correction_packet" : "uncorrected",
+    correction_packet_provided: correctionContext?.requested === true,
+    correction_packet_path: correctionContext?.packet_path ? path.relative(process.cwd(), correctionContext.packet_path) : null,
+    correction_packet_schema: correctionContext?.packet_schema ?? null,
+    correction_packet_row: correctionContext?.requested ? row.row ?? null : null,
+    correction_context_status: correctionContext?.status ?? "not_requested",
+    correction_failure_code: correctionContext?.failure_code ?? null,
+    correction_period: correctionContext?.ok ? correctionContext.evaluator.period : null,
+    correction_period_residual: correctionPeriodResidual(row, correctionContext),
+    correction_layer_mode_counts: correctionContext?.ok ? correctionContext.evaluator.layer_mode_counts : null,
+    correction_retained_mode_count: correctionRetainedModeCount(correctionContext),
+    correction_placement_schema: correctionContext?.ok ? correctionContext.evaluator.placement_convention?.schema ?? null : null,
+    correction_center_preserving: correctionContext?.ok
+      ? correctionContext.evaluator.placement_convention?.center_preserving === true
+      : null,
+    max_correction_displacement: extrema.displacement ?? null,
+    max_correction_velocity: extrema.velocity ?? null,
+    max_correction_acceleration: extrema.acceleration ?? null,
+    correction_applied_to: correctionContext?.ok
+      ? [
+          "initial_state",
+          "prehistory_history_lookup",
+          "direct_acceleration",
+          "emitted_samples",
+          "residual_balance_source_lookup",
+        ]
+      : [],
+  };
+}
+
 function speedOfState(state) {
   return norm(state.velocity);
 }
@@ -594,6 +768,7 @@ function computeAccelerations(context, t, currentStep, currentSample) {
     eta,
     jMin,
     cF,
+    correctionContext,
   } = context;
   const accelerations = Object.fromEntries(BODY_IDS.map((bodyId) => [bodyId, [0, 0, 0]]));
   const bucket = nearestRootBucket(rootsByTime, t, period);
@@ -635,6 +810,12 @@ function computeAccelerations(context, t, currentStep, currentSample) {
     acceleration[2] += contribution[2];
     evaluatedRootCount += 1;
   }
+  if (correctionContext?.ok) {
+    for (const bodyId of BODY_IDS) {
+      const correction = correctionContext.evaluator.bodyCorrection(bodyId, t);
+      accelerations[bodyId] = add(accelerations[bodyId], correction.acceleration);
+    }
+  }
   for (const bodyId of BODY_IDS) {
     maxAcceleration = Math.max(maxAcceleration, norm(accelerations[bodyId]));
   }
@@ -669,13 +850,26 @@ function exceedsGuard(sample, args) {
   };
 }
 
-function integrateTrajectory(row, sourceRow, args) {
+function integrateTrajectory(row, sourceRow, args, correctionContext) {
   const period = row.period;
   const samples = canonicalSamples(row);
   const sourceRoots = canonicalRoots(sourceRow ?? {});
   const roots = sourceRoots.length > 0 ? sourceRoots : canonicalRoots(row);
   const lockedKeys = new Set(row.trajectory_target?.branch_chart_assumptions?.locked_self_root_keys ?? []);
   const stepPlan = plannedSteps(row);
+  if (correctionContext?.requested && !correctionContext.ok) {
+    return {
+      status: correctionContext.status,
+      failure_code: correctionContext.failure_code ?? "correction-context-not-ready",
+      samples: [],
+      roots,
+      diagnostics: {
+        planned_steps: stepPlan,
+        ...correctionDiagnostics(row, correctionContext),
+        correction_evaluator_diagnostics: correctionContext.evaluator_diagnostics ?? null,
+      },
+    };
+  }
   if (row.status !== READY_STATUS) {
     return {
       status: "blocked_intake_not_ready",
@@ -712,7 +906,7 @@ function integrateTrajectory(row, sourceRow, args) {
       diagnostics: { planned_steps: stepPlan, step_cap: args.stepCap },
     };
   }
-  const initial = initialStates(samples);
+  const initial = correctedInitialStates(samples, correctionContext);
   if (!initial) {
     return {
       status: "blocked_initial_state_missing",
@@ -747,12 +941,13 @@ function integrateTrajectory(row, sourceRow, args) {
     eta,
     jMin: args.jMin,
     cF: args.cF,
+    correctionContext,
   };
   const sampleSteps = outputSampleSteps(stepCount, args.sampleCount);
   const outputSamples = [];
   const initialPrehistory = samples.filter((sample) => sample.t < 0);
   for (const sample of initialPrehistory) {
-    outputSamples.push(sample);
+    outputSamples.push(correctedSample(sample, correctionContext));
   }
   outputSamples.push(sampleFromArray(states, 0, 0));
   let nextSampleStepIndex = 1;
@@ -760,6 +955,9 @@ function integrateTrajectory(row, sourceRow, args) {
   let maxAcceleration = 0;
   let maxStepSpeed = 0;
   let maxAbsState = 0;
+  let maxCorrectionDisplacement = 0;
+  let maxCorrectionVelocity = 0;
+  let maxCorrectionAcceleration = 0;
   let evaluatedRootContributions = 0;
   let lockedRootContributions = 0;
   let invalidRootContributions = 0;
@@ -767,6 +965,10 @@ function integrateTrajectory(row, sourceRow, args) {
   for (let step = 0; step < stepCount; step += 1) {
     const t = step * dt;
     const currentSample = sampleFromArray(states, step, t);
+    const correctionMagnitude = correctionMagnitudeSnapshot(correctionContext, t);
+    maxCorrectionDisplacement = Math.max(maxCorrectionDisplacement, correctionMagnitude.displacement);
+    maxCorrectionVelocity = Math.max(maxCorrectionVelocity, correctionMagnitude.velocity);
+    maxCorrectionAcceleration = Math.max(maxCorrectionAcceleration, correctionMagnitude.acceleration);
     const acceleration = computeAccelerations(context, t, step, currentSample);
     evaluatedRootContributions += acceleration.evaluatedRootCount;
     lockedRootContributions += acceleration.lockedRootCount;
@@ -832,6 +1034,11 @@ function integrateTrajectory(row, sourceRow, args) {
       max_speed: maxStepSpeed,
       max_abs_state: maxAbsState,
       abort,
+      ...correctionDiagnostics(row, correctionContext, {
+        displacement: maxCorrectionDisplacement,
+        velocity: maxCorrectionVelocity,
+        acceleration: maxCorrectionAcceleration,
+      }),
     },
   };
 }
@@ -1127,12 +1334,12 @@ function accelerationStep(samples, period) {
   return Number.isFinite(period) && period > 0 ? period / 320 : null;
 }
 
-function sourceStateAt(samples, t, bodyId) {
+function sourceStateAt(samples, t, bodyId, correctionContext) {
   const sample = interpolateSample(samples, t);
-  return sample ? stateFromSample(sample, bodyId) : null;
+  return sample ? correctedStateForBody(stateFromSample(sample, bodyId), bodyId, t, correctionContext) : null;
 }
 
-function finiteDifferenceCarrierAcceleration(samples, t, h) {
+function finiteDifferenceCarrierAcceleration(samples, t, h, correctionContext) {
   if (!Number.isFinite(h) || h <= 0) {
     return null;
   }
@@ -1143,15 +1350,17 @@ function finiteDifferenceCarrierAcceleration(samples, t, h) {
   }
   return Object.fromEntries(
     BODY_IDS.map((bodyId) => {
-      const leftVelocity = left.bodies[bodyId].velocity;
-      const rightVelocity = right.bodies[bodyId].velocity;
+      const leftState = correctedStateForBody(left.bodies[bodyId], bodyId, t - h, correctionContext);
+      const rightState = correctedStateForBody(right.bodies[bodyId], bodyId, t + h, correctionContext);
+      const leftVelocity = leftState.velocity;
+      const rightVelocity = rightState.velocity;
       return [bodyId, scale(sub(rightVelocity, leftVelocity), 1 / (2 * h))];
     })
   );
 }
 
-function relationBasisAt(samples, rootsByTime, lockedKeys, period, t, eta, jMin) {
-  const current = interpolateSample(samples, t);
+function relationBasisAt(samples, rootsByTime, lockedKeys, period, t, eta, jMin, correctionContext) {
+  const current = correctedSample(interpolateSample(samples, t), correctionContext);
   if (!current || !finiteStateSample(current)) {
     return null;
   }
@@ -1171,7 +1380,7 @@ function relationBasisAt(samples, rootsByTime, lockedKeys, period, t, eta, jMin)
       continue;
     }
     const receiverState = current.bodies[root.receiver];
-    const sourceState = sourceStateAt(samples, t - root.delay, root.source);
+    const sourceState = sourceStateAt(samples, t - root.delay, root.source, correctionContext);
     if (!receiverState || !sourceState || !basis[root.relation]) {
       invalidRootCount += 1;
       continue;
@@ -1250,7 +1459,7 @@ function solveLinear3(matrix, rhs) {
   return solution.every(Number.isFinite) ? solution : null;
 }
 
-function residualBalanceLedger(row, sourceRow, trajectory, args) {
+function residualBalanceLedger(row, sourceRow, trajectory, args, correctionContext) {
   const period = row.period;
   const samples = sourceSamplesForBalance(row, sourceRow);
   const roots = trajectory.roots;
@@ -1281,8 +1490,8 @@ function residualBalanceLedger(row, sourceRow, trajectory, args) {
     if (!Number.isFinite(t) || t < 0 || t > period) {
       continue;
     }
-    const target = finiteDifferenceCarrierAcceleration(samples, t, h);
-    const basisPacket = relationBasisAt(samples, rootsByTime, lockedKeys, period, t, eta, args.jMin);
+    const target = finiteDifferenceCarrierAcceleration(samples, t, h, correctionContext);
+    const basisPacket = relationBasisAt(samples, rootsByTime, lockedKeys, period, t, eta, args.jMin, correctionContext);
     if (!target || !basisPacket) {
       continue;
     }
@@ -1476,7 +1685,7 @@ function etaLadderLedger() {
   };
 }
 
-function residualLedgers(row, sourceRow, trajectory, args) {
+function residualLedgers(row, sourceRow, trajectory, args, correctionContext) {
   const period = row.period;
   const samples = trajectory.samples;
   const roots = trajectory.roots;
@@ -1493,7 +1702,7 @@ function residualLedgers(row, sourceRow, trajectory, args) {
     speed_ordering: speedOrderingLedger(samples, args.cF, args.speedTolerance),
     center_drift: centerDriftLedger(samples, args.centerTolerance),
     energy_like_speed: energyLikeSpeedLedger(samples, period, args.energyTolerance),
-    residual_balance: residualBalanceLedger(row, sourceRow, trajectory, args),
+    residual_balance: residualBalanceLedger(row, sourceRow, trajectory, args, correctionContext),
     fold_layer_lock: lockLedger(row),
     monodromy: monodromyLedger(),
     eta_ladder: etaLadderLedger(),
@@ -1589,9 +1798,10 @@ function acceptedHistoryBoundary(ledgers, validationFlags) {
   };
 }
 
-function attemptRow(row, sourceRow, args) {
-  const trajectory = integrateTrajectory(row, sourceRow, args);
-  const ledgers = residualLedgers(row, sourceRow, trajectory, args);
+function attemptRow(row, sourceRow, args, correctionArtifact) {
+  const correctionContext = correctionContextForRow(correctionArtifact, row);
+  const trajectory = integrateTrajectory(row, sourceRow, args, correctionContext);
+  const ledgers = residualLedgers(row, sourceRow, trajectory, args, correctionContext);
   const status = rowStatus(ledgers);
   const validationFlags = validation(row, ledgers);
   return {
@@ -1608,6 +1818,20 @@ function attemptRow(row, sourceRow, args) {
     samples: trajectory.samples,
     active_causal_root_ledger: trajectory.roots,
     residual_ledgers: ledgers,
+    correction_context: correctionContext.ok
+      ? {
+          status: correctionContext.status,
+          failure_code: null,
+          row: correctionContext.evaluator.row,
+          period: correctionContext.evaluator.period,
+          layer_mode_counts: correctionContext.evaluator.layer_mode_counts,
+          accepted_history_boundary: false,
+        }
+      : {
+          status: correctionContext.status,
+          failure_code: correctionContext.failure_code,
+          accepted_history_boundary: false,
+        },
     validation: validationFlags,
     accepted_history_boundary: acceptedHistoryBoundary(ledgers, validationFlags),
     nonfit_statement:
@@ -1639,9 +1863,12 @@ function artifactStatus(rows) {
   return "blocked";
 }
 
-function run(intake, intakePath, source, sourcePath, args) {
+function run(intake, intakePath, source, sourcePath, correctionPacket, correctionPacketPath, args) {
   const sourcesByRow = rowMap(source);
-  const rows = selectRows(intake, args.rows).map((row) => attemptRow(row, sourcesByRow.get(row.row) ?? null, args));
+  const correctionArtifact = correctionArtifactContext(correctionPacket, correctionPacketPath);
+  const rows = selectRows(intake, args.rows).map((row) =>
+    attemptRow(row, sourcesByRow.get(row.row) ?? null, args, correctionArtifact)
+  );
   return {
     artifact_schema: "a0-tier1-fold-layer-locked-one-period-attempt/v1",
     metadata: {
@@ -1651,11 +1878,14 @@ function run(intake, intakePath, source, sourcePath, args) {
       generatedAt: new Date().toISOString(),
       sourceIntake: path.relative(process.cwd(), intakePath),
       sourceContinuation: sourcePath ? path.relative(process.cwd(), sourcePath) : null,
+      sourceCorrectionPacket: correctionPacketPath ? path.relative(process.cwd(), correctionPacketPath) : null,
+      sourceCorrectionPacketSchema: correctionPacket?.artifact_schema ?? null,
+      correctionPacketProvided: Boolean(correctionPacket),
       rowSelector: args.rows,
       stepCap: args.stepCap,
       sampleCount: args.sampleCount,
       note:
-        "Runs the declared fold-layer-locked diagnostic one-period map and emits fail-closed residual ledgers. It does not compute quotient monodromy or eta-ladder persistence.",
+        "Runs the declared fold-layer-locked diagnostic one-period map, optionally with a carrier-correction packet, and emits fail-closed residual ledgers. It does not compute quotient monodromy or eta-ladder persistence.",
     },
     source_intake_metadata: intake.metadata ?? null,
     source_continuation_metadata: source?.metadata ?? null,
@@ -1664,6 +1894,9 @@ function run(intake, intakePath, source, sourcePath, args) {
       status_counts: statusCounts(rows),
       accepted_history_row_count: rows.filter((row) => row.status === "accepted_history_segment").length,
       direct_integrator_present: rows.some((row) => row.residual_ledgers?.trajectory?.status === "direct_one_period_trajectory_computed"),
+      corrected_integrator_present: rows.some(
+        (row) => row.residual_ledgers?.trajectory?.diagnostics?.correction_context_status === "correction_context_ready"
+      ),
       Delta_k_computed: false,
       eta_ladder_computed: false,
     },
@@ -1679,9 +1912,11 @@ try {
   }
   const intakePath = requireIntakePath(args);
   const sourcePath = args.source ? path.resolve(args.source) : null;
+  const correctionPacketPath = args.correctionPacket ? path.resolve(args.correctionPacket) : null;
   const intake = readJson(intakePath);
   const source = sourcePath ? readJson(sourcePath) : null;
-  const output = run(intake, intakePath, source, sourcePath, args);
+  const correctionPacket = correctionPacketPath ? readJson(correctionPacketPath) : null;
+  const output = run(intake, intakePath, source, sourcePath, correctionPacket, correctionPacketPath, args);
   const serialized = JSON.stringify(output, null, args.pretty ? 2 : 0);
   if (args.out) {
     fs.writeFileSync(args.out, `${serialized}\n`);

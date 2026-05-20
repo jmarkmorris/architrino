@@ -25,6 +25,7 @@
 - `deployment_handoff` routed unresolved synthesis claims through theorem-roadmap tags and priority-table handoff rows before deployment.
 - `residual_routing_event_ledger` promoted the shared event-ledger grammar into a first radiation worked-case scaffold; non-radiation sector cases remain open.
 - `lorentz_test_residual_handoff` completed the RMS/PPN/SME residual-export schema in `master-equation-closure`; numerical population remains blocked until the Lorentz/GR bridge supplies one shared branch artifact.
+- `shared_branch_certificate_contract` promoted the shared causal-closure certificate target into [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md); population remains blocked until a retained branch supplies the clock, ruler, signal, metric, mass-response, sector, and event-ledger rows together.
 
 ## Scope
 
@@ -196,6 +197,108 @@ $$
 +R_{a,\theta}.
 $$
 The pass condition is not exact FLRW ontology; it is that $(R_{H,\theta},R_{\rho,\theta},R_{a,\theta})$ are either below tolerance in the benchmark regime or are routed to named Noether-Sea evolution, clock-rate, redshift, and CMB rows. This records the Guth/Hughes cosmology signal while preserving the canon rule that $a(t)$ and $H(t)$ are effective observer variables.
+
+## Shared Branch Certificate Contract
+
+The Lorentz packet, GR-recovery packet, photon-gate rows, and residual-routing event ledger should not become independent fits. The shared branch certificate is the packaging contract that forces those rows to come from one retained causal-root branch. It is not a new validation gate; it is the branch-provenance object that existing gates consume.
+
+For a retained branch class $q$ over a test window $W$, define
+$$
+\mathcal{C}_{\mathrm{tri}}^{(q)}(W)
+=
+\left(
+q,
+W,
+\mathcal{D}_{\beta},
+c_f,
+c_{\text{eff}},
+c_\gamma,
+c_0,
+\mathcal{G}_{A,q},
+\mathcal{A}_q,
+\nu_J^{(q)},
+g_{\mathrm{inactive}}^{(q)},
+h_{\mathrm{mem}}^{(q)},
+\Delta_{\mathbf{k}}^{(q)},
+\mathcal{D}_{\beta,q}^{\mathrm{mov}},
+T_q(\mathbf{w}),
+\mathcal{M}_{\mathrm{sea},q}^{ab},
+\mathcal{R}_{\mathrm{Lor},q},
+\theta_{\mathrm{GR}}^{(q)},
+\mathfrak{S}^{(q)}(W),
+\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}
+\right).
+$$
+Here $\mathcal{D}_{\beta}$ is the drift band; $c_f$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$ are the primitive wake, dressed signal, photon-channel, and asymptotic observer speeds with their identifications explicitly declared; $\mathcal{G}_{A,q}$ is the finite closure graph for the assembly; $\mathcal{A}_q$ is the active causal-root ledger; $\nu_J^{(q)}$ is the branch-Jacobian floor; $g_{\mathrm{inactive}}^{(q)}$ is the minimum inactive-root gap; $h_{\mathrm{mem}}^{(q)}$ is the finite memory depth; $\Delta_{\mathbf{k}}^{(q)}$ is the Floquet or branch-stability gap; $\mathcal{D}_{\beta,q}^{\mathrm{mov}}$ and $T_q(\mathbf{w})$ are the moving deformation and branch-period rows; $\mathcal{M}_{\mathrm{sea},q}^{ab}$ is the medium-dressed mass-response tensor; $\mathcal{R}_{\mathrm{Lor},q}$ is the Lorentz residual record; $\theta_{\mathrm{GR}}^{(q)}$ is the effective-metric recovery export; $\mathfrak{S}^{(q)}(W)$ lists any sector rows active in the window, including photon Gate A/B/C rows when radiation is part of the event; and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$ is the row-indexed event ledger.
+
+The mass-response row is inherited from the rest-mass synthesis:
+$$
+\mathcal{M}_{\mathrm{sea},q}^{ab}
+=
+\frac{1}{E_{\mathrm{internal}}}
+\left.
+\frac{\partial p_{\mathrm{int}}^{a}}{\partial V_{\mathrm{cm}}^{b}}
+\right|_{\mathbf{V}_{\mathrm{cm}}=\mathbf{0},q},
+\qquad
+\mathcal{M}_{\mathrm{sea},q}^{ab}
+\longrightarrow
+\frac{h^{ab}}{c_{\text{eff}}^2}
+$$
+in a homogeneous isotropic Noether-Sea cell. If this limit fails or leaves unsuppressed composition-dependent or direction-dependent residue, the scalar rest-mass readout $m_0(A)\to\alpha\zeta(A)E_{\mathrm{internal}}(A)/c_{\text{eff}}^2$ is only a fitted average rather than a branch consequence.
+
+The branch-identity residual is
+$$
+d_{\mathcal{A}}^{(q)}
+=
+d_{\mathcal{A}}\!\left(
+\mathcal{A}_{\mathrm{clk}}^{(q)},
+\mathcal{A}_{\mathrm{rul}}^{(q)}
+\right)
++
+d_{\mathcal{A}}\!\left(
+\mathcal{A}_{\mathrm{rul}}^{(q)},
+\mathcal{A}_{\mathrm{sig}}^{(q)}
+\right)
++
+d_{\mathcal{A}}\!\left(
+\mathcal{A}_{\mathrm{sig}}^{(q)},
+\mathcal{A}_{\mathrm{event}}^{(q)}
+\right),
+$$
+where $d_{\mathcal{A}}=0$ only when the branch label, active root counts, separator events, memory-depth record, and provenance rows match. A successful Lorentz-looking square root does not pass the certificate if $d_{\mathcal{A}}^{(q)}$ is nonzero.
+
+On windows with positive gaps
+$$
+\nu_J^{(q)}\ge \nu_{\min}>0,\qquad
+g_{\mathrm{inactive}}^{(q)}\ge g_{\min}>0,\qquad
+h_{\mathrm{mem}}^{(q)}\le h_{\max}<\infty,\qquad
+\Delta_{\mathbf{k}}^{(q)}\ge \Delta_{\min}>0,
+$$
+the normalized closure residual is
+$$
+\mathcal{U}_{\mathrm{tri}}^{(q)}(W)
+=
+\max\left(
+\frac{d_{\mathcal{A}}^{(q)}}{\epsilon_{\mathcal{A}}},
+\frac{\left\|\mathcal{R}_{\mathrm{Lor},q}\right\|_W}{\epsilon_{\mathrm{LV}}},
+\frac{\left\|\mathcal{M}_{\mathrm{sea},q}^{ab}-h^{ab}/c_{\text{eff}}^2\right\|_W}{\epsilon_{\mathrm{mass}}},
+\frac{R_{\mathrm{div}T}^{(q)}+R_{\mathrm{Pois}}^{(q)}+R_{\mathrm{EFE}}^{(q)}+R_{\mathrm{var}}^{(q)}}{\epsilon_{\mathrm{GR}}},
+\sup_{S\in\mathfrak{S}^{(q)}(W)}
+\frac{\left\|\mathcal{R}_{S}^{(q)}\right\|_W}{\epsilon_S},
+\frac{\left\|\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}\right\|_W}{\epsilon_{\mathrm{led}}}
+\right).
+$$
+The certificate is promotable only when the gap inequalities hold and $\mathcal{U}_{\mathrm{tri}}^{(q)}(W)\le1$ without retuning clock, ruler, photon, metric, or event-ledger coefficients between rows.
+
+Failure modes:
+
+- `certificate.finite_branch_failure`: the clock, ruler, signal, metric, photon, or event rows no longer share one branch label and causal-root ledger, or the Jacobian floor, inactive-root gap, finite-memory bound, or declared separator chart fails.
+- `certificate.stability_gap_failure`: integer closure holds but $\Delta_{\mathbf{k}}^{(q)}\le0$ in the promoted benchmark regime.
+- `certificate.mass_dressing_failure`: $\mathcal{M}_{\mathrm{sea},q}^{ab}$ fails to reduce to $h^{ab}/c_{\text{eff}}^2$ in the homogeneous isotropic limit or leaves unsuppressed composition-dependent or direction-dependent residue.
+- `certificate.clock_not_branch_period`: the clock ratio is asserted without phase return, causal-root ledger return, and positive stability gap on the same branch.
+- `residual.speed_conflation`: $c_f$, $c_{\text{eff}}$, $c_\gamma$, and locally measured light speed are identified without the required Noether-Sea dressing map.
+- `residual.observable_refit`: the normalized closure residual is made acceptable only by changing coefficients between clock, ruler, photon, metric, mass-response, or event rows.
+- `event.ledger_residual`: a residual is hidden as recoil, medium update, radiation, remnant state, or product inventory instead of closing $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$.
 
 ## Related Priorities
 

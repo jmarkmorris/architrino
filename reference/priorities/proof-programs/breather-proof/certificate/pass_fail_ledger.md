@@ -67,7 +67,7 @@ SHA-256 values were observed during this pass for the existing artifacts.
 | `candidate_cycle_packet_report.md` | `accepted` as finite packet report | `99a17c7b618dff127c5cd1e56d6e368e80ff3d85e2c5bc3f76bf23a49b092096` | Clears only `Candidate data absent`. |
 | `mesh_refined_preledger_v1.json` | `rejected` diagnostic refinement | `8f18ef61acbe298f11fc2f3d355114bf72676da4f90046781a7afdcc316035ba` | `status=diagnostic_refinement_rejected_fold_impulse_and_fold_adjacent_parent_leftovers`. |
 | `diagonal_exclusion_subledger.json` | `accepted` subledger | `8de6b0b2decbb03be42459fbc2d0d598e8e5ad09cb1bd0a52a372049465e0f66` | 24 diagonal, periodic endpoint, and adjacent-boundary contacts accepted as empty rows. |
-| `fold_layer_atlas.json` | `blocked` as fold-layer certificate | `cddbd7ffe760e27d84fb493ec2df1d20ca2403474588c3a26493f24ccead9d04` | Kinematic atlas is ready, but accepted fold-layer rows are zero because the dual-mollified fold impulse ceiling is absent. |
+| `fold_layer_atlas.json` | `blocked` as live fold-layer certificate | `cddbd7ffe760e27d84fb493ec2df1d20ca2403474588c3a26493f24ccead9d04` | Kinematic atlas is ready, and an accepted fixed-parameter fold ceiling now exists externally in `fold_full_interval_constants_certificate.json`; the live atlas still has zero accepted fold-layer rows because it has not been rewritten and the parent complements remain open. |
 | `causal_ledger.json` | `rejected` as full pre-ledger | `d4a366e18ec73293269ede3ca065a64fba4779c6959b9c687b6d3209e441062b` | `status=preledger_rejected_fold_impulse_and_fold_adjacent_parent_leftovers_remaining`; `branch_chart_authorized=false`. |
 | `causal_preledger_interval_report.md` | `rejected` interval report | `1e615908372002be71abc73b6278bd70a7df7d421350c31e875c8c39db91f589` | Records the exact rejected pre-ledger state. |
 | `seed_chart_packet.md` | `accepted` as contract only | `1d02c826c14bd4cb6b4cda33ebdd1178e2b624bc65bd2634b12ec14dcb841e70` | Specifies schemas and pass/fail routing; it is not a proof artifact by itself. |
@@ -80,7 +80,13 @@ SHA-256 values were observed during this pass for the existing artifacts.
 | `fold_mollifier_kernel_candidate.md` | `accepted` as local kernel candidate | `10123bd48f13ade05c79d9a0ad0cee26828a6c657a7301657af5df71534986a9` | Proves a compact-support $C^1$ shell mollifier with $M_\delta=15/16$ and $\|\delta_\eta\|_\infty=46.875$ for $\eta=0.02$; it does not accept fold constants. |
 | `fold_interval_constants_attempt.json` | `rejected` interval attempt | `f2cc699b8efb6704b78be120c16c90991c535be39bed2f81ec184704d1697128` | `status=rejected_interval_constants_mollifier_candidate_available_missing_row_tubes_and_dual_mollified_enclosures`; `fold_constants_all_accepted=false`; `branch_chart_authorized=false`. |
 | `fold_row_tube_coverage_attempt.md` | `rejected` coverage attempt | `4da54035f93c4b0d807e43a4e5c9330a12fabcabcde3364127772aba33467bfa` | Shows the existing refined intervals provide only full-interval diagnostic fallbacks, not certified $E_B$, $S_B(t)$, $L_{r,B}$, $L_{s,B}$, or support coverage. |
-| `fold_row_consumption_attempt.md` | `rejected` row-consumption attempt | `51c766cb2f733a0a39aa65701194c27be9de1f4f2535a821413f85540c3f32cd` | Records that the current data consume zero rows: 16 fold-layer rows and 6 parent rows remain `split_required`. |
+| `fold_full_interval_fallback_legality.md` | `accepted` as legality note | `5b761fb6fb0f062f9d569860f87af98512ae6060340a19cf6fcf8042427a4708` | Shows the contracts permit a coarse fixed-parameter full-interval fallback, while excluding row-tube $O(\eta^{1/2})$ scaling and direct-quadrature claims. |
+| `fold_full_interval_constants_certificate.json` | `accepted` fixed-parameter constants | `e5dc6c97327fa360e562ea976c0bc7db7595ac2ecbcf5d482ecffb2b7dc257e1` | `status=accepted_fixed_parameter_full_interval_fallback_not_row_tube_scaling_not_direct_quadrature`; all 16 fold rows and all 4 separator aggregates have finite accepted fallback constants; `branch_chart_authorized=false`. |
+| `fold_parent_after_full_interval_status.md` | `accepted` as post-constants status | `00fad445b3184b4805867b0a3f9d35c3500d52331977f6471a4f0b5e99d856ff` | Records that the 16 fold rows become fold-ceiling-ready under the accepted full-interval certificate, but the six parent boundary complements still block the pre-ledger. |
+| `fold_parent_w_complement_closure_attempt.md` | `rejected` closure attempt | `f4c18d23de4d14b13b0d8794d6b54fc74dd247d98307d7cdbe2ddf43a00f0cc3` | Shows the three `w` parent rows cannot be consumed without explicit complement intervals, certified $\Delta^w_B>0$ gaps, or exact $\mathcal{F}_{\Sigma_1}$ / $\mathcal{F}_{\Sigma_2}$ membership. |
+| `fold_parent_u_complement_closure_attempt.md` | `rejected` closure attempt | `a5343044ac6d839456ed835b2cd3ec807a3a845c89ecef2b7fdf3e384fc11f56` | Shows the three `u` parent rows cannot be consumed without explicit complement intervals, certified $\Delta^u_B>0$ gaps, or exact $\mathcal{F}_{\Sigma_3}$ / $\mathcal{F}_{\Sigma_4}$ membership. |
+| `fold_parent_complement_partition_attempt.md` | `rejected` partition attempt | `469a49a4f72606a207e2e1ad5496144bb2a62b318a89093550768efcd084427d` | Enumerates the natural boundary strips left after the six accepted simple-root subrows and rejects strict range-empty closure because the strip ranges are zero/touching; the remaining route is endpoint-aware exclusion or exact fold-family membership. |
+| `fold_row_consumption_attempt.md` | `rejected` historical row-consumption attempt | `51c766cb2f733a0a39aa65701194c27be9de1f4f2535a821413f85540c3f32cd` | Records that the earlier rejected interval attempt consumed zero rows before the accepted full-interval fallback certificate existed. |
 
 ## Absent Required Artifacts
 
@@ -104,7 +110,7 @@ SHA-256 values were observed during this pass for the existing artifacts.
 | Velocity itinerary parity prerequisite | `accepted` | `itinerary.json`, `itinerary_parity_report.md`; all separator jumps are even and signed degree is preserved. | No current blocker, but this is only a coarse parity gate and must be rerun if the itinerary changes. |
 | Candidate-cycle packet | `accepted` as finite data | `phi_cyc.json`, `mesh.json`, `candidate_cycle_packet_report.md`; same packet id `seed-doubled-four-arc-cosine-template-v0`. | EOM residuals $E_j$, returned-history residuals $R_j^x,R_j^v$, and fold integral targets are `not_evaluated`; this row clears only `Candidate data absent`. |
 | Seed-chart gate 1: candidate-cycle data | `accepted` as data | Finite template, period, parameters, mesh, and packet identity are present. | Proceeded to null-coordinate pre-ledger. |
-| Seed-chart gate 2: null-coordinate pre-ledger | `rejected` | `causal_ledger.json`, `causal_preledger_interval_report.md`; 140 empty rows, 6 strict simple-root subrows, 0 accepted fold-layer rows, 22 `split_required` rows. `fold_impulse_bound_derivation.md` and `fold_impulse_constants.json` narrow the fold blocker, `fold_mollifier_kernel_candidate.md` supplies a candidate shell norm, and `fold_interval_constants_attempt.json` rejects the current constants attempt as non-accepted interval data. | `fold_layer_impulse_ceiling_not_evaluated` on 16 rows and `range_overlap_requires_level_split` on 6 rows; missing certified row-tube projections, certified source slices, and interval/quadrature enclosures for the fold rows. |
+| Seed-chart gate 2: null-coordinate pre-ledger | `rejected` | Live `causal_ledger.json`, `causal_preledger_interval_report.md`; 140 empty rows, 6 strict simple-root subrows, 0 accepted fold-layer rows, 22 `split_required` rows. `fold_full_interval_constants_certificate.json` now supplies accepted fixed-parameter fold ceilings for the 16 fold rows without editing the live ledger. The parent-complement attempts identify the remaining six-row blocker. | The fold-ceiling part is fold-ceiling-ready only under the coarse fixed-parameter fallback. The current mathematical blocker is endpoint-aware closure of the 6 fold-adjacent parent boundary complements: the natural strip partition has zero/touching range gaps and no recorded exact fold-family membership. After that, a separate live ledger update may rewrite all 22 `split_required` rows. |
 | Seed-chart gate 3: active branch-chart certification | `blocked` and `absent` | `branch_chart.json` is absent; `branch_chart_authorized=false` in `causal_ledger.json`. | Requires a passed pre-ledger. No simple-root branch chart may be built while fold-layer rows and parent boundary leftovers remain unresolved. |
 | Seed-chart row | `blocked` and `absent` | `seed_chart_interval_report.md` is absent. | Requires `branch_chart.json`, packet identity check, pre-ledger consumption, branch-chart authorization, strict seed margins, and finite sensitivities. |
 | Coupled-corridor row | `pending` and artifacts `absent` | No corridor artifacts are present. | Depends on seed-chart row. |
@@ -147,7 +153,7 @@ Accepted simple-root subrows:
 
 ### Fold-Layer Impulse Ceiling Not Evaluated
 
-There are 16 rows with `failure_code=fold_layer_impulse_ceiling_not_evaluated`:
+The live `causal_ledger.json` still contains 16 rows with `failure_code=fold_layer_impulse_ceiling_not_evaluated`:
 
 | Row | Ledger | Receiver | Source |
 | --- | --- | --- | --- |
@@ -168,7 +174,7 @@ There are 16 rows with `failure_code=fold_layer_impulse_ceiling_not_evaluated`:
 | `R_u_F4_F4` | `u` | `F4` | `F4` |
 | `R_u_A4_F4` | `u` | `A4` | `F4` |
 
-The four fold-layer atlas rows have positive kinematic data but are not accepted fold-layer rows:
+The four fold-layer atlas rows have positive kinematic data but are not accepted fold-layer rows in the live atlas file:
 
 | Event | Ledger | Interval | $\alpha_{\Sigma}$ | $\nu_{\mathrm{exit},\Sigma}$ | $\Delta N$ | $\Delta D$ | Status |
 | --- | --- | --- | ---: | ---: | ---: | ---: | --- |
@@ -177,11 +183,17 @@ The four fold-layer atlas rows have positive kinematic data but are not accepted
 | $\Sigma_3$ | `u` | `F3` | 0.669228904575 | 0.055761655527 | 2 | 0 | `blocked`: $I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}$ not evaluated |
 | $\Sigma_4$ | `u` | `F4` | 0.669228904575 | 0.055761655527 | -2 | 0 | `blocked`: $I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}$ not evaluated |
 
-The exact missing accepted certificate quantity is the finite fold impulse ceiling
+The accepted fixed-parameter certificate quantity now exists in `fold_full_interval_constants_certificate.json`:
 $$
 I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}<\infty.
 $$
-In `fold_layer_atlas.json`, each row reports `not_evaluated_missing_dual_mollified_acceleration_bound` with `C_Sigma=null`, `A_Sigma_eta_epsilon_c=null`, and `I_fold_eta_epsilon_c_Sigma=null`.
+For each $\Sigma\in\{\Sigma_1,\Sigma_2,\Sigma_3,\Sigma_4\}$, the accepted full-interval fallback records
+$$
+I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}
+\le
+11289.90742089375
+$$
+at $\eta=0.02$, $\epsilon_c=0.05$, $\Gamma=1$, and $M_\delta=15/16$. This is finite fixed-parameter consumption only: it is not the intended row-tube $O(\eta^{1/2})$ scaling and is not direct quadrature. In `fold_layer_atlas.json`, each row still reports `not_evaluated_missing_dual_mollified_acceleration_bound` with `C_Sigma=null`, `A_Sigma_eta_epsilon_c=null`, and `I_fold_eta_epsilon_c_Sigma=null` because the live atlas has not been rewritten.
 
 `fold_impulse_bound_derivation.md` supplies the conditional finite form
 $$
@@ -207,7 +219,7 @@ and
 $$
 \|\delta_\eta\|_\infty=46.875
 $$
-for $\eta=0.02$. This removes the abstract mollifier-kernel choice if the next accepted constants artifact imports it, but `fold_row_tube_coverage_attempt.md` rejects the existing refined intervals as accepted coverage: no fold row has certified $E_B$, $S_B(t)$, $L_{r,B}$, $L_{s,B}$, or a proof that all mollifier support is covered.
+for $\eta=0.02$. `fold_full_interval_fallback_legality.md` shows that the full refined receiver/source intervals may be used as a coarse fixed-parameter fallback. `fold_full_interval_constants_certificate.json` imports this kernel and accepts the 16 fold rows for fixed-parameter fold-ceiling purposes. `fold_row_tube_coverage_attempt.md` remains rejected as a row-tube coverage proof: no fold row has certified shorter $E_B$, $S_B(t)$, $L_{r,B}$, $L_{s,B}$, or a proof that all mollifier support is covered for the intended scaling route.
 
 ### Fold-Adjacent Parent Boundary Leftovers
 
@@ -222,7 +234,7 @@ There are 6 rows with `failure_code=range_overlap_requires_level_split`:
 | `R_u_A4_A2` | `u` | `A4` | `A2` | `S_u_A4_A2_2` |
 | `R_u_A4_A3` | `u` | `A4` | `A3` | `S_u_A4_A3_3` |
 
-These parent rows have accepted simple-root interiors, but their boundary leftovers are adjacent to active fold layers. They cannot be promoted until the fold-layer alternative is available.
+These parent rows have accepted simple-root interiors, but their boundary leftovers are adjacent to active fold layers. The fixed-parameter fold-layer alternative is now available for the 16 fold rows, but `fold_parent_complement_partition_attempt.md` shows that the natural boundary strips have zero/touching null-coordinate gaps. No current artifact proves endpoint-aware exclusion for those strips or exact membership in an accepted fold-layer family.
 
 ## Next Executable Row
 
@@ -230,17 +242,8 @@ The next executable row is still the null-coordinate pre-ledger, not the branch 
 
 Next certificate action:
 
-1. On the existing packet identity `seed-doubled-four-arc-cosine-template-v0`, use `fold_interval_constants_contract.md` to replace the rejected `fold_interval_constants_attempt.json` with accepted interval certificate data for each separator layer:
-   $$
-   I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}<\infty,
-   \qquad
-   \Sigma\in\{\Sigma_1,\Sigma_2,\Sigma_3,\Sigma_4\}.
-   $$
-   The accepted pass may import the candidate mollifier with $M_\delta=15/16$, or use a direct quadrature route. It must still record certified row-tube projections, source slices, row acceleration or impulse enclosures, and separator aggregates. The coupling convention is fixed for this packet by
-   $$
-   g=1.0=\Gamma=\kappa\epsilon^2.
-   $$
-2. If those four ceilings close as accepted certificate rows, promote or reject the 16 fold-touching rows as bounded fold-layer rows under the existing `Null-Coordinate Causal Pre-Ledger` alternative.
-3. Use `fold_parent_boundary_complement_packet.md` to resolve the 6 fold-adjacent parent boundary leftovers by replacing each parent row with its accepted simple-root subrow plus boundary complements that are strict range-empty rows or covered by accepted fold-layer alternatives. Only after every row is `empty`, `simple_root`, or bounded `fold_layer` may `branch_chart.json` be produced.
+1. On the existing packet identity `seed-doubled-four-arc-cosine-template-v0`, use `fold_parent_complement_partition_attempt.md` to resolve every named boundary strip by either endpoint-aware exclusion compatible with the parent-complement contract or exact membership in one of the accepted fixed-parameter fold-layer families.
+2. If all six parent complements close, produce a separate live pre-ledger update that rewrites the 16 fold-touching rows as bounded fixed-parameter `fold_layer` rows, rewrites the six parent rows as accepted decompositions, and leaves no `split_required` rows.
+3. Only after every pre-ledger row is `empty`, `simple_root`, or bounded `fold_layer` may `branch_chart.json` be produced.
 
-If the fold impulse ceiling cannot be made finite on this packet, the current cosine template remains rejected before branch-chart certification and the proof program should either replace the candidate template or restart the same-domain packet sequence with a new packet identity.
+If the parent complements cannot be closed on this packet, the current cosine template remains rejected before branch-chart certification even though the finite fixed-parameter fold ceiling is now available.

@@ -13,13 +13,13 @@ The current refined pre-ledger already has:
 - 140 certified empty rows: 116 range-empty base rows plus 24 diagonal-exclusion empty rows;
 - 6 accepted strict simple-root subrows;
 - 4 kinematic fold-layer atlas entries with positive curvature floors, positive exit floors, and parity data;
-- 22 unresolved rows: 16 fold-layer rows with missing impulse ceilings and 6 parent range-overlap rows whose accepted interiors leave fold-adjacent boundary leftovers.
+- 22 unresolved live-ledger rows: 16 fold-layer rows whose impulse ceilings now have an accepted fixed-parameter external certificate, plus 6 parent range-overlap rows whose accepted interiors leave fold-adjacent boundary leftovers.
 
-The branch chart remains unauthorized until all 22 unresolved rows are rewritten as accepted `empty`, `simple_root`, or `fold_layer` rows on the same packet identity tuple.
+The branch chart remains unauthorized until all 22 unresolved live-ledger rows are rewritten as accepted `empty`, `simple_root`, or `fold_layer` rows on the same packet identity tuple. The accepted full-interval constants certificate makes the 16 fold rows fold-ceiling-ready, but it does not close the six parent complements or rewrite the live ledger.
 
 ## Follow-On Fold Artifacts
 
-Five follow-on artifacts now narrow this handoff without accepting the pre-ledger:
+The current follow-on artifacts narrow this handoff without accepting the live pre-ledger:
 
 - `fold_impulse_bound_derivation.md` derives the conditional finite separator form
   $$
@@ -37,8 +37,13 @@ Five follow-on artifacts now narrow this handoff without accepting the pre-ledge
 - `fold_row_consumption_attempt.md` records the resulting row state: zero rows consumed, `causal_ledger.json` still rejected, and `branch_chart.json` unauthorized.
 - `fold_mollifier_kernel_candidate.md` supplies a compact-support $C^1$ shell candidate with $M_\delta=15/16$ and $\|\delta_\eta\|_\infty=46.875$ at $\eta=0.02$.
 - `fold_row_tube_coverage_attempt.md` rejects the existing refined intervals as accepted row-tube coverage: the packet still lacks certified $E_B$, $S_B(t)$, $L_{r,B}$, $L_{s,B}$, and support-coverage proofs for all sixteen fold rows.
+- `fold_full_interval_fallback_legality.md` shows that the contracts permit a coarse fixed-parameter full-interval fallback, while excluding row-tube $O(\eta^{1/2})$ scaling and direct-quadrature claims.
+- `fold_full_interval_constants_certificate.json` accepts finite fixed-parameter fold constants for all sixteen fold rows and all four separators with $M_\delta=15/16$, $\Gamma=1$, $\eta=0.02$, and $\epsilon_c=0.05$.
+- `fold_parent_after_full_interval_status.md` records the post-constants state: the sixteen fold rows are fold-ceiling-ready, but the six parent boundary complements still block the pre-ledger.
+- `fold_parent_w_complement_closure_attempt.md` and `fold_parent_u_complement_closure_attempt.md` reject immediate parent-side consumption because the artifacts did not name disjoint boundary-complement intervals, strict complement gaps, or exact fold-family memberships.
+- `fold_parent_complement_partition_attempt.md` names the natural boundary strips and rejects strict range-empty closure because the null-coordinate ranges are zero/touching rather than strictly separated.
 
-These artifacts do not edit `causal_ledger.json`, do not authorize `branch_chart.json`, and do not promote any row. The remaining gap is accepted certificate data: certified row-tube projections and source slices, interval/quadrature enclosures or direct quadrature for every fold row, and closure of the parent boundary complements.
+These artifacts do not edit `causal_ledger.json`, do not authorize `branch_chart.json`, and do not promote any row in the live ledger. The remaining gap for a passed pre-ledger is parent-boundary complement closure plus a separate live ledger rewrite. A sharper row-tube/source-slice route or direct quadrature route remains valuable, but it is no longer the immediate fixed-parameter blocker.
 
 ## Theorem Target
 
@@ -454,16 +459,12 @@ Any fold-layer leakage into a simple-root branch chart rejects the seed chart ev
 
 ## Immediate Next Artifact
 
-The next worker should use `fold_interval_constants_contract.md`, `fold_mollifier_coupling_audit.md`, `fold_mollifier_kernel_candidate.md`, `fold_row_tube_coverage_attempt.md`, and `fold_parent_boundary_complement_packet.md` to replace the rejected interval attempt with an accepted interval report or certificate update that records, for each
+The next worker should use `fold_parent_complement_partition_attempt.md`, `fold_parent_boundary_complement_packet.md`, `fold_full_interval_constants_certificate.json`, and `fold_parent_after_full_interval_status.md` to produce an endpoint-aware parent-boundary complement closure packet. For every named strip of `R_w_A1_A0`, `R_w_A2_A0`, `R_w_A2_A1`, `R_u_A3_A2`, `R_u_A4_A2`, and `R_u_A4_A3`, the packet must record either an accepted endpoint-aware exclusion compatible with the parent-complement contract, a strict range-empty gap
 $$
-\Sigma_k,
+\Delta^y_B>0
 $$
-the tuple
-$$
-(\alpha_{\Sigma_k},\nu_{\mathrm{exit},\Sigma_k},C_{\Sigma_k},A_{\Sigma_k,\eta,\epsilon_c},I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma_k},\Delta N_{\Sigma_k},\Delta D_{\Sigma_k})
-$$
-and a row-consumption table showing that the 16 fold-layer rows and 6 fold-adjacent parent rows no longer contain `split_required`. The packet coupling convention is already fixed as $g=1.0=\Gamma=\kappa\epsilon^2$, and the candidate mollifier supplies $M_\delta=15/16$ if adopted. The missing accepted data are row-tube/source-slice coverage and interval row/separator enclosures, or a direct quadrature route that encloses every fold row. Diagnostic-only constants are insufficient for this update, and parent rows must be consumed by their accepted simple-root subrows plus strict range-empty or accepted fold-layer boundary complements.
+or exact coverage by one of the accepted fixed-parameter fold-layer alternatives on the same packet identity tuple. Only after that complement closure exists should a separate live ledger update rewrite the 16 fold rows and 6 parent rows from `split_required` to accepted rows.
 
-Until that artifact exists, the correct status remains:
+Until those artifacts exist, the correct status remains:
 
 `branch_chart_authorized: false`

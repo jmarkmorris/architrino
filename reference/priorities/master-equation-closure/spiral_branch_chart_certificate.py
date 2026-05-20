@@ -21,6 +21,7 @@ import argparse
 import json
 import math
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Callable, Iterable
 
 
@@ -249,6 +250,24 @@ class BranchStats:
             "theta_at_j_min": self.theta_at_j_min,
             "tangential_min": self.tangential_min,
             "tangential_max": self.tangential_max,
+        }
+
+
+@dataclass(frozen=True)
+class IntervalProofRow:
+    row: str
+    status: str
+    source: str
+    claim_level: str
+    data: dict
+
+    def to_json(self) -> dict:
+        return {
+            "row": self.row,
+            "status": self.status,
+            "source": self.source,
+            "claim_level": self.claim_level,
+            "data": self.data,
         }
 
 
@@ -518,6 +537,174 @@ def coincidence_clearance_summary(*, theta_samples: int, delta_samples: int) -> 
     }
 
 
+INTERVAL_SCHEMA = "spiral_vp1_interval_rows.v1"
+INTERVAL_ROW_NAMES = {
+    "candidate_history",
+    "partner_active_roots",
+    "self_active_roots",
+    "jacobian_floor",
+    "inactive_gaps",
+    "self_coincidence_clearance",
+    "finite_memory",
+    "root_transport",
+    "radial_turn",
+    "tangential_drive",
+    "dependency_status",
+}
+INTERVAL_STATUSES = {"passed", "certified_fail", "blocked"}
+DRIVE_ROWS = {"radial_turn", "tangential_drive"}
+
+
+def load_interval_proof_packet(path: str | None) -> tuple[dict | None, list[str]]:
+    if path is None:
+        return None, []
+    try:
+        return json.loads(Path(path).read_text(encoding="utf-8")), []
+    except OSError as exc:
+        return None, [f"could not read interval proof rows: {exc}"]
+    except json.JSONDecodeError as exc:
+        return None, [f"could not parse interval proof rows as JSON: {exc}"]
+
+
+def parse_interval_rows(packet: dict | None) -> tuple[dict[str, IntervalProofRow], list[str]]:
+    if packet is None:
+        return {}, []
+    errors: list[str] = []
+    if packet.get("schema") != INTERVAL_SCHEMA:
+        errors.append(f"unsupported interval row schema: {packet.get('schema')!r}")
+    rows_value = packet.get("rows")
+    if not isinstance(rows_value, dict):
+        errors.append("interval row packet must contain a rows object")
+        return {}, errors
+
+    rows: dict[str, IntervalProofRow] = {}
+    for row_name, row_value in rows_value.items():
+        if row_name not in INTERVAL_ROW_NAMES:
+            errors.append(f"unknown interval row: {row_name}")
+            continue
+        if not isinstance(row_value, dict):
+            errors.append(f"interval row {row_name} must be an object")
+            continue
+        status = row_value.get("status")
+        if status not in INTERVAL_STATUSES:
+            errors.append(f"interval row {row_name} has unsupported status: {status!r}")
+            continue
+        if status == "certified_fail" and row_name not in DRIVE_ROWS:
+            errors.append(f"interval row {row_name} cannot use certified_fail")
+            continue
+        source = row_value.get("source")
+        if not isinstance(source, str) or not source:
+            errors.append(f"interval row {row_name} must name a source")
+            continue
+        claim_level = row_value.get("claim_level", "")
+        if not isinstance(claim_level, str):
+            errors.append(f"interval row {row_name} claim_level must be a string")
+            continue
+        data = row_value.get("data", {})
+        if not isinstance(data, dict):
+            errors.append(f"interval row {row_name} data must be an object")
+            continue
+        rows[row_name] = IntervalProofRow(
+            row=row_name,
+            status=status,
+            source=source,
+            claim_level=claim_level,
+            data=data,
+        )
+    return rows, errors
+
+
+def close_enough(left: float, right: float, tolerance: float = 1.0e-12) -> bool:
+    return abs(left - right) <= tolerance
+
+
+def validate_interval_candidate(packet: dict | None) -> list[str]:
+    if packet is None:
+        return []
+    candidate = packet.get("candidate")
+    errors: list[str] = []
+    if not isinstance(candidate, dict):
+        return ["interval row packet must contain a candidate object"]
+
+    expected_scalars = {
+        "a": A,
+        "b_star": B_STAR,
+        "delta_co": DELTA_CO,
+    }
+    for key, expected in expected_scalars.items():
+        value = candidate.get(key)
+        if not isinstance(value, (int, float)) or not close_enough(float(value), expected):
+            errors.append(f"candidate {key} mismatch: expected {expected}, got {value!r}")
+
+    expected_pairs = {
+        "theta_interval": [THETA_LO, THETA_HI],
+        "delta_cert": [DELTA_CO, DELTA_MAX],
+    }
+    for key, expected in expected_pairs.items():
+        value = candidate.get(key)
+        if (
+            not isinstance(value, list)
+            or len(value) != 2
+            or not all(isinstance(item, (int, float)) for item in value)
+            or not all(close_enough(float(item), ref) for item, ref in zip(value, expected))
+        ):
+            errors.append(f"candidate {key} mismatch: expected {expected}, got {value!r}")
+
+    expected_labels = ["P_1", "P_2", "P_3", "S_1"]
+    labels = candidate.get("active_labels")
+    if labels != expected_labels:
+        errors.append(f"candidate active_labels mismatch: expected {expected_labels}, got {labels!r}")
+    return errors
+
+
+def interval_support_summary(
+    *,
+    path: str | None,
+    packet: dict | None,
+    rows: dict[str, IntervalProofRow],
+    validation_errors: list[str],
+) -> dict:
+    return {
+        "path": path,
+        "loaded": packet is not None,
+        "schema": None if packet is None else packet.get("schema"),
+        "valid": packet is not None and not validation_errors,
+        "validation_errors": validation_errors,
+        "rows": {name: row.to_json() for name, row in sorted(rows.items())},
+    }
+
+
+def row_summary(row: IntervalProofRow) -> str:
+    summary = row.data.get("summary")
+    if isinstance(summary, str) and summary:
+        return summary
+    return f"Interval row from {row.source}."
+
+
+def apply_interval_rows(
+    obligations: list[dict],
+    rows: dict[str, IntervalProofRow],
+    validation_errors: list[str],
+) -> list[dict]:
+    if validation_errors:
+        return obligations
+    merged: list[dict] = []
+    for obligation in obligations:
+        row_name = obligation["row"]
+        interval_row = rows.get(row_name)
+        if interval_row is None:
+            merged.append(obligation)
+            continue
+        updated = dict(obligation)
+        updated["status"] = interval_row.status
+        updated["technical_value"] = row_summary(interval_row)
+        updated["source"] = interval_row.source
+        updated["claim_level"] = interval_row.claim_level
+        updated["interval_data"] = interval_row.data
+        merged.append(updated)
+    return merged
+
+
 def proof_obligation_matrix(certificate: dict) -> list[dict]:
     active = certificate["active_chart"]
     memory = certificate["finite_memory"]
@@ -594,24 +781,104 @@ def proof_obligation_matrix(certificate: dict) -> list[dict]:
 
 
 def theorem_readiness(certificate: dict, obligations: list[dict]) -> dict:
-    statuses = [row["status"] for row in obligations]
-    theorem_grade = all(status == "passed" for status in statuses)
+    by_row = {row["row"]: row["status"] for row in obligations}
+    structural_rows = [
+        "candidate_history",
+        "partner_active_roots",
+        "self_active_roots",
+        "jacobian_floor",
+        "inactive_gaps",
+        "self_coincidence_clearance",
+        "finite_memory",
+        "root_transport",
+        "dependency_status",
+    ]
+    structural_rows_passed = all(by_row.get(row) == "passed" for row in structural_rows)
+    radial_status = by_row.get("radial_turn")
+    tangential_status = by_row.get("tangential_drive")
+    candidate_passed = (
+        structural_rows_passed
+        and radial_status == "passed"
+        and tangential_status == "passed"
+    )
+    candidate_rejected = structural_rows_passed and (
+        radial_status == "certified_fail"
+        or (radial_status == "passed" and tangential_status == "certified_fail")
+    )
+    theorem_grade = candidate_passed or candidate_rejected
     sampled_failure = certificate["tangential_drive"]["sampled_tangential_failure"]
     first_nonpassing = next(
-        (row["row"] for row in obligations if row["status"] != "passed"),
+        (
+            row["row"]
+            for row in obligations
+            if row["status"] not in {"passed", "certified_fail"}
+        ),
         None,
     )
+    if candidate_passed:
+        certificate_status = "theorem_grade_passed_bare_spiral"
+        priority_item_complete = True
+    elif structural_rows_passed and radial_status == "certified_fail":
+        certificate_status = "theorem_grade_rejected_radial_turn"
+        priority_item_complete = False
+    elif (
+        structural_rows_passed
+        and radial_status == "passed"
+        and tangential_status == "certified_fail"
+    ):
+        certificate_status = "theorem_grade_rejected_tangential_drive"
+        priority_item_complete = False
+    elif sampled_failure:
+        certificate_status = "vp1_sampled_fails_tangential_drive_with_interval_blockers"
+        priority_item_complete = False
+    else:
+        certificate_status = "vp1_interval_blocked"
+        priority_item_complete = False
     return {
         "theorem_grade": theorem_grade,
+        "structural_rows_passed": structural_rows_passed,
+        "candidate_passed": candidate_passed,
+        "candidate_rejected": candidate_rejected,
         "sampled_vp1_tangential_failure": sampled_failure,
         "first_nonpassing_obligation": first_nonpassing,
-        "priority_item_complete": False,
-        "certificate_status": (
-            "vp1_sampled_fails_tangential_drive_with_interval_blockers"
-            if sampled_failure
-            else "vp1_interval_blocked"
-        ),
+        "priority_item_complete": priority_item_complete,
+        "certificate_status": certificate_status,
     }
+
+
+def interval_blockers_from_obligations(obligations: list[dict]) -> list[str]:
+    by_row = {row["row"]: row["status"] for row in obligations}
+    blockers: list[str] = []
+    active_rows = ["partner_active_roots", "self_active_roots", "jacobian_floor"]
+    if any(by_row.get(row) != "passed" for row in active_rows):
+        blockers.append(
+            "No accepted outward interval active-root tube and Jacobian-floor ledger is loaded for the partner and self root rows."
+        )
+    if by_row.get("inactive_gaps") != "passed":
+        blockers.append(
+            "No accepted outward interval box cover is loaded for inactive complements in I_* x D_cert."
+        )
+    if by_row.get("self_coincidence_clearance") != "passed":
+        blockers.append("No accepted self-coincidence clearance row is available.")
+    if by_row.get("finite_memory") != "passed":
+        blockers.append("No accepted finite-memory row is available for the retained tubes.")
+    if by_row.get("root_transport") != "passed":
+        blockers.append(
+            "No accepted analytic or interval root-transport row is loaded for the C^1 root-offset maps."
+        )
+    if by_row.get("dependency_status") != "passed":
+        blockers.append(
+            "The theorem-grade circular interval and large-beta tail dependency has not been loaded as an accepted row."
+        )
+    if by_row.get("radial_turn") not in {"passed", "certified_fail"}:
+        blockers.append(
+            "No declared force-ratio Gamma row resolves the VP-1 radial-turn threshold."
+        )
+    if by_row.get("tangential_drive") not in {"passed", "certified_fail"}:
+        blockers.append(
+            "No outward interval tangential-drive verdict is loaded; the current positive D_T value remains sampled or reduction-only."
+        )
+    return blockers
 
 
 def build_certificate(args: argparse.Namespace) -> dict:
@@ -634,6 +901,11 @@ def build_certificate(args: argparse.Namespace) -> dict:
         theta_samples=args.inactive_theta_samples,
         delta_samples=args.coincidence_samples,
     )
+    interval_packet, load_errors = load_interval_proof_packet(args.interval_proof_rows)
+    interval_rows, row_errors = parse_interval_rows(interval_packet)
+    candidate_errors = validate_interval_candidate(interval_packet)
+    interval_errors = load_errors + row_errors + candidate_errors
+
     certificate = {
         "artifact": "spiral_branch_chart_certificate.py",
         "claim_level": "sampled executable VP-1 branch ledger with interval-proof blockers",
@@ -652,16 +924,19 @@ def build_certificate(args: argparse.Namespace) -> dict:
         "tangential_drive": tangential_drive,
         "inactive_gaps": inactive_gaps,
         "coincidence_clearance": coincidence_clearance,
-        "interval_proof_blockers": [
-            "No outward interval box cover is emitted for inactive complements in I_* x D_cert.",
-            "No outward interval active-root tube ledger is emitted for the partner and self root rows.",
-            "No interval root-transport residual is emitted for the C^1 root-offset maps.",
-            "The weighted D_T row is a converged sampled quadrature, not an outward interval integral.",
-        ],
+        "interval_proof_blockers": [],
+        "interval_support": interval_support_summary(
+            path=args.interval_proof_rows,
+            packet=interval_packet,
+            rows=interval_rows,
+            validation_errors=interval_errors,
+        ),
     }
     obligations = proof_obligation_matrix(certificate)
+    obligations = apply_interval_rows(obligations, interval_rows, interval_errors)
     certificate["proof_obligations"] = obligations
     certificate["theorem_readiness"] = theorem_readiness(certificate, obligations)
+    certificate["interval_proof_blockers"] = interval_blockers_from_obligations(obligations)
     return certificate
 
 
@@ -681,6 +956,7 @@ def emit_markdown(certificate: dict) -> str:
     inactive = certificate["inactive_gaps"]
     coincidence = certificate["coincidence_clearance"]
     readiness = certificate["theorem_readiness"]
+    interval_support = certificate["interval_support"]
 
     lines = [
         "# Spiral Branch-Chart Interval Report",
@@ -694,33 +970,65 @@ def emit_markdown(certificate: dict) -> str:
         f"- Theorem grade: `{str(readiness['theorem_grade']).lower()}`.",
         f"- Priority item complete: `{str(readiness['priority_item_complete']).lower()}`.",
         f"- First nonpassing obligation: `{readiness['first_nonpassing_obligation']}`.",
+        f"- Structural rows passed: `{str(readiness['structural_rows_passed']).lower()}`.",
+        f"- Candidate passed: `{str(readiness['candidate_passed']).lower()}`.",
+        f"- Candidate rejected: `{str(readiness['candidate_rejected']).lower()}`.",
         f"- Active-count stability: `{str(active['active_count_stable']).lower()}`.",
         f"- Minimum sampled active $|J|$: `{active['min_j_floor']:.12f}`.",
         f"- Finite memory: `{str(memory['passed']).lower()}`.",
         f"- Sampled tangential-drive verdict: `{tangent['verdict']}`.",
         "",
-        "The executable reports a replayable sampled VP-1 branch ledger. It does not "
-        "promote `spiral_branch_chart_test`: the sampled weighted "
-        "$\\mathcal{D}_T(I_\\ast)$ estimate is positive, and the inactive-gap, "
-        "active-root, root-transport, and integral rows remain "
-        "interval-proof blockers.",
+        "The executable reports a replayable VP-1 branch ledger. It promotes only "
+        "typed interval sidecar rows that match the declared candidate; sampled "
+        "support remains sampled. The priority item stays open unless the proof "
+        "obligation matrix resolves either a theorem-grade passing spiral or a "
+        "theorem-grade VP-1 rejection.",
         "",
-        "## Candidate",
+        "## Interval Row Sidecar",
         "",
-        "| Parameter | Value |",
-        "| --- | ---: |",
-        f"| $a$ | `{certificate['candidate']['a']:.12f}` |",
-        f"| $b_\\ast$ | `{certificate['candidate']['b_star']:.12f}` |",
-        f"| $I_\\ast$ lower | `{THETA_LO:.12f}` |",
-        f"| $I_\\ast$ upper | `{THETA_HI:.12f}` |",
-        f"| $\\Delta_{{\\mathrm{{co}}}}$ | `{DELTA_CO:.12g}` |",
-        f"| $D_h$ upper | `{DELTA_MAX:.12f}` |",
+        "| Field | Value |",
+        "| --- | --- |",
+        f"| Path | `{interval_support['path']}` |",
+        f"| Loaded | `{str(interval_support['loaded']).lower()}` |",
+        f"| Schema | `{interval_support['schema']}` |",
+        f"| Valid | `{str(interval_support['valid']).lower()}` |",
         "",
-        "## Active Root Rows At $\\theta_\\ast=0$",
-        "",
-        "| Class | Branch | $\\Delta$ | $J$ | $\\Lambda$ | $S_T$ | $S_T/(\\Lambda^3|J|)$ | Radial contribution |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
+    if interval_support["validation_errors"]:
+        lines.extend(["Validation errors:", ""])
+        for error in interval_support["validation_errors"]:
+            lines.append(f"- {error}")
+        lines.append("")
+    if interval_support["rows"]:
+        lines.extend(
+            [
+                "| Row | Status | Source |",
+                "| --- | --- | --- |",
+            ]
+        )
+        for row_name, row in interval_support["rows"].items():
+            lines.append(f"| {row_name} | `{row['status']}` | {row['source']} |")
+        lines.append("")
+
+    lines.extend(
+        [
+            "## Candidate",
+            "",
+            "| Parameter | Value |",
+            "| --- | ---: |",
+            f"| $a$ | `{certificate['candidate']['a']:.12f}` |",
+            f"| $b_\\ast$ | `{certificate['candidate']['b_star']:.12f}` |",
+            f"| $I_\\ast$ lower | `{THETA_LO:.12f}` |",
+            f"| $I_\\ast$ upper | `{THETA_HI:.12f}` |",
+            f"| $\\Delta_{{\\mathrm{{co}}}}$ | `{DELTA_CO:.12g}` |",
+            f"| $D_h$ upper | `{DELTA_MAX:.12f}` |",
+            "",
+            "## Active Root Rows At $\\theta_\\ast=0$",
+            "",
+            "| Class | Branch | $\\Delta$ | $J$ | $\\Lambda$ | $S_T$ | $S_T/(\\Lambda^3|J|)$ | Radial contribution |",
+            "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+    )
     for row in active["endpoint_rows"]["theta_star"]:
         lines.append(
             "| {kind} | {branch} | {delta:.9f} | {jac:.9f} | {lam:.9f} | {st:.9f} | {tan:.9f} | {rad:.9f} |".format(
@@ -842,15 +1150,16 @@ def emit_markdown(certificate: dict) -> str:
             "",
             "## Proof Obligation Matrix",
             "",
-            "| Row | Status | Technical value |",
-            "| --- | --- | --- |",
+            "| Row | Status | Source | Technical value |",
+            "| --- | --- | --- | --- |",
         ]
     )
     for row in certificate["proof_obligations"]:
         lines.append(
-            "| {row_name} | `{status}` | {value} |".format(
+            "| {row_name} | `{status}` | {source} | {value} |".format(
                 row_name=row["row"],
                 status=row["status"],
+                source=row.get("source", "runner"),
                 value=row["technical_value"],
             )
         )
@@ -903,6 +1212,10 @@ def main(argv: Iterable[str] | None = None) -> int:
         "--coincidence-samples",
         type=int,
         default=DEFAULT_COINCIDENCE_SAMPLES,
+    )
+    parser.add_argument(
+        "--interval-proof-rows",
+        help="Optional JSON sidecar with theorem-grade interval proof rows.",
     )
     parser.add_argument("--format", choices=["json", "markdown"], default="json")
     parser.add_argument(

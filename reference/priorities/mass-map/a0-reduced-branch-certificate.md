@@ -1269,7 +1269,7 @@ The first Tier 0 implementation packet is complete enough for handoff. The curre
 
 The fold-layer-locked one-period Tier 1 attempt is now also complete as a fail-closed diagnostic. It preserves the two locked self-root fold-layer keys in $\mathcal{R}_{\text{lock}}$, runs the under-cap retained-step budget, emits one-period residual ledgers, and refuses accepted-history output. Its direct residual failure and residual-balance no-go make the compact circular / elliptic carrier chart inadequate as a closed branch equation.
 
-The active next implementation packet is now the periodic residual-balanced carrier-correction runner. It should consume `a0-tier1-residual-balance-ledger/v1`, keep the locked fold-layer row as $\mathcal{R}_{\text{lock}}$, and implement the smallest branch-native correction equation that can be rerun without particle benchmarks:
+The periodic residual-balanced carrier-correction bridge is now implemented far enough to falsify the scalar no-omitted-mode correction as a closed branch. The next implementation packet is no longer the bridge itself. It is the richer branch-native basis route that can decide whether the compact fixture needs root-key / projection-resolved interaction weights or should be rejected as a compact-chart branch:
 $$
 \mathbf{d}_\ell''(t)
 =
@@ -1281,18 +1281,17 @@ Q_\ell\Pi_\ell
 \alpha_\rho B_\rho(t)
 \right).
 $$
-The runner must first test the mean solvability condition for this periodic boundary-value problem. If the projected forcing is not closed by a periodic $\mathbf{d}_\ell(t)$ after symmetry, translation, phase-origin, radius, and plane-orientation modes are removed, the next result should be a stronger no-go for the compact fixture rather than a promoted branch.
+The completed bridge already tests the mean solvability condition, emits a rerun packet when the retained correction basis is executable, and keeps accepted-history output blocked. Since the corrected rerun still fails the one-period ledgers, the next result should be a stronger no-go for the compact fixture unless a refined branch-native basis reduces the same residual surface without changing the branch label.
 
-The remaining runner handoff should now produce:
+The remaining branch-equation handoff should now produce:
 
-1. a correction-packet-to-rerun bridge that consumes only branch-native residual data and the retained Fourier coefficients;
-2. an explicit decision on whether the scalar relation basis must be replaced by the basis $B_{\rho,\ell,\sigma,\mu,\nu}(t)$ resolved by root branch key and projection channel;
-3. a corrected fold-layer-locked one-period attempt, if the correction basis is executable;
-4. one-period residual ledgers for state return, root closure, phase closure, speed ordering, energy-like speed balance, drift, lock stability, and correction residual $R_{\text{corr}}$;
-5. quotient-row identity carried through the corrected branch row before accepted-history emission;
-6. monodromy / $\Delta_{\mathbf{k}}$ and $\eta$-ladder continuation only after the corrected one-period residuals pass;
-7. finite envelope-Hessian extraction only after the same corrected branch passes, with $k_R$, $k_\xi$, $k_{R\xi}$, $c_R$, and $c_\xi$ emitted as branch evidence rather than toy stiffnesses;
-8. confirmation that accepted-history output remains blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, quotient-row identity, and branch persistence across the declared $\eta$ ladder are all present.
+1. an explicit equality-constrained replacement for the scalar relation basis by $B_{\rho,\ell,\sigma,\mu,\nu}(t)$ resolved by relation class, receiver layer, polarity, root branch key, and radial / tangential projection channel;
+2. a proof that the refined basis preserves pro/anti symmetry, quotient-equivalent root sharing, the locked fold-layer keys in $\mathcal{R}_{\text{lock}}$, and benchmark exclusion;
+3. a rerun packet or no-go ledger for the refined basis, using the same state-return, root-closure, phase-closure, speed-ordering, energy-like speed, drift, lock-stability, and correction residuals;
+4. quotient-row identity carried through the corrected branch row before accepted-history emission;
+5. monodromy / $\Delta_{\mathbf{k}}$ and $\eta$-ladder continuation only after the corrected one-period residuals pass;
+6. finite envelope-Hessian extraction only after the same corrected branch passes, with $k_R$, $k_\xi$, $k_{R\xi}$, $c_R$, and $c_\xi$ emitted as branch evidence rather than toy stiffnesses;
+7. confirmation that accepted-history output remains blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, quotient-row identity, and branch persistence across the declared $\eta$ ladder are all present.
 
 Scanner implementation note, May 20, 2026:
 
@@ -1370,6 +1369,33 @@ $$
 \delta \mathbf{s}_{\ell,-}=-\frac12\mathbf{d}_\ell,
 $$
 with the same signs for velocity and acceleration corrections. The default-policy packet remains blocked as `blocked_source_row_not_ready`. The `--omit-modes none` packet returns `waveform_replay_ready` for row `1`, with `64` samples, eight retained modes per layer, zero coefficient-identity relative error in all layers, and body update records for `I+`, `I-`, `M+`, `M-`, `O+`, and `O-`. This waveform replay is still only a corrected-rerun input check; it does not solve delayed roots on the corrected carrier and does not certify accepted history.
+
+Corrected one-period rerun note, May 20, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-fold-layer-locked-one-period-attempt.mjs --intake /tmp/a0-tier1-one-period-continuation-prototype-codex-review.json --source /tmp/a0-tier1-continuation-source-prototype-codex-review.json --correction-packet /tmp/a0-tier1-carrier-correction-packet-final-omit-none.json --pretty --out /tmp/a0-tier1-fold-layer-locked-one-period-attempt-corrected-omit-none.json
+```
+
+The one-period runner now has a reusable retained Fourier correction evaluator and a `--correction-packet` rerun path. For the `--omit-modes none` packet, row `1` reaches `correction_context_ready`, carries eight retained modes for each of `I`, `M`, and `O`, applies the center-preserving body updates to the initial state, path-history lookup, direct acceleration, emitted samples, and residual-balance source lookup, and reports `corrected_integrator_present: true`. The corrected artifact still sets `accepted_history_boundary: false`.
+
+The corrected run is a controlled negative result, not an accepted branch. Its status is `failed_direct_one_period_residuals`. It improves several direct diagnostics relative to the uncorrected run:
+
+- maximum direct root residual drops from about `42.67` to about `23.49`;
+- maximum speed-ordering residual drops from about `29.93` to about `3.05`;
+- energy-like speed residual drops from about `26.68` to about `0.131`;
+- center drift passes, with maximum center drift about $8.96\times10^{-17}$.
+
+The remaining blockers are decisive:
+
+- $R_{\text{state}}\approx1.008$ still fails against tolerance `0.02`;
+- maximum direct root residual $\approx23.49$ still fails against tolerance $10^{-6}$;
+- speed ordering still fails against tolerance `0.02`;
+- residual balance worsens from about `0.755` to about `0.993`;
+- quotient monodromy, $\Delta_{\mathbf{k}}$, and the $\eta$ ladder remain not computed because the corrected one-period residuals did not pass.
+
+Fail-closed control: feeding the runner the default-policy blocked correction packet produces `blocked_packet_fields_missing` for row `1`, with neither the direct nor corrected integrator marked present. The corrected path therefore does not silently fall back to the uncorrected carrier.
+
+Mathematical implication: the no-omitted-mode scalar Fourier correction removes the bulk center drift and improves the scale of some one-period residuals, but it does not close the compact $A_0$ branch equation. Since the residual-balance ledger worsens after this correction, the next branch-native move is not another scalar relation-weight fit. The basis must split the active causal-root ledger into $B_{\rho,\ell,\sigma,\mu,\nu}(t)$, with equality constraints declared before fitting, or the compact fixture should be recorded as a stronger corrected-carrier no-go.
 
 ## Promotion Rule
 

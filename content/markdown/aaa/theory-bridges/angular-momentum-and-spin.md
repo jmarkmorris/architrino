@@ -1269,6 +1269,24 @@ with the physical requirement:
 - a $2\pi$ spatial rotation returns the coarse orientation but changes the internal phase/sign branch;
 - a $4\pi$ rotation restores the full ordered-core configuration.
 
+A support row for that requirement has to be a retained active-root datum, not merely the visible $SO(3)$ loop. For a retained row $r$ in a branch chart, the local parity test has the form
+
+$$
+\epsilon_{r}^{2\pi}
+=
+\left[
+\Delta k_{r}^{2\pi}
++
+\Delta e_{r}^{2\pi}
++
+\Delta w_{r}^{2\pi}
++
+\Delta\chi_{r}^{2\pi}
+\right]_2,
+$$
+
+where the entries record, respectively, phase-branch parity, emission-order parity, component-resolved causal-writhe parity, and row-sourced chirality parity. A nontrivial spinor-support candidate must exhibit at least one non-gauge retained row with $\epsilon_{r}^{2\pi}=1$ while the doubled path restores the lifted history, $\epsilon_{r}^{4\pi}=0$, and the angular-momentum residual remains below tolerance. A visible ordered-frame loop by itself gives only ordinary $SO(3)$ closure. A nonzero angular-momentum residual is a conservation failure, not evidence for a spinor sheet.
+
 The Lorentz-sector extension is a separate but connected theorem target. Once the relativistic observer sector has been recovered, the same ordered Noether-core frame must admit an effective spinor response compatible with the double cover
 
 $$
@@ -1291,6 +1309,24 @@ m\in\mathbb{Z}.
 $$
 
 That is a $2\pi$ single-valuedness rule on an observer-level orbital envelope. A fermion spinor target cannot reuse that ordinary closure rule. It must explain why the visible $SO(3)$ orientation closes after $2\pi$ while the history-lifted Noether-core state changes sheet and only restores after $4\pi$.
+
+For a central external envelope, the full observer-level orbital gate also includes angular regularity:
+
+$$
+\ell\in\mathbb N_0,
+\qquad
+m\in\{-\ell,\ldots,\ell\},
+\qquad
+L^2\Psi_{\mathrm{env}}
+=
+\ell(\ell+1)\hbar^2\Psi_{\mathrm{env}},
+\qquad
+L_z\Psi_{\mathrm{env}}
+=
+m\hbar\Psi_{\mathrm{env}}.
+$$
+
+This is a recovery target for $\Psi_{\mathrm{env}}$, the external envelope of an assembly in a declared potential chart. It is not a substitute for the ordered-core $2\pi/4\pi$ support-row test above.
 
 ### Effective C/P/T Recovery Interface
 
