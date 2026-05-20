@@ -4,7 +4,7 @@ This chapter isolates the complete-state diagnostic problem of identifying absol
 
 ## Overview
 
-This chapter answers the question that must be settled before any coordinate construction can begin: can the architrino framework identify **absolute rest** from its own physics, without assuming a pre-labeled grid? The answer in this framework is yes, but the answer belongs first to the $\mathbb{U}_{\text{now}}$ universe-state perspective. The complete-state diagnostic is the **concentricity of source-tagged causal isochrons** emitted by a stationary architrino.
+This chapter answers the question that must be settled before any coordinate construction can begin: can the architrino framework identify **absolute rest** from its own physics, without assuming a pre-labeled grid? The answer in this framework is yes, but the answer belongs first to the $\mathbb{U}_{\text{now}}$ universe-state perspective. The complete-state diagnostic is the **concentricity of source-tagged causal isochron centers**. A stationary architrino is sufficient to expose that diagnostic, but the preferred rest frame itself is defined by the propagation law: it is the frame in which primitive causal wakes expand isotropically at $c_f$.
 
 This argument sits between [Euclidean Void](euclidean-void.md), which states the underlying substrate, and [Reconstructing a Coordinate Frame from Wake Geometry](bootstrapping-the-absolute-frame.md), which turns the preferred-rest diagnostic into a usable coordinate frame. Its operational shielding claims also connect directly to [Absolute Time Defense](absolute-time-defense.md) and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
@@ -66,16 +66,33 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 - **All centers coincident** means $\mathbf{v}_{\text{abs}} = \mathbf{0}$ on that interval (absolute rest).
 - **Centers form a trajectory** means $\mathbf{v}_{\text{abs}} \neq \mathbf{0}$; for a uniform segment, the displacement vector $\Delta \mathbf{x}$ per unit time $\Delta t$ yields the absolute velocity: $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$.
 
-**Coordinate-Free Invariant:** For a target architrino $a$ and emission interval $I$, define the source-tagged center set
+**Wake-center theorem:** Let a source-tagged causal isochron emitted by source $a$ at time $s$ and inspected at time $t>s$ have support
 $$
-Z_a(I)=\{\mathbf{x}_a(s):s\in I\},
+W_a(s;t)
+=
+\left\{
+\mathbf{y}\in\Sigma_t:
+\|\mathbf{y}-\mathbf{z}_a(s)\|=c_f(t-s)
+\right\}.
+$$
+In Euclidean three-space, a nondegenerate isochron support of this form has a unique center. Therefore, if $W_a(s;t)$ is known as a source-tagged support, its emission center $\mathbf{z}_a(s)$ is geometrically reconstructible without first assigning coordinates to the void.
+
+For a target architrino $a$ and emission interval $I$, define the source-tagged center set
+$$
+Z_a(I)=\{\mathbf{z}_a(s):s\in I\},
 $$
 and its Euclidean diameter
 $$
-D_a(I)=\sup_{s,u\in I}\|\mathbf{x}_a(s)-\mathbf{x}_a(u)\|.
+D_a(I)=\sup_{s,u\in I}\|\mathbf{z}_a(s)-\mathbf{z}_a(u)\|.
 $$
 
-With exact complete-state access and source-independent propagation at $c_f$, $D_a(I)=0$ if and only if $\mathbf{x}_a(s)$ is constant on $I$, so $\mathbf{v}_a(s)=\mathbf{0}$ almost everywhere on that interval. For uniform motion, $D_a([t_0,t_0+T])=\|\mathbf{v}_a\|T$. This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the source-tagged centers of emitted causal isochrons occupy the same point in the Euclidean void.
+Equivalently,
+$$
+D_a(I)=\operatorname{diam}Z_a(I).
+$$
+With exact complete-state access and source-independent propagation at $c_f$, $D_a(I)=0$ if and only if $\mathbf{z}_a(s)$ is constant on $I$, so the source is at absolute rest almost everywhere on that interval. For uniform motion, $D_a([t_0,t_0+T])=\|\mathbf{v}_a\|T$. This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the source-tagged centers of emitted causal isochrons occupy the same point in the Euclidean void.
+
+If no architrino is stationary over the diagnostic interval, complete-state reconstruction may still recover the preferred rest-frame structure from the centers of source-tagged wake isochrons. A coordinate origin can then be chosen conventionally from any reconstructed emission center at a chosen time. The stationary architrino is therefore a convenient material origin, not the definition of the preferred frame.
 
 This distinction fixes the level of the claim. Ontologically, the preferred frame is defined by the propagation law in the Euclidean void. Inference-wise, the concentricity test reconstructs that rest condition from source-tagged wake records. At the effective observer level, the same fact need not be directly measurable, because assemblies use clocks, rulers, and signal channels that must themselves satisfy Lorentz-recovery closure.
 
@@ -121,7 +138,7 @@ This prevents the preferred-frame claim from being empty inside the formal ontol
 
 **Conventional (mathematical scaffolding):**
 - **Coordinate labels**: Tools for calculation and communication
-- **Choice of origin**: Any stationary architrino works equally well
+- **Choice of origin**: A stationary architrino supplies a convenient material origin when available; otherwise any reconstructed emission center at a chosen time may be selected conventionally
 - **Axis orientation**: The void is isotropic; no direction is physically privileged
 
 ### Why Physical Observers Don't Detect the Preferred Frame

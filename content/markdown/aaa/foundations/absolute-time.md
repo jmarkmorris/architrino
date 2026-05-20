@@ -128,6 +128,8 @@ As a manifold, $\mathbb{R}$ is:
 - **Complete**: geodesically complete, with no edges or boundaries.
 - **Without endpoints**.
 
+This is a statement about the background time manifold used by the fundamental dynamics, not by itself a solved cosmological boundary condition. A particular cosmological solution may occupy all of $\mathbb{R}$ or a dynamically selected interval, depending on its boundary data. Modeling the time factor as $\mathbb{R}$ prevents artificial endpoints in the substrate parameter; it does not prove that every realized universe history has no initialization, cutoff, or external selection condition.
+
 ## Symmetries of Absolute Time
 
 The fundamental kinematic symmetry of absolute time is the **additive group**:
@@ -181,6 +183,18 @@ for any admissible orientation-preserving parametrization $s$ of the worldline.
 
 **Finite Propagation Speed:** All physical interactions are mediated by causal wakes that propagate at a **finite speed** $c_f$, the wake speed used by the master equation.
 
+The foundation stack keeps the relevant speed symbols distinct:
+
+| Symbol | Meaning | Status |
+| --- | --- | --- |
+| $c_f$ | Primitive causal-wake propagation speed relative to the Euclidean void | fundamental |
+| $c_\gamma(\Theta_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether-Sea state and direction | derived |
+| $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
+| $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
+| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration |
+
+These symbols must not be identified unless the local regime and derivation have been stated.
+
 **Path-History Interactions:** If source $j$ emits from $\mathbf{x}_j(t_0)$ and receiver $i$ is at $\mathbf{x}_i(t)$, the contributing emission times are the delayed roots
 $$
 \mathcal{C}_{ij}(t)
@@ -189,6 +203,34 @@ $$
 $$
 
 Only emission times in $\mathcal{C}_{ij}(t)$ contribute to the receiver at time $t$. In dimensional variables, the same condition is written with hatted times and positions using the corresponding dimensional value of $c_f$.
+
+Equivalently, define the root function
+$$
+F_{ij}(t,s)
+=
+\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s),
+\qquad
+s<t.
+$$
+Then $\mathcal{C}_{ij}(t)=\{\,s<t:F_{ij}(t,s)=0\,\}$. The same set covers ordinary partner hits when $i\ne j$ and self-hits when $i=j$; no separate self-hit law is needed. A simple-root branch chart requires
+$$
+\left|
+\partial_sF_{ij}(t,s)
+\right|
+=
+\left|
+c_f-\hat{\mathbf{r}}_{ij}(t,s)\cdot\mathbf{v}_j(s)
+\right|
+\ge
+\kappa_{\mathrm{hit}}>0,
+$$
+where
+$$
+\mathbf{r}_{ij}(t,s)=\mathbf{x}_i(t)-\mathbf{x}_j(s),
+\qquad
+\hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}.
+$$
+Failure of this transversality floor marks a caustic-like or degenerate wake-root regime, so it must be routed to branch-chart or regularization analysis rather than treated as an ordinary force perturbation.
 
 The interaction law is built entirely from path-history contributions at times $t' < t$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This ensures causality at the fundamental level.
 

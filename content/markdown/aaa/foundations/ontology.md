@@ -123,6 +123,8 @@ The resulting observer descriptions can be indispensable without being final ont
 
 Bell-family experiments are not treated as evidence for ontological randomness, backward causation, or faster-than-$c_f$ signal transfer. They are treated as a hard observer-level correlation constraint on any deterministic completion. The complete state on $\Sigma_t$ remains definite in the $\mathbb{U}_{\text{now}}$ universe-state perspective, while a Physical Observer has access only to pair records, detector settings, coincidence windows, and statistical summaries.
 
+The no-go guardrail is strict. If measurement independence, no advanced influence, finite-speed local response, and local factorization over a complete past-state variable $\lambda$ are all retained, then the Bell-local factorization is restored and Bell violations cannot be recovered. The Bell bridge must therefore identify the precise failed abstraction: substrate-level nonseparability not reducible to local past variables, a $c_f$-mediated channel outside effective light cones with no-signaling shielding, a controlled relaxation of measurement independence, or another explicitly formulated mechanism. A foundation page may route that burden, but it must not imply that shared provenance alone solves Bell.
+
 The placement is therefore level-specific. If $\mathbb{A}\mathbb{A}\mathbb{A}$ passes the Bell gate, the required "nonlocality" is Bell-technical non-separability of the retained pair-provenance and apparatus-response variables, not an instantaneous causal influence between detectors. The observer-level compression must fail the factorizable local-response form
 $$
 P(a,b\mid \hat{m}_A,\hat{m}_B,\lambda)

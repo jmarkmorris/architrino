@@ -6,11 +6,29 @@ This chapter is the canonical home for proper time, observer clocks, clock slowi
 
 For the detailed comparison between special-relativistic clock language and the deformable Noether-core implementation story, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md).
 
-We seek a map
+The primary clock law is phase extraction from a declared assembly channel:
 $$
-\frac{d\tau}{dt} = F\big(\mathbf{v}, n(\mathbf{x}), \chi_{\text{sea}}(\mathbf{x}), \Phi_{\text{eff}}(\mathbf{x}), \text{clock geometry}\big)
+\frac{d\tau_{\mathcal A}}{dt}
+=
+\frac{
+\Omega_{\mathcal A}
+\left(
+\mathbf{w},
+\Theta_{\mathrm{sea}},
+R_{\mathcal A},
+H_{\mathcal A}
+\right)
+}{
+\Omega_{\mathcal A}^{(0)}
+},
+\qquad
+d\tau_{\mathcal A}
+=
+\frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}.
 $$
-that reproduces, in the appropriate regime,
+Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\Theta_{\mathrm{sea}}$ is the retained Noether-Sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether-Sea flow. A broad expression such as $d\tau/dt=F(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
+
+The target is to reproduce, in the appropriate regime,
 $$
 \frac{d\tau}{dt} \approx \sqrt{1+\frac{2\Phi_N}{c_0^2} - \frac{v^2}{c_0^2}}
 $$

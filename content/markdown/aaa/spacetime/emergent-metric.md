@@ -94,6 +94,39 @@ Here $N$ is the clock-rate or lapse channel, $u^i_{\text{sea}}$ is medium drift,
 
 This form is the common handoff surface for clock redshift, Shapiro delay, lensing, geodesic motion, photon synchronization, and preferred-frame tests. A scalar speed map alone is therefore not enough for closure: it can support a first Shapiro-delay intuition, but the full PPN burden requires the lapse, drift, and spatial-compliance channels together.
 
+The same handoff can be written as a local clock-and-signal quadratic form,
+$$
+d\tau^2
+=
+A^2(\Theta_{\mathrm{sea}})\,dt^2
+-
+\frac{1}{c_0^2}
+B_{ij}(\Theta_{\mathrm{sea}})
+\left(dx^i-u^i_{\text{sea}}dt\right)
+\left(dx^j-u^j_{\text{sea}}dt\right),
+$$
+with $A$, $B_{ij}$, and $u^i_{\text{sea}}$ read from the same retained Noether-Sea and Physical Observer record. In the local medium-rest frame, the photon-channel null condition $d\tau^2=0$ gives
+$$
+c_\gamma(\hat{\mathbf{k}},\Theta_{\mathrm{sea}})
+=
+\frac{
+c_0A(\Theta_{\mathrm{sea}})
+}{
+\sqrt{
+B_{ij}(\Theta_{\mathrm{sea}})\hat k^i\hat k^j
+}
+}.
+$$
+The weak homogeneous observer branch requires
+$$
+A\to1,
+\qquad
+B_{ij}\to\delta_{ij},
+\qquad
+u^i_{\text{sea}}\to0.
+$$
+This is a constitutive equation, not a new fundamental four-dimensional metric on absolute timespace.
+
 The retained weak-field coefficient map should therefore be expressed at the ADM/Cartan level before observable projections are evaluated. With
 $$
 \delta n\equiv n-1,\qquad

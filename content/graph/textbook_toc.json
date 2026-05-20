@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1231
+      "sections": 1232
     }
   },
   "tocRoot": {
@@ -552,6 +552,14 @@
                 "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
                 "markdownSection": "Preferred Rest Frame and Dynamical Symmetry Breaking",
                 "sectionKey": "preferred rest frame and dynamical symmetry breaking",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Speed Convention",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
+                "markdownSection": "Speed Convention",
+                "sectionKey": "speed convention",
                 "headingLevel": 2
               },
               {
@@ -7723,10 +7731,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Self-Hit Onset Boundary at $\\|\\mathbf{v}\\| = c_f$",
+                    "title": "Self-Hit Root Onset",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Self-Hit Onset Boundary at $\\|\\mathbf{v}\\| = c_f$",
-                    "sectionKey": "self hit onset boundary at mathbf v c f",
+                    "markdownSection": "Self-Hit Root Onset",
+                    "sectionKey": "self hit root onset",
                     "headingLevel": 2
                   },
                   {

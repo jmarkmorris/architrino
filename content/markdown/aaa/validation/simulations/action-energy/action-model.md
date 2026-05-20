@@ -342,11 +342,11 @@ Method 2 — Green’s function (path-history integral)
 Method 3 — Event-driven radial-transport + per-hit EOM (current canonical)
 - Pros
   - Directly implements the project’s delayed, radial-only interaction law with constant emission cadence.
-  - Natural support for self-hits and superposition; local $1/r^2$ weighting makes near sources dominate.
+  - Natural support for self-hits and superposition; local $1/r^2$ weighting makes nearby coherent roots dominate once the far-field cutoff, screening, cancellation, or summation prescription is declared.
   - Numerically lightweight for particle dynamics; works cleanly with impulsive or mollified ODE integration.
 - Cons
   - Not derived from the scalar wave equation; global field-energy accounting is indirect (via mollified potentials).
-  - Omits the explicit path-history-time Jacobian factor from Method 2; relies on $\kappa$ calibration.
+  - Must retain the causal-root Jacobian factor from the master equation; a reduced test harness that omits it is a noncanonical approximation rather than a calibration of $\kappa$.
   - Accuracy depends on robust causal-root finding and regularization choices in complex multi-hit scenarios.
 
 ---
