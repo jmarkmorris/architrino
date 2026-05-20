@@ -1283,9 +1283,9 @@ Q_\ell\Pi_\ell
 $$
 The runner must first test the mean solvability condition for this periodic boundary-value problem. If the projected forcing is not closed by a periodic $\mathbf{d}_\ell(t)$ after symmetry, translation, phase-origin, radius, and plane-orientation modes are removed, the next result should be a stronger no-go for the compact fixture rather than a promoted branch.
 
-The next pass should produce:
+The remaining runner handoff should now produce:
 
-1. a mean-solvability and Fourier-mode scanner for $\mathbf{d}_\ell(t)$ using only branch-native residual data;
+1. a correction-packet-to-rerun bridge that consumes only branch-native residual data and the retained Fourier coefficients;
 2. an explicit decision on whether the scalar relation basis must be replaced by the basis $B_{\rho,\ell,\sigma,\mu,\nu}(t)$ resolved by root branch key and projection channel;
 3. a corrected fold-layer-locked one-period attempt, if the correction basis is executable;
 4. one-period residual ledgers for state return, root closure, phase closure, speed ordering, energy-like speed balance, drift, lock stability, and correction residual $R_{\text{corr}}$;
@@ -1326,7 +1326,50 @@ The regenerated fold-layer attempt artifact `/tmp/a0-tier1-fold-layer-locked-one
 
 With `--omit-modes none`, the same sampled forcing returns `fourier_carrier_correction_candidate` with one candidate row and all three layers candidate. The layer mean residuals are `I: 0.005469226331224925`, `M: 0.003874878104606083`, and `O: 0.001470074064399575`; the correction residuals equal these mean residuals.
 
+**Chart-mode projection criterion.** For each layer $\ell$, let $\mathcal{C}_\ell$ be the omitted chart subspace spanned by the declared Fourier modes already represented in the reduced chart $z_\Lambda$, and let $\mathcal{C}_\ell^\perp$ be the retained correction complement used for $\mathbf{d}_\ell(t)$. If $P_{\mathcal{C}_\ell}$ denotes the $L^2([0,T_{\mathbf{k}}])$ projection onto $\mathcal{C}_\ell$, then the layer-projected sampled forcing must be split as
+$$
+Q_\ell\mathbf{g}_\ell
+=
+P_{\mathcal{C}_\ell}Q_\ell\mathbf{g}_\ell
++
+\left(1-P_{\mathcal{C}_\ell}\right)Q_\ell\mathbf{g}_\ell,
+$$
+where only the retained term $\left(1-P_{\mathcal{C}_\ell}\right)Q_\ell\mathbf{g}_\ell\in\mathcal{C}_\ell^\perp$ may feed $\mathbf{d}_\ell(t)$. If
+$$
+\|P_{\mathcal{C}_\ell}Q_\ell\mathbf{g}_\ell\|_{L^2}
+>
+\tau_{\mathrm{chart}}
+\left\|
+\left(1-P_{\mathcal{C}_\ell}\right)Q_\ell\mathbf{g}_\ell
+\right\|_{L^2},
+$$
+for the declared chart-dominance tolerance $\tau_{\mathrm{chart}}$, the forcing is a chart update or branch-split signal, not an admissible retained correction mode. If the retained forcing satisfies the mean-solvability condition and remains below the declared correction tolerance, it may feed a corrected one-period rerun.
+
+On the May 20, 2026 scanner artifacts, the default chart policy puts mode `1` in $\mathcal{C}_O$ and the `O` layer is chart dominated: the omitted-chart-mode energy fraction is `0.9997697101092003`, with correction residual `0.9998848484246575`. Under `--omit-modes none`, $\mathcal{C}_\ell=\{0\}$ for the scanner run, so all three retained forcings are treated as Fourier correction candidates with mean residuals `I: 0.005469226331224925`, `M: 0.003874878104606083`, and `O: 0.001470074064399575`.
+
 Mathematical implication: the non-circular correction is not simply blocked. It is chart-policy sensitive. If mode `1` is treated as part of $z_\Lambda$, the `O`-layer forcing is mostly chart motion and cannot be added as a retained correction $\mathbf{d}_O(t)$ without hiding a changed branch chart inside the correction term. If no mode is omitted, the same sampled forcing passes as a Fourier correction candidate. That status authorizes only a corrected one-period rerun with fresh causal-root solving and residual ledgers; it is not accepted history and does not establish quotient-row identity, monodromy, $\Delta_{\mathbf{k}}$, or eta-ladder persistence.
+
+Correction-packet emitter note, May 20, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-carrier-correction-packet.mjs --scanner /tmp/a0-tier1-carrier-correction-scanner-final-omit-none.json --pretty --out /tmp/a0-tier1-carrier-correction-packet-final-omit-none.json
+```
+
+The packet emitter consumes `a0-tier1-carrier-correction-scanner/v1` and emits only `a0-tier1-carrier-correction-packet/v1` rerun-input candidates. On the default scanner artifact it returns `blocked_source_row_not_candidate` because the source row is `blocked_chart_mode_dominated`. On the `--omit-modes none` scanner artifact it returns `correction_packet_ready` for row `1`, with eight retained correction modes for each of the `I`, `M`, and `O` layers. The packet still sets `accepted_history_boundary: false`; it is a bridge into a corrected one-period attempt, not a branch certificate.
+
+Waveform replay note, May 20, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-carrier-correction-waveform-replay.mjs --packet /tmp/a0-tier1-carrier-correction-packet-final-omit-none.json --pretty --out /tmp/a0-tier1-carrier-correction-waveform-replay-final-omit-none.json
+```
+
+The waveform replay consumes `a0-tier1-carrier-correction-packet/v1`, verifies the retained coefficient identity $\widehat{\mathbf{d}}_{\ell,m}=-\widehat{\mathbf{g}}_{\ell,m}/(2\pi m/T_{\mathbf{k}})^2$, reconstructs $\mathbf{d}_\ell(t)$, $\mathbf{d}_\ell'(t)$, and $\mathbf{d}_\ell''(t)$ on the replay grid, and applies the center-preserving body placement rule
+$$
+\delta \mathbf{s}_{\ell,+}=+\frac12\mathbf{d}_\ell,
+\qquad
+\delta \mathbf{s}_{\ell,-}=-\frac12\mathbf{d}_\ell,
+$$
+with the same signs for velocity and acceleration corrections. The default-policy packet remains blocked as `blocked_source_row_not_ready`. The `--omit-modes none` packet returns `waveform_replay_ready` for row `1`, with `64` samples, eight retained modes per layer, zero coefficient-identity relative error in all layers, and body update records for `I+`, `I-`, `M+`, `M-`, `O+`, and `O-`. This waveform replay is still only a corrected-rerun input check; it does not solve delayed roots on the corrected carrier and does not certify accepted history.
 
 ## Promotion Rule
 

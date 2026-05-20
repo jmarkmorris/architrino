@@ -13,9 +13,9 @@
 
 - Kind: `priority`
 - Rank: `14`
-- Value: `8.71`
+- Value: `8.21`
 - Cost: `4.3`
-- ROI: `2.03`
+- ROI: `1.91`
 - Status: `active`
 
 ## Purpose

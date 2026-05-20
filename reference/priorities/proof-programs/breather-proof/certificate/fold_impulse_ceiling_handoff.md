@@ -32,8 +32,13 @@ Five follow-on artifacts now narrow this handoff without accepting the pre-ledge
 - `fold_row_consumption_report.md` maps exactly which 16 fold rows and 6 parent rows would be consumed after accepted finite constants and parent-complement closure.
 - `fold_interval_constants_contract.md` defines the accepted-constants contract for the mollifier or direct quadrature route, coupling convention, row-tube projections, source slices, row enclosures, and separator aggregates.
 - `fold_parent_boundary_complement_packet.md` defines the accepted alternatives for the six parent boundary complements: strict range-empty gaps or coverage by accepted fold-layer rows.
+- `fold_mollifier_coupling_audit.md` resolves the packet coupling convention as $g=1.0=\Gamma=\kappa\epsilon^2$ while rejecting accepted constants without a certified mollifier norm or direct quadrature route.
+- `fold_interval_constants_attempt.json` is the current rejected interval attempt; it preserves finite diagnostic values but marks every fold row and separator non-accepted.
+- `fold_row_consumption_attempt.md` records the resulting row state: zero rows consumed, `causal_ledger.json` still rejected, and `branch_chart.json` unauthorized.
+- `fold_mollifier_kernel_candidate.md` supplies a compact-support $C^1$ shell candidate with $M_\delta=15/16$ and $\|\delta_\eta\|_\infty=46.875$ at $\eta=0.02$.
+- `fold_row_tube_coverage_attempt.md` rejects the existing refined intervals as accepted row-tube coverage: the packet still lacks certified $E_B$, $S_B(t)$, $L_{r,B}$, $L_{s,B}$, and support-coverage proofs for all sixteen fold rows.
 
-These artifacts do not edit `causal_ledger.json`, do not authorize `branch_chart.json`, and do not promote any row. The remaining gap is accepted certificate data: a fixed mollifier norm or direct quadrature convention, the coupling convention, certified row-tube projections and source slices, interval/quadrature enclosures for every fold row, and closure of the parent boundary complements.
+These artifacts do not edit `causal_ledger.json`, do not authorize `branch_chart.json`, and do not promote any row. The remaining gap is accepted certificate data: certified row-tube projections and source slices, interval/quadrature enclosures or direct quadrature for every fold row, and closure of the parent boundary complements.
 
 ## Theorem Target
 
@@ -449,7 +454,7 @@ Any fold-layer leakage into a simple-root branch chart rejects the seed chart ev
 
 ## Immediate Next Artifact
 
-The next worker should use `fold_interval_constants_contract.md` and `fold_parent_boundary_complement_packet.md` to produce an accepted interval report or certificate update that records, for each
+The next worker should use `fold_interval_constants_contract.md`, `fold_mollifier_coupling_audit.md`, `fold_mollifier_kernel_candidate.md`, `fold_row_tube_coverage_attempt.md`, and `fold_parent_boundary_complement_packet.md` to replace the rejected interval attempt with an accepted interval report or certificate update that records, for each
 $$
 \Sigma_k,
 $$
@@ -457,7 +462,7 @@ the tuple
 $$
 (\alpha_{\Sigma_k},\nu_{\mathrm{exit},\Sigma_k},C_{\Sigma_k},A_{\Sigma_k,\eta,\epsilon_c},I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma_k},\Delta N_{\Sigma_k},\Delta D_{\Sigma_k})
 $$
-and a row-consumption table showing that the 16 fold-layer rows and 6 fold-adjacent parent rows no longer contain `split_required`. Diagnostic-only constants are insufficient for this update, and parent rows must be consumed by their accepted simple-root subrows plus strict range-empty or accepted fold-layer boundary complements.
+and a row-consumption table showing that the 16 fold-layer rows and 6 fold-adjacent parent rows no longer contain `split_required`. The packet coupling convention is already fixed as $g=1.0=\Gamma=\kappa\epsilon^2$, and the candidate mollifier supplies $M_\delta=15/16$ if adopted. The missing accepted data are row-tube/source-slice coverage and interval row/separator enclosures, or a direct quadrature route that encloses every fold row. Diagnostic-only constants are insufficient for this update, and parent rows must be consumed by their accepted simple-root subrows plus strict range-empty or accepted fold-layer boundary complements.
 
 Until that artifact exists, the correct status remains:
 

@@ -32,21 +32,31 @@ The usual textbook explanation is geometric. Space and time mix in Minkowski spa
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ explanation keeps the tested observer-level formulas but changes the proposed mechanism underneath them. The fundamental background remains Euclidean void plus absolute substrate time. The Lorentz factor appears because real clocks and rulers are made from phase-locked assemblies whose internal causal communications must close at the local signal speed $c_{\text{eff}}$.
 
+The speed in these formulas is the assembly drift relative to the local Noether-Sea rest frame. Write
+
+$$
+\mathbf{w}
+=
+\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}},
+$$
+
+where $\mathbf{u}_{\text{sea}}$ is the local medium drift. In the local Noether-Sea rest frame, $\mathbf{u}_{\text{sea}}=\mathbf{0}$ and $\mathbf{w}=\mathbf{V}_{\text{cm}}$.
+
 Thus the standard formula is recovered with
 
 $$
 \gamma_{\text{eff}}
 =
-\frac{1}{\sqrt{1-\|\mathbf{V}_{\text{cm}}\|^2/c_{\text{eff}}^2}},
+\frac{1}{\sqrt{1-\|\mathbf{w}\|^2/c_{\text{eff}}^2}},
 $$
 
-where $\mathbf{V}_{\text{cm}}$ is the assembly's center-of-mass velocity through the local Noether Sea.
+where $\mathbf{w}$ is the assembly's drift through the local Noether Sea.
 
 ### Why Time Dilation Occurs
 
 A physical clock is not an abstract coordinate. In this framework, a clock is a stable Noether core whose inner, middle, and outer binaries complete repeatable internal cycles. Proper time $\tau$ is the count of those completed cycles.
 
-At rest, the three binaries can use the causal budget mainly for transverse closure: emissions cross between partners and between layers, and the $(N,M)$ root ledger closes cleanly.
+At rest, the three binaries can use the causal budget mainly for transverse closure: emissions cross between partners and between layers, and the branch-indexed causal-root ledger $\mathcal{A}_q$ closes cleanly.
 
 When the core moves, the receiver is no longer where it would have been in the rest configuration. A causal emission must now do two jobs at once:
 
@@ -58,7 +68,7 @@ In the local Noether-Sea rest frame, the fixed-speed causal budget is therefore 
 $$
 c_{\text{eff}}^2
 =
-\|\mathbf{V}_{\text{cm}}\|^2+c_{\perp}^2.
+\|\mathbf{w}\|^2+c_{\perp}^2.
 $$
 
 The transverse budget is
@@ -66,7 +76,7 @@ The transverse budget is
 $$
 c_{\perp}
 =
-c_{\text{eff}}\sqrt{1-\|\mathbf{V}_{\text{cm}}\|^2/c_{\text{eff}}^2}
+c_{\text{eff}}\sqrt{1-\|\mathbf{w}\|^2/c_{\text{eff}}^2}
 =
 \frac{c_{\text{eff}}}{\gamma_{\text{eff}}}.
 $$
@@ -108,10 +118,10 @@ The speed limit follows immediately from the same component split:
 $$
 c_{\perp}
 =
-\sqrt{c_{\text{eff}}^2-\|\mathbf{V}_{\text{cm}}\|^2}.
+\sqrt{c_{\text{eff}}^2-\|\mathbf{w}\|^2}.
 $$
 
-As $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$, the transverse budget tends to zero:
+As $\|\mathbf{w}\|\to c_{\text{eff}}$, the transverse budget tends to zero:
 
 $$
 c_{\perp}\to0.
@@ -149,7 +159,7 @@ m_{\text{gravitational}}(A)
 \frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
 $$
 
-This is the proposed mechanical basis of the equivalence principle. Acceleration and gravity look locally equivalent because both impose the same kind of phase-closure stress on the same internal assembly. The open mathematical task is to prove that the two perturbation maps agree to the precision required by weak-field tests.
+This is the proposed mechanical basis for the mass-equality part of the equivalence principle. The local-free-fall part also requires the effective metric and Cartan-connection route: one Noether-Sea response map must give the same clock, ruler, signal, and geodesic rows in the weak-field regime. The open mathematical task is to prove that the shielded-energy perturbation map and the effective-metric perturbation map agree to the precision required by weak-field tests.
 
 ### Summary in One Sentence
 

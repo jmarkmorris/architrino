@@ -80,7 +80,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: nested binary assemblies, self-hit engine, middle fulcrum, outer shield.
 - Mechanism: three mutually supporting binary layers distribute high-multiplicity internal closure, buffer phase stress, and regulate external coupling.
 - Output: the tri-binary Noether core becomes the proposed stable matter unit.
-- Proof burden: prove tri-binary universality via slow-fast decomposition. Show that under simultaneous kinematic stress $\beta>0$ and Noether-Sea gradient stress $G>0$, the stable slow manifold of an $n$-layer nested assembly persists for $n\ge 3$ and loses normal hyperbolicity for $n\le 2$ on a codimension-one set in $(\beta,G)$. Equivalently, derive the corresponding $n$-layer closure law with explicit role-counting in the slow-fast decomposition.
+- Proof burden: prove the slow-fast tri-binary minimality theorem. Show that under simultaneous kinematic stress $\beta>0$ and Noether-Sea gradient stress $G>0$, the stable slow manifold of an $n$-layer nested assembly persists for $n\ge 3$ and loses normal hyperbolicity for $n\le 2$ on a codimension-one set in $(\beta,G)$. Equivalently, derive the corresponding $n$-layer closure law with explicit role-counting in the slow-fast decomposition; universality is a consequence only if the same three-role law covers the admitted matter branches.
 - Priority route: `mass-map`, `master-equation-closure`.
 - Current disposition: `priority`.
 
@@ -285,7 +285,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Priority route: `master-equation-closure`, `strong-field-closure`, `standard-model-closure`.
 - Current disposition: `priority`.
 
-### 12. Photon Coaxial Pro/Anti Planar Pair
+### 12. Photon Coaxial Contra-Rotating Pro/Anti Planar Pair
 
 - Inputs: massive-clock transverse-budget failure at $c_{\text{eff}}$, pro/anti Noether-core orientations, and primitive wake speed $c_f$.
 - Mechanism: a photon is a coaxial contra-rotating pro/anti planar pair with axial pair communication rather than volumetric transverse clock closure. The transition from a three-dimensional Noether-core invariant to a planar photon invariant must be treated as separator-mediated dimensional reduction, not as a smooth flattening of an orthogonal braid.
@@ -326,7 +326,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 15. QED And Optical Phenomenology
 
-- Inputs: photon coaxial contra-rotating pro/anti planar-pair ontology, emission/absorption ledger transitions, and charged assembly overlaps.
+- Inputs: photon coaxial contra-rotating pro/anti planar pair ontology, emission/absorption ledger transitions, and charged assembly overlaps.
 - Mechanism: effective Maxwell/QED behavior must arise as the validated limit of planar-pair interactions.
 - Output: $E=h\nu$, $p=h/\lambda$, $U(1)$-like phase behavior, Aharonov-Bohm shifts, transition rates, pair production, Compton scattering, blackbody spectra, and $\alpha$.
 - Proof burden: photon gate C must map emission, absorption, pair production, transition rates, and $\alpha$ as allowed topological surgery between massive Noether cores and coaxial contra-rotating pro/anti planar pairs, while recovering QED without extra modes, dispersion, birefringence, or wrong statistics.
@@ -361,7 +361,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 5. Photon gate C, vertices and transitions.
 6. Moving Noether-core deformation map with the $d_2=s_2=-1/2$ first coefficient test.
 7. Transverse causal budget lemma with Floquet-gap closure at $\beta\to 1$.
-8. Slow-fast tri-binary universality theorem.
+8. Slow-fast tri-binary minimality theorem, with universality only after admitted matter branches share the three-role law.
 9. Momentum skew with Noether-Sea dressing tensor.
 10. Effective metric and Cartan connection reconstruction.
 11. Equivalence and weak-field GR matching.

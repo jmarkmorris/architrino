@@ -1,8 +1,8 @@
 # Spiral Branch-Chart Certificate
 
-Status. Dependency-aware proof packet for `spiral_branch_chart_test`. This packet prepares the first concrete variable-pitch spiral branch-chart certification target, but it does not close or advance the queue item because `circular_asymptotics` still owns the theorem-grade circular tail constants.
+Status. Active proof packet for `spiral_branch_chart_test`. The circular dependency is now satisfied, so VP-1 is the first concrete variable-pitch spiral branch-chart target consumed by the active queue item. The sampled executable pass finds a stable $3+1$ root ledger, positive sampled Jacobian floors, finite memory, and a positive weighted tangential-drive diagnostic. Therefore VP-1 is not a passing bare isolated spiral certificate at sampled level, but this packet does not close the queue item because the active-root, inactive-gap, root-transport, and weighted-integral rows still need outward interval proof.
 
-Claim level. Candidate VP-1 below is a branch-chart certification target, not a promoted master-equation closure claim. A passing certificate would show that the chosen isolated variable-pitch spiral has a replayable finite causal-root chart and a negative weighted tangential drive on a radial-turn corridor. A failing certificate would falsify this candidate only; it would become a stronger bare-kernel obstruction only after the circular dependency and the interval proof rows close.
+Claim level. Candidate VP-1 below is a branch-chart certification target, not a promoted master-equation closure claim. A passing certificate would show that the chosen isolated variable-pitch spiral has a replayable finite causal-root chart and a negative weighted tangential drive on a radial-turn corridor. A failing certificate falsifies this candidate only; it becomes a theorem-grade VP-1 rejection only after the interval proof rows close.
 
 ## Source Equations Consumed
 
@@ -205,6 +205,23 @@ h_{\mathrm{mem}}
 $$
 The finite-memory ledger row is accepted only if the computed active root enclosures all lie below the displayed bound and the inactive boxes cover the rest of $D_{\mathrm{cert}}$.
 
+The inactive-memory proof packet also supplies the sharper corridor-specific bound
+$$
+B_{\mathrm{mem}}^{\mathrm{VP1}}
+=
+\frac{7}{2}
+\left(
+e^{(1-\sqrt3/2)/10}+e^{1/5}
+\right)
+=7.8221162806\ldots<4\pi,
+$$
+and proves the declared self-coincidence clearance for $\Delta_{\mathrm{co}}=1/2$:
+$$
+\inf_{\theta\in I_\ast,\ 0<\Delta<1/2}
+\frac{|F_s(\theta,\Delta)|}{\Delta}
+\ge0.6794678492\ldots>0.
+$$
+
 ## Radial-Turn Inequality
 
 At the turn point, define
@@ -320,6 +337,19 @@ $$
 $$
 for equal-magnitude charges after the common positive factor is removed. This sampled sign points toward a VP-1 failure of the bare isolated spiral test, but the formal verdict is reserved for the interval certificate because root tubes, inactive gaps, and Jacobian floors must be certified on the whole corridor.
 
+## Team-Agent VP-1 Support Packets
+
+The current executable and worker packets are:
+
+| Packet | Claim level | Verdict |
+| --- | --- | --- |
+| [spiral-vp1-root-jacobian-proof](spiral-vp1-root-jacobian-proof.md) | Sampled active-root and Jacobian-floor contract. | Stable $P_1,P_2,P_3,S_1$ root ledger on $D_{\mathrm{cert}}=[1/2,4\pi]$, sampled $\nu_J\ge1.669656880405$, interval target $\nu_{\mathrm{cert}}=1.50$. |
+| [spiral-vp1-inactive-memory-proof](spiral-vp1-inactive-memory-proof.md) | Partial branch-chart certificate support. | Finite memory and self-coincidence rows certified; inactive gaps and root transport remain interval-runner obligations. |
+| [spiral-vp1-drive-verdict-proof](spiral-vp1-drive-verdict-proof.md) | Computed radial and tangential verdict target. | $\Gamma_{\mathrm{turn}}=0.271432580502\ldots$ and $\mathcal{D}_T(I_\ast)\approx0.040130017760659>0$, so VP-1 fails the negative-drive row at sampled level. |
+| [spiral-branch-chart-interval-report](spiral-branch-chart-interval-report.md) | Sampled executable VP-1 branch ledger with interval-proof blockers. | Active-count stability, sampled $|J|$ floor, finite memory, self-coincidence clearance, radial threshold, and positive sampled $\mathcal{D}_T$ are replayable; theorem grade remains false. |
+
+The executable runner is [spiral_branch_chart_certificate.py](spiral_branch_chart_certificate.py). Its `--require-theorem-grade` mode intentionally exits nonzero until the remaining interval blockers close.
+
 ## Acceptance Ledger
 
 The first executable certificate passes only if every row below is supplied.
@@ -335,7 +365,7 @@ The first executable certificate passes only if every row below is supplied.
 | Root transport | Interval residual for the simple-root transport equation on each active tube. | $\sup\mathcal{R}_{\mathrm{tr},\alpha}\le\varepsilon_{\mathrm{tr}}$. |
 | Radial turn | Outward interval for $\mathcal{T}_r(0)$. | $\mathcal{T}_r(0)>0$, equivalently $\Gamma$ exceeds the branch bound in the equal-charge normalization. |
 | Tangential drive | Outward interval for $\mathcal{D}_T(I_\ast)$. | Pass if $\mathcal{D}_T\le-\varepsilon_T$; fail VP-1 if $\mathcal{D}_T\ge0$. |
-| Dependency status | Circular obstruction handoff from `circular_asymptotics`. | Do not mark `spiral_branch_chart_test` complete until circular tail constants close. |
+| Dependency status | Circular obstruction handoff from `circular_asymptotics`. | Passed: the theorem-grade circular interval and large-$\beta$ tail certificate is available. |
 
 ## Failure Modes
 
@@ -350,11 +380,11 @@ VP-1 is rejected as a certified branch-chart target if any of the following occu
 - $\mathcal{D}_T(I_\ast)\ge0$, so the bare isolated spiral does not beat the tangential obstruction;
 - $\mathcal{D}_T(I_\ast)<0$ only after adding uncertified roots, using a Jacobian-null window, or changing the candidate history;
 - the result depends on an unresolved regulator or memory-window refinement;
-- the circular dependency remains open and the packet is mistaken for priority completion rather than a dependency-aware certificate target.
+- the sampled executable result is mistaken for theorem-grade priority completion before the interval blockers close.
 
 ## Claim Map
 
 - Ontology: none added. The packet uses the existing delayed causal-root law and does not add a new substrate entity.
 - Derivation/closure target: certify or falsify VP-1 as a local branch-chart candidate with positive floors, finite memory, a radial turn, and a tangential-drive verdict.
-- Effective summary: the sampled positive $\mathcal{D}_T$ is only a guide for the interval proof.
+- Effective summary: the sampled positive $\mathcal{D}_T$ is a strong computed VP-1 failure signal, but theorem-grade rejection still requires outward interval rows.
 - Speculation: none promoted. If later work varies $a$, $b_\ast$, $I_\ast$, or the candidate history to hunt for a negative tangential chart, that is a new parameter-search packet rather than a VP-1 conclusion.

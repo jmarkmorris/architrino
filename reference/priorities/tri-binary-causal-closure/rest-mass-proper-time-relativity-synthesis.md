@@ -54,7 +54,7 @@ Several symbols recur across sections:
 | Root ledger | The integer bookkeeping of active partner-hit and self-hit causal branches required for stable phase closure. |
 | $\zeta(A)$ | Shielding or leakage factor governing how much of assembly $A$'s internal energy couples to external probes. |
 | Proper time $\tau$ | The cycle count of a stable assembly clock, not the substrate time $t$ itself. |
-| Photon planar mode | A propagating coaxial contra-rotating pro/anti planar-pair ledger, massless at the effective level and lacking a rest proper-time clock. |
+| Photon planar mode | A propagating coaxial contra-rotating pro/anti planar pair ledger, massless at the effective level and lacking a rest proper-time clock. |
 
 Operational speed convention matters. The primitive wake speed $c_f$ is a substrate parameter. The photon-channel speed $c_\gamma(\mathbf{x})$ is the substrate-coordinate propagation speed of planar photon modes through the local Noether Sea. The locally measured light speed is reconstructed by assembly clocks, rulers, and photon synchronization. Effective Lorentz invariance requires the operational two-way photon speed to be isotropic in a homogeneous local Noether-Sea cell, even when $c_\gamma(\mathbf{x})$ differs from $c_f$ in the substrate description.
 
@@ -285,6 +285,39 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 
 Only after this primitive-to-effective renormalization is derived does the $c_f$ Jacobian support an $E/c_{\text{eff}}^2$ inertia coefficient.
 
+The response tensor for a concrete assembly is therefore
+
+$$
+M_A^{ab}
+\equiv
+\alpha\,\zeta(A)\,E_{\text{internal}}(A)\,
+\mathcal{M}_{\text{sea}}^{ab}.
+$$
+
+The scalar rest-mass readout is the isotropic trace of this response,
+
+$$
+m_0(A)
+\equiv
+\frac{1}{3}h_{ab}M_A^{ab},
+$$
+
+so homogeneous closure gives
+
+$$
+M_A^{ab}
+\to
+\alpha\,\zeta(A)\,
+\frac{E_{\text{internal}}(A)}{c_{\text{eff}}^2}
+h^{ab},
+\qquad
+m_0(A)
+\to
+\alpha\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
+$$
+
+This tensor form is the non-isotropic version of the mass claim. It exposes the failure mode directly: if $\mathcal{M}_{\text{sea}}^{ab}$ carries composition- or direction-dependent residue not suppressed by the Lorentz and equivalence-principle gates, the scalar rest-mass relation is only a fitted average.
+
 If that medium-dressed root sum closes, then to first order in $\|\mathbf{V}_{\text{cm}}\|/c_{\text{eff}}$, the internal momentum associated with the trapped causal exchange has the form
 
 $$
@@ -334,7 +367,7 @@ This is the local mass-side closure target for the synthesis. [→ Target 1](#th
 
 The same mechanism gives a natural route to the equivalence of inertial and gravitational mass. Inertial mass measures how strongly a phase-locked assembly resists a bulk kinematic push. Gravitational mass, in the $\mathbb{A}\mathbb{A}\mathbb{A}$ setting, measures how strongly the same assembly couples to macroscopic gradients in the Noether Sea.
 
-At the effective level, a gravitational field is a density, compliance, and stress gradient in the tri-binary medium. A test assembly moving through such a gradient does not respond to curved void geometry. Its internal wakes are refracted by the local Noether-Sea state, and the assembly must adjust its shape, clock rate, and root-ledger phase in order to preserve its $(N,M)$ resonance lock.
+At the effective level, a gravitational field is a density, compliance, and stress gradient in the tri-binary medium. A test assembly moving through such a gradient does not respond to curved void geometry. Its internal wakes are refracted by the local Noether-Sea state, and the assembly must adjust its shape, clock rate, and root-ledger phase in order to preserve its branch-indexed resonance lock.
 
 The amount of deformation required by this medium gradient is controlled by the same internal energy ledger that controls inertial resistance. A larger trapped causal history has more internal exchange to rebalance; a more strongly shielded assembly exposes less of that exchange to the outside. Thus, to first order in the weak-field regime, both coefficients are governed by the same combination
 
@@ -386,7 +419,7 @@ At the effective level, the deformation of these three spiraling-helix binaries 
 - directional contraction or oblation of the nested structure;
 - clock-rate change shared across the internal causal cycles;
 - tilt of the internal orbital planes into the helical pitch angle;
-- phase relocking of the $(N,M)$ root ledgers to maintain structural harmony between the inner engine, middle fulcrum, and outer shield.
+- phase relocking of the active causal-root ledgers to maintain structural harmony between the inner engine, middle fulcrum, and outer shield.
 
 Thus external work applied as linear acceleration is stored as changed internal phase geometry, angular momentum distribution, and Noether-Sea coupling. The linear velocity of the assembly is not merely a tag attached to an otherwise unchanged object. It is encoded in the pitch, tilt, and timing of the moving causal resonance.
 
@@ -658,7 +691,30 @@ on the active sub-field branches. The root ledger therefore has enough causal sl
 
 A resting Noether core is not a flat disk. It is a three-dimensional orthogonal lock. The inner, middle, and outer binaries occupy mutually perpendicular orbital planes, with large differences in radius, velocity, and energy separating the layers. This orthogonal arrangement reduces direct inter-layer phase collision, permits precession and nutation as lower-order correction modes, and generates the spherical shielding profile expected of a resting fundamental particle such as an electron or positron.
 
-Proper time is defined mechanically inside this structure. One tick of $\tau$ corresponds to one completed transverse circuit of the internal causal exchange that preserves the integer $(N,M)$ root ledger across the three binary layers. Because transverse causal communication remains open, the internal cycles are continuous, well ordered, and stable enough to function as a physical clock.
+Proper time is defined mechanically inside this structure. One tick of $\tau$ corresponds to one completed transverse circuit of the internal causal exchange that preserves the branch-indexed causal-root ledger across the three binary layers. Because transverse causal communication remains open, the internal cycles are continuous, well ordered, and stable enough to function as a physical clock.
+
+For a retained branch $q$, this clock should be extracted as a branch-period observable rather than assigned as an external frequency. Let $\theta_{\mathrm{clk},q}$ be the selected clock phase, $\mathcal{A}_q$ the active causal-root ledger, and $\Delta_{\mathbf{k}}^{(q)}$ the branch stability gap. Define
+
+$$
+T_q(\mathbf{w})
+=
+\inf\left\{
+\Delta t>0:
+\theta_{\mathrm{clk},q}(t+\Delta t)-\theta_{\mathrm{clk},q}(t)=2\pi,
+\mathcal{A}_q(t+\Delta t)=\mathcal{A}_q(t),\
+\Delta_{\mathbf{k}}^{(q)}>0
+\right\},
+$$
+
+where $\mathbf{w}=\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}$ is the drift relative to the local Noether-Sea rest frame. The proper-time rate for that branch is then
+
+$$
+\frac{d\tau_q}{dt}
+=
+\frac{T_q(\mathbf{0})}{T_q(\mathbf{w})}.
+$$
+
+This definition makes a tick require phase return, root-ledger return, and positive stability margin on the same branch. A frequency ratio without those three records is not a proper-time proof.
 
 When the Noether core moves with bulk velocity $\mathbf{V}_{\text{cm}}$, the orthogonal circular orbits are drawn into a braided triad of spiral-helical cables. Proper time still counts completed internal cycles, but each cycle now requires causal signals to travel diagonally through the Euclidean void to reach moving internal receivers. Since those signals propagate at $c_{\text{eff}}$ through the local Noether Sea, the absolute time required to complete one cycle increases.
 
@@ -783,7 +839,7 @@ $$
 
 This is the operational meaning of the transverse part. It is not a separate force or a new speed limit. It is the sideways portion of the same causal propagation budget, after the axial motion of the whole assembly has been accounted for.
 
-At rest, $\beta=0$ and $c_{\perp}=c_{\text{eff}}$. The full causal budget is available for transverse closure. The inner, middle, and outer binaries can maintain their mutually orthogonal circuits, and their emissions can cross the finite internal separations needed to preserve the $(N,M)$ ledger.
+At rest, $\beta=0$ and $c_{\perp}=c_{\text{eff}}$. The full causal budget is available for transverse closure. The inner, middle, and outer binaries can maintain their mutually orthogonal circuits, and their emissions can cross the finite internal separations needed to preserve the branch-indexed causal-root ledger.
 
 At ordinary nonzero velocity, $0<\beta<1$, some of the causal budget is consumed by axial tracking. The transverse part remains positive, but smaller. The internal circular circuits therefore cannot remain the same rest-state circuits. They are drawn into spiral-helical cables whose pitch, radius, phase, and clock rate adjust together. This is the same statement as time dilation written in component form:
 
@@ -902,7 +958,7 @@ T_{ij}
 q_{ij}\in\mathbb{Z}.
 $$
 
-These equations are deliberately schematic, but they identify the mathematical target. The radii, velocities, frequencies, and phase lags of the three binaries cannot be chosen independently. At every accepted quantum step, the same $c_{\perp}$ must permit partner closure within each binary, inter-layer closure across the tri-binary, and global closure of the $(N,M)$ root ledger.
+These equations are deliberately schematic, but they identify the mathematical target. The radii, velocities, frequencies, and phase lags of the three binaries cannot be chosen independently. At every accepted quantum step, the same $c_{\perp}$ must permit partner closure within each binary, inter-layer closure across the tri-binary, and global closure of the active causal-root ledger.
 
 This is also the point where the integer conditions should be connected to established topological language. Native $\mathbb{A}\mathbb{A}\mathbb{A}$ closure is a causal-loop holonomy condition: for a closed ledger path $C_i$,
 
@@ -958,7 +1014,7 @@ At that boundary:
 - the internal orthogonal orbits of matter assemblies are forced toward concentric axial alignment;
 - transverse communication within Noether cores is severed;
 - the proper-time cycle counter freezes in the limiting sense $\Delta\tau/\Delta t\to0$;
-- the closed $(N,M)$ root ledger cannot remain an ordinary volumetric clock ledger.
+- the closed causal-root ledger cannot remain an ordinary volumetric clock ledger.
 
 The clock-freeze statement is therefore an observer-level redshift and phase-lock statement unless the local Noether-Sea strain also reaches the assembly-failure threshold. A freely falling small assembly in a weak tidal region must retain local clock behavior consistent with the equivalence principle. Local structural failure requires a separate strain, gradient, or tidal criterion; it is not automatic at the coordinate horizon of a large black hole. The closure criterion is local exhaustion of transverse Noether-core communication under the combined $c_{\text{eff}}$, density, compliance, stress, and phase-closure variables, not the coordinate label "horizon" alone.
 
@@ -1328,7 +1384,7 @@ in the effective limit, with no residual rest-frame branch, no static charge lea
 
 This is the massless-wave gate for the photon theorem. [→ Target 17](#theorem-roadmap) [→ Target 18](#theorem-roadmap) [→ Target 19](#theorem-roadmap)
 
-The transverse-budget discussion clarifies why no photon rest frame appears. For a massive Noether core, motion at $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ exhausts the transverse causal budget and destroys ordinary internal clock closure. A photon is already organized as the propagating planar-mode channel at that boundary-like role. Its two constituent cores have transverse phase structure, which supports polarization and helicity, but the coupled pair does not have the three-dimensional orthogonal tri-binary closure that would define a rest frame and proper-time count. In standard language, the photon follows a null path; in this framework, it is coaxial contra-rotating pro/anti planar-pair propagation of causal ledger action through the Sea.
+The transverse-budget discussion clarifies why no photon rest frame appears. For a massive Noether core, motion at $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ exhausts the transverse causal budget and destroys ordinary internal clock closure. A photon is already organized as the propagating planar-mode channel at that boundary-like role. Its two constituent cores have transverse phase structure, which supports polarization and helicity, but the coupled pair does not have the three-dimensional orthogonal tri-binary closure that would define a rest frame and proper-time count. In standard language, the photon follows a null path; in this framework, it is coaxial contra-rotating pro/anti planar pair propagation of causal ledger action through the Sea.
 
 The pro/anti structure also explains why the photon can be neutral while still carrying an electromagnetic effect. The two planar cores cancel the static charge-like exposure of the pair, but their coupled transverse phase does not cancel. The surviving observable is a transverse oscillatory action pattern. In standard language this is the electromagnetic field of the photon. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language it is the far-field signature of a neutral coaxial contra-rotating pro/anti planar pair whose internal ledger carries a definite transverse phase orientation.
 
@@ -1372,11 +1428,11 @@ This is the polarization and spin packet: derive the transverse projection tenso
 
 Emission and absorption then become ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs. During emission, a source assembly sheds an accepted action increment into a stable coupled pair. During absorption, a target assembly captures that pair and folds its energy, momentum, angular momentum, and phase into a new internal ledger state. The photon is therefore not merely a passive messenger. It is the transaction channel by which assemblies exchange discrete action while preserving energy-momentum closure. In the validated quantum-optics limit, this ledger-transition account must reproduce standard transition-rate behavior, including the Fermi's Golden Rule limit for weak coupling.
 
-This also explains why photons dominate measurement. A measurement record is produced when a planar mode couples strongly enough to update an apparatus ledger: a detector click, an atomic transition, an interference fringe, a photographic grain, or a macroscopic electronic pulse. The observer does not access the substrate directly. The observer accesses stable records made by photon planar-pair modes and other interaction channels. Consequently, much of "spacetime" as operationally reconstructed by physics is photon-channel structure: clock comparisons, distances, causal order, redshift, lensing, and spectra are all read through the behavior of these propagating modes in the Noether Sea.
+This also explains why photons dominate measurement. A measurement record is produced when a planar mode couples strongly enough to update an apparatus ledger: a detector click, an atomic transition, an interference fringe, a photographic grain, or a macroscopic electronic pulse. The observer does not access the substrate directly. The observer accesses stable records made by coaxial contra-rotating pro/anti planar pair modes and other interaction channels. Consequently, much of "spacetime" as operationally reconstructed by physics is photon-channel structure: clock comparisons, distances, causal order, redshift, lensing, and spectra are all read through the behavior of these propagating modes in the Noether Sea.
 
 In homogeneous weak-field conditions, the planar-mode train propagates at the effective light speed $c_\gamma\approx c_f$ and reproduces the ordinary massless relativistic relations. In material media, plasma, or dense Noether-Sea gradients, the same mode transiently recouples to ambient assemblies. At the effective level this appears as refraction, dispersion, scattering, attenuation, or gravitational lensing. The Euclidean substrate path and the observer's effective optical path need not be described the same way: the substrate account tracks propagation through a medium, while the observer account summarizes the same behavior using null geodesics of an effective metric.
 
-The photon section also fixes a major proof target. The framework must recover Maxwell/QED phenomenology in the validated regime: polarization, interference, diffraction, blackbody spectra, pair production thresholds, photon-photon scattering limits, Compton scattering, atomic transition rates, Bose-Einstein occupation behavior for overlapping light modes, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase shifts, gauge-like redundancy with only two physical photon polarizations, absence of free-space birefringence in weak homogeneous conditions, and the universality of photon speed in free-space tests. It must also explain how the effective electromagnetic coupling, including the fine-structure constant $\alpha$, emerges from overlap and capture probabilities between charged assemblies and photon planar pairs. Pair production is especially constraining: a sufficiently energetic coaxial contra-rotating pro/anti planar pair must be able, in the presence of an external momentum ledger such as a heavy nucleus or strong field, to convert into orthogonal volumetric electron/positron Noether cores without violating energy, momentum, angular momentum, charge neutrality, or the threshold $E_\gamma \ge 2m_e c^2$ in the standard effective limit. The proposed ontology can differ from field-theoretic language, but it cannot weaken these empirical constraints. If the planar-mode account cannot recover the photon channel, then the larger mass, time, and metric synthesis cannot be considered closed, because those claims are experimentally accessed mostly through photons. [→ Target 21](#theorem-roadmap)
+The photon section also fixes a major proof target. The framework must recover Maxwell/QED phenomenology in the validated regime: polarization, interference, diffraction, blackbody spectra, pair production thresholds, photon-photon scattering limits, Compton scattering, atomic transition rates, Bose-Einstein occupation behavior for overlapping light modes, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase shifts, gauge-like redundancy with only two physical photon polarizations, absence of free-space birefringence in weak homogeneous conditions, and the universality of photon speed in free-space tests. It must also explain how the effective electromagnetic coupling, including the fine-structure constant $\alpha$, emerges from overlap and capture probabilities between charged assemblies and coaxial contra-rotating pro/anti planar pairs. Pair production is especially constraining: a sufficiently energetic coaxial contra-rotating pro/anti planar pair must be able, in the presence of an external momentum ledger such as a heavy nucleus or strong field, to convert into orthogonal volumetric electron/positron Noether cores without violating energy, momentum, angular momentum, charge neutrality, or the threshold $E_\gamma \ge 2m_e c^2$ in the standard effective limit. The proposed ontology can differ from field-theoretic language, but it cannot weaken these empirical constraints. If the planar-mode account cannot recover the photon channel, then the larger mass, time, and metric synthesis cannot be considered closed, because those claims are experimentally accessed mostly through photons. [→ Target 21](#theorem-roadmap)
 
 For deployment, this QED burden should be handled as three sub-packets rather than one monolith. First, the kinematics and optics packet proves the massless-wave limit: $c_\gamma\to c_f$ in the weak homogeneous Noether-Sea limit, nondispersion, the finite-phase denominator, and no rest proper-time branch. Second, the polarization and spin packet proves the transverse projection tensor, helicity $\pm 1$, exactly two modes, no longitudinal mode, Malus' law, and the native squared-amplitude rule. Third, the vertices and transitions packet maps the topological surgery by which a massive Noether core emits or absorbs a coaxial contra-rotating pro/anti planar pair, including pair production, transition rates, and the effective coupling scale $\alpha$. [→ Target 17](#theorem-roadmap) [→ Target 18](#theorem-roadmap) [→ Target 19](#theorem-roadmap) [→ Target 20](#theorem-roadmap) [→ Target 21](#theorem-roadmap) [→ Target 26](#theorem-roadmap)
 
@@ -1386,7 +1442,7 @@ The preceding sections separate kinematic deformation from medium-gradient defor
 
 In that dual-deformation regime, the assembly experiences two coupled stresses. Kinematically, the helical lock is stretched along the direction of travel, its effective transverse causal closure shrinks, and the internal exchange path tilts toward axial alignment. Gravitationally, the inhomogeneous Noether Sea refracts the same internal wakes asymmetrically across the assembly diameter, adding transverse phase delay and medium-compliance stress.
 
-These effects do not simply add as independent linear corrections. The resonance lock requires integer closure of the $(N,M)$ ledger, so a deformation in one channel changes the admissible slack in the other. A high-speed assembly near a steep medium gradient can therefore be driven close to a structural boundary even if neither stress alone would destroy it.
+These effects do not simply add as independent linear corrections. The resonance lock requires integer closure of the active causal-root ledger, so a deformation in one channel changes the admissible slack in the other. A high-speed assembly near a steep medium gradient can therefore be driven close to a structural boundary even if neither stress alone would destroy it.
 
 The tri-binary architecture matters precisely in this regime. A simple binary has little internal capacity to distribute competing stresses. A Noether core has an inner engine, a middle buffer, and an outer shield. The middle binary can absorb part of the geometric stress, allowing the inner binary to preserve its self-hit lock while the outer binary handles refractive response and environmental coupling to the Noether Sea. This is why the moving-particle picture should be the triad of coaxial, spiraling helices rather than a single generic helix.
 
@@ -1448,7 +1504,7 @@ The following tasks define the theorem roadmap for the chapter. Each item names 
 14. Establish the assembly failure criterion as $\|\mathbf{V}_{\text{cm}}\|\to c_{\text{eff}}$ and distinguish it from any substrate-level speed behavior of unbound architrinos.
 15. Connect event-horizon alignment to static or externally supported redshift/phase-lock descriptions while preserving local freely falling clock behavior and exterior GR phenomenology.
 16. Derive the action-per-cycle constant $h$ from separator closure or Planck-alignment geometry, rather than inserting it as a calibration.
-17. Photon gate A, kinematics and optics: derive photon planar-pair closure from tri-binary and Noether-Sea dynamics, including the coaxial contra-rotating pro/anti pair geometry, separator-mediated dimensional reduction from volumetric clock closure to planar-pair closure, axial delay asymmetry as a relative phase condition, $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, masslessness, nondispersion, no residual rest branch, and the absence of a rest proper-time clock.
+17. Photon gate A, kinematics and optics: derive coaxial contra-rotating pro/anti planar pair closure from tri-binary and Noether-Sea dynamics, including the pro/anti pair geometry, separator-mediated dimensional reduction from volumetric clock closure to planar-pair closure, axial delay asymmetry as a relative phase condition, $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, masslessness, nondispersion, no residual rest branch, and the absence of a rest proper-time clock.
 18. Photon gate A, weak homogeneous Noether-Sea limit: close the proportional-collapse branch first, with $d(\omega,\delta_\gamma)\sim\Lambda_\gamma(c_f-c_\gamma)/\omega$ so that $d\to0$ as $c_\gamma\to c_f$ while the finite phase remains well defined; then test whether a resolved Noether Sea always keeps a strict residual catch-up margin $c_\gamma<c_f$, whether the catch-up divergence stabilizes the free-space photon against spontaneous decay, or whether the limiting mode changes closure class.
 19. Photon gate A, finite phase: close the finite-phase condition $\omega d/(c_f-c_\gamma)=O(1)$ on the resolved axial-delay branch without producing unacceptable photon dispersion, birefringence, or preferred-frame leakage; in the nondispersive branch, rule out fixed longitudinal spacing and require $d\propto\lambda$ at fixed free-space $c_\gamma$.
 20. Photon gate B, polarization and spin: derive Malus' law from analyzer coupling as a squared projection of the incoming transverse photon ledger, justify the squared-amplitude probability from native ledger capture, derive helicity $\pm1$, prove exactly two physical polarizations and no longitudinal mode, and extend the overlap formalism to circular, elliptical, single-photon, and entangled-polarization regimes with no signaling.
@@ -1479,7 +1535,7 @@ The synthesis-level claim is therefore clear: rest mass, proper time, photon pro
 The photon channel is now the critical path, because it carries the operational measurements used to test the mass, time, and metric claims. Review should follow the three photon-gate packets rather than treating all QED recovery as one pass.
 
 1. Standard Model and QFT phenomenology review: own photon gate C, vertices and transitions. Verify emission and absorption rates including the Fermi's Golden Rule limit, pair-production thresholds, planar-to-volumetric electron/positron conversion, Compton scattering, photon-photon scattering suppression, blackbody spectra, Bose-Einstein occupation behavior, $U(1)$-like phase behavior, Aharonov-Bohm phase shifts, gauge-like redundancy, and the effective coupling scale $\alpha$.
-2. Dynamical-systems review: own photon gate A, kinematics and optics. Branch-certify the coaxial contra-rotating pro/anti planar-pair closure, axial delay asymmetry, relative phase ledger, finite-phase condition, proportional-collapse $c_\gamma\to c_f$ weak homogeneous Noether-Sea limit, and integer stability basins.
+2. Dynamical-systems review: own photon gate A, kinematics and optics. Branch-certify the coaxial contra-rotating pro/anti planar pair closure, axial delay asymmetry, relative phase ledger, finite-phase condition, proportional-collapse $c_\gamma\to c_f$ weak homogeneous Noether-Sea limit, and integer stability basins.
 3. General-relativity and cosmology review: verify local-versus-coordinate speed language, weak-field clock maps, equivalence-principle matching, horizon wording, gravitational-wave speed compatibility, and exterior GR recovery.
 4. Red-team empirical review: attack photon gate B and the empirical null tests: preferred-frame leakage, photon dispersion, photon mass, birefringence, residual longitudinal modes, squared-amplitude/Born-rule failure, equivalence-principle composition dependence, and no-signaling constraints.
 5. Simulation review: build the minimal axial photon-pair closure simulation with parameters $(d,\nu,c_f,c_\gamma,\phi_{\text{geom}})$, including the proportional-collapse branch $d(\omega,\delta_\gamma)$, plus null-test diagnostics for dispersion, birefringence, rest-frame leakage, and longitudinal-mode leakage, then implement closure graphs, braid/framing observables, holonomy winding, root-ledger counts, and transverse-rank collapse diagnostics.

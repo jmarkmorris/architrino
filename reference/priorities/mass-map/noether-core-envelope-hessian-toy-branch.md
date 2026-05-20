@@ -553,6 +553,10 @@ A finite scenario must set `branch_evidence.required: true` or be run with `--re
 
 The current scanner enforces all six rows when branch evidence is required. The `source` string is machine-enforced as a nonempty string so a finite intake packet connects the Hessian entries to the accepted history segment rather than to a row-local pressure fit.
 
+### $A_0$ Carrier-Correction Source Boundary
+
+Scanner, correction-packet, or waveform-replay outputs from the $A_0$ carrier-correction lane, including a Fourier carrier-correction candidate, may be cited only as diagnostic source material until a corrected one-period attempt emits an accepted history segment, quotient chart identity, positive $\Delta_{\mathbf{k}}$, $\eta$-ladder persistence, and finite Hessian entries. This is a fail-closed source-status rule inside the current finite-branch intake contract, not a new gate beyond it: if the rerun has not emitted those branch records, `--require-branch-evidence` must keep the pressure/Hessian row in diagnostic status.
+
 ### Accepted-History Source Fields
 
 The source packet behind `branch_evidence.source` must record, at minimum:
