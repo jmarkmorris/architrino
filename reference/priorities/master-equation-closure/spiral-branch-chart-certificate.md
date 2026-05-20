@@ -365,6 +365,24 @@ The current executable and worker packets are:
 
 The executable runner is [spiral_branch_chart_certificate.py](spiral_branch_chart_certificate.py). With [spiral-vp1-current-interval-rows](spiral-vp1-current-interval-rows.json), its structural rows pass and the tangential row is `certified_fail`, with $\mathcal{D}_T(I_\ast)\ge0.036446308644655666$. The radial branch interval is $B_r(0)\in[-0.27143260470972164,-0.27143255629407625]$. `--require-theorem-grade` still exits nonzero because no strict $\Gamma$ interval resolves radial turn; the Gamma source audit and dimensional closure prove that this interval cannot be inferred from $b_\ast$ or from the retained VP-1 roots alone.
 
+## A1 Continuation Support Packets
+
+The first post-VP-1 continuation target fixes
+$$
+a_{\mathrm{A1}}=0.204,
+\qquad
+b_\ast=\frac{7}{2},
+\qquad
+I_\ast=\left[-\frac{\pi}{6},\frac{\pi}{6}\right],
+$$
+and retains the $P_1,P_2,P_3,S_1$ chart. These rows are priority-packet evidence until the runner or a typed sidecar emits them with the A1 candidate metadata.
+
+| Packet | Claim level | Verdict |
+| --- | --- | --- |
+| [spiral-a1-root-window-certificate](spiral-a1-root-window-certificate.md) | Priority-packet structural interval row. | Retained windows $P_1=[2.55,2.69]$, $P_2=[4.00,4.34]$, $P_3=[6.78,7.12]$, and $S_1=[4.82,5.02]$ carry active boundary signs, inactive-complement signs, $\nu_{\mathrm{cert}}^{\mathrm{A1}}=1.20$, self-coincidence clearance, and corridor finite-memory bound $B_{\mathrm{mem}}^{\mathrm{A1}}=8.860302120379817<4\pi$. |
+| [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md) | Priority-packet radial threshold and tangential interval row. | Reports $B_r(C_{\mathrm{A1}};0)\in[-0.005994791326773983,-0.005994715991872956]$ and $D_T(C_{\mathrm{A1}};I_\ast)\in[-0.0015572472070875527,-0.00023480430280344085]$, so the tangential row is strictly negative while radial turn remains blocked without an accepted $\Gamma$ interval. |
+| [spiral-a1-corpus-recommendation](spiral-a1-corpus-recommendation.md) | Corpus recommendation packet. | Recommends only a generic Master EOM radial-normalization clarification for `content/markdown/aaa` now; A1 numeric rows remain priority-only until sidecar integration, root transport, and $\Gamma$ are resolved. |
+
 ## Acceptance Ledger
 
 The first executable certificate passes only if every row below is supplied.

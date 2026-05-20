@@ -284,6 +284,23 @@ branch_chart_revision.benchmark_inputs_excluded = true
 branch_chart_revision.accepted_history_boundary = false
 ```
 
+## Executable Checker Status
+
+The contract now has a fail-closed executable checker:
+
+```text
+node scripts/mass-map/a0-tier1-branch-chart-revision-checker.mjs --intake /tmp/a0-tier1-fold-layer-locked-one-period-attempt-corrected-omit-none-v4.json --pretty
+```
+
+The default source declaration is `residual_surface_audit`, so the current artifact rejects before rerun authorization:
+
+| Source declaration | Row status | Deciding residual | Value |
+| --- | --- | --- | ---: |
+| `residual_surface_audit` | `rejected_hidden_fit_split` | $R_{\mathrm{src}}$ | not pre-fit |
+| `prefit_branch_chart` | `overfit_holdout_fail` | $R_{\mathrm{xval}}$ | `2.4537879974811028 > 0.02` |
+
+The permissive `prefit_branch_chart` check passes the novelty, symmetry, equality, locked-key, degrees-of-freedom, benchmark, and Nyquist guards, but it still fails the held-out residual test. With primary modes $\{4,5,7\}$ the full-bucket diagnostic residual is about `0.6719928530663271`; adding guard mode `6` gives about `0.49474919046145294`. These are diagnostic harmonic fits only. They do not authorize a corrected one-period rerun, accepted history, or a physical branch-coordinate claim.
+
 ## Allowed Next Rerun
 
 The next corrected one-period map is allowed only after the pre-rerun checker emits `revision_candidate_only`. The rerun must consume $z_\Lambda^\star$, not the compact $z_\Lambda$, and must keep accepted-history output blocked until all Tier 1 residual, quotient monodromy, and $\eta$-ladder gates pass.

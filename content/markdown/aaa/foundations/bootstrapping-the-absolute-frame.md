@@ -16,7 +16,7 @@ What follows is the systematic procedure by which the $\mathbb{U}_{\text{now}}$ 
 
 ## Reconstruction Existence Lemma
 
-Fix one absolute-time slice $\Sigma_{t_\ast}$. Suppose complete-state wake geometry identifies an origin point $O$ on that slice, supplied either by a stationary architrino or by a reconstructed source-tagged emission center, and two additional architrinos $A$ and $B$ whose positions on $\Sigma_{t_\ast}$ satisfy
+Fix one absolute-time slice $\Sigma_{t_\ast}$. Suppose complete-state wake geometry identifies an origin point $O$ on that slice, supplied either by a stationary architrino or by the fixed Euclidean-void point reconstructed from a source-tagged emission center, and two additional architrinos $A$ and $B$ whose positions on $\Sigma_{t_\ast}$ satisfy
 $$
 \mathbf{d}_1=\mathbf{x}_A(t_\ast)-\mathbf{x}_O(t_\ast)\ne\mathbf{0},
 $$
@@ -58,10 +58,12 @@ This lemma is an existence claim at the complete-state level. It does not say th
 
 ## Step 1: Establishing the Origin
 
-**Origin datum required:** one stationary architrino, or one reconstructed source-tagged emission center on $\Sigma_{t_\ast}$
+**Origin datum required:** one stationary architrino, or one fixed Euclidean-void point reconstructed from a source-tagged emission center and carried to $\Sigma_{t_\ast}$ by spatial identity
 
 **Method:**
-Using the wake-center diagnostic described in the previous chapter, complete-state bookkeeping first recovers the preferred rest structure: the frame in which primitive causal wakes expand isotropically at $c_f$. If an architrino's outgoing source-tagged causal wakes remain perfectly concentric over the diagnostic interval, that stationary architrino supplies a material origin. If no architrino is stationary over the interval, choose any reconstructed emission center at the selected time $t_\ast$ as the conventional origin point.
+Using the wake-center diagnostic described in the previous chapter, complete-state bookkeeping first recovers the preferred rest structure: the frame in which primitive causal wakes expand isotropically at $c_f$. If an architrino's outgoing source-tagged causal wakes remain perfectly concentric over the diagnostic interval, that stationary architrino supplies a material origin. If no architrino is stationary over the interval, choose a reconstructed emission center and use its fixed Euclidean-void point as the conventional origin point on the selected slice $\Sigma_{t_\ast}$.
+
+If the origin is supplied by an emission center reconstructed from an emission time $s\ne t_\ast$, the emission event itself lies on $\Sigma_s$. The selected origin on $\Sigma_{t_\ast}$ is the same fixed Euclidean-void point carried by spatial identity across slices, not the original emission event.
 
 **What This Accomplishes:**
 The selected point is assigned as the **origin** of the coordinate frame on the selected slice:
@@ -70,7 +72,7 @@ $$
 $$
 
 **Degrees of Freedom Fixed:**
-- **Translation (3 DOFs)**: The coordinate origin is assigned to this architrino's absolute position in the Euclidean void.
+- **Translation (3 DOFs)**: The coordinate origin is assigned to the selected origin point in the Euclidean void.
 
 **What Remains Undefined:**
 - The **orientation** of the coordinate axes

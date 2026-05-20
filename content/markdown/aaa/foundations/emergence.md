@@ -33,8 +33,11 @@ Higher-level context does not add a rival ontology to the lower-level dynamics. 
 $$
 \mathcal K_c
 =
-\{\,\phi\in\mathcal H_{\eta,h}\mid G_\alpha(\Pi_L\phi(0),c)=0\ \text{for all}\ \alpha,\ \phi\in\Gamma_{\mathrm{adm}}(c)\,\}.
+\{\,\phi\in\mathcal H_{\eta,h}\mid
+G_\alpha(\Pi_L\phi(0),c)=0\ \text{for all}\ \alpha,
+\ \exists\gamma\in\Gamma_{\mathrm{adm}}(c):\phi\in\mathcal H_\gamma\,\}.
 $$
+Here $\mathcal H_\gamma$ denotes the path-history domain associated with the branch chart $\gamma$.
 
 The constrained flow is still the lower-level causal-wake dynamics,
 
@@ -93,7 +96,14 @@ where $X$ is the local state and path-history record, $I_{\mathsf e}$ is the fin
 $$
 \Delta_E(\mathsf e)
 =
-\Delta(K_\mu+E_{\text{wake}})_{\mathrm{ret}}
+\Delta
+\left(
+K_{\mathrm{mech}}
++
+E_{\text{wake}}
++
+E_{\mathrm{sea}}
+\right)_{\mathrm{retained}}
 +
 \sum_{\beta\in Y_{\mathsf e}}\Delta E_\beta
 -
@@ -101,7 +111,7 @@ W_{\partial\Omega}
 =0.
 $$
 
-Here the subscript `ret` marks the retained degrees of freedom, and $W_{\partial\Omega}$ is work crossing the retained subsystem boundary. If a local potential reconstruction is used, it may replace $E_{\text{wake}}$ as an equivalent work-integral account on the declared window; it must not be added as a second independent energy store without a crosswalk. Radiation, recoil, reaction products, remnant excitation, and unresolved medium updates must be named inside $Y_{\mathsf e}$ and closed through [Reaction Ledger and Channel Closure](../validation/reaction-ledger.md) rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
+Here $K_{\mathrm{mech}}$ is the mechanical kinetic energy of the retained architrino or assembly degrees of freedom, the subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is work crossing the retained subsystem boundary. The term $E_{\mathrm{sea}}$ records retained Noether-Sea energy changes. The no-double-counting rule is explicit: a Noether-Sea update included in retained $E_{\mathrm{sea}}$ must not also appear as an outgoing row in $Y_{\mathsf e}$, while a Noether-Sea change exported outside the retained subsystem belongs in $Y_{\mathsf e}$ rather than in retained $E_{\mathrm{sea}}$. If a local potential reconstruction is used, it may replace $E_{\text{wake}}$ as an equivalent work-integral account on the declared window; it must not be added as a second independent energy store without a crosswalk. Radiation, recoil, reaction products, remnant excitation, and unresolved medium updates must be named inside $Y_{\mathsf e}$ and closed through [Reaction Ledger and Channel Closure](../validation/reaction-ledger.md) rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
 
 ### Assembly Theory and Recursion
 
@@ -168,11 +178,11 @@ However, because the potential density on each causal wake surface falls off as 
 A mathematically admissible many-source branch must make a limit such as
 $$
 \lim_{R\to\infty}
-\sum_{j:\|\mathbf{x}_j\|<R}
-\sum_{s\in\mathcal{C}_{ij}(t)}
+\sum_{\substack{j,\ s\in\mathcal{C}_{ij}(t)\\
+\|\mathbf{x}_j(s)-\mathbf{x}_i(t)\|<R}}
 \mathbf{a}_{ij}(t;s)
 $$
-exist under the declared summation prescription, or else use the corresponding continuum condition. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite active horizon, or a declared principal-value or mean-field subtraction. Without such a condition, the many-source wake sum is not mathematically well-defined.
+exist under the declared receiver-centered summation prescription, or else use the corresponding continuum condition. More invariantly, one may declare an exhaustion $\Lambda_R\uparrow\mathbb{R}^3$ and take the corresponding limit over source events with $\mathbf{x}_j(s)\in\Lambda_R$. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite active horizon, or a declared principal-value or mean-field subtraction. Without such a condition, the many-source wake sum is not mathematically well-defined.
 
 This convergence discipline is what allows for the formation of **metastable assemblies** that can maintain their general form for long periods.
 
@@ -196,7 +206,7 @@ c_f(t-s).
 $$
 Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf{v}\|>c_f$ alone.
 
-This creates a threshold asymmetry in the system. A small acceleration caused by intersecting a wake can push an architrino across the self-hit onset boundary, activating a new internal branch that alters its trajectory and the stability of the assembly. The transistor analogy is only pedagogical: a small input changes which channel is available. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the underlying mechanism is not electronics but delayed causal-root selection.
+This creates a threshold asymmetry in the system. A small acceleration caused by intersecting a wake can push an architrino into a branch chart where same-source roots become admissible, or where the transversality floor fails and a degenerate causal-root regime must be resolved. The transistor analogy is only pedagogical: a small input changes which channel is available. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the underlying mechanism is not electronics but delayed causal-root selection.
 
 ### Provenance within Emergence
 

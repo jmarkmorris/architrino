@@ -80,11 +80,11 @@ S(t)
 \big(
 X(t),
 H_t,
-\Theta_{\mathrm{sea}}(t,\cdot),
+\mathcal{N}_{\mathrm{sea}}(t,\cdot),
 \mathcal{B}_t
 \big).
 $$
-Here $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the required path-history and provenance ledger, $\Theta_{\mathrm{sea}}$ is the local Noether-Sea state record, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
+Here $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether-Sea state record, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
 
 ## Newton-Cartan Data
 
@@ -95,7 +95,7 @@ $$
 dt.
 $$
 
-This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_t$. The symbol $\tau$ is reserved for derived observer proper time or for explicitly declared causal delays; it is not the substrate clock form.
+This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_t$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $s$, and causal delay is written $\Delta_{ij}=t-s$.
 
 The spatial metric on each slice is
 $$
@@ -151,7 +151,7 @@ This means:
 - Proper time is not a substrate interval.
 - Effective metric language belongs to observer-level spacetime reconstruction.
 
-The specified Newton-Cartan substrate data $(\tau,h,\nabla)$ encode the substrate kinematics: absolute temporal ordering, Euclidean spatial geometry, and the selected Euclidean-void rest-frame connection.
+The specified Newton-Cartan substrate data $(dt,h,\nabla)$ encode the substrate kinematics: absolute temporal ordering, Euclidean spatial geometry, and the selected Euclidean-void rest-frame connection.
 
 ## Measurement and Geometry
 
@@ -224,17 +224,17 @@ $$
 \delta p_i
 =
 \mathcal{M}^{\mathrm{resp}}_{ij}
-\!\left(A;\mathcal{H}_A,\mathcal{S}_A,\mathcal{N}_A,R_A\right)
+\!\left(A;\mathcal{H}_A,\mathcal{S}_A,\left.\mathcal{N}_{\mathrm{sea}}\right|_A,R_A\right)
 \delta v^j,
 \qquad
 \delta J_i
 =
 \mathcal{I}^{\mathrm{resp}}_{ij}
-\!\left(A;\mathcal{H}_A,\mathcal{S}_A,\mathcal{N}_A,R_A\right)
+\!\left(A;\mathcal{H}_A,\mathcal{S}_A,\left.\mathcal{N}_{\mathrm{sea}}\right|_A,R_A\right)
 \delta\Omega^j.
 $$
 
-Here $\mathcal{H}_A$ denotes the trapped path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\mathcal{N}_A$ the local Noether-Sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
+Here $\mathcal{H}_A$ denotes the trapped path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether-Sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
 
 ## Galilean Kinematic Structure
 
@@ -301,7 +301,7 @@ The foundation stack keeps primitive, channel, branch, and calibrated speeds dis
 | Symbol | Meaning | Status |
 | --- | --- | --- |
 | $c_f$ | Primitive causal-wake propagation speed relative to the Euclidean void | fundamental |
-| $c_\gamma(\Theta_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether-Sea state and direction | derived |
+| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether-Sea state and direction | derived |
 | $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
 | $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
 | $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration |
@@ -450,7 +450,14 @@ For well-posed dynamics on absolute timespace:
 - Source configurations are locally finite or represented by integrable measures.
 - Regularized wake surfaces should preserve total polarity and converge to the intended causal-wake limit as the regulator is removed.
 - Solutions should decay suitably at spatial infinity unless an incoming condition is explicitly imposed.
-- Infinite source families must supply a declared summation or continuum prescription under which the many-source wake sum converges. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$.
+- Infinite source families must supply a declared summation or continuum prescription under which the many-source wake sum converges. A receiver-centered exhaustion condition has the form
+  $$
+  \lim_{R\to\infty}
+  \sum_{\substack{j,\ s\in\mathcal{C}_{ij}(t)\\
+  \|\mathbf{x}_j(s)-\mathbf{x}_i(t)\|<R}}
+  \mathbf{a}_{ij}(t;s),
+  $$
+  with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$.
 
 These assumptions are not additional ontology. They are the analytic conditions needed for the master equation and simulation approximations to be well-defined on the product background.
 
@@ -473,14 +480,28 @@ The effective metric used in GR-style recovery is a downstream constitutive obje
 $$
 d\tau^2
 =
-A^2(\Theta_{\mathrm{sea}})\,dt^2
+A^2(\mathcal{N}_{\mathrm{sea}})\,dt^2
 -
 \frac{1}{c_0^2}
-B_{ij}(\Theta_{\mathrm{sea}})
+B_{ij}(\mathcal{N}_{\mathrm{sea}})
 \left(dx^i-u^i_{\text{sea}}dt\right)
 \left(dx^j-u^j_{\text{sea}}dt\right),
 $$
-or equivalently the ADM/Cartan map stated in [Emergent Metric](../spacetime/emergent-metric.md). This equation is not substrate geometry; it is the required metric handoff from Noether-Sea state and Physical Observer assemblies into effective spacetime language.
+with $A>0$ and $B_{ij}$ symmetric positive definite. Equivalently, defining $ds_{\mathrm{eff}}^2=-c_0^2d\tau^2$ and $x^0=c_0t$ gives the component export
+$$
+g^{\mathrm{eff}}_{00}
+=
+-A^2+\frac{1}{c_0^2}B_{ij}u^i_{\text{sea}}u^j_{\text{sea}},
+\qquad
+g^{\mathrm{eff}}_{0i}
+=
+-\frac{1}{c_0}B_{ij}u^j_{\text{sea}},
+\qquad
+g^{\mathrm{eff}}_{ij}
+=
+B_{ij}.
+$$
+This is the same observer-level ADM/Cartan map stated in [Emergent Metric](../spacetime/emergent-metric.md). This equation is not substrate geometry; it is the required metric handoff from Noether-Sea state and Physical Observer assemblies into effective spacetime language.
 
 ## Role in $\mathbb{A}\mathbb{A}\mathbb{A}$
 

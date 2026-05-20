@@ -65,18 +65,18 @@ For the factor-level specifications, see [Absolute Time](./absolute-time.md) and
 
 The architrino is the sole primitive material substance of the theory. This does not make an isolated architrino a matter particle: rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties. Its intrinsic polarity is likewise not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response. The emitted causal wake is not another primitive substance, but it is not unreal or merely verbal. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
 
-For an architrino $a$ with worldline $\mathbf{s}_a(t)$ and polarity $q_a$, the wake may be read schematically as a functional of that source history:
+For an architrino $a$ with worldline $\mathbf{s}_a(t)$ on time domain $I_a$ and polarity $q_a$, the wake may be read schematically as a functional of that source history:
 $$
 \mathcal{W}_a(\mathbf{x},t)
 =
-\int_{-\infty}^{t}
+\int_{\{s\in I_a:\ s<t\}}
 q_a\,
-K\!\left(\mathbf{x},t;\mathbf{s}_a(\tau),\tau\right)
-\,d\tau,
+K\!\left(\mathbf{x},t;\mathbf{s}_a(s),s\right)
+\,ds,
 \qquad
 \operatorname{supp}K
 \subseteq
-\left\{\|\mathbf{x}-\mathbf{s}_a(\tau)\|=c_f(t-\tau)\right\}.
+\left\{\|\mathbf{x}-\mathbf{s}_a(s)\|=c_f(t-s)\right\}.
 $$
 
 This formula is a level assignment, not a replacement for the Master Equation. It states the ontological dependency: once the source identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains. Effective field language may summarize many such wake contributions, but the substrate account remains source-provenanced causal-wake history.
@@ -123,16 +123,21 @@ The resulting observer descriptions can be indispensable without being final ont
 
 Bell-family experiments are not treated as evidence for ontological randomness, backward causation, or faster-than-$c_f$ signal transfer. They are treated as a hard observer-level correlation constraint on any deterministic completion. The complete state on $\Sigma_t$ remains definite in the $\mathbb{U}_{\text{now}}$ universe-state perspective, while a Physical Observer has access only to pair records, detector settings, coincidence windows, and statistical summaries.
 
-The no-go guardrail is strict. If measurement independence, no advanced influence, finite-speed local response, and local factorization over a complete past-state variable $\lambda$ are all retained, then the Bell-local factorization is restored and Bell violations cannot be recovered. The Bell bridge must therefore identify the precise failed abstraction: substrate-level nonseparability not reducible to local past variables, a $c_f$-mediated channel outside effective light cones with no-signaling shielding, a controlled relaxation of measurement independence, or another explicitly formulated mechanism. A foundation page may route that burden, but it must not imply that shared provenance alone solves Bell.
+The no-go guardrail is strict. If measurement independence, no advanced influence, finite-speed local response, and local factorization over a complete past-state variable $\lambda$ are all retained, then the Bell-local factorization is restored and Bell violations cannot be recovered. The Bell bridge must choose and declare which Bell assumption fails. A foundation page may route that burden, but it must not imply that shared provenance alone solves Bell.
 
-The placement is therefore level-specific. If $\mathbb{A}\mathbb{A}\mathbb{A}$ passes the Bell gate, the required "nonlocality" is Bell-technical non-separability of the retained pair-provenance and apparatus-response variables, not an instantaneous causal influence between detectors. The observer-level compression must fail the factorizable local-response form
+The placement is therefore level-specific. If $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves measurement independence and no-signaling at the observer level, then Bell violation must come from an explicitly nonseparable substrate response, such as a $c_f$-mediated coordination channel outside effective light cones with no-signaling shielding, or another declared nonseparable mechanism. The observer-level compression must fail the factorizable local-response form
 $$
 P(a,b\mid \hat{m}_A,\hat{m}_B,\lambda)
 =
 P(a\mid \hat{m}_A,\lambda)\,
 P(b\mid \hat{m}_B,\lambda),
 $$
-while still preserving measurement independence and no-signaling. A mere shared-source story is not enough: if the retained provenance screens the two detector wings into independent local laws, the account has fallen back into the Bell-local class. The detailed derivation and residual tests belong to [Bell's Theorem](../theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../theory-bridges/entanglement-nonlocality.md).
+without adding instantaneous causal influence between detectors. If instead measurement independence is relaxed, that relaxation must be stated quantitatively, and the text must not also claim exact measurement independence. These options are mutually exclusive at the bridge level:
+
+- **Substrate nonseparability:** retain strict measurement independence and no-signaling; Bell violation is recovered through nonfactorizable pair-provenance and apparatus-response coupling.
+- **Controlled relaxation of measurement independence:** relax measurement independence in the declared substrate response variables; the relaxation must be bounded to prevent macroscopic backward causation or signaling claims.
+
+A mere shared-source story is not enough: if the retained provenance screens the two detector wings into independent local laws, the account has fallen back into the Bell-local class. The detailed derivation and residual tests belong to [Bell's Theorem](../theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../theory-bridges/entanglement-nonlocality.md).
 
 The routing boundary is:
 

@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `drafted-template`; first finite velocity-class template exists, not EOM-solved or pre-ledger-certified. Depends on: none.
+1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `fresh-collocation-generator-needed`; first finite velocity-class template exists and is rejected at the parent-complement gate, and the successor solver surface is now specified but not implemented. Depends on: none.
 2. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `current-cosine-packet-rejected-parent-complement-gate`; the refined diagnostic has six strict simple-root subrows, twenty-four accepted diagonal-exclusion empty rows, and accepted fixed-parameter full-interval fold constants, but all attempted parent-complement closure routes fail and the live pre-ledger remains rejected. Depends on: `candidate_cycle_packet`.
 3. `branch_chart_certificate` — Produce `certificate/branch_chart.json` and `certificate/seed_chart_interval_report.md`, including active branches, inactive complements, Jacobian floors, memory-depth ranges, and envelope constants. Status: `blocked`; depends on a passed `null_coordinate_preledger`, including finite fold impulse ceilings and resolved fold-adjacent parent-row boundary leftovers. Depends on: `null_coordinate_preledger`.
 4. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `branch_chart_certificate`.
@@ -42,6 +42,8 @@
 - `next_candidate_refinement_handoff` produced `certificate/next_candidate_refinement_handoff.md`, opening the next finite candidate/refinement target and forbidding branch-chart construction on the rejected cosine packet.
 - `fixed_cosine_refinement_rescue_test` produced `certificate/fixed_cosine_refinement_rescue_test.md`, rejecting mesh-only rescue of the fixed cosine candidate because residual equality collars are structural under the current contract.
 - `next_candidate_solver_target` produced `certificate/next_candidate_solver_target.md`, defining the next executable target as a fresh fold-adapted collocation candidate whose null-coordinate pre-ledger must pass before any branch chart is built.
+- `fresh_fold_collocation_solver_surface` produced `certificate/fresh_fold_collocation_solver_surface.md`, recording that no runnable breather-specific fresh-candidate solver or pre-ledger generator exists yet and specifying the minimum lawful successor artifact set.
+- `aaa_corpus_recommendation_handoff` produced `certificate/aaa_corpus_recommendation_handoff.md`, recording scoped recommendations for later AAA edits: promote the null-coordinate pre-ledger as a candidate-falsification gate, keep rejected-packet operational detail priority-only, and defer any enlarged regular-boundary theorem pending Op discussion.
 
 ## Scope
 
@@ -112,6 +114,8 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 - Use `certificate/next_candidate_refinement_handoff.md` as the next executable handoff for a new candidate or refinement packet.
 - Use `certificate/fixed_cosine_refinement_rescue_test.md` as the no-go for mesh-only rescue of the same cosine candidate.
 - Use `certificate/next_candidate_solver_target.md` as the current solver target for the next candidate packet.
+- Use `certificate/fresh_fold_collocation_solver_surface.md` as the implementation contract for the missing fresh-candidate solver or manual artifact instantiation.
+- Use `certificate/aaa_corpus_recommendation_handoff.md` as the corpus recommendation packet when applying a later scoped AAA edit batch.
 - Use `certificate/fold_interval_constants_attempt.json`, `certificate/fold_mollifier_kernel_candidate.md`, `certificate/fold_row_tube_coverage_attempt.md`, and `certificate/fold_row_consumption_attempt.md` as the historical rejected attempt package: they preserve the earlier rejection route and exact candidate mollifier norm while keeping `branch_chart_authorized=false`.
 - The accepted proof artifact is a pass/fail finite audit on one candidate
 $$
@@ -189,6 +193,16 @@ coverage attempt then rejects current-contract consumption because the residual
 cores lack a finite same-packet inclusion and domination theorem. The live
 partition still rejects, no complete parent row can be consumed, and the live
 `causal_ledger.json` has not been rewritten.
+
+The fresh-candidate lane has now reached a solver-surface conclusion rather than
+a solved candidate. No breather-specific generator exists yet for the fresh
+fold-adapted collocation packet. The minimum lawful next attempt is therefore a
+new same-packet artifact set, generated or manually instantiated under one fresh
+identity, whose first acceptance row is again the null-coordinate pre-ledger.
+This is also the point at which the AAA corpus can be updated safely at a high
+level: the pre-ledger should be described as a candidate-falsification gate, but
+the rejected cosine packet's row tables, hashes, and parent-strip history remain
+priority-only operational data.
 
 The current packet is now summarized in `certificate/pass_fail_ledger.md`. The fold-ceiling calculation has an accepted fixed-parameter fallback in `certificate/fold_full_interval_constants_certificate.json`, recording
 $$
