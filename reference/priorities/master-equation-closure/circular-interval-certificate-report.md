@@ -74,7 +74,7 @@ The artifact passes the finite-band numerical and outward-rounded interval targe
 | trig_free_residual_interval_backend | `passed` | The interval residual path now uses algebraic root-ratio identities and square-root intervals rather than padded libm sin/cos endpoint calls. |
 | checked_root_bracket_inclusion | `passed` | Every certified active partner/self root enclosure now has a monotone sign-changing bracket row and a nonzero derivative floor on the same beta subinterval. |
 | explicit_inactive_gap_rows | `passed` | The finite-band runner emits active-complement gaps, no-root lobe gaps, and the declared principal self-coincidence endpoint exclusion for every certified chart row. |
-| closed_large_beta_tail_remainder | `blocked` | Admissible K_log/K_0 budget constants are reported at the tail handoff, but the branchwise O(log beta) and O(1) remainders are not yet derived. |
+| closed_large_beta_tail_remainder | `blocked` | Admissible K_log/K_0 budget constants are reported at the tail handoff, but the branchwise endpoint-displacement and denominator-defect envelopes are not yet derived. |
 
 First nonpassing obligation: `closed_large_beta_tail_remainder`.
 
@@ -98,7 +98,14 @@ First nonpassing obligation: `closed_large_beta_tail_remainder`.
 
 Full-signed $K_0$ budget at the tail: `10.814941`.
 
-Supply an explicit bound on the O(log beta) and O(1) remainders from the branchwise large-beta estimates before using the asymptotic obstruction as a theorem-grade tail proof.
+### Tail Analytic Blocker
+
+| Chart | Missing inequality | Budget test | Missing envelope |
+| --- | --- | --- | --- |
+| positive_sine | For beta >= beta_tail, prove S_+(beta) >= -beta/12 - K_log*log(beta) - K_0, where S_+ is the normalized positive-sine self tangential sum over every active sheet outside declared Jacobian-null windows. | K_log*log(beta_tail)+K_0 < 8.591208140575 | A uniform branchwise bound for the endpoint-displacement and denominator-defect sum sum beta^2*cos(y)/(xi^2*|1-beta*cos(y)|)+beta/12 after all fold-window exclusions. |
+| full_signed | For beta >= beta_tail, prove S_|sin|(beta) >= -K_0, where S_|sin| is the normalized full signed self tangential sum after adjacent left/right sheet cancellation outside declared Jacobian-null windows. | K_0 < 10.814941315726 | A uniform cancellation remainder bound for all signed-lobe sheet pairs, including the terminal orphan branch and the Jacobian-denominator defect near the excluded fold edges. |
+
+Supply explicit branchwise envelope constants for the two missing tail inequalities before using the asymptotic obstruction as a theorem-grade tail proof.
 
 ## Inactive Gap Rows
 

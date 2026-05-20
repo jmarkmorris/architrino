@@ -20,6 +20,7 @@ This file is Cody's living feedback backlog for improving operator/developer wor
 - [ ] Say whether you want implementation, review, planning, or brainstorming before long prompts with mixed signals.
 - [ ] Prefer one hard target per turn; batch only independent items with clear file boundaries.
 - [ ] Promote recurring operating decisions into repo docs instead of re-explaining them in chat.
+- [ ] For broad advancement prompts, let Cody continue into safe direct follow-on work instead of stopping at a Priority Action Menu.
 
 ## Clarity
 

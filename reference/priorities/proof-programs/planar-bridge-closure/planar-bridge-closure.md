@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `planar_seed_packet` — Define the reduced planar history space, seed packet, and quantitative section transversality. Status: `next`. Depends on: none.
+1. `planar_seed_packet` — Define the reduced planar history space, seed packet, and quantitative section transversality. Status: `queued-preparatory`; [planar_seed_packet.md](./planar_seed_packet.md) defines the handoff, but no instantiated finite planar seed has been certified. Depends on: none.
 2. `cone_branch_regularity` — Prove local sectorized cone control and short-time branch regularity on the first excursion slab. Status: `pending`. Depends on: `planar_seed_packet`.
 3. `bounded_fold_transit` — Prove bounded caustic transit through the first planar fold tube. Status: `pending`. Depends on: `cone_branch_regularity`.
 4. `radial_turnaround` — Prove the radial leakage-budget inequality with inward delayed forcing beating centrifugal leakage, fold uncertainty, branch uncertainty, and gauge-reset error by a strict $\gamma_{\mathrm{turn}}>0$. Status: `pending`. Depends on: `bounded_fold_transit`.
@@ -20,6 +20,8 @@
 ## Scope
 
 This workstream isolates the first higher-dimensional closure problem that can move the dynamics stack forward decisively. The exact delayed law and branch-topology machinery already exist. What is still missing is a theorem-backed bridge showing that a genuinely planar delayed system admits a controlled section class, local branch regularity, bounded caustic transit, a genuine radial turnaround, and a return map that closes on a controlled envelope.
+
+The local seed-packet handoff is [planar_seed_packet.md](./planar_seed_packet.md). It records the reduced planar history space, rotational gauge, incoming section, transversality margins, causal-root margins, sector atlas, certified tube radius, and pass/fail alternatives. It is preparatory: the planar bridge remains queued behind the active collinear certificate unless that certificate passes or fails with a precise obstruction that the planar bridge is meant to resolve.
 
 ## Position In The Dynamics Stack
 
@@ -60,7 +62,7 @@ Each of these outcomes is still informative because it identifies the exact geom
 
 ## Immediate Work Order
 
-1. Define the reduced planar history space, seed packet, and quantitative section transversality.
+1. Instantiate or validate the reduced planar seed packet from [planar_seed_packet.md](./planar_seed_packet.md) only after the collinear certificate queue permits planar work.
 2. Prove local sectorized cone control and short-time branch regularity on the first excursion slab.
 3. Prove a bounded caustic-transit theorem for the first planar fold tube.
 4. Prove the radial leakage-budget inequality in which inward delayed forcing beats centrifugal leakage and the certified fold, branch, and gauge error budgets.

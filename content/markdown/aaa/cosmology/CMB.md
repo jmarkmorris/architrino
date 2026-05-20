@@ -328,7 +328,30 @@ $$
 
 where $\tau_{\mathrm{th}}^{-1}$ is the effective rate for the already-recorded capture/release, Compton-like redistribution, pair-channel, and medium-exchange processes. The target is $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before decoupling for spectral relaxation, followed by sufficiently weak post-decoupling coupling to preserve anisotropy, polarization, and damping information rather than erase it.
 
-Thermalization mechanisms that use opacity or distributed absorbers must also pass a side-effect test. Let $\chi_{\mathrm{op}}^\theta(\nu,t)$ be the effective opacity supplied by the proposed medium component and let $\mathcal{A}_{\ell}^{\theta}$, $\mathcal{P}_{\ell}^{\theta}$, and $\mathcal{D}_{\mathrm{FIR}}^\theta$ denote the induced changes in temperature anisotropy, polarization, and far-infrared/submillimeter background intensity. The side-effect residual is
+The same theorem target has a line-of-sight version for steady-state or distributed-source branches. An effective microwave photosphere is not a new ontological origin surface; it is the comparison locus where the declared photon-channel transport becomes optically thin enough that photons stop being repeatedly thermalized along a given direction. For observer position $\mathbf{x}_{\mathrm{obs}}$, sky direction $\hat{\mathbf{n}}$, Euclidean path length $\ell$, and path-history time $t_\ell$ supplied by the same transport record, define
+
+$$
+\tau_{\mathrm{mw}}^\theta(\nu,\hat{\mathbf{n}},D)
+=
+\int_0^D
+\chi_{\mathrm{op}}^\theta
+\left(\nu,\mathbf{x}_{\mathrm{obs}}+\ell\hat{\mathbf{n}},t_\ell\right)
+\,d\ell,
+\qquad
+D_{\mathrm{eff}}^\theta(\nu,\hat{\mathbf{n}})
+=
+\inf\{D>0:\tau_{\mathrm{mw}}^\theta(\nu,\hat{\mathbf{n}},D)\ge1\}.
+$$
+
+Here $\chi_{\mathrm{op}}^\theta$ is the proposed microwave-band opacity, not the Noether-Sea delay factor $\chi_{\text{sea}}$. The CMB-pixel question is therefore a derived closure target. For angular beam or pixel width $\Delta\alpha$ in radians, use the transverse comparison scale
+$$
+L_{\perp}^{\theta}(\nu,\hat{\mathbf{n}},\Delta\alpha)
+\simeq
+D_{\mathrm{eff}}^\theta(\nu,\hat{\mathbf{n}})\,\Delta\alpha.
+$$
+This scale is meaningful only after the branch computes $D_{\mathrm{eff}}^\theta$ from its source, transport, and thermalization record. If no finite $D_{\mathrm{eff}}^\theta$ exists, or if it varies too strongly with frequency or sky direction, the distributed-source interpretation has not supplied a stable CMB comparison surface.
+
+Thermalization mechanisms that use this opacity or distributed absorbers must also pass a side-effect test. Let $\mathcal{A}_{\ell}^{\theta}$, $\mathcal{P}_{\ell}^{\theta}$, and $\mathcal{D}_{\mathrm{FIR}}^\theta$ denote the induced changes in temperature anisotropy, polarization, and far-infrared/submillimeter background intensity. The side-effect residual is
 $$
 \mathcal{R}_{\mathrm{op}}^\theta
 =

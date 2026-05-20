@@ -26,6 +26,7 @@ const DEFAULT_THRESHOLDS = {
   epsilon_P: 0,
   rank_tolerance: 1e-10,
   epsilon_dof: 1e-12,
+  epsilon_transport_loss: 0,
 };
 
 function parseArgs(argv) {
@@ -66,7 +67,8 @@ This runner evaluates the Fe/Cr pressure-replay fit contract:
   yhat_M,r = B_P q_M,r
   R_split = [(R_row - R_sep) / (nu_dof + epsilon) - epsilon_split]_+.
 It is fail-closed: missing rows, missing covariance, rank-deficient channels,
-or missing null-sector bounds produce bound_only, not pass.`);
+missing transport-reversibility records, or missing null-sector bounds produce
+bound_only, not pass.`);
 }
 
 function readJson(filePath) {
@@ -105,6 +107,10 @@ function thresholdMap(inputThresholds = {}) {
     epsilon_P: nonnegativeNumber(raw.epsilon_P, "thresholds.epsilon_P"),
     rank_tolerance: nonnegativeNumber(raw.rank_tolerance, "thresholds.rank_tolerance"),
     epsilon_dof: nonnegativeNumber(raw.epsilon_dof, "thresholds.epsilon_dof"),
+    epsilon_transport_loss: nonnegativeNumber(
+      raw.epsilon_transport_loss,
+      "thresholds.epsilon_transport_loss"
+    ),
   };
 }
 
@@ -191,6 +197,9 @@ function normalizeRows(input, featureOrder, channelOrder) {
       mask,
       covariance_diagonal: covarianceDiagonal,
       active_channels: activeChannels.map(({ channel }) => channel),
+      transport_reversibility: row.transport_reversibility,
+      transport_record: row.transport_record,
+      transport: row.transport,
       issues,
     };
   });
@@ -446,7 +455,155 @@ function evaluateNullBounds(input, thresholds) {
   return { status, entries };
 }
 
-function readingFor({ shared, separated, splitResidual, nullBounds, thresholds, rows }) {
+function firstDefined(object, keys) {
+  for (const key of keys) {
+    if (object[key] !== undefined) {
+      return object[key];
+    }
+  }
+  return undefined;
+}
+
+function optionalNonnegative(value, label, issues) {
+  if (value === undefined) {
+    issues.push(`${label}:missing`);
+    return null;
+  }
+  try {
+    return nonnegativeNumber(value, label);
+  } catch (error) {
+    issues.push(error.message);
+    return null;
+  }
+}
+
+function transportRecordForRow(row, transportRowsById) {
+  return row.transport_reversibility ??
+    row.transport_record ??
+    row.transport ??
+    transportRowsById.get(row.row_id) ??
+    null;
+}
+
+function normalizeTransportRecord(record, rowId, thresholds) {
+  const issues = [];
+  if (!record || typeof record !== "object") {
+    return {
+      row_id: rowId,
+      status: "missing",
+      R_tr: null,
+      R_tr_star: null,
+      loss_sum: null,
+      failure_code: "missing-transport-record",
+      issues: [`${rowId}.transport_reversibility:missing`],
+    };
+  }
+
+  const R_tr = optionalNonnegative(
+    firstDefined(record, ["R_tr", "r_tr", "Rtr", "transport_residual"]),
+    `${rowId}.transport_reversibility.R_tr`,
+    issues
+  );
+  const R_tr_star = optionalNonnegative(
+    firstDefined(record, ["R_tr_star", "r_tr_star", "Rtr_star", "transport_threshold"]),
+    `${rowId}.transport_reversibility.R_tr_star`,
+    issues
+  );
+  const deltaEExc = optionalNonnegative(
+    firstDefined(record, ["delta_E_exc", "Delta_E_exc", "excitation"]),
+    `${rowId}.transport_reversibility.delta_E_exc`,
+    issues
+  );
+  const deltaEHeat = optionalNonnegative(
+    firstDefined(record, ["delta_E_heat", "Delta_E_heat", "heat"]),
+    `${rowId}.transport_reversibility.delta_E_heat`,
+    issues
+  );
+  const deltaERad = optionalNonnegative(
+    firstDefined(record, ["delta_E_rad", "Delta_E_rad", "radiation"]),
+    `${rowId}.transport_reversibility.delta_E_rad`,
+    issues
+  );
+  const deltaEBranch = optionalNonnegative(
+    firstDefined(record, ["delta_E_branch", "Delta_E_branch", "branch"]),
+    `${rowId}.transport_reversibility.delta_E_branch`,
+    issues
+  );
+  const deltaERem = optionalNonnegative(
+    firstDefined(record, ["delta_E_rem", "Delta_E_rem", "remnant"]),
+    `${rowId}.transport_reversibility.delta_E_rem`,
+    issues
+  );
+  const values = [R_tr, R_tr_star, deltaEExc, deltaEHeat, deltaERad, deltaEBranch, deltaERem];
+  if (values.some((value) => value === null)) {
+    return {
+      row_id: rowId,
+      status: "missing",
+      R_tr,
+      R_tr_star,
+      loss_sum: null,
+      failure_code: "incomplete-transport-record",
+      issues,
+    };
+  }
+
+  const lossSum = deltaEExc + deltaEHeat + deltaERad + deltaEBranch;
+  const thresholdPass = R_tr < R_tr_star;
+  const lossPass = lossSum <= thresholds.epsilon_transport_loss;
+  const status = thresholdPass && lossPass ? "pass" : "fail";
+  const failureReasons = [];
+  if (!thresholdPass) {
+    failureReasons.push("transport-threshold-crossed");
+  }
+  if (!lossPass) {
+    failureReasons.push("loss-channel-open");
+  }
+  return {
+    row_id: rowId,
+    status,
+    R_tr,
+    R_tr_star,
+    loss_sum: lossSum,
+    delta_E_rem: deltaERem,
+    failure_code: failureReasons.length > 0 ? failureReasons.join("+") : null,
+    issues,
+  };
+}
+
+function evaluateTransportReversibility(input, rows, thresholds) {
+  const config = input.transport_reversibility && typeof input.transport_reversibility === "object"
+    ? input.transport_reversibility
+    : {};
+  const records = Array.isArray(config.rows) ? config.rows : [];
+  const byId = new Map(records.flatMap((record) => {
+    const rowId = record.row_id ?? record.id;
+    return typeof rowId === "string" ? [[rowId, record]] : [];
+  }));
+  const entries = rows.map((row) => normalizeTransportRecord(
+    transportRecordForRow(row, byId),
+    row.row_id,
+    thresholds
+  ));
+  if (rows.length === 0) {
+    return {
+      status: typeof config.status === "string" ? config.status : "missing",
+      entries: [],
+      failure_code: "no-pressure-rows",
+    };
+  }
+  const status = entries.some((entry) => entry.status === "fail")
+    ? "fail"
+    : entries.every((entry) => entry.status === "pass")
+      ? "pass"
+      : "missing";
+  return {
+    status,
+    entries,
+    failure_code: status === "pass" ? null : `transport-reversibility-${status}`,
+  };
+}
+
+function readingFor({ shared, separated, splitResidual, nullBounds, transportReversibility, thresholds, rows }) {
   const blockers = [];
   const rowIssues = rows.flatMap((row) => row.issues.map((issue) => `${row.row_id}:${issue}`));
   if (rowIssues.length > 0) {
@@ -467,8 +624,14 @@ function readingFor({ shared, separated, splitResidual, nullBounds, thresholds, 
   if (nullBounds.status === "missing") {
     blockers.push("null-sector-bounds-missing");
   }
+  if (transportReversibility.status === "missing") {
+    blockers.push("transport-reversibility-missing");
+  }
   if (nullBounds.status === "fail") {
     return { reading: "fail", empirical_pass: false, blockers: ["null-sector-failure", ...blockers] };
+  }
+  if (transportReversibility.status === "fail") {
+    return { reading: "fail", empirical_pass: false, blockers: ["transport-reversibility-failure", ...blockers] };
   }
   if (shared.residual !== null && shared.residual > thresholds.epsilon_row) {
     return { reading: "fail", empirical_pass: false, blockers: ["shared-row-residual-above-threshold", ...blockers] };
@@ -498,7 +661,16 @@ function evaluate(input, inputPath) {
         )
       : null;
   const nullBounds = evaluateNullBounds(input, thresholds);
-  const reading = readingFor({ shared, separated, splitResidual, nullBounds, thresholds, rows });
+  const transportReversibility = evaluateTransportReversibility(input, rows, thresholds);
+  const reading = readingFor({
+    shared,
+    separated,
+    splitResidual,
+    nullBounds,
+    transportReversibility,
+    thresholds,
+    rows,
+  });
   return {
     schema: "pressure-replay-fit-runner-result/v1",
     input_file: inputPath,
@@ -523,6 +695,7 @@ function evaluate(input, inputPath) {
         status: splitResidual === null ? "bound_only" : splitResidual <= 0 ? "pass" : "demote",
       },
     },
+    transport_reversibility: transportReversibility,
     null_bounds: nullBounds,
     reading: reading.reading,
     empirical_pass: reading.empirical_pass,
@@ -553,4 +726,3 @@ try {
   console.error(`pressure-replay-fit-runner: ${error.message}`);
   process.exitCode = 1;
 }
-

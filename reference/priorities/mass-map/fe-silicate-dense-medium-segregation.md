@@ -819,6 +819,69 @@ $$
 
 over the branch interval where iron-rich metallic segregation is being explained.
 
+### Branch-Preserving Transport Row Gate
+
+The segregation sign may be tested only on rows that keep reversible medium response separate from dissipative transport. For each phase $M\in\{\mathrm{Fe},\mathrm{sil}\}$ and step $r$, declare
+
+$$
+\mathcal{T}_{M,r}
+=
+\left(
+\mathcal{R}_{\text{tr},M,r},
+\mathcal{R}_{\text{tr},*,M,r},
+\Delta E_{\mathrm{exc},M,r},
+\Delta E_{\mathrm{heat},M,r},
+\Delta E_{\mathrm{rad},M,r},
+\Delta E_{\mathrm{branch},M,r}
+\right).
+$$
+
+A row is branch-preserving for the segregation proof only if
+
+$$
+\mathcal{R}_{\text{tr},M,r}
+<
+\mathcal{R}_{\text{tr},*,M,r}
+\quad\text{and}\quad
+\Delta E_{\mathrm{exc},M,r}
++
+\Delta E_{\mathrm{heat},M,r}
++
+\Delta E_{\mathrm{rad},M,r}
++
+\Delta E_{\mathrm{branch},M,r}
+=0
+$$
+
+within declared uncertainty. If either material crosses the transport threshold, the replay must split the branch interval or demote the sign row to a threshold-event row:
+
+$$
+\max_{M,r}
+\frac{\mathcal{R}_{\text{tr},M,r}}
+{\mathcal{R}_{\text{tr},*,M,r}}
+\ge 1
+\quad\Longrightarrow\quad
+\text{split, demote, or log the opened channel before fitting.}
+$$
+
+The strict simulation target is therefore a two-margin condition on the same interval:
+
+$$
+\boxed{
+\mathcal{S}_{\mathrm{Fe/sil}}
+\le
+-\epsilon_{\mathrm{seg}},
+\qquad
+\max_{M,r}
+\frac{\mathcal{R}_{\text{tr},M,r}}
+{\mathcal{R}_{\text{tr},*,M,r}}
+\le
+1-\epsilon_{\mathrm{tr}}.
+}
+$$
+
+The first margin says the metallic Fe branch wins the dense-medium chemical-potential sign test. The second margin says that the row is still reversible medium-dressed response, not a disguised heating, radiation, or branch-transition event. A replay that satisfies the sign only after adding unlogged drag has not derived the dense-medium preference.
+
 ### Minimal Packet Fields
 
 | Field | Meaning |
@@ -832,7 +895,7 @@ over the branch interval where iron-rich metallic segregation is being explained
 | `sea_residual` | retained $\mu_X^{\mathrm{sea}}$ or residual proxy after corrections |
 | `coefficient_model` | declared $a_0$, $g_0$, $p_0$, $w_Z$, $w_B$, $w_U$, and $\Psi$ used to derive, not fit, the residual row |
 | `coefficient_inputs` | phase-specific `packing_record`, $H_X$, $B_X$, $U_X$, $d_X$, $s_X$, and $p_X$ inputs; $e_X^{\mathrm{sf}}$ and $n_{\max,X}^{\mathrm{obl}}$ are derived from `packing_record` |
-| `transport_record` | $\mathcal{R}_{\text{tr}}$ regime and any logged excitation, heating, or branch transition |
+| `transport_record` | $\mathcal{T}_{M,r}$ rows, the reversible/threshold reading, and any logged excitation, heating, radiation-like shedding, or branch transition |
 | `null_bounds` | bounds for hidden transmutation, drag below threshold, birefringence, dispersion, and clock/signal mismatch |
 
 ## Failure Modes
@@ -841,7 +904,7 @@ over the branch interval where iron-rich metallic segregation is being explained
 2. **Ordinary-physics absorption:** standard phase, pressure, temperature, density, and gravity terms explain the segregation with no remaining shared Noether-Sea residual. In that case the dense-medium preference becomes unnecessary.
 3. **Coefficient split:** Fe and silicate require separate observable-specific rows instead of one $B_{\mathrm{seg}}$ record or a logged branch transition.
 4. **Wrong sign:** $\mathcal{S}_{\mathrm{Fe/sil}}\ge0$ on the branch where the hypothesis predicts denser-medium compatibility.
-5. **Transport violation:** the branch produces ordinary dissipative drag below $\mathcal{R}_{\text{tr},*}$ or sheds energy above threshold without a logged event channel.
+5. **Transport violation:** the branch produces ordinary dissipative drag below $\mathcal{R}_{\text{tr},*}$, satisfies the sign only by using unlogged loss-channel energy, or sheds energy above threshold without a logged event channel.
 6. **Packing shortcut:** the proof assumes $n_{\max,\mathrm{Fe}}^{\mathrm{obl}}>n_{\max,\mathrm{sil}}^{\mathrm{obl}}$ from ordinary density alone instead of deriving it from exclusion envelope, lattice, and support-function geometry.
 7. **Coefficient insertion:** the replay chooses $A_X$, $G_X$, $C_X^{\chi}$, $C_X^S Q_X^{\mathrm{dev}}$, or $C_X^P$ directly to force the sign instead of deriving them from the declared branch ingredients.
 8. **Packing-bound violation:** the replay uses $\xi_X>1$ in an oblate branch, $z_X^{\mathrm{eff}}>12$ in the same-level contact proxy, $\phi_X^{\mathrm{sf}}>1$, or compliance weights outside $[0,1]$ without a branch-response derivation.
@@ -870,7 +933,7 @@ y_{M,r}
 \mu_{M,0}^{\mathrm{sea}},
 $$
 
-where $\mu^{\mathrm{sea}}$ is generated from the coefficient model above. The fixture now derives $e_X^{\mathrm{sf}}$, $n_{\max,X,0}^{\mathrm{obl}}$, and $\Delta\ln n_{\max,X,r}^{\mathrm{obl}}$ from each material `packing_record` and step `packing_update`, while the runner supplies the branch-normalized defaults $\nu_{\mathrm{pack},0}=1$, $V_*=1$, $z_*=12$, and $\phi_*=\pi/(3\sqrt{2})$. It then tests the finite-difference sign $\mathcal{S}_{\mathrm{Fe/sil}}<0$ and records the packing, coherent-coupling, delay, strain, and pressure contributions. Its gates check the no-new-iron guardrail, standard-correction subtraction, matched density intervals, derived-model residual, dense-medium sign, transport threshold, null bounds, and a declared transmutation-leak failure injection.
+where $\mu^{\mathrm{sea}}$ is generated from the coefficient model above. The fixture now derives $e_X^{\mathrm{sf}}$, $n_{\max,X,0}^{\mathrm{obl}}$, and $\Delta\ln n_{\max,X,r}^{\mathrm{obl}}$ from each material `packing_record` and step `packing_update`, while the runner supplies the branch-normalized defaults $\nu_{\mathrm{pack},0}=1$, $V_*=1$, $z_*=12$, and $\phi_*=\pi/(3\sqrt{2})$. It then tests the finite-difference sign $\mathcal{S}_{\mathrm{Fe/sil}}<0$ and records the packing, coherent-coupling, delay, strain, and pressure contributions. Its gates check the no-new-iron guardrail, standard-correction subtraction, matched density intervals, derived-model residual, dense-medium sign, the two-margin transport row gate, null bounds, and a declared transmutation-leak failure injection.
 
 The executable packing fields now use `oblate_envelope.deformation_branch` to derive $\xi_X$ from $\sqrt{1-\beta_X^2}$, `orientation_record.kind` for `single_axis` or `orthogonal_isotropic`, `lattice_cell.basis_family` for the principal-axis lattice, `lattice_cell.packing_fraction_target` to derive `cell_volume_factor`, and `contact_network.family` for `fcc_12` or `tetrahedral_4`. Direct scalar declarations of `exclusion_penalty` and `n_max_obl_ref` are not accepted inputs in the coefficient-derived path.
 

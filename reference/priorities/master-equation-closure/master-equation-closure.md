@@ -26,9 +26,10 @@ This file remains the control surface for the workstream. No sibling detailed pr
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `circular_asymptotics` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding and large-$\beta$ circular self-force asymptotics are extended beyond the current leading-order footholds. |
-| `spiral_branch_chart_test` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | One admissible variable-pitch candidate reports partner and self roots, positive Jacobian floors, finite memory depth, radial-turn status, and weighted tangential-drive verdict. |
-| `lorentz_gr_bridge` | This file | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving tri-binary contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
+| `circular_asymptotics` | This file and [circular-interval-certificate-report](circular-interval-certificate-report.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding and large-$\beta$ circular self-force asymptotics are extended beyond the current leading-order footholds. |
+| `spiral_branch_chart_test` | [spiral-branch-chart-certificate](spiral-branch-chart-certificate.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | One admissible variable-pitch candidate reports partner and self roots, positive Jacobian floors, finite memory depth, radial-turn status, and weighted tangential-drive verdict. |
+| `lorentz_gr_bridge` | [lorentz-gr-bridge-handoff](lorentz-gr-bridge-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving tri-binary contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
+| `lorentz_test_residual_handoff` | [lorentz-test-residual-handoff](lorentz-test-residual-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [lorentz-invariance-test-suite](../cross-theory-mapping/lorentz-invariance-test-suite.md) | RMS, PPN, and SME-style residual rows are exported only after the Lorentz/GR bridge supplies one shared branch, clock, ruler, signal, and medium-response artifact. |
 
 ## Completed Kernel Handoff
 
@@ -422,36 +423,56 @@ Tail scaffold. At $\beta_{\mathrm{tail}}=\beta_8^\star=26.684798$, the positive-
 
 Inactive-gap rows. The executable now emits complete finite-band inactive-gap rows for each certified chart. The default run reports positive active-complement lower bounds between $2.580747\times10^{-11}$ and $2.098537\times10^{-9}$, positive no-root lobe lower bounds between $3.744780\times10^{-10}$ and $2.120456\times10^{-9}$ wherever a no-root lobe domain exists, and an explicit declared exclusion for the $\xi=0$ self-coincidence endpoint, which is not used as an active self-force row.
 
-Tail remainder priority capture. The remaining high-value proof packet is a branchwise tail constant derivation, not another finite-band checker. The proof must bound the positive-sine self-tail remainder by explicit constants $K_{\log},K_0$ with $K_{\log}\log\beta_{\mathrm{tail}}+K_0<8.591208140575$, and bound the full signed tail by $K_0<10.814941315726$, using the same active-root asymptotics and Jacobian-window exclusions as the finite certificate. A successful packet should update [circular_interval_certificate.py](circular_interval_certificate.py) so `--require-theorem-grade` fails only if the derived tail constants violate those budgets.
+Tail remainder blocker packet. The remaining high-value proof packet is a branchwise tail constant derivation, not another finite-band checker and not a numerical budget fit. Let
+$$
+S_+(\beta)
+=
+\sum_{\alpha\in\mathcal{A}_{s}^{+}(\beta)}
+\frac{\beta^2\cos y_\alpha}
+{\xi_\alpha^2|1-\beta\cos y_\alpha|}
+$$
+denote the normalized positive-sine self tangential sum, with $\xi_\alpha=k_\alpha\pi+y_\alpha$ and $0<y_\alpha<\pi$, outside the declared Jacobian-null windows. The positive-sine tail closes only after proving explicit constants $K_{\log},K_0$ such that, for every $\beta\ge\beta_{\mathrm{tail}}$ on the certified chart,
+$$
+S_+(\beta)
+\ge
+-\frac{\beta}{12}
+-K_{\log}\log\beta
+-K_0
+$$
+and
+$$
+K_{\log}\log\beta_{\mathrm{tail}}+K_0<8.591208140575.
+$$
+The exact missing estimate is the uniform endpoint-displacement and denominator-defect envelope
+$$
+\sum_{\alpha\in\mathcal{A}_{s}^{+}(\beta)}
+\frac{\beta^2\cos y_\alpha}
+{\xi_\alpha^2|1-\beta\cos y_\alpha|}
++\frac{\beta}{12}
+\ge
+-K_{\log}\log\beta-K_0.
+$$
+The current packet does not prove this inequality; it only identifies the budget it must satisfy.
 
-Continuation prompt captured for the next technical pass:
-
-```text
-Cody, use the AAA corpus advancement skill in self-running exploration mode.
-
-Context:
-- The circular interval certificate now passes finite sample targets, outward-rounded finite interval targets, stable active-root ledgers, the trig-free residual backend, checked root-bracket inclusion, and complete finite-band inactive-gap rows.
-- The theorem-grade guard still fails only at `closed_large_beta_tail_remainder`.
-
-Task:
-- Derive explicit branchwise large-$\beta$ tail remainder constants for the positive-sine and full signed circular self charts.
-- Use the existing budgets at $\beta_{\mathrm{tail}}=\beta_8^\star=26.684798$: positive-sine requires $K_{\log}\log\beta_{\mathrm{tail}}+K_0<8.591208140575$ and full signed requires $K_0<10.814941315726$.
-- If the constants close, update `circular_interval_certificate.py`, regenerate `circular-interval-certificate-report.md`, and update this priority file. If they do not close, record the exact inequality that fails and the next mathematical route.
-
-Scope:
-- `reference/priorities/master-equation-closure/circular_interval_certificate.py`
-- `reference/priorities/master-equation-closure/circular-interval-certificate-report.md`
-- `reference/priorities/master-equation-closure/master-equation-closure.md`
-
-Constraints:
-- Preserve TeX exactly.
-- Use canonical AAA terminology.
-- Do not promote theorem-grade unless the tail constants are derived and the executable guard passes.
-- Edit authority: direct edit batch authorized.
-
-Expected output:
-- A tail proof packet with constants, validation output, and either theorem-grade promotion or a precise remaining analytic blocker.
-```
+For the full signed chart, with
+$$
+S_{|\sin|}(\beta)
+=
+\sum_{\alpha\in\mathcal{A}_{s}^{|\sin|}(\beta)}
+\frac{\beta^2s_\alpha\cos y_\alpha}
+{\xi_\alpha^2|1-\beta s_\alpha\cos y_\alpha|},
+$$
+the tail closes only after proving
+$$
+S_{|\sin|}(\beta)\ge -K_0
+\quad\text{for all}\quad
+\beta\ge\beta_{\mathrm{tail}},
+$$
+with
+$$
+K_0<10.814941315726.
+$$
+The exact missing estimate is the signed-lobe cancellation remainder after pairing adjacent left/right sheets, including the terminal orphan branch and the denominator defect near excluded fold edges. A viable next mathematical route is an Euler-Maclaurin or Abel-summation packet on the ordered lobe endpoints, with the Jacobian-window exclusions carried as explicit removed intervals; the proof must bound absolute denominator defects before using signed cancellation.
 
 Promotion rule. If the executable certificate proves all target margins and attaches the large-$\beta$ tail with a stated $\beta_{\mathrm{tail}}$ and closed remainder, then the equal-magnitude bare circular ansatz has no tangential-zero branch chart outside $\mathcal{N}_{J,\varepsilon}$. At that point the reader-facing master-equation chapter may promote a finite-band circular no-go proposition. If any margin fails, the failed interval becomes the only surviving finite-band circular candidate and must be re-evaluated with smaller Jacobian windows, exact interval root refinement, or a later tail handoff.
 

@@ -54,6 +54,33 @@ $$
 
 Here $S_2$ is the quadrupolar or directional strain projection used by the $\delta\mathcal{M}_2$ replay channel, and $s_S$ is the retained strain-channel projection for the replay row.
 
+The tensor replay must use the same projection convention as the $A_0$ medium-response tensor probe. For a dimensionless perturbation $\Delta_{\mathcal M}^{ab}$, define
+
+$$
+\delta\mathcal{M}_{0}
+\equiv
+\frac{1}{3}h_{ab}\Delta_{\mathcal M}^{ab},
+\qquad
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\equiv
+\left(
+\delta^a{}_c\delta^b{}_d
+-
+\frac{1}{3}h^{ab}h_{cd}
+\right)
+\Delta_{\mathcal M}^{cd},
+$$
+
+and
+
+$$
+\delta\mathcal{M}_{2}(\hat e)
+\equiv
+\hat e_a\hat e_b\delta\mathcal{M}_{\mathrm{tf}}^{ab}.
+$$
+
+The scalar $S_2=s_{\mathcal M}A$ is therefore shorthand for the retained trace-free projection of $S_{\mathrm{dev}}^{ab}$ along the declared replay direction. It must not be replaced by an independently fitted tensor row.
+
 The branch-preserving first-order perturbation record is
 
 $$
@@ -244,6 +271,41 @@ h^{ab}
 +\mathcal{R}_{\mathcal M}^{ab}.
 $$
 
+Equivalently, in the projected tensor residual,
+
+$$
+\Delta_{\mathcal M}^{ab}
+=
+2\,\delta\ln\chi_{\text{sea}}^{\mathrm{iso}}\,h^{ab}
++2\,\delta\ln\chi_{\text{sea}}^{\mathrm{aniso}}\,Q_{\chi}^{ab}
++m_SS_{\mathrm{dev}}^{ab}
++\mathcal{R}_{\mathcal M,\Delta}^{ab}
+$$
+
+to first order. The trace projection removes the deviatoric strain term, while the trace-free projection removes the isotropic pressure term:
+
+$$
+\frac{1}{3}h_{ab}\Delta_{\mathcal M}^{ab}
+=
+2\,\delta\ln\chi_{\text{sea}}^{\mathrm{iso}}
++\frac{1}{3}h_{ab}\mathcal{R}_{\mathcal M,\Delta}^{ab},
+$$
+
+$$
+\left(
+\delta^a{}_c\delta^b{}_d
+-
+\frac{1}{3}h^{ab}h_{cd}
+\right)
+\Delta_{\mathcal M}^{cd}
+=
+2\,\delta\ln\chi_{\text{sea}}^{\mathrm{aniso}}\,Q_{\chi}^{ab}
++m_SS_{\mathrm{dev}}^{ab}
++\mathcal{R}_{\mathcal M,\mathrm{tf}}^{ab}.
+$$
+
+Here $Q_{\chi}^{ab}$ is the declared trace-free delay-anisotropy projection for the replay direction, with $h_{ab}Q_{\chi}^{ab}=0$. Its retained scalar projection is already included in $C_{\chi}^{\mathrm{aniso}}A$; it is not an extra coefficient.
+
 To first order, the isotropic tensor channel must satisfy
 
 $$
@@ -270,6 +332,37 @@ $$
 $$
 
 Thus the tensor channel is not a sixth independent pressure response. It is the same delay coefficient plus the explicit strain-response coefficient.
+
+Two special cases are useful as branch diagnostics:
+
+$$
+\boxed{
+\delta\mathcal{M}_{2}=0
+\quad\Longrightarrow\quad
+\left(
+2C_{\chi}^{\mathrm{aniso}}
++m_Ss_{\mathcal M}
+\right)A
+=
+-\mathcal{R}_{\mathcal M2}
+}
+$$
+
+and, if the signal-delay anisotropy is also null on the same branch,
+
+$$
+\boxed{
+C_{\chi}^{\mathrm{aniso}}A
+=
+O(\epsilon_{\mathrm{biref}}+\epsilon_{\gamma\mathrm{disp}}+\epsilon_{\mathrm{LV}}),
+\qquad
+m_Ss_{\mathcal M}A
+=
+O(\epsilon_{\mathcal M2}+\epsilon_{\mathrm{biref}}+\epsilon_{\gamma\mathrm{disp}}+\epsilon_{\mathrm{LV}}).
+}
+$$
+
+Thus a nonzero strain record with null signal and null tensor response is a cancellation certificate, not a permission to fit $m_S$ independently. If the cancellation holds in one direction but fails in another retained direction, the replay must split the branch state or demote the anisotropic pressure row.
 
 ## Replay Coefficient Matrix
 
@@ -396,10 +489,19 @@ If the anisotropic signal sector is null while the strain record is nonzero, the
 $$
 C_{\chi}^{\mathrm{aniso}}=0,
 \qquad
-2C_{\chi}^{\mathrm{aniso}}+m_Ss_{\mathcal M}=0,
+m_Ss_{\mathcal M}=0,
 $$
 
 within tolerance, or the anisotropic pressure response must be demoted for that branch.
+
+If the signal sector is allowed but the directional tensor sector is null, the weaker tensor-only cancellation condition is
+
+$$
+2C_{\chi}^{\mathrm{aniso}}
++m_Ss_{\mathcal M}=0
+$$
+
+within the $\epsilon_{\mathcal M2}$ budget. This condition is admissible only as a declared branch identity; it fails if separate cancellations are required for Fe/Cr versus Ni/Co, for different replay directions, or for different observable extractors in the same branch state.
 
 ## Falsification Conditions
 
@@ -408,7 +510,8 @@ within tolerance, or the anisotropic pressure response must be demoted for that 
 3. **Tensor-row split:** $\delta\mathcal{M}_0$ or $\delta\mathcal{M}_2$ requires a tensor coefficient independent of $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, and the declared strain coefficient $m_S$.
 4. **Heavy-scaling split:** the Fe/Cr or Ni/Co replay needs channel-dependent $\eta_Z$ values after ordinary material corrections and branch-state splits are declared.
 5. **Null-sector violation:** any pressure-row fit exceeds birefringence, photon-dispersion, preferred-frame, clock/signal, or transport-threshold bounds.
-6. **Static-endpoint conflict:** a coefficient row that fits pressure response cannot satisfy the Lorentz branch and the weak static endpoint condition within its residual budget.
+6. **Projection mismatch:** trace and trace-free tensor extractions use direction labels or normalization conventions different from the declared strain and pressure-loading record.
+7. **Static-endpoint conflict:** a coefficient row that fits pressure response cannot satisfy the Lorentz branch and the weak static endpoint condition within its residual budget.
 
 ## Next Closure Target
 

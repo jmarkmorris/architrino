@@ -12,7 +12,7 @@
 ## Task Queue
 
 1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `drafted-template`; first finite velocity-class template exists, not EOM-solved or pre-ledger-certified. Depends on: none.
-2. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `fold-impulse-blocked`; the refined diagnostic has six strict simple-root subrows and twenty-four accepted diagonal-exclusion empty rows, but not a complete accepted partition. Depends on: `candidate_cycle_packet`.
+2. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `fold-ceiling-handoff-ready`; the refined diagnostic has six strict simple-root subrows and twenty-four accepted diagonal-exclusion empty rows, plus a fold-ceiling handoff and pass/fail ledger, but not a complete accepted partition. Depends on: `candidate_cycle_packet`.
 3. `branch_chart_certificate` — Produce `certificate/branch_chart.json` and `certificate/seed_chart_interval_report.md`, including active branches, inactive complements, Jacobian floors, memory-depth ranges, and envelope constants. Status: `blocked`; depends on a passed `null_coordinate_preledger`, including finite fold impulse ceilings and resolved fold-adjacent parent-row boundary leftovers. Depends on: `null_coordinate_preledger`.
 4. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `branch_chart_certificate`.
 5. `monodromy_diagnostic` — Produce the section-anchored monodromy spectrum and route returned-sample preservation to sensitivities or boundary trapping. Status: `pending`. Depends on: `branch_chart_certificate`, `coupled_corridor_certificate`.
@@ -26,6 +26,8 @@
 - `velocity_itinerary_verification` produced `certificate/itinerary.json` and `certificate/itinerary_parity_report.md`, giving the doubled four-arc generic itinerary a coarse parity pass before candidate-cycle generation.
 - `candidate_cycle_template_packet` produced `certificate/phi_cyc.json`, `certificate/mesh.json`, and `certificate/candidate_cycle_packet_report.md` for one finite cosine velocity-class template. This clears only `Candidate data absent`; EOM residuals, pre-ledger rows, branch-chart rows, returned-history residuals, and topology remain uncertified.
 - `preledger_refined_diagnostic` produced `certificate/mesh_refined_preledger_v1.json`, `certificate/diagonal_exclusion_subledger.json`, `certificate/fold_layer_atlas.json`, `certificate/causal_ledger.json`, and `certificate/causal_preledger_interval_report.md`. It rejects the current partition before branch-chart certification while preserving six strict simple-root subwindows, twenty-four accepted diagonal-exclusion empty rows, positive range-empty gaps, and kinematic fold normal-form data.
+- `certificate_state_ledger` produced `certificate/pass_fail_ledger.md`, making the current packet auditable as one rejected packet identity rather than a loose collection of artifacts.
+- `fold_impulse_ceiling_handoff` produced `certificate/fold_impulse_ceiling_handoff.md`, isolating the finite theorem target for $C_\Sigma$, $A_{\Sigma,\eta,\epsilon_c}$, and $I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}$ on $\Sigma_1,\ldots,\Sigma_4$ plus the six fold-adjacent parent-boundary leftovers.
 
 ## Scope
 
@@ -85,6 +87,8 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 - Treat the theorem architecture as frozen unless a proof-breaking defect is discovered.
 - Do not add fresh theorem layers before the finite certificate packet has been attempted.
 - Build the active closure package under `reference/priorities/proof-programs/breather-proof/certificate/`.
+- Use `certificate/pass_fail_ledger.md` as the current audit surface for packet identity, artifact status, row status, and exact blockers.
+- Use `certificate/fold_impulse_ceiling_handoff.md` as the next proof packet for the finite fold impulse ceiling; it does not authorize a branch chart until the missing constants are supplied.
 - The accepted proof artifact is a pass/fail finite audit on one candidate
 $$
 \phi_{\mathrm{cyc}},
@@ -155,6 +159,16 @@ fold-layer atlas supplies positive curvature floors, positive exit floors, and
 coarse parity data for all four separators. The diagnostic still rejects the
 current partition because it has not supplied finite fold impulse ceilings or a
 complete promotion of the six remaining fold-adjacent parent boundary leftovers.
+
+The current packet is now summarized in `certificate/pass_fail_ledger.md`. The next proof calculation is isolated in `certificate/fold_impulse_ceiling_handoff.md`: compute finite values of
+$$
+C_\Sigma,
+\qquad
+A_{\Sigma,\eta,\epsilon_c},
+\qquad
+I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}
+$$
+for $\Sigma_1,\ldots,\Sigma_4$, then consume the sixteen fold-layer rows and six fold-adjacent parent-boundary leftovers without leaking fold rows into simple-root branch sums.
 
 The first itinerary gate has a coarse parity pass for the doubled four-arc generic itinerary. This pass is necessary rather than sufficient: it verifies the separator-level fold arithmetic, but it does not yet certify active self-image roots, inactive-root gaps, Jacobian floors, or returned residuals. If the branch enumeration forces a different itinerary, this gate must be rerun.
 
@@ -482,7 +496,7 @@ The finite audit rows are:
      u_{\mathrm{ret}}^{\mathrm{cert}}>0
      $$
      origin-layer continuity, certified fold-event transitions, and certified branch-chart well-posedness on the stored history and one-cycle continuation.
-   - `certificate/pass_fail_ledger.md`: one table summarizing all five rows, artifact hashes or versions, pass/fail status, and the exact obstruction if any row fails.
+   - `certificate/pass_fail_ledger.md`: the current ledger already records artifact hashes or versions, pass/fail status, and the exact obstruction; the final topology row updates it only after the same certified domain passes all five rows.
 
 Only after all five rows are verified on the same certified domain does the conditional Schauder theorem in [collinear-breather.md](../../../../content/markdown/aaa/proof-programs/collinear-breather.md) become an actual existence theorem. Until then, the project has a precise fixed-point proof architecture, not a completed breather proof and not a closed-form solution.
 

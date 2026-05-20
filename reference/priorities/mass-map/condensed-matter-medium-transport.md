@@ -52,6 +52,60 @@ The gate separates:
 | $\mathcal{R}_{\text{tr}}\approx\mathcal{R}_{\text{tr},*}$ | onset of medium excitation, action shedding, or branch instability. |
 | $\mathcal{R}_{\text{tr}}>\mathcal{R}_{\text{tr},*}$ | dissipative transport, radiation, or structural transition must be logged. |
 
+## Reversible/Loss Channel Split
+
+The replay object should separate medium-dressed response from transport loss before any material fit is interpreted. For a transported assembly or material cell over a row interval $r\to r+1$, write the transport energy update as
+
+$$
+\Delta E_{\mathrm{tr},r}
+=
+\Delta E_{\mathrm{rev},r}
++
+\Delta E_{\mathrm{exc},r}
++
+\Delta E_{\mathrm{heat},r}
++
+\Delta E_{\mathrm{rad},r}
++
+\Delta E_{\mathrm{branch},r}
++
+\Delta E_{\mathrm{rem},r}.
+$$
+
+Here $\Delta E_{\mathrm{rev},r}$ is stored-and-returned medium response, while the remaining terms are logged excitation, heating, radiation-like shedding, branch-transition, and remnant channels. The no-drag rule below threshold is therefore the row condition
+
+$$
+\mathcal{R}_{\text{tr},r}<\mathcal{R}_{\text{tr},*}
+\quad\Longrightarrow\quad
+\Delta E_{\mathrm{exc},r}
++
+\Delta E_{\mathrm{heat},r}
++
+\Delta E_{\mathrm{rad},r}
++
+\Delta E_{\mathrm{branch},r}
+=0
+$$
+
+up to the declared uncertainty of the replay. A row with nonzero loss-channel energy below threshold is not a mass-map refinement; it is a transport failure. A row above threshold may still be physically admissible, but it cannot be used as a branch-preserving inertial or segregation row unless the event ledger names the opened channel:
+
+$$
+\mathcal{R}_{\text{tr},r}\ge\mathcal{R}_{\text{tr},*}
+\quad\Longrightarrow\quad
+\Delta E_{\mathrm{exc},r}
++
+\Delta E_{\mathrm{heat},r}
++
+\Delta E_{\mathrm{rad},r}
++
+\Delta E_{\mathrm{branch},r}
++
+\Delta E_{\mathrm{rem},r}
+\text{ is declared.}
+$$
+
+This turns the transport residual into a proof/simulation gate. The reversible response tensor $\mathcal{M}_{\text{sea}}^{ab}$ may dress $p_{\text{int}}^a$ below threshold, but it cannot hide an unlogged scalar drag coefficient. Conversely, observed heating, phonon creation, radiation, or structural change above threshold should be routed as a loss-channel event rather than absorbed into the inertial coefficient.
+
 ## Tier 2 Source-Mining Addendum
 
 The condensed-matter, analogue-gravity, and topological-defect source family sharpens this packet in three concrete ways.

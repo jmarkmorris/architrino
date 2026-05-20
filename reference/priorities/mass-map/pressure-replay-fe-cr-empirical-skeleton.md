@@ -49,6 +49,7 @@ Only the atomic labels and nuclear charges are fixed at skeleton time:
 | `magnetic_state` | missing | missing | required before fit |
 | $T_{M,r}$ | missing | missing | required before fit |
 | $P_{\mathrm{ext},M,r}$ | missing | missing | required before fit |
+| $\mathcal{R}_{\mathrm{tr},M,r}$ and $\mathcal{R}_{\mathrm{tr},*,M,r}$ | missing | missing | required for branch-preserving pressure row |
 | $\epsilon_{ij,M,r}$ | missing | missing | required for strain channel |
 | $\sigma_{ij,M,r}$ | missing | missing | required or inferred from elastic map |
 | $C_{M,r}$ | missing | missing | required before heavy-scaling claim |
@@ -170,6 +171,43 @@ $$
 
 unless the packet declares a branch-state split. A channel that cannot respect these signs is not fit-eligible.
 
+## Transport Reversibility Contract
+
+Each future Fe/Cr row must declare the transport record
+
+$$
+\mathcal{T}_{M,r}^{P}
+=
+\left(
+\mathcal{R}_{\mathrm{tr},M,r},
+\mathcal{R}_{\mathrm{tr},*,M,r},
+\Delta E_{\mathrm{exc},M,r},
+\Delta E_{\mathrm{heat},M,r},
+\Delta E_{\mathrm{rad},M,r},
+\Delta E_{\mathrm{branch},M,r},
+\Delta E_{\mathrm{rem},M,r}
+\right).
+$$
+
+The row is eligible for the reversible pressure fit only if
+
+$$
+\mathcal{R}_{\mathrm{tr},M,r}
+<
+\mathcal{R}_{\mathrm{tr},*,M,r}
+\quad\text{and}\quad
+\Delta E_{\mathrm{exc},M,r}
++
+\Delta E_{\mathrm{heat},M,r}
++
+\Delta E_{\mathrm{rad},M,r}
++
+\Delta E_{\mathrm{branch},M,r}
+=0.
+$$
+
+A row that crosses the threshold must be split, masked, or reported as a threshold-event row before fitting $B_P$. The skeleton currently has no $\mathcal{T}_{M,r}^{P}$ rows, so it cannot claim a reversible pressure response.
+
 ## Missing-Data Ledger
 
 | Missing item | Current status | Consequence |
@@ -181,6 +219,7 @@ unless the packet declares a branch-state split. A channel that cannot respect t
 | Extractor matrices $E_{M,r}$ | missing | residual signs and units are not locked |
 | Channel masks $D_{M,r}$ | missing | retained channel set is empty |
 | Covariances $\Sigma_{M,r}$ | missing | weighted residuals are undefined |
+| Transport records $\mathcal{T}_{M,r}^{P}$ | missing | reversible pressure rows cannot be certified |
 | Null-sector bounds | missing | no pass or demotion can be promoted |
 
 The current packet therefore has no fit-eligible channel:
@@ -205,6 +244,7 @@ When real rows exist, the fit runner consumes:
 | $Y$ | $N\times6$ | rows $\mathbf{y}_{M,r}^T$ |
 | $D$ | $N\times6\times6$ | channel masks $D_{M,r}$ |
 | $\Sigma$ | $N$ covariance blocks | covariance matrices for retained residual rows |
+| $\mathcal{T}^P$ | $N$ transport blocks | $\mathcal{T}_{M,r}^{P}$ records and branch-preserving masks |
 | $m$ | $N$ labels | material labels $\mathrm{Fe}$ or $\mathrm{Cr}$ |
 | $\eta_Z$ or $\mathcal{E}$ | scalar or grid | fixed value or shared scan grid |
 | $\epsilon_{\mathrm{row}},\epsilon_{\mathrm{split}},\epsilon_P$ | scalars | declared pass tolerances |
@@ -338,7 +378,7 @@ $$
 0.
 $$
 
-This is the intended state of the skeleton. A future replay may change the reading only after the material-state rows, residual rows, covariance blocks, and null-sector bounds are inserted without changing the fit contract.
+This is the intended state of the skeleton. A future replay may change the reading only after the material-state rows, residual rows, covariance blocks, transport reversibility records, and null-sector bounds are inserted without changing the fit contract.
 
 ## Fit-Runner Handoff
 
@@ -357,11 +397,12 @@ The empty fixture is intentionally fail-closed:
 | `fits.shared.status` | `bound_only` |
 | `fits.separated.status` | `bound_only` |
 | `fits.split.status` | `bound_only` |
+| `transport_reversibility.status` | `missing` |
 | `null_bounds.status` | `missing` |
 | `reading` | `bound_only` |
 | `empirical_pass` | `false` |
 
-This runner is allowed to compute $\mathcal{R}_{\mathrm{row}}$, $\mathcal{R}_{\mathrm{sep}}$, $\mathcal{R}_{\mathrm{split}}$, rank eligibility, and null-sector status from declared rows, but it may not infer missing pressure rows, covariances, channel masks, or null-sector bounds.
+This runner is allowed to compute $\mathcal{R}_{\mathrm{row}}$, $\mathcal{R}_{\mathrm{sep}}$, $\mathcal{R}_{\mathrm{split}}$, rank eligibility, transport reversibility status, and null-sector status from declared rows, but it may not infer missing pressure rows, covariances, channel masks, transport records, or null-sector bounds.
 
 ## Next Data Insertion Checklist
 
@@ -370,5 +411,6 @@ This runner is allowed to compute $\mathcal{R}_{\mathrm{row}}$, $\mathcal{R}_{\m
 3. Supply stress or strain-plus-elastic-map data for $\Delta\Pi^{\parallel-\perp}$.
 4. Supply raw observables and ordinary correction rows for at least one retained channel.
 5. Supply $E_{M,r}$, $D_{M,r}$, and $\Sigma_{M,r}$ before fitting.
-6. Declare $\eta_Z$ as fixed or declare a shared scan grid $\mathcal{E}$.
-7. Supply all five null-sector entries or keep the reading at `bound_only`.
+6. Supply $\mathcal{T}_{M,r}^{P}$ and mask or split any threshold-event rows.
+7. Declare $\eta_Z$ as fixed or declare a shared scan grid $\mathcal{E}$.
+8. Supply all five null-sector entries or keep the reading at `bound_only`.
