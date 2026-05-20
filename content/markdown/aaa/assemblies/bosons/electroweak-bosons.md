@@ -34,7 +34,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Photon-channel speed:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea assembly network. In weak homogeneous Noether-Sea conditions the local photon-channel speed $c_\gamma$ approaches the primitive wake speed $c_f$; in material media or strong Noether-Sea gradients, $c_\gamma < c_f$ is the observer-level transport summary.
 
 ### Interaction Rules: Capture and Release
-*   **Emission (Planar-Mode Release):** Driven by accelerated motion in the source binary. The accepted action ledger enters a stable planar-pair mode along a tangential vector.
+*   **Emission (Planar-Mode Release):** Driven when a source residual routes an accepted action ledger into planar-mode nucleation. Acceleration is a common trigger geometry, but the event record must still name source depletion, recoil, wake, handoff, medium, and remnant rows.
 *   **Absorption (Planar-Mode Capture):**
     *   Absorption is not the annihilation of a quantum field operator.
     *   It is the **mechanical re-capture** of the planar mode by an internal binary in the target atom.
@@ -46,7 +46,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Attenuation & Refraction:**
     *   As the photon train passes through regions of varying density (dielectric media or dense Noether Sea), the planar mode **re-couples** transiently with ambient assemblies.
     *   **Refraction:** This transient recoupling and delay response lowers the effective photon-channel speed $c_\gamma$ relative to its weak homogeneous value.
-    *   **Attenuation:** Incoherent scattering can "strip" units off the train, depleting the beam energy over distance (scattering) or absorbing it entirely (opacity).
+    *   **Attenuation:** Incoherent scattering routes parts of the packet ledger into scattering, capture, recoil, or medium rows, depleting the beam energy over distance or absorbing it entirely (opacity).
 
 ### Phenomenology
 *   **Energy-Frequency:** For a periodic source $\omega=2\pi\nu$, the closure target is the photon-channel relation $E_\gamma=h\nu$; the cycle being counted is the propagating planar-mode phase cycle, not a rest-state volumetric clock.
@@ -130,7 +130,69 @@ P_{\perp}^{ab}
 h^{ab}-\hat{e}^a\hat{e}^b.
 $$
 
-Gate B must show that the planar-pair ledger lives in the image of $P_{\perp}$ and has no accepted free longitudinal component. A longitudinal or mixed-axis vector channel belongs to a massive corridor, a medium-bound recoupling, or a Gate A failure mode; it is not an additional free photon polarization.
+Let $P_{\parallel}^{ab}=\hat{e}^a\hat{e}^b$ be the complementary longitudinal projector. Gate B must show that the planar-pair ledger lives in the image of $P_{\perp}$ and has no accepted free longitudinal component. A longitudinal or mixed-axis vector channel belongs to a massive corridor, a medium-bound recoupling, or a Gate A failure mode; it is not an additional free photon polarization.
+
+The substrate closure target starts from the planar-pair amplitude rather than from a preselected polarization vector:
+
+$$
+\mathbf a_{\gamma}^{\mathrm{sub}}
+=
+\mathbf a_{\mathrm{pro}}
++
+\mathbf a_{\mathrm{anti}}
++
+\mathbf a_{\mathrm{wake}},
+\qquad
+\mathbf a_{\perp}^{\mathrm{sub}}
+=
+P_{\perp}
+\mathbf a_{\gamma}^{\mathrm{sub}},
+\qquad
+\mathbf a_{\parallel}^{\mathrm{sub}}
+=
+P_{\parallel}
+\mathbf a_{\gamma}^{\mathrm{sub}}.
+$$
+
+The first two substrate residuals check static charge-like cancellation and longitudinal leakage:
+
+$$
+\Delta_Q^\gamma
+=
+\frac{
+\left|
+q_{\mathrm{pro}}^{\mathrm{eff}}
++
+q_{\mathrm{anti}}^{\mathrm{eff}}
+\right|
+}{
+\left|
+q_{\mathrm{pro}}^{\mathrm{eff}}
+\right|
++
+\left|
+q_{\mathrm{anti}}^{\mathrm{eff}}
+\right|
++
+\varepsilon_Q
+},
+\qquad
+\Delta_{\parallel}^{\mathrm{sub}}
+=
+\frac{
+\left\|
+\mathbf a_{\parallel}^{\mathrm{sub}}
+\right\|
+}{
+\left\|
+\mathbf a_{\gamma}^{\mathrm{sub}}
+\right\|
++
+\varepsilon_{\mathrm{amp}}
+}.
+$$
+
+A free photon branch requires small $\Delta_Q^\gamma$, nonzero $\mathbf a_{\perp}^{\mathrm{sub}}$, and small $\Delta_{\parallel}^{\mathrm{sub}}$ in the same Gate A event window. These are closure conditions on the coaxial contra-rotating pro/anti planar pair, not independent postulates about a photon field.
 
 Choose transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ and write the effective polarization ledger as
 
@@ -150,14 +212,44 @@ $$
 \frac{1}{\sqrt{2}}
 \left(\hat{\mathbf{u}}\pm i\hat{\mathbf{v}}\right),
 \qquad
-J_{\gamma,\parallel}
-=
-\lambda_{\text{hel}}\hbar,
-\quad
-\lambda_{\text{hel}}\in\{+1,-1\}.
+\lambda_{\mathrm{hel}}\in\{+1,-1\}.
 $$
 
-The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-core spinor, and not a massive-vector longitudinal mode.
+The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-core spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
+
+$$
+\mathbf J_{\gamma}^{\mathrm{sub}}
+=
+\mathbf J_{\mathrm{pro}}
++
+\mathbf J_{\mathrm{anti}}
++
+\mathbf J_{\gamma,\mathrm{wake}},
+$$
+
+with
+
+$$
+\Delta_{\mathrm{hel}}^\gamma
+=
+\left|
+\frac{
+\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}
+}{\hbar}
+-
+\lambda_{\mathrm{hel}}
+\right|
++
+\frac{
+\left\|
+P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
+\right\|
+}{
+\hbar+\varepsilon_J
+}.
+$$
+
+A clean free branch must route source remnant, recoil, material handoff, and unrelated medium rows outside the photon-only ledger through the event-balance equation. Only after Gate A, the event-window helicity projection, and the transverse leakage residual pass may the target be summarized by $\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar\hat{\mathbf e}$. Reaction chapters consume this as the photon Gate B event residual, not as a source-free helicity proof.
 
 An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming axis $\hat{\mathbf{e}}_\gamma$, the closure target is
 

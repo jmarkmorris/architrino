@@ -1,0 +1,131 @@
+{
+  "schema": "aaa-proof/field-speed-head-on-root-audit-result/v1",
+  "packet_id": "field-speed-head-on-inflight-wake-v0",
+  "source_input": "field-speed-head-on-inflight-wake-v0",
+  "status": "degenerate_caustic_test_passed_fail_closed",
+  "claim_level": "analytic root audit for affine field-speed head-on prehistory",
+  "branch_chart_authorized": false,
+  "candidate_cycle_authorized": false,
+  "updates_live_ledger": false,
+  "normalization": {
+    "c_f": 1,
+    "x0": 1,
+    "audit_time": 0,
+    "collision_time": 1
+  },
+  "affine_histories": {
+    "electrino_left": "x_L(t)=-x0+c_f t",
+    "positrino_right": "x_R(t)=+x0-c_f t"
+  },
+  "partner_root_audit": {
+    "residual_formula_pre_collision": "2*x0 - 2*c_f*t",
+    "residual_at_audit_time": 2,
+    "status_at_audit_time": "no_partner_root_wake_in_flight",
+    "wake_fronts_at_audit_time": {
+      "left_source_right_going_front_x": -1,
+      "right_source_left_going_front_x": 1
+    },
+    "origin_caustic_time": 1,
+    "source_times_at_origin_caustic": "all s<t on the affine active history"
+  },
+  "same_source_root_audit": {
+    "causal_condition": "|x_i(t)-x_i(s)|=c_f*(t-s)",
+    "status": "identity_for_all_s_less_than_t_on_affine_field_speed_history",
+    "simple_root_jacobian": 0,
+    "consequence": "exact-root branch sum invalid; use dual-mollified finite-history integral"
+  },
+  "finite_history_truncations": [
+    {
+      "horizon": 1,
+      "prehistory_source_interval_at_collision": [
+        -1,
+        0
+      ],
+      "continuous_law_root_set": "continuum_interval",
+      "discrete_count_if_cadence_supplied": 2
+    },
+    {
+      "horizon": 2,
+      "prehistory_source_interval_at_collision": [
+        -2,
+        0
+      ],
+      "continuous_law_root_set": "continuum_interval",
+      "discrete_count_if_cadence_supplied": 3
+    },
+    {
+      "horizon": 4,
+      "prehistory_source_interval_at_collision": [
+        -4,
+        0
+      ],
+      "continuous_law_root_set": "continuum_interval",
+      "discrete_count_if_cadence_supplied": 5
+    },
+    {
+      "horizon": 8,
+      "prehistory_source_interval_at_collision": [
+        -8,
+        0
+      ],
+      "continuous_law_root_set": "continuum_interval",
+      "discrete_count_if_cadence_supplied": 9
+    },
+    {
+      "horizon": 16,
+      "prehistory_source_interval_at_collision": [
+        -16,
+        0
+      ],
+      "continuous_law_root_set": "continuum_interval",
+      "discrete_count_if_cadence_supplied": 17
+    },
+    {
+      "horizon": 32,
+      "prehistory_source_interval_at_collision": [
+        -32,
+        0
+      ],
+      "continuous_law_root_set": "continuum_interval",
+      "discrete_count_if_cadence_supplied": 33
+    }
+  ],
+  "assertions": [
+    {
+      "id": "partner_root_absent_at_initial_time",
+      "passed": true,
+      "value": "no_partner_root_wake_in_flight",
+      "meaning": "At t=0 the opposite-source causal wake is still in flight and has not reached the opposite particle."
+    },
+    {
+      "id": "partner_caustic_at_origin_time",
+      "passed": true,
+      "value": 1,
+      "meaning": "Under the affine field-speed continuation, all opposite-source emissions on the active history co-arrive at the origin time."
+    },
+    {
+      "id": "same_source_continuum_root",
+      "passed": true,
+      "value": "all s<t on each affine field-speed same-source history",
+      "meaning": "The exact same-source causal condition is an identity on the affine field-speed history."
+    },
+    {
+      "id": "same_source_jacobian_zero",
+      "passed": true,
+      "value": 0,
+      "meaning": "The simple-root Jacobian is zero on the same-source field-speed continuum, so branch-sum formulas are invalid."
+    },
+    {
+      "id": "requires_dual_mollified_history_audit",
+      "passed": true,
+      "value": "required",
+      "meaning": "The test case must be evaluated with finite history, shell width, and core scale before any force or recapture claim."
+    }
+  ],
+  "failure_modes_if_misused": [
+    "field_speed.self_root_continuum_hidden_as_simple_root",
+    "field_speed.partner_wake_in_flight_ignored",
+    "field_speed.origin_caustic_treated_as_regular_branch",
+    "field_speed.countable_infinity_limit_taken_before_eta_and_history_limits"
+  ]
+}

@@ -40,7 +40,7 @@ Each reaction record should state:
 | Noether-Sea input/output | Neutral cores, axial material, or medium excitations recruited or returned |
 | Conserved inventory | $E/P$ totals and charge/polarity balance |
 | Energy-momentum and angular-momentum ledger | Internal energy, recoil, emitted assemblies, spin/vector ledger terms, wake-carried angular momentum, and medium excitation |
-| Radiation event record, when applicable | Source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status |
+| Radiation event record, when applicable | Source assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, photon Gate B event residual when $E_\gamma\ne0$, and closure status |
 | Provenance data | Source identity, emission time, causal-root branch, and local medium state |
 | Closure status | What is established, what is assumed, and what remains to derive |
 
@@ -104,6 +104,178 @@ $$
 $$
 
 componentwise across the tuple. Nonzero physical recoil, medium heating, remnant excitation, outgoing product energy, or photon output is allowed only as a named term inside $Y_{\mathsf e}$; it is not allowed as an implicit loss.
+
+The stronger event-balance target bundles energy, momentum, and angular momentum instead of checking photon polarization separately from the source ledger. For $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$, define source depletion by
+
+$$
+\Delta\mathcal Q_{\mathrm{src}}^{0}
+=
+\mathcal Q_{\mathrm{src}}^{-}
+-
+\mathcal Q_{\mathrm{src}}^{+}.
+$$
+
+A resolved radiative event closes only if
+
+$$
+\Delta\mathcal Q_{\mathrm{src}}^{0}
+=
+\mathcal Q_{\gamma}^{\mathrm{sub}}
++
+\mathcal Q_{\mathrm{recoil}}^{0}
++
+\mathcal Q_{\mathrm{med}}^{0}
++
+\mathcal Q_{\mathrm{wake}}^{0}
++
+\mathcal Q_{\mathrm{handoff}}^{0}
++
+\mathcal Q_{\mathrm{rem}}^{0},
+$$
+
+with normalized residual
+
+$$
+\Delta_{\mathrm{evt}}^\gamma
+=
+\sum_{\mathcal Q\in\{E,\mathbf p,\mathbf J\}}
+\frac{
+\left\|
+\Delta\mathcal Q_{\mathrm{src}}^{0}
+-
+\mathcal Q_{\gamma}^{\mathrm{sub}}
+-
+\mathcal Q_{\mathrm{recoil}}^{0}
+-
+\mathcal Q_{\mathrm{med}}^{0}
+-
+\mathcal Q_{\mathrm{wake}}^{0}
+-
+\mathcal Q_{\mathrm{handoff}}^{0}
+-
+\mathcal Q_{\mathrm{rem}}^{0}
+\right\|
+}{
+\varepsilon_{\mathcal Q}
++
+\left\|
+\Delta\mathcal Q_{\mathrm{src}}^{0}
+\right\|
+}.
+$$
+
+The Gate B angular-momentum row is the $\mathcal Q=\mathbf J$ projection of this same identity. Let the event window be labeled by superscript $0$, and let $\mathbf J_{\mathrm{src}}^-$ and $\mathbf J_{\mathrm{src}}^+$ be the source angular-momentum ledger before and after the event. Define
+
+$$
+\Delta\mathbf J_{\mathrm{src}}^{0}
+=
+\mathbf J_{\mathrm{src}}^-
+-
+\mathbf J_{\mathrm{src}}^+.
+$$
+
+The photon event row is
+
+$$
+\Delta\mathbf J_{\mathrm{src}}^{0}
+=
+\mathbf J_{\gamma}^{\mathrm{sub}}
++
+\mathbf J_{\mathrm{recoil}}^{0}
++
+\mathbf J_{\mathrm{med}}^{0}
++
+\mathbf J_{\mathrm{wake}}^{0}
++
+\mathbf J_{\mathrm{handoff}}^{0}
++
+\mathbf J_{\mathrm{rem}}^{0}.
+$$
+
+Define the corresponding balance defect by
+
+$$
+\mathbf B_{\gamma}^{0}
+=
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\gamma}^{\mathrm{sub}}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}.
+$$
+
+For a Gate B-admissible photon row, helicity is the projection
+
+$$
+\lambda_{\mathrm{hel}}
+=
+\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar},
+\qquad
+\lambda_{\mathrm{hel}}\in\{+1,-1\},
+$$
+
+and the event balance bounds the projection error:
+
+$$
+\left|
+\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
+-
+\frac{
+\hat{\mathbf e}\cdot
+\left(
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+\right)
+}{\hbar}
+\right|
+\le
+\frac{\|\mathbf B_{\gamma}^{0}\|}{\hbar}.
+$$
+
+The normalized event-balance residual is
+
+$$
+\Delta_{\mathrm{bal}}^\gamma
+=
+\frac{
+\left\|
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\gamma}^{\mathrm{sub}}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+\right\|
+}{
+1+\left\|\Delta\mathbf J_{\mathrm{src}}^{0}\right\|
+}.
+$$
+
+The denominator is understood in the normalized angular-momentum units of the event ledger. Missing source, recoil, medium, wake, handoff, or remnant rows keep the photon record provisional even when the outgoing photon substrate ledger is algebraically clean.
 
 ### Provenance-Preserving Polarity Inventory
 

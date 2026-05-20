@@ -150,6 +150,8 @@ The proof burden is consequently finite-certificate closure:
 $$
 \text{candidate cycle}
 \to
+\text{null-coordinate pre-ledger closure}
+\to
 \text{finite branch chart}
 \to
 \text{closed convex certificate}
@@ -158,6 +160,8 @@ $$
 \to
 \text{Schauder}.
 $$
+The collinear pre-ledger is a falsification gate, not bookkeeping: finite parent-complement coverage must close before any branch chart is authorized.
+
 In concrete terms, instantiate a candidate history
 $$
 \Phi_{\mathrm{cyc}},
@@ -9647,6 +9651,8 @@ Operationally, the live proof burden remains the collinear certificate chain:
 $$
 \phi_{\mathrm{cyc}}
 \to
+\text{null-coordinate pre-ledger closure}
+\to
 \text{finite branch chart}
 \to
 \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
@@ -9657,6 +9663,8 @@ P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
 \to
 \text{Schauder}.
 $$
+Here the pre-ledger is a candidate-falsification gate: unresolved parent-complement strips stop the chain before branch-chart, certificate, self-map, or Schauder work begins.
+
 The reduced planar, unreduced planar, and planar three-body sections should stay frozen as dependency maps until that chain is closed.
 
 This is the correct point from which to resume work on the broader dynamics stack.

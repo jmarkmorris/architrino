@@ -35,11 +35,11 @@ S(t)
 \big(
 X(t),
 H_t,
-\Theta_{\mathrm{sea}}(t,\cdot),
+\mathcal{N}_{\mathrm{sea}}(t,\cdot),
 \mathcal{B}_t
 \big),
 $$
-where $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the path-history and provenance ledger, $\Theta_{\mathrm{sea}}$ is the retained Noether-Sea state, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
+where $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether-Sea state, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
 
 **Deterministic evolution and basin selection**
 - The delay-differential master equation is deterministic: where the declared branch chart or regularization makes the evolution well posed, a fully specified $\mathbb{U}_{\text{now}}\equiv S(t_0)$, including the required path-history and provenance ledger, generates a unique trajectory $S(t)$ for $t>t_0$.
@@ -62,7 +62,7 @@ d\tau_{\mathcal A}
 \Omega_{\mathcal A}
 \left(
 \mathbf{w},
-\Theta_{\mathrm{sea}},
+\mathcal{N}_{\mathrm{sea}},
 R_{\mathcal A},
 H_{\mathcal A}
 \right)
@@ -72,17 +72,17 @@ H_{\mathcal A}
 $$
 Here $\varphi_{\mathcal A}$ is the declared clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $R_{\mathcal A}$ is the clock assembly orientation and geometry record, $H_{\mathcal A}$ is the relevant path-history ledger, and
 $$
-w^i
+w^i_{\mathcal A}
 =
-\frac{dX^i}{dt}
+\frac{dX^i_{\mathcal A}}{dt}
 -
 u^i_{\text{sea}}
 $$
-is velocity relative to the local Noether-Sea flow in the observer-level bookkeeping map.
+is velocity relative to the local Noether-Sea flow in the observer-level bookkeeping map for the clock worldline $X^i_{\mathcal A}(t)$.
 
-The full local Noether-Sea state is the retained state record $\Theta_{\mathrm{sea}}$, for example
+The full local Noether-Sea state is the retained state record $\mathcal{N}_{\mathrm{sea}}$, for example
 $$
-\Theta_{\mathrm{sea}}
+\mathcal{N}_{\mathrm{sea}}
 =
 \left(
 \rho_{\text{core}},
@@ -110,11 +110,11 @@ The low-energy Lorentz-closure target for a declared clock branch has the form
 $$
 \frac{d\tau_{\mathcal A}}{dt}
 =
-A(\Theta_{\mathrm{sea}})
+A(\mathcal{N}_{\mathrm{sea}})
 \sqrt{
 1-
 \frac{
-B_{ij}(\Theta_{\mathrm{sea}})w^iw^j
+B_{ij}(\mathcal{N}_{\mathrm{sea}})w^iw^j
 }{
 c_0^2
 }
@@ -148,14 +148,29 @@ Required emergent limits:
 - Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../dynamics/tri-binary-dynamics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether-Sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
 - Homogeneous medium, low velocities:
   $$
-  \frac{d\tau}{dt} \approx \sqrt{1 - \|\mathbf{v}\|^2/c_\star^2},
+  \frac{d\tau_{\mathcal A}}{dt} \approx \sqrt{1 - \|\mathbf{w}\|^2/c_\star^2},
   \qquad c_\star=c_0 \text{ in the weak homogeneous observer branch}.
   $$
+  In the weak homogeneous sea-rest branch, $u^i_{\text{sea}}=0$, so $\mathbf{w}=\mathbf{v}$.
 - Weak field, low velocities, after the clock-channel potential has been matched to the Newtonian benchmark:
   $$
   \Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2),
   \qquad
-  \frac{d\tau}{dt} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{v}\|^2/c_0^2}.
+  \frac{d\tau_{\mathcal A}}{dt} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{w}\|^2/c_0^2}.
+  $$
+  Here $\Phi_N$ is the conventional negative Newtonian potential. If a positive PPN potential $U_N\ge0$ is used, set
+  $$
+  \Phi_N=-U_N,
+  $$
+  so the first-order clock expansion reads
+  $$
+  \frac{d\tau_{\mathcal A}}{dt}
+  \approx
+  1+\frac{\Phi_N}{c_0^2}
+  -\frac{\|\mathbf{w}\|^2}{2c_0^2}
+  =
+  1-\frac{U_N}{c_0^2}
+  -\frac{\|\mathbf{w}\|^2}{2c_0^2}.
   $$
 
 **Speed convention table**
@@ -163,7 +178,7 @@ Required emergent limits:
 | Symbol | Meaning | Status |
 | --- | --- | --- |
 | $c_f$ | Primitive causal-wake propagation speed relative to the Euclidean void | fundamental |
-| $c_\gamma(\Theta_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether-Sea state and direction | derived |
+| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether-Sea state and direction | derived |
 | $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
 | $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
 | $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration |
@@ -191,7 +206,7 @@ $$
 +
 \cdots,
 $$
-with the trace-free anisotropy below the direct photon-sector bound, typically $|\zeta_{ij}^{\mathrm{TF}}|\lesssim10^{-17}$ and, for the strictest cavity rows, at the $10^{-18}$ scale. The PPN export must also pass the componentwise bound vector
+with the trace-free anisotropy below the current hard-wall row in the constraint ledger, presently of order $|\zeta_{ij}^{\mathrm{TF}}|\lesssim10^{-17}$ and, for the strictest cavity rows, at the $10^{-18}$ scale. The PPN export must also pass the componentwise bound vector
 $$
 \left(
 |\gamma_{\mathrm{PPN}}-1|,
@@ -207,9 +222,9 @@ $$
 4\times10^{-5},
 2\times10^{-9},
 4\times10^{-20}
-\right),
+\right).
 $$
-or else name the separate screening mechanism that prevents an effective observer from seeing the leakage. Preferred-frame hiding is therefore a numerical closure condition, not a prose reassurance.
+Any screening mechanism must be included before exporting the observer-level PPN and Lorentz-test coefficients. The exported coefficients themselves must pass the ledger bounds. Preferred-frame hiding is therefore a numerical closure condition, not a prose reassurance.
 
 **Effective metric handoff**
 
@@ -217,14 +232,58 @@ The clock/ruler handoff to effective metric language can be written locally as
 $$
 d\tau^2
 =
-A^2(\Theta_{\mathrm{sea}})\,dt^2
+A^2(\mathcal{N}_{\mathrm{sea}})\,dt^2
 -
 \frac{1}{c_0^2}
-B_{ij}(\Theta_{\mathrm{sea}})
+B_{ij}(\mathcal{N}_{\mathrm{sea}})
 \left(dx^i-u^i_{\text{sea}}dt\right)
 \left(dx^j-u^j_{\text{sea}}dt\right).
 $$
-Photon-channel closure then reads the null condition of this observer-level quadratic form, with $c_\gamma$ derived from the same Noether-Sea state rather than assigned independently. The weak homogeneous branch requires $A\to1$, $B_{ij}\to\delta_{ij}$, and $u^i_{\text{sea}}\to0$.
+The metric handoff is admissible only on branches where
+$$
+A>0,
+\qquad
+B_{ij}=B_{ji},
+\qquad
+B_{ij}\xi^i\xi^j>0
+\quad
+\text{for }\xi\ne0.
+$$
+Define the Lorentzian observer metric by
+$$
+ds_{\mathrm{eff}}^2=-c_0^2d\tau^2.
+$$
+With $x^0=c_0t$, the exported components are
+$$
+g^{\mathrm{eff}}_{00}
+=
+-A^2+\frac{1}{c_0^2}B_{ij}u^i_{\text{sea}}u^j_{\text{sea}},
+$$
+$$
+g^{\mathrm{eff}}_{0i}
+=
+-\frac{1}{c_0}B_{ij}u^j_{\text{sea}},
+$$
+and
+$$
+g^{\mathrm{eff}}_{ij}
+=
+B_{ij}.
+$$
+Photon-channel closure then reads the null condition of this observer-level quadratic form, with $c_\gamma$ derived from the same Noether-Sea state rather than assigned independently:
+$$
+\dot x^i
+=
+u^i_{\text{sea}}
++
+c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})\hat k^i,
+$$
+$$
+c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})
+=
+\frac{c_0A}{\sqrt{B_{ij}\hat k^i\hat k^j}}.
+$$
+The weak homogeneous branch requires $A\to1$, $B_{ij}\to\delta_{ij}$, and $u^i_{\text{sea}}\to0$.
 
 **Key point**
 

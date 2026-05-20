@@ -140,23 +140,91 @@ $$
 
 where $\mathcal{H}_A$ and $\mathcal{H}_B$ are the path-history data carried by the two daughter assemblies, $\Delta\Theta_{AB}^{\text{bin/wake}}$ records their correlated binary-orientation and wake-phase relations, and $\mathsf{Cons}_{AB}$ records the conservation constraints inherited from the source event. This is not an additional force or influence. It is the candidate hidden-variable domain over which the Bell closure must integrate.
 
-Let $K_A$ and $K_B$ be the two local apparatus-response kernels. For spin tests, their one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](./angular-momentum-and-spin.md). The observer-level joint response target is
+Let $K_{ab}^{AB}$ be the joint-record response kernel induced by the pair-provenance record and the two local apparatus interactions. For spin tests, its one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](./angular-momentum-and-spin.md), and the kernel must be a normalized record law:
 
 $$
-\begin{aligned}
-P_{AB}^{\text{test}}(a,b \,|\, \hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+K_{ab}^{AB}\ge0,
+\qquad
+\sum_{a,b=\pm1}K_{ab}^{AB}=1.
+$$
+
+If $\Pi_{AB}^{\mathrm{sing}}$ is the singlet-like pair-provenance record, $P_{\mathrm{src}}^{\mathrm{sing}}$ is the source record, and $\zeta_A,\zeta_B$ collect unresolved local apparatus and Noether-Sea microstates, the observer-level joint response target is
+
+$$
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
 =
 \int
-&K_A(a \,|\, \hat{\mathbf{m}}_A;Z_A,\zeta_A,\lambda_{AB}^{\text{prov}})
-K_B(b \,|\, \hat{\mathbf{m}}_B;Z_B,\zeta_B,\lambda_{AB}^{\text{prov}})
-\\
-&d\nu_A(Z_A,\zeta_A \,|\, \hat{\mathbf{m}}_A,\lambda_{AB}^{\text{prov}})
-d\nu_B(Z_B,\zeta_B \,|\, \hat{\mathbf{m}}_B,\lambda_{AB}^{\text{prov}})
-d\rho_{AB}^{\text{prov}}(\lambda_{AB}^{\text{prov}}).
-\end{aligned}
+K_{ab}^{AB}
+\left(
+\hat{\mathbf m}_A,
+\hat{\mathbf m}_B;
+\Pi_{AB}^{\mathrm{sing}},
+\zeta_A,
+\zeta_B
+\right)
+d\nu_{A,\hat{\mathbf m}_A}(\zeta_A)
+d\nu_{B,\hat{\mathbf m}_B}(\zeta_B)
+d\rho_{\mathrm{src}}
+\left(
+\Pi_{AB}^{\mathrm{sing}}
+\middle|
+P_{\mathrm{src}}^{\mathrm{sing}}
+\right).
 $$
 
-Here $Z_A$ and $Z_B$ are the local incoming ledger coordinates at the two detectors, while $\zeta_A$ and $\zeta_B$ collect the unresolved apparatus and local Noether-Sea microstates. Writing this integral does not pass the Bell gate. It names the diagnostic object: the derived kernels and provenance measure must reproduce the tested Bell correlations while preserving no-signaling and measurement independence, and they must identify exactly which provenance or response compression prevents reduction to Bell's factorized form. If the expression reduces to an ordinary measurement-independent Bell-local hidden-variable integral, the Bell gate fails.
+Writing this integral does not pass the Bell gate. It names the diagnostic object: the derived joint-record kernel and provenance measure must reproduce the tested singlet joint law while preserving no-signaling and measurement independence, and they must identify exactly which provenance or response compression prevents reduction to Bell's factorized form. The compact singlet residual is
+
+$$
+\Delta_{\mathrm{joint}}^{\mathrm{sing}}
+=
+\sup_{a,b,\hat{\mathbf m}_A,\hat{\mathbf m}_B}
+\left|
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+-
+\frac14
+\left(
+1-ab\,\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
+\right)
+\right|.
+$$
+
+This single target implies the unbiased marginals and the correlation $E=-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B$ only after the record law is normalized. Product form belongs only as a failure audit:
+
+$$
+\Delta_{\mathrm{prod}}
+=
+\inf_{K_A,K_B}
+\sup_{a,b,\hat{\mathbf m}_A,\hat{\mathbf m}_B}
+\left|
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+-
+\int K_AK_B\,d\mu_{AB}^{\mathrm{rec}}
+\right|.
+$$
+
+If $\Delta_{\mathrm{prod}}$ vanishes in the completed record table, the expression has reduced to an ordinary measurement-independent Bell-local hidden-variable integral and the Bell gate fails.
+
+The threshold-pullback warning is now sharp. A deterministic one-wing basin kernel can reproduce its local probability law after pushing forward an invariant record-window measure, but two independent one-wing kernels over a setting-independent source measure imply the usual CHSH bound. If
+
+$$
+K_{ab}^{AB}
+=
+K_A^a(\hat{\mathbf m}_A;\Pi,\zeta_A)
+K_B^b(\hat{\mathbf m}_B;\Pi,\zeta_B),
+$$
+
+then after integrating $\zeta_A,\zeta_B$ the model has
+
+$$
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\int
+p_A(a|\hat{\mathbf m}_A,\Pi)
+p_B(b|\hat{\mathbf m}_B,\Pi)
+d\rho_{\mathrm{src}}(\Pi),
+$$
+
+so the standard CHSH proof applies. The Bell task is therefore not to repeat the one-wing threshold theorem twice. It is to derive the non-product joint response or non-restartable provenance compression that survives this no-go while keeping the local marginals screenable.
 
 The diagnostic must also exclude a hidden slide into measurement-independence denial. For the pair-provenance measure, define
 
@@ -211,7 +279,7 @@ The Bohmian comparison also gives a warning about where the proof burden sits. A
 
 The existence of absolute time $t$ is essential to the consistency of this picture. In the standard relativistic framework, the absence of a preferred foliation means that "which measurement happened first" is frame-dependent for spacelike-separated events. This makes it difficult to tell a coherent story about how correlations are maintained without invoking some form of action at a distance.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, there is an objective temporal ordering. At any absolute time $t$, the complete microstate $\Gamma(t)$ is defined on a global simultaneity surface $\Sigma_t$. The correlations between $A$ and $B$ are **already present** in $\Gamma(t)$ for all $t > t_0$, carried in the respective internal configurations. The measurement at $A$ (occurring at some absolute time $t_A$) resolves $A$'s configuration into a definite basin; the measurement at $B$ (at $t_B$) does the same for $B$. Whether $t_A < t_B$ or $t_B < t_A$ is an objective fact, but it does not matter for the statistics: the correlations were fixed at $t_0$ and are simply **read out** at $t_A$ and $t_B$.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, there is an objective temporal ordering. At any absolute time $t$, the complete microstate $\Gamma(t)$ is defined on a global simultaneity surface $\Sigma_t$. The shared source event fixes a nonseparable pair-provenance domain for $A$ and $B$, carried in their internal configurations and path histories for $t > t_0$. The measurement at $A$ (occurring at some absolute time $t_A$) resolves $A$'s configuration into a definite local basin; the measurement at $B$ (at $t_B$) does the same for $B$. Whether $t_A < t_B$ or $t_B < t_A$ is an objective fact, but it does not by itself solve Bell's theorem. The closure is earned only when the pushed-forward joint response kernel preserves no-signaling and measurement independence while failing product screening.
 
 This structure avoids the conceptual difficulties of standard nonlocality:
 
@@ -223,19 +291,43 @@ Temporal-nonlocality and retrocausal interpretations remain useful only as compa
 
 ### No-Signaling: Why Correlations Cannot Transmit Information
 
-Any accepted Bell closure in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework must preserve no-signaling for a precise structural reason. The marginal probability of obtaining outcome $a$ at detector $A$ is:
+Any accepted Bell closure in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework must preserve no-signaling for a precise structural reason. The marginal probability of obtaining outcome $a$ at detector $A$ is computed from the joint-record law:
 
 $$
-P(a \,|\, \hat{\mathbf{m}}_A) = \int P(a \,|\, \hat{\mathbf{m}}_A, \lambda)\, \rho(\lambda)\, d\lambda,
+P(a|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\sum_b
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B),
 $$
 
-where $\rho(\lambda)$ is the distribution over hidden variables as accessible to the Physical Observer. This marginal is independent of $\hat{\mathbf{m}}_B$ because:
+and an admissible model must make this marginal independent of $\hat{\mathbf m}_B$. This independence is required because:
 
-1. The hidden-variable distribution $\rho(\lambda)$ is set at the source event and does not depend on the distant setting $\hat{\mathbf{m}}_B$,
+1. The source-provenance distribution is set at the source event and does not depend on the distant setting $\hat{\mathbf m}_B$,
 2. No causal wake from the $B$-measurement apparatus reaches $A$ before $A$'s measurement (assuming spacelike separation in the emergent metric),
 3. The local dynamics at $A$ are fully determined by $A$'s microstate plus the local Noether Sea—no input from the distant setting.
 
 The correlations become visible only when outcomes from both sides are **compared** (via a classical, sub-$c_f$ communication channel). This is precisely the no-signaling structure observed experimentally.
+
+For binary outcomes this structure can be isolated without adding a new assumption. A normalized no-signaling joint record law has the form
+
+$$
+P(a,b|x,y)
+=
+\frac14
+\left[
+1
++
+a\,m_A(x)
++
+b\,m_B(y)
++
+ab\,C(x,y)
+\right],
+\qquad
+a,b\in\{-1,+1\},
+$$
+
+with $1+a\,m_A(x)+b\,m_B(y)+ab\,C(x,y)\ge0$. The local channels $m_A$ and $m_B$ carry only local settings; the only setting-pair term is the correlation channel $C(x,y)$. A product-screened pair provenance gives $C_{\mathrm{prod}}(x,y)=\int A_x(\Pi)B_y(\Pi)d\rho_{\mathrm{src}}(\Pi)$, so the live nonlocality question is whether $\mathbb{A}\mathbb{A}\mathbb{A}$ can derive a non-product $C(x,y)$ while preserving the local marginals.
 
 This can be recorded as a screenable marginal residual. For settings $\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B$ and outcomes $a,b$, define
 $$
@@ -275,7 +367,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework supports a clean two-level interp
 
 **Epistemic level (Physical Observer).** The PO has access only to coarse-grained observables (effective fields, detector clicks). Unable to track the full microstate, the PO describes the system with a density matrix $\rho_{AB}$ that is non-separable. The PO interprets correlations as "entanglement" and the resolution of metastability as "collapse." These are accurate operational descriptions but do not reflect ontological indeterminacy or nonlocal influence.
 
-The persistent philosophical puzzles of entanglement—how can a measurement "here" instantaneously affect a system "there"?—are relocated by this reading rather than solved by assertion. There is no instantaneous effect. A successful Bell closure must show that pre-established correlations in definite hidden variables can be read out locally at each detector, with the comparison requiring ordinary sub-$c_f$ communication.
+The persistent philosophical puzzles of entanglement—how can a measurement "here" instantaneously affect a system "there"?—are relocated by this reading rather than solved by assertion. There is no instantaneous effect. A successful Bell closure must show that the pair-provenance domain and two local apparatus interactions push forward to the tested joint law, with the comparison requiring ordinary sub-$c_f$ communication.
 
 ---
 
@@ -301,7 +393,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 
 ## Observables and Falsifiability
 
-**Working closure route:** Ordinary entanglement correlations should be derived from deterministic, correlated hidden variables established at a shared source event, maintained through path-history structure, and read out locally at each detector without superluminal influence. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
+**Working closure route:** Ordinary entanglement correlations should be derived from a deterministic, nonseparable pair-provenance record established at a shared source event, maintained through path-history structure, and resolved by local detector kernels without superluminal influence. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
 
 **Assumptions:**
 - Complete microstate $\Gamma(t)$ is definite at all $t$.
@@ -320,11 +412,31 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 **Failure Modes:**
 - If an experiment demonstrates **signaling** via entanglement (information transfer without a sub-$c_f$ channel), the mechanism fails.
 - If a Bell test with verified measurement independence and closed loopholes produces correlations **exceeding** the Tsirelson bound ($|S| = 2\sqrt{2}$), the quantum formalism itself would be violated, requiring revision at both levels.
-- If the pair-provenance ledger plus local apparatus-response maps fail to reproduce the $\cos^2(\theta/2)$ correlation function for spin-singlet pairs from the hidden-variable geometry, the specific Bell-closure mechanism is falsified, though the general ontological framework may admit repair.
+- If the pair-provenance ledger plus local apparatus-response maps fail to reproduce the full spin-singlet joint law from the hidden-variable geometry, the specific Bell-closure mechanism is falsified, though the general ontological framework may admit repair.
 
 **Bell Closure Gate:**
 - Simulate a minimal correlated-pair source event (e.g., a parent assembly fragmenting into two daughter tri-binaries) under the Master Equation and extract the joint outcome statistics as a function of relative measurement angle.
-- Derive the hidden-variable distribution $\rho(\lambda)$ for a spin-singlet-like source event from the conservation constraints and verify that it reproduces $P(a, b | \hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B) = \frac{1}{2}\sin^2\!\bigl(\tfrac{\theta_{AB}}{2}\bigr)$.
+- Derive the source-provenance distribution for a spin-singlet-like source event from the conservation constraints and verify the full joint law
+  $$
+  P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+  =
+  \frac14
+  \left(
+  1-ab\,\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
+  \right),
+  \qquad
+  a,b\in\{-1,+1\},
+  $$
+  which yields
+  $$
+  E_{\mathrm{SG}}
+  \left(
+  \hat{\mathbf m}_A,
+  \hat{\mathbf m}_B
+  \right)
+  =
+  -\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B.
+  $$
 - Investigate whether the non-separability of $\lambda$ can be given a precise geometric characterization in terms of correlated binary-plane orientations and wake-phase offsets.
 
 The philosophy-facing framing of this problem lives in [Crisis in Physics](../philosophy-history/crisis-in-physics.md), especially its Bell and measurement sections.

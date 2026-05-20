@@ -333,6 +333,66 @@ $$
 
 Thus the tensor channel is not a sixth independent pressure response. It is the same delay coefficient plus the explicit strain-response coefficient.
 
+## Exposed-Pressure Trace Consequence
+
+The pressure tensor closure has a direct mass-map consequence once it is composed with the exposed inertial-response trace. This is a priority-side theorem target, not a completed pressure prediction.
+
+Let
+
+$$
+M_{0}^{\mathrm{src}}(A)
+\equiv
+\zeta(A)E_{\text{internal}}(A)
+$$
+
+be the scalar exposed source after the mass-facing exposure quotient has descended. Around the weak homogeneous reference cell, the scalar mass trace has the first-order form
+
+$$
+m_{\mathrm{tr}}(A)
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+M_{0}^{\mathrm{src}}(A)(1+\delta\mathcal{M}_{0})
++
+\frac{1}{3}
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf},ab}(A)
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right]
++
+\mathcal{R}_{\mathrm{trace}}.
+$$
+
+Substituting the pressure-row tensor identities gives the first-order pressure shift
+
+$$
+\delta_P m_{\mathrm{tr}}(A)
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+\delta_P M_{0}^{\mathrm{src}}(A)
++
+2M_{0}^{\mathrm{src}}(A)C_{\chi}^{\mathrm{iso}}\Pi
++
+\frac{1}{3}
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf},ab}(A)
+\left(
+2C_{\chi}^{\mathrm{aniso}}Q_{\chi}^{ab}
++
+m_SS_{\mathrm{dev}}^{ab}
+\right)A
+\right]
++
+\mathcal{R}_{\mathrm{comp}}.
+$$
+
+This equation is the subthreshold exposed-pressure trace lemma. Below $\mathcal{R}_{\text{tr},*}$, pressure changes scalar mass trace only through a quotient-visible exposed-source change $\delta_PM_{0}^{\mathrm{src}}$, the shared isotropic delay-pressure coefficient $C_{\chi}^{\mathrm{iso}}$, and the trace-free contraction of exposed anisotropy with the reversible symmetric pressure-dressed medium tensor. A pressure replay that improves the scalar mass trace by introducing an independent $\delta\mathcal{M}_0$ row, a hidden source-handle shift, or an unlogged loss term has not advanced the mass map; it has split the branch or left the reversible domain.
+
+The residual $\mathcal{R}_{\mathrm{comp}}$ must retain second-order pressure terms, exposure drift not yet proven to descend through the quotient, internal-energy drift beyond $M_{0}^{\mathrm{src}}$, tensor residuals $\mathcal{R}_{\mathcal M}^{ab}$, projection-label mismatch, and thresholded transport events.
+
 Two special cases are useful as branch diagnostics:
 
 $$

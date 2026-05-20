@@ -172,6 +172,64 @@ Fold residuals are interval fold-contribution targets $I_{\Sigma_i,k}$, not bran
 
 The parent-complement steering term $H_{\mathrm{pc}}$ is not an acceptance theorem. It is a search objective that penalizes any fold-adjacent parent complement whose outward-rounded null-coordinate ranges have zero gap, positive-width overlap, or residual equality core after the proposed simple-root windows are removed.
 
+The stronger use of $H_{\mathrm{pc}}$ is a gap-opening perturbation criterion. Let
+$$
+C(\mathbf a)=0
+$$
+collect the structural constraints in the fresh fold-collocation packet, and for each unresolved parent complement $C_m=R_m\times S_m$ define a signed gap functional
+$$
+\delta_m(\mathbf a)
+=
+\inf_{\theta_s\in S_m} y_m(\theta_s;\mathbf a)
+-
+\sup_{\theta_r\in R_m} y_m(\theta_r;\mathbf a),
+$$
+or the opposite ordering, so that $\delta_m>0$ means strict null-coordinate separation. A provisional candidate $\mathbf a_0$ has a constructive parent-complement repair direction when there exists $\xi$ such that
+$$
+DC(\mathbf a_0)\xi=0,
+\qquad
+D\delta_m(\mathbf a_0)\xi\ge \kappa_m>0
+\quad
+\text{for every unresolved }m.
+$$
+Then, by the implicit-function theorem, a nearby structural solution curve opens those parent-complement gaps for sufficiently small positive parameter. In matrix form the solver should test
+$$
+B\xi=0,
+\qquad
+A\xi\ge\kappa\mathbf{1},
+$$
+where $B$ is the structural Jacobian plus neutral-coordinate fixing rows and $A$ is the signed parent-complement gap derivative matrix. This is a candidate-construction mechanism, not a certificate pass.
+
+The first proof aid for this condition is
+[`null-coordinate-gap-opening-scanner.mjs`](../../../../../scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs).
+It accepts a declared finite matrix and reports a strict witness only when it
+finds
+$$
+\|\xi\|_\infty\le1,
+\qquad
+B\xi=0
+\quad\text{to tolerance},
+\qquad
+A\xi>\kappa.
+$$
+The diagnostic artifact
+`gap_opening_feasibility_result.seed_cosine_diagnostic_demo.v0.json` shows the
+success-marker shape on independent endpoint-shear columns, while explicitly
+leaving `preledger_pass=false` and `branch_chart_authorized=false`. A live fresh
+candidate must replace that diagnostic matrix with $B=DC(\mathbf a_0)$ and the
+true signed gap derivative matrix $A$ for one frozen packet identity.
+
+The next step toward that replacement is now available:
+`gap_opening_live_fold_shear_result.seed_cosine_residuals.v0.json` uses actual
+$C^1$ first-half arc bumps with
+$$
+H(\theta+1/2)=-H(\theta)
+$$
+and finds a strict finite witness for the residual collars in a fixed-period
+local shear subspace. The successor solver should seed its fold-adapted
+collocation search with this direction, then add the full structural equations
+and interval bounds on the same new packet identity.
+
 ## Null-Coordinate Pre-Ledger Acceptance Targets
 
 Before any branch-chart construction, the successor packet must run the null-coordinate pre-ledger on its own frozen identity and record:

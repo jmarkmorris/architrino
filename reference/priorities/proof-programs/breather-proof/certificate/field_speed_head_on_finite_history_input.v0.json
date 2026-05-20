@@ -1,0 +1,24 @@
+{
+  "schema": "aaa-proof/field-speed-head-on-finite-history/v1",
+  "packet_id": "field-speed-head-on-finite-history-v0",
+  "source": "Finite-history dual-mollified continuation of field-speed-head-on-inflight-wake-v0.",
+  "claim_limits": {
+    "claims_breather": false,
+    "claims_candidate_cycle": false,
+    "claims_branch_chart_authorization": false,
+    "claims_preledger_pass": false
+  },
+  "parameters": {
+    "c_f": 1,
+    "x0": 1,
+    "g": 1,
+    "epsilon_c": 0.05,
+    "eta": 0.02,
+    "shell_mollifier": {
+      "type": "compact_polynomial_c1_15_16"
+    },
+    "audit_time": 0,
+    "history_horizons": [0.25, 0.5, 1, 2, 4, 8, 16, 32],
+    "discrete_emission_cadence": 1
+  }
+}

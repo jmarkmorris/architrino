@@ -396,14 +396,25 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
   A_{\text{rad}} = \frac{s^2}{R}.
   $$
 
-2. **Net-zero tangential power** (constant speed on average):
+2. **Finite-window energy balance**:
   $$
-  \langle T \rangle = 0.
+  \left\langle
+  \frac{dK_{\mu}}{dt}
+  \right\rangle_W
+  +
+  \left\langle
+  \Phi_{\mathrm{wake},\partial W}
+  +
+  P_{\mathrm{recoil}}
+  \right\rangle_W
+  =
+  0.
   $$
+  Here $K_{\mu}$ is the chosen quadratic kinetic proxy, $\Phi_{\mathrm{wake},\partial W}$ is the causal-wake energy flux through the boundary of the local window, and $P_{\mathrm{recoil}}$ is any retained local wake-emission resistance term. The older shorthand $\langle T\rangle=0$ is valid only for a particle-only closed window with no boundary wake flux and no recoil term.
 
 ---
 
-#### Apparent Obstruction: Non-Negativity of Tangential Components
+#### Tangential Drive and Wake Escapement
 
 **Theorem (Same-sheet no-go for constant-speed circular orbit in the bare two-body kernel).**
 In the symmetric, non-translating circular binary with canonical delayed radial forces only, and with active roots restricted to the same-sheet principal branch chart defined above, the net tangential acceleration is strictly positive whenever at least one causal root contributes.
@@ -441,9 +452,11 @@ The sign is branch-invariant on this same-sheet chart because winding changes ti
 
 **Corollary.**  
 Within the same-sheet bare isolated two-body kernel, an exact constant-speed circular orbit
-($\langle T\rangle=0$) is impossible. Any MCB-like steady state must therefore either include signed-ledger cancellation absent from the same-sheet chart, or come from terms outside this kernel, e.g. medium coupling/dissipation, radiation-reaction-like closure, or genuinely multi-body tri-binary effects.
+with no boundary wake flux and no recoil term is impossible. Any MCB-like steady state must therefore close a finite-window balance: signed-ledger cancellation may reduce the local tangential drive, but the remaining forward power must be assigned either to wake escapement through $\partial W$, to a local recoil term, or to genuinely multi-body tri-binary exchange.
 
-**Plain language**: On the same-sheet chart, the isolated pair shows persistent tangential drive at the per-hit level; cancellation is hard because every certified root pushes the same way. A steady circle must come from signed-root cancellation, exceptional multi-root averaging, or extra physics beyond the bare same-sheet kernel. This is a primary test of the MCB attractor hypothesis.
+**Interpretation.** The positive tangential component is not merely an obstruction to be erased. In a finite local window, partner and self wakes are continually emitted while only a subset of their causal isochrons later hit a local receiver. The unreceived portion exits the local window as wake-history flux. The same-sheet tangential drive is therefore the mechanical pump that can replace the interaction energy exported by those escaping causal wakes. A local binary can look particle-only conservative only if the outgoing wake record, recoil channel, and retained branch ledger are all included in the same balance law.
+
+**Plain language**: On the same-sheet chart, the isolated pair shows persistent tangential drive at the per-hit level; cancellation is hard because every certified root pushes the same way. The stable-branch question is not "how can the drive disappear?" but "which wake flux, recoil, or multi-body channel balances the drive without destroying the retained branch?" This is a primary test of the MCB attractor hypothesis.
 
 ---
 

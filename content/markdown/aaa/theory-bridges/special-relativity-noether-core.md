@@ -269,9 +269,9 @@ The Noether-core mass thesis is that observed mass is not a primitive property o
 $$
 m_{\text{inertial}}(A)
 \approx
-\alpha\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
+\alpha_{\mathrm{m}}\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
 $$
-Here $A$ is the assembly, $E_{\text{internal}}(A)$ is the internal energy ledger, $\zeta(A)$ is the shielding/exposure factor, and $\alpha$ is the weak-field matching normalization once a reference assembly is fixed.
+Here $A$ is the assembly, $E_{\text{internal}}(A)$ is the internal energy ledger, $\zeta(A)$ is the shielding/exposure factor, and $\alpha_{\mathrm{m}}$ is the weak-field matching normalization once a reference assembly is fixed.
 
 The SR-side phrase "mass is energy divided by $c^2$" becomes, in the Noether-core bridge:
 $$
@@ -307,7 +307,7 @@ The terms are not substrate primitives. They are center-of-mass summaries of a d
 $$
 p_{\text{int}}^a
 \approx
-\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b}.
 $$
 In an isotropic homogeneous cell,

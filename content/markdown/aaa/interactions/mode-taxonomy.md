@@ -132,6 +132,30 @@ For photon channels, keep the two photon ledgers separate. Gate A records propag
 
 Gate B entries are bookkeeping requirements until the transverse planar-pair ledger is derived. A reaction chapter may require helicity, polarization, analyzer pass/reject routing, or no-longitudinal-mode closure, but it should not treat the mode taxonomy itself as the proof. Rejected photon action must route through local reflection, absorption, scattering, heat, or another allowed material update, not through an extra longitudinal free-photon branch.
 
+The compact event contract for photon Gate B is the residual vector
+
+$$
+\mathcal R_{\gamma B}^{\mathrm{event}}
+=
+\left(
+\Delta_A,
+\Delta_Q^\gamma,
+\Delta_{\mathrm{surv}}^\gamma,
+\Delta_{\parallel}^{\mathrm{sub}},
+\Delta_{\mathrm{hel}}^\gamma,
+\Delta_{\epsilon}^{\gamma},
+\Delta_{\mathrm{src}}^\gamma,
+\Delta_{\mathrm{recoil}}^\gamma,
+\Delta_{\mathrm{med}}^\gamma,
+\Delta_{\mathrm{wake}}^\gamma,
+\Delta_{\mathrm{handoff}}^\gamma,
+\Delta_{\mathrm{rem}}^\gamma,
+\Delta_{\mathrm{bal}}^\gamma
+\right).
+$$
+
+Here $\Delta_A$ is the photon Gate A residual; $\Delta_Q^\gamma$, $\Delta_{\mathrm{surv}}^\gamma$, $\Delta_{\parallel}^{\mathrm{sub}}$, $\Delta_{\mathrm{hel}}^\gamma$, and $\Delta_{\epsilon}^{\gamma}$ test the planar-pair substrate, transverse survival, longitudinal exclusion, helicity, and analyzer-basin rows; and $\Delta_{\mathrm{src}}^\gamma$, $\Delta_{\mathrm{recoil}}^\gamma$, $\Delta_{\mathrm{med}}^\gamma$, $\Delta_{\mathrm{wake}}^\gamma$, $\Delta_{\mathrm{handoff}}^\gamma$, $\Delta_{\mathrm{rem}}^\gamma$, and $\Delta_{\mathrm{bal}}^\gamma$ test the source, recoil, medium, causal-wake, analyzer-handoff, remnant, and event-balance rows. A reaction chapter may cite this vector as a bookkeeping contract, not as a derivation of photon polarization.
+
 7. **Execute provenance-conserving relock**
 Update assembly graph by relocking existing substrate content.
 No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes from local Noether-core availability.

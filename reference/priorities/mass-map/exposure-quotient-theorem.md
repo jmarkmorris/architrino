@@ -274,6 +274,56 @@ $$
 
 Proof route: branch-ledger provenance makes $\mathcal{L}_A$ a derived assembly output rather than a fitted benchmark parameter; idempotence makes $\Pi_S\mathcal{L}_A$ stable under repeated sector selection; quotient compatibility prevents $Q_S$ from identifying benchmark-distinct exposed ledgers; gauge/relabeling invariance removes only declared unobservable structure; the leakage bound limits the discarded residue below the sector tolerance. Therefore any two representatives of $\mathcal{E}_S(A)$ recover the same sector-visible quantity up to $\epsilon_S$, and any discarded term that exceeds tolerance blocks promotion rather than being hidden.
 
+## Quotient-Descent Lemma for the Scalar Mass Source
+
+The mass-facing scalar source is not $\zeta(A)$ alone. It is the product of the scalar exposure and the internal energy ledger,
+
+$$
+\mu_0(A;d)
+=
+\zeta_0(A;d)E_{\text{internal}}(A;d),
+\qquad
+\zeta_0(A;d)
+=
+\frac{\|\Pi_0\mathcal{L}_A[d]\|}
+{\|\mathcal{L}_{\text{naive}}[d]\|},
+$$
+
+where $d$ is a restored representative of a discarded scalar-sector label. The scalar mass source descends to a quotient-visible function
+
+$$
+\overline{\mu}_0:
+\mathfrak{V}_0/\!\sim_0
+\to
+\mathbb{R}_{\ge 0},
+\qquad
+\overline{\mu}_0(Q_0\Pi_0\mathcal{L}_A[d])
+=
+\mu_0(A;d),
+$$
+
+up to tolerance if and only if the representative-dependence defect
+
+$$
+\delta_{0,\mathrm{handle}}(A)
+=
+\sup_{\substack{d_1,d_2\in D_{0,\mathrm{hid}}\\
+Q_0\Pi_0\mathcal{L}_A[d_1]=Q_0\Pi_0\mathcal{L}_A[d_2]}}
+\frac{
+\left|
+\zeta_0(A;d_1)E_{\text{internal}}(A;d_1)
+-
+\zeta_0(A;d_2)E_{\text{internal}}(A;d_2)
+\right|
+}{
+E_{\text{internal}}(A)+\varepsilon_E
+}
+$$
+
+satisfies $\delta_{0,\mathrm{handle}}(A)\le\epsilon_{0,\mathrm{handle}}$ for the declared floor $\varepsilon_E>0$.
+
+Proof route: the scalar quotient class $Q_0\Pi_0\mathcal{L}_A[d]$ is the only observer-facing scalar exposure datum. A source function on that quotient is well defined exactly when changing representatives inside the same quotient class does not change the source value. The displayed supremum is the defect of that quotient descent for $\zeta_0E_{\text{internal}}$. If the defect is below tolerance, $\overline{\mu}_0$ exists as an approximate quotient function. If the defect exceeds tolerance, the discarded label is mass-visible: the scalar quotient has hidden a branch selector, and the scalar mass source cannot be treated as a quotient-invariant exposed response.
+
 ## Consumer Map
 
 | Consumer packet | Local responsibility | Shared theorem burden consumed here |
@@ -349,6 +399,10 @@ $$
 $$
 
 ### Scalar Worked-Case Theorem Target
+
+Promotion status: the quotient-factorized exposed source
+$M_0^{\mathrm{src}}(A)=\overline{\mathcal{B}}_0(\mathcal{E}_0(A))=\zeta(A)E_{\text{internal}}(A)$
+and its no-hidden-mass-handle implication were promoted into [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md) on May 20, 2026 as a reader-facing derivation target. The numerical extraction, accepted $A_0$ branch, and tolerance proof remain priority-side obligations.
 
 Let $D_{0,\mathrm{hid}}\subseteq\mathfrak{D}_{A_0}$ be the discrete labels discarded by the scalar mass-facing projection and quotient. For each $d\in D_{0,\mathrm{hid}}$, let $\mathcal{L}[d]$, $\mathcal{L}_{\text{naive}}[d]$, and $E_{\text{internal}}[d]$ denote the same accepted $A_0$ extraction with the discarded label restored for validation. Define
 

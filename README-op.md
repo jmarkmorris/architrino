@@ -27,6 +27,7 @@ This file is Cody's living feedback backlog for improving operator/developer wor
 - [ ] Name the canonical project term when a concept has multiple nearby aliases.
 - [ ] State the intended claim level: ontology, derivation, effective summary, comparison, or speculation.
 - [ ] Attach the expected output shape to requests: patch, report, PR, checklist, proof route, or prose draft.
+- [ ] When asking for recommendations only, expect Cody to answer in chat unless a durable repo file is explicitly requested.
 - [ ] Use exact dates, branch names, PR numbers, filenames, and command names when referencing prior work.
 - [ ] Flag non-negotiable constraints before asking for implementation.
 - [ ] Separate hard guardrails from preferences that Cody may trade off.

@@ -152,9 +152,9 @@ The speed of light $c$ is **not fundamental**. It is the low-gradient operationa
 
 **Key relation:**
 $$
-c_{\text{eff}}(\mathbf{x},t)=\frac{c_f}{\chi_{\text{sea}}(\mathbf{x},t)},
+c_\gamma(\mathbf{x},t)=\frac{c_f}{\chi_\gamma(\mathbf{x},t)},
 \qquad
-\chi_{\text{sea}}(\mathbf{x},t)=f\!\left(\rho_{\text{core}}(\mathbf{x},t),n(\mathbf{x},t),\text{Noether-Sea state}\right)
+\chi_\gamma(\mathbf{x},t)=f_\gamma\!\left(\rho_{\text{core}}(\mathbf{x},t),n(\mathbf{x},t),\text{Noether-Sea state}\right)
 $$
 
 In the low-energy limit (flat spacetime, weak Noether-Sea gradients):
@@ -163,13 +163,13 @@ c \approx c_f \quad (\text{small corrections from Noether-Sea refraction})
 $$
 
 **What we must show:**
-- Photons are planar assemblies (2D tri-binaries, bosonic statistics)
+- Photons are coaxial contra-rotating pro/anti planar pairs whose bosonic/statistical behavior is recovered as a downstream closure target
 - Their propagation through the Noether Sea is **not instantaneous** but limited by $c_f$
 - The effective speed $c$ measured by operational observers (made of assemblies) matches $c_f$ within experimental precision (~$10^{-17}$ for Lorentz tests)
 
 **Prediction:**
-- In strong gravitational fields (dense Noether Sea): $c_{\text{eff}} < c_f$ (gravitational lensing, Shapiro delay)
-- At Planck scales (Noether-Sea microstructure resolves): $c_{\text{eff}} \neq c_f$ (Lorentz violation signatures)
+- In strong gravitational fields (dense Noether Sea): $c_\gamma < c_f$ in the photon channel (gravitational lensing, Shapiro delay)
+- At Planck scales (Noether-Sea microstructure resolves): $c_\gamma \neq c_f$ in the photon channel (Lorentz violation signatures)
 
 
 ---
@@ -309,7 +309,7 @@ This is a **psychophysical constant**, not a physical one. It relates:
 The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), where the human eye is most sensitive.
 
 **What we can say:**
-- Photons at 540 THz are planar assemblies with Middle Binary frequency $\omega = 2\pi \times 540 \times 10^{12}$ rad/s
+- Photons at 540 THz are planar-mode phase records with $\omega = 2\pi \times 540 \times 10^{12}$ rad/s; assigning that frequency to a specific Middle Binary is still a derivation target.
 - The human retina's photoreceptors (assemblies themselves) couple resonantly to this frequency
 - The constant 683 lm/W is **arbitrary**—it's a choice of units based on human biology
 
@@ -321,7 +321,7 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 | SI Constant | Status in $\mathbb{A}\mathbb{A}\mathbb{A}$ | Derivation Pathway |
 |-------------|-------------------------------|-------------------|
 | $\Delta \nu_{\text{Cs}}$ | **Derivable** | Hyperfine splitting from Middle Binary magnetic moments |
-| $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_{\text{sea}}$ |
+| $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_\gamma$ |
 | $h$ | **Derivation target (open)** | Closed-cycle action quantization; equivalent outer-binary rotational-action increments in units of $\hbar$; lower recordable basin-measure scale after quantum closure |
 | $e$ | **Recovered observer benchmark** | $|e|=6\epsilon$ after choosing the observer-level electric bookkeeping normalization |
 | $k_B$ | **Derivable** | Noether-Sea thermal equilibrium + assembly mass |

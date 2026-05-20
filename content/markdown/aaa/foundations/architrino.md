@@ -108,18 +108,18 @@ An architrino is a point transceiver: it emits and receives continuously.
 
 Its emitted structure is a potential-bearing **causal wake**. The wake is physically real: it propagates at finite wake speed, carries source provenance, and is received through later causal intersections. It is not an independent substance because it has no freely specifiable state apart from the source architrino's path history. At the effective level, many such wake contributions may be summarized as a field, but the substrate term remains causal wake.
 
-Schematically, the wake emitted by architrino $a$ is a source-history functional
+Schematically, if the source history has time domain $I_a$, the wake emitted by architrino $a$ is a source-history functional
 $$
 \mathcal{W}_a(\mathbf{x},t)
 =
-\int_{-\infty}^{t}
+\int_{\{s\in I_a:\ s<t\}}
 q_a\,
-K\!\left(\mathbf{x},t;\mathbf{s}_a(\tau),\tau\right)
-\,d\tau,
+K\!\left(\mathbf{x},t;\mathbf{s}_a(s),s\right)
+\,ds,
 \qquad
 \operatorname{supp}K
 \subseteq
-\left\{\|\mathbf{x}-\mathbf{s}_a(\tau)\|=c_f(t-\tau)\right\}.
+\left\{\|\mathbf{x}-\mathbf{s}_a(s)\|=c_f(t-s)\right\}.
 $$
 The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, Jacobian weights, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the source identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
 
@@ -139,11 +139,11 @@ This chapter stops before the force law. Exact causal wake surfaces, density rep
 
 Each architrino traces a worldline
 $$
-\mathbf{s}_a:\mathbb{R}\to\mathbb{R}^3,
+\mathbf{s}_a:I_a\subseteq\mathbb{R}\to\mathbb{R}^3,
 \qquad
 t\mapsto\mathbf{s}_a(t),
 $$
-inside the product background
+where $I_a$ is an interval of absolute time. It may equal $\mathbb{R}$, or it may be bounded by the domain of a realized cosmological solution. The worldline lies inside the product background
 $$
 \mathcal{M}=\mathbb{R}\times\mathbb{R}^3.
 $$

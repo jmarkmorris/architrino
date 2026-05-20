@@ -1237,7 +1237,7 @@ The homogeneous inertial response target is
 $$
 p_{\text{int}}^a
 \approx
-\alpha\,\zeta(A_0)E_{\text{internal}}(A_0)\,
+\alpha_{\mathrm{m}}\,\zeta(A_0)E_{\text{internal}}(A_0)\,
 \mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b},
 \qquad
 \mathcal{M}_{\text{sea}}^{ab}
@@ -1442,7 +1442,7 @@ The next branch-chart packet must therefore answer the equality question before 
 3. Which equality constraints survive after the new coordinate or mode is declared?
 4. Which residual or invariant would falsify the revision as overfitting rather than branch geometry?
 
-The operational contract for answering those questions is now [the $A_0$ Branch-Chart Revision Contract](a0-branch-chart-revision-contract.md). It selects the non-root-key inner-layer harmonic deformation coordinate $\mathcal{H}_I$ as the first Type B candidate for $z_\Lambda^\star$, with primary modes $\{4,5,7\}$, guard mode $\{6\}$, a Nyquist guard for `m=8`, held-out residual checks, locked-key exclusion, and benchmark exclusion before another corrected one-period rerun is admissible.
+The operational contract for answering those questions is now [the $A_0$ Branch-Chart Revision Contract](a0-branch-chart-revision-contract.md). It selects the non-root-key inner-layer harmonic deformation coordinate $\mathcal{H}_I$ as the first Type B candidate for $z_\Lambda^\star$, with primary modes $\{4,5,7\}$, guard mode $\{6\}$, a Nyquist guard for `m=8`, held-out residual checks, locked-key exclusion, and benchmark exclusion before another corrected one-period rerun is admissible. The first executable checker rejects the current artifact: the residual-surface source is `rejected_hidden_fit_split`, and a permissive `prefit_branch_chart` declaration still fails as `overfit_holdout_fail` with held-out relative residual about `2.454`.
 
 ## Promotion Rule
 

@@ -365,7 +365,39 @@ The current executable and worker packets are:
 
 The executable runner is [spiral_branch_chart_certificate.py](spiral_branch_chart_certificate.py). With [spiral-vp1-current-interval-rows](spiral-vp1-current-interval-rows.json), its structural rows pass and the tangential row is `certified_fail`, with $\mathcal{D}_T(I_\ast)\ge0.036446308644655666$. The radial branch interval is $B_r(0)\in[-0.27143260470972164,-0.27143255629407625]$. `--require-theorem-grade` still exits nonzero because no strict $\Gamma$ interval resolves radial turn; the Gamma source audit and dimensional closure prove that this interval cannot be inferred from $b_\ast$ or from the retained VP-1 roots alone.
 
+## A1 Continuation Support Packets
+
+The first post-VP-1 continuation target fixes
+$$
+a_{\mathrm{A1}}=0.204,
+\qquad
+b_\ast=\frac{7}{2},
+\qquad
+I_\ast=\left[-\frac{\pi}{6},\frac{\pi}{6}\right],
+$$
+and retains the $P_1,P_2,P_3,S_1$ chart. These rows are priority-packet evidence until the runner or a typed sidecar emits them with the A1 candidate metadata.
+
+| Packet | Claim level | Verdict |
+| --- | --- | --- |
+| [spiral-a1-root-window-certificate](spiral-a1-root-window-certificate.md) | Sidecar-consumed structural interval row. | Retained windows $P_1=[2.55,2.69]$, $P_2=[4.00,4.34]$, $P_3=[6.78,7.12]$, and $S_1=[4.82,5.02]$ carry active boundary signs, inactive-complement signs, $\nu_{\mathrm{cert}}^{\mathrm{A1}}=1.20$, self-coincidence clearance, and corridor finite-memory bound $B_{\mathrm{mem}}^{\mathrm{A1}}=8.860302120379817<4\pi$. |
+| [spiral-a1-root-transport-interval-proof](spiral-a1-root-transport-interval-proof.md) | Sidecar-consumed dependent analytic root-transport row. | Proves the same-chart transport row from $\partial_\Delta F=-J/b(\theta)$, $b(\theta)>0$, and the A1 active Jacobian floor. |
+| [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md) | Sidecar-consumed radial branch threshold and tangential drive row. | Reports $B_r(C_{\mathrm{A1}};0)\in[-0.005994791326773983,-0.005994715991872956]$ and $D_T(C_{\mathrm{A1}};I_\ast)\in[-0.0015572472070875527,-0.00023480430280344085]$; later A1 kinematic rows resolve the radial threshold and reject exact tangential compatibility. |
+| [spiral-a1-gamma-force-ratio-decision](spiral-a1-gamma-force-ratio-decision.md) | Priority-only A1 radial force-ratio decision packet. | Proves no strict $\Gamma$ interval follows from the accepted A1 branch data or from $b_\ast=7/2$ alone; A1 pass requires $\Gamma^->0.005994791326773983$, certified failure requires $\Gamma^+\le0.005994715991872956$, and otherwise the row remains blocked. |
+| [spiral-a1-kinematic-gamma-closure](spiral-a1-kinematic-gamma-closure.md) | Exact prescribed-history radial balance row. | Uses the constant-$\Omega$ A1 kinematics to derive $B_r(C_{\mathrm{A1}};0)=(a_{\mathrm{A1}}-1)\Gamma$ and $\Gamma\in[0.007531050241046427,\ 0.007531144882881889]$, passing radial turn. |
+| [spiral-a1-tangential-compatibility-no-go](spiral-a1-tangential-compatibility-no-go.md) | Exact prescribed-history tangential compatibility no-go. | The constant-$\Omega$ A1 history requires $T_0(C_{\mathrm{A1}})=0$ at $\theta_\ast=0$, but the retained chart gives $T_0(C_{\mathrm{A1}})\in[-0.007585901776635041,\ -0.007585740886803276]$. |
+| [spiral-a1-variable-rate-turn-target](spiral-a1-variable-rate-turn-target.md) | Constructive local continuation target. | Combines the A1 radial and tangential rows to derive $\ddot\theta(0)/\dot\theta(0)^2\in[-1.0072833846320208,\ -1.007249363114164]$ for any same-turn variable-angular-rate continuation before recomputing the delayed-root chart for the nonconstant time law. |
+| [spiral-a1-nonconstant-time-law-chart](spiral-a1-nonconstant-time-law-chart.md) | Finite-memory nonconstant time-law equation. | Replaces the constant-rate delay $\Delta$ by $H(\Delta)=\omega_\ast\int_{-\Delta}^{0}d\phi/\dot\theta(\phi)$, derives the source-speed Jacobian factor, and shows that simple one-parameter continuations either lose the old roots or require negative $\Gamma$ through the radial row. |
+| [spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json) and [spiral-a1-interval-report](spiral-a1-interval-report.md) | Executable A1 sidecar and report. | Structural rows, root transport, dependency status, radial turn, and weighted tangential drive pass; theorem grade is `true` because the exact tangential compatibility row certifies failure of the prescribed constant-$\Omega$ history. |
+| [spiral-a1-corpus-recommendation](spiral-a1-corpus-recommendation.md) and [spiral-a1-user-facing-doc-recommendations](spiral-a1-user-facing-doc-recommendations.md) | Earlier corpus promotion packets, now superseded by the kinematic-balance no-go promotion. | These packets recorded the prior tangential-pass/radial-blocked benchmark. The current reader-facing state is the scoped constant-$\Omega$ kinematic-balance no-go in `content/markdown/aaa`. |
+| [spiral-a1-post-benchmark-user-facing-doc-recommendations](spiral-a1-post-benchmark-user-facing-doc-recommendations.md) | Post-benchmark user-facing recommendation packet. | Promotes the matching analytic-footholds roadmap alignment into `content/markdown/aaa`, keeping broader stability and maximum-curvature consumer prose blocked until radial turn and returned-section controls close. |
+
 ## Acceptance Ledger
+
+The nonconstant A1 follow-on does not add an acceptance row. It changes the
+candidate history: the delayed-root equation itself becomes
+$\Lambda_{P/S}=H/b_\ast$, with
+$H=\omega_\ast\int d\theta/\dot\theta$. Any future variable-rate packet must
+reuse the rows below after selecting a complete time law on the memory window.
 
 The first executable certificate passes only if every row below is supplied.
 
@@ -380,6 +412,7 @@ The first executable certificate passes only if every row below is supplied.
 | Root transport | Interval residual for the simple-root transport equation on each active tube. | $\sup\mathcal{R}_{\mathrm{tr},\alpha}\le\varepsilon_{\mathrm{tr}}$. |
 | Radial turn | Outward interval for $\mathcal{T}_r(0)$. | $\mathcal{T}_r(0)>0$, equivalently $\Gamma$ exceeds the branch bound in the equal-charge normalization. |
 | Tangential drive | Outward interval for $\mathcal{D}_T(I_\ast)$. | Pass if $\mathcal{D}_T\le-\varepsilon_T$; fail VP-1 if $\mathcal{D}_T\ge0$. |
+| Tangential compatibility | Outward interval for the turn-center prescribed-history residual $T_0(C)$. | For a constant-$\Omega$ prescribed history with $p(0)=0$, pass only if the residual is zero within the declared tolerance; certified fail if the outward interval excludes zero. |
 | Dependency status | Circular obstruction handoff from `circular_asymptotics`. | Passed: the theorem-grade circular interval and large-$\beta$ tail certificate is available. |
 
 ## Failure Modes

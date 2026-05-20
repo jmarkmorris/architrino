@@ -1,0 +1,263 @@
+# Mass-Trace Composition Proof Chain
+
+This priority packet synthesizes the current mass-map advances into one proof chain. It is proof-synthesis material, not a new gate. Its purpose is to show how scalar mass trace is forced to pass through exposed-source descent, reversible symmetric medium response, pressure-row composition, and packing-headroom hardening without creating hidden fit handles.
+
+## Claim Level
+
+- **Status:** priority-side theorem target with a reader-facing compact form promoted into [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md).
+- **Main claim:** in a branch-preserving reversible response record, scalar mass trace factors through a quotient-visible exposed source and the rotational trace of the exposed inertial-response tensor. Antisymmetric response, unlogged transport loss, and pressure-row splits cannot contribute to scalar rest mass.
+- **Open burden:** extract $E_{\text{internal}}(A)$, $\zeta(A)$, $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$, $\mathcal{M}_{+}^{ab}$, and pressure coefficients from accepted branch records rather than benchmarks.
+
+## Inputs
+
+The chain consumes the following already-staged artifacts:
+
+1. scalar exposed-source descent:
+
+$$
+M_0^{\mathrm{src}}(A)
+=
+\overline{\mathcal{B}}_0(\mathcal{E}_0(A))
+=
+\zeta(A)E_{\text{internal}}(A);
+$$
+
+2. exposed-response tensor:
+
+$$
+\mathcal{Z}_{A}^{ab}
+=
+\zeta(A)h^{ab}
++
+\mathcal{Z}_{\mathrm{tf}}^{ab}(A),
+\qquad
+h_{ab}\mathcal{Z}_{\mathrm{tf}}^{ab}(A)=0;
+$$
+
+3. reversible symmetric medium response:
+
+$$
+\mathcal{M}_{+}^{ab}
+=
+\frac{1}{2}
+\left(
+\mathcal{M}_{\text{sea}}^{ab}
++
+\mathcal{M}_{\text{sea}}^{ba}
+\right);
+$$
+
+4. trace / trace-free medium split:
+
+$$
+\mathcal{M}_{+}^{ab}
+=
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+(1+\delta\mathcal{M}_{0})h^{ab}
++
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right]
++
+\mathcal{R}_{\mathcal M,+}^{ab}.
+$$
+
+## Composition Lemma
+
+For an accepted assembly branch $A$ in a branch-preserving reversible response record, the exposed inertial-response tensor is
+
+$$
+\mathsf{I}_{A}^{ab}
+=
+\frac{\alpha_{\mathrm{m}}E_{\text{internal}}(A)}{2}
+\left(
+\mathcal{Z}_{A}^{a}{}_{c}\mathcal{M}_{+}^{cb}
++
+\mathcal{Z}_{A}^{b}{}_{c}\mathcal{M}_{+}^{ca}
+\right).
+$$
+
+The scalar mass trace is therefore
+
+$$
+m_{\mathrm{tr}}(A)
+=
+\frac{1}{3}h_{ab}\mathsf{I}_{A}^{ab}
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+M_{0}^{\mathrm{src}}(A)(1+\delta\mathcal{M}_{0})
++
+\frac{1}{3}
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf},ab}(A)
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right]
++
+\mathcal{R}_{\mathrm{chain}}.
+$$
+
+This is the compact mass-trace composition formula. It says that scalar mass has three allowed first-order sources:
+
+- the quotient-visible scalar source $M_0^{\mathrm{src}}(A)$;
+- the trace medium response $\delta\mathcal{M}_{0}$ multiplying that source;
+- the trace-free contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}/3$.
+
+No separate scalar fit row remains in the branch-preserving reversible regime.
+
+## Composed Trace Quotient-Descent Test
+
+The scalar no-hidden-mass-handle condition is necessary but not sufficient once tensor or pressure response is retained. The whole composed trace must descend through the same quotient.
+
+For restored representatives $d_1,d_2$ with
+
+$$
+Q_0\Pi_0\mathcal{L}_A[d_1]
+=
+Q_0\Pi_0\mathcal{L}_A[d_2],
+$$
+
+define the representative difference operator
+
+$$
+\Delta_dF
+\equiv
+F[d_1]-F[d_2].
+$$
+
+The first-order composed trace descends through the scalar quotient only if
+
+$$
+\Delta_{\mathrm{tr}}(d_1,d_2)
+\equiv
+(1+\delta\mathcal{M}_0)\Delta_dM_0^{\mathrm{src}}
++
+\frac{1}{3}
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\Delta_d
+\left(
+E_{\text{internal}}\mathcal{Z}_{\mathrm{tf},ab}
+\right)
+$$
+
+is below the declared trace tolerance.
+
+This is a stronger invariant than scalar source descent. It allows the scalar source test to pass while the tensor-composed trace fails. In particular, if
+
+$$
+\Delta_dM_0^{\mathrm{src}}=0
+\qquad\text{but}\qquad
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\Delta_d
+\left(
+E_{\text{internal}}\mathcal{Z}_{\mathrm{tf},ab}
+\right)
+\ne0,
+$$
+
+then the discarded representative label is invisible to the homogeneous scalar source but visible to anisotropic inertia. The scalar mass map is then outside its regime; the response must retain the label, promote to tensor exposure, or fail the branch-preserving trace claim.
+
+## Proof Route
+
+1. The exposure quotient supplies a source function $M_0^{\mathrm{src}}$ on the scalar-visible quotient. If a discarded representative changes $M_0^{\mathrm{src}}$, the label is mass-visible and the scalar quotient fails.
+2. The inertial response is tensorial because external acceleration or motion probes a medium response tensor, not a scalar denominator alone.
+3. The reversible kinetic scalar can consume only $\mathcal{M}_{+}^{ab}$ because $V_{\text{cm},a}\mathcal{M}_{-}^{ab}V_{\text{cm},b}=0$.
+4. Contracting $\mathsf{I}_{A}^{ab}$ with $h_{ab}/3$ kills trace-free terms unless trace-free exposure and trace-free medium response are both present.
+5. Subtracting two quotient-equivalent representatives in the trace formula yields $\Delta_{\mathrm{tr}}$. The medium state is common to the comparison, so any nonzero defect comes from the exposed source or exposed trace-free tensor numerator.
+6. The displayed formula follows by expanding the trace / trace-free split and collecting all unproven higher-order, loss, threshold, and extraction terms into $\mathcal{R}_{\mathrm{chain}}$.
+
+## Pressure Specialization
+
+In a branch-preserving pressure row below the transport threshold, the medium-response tensor projections satisfy
+
+$$
+\delta_P\delta\mathcal{M}_{0}
+=
+2C_{\chi}^{\mathrm{iso}}\Pi
++
+\mathcal{R}_{\mathcal M0},
+$$
+
+and
+
+$$
+\delta_P\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+=
+\left(
+2C_{\chi}^{\mathrm{aniso}}Q_{\chi}^{ab}
++
+m_SS_{\mathrm{dev}}^{ab}
+\right)A
++
+\mathcal{R}_{\mathcal M,\mathrm{tf}}^{ab}.
+$$
+
+Substitution into the composition lemma gives
+
+$$
+\delta_Pm_{\mathrm{tr}}(A)
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+\delta_PM_{0}^{\mathrm{src}}(A)
++
+2M_{0}^{\mathrm{src}}(A)C_{\chi}^{\mathrm{iso}}\Pi
++
+\frac{1}{3}
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf},ab}(A)
+\left(
+2C_{\chi}^{\mathrm{aniso}}Q_{\chi}^{ab}
++
+m_SS_{\mathrm{dev}}^{ab}
+\right)A
+\right]
++
+\mathcal{R}_{\mathrm{comp}}.
+$$
+
+Thus pressure can change scalar mass trace only through the quotient-visible source, the shared isotropic delay-pressure coefficient, and the trace-free exposed/medium contraction. An independent pressure mass row would be a split branch or a hidden fit.
+
+## Packing-Headroom Limit
+
+When the density-only channel is isolated with $M_0^{\mathrm{src}}(A)$ held fixed, the packing-headroom law gives
+
+$$
+\left.
+\frac{\partial m_{\mathrm{tr}}}{\partial P}
+\right|_{n\text{-only}}
+=
+2\alpha_{\mathrm{m}}
+\frac{M_0^{\mathrm{src}}(A)}{c_{\text{eff},0}^{2}}\,
+a_n
+\frac{s_n}{K_{\mathrm{pack}}}.
+$$
+
+Therefore
+
+$$
+\lim_{s_n\to0^+}
+\left.
+\frac{\partial m_{\mathrm{tr}}}{\partial P}
+\right|_{n\text{-only}}
+=0.
+$$
+
+The limit is not a claim that pressure stops mattering. It says the scalar density channel closes as packing headroom closes; any remaining pressure response must route through exposed-source drift, envelope ratios $\lambda$ and $\xi$, trace-free strain, reversible wake/contact stiffness, tensor response, or a threshold/branch event.
+
+## Failure Modes
+
+The proof chain fails or must demote its claim level if any of the following occur:
+
+| Failure mode | Meaning |
+| --- | --- |
+| `source-nondescent` | $M_0^{\mathrm{src}}$ changes across representatives identified by the scalar quotient. |
+| `trace-nondescent` | $M_0^{\mathrm{src}}$ descends but $E_{\text{internal}}\mathcal{Z}_{\mathrm{tf},ab}$ does not descend in a retained tensor response. |
+| `antisymmetric-mass-leak` | $\mathcal{M}_{-}^{ab}$ is used to change scalar rest mass. |
+| `loss-below-threshold` | A branch-preserving row below $\mathcal{R}_{\text{tr},*}$ carries unlogged excitation, heating, radiation-like shedding, or branch-transition energy. |
+| `pressure-row-split` | $\delta\mathcal{M}_0$ or $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ requires pressure coefficients independent of the shared row. |
+| `headroom-violation` | The density-only pressure slope remains finite as $s_n\to0^+$ without a retained support-function or branch-transition record. |
+
+These are not additional validation gates. They are the algebraic failure modes of the composition formula itself.

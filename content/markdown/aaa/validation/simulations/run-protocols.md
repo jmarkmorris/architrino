@@ -22,6 +22,8 @@ The first mass-map target has a specialized protocol in [$A_0$ Branch Certificat
 3. Tier 2 internal-energy and shielding extraction.
 4. Tier 3 medium-response tensor probes.
 
+A rerun after a finite-coordinate no-go must include the predeclared branch-chart revision record; residual-selected coordinates, locked keys promoted into branch geometry, or benchmark-derived inputs invalidate the packet as hidden fitting.
+
 No simulation run should report $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\mathcal{M}_{\text{sea}}^{ab}$ as accepted outputs unless the preceding branch-certificate gates have passed.
 
 ## Cosmology Shared-Residual Protocol

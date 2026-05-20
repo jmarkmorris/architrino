@@ -1125,6 +1125,54 @@ $$
 
 The clean four-substep branch is energy-closed only when $\Delta E_{\text{mismatch}}=0$. If $\omega_{\text{tx}}<\omega_{\ast}$, the branch cannot retain positive outer, middle, and inner increments without drawing energy from a root reconfiguration or the wake/internal ledger. If $\omega_{\text{tx}}>\omega_{\ast}$, the surplus must be routed into wake recoil, transport, or another admissible branch. This is a useful failure condition, not a defect of the scaffold: a low-frequency outer hit cannot be promoted into a positive inner self-hit retune for free.
 
+Equivalently, the branch certificate carries the signed energy residual
+
+$$
+\mathcal R_E^{B_{\min}}
+=
+\left(
+\omega_\ast-\omega_{\text{tx}}
+\right)\hbar.
+$$
+
+The minimal four-substep branch is therefore a conditional certificate, not a branch-selection theorem. In the fixed-normal, no-retained-wake chart, the scalar and vector rows close by the declared assumptions. The root replay, phase lock, torque consistency, tail-wake pullback, section stability, and nonzero energy mismatch rows still have to be populated from a retained branch chart before the branch can be treated as a physical selected outcome.
+
+This exposes the reusable same retained-row conservation pullback. For a retained branch chart $B$ on record window $W$, force, torque, wake, and partition residuals are admissible in one angular-momentum certificate only when their row selectors coincide:
+
+$$
+\operatorname{rows}\!\left(\mathcal R_{\mathrm{force}}^B\right)
+=
+\operatorname{rows}\!\left(\mathcal R_{\mathrm{torque}}^B\right)
+=
+\operatorname{rows}\!\left(\mathcal R_{\mathrm{wake}}^B\right)
+=
+\operatorname{rows}\!\left(\mathcal R_{\mathrm{part}}^B\right)
+=
+\mathcal R_B^{\mathrm{act}}\big|_W.
+$$
+
+The same row set must also use the same regularization $\eta$, coupling tolerance $\epsilon_c$, endpoint convention, branch identity, and characteristic-tail kernel. Only then may the angular-momentum residual be evaluated as
+
+$$
+\mathcal R_{\mathbf J}^{B}
+=
+\frac{
+\left\|
+\Delta\mathbf J_{\mathrm{coupl}}
++
+\sum_{\ell}\Delta\mathbf L_{\mathrm{mech},\ell}^{B}
++
+\Delta\mathbf L_{\mathrm{tr}}^{B}
++
+\Delta\mathbf J_{\mathrm{wake},B}^{(\eta)}
+\right\|
+}{
+\left\|\Delta\mathbf J_{\mathrm{coupl}}\right\|+\epsilon_{\mathbf J}
+}.
+$$
+
+The first proof step is to differentiate $\mathbf J_{\mathrm{mech}}^B+\mathbf J_{\mathrm{wake}}^B$ on $W$ and match the torque sum to the normalized wake-history boundary increment emitted by the same regularized action kernel. If any term is evaluated on a different retained row set, endpoint convention, or characteristic-tail kernel, the scalar $\hbar$ partition is only a diagnostic partition, not a conserved angular-momentum certificate.
+
 The conservation result for this branch is therefore explicit:
 
 $$
@@ -1162,6 +1210,93 @@ For branches outside this minimal certificate, the open equations are:
 3. Derive the hinge map that decides whether the middle layer stays on $R_M\omega_M=c_f$ or crosses the separator and returns.
 4. Derive the inner self-hit map that fixes $b$, $\Delta N_{\text{self}}$, and $\Delta E_{I,\text{root}}$.
 5. Derive the wake recoil equations that fix $w$, $\Delta E_{\text{wake}}$, and any transverse vector balance when layer normals precess.
+
+The smallest useful branch-selection comparator keeps the minimal certificate next to a possible retained wake/recoil competitor:
+
+$$
+\mathfrak K_{\min,\mathrm{wr}}
+=
+\left(
+B_{\min}^-,
+\Gamma_{\min},
+W_{\min},
+\mathfrak a_{\min},
+\mathfrak a_{\mathrm{wr}},
+\Theta_{\min,\mathrm{wr}},
+\mathcal R_{\mathrm{cmp}},
+\mathcal V_{\mathrm{cmp}}
+\right).
+$$
+
+Here $\mathfrak a_{\mathrm{wr}}$ is not assumed to exist. It must be emitted by the finite branch machinery as a retained wake or recoil candidate with row lineage, quotient, energy, phase, stability, and route data. Until both sides of $\mathfrak K_{\min,\mathrm{wr}}$ carry populated residuals, any claim of $\operatorname{Sel}_{B,N}=\mathfrak a_{\min}$ remains deferred.
+
+### Finite-Candidate Branch-Selection Functional
+
+The branch-selection target can be stated as a finite functional on retained branch records. For a pre-transaction branch chart $B^-$, coupling datum $\Gamma_{\text{coupl}}$, record window $W$, and retained budget $N$, let
+
+$$
+\mathcal A_N(B^-,\Gamma_{\text{coupl}},W)
+=
+\left(
+\widetilde{\mathcal A}_N^{\mathrm{eval}}/\!\cong_B,
+\widetilde{\mathcal A}_N^{\mathrm{blk}},
+\widetilde{\mathcal A}_N^{\mathrm{excl}}
+\right)
+$$
+
+be the finite candidate set after quotienting evaluable candidates by branch-chart isomorphism. The blocked set contains candidates whose row data are missing; the excluded set contains candidates that fail a hard local condition with the required rows present. For each evaluable candidate $\mathfrak a_N$, define the selection residual vector
+
+$$
+\mathcal R_{\mathrm{sel}}(\mathfrak a_N)
+=
+\left(
+r_{\mathrm{rows}},
+r_{\mathrm{root}},
+r_{\Phi},
+r_{\mathrm{stab}},
+r_{\mathrm{pull}},
+r_{\mathrm{part}},
+r_{\mathrm{route}}
+\right).
+$$
+
+For a route class $\kappa\in\{\mathrm{core},\mathrm{wake},\mathrm{refl}\}$,
+
+$$
+\mathcal A_{\kappa,N}^{\mathrm{pass}}
+=
+\left\{
+\mathfrak a_N\in\mathcal A_{\kappa,N}^{\mathrm{eval}}/\!\cong_B:
+\left\|\mathcal R_{\mathrm{sel}}(\mathfrak a_N)\right\|_{\infty}\le1
+\right\}.
+$$
+
+The route priority is a theorem target, not a label convention:
+
+$$
+\mathcal A_{\mathrm{core}}^{\mathrm{pass}}
+\succ
+\mathcal A_{\mathrm{wake}}^{\mathrm{pass}}
+\succ
+\mathcal A_{\mathrm{refl}}^{\mathrm{pass}}.
+$$
+
+Let $\kappa_\star$ be the first nonempty passing class in this priority order. The finite-branch selection functional is
+
+$$
+\operatorname{Sel}_{B,N}
+\left(
+\Gamma_{\text{coupl}},
+\mathfrak m_{B^-};W
+\right)
+=
+\operatorname{lexmin}_{\mathfrak a_N\in\mathcal A_{\kappa_\star,N}^{\mathrm{pass}}}
+\mathcal J_{\mathrm{sel}}(\mathfrak a_N),
+$$
+
+where $\mathcal J_{\mathrm{sel}}$ may use only quotient-invariant residual intervals, route data, retained row lineage, and physical microstate order $\tau_{\mathfrak m}$. The first proof obligation is chart invariance: $\mathcal R_{\mathrm{sel}}$ and $\mathcal J_{\mathrm{sel}}$ must be unchanged under $\cong_B$. That makes the selected branch depend on retained physics rather than generator order, file order, or chart labels.
+
+This functional does not claim branch uniqueness yet. If required row sets differ, the candidate is locally excluded from the selected comparison. If rows are absent, the candidate is blocked rather than forbidden. If two non-isomorphic passing candidates tie and no valid $\tau_{\mathfrak m}$ separates them, the result is a physical tie that must be carried forward as unresolved branch measure, not hidden inside a deterministic theorem claim.
 
 ## Ordered-Core Spinor Target
 
@@ -1286,6 +1421,275 @@ $$
 $$
 
 where the entries record, respectively, phase-branch parity, emission-order parity, component-resolved causal-writhe parity, and row-sourced chirality parity. A nontrivial spinor-support candidate must exhibit at least one non-gauge retained row with $\epsilon_{r}^{2\pi}=1$ while the doubled path restores the lifted history, $\epsilon_{r}^{4\pi}=0$, and the angular-momentum residual remains below tolerance. A visible ordered-frame loop by itself gives only ordinary $SO(3)$ closure. A nonzero angular-momentum residual is a conservation failure, not evidence for a spinor sheet.
+
+The row-local causal-writhe version of this support test uses a lifted retained row
+
+$$
+\widetilde r(s)
+=
+\left(
+t_{0,r}(s),
+k_r(s),
+\mathcal E_r(s),
+\Xi_r(s),
+\mathcal C_r(s)
+\right),
+\qquad
+\Xi_r
+=
+\left(
+\xi_{r,H},
+\xi_{r,M},
+\xi_{r,L}
+\right),
+$$
+
+where $s\in[0,2]$ traces one visible $2\pi$ loop followed by its doubled path. The row-local parity extractor is
+
+$$
+\Pi_{W,r}^{2\pi}
+=
+W_r(1)-W_r(0)
+\pmod 2,
+\qquad
+\Pi_{W,r}^{4\pi}
+=
+W_r(2)-W_r(0)
+\pmod 2.
+$$
+
+A retained row $r_\star$ can support the spinor lift only if
+
+$$
+\Pi_{W,r_\star}^{2\pi}=1,
+\qquad
+\Pi_{W,r_\star}^{4\pi}=0,
+\qquad
+\Delta_{\Pi_W}(r_\star)\le\varepsilon_{\Pi_W}.
+$$
+
+This is still a proof obligation. The present corpus has the extractor and control conditions, but it does not yet contain a populated retained row that passes them.
+
+The same test needs an explicit gauge control so that coordinate relabeling is not mistaken for spinor support:
+
+$$
+\Delta_{\mathrm{gc}}(r)
+=
+\Delta_{\mathrm{rig}}(r)
++
+\Delta_{\mathrm{flip}}(r)
++
+\Delta_{\mathrm{phys}}(r)
++
+\Delta_{\mathrm{quot}}(r)
++
+\Delta_{\mathrm{dbl}}(r)
++
+\Delta_{\mathbf J}(r).
+$$
+
+The null rigid row must return ordinary closure,
+
+$$
+\Pi_{W,r,\mathrm{rig}}^{2\pi}=0,
+\qquad
+\Pi_{W,r,\mathrm{rig}}^{4\pi}=0.
+$$
+
+If an allowed branch-preserving gauge probe $g\in G_{\mathrm{gauge}}$ changes the proposed parity,
+
+$$
+\delta_g\Pi_{W,r}^{2\pi}=1,
+$$
+
+then the parity is a gauge artifact, not spinor support. A passed spinor row must keep $\Delta_{\mathrm{gc}}(r)\le\varepsilon_{\mathrm{gc}}$ and must also keep the $2\pi$ and $4\pi$ angular-momentum residuals below tolerance.
+
+### Rigid Branch-Preserving Control
+
+The row-local test has a useful no-go consequence. Let $B$ be a stable branch chart on $W$, and let $\mathscr K_B$ denote the retained physical branch-history rows after quotienting only genuine gauge redundancy. For $s\in\{2\pi,4\pi\}$, let $q_r^{s}\in\{0,1\}$ record whether the apparent parity survives the quotient as a physical row datum, and use
+
+$$
+\bar\epsilon_r^{s}
+=
+q_r^{s}
+\left[
+\Delta k_r^{s}
++
+\Delta e_r^{s}
++
+\Delta w_r^{s}
++
+\Delta\chi_r^{s}
+\right]_2.
+$$
+
+For a branch-preserving visible $2\pi$ loop $\gamma_{2\pi}^{\mathrm{rig}}$, define the table parity
+
+$$
+\eta_B^{\mathrm{table}}(\gamma_{2\pi}^{\mathrm{rig}})
+=
+\left[
+\sum_{r\in\mathscr K_B}
+\bar\epsilon_r^{2\pi}
+\right]_2.
+$$
+
+If the loop is rigid on the retained history data,
+
+$$
+\bar\epsilon_r^{2\pi}=0
+\qquad
+\text{for every }r\in\mathscr K_B,
+$$
+
+then
+
+$$
+\eta_B^{\mathrm{table}}(\gamma_{2\pi}^{\mathrm{rig}})=0.
+$$
+
+This is ordinary $SO(3)$ closure, not spinor support. The proof is just the parity sum: when every retained non-gauge row returns identically, the visible normal-triad loop has no history-sheet change to pull back into the ordered core. Therefore a proposed spinor proof that assigns nontrivial $2\pi$ lift to this rigid table has imported the $SU(2)\to SO(3)$ comparison rather than deriving the lift from delayed causal-root transport.
+
+The first non-null support condition is consequently narrow:
+
+$$
+\left[
+\sum_{r\in\mathscr K_B}
+\bar\epsilon_r^{2\pi}
+\right]_2
+=1,
+\qquad
+\left[
+\sum_{r\in\mathscr K_B}
+\bar\epsilon_r^{4\pi}
+\right]_2
+=0,
+$$
+
+with branch stability, gauge control, and angular-momentum residuals still below tolerance. In the minimal support case this reduces to one retained non-gauge row $r_\star$ with $\bar\epsilon_{r_\star}^{2\pi}=1$ and $\bar\epsilon_{r_\star}^{4\pi}=0$. A failed $4\pi$ restoration signals a branch reconfiguration or broken return map, not a fermion spinor closure.
+
+The fixed-normal minimal four-substep certificate is therefore not a spinor-support proof by itself. Its reduced chart lies outside the non-coplanar transport test when
+
+$$
+\det[\hat{\mathbf n}_H,\hat{\mathbf n}_M,\hat{\mathbf n}_L]=0,
+$$
+
+and its raw self-root count $\Delta N_{\text{self}}=+2$ is even modulo two. Those rows remain useful for angular-momentum partitioning, but they do not supply a transported odd sheet parity for one retained $r_\star$.
+
+### Same-Record Spinor-Label Pullback
+
+The row-local condition becomes reusable when written as a pullback object. Let one retained branch record on window $W$ be
+
+$$
+\mathfrak R_\star(\theta;W)
+=
+\left(
+\theta_W,
+r_\star,
+\widetilde r_\star(s),
+\Gamma_{\mathrm{coupl}},
+\mathcal C_{\mathbf J}
+\right),
+\qquad s\in[0,2],
+$$
+
+where $\widetilde r_\star(s)$ is the lifted row path, $\Gamma_{\mathrm{coupl}}$ is the coupling record, and $\mathcal C_{\mathbf J}$ is the angular-momentum certificate data. The row is downstream-admissible only if
+
+$$
+\Pi_{W,r_\star}^{2\pi}=1,
+\qquad
+\Pi_{W,r_\star}^{4\pi}=0,
+$$
+
+$$
+\Delta_{\Pi_W}(r_\star)\le\varepsilon_{\Pi_W},
+\qquad
+\Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}},
+\qquad
+\Delta_{\mathbf J}^{2\pi},
+\Delta_{\mathbf J}^{4\pi}\le\varepsilon_{\mathbf J}.
+$$
+
+All spinor, weak, exchange, and fermion-metric labels must then be pulled back from the same gauge-quotient class:
+
+$$
+\mathcal L_\star(\theta;W,r_\star)
+=
+\mathsf P
+\left(
+[\widetilde r_\star]_{G_{\mathrm{gauge}}},
+\theta_W
+\right),
+$$
+
+with consumer projections
+
+$$
+\mathcal L_\star
+\mapsto
+\left(
+s_{1/2},
+h_{\mathrm{eff}},
+\Sigma_{\mathrm{spin}}^{(L/R)},
+\epsilon_{\mathrm{ex}},
+\Pi_{\mathrm{weak}},
+\Pi_{\mathrm{matter}}
+\right).
+$$
+
+The fermionic exchange sign is therefore not an independent assignment:
+
+$$
+\epsilon_{\mathrm{ex}}(r_\star)
+=
+(-1)^{\Pi_{W,r_\star}^{2\pi}}
+=
+-1,
+\qquad
+\epsilon_{\mathrm{ex}}^{4\pi}
+=
+(-1)^{\Pi_{W,r_\star}^{4\pi}}
+=
++1.
+$$
+
+The same-record admissibility residual is
+
+$$
+\Delta_{\mathrm{pull}}(\theta;W,r_\star)
+=
+\Delta_{\Pi_W}(r_\star)
++
+\Delta_{\mathrm{gc}}(r_\star)
++
+\Delta_{\mathbf J}(r_\star)
++
+\sum_{c\in\{\mathrm{weak},\mathrm{ex},\mathrm{metric}\}}
+d_c\!\left(
+\lambda_c,
+\Pi_c\mathcal L_\star
+\right)
++
+\mathcal S_{\mathrm{retune}}(\theta).
+$$
+
+The pass condition is
+
+$$
+\Delta_{\mathrm{pull}}(\theta;W,r_\star)\le\varepsilon_{\mathrm{pull}},
+\qquad
+\mathcal S_{\mathrm{retune}}(\theta)=0.
+$$
+
+The first proof step is gauge-quotient factorization. For every allowed gauge probe $g$ and every consumer projection $\Pi_c$,
+
+$$
+\Pi_c\mathsf P(g\cdot\widetilde r_\star,\theta_W)
+=
+\Pi_c\mathsf P(\widetilde r_\star,\theta_W).
+$$
+
+If this identity fails, the consumer label is chart-dependent and cannot be promoted as spinor, weak, exchange, or metric evidence. This proposition remains a theorem target until a non-coplanar retained row with quotient witness, doubled-path restoration, and angular-momentum residuals is populated.
 
 The Lorentz-sector extension is a separate but connected theorem target. Once the relativistic observer sector has been recovered, the same ordered Noether-core frame must admit an effective spinor response compatible with the double cover
 
@@ -1414,6 +1818,20 @@ w_{4\pi}\Delta_{4\pi}(\theta;W)
 $$
 
 Here $\Delta_{4\pi}$ measures failure of the $2\pi/4\pi$ ordered-core lift, $\Delta_{\mathrm{spin\,op}}$ measures failure to recover the spin-operator and Stern-Gerlach record algebra on the declared apparatus contexts, $\Delta_{\mathrm{WCT}}$ measures mismatch between the spinor/helicity ledger and the weak-coupling-triad exposure record, $\mathcal{R}_{\mathrm{matter}}$ measures failure of the fermion matter channel to project into the same Noether-Sea metric record, and $\Delta_{\mathrm{ctx}}$ is the apparatus-context residual from [Quantum Operator Mapping](quantum-operator-mapping.md#apparatus-context-guardrail). The residual passes only when all terms use the same $\theta$; otherwise the spin proof, weak handedness, and metric matter channel have been fitted by separate records rather than recovered as one closure.
+
+The $4\pi$ term is row-local. For a retained active-root row $r_\star$ on the same record window, the downstream consumer may use the spinor label only when
+
+$$
+\Pi_{W,r_\star}^{2\pi}=1,
+\qquad
+\Pi_{W,r_\star}^{4\pi}=0,
+\qquad
+\Delta_{\Pi_W}(r_\star)\le\varepsilon_{\Pi_W},
+\qquad
+\Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}},
+$$
+
+with the associated angular-momentum residuals below tolerance on the same branch record. This is a reuse rule, not a new ontology: weak exposure, exchange statistics, and fermion metric compatibility may consume spin/helicity only from the retained row that also carries the causal-writhe parity, quotient, doubled-path, gauge-control, and angular-momentum data.
 
 This is a theorem target, not a completed proof. The causal-action functional adds a promising topological handle through causal writhe,
 
@@ -1761,7 +2179,7 @@ This taxonomy is a bridge, not a proof. It tells the corpus where to look for th
 
 Downstream chapters should use this bridge as a dictionary, not as a completed proof. The nucleon spin budget in [Nucleon Structure](../nuclear-atomic/nucleon-structure.md), the gluon vector-channel account in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md), the rho/Delta spin and Pauli discussions in [Transient Hadrons: Mesons and Δ Resonances](../assemblies/mesons/mesons.md), the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md), atomic and molecular spin/exclusion language in [Atomic Structure](../nuclear-atomic/atomic-structure.md), [Atomic Spectra](../nuclear-atomic/atomic-spectra.md), and [Molecular Geometry](../nuclear-atomic/molecular-geometry.md), and photon/vector-mode language in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md), [Mode Taxonomy](../interactions/mode-taxonomy.md), and [Particle Masses](../assemblies/particle-masses.md) all inherit the open single-core angular-momentum ledger and ordered-frame spinor closure target.
 
-Second-ring consumers inherit the same limitation. Photon records in [Reaction Ledger](../validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), and [Synchrotron Cascades](../reactions/synchrotron.md), weak helicity selection in [Weak Mixing and CKM](./weak-mixing-ckm.md), Bell/CHSH response claims in [Bell's Theorem](./bell-theorem.md), Cesium hyperfine clock claims in [Architrino and SI Base Units](../validation/architrino-si-base-units.md), and boundary-helicity proxy language in [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md) may state observer-level labels and validation targets. They should not use those labels as independent derivations of spin, Pauli exclusion, spin-statistics closure, photon polarization, vector-mode spin, weak handedness, spin-measurement response, Bell correlations, or hyperfine spin coupling.
+Second-ring consumers inherit the same limitation. Photon records in [Reaction Ledger](../validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md), [Bremsstrahlung](../reactions/bremsstrahlung.md), and [Synchrotron Cascades](../reactions/synchrotron.md), weak helicity selection in [Weak Mixing and CKM](./weak-mixing-ckm.md), Bell/CHSH response claims in [Bell's Theorem](./bell-theorem.md), Cesium hyperfine clock claims in [Architrino and SI Base Units](../validation/architrino-si-base-units.md), and boundary-helicity proxy language in [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md) may state observer-level labels and validation targets. They should not use those labels as independent derivations of spin, Pauli exclusion, spin-statistics closure, photon polarization, vector-mode spin, weak handedness, spin-measurement response, Bell correlations, or hyperfine spin coupling. The common discipline is same-record consumption: a downstream claim may use the spinor, helicity, or weak-handedness label only from the branch record that also carries the relevant angular-momentum, apparatus, event-balance, or exposure residuals.
 
 ## Helicity and Vector Modes
 
@@ -1796,17 +2214,137 @@ $$
 \left(\hat{\mathbf{u}}\pm i\hat{\mathbf{v}}\right)
 $$
 
-is the target bridge to helicity. A helicity eigenmode must satisfy
+is the target bridge to helicity. A helicity eigenmode must first be stated as a substrate angular-momentum ledger. Let
 
 $$
-J_{\gamma,\parallel}
+\mathbf J_{\gamma}^{\mathrm{sub}}
 =
-\lambda_{\text{hel}}\hbar,
-\qquad
-\lambda_{\text{hel}}\in\{+1,-1\},
+\mathbf J_{\mathrm{pro}}
++
+\mathbf J_{\mathrm{anti}}
++
+\mathbf J_{\gamma,\mathrm{wake}},
 $$
 
-where $J_{\gamma,\parallel}$ is the angular-momentum projection along $\hat{\mathbf{e}}$. Linear polarization is then a real transverse-axis state, while circular polarization is a quarter-cycle phase relation between the two transverse axes. The proof burden is to show that the coaxial contra-rotating pro/anti planar pair carries this spin-$1$ transverse ledger and not a scalar, spinor, or longitudinal free mode.
+where the terms are the photon-side pro/anti planar-pair and photon-carried wake contributions. Source remnant, recoil, material handoff, and unrelated medium rows belong to the event ledger, not inside the photon-only helicity vector. The helicity residual is
+
+$$
+\Delta_{\mathrm{hel}}^\gamma
+=
+\left|
+\frac{
+\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}
+}{\hbar}
+-
+\lambda_{\mathrm{hel}}
+\right|
++
+\frac{
+\left\|
+P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
+\right\|
+}{
+\hbar+\varepsilon_J
+},
+\qquad
+\lambda_{\mathrm{hel}}\in\{+1,-1\},
+$$
+
+where $P_{\perp}$ projects transverse to the propagation axis. Linear polarization is then a real transverse-axis state, while circular polarization is a quarter-cycle phase relation between the two transverse axes. The scalar summary $\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar$ is allowed only after Gate A, the substrate planar-pair rows, and the event-balance rows pass. The proof burden is to show that the coaxial contra-rotating pro/anti planar pair carries this spin-$1$ transverse ledger and not a scalar, spinor, or longitudinal free mode.
+
+The useful algebraic consequence is an event-window helicity projection lemma. For a finite radiative event window,
+
+$$
+\Delta\mathbf J_{\mathrm{src}}^{0}
+=
+\mathbf J_{\gamma}^{\mathrm{sub}}
++
+\mathbf J_{\mathrm{recoil}}^{0}
++
+\mathbf J_{\mathrm{med}}^{0}
++
+\mathbf J_{\mathrm{wake}}^{0}
++
+\mathbf J_{\mathrm{handoff}}^{0}
++
+\mathbf J_{\mathrm{rem}}^{0}.
+$$
+
+Define the balance defect
+
+$$
+\mathbf B_{\gamma}^{0}
+=
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\gamma}^{\mathrm{sub}}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+$$
+
+and suppose the substrate row has no transverse spin leakage. If $\mathbf B_{\gamma}^{0}=\mathbf 0$, projecting along $\hat{\mathbf e}$ gives
+
+$$
+\lambda_{\mathrm{hel}}
+=
+\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
+=
+\frac{
+\hat{\mathbf e}\cdot
+\left(
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+\right)
+}{\hbar},
+\qquad
+\lambda_{\mathrm{hel}}\in\{+1,-1\}.
+$$
+
+With a nonzero but small balance defect, the projection error is bounded by
+
+$$
+\left|
+\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
+-
+\frac{
+\hat{\mathbf e}\cdot
+\left(
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+\right)
+}{\hbar}
+\right|
+\le
+\frac{\|\mathbf B_{\gamma}^{0}\|}{\hbar}.
+$$
+
+Thus photon helicity is not an isolated scalar assertion: it is the propagation-axis projection of the same source-depletion, recoil, wake, handoff, remnant, and photon substrate ledger, with its error controlled by the event-window balance defect.
 
 Analyzer coupling belongs to the same Gate B ledger. The transverse projector is
 
@@ -2022,6 +2560,54 @@ H\!\left(\mu_{\text{pass}}-\eta\right)d\eta
 =
 \mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp).
 $$
+
+This is the reusable threshold-pullback theorem target for one-wing record channels. If a record window has an event-ledger residual below tolerance, an invariant unresolved-material measure $d\nu$, and a threshold coordinate $\eta:\Theta\to[0,1]$ with $\eta_*d\nu=d\eta$, then the deterministic kernel
+
+$$
+K_o(\rho,\zeta)=H\!\left(\rho-\eta(\zeta)\right)
+$$
+
+has the pushed-forward weight
+
+$$
+\int_{\Theta}K_o(\rho,\zeta)\,d\nu(\zeta)
+=
+\nu\!\left(\{\zeta:\eta(\zeta)<\rho\}\right)
+=
+\int_0^\rho d\eta
+=
+\rho.
+$$
+
+Photon Gate B uses $\rho=\mu_{\text{pass}}(\hat{\mathbf a}\mid a_\perp)$. The Stern-Gerlach-like chart below uses the same structure with $\rho=p_{+}(\hat{\mathbf a},\hat{\mathbf m})$. Bell-pair work may consume this theorem target only after both one-wing kernels are tied to the same pair-provenance record and the resulting joint law avoids product screening while preserving measurement independence and no-signaling.
+
+The Bell limitation is quantitative. If two wings use independent threshold-pullback kernels over a setting-independent source measure, Fubini reduction turns them into one-wing response probabilities $p_A(a|x,\Pi)$ and $p_B(b|y,\Pi)$. The resulting law
+
+$$
+P(a,b|x,y)
+=
+\int p_A(a|x,\Pi)p_B(b|y,\Pi)\,d\rho_{\mathrm{src}}(\Pi)
+$$
+
+obeys the CHSH bound. If a product-screened approximation differs from the completed table by at most $\Delta_{\mathrm{prod}}$ per outcome-setting cell, then
+
+$$
+|S|\le 2+16\Delta_{\mathrm{prod}}.
+$$
+
+If the same table is within $\Delta_{\mathrm{joint}}^{\mathrm{sing}}$ of the singlet joint law at the CHSH-optimal settings, then
+
+$$
+\Delta_{\mathrm{prod}}
++
+\Delta_{\mathrm{joint}}^{\mathrm{sing}}
+\ge
+\frac{2\sqrt2-2}{16}
+=
+\frac{\sqrt2-1}{8}.
+$$
+
+Thus exact singlet recovery requires the product-screening residual to stay bounded away from zero; in this normalization $\Delta_{\mathrm{prod}}\ge(\sqrt2-1)/8\approx0.0518$. The one-wing threshold theorem can supply local probabilities, but it cannot be duplicated independently to make Bell correlations.
 
 The substrate origin of these reduced objects is the analyzer's own finite-time material dynamics. Let $\mathcal{P}_{\hat{\mathbf a}}$ denote the record-window section of fully specified analyzer states: a state lies in $\mathcal{P}_{\hat{\mathbf a}}$ when an incoming Gate A-admissible photon branch has reached the analyzer entrance with propagation axis $\hat{\mathbf e}$, the analyzer's macroscopic accepted axis is $\hat{\mathbf a}$, and the local Noether-Sea environment is within the calibrated operating band. Let $\sim_{\hat{\mathbf a}}$ identify material states that differ only by translations among equivalent capture sites or by record-cycle phase choices that preserve the same local pass/reject geometry. The unresolved analyzer microstate space is then the quotient
 
@@ -2601,6 +3187,25 @@ $$
 
 The uniform measure $d\theta_{\text{rec}}/(2\pi)$ is the calibrated limit in which the successful record cycle has constant phase speed, or in which $\theta_{\text{rec}}$ is chosen as the normalized time-of-flight phase on the cycle. If the Master-Equation record cycle has nonconstant phase speed or channel-dependent efficiency, the basin integral must use $d\nu_{\text{rec}}$ above rather than the uniform idealization.
 
+The reduced half-angle arithmetic needs a measure coordinate, not a raw uniform phase. Define
+
+$$
+u_{\hat{\mathbf m}}(\theta)
+=
+\nu_{\hat{\mathbf m}}^{\mathrm{rec}}([0,\theta])
+=
+\int_0^\theta
+\rho_{\hat{\mathbf m}}^{\mathrm{rec}}(s)\,ds.
+$$
+
+When the conditional record measure is non-atomic, this coordinate pushes the record measure to Lebesgue measure on $[0,1]$:
+
+$$
+(u_{\hat{\mathbf m}})_*d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}=du.
+$$
+
+This is the probability-integral transform applied to the locked apparatus record cycle. It means the ideal threshold rule should be written in the invariant-measure coordinate; the raw phase formula is only the special case $u_{\hat{\mathbf m}}(\theta_{\text{rec}})=\theta_{\text{rec}}/(2\pi)$.
+
 In this reduced chart, the concrete Stern-Gerlach separatrix is
 
 $$
@@ -2609,7 +3214,7 @@ $$
 =
 p_{+}(Z;\hat{\mathbf{m}})
 -
-\frac{\theta_{\text{rec}}}{2\pi}
+u_{\hat{\mathbf m}}(\theta_{\text{rec}})
 }
 $$
 
@@ -2620,7 +3225,7 @@ $$
 =
 d p_{+}
 -
-\frac{1}{2\pi}d\theta_{\text{rec}}.
+\rho_{\hat{\mathbf m}}^{\mathrm{rec}}(\theta_{\text{rec}})\,d\theta_{\text{rec}}.
 $$
 
 The reduced record basins are therefore
@@ -2630,7 +3235,7 @@ B_{+}^{\text{red}}(\hat{\mathbf{m}})
 =
 \left\{
 (Z,\theta_{\text{rec}}):
-0\le\theta_{\text{rec}}<2\pi p_{+}(Z;\hat{\mathbf{m}})
+u_{\hat{\mathbf m}}(\theta_{\text{rec}})<p_{+}(Z;\hat{\mathbf{m}})
 \right\},
 $$
 
@@ -2641,7 +3246,7 @@ B_{-}^{\text{red}}(\hat{\mathbf{m}})
 =
 \left\{
 (Z,\theta_{\text{rec}}):
-2\pi p_{+}(Z;\hat{\mathbf{m}})<\theta_{\text{rec}}<2\pi
+u_{\hat{\mathbf m}}(\theta_{\text{rec}})>p_{+}(Z;\hat{\mathbf{m}})
 \right\},
 $$
 
@@ -2654,7 +3259,7 @@ G_{\text{rec}}
 H\!\left(
 p_{+}(Z;\hat{\mathbf{m}})
 -
-\frac{\theta_{\text{rec}}}{2\pi}
+u_{\hat{\mathbf m}}(\theta_{\text{rec}})
 \right),
 $$
 
@@ -2665,7 +3270,7 @@ K_{-}^{\text{SG,red}}
 =
 G_{\text{rec}}
 H\!\left(
-\frac{\theta_{\text{rec}}}{2\pi}
+u_{\hat{\mathbf m}}(\theta_{\text{rec}})
 -
 p_{+}(Z;\hat{\mathbf{m}})
 \right).
@@ -2691,18 +3296,24 @@ p_{-}
 \sin^2\!\left(\frac{\alpha}{2}\right).
 $$
 
-Conditioned on a successful, unbiased record gate,
+Conditioned on a successful record gate whose measure is included in $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$,
 
 $$
 P_{+}(\alpha\,|\,\text{rec})
 =
-\int_{0}^{2\pi}
+\int
 H\!\left(
 \cos^2\!\left(\frac{\alpha}{2}\right)
 -
-\frac{\theta_{\text{rec}}}{2\pi}
+u_{\hat{\mathbf m}}(\theta_{\text{rec}})
 \right)
-\frac{d\theta_{\text{rec}}}{2\pi}
+\,
+d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}(\theta_{\text{rec}})
+=
+\int_0^1
+H\!\left(
+\cos^2\!\left(\frac{\alpha}{2}\right)-u
+\right)du
 =
 \cos^2\!\left(\frac{\alpha}{2}\right),
 $$
@@ -2715,7 +3326,7 @@ P_{-}(\alpha\,|\,\text{rec})
 \sin^2\!\left(\frac{\alpha}{2}\right).
 $$
 
-This closes the single-core basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $\dot{\mathbf{J}}_{C}^{\text{app}}$ is the angular impulse generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, prove when the record-cycle phase can be flattened to the uniform measure, and evaluate the branch-sum impulse for a concrete Noether-core apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved core phases, the conditional measure must include that dependence instead of using the ideal unbiased form above.
+This closes the single-core basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $\dot{\mathbf{J}}_{C}^{\text{app}}$ is the angular impulse generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, derive the conditional record measure and physical separatrix from the apparatus dynamics, and evaluate the branch-sum impulse for a concrete Noether-core apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved core phases, that dependence belongs inside $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$ rather than inside a separate post-measurement probability rule.
 
 Bell-pair tests require one more layer: the pair-provenance ledger and both local apparatus couplings must be included before comparing to the singlet correlation. A response that reduces to a sharp classical basin boundary over a preassigned local axis remains the known linear-correlation failure mode, not a successful spin-measurement model.
 
@@ -2864,7 +3475,7 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 
 1. Promote the delayed three-layer scaffold above into a conserved functional derived directly from the regularized nonlocal action.
 2. Validate that functional on a Noether core with inner, middle, and outer binary radii, frequencies, plane normals, phases, active root branches, and self-hit history.
-3. Derive the exact branch-selection law that computes $\eta_I$, $\eta_M$, $\eta_O$, and $\eta_{\text{wake}}$ from causal-root data for an accepted $\Delta A_{\text{cycle}}=h$ transaction.
+3. Populate the finite candidate set $\mathcal A_N(B^-,\Gamma_{\text{coupl}},W)$, evaluate $\mathcal R_{\mathrm{sel}}$ on each retained branch candidate, and test whether $\operatorname{Sel}_{B,N}$ is chart-invariant, unique, or a physical tie for an accepted $\Delta A_{\text{cycle}}=h$ transaction.
 4. Generalize the solved four-substep branch by deriving or fitting $a$, $b$, $w$, $\Delta R_\ell$, $\Delta\omega_\ell$, and $\Delta E_{\ell,\text{root}}$ from the master equation for non-minimal branches.
 5. Determine whether the partition is unique or branch-dependent for inner, middle, and outer binary layers.
 6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift for ordered non-coplanar Noether cores, then test whether the same lifted ordered-frame response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.

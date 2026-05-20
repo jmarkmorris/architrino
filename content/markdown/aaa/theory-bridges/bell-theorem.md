@@ -260,7 +260,81 @@ P(a\mid \hat{m}_A,\hat{m}'_B)
 \right|,
 $$
 
-with the analogous $\Delta_{\mathrm{NS}}^{B}$ obtained by exchanging the detector labels. Both must vanish within tolerance. Correlation recovery is the third guardrail:
+with the analogous $\Delta_{\mathrm{NS}}^{B}$ obtained by exchanging the detector labels. Both must vanish within tolerance.
+
+For binary records, no-signaling has a useful finite-channel decomposition. Any normalized law for $a,b\in\{-1,+1\}$ can be written in Walsh form as
+
+$$
+P(a,b|x,y)
+=
+\frac14
+\left[
+1
++
+a\,m_A(x,y)
++
+b\,m_B(x,y)
++
+ab\,C(x,y)
+\right],
+$$
+
+where
+
+$$
+m_A=\sum_{a,b}aP(a,b|x,y),
+\qquad
+m_B=\sum_{a,b}bP(a,b|x,y),
+\qquad
+C=\sum_{a,b}abP(a,b|x,y).
+$$
+
+No-signaling is exactly the condition that the local channels reduce to $m_A(x)$ and $m_B(y)$. The only term then allowed to carry both settings without operational signaling is the correlation channel:
+
+$$
+P(a,b|x,y)
+=
+\frac14
+\left[
+1
++
+a\,m_A(x)
++
+b\,m_B(y)
++
+ab\,C(x,y)
+\right],
+$$
+
+with positivity condition
+
+$$
+1+a\,m_A(x)+b\,m_B(y)+ab\,C(x,y)\ge0.
+$$
+
+For the singlet target,
+
+$$
+m_A(x)=0,
+\qquad
+m_B(y)=0,
+\qquad
+C(x,y)=-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B.
+$$
+
+Product-screened response is the special subclass
+
+$$
+C_{\mathrm{prod}}(x,y)
+=
+\int
+A_x(\Pi)B_y(\Pi)\,
+d\rho_{\mathrm{src}}(\Pi).
+$$
+
+Thus the non-product burden is sharply located: a successful pair-provenance account must derive a correlation channel $C(x,y)$ that is not reducible to $C_{\mathrm{prod}}(x,y)$, while keeping $m_A$ and $m_B$ local and preserving positivity.
+
+Correlation recovery is the third guardrail:
 
 $$
 \Delta_{\mathrm{Bell}}
@@ -316,7 +390,39 @@ $$
 
 That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter Noether cores redistribute action across inner, middle, and outer binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
 
-**Measurement geometry.** When detector $A$ measures along axis $\hat{m}_A$, the apparatus does not read a tiny arrow. It drives the local assembly through a finite-time coupling process whose outcome depends on the full spin ledger: ordered binary-plane geometry, phase, active causal wakes, local Noether-Sea state, and the apparatus potential. The Stern-Gerlach-like scaffold in [Angular Momentum and Spin](./angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) formulates this as apparatus potential-gradient coupling, basin-boundary crossing, angular-momentum exchange, and wake / Noether-Sea recoil. A correct theory must derive how that coupling produces the two observed outcomes called spin-up and spin-down along $\hat{m}_A$.
+A source-level pair-provenance record should therefore replace the generic $\lambda$ placeholder before any Bell calculation is called physical. For a singlet-like source, write
+
+$$
+P_{\mathrm{src}}^{\mathrm{sing}}
+=
+\left(
+B_{\mathrm{parent}}^-,
+W_{\mathrm{src}},
+t_0,
+t_{\mathrm{sep}},
+\Sigma_{\mathrm{src}},
+\mu_{\mathrm{src}},
+\Gamma_{\mathrm{src}}^{\mathrm{loc}}
+\right),
+$$
+
+where $B_{\mathrm{parent}}^-$ is the pre-fragmentation parent branch, $W_{\mathrm{src}}$ is the source event window, $t_{\mathrm{sep}}$ is the separation time, $\Sigma_{\mathrm{src}}$ is the source separatrix or accepted branch condition, $\mu_{\mathrm{src}}$ is the source-side measure, and $\Gamma_{\mathrm{src}}^{\mathrm{loc}}$ records local source geometry. The retained pair-provenance distribution is
+
+$$
+\rho_{\mathrm{src}}
+\left(
+\Pi_{AB}^{\mathrm{sing}}
+\middle|
+P_{\mathrm{src}}^{\mathrm{sing}}
+\right)
+=
+C_{\mathrm{pair}*}^{\mathrm{sing}}
+\mu_{\mathrm{src}}.
+$$
+
+Here $\Pi_{AB}^{\mathrm{sing}}$ is the daughter-pair provenance record and $C_{\mathrm{pair}*}^{\mathrm{sing}}$ is the singlet-pair construction or conditioning map. Later detector settings are excluded fields of $P_{\mathrm{src}}^{\mathrm{sing}}$; if they enter this source record, the model has moved into measurement-independence failure rather than Bell closure.
+
+**Measurement geometry.** When detector $A$ measures along axis $\hat{\mathbf m}_A$, the apparatus does not read a tiny arrow. It drives the local assembly through a finite-time coupling process whose outcome depends on the full spin ledger: ordered binary-plane geometry, phase, active causal wakes, local Noether-Sea state, and the apparatus potential. The Stern-Gerlach-like scaffold in [Angular Momentum and Spin](./angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) formulates this as apparatus potential-gradient coupling, basin-boundary crossing, angular-momentum exchange, and wake / Noether-Sea recoil. A correct theory must derive how that coupling produces the two observed outcomes called spin-up and spin-down along $\hat{\mathbf m}_A$.
 
 **Why this is not action at a distance.** No usable signal, energy, or causal wake is allowed to pass from one detector to the other during spacelike-separated measurement. The Bell-level difficulty is therefore not solved by adding a signal. It must be solved by showing that the full pair provenance and each local measurement interaction do not compress into the factorizable local-response model that Bell excludes.
 
@@ -325,18 +431,42 @@ That summary is necessary, but it is not the mechanism. The substrate question i
 The central quantitative test is whether the $\mathbb{A}\mathbb{A}\mathbb{A}$ hidden-variable structure reproduces the singlet correlation:
 
 $$
-E(\hat{m}_A, \hat{m}_B) = -\cos\theta_{AB}.
+E(\hat{\mathbf m}_A, \hat{\mathbf m}_B) = -\cos\theta_{AB}.
 $$
 
-**Classical-axis failure mode.** Suppose each daughter merely carries an opposite internal angular-momentum direction $\hat{n}$, distributed uniformly over the unit sphere. For a given $\hat{n}$, let detector $A$ return $a=+1$ if $\hat{m}_A\cdot\hat{n}>0$ and $a=-1$ otherwise.
-
-With this deterministic assignment and the constraint $\hat{n}_A = -\hat{n}_B = \hat{n}$, the naive correlation function is:
+**Classical-axis failure mode.** Suppose each daughter merely carries an opposite internal angular-momentum direction, distributed uniformly over the unit sphere:
 
 $$
-E_{\text{naive}}(\theta_{AB}) = -1 + \frac{2\theta_{AB}}{\pi},
+\hat{\mathbf n}_A=-\hat{\mathbf n}_B.
 $$
 
-which is **linear** in $\theta_{AB}$ and does not violate the CHSH bound. This is the well-known failure of all local hidden-variable models with sharp basin boundaries.
+The deterministic local response
+
+$$
+A(\hat{\mathbf m}_A,\hat{\mathbf n}_A)
+=
+\operatorname{sgn}
+\left(
+\hat{\mathbf m}_A\cdot\hat{\mathbf n}_A
+\right),
+\qquad
+B(\hat{\mathbf m}_B,\hat{\mathbf n}_B)
+=
+\operatorname{sgn}
+\left(
+\hat{\mathbf m}_B\cdot\hat{\mathbf n}_B
+\right)
+$$
+
+gives the conserved-opposite-axis correlation
+
+$$
+E_{\mathrm{axis}}(\theta)
+=
+-1+\frac{2\theta}{\pi},
+$$
+
+which is **linear** in $\theta$ and does not violate the CHSH bound. This is the well-known failure of all local hidden-variable models with sharp basin boundaries.
 
 This calculation is important because it shows what not to claim. Angular-momentum conservation at creation is not enough if it is reduced to preassigned opposite local axes. Simple smoothing of a local axis response is also not automatically enough; it must be checked against the full correlation function.
 
@@ -351,6 +481,97 @@ d\rho_{\mathrm{prov}}(\Pi).
 $$
 That form can preserve no-signaling and measurement independence while still staying inside the Bell-local bound. The validation harness records this as `bell.product_screening_collapse`, so pair provenance is useful only if the retained record law avoids this compression without introducing setting-dependent provenance or distant signaling.
 
+### Threshold-Pullback Product-Screening No-Go
+
+The one-wing threshold-pullback theorem target from [Angular Momentum and Spin](angular-momentum-and-spin.md#helicity-and-vector-modes) is not, by itself, a Bell solution. It proves how a deterministic basin kernel can reproduce a declared one-wing probability after pushing forward an invariant record-window measure. If two wings use independent copies of that construction over a setting-independent source measure, the result is exactly the Bell-local form.
+
+Let $x,y$ denote detector settings and let $\Pi$ denote the retained source or pair-provenance record. Suppose the two-wing kernel factorizes as
+
+$$
+K_{ab}^{\mathrm{prod}}(x,y;\Pi,\zeta_A,\zeta_B)
+=
+K_A^a(x;\Pi,\zeta_A)
+K_B^b(y;\Pi,\zeta_B),
+$$
+
+with $d\nu_{A,x}$, $d\nu_{B,y}$, and $d\rho_{\mathrm{src}}(\Pi)$ setting-independent in the Bell sense. After integrating unresolved local record variables, define
+
+$$
+p_A(a|x,\Pi)
+=
+\int K_A^a(x;\Pi,\zeta_A)\,d\nu_{A,x}(\zeta_A),
+\qquad
+p_B(b|y,\Pi)
+=
+\int K_B^b(y;\Pi,\zeta_B)\,d\nu_{B,y}(\zeta_B).
+$$
+
+Then the observed law becomes
+
+$$
+P(a,b|x,y)
+=
+\int
+p_A(a|x,\Pi)
+p_B(b|y,\Pi)
+d\rho_{\mathrm{src}}(\Pi).
+$$
+
+For $\pm1$ outcomes, set
+
+$$
+A_x(\Pi)=\sum_{a=\pm1}a\,p_A(a|x,\Pi),
+\qquad
+B_y(\Pi)=\sum_{b=\pm1}b\,p_B(b|y,\Pi),
+$$
+
+so $A_x(\Pi),B_y(\Pi)\in[-1,1]$. For each $\Pi$,
+
+$$
+\left|
+A_xB_y
++
+A_xB_{y'}
++
+A_{x'}B_y
+-
+A_{x'}B_{y'}
+\right|
+\le 2.
+$$
+
+Integrating over $d\rho_{\mathrm{src}}(\Pi)$ gives the CHSH bound $|S|\le2$. Therefore independent local threshold-pullback kernels can recover one-wing probabilities but cannot recover the singlet Bell law. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell packet must locate nonseparability in the derived joint response kernel, in a non-restartable pair-provenance compression, or in another explicitly stated structure that is not equivalent to the product form above, while still preserving measurement independence and no-signaling.
+
+The no-go is quantitative in the natural per-cell residual. If a candidate table is within $\Delta_{\mathrm{prod}}$ of a product-screened table for each outcome-setting cell, then each correlator differs by at most $4\Delta_{\mathrm{prod}}$, and the CHSH expression obeys
+
+$$
+|S|\le 2+16\Delta_{\mathrm{prod}}.
+$$
+
+At the CHSH-optimal singlet settings, a completed table within $\Delta_{\mathrm{joint}}^{\mathrm{sing}}$ of the singlet joint law must therefore satisfy
+
+$$
+\Delta_{\mathrm{prod}}
++
+\Delta_{\mathrm{joint}}^{\mathrm{sing}}
+\ge
+\frac{2\sqrt2-2}{16}
+=
+\frac{\sqrt2-1}{8}.
+$$
+
+Thus exact singlet recovery requires
+
+$$
+\Delta_{\mathrm{prod}}
+\ge
+\frac{\sqrt2-1}{8}
+\approx
+0.0518
+$$
+
+in this residual normalization. Driving the product-screening residual to zero and driving the singlet residual to zero are mutually incompatible closure targets.
+
 The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ route lies in the finite-time measurement interaction of a full Noether-core ledger rather than in a preassigned spin label. The ingredients to derive are:
 
 1. **Angular-momentum ledger geometry**: the internal spin ledger includes ordered binary-plane geometry, binary frequencies, causal-root branches, and causal-wake angular momentum.
@@ -361,15 +582,78 @@ The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ route lies in the finite-time mea
 
 4. **Pair provenance**: the two daughter ledgers come from one creation event and may retain relational constraints that are lost when one tries to split the state into two independent local packages.
 
-The quantitative closure target is therefore:
+The quantitative closure target is therefore the full singlet joint law, not only the correlation curve. For a Bell packet
 
 $$
-E(\hat{m}_A,\hat{m}_B)
-=\sum_{a,b=\pm1}ab\int P(a,b\,|\,\hat{m}_A,\hat{m}_B,\lambda)\rho(\lambda)\,d\lambda
-=-\cos\theta_{AB},
+\theta=
+\left(
+P_{\mathrm{src}}^{\mathrm{sing}},
+\mathcal{K}_A,
+\mathcal{K}_B,
+W,
+T
+\right),
 $$
 
-with marginal probabilities independent of the distant setting. The local Stern-Gerlach kernels are deterministic basin indicators derived from the architrino-level angular-momentum and measurement-response dynamics, not ready-made spin-projection rules. The remaining Bell-level task is to derive the preparation and pair-provenance measures that make those local kernels reproduce the observed correlation.
+let the derived joint response kernel satisfy
+
+$$
+K_{ab}^{\theta}
+\left(
+\hat{\mathbf m}_A,
+\hat{\mathbf m}_B;
+\Pi,
+\zeta_A,
+\zeta_B
+\right)\ge0,
+\qquad
+\sum_{a,b=\pm1}K_{ab}^{\theta}=1.
+$$
+
+The record law is
+
+$$
+P_{\theta}(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\int
+K_{ab}^{\theta}\,
+d\nu_{A,\hat{\mathbf m}_A}\,
+d\nu_{B,\hat{\mathbf m}_B}\,
+d\rho_{\mathrm{src}}
+\left(
+\Pi
+\middle|
+P_{\mathrm{src}}^{\mathrm{sing}}
+\right).
+$$
+
+The singlet residual is
+
+$$
+\Delta_{\mathrm{joint}}^{\mathrm{sing}}
+=
+\sup_{a,b,\hat{\mathbf m}_A,\hat{\mathbf m}_B}
+\left|
+P_{\theta}(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+-
+\frac14
+\left(
+1-ab\,\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
+\right)
+\right|.
+$$
+
+If this residual is small, normalization, unbiased one-wing marginals, and the correlation
+
+$$
+E_\theta(\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\sum_{a,b=\pm1}ab\,P_{\theta}(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
+$$
+
+follow as consequences. The local Stern-Gerlach kernels are deterministic basin indicators derived from the architrino-level angular-momentum and measurement-response dynamics, not ready-made spin-projection rules. The remaining Bell-level task is to derive the preparation and pair-provenance measures that make those local kernels reproduce the joint law while preserving no-signaling and measurement independence and while failing the product-screened local reconstruction above.
 
 **Status:** This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency Noether core, use the Master-Equation apparatus impulse and record-cycle invariant measure to realize $K_{\pm}^{\text{SG}}$, and then derive the pair-provenance measure for correlated cores. The single-core half-angle basin arithmetic and the external apparatus-term origins are now available in the reduced Stern-Gerlach chart, but this is not yet a Bell-pair correlation proof.
 
@@ -413,7 +697,7 @@ The existence of a global time parameter $t$ is essential for the internal consi
 **Resolution via absolute time.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, the temporal ordering of all events is objective. Measurements at $A$ and $B$ occur at definite absolute times $t_A$ and $t_B$, with $t_A < t_B$, $t_A = t_B$, or $t_A > t_B$ as an objective fact. In all three cases the account is the same:
 
 1. At $t_0 < \min(t_A, t_B)$: the creation event establishes $\lambda$.
-2. At each measurement time: the local apparatus drives the local assembly across a basin boundary. The outcome is determined by $\lambda$ and the local setting.
+2. At each measurement time: the local apparatus drives the local assembly across a basin boundary. The one-wing basin crossing is local, but the validated observer-level law is the pushed-forward nonseparable pair-provenance response kernel, not a restartable product of two independent local hidden-variable packages.
 3. After both measurements: comparison of results (via sub-$c_f$ classical communication) reveals the correlations.
 
 No step may involve faster-than-$c_f$ signal transfer. The correlations are visible only upon comparison. The objective temporal ordering removes one frame-dependence puzzle, but it does not by itself solve Bell's theorem. The missing work is the lower-level derivation of the spin ledger and measurement-response kernel.

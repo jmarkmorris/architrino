@@ -26,7 +26,7 @@ Below threshold, the response is reversible retuning:
 $$
 p_{\text{int}}^a
 \approx
-\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b}.
 $$
 
@@ -105,6 +105,61 @@ $$
 $$
 
 This turns the transport residual into a proof/simulation gate. The reversible response tensor $\mathcal{M}_{\text{sea}}^{ab}$ may dress $p_{\text{int}}^a$ below threshold, but it cannot hide an unlogged scalar drag coefficient. Conversely, observed heating, phonon creation, radiation, or structural change above threshold should be routed as a loss-channel event rather than absorbed into the inertial coefficient.
+
+## Reversible Symmetric Response Lemma
+
+Promotion status: the reader-facing version of this lemma was promoted into [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) on May 20, 2026. The coefficient extraction for $\mathcal{M}_{+}^{ab}$ remains priority-side and depends on the medium-response probe.
+
+Split the medium-response tensor into symmetric and antisymmetric parts:
+
+$$
+\mathcal{M}_{\text{sea}}^{ab}
+=
+\mathcal{M}_{+}^{ab}
++
+\mathcal{M}_{-}^{ab},
+\qquad
+\mathcal{M}_{\pm}^{ab}
+=
+\frac{1}{2}
+\left(
+\mathcal{M}_{\text{sea}}^{ab}
+\pm
+\mathcal{M}_{\text{sea}}^{ba}
+\right).
+$$
+
+Below the transport threshold, the reversible kinetic scalar for a transported assembly is
+
+$$
+K_{\mathrm{rev}}
+=
+\frac{1}{2}
+\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)\,
+V_{\text{cm},a}\mathcal{M}_{+}^{ab}V_{\text{cm},b}.
+$$
+
+The antisymmetric part cannot contribute because
+
+$$
+V_{\text{cm},a}\mathcal{M}_{-}^{ab}V_{\text{cm},b}=0.
+$$
+
+Therefore the below-threshold momentum and directional mass readout are
+
+$$
+p_{\mathrm{rev}}^{a}
+=
+\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)\,
+\mathcal{M}_{+}^{ab}V_{\text{cm},b},
+\qquad
+m_{\mathrm{eff}}(\hat v;A,\theta_{\mathrm{sea}})
+=
+\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)\,
+\hat v_a\mathcal{M}_{+}^{ab}(\theta_{\mathrm{sea}})\hat v_b.
+$$
+
+Proof route: every reversible scalar energy quadratic in $V_{\text{cm}}$ contracts a velocity covector with the response tensor and the same velocity again. The contraction is symmetric in the two velocity factors, so the antisymmetric tensor part cancels identically. Any measured or simulated antisymmetric residue must therefore be reported as orientation, circulation, Hall-like transverse response, transport loss, or event-ledger residue, not as scalar rest mass.
 
 ## Tier 2 Source-Mining Addendum
 

@@ -312,14 +312,14 @@ At any time $t$, a coordinate point may be occupied by an architrino, traversed 
 
 This gives a direct no-expanding-void criterion for cosmology. Effective cosmology variables such as $a(t)$, $H(t)$, redshift, and CMB temperature summaries are admissible only as functions of Noether-Sea state, transport history, and observer clock comparison:
 $$
-a_{\mathrm{eff}}(t)=\mathcal{A}[\theta_{\mathrm{sea}}(t),O(t)].
+a_{\mathrm{eff}}(t)=\mathcal{A}[\mathcal{N}_{\mathrm{sea}}(t),O(t)].
 $$
-Here $\theta_{\mathrm{sea}}(t)$ denotes the relevant Noether-Sea state variables, and $O(t)$ denotes observer records and calibration data. The formula is a schematic inference map, not a new substrate law.
+Here $\mathcal{N}_{\mathrm{sea}}(t)$ denotes the relevant Noether-Sea state variables, and $O(t)$ denotes observer records and calibration data. The formula is a schematic inference map into the observer-level metric, not a new substrate law.
 They must not be interpreted as
 $$
 h_{ij}(t)=a_{\mathrm{eff}}^2(t)\delta_{ij}
 $$
-for the Euclidean void.
+for the Euclidean void. The substrate spatial metric remains $h_{ij}=\delta_{ij}$, flat and unchanging, while any effective cosmological expansion factor belongs to observer-level metric reconstruction.
 
 ### Plenum of Potential
 

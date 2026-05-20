@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 153,
-      "sections": 1232
+      "sections": 1231
     }
   },
   "tocRoot": {
@@ -1139,10 +1139,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "All-Layer Lorentz Branch Response",
+                "title": "All-Layer Translating Branch Response",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "All-Layer Lorentz Branch Response",
-                "sectionKey": "all layer lorentz branch response",
+                "markdownSection": "All-Layer Translating Branch Response",
+                "sectionKey": "all layer translating branch response",
                 "headingLevel": 2
               },
               {
@@ -1155,18 +1155,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Transverse Causal Budget Lemma",
+                "title": "Observer-Inference Export Boundary",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Transverse Causal Budget Lemma",
-                "sectionKey": "transverse causal budget lemma",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "ADM/Cartan Reconstruction Target",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "ADM/Cartan Reconstruction Target",
-                "sectionKey": "adm cartan reconstruction target",
+                "markdownSection": "Observer-Inference Export Boundary",
+                "sectionKey": "observer inference export boundary",
                 "headingLevel": 2
               },
               {
@@ -1219,10 +1211,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Metric and Connection Reconstruction Diagnostics",
+                "title": "Observer-Export Diagnostics",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Metric and Connection Reconstruction Diagnostics",
-                "sectionKey": "metric and connection reconstruction diagnostics",
+                "markdownSection": "Observer-Export Diagnostics",
+                "sectionKey": "observer export diagnostics",
                 "headingLevel": 2
               },
               {
@@ -1243,10 +1235,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Equivalence Principle (Working Constraint)",
+                "title": "Acceleration-Gradient Branch Comparison",
                 "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Equivalence Principle (Working Constraint)",
-                "sectionKey": "equivalence principle working constraint",
+                "markdownSection": "Acceleration-Gradient Branch Comparison",
+                "sectionKey": "acceleration gradient branch comparison",
                 "headingLevel": 2
               },
               {
@@ -8089,18 +8081,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "2026-05-19 Assessment Notes",
+                "title": "2026-05-20 Assessment Notes",
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-05-19 Assessment Notes",
-                "sectionKey": "2026 05 19 assessment notes",
+                "markdownSection": "2026-05-20 Assessment Notes",
+                "sectionKey": "2026 05 20 assessment notes",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "2026-05-17 Assessment Notes",
+                "title": "2026-05-19 Assessment Notes",
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-05-17 Assessment Notes",
-                "sectionKey": "2026 05 17 assessment notes",
+                "markdownSection": "2026-05-19 Assessment Notes",
+                "sectionKey": "2026 05 19 assessment notes",
                 "headingLevel": 2
               },
               {

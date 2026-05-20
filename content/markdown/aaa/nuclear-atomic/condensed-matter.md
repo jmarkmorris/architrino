@@ -52,11 +52,72 @@ Below the critical surface, the response belongs to the mass and inertia program
 $$
 p_{\text{int}}^a
 \approx
-\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b}.
 $$
 
 This is the condensed-matter version of medium-dressed inertial response. The Noether Sea may shape the response tensor, the local delay factor, and the stability margin, but it must not drain energy from a stable bound state merely because that state is moving through the medium.
+
+The algebraic reason for this distinction is that the reversible kinetic scalar can consume only the symmetric part of the medium-response tensor. Decompose
+
+$$
+\mathcal{M}_{\text{sea}}^{ab}
+=
+\mathcal{M}_{+}^{ab}
++
+\mathcal{M}_{-}^{ab},
+\qquad
+\mathcal{M}_{+}^{ab}
+=
+\frac{1}{2}
+\left(
+\mathcal{M}_{\text{sea}}^{ab}
++
+\mathcal{M}_{\text{sea}}^{ba}
+\right),
+\qquad
+\mathcal{M}_{-}^{ab}
+=
+\frac{1}{2}
+\left(
+\mathcal{M}_{\text{sea}}^{ab}
+-
+\mathcal{M}_{\text{sea}}^{ba}
+\right).
+$$
+
+The below-threshold reversible energy is the quadratic form
+
+$$
+K_{\mathrm{rev}}
+=
+\frac{1}{2}\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)\,
+V_{\text{cm},a}\mathcal{M}_{+}^{ab}V_{\text{cm},b},
+\qquad
+p_{\mathrm{rev}}^{a}
+=
+\frac{\partial K_{\mathrm{rev}}}{\partial V_{\text{cm},a}}
+=
+\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)\,
+\mathcal{M}_{+}^{ab}V_{\text{cm},b}.
+$$
+
+The antisymmetric part drops out because
+
+$$
+V_{\text{cm},a}\mathcal{M}_{-}^{ab}V_{\text{cm},b}=0.
+$$
+
+Thus the directional inertial readout below threshold is
+
+$$
+m_{\mathrm{eff}}(\hat v;A,\theta_{\mathrm{sea}})
+=
+\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)\,
+\hat v_a\mathcal{M}_{+}^{ab}(\theta_{\mathrm{sea}})\hat v_b.
+$$
+
+This is not a completed derivation of $\mathcal{M}_{+}^{ab}$; it is the reversible-response lemma that any derivation must satisfy. If an antisymmetric response, drag-like coefficient, or nonzero work-loss term appears below $\mathcal{R}_{\text{tr},*}$, it cannot be hidden inside scalar mass. It must either vanish in the branch-preserving limit or be routed to an orientation, excitation, heating, radiation-like, boundary-exchange, or branch-transition channel.
 
 ## Lattice and Band-Response Recovery
 

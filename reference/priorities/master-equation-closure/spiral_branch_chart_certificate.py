@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
-"""Executable support certificate for the VP-1 spiral branch chart.
+"""Executable support certificate for spiral branch-chart candidates.
 
-This runner evaluates the variable-pitch VP-1 packet recorded in
-spiral-branch-chart-certificate.md. It is intentionally self-contained and
-uses only the Python standard library.
+This runner evaluates the variable-pitch spiral packets recorded under
+reference/priorities/master-equation-closure. It is intentionally
+self-contained and uses only the Python standard library.
 
-The artifact has one narrow job: make the VP-1 branch ledger replayable. It
+The artifact has one narrow job: make a selected branch ledger replayable. It
 reports active partner/self roots, Jacobian floors, active-count stability,
 finite-memory status, the radial-turn branch-sum threshold interval, a weighted
 ``D_T(I_*)`` quadrature estimate, and the remaining blockers for theorem-grade
 interval promotion. The runner does not mark the priority item complete unless
-typed sidecar rows resolve the full proof matrix; the current VP-1 sidecar has
-structural interval rows and a certified tangential-drive failure, but the
-radial force-ratio Gamma row remains blocked.
+typed sidecar rows resolve the full proof matrix.
 """
 
 from __future__ import annotations
@@ -25,7 +23,63 @@ from pathlib import Path
 from typing import Callable, Iterable
 
 
-A = 0.1
+@dataclass(frozen=True)
+class CandidateConfig:
+    key: str
+    label: str
+    schema: str
+    a: float
+    active_branch_windows: tuple[dict, ...]
+    radial_branch_interval_reference: tuple[float, float]
+    claim_level: str
+    default_report_path: str
+    pass_status: str
+    blocked_status: str
+
+
+VP1_ACTIVE_BRANCH_WINDOWS = (
+    {"label": "P_1", "kind": "partner", "window": (2.48, 2.52)},
+    {"label": "P_2", "kind": "partner", "window": (4.30, 4.46)},
+    {"label": "P_3", "kind": "partner", "window": (6.78, 6.92)},
+    {"label": "S_1", "kind": "self", "window": (4.80, 4.90)},
+)
+
+A1_ACTIVE_BRANCH_WINDOWS = (
+    {"label": "P_1", "kind": "partner", "window": (2.55, 2.69)},
+    {"label": "P_2", "kind": "partner", "window": (4.00, 4.34)},
+    {"label": "P_3", "kind": "partner", "window": (6.78, 7.12)},
+    {"label": "S_1", "kind": "self", "window": (4.82, 5.02)},
+)
+
+CANDIDATES = {
+    "vp1": CandidateConfig(
+        key="vp1",
+        label="VP-1",
+        schema="spiral_vp1_interval_rows.v1",
+        a=0.1,
+        active_branch_windows=VP1_ACTIVE_BRANCH_WINDOWS,
+        radial_branch_interval_reference=(-0.27143260470972164, -0.27143255629407625),
+        claim_level="sampled executable VP-1 branch ledger with interval-proof blockers",
+        default_report_path="spiral-branch-chart-interval-report.md",
+        pass_status="theorem_grade_passed_bare_spiral",
+        blocked_status="vp1_interval_blocked",
+    ),
+    "a1": CandidateConfig(
+        key="a1",
+        label="A1",
+        schema="spiral_a1_interval_rows.v1",
+        a=0.204,
+        active_branch_windows=A1_ACTIVE_BRANCH_WINDOWS,
+        radial_branch_interval_reference=(-0.005994791326773983, -0.005994715991872956),
+        claim_level="A1 branch ledger with sidecar interval rows and turn-center tangential compatibility no-go",
+        default_report_path="spiral-a1-interval-report.md",
+        pass_status="theorem_grade_passed_a1_bare_spiral",
+        blocked_status="a1_interval_blocked",
+    ),
+}
+
+ACTIVE_CANDIDATE = CANDIDATES["vp1"]
+A = ACTIVE_CANDIDATE.a
 B_STAR = 3.5
 PI = math.pi
 THETA_LO = -PI / 6.0
@@ -50,14 +104,16 @@ TANGENTIAL_ROOT_PAD = 1.0e-8
 TANGENTIAL_ROOT_PAD_MAX = 5.0e-2
 RADIAL_ROOT_PAD = 1.0e-8
 GAMMA_NORMALIZATION = "Gamma = r_*^3 Omega^2/(kappa q_1^2)"
-RADIAL_BRANCH_INTERVAL_REFERENCE = (-0.27143260470972164, -0.27143255629407625)
+RADIAL_BRANCH_INTERVAL_REFERENCE = ACTIVE_CANDIDATE.radial_branch_interval_reference
+ACTIVE_BRANCH_WINDOWS = list(ACTIVE_CANDIDATE.active_branch_windows)
 
-ACTIVE_BRANCH_WINDOWS = [
-    {"label": "P_1", "kind": "partner", "window": (2.48, 2.52)},
-    {"label": "P_2", "kind": "partner", "window": (4.30, 4.46)},
-    {"label": "P_3", "kind": "partner", "window": (6.78, 6.92)},
-    {"label": "S_1", "kind": "self", "window": (4.80, 4.90)},
-]
+
+def select_candidate(key: str) -> None:
+    global ACTIVE_CANDIDATE, A, RADIAL_BRANCH_INTERVAL_REFERENCE, ACTIVE_BRANCH_WINDOWS
+    ACTIVE_CANDIDATE = CANDIDATES[key]
+    A = ACTIVE_CANDIDATE.a
+    RADIAL_BRANCH_INTERVAL_REFERENCE = ACTIVE_CANDIDATE.radial_branch_interval_reference
+    ACTIVE_BRANCH_WINDOWS = list(ACTIVE_CANDIDATE.active_branch_windows)
 
 
 def down(value: float) -> float:
@@ -958,7 +1014,7 @@ def tangential_interval_certificate(*, slabs: int, root_pad: float) -> dict:
         if status == "certified_fail"
         else (
             "Outward slab evaluation ran, but its weighted lower endpoint does "
-            "not certify a VP-1 tangential-drive rejection."
+            "not certify a tangential-drive rejection."
         ),
     }
 
@@ -1015,7 +1071,7 @@ def sampled_inactive_gap_summary(
 
 def coincidence_clearance_summary(*, theta_samples: int, delta_samples: int) -> dict:
     analytic_lower_bound = math.sqrt(
-        8.0 * math.exp(-1.0 / 20.0) * (1.0 - math.cos(0.5))
+        8.0 * math.exp(-A / 2.0) * (1.0 - math.cos(0.5))
     ) - 2.0 / 7.0
     min_ratio = math.inf
     location: dict | None = None
@@ -1039,7 +1095,6 @@ def coincidence_clearance_summary(*, theta_samples: int, delta_samples: int) -> 
     }
 
 
-INTERVAL_SCHEMA = "spiral_vp1_interval_rows.v1"
 INTERVAL_ROW_NAMES = {
     "candidate_history",
     "partner_active_roots",
@@ -1051,10 +1106,11 @@ INTERVAL_ROW_NAMES = {
     "root_transport",
     "radial_turn",
     "tangential_drive",
+    "tangential_compatibility",
     "dependency_status",
 }
 INTERVAL_STATUSES = {"passed", "certified_fail", "blocked"}
-DRIVE_ROWS = {"radial_turn", "tangential_drive"}
+DRIVE_ROWS = {"radial_turn", "tangential_drive", "tangential_compatibility"}
 
 
 def load_interval_proof_packet(path: str | None) -> tuple[dict | None, list[str]]:
@@ -1072,7 +1128,7 @@ def parse_interval_rows(packet: dict | None) -> tuple[dict[str, IntervalProofRow
     if packet is None:
         return {}, []
     errors: list[str] = []
-    if packet.get("schema") != INTERVAL_SCHEMA:
+    if packet.get("schema") != ACTIVE_CANDIDATE.schema:
         errors.append(f"unsupported interval row schema: {packet.get('schema')!r}")
     rows_value = packet.get("rows")
     if not isinstance(rows_value, dict):
@@ -1152,7 +1208,7 @@ def validate_interval_candidate(packet: dict | None) -> list[str]:
         ):
             errors.append(f"candidate {key} mismatch: expected {expected}, got {value!r}")
 
-    expected_labels = ["P_1", "P_2", "P_3", "S_1"]
+    expected_labels = [branch["label"] for branch in ACTIVE_BRANCH_WINDOWS]
     labels = candidate.get("active_labels")
     if labels != expected_labels:
         errors.append(f"candidate active_labels mismatch: expected {expected_labels}, got {labels!r}")
@@ -1315,6 +1371,67 @@ def validate_tangential_drive_row(row: IntervalProofRow) -> list[str]:
     return errors
 
 
+def validate_tangential_compatibility_row(row: IntervalProofRow) -> list[str]:
+    if row.status == "blocked":
+        return []
+    data = row.data
+    errors: list[str] = []
+    if data.get("evidence_kind") != "turn_center_tangential_residual_interval":
+        errors.append(
+            "tangential_compatibility row requires evidence_kind=turn_center_tangential_residual_interval"
+        )
+    residual_interval = numeric_pair(data.get("T0_interval"))
+    active_labels = data.get("active_labels")
+    theta_star = data.get("theta_star")
+    min_j = data.get("min_active_j_abs_lower")
+    if residual_interval is None:
+        errors.append("tangential_compatibility row requires numeric T0_interval=[T0^-, T0^+]")
+    if active_labels != [branch["label"] for branch in ACTIVE_BRANCH_WINDOWS]:
+        errors.append("tangential_compatibility row active_labels do not match P_1,P_2,P_3,S_1")
+    if not isinstance(theta_star, (int, float)) or not close_enough(float(theta_star), THETA_STAR):
+        errors.append("tangential_compatibility row requires theta_star=0.0")
+    if data.get("root_boundary_sign_verified") is not True:
+        errors.append("tangential_compatibility row requires root_boundary_sign_verified=true")
+    if not isinstance(min_j, (int, float)) or isinstance(min_j, bool) or not math.isfinite(float(min_j)) or float(min_j) <= 0.0:
+        errors.append("tangential_compatibility row requires min_active_j_abs_lower > 0")
+    if errors:
+        return errors
+
+    t0_lo, t0_hi = residual_interval
+    strict_margin = data.get("strict_margin")
+    if (
+        not isinstance(strict_margin, (int, float))
+        or isinstance(strict_margin, bool)
+        or not math.isfinite(float(strict_margin))
+    ):
+        errors.append("tangential_compatibility row requires numeric strict_margin")
+    if row.status == "certified_fail":
+        if t0_lo <= 0.0 <= t0_hi:
+            errors.append(
+                "tangential_compatibility certified_fail requires T0_interval to exclude zero"
+            )
+        expected_margin = min(abs(t0_lo), abs(t0_hi))
+        if (
+            isinstance(strict_margin, (int, float))
+            and not close_enough(float(strict_margin), expected_margin)
+        ):
+            errors.append(
+                "tangential_compatibility certified_fail strict_margin must equal min(|T0^-|, |T0^+|)"
+            )
+    elif row.status == "passed":
+        epsilon_t0 = data.get("epsilon_T0")
+        if not isinstance(epsilon_t0, (int, float)) or float(epsilon_t0) < 0.0:
+            errors.append("tangential_compatibility passed requires epsilon_T0 >= 0")
+        if (
+            isinstance(epsilon_t0, (int, float))
+            and max(abs(t0_lo), abs(t0_hi)) > float(epsilon_t0)
+        ):
+            errors.append(
+                "tangential_compatibility passed requires max(|T0^-|, |T0^+|) <= epsilon_T0"
+            )
+    return errors
+
+
 def validate_interval_row_semantics(
     rows: dict[str, IntervalProofRow],
 ) -> tuple[dict[str, IntervalProofRow], list[str]]:
@@ -1323,6 +1440,7 @@ def validate_interval_row_semantics(
     validators = {
         "radial_turn": validate_radial_turn_row,
         "tangential_drive": validate_tangential_drive_row,
+        "tangential_compatibility": validate_tangential_compatibility_row,
     }
     for name, row in rows.items():
         validator = validators.get(name)
@@ -1409,7 +1527,10 @@ def proof_obligation_matrix(certificate: dict) -> list[dict]:
         {
             "row": "candidate_history",
             "status": "passed",
-            "technical_value": "Uses a=1/10, b_*=7/2, I_*=[-pi/6,pi/6], and D_h=(0,4*pi].",
+            "technical_value": (
+                f"Uses {ACTIVE_CANDIDATE.label} with a={A:.12g}, "
+                "b_*=7/2, I_*=[-pi/6,pi/6], and D_h=(0,4*pi]."
+            ),
         },
         {
             "row": "partner_active_roots",
@@ -1439,7 +1560,7 @@ def proof_obligation_matrix(certificate: dict) -> list[dict]:
         {
             "row": "finite_memory",
             "status": "passed" if memory["passed"] else "failed",
-            "technical_value": "Checks max active Delta against b_* e^(2a)(1+e^(2a)) < 4*pi.",
+            "technical_value": "Checks max active Delta against the corridor finite-memory bound below 4*pi.",
         },
         {
             "row": "root_transport",
@@ -1458,14 +1579,22 @@ def proof_obligation_matrix(certificate: dict) -> list[dict]:
             "row": "tangential_drive",
             "status": "sampled_fail" if tangent["sampled_tangential_failure"] else "blocked",
             "technical_value": (
-                "The sampled weighted D_T estimate is positive, so VP-1 does not "
-                "support the required negative tangential-drive row."
+                "The sampled weighted D_T estimate is positive, so the candidate "
+                "does not support the required negative tangential-drive row."
+            ),
+        },
+        {
+            "row": "tangential_compatibility",
+            "status": "blocked",
+            "technical_value": (
+                "No accepted turn-center tangential compatibility interval is loaded "
+                "for the prescribed history."
             ),
         },
         {
             "row": "dependency_status",
             "status": "not_evaluated",
-            "technical_value": "This runner consumes the VP-1 packet only and does not edit the priority ledger.",
+            "technical_value": "This runner consumes the selected branch-chart packet and does not edit the priority ledger.",
         },
     ]
     if radial["gamma_threshold"] <= 0.0:
@@ -1489,14 +1618,17 @@ def theorem_readiness(certificate: dict, obligations: list[dict]) -> dict:
     structural_rows_passed = all(by_row.get(row) == "passed" for row in structural_rows)
     radial_status = by_row.get("radial_turn")
     tangential_status = by_row.get("tangential_drive")
+    compatibility_status = by_row.get("tangential_compatibility")
     candidate_passed = (
         structural_rows_passed
         and radial_status == "passed"
         and tangential_status == "passed"
+        and compatibility_status == "passed"
     )
     candidate_rejected = structural_rows_passed and (
         radial_status == "certified_fail"
         or (radial_status == "passed" and tangential_status == "certified_fail")
+        or compatibility_status == "certified_fail"
     )
     theorem_grade = candidate_passed or candidate_rejected
     sampled_failure = certificate["tangential_drive"]["sampled_tangential_failure"]
@@ -1508,8 +1640,9 @@ def theorem_readiness(certificate: dict, obligations: list[dict]) -> dict:
         ),
         None,
     )
+    candidate_key = certificate["candidate"]["key"]
     if candidate_passed:
-        certificate_status = "theorem_grade_passed_bare_spiral"
+        certificate_status = ACTIVE_CANDIDATE.pass_status
         priority_item_complete = True
     elif structural_rows_passed and radial_status == "certified_fail":
         certificate_status = "theorem_grade_rejected_radial_turn"
@@ -1521,21 +1654,24 @@ def theorem_readiness(certificate: dict, obligations: list[dict]) -> dict:
     ):
         certificate_status = "theorem_grade_rejected_tangential_drive"
         priority_item_complete = False
+    elif structural_rows_passed and compatibility_status == "certified_fail":
+        certificate_status = "theorem_grade_rejected_tangential_compatibility"
+        priority_item_complete = False
     elif structural_rows_passed and tangential_status == "certified_fail":
-        certificate_status = "vp1_tangential_certified_fail_radial_blocked"
+        certificate_status = f"{candidate_key}_tangential_certified_fail_radial_blocked"
         priority_item_complete = False
     elif sampled_failure:
-        certificate_status = "vp1_sampled_fails_tangential_drive_with_interval_blockers"
+        certificate_status = f"{candidate_key}_sampled_fails_tangential_drive_with_interval_blockers"
         priority_item_complete = False
     else:
-        certificate_status = "vp1_interval_blocked"
+        certificate_status = ACTIVE_CANDIDATE.blocked_status
         priority_item_complete = False
     return {
         "theorem_grade": theorem_grade,
         "structural_rows_passed": structural_rows_passed,
         "candidate_passed": candidate_passed,
         "candidate_rejected": candidate_rejected,
-        "sampled_vp1_tangential_failure": sampled_failure,
+        "sampled_tangential_failure": sampled_failure,
         "first_nonpassing_obligation": first_nonpassing,
         "priority_item_complete": priority_item_complete,
         "certificate_status": certificate_status,
@@ -1568,11 +1704,18 @@ def interval_blockers_from_obligations(obligations: list[dict]) -> list[str]:
         )
     if by_row.get("radial_turn") not in {"passed", "certified_fail"}:
         blockers.append(
-            "No declared force-ratio Gamma row resolves the VP-1 radial-turn threshold."
+            f"No declared force-ratio Gamma row resolves the {ACTIVE_CANDIDATE.label} radial-turn threshold."
         )
     if by_row.get("tangential_drive") not in {"passed", "certified_fail"}:
         blockers.append(
-            "No outward interval tangential-drive verdict is loaded; the current positive D_T value remains sampled or reduction-only."
+            "No outward interval tangential-drive verdict is loaded; the current D_T value remains sampled or reduction-only."
+        )
+    if (
+        by_row.get("tangential_drive") == "passed"
+        and by_row.get("tangential_compatibility") not in {"passed", "certified_fail"}
+    ):
+        blockers.append(
+            "No accepted turn-center tangential compatibility row resolves the prescribed-history balance."
         )
     return blockers
 
@@ -1619,8 +1762,10 @@ def build_certificate(args: argparse.Namespace) -> dict:
 
     certificate = {
         "artifact": "spiral_branch_chart_certificate.py",
-        "claim_level": "sampled executable VP-1 branch ledger with interval-proof blockers",
+        "claim_level": ACTIVE_CANDIDATE.claim_level,
         "candidate": {
+            "key": ACTIVE_CANDIDATE.key,
+            "label": ACTIVE_CANDIDATE.label,
             "a": A,
             "b_star": B_STAR,
             "theta_interval": [THETA_LO, THETA_HI],
@@ -1628,6 +1773,10 @@ def build_certificate(args: argparse.Namespace) -> dict:
             "delta_co": DELTA_CO,
             "delta_domain": [0.0, DELTA_MAX],
             "delta_cert": [DELTA_CO, DELTA_MAX],
+            "active_labels": [branch["label"] for branch in ACTIVE_BRANCH_WINDOWS],
+            "active_windows": {
+                branch["label"]: list(branch["window"]) for branch in ACTIVE_BRANCH_WINDOWS
+            },
         },
         "active_chart": active_chart,
         "finite_memory": finite_memory,
@@ -1689,11 +1838,10 @@ def emit_markdown(certificate: dict) -> str:
         f"- Finite memory: `{str(memory['passed']).lower()}`.",
         f"- Sampled tangential-drive verdict: `{tangent['verdict']}`.",
         "",
-        "The executable reports a replayable VP-1 branch ledger. It promotes only "
+        f"The executable reports a replayable {certificate['candidate']['label']} branch ledger. It promotes only "
         "typed interval sidecar rows that match the declared candidate; sampled "
-        "support remains sampled. The priority item stays open unless the proof "
-        "obligation matrix resolves either a theorem-grade passing spiral or a "
-        "theorem-grade VP-1 rejection.",
+        "support remains sampled. A theorem-grade rejection resolves the selected "
+        "candidate without closing the wider spiral search priority.",
         "",
         "## Interval Row Sidecar",
         "",
@@ -1812,7 +1960,7 @@ def emit_markdown(certificate: dict) -> str:
             f"| $1+e^{{2a}}$ | `{memory['lambda_upper_bound']:.12f}` |",
             f"| $b_\\ast e^{{2a}}$ | `{memory['b_upper_bound']:.12f}` |",
             f"| Coarse $b_\\ast e^{{2a}}(1+e^{{2a}})$ | `{memory['coarse_delta_memory_bound']:.12f}` |",
-            f"| Corridor $B_{{\\mathrm{{mem}}}}^{{\\mathrm{{VP1}}}}$ | `{memory['delta_memory_bound']:.12f}` |",
+            f"| Corridor finite-memory bound | `{memory['delta_memory_bound']:.12f}` |",
             f"| $4\\pi$ | `{memory['delta_domain_upper']:.12f}` |",
             f"| Maximum active $\\Delta$ sampled | `{memory['max_active_delta']:.12f}` |",
             f"| Passed | `{str(memory['passed']).lower()}` |",
@@ -1851,7 +1999,7 @@ def emit_markdown(certificate: dict) -> str:
         [
             "## Weighted Tangential Drive",
             "",
-            "The VP-1 pass condition is $\\mathcal{D}_T(I_\\ast)\\le-\\varepsilon_T$ with $\\varepsilon_T>0$.",
+            "The candidate pass condition is $\\mathcal{D}_T(I_\\ast)\\le-\\varepsilon_T$ with $\\varepsilon_T>0$.",
             "",
             "| Diagnostic | Value |",
             "| --- | ---: |",
@@ -1926,26 +2074,44 @@ def emit_markdown(certificate: dict) -> str:
             "",
         ]
     )
-    for blocker in certificate["interval_proof_blockers"]:
-        lines.append(f"- {blocker}")
-    lines.extend(
-        [
-            "",
-            "## Verdict",
-            "",
-            "VP-1 is not a passing bare isolated spiral certificate. The executable "
-            "finds the expected `3` partner roots and `1` self root on the sampled "
-            "corridor with positive sampled Jacobian floors and finite memory, but "
-            "the weighted tangential-drive estimate is positive. The priority item "
-            "therefore remains active/not complete, and any theorem-grade rejection "
-            "or promotion still requires the listed interval rows.",
-        ]
-    )
+    if certificate["interval_proof_blockers"]:
+        for blocker in certificate["interval_proof_blockers"]:
+            lines.append(f"- {blocker}")
+    else:
+        lines.append("- None.")
+    lines.extend(["", "## Verdict", ""])
+    readiness = certificate["theorem_readiness"]
+    label = certificate["candidate"]["label"]
+    if readiness["candidate_passed"]:
+        lines.append(
+            f"{label} is a theorem-grade passing bare isolated spiral certificate under the loaded sidecar rows."
+        )
+    elif readiness["candidate_rejected"]:
+        lines.append(
+            f"{label} is theorem-grade rejected under status `{readiness['certificate_status']}`. "
+            "The executable finds the retained branch ledger with accepted structural rows, but at least one accepted "
+            "drive or prescribed-history compatibility row certifies failure. This rejects the selected prescribed "
+            "history, not the whole non-circular search program."
+        )
+    else:
+        lines.append(
+            f"{label} is not yet a passing bare isolated spiral certificate. "
+            "The executable finds the expected retained roots on the sampled corridor "
+            "with positive sampled Jacobian floors and finite memory. The priority item "
+            "remains active/not complete unless the proof obligation matrix resolves all "
+            "structural, drive, and prescribed-history compatibility rows."
+        )
     return "\n".join(lines)
 
 
 def main(argv: Iterable[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--candidate",
+        choices=sorted(CANDIDATES),
+        default="vp1",
+        help="Select the retained branch-chart candidate constants and windows.",
+    )
     parser.add_argument("--delta-steps", type=int, default=DEFAULT_DELTA_STEPS)
     parser.add_argument("--theta-samples", type=int, default=DEFAULT_THETA_SAMPLES)
     parser.add_argument(
@@ -1977,7 +2143,7 @@ def main(argv: Iterable[str] | None = None) -> int:
         type=int,
         default=0,
         help=(
-            "Run the outward VP-1 tangential-drive interval evaluator with the "
+            "Run the outward tangential-drive interval evaluator with the "
             "given theta slab count. Use 0 to skip it."
         ),
     )
@@ -2002,9 +2168,10 @@ def main(argv: Iterable[str] | None = None) -> int:
     parser.add_argument(
         "--require-tangential-pass",
         action="store_true",
-        help="Exit nonzero unless the sampled tangential-drive row is negative.",
+        help="Exit nonzero unless the accepted tangential-drive row has status passed.",
     )
     args = parser.parse_args(list(argv) if argv is not None else None)
+    select_candidate(args.candidate)
 
     certificate = build_certificate(args)
     if args.format == "markdown":
