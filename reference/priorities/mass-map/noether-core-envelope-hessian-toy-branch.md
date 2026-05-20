@@ -499,7 +499,7 @@ This is still a toy branch certificate. It should remain priority-side material 
 
 The current compact $A_0$ branch material cannot replace the mock Hessian entries. The fold-layer-locked one-period attempt in [A0 Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) is a direct negative result for the naive root-weighted map: it reports `failed_direct_one_period_residuals`, leaves the quotient monodromy and $\eta$ ladder uncomputed, and gives a relation-weight-only no-go with relative residual about `0.755`. It therefore does not define an accepted history segment and does not emit a finite envelope Hessian.
 
-The finite replacement condition is exact. For an accepted branch $\Lambda$, the scanner row must replace the toy stiffnesses by
+The finite replacement condition is exact. For an accepted branch $\Lambda$, the scanner row must replace the toy stiffnesses by branch-emitted entries
 
 $$
 k_R
@@ -515,7 +515,7 @@ k_{R\xi}
 \frac{\partial^2 E_{\mathrm{env}}^\Lambda}{\partial(\ln R_\perp)\partial(\ln\xi)}
 $$
 
-on the quotient-normal branch chart after symmetry modes are removed, together with
+on the quotient-normal branch chart after symmetry modes are removed. It must also emit the support-volume derivative
 
 $$
 c_R
@@ -533,3 +533,175 @@ Until those quantities are produced by the same finite branch that passes residu
 2. the fixed-core density rescue is a toy witness, not branch evidence.
 
 Running the scanner with finite-branch evidence required currently returns zero passing scenarios and zero passing candidates, because both default scenarios are marked as toy algebra rather than accepted branch output.
+
+## Finite-Branch Intake Contract
+
+This contract is the handoff from the negative `--require-branch-evidence` verdict to the next finite-branch packet. It is an intake contract, not a new validation gate: it states the fields that a finite Noether-core branch must already have emitted before the Hessian scanner may treat a pressure-row rescue as branch-derived.
+
+### Required Scenario Status
+
+A finite scenario must set `branch_evidence.required: true` or be run with `--require-branch-evidence`. It must then declare the following scanner-visible status:
+
+| Field | Required value | Fail-closed reading |
+| --- | --- | --- |
+| `branch_evidence.kind` | `finite_branch` | any toy, fitted, inferred, or unspecified kind gives `finite_branch_evidence_missing` |
+| `branch_evidence.status` | `accepted_history_segment` | any provisional, failed, diagnostic, or source-mining status gives `accepted_history_segment_missing` unless `accepted_history_segment: true` is also present |
+| `branch_evidence.accepted_history_segment` | `true` | no pressure rescue may promote from a failed one-period attempt or unresolved residual ledger |
+| `branch_evidence.hessian_entries_derived` | `true` | fitted $(A_H,B_H)$ or hand-assigned stiffnesses remain toy algebra |
+| `branch_evidence.hessian_source` | nonempty source string | the emitted Hessian record must be traceable to the accepted branch calculation |
+| `branch_evidence.source` | nonempty source string | the accepted-history segment must be traceable to its branch packet |
+
+The current scanner enforces all six rows when branch evidence is required. The `source` string is machine-enforced as a nonempty string so a finite intake packet connects the Hessian entries to the accepted history segment rather than to a row-local pressure fit.
+
+### Accepted-History Source Fields
+
+The source packet behind `branch_evidence.source` must record, at minimum:
+
+| Source field | Required content |
+| --- | --- |
+| `branch_id` | stable finite-branch label for $\Lambda$ |
+| `accepted_history_segment_id` | identifier for the accepted path-history segment used to define the local branch chart |
+| `source_path` | priority-side packet or generated report that contains the accepted segment |
+| `residual_status` | pass status for the branch residual vector used by the segment |
+| `quotient_chart_id` | chart in which $(\ln R_\perp,\ln\xi)$ are retained active coordinates |
+| `symmetry_modes_removed` | explicit list of removed translation, rotation, phase, or gauge directions |
+| `gap_or_stability_status` | positive retained-branch stability statement, including the relevant $\Delta_{\mathbf{k}}$ or branch-gap diagnostic |
+| `eta_ladder_status` | persistence status for the $\eta$ ladder when the branch claim depends on it |
+| `hessian_record_id` | identifier for the emitted Hessian source named by `branch_evidence.hessian_source` |
+
+If any of these fields is missing, the row may still be useful as a diagnostic replay, but it is not finite branch evidence. The branch-evidence status should remain toy, provisional, or failed, and `--require-branch-evidence` must keep every candidate failed.
+
+### Required Hessian Record
+
+The source behind `branch_evidence.hessian_source` must emit the retained Hessian record, not only the derived response ratios. Required entries are:
+
+| Hessian entry | Required meaning |
+| --- | --- |
+| active variables | $r=\delta\ln R_\perp$ and $x=\delta\ln\xi$ on the declared quotient-normal chart |
+| energy functional | branch-local $E_{\mathrm{env}}^\Lambda(r,x)$ or generated finite-difference/automatic-differentiation source for it |
+| $k_R$ | $\partial^2E_{\mathrm{env}}^\Lambda/\partial r^2$ |
+| $k_\xi$ | $\partial^2E_{\mathrm{env}}^\Lambda/\partial x^2$ |
+| $k_{R\xi}$ | $\partial^2E_{\mathrm{env}}^\Lambda/\partial r\partial x$ with symmetry modes already removed |
+| $c_R$ | $\partial\ln V_{\mathrm{cell}}^{\mathrm{sf}}/\partial\ln R_\perp$ for the same support-function cell |
+| $c_\xi$ | $\partial\ln V_{\mathrm{cell}}^{\mathrm{sf}}/\partial\ln\xi$ for the same support-function cell |
+| tolerance | numerical tolerance used for Hessian positivity, affine residuals, and scalar feasibility |
+| normalization | energy, density, and coordinate normalization used to compare $K_{\mathrm{env}}$ and $\kappa_n$ |
+
+The scanner then recomputes
+
+$$
+\Delta_H=k_Rk_\xi-k_{R\xi}^2,
+\qquad
+D_H=k_\xi c_R^2-2k_{R\xi}c_Rc_\xi+k_Rc_\xi^2,
+$$
+
+and accepts the retained Hessian only if
+
+$$
+\boxed{
+k_R>0,\qquad
+k_\xi>0,\qquad
+\Delta_H>0,\qquad
+D_H>0.
+}
+$$
+
+The emitted packet may report $A_H$, $B_H$, and $k_{\mathrm{env}}^{(V)}$, but those are derived readouts. If the packet emits only $(A_H,B_H)$ without $(k_R,k_\xi,k_{R\xi},c_R,c_\xi)$, it has not supplied a Hessian intake record.
+
+### Readout Records
+
+Each candidate readout must be declared as branch data, not fitted after seeing the pressure residual. The scanner-visible record is:
+
+```json
+{
+  "name": "finite_branch_fixed_core_readout",
+  "q_R": 0,
+  "q_xi": 0
+}
+```
+
+The source packet must also state:
+
+| Readout field | Required content |
+| --- | --- |
+| `readout_id` | stable label matching the scanner candidate name |
+| `readout_source` | branch packet or calculation that defines the representative $R_{\text{core}}$ readout |
+| `q_R` | coefficient of $\delta\ln R_\perp$ in $\delta\ln(R_{\text{core}}/R_{\text{core},0})$ |
+| `q_xi` | coefficient of $\delta\ln\xi$ in the same readout |
+| `lambda_identification` | whether $\lambda$ is $R_\perp/R_{\perp,0}$ or a different support-cell average |
+| `admissible_pressure_segment` | pressure interval over which the readout remains the same branch record |
+| `shape_response_policy` | strict scalar condition $B_H=0$ or bounded residual $\max_r|\kappa_nB_H\Theta_r|\le\epsilon_\xi^P$ |
+
+The scanner computes
+
+$$
+Q_H=q_RA_H+q_\xi B_H.
+$$
+
+A readout change after residual inspection is a branch split or a failed replay, not a successful pressure-row rescue. Multiple readouts may be tested, but the accepted one must have a predeclared branch source.
+
+### Minimal Intake Scenario Shape
+
+A finite replacement scenario should have this shape before any promotion claim:
+
+```json
+{
+  "name": "finite_branch_<branch_id>_<readout_id>",
+  "branch_evidence": {
+    "kind": "finite_branch",
+    "status": "accepted_history_segment",
+    "required": true,
+    "source": "source_path=<path>; branch_id=<id>; accepted_history_segment_id=<id>; quotient_chart_id=<id>",
+    "accepted_history_segment": true,
+    "hessian_entries_derived": true,
+    "hessian_source": "source_path=<path>; hessian_record_id=<id>; entries=k_R,k_xi,k_Rxi,c_R,c_xi"
+  },
+  "c_R": 3,
+  "c_xi": 1,
+  "hessian": {
+    "k_R": 3,
+    "k_xi": 1,
+    "k_Rxi": 1
+  },
+  "readout_candidates": [
+    {
+      "name": "finite_branch_fixed_core_readout",
+      "q_R": 0,
+      "q_xi": 0
+    }
+  ]
+}
+```
+
+The numeric values above are placeholders showing the current scanner schema. A real finite packet must replace them with emitted branch values and must keep the pressure rows, delay rows, cadence rows, tolerance, `strict_scalar`, `epsilon_xi_P`, and `theta_samples` declared before evaluating the rescue.
+
+### Fail-Closed Semantics
+
+The intake fails closed under the following conditions:
+
+| Failure mode | Scanner-visible status | Required interpretation |
+| --- | --- | --- |
+| toy or provisional branch evidence | `branch_evidence_failed` with `finite_branch_evidence_missing` | diagnostic algebra only |
+| no accepted history segment | `branch_evidence_failed` with `accepted_history_segment_missing` | cannot identify a finite branch chart |
+| no derived Hessian entries | `branch_evidence_failed` with `hessian_entries_not_derived` | fitted response ratios are not branch stiffness |
+| no accepted-history branch source | `branch_evidence_failed` with `branch_source_missing` | no traceable branch packet for the accepted segment |
+| no Hessian source | `branch_evidence_failed` with `hessian_source_missing` | no traceable intake record |
+| nonpositive retained Hessian | `positive_hessian_failed` | branch is unstable or has an unremoved zero mode |
+| scalar equation mismatch | `scalar_feasibility_failed` | declared Hessian/readout cannot supply the pressure row |
+| nonpositive density response | `density_sign_failed` | pressure response has the wrong sign or undefined $\kappa_n$ |
+| unaccepted shape response | `shape_ratio_not_cancelled` or `shape_ratio_bound_failed` | the induced $\xi$ channel violates the strict scalar or bounded null-sector policy |
+
+These failure modes are not independent knobs to repair by fitting. A finite branch may pass only by changing the accepted history segment, changing the predeclared readout, deriving a different finite Hessian, or routing the mismatch into an explicitly bounded residual or branch transition.
+
+### Validation Commands
+
+Use the following commands after adding any finite intake packet:
+
+```text
+git diff --check
+node scripts/mass-map/noether-core-envelope-hessian-scanner.mjs --pretty
+node scripts/mass-map/noether-core-envelope-hessian-scanner.mjs --require-branch-evidence --pretty
+node scripts/validate-content.mjs --check --strict
+```
+
+The current expected branch-evidence result is negative: the first scanner command keeps the toy fixed-core witness, while the `--require-branch-evidence` command must report zero passing scenarios and candidates until a scenario declares accepted finite-branch Hessian evidence.

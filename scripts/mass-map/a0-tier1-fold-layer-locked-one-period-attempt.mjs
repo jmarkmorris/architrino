@@ -1274,6 +1274,7 @@ function residualBalanceLedger(row, sourceRow, trajectory, args) {
   let invalidRootContributions = 0;
   let targetNormSquared = 0;
   const rows = [];
+  const forcingSamples = [];
 
   for (const bucket of rootsByTime) {
     const t = bucket.t;
@@ -1289,6 +1290,35 @@ function residualBalanceLedger(row, sourceRow, trajectory, args) {
     evaluatedRootContributions += basisPacket.evaluatedRootCount;
     lockedRootContributions += basisPacket.lockedRootCount;
     invalidRootContributions += basisPacket.invalidRootCount;
+    forcingSamples.push({
+      t,
+      bucket_time: basisPacket.bucket_time,
+      layers: Object.fromEntries(
+        LAYERS.map((layer) => {
+          const plus = `${layer}+`;
+          const minus = `${layer}-`;
+          const targetRelative = sub(target[plus], target[minus]);
+          const relationBasisRelative = Object.fromEntries(
+            ROOT_RELATIONS.map((relation) => [
+              relation,
+              sub(basisPacket.basis[relation][plus], basisPacket.basis[relation][minus]),
+            ])
+          );
+          return [
+            layer,
+            {
+              target_relative_acceleration: targetRelative,
+              relation_basis_relative: relationBasisRelative,
+            },
+          ];
+        })
+      ),
+      diagnostics: {
+        evaluated_root_contributions: basisPacket.evaluatedRootCount,
+        locked_root_contributions: basisPacket.lockedRootCount,
+        invalid_root_contributions: basisPacket.invalidRootCount,
+      },
+    });
     for (const bodyId of BODY_IDS) {
       for (let component = 0; component < 3; component += 1) {
         const rowVector = ROOT_RELATIONS.map((relation) => basisPacket.basis[relation][bodyId][component]);
@@ -1362,6 +1392,34 @@ function residualBalanceLedger(row, sourceRow, trajectory, args) {
     residual_norm: Math.sqrt(residualNormSquared),
     relative_residual: relativeResidual,
     max_component_residual: maxComponentResidual,
+    sampled_forcing: {
+      schema: "a0-tier1-residual-balance-sampled-forcing/v1",
+      period,
+      sample_count: forcingSamples.length,
+      layer_projection:
+        "relative-layer residual forcing g_l(t)=a_carrier,l,+-a_carrier,l,- - sum_relation alpha_relation (B_relation,l,+-B_relation,l,-)",
+      samples: forcingSamples.map((sample) => ({
+        ...sample,
+        layers: Object.fromEntries(
+          LAYERS.map((layer) => {
+            const layerPacket = sample.layers[layer];
+            const predictedRelationAcceleration = ROOT_RELATIONS.reduce(
+              (sum, relation, index) =>
+                add(sum, scale(layerPacket.relation_basis_relative[relation], solution[index])),
+              [0, 0, 0]
+            );
+            return [
+              layer,
+              {
+                ...layerPacket,
+                predicted_relation_acceleration: predictedRelationAcceleration,
+                residual_forcing: sub(layerPacket.target_relative_acceleration, predictedRelationAcceleration),
+              },
+            ];
+          })
+        ),
+      })),
+    },
     evaluated_root_contributions: evaluatedRootContributions,
     locked_root_contributions: lockedRootContributions,
     invalid_root_contributions: invalidRootContributions,

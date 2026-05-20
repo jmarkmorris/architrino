@@ -17,6 +17,24 @@ The current refined pre-ledger already has:
 
 The branch chart remains unauthorized until all 22 unresolved rows are rewritten as accepted `empty`, `simple_root`, or `fold_layer` rows on the same packet identity tuple.
 
+## Follow-On Fold Artifacts
+
+Five follow-on artifacts now narrow this handoff without accepting the pre-ledger:
+
+- `fold_impulse_bound_derivation.md` derives the conditional finite separator form
+  $$
+  I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}
+  \le
+  C_\Sigma\eta^{1/2}A_{\Sigma,\eta,\epsilon_c}
+  $$
+  and records a coarse full-interval fallback.
+- `fold_impulse_constants.json` records diagnostic finite constants for $\Sigma_1,\ldots,\Sigma_4$ under `status=diagnostic_bound_not_interval_certified`.
+- `fold_row_consumption_report.md` maps exactly which 16 fold rows and 6 parent rows would be consumed after accepted finite constants and parent-complement closure.
+- `fold_interval_constants_contract.md` defines the accepted-constants contract for the mollifier or direct quadrature route, coupling convention, row-tube projections, source slices, row enclosures, and separator aggregates.
+- `fold_parent_boundary_complement_packet.md` defines the accepted alternatives for the six parent boundary complements: strict range-empty gaps or coverage by accepted fold-layer rows.
+
+These artifacts do not edit `causal_ledger.json`, do not authorize `branch_chart.json`, and do not promote any row. The remaining gap is accepted certificate data: a fixed mollifier norm or direct quadrature convention, the coupling convention, certified row-tube projections and source slices, interval/quadrature enclosures for every fold row, and closure of the parent boundary complements.
+
 ## Theorem Target
 
 > **Theorem target (Fold impulse ceiling and fold-adjacent promotion).**
@@ -431,7 +449,7 @@ Any fold-layer leakage into a simple-root branch chart rejects the seed chart ev
 
 ## Immediate Next Artifact
 
-The next worker should produce an interval report or certificate update that records, for each
+The next worker should use `fold_interval_constants_contract.md` and `fold_parent_boundary_complement_packet.md` to produce an accepted interval report or certificate update that records, for each
 $$
 \Sigma_k,
 $$
@@ -439,7 +457,7 @@ the tuple
 $$
 (\alpha_{\Sigma_k},\nu_{\mathrm{exit},\Sigma_k},C_{\Sigma_k},A_{\Sigma_k,\eta,\epsilon_c},I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma_k},\Delta N_{\Sigma_k},\Delta D_{\Sigma_k})
 $$
-and a row-consumption table showing that the 16 fold-layer rows and 6 fold-adjacent parent rows no longer contain `split_required`.
+and a row-consumption table showing that the 16 fold-layer rows and 6 fold-adjacent parent rows no longer contain `split_required`. Diagnostic-only constants are insufficient for this update, and parent rows must be consumed by their accepted simple-root subrows plus strict range-empty or accepted fold-layer boundary complements.
 
 Until that artifact exists, the correct status remains:
 

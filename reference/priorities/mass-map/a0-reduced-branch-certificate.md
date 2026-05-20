@@ -1294,6 +1294,40 @@ The next pass should produce:
 7. finite envelope-Hessian extraction only after the same corrected branch passes, with $k_R$, $k_\xi$, $k_{R\xi}$, $c_R$, and $c_\xi$ emitted as branch evidence rather than toy stiffnesses;
 8. confirmation that accepted-history output remains blocked until one-period residual closure, no secular center drift, positive $\Delta_{\mathbf{k}}$, quotient-row identity, and branch persistence across the declared $\eta$ ladder are all present.
 
+Scanner implementation note, May 20, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-carrier-correction-scanner.mjs --intake /tmp/a0-tier1-fold-layer-locked-one-period-attempt-impl-v2.json --pretty --out /tmp/a0-tier1-carrier-correction-scanner.json
+```
+
+The fold-layer one-period runner now adds `sampled_forcing` to `a0-tier1-residual-balance-ledger/v1` when it can compute the residual-balance normal equation. The scanner consumes only that sampled branch-native forcing. For each layer it tests
+$$
+\int_0^{T_{\mathbf{k}}}Q_\ell\mathbf{g}_\ell(t)\,dt=\mathbf{0}
+$$
+by a relative mean residual, omits declared chart modes from the correction basis, and emits retained Fourier coefficients
+$$
+\widehat{\mathbf{d}}_{\ell,m}
+=
+-
+\frac{\widehat{\mathbf{g}}_{\ell,m}}{(2\pi m/T_{\mathbf{k}})^2},
+\qquad m\ne0.
+$$
+If `sampled_forcing.period` or `sampled_forcing.samples[].layers.{I,M,O}.residual_forcing` is absent, the scanner returns `blocked_sampled_forcing_missing` with the missing field names. If the mean forcing is above tolerance it returns `blocked_mean_solvability_failed`; if omitted chart modes dominate the resolved nonzero forcing it returns `blocked_chart_mode_dominated`; otherwise it returns `fourier_carrier_correction_candidate`. This candidate status authorizes only a corrected one-period rerun. It is not an accepted-history row and does not compute root closure, quotient monodromy, $\Delta_{\mathbf{k}}$, or eta-ladder persistence.
+
+Carrier-correction chart-policy result, May 20, 2026:
+
+```text
+node scripts/mass-map/a0-tier1-carrier-correction-scanner.mjs --intake /tmp/a0-tier1-fold-layer-locked-one-period-attempt-codex-review.json --pretty --out /tmp/a0-tier1-carrier-correction-scanner-codex-review-default.json
+
+node scripts/mass-map/a0-tier1-carrier-correction-scanner.mjs --intake /tmp/a0-tier1-fold-layer-locked-one-period-attempt-codex-review.json --omit-modes none --pretty --out /tmp/a0-tier1-carrier-correction-scanner-codex-review-omit-none.json
+```
+
+The regenerated fold-layer attempt artifact `/tmp/a0-tier1-fold-layer-locked-one-period-attempt-codex-review.json` makes the carrier-correction decision chart-policy sensitive. With the default chart policy, mode `1` is omitted as part of the reduced branch coordinate $z_\Lambda$. The scanner returns `blocked_chart_mode_dominated` with one blocked row. The `O`-layer omitted-chart-mode energy fraction is `0.9997697101092003`, and its correction residual is `0.9998848484246575`, while the `I` and `M` layers remain Fourier correction candidates with mean residuals `0.005469226331224925` and `0.003874878104606083`.
+
+With `--omit-modes none`, the same sampled forcing returns `fourier_carrier_correction_candidate` with one candidate row and all three layers candidate. The layer mean residuals are `I: 0.005469226331224925`, `M: 0.003874878104606083`, and `O: 0.001470074064399575`; the correction residuals equal these mean residuals.
+
+Mathematical implication: the non-circular correction is not simply blocked. It is chart-policy sensitive. If mode `1` is treated as part of $z_\Lambda$, the `O`-layer forcing is mostly chart motion and cannot be added as a retained correction $\mathbf{d}_O(t)$ without hiding a changed branch chart inside the correction term. If no mode is omitted, the same sampled forcing passes as a Fourier correction candidate. That status authorizes only a corrected one-period rerun with fresh causal-root solving and residual ledgers; it is not accepted history and does not establish quotient-row identity, monodromy, $\Delta_{\mathbf{k}}$, or eta-ladder persistence.
+
 ## Promotion Rule
 
 An $A_0$ branch may move from `derive_first_attractor_family` into `derive_zeta` only when a certificate packet reports:

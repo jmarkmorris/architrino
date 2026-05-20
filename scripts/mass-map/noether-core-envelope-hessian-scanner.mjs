@@ -179,6 +179,9 @@ function branchEvidence(scenario, requireBranchEvidence) {
   const evidence = raw === undefined ? {} : asObject(raw, `${scenario.name}.branch_evidence`);
   const kind = typeof evidence.kind === "string" ? evidence.kind : "unspecified";
   const status = typeof evidence.status === "string" ? evidence.status : null;
+  const source = typeof evidence.source === "string" && evidence.source.trim() !== ""
+    ? evidence.source
+    : null;
   const required = requireBranchEvidence || evidence.required === true;
   const acceptedHistorySegment =
     evidence.accepted_history_segment === true || status === "accepted_history_segment";
@@ -196,6 +199,9 @@ function branchEvidence(scenario, requireBranchEvidence) {
     if (!hessianEntriesDerived) {
       failureReasons.push("hessian_entries_not_derived");
     }
+    if (!source) {
+      failureReasons.push("branch_source_missing");
+    }
     if (!hessianSource) {
       failureReasons.push("hessian_source_missing");
     }
@@ -205,7 +211,7 @@ function branchEvidence(scenario, requireBranchEvidence) {
     required,
     kind,
     status,
-    source: typeof evidence.source === "string" ? evidence.source : null,
+    source,
     accepted_history_segment: acceptedHistorySegment,
     hessian_entries_derived: hessianEntriesDerived,
     hessian_source: hessianSource,

@@ -12,7 +12,7 @@
 ## Task Queue
 
 1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `drafted-template`; first finite velocity-class template exists, not EOM-solved or pre-ledger-certified. Depends on: none.
-2. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `fold-ceiling-handoff-ready`; the refined diagnostic has six strict simple-root subrows and twenty-four accepted diagonal-exclusion empty rows, plus a fold-ceiling handoff and pass/fail ledger, but not a complete accepted partition. Depends on: `candidate_cycle_packet`.
+2. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `fold-ceiling-contract-ready`; the refined diagnostic has six strict simple-root subrows and twenty-four accepted diagonal-exclusion empty rows, plus a fold-ceiling handoff, pass/fail ledger, conditional fold-bound derivation, diagnostic constants, row-consumption map, accepted-constants contract, and parent-complement packet, but not a complete accepted partition. Depends on: `candidate_cycle_packet`.
 3. `branch_chart_certificate` — Produce `certificate/branch_chart.json` and `certificate/seed_chart_interval_report.md`, including active branches, inactive complements, Jacobian floors, memory-depth ranges, and envelope constants. Status: `blocked`; depends on a passed `null_coordinate_preledger`, including finite fold impulse ceilings and resolved fold-adjacent parent-row boundary leftovers. Depends on: `null_coordinate_preledger`.
 4. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `branch_chart_certificate`.
 5. `monodromy_diagnostic` — Produce the section-anchored monodromy spectrum and route returned-sample preservation to sensitivities or boundary trapping. Status: `pending`. Depends on: `branch_chart_certificate`, `coupled_corridor_certificate`.
@@ -28,6 +28,8 @@
 - `preledger_refined_diagnostic` produced `certificate/mesh_refined_preledger_v1.json`, `certificate/diagonal_exclusion_subledger.json`, `certificate/fold_layer_atlas.json`, `certificate/causal_ledger.json`, and `certificate/causal_preledger_interval_report.md`. It rejects the current partition before branch-chart certification while preserving six strict simple-root subwindows, twenty-four accepted diagonal-exclusion empty rows, positive range-empty gaps, and kinematic fold normal-form data.
 - `certificate_state_ledger` produced `certificate/pass_fail_ledger.md`, making the current packet auditable as one rejected packet identity rather than a loose collection of artifacts.
 - `fold_impulse_ceiling_handoff` produced `certificate/fold_impulse_ceiling_handoff.md`, isolating the finite theorem target for $C_\Sigma$, $A_{\Sigma,\eta,\epsilon_c}$, and $I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}$ on $\Sigma_1,\ldots,\Sigma_4$ plus the six fold-adjacent parent-boundary leftovers.
+- `fold_ceiling_diagnostic_pass` produced `certificate/fold_impulse_bound_derivation.md`, `certificate/fold_impulse_constants.json`, and `certificate/fold_row_consumption_report.md`. It supplies a conditional finite impulse proof form, diagnostic constants for all four separator layers, and an exact row-consumption map. It does not pass the pre-ledger because the shell-mollifier norm or direct quadrature convention, row-tube projections, source slices, and interval/quadrature enclosures are not accepted certificate data.
+- `accepted_fold_certificate_contracts` produced `certificate/fold_interval_constants_contract.md` and `certificate/fold_parent_boundary_complement_packet.md`. These packets define the exact accepted-constants fields and parent-complement alternatives needed before `causal_ledger.json` can be updated; they do not themselves promote any row.
 
 ## Scope
 
@@ -89,6 +91,8 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 - Build the active closure package under `reference/priorities/proof-programs/breather-proof/certificate/`.
 - Use `certificate/pass_fail_ledger.md` as the current audit surface for packet identity, artifact status, row status, and exact blockers.
 - Use `certificate/fold_impulse_ceiling_handoff.md` as the next proof packet for the finite fold impulse ceiling; it does not authorize a branch chart until the missing constants are supplied.
+- Use `certificate/fold_impulse_bound_derivation.md`, `certificate/fold_impulse_constants.json`, and `certificate/fold_row_consumption_report.md` as diagnostic follow-on artifacts only: they narrow the blocker but do not accept fold-layer rows or parent-boundary complements.
+- Use `certificate/fold_interval_constants_contract.md` and `certificate/fold_parent_boundary_complement_packet.md` as the next accepted-update contracts: the first fixes what accepted constants must contain, and the second fixes how the six parent boundary complements must be consumed.
 - The accepted proof artifact is a pass/fail finite audit on one candidate
 $$
 \phi_{\mathrm{cyc}},
@@ -160,7 +164,7 @@ coarse parity data for all four separators. The diagnostic still rejects the
 current partition because it has not supplied finite fold impulse ceilings or a
 complete promotion of the six remaining fold-adjacent parent boundary leftovers.
 
-The current packet is now summarized in `certificate/pass_fail_ledger.md`. The next proof calculation is isolated in `certificate/fold_impulse_ceiling_handoff.md`: compute finite values of
+The current packet is now summarized in `certificate/pass_fail_ledger.md`. The next proof calculation is isolated in `certificate/fold_impulse_ceiling_handoff.md`: compute accepted certificate values of
 $$
 C_\Sigma,
 \qquad
@@ -169,6 +173,14 @@ A_{\Sigma,\eta,\epsilon_c},
 I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}
 $$
 for $\Sigma_1,\ldots,\Sigma_4$, then consume the sixteen fold-layer rows and six fold-adjacent parent-boundary leftovers without leaking fold rows into simple-root branch sums.
+
+The fold-ceiling diagnostic pass now proves the conditional finite form
+$$
+I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}
+\le
+C_\Sigma\eta^{1/2}A_{\Sigma,\eta,\epsilon_c}
+$$
+for fixed $\eta>0$, $\epsilon_c>0$, and finite mollifier/row-tube constants. It also records diagnostic full-rectangle bounds in `certificate/fold_impulse_constants.json`. Because those constants are `diagnostic_bound_not_interval_certified`, the correct pre-ledger state remains rejected. The next accepted certificate is now scoped by `certificate/fold_interval_constants_contract.md` and `certificate/fold_parent_boundary_complement_packet.md`: it must fix the shell-mollifier norm or direct quadrature convention, certify row-tube projections and source slices, close interval/quadrature enclosures for every fold row, and resolve each parent boundary complement as either strict range-empty or covered by an accepted fold-layer alternative.
 
 The first itinerary gate has a coarse parity pass for the doubled four-arc generic itinerary. This pass is necessary rather than sufficient: it verifies the separator-level fold arithmetic, but it does not yet certify active self-image roots, inactive-root gaps, Jacobian floors, or returned residuals. If the branch enumeration forces a different itinerary, this gate must be rerun.
 
