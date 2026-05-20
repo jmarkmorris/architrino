@@ -21,7 +21,7 @@ The closer pedagogical analogy is a population of coupled delayed-feedback oscil
 
 -   **Absolute time and Euclidean void:** Unlike the Game of Life's grid and time steps, architrinos occupy positions in the Euclidean void indexed by absolute time. Their interactions are not clocked updates; they occur whenever an architrino intersects a causal isochron.
 -   **Delayed causal roots:** The active interaction terms depend on past source positions and, in self-hit regimes, on an architrino's own earlier path. The state needed to evaluate the next motion is therefore path-history dependent rather than Markovian.
--   **Infinite-range but diluted coupling:** Causal wake surfaces are not nearest-neighbor links. Their density falls as $1/r^2$, so distant structure can contribute in principle while inverse-square dilution, phase cancellation, and shielding determine which roots remain dynamically important.
+-   **Infinite-range but convergence-controlled coupling:** Causal wake surfaces are not nearest-neighbor links. Their density falls as $1/r^2$, so distant structure can contribute in principle, but inverse-square dilution alone does not make an infinite three-dimensional source sum convergent. A valid branch must also declare the cancellation, screening, finite active horizon, or summation prescription that makes the retained wake sum well-defined.
 -   **Emergent assemblies:** Through these continuous delayed interactions, architrinos can self-organize into complex, stable or metastable configurations called **assemblies**. An assembly is not a new primitive; it is an attractor-basin structure of the delay-differential dynamics, comparable in pedagogy to synchronized oscillator clusters, vortices, or soliton-like coherent structures.
 
 The stability of an assembly is therefore dynamic rather than static. It depends on an ongoing balance of forces from the superposition of all dynamically active wakes. An assembly can persist when its trajectory remains inside a stable or metastable attractor basin; it can dissolve, branch, or reconfigure when perturbations or self-hit thresholds push it across a basin boundary.
@@ -163,14 +163,38 @@ In this sense, emergence is not merely a catalog of larger objects. It is also t
 
 At the substrate level, structure is carried by **dynamical geometry**. Every architrino interacts with the wakes of other architrinos and, in the relevant regimes, with its own past isochrons. This creates an infinite-scale delayed N-body problem, so no single closed-form analytical solution is expected for the evolution of a generic structure.
 
-However, because the potential density on each causal wake surface falls off as $1/r^2$, the influence of distant architrinos is far weaker than that of local ones. This effective locality is what allows for the formation of **metastable assemblies** that can maintain their general form for long periods.
+However, because the potential density on each causal wake surface falls off as $1/r^2$, nearby coherent roots are weighted more strongly than distant roots. This supports effective locality only after the branch also supplies convergence control for the far population. In three spatial dimensions, a homogeneous radial layer contains $O(r^2\,dr)$ possible sources, so inverse-square dilution by itself is not enough to define the infinite many-source sum.
+
+A mathematically admissible many-source branch must make a limit such as
+$$
+\lim_{R\to\infty}
+\sum_{j:\|\mathbf{x}_j\|<R}
+\sum_{s\in\mathcal{C}_{ij}(t)}
+\mathbf{a}_{ij}(t;s)
+$$
+exist under the declared summation prescription, or else use the corresponding continuum condition. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite active horizon, or a declared principal-value or mean-field subtraction. Without such a condition, the many-source wake sum is not mathematically well-defined.
+
+This convergence discipline is what allows for the formation of **metastable assemblies** that can maintain their general form for long periods.
 
 The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it; in practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and the shielding or screening supplied by nested Noether cores. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to treat the entire past universe as an undifferentiated force of equal importance.
 
-One important threshold in the evolution of these assemblies is the **self-hit onset boundary** ($\|\mathbf{v}_a\| = c_f$ in dimensional notation, or $c_f=1$ in a nondimensional primitive branch chart). The available causal-root structure changes qualitatively depending on whether an architrino's speed is above or below the primitive wake speed.
-
--   When $\|\mathbf{v}_a\| < c_f$, the simple branch chart has no self-hit contribution from the architrino's own recent causal wake.
--   When $\|\mathbf{v}_a\| > c_f$, self-hit branches can open, allowing the architrino to intersect its own recently emitted wake; the like-polarity self-hit contribution is repulsive.
+Self-hit is not defined by speed alone. It occurs when the same-source causal-root set is nonempty:
+$$
+\mathcal{C}_{ii}(t)
+=
+\{\,s<t:\|\mathbf{x}_i(t)-\mathbf{x}_i(s)\|=c_f(t-s)\,\}
+\ne
+\varnothing.
+$$
+If $\|\mathbf{v}_i(u)\|<c_f-\eta$ throughout the interval $[s,t]$, then no self-hit root can occur on that interval, because
+$$
+\|\mathbf{x}_i(t)-\mathbf{x}_i(s)\|
+\le
+\int_s^t\|\mathbf{v}_i(u)\|\,du
+<
+c_f(t-s).
+$$
+Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf{v}\|>c_f$ alone.
 
 This creates a threshold asymmetry in the system. A small acceleration caused by intersecting a wake can push an architrino across the self-hit onset boundary, activating a new internal branch that alters its trajectory and the stability of the assembly. The transistor analogy is only pedagogical: a small input changes which channel is available. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the underlying mechanism is not electronics but delayed causal-root selection.
 

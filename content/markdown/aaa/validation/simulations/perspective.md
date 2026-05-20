@@ -1,6 +1,6 @@
 # Perspective: Why This Model Maps So Well
 
-This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices—reduction to two true primitives (±$\epsilon$ architrinos) and choosing $\epsilon$=|e/6|—help with parsimony and charge bookkeeping, but the outsized wins come from how delayed line-of-action action, Jacobian-weighted causal flux, and a self-interaction threshold conspire to produce stability, scale selection, and emergent “magnetic-like” behavior without ever invoking right-hand-rule cross products.
+This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices—reduction to two true primitives (±$\epsilon$ architrinos) and choosing $\epsilon$=|e/6|—help with parsimony and charge bookkeeping, but the outsized wins come from how delayed line-of-action action, Jacobian-weighted causal flux, and same-source causal-root branches conspire to produce stability, scale selection, and emergent “magnetic-like” behavior without ever invoking right-hand-rule cross products.
 
 Historically, general relativity and quantum mechanics are extraordinarily successful as effective theories that summarize large classes of phenomena. We position this neoclassical, delayed line-of-action model as a simpler dynamical substrate whose coherent assemblies recover GR/QM-like phenomenology in appropriate coarse-grained, slow/weak, or phase-locked limits.
 
@@ -34,14 +34,18 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 ---
 
-## Self-Hit Onset Boundary at $\|\mathbf{v}\| = c_f$
+## Self-Hit Root Onset
 
 - What we assume:
-- When a worldline outruns its own recently emitted isochrons ($\|\mathbf{v}\| > c_f$, or $\|\mathbf{v}\| > 1$ in $c_f=1$ units), the causal roots include self-hits.
+- Same-source self-hit is accepted only when the root equation
+  $$
+  \mathcal{C}_{aa}(t)=\{\,s<t:\|\mathbf{x}_a(t)-\mathbf{x}_a(s)\|=c_f(t-s)\,\}
+  $$
+  is nonempty and the active root passes the transversality/Jacobian floor. A speed excursion above $c_f$ is a necessary warning condition for simple nontrivial roots, not a sufficient criterion.
   - Self-hits are always repulsive (like-on-like).
 
 - Why it matters:
-  - This nonlinearity is the core stabilizer. Slow motion ($\|\mathbf{v}\| < c_f$) is dominated by external attraction/repulsion. Crossing $\|\mathbf{v}\| = c_f$ turns on an internal, strong, repulsive channel that can balance or overtake inward trends.
+  - This nonlinearity is the core stabilizer. Strictly sub-field-speed interval history rules out nontrivial self-hit roots on that interval, while super-field-speed curved history can open an internal, strong, repulsive channel that balances or overtakes inward trends.
   - Scale selection emerges: the balance of delayed attraction with self-repulsion defines a smallest sustainable orbital radius d0 and a fastest natural frequency, yielding a canonical time unit t0.
 
 ---
@@ -53,7 +57,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - We use a narrow Gaussian isochron $\delta_\eta$ when continuous-time derivatives are needed.
 
 - Why it matters:
-  - Locality: inverse-square geometric weighting together with finite-speed branch selection ensures near sources dominate; far sources cancel via multipole suppression.
+  - Locality: inverse-square geometric weighting together with finite-speed branch selection makes nearby coherent roots dominant, but infinite populations still require an explicit cutoff, screening rule, cancellation estimate, sampled mean field, or principal-value/mean-field subtraction.
   - Bookkeeping: with $\delta_\eta$ you can integrate numerically with standard ODE solvers; with $\delta$ you can reason about impulses and events. Both views agree in the $\eta\to 0$ limit for integrals over resolved intervals.
 
 ---

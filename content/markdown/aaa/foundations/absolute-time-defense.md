@@ -26,6 +26,21 @@ The list separates ontology from effective description. Absolute time, the Eucli
 
 At this level, $\mathbb{U}_{\text{now}}\equiv S(t)$ is not an observer's reconstruction of events. It is the complete ontic universe state on a simultaneity slice, including constituent positions, velocities, polarities, path-history data, and any branch information required by the delayed dynamics. Observers may infer only a coarse-grained portion of this state through clocks, rulers, signals, and records.
 
+Because the master equation is path-history dependent, the complete state on a slice is not merely an instantaneous Markov projection. The precise schematic form is
+$$
+\mathbb{U}_{\text{now}}(t)
+\equiv
+S(t)
+=
+\big(
+X(t),
+H_t,
+\Theta_{\mathrm{sea}}(t,\cdot),
+\mathcal{B}_t
+\big),
+$$
+where $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the path-history and provenance ledger, $\Theta_{\mathrm{sea}}$ is the retained Noether-Sea state, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
+
 **Deterministic evolution and basin selection**
 - The delay-differential master equation is deterministic: where the declared branch chart or regularization makes the evolution well posed, a fully specified $\mathbb{U}_{\text{now}}\equiv S(t_0)$, including the required path-history and provenance ledger, generates a unique trajectory $S(t)$ for $t>t_0$.
 - Apparent branching is multistability, not stochastic evolution: near separatrices, infinitesimal perturbations in initial microstate direct trajectories into different attractor basins.
@@ -35,33 +50,99 @@ This is a claim about the exact substrate flow, not about practical prediction. 
 
 **Proper time $\tau$ for physical observers**
 
-Physical clocks are tri-binary assemblies; ticks correspond to internal limit-cycle phase evolution. For a clock worldline $\mathbf{X}(t)$ with $\mathbf{v}(t)=d\mathbf{X}/dt$,
-
+Physical clocks are tri-binary assemblies; ticks correspond to internal limit-cycle phase evolution. The primary definition is therefore phase extraction, not an arbitrary scalar fit:
 $$
-d\tau =
-F\big(
-\mathbf{v}(t),
-\rho_{\text{core}}(\mathbf{X}(t),t),
-n(\mathbf{X}(t),t),
-\chi_{\text{sea}}(\mathbf{X}(t),t),
-\Phi_{\text{eff}}(\mathbf{X}(t),t),
-\nabla\Phi_{\text{eff}}(\mathbf{X}(t),t),
-\sigma_{ij}(\mathbf{X}(t),t),
-\text{clock geometry}
-\big)\,dt,
+d\tau_{\mathcal A}
+=
+\frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}},
+\qquad
+\frac{d\tau_{\mathcal A}}{dt}
+=
+\frac{
+\Omega_{\mathcal A}
+\left(
+\mathbf{w},
+\Theta_{\mathrm{sea}},
+R_{\mathcal A},
+H_{\mathcal A}
+\right)
+}{
+\Omega_{\mathcal A}^{(0)}
+}.
 $$
+Here $\varphi_{\mathcal A}$ is the declared clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $R_{\mathcal A}$ is the clock assembly orientation and geometry record, $H_{\mathcal A}$ is the relevant path-history ledger, and
+$$
+w^i
+=
+\frac{dX^i}{dt}
+-
+u^i_{\text{sea}}
+$$
+is velocity relative to the local Noether-Sea flow in the observer-level bookkeeping map.
 
-where $\rho_{\text{core}}(\mathbf{x},t)$ is physical Noether-core density, $n(\mathbf{x},t)\equiv\rho_{\text{core}}(\mathbf{x},t)/\rho_{\text{core},0}$ is normalized Noether-core density, $\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)$ is the Noether-Sea delay factor, and $\sigma_{ij}$ denotes medium stress data. Microscopically, $F$ summarizes delayed assembly-medium interactions; $\Phi_{\text{eff}}$ and $\nabla\Phi_{\text{eff}}$ are effective coarse-grained encodings of that same local state.
+The full local Noether-Sea state is the retained state record $\Theta_{\mathrm{sea}}$, for example
+$$
+\Theta_{\mathrm{sea}}
+=
+\left(
+\rho_{\text{core}},
+n,
+u^i_{\text{sea}},
+Q_{ij},
+\sigma_{ij},
+\nabla\rho_{\text{core}},
+\ldots
+\right).
+$$
+The scalar $\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)$ is only the Noether-Sea delay factor extracted for a specified channel. It is not the full Noether-Sea state.
 
-The expression is a constitutive clock map, not a replacement for absolute time. The independent variable remains $t$; the functional tells how a particular clock channel accumulates its own phase relative to that substrate parameter. This is the point at which ontology, effective medium response, and observer inference meet in one formula.
+A broad constitutive expression $d\tau=F(\cdots)dt$ may still be used as a schematic summary after the clock channel has been declared, but the closure target is the extracted phase functional above. Proper time is not a free scalar function assigned independently of assembly dynamics.
 
-Equivalent extracted clock-frequency form:
+The integral clock-frequency form is
 
 $$
 \tau(t_1)-\tau(t_0)=\int_{t_0}^{t_1}\frac{\omega_{\text{clk}}(s)}{\omega_0}\,ds,
 $$
 
 where $\omega_{\text{clk}}(s)$ is the phase rate extracted from the declared tri-binary clock channel and $\omega_0$ is its rest-branch reference frequency. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether-Sea state variables used by the clock/ruler metric handoff.
+
+The low-energy Lorentz-closure target for a declared clock branch has the form
+$$
+\frac{d\tau_{\mathcal A}}{dt}
+=
+A(\Theta_{\mathrm{sea}})
+\sqrt{
+1-
+\frac{
+B_{ij}(\Theta_{\mathrm{sea}})w^iw^j
+}{
+c_0^2
+}
+}
+\left[
+1
++
+\Delta_{\mathcal A}^{\mathrm{ori}}
++
+\Delta_{\mathcal A}^{\mathrm{comp}}
++
+\Delta_{\mathcal A}^{\mathrm{PF}}
++
+O(w^4/c_0^4)
+\right].
+$$
+The residuals record orientation leakage, composition dependence, and preferred-frame leakage. They must be bounded by clock-comparison and Lorentz-test rows rather than hidden inside the constitutive function.
+In ordinary low-energy clock branches, the target scale is
+$$
+|\Delta_{\mathcal A}^{\mathrm{ori}}|
+\lesssim
+10^{-16}\text{--}10^{-18},
+\qquad
+|\Delta_{\mathcal A}^{\mathrm{comp}}|
+\lesssim
+10^{-13},
+$$
+with $\Delta_{\mathcal A}^{\mathrm{PF}}$ projected into the two-way anisotropy and PPN rows below unless a sharper channel-specific bound is declared.
 
 Required emergent limits:
 - Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../dynamics/tri-binary-dynamics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether-Sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
@@ -76,6 +157,74 @@ Required emergent limits:
   \qquad
   \frac{d\tau}{dt} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{v}\|^2/c_0^2}.
   $$
+
+**Speed convention table**
+
+| Symbol | Meaning | Status |
+| --- | --- | --- |
+| $c_f$ | Primitive causal-wake propagation speed relative to the Euclidean void | fundamental |
+| $c_\gamma(\Theta_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether-Sea state and direction | derived |
+| $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
+| $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
+| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration |
+
+These symbols must not be identified unless the local regime and derivation have been stated.
+
+**Preferred-frame leakage closure**
+
+The operational two-way photon-speed diagnostic is
+$$
+c_{2w}(\hat{\mathbf n})
+=
+\frac{2L}{T_+(\hat{\mathbf n})+T_-(\hat{\mathbf n})}.
+$$
+In ordinary low-energy conditions its anisotropy must fit
+$$
+\frac{c_{2w}(\hat{\mathbf n})-c_0}{c_0}
+=
+\zeta_0
++
+\zeta_{ij}^{\mathrm{TF}}
+\left(
+\hat n^i\hat n^j-\frac{1}{3}\delta^{ij}
+\right)
++
+\cdots,
+$$
+with the trace-free anisotropy below the direct photon-sector bound, typically $|\zeta_{ij}^{\mathrm{TF}}|\lesssim10^{-17}$ and, for the strictest cavity rows, at the $10^{-18}$ scale. The PPN export must also pass the componentwise bound vector
+$$
+\left(
+|\gamma_{\mathrm{PPN}}-1|,
+|\beta_{\mathrm{PPN}}-1|,
+|\alpha_1|,
+|\alpha_2|,
+|\alpha_3|
+\right)
+\le
+\left(
+2.3\times10^{-5},
+8\times10^{-5},
+4\times10^{-5},
+2\times10^{-9},
+4\times10^{-20}
+\right),
+$$
+or else name the separate screening mechanism that prevents an effective observer from seeing the leakage. Preferred-frame hiding is therefore a numerical closure condition, not a prose reassurance.
+
+**Effective metric handoff**
+
+The clock/ruler handoff to effective metric language can be written locally as
+$$
+d\tau^2
+=
+A^2(\Theta_{\mathrm{sea}})\,dt^2
+-
+\frac{1}{c_0^2}
+B_{ij}(\Theta_{\mathrm{sea}})
+\left(dx^i-u^i_{\text{sea}}dt\right)
+\left(dx^j-u^j_{\text{sea}}dt\right).
+$$
+Photon-channel closure then reads the null condition of this observer-level quadratic form, with $c_\gamma$ derived from the same Noether-Sea state rather than assigned independently. The weak homogeneous branch requires $A\to1$, $B_{ij}\to\delta_{ij}$, and $u^i_{\text{sea}}\to0$.
 
 **Key point**
 

@@ -4,7 +4,7 @@ This chapter explains how a usable coordinate frame can be reconstructed from co
 
 ## Overview
 
-Having established in the previous chapter that a stationary architrino can be identified through the concentric geometry of its spherically expanding causal wakes, the next task is to reconstruct a complete coordinate system. The Euclidean void provides no intrinsic markers: no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0." Those absences are not defects in the ontology. They are why coordinate reconstruction must be treated as an inference from complete-state geometry rather than as a primitive label attached to the void.
+Having established in the previous chapter that source-tagged wake centers identify the preferred rest structure, and that a stationary architrino supplies one convenient material origin when available, the next task is to reconstruct a complete coordinate system. The Euclidean void provides no intrinsic markers: no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0." Those absences are not defects in the ontology. They are why coordinate reconstruction must be treated as an inference from complete-state geometry rather than as a primitive label attached to the void.
 
 The conceptual sequence is: [Detecting the Absolute Frame](detecting-the-absolute-frame.md) identifies absolute rest, [Absolute Time Defense](absolute-time-defense.md) defends the global temporal ledger, and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) explains how observer-level clocks arise once the coordinate frame is in place.
 
@@ -16,7 +16,7 @@ What follows is the systematic procedure by which the $\mathbb{U}_{\text{now}}$ 
 
 ## Reconstruction Existence Lemma
 
-Fix one absolute-time slice $\Sigma_{t_\ast}$. Suppose complete-state wake geometry identifies a stationary origin architrino $O$ and two additional architrinos $A$ and $B$ whose positions on $\Sigma_{t_\ast}$ satisfy
+Fix one absolute-time slice $\Sigma_{t_\ast}$. Suppose complete-state wake geometry identifies an origin point $O$ on that slice, supplied either by a stationary architrino or by a reconstructed source-tagged emission center, and two additional architrinos $A$ and $B$ whose positions on $\Sigma_{t_\ast}$ satisfy
 $$
 \mathbf{d}_1=\mathbf{x}_A(t_\ast)-\mathbf{x}_O(t_\ast)\ne\mathbf{0},
 $$
@@ -58,13 +58,13 @@ This lemma is an existence claim at the complete-state level. It does not say th
 
 ## Step 1: Establishing the Origin
 
-**Architrino Required:** 1 (stationary)
+**Origin datum required:** one stationary architrino, or one reconstructed source-tagged emission center on $\Sigma_{t_\ast}$
 
 **Method:**
-Using the concentric causal-wake diagnostic described in the previous chapter, complete-state bookkeeping identifies an architrino whose outgoing source-tagged causal wakes remain perfectly concentric over time. This architrino has **absolute velocity** $\mathbf{v}_{\text{abs}} = 0$ relative to the Euclidean void.
+Using the wake-center diagnostic described in the previous chapter, complete-state bookkeeping first recovers the preferred rest structure: the frame in which primitive causal wakes expand isotropically at $c_f$. If an architrino's outgoing source-tagged causal wakes remain perfectly concentric over the diagnostic interval, that stationary architrino supplies a material origin. If no architrino is stationary over the interval, choose any reconstructed emission center at the selected time $t_\ast$ as the conventional origin point.
 
 **What This Accomplishes:**
-This stationary architrino is assigned as the **origin** of the selected coordinate frame on the selected slice:
+The selected point is assigned as the **origin** of the coordinate frame on the selected slice:
 $$
 \mathbf{x}_{\text{origin}}(t_\ast) = (0, 0, 0)
 $$
@@ -78,7 +78,7 @@ $$
 - The **absolute time zero**
 
 **Why This Step Is Necessary:**
-Without an origin, position vectors cannot be represented in components. Every subsequent statement of "where" must be relative to some reference point. The concentric-wake criterion gives complete-state reconstruction a coordinate-independent method for selecting this point.
+Without an origin, position vectors cannot be represented in components. Every subsequent statement of "where" must be relative to some reference point. The wake-center criterion gives complete-state reconstruction a coordinate-independent method for selecting this point without making the preferred frame depend on the existence of a stationary material marker.
 
 ## Step 2: Defining the Primary Axis (First Direction)
 
@@ -227,15 +227,16 @@ The universe does not require a coordinate frame; theory and simulation use one 
 
 | **Step** | **Architrinos Required** | **Purpose** | **DOFs Fixed** | **What Remains Undefined** | **Notes** |
 |----------|-------------------------|-------------|----------------|---------------------------|-----------|
-| **1. Origin** | 1 (stationary) | Fix translational reference point | Translation (3) | Orientation, handedness, time zero | Concentric wake identifies absolute rest |
+| **1. Origin** | 1 stationary architrino or one reconstructed emission center | Fix translational reference point | Translation (3) | Orientation, handedness, time zero | Stationary architrino is sufficient, not necessary |
 | **2. Primary Axis** | +1 (non-coincident) | Define first spatial direction ($\hat{\mathbf{x}}$) | Rotation (2) | Second/third axes, roll, handedness | Displacement vector gives objective direction |
 | **3. Plane** | +1 (non-collinear) | Define second independent direction ($\hat{\mathbf{y}}$) and lock the $xy$-plane | Rotation (1) | Third axis, handedness | Gram-Schmidt ensures orthogonality |
 | **4A. Handedness (Conventional)** | 0 | Complete spatial basis via right-hand rule | Parity (1) | Absolute time zero | Mathematical convention ($\hat{\mathbf{z}} = \hat{\mathbf{x}} \times \hat{\mathbf{y}}$) |
 | **4B. Side Marker (Complete-State)** | +1 (non-coplanar) | Choose a physical side marker for the oriented plane | Parity (1) | Absolute time zero | Scalar triple product resolves the reported $\pm\hat{\mathbf{z}}$ side |
 
 **Total Architrinos:**
-- **Conventional approach**: 3
-- **Side-marker approach**: 4
+- **Conventional approach with stationary material origin**: 3
+- **Side-marker approach with stationary material origin**: 4
+- **Wake-center origin approach**: one reconstructed emission center plus the nondegenerate architrino tuple used for axes
 
 ## Categories of Calculation Served by Each Step
 
@@ -262,7 +263,7 @@ This final distinction separates substrate ontology, complete-state reconstructi
 The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
 
 **Physical Observer access:**
-Physical Observers cannot directly measure the complete concentric wake geometry or identify an absolutely stationary architrino by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether Sea. They measure:
+Physical Observers cannot directly measure the complete source-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether Sea. They measure:
 - **Proper time** $\tau$, not absolute time $t$
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration

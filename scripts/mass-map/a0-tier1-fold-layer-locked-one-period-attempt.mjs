@@ -7,6 +7,8 @@ import { createCarrierCorrectionEvaluator } from "./a0-tier1-carrier-correction-
 const BODY_IDS = ["I+", "I-", "M+", "M-", "O+", "O-"];
 const LAYERS = ["I", "M", "O"];
 const ROOT_RELATIONS = ["partner", "self", "inter_layer"];
+const REFINED_PROJECTION_CHANNELS = ["radial", "tangential"];
+const I_RECEIVER_PHASE_BIN_COUNT = 2;
 const POLARITIES = ["+", "-"];
 const READY_STATUS = "ready_for_fold_layer_locked_one_period_attempt";
 const DEFAULT_C_F = 1;
@@ -237,6 +239,15 @@ function dot(a, b) {
 
 function norm(a) {
   return Math.sqrt(dot(a, a));
+}
+
+function unitVector(a) {
+  const value = norm(a);
+  return Number.isFinite(value) && value > Number.EPSILON ? scale(a, 1 / value) : null;
+}
+
+function projectOntoUnit(a, unit) {
+  return scale(unit, dot(a, unit));
 }
 
 function canonicalSamples(row) {
@@ -783,7 +794,7 @@ function computeAccelerations(context, t, currentStep, currentSample) {
     }
     const receiverState = currentSample.bodies[root.receiver];
     const sourceState = historyStateAt(
-      { array, dt, currentStep, prehistorySamples },
+      { array, dt, currentStep, prehistorySamples, correctionContext },
       t - root.delay,
       root.source
     );
@@ -1412,6 +1423,163 @@ function relationBasisAt(samples, rootsByTime, lockedKeys, period, t, eta, jMin,
   };
 }
 
+function layerRadialUnit(sample, layer) {
+  const plus = sample?.bodies?.[`${layer}+`];
+  const minus = sample?.bodies?.[`${layer}-`];
+  if (!finiteVector3(plus?.position) || !finiteVector3(minus?.position)) {
+    return null;
+  }
+  return unitVector(sub(plus.position, minus.position));
+}
+
+function observationPhaseBin(t, period, binCount = I_RECEIVER_PHASE_BIN_COUNT) {
+  if (!Number.isFinite(t) || !Number.isFinite(period) || period <= 0 || !Number.isInteger(binCount) || binCount <= 0) {
+    return null;
+  }
+  const normalized = ((t % period) + period) % period;
+  return Math.min(binCount - 1, Math.floor((binCount * normalized) / period));
+}
+
+function refinedBasisGroup(root, projection, basisMode, phaseBin = null) {
+  const receiverLayer = bodyLayer(root.receiver);
+  const sourceLayer = bodyLayer(root.source);
+  const polarityPair = bodyPolarity(root.receiver) === bodyPolarity(root.source) ? "same" : "opposite";
+  const parts = [
+    `relation:${root.relation}`,
+    `receiver_layer:${receiverLayer}`,
+    `source_layer:${sourceLayer}`,
+    `polarity_pair:${polarityPair}`,
+    `projection:${projection}`,
+  ];
+  if (basisMode === "root_key_resolved") {
+    parts.splice(4, 0, `root_key:${rootKey(root)}`);
+  } else if (basisMode === "i_receiver_root_key_phase_bin") {
+    parts.splice(4, 0, `root_key:${rootKey(root)}`);
+    if (receiverLayer === "I") {
+      parts.splice(5, 0, `phase_bin:${phaseBin}`);
+    }
+  }
+  return parts.join("|");
+}
+
+function refinedBasisGroupMetadata(root, projection, basisMode, phaseBin = null) {
+  return {
+    group_key: refinedBasisGroup(root, projection, basisMode, phaseBin),
+    relation: root.relation,
+    receiver_layer: bodyLayer(root.receiver),
+    source_layer: bodyLayer(root.source),
+    polarity_pair: bodyPolarity(root.receiver) === bodyPolarity(root.source) ? "same" : "opposite",
+    root_key: basisMode === "root_key_resolved" || basisMode === "i_receiver_root_key_phase_bin" ? rootKey(root) : null,
+    phase_bin: basisMode === "i_receiver_root_key_phase_bin" && bodyLayer(root.receiver) === "I" ? phaseBin : null,
+    projection,
+    equality_constraints: [
+      basisMode === "root_key_resolved" || basisMode === "i_receiver_root_key_phase_bin"
+        ? "receiver_polarity_retained_in_raw_root_key_for_mu_test"
+        : "pro_anti_symmetric_within_receiver_layer",
+      basisMode === "root_key_resolved" || basisMode === "i_receiver_root_key_phase_bin"
+        ? "raw_root_key_distinguished_for_mu_test"
+        : "shared_for_quotient_equivalent_root_keys",
+      ...(basisMode === "i_receiver_root_key_phase_bin" && bodyLayer(root.receiver) === "I"
+        ? ["i_receiver_observation_phase_bin_branch_coordinate_test"]
+        : []),
+      "locked_fold_layer_keys_excluded",
+      "benchmark_inputs_excluded",
+    ],
+  };
+}
+
+function addVectorToMap(map, key, value) {
+  const previous = map.get(key) ?? [0, 0, 0];
+  map.set(key, add(previous, value));
+}
+
+function addToSetMap(map, key, value) {
+  const set = map.get(key) ?? new Set();
+  set.add(value);
+  map.set(key, set);
+}
+
+function sortedSetObject(map, keys) {
+  return Object.fromEntries(keys.map((key) => [key, [...(map.get(key) ?? [])].sort()]));
+}
+
+function refinedRelationBasisAt(samples, rootsByTime, lockedKeys, period, t, eta, jMin, correctionContext, basisMode) {
+  const current = correctedSample(interpolateSample(samples, t), correctionContext);
+  if (!current || !finiteStateSample(current)) {
+    return null;
+  }
+  const layerFrames = Object.fromEntries(LAYERS.map((layer) => [layer, layerRadialUnit(current, layer)]));
+  if (Object.values(layerFrames).some((frame) => !frame)) {
+    return null;
+  }
+  const basisByLayer = Object.fromEntries(LAYERS.map((layer) => [layer, new Map()]));
+  const groupMetadata = new Map();
+  const rawRootKeyCounts = new Map();
+  const rawRootKeysByGroup = new Map();
+  const bucket = nearestRootBucket(rootsByTime, t, period);
+  let evaluatedRootCount = 0;
+  let lockedRootCount = 0;
+  let invalidRootCount = 0;
+  for (const root of bucket.roots) {
+    if (lockedKeys.has(rootKey(root))) {
+      lockedRootCount += 1;
+      continue;
+    }
+    const receiverLayer = bodyLayer(root.receiver);
+    const receiverState = current.bodies[root.receiver];
+    const sourceState = sourceStateAt(samples, t - root.delay, root.source, correctionContext);
+    if (!receiverState || !sourceState || !layerFrames[receiverLayer]) {
+      invalidRootCount += 1;
+      continue;
+    }
+    const sourceToReceiver = sub(sourceState.position, receiverState.position);
+    const regularizedDistanceSquared = dot(sourceToReceiver, sourceToReceiver) + eta * eta;
+    const denominator =
+      regularizedDistanceSquared *
+      Math.sqrt(regularizedDistanceSquared) *
+      Math.max(Math.abs(root.J), jMin);
+    if (!Number.isFinite(denominator) || denominator <= 0) {
+      invalidRootCount += 1;
+      continue;
+    }
+    const coefficient = (bodyCharge(root.receiver) * bodyCharge(root.source)) / denominator;
+    const contribution = scale(sourceToReceiver, coefficient);
+    const radial = projectOntoUnit(contribution, layerFrames[receiverLayer]);
+    const tangential = sub(contribution, radial);
+    const relativeSign = bodyPolarity(root.receiver) === "+" ? 1 : -1;
+    const projections = { radial, tangential };
+    const rawKey = rootKey(root);
+    const phaseBin =
+      basisMode === "i_receiver_root_key_phase_bin" && receiverLayer === "I"
+        ? observationPhaseBin(t, period)
+        : null;
+    if (basisMode === "i_receiver_root_key_phase_bin" && receiverLayer === "I" && phaseBin === null) {
+      invalidRootCount += 1;
+      continue;
+    }
+    for (const projection of REFINED_PROJECTION_CHANNELS) {
+      const groupKey = refinedBasisGroup(root, projection, basisMode, phaseBin);
+      addVectorToMap(basisByLayer[receiverLayer], groupKey, scale(projections[projection], relativeSign));
+      if (!groupMetadata.has(groupKey)) {
+        groupMetadata.set(groupKey, refinedBasisGroupMetadata(root, projection, basisMode, phaseBin));
+      }
+      addToSetMap(rawRootKeysByGroup, groupKey, rawKey);
+    }
+    rawRootKeyCounts.set(rawKey, (rawRootKeyCounts.get(rawKey) ?? 0) + 1);
+    evaluatedRootCount += 1;
+  }
+  return {
+    basisByLayer,
+    groupMetadata,
+    rawRootKeyCounts,
+    rawRootKeysByGroup,
+    bucket_time: bucket.t,
+    evaluatedRootCount,
+    lockedRootCount,
+    invalidRootCount,
+  };
+}
+
 function addOuterProduct(normal, row) {
   for (let i = 0; i < ROOT_RELATIONS.length; i += 1) {
     for (let j = 0; j < ROOT_RELATIONS.length; j += 1) {
@@ -1457,6 +1625,56 @@ function solveLinear3(matrix, rhs) {
   }
   const solution = [a[0][3], a[1][3], a[2][3]];
   return solution.every(Number.isFinite) ? solution : null;
+}
+
+function solveLinearSystem(matrix, rhs) {
+  const size = matrix.length;
+  if (size === 0 || rhs.length !== size || matrix.some((row) => row.length !== size)) {
+    return null;
+  }
+  const a = matrix.map((row, index) => [...row, rhs[index]]);
+  for (let col = 0; col < size; col += 1) {
+    let pivot = col;
+    for (let row = col + 1; row < size; row += 1) {
+      if (Math.abs(a[row][col]) > Math.abs(a[pivot][col])) {
+        pivot = row;
+      }
+    }
+    if (Math.abs(a[pivot][col]) <= Number.EPSILON) {
+      return null;
+    }
+    if (pivot !== col) {
+      [a[pivot], a[col]] = [a[col], a[pivot]];
+    }
+    const pivotValue = a[col][col];
+    for (let entry = col; entry <= size; entry += 1) {
+      a[col][entry] /= pivotValue;
+    }
+    for (let row = 0; row < size; row += 1) {
+      if (row === col) {
+        continue;
+      }
+      const factor = a[row][col];
+      for (let entry = col; entry <= size; entry += 1) {
+        a[row][entry] -= factor * a[col][entry];
+      }
+    }
+  }
+  const solution = a.map((row) => row[size]);
+  return solution.every(Number.isFinite) ? solution : null;
+}
+
+function addSparseNormalEquation(normal, rhs, rowEntries, targetValue) {
+  for (const [leftIndex, leftValue] of rowEntries) {
+    rhs[leftIndex] += leftValue * targetValue;
+    for (const [rightIndex, rightValue] of rowEntries) {
+      normal[leftIndex][rightIndex] += leftValue * rightValue;
+    }
+  }
+}
+
+function sparsePrediction(rowEntries, solution) {
+  return rowEntries.reduce((sum, [index, value]) => sum + value * solution[index], 0);
 }
 
 function residualBalanceLedger(row, sourceRow, trajectory, args, correctionContext) {
@@ -1641,6 +1859,323 @@ function residualBalanceLedger(row, sourceRow, trajectory, args, correctionConte
   };
 }
 
+function refinedResidualBalanceLedger(
+  row,
+  sourceRow,
+  trajectory,
+  args,
+  correctionContext,
+  basisMode = "quotient_equivalent_root_class"
+) {
+  const period = row.period;
+  const samples = sourceSamplesForBalance(row, sourceRow);
+  const roots = trajectory.roots;
+  const lockedKeys = new Set(row.trajectory_target?.branch_chart_assumptions?.locked_self_root_keys ?? []);
+  const eta = trajectory.diagnostics?.eta ?? resolveEta(row, sourceRow, args);
+  const h = accelerationStep(samples, period);
+  if (!Number.isFinite(period) || period <= 0 || samples.length === 0 || roots.length === 0 || !Number.isFinite(h)) {
+    return {
+      schema: "a0-tier1-refined-residual-basis-ledger/v1",
+      status: "not_computed",
+      reason: "source samples, active roots, period, or acceleration step missing",
+      accepted_history_boundary: false,
+    };
+  }
+
+  const rootsByTime = groupRootsByObservationTime(roots, period);
+  const groupMetadata = new Map();
+  const rawRootKeyCounts = new Map();
+  const rawRootKeysByGroup = new Map();
+  const equationPackets = [];
+  const samplePackets = [];
+  let sampleCount = 0;
+  let evaluatedRootContributions = 0;
+  let lockedRootContributions = 0;
+  let invalidRootContributions = 0;
+  let targetNormSquared = 0;
+
+  for (const bucket of rootsByTime) {
+    const t = bucket.t;
+    if (!Number.isFinite(t) || t < 0 || t > period) {
+      continue;
+    }
+    const target = finiteDifferenceCarrierAcceleration(samples, t, h, correctionContext);
+    const basisPacket = refinedRelationBasisAt(
+      samples,
+      rootsByTime,
+      lockedKeys,
+      period,
+      t,
+      eta,
+      args.jMin,
+      correctionContext,
+      basisMode
+    );
+    if (!target || !basisPacket) {
+      continue;
+    }
+    sampleCount += 1;
+    evaluatedRootContributions += basisPacket.evaluatedRootCount;
+    lockedRootContributions += basisPacket.lockedRootCount;
+    invalidRootContributions += basisPacket.invalidRootCount;
+    for (const [groupKey, metadata] of basisPacket.groupMetadata) {
+      groupMetadata.set(groupKey, metadata);
+    }
+    for (const [rawKey, count] of basisPacket.rawRootKeyCounts) {
+      rawRootKeyCounts.set(rawKey, (rawRootKeyCounts.get(rawKey) ?? 0) + count);
+    }
+    for (const [groupKey, rawKeys] of basisPacket.rawRootKeysByGroup) {
+      for (const rawKey of rawKeys) {
+        addToSetMap(rawRootKeysByGroup, groupKey, rawKey);
+      }
+    }
+
+    const layers = {};
+    for (const layer of LAYERS) {
+      const plus = `${layer}+`;
+      const minus = `${layer}-`;
+      const targetRelative = sub(target[plus], target[minus]);
+      const basisGroupRelative = Object.fromEntries(
+        [...basisPacket.basisByLayer[layer].entries()].sort(([left], [right]) => left.localeCompare(right))
+      );
+      layers[layer] = {
+        target_relative_acceleration: targetRelative,
+        basis_group_relative: basisGroupRelative,
+      };
+      for (let component = 0; component < 3; component += 1) {
+        const rowMap = new Map();
+        for (const [groupKey, vector] of basisPacket.basisByLayer[layer]) {
+          const value = vector[component];
+          if (Number.isFinite(value) && Math.abs(value) > 0) {
+            rowMap.set(groupKey, value);
+          }
+        }
+        const targetValue = targetRelative[component];
+        if (rowMap.size === 0 || !Number.isFinite(targetValue)) {
+          continue;
+        }
+        targetNormSquared += targetValue * targetValue;
+        equationPackets.push({ layer, component, rowMap, targetValue });
+      }
+    }
+    samplePackets.push({
+      t,
+      bucket_time: basisPacket.bucket_time,
+      layers,
+      diagnostics: {
+        evaluated_root_contributions: basisPacket.evaluatedRootCount,
+        locked_root_contributions: basisPacket.lockedRootCount,
+        invalid_root_contributions: basisPacket.invalidRootCount,
+      },
+    });
+  }
+
+  const groupKeys = [...groupMetadata.keys()].sort();
+  if (equationPackets.length < groupKeys.length || groupKeys.length === 0 || targetNormSquared <= 0) {
+    return {
+      schema: "a0-tier1-refined-residual-basis-ledger/v1",
+      status: "not_computed",
+      failure_code: "refined-basis-insufficient-equations",
+      basis_group_count: groupKeys.length,
+      sample_count: sampleCount,
+      equation_count: equationPackets.length,
+      target_norm: Math.sqrt(targetNormSquared),
+      accepted_history_boundary: false,
+      reason: "insufficient carrier-acceleration equations for the equality-constrained refined basis",
+    };
+  }
+
+  const groupIndex = new Map(groupKeys.map((key, index) => [key, index]));
+  const normal = groupKeys.map(() => groupKeys.map(() => 0));
+  const rhs = groupKeys.map(() => 0);
+  const indexedEquations = equationPackets.map((packet) => ({
+    ...packet,
+    rowEntries: [...packet.rowMap.entries()]
+      .map(([groupKey, value]) => [groupIndex.get(groupKey), value])
+      .filter(([index, value]) => Number.isInteger(index) && Number.isFinite(value)),
+  }));
+  for (const packet of indexedEquations) {
+    addSparseNormalEquation(normal, rhs, packet.rowEntries, packet.targetValue);
+  }
+  const regularizedNormal = normal.map((rowValues, index) =>
+    rowValues.map((value, col) => value + (index === col ? args.balanceRidge : 0))
+  );
+  const solution = solveLinearSystem(regularizedNormal, rhs);
+  if (!solution) {
+    return {
+      schema: "a0-tier1-refined-residual-basis-ledger/v1",
+      status: "failed",
+      failure_code: "refined-basis-normal-equation-singular",
+      basis_group_count: groupKeys.length,
+      sample_count: sampleCount,
+      equation_count: equationPackets.length,
+      ridge: args.balanceRidge,
+      accepted_history_boundary: false,
+    };
+  }
+
+  let residualNormSquared = 0;
+  let maxComponentResidual = 0;
+  for (const packet of indexedEquations) {
+    const residual = packet.targetValue - sparsePrediction(packet.rowEntries, solution);
+    residualNormSquared += residual * residual;
+    maxComponentResidual = Math.max(maxComponentResidual, Math.abs(residual));
+  }
+  const solutionByGroup = Object.fromEntries(groupKeys.map((key, index) => [key, solution[index]]));
+  const rawRootKeyRepresentativesByGroup = sortedSetObject(rawRootKeysByGroup, groupKeys);
+  const samplesWithResiduals = samplePackets.map((sample) => ({
+    ...sample,
+    layers: Object.fromEntries(
+      LAYERS.map((layer) => {
+        const layerPacket = sample.layers[layer];
+        const predicted = Object.entries(layerPacket.basis_group_relative).reduce(
+          (sum, [groupKey, vector]) => add(sum, scale(vector, solutionByGroup[groupKey] ?? 0)),
+          [0, 0, 0]
+        );
+        return [
+          layer,
+          {
+            ...layerPacket,
+            predicted_refined_basis_acceleration: predicted,
+            residual_forcing: sub(layerPacket.target_relative_acceleration, predicted),
+          },
+        ];
+      })
+    ),
+  }));
+  const relativeResidual = Math.sqrt(residualNormSquared / targetNormSquared);
+  const status =
+    relativeResidual <= args.balanceTolerance ? "refined_basis_balance_candidate" : "refined_basis_no_go";
+  const compactFixtureDecision =
+    status === "refined_basis_no_go"
+      ? {
+          schema: "a0-tier1-compact-fixture-decision/v1",
+          status:
+            basisMode === "root_key_resolved"
+              ? "compact_fixture_no_go_under_root_key_resolved_mu_test"
+              : basisMode === "i_receiver_root_key_phase_bin"
+                ? "compact_fixture_no_go_under_i_receiver_phase_bin_mu_test"
+              : "compact_fixture_no_go_under_declared_equality_constraints",
+          no_go_scope:
+            basisMode === "root_key_resolved"
+              ? "corrected compact A0 carrier, locked fold-layer routing, raw root-key-resolved mu columns, radial/tangential projection split, and benchmark exclusion"
+              : basisMode === "i_receiver_root_key_phase_bin"
+                ? "corrected compact A0 carrier, locked fold-layer routing, raw root-key mu columns, I-receiver observation-phase split, radial/tangential projection split, and benchmark exclusion"
+              : "corrected compact A0 carrier, locked fold-layer routing, quotient-equivalent pro/anti root-class sharing, radial/tangential projection split, and benchmark exclusion",
+          witness: {
+            relative_residual: relativeResidual,
+            tolerance: args.balanceTolerance,
+            residual_to_tolerance_ratio: relativeResidual / args.balanceTolerance,
+            basis_group_count: groupKeys.length,
+            raw_root_key_count: rawRootKeyCounts.size,
+            sample_count: sampleCount,
+            equation_count: equationPackets.length,
+          },
+          branch_chart_revision_minimum: {
+            required_before_further_corrected_rerun: true,
+            required_new_coordinate:
+              basisMode === "root_key_resolved" || basisMode === "i_receiver_root_key_phase_bin"
+                ? "a finite root branch coordinate finer than receiver/source/relation/status, or an explicit non-root-key branch-chart mode in z_lambda"
+                : "a finer root branch coordinate mu beyond the current receiver/source/relation/status key, or an explicit relaxation of quotient-equivalent root-class sharing",
+            required_equality_map:
+              "declare before fitting which raw root keys remain shared under pro/anti symmetry and which become distinct branch-chart coordinates",
+          },
+        }
+      : {
+          schema: "a0-tier1-compact-fixture-decision/v1",
+          status: "refined_basis_candidate_requires_corrected_rerun",
+          no_go_scope: null,
+          witness: {
+            relative_residual: relativeResidual,
+            tolerance: args.balanceTolerance,
+            basis_group_count: groupKeys.length,
+            raw_root_key_count: rawRootKeyCounts.size,
+            sample_count: sampleCount,
+            equation_count: equationPackets.length,
+          },
+          branch_chart_revision_minimum: null,
+        };
+  return {
+    schema: "a0-tier1-refined-residual-basis-ledger/v1",
+    status,
+    failure_code: status === "refined_basis_balance_candidate" ? null : "refined-basis-residual-too-large",
+    tolerance: args.balanceTolerance,
+    ridge: args.balanceRidge,
+    source:
+      "branch-carrier finite-difference acceleration and active causal-root basis split by equality-constrained root class and projection channel",
+    basis_resolution: {
+      basis_mode: basisMode,
+      relations: ROOT_RELATIONS,
+      receiver_layers: LAYERS,
+      receiver_polarities: POLARITIES,
+      projection_channels: REFINED_PROJECTION_CHANNELS,
+      phase_bin_count: basisMode === "i_receiver_root_key_phase_bin" ? I_RECEIVER_PHASE_BIN_COUNT : null,
+      phase_bin_definition:
+        basisMode === "i_receiver_root_key_phase_bin"
+          ? "floor(2 * modulo(observation_time, period) / period) for receiver_layer:I only"
+          : null,
+      root_branch_key_source: "rootKey(root)",
+      root_branch_key_scope:
+        basisMode === "root_key_resolved"
+          ? "Fitted columns include the current raw root key receiver|source|relation|status as the provisional mu coordinate."
+          : basisMode === "i_receiver_root_key_phase_bin"
+            ? "Fitted columns include the current raw root key receiver|source|relation|status and split I-receiver columns by a two-bin observation phase coordinate."
+          : "Raw root keys are retained as diagnostics and representatives. Fitted columns are quotient-equivalent root classes after pro/anti sharing, not independent raw root-key weights.",
+      equality_group_key:
+        basisMode === "root_key_resolved"
+          ? "relation + receiver_layer + source_layer + polarity_pair + root_key + projection"
+          : basisMode === "i_receiver_root_key_phase_bin"
+            ? "for receiver_layer:I: relation + receiver_layer + source_layer + polarity_pair + root_key + phase_bin + projection; otherwise relation + receiver_layer + source_layer + polarity_pair + root_key + projection"
+          : "relation + receiver_layer + source_layer + polarity_pair + projection; pro/anti quotient-equivalent roots share a weight",
+    },
+    equality_constraints: {
+      schema: "a0-tier1-refined-basis-equality-constraints/v1",
+      pro_anti_layer_symmetry: basisMode !== "root_key_resolved" && basisMode !== "i_receiver_root_key_phase_bin",
+      quotient_equivalent_root_key_sharing:
+        basisMode !== "root_key_resolved" && basisMode !== "i_receiver_root_key_phase_bin",
+      root_key_resolved_mu_test: basisMode === "root_key_resolved" || basisMode === "i_receiver_root_key_phase_bin",
+      phase_bin_branch_coordinate_test: basisMode === "i_receiver_root_key_phase_bin",
+      locked_fold_layer_keys_excluded: true,
+      benchmark_inputs_excluded: true,
+      classes: groupKeys.map((key) => groupMetadata.get(key)),
+    },
+    basis_group_count: groupKeys.length,
+    raw_root_key_count: rawRootKeyCounts.size,
+    raw_root_key_counts: Object.fromEntries([...rawRootKeyCounts.entries()].sort(([left], [right]) => left.localeCompare(right))),
+    raw_root_key_representatives_by_group: rawRootKeyRepresentativesByGroup,
+    sample_count: sampleCount,
+    equation_count: equationPackets.length,
+    acceleration_step: h,
+    eta,
+    weight_solution: solutionByGroup,
+    target_norm: Math.sqrt(targetNormSquared),
+    residual_norm: Math.sqrt(residualNormSquared),
+    relative_residual: relativeResidual,
+    max_component_residual: maxComponentResidual,
+    sampled_forcing: {
+      schema: "a0-tier1-refined-basis-sampled-forcing/v1",
+      period,
+      sample_count: samplesWithResiduals.length,
+      layer_projection:
+        "relative-layer residual forcing after equality-constrained B_{rho,l,sigma,mu,nu}(t) basis fit",
+      samples: samplesWithResiduals,
+    },
+    evaluated_root_contributions: evaluatedRootContributions,
+    locked_root_contributions: lockedRootContributions,
+    invalid_root_contributions: invalidRootContributions,
+    accepted_history_boundary: false,
+    compact_fixture_decision: compactFixtureDecision,
+    no_go_statement:
+      status === "refined_basis_balance_candidate"
+        ? "The refined basis is a branch-native residual-balance candidate; a corrected one-period rerun is still required before monodromy or eta-ladder work."
+        : basisMode === "root_key_resolved"
+          ? "The root-key-resolved refined basis still cannot close the corrected compact fixture residual surface below tolerance."
+          : basisMode === "i_receiver_root_key_phase_bin"
+            ? "The I-receiver observation-phase-bin refined basis still cannot close the corrected compact fixture residual surface below tolerance."
+          : "The quotient-equivalent refined basis still cannot close the corrected compact fixture residual surface below tolerance.",
+  };
+}
+
 function lockLedger(row) {
   const target = row.trajectory_target ?? {};
   const assumptions = target.branch_chart_assumptions ?? {};
@@ -1703,6 +2238,23 @@ function residualLedgers(row, sourceRow, trajectory, args, correctionContext) {
     center_drift: centerDriftLedger(samples, args.centerTolerance),
     energy_like_speed: energyLikeSpeedLedger(samples, period, args.energyTolerance),
     residual_balance: residualBalanceLedger(row, sourceRow, trajectory, args, correctionContext),
+    refined_residual_balance: refinedResidualBalanceLedger(row, sourceRow, trajectory, args, correctionContext),
+    refined_root_key_residual_balance: refinedResidualBalanceLedger(
+      row,
+      sourceRow,
+      trajectory,
+      args,
+      correctionContext,
+      "root_key_resolved"
+    ),
+    refined_i_receiver_phase_bin_residual_balance: refinedResidualBalanceLedger(
+      row,
+      sourceRow,
+      trajectory,
+      args,
+      correctionContext,
+      "i_receiver_root_key_phase_bin"
+    ),
     fold_layer_lock: lockLedger(row),
     monodromy: monodromyLedger(),
     eta_ladder: etaLadderLedger(),

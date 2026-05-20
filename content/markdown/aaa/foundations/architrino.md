@@ -78,6 +78,20 @@ Many effective conservation rules can be read as summaries of this deeper identi
 
 Provenance does not replace Noether reasoning. Energy conservation still depends on time-translation invariance and on the interaction law. Momentum and angular momentum still depend on spatial translation and rotation symmetry. Provenance is the ontological basis that makes microscopic conservation statements sharp; symmetry supplies the dynamical conservation theorems.
 
+Observer-level indistinguishability is therefore a quotient, not erasure of substrate identity. Let
+$$
+\Pi_{\mathrm{obs}}:S(t)\to\bar S(t)
+$$
+denote the projection from the complete provenance-bearing state to the variables exposed to Physical Observers. For any permutation $\pi$ of same-polarity architrinos inside an observationally unresolved class, observer-accessible quantities must satisfy
+$$
+\mathcal{O}(S)
+=
+\mathcal{O}(\pi S)
++
+O(\epsilon_{\mathrm{prov}}).
+$$
+The closure condition is that $\epsilon_{\mathrm{prov}}$ remains below the experimental bounds on particle indistinguishability and exchange statistics in the relevant branch. Exact architrino identities remain present in $\mathbb{U}_{\text{now}}$; ordinary particle indistinguishability is recovered only after the Physical Observer projection suppresses label-specific differences.
+
 ## Non-Creation and Non-Destruction
 
 **Architrino non-creation and non-destruction** is a foundational postulate:
@@ -181,7 +195,7 @@ $$
 $$
 emits a concentric wake stream centered on one fixed point of the Euclidean void. This state is physically distinct from nonzero motion, where wake centers trace a path and the wake stream becomes non-concentric.
 
-The stationary case supplies a primitive diagnostic for the absolute rest frame: the frame in which wake speed $c_f$ is isotropic and stationary-source wakes are concentric. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](detecting-the-absolute-frame.md), [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
+The stationary case supplies a convenient primitive diagnostic for the absolute rest frame: the frame in which wake speed $c_f$ is isotropic and stationary-source wakes are concentric. The existence of a stationary architrino is sufficient for choosing a material origin, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from source-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](detecting-the-absolute-frame.md), [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 
 ## Boundary With Assemblies and Effective Particles
 

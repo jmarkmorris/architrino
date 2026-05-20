@@ -7,12 +7,12 @@ uses only the Python standard library.
 
 The artifact has one narrow job: make the VP-1 branch ledger replayable. It
 reports active partner/self roots, Jacobian floors, active-count stability,
-finite-memory status, the radial-turn branch-sum threshold, a weighted
+finite-memory status, the radial-turn branch-sum threshold interval, a weighted
 ``D_T(I_*)`` quadrature estimate, and the remaining blockers for theorem-grade
-interval promotion. The runner does not mark the priority item complete: VP-1
-has a positive sampled tangential-drive integral and the inactive-gap and
-root-transport rows are still sampled/blocker rows rather than full interval
-proofs.
+interval promotion. The runner does not mark the priority item complete unless
+typed sidecar rows resolve the full proof matrix; the current VP-1 sidecar has
+structural interval rows and a certified tangential-drive failure, but the
+radial force-ratio Gamma row remains blocked.
 """
 
 from __future__ import annotations
@@ -40,8 +40,159 @@ DEFAULT_QUADRATURE_INTERVALS = 4096
 DEFAULT_INACTIVE_THETA_SAMPLES = 121
 DEFAULT_INACTIVE_DELTA_SAMPLES = 2048
 DEFAULT_COINCIDENCE_SAMPLES = 160
+DEFAULT_TANGENTIAL_INTERVAL_SLABS = 256
 ROOT_TOL = 1.0e-12
 ROOT_DEDUPE_TOL = 1.0e-7
+NEG_INF = float("-inf")
+POS_INF = float("inf")
+TRIG_CHECK_PAD = 8.0e-15
+TANGENTIAL_ROOT_PAD = 1.0e-8
+TANGENTIAL_ROOT_PAD_MAX = 5.0e-2
+RADIAL_ROOT_PAD = 1.0e-8
+GAMMA_NORMALIZATION = "Gamma = r_*^3 Omega^2/(kappa q_1^2)"
+RADIAL_BRANCH_INTERVAL_REFERENCE = (-0.27143260470972164, -0.27143255629407625)
+
+ACTIVE_BRANCH_WINDOWS = [
+    {"label": "P_1", "kind": "partner", "window": (2.48, 2.52)},
+    {"label": "P_2", "kind": "partner", "window": (4.30, 4.46)},
+    {"label": "P_3", "kind": "partner", "window": (6.78, 6.92)},
+    {"label": "S_1", "kind": "self", "window": (4.80, 4.90)},
+]
+
+
+def down(value: float) -> float:
+    return math.nextafter(value, NEG_INF)
+
+
+def up(value: float) -> float:
+    return math.nextafter(value, POS_INF)
+
+
+@dataclass(frozen=True)
+class Interval:
+    lo: float
+    hi: float
+
+    def __post_init__(self) -> None:
+        if self.lo > self.hi:
+            raise ValueError(f"invalid interval: [{self.lo}, {self.hi}]")
+
+    @property
+    def width(self) -> float:
+        return self.hi - self.lo
+
+    def to_json(self) -> list[float]:
+        return [self.lo, self.hi]
+
+    def __add__(self, other: float | "Interval") -> "Interval":
+        other = as_interval(other)
+        return outward(self.lo + other.lo, self.hi + other.hi)
+
+    def __radd__(self, other: float | "Interval") -> "Interval":
+        return self + other
+
+    def __sub__(self, other: float | "Interval") -> "Interval":
+        other = as_interval(other)
+        return outward(self.lo - other.hi, self.hi - other.lo)
+
+    def __rsub__(self, other: float | "Interval") -> "Interval":
+        other = as_interval(other)
+        return outward(other.lo - self.hi, other.hi - self.lo)
+
+    def __neg__(self) -> "Interval":
+        return outward(-self.hi, -self.lo)
+
+    def __mul__(self, other: float | "Interval") -> "Interval":
+        other = as_interval(other)
+        products = [
+            self.lo * other.lo,
+            self.lo * other.hi,
+            self.hi * other.lo,
+            self.hi * other.hi,
+        ]
+        return outward(min(products), max(products))
+
+    def __rmul__(self, other: float | "Interval") -> "Interval":
+        return self * other
+
+    def reciprocal(self) -> "Interval":
+        if self.lo <= 0.0 <= self.hi:
+            raise ZeroDivisionError(f"interval contains zero: {self}")
+        return outward(1.0 / self.hi, 1.0 / self.lo)
+
+    def __truediv__(self, other: float | "Interval") -> "Interval":
+        return self * as_interval(other).reciprocal()
+
+    def __rtruediv__(self, other: float | "Interval") -> "Interval":
+        return as_interval(other) * self.reciprocal()
+
+    def sqrt(self) -> "Interval":
+        if self.hi < 0.0:
+            raise ValueError(f"cannot take sqrt of negative interval: {self}")
+        return outward(math.sqrt(max(0.0, self.lo)), math.sqrt(max(0.0, self.hi)))
+
+
+def as_interval(value: float | Interval) -> Interval:
+    if isinstance(value, Interval):
+        return value
+    return Interval(float(value), float(value))
+
+
+def outward(lo: float, hi: float) -> Interval:
+    if lo > hi:
+        lo, hi = hi, lo
+    return Interval(down(lo), up(hi))
+
+
+def trig_outward(lo: float, hi: float) -> Interval:
+    return outward(lo - TRIG_CHECK_PAD, hi + TRIG_CHECK_PAD)
+
+
+def critical_points(lo: float, hi: float, base: float) -> list[float]:
+    period = 2.0 * PI
+    first = math.ceil((lo - base) / period)
+    last = math.floor((hi - base) / period)
+    return [base + period * index for index in range(first, last + 1)]
+
+
+def sin_interval(x: Interval) -> Interval:
+    if x.width >= 2.0 * PI:
+        return outward(-1.0, 1.0)
+    points = [x.lo, x.hi]
+    points.extend(critical_points(x.lo, x.hi, PI / 2.0))
+    points.extend(critical_points(x.lo, x.hi, 3.0 * PI / 2.0))
+    values = [math.sin(point) for point in points if x.lo <= point <= x.hi]
+    return trig_outward(min(values), max(values))
+
+
+def cos_interval(x: Interval) -> Interval:
+    if x.width >= 2.0 * PI:
+        return outward(-1.0, 1.0)
+    points = [x.lo, x.hi]
+    points.extend(critical_points(x.lo, x.hi, 0.0))
+    points.extend(critical_points(x.lo, x.hi, PI))
+    values = [math.cos(point) for point in points if x.lo <= point <= x.hi]
+    return trig_outward(min(values), max(values))
+
+
+def exp_interval(x: Interval) -> Interval:
+    return outward(math.exp(x.lo), math.exp(x.hi))
+
+
+def abs_away_from_zero(x: Interval) -> Interval | None:
+    if x.lo <= 0.0 <= x.hi:
+        return None
+    if x.hi < 0.0:
+        return outward(-x.hi, -x.lo)
+    return outward(x.lo, x.hi)
+
+
+def strict_interval_sign(x: Interval) -> int:
+    if x.lo > 0.0:
+        return 1
+    if x.hi < 0.0:
+        return -1
+    return 0
 
 
 def p(theta: float) -> float:
@@ -108,6 +259,85 @@ def radial_contribution(kind: str, theta: float, delta: float) -> float:
     if kind == "partner":
         return -(1.0 + rho_value * math.cos(delta)) / denominator
     return (1.0 - rho_value * math.cos(delta)) / denominator
+
+
+def p_interval(theta: Interval) -> Interval:
+    return -A * sin_interval(theta)
+
+
+def b_interval(theta: Interval) -> Interval:
+    return B_STAR * exp_interval(A * (1.0 - cos_interval(theta)))
+
+
+def rho_interval(theta: Interval, delta: Interval) -> Interval:
+    return exp_interval(A * (cos_interval(theta) - cos_interval(theta - delta)))
+
+
+def lambda_interval(kind: str, theta: Interval, delta: Interval) -> Interval:
+    rho_row = rho_interval(theta, delta)
+    sign = 2.0 if kind == "partner" else -2.0
+    radicand = 1.0 + rho_row * rho_row + sign * rho_row * cos_interval(delta)
+    return radicand.sqrt()
+
+
+def root_function_interval(kind: str, theta: Interval, delta: Interval) -> Interval:
+    return lambda_interval(kind, theta, delta) - delta / b_interval(theta)
+
+
+def jacobian_interval(kind: str, theta: Interval, delta: Interval) -> Interval:
+    rho_row = rho_interval(theta, delta)
+    lambda_row = lambda_interval(kind, theta, delta)
+    p_0 = p_interval(theta - delta)
+    scale = b_interval(theta) * rho_row / lambda_row
+    if kind == "partner":
+        return 1.0 + scale * (
+            sin_interval(delta) - p_0 * (cos_interval(delta) + rho_row)
+        )
+    return 1.0 - scale * (
+        sin_interval(delta) + p_0 * (rho_row - cos_interval(delta))
+    )
+
+
+def tangential_numerator_interval(kind: str, theta: Interval, delta: Interval) -> Interval:
+    rho_row = rho_interval(theta, delta)
+    if kind == "partner":
+        return p_interval(theta) * (1.0 + rho_row * cos_interval(delta)) + rho_row * sin_interval(delta)
+    return -p_interval(theta) * (1.0 - rho_row * cos_interval(delta)) + rho_row * sin_interval(delta)
+
+
+def tangential_contribution_interval(
+    kind: str,
+    theta: Interval,
+    delta: Interval,
+) -> tuple[Interval | None, Interval, Interval | None]:
+    lambda_row = lambda_interval(kind, theta, delta)
+    jacobian_row = jacobian_interval(kind, theta, delta)
+    abs_jacobian = abs_away_from_zero(jacobian_row)
+    if abs_jacobian is None:
+        return None, jacobian_row, None
+    denominator = lambda_row * lambda_row * lambda_row * abs_jacobian
+    return (
+        tangential_numerator_interval(kind, theta, delta) / denominator,
+        jacobian_row,
+        abs_jacobian,
+    )
+
+
+def radial_contribution_interval(
+    kind: str,
+    theta: Interval,
+    delta: Interval,
+) -> tuple[Interval | None, Interval, Interval | None]:
+    rho_row = rho_interval(theta, delta)
+    lambda_row = lambda_interval(kind, theta, delta)
+    jacobian_row = jacobian_interval(kind, theta, delta)
+    abs_jacobian = abs_away_from_zero(jacobian_row)
+    if abs_jacobian is None:
+        return None, jacobian_row, None
+    denominator = lambda_row * lambda_row * lambda_row * abs_jacobian
+    if kind == "partner":
+        return (-(1.0 + rho_row * cos_interval(delta)) / denominator, jacobian_row, abs_jacobian)
+    return ((1.0 - rho_row * cos_interval(delta)) / denominator, jacobian_row, abs_jacobian)
 
 
 def weight(theta: float) -> float:
@@ -383,13 +613,98 @@ def finite_memory_summary(max_active_delta: float) -> dict:
     }
 
 
-def radial_turn_summary(*, delta_steps: int) -> dict:
+def radial_branch_interval_certificate(*, root_pad: float) -> dict:
+    theta_interval = Interval(THETA_STAR, THETA_STAR)
+    branch_sum_interval = Interval(0.0, 0.0)
+    min_active_j_abs = math.inf
+    max_root_interval_width = 0.0
+    max_root_pad = 0.0
+    branch_rows: list[dict] = []
+
+    try:
+        for branch in ACTIVE_BRANCH_WINDOWS:
+            label = branch["label"]
+            kind = branch["kind"]
+            window = branch["window"]
+            enclosure = verified_root_enclosure(
+                kind=kind,
+                theta_interval=theta_interval,
+                theta_samples=(THETA_STAR, THETA_STAR, THETA_STAR),
+                window=window,
+                root_pad=root_pad,
+            )
+            delta_interval = enclosure["delta_interval"]
+            contribution, jacobian_row, abs_jacobian = radial_contribution_interval(
+                kind,
+                theta_interval,
+                delta_interval,
+            )
+            if contribution is None or abs_jacobian is None:
+                raise RuntimeError(f"active Jacobian interval touched zero for {label}")
+            branch_sum_interval = branch_sum_interval + contribution
+            min_active_j_abs = min(min_active_j_abs, abs_jacobian.lo)
+            max_root_interval_width = max(
+                max_root_interval_width,
+                delta_interval.width,
+            )
+            max_root_pad = max(max_root_pad, enclosure["root_pad"])
+            branch_rows.append(
+                {
+                    "label": label,
+                    "kind": kind,
+                    "window": list(window),
+                    "delta_interval": delta_interval.to_json(),
+                    "radial_contribution_interval": contribution.to_json(),
+                    "jacobian_interval": jacobian_row.to_json(),
+                }
+            )
+    except RuntimeError as exc:
+        return {
+            "evaluated": True,
+            "status": "blocked",
+            "root_pad": root_pad,
+            "error": str(exc),
+        }
+
+    return {
+        "evaluated": True,
+        "status": "threshold_interval_reported",
+        "evidence_kind": "outward_radial_branch_sum_interval",
+        "elementary_bound_backend": (
+            "nextafter-directed double interval arithmetic with trigonometric "
+            "critical-point enclosures"
+        ),
+        "active_labels": [branch["label"] for branch in ACTIVE_BRANCH_WINDOWS],
+        "theta_star": THETA_STAR,
+        "root_pad_initial": root_pad,
+        "max_root_pad": max_root_pad,
+        "max_root_interval_width": max_root_interval_width,
+        "min_active_j_abs_lower": min_active_j_abs,
+        "root_boundary_sign_verified": True,
+        "branch_sum_interval": branch_sum_interval.to_json(),
+        "gamma_pass_threshold": -branch_sum_interval.lo,
+        "gamma_fail_threshold": -branch_sum_interval.hi,
+        "decision_rule": (
+            "with Gamma in [Gamma^-, Gamma^+], pass if Gamma^- + B_r^- > 0; "
+            "certify fail if Gamma^+ + B_r^+ <= 0; otherwise block"
+        ),
+        "branches": branch_rows,
+        "summary": (
+            "Outward evaluation reports the retained-chart radial branch-sum "
+            "interval at theta*=0; no force-ratio Gamma is selected by this row."
+        ),
+    }
+
+
+def radial_turn_summary(*, delta_steps: int, root_pad: float) -> dict:
     rows = build_root_rows(THETA_STAR, delta_steps=delta_steps)
     branch_sum = sum(row.radial_contribution for row in rows)
+    branch_interval = radial_branch_interval_certificate(root_pad=root_pad)
     gamma_threshold = max(0.0, -branch_sum)
     return {
         "theta_star": THETA_STAR,
         "branch_sum": branch_sum,
+        "branch_interval": branch_interval,
         "gamma_threshold": gamma_threshold,
         "condition": "Gamma + branch_sum > 0",
         "rows": [row.to_json() for row in rows],
@@ -458,6 +773,193 @@ def tangential_drive_summary(*, quadrature_intervals: int, delta_steps: int) -> 
             else "sampled_inconclusive"
         ),
         "theorem_grade_interval_bound": False,
+    }
+
+
+def branch_root_in_window(kind: str, theta: float, window: tuple[float, float]) -> float:
+    lo, hi = window
+    return bisect_root(lambda delta: root_function(kind, theta, delta), lo, hi)
+
+
+def verified_root_enclosure(
+    *,
+    kind: str,
+    theta_interval: Interval,
+    theta_samples: tuple[float, float, float],
+    window: tuple[float, float],
+    root_pad: float,
+) -> dict:
+    sampled_roots = [
+        branch_root_in_window(kind, theta, window) for theta in theta_samples
+    ]
+    root_lo = min(sampled_roots)
+    root_hi = max(sampled_roots)
+    pad = root_pad
+    window_lo, window_hi = window
+
+    while pad <= TANGENTIAL_ROOT_PAD_MAX:
+        delta_lo = max(window_lo, root_lo - pad)
+        delta_hi = min(window_hi, root_hi + pad)
+        delta_left = Interval(delta_lo, delta_lo)
+        delta_right = Interval(delta_hi, delta_hi)
+        left_value = root_function_interval(kind, theta_interval, delta_left)
+        right_value = root_function_interval(kind, theta_interval, delta_right)
+        left_sign = strict_interval_sign(left_value)
+        right_sign = strict_interval_sign(right_value)
+        delta_interval = outward(delta_lo, delta_hi)
+        jacobian_row = jacobian_interval(kind, theta_interval, delta_interval)
+        abs_jacobian = abs_away_from_zero(jacobian_row)
+        if (
+            left_sign != 0
+            and right_sign != 0
+            and left_sign * right_sign < 0
+            and abs_jacobian is not None
+        ):
+            return {
+                "delta_interval": delta_interval,
+                "sampled_roots": sampled_roots,
+                "root_pad": pad,
+                "left_value": left_value,
+                "right_value": right_value,
+                "jacobian_interval": jacobian_row,
+                "abs_jacobian_interval": abs_jacobian,
+            }
+        pad *= 2.0
+
+    raise RuntimeError(
+        f"could not verify root enclosure for {kind} window {window} on theta slab {theta_interval}"
+    )
+
+
+def tangential_interval_certificate(*, slabs: int, root_pad: float) -> dict:
+    if slabs < 1:
+        return {"evaluated": False, "status": "not_requested"}
+
+    branch_lower_bounds = {
+        branch["label"]: math.inf for branch in ACTIVE_BRANCH_WINDOWS
+    }
+    branch_upper_bounds = {
+        branch["label"]: -math.inf for branch in ACTIVE_BRANCH_WINDOWS
+    }
+    min_pointwise_sum = math.inf
+    max_pointwise_sum = -math.inf
+    min_active_j_abs = math.inf
+    max_root_interval_width = 0.0
+    max_root_pad = 0.0
+    worst_slab: dict | None = None
+    slab_width = (THETA_HI - THETA_LO) / slabs
+
+    try:
+        for index in range(slabs):
+            theta_lo = THETA_LO + index * slab_width
+            theta_hi = theta_lo + slab_width
+            theta_mid = (theta_lo + theta_hi) / 2.0
+            theta_interval = outward(theta_lo, theta_hi)
+            pointwise_sum = Interval(0.0, 0.0)
+            slab_rows: list[dict] = []
+
+            for branch in ACTIVE_BRANCH_WINDOWS:
+                label = branch["label"]
+                kind = branch["kind"]
+                window = branch["window"]
+                enclosure = verified_root_enclosure(
+                    kind=kind,
+                    theta_interval=theta_interval,
+                    theta_samples=(theta_lo, theta_mid, theta_hi),
+                    window=window,
+                    root_pad=root_pad,
+                )
+                delta_interval = enclosure["delta_interval"]
+                contribution, jacobian_row, abs_jacobian = tangential_contribution_interval(
+                    kind,
+                    theta_interval,
+                    delta_interval,
+                )
+                if contribution is None or abs_jacobian is None:
+                    raise RuntimeError(
+                        f"active Jacobian interval touched zero for {label} on slab {index}"
+                    )
+                branch_lower_bounds[label] = min(
+                    branch_lower_bounds[label],
+                    contribution.lo,
+                )
+                branch_upper_bounds[label] = max(
+                    branch_upper_bounds[label],
+                    contribution.hi,
+                )
+                min_active_j_abs = min(min_active_j_abs, abs_jacobian.lo)
+                max_root_interval_width = max(
+                    max_root_interval_width,
+                    delta_interval.width,
+                )
+                max_root_pad = max(max_root_pad, enclosure["root_pad"])
+                pointwise_sum = pointwise_sum + contribution
+                slab_rows.append(
+                    {
+                        "label": label,
+                        "kind": kind,
+                        "window": list(window),
+                        "delta_interval": delta_interval.to_json(),
+                        "contribution_interval": contribution.to_json(),
+                        "jacobian_interval": jacobian_row.to_json(),
+                    }
+                )
+
+            if pointwise_sum.lo < min_pointwise_sum:
+                min_pointwise_sum = pointwise_sum.lo
+                worst_slab = {
+                    "index": index,
+                    "theta_interval": theta_interval.to_json(),
+                    "pointwise_sum_interval": pointwise_sum.to_json(),
+                    "branches": slab_rows,
+                }
+            max_pointwise_sum = max(max_pointwise_sum, pointwise_sum.hi)
+    except RuntimeError as exc:
+        return {
+            "evaluated": True,
+            "status": "blocked",
+            "slabs": slabs,
+            "root_pad": root_pad,
+            "error": str(exc),
+        }
+
+    weight_integral = PI / 6.0
+    weighted_lower_bound = down(min_pointwise_sum * down(weight_integral))
+    status = "certified_fail" if weighted_lower_bound >= 0.0 else "blocked"
+    return {
+        "evaluated": True,
+        "status": status,
+        "evidence_kind": "outward_pointwise_sum_lower",
+        "elementary_bound_backend": (
+            "nextafter-directed double interval arithmetic with trigonometric "
+            "critical-point enclosures"
+        ),
+        "active_labels": [branch["label"] for branch in ACTIVE_BRANCH_WINDOWS],
+        "theta_interval": [THETA_LO, THETA_HI],
+        "slabs": slabs,
+        "root_pad_initial": root_pad,
+        "max_root_pad": max_root_pad,
+        "max_root_interval_width": max_root_interval_width,
+        "min_active_j_abs_lower": min_active_j_abs,
+        "root_boundary_sign_verified": True,
+        "branch_contribution_lower_bounds": branch_lower_bounds,
+        "branch_contribution_upper_bounds": branch_upper_bounds,
+        "pointwise_sum_lower_bound": min_pointwise_sum,
+        "pointwise_sum_upper_bound": max_pointwise_sum,
+        "weight_integral": weight_integral,
+        "weighted_integral_lower_bound": weighted_lower_bound,
+        "decision_rule": "certified_fail if weighted_integral_lower_bound >= 0",
+        "worst_slab": worst_slab,
+        "summary": (
+            "Outward slab evaluation encloses the retained P_1,P_2,P_3,S_1 "
+            "root curves and proves a nonnegative weighted tangential-drive "
+            "lower bound."
+        )
+        if status == "certified_fail"
+        else (
+            "Outward slab evaluation ran, but its weighted lower endpoint does "
+            "not certify a VP-1 tangential-drive rejection."
+        ),
     }
 
 
@@ -657,6 +1159,181 @@ def validate_interval_candidate(packet: dict | None) -> list[str]:
     return errors
 
 
+def numeric_pair(value: object) -> tuple[float, float] | None:
+    if (
+        not isinstance(value, list)
+        or len(value) != 2
+        or not all(
+            isinstance(item, (int, float))
+            and not isinstance(item, bool)
+            and math.isfinite(float(item))
+            for item in value
+        )
+    ):
+        return None
+    lo = float(value[0])
+    hi = float(value[1])
+    if lo > hi:
+        return None
+    return lo, hi
+
+
+def validate_radial_turn_row(row: IntervalProofRow) -> list[str]:
+    if row.status == "blocked":
+        return []
+    data = row.data
+    errors: list[str] = []
+    if data.get("evidence_kind") != "radial_force_ratio_interval":
+        errors.append("radial_turn drive row requires evidence_kind=radial_force_ratio_interval")
+    gamma_interval = numeric_pair(data.get("gamma_interval"))
+    branch_interval = numeric_pair(data.get("branch_sum_interval"))
+    gamma_source = data.get("gamma_source")
+    gamma_normalization = data.get("gamma_normalization")
+    active_labels = data.get("active_labels")
+    theta_star = data.get("theta_star")
+    min_j = data.get("min_active_j_abs_lower")
+    if gamma_interval is None:
+        errors.append("radial_turn drive row requires numeric gamma_interval=[Gamma^-, Gamma^+]")
+    if branch_interval is None:
+        errors.append("radial_turn drive row requires numeric branch_sum_interval=[B_r^-, B_r^+]")
+    if not isinstance(gamma_source, str) or not gamma_source:
+        errors.append("radial_turn drive row requires a gamma_source")
+    if gamma_normalization != GAMMA_NORMALIZATION:
+        errors.append(
+            f"radial_turn drive row requires gamma_normalization={GAMMA_NORMALIZATION!r}"
+        )
+    if active_labels != [branch["label"] for branch in ACTIVE_BRANCH_WINDOWS]:
+        errors.append("radial_turn drive row active_labels do not match P_1,P_2,P_3,S_1")
+    if not isinstance(theta_star, (int, float)) or not close_enough(float(theta_star), THETA_STAR):
+        errors.append("radial_turn drive row requires theta_star=0.0")
+    if data.get("root_boundary_sign_verified") is not True:
+        errors.append("radial_turn drive row requires root_boundary_sign_verified=true")
+    if not isinstance(min_j, (int, float)) or isinstance(min_j, bool) or not math.isfinite(float(min_j)) or float(min_j) <= 0.0:
+        errors.append("radial_turn drive row requires min_active_j_abs_lower > 0")
+    if errors:
+        return errors
+
+    gamma_lo, gamma_hi = gamma_interval
+    branch_lo, branch_hi = branch_interval
+    ref_lo, ref_hi = RADIAL_BRANCH_INTERVAL_REFERENCE
+    if branch_lo > ref_lo or branch_hi < ref_hi:
+        errors.append(
+            "radial_turn branch_sum_interval must be no narrower than the retained-chart reference interval"
+        )
+    pass_margin = gamma_lo + branch_lo
+    fail_margin = gamma_hi + branch_hi
+    strict_margin = data.get("strict_margin")
+    if (
+        not isinstance(strict_margin, (int, float))
+        or isinstance(strict_margin, bool)
+        or not math.isfinite(float(strict_margin))
+    ):
+        errors.append("radial_turn drive row requires numeric strict_margin")
+    if row.status == "passed" and pass_margin <= 0.0:
+        errors.append(
+            "radial_turn status passed requires Gamma^- + B_r^- > 0"
+        )
+    if row.status == "certified_fail" and fail_margin > 0.0:
+        errors.append(
+            "radial_turn status certified_fail requires Gamma^+ + B_r^+ <= 0"
+        )
+    if (
+        row.status == "passed"
+        and isinstance(strict_margin, (int, float))
+        and not close_enough(float(strict_margin), pass_margin)
+    ):
+        errors.append("radial_turn passed strict_margin must equal Gamma^- + B_r^-")
+    if (
+        row.status == "certified_fail"
+        and isinstance(strict_margin, (int, float))
+        and not close_enough(float(strict_margin), fail_margin)
+    ):
+        errors.append("radial_turn certified_fail strict_margin must equal Gamma^+ + B_r^+")
+    return errors
+
+
+def validate_tangential_drive_row(row: IntervalProofRow) -> list[str]:
+    if row.status == "blocked":
+        return []
+    data = row.data
+    evidence_kind = data.get("evidence_kind")
+    errors: list[str] = []
+    active_labels = data.get("active_labels")
+    if active_labels != [branch["label"] for branch in ACTIVE_BRANCH_WINDOWS]:
+        errors.append("tangential_drive row active_labels do not match P_1,P_2,P_3,S_1")
+
+    if row.status == "certified_fail":
+        if evidence_kind == "outward_pointwise_sum_lower":
+            pointwise_lower = data.get("pointwise_sum_lower_bound")
+            integral_lower = data.get("weighted_integral_lower_bound")
+            if not isinstance(pointwise_lower, (int, float)) or float(pointwise_lower) < 0.0:
+                errors.append(
+                    "tangential_drive certified_fail requires pointwise_sum_lower_bound >= 0"
+                )
+            if not isinstance(integral_lower, (int, float)) or float(integral_lower) < 0.0:
+                errors.append(
+                    "tangential_drive certified_fail requires weighted_integral_lower_bound >= 0"
+                )
+            if data.get("root_boundary_sign_verified") is not True:
+                errors.append(
+                    "tangential_drive certified_fail requires root_boundary_sign_verified=true"
+                )
+            min_j = data.get("min_active_j_abs_lower")
+            if not isinstance(min_j, (int, float)) or float(min_j) <= 0.0:
+                errors.append(
+                    "tangential_drive certified_fail requires min_active_j_abs_lower > 0"
+                )
+        elif evidence_kind == "outward_integral_interval":
+            d_t_interval = numeric_pair(data.get("D_T_interval"))
+            if d_t_interval is None:
+                errors.append("tangential_drive requires numeric D_T_interval")
+            elif d_t_interval[0] < 0.0:
+                errors.append(
+                    "tangential_drive certified_fail requires D_T_interval lower endpoint >= 0"
+                )
+        else:
+            errors.append(
+                "tangential_drive certified_fail requires outward interval evidence"
+            )
+    elif row.status == "passed":
+        d_t_interval = numeric_pair(data.get("D_T_interval"))
+        epsilon_t = data.get("epsilon_T")
+        if evidence_kind != "outward_integral_interval":
+            errors.append("tangential_drive passed requires evidence_kind=outward_integral_interval")
+        if d_t_interval is None:
+            errors.append("tangential_drive passed requires numeric D_T_interval")
+        if not isinstance(epsilon_t, (int, float)) or float(epsilon_t) <= 0.0:
+            errors.append("tangential_drive passed requires epsilon_T > 0")
+        if (
+            d_t_interval is not None
+            and isinstance(epsilon_t, (int, float))
+            and d_t_interval[1] > -float(epsilon_t)
+        ):
+            errors.append(
+                "tangential_drive passed requires D_T_interval upper endpoint <= -epsilon_T"
+            )
+    return errors
+
+
+def validate_interval_row_semantics(
+    rows: dict[str, IntervalProofRow],
+) -> tuple[dict[str, IntervalProofRow], list[str]]:
+    accepted: dict[str, IntervalProofRow] = {}
+    errors: list[str] = []
+    validators = {
+        "radial_turn": validate_radial_turn_row,
+        "tangential_drive": validate_tangential_drive_row,
+    }
+    for name, row in rows.items():
+        validator = validators.get(name)
+        row_errors = [] if validator is None else validator(row)
+        if row_errors:
+            errors.extend(f"{name}: {error}" for error in row_errors)
+            continue
+        accepted[name] = row
+    return accepted, errors
+
+
 def interval_support_summary(
     *,
     path: str | None,
@@ -684,9 +1361,9 @@ def row_summary(row: IntervalProofRow) -> str:
 def apply_interval_rows(
     obligations: list[dict],
     rows: dict[str, IntervalProofRow],
-    validation_errors: list[str],
+    fatal_errors: list[str],
 ) -> list[dict]:
-    if validation_errors:
+    if fatal_errors:
         return obligations
     merged: list[dict] = []
     for obligation in obligations:
@@ -703,6 +1380,22 @@ def apply_interval_rows(
         updated["interval_data"] = interval_row.data
         merged.append(updated)
     return merged
+
+
+def fatal_interval_errors(
+    *,
+    load_errors: list[str],
+    row_errors: list[str],
+    candidate_errors: list[str],
+) -> list[str]:
+    fatal_prefixes = (
+        "unsupported interval row schema",
+        "interval row packet must contain",
+    )
+    fatal_row_errors = [
+        error for error in row_errors if error.startswith(fatal_prefixes)
+    ]
+    return load_errors + fatal_row_errors + candidate_errors
 
 
 def proof_obligation_matrix(certificate: dict) -> list[dict]:
@@ -828,6 +1521,9 @@ def theorem_readiness(certificate: dict, obligations: list[dict]) -> dict:
     ):
         certificate_status = "theorem_grade_rejected_tangential_drive"
         priority_item_complete = False
+    elif structural_rows_passed and tangential_status == "certified_fail":
+        certificate_status = "vp1_tangential_certified_fail_radial_blocked"
+        priority_item_complete = False
     elif sampled_failure:
         certificate_status = "vp1_sampled_fails_tangential_drive_with_interval_blockers"
         priority_item_complete = False
@@ -887,10 +1583,17 @@ def build_certificate(args: argparse.Namespace) -> dict:
         delta_steps=args.delta_steps,
     )
     finite_memory = finite_memory_summary(active_chart["max_active_delta"])
-    radial_turn = radial_turn_summary(delta_steps=args.delta_steps)
+    radial_turn = radial_turn_summary(
+        delta_steps=args.delta_steps,
+        root_pad=args.radial_root_pad,
+    )
     tangential_drive = tangential_drive_summary(
         quadrature_intervals=args.quadrature_intervals,
         delta_steps=args.delta_steps,
+    )
+    tangential_drive["interval_evaluator"] = tangential_interval_certificate(
+        slabs=args.tangential_interval_slabs,
+        root_pad=args.tangential_root_pad,
     )
     inactive_gaps = sampled_inactive_gap_summary(
         theta_samples=args.inactive_theta_samples,
@@ -903,8 +1606,16 @@ def build_certificate(args: argparse.Namespace) -> dict:
     )
     interval_packet, load_errors = load_interval_proof_packet(args.interval_proof_rows)
     interval_rows, row_errors = parse_interval_rows(interval_packet)
+    interval_rows, semantic_errors = validate_interval_row_semantics(interval_rows)
     candidate_errors = validate_interval_candidate(interval_packet)
-    interval_errors = load_errors + row_errors + candidate_errors
+    fatal_errors = fatal_interval_errors(
+        load_errors=load_errors,
+        row_errors=row_errors,
+        candidate_errors=candidate_errors,
+    )
+    interval_errors = fatal_errors + [
+        error for error in row_errors if error not in fatal_errors
+    ] + semantic_errors
 
     certificate = {
         "artifact": "spiral_branch_chart_certificate.py",
@@ -933,7 +1644,7 @@ def build_certificate(args: argparse.Namespace) -> dict:
         ),
     }
     obligations = proof_obligation_matrix(certificate)
-    obligations = apply_interval_rows(obligations, interval_rows, interval_errors)
+    obligations = apply_interval_rows(obligations, interval_rows, fatal_errors)
     certificate["proof_obligations"] = obligations
     certificate["theorem_readiness"] = theorem_readiness(certificate, obligations)
     certificate["interval_proof_blockers"] = interval_blockers_from_obligations(obligations)
@@ -1115,6 +1826,29 @@ def emit_markdown(certificate: dict) -> str:
             f"| Branch sum at $\\theta_\\ast=0$ | `{radial['branch_sum']:.12f}` |",
             f"| Required $\\Gamma$ threshold | `{radial['gamma_threshold']:.12f}` |",
             "",
+        ]
+    )
+    radial_interval = radial.get("branch_interval", {})
+    if radial_interval.get("evaluated"):
+        branch_sum_interval = radial_interval.get("branch_sum_interval", [math.nan, math.nan])
+        lines.extend(
+            [
+                "### Radial Branch-Sum Interval",
+                "",
+                "| Field | Value |",
+                "| --- | ---: |",
+                f"| Status | `{radial_interval['status']}` |",
+                f"| Branch-sum lower | `{branch_sum_interval[0]:.12f}` |",
+                f"| Branch-sum upper | `{branch_sum_interval[1]:.12f}` |",
+                f"| Pass threshold $-B_r^-$ | `{radial_interval.get('gamma_pass_threshold', float('nan')):.12f}` |",
+                f"| Fail threshold $-B_r^+$ | `{radial_interval.get('gamma_fail_threshold', float('nan')):.12f}` |",
+                f"| Minimum active $|J|$ lower bound | `{radial_interval.get('min_active_j_abs_lower', float('nan')):.12f}` |",
+                f"| Max root interval width | `{radial_interval.get('max_root_interval_width', float('nan')):.12e}` |",
+                "",
+            ]
+        )
+    lines.extend(
+        [
             "## Weighted Tangential Drive",
             "",
             "The VP-1 pass condition is $\\mathcal{D}_T(I_\\ast)\\le-\\varepsilon_T$ with $\\varepsilon_T>0$.",
@@ -1129,6 +1863,27 @@ def emit_markdown(certificate: dict) -> str:
             f"| Diagnostic upper estimate | `{tangent['diagnostic_estimate_interval'][1]:.12f}` |",
             f"| Verdict | `{tangent['verdict']}` |",
             "",
+        ]
+    )
+    evaluator = tangent.get("interval_evaluator", {})
+    if evaluator.get("evaluated"):
+        lines.extend(
+            [
+                "### Tangential Interval Evaluator",
+                "",
+                "| Field | Value |",
+                "| --- | ---: |",
+                f"| Status | `{evaluator['status']}` |",
+                f"| Slabs | `{evaluator['slabs']}` |",
+                f"| Pointwise sum lower bound | `{evaluator.get('pointwise_sum_lower_bound', float('nan')):.12f}` |",
+                f"| Weighted integral lower bound | `{evaluator.get('weighted_integral_lower_bound', float('nan')):.12f}` |",
+                f"| Minimum active $|J|$ lower bound | `{evaluator.get('min_active_j_abs_lower', float('nan')):.12f}` |",
+                f"| Max root interval width | `{evaluator.get('max_root_interval_width', float('nan')):.12e}` |",
+                "",
+            ]
+        )
+    lines.extend(
+        [
             "## Inactive Gap And Coincidence Diagnostics",
             "",
             "| Row | Claim level | Value | Status |",
@@ -1217,6 +1972,27 @@ def main(argv: Iterable[str] | None = None) -> int:
         "--interval-proof-rows",
         help="Optional JSON sidecar with theorem-grade interval proof rows.",
     )
+    parser.add_argument(
+        "--tangential-interval-slabs",
+        type=int,
+        default=0,
+        help=(
+            "Run the outward VP-1 tangential-drive interval evaluator with the "
+            "given theta slab count. Use 0 to skip it."
+        ),
+    )
+    parser.add_argument(
+        "--tangential-root-pad",
+        type=float,
+        default=TANGENTIAL_ROOT_PAD,
+        help="Initial Delta padding used by the tangential interval evaluator.",
+    )
+    parser.add_argument(
+        "--radial-root-pad",
+        type=float,
+        default=RADIAL_ROOT_PAD,
+        help="Initial Delta padding used by the radial branch-sum interval evaluator.",
+    )
     parser.add_argument("--format", choices=["json", "markdown"], default="json")
     parser.add_argument(
         "--require-theorem-grade",
@@ -1238,7 +2014,10 @@ def main(argv: Iterable[str] | None = None) -> int:
 
     if args.require_theorem_grade and not certificate["theorem_readiness"]["theorem_grade"]:
         return 2
-    if args.require_tangential_pass and not certificate["tangential_drive"]["sampled_tangential_pass"]:
+    by_row = {
+        row["row"]: row["status"] for row in certificate["proof_obligations"]
+    }
+    if args.require_tangential_pass and by_row.get("tangential_drive") != "passed":
         return 3
     return 0
 

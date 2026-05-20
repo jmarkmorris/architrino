@@ -47,7 +47,7 @@ T_q(\mathbf{w}),
 \right).
 $$
 
-Here $\mathcal{A}_q$ is the active causal-root ledger, $\nu_J^{(q)}$ the active Jacobian floor, $g_{\mathrm{inactive}}^{(q)}$ the inactive-root gap, $h_{\mathrm{mem}}^{(q)}$ the finite memory depth, and $\Delta_{\mathbf{k}}^{(q)}$ the Floquet or branch-stability gap. The remaining rows record the moving deformation map, branch period, medium-dressed mass-response tensor, Lorentz residual, effective-metric recovery export, active sector residuals, and row-indexed event ledger.
+Here $\mathcal{A}_q$ is the active causal-root ledger, $\nu_J^{(q)}$ the active Jacobian floor, $g_{\mathrm{inactive}}^{(q)}$ the inactive-root gap, $h_{\mathrm{mem}}^{(q)}$ the finite memory depth, and $\Delta_{\mathbf{k}}^{(q)}$ the Floquet or branch-stability gap. The remaining rows record the moving deformation map, branch period, medium-dressed mass-response tensor, Lorentz residual, effective-metric recovery export, active sector residuals, and row-indexed event ledger. The Lorentz residual row is the shared record developed in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#emergent-kinematics-from-delay-anisotropy), with its clock component constrained by the moving-branch clock target in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#moving-branch-clock-retuning-target).
 
 The branch identity check is
 
