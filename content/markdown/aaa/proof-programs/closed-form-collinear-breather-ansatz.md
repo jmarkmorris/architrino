@@ -313,6 +313,34 @@ $$
 -\frac{g}{4x^2}
 \left(1+\frac{\dot x}{c_f}\right).
 $$
+The held-release preparation supplies one concrete source of such initial data. If the pre-release source is held at $-x_0$ and
+$$
+y(t)\equiv x(t)+x_0,
+$$
+then the held-source segment has
+$$
+y(\theta)=2x_0\cos^2\theta,
+\qquad
+x(\theta)=x_0\cos(2\theta),
+\qquad
+\dot x(\theta)=-\sqrt{\frac{g}{x_0}}\tan\theta.
+$$
+The first moving-partner wake reaches the receiver at the unique angle satisfying
+$$
+\cos^2\theta_\ast
+=
+\rho\left(\theta_\ast+\sin\theta_\ast\cos\theta_\ast\right),
+\qquad
+\rho\equiv c_f\sqrt{\frac{x_0}{g}}.
+$$
+For $x_0=1.25$, $g=1$, and $c_f=1$, this gives
+$$
+x_\ast\approx0.8707972823389274,
+\qquad
+\beta_\ast\approx-0.37820836925058077.
+$$
+Thus the exterior Lambert branch can be initialized from a finite sub-field-speed handoff rather than from the rejected exact field-speed head-on prehistory.
+
 With
 $$
 \alpha=\frac{g}{4c_f^2},

@@ -445,11 +445,101 @@ $$
 =
 2g\left(\frac{1}{x+x_0}-\frac{1}{2x_0}\right).
 $$
-During this held-source segment, field speed can be reached before the origin only if
+Extrapolating the stationary-source ODE to the origin gives the speed bound
 $$
-c_f^2\le \frac{g}{x_0}.
+|\dot x|_{\max}^2=\frac{g}{x_0}.
 $$
-In the normalized comparison $g=1$ and $c_f=1$, a release from $x_0>1$ remains sub-field-speed throughout this first ODE segment. Thus a starting position such as $x_0=1.25$ does not by itself imply a field-speed crossing under the action-generated held-release force.
+Therefore the extrapolated held-source branch reaches field speed strictly before the origin only if
+$$
+c_f^2<\frac{g}{x_0},
+$$
+with equality corresponding to field speed at the origin. In the normalized comparison $g=1$ and $c_f=1$, a release from $x_0>1$ remains sub-field-speed throughout this ODE extrapolation, and therefore throughout the actual held-source segment. Thus a starting position such as $x_0=1.25$ does not by itself imply a field-speed crossing under the action-generated held-release force.
+
+The handoff from held partner history to moving partner history is also explicit. Put
+$$
+y(t)\equiv x(t)+x_0.
+$$
+The inbound solution can be parametrized by
+$$
+y(\theta)=2x_0\cos^2\theta,
+\qquad
+x(\theta)=x_0\cos(2\theta),
+\qquad
+\dot x(\theta)=-\sqrt{\frac{g}{x_0}}\tan\theta,
+$$
+with
+$$
+t(\theta)=2x_0\sqrt{\frac{x_0}{g}}\left(\theta+\sin\theta\cos\theta\right).
+$$
+The first moving-partner emission, released at $t=0$, reaches the right-hand receiver when
+$$
+y(t_\ast)=c_ft_\ast.
+$$
+Equivalently, if
+$$
+\rho\equiv c_f\sqrt{\frac{x_0}{g}},
+$$
+then the handoff angle is the unique solution of
+$$
+\cos^2\theta_\ast
+=
+\rho\left(\theta_\ast+\sin\theta_\ast\cos\theta_\ast\right),
+\qquad
+0\le\theta_\ast\le\frac{\pi}{4},
+$$
+whenever the solution occurs before the origin. Since the left-minus-right side has derivative
+$$
+-\sin(2\theta)-2\rho\cos^2\theta<0,
+$$
+the root is unique. It occurs before or at the origin exactly when
+$$
+\rho\ge\frac{1}{1+\pi/2}.
+$$
+The stronger normalized condition $x_0>g/c_f^2$ gives $\rho>1$, so the held-source segment both hands off before the origin and remains strictly sub-field-speed up to the handoff.
+
+If one asks whether field speed occurs before the handoff rather than before the origin, the exact comparison is sharper. Field speed would occur at $\theta_c=\arctan\rho$, so it occurs before handoff exactly when
+$$
+\frac{1-\rho^2}{1+\rho^2}>\rho\arctan\rho.
+$$
+The $x_0=1.25$, $g=1$, $c_f=1$ benchmark has $\rho>1$, so it is safely outside that early-field-speed regime.
+
+For $x_0=1.25$, $g=1$, and $c_f=1$, the handoff values are
+$$
+\theta_\ast\approx0.400048009813582,
+\qquad
+x_\ast\approx0.8707972823389274,
+\qquad
+\dot x_\ast\approx-0.37820836925058077.
+$$
+Thus the lawful held-release preparation enters the moving-partner delayed chart with a finite sub-field-speed state rather than with the singular exact field-speed self-continuum.
+
+The handoff is also a regular simple-root opening. For the moving partner emission time $t_e$, define
+$$
+F(t,t_e)\equiv x(t)+x(t_e)-c_f(t-t_e).
+$$
+At the handoff,
+$$
+F(t_\ast,0)=0,
+\qquad
+\partial_{t_e}F(t_\ast,0)=\dot x(0)+c_f=c_f>0.
+$$
+Therefore the delayed emission time continues uniquely for $t$ near $t_\ast$, with
+$$
+\frac{dt_e}{dt}
+=
+\frac{c_f-\dot x(t)}{c_f+\dot x(t_e)}.
+$$
+The partner Jacobian at handoff is
+$$
+J_p(t_\ast;0)=1+\frac{\dot x(0)}{c_f}=1,
+$$
+so the partner acceleration is continuous across the transition:
+$$
+-\frac{g}{(x(t_\ast)+x_0)^2}
+=
+-\frac{g}{(x(t_\ast)+x(0))^2\,J_p(t_\ast;0)}.
+$$
+Thus the held-release handoff is not a hidden caustic. It is a regular transfer from fixed partner history into the delayed moving-partner chart.
 
 This ODE segment remains valid until the first post-release partner emission reaches the right-hand receiver. If $t_\ast$ denotes that handoff time, then
 $$

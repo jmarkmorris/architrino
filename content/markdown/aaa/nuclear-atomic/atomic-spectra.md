@@ -26,6 +26,20 @@ $$
 
 The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether-core ledgers have already been derived.
 
+The direct angular consumer is the effective angular-envelope recovery lemma from [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma). Once the native extractor supplies a central record-facing envelope whose angular part is a regular single-valued function on $S^2$, the angular step is
+
+$$
+-\Delta_{S^2}Y=\lambda Y
+\quad\Longrightarrow\quad
+\lambda=\ell(\ell+1),
+\qquad
+\ell\in\mathbb N_0,
+\qquad
+m\in\{-\ell,\ldots,\ell\}.
+$$
+
+Atomic spectra then consume $(n,\ell,m)$ as envelope labels for energy gaps and line strengths. The spectral burden remains the native extraction of the electron-envelope basin, its radial energy functional, and the local clock/rate conversion; the angular lemma does not by itself derive the Rydberg constant or spin-sensitive splittings.
+
 The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, the Noether-Sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, and the local clock/rate response encoded by $\Gamma_N(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
 
 Spectral lines should then be recovered as transitions between effective envelope basins:

@@ -255,6 +255,48 @@ after subtracting the recorded residual overlap depths $\kappa_m$.
 This is not a pre-ledger pass. It is a constructive seed direction for the next
 fresh fold-collocation candidate.
 
+## Finite Fold-Shear Deformation Corollary
+
+The live tangent witness has a finite consequence because the fixed-period null
+coordinates are affine in the candidate history. For
+$$
+X_\varepsilon(\theta)=1.25\cos(2\pi\theta)+\varepsilon H(\theta),
+\qquad
+T_\varepsilon=T_{\mathrm{cyc}},
+$$
+each declared residual-collar surplus is
+$$
+g_m(\varepsilon)=\varepsilon\lambda_m-\kappa_m,
+\qquad
+\lambda_m=(A\xi)_m.
+$$
+Thus every listed residual collar in the local fold-shear matrix opens whenever
+$$
+\varepsilon>
+\max_m\frac{\kappa_m}{\lambda_m}
+=
+0.0515044597755009.
+$$
+The generated finite seed
+`fold_shear_deformed_candidate.seed_cosine_residuals.v0.json` chooses
+$$
+\varepsilon=0.0625
+$$
+and records
+$$
+\min_m g_m(0.0625)=0.00106743573978125.
+$$
+The controlling mirrored rows are `R_w_A1_A0_receiver_left` and
+`R_u_A3_A2_receiver_left`.
+
+Because the three arc bumps and their first derivatives vanish at the section,
+separator-support endpoints, and half-period mirrors, this finite deformation
+preserves the section displacement and velocity, separator displacement and
+velocity, periodic seam, half-period antisymmetry, and $C^1$ arc matching
+exactly by basis. It is still only a finite candidate-history seed: no
+full structural Jacobian, dynamic residual, outward-rounded pre-ledger row, live
+ledger rewrite, or branch-chart authorization follows from this packet.
+
 ## Executable Feasibility Scanner
 
 The finite criterion now has a fail-closed executable proof aid:

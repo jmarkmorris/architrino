@@ -125,6 +125,25 @@ the declared source-above-receiver residual gaps with positive finite margin,
 while still leaving the full fresh-candidate structural Jacobian, dynamic
 residuals, and interval pre-ledger as future same-packet work.
 
+The finite continuation of that witness is recorded in
+`fold_shear_deformed_candidate.seed_cosine_residuals.v0.json` and
+`fold_shear_deformed_candidate_report.seed_cosine_residuals.v0.md`. Because
+the fixed-period null coordinates are affine in $X$, the live tangent witness
+opens all declared residual collars for
+$$
+\varepsilon>
+0.0515044597755009.
+$$
+The generated seed chooses $\varepsilon=0.0625$ and records minimum finite
+surplus
+$$
+0.00106743573978125.
+$$
+This is the first finite candidate-history seed for the successor solve, not an
+accepted candidate packet. The fresh generator should use it as an initial
+history or continuation direction, then enforce the full same-packet structural
+constraints and interval pre-ledger.
+
 ## Pre-Ledger Stop Condition
 
 Stop before branch-chart construction unless every pre-ledger row satisfies

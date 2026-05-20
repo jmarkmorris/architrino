@@ -15,10 +15,12 @@ Promoted corpus targets:
 - `content/markdown/aaa/proof-programs/collinear-breather.md`
 - `content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md`
 
-This packet proves two local facts:
+This packet proves three local facts:
 
-1. the held-source release segment has an exact energy test for whether field speed is reached before the moving-source handoff;
-2. the exterior affine delayed-partner branch has an exact phase invariant showing that field speed is approached only at the origin-layer limit, not at a finite exterior radius.
+1. the held-source release segment has an exact energy test for the stationary-source extrapolation to the origin;
+2. the same segment has an exact handoff map and a separate criterion for whether field speed is reached before the moving-source handoff;
+3. the handoff opens a regular moving-partner root with $J_p=1$ and no acceleration jump;
+4. the exterior affine delayed-partner branch has an exact phase invariant showing that field speed is approached only at the origin-layer limit, not at a finite exterior radius.
 
 It does not prove a full sub-field-speed periodic breather.
 
@@ -50,15 +52,136 @@ $$
 =
 2g\left(\frac{1}{x+x_0}-\frac{1}{2x_0}\right).
 $$
-The largest speed available before the origin in this held-source segment occurs at $x=0$:
+Extrapolating the stationary-source ODE to the origin gives the upper speed
 $$
 |\dot x|_{\max}^2=\frac{g}{x_0}.
 $$
-Therefore this segment reaches field speed before or at the origin only if
+Therefore the extrapolated branch reaches field speed before or at the origin only if
 $$
 c_f^2\le\frac{g}{x_0}.
 $$
-In normalized comparison units $g=1$ and $c_f=1$, any release from $x_0>1$ remains strictly sub-field-speed throughout the held-source ODE segment. In particular, $x_0=1.25$ does not reach field speed in this action-generated segment.
+Strict field-speed crossing before the origin uses $c_f^2<g/x_0$; equality is the origin endpoint. In normalized comparison units $g=1$ and $c_f=1$, any release from $x_0>1$ remains strictly sub-field-speed throughout the stationary-source ODE extrapolation, and therefore throughout the actual held-source segment. In particular, $x_0=1.25$ does not reach field speed in this action-generated segment.
+
+## Held-Source Handoff Map
+
+The exact handoff to the moving-partner delayed chart is available in closed form. Put
+$$
+y(t)=x(t)+x_0.
+$$
+Then
+$$
+\ddot y=-\frac{g}{y^2},
+\qquad
+y(0)=2x_0,
+\qquad
+\dot y(0)=0.
+$$
+Use
+$$
+y(\theta)=2x_0\cos^2\theta,
+\qquad
+0\le\theta\le\frac{\pi}{4}.
+$$
+The inbound branch is
+$$
+x(\theta)=x_0\cos(2\theta),
+\qquad
+\dot x(\theta)
+=
+-\sqrt{\frac{g}{x_0}}\tan\theta,
+$$
+with elapsed time
+$$
+t(\theta)
+=
+2x_0\sqrt{\frac{x_0}{g}}
+\left(\theta+\sin\theta\cos\theta\right).
+$$
+The first post-release partner wake reaches the right receiver when
+$$
+y(t_\ast)=c_ft_\ast.
+$$
+Equivalently,
+$$
+\cos^2\theta_\ast
+=
+\rho\left(\theta_\ast+\sin\theta_\ast\cos\theta_\ast\right),
+\qquad
+\rho\equiv c_f\sqrt{\frac{x_0}{g}}.
+$$
+The left-minus-right side is strictly decreasing on $0\le\theta\le\pi/4$, so the handoff root is unique. It occurs before or at the origin iff
+$$
+\rho\ge \frac{1}{1+\pi/2}.
+$$
+The stronger condition $\rho>1$ is the useful sub-field-speed preparation regime: the handoff occurs before the origin and the entire held-source segment remains below field speed.
+
+The exact criterion for reaching field speed before the moving-source handoff is stricter than the before-origin extrapolation. Field speed occurs at
+$$
+\theta_c=\arctan\rho,
+$$
+and it precedes handoff exactly when
+$$
+\frac{1-\rho^2}{1+\rho^2}>\rho\arctan\rho.
+$$
+The threshold is
+$$
+\rho\approx0.6634922243,
+$$
+or equivalently
+$$
+x_0\approx0.4402219317\,\frac{g}{c_f^2}.
+$$
+The recommended normalized $x_0=1.25$ fixture lies far on the sub-field-speed side of this comparison.
+
+For the recommended normalized run $x_0=1.25$, $g=1$, and $c_f=1$,
+$$
+\rho=\sqrt{1.25}\approx1.118033988749895,
+$$
+and the handoff equation gives
+$$
+\theta_\ast\approx0.400048009813582,
+\qquad
+x_\ast\approx0.8707972823389274,
+\qquad
+\dot x_\ast\approx-0.37820836925058077.
+$$
+Thus the action-generated preparation reaches the moving-partner delayed chart with a strict sub-field-speed state. This is the lawful successor to the rejected exact field-speed head-on seed.
+
+## Handoff Regularity
+
+The moving-partner delayed root opens regularly at handoff. Define
+$$
+F(t,t_e)=x(t)+x(t_e)-c_f(t-t_e).
+$$
+At the handoff,
+$$
+F(t_\ast,0)=0.
+$$
+The source-time derivative is
+$$
+\partial_{t_e}F(t_\ast,0)=\dot x(0)+c_f=c_f>0,
+$$
+so the implicit-function theorem gives a unique moving-source emission branch near $t_\ast$. Its derivative is
+$$
+\frac{dt_e}{dt}
+=
+\frac{c_f-\dot x(t)}{c_f+\dot x(t_e)}.
+$$
+The partner Jacobian is
+$$
+J_p(t;t_e)=1+\frac{\dot x(t_e)}{c_f},
+$$
+and hence
+$$
+J_p(t_\ast;0)=1.
+$$
+The partner acceleration therefore matches the held-source acceleration at the transition:
+$$
+-\frac{g}{(x(t_\ast)+x_0)^2}
+=
+-\frac{g}{(x(t_\ast)+x(0))^2\,J_p(t_\ast;0)}.
+$$
+Thus the handoff is not a caustic or an impulse event. It is a regular transfer into the delayed moving-partner chart.
 
 ## Exterior Delayed-Partner Branch
 

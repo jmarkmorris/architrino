@@ -1298,6 +1298,38 @@ where $\mathcal J_{\mathrm{sel}}$ may use only quotient-invariant residual inter
 
 This functional does not claim branch uniqueness yet. If required row sets differ, the candidate is locally excluded from the selected comparison. If rows are absent, the candidate is blocked rather than forbidden. If two non-isomorphic passing candidates tie and no valid $\tau_{\mathfrak m}$ separates them, the result is a physical tie that must be carried forward as unresolved branch measure, not hidden inside a deterministic theorem claim.
 
+### Retained-Budget Refinement Stability
+
+The finite selector must also be stable under retained-budget refinement. Let $N\preceq N'$ mean that $N'$ retains every branch-history row, route slot, quotient witness, and interval payload kept by $N$, possibly with additional rows or narrower intervals. A refinement map
+
+$$
+\iota_{N,N'}:
+\mathcal A_N^{\mathrm{eval}}/\!\cong_B
+\dashrightarrow
+\mathcal A_{N'}^{\mathrm{eval}}/\!\cong_B
+$$
+
+is admissible only when it preserves row lineage, route class, endpoint convention, and quotient-canonical branch record. Write $\operatorname{Can}_N(\mathfrak a_N)$ for the quotient-canonical representative of a retained candidate at budget $N$.
+
+The refinement-stability theorem target is:
+
+$$
+\operatorname{Can}_{N'}
+\left(
+\iota_{N,N'}(\mathfrak a_N^\star)
+\right)
+\cong_B
+\operatorname{Can}_N(\mathfrak a_N^\star),
+\qquad
+\operatorname{Sel}_{B,N'}
+\cong_B
+\operatorname{Sel}_{B,N},
+$$
+
+where $\mathfrak a_N^\star=\operatorname{Sel}_{B,N}$. This conclusion is licensed only when the selected candidate remains evaluable, its residual intervals contract under refinement, its route class is preserved, and every newly resolved candidate in the same or higher-priority route class is blocked, locally excluded, or lexicographically no smaller than the persistent selected candidate.
+
+This is a consistency theorem for the finite branch-selection law, not another validation gate. If it fails, the earlier budget $N$ was too coarse to support a physical selection claim; the failure should refine the retained row set rather than be interpreted as substrate randomness. The proof burden is to construct $\iota_{N,N'}$ from row lineage and quotient witnesses, prove interval residual monotonicity for persistent candidates, and show that refinement cannot smuggle generator order or chart labels into $\operatorname{Sel}_{B,N}$.
+
 ## Ordered-Core Spinor Target
 
 Spin-$\tfrac{1}{2}$ should not be modeled as a tiny literal orbit. The Noether core has a richer object available: an ordered, non-coplanar internal frame together with root-ledger history. A compact way to name the data is
@@ -1504,9 +1536,9 @@ $$
 
 then the parity is a gauge artifact, not spinor support. A passed spinor row must keep $\Delta_{\mathrm{gc}}(r)\le\varepsilon_{\mathrm{gc}}$ and must also keep the $2\pi$ and $4\pi$ angular-momentum residuals below tolerance.
 
-### Rigid Branch-Preserving Control
+### Quotient-Resolved Row-Parity Additivity
 
-The row-local test has a useful no-go consequence. Let $B$ be a stable branch chart on $W$, and let $\mathscr K_B$ denote the retained physical branch-history rows after quotienting only genuine gauge redundancy. For $s\in\{2\pi,4\pi\}$, let $q_r^{s}\in\{0,1\}$ record whether the apparent parity survives the quotient as a physical row datum, and use
+The row-local extractor becomes a branch-level spinor datum only after quotient resolution and row provenance are both explicit. Let $B$ be a stable non-coplanar branch chart on $W$, let $\mathscr K_B$ be its retained physical branch-history rows after quotienting genuine gauge redundancy, and let $s\in\{2\pi,4\pi\}$. For each retained row define
 
 $$
 \bar\epsilon_r^{s}
@@ -1519,20 +1551,28 @@ q_r^{s}
 +
 \Delta w_r^{s}
 +
-\Delta\chi_r^{s}
+\operatorname{Prov}_\chi^{s}(r)
 \right]_2.
 $$
 
-For a branch-preserving visible $2\pi$ loop $\gamma_{2\pi}^{\mathrm{rig}}$, define the table parity
+Here $q_r^s\in\{0,1\}$ records whether the apparent row difference survives the quotient as physical data, $\Delta k_r^s$ is the root or winding-cell change, $\Delta e_r^s$ is the emission-order change, $\Delta w_r^s$ is the component causal-writhe change, and $\operatorname{Prov}_\chi^s(r)$ is the row-local contribution to the chirality branch. Aggregate chirality or causal-writhe signs are not usable by downstream consumers until they decompose into these row-sourced terms.
+
+The branch-level table parity is therefore only
 
 $$
-\eta_B^{\mathrm{table}}(\gamma_{2\pi}^{\mathrm{rig}})
+\eta_B^{\mathrm{table}}(\gamma_s)
 =
 \left[
 \sum_{r\in\mathscr K_B}
-\bar\epsilon_r^{2\pi}
+\bar\epsilon_r^s
 \right]_2.
 $$
+
+This is a $\mathbb Z_2$ additivity lemma, not a spinor-support pass. Gauge-erased rows contribute zero, even physical row flips cancel, and termwise gauge invariance of $\bar\epsilon_r^s$ gives gauge invariance of $\eta_B^{\mathrm{table}}$. The remaining burden is still to populate a retained non-coplanar row, compute its row-local causal writhe, supply $\operatorname{Prov}_\chi$, exhibit quotient witnesses, prove doubled-path restoration, and keep the angular-momentum residual below tolerance.
+
+### Rigid Branch-Preserving Control
+
+The row-local test has a useful no-go consequence. Apply the quotient-resolved table parity above to a branch-preserving visible $2\pi$ loop $\gamma_{2\pi}^{\mathrm{rig}}$.
 
 If the loop is rigid on the retained history data,
 
@@ -2160,6 +2200,50 @@ The mapping target is therefore two-stage:
 
 Skipping that distinction would make internal circulation falsely appear as atomic orbital angular momentum.
 
+### Effective Angular-Envelope Recovery Lemma
+
+The safe recovery statement is conditional. Suppose the native extraction map supplies a record-facing central envelope
+
+$$
+\Psi_{\mathrm{env}}
+=
+\mathcal E_{\mathrm{orb}}
+\left(
+B_e,
+\theta_{\mathrm{sea}}^{(\ell)},
+V_{\mathrm{eff}},
+W
+\right)
+$$
+
+whose envelope residual and internal-ledger separation rows pass in the declared chart. If the angular part separates as $\Psi_{\mathrm{env}}(r,\theta,\phi)=R(r)Y(\theta,\phi)$, and $Y$ is a regular single-valued function on $S^2$ in the domain of the self-adjoint angular operator, then
+
+$$
+-\Delta_{S^2}Y=\lambda Y,
+\qquad
+Y(\theta,\phi+2\pi)=Y(\theta,\phi)
+\quad\Longrightarrow\quad
+\lambda=\ell(\ell+1),
+\quad
+\ell\in\mathbb N_0,
+\quad
+m\in\{-\ell,\ldots,\ell\}.
+$$
+
+Consequently the observer-level orbital readouts recover
+
+$$
+L^2\Psi_{\mathrm{env}}
+=
+\ell(\ell+1)\hbar^2\Psi_{\mathrm{env}},
+\qquad
+L_z\Psi_{\mathrm{env}}
+=
+m\hbar\Psi_{\mathrm{env}}.
+$$
+
+The theorem-grade part here is the level separation. Once $\mathcal E_{\mathrm{orb}}$ has supplied a valid central envelope, the angular spectrum is ordinary $S^2$ mathematics; the remaining $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is deriving $\mathcal E_{\mathrm{orb}}$ from the electron assembly branch, nuclear causal-wake envelope, and local Noether-Sea record without importing the orbital postulate or using internal spinor data to force the label.
+
 ## Spin
 
 Spin is the most delicate bridge because standard quantum mechanics treats it as intrinsic. In $\mathbb{A}\mathbb{A}\mathbb{A}$, "intrinsic" should be read as "not reducible to observer-level orbital motion of the whole assembly," not as "primitive property of a point architrino."
@@ -2706,6 +2790,60 @@ is a detector-bias or failed-calibration diagnostic, not a new photon law.
 This is the reduced substrate-origin scaffold. The quantity being measured is still the native accepted positive action fraction, so the $\cos^2\theta$ result appears only after the material projector $A^a{}_{b}$ and the linear-polarization ledger $a_\perp^a=\hat e_\gamma^a$ have been derived. The remaining substrate burden is to compute $\mathcal{P}_{\hat{\mathbf a}}$, the equivalence relation $\sim_{\hat{\mathbf a}}$, the return map $T_s$, and the basin filtration $\mathcal{B}_{\text{pass}}(\rho;\hat{\mathbf a})$ from a concrete analyzer assembly simulation and then prove or bound $\Delta_{\text{pol}}(\rho)$.
 
 The interpretation is local and ledger-based. In a single event, the analyzer-plus-photon microstate still resolves into one material record channel. Across an ensemble whose unresolved material variables sample $d\nu_{\hat{\mathbf a}}$, the pass frequency is $\mu_{\text{pass}}$. After a successful pass, the outgoing planar-pair ledger is relocked into the analyzer channel, so the next analyzer uses $a_\perp^a=\hat a^a$ as its incoming transverse ledger. Sequential analyzer probabilities therefore multiply by the same projector rule rather than by a separate collapse postulate.
+
+The effective relocking map can be stated directly. Let each analyzer $M_{\hat{\mathbf a}_k}$ preserve the same propagation axis and have accepted rank-one transverse projector
+
+$$
+A_k=\hat a_k\hat a_k^{\flat},
+\qquad
+R_k=P_{\perp}-A_k
+$$
+
+inside the free transverse plane. Conditioned on a successful pass record and a zero handoff residual, the outgoing ledger is
+
+$$
+a_{k,+}^{a}
+=
+\frac{
+A_k{}^{a}{}_{b}a_{k-1}^{b}
+}{
+\sqrt{
+\overline{a_{k-1}^{c}}A_{k,cd}a_{k-1}^{d}
+}
+}
+=
+e^{i\chi_k}\hat a_k^{a}.
+$$
+
+If the rejected channel emits a free outgoing transverse branch rather than absorbing or scattering locally, the rejected ledger is
+
+$$
+a_{k,-}^{a}
+=
+\frac{
+R_k{}^{a}{}_{b}a_{k-1}^{b}
+}{
+\sqrt{
+\overline{a_{k-1}^{c}}R_{k,cd}a_{k-1}^{d}
+}
+}.
+$$
+
+For a pass-only cascade through analyzer axes $\hat{\mathbf a}_1,\ldots,\hat{\mathbf a}_N$, induction over the local threshold-pullback events gives
+
+$$
+P(+_1,\ldots,+_N\mid a_0)
+=
+\left|
+\hat a_{1,a}a_0^a
+\right|^2
+\prod_{k=2}^{N}
+\left|
+\hat{\mathbf a}_k\cdot\hat{\mathbf a}_{k-1}
+\right|^2.
+$$
+
+This is an effective response lemma, not a collapse postulate. Each analyzer still has its own material, wake, recoil, and Noether-Sea event ledger; the lemma states how the already-accepted transverse ledger is normalized and handed to the next local analyzer when the handoff residual is zero.
 
 The same ledger supplies the no-signaling test for polarization correlations. For a two-photon provenance ledger and analyzer settings $\alpha,\beta$, the validated limit must obey
 
@@ -3475,17 +3613,17 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 
 1. Promote the delayed three-layer scaffold above into a conserved functional derived directly from the regularized nonlocal action.
 2. Validate that functional on a Noether core with inner, middle, and outer binary radii, frequencies, plane normals, phases, active root branches, and self-hit history.
-3. Populate the finite candidate set $\mathcal A_N(B^-,\Gamma_{\text{coupl}},W)$, evaluate $\mathcal R_{\mathrm{sel}}$ on each retained branch candidate, and test whether $\operatorname{Sel}_{B,N}$ is chart-invariant, unique, or a physical tie for an accepted $\Delta A_{\text{cycle}}=h$ transaction.
+3. Populate the finite candidate set $\mathcal A_N(B^-,\Gamma_{\text{coupl}},W)$, evaluate $\mathcal R_{\mathrm{sel}}$ on each retained branch candidate, and test whether $\operatorname{Sel}_{B,N}$ is chart-invariant, stable under retained-budget refinement $N\preceq N'$, unique, or a physical tie for an accepted $\Delta A_{\text{cycle}}=h$ transaction.
 4. Generalize the solved four-substep branch by deriving or fitting $a$, $b$, $w$, $\Delta R_\ell$, $\Delta\omega_\ell$, and $\Delta E_{\ell,\text{root}}$ from the master equation for non-minimal branches.
 5. Determine whether the partition is unique or branch-dependent for inner, middle, and outer binary layers.
 6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift for ordered non-coplanar Noether cores, then test whether the same lifted ordered-frame response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.
 7. Evaluate the Master-Equation apparatus branch-sum impulse $\dot{\mathbf{J}}_{C}^{\text{app}}$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal Noether-core apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
 8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
-9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
+9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, the sequential analyzer relocking map, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
 10. Separate photon helicity closure from massive vector-boson spin closure.
 11. Derive integer phase-winding closure for Noether-core energy levels by computing the admissible ledgers $(k_I,k_M,k_O,\mathcal R)$ and their allowed changes under $\Delta A_{\text{cycle}}=h$ transactions.
 12. Derive the effective far-zone causal-wake envelope of an integer-closed Noether core and decompose its angular content into recovery coefficients that can be compared with spherical-harmonic orbital modes.
-13. Recover observer-level orbital angular-momentum quantization, including $2\pi$ azimuthal single-valuedness, the finite angular spectrum $\ell\in\mathbb N_0$, and $m\in\{-\ell,\ldots,\ell\}$, from the effective envelope of an assembly in an external potential.
+13. Derive the native effective envelope extractor $\mathcal E_{\mathrm{orb}}$ for an assembly in an external potential, then apply the angular-envelope lemma to recover $2\pi$ azimuthal single-valuedness, $\ell\in\mathbb N_0$, and $m\in\{-\ell,\ldots,\ell\}$ without importing internal spin data.
 14. Map observer-level orbital angular momentum, such as atomic $\ell$, to assembly-level internal rotational action without conflating the two.
 15. Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, and basin-measure law.
 
