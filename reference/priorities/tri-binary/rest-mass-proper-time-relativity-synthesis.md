@@ -1,6 +1,6 @@
-# Tri-Binary Causal Closure Synthesis
+# Tri-Binary Pre-Migration Synthesis
 
-This detailed priority file supports [Tri-Binary Causal Closure](tri-binary-causal-closure.md). It preserves the active-development synthesis, theorem roadmap, and review priorities that were formerly embedded in the workstream control file.
+This detailed priority file supports [Tri-Binary](tri-binary.md). It preserves the active-development synthesis, theorem roadmap, and review priorities that were formerly embedded in the workstream control file.
 
 The proof-dependency surface is [Tri-Binary Dependency Map](tri-binary-dependency-map.md). The plain-language companion is [Plain-Language Relativity Bridge](plain-language-relativity-bridge.md).
 

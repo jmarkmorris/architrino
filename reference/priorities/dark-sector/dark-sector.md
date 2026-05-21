@@ -20,7 +20,7 @@
 
 This workstream preserves speculative dark-sector subjects when they are assembly candidates, release-channel candidates, transport modes, or dark-visible conversion hypotheses. It is a priority lane for disciplined ideation, not a ranked closure workstream yet.
 
-The lane does not replace [strong-field-closure](../strong-field-closure/strong-field-closure.md), [cosmology-closure](../cosmology-closure/cosmology-closure.md), [radiation Gate C](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md), or the shared [residual-routing event ledger](../tri-binary-causal-closure/residual-routing-event-ledger.md). It packages candidate assemblies until one of them gains a boundary condition, equation, simulation target, or discriminating observable strong enough for promotion.
+The lane does not replace [strong-field-closure](../strong-field-closure/strong-field-closure.md), [cosmology-closure](../cosmology-closure/cosmology-closure.md), [radiation Gate C](../tri-binary/radiation-gate-c-benchmarks.md), or the shared [residual-routing event ledger](../tri-binary/residual-routing-event-ledger.md). It packages candidate assemblies until one of them gains a boundary condition, equation, simulation target, or discriminating observable strong enough for promotion.
 
 WIMP/neutralino language in this lane is comparison language only. It may organize relic abundance, scattering, annihilation, direct detection, indirect detection, and null-result constraints, but it must not identify a native assembly with a supersymmetric neutralino or treat supersymmetry as Noether-core ontology without a separate ledger-preserving transformation theorem.
 
@@ -58,15 +58,15 @@ where $A_{\mathrm{int}}$ is the internal action or assembly record, $\mathcal{B}
 | `dark_sector_photon_like_mode` | [dark-sector-photon-like-mode.md](dark-sector-photon-like-mode.md) | [strong-field-closure](../strong-field-closure/strong-field-closure.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), or [CMB](../../../content/markdown/aaa/cosmology/CMB.md) | The packet states a release-channel boundary condition, an event-ledger route through radiation Gate C, a redshift / reaction / re-entry criterion, and at least one discriminating observable. |
 | `candidate_assembly_registry` | This file and [dark-sector-photon-like-mode.md](dark-sector-photon-like-mode.md) | [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [spacetime-assemblies](../../../content/markdown/aaa/spacetime/spacetime-assemblies.md), or [radiation](../../../content/markdown/aaa/reactions/radiation.md) | Candidate assemblies are described by explicit internal variables rather than analogy alone. |
 | `wimp_benchmark_vector` | [arxiv-particle-holography-susy-mining.md](../aaa-work-threads/arxiv-particle-holography-susy-mining.md) | [dark-matter](../../../content/markdown/aaa/cosmology/dark-matter.md) and this workstream | The arXiv source limitation is stated; $\mathcal{B}_{A}^{\mathrm{WIMP}}$ is restricted to relic abundance, scattering, annihilation, direct/indirect detection, and null-result constraints; no supersymmetry ontology is canonized. |
-| `dark_visible_reentry_gate` | [dark-sector-photon-like-mode.md](dark-sector-photon-like-mode.md) and [radiation-gate-c-benchmarks](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md) | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), or [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md) | Dark-visible conversion closes $E$, $\mathbf{p}$, $\mathbf{J}$, medium update, remnant state, and photon-channel exposure without per-observable retuning. |
+| `dark_visible_reentry_gate` | [dark-sector-photon-like-mode.md](dark-sector-photon-like-mode.md) and [radiation-gate-c-benchmarks](../tri-binary/radiation-gate-c-benchmarks.md) | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md), or [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md) | Dark-visible conversion closes $E$, $\mathbf{p}$, $\mathbf{J}$, medium update, remnant state, and photon-channel exposure without per-observable retuning. |
 
 ## Related Priorities
 
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [strong-field hypothesis bank](../strong-field-closure/hypothesis-bank.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
-- [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md)
-- [radiation Gate C](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md)
+- [tri-binary](../tri-binary/tri-binary.md)
+- [radiation Gate C](../tri-binary/radiation-gate-c-benchmarks.md)
 - [validation-gates](../validation-gates/validation-gates.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

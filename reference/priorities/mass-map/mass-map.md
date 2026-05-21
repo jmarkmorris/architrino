@@ -163,8 +163,8 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 | Medium-response probe | [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) | Tier 3 acceleration/gradient probe for $\mathcal{M}_{\text{sea}}^{ab}$ after closure, stability, energy, and shielding pass, with retained response-direction accounting for trace-free scalar-mass visibility. |
 | Mass-trace composition proof chain | [Mass-Trace Composition Proof Chain](mass-trace-composition-proof-chain.md) | Proof-synthesis packet that composes exposed-source descent, inertial-response trace, symmetric response, pressure response, composed trace quotient descent, response-direction projection, and packing-headroom limits into one mass-trace formula. |
 | Critical transport packet | [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) | Threshold gate separating reversible medium-dressed inertial response from dissipative transport, action shedding, radiation, or branch transition. |
-| Proof synthesis | [Tri-Binary Causal Closure](../tri-binary-causal-closure/tri-binary-causal-closure.md) | Active-development bridge from tri-binary closure to rest mass, inertia, proper time, photon behavior, and effective geometry. |
-| Proof-control ledger | [Tri-Binary Dependency Map](../tri-binary-causal-closure/tri-binary-dependency-map.md) | Open theorem burdens and deployment handoff routes, especially shielding, momentum skew, slow-fast tri-binary minimality, and metric closure. |
+| Proof synthesis | [Tri-Binary](../tri-binary/tri-binary.md) | Active-development migration bridge from the Tri-Binary model to rest mass, inertia, proper time, photon behavior, and effective geometry. |
+| Proof-control ledger | [Tri-Binary Dependency Map](../tri-binary/tri-binary-dependency-map.md) | Open theorem burdens and deployment handoff routes, especially shielding, momentum skew, slow-fast tri-binary minimality, and metric closure. |
 | Quantitative mass workstream | This document | Control surface for the first derived mass map, shielding extraction, baseline electron-mass target, and hierarchy checks. |
 
 ## Mass Claim Maturity Buckets

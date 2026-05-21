@@ -1,4 +1,4 @@
-# Tri-Binary Causal Closure: Rest Mass, Proper Time, and Relativistic Limits
+# Tri-Binary Legacy Source: Rest Mass, Proper Time, and Relativistic Limits
 
 ## Workstream Metadata
 

@@ -191,7 +191,7 @@ and compare the allowed interval for $R_{c_g}$ with the LVK photon-channel speed
 | --- | --- | --- |
 | This file | [strong-field-closure](../strong-field-closure/strong-field-closure.md) | Use waveform phase and ringdown as strong-field quantitative closure. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Add gravitational-wave speed, polarization, and phase to gravity acceptance. |
-| This file | [tri-binary-causal-closure/residual-routing-event-ledger](../tri-binary-causal-closure/residual-routing-event-ledger.md) | Require source loss and propagating disturbance to close one event ledger. |
+| This file | [tri-binary/residual-routing-event-ledger](../tri-binary/residual-routing-event-ledger.md) | Require source loss and propagating disturbance to close one event ledger. |
 
 ## Failure Modes
 

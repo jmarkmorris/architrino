@@ -1,6 +1,6 @@
 # Radiation Gate C Benchmarks
 
-This detailed priority file supports [Tri-Binary Causal Closure](tri-binary-causal-closure.md). It captures the missing priority coverage for [Radiation](../../../content/markdown/aaa/reactions/radiation.md), [Atomic Transition Radiation](../../../content/markdown/aaa/reactions/atomic-transition-radiation.md), [Bremsstrahlung](../../../content/markdown/aaa/reactions/bremsstrahlung.md), and [Synchrotron Cascades](../../../content/markdown/aaa/reactions/synchrotron.md).
+This detailed priority file supports [Tri-Binary](tri-binary.md). It captures the missing priority coverage for [Radiation](../../../content/markdown/aaa/reactions/radiation.md), [Atomic Transition Radiation](../../../content/markdown/aaa/reactions/atomic-transition-radiation.md), [Bremsstrahlung](../../../content/markdown/aaa/reactions/bremsstrahlung.md), and [Synchrotron Cascades](../../../content/markdown/aaa/reactions/synchrotron.md).
 
 ## Core Opportunity
 
@@ -223,5 +223,5 @@ The proof burden is not to fit $\mathcal{S}_{\gamma,*}$. It is to derive the loc
 
 - Residual-routing and event-ledger closure are owned by [residual-routing-event-ledger](residual-routing-event-ledger.md).
 - Sector visibility and exposure/quotient closure are owned by [exposure-quotient-theorem](../mass-map/exposure-quotient-theorem.md).
-- Photon Gate A and Gate B remain upstream gates in [Tri-Binary Causal Closure Synthesis](rest-mass-proper-time-relativity-synthesis.md) and [Angular Momentum and Spin Closure](../angular-momentum-spin/angular-momentum-spin.md).
+- Photon Gate A and Gate B remain upstream gates in [Tri-Binary pre-migration synthesis](rest-mass-proper-time-relativity-synthesis.md) and [Angular Momentum and Spin Closure](../angular-momentum-spin/angular-momentum-spin.md).
 - Reaction and cosmology provenance should be checked against [cosmology-closure](../cosmology-closure/cosmology-closure.md) and [strong-field-closure](../strong-field-closure/strong-field-closure.md).
