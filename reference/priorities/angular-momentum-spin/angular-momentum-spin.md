@@ -581,7 +581,7 @@ Sixth continuation status: four additional theory lemmas were promoted without a
 - [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md)
 - [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md)
 - [planck-scale-tri-binary-alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md)
-- [noether-swarm](../../../content/markdown/aaa/spacetime/noether-swarm.md)
+- [noether-swarm](../../../content/markdown/aaa/noether-swarm/noether-swarm.md)
 - [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md)
 - [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md)
 - [causal-action-functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md)

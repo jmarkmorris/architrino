@@ -10321,7 +10321,7 @@ This chapter owns:
 
 This chapter does not own:
 
-- the definition of a Noether core; see [Noether Swarm](../../../../markdown/aaa/spacetime/noether-swarm.md),
+- the definition of a Noether core; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
 - the geometry of the dynamic exclusion envelope; see [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md),
 - the proper-time map; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
 - the energy ledger; see [Energy](../../../../markdown/aaa/dynamics/energy.md),
@@ -15539,7 +15539,7 @@ This vocabulary should not be read as branch-choice metaphysics. In quantum comp
 
 ### Primitive Metastability
 
-The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether core](../../../../markdown/aaa/spacetime/noether-swarm.md) architecture, every Noether core contains a middle binary at the field-speed hinge $v=c_f$, while [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
+The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether core](../../../../markdown/aaa/noether-swarm/noether-swarm.md) architecture, every Noether core contains a middle binary at the field-speed hinge $v=c_f$, while [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
 
 This does not make every Noether core an agent. A bare Noether core has a threshold-sensitive internal hinge, but it has not yet been shown to set its own threshold, hold a bias, or reuse feedback. The philosophical ladder is:
 

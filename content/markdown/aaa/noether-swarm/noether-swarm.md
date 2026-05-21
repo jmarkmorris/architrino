@@ -2,7 +2,7 @@
 
 The **Noether swarm** is the neutral six-architrino assembly scaffold that later supports both the Noether Sea and Standard Model particle architecture. The general object is not assumed to be a set of exact binaries. It is a closed, charge-neutral, bounded-speed six-body branch in which three positive architrinos and three negative architrinos maintain a persistent causal-return ledger.
 
-Older chapters in the corpus use **Noether core**, **tri-binary**, and **nested binary** for the highly structured nested-shell sector. This chapter now treats that structure as a special sector of the broader Noether swarm. The downstream corpus still mostly describes the nested shell swarm and has not yet been generalized; the older terms should therefore be read as nested-shell terminology unless a later page explicitly promotes the more general swarm case. The swarm's dynamic exclusion-zone geometry is developed separately in [Noether Core Geometry](./noether-core-geometry.md), while metric-level translation belongs to [Emergent Metric](emergent-metric.md).
+Older chapters in the corpus use **Noether core**, **tri-binary**, and **nested binary** for the highly structured nested-shell sector. This chapter now treats that structure as a special sector of the broader Noether swarm. The downstream corpus still mostly describes the nested shell swarm and has not yet been generalized; the older terms should therefore be read as nested-shell terminology unless a later page explicitly promotes the more general swarm case. The swarm's dynamic exclusion-zone geometry is developed separately in [Noether Core Geometry](../spacetime/noether-core-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
 
 ## General Neutral Swarm
 
@@ -470,7 +470,7 @@ Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compat
 
 ## Geometry and Exclusion Envelope
 
-The same tri-binary motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the core definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-zone interpretation, and deformation channels, see [Noether Core Geometry](./noether-core-geometry.md).
+The same tri-binary motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the core definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-zone interpretation, and deformation channels, see [Noether Core Geometry](../spacetime/noether-core-geometry.md).
 
 ## The Core Hierarchy and Fermion Generations
 
@@ -488,7 +488,7 @@ The **inner binary** (maximal curvature, self-hit regime) is a stabilization out
 
 As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **speed approaches $c_f$**, while the **middle binary** remains on the declared hinge branch as its radius/frequency shift. At the horizon-alignment target, the **middle and outer binaries reach $c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
 
-**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](singularity-resolution.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md).
+**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](../spacetime/singularity-resolution.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md).
 
 ## The Foundation for Fermions
 

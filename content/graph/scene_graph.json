@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 498,
-      "edges": 1240,
-      "scenes": 321,
+      "nodes": 502,
+      "edges": 1244,
+      "scenes": 325,
       "markdownIndexes": 0,
       "markdownDocs": 177,
       "runtimeEdges": 476,
@@ -1181,12 +1181,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "spacetime__noether_core",
-      "name": "Noether Core",
-      "path": "content/scenes/spacetime/noether_core.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "assemblies__particle_masses",
       "name": "Particle Masses",
       "path": "content/scenes/assemblies/particle_masses.json",
@@ -1283,18 +1277,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "dynamics__emergence_of_u_1_su_2",
-      "name": "Gauge Structure Emergence",
-      "path": "content/scenes/interactions/emergence_of_u_1_su_2.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "dynamics__gauge_symmetries",
-      "name": "Gauge Symmetries",
-      "path": "content/scenes/interactions/gauge_symmetries.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "dynamics__kinetic_and_potential_energy",
       "name": "Kinetic and Potential Energy",
       "path": "content/scenes/dynamics/kinetic_and_potential_energy.json",
@@ -1310,12 +1292,6 @@
       "id": "dynamics__master_equation_breather",
       "name": "Master Equation Breather",
       "path": "content/scenes/proof-programs/master_equation_breather.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "dynamics__mode_taxonomy",
-      "name": "Mode Taxonomy",
-      "path": "content/scenes/interactions/mode_taxonomy.json",
       "nodeType": "scene"
     },
     {
@@ -1871,12 +1847,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "interactions",
-      "name": "Interactions",
-      "path": "content/scenes/interactions/interactions.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "spacetime__noether_sea",
       "name": "Noether Sea",
       "path": "content/scenes/spacetime/noether_sea.json",
@@ -2075,6 +2045,60 @@
       "nodeType": "scene"
     },
     {
+      "id": "noether_swarm__nested_shell_swarm",
+      "name": "Nested Shell Swarm",
+      "path": "content/scenes/noether-swarm/nested_shell_swarm.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_swarm__neutral_swarm",
+      "name": "Neutral Swarm",
+      "path": "content/scenes/noether-swarm/neutral_swarm.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_swarm",
+      "name": "Noether Swarm",
+      "path": "content/scenes/noether-swarm/noether_swarm.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_swarm__shell_swarm",
+      "name": "Shell Swarm",
+      "path": "content/scenes/noether-swarm/shell_swarm.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_swarm__swarm_dynamics",
+      "name": "Swarm Dynamics",
+      "path": "content/scenes/noether-swarm/swarm_dynamics.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_swarm__swarm_geometry",
+      "name": "Swarm Geometry",
+      "path": "content/scenes/noether-swarm/swarm_geometry.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "assemblies__gauge_structure_emergence",
+      "name": "Gauge Structure Emergence",
+      "path": "content/scenes/assemblies/gauge_structure_emergence.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "assemblies__gauge_symmetries",
+      "name": "Gauge Symmetries",
+      "path": "content/scenes/assemblies/gauge_symmetries.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "reactions__mode_taxonomy",
+      "name": "Mode Taxonomy",
+      "path": "content/scenes/reactions/mode_taxonomy.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
       "name": "Architrino Textbook",
       "path": "content/generated/markdown/textbook/reading-copies/architrino-textbook.md",
@@ -2105,15 +2129,15 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/generated/markdown/textbook/reading-copies/interactions.md",
-      "name": "Interactions",
-      "path": "content/generated/markdown/textbook/reading-copies/interactions.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "name": "Noether Sea and Effective Spacetime",
       "path": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "name": "Noether Swarm",
+      "path": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2495,6 +2519,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "name": "Noether Swarm",
+      "path": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "name": "Atomic Spectra",
       "path": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
@@ -2834,12 +2864,6 @@
       "id": "content/markdown/aaa/spacetime/noether-sea.md",
       "name": "Noether Sea",
       "path": "content/markdown/aaa/spacetime/noether-sea.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/spacetime/noether-swarm.md",
-      "name": "Noether Swarm",
-      "path": "content/markdown/aaa/spacetime/noether-swarm.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3397,6 +3421,24 @@
       "name": "Fermions",
       "path": "content/scenes/assemblies/fermions.json",
       "searchTarget": "content/scenes/assemblies/fermions.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/gauge_structure_emergence.json",
+      "nodeType": "scene",
+      "id": "assemblies__gauge_structure_emergence",
+      "name": "Gauge Structure Emergence",
+      "path": "content/scenes/assemblies/gauge_structure_emergence.json",
+      "searchTarget": "content/scenes/assemblies/gauge_structure_emergence.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/gauge_symmetries.json",
+      "nodeType": "scene",
+      "id": "assemblies__gauge_symmetries",
+      "name": "Gauge Symmetries",
+      "path": "content/scenes/assemblies/gauge_symmetries.json",
+      "searchTarget": "content/scenes/assemblies/gauge_symmetries.json",
       "implicit": false
     },
     {
@@ -4894,39 +4936,57 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/interactions/emergence_of_u_1_su_2.json",
+      "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm.json",
       "nodeType": "scene",
-      "id": "dynamics__emergence_of_u_1_su_2",
-      "name": "Gauge Structure Emergence",
-      "path": "content/scenes/interactions/emergence_of_u_1_su_2.json",
-      "searchTarget": "content/scenes/interactions/emergence_of_u_1_su_2.json",
+      "id": "noether_swarm__nested_shell_swarm",
+      "name": "Nested Shell Swarm",
+      "path": "content/scenes/noether-swarm/nested_shell_swarm.json",
+      "searchTarget": "content/scenes/noether-swarm/nested_shell_swarm.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/interactions/gauge_symmetries.json",
+      "nodeId": "scene:content/scenes/noether-swarm/neutral_swarm.json",
       "nodeType": "scene",
-      "id": "dynamics__gauge_symmetries",
-      "name": "Gauge Symmetries",
-      "path": "content/scenes/interactions/gauge_symmetries.json",
-      "searchTarget": "content/scenes/interactions/gauge_symmetries.json",
+      "id": "noether_swarm__neutral_swarm",
+      "name": "Neutral Swarm",
+      "path": "content/scenes/noether-swarm/neutral_swarm.json",
+      "searchTarget": "content/scenes/noether-swarm/neutral_swarm.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/interactions/interactions.json",
+      "nodeId": "scene:content/scenes/noether-swarm/noether_swarm.json",
       "nodeType": "scene",
-      "id": "interactions",
-      "name": "Interactions",
-      "path": "content/scenes/interactions/interactions.json",
-      "searchTarget": "content/scenes/interactions/interactions.json",
+      "id": "noether_swarm",
+      "name": "Noether Swarm",
+      "path": "content/scenes/noether-swarm/noether_swarm.json",
+      "searchTarget": "content/scenes/noether-swarm/noether_swarm.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/interactions/mode_taxonomy.json",
+      "nodeId": "scene:content/scenes/noether-swarm/shell_swarm.json",
       "nodeType": "scene",
-      "id": "dynamics__mode_taxonomy",
-      "name": "Mode Taxonomy",
-      "path": "content/scenes/interactions/mode_taxonomy.json",
-      "searchTarget": "content/scenes/interactions/mode_taxonomy.json",
+      "id": "noether_swarm__shell_swarm",
+      "name": "Shell Swarm",
+      "path": "content/scenes/noether-swarm/shell_swarm.json",
+      "searchTarget": "content/scenes/noether-swarm/shell_swarm.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/noether-swarm/swarm_dynamics.json",
+      "nodeType": "scene",
+      "id": "noether_swarm__swarm_dynamics",
+      "name": "Swarm Dynamics",
+      "path": "content/scenes/noether-swarm/swarm_dynamics.json",
+      "searchTarget": "content/scenes/noether-swarm/swarm_dynamics.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/noether-swarm/swarm_geometry.json",
+      "nodeType": "scene",
+      "id": "noether_swarm__swarm_geometry",
+      "name": "Swarm Geometry",
+      "path": "content/scenes/noether-swarm/swarm_geometry.json",
+      "searchTarget": "content/scenes/noether-swarm/swarm_geometry.json",
       "implicit": false
     },
     {
@@ -5398,6 +5458,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/reactions/mode_taxonomy.json",
+      "nodeType": "scene",
+      "id": "reactions__mode_taxonomy",
+      "name": "Mode Taxonomy",
+      "path": "content/scenes/reactions/mode_taxonomy.json",
+      "searchTarget": "content/scenes/reactions/mode_taxonomy.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/reactions/reactions.json",
       "nodeType": "scene",
       "id": "reactions",
@@ -5494,15 +5563,6 @@
       "name": "Noether Core Geometry",
       "path": "content/scenes/spacetime/noether_core_geometry.json",
       "searchTarget": "content/scenes/spacetime/noether_core_geometry.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/spacetime/noether_core.json",
-      "nodeType": "scene",
-      "id": "spacetime__noether_core",
-      "name": "Noether Core",
-      "path": "content/scenes/spacetime/noether_core.json",
-      "searchTarget": "content/scenes/spacetime/noether_core.json",
       "implicit": false
     },
     {
@@ -6073,21 +6133,21 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/generated/markdown/textbook/reading-copies/interactions.md",
-      "nodeType": "markdown_doc",
-      "id": "content/generated/markdown/textbook/reading-copies/interactions.md",
-      "name": "Interactions",
-      "path": "content/generated/markdown/textbook/reading-copies/interactions.md",
-      "searchTarget": "content/generated/markdown/textbook/reading-copies/interactions.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "nodeType": "markdown_doc",
       "id": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "name": "Noether Sea and Effective Spacetime",
       "path": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "searchTarget": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "nodeType": "markdown_doc",
+      "id": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "name": "Noether Swarm",
+      "path": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "searchTarget": "content/generated/markdown/textbook/reading-copies/noether-swarm.md",
       "implicit": false
     },
     {
@@ -6658,6 +6718,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "name": "Noether Swarm",
+      "path": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "searchTarget": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
@@ -7168,15 +7237,6 @@
       "name": "Noether Sea",
       "path": "content/markdown/aaa/spacetime/noether-sea.md",
       "searchTarget": "content/markdown/aaa/spacetime/noether-sea.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/noether-swarm.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/spacetime/noether-swarm.md",
-      "name": "Noether Swarm",
-      "path": "content/markdown/aaa/spacetime/noether-swarm.md",
-      "searchTarget": "content/markdown/aaa/spacetime/noether-swarm.md",
       "implicit": false
     },
     {
@@ -7830,7 +7890,7 @@
       "to": "scene:content/scenes/dynamics/dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -7841,10 +7901,10 @@
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
-      "to": "scene:content/scenes/interactions/interactions.json",
+      "to": "scene:content/scenes/noether-swarm/noether_swarm.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -7856,13 +7916,6 @@
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[12]"
-    },
-    {
-      "from": "scene:content/scenes/architrino_assembly_architecture.json",
-      "to": "scene:content/scenes/proof-programs/proof_programs.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
       "field": "scene.children[11]"
@@ -7886,7 +7939,7 @@
       "to": "scene:content/scenes/spacetime/spacetime.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -7900,11 +7953,25 @@
       "to": "scene:content/scenes/assemblies/electroweak_bosons.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/fermions.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "scene:content/scenes/assemblies/gauge_structure_emergence.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/assemblies.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/assemblies.json",
+      "to": "scene:content/scenes/assemblies/gauge_symmetries.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
       "field": "scene.children[2]"
@@ -7914,21 +7981,21 @@
       "to": "scene:content/scenes/assemblies/gluons.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/mesons_doc.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
       "to": "scene:content/scenes/assemblies/particle_masses.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/assemblies.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
@@ -8251,6 +8318,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
       "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/dynamics/dynamics.json",
+      "to": "scene:content/scenes/proof-programs/proof_programs.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/dynamics/dynamics.json",
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",
@@ -10815,25 +10889,39 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/interactions/interactions.json",
-      "to": "scene:content/scenes/interactions/emergence_of_u_1_su_2.json",
+      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "to": "scene:content/scenes/noether-swarm/nested_shell_swarm.json",
       "edgeType": "subscene",
-      "source": "content/scenes/interactions/interactions.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/interactions/interactions.json",
-      "to": "scene:content/scenes/interactions/gauge_symmetries.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/interactions/interactions.json",
+      "source": "content/scenes/noether-swarm/noether_swarm.json",
       "field": "scene.children[2]"
     },
     {
-      "from": "scene:content/scenes/interactions/interactions.json",
-      "to": "scene:content/scenes/interactions/mode_taxonomy.json",
+      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "to": "scene:content/scenes/noether-swarm/neutral_swarm.json",
       "edgeType": "subscene",
-      "source": "content/scenes/interactions/interactions.json",
+      "source": "content/scenes/noether-swarm/noether_swarm.json",
       "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "to": "scene:content/scenes/noether-swarm/shell_swarm.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-swarm/noether_swarm.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "to": "scene:content/scenes/noether-swarm/swarm_dynamics.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-swarm/noether_swarm.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "to": "scene:content/scenes/noether-swarm/swarm_geometry.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-swarm/noether_swarm.json",
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -11218,6 +11306,13 @@
       "to": "scene:content/scenes/reactions/bremsstrahlung.json",
       "edgeType": "subscene",
       "source": "content/scenes/reactions/reactions.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/reactions/reactions.json",
+      "to": "scene:content/scenes/reactions/mode_taxonomy.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/reactions/reactions.json",
       "field": "scene.children[0]"
     },
     {
@@ -11225,7 +11320,7 @@
       "to": "scene:content/scenes/reactions/synchrotron_cascades.json",
       "edgeType": "subscene",
       "source": "content/scenes/reactions/reactions.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/spacetime/effective_metric.json",
@@ -11278,6 +11373,13 @@
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "scene:content/scenes/spacetime/effective_metric.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
@@ -11296,13 +11398,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/noether_core.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
@@ -11971,17 +12066,17 @@
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
-      "to": "markdown_doc:content/generated/markdown/textbook/reading-copies/interactions.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
-      "field": "pdf_snapshot_interactions.source.path"
-    },
-    {
-      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
       "to": "markdown_doc:content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/textbook_pdf_snapshots.json",
       "field": "pdf_snapshot_spacetime.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "to": "markdown_doc:content/generated/markdown/textbook/reading-copies/noether-swarm.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/textbook_pdf_snapshots.json",
+      "field": "pdf_snapshot_noether_swarm.source.path"
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
@@ -12072,6 +12167,20 @@
       "to": "markdown_doc:content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/electroweak_bosons.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/gauge_structure_emergence.json",
+      "to": "markdown_doc:content/markdown/aaa/interactions/gauge-structure-emergence.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/gauge_structure_emergence.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/gauge_symmetries.json",
+      "to": "markdown_doc:content/markdown/aaa/interactions/gauge-symmetries.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/gauge_symmetries.json",
       "field": "scene.source.path"
     },
     {
@@ -12303,27 +12412,6 @@
       "to": "markdown_doc:content/markdown/aaa/foundations/ontology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/foundations/foundational_ontology.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/interactions/emergence_of_u_1_su_2.json",
-      "to": "markdown_doc:content/markdown/aaa/interactions/gauge-structure-emergence.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/interactions/emergence_of_u_1_su_2.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/interactions/gauge_symmetries.json",
-      "to": "markdown_doc:content/markdown/aaa/interactions/gauge-symmetries.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/interactions/gauge_symmetries.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/interactions/mode_taxonomy.json",
-      "to": "markdown_doc:content/markdown/aaa/interactions/mode-taxonomy.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/interactions/mode_taxonomy.json",
       "field": "scene.source.path"
     },
     {
@@ -12614,6 +12702,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/reactions/mode_taxonomy.json",
+      "to": "markdown_doc:content/markdown/aaa/interactions/mode-taxonomy.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/reactions/mode_taxonomy.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/reactions/synchrotron_cascades.json",
       "to": "markdown_doc:content/markdown/aaa/reactions/synchrotron.md",
       "edgeType": "markdown_doc",
@@ -12674,13 +12769,6 @@
       "to": "markdown_doc:content/markdown/aaa/spacetime/noether-core-geometry.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/noether_core_geometry.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/noether_core.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/noether-swarm.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/noether_core.json",
       "field": "scene.source.path"
     },
     {

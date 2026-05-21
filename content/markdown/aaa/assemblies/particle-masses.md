@@ -341,7 +341,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
 
 #### Internal Energy Shielding ($\zeta$-Factor)
 - **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested binary rotations. For a tri-binary, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
-- **Shielding:** The pro/anti structure of the [Noether core](../spacetime/noether-swarm.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
+- **Shielding:** The pro/anti structure of the [Noether core](../noether-swarm/noether-swarm.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
 - **Result:** When an external force attempts to accelerate the assembly, the effective far-field response couples only to the exposed, shielded part of the internal ledger:
   $$
   m_{\text{apparent}}c_{\text{eff}}^2 \sim \zeta(A)\,E_{\text{internal}}(A).

@@ -17,7 +17,10 @@
       },
       {
         "nodeId": "noether_core",
-        "scenePath": "content/scenes/spacetime/noether_core.json"
+        "scenePath": "content/scenes/noether-swarm/noether_swarm.json",
+        "textbookToc": {
+          "hideEntry": true
+        }
       },
       {
         "nodeId": "noether_core_geometry",
@@ -64,23 +67,6 @@
       "fixedPosition": true
     },
     {
-      "id": "noether_core",
-      "title": "Noether Core",
-      "radius": 2.05,
-      "color": "#3a5f9f",
-      "position": [
-        0,
-        8.2,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Noether Core",
-      "labelBadge": "doc",
-      "fixedPosition": true
-    },
-    {
       "id": "noether_core_geometry",
       "title": "Noether Core Geometry",
       "radius": 2.05,
@@ -94,6 +80,23 @@
         "type": "fixed"
       },
       "labelTitle": "Noether Core Geometry",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "noether_core",
+      "title": "Noether Core",
+      "radius": 2.05,
+      "color": "#3a5f9f",
+      "position": [
+        0,
+        8.2,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Noether Core",
       "labelBadge": "doc",
       "fixedPosition": true
     },

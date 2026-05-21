@@ -16,6 +16,14 @@
         "scenePath": "content/scenes/standard-model-particles/standard_model.json"
       },
       {
+        "nodeId": "gauge_structure_emergence",
+        "scenePath": "content/scenes/assemblies/gauge_structure_emergence.json"
+      },
+      {
+        "nodeId": "gauge_symmetries",
+        "scenePath": "content/scenes/assemblies/gauge_symmetries.json"
+      },
+      {
         "nodeId": "particle_masses",
         "scenePath": "content/scenes/assemblies/particle_masses.json"
       },
@@ -55,13 +63,47 @@
       "fixedPosition": true
     },
     {
+      "id": "gauge_structure_emergence",
+      "title": "Gauge Structure Emergence",
+      "radius": 2.35,
+      "color": "#3a5f9f",
+      "position": [
+        0,
+        10.8,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Gauge Structure Emergence",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "gauge_symmetries",
+      "title": "Gauge Symmetries",
+      "radius": 2.35,
+      "color": "#2f4f7a",
+      "position": [
+        8.45,
+        6.73,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Gauge Symmetries",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
       "id": "particle_masses",
       "title": "Particle Masses",
       "radius": 2.35,
       "color": "#5a1f2e",
       "position": [
-        9.7,
-        3.15,
+        10.53,
+        -2.4,
         0
       ],
       "motion": {
@@ -77,8 +119,8 @@
       "radius": 2.35,
       "color": "#5d3a9f",
       "position": [
-        6,
-        -8.25,
+        4.69,
+        -9.73,
         0
       ],
       "motion": {
@@ -93,8 +135,8 @@
       "radius": 2.35,
       "color": "#2f6b6f",
       "position": [
-        -6,
-        -8.25,
+        -4.69,
+        -9.73,
         0
       ],
       "motion": {
@@ -110,8 +152,8 @@
       "radius": 2.35,
       "color": "#3a5f9f",
       "position": [
-        -9.7,
-        3.15,
+        -10.53,
+        -2.4,
         0
       ],
       "motion": {
@@ -127,8 +169,8 @@
       "radius": 2.35,
       "color": "#3a5f9f",
       "position": [
-        0,
-        10.2,
+        -8.45,
+        6.73,
         0
       ],
       "motion": {

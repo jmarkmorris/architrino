@@ -30,7 +30,7 @@ We separate two structures that are often spoken about together but should not b
 
 ### 1. Core frame
 
-The [Noether core](../../spacetime/noether-swarm.md) is the neutral tri-binary scaffold. It defines:
+The [Noether core](../../noether-swarm/noether-swarm.md) is the neutral tri-binary scaffold. It defines:
 
 - generation via shielding level,
 - matter/antimatter braid orientation,

@@ -387,7 +387,7 @@ Held-release follow-up, 2026-05-20: the same breather packet now has an explicit
 - [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md)
 - [energy](../../../content/markdown/aaa/dynamics/energy.md)
 - [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md)
-- [noether-swarm](../../../content/markdown/aaa/spacetime/noether-swarm.md)
+- [noether-swarm](../../../content/markdown/aaa/noether-swarm/noether-swarm.md)
 - [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md)
 - [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
 - [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)

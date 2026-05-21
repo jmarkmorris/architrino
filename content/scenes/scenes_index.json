@@ -861,11 +861,6 @@
       "path": "content/scenes/assemblies/neutrinos.json"
     },
     {
-      "id": "spacetime__noether_core",
-      "name": "Noether Core",
-      "path": "content/scenes/spacetime/noether_core.json"
-    },
-    {
       "id": "assemblies__particle_masses",
       "name": "Particle Masses",
       "path": "content/scenes/assemblies/particle_masses.json"
@@ -946,16 +941,6 @@
       "path": "content/scenes/dynamics/effective_lagrangian.json"
     },
     {
-      "id": "dynamics__emergence_of_u_1_su_2",
-      "name": "Gauge Structure Emergence",
-      "path": "content/scenes/interactions/emergence_of_u_1_su_2.json"
-    },
-    {
-      "id": "dynamics__gauge_symmetries",
-      "name": "Gauge Symmetries",
-      "path": "content/scenes/interactions/gauge_symmetries.json"
-    },
-    {
       "id": "dynamics__kinetic_and_potential_energy",
       "name": "Kinetic and Potential Energy",
       "path": "content/scenes/dynamics/kinetic_and_potential_energy.json"
@@ -969,11 +954,6 @@
       "id": "dynamics__master_equation_breather",
       "name": "Master Equation Breather",
       "path": "content/scenes/proof-programs/master_equation_breather.json"
-    },
-    {
-      "id": "dynamics__mode_taxonomy",
-      "name": "Mode Taxonomy",
-      "path": "content/scenes/interactions/mode_taxonomy.json"
     },
     {
       "id": "dynamics__tri_binary_dynamics",
@@ -1436,11 +1416,6 @@
       "path": "content/scenes/proof-programs/proof_programs.json"
     },
     {
-      "id": "interactions",
-      "name": "Interactions",
-      "path": "content/scenes/interactions/interactions.json"
-    },
-    {
       "id": "spacetime__noether_sea",
       "name": "Noether Sea",
       "path": "content/scenes/spacetime/noether_sea.json"
@@ -1604,6 +1579,51 @@
       "id": "inherited_theory_interface",
       "name": "Inherited Theory Interface",
       "path": "content/scenes/philosophy_history/inherited_theory_interface.json"
+    },
+    {
+      "id": "noether_swarm__nested_shell_swarm",
+      "name": "Nested Shell Swarm",
+      "path": "content/scenes/noether-swarm/nested_shell_swarm.json"
+    },
+    {
+      "id": "noether_swarm__neutral_swarm",
+      "name": "Neutral Swarm",
+      "path": "content/scenes/noether-swarm/neutral_swarm.json"
+    },
+    {
+      "id": "noether_swarm",
+      "name": "Noether Swarm",
+      "path": "content/scenes/noether-swarm/noether_swarm.json"
+    },
+    {
+      "id": "noether_swarm__shell_swarm",
+      "name": "Shell Swarm",
+      "path": "content/scenes/noether-swarm/shell_swarm.json"
+    },
+    {
+      "id": "noether_swarm__swarm_dynamics",
+      "name": "Swarm Dynamics",
+      "path": "content/scenes/noether-swarm/swarm_dynamics.json"
+    },
+    {
+      "id": "noether_swarm__swarm_geometry",
+      "name": "Swarm Geometry",
+      "path": "content/scenes/noether-swarm/swarm_geometry.json"
+    },
+    {
+      "id": "assemblies__gauge_structure_emergence",
+      "name": "Gauge Structure Emergence",
+      "path": "content/scenes/assemblies/gauge_structure_emergence.json"
+    },
+    {
+      "id": "assemblies__gauge_symmetries",
+      "name": "Gauge Symmetries",
+      "path": "content/scenes/assemblies/gauge_symmetries.json"
+    },
+    {
+      "id": "reactions__mode_taxonomy",
+      "name": "Mode Taxonomy",
+      "path": "content/scenes/reactions/mode_taxonomy.json"
     }
   ]
 }

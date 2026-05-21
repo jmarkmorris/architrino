@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "noether_swarm__swarm_geometry",
+    "title": "Swarm Geometry",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    }
+  },
+  "objects": []
+}

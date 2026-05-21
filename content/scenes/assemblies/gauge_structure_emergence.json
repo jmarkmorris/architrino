@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "interactions__gauge_symmetries",
-    "title": "Gauge Symmetries",
+    "id": "assemblies__gauge_structure_emergence",
+    "title": "Gauge Structure Emergence",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/interactions/gauge-symmetries.md"
+      "path": "content/markdown/aaa/interactions/gauge-structure-emergence.md"
     },
     "view": {
       "columns": 1,

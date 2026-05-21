@@ -2066,7 +2066,7 @@ The answer must not erase substrate identity. Individual architrinos remain prov
 
 ### Noether-Core Geometry Basis
 
-The relevant object is the Noether core, the triply nested binary assembly described in [Noether Swarm](../../../../markdown/aaa/spacetime/noether-swarm.md). Its geometric footprint is the dynamic exclusion envelope described in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md).
+The relevant object is the Noether core, the triply nested binary assembly described in [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its geometric footprint is the dynamic exclusion envelope described in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md).
 
 In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
@@ -2216,7 +2216,7 @@ For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on reco
 This chapter depends on:
 
 - [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md) for the oblate spheroidal exclusion envelope,
-- [Noether Swarm](../../../../markdown/aaa/spacetime/noether-swarm.md) for the tri-binary scaffold,
+- [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) for the tri-binary scaffold,
 - [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
 - and [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) for the photon-channel case where coherent planar-pair modes must recover Bose-Einstein occupation behavior.

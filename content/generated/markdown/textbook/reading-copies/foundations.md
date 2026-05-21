@@ -87,7 +87,7 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\mathbb{A}\mathbb{A}\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.
 
-For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving-law derivation, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence.md) and [Noether Core](../../../../markdown/aaa/spacetime/noether-swarm.md).
+For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving-law derivation, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence.md) and [Noether Core](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
 
 ---
 
@@ -384,7 +384,7 @@ The canonical homes are:
 - [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) for causal hits, delay roots, Jacobian weights, received acceleration, and branch topology.
 - [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
 - [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
-- [Noether Core](../../../../markdown/aaa/spacetime/noether-swarm.md) for the assembly-level Noether-core architecture built from those dynamics.
+- [Noether Core](../../../../markdown/aaa/noether-swarm/noether-swarm.md) for the assembly-level Noether-core architecture built from those dynamics.
 
 ### Determinism and Multistability
 
@@ -2509,7 +2509,7 @@ The recursive picture is easiest to read as a bottom-up construction ladder. The
 2. **Primitive transceivers:** individual architrinos are the irreducible emitters/receivers of causal wake structure.
 3. **First bound assembly:** a stable orbiting electrino:positrino binary is the first bound assembly.
 4. **Nested cores:** binaries can capture into larger nested systems, giving isolated-binary, bi-binary, and tri-binary cores with progressively stronger shielding structure.
-5. **Noether core stabilization:** the triply nested binary is the first fully three-dimensional shielded core; see [Noether Swarm](../../../../markdown/aaa/spacetime/noether-swarm.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
+5. **Noether core stabilization:** the triply nested binary is the first fully three-dimensional shielded core; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
 6. **Fermions with axial layers:** a Noether core plus a six-site axial layer is the working map for charged-fermion and quark family architecture; changing the core shielding tier is the generation target, while pro/anti orientation tracks handedness within the same core architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 7. **Collective medium:** larger balanced populations of cores organize into the [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), so the Noether Sea is a higher-order collective state of cores rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md).
 8. **Bosonic channels:** propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating pro/anti planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).

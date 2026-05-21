@@ -22,7 +22,7 @@ The Noether Sea enters this picture as ambient substrate contents, not as the fi
 
 The Noether-Sea transport picture is useful for separating reversible medium response from dissipative resistance. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
 
-For the underlying assembly carrier of this medium, see [Noether Core](../../../../markdown/aaa/spacetime/noether-swarm.md).
+For the underlying assembly carrier of this medium, see [Noether Core](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
 
 ### Hydrogen as a Four-Fermion Boundary Test
 

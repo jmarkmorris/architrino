@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "noether_swarm__nested_shell_swarm",
+    "title": "Nested Shell Swarm",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    }
+  },
+  "objects": []
+}

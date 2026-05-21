@@ -20,16 +20,16 @@
         "scenePath": "content/scenes/foundations/foundations.json"
       },
       {
+        "nodeId": "noether_swarm",
+        "scenePath": "content/scenes/noether-swarm/noether_swarm.json"
+      },
+      {
         "nodeId": "dynamics",
         "scenePath": "content/scenes/dynamics/dynamics.json"
       },
       {
         "nodeId": "spacetime",
         "scenePath": "content/scenes/spacetime/spacetime.json"
-      },
-      {
-        "nodeId": "interactions",
-        "scenePath": "content/scenes/interactions/interactions.json"
       },
       {
         "nodeId": "assemblies",
@@ -63,10 +63,6 @@
         "scenePath": "content/scenes/validation/validation.json"
       },
       {
-        "nodeId": "proof_programs",
-        "scenePath": "content/scenes/proof-programs/proof_programs.json"
-      },
-      {
         "nodeId": "philosophy_history",
         "scenePath": "content/scenes/philosophy_history/philosophy_history.json"
       }
@@ -87,6 +83,22 @@
         "type": "fixed"
       },
       "labelTitle": "Foundations",
+      "fixedPosition": true
+    },
+    {
+      "id": "noether_swarm",
+      "title": "Noether Swarm",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "position": [
+        0,
+        7.1,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Noether Swarm",
       "fixedPosition": true
     },
     {
@@ -111,8 +123,8 @@
       "radius": 2.688,
       "color": "#1c2a4f",
       "position": [
-        7.1,
-        12.3,
+        8.35,
+        11.49,
         0
       ],
       "motion": {
@@ -122,29 +134,13 @@
       "fixedPosition": true
     },
     {
-      "id": "interactions",
-      "title": "Interactions",
-      "radius": 2.688,
-      "color": "#6c4f8d",
-      "position": [
-        12.3,
-        7.1,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Interactions",
-      "fixedPosition": true
-    },
-    {
       "id": "assemblies",
       "title": "Standard Model Assemblies",
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
-        14.2,
-        0,
+        13.51,
+        4.39,
         0
       ],
       "motion": {
@@ -159,8 +155,8 @@
       "radius": 2.688,
       "color": "#7a4a1f",
       "position": [
-        12.3,
-        -7.1,
+        13.51,
+        -4.39,
         0
       ],
       "motion": {
@@ -175,8 +171,8 @@
       "radius": 2.688,
       "color": "#8b5e34",
       "position": [
-        7.1,
-        -12.3,
+        8.35,
+        -11.49,
         0
       ],
       "motion": {
@@ -207,8 +203,8 @@
       "radius": 2.688,
       "color": "#3c6a7a",
       "position": [
-        -7.1,
-        -12.3,
+        -8.35,
+        -11.49,
         0
       ],
       "motion": {
@@ -224,8 +220,8 @@
       "radius": 2.688,
       "color": "#243d8f",
       "position": [
-        -12.3,
-        -7.1,
+        -13.51,
+        -4.39,
         0
       ],
       "motion": {
@@ -240,8 +236,8 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "position": [
-        -14.2,
-        0,
+        -13.51,
+        4.39,
         0
       ],
       "motion": {
@@ -251,29 +247,13 @@
       "fixedPosition": true
     },
     {
-      "id": "proof_programs",
-      "title": "Proof Programs",
-      "radius": 2.688,
-      "color": "#6f5a2f",
-      "position": [
-        -12.3,
-        7.1,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Proof Programs",
-      "fixedPosition": true
-    },
-    {
       "id": "philosophy_history",
       "title": "Philosophy-History",
       "radius": 2.688,
       "color": "#6a3c3c",
       "position": [
-        -7.1,
-        12.3,
+        -8.35,
+        11.49,
         0
       ],
       "motion": {

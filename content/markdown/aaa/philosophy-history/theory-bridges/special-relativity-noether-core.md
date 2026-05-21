@@ -21,7 +21,7 @@ This chapter owns:
 
 This chapter does not own:
 
-- the definition of a Noether core; see [Noether Swarm](../../spacetime/noether-swarm.md),
+- the definition of a Noether core; see [Noether Swarm](../../noether-swarm/noether-swarm.md),
 - the geometry of the dynamic exclusion envelope; see [Noether Core Geometry](../../spacetime/noether-core-geometry.md),
 - the proper-time map; see [Proper Time and Time Dilation](../../spacetime/proper-time-and-time-dilation.md),
 - the energy ledger; see [Energy](../../dynamics/energy.md),

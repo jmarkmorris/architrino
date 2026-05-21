@@ -7,6 +7,8 @@
       "objects": {
         "electroweak_bosons": "Electroweak Bosons",
         "fermions": "Fermions",
+        "gauge_structure_emergence": "Gauge Structure Emergence",
+        "gauge_symmetries": "Gauge Symmetries",
         "gluons": "Gluons",
         "mesons_doc": "Mesons",
         "particle_masses": "Particle Masses",
@@ -50,6 +52,7 @@
         "effective_lagrangian": "Effective Lagrangian",
         "kinetic_and_potential_energy": "Kinetic and Potential Energy",
         "master_equation_of_motion": "Master Equation of Motion",
+        "proof_programs": "Proof Programs",
         "tri_binary_dynamics": "Tri-Binary Dynamics"
       }
     },
