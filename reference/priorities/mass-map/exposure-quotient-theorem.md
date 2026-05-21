@@ -546,7 +546,7 @@ The theorem can promote into [particle-masses](../../../content/markdown/aaa/ass
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 - [weak-sector-gauge-closure](../standard-model-closure/weak-sector-gauge-closure.md)
 - [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md)
-- [swarm](../swarm/tri-binary.md)
+- [swarm](../swarm/swarm.md)
 - [validation-gates](../validation-gates/validation-gates.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

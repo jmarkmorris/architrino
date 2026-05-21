@@ -42,7 +42,7 @@ Each mature bridge should include:
 - [Entanglement and Nonlocality](./entanglement-nonlocality.md)
 - [Relativistic Scalar Fields and the Klein-Gordon Equation](./klein-gordon-scalar-fields.md)
 - [Pilot-Wave Character](./pilot-wave-character.md)
-- [Mapping the Planck Scale to the Tri-Binary Geometry](./planck-scale-tri-binary-alignment.md)
+- [Mapping the Planck Scale to the Nested Shell Swarm Geometry](./planck-scale-nested-shell-swarm-alignment.md)
 - [Quantum Operator Mapping](./quantum-operator-mapping.md)
 - [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md)
 - [Special Relativity and Deformable Noether Cores](./special-relativity-noether-core.md)

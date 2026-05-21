@@ -1,4 +1,4 @@
-# Tri-Binary
+# Swarm
 
 ## Workstream Metadata
 
@@ -54,7 +54,7 @@ Constraints:
 
 Expected result:
 - One or more concrete branch-box artifact packets in `reference/priorities/swarm/`.
-- Integrations into `tri-binary.md`, `tri-binary-architecture.md`, `proof-program-and-decision-gate.md`, `current-dynamics-synthesis.md`, and the bounded-speed master/solver packets as needed.
+- Integrations into `swarm.md`, `swarm-architecture.md`, `proof-program-and-decision-gate.md`, `current-dynamics-synthesis.md`, and the bounded-speed master/solver packets as needed.
 - Validation with `git diff --check -- reference/priorities/swarm`, a terminology scan for disallowed/stale phrases, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
 - Final status must say whether the artifact is a retained candidate, event reset, certified local rejection, or proof-budget/refinement status. If no branch is retained, state the first mathematical blocker.
 ```
@@ -102,7 +102,7 @@ The sibling files in this directory are hybrid and same-level tri-binary archite
 | [neutral-knot-cloud-branch-model.md](neutral-knot-cloud-branch-model.md) | General neutral six-architrino branch model with no required pairing: three positive and three negative architrinos on free-support bounded-speed paths, hollow support band, cloud occupancy rows, topology ledger, all-pairs causal roots, and optional sector reductions. |
 | [hybrid-variable-radius-model-card.md](hybrid-variable-radius-model-card.md) | Hybrid model card merging nested and same-level tri-binary as sectors of one variable-radius, bounded-speed branch family. |
 | [hybrid-support-radius-functional.md](hybrid-support-radius-functional.md) | Support-descriptor-to-slot-radius functional defining $R_a$, radius-spread, nested-gap, transition, and derivative rows for the hybrid variable-radius sectors. |
-| [tri-binary-architecture.md](tri-binary-architecture.md) | Same-level architecture theorem-target draft and branch-certificate plan. |
+| [swarm-architecture.md](swarm-architecture.md) | Same-level swarm-sector architecture theorem-target draft and branch-certificate plan. |
 | [proof-program-and-decision-gate.md](proof-program-and-decision-gate.md) | Integration map for proof dependencies, retained branch packet rows, and architecture decision-gate status. |
 | [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md) | Composite promotion theorem for moving a same-level branch from priority-only candidate to retained branch candidate. |
 | [current-dynamics-synthesis.md](current-dynamics-synthesis.md) | Current dynamics conclusion and next intrinsic-curve solve target. |
@@ -226,7 +226,7 @@ The sibling files in this directory are hybrid and same-level tri-binary archite
 | [noether-action-conservation-closure-theorem.md](noether-action-conservation-closure-theorem.md) | Noether/action closure theorem for event conservation on one root, action, inventory, and event ledger. |
 | [central-inventory-and-event-ledgers.md](central-inventory-and-event-ledgers.md) | Neutral/charged inventory rows, central-inventory split, pair-production provenance, reaction conservation, recoil, Noether-Sea updates, and heat-channel restrictions. |
 | [observer-export-and-mass-map-targets.md](observer-export-and-mass-map-targets.md) | Lorentz/moving-branch exports, photon transition, mass/exposure map, generation/color rows, and strong-field/cosmology export residuals. |
-| [entourage-tri-binary-rearchitecture.md](entourage-tri-binary-rearchitecture.md) | Deferred source discussion and analysis packet for the architecture switch; mine selectively, do not promote wholesale. |
+| [swarm-rearchitecture-source.md](swarm-rearchitecture-source.md) | Deferred source discussion and analysis packet for the swarm architecture switch; mine selectively, do not promote wholesale. |
 
 ## Promotion Decision
 

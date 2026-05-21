@@ -33,7 +33,7 @@ The Sagnac case is valuable because $\mathbb{A}\mathbb{A}\mathbb{A}$ has absolut
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [swarm](../swarm/tri-binary.md) | Add rotation as a path-history observable outside the inertial Lorentz cancellation. |
+| This file | [swarm](../swarm/swarm.md) | Add rotation as a path-history observable outside the inertial Lorentz cancellation. |
 | This file | [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Express loop timing through causal roots and moving receiver geometry. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Prevent Sagnac recovery from becoming a false preferred-frame loophole. |
 

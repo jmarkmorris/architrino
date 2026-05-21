@@ -1967,9 +1967,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "theory_bridges__planck_scale_tri_binary_alignment",
-      "name": "Planck Scale Tri-Binary Alignment",
-      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
+      "id": "theory_bridges__planck_scale_nested_shell_swarm_alignment",
+      "name": "Planck Scale Nested Shell Swarm Alignment",
+      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
       "nodeType": "scene"
     },
     {
@@ -2657,9 +2657,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
-      "name": "Mapping the Planck Scale to the Tri-Binary Geometry",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "name": "Mapping the Planck Scale to the Nested Shell Swarm Geometry",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3089,6 +3089,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "name": "Nested Shell Swarm Action-Increment Protocol",
+      "path": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/validation/simulations/perspective.md",
       "name": "Perspective: Why This Model Maps So Well",
       "path": "content/markdown/aaa/validation/simulations/perspective.md",
@@ -3134,12 +3140,6 @@
       "id": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
       "name": "Thermodynamic Residual Protocol",
       "path": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
-      "name": "Tri-Binary Action-Increment Protocol",
-      "path": "content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5236,12 +5236,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
       "nodeType": "scene",
-      "id": "theory_bridges__planck_scale_tri_binary_alignment",
-      "name": "Planck Scale Tri-Binary Alignment",
-      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
-      "searchTarget": "content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
+      "id": "theory_bridges__planck_scale_nested_shell_swarm_alignment",
+      "name": "Planck Scale Nested Shell Swarm Alignment",
+      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
       "implicit": false
     },
     {
@@ -6919,12 +6919,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
-      "name": "Mapping the Planck Scale to the Tri-Binary Geometry",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "name": "Mapping the Planck Scale to the Nested Shell Swarm Geometry",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
       "implicit": false
     },
     {
@@ -7567,6 +7567,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "name": "Nested Shell Swarm Action-Increment Protocol",
+      "path": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "searchTarget": "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/perspective.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/perspective.md",
@@ -7636,15 +7645,6 @@
       "name": "Thermodynamic Residual Protocol",
       "path": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
-      "name": "Tri-Binary Action-Increment Protocol",
-      "path": "content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
-      "searchTarget": "content/markdown/aaa/validation/simulations/tri-binary-action-increment-protocol.md",
       "implicit": false
     },
     {
@@ -11169,7 +11169,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "field": "scene.children[11]"
@@ -12533,10 +12533,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
+      "source": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
       "field": "scene.source.path"
     },
     {

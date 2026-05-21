@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This document is a theorem/proof-target packet for the same-level tri-binary architecture. It does not migrate corpus prose, simulation fixtures, app assets, or Archie terminology. Its job is to make the central-inventory and event-ledger obligations explicit enough that a retained branch certificate can later decide whether the same-level architecture replaces the former axial / polar-charge bookkeeping.
 
-Source posture: read this packet with [tri-binary-architecture.md](tri-binary-architecture.md) and [tri-binary.md](tri-binary.md). The equations below are closure targets, not completed conservation proofs.
+Source posture: read this packet with [swarm-architecture.md](swarm-architecture.md) and [swarm.md](swarm.md). The equations below are closure targets, not completed conservation proofs.
 
 ---
 

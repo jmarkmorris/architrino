@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet answers the support-geometry concern for the bounded speed factor tri-binary model. The base branch model does not assume that architrino paths lie on a sphere. It assumes closed arclength curves in the Euclidean substrate $\mathbb{R}^3$, with a declared support-band row. Fixed-sphere or fixed-radius motion is only a special sector obtained by setting the support radius constant.
 
-This packet refines the support geometry used by [bounded-speed-factor-center-time-dynamics.md](bounded-speed-factor-center-time-dynamics.md), [tri-binary-architecture.md](tri-binary-architecture.md), [hybrid-variable-radius-model-card.md](hybrid-variable-radius-model-card.md), and [force-balance-reduction.md](force-balance-reduction.md). It does not retain a branch, compute a causal-root ledger, or authorize corpus migration.
+This packet refines the support geometry used by [bounded-speed-factor-center-time-dynamics.md](bounded-speed-factor-center-time-dynamics.md), [swarm-architecture.md](swarm-architecture.md), [hybrid-variable-radius-model-card.md](hybrid-variable-radius-model-card.md), and [force-balance-reduction.md](force-balance-reduction.md). It does not retain a branch, compute a causal-root ledger, or authorize corpus migration.
 
 ---
 

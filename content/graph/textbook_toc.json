@@ -10277,17 +10277,17 @@
                     ]
                   },
                   {
-                    "id": "theory_bridges__planck_scale_tri_binary_alignment",
-                    "title": "Planck Scale Tri-Binary Alignment",
+                    "id": "theory_bridges__planck_scale_nested_shell_swarm_alignment",
+                    "title": "Planck Scale Nested Shell Swarm Alignment",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+                    "scenePath": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Thesis",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
                         "markdownSection": "Thesis",
                         "sectionKey": "thesis",
                         "headingLevel": 2
@@ -10295,7 +10295,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Operational Probing Limit",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
                         "markdownSection": "Operational Probing Limit",
                         "sectionKey": "operational probing limit",
                         "headingLevel": 2
@@ -10303,7 +10303,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "What Planck Units Imply About the Outer Binary",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
                         "markdownSection": "What Planck Units Imply About the Outer Binary",
                         "sectionKey": "what planck units imply about the outer binary",
                         "headingLevel": 2
@@ -10311,7 +10311,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Kinematic and Dynamical Alignment Conditions",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
                         "markdownSection": "Kinematic and Dynamical Alignment Conditions",
                         "sectionKey": "kinematic and dynamical alignment conditions",
                         "headingLevel": 2
@@ -10319,7 +10319,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Energy as Causal-Wake Interaction History",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
                         "markdownSection": "Energy as Causal-Wake Interaction History",
                         "sectionKey": "energy as causal wake interaction history",
                         "headingLevel": 2
@@ -10327,7 +10327,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
                         "markdownSection": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
                         "sectionKey": "discrete ladder and phase slip dynamics hypothesis",
                         "headingLevel": 2
@@ -10335,7 +10335,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Spin Transition and Configuration-Space Topology (Hypothesis)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
                         "markdownSection": "Spin Transition and Configuration-Space Topology (Hypothesis)",
                         "sectionKey": "spin transition and configuration space topology hypothesis",
                         "headingLevel": 2
@@ -10343,7 +10343,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
                         "markdownSection": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
                         "sectionKey": "emergent constants hbar ell p and g",
                         "headingLevel": 2
@@ -10351,7 +10351,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
                         "markdownSection": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
                         "sectionKey": "horizon microstructure and condensate like phases conjecture",
                         "headingLevel": 2
@@ -10359,7 +10359,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Constraints, Assumptions, and Failure Modes",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md",
                         "markdownSection": "Constraints, Assumptions, and Failure Modes",
                         "sectionKey": "constraints assumptions and failure modes",
                         "headingLevel": 2
