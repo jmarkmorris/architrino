@@ -1,14 +1,16 @@
 # Mathematical Foundations of the Tri-Binary Architecture
 
-This priority draft states the same-level tri-binary architecture as a theorem-target program, not as a completed proof. It replaces the former nested-radius ontology with deformable, phase-locked spatiotemporal choreographies on a common support scale, but it does not promote any downstream claim until a retained branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, closure residuals, central inventory accounting, energy/action ledgers, exposure maps, and stability data.
+This priority draft states the same-level tri-binary architecture as a theorem-target program, not as a completed proof. It proposes replacing the former nested-radius ontology with deformable, phase-locked spatiotemporal choreographies on a common support scale, but it does not promote any downstream claim until a retained branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, closure residuals, central inventory accounting, energy/action ledgers, exposure maps, and stability data.
 
 Promotion status: `priority-only`. This document is not ready for direct promotion into `content/markdown/aaa` until the same-level branch certificate exists and at least one candidate branch survives the certificate gates below.
+
+Development posture: build same-level tri-binary architecture documents in this directory until the architecture decision gate passes. Do not treat this draft as migration authority for `content/markdown/aaa`, simulations, scene assets, or app copy. The migration decision requires a retained branch packet, a central-inventory replacement for the former polar-charge layer, and an explicit comparison against the nested tri-binary (NTB) causal-closure packet set preserved in [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md).
 
 ---
 
 ## 1. Claim Scope
 
-The tri-binary hypothesis is that stable Noether-core and fermion assemblies are not three radially nested binaries. They are same-level choreographies of architrinos sharing one dynamic support band in the Euclidean substrate. The architecture is attractive because it may replace the former special roles of `inner`, `middle`, and `outer` layers with symmetric phase offsets, central inventory, and topological branch data.
+The tri-binary hypothesis is that stable Noether-core and fermion assemblies may not require three radially nested binaries. They may instead be same-level choreographies of architrinos sharing one dynamic support band in the Euclidean substrate. The architecture is attractive because it may replace the former special roles of `inner`, `middle`, and `outer` layers with symmetric phase offsets, central inventory, and topological branch data.
 
 The current mathematical status is:
 
@@ -532,8 +534,25 @@ Reserved failure codes:
 
 ---
 
-## 13. Working Conclusion
+## 13. Architecture Decision Gate
 
-The same-level tri-binary is a promising replacement for the nested model because it attacks the old architecture's special-layer assumptions, fragile polar-charge placement, and anisotropy burden. The mathematical upgrade is conditional: it becomes stronger than the nested corpus only after the same-level branch certificate replaces the old NTB machinery rather than bypassing it.
+The same-level architecture becomes migration-ready only if a review packet can answer `yes` to all rows below:
 
-The immediate deliverable is therefore one retained same-level branch packet, not a broad rewrite of the corpus. Until that packet exists, this document should be used as a disciplined architecture and certificate plan.
+| Gate | Required object |
+| --- | --- |
+| Branch existence | at least one retained same-level branch packet with finite active roots, positive Jacobian floors, finite memory depth, closed tangential residuals, and no unresolved near-zero self roots |
+| Inventory replacement | integer central-inventory ledger for charged and neutral branches, including provenance rows for reactions and pair production |
+| Energy and exposure | one history-dressed energy/action row and one exposure / medium-response extraction row computed on the same retained branch |
+| Observer exports | Lorentz, photon, mass, color, and strong-field rows explicitly marked `passed`, `failed`, or `not_computed`, with no theorem target promoted by implication |
+| NTB comparison | explicit comparison against the restored nested tri-binary causal-closure packet set, naming which assumptions are replaced, preserved, or left as fallback source material |
+| Migration batch plan | reviewable sequence for corpus, simulation, and asset migration after the architecture decision, with rollback route preserved through git history and the restored NTB source bucket |
+
+Until this table is populated, the architecture is an active development candidate rather than the canonical replacement model.
+
+---
+
+## 14. Working Conclusion
+
+The same-level tri-binary is a promising candidate replacement for the nested model because it attacks the old architecture's special-layer assumptions, fragile polar-charge placement, and anisotropy burden. The mathematical upgrade is conditional: it becomes stronger than the nested corpus only after the same-level branch certificate replaces the old NTB machinery rather than bypassing it.
+
+The immediate deliverable is therefore one retained same-level branch packet and a populated architecture decision gate, not a broad rewrite of the corpus. Until those objects exist, this document should be used as a disciplined architecture and certificate plan.
