@@ -76,6 +76,29 @@ $$
 \hat e_a\hat e_b\delta\mathcal{M}_{\mathrm{tf}}^{ab}.
 $$
 
+The tensor sampled by a directional channel is the trace-free quadrupole
+
+$$
+E_{\hat e}^{ab}
+\equiv
+\hat e^a\hat e^b-\frac{1}{3}h^{ab},
+\qquad
+\delta\mathcal{M}_{2}(\hat e)
+=
+E_{\hat e,ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}.
+$$
+
+These tensors define the probe-dual span
+
+$$
+\mathcal{W}_{A_0}
+\equiv
+\operatorname{span}
+\{E_{\hat e}^{ab}\ \text{for retained acceleration, gradient, pressure, and strain probes}\}.
+$$
+
+The retained trace-free response directions themselves are the branch-emitted or reconstructed tensors $B_r^{ab}=\delta\mathcal{M}_{\mathrm{tf},r}^{ab}$ in the reversible response record. A directional probe records the pairing $\langle E_{\hat e},B_r\rangle_h$, not automatically the full $B_r^{ab}$. A full trace-free reconstruction requires the retained probe-dual span $\mathcal{W}_{A_0}$ to have rank five.
+
 The acceleration and gradient probes must agree on these projected coefficients, not only on the scalar normalization:
 
 $$
@@ -167,6 +190,8 @@ m_{\mathrm{tr}}(A_0)
 $$
 
 This gives the probe a non-fitting invariant. In a homogeneous isotropic medium, $\delta\mathcal{M}_{0}=0$ and $\delta\mathcal{M}_{\mathrm{tf}}^{ab}=0$, so the roadmap scalar mass reduces to $\alpha_{\mathrm{m}}\zeta(A_0)E_{\text{internal}}(A_0)/c_{\text{eff},0}^{2}$. Pure exposure anisotropy changes direction-dependent inertia through $\mathsf{I}_{A_0}^{ab}$ but does not change the scalar trace unless a trace-free medium response is present. Conversely, pure trace-free medium response does not change scalar mass for scalar exposure. The scalar anisotropic correction is only the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}/3$.
+
+In quotient language, this contraction is a retained-response-direction statement. A representative label is a scalar mass handle only if it changes $M_0^{\mathrm{src}}$ or changes the projection of $E_{\text{internal}}\mathcal{Z}_{\mathrm{tf}}^{ab}$ onto the span of retained reversible trace-free response tensors $B_r^{ab}$. Trace-free differences orthogonal to those retained response directions remain unobserved by the scalar trace until a retained probe supplies a tensor that contracts with them.
 
 Any antisymmetric response residue $\mathcal{M}_{-}^{ab}=(\mathcal{M}_{\text{sea}}^{ab}-\mathcal{M}_{\text{sea}}^{ba})/2$ drops out of the reversible quadratic kinetic scalar $V_{\text{cm},a}\mathsf{I}_{A_0}^{ab}V_{\text{cm},b}$. It therefore belongs to orientation, transport, or loss accounting rather than to scalar rest mass.
 

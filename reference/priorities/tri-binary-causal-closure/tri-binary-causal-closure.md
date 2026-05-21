@@ -25,13 +25,13 @@
 - `deployment_handoff` routed unresolved synthesis claims through theorem-roadmap tags and priority-table handoff rows before deployment.
 - `residual_routing_event_ledger` promoted the shared event-ledger grammar into a first radiation worked-case scaffold; non-radiation sector cases remain open.
 - `lorentz_test_residual_handoff` completed the RMS/PPN/SME residual-export schema in `master-equation-closure`; numerical population remains blocked until the Lorentz/GR bridge supplies one shared branch artifact.
-- `shared_branch_certificate_contract` promoted the shared causal-closure certificate target into [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md); population remains blocked until a retained branch supplies the clock, ruler, signal, metric, mass-response, sector, and event-ledger rows together.
+- `shared_branch_certificate_contract` promoted the shared causal-closure certificate target into [tri-binary dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md); population remains blocked until a retained branch supplies the clock, ruler, signal, metric, mass-response, sector, and event-ledger rows together.
 
 ## Scope
 
 This workstream owns the synthesis bridge from tri-binary Noether-core closure to rest mass, proper time, effective Lorentz/GR behavior, photon propagation, and measurement. It is a proof-architecture and routing surface: active-development claims can live here while the dependency ladder is being built, but unresolved claims must be closed, retained as explicit roadmap items, routed to another priority workstream, or cut before deployment.
 
-The deployed dynamics baseline is [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md). That chapter owns the Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and stability tests. This priority document should import those mechanisms rather than re-defining them, then test whether they support the mass, time, relativity, photon, and measurement claims in the sibling synthesis file.
+The deployed dynamics baseline is [tri-binary dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md). That chapter owns the Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and stability tests. This priority document should import those mechanisms rather than re-defining them, then test whether they support the mass, time, relativity, photon, and measurement claims in the sibling synthesis file.
 
 ## Detailed Priority Files
 
@@ -366,6 +366,8 @@ $$
 The center-drift row passes, while state return, direct root closure, speed ordering, and residual balance fail; $\Delta_{\mathbf{k}}$ and the $\eta$ ladder remain uncomputed. This means the row is valuable as a source boundary for $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$, not as a causal-closure success. The next branch-native move is an equality-constrained basis split $B_{\rho,\ell,\sigma,\mu,\nu}(t)$ by relation class, receiver layer, polarity, root branch key, and radial / tangential projection channel, or else a stronger compact-fixture no-go.
 
 Field-speed boundary note, 2026-05-20: the collinear breather packet now contains a head-on $x_L=-1$, $x_R=+1$, $|v|=c_f$ in-flight wake audit and finite-history calculation. It shows that exact affine field-speed inbound history is not ordinary simple-root initial data: the partner wake is still in flight at the audit time, all affine partner source times co-arrive at the origin caustic, and same-source roots form a continuum with $J=0$. With the compact $C^1$ polynomial shell used in the finite-history fixture, the partner shell is exactly zero at $t=0$ because the partner support has not reached the receiver. The finite-history calculation sharpens the obstruction: fixed-regulator infinite history saturates, but the same-source self-continuum scales like $1/(\eta\epsilon_c)$ as the shell width and core scale are removed. Tri-binary middle-layer or horizon-interface uses of $v=c_f$ should therefore require finite-width, dephased, curved, held-release, or branch-certified history preparation before they are allowed to feed a clock, ruler, photon, or mass-response row.
+
+Held-release follow-up, 2026-05-20: the same breather packet now has an explicit stationary-partner handoff map. For the normalized $x_0=1.25$, $g=1$, $c_f=1$ held-release benchmark, the first moving-partner wake reaches the receiver at $x_\ast\approx0.8707972823389274$ with $\dot x_\ast\approx-0.37820836925058077$. This is a strict sub-field-speed handoff into the delayed moving-partner chart; the moving-partner root opens with $J_p=1$ and no acceleration jump. It gives a lawful preparation route to study before any tri-binary clock, ruler, or mass-response row relies on exact $v=c_f$ head-on history.
 
 ## Related Priorities
 

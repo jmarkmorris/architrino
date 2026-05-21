@@ -4,7 +4,8 @@ Status. Priority proof packet for the A1 variable-angular-rate continuation.
 This packet consumes [spiral-a1-variable-rate-turn-target](spiral-a1-variable-rate-turn-target.md)
 and derives the finite-memory root equations that replace the constant-$\Omega$
 chart. It is a theory advancement under the existing `spiral_branch_chart_test`,
-not a new gate.
+not a new gate. The retained-root turn-center follow-on is recorded in
+[spiral-a1-retained-memory-profile](spiral-a1-retained-memory-profile.md).
 
 Claim level. The local A1 angular-deceleration target is not enough to define a
 branch chart. A nonconstant time law changes the delayed-root equation through
@@ -190,10 +191,13 @@ $$
 \frac{d\phi}{\dot\theta(\phi)}.
 $$
 The simple monotone one-parameter continuations fail because they either lose
-the old roots or move to a branch ledger with the wrong radial sign. The next
-mathematical search is therefore not a new requirement row; it is to construct
-or exclude a finite-memory angular-rate profile whose inverse-rate averages
-meet the branch equations while preserving positive $\Gamma$.
+the old roots or move to a branch ledger with the wrong radial sign. A more
+flexible retained-memory polynomial profile does satisfy the turn-center
+moment, endpoint, radial, and tangential equations; see
+[spiral-a1-retained-memory-profile](spiral-a1-retained-memory-profile.md).
+The next mathematical search is therefore not a new requirement row; it is to
+transport that retained-memory witness away from $\theta=0$ or prove that such
+transport fails for a controlled function class.
 
 ## Promotion Decision
 
@@ -201,8 +205,7 @@ meet the branch equations while preserving positive $\Gamma$.
 - Derivation/closure target: the variable-rate A1 problem is now a
   finite-memory integral equation for the angular time law.
 - Effective summary: simple one-parameter continuations fail the same-window or
-  positive-$\Gamma$ test, but this is not a global no-go for all nonconstant
-  time laws.
+  positive-$\Gamma$ test, but a retained-root turn-center memory witness exists.
 - Speculation: none promoted.
 
 Promotion decision. Promote the invariant local slope and finite-memory

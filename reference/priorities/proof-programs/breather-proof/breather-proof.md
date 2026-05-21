@@ -42,12 +42,14 @@
 - `next_candidate_refinement_handoff` produced `certificate/next_candidate_refinement_handoff.md`, opening the next finite candidate/refinement target and forbidding branch-chart construction on the rejected cosine packet.
 - `fixed_cosine_refinement_rescue_test` produced `certificate/fixed_cosine_refinement_rescue_test.md`, rejecting mesh-only rescue of the fixed cosine candidate because residual equality collars are structural under the current contract.
 - `fixed_history_strict_collar_persistence_lemma` produced `certificate/fixed_history_strict_collar_persistence_lemma.md`, proving that fixed-history mesh refinement cannot consume positive-width equality cores under strict simple-root coverage.
-- `sub_field_speed_action_test_case` produced `certificate/sub_field_speed_action_test_case.md`, promoting an action-generated sub-field-speed analytic baseline: the held-source segment has an exact field-speed criterion, the exterior delayed-partner branch has a Lambert-$W$ phase solution, and exact same-side self roots are excluded under a strict sub-field speed cap.
+- `sub_field_speed_action_test_case` produced `certificate/sub_field_speed_action_test_case.md`, promoting an action-generated sub-field-speed analytic baseline: the held-source segment has an exact field-speed criterion and explicit regular handoff map, the exterior delayed-partner branch has a Lambert-$W$ phase solution, and exact same-side self roots are excluded under a strict sub-field speed cap.
+- `held_release_handoff_map` produced `certificate/held_release_handoff_map.md`, proving that the stationary-partner ODE segment admits a unique scalar handoff equation, a separate field-speed-before-handoff criterion, and a simple-root opening with $J_p=1$ and no acceleration jump. In the normalized $x_0=1.25$, $g=1$, $c_f=1$ fixture, the handoff occurs at $x_\ast\approx0.8707972823389274$ with $\dot x_\ast\approx-0.37820836925058077$, so the moving-partner delayed chart is entered from a strict sub-field-speed state rather than the rejected exact field-speed self-continuum.
 - `next_candidate_solver_target` produced `certificate/next_candidate_solver_target.md`, defining the next executable target as a fresh fold-adapted collocation candidate whose null-coordinate pre-ledger must pass before any branch chart is built, and now upgrading $H_{\mathrm{pc}}$ into a tangent-space gap-opening criterion.
 - `fresh_fold_collocation_solver_surface` produced `certificate/fresh_fold_collocation_solver_surface.md`, recording that no runnable breather-specific fresh-candidate solver or pre-ledger generator exists yet and specifying the minimum lawful successor artifact set plus the finite gap-opening linearization.
 - `null_coordinate_separation_direction_lemma` produced `certificate/null_coordinate_separation_direction_lemma.md`, converting parent-complement repair into a finite separation-direction problem on the fresh collocation candidate.
 - `gap_opening_feasibility_scanner` produced `scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs`, `certificate/gap_opening_feasibility_input.seed_cosine_diagnostic_demo.v0.json`, `certificate/gap_opening_feasibility_result.seed_cosine_diagnostic_demo.v0.json`, and `certificate/gap_opening_feasibility_report.seed_cosine_diagnostic_demo.v0.md`. It emits a strict tangent witness for a declared diagnostic endpoint-shear matrix while keeping `preledger_pass=false`, `updates_live_ledger=false`, and `branch_chart_authorized=false`.
 - `live_fold_shear_gap_opening` produced `scripts/proof-programs/fold-shear-gap-matrix-builder.mjs`, `certificate/gap_opening_live_fold_shear_input.seed_cosine_residuals.v0.json`, `certificate/gap_opening_live_fold_shear_result.seed_cosine_residuals.v0.json`, and `certificate/gap_opening_live_fold_shear_report.seed_cosine_residuals.v0.md`. It replaces the independent diagnostic columns with actual $C^1$ first-half arc bumps extended by half-period antisymmetry and emits a strict finite witness for the residual source-above-receiver gaps.
+- `finite_fold_shear_candidate_seed` produced `scripts/proof-programs/fold-shear-finite-deformation.mjs`, `certificate/fold_shear_deformed_candidate.seed_cosine_residuals.v0.json`, and `certificate/fold_shear_deformed_candidate_report.seed_cosine_residuals.v0.md`. It converts the strict live tangent witness into an explicit finite fixed-period deformation with threshold $\varepsilon_{\min}=0.0515044597755009$, chosen $\varepsilon=0.0625$, and minimum declared residual surplus `0.00106743573978125`, while keeping `preledger_pass=false` and `branch_chart_authorized=false`.
 - `aaa_corpus_recommendation_handoff` produced `certificate/aaa_corpus_recommendation_handoff.md`, recording the scoped AAA edits that promoted the null-coordinate pre-ledger as a candidate-falsification gate, kept rejected-packet operational detail priority-only, and deferred any enlarged regular-boundary theorem pending Op discussion.
 - `regular_boundary_user_facing_recommendation` produced `certificate/regular_boundary_user_facing_recommendation.md`, recording that current AAA prose should not name regular-boundary coverage as accepted doctrine; the existing generic same-packet complement predicate is the safe public surface until a finite inclusion/domination theorem exists.
 - `field_speed_head_on_inflight_wake_test_case` produced `scripts/proof-programs/field-speed-head-on-root-audit.mjs`, `certificate/field_speed_head_on_inflight_wake_input.v0.json`, `certificate/field_speed_head_on_inflight_wake_result.v0.json`, `certificate/field_speed_head_on_inflight_wake_test_case.md`, and `certificate/field_speed_head_on_inflight_wake_report.v0.md`. It records the operator-proposed $x_L=-1$, $x_R=+1$, $|v|=c_f$ head-on seed as a fail-closed caustic/root-degeneracy test: partner wake is still in flight at $t=0$, same-source roots form a continuum with $J=0$, and no candidate or branch chart is authorized before a dual-mollified finite-history run.
@@ -122,11 +124,11 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 - Use `certificate/next_candidate_refinement_handoff.md` as the next executable handoff for a new candidate or refinement packet.
 - Use `certificate/fixed_cosine_refinement_rescue_test.md` as the no-go for mesh-only rescue of the same cosine candidate.
 - Use `certificate/fixed_history_strict_collar_persistence_lemma.md` as the local obstruction lemma explaining why fixed-history refinement leaves strict equality collars.
-- Use `certificate/sub_field_speed_action_test_case.md` as the action-generated comparison branch for testing whether a breather can remain strictly sub-field-speed; it is a success marker and analytic baseline, not a branch-chart authorization.
+- Use `certificate/sub_field_speed_action_test_case.md` and `certificate/held_release_handoff_map.md` as the action-generated comparison branch for testing whether a breather can remain strictly sub-field-speed; they are success markers and analytic baselines, not branch-chart authorizations.
 - Use `certificate/next_candidate_solver_target.md` as the current solver target for the next candidate packet.
 - Use `certificate/fresh_fold_collocation_solver_surface.md` as the implementation contract for the missing fresh-candidate solver or manual artifact instantiation.
 - Use `certificate/null_coordinate_separation_direction_lemma.md` as the constructive proof route for opening parent-complement gaps by changing the candidate history.
-- Use `scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs`, `scripts/proof-programs/fold-shear-gap-matrix-builder.mjs`, and `certificate/gap_opening_live_fold_shear_result.seed_cosine_residuals.v0.json` as the current proof aid for the tangent-space condition $B\xi=0$, $A\xi\ge\kappa\mathbf{1}$. The live local fold-shear matrix is a constructive seed direction; a full fresh-candidate Jacobian and interval pre-ledger are still required before making any candidate claim.
+- Use `scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs`, `scripts/proof-programs/fold-shear-gap-matrix-builder.mjs`, `scripts/proof-programs/fold-shear-finite-deformation.mjs`, `certificate/gap_opening_live_fold_shear_result.seed_cosine_residuals.v0.json`, and `certificate/fold_shear_deformed_candidate.seed_cosine_residuals.v0.json` as the current proof aid for the tangent-space condition $B\xi=0$, $A\xi\ge\kappa\mathbf{1}$ and its finite fixed-period deformation. The live local fold-shear matrix is a constructive seed direction, and the finite deformation is an initial candidate-history seed; a full fresh-candidate Jacobian and interval pre-ledger are still required before making any candidate claim.
 - Use `certificate/aaa_corpus_recommendation_handoff.md` as the audit trail for the scoped AAA edit batch that has now been applied.
 - Use `certificate/regular_boundary_user_facing_recommendation.md` as the current documentation decision for the regular-boundary question: no named AAA theorem now, with only a possible future same-packet wording micro-edit in `collinear-breather.md`.
 - Use `certificate/field_speed_head_on_inflight_wake_test_case.md` and `certificate/field_speed_head_on_inflight_wake_result.v0.json` as the current boundary-case audit for exact field-speed head-on history. It is a useful separator-caustic test, not a candidate cycle. Any continuation must run the dual-mollified finite-history integral before using the case for force, recapture, or branch-chart claims.
@@ -152,7 +154,7 @@ T_{\mathrm{cyc}},
 $$
 fixed across `phi_cyc.json`, `mesh.json`, `causal_ledger.json`, `branch_chart.json`, and `seed_chart_interval_report.md`.
 - The branch chart is accepted only as an authorized refinement of the null-coordinate pre-ledger: every simple branch must point to one `simple_root` pre-ledger row, empty rows must stay inactive with positive gaps, and fold-layer rows must not be reduced to branch-sum formulas.
-- Treat [tri-binary-causal-closure](../../tri-binary-causal-closure/tri-binary-causal-closure.md) as a separate active-development synthesis workstream, not as a replacement for the finite certificate packet. Before deployment, unresolved synthesis items must be closed, kept as explicit roadmap targets, routed into the relevant priority workstream, or cut.
+- Treat [tri-binary](../../tri-binary/tri-binary.md) as a separate active-development synthesis workstream, not as a replacement for the finite certificate packet. Before deployment, unresolved synthesis items must be closed, kept as explicit roadmap targets, routed into the relevant priority workstream, or cut.
 
 ## Active Cross-Document Action Plan
 
@@ -256,6 +258,21 @@ $$
 after subtracting the recorded residual overlap depths.
 This is a true candidate-history direction in the local shear subspace, not just
 a gate requirement.
+Because the fixed-period null-coordinate rows are affine in $X$, this tangent
+witness now has an explicit finite continuation:
+$$
+X_\varepsilon(\theta)=1.25\cos(2\pi\theta)+\varepsilon H(\theta).
+$$
+The finite-deformation artifact records
+$$
+\varepsilon_{\min}=0.0515044597755009,
+\qquad
+\varepsilon=0.0625,
+\qquad
+\min_m g_m(\varepsilon)=0.00106743573978125.
+$$
+This is the first finite candidate-history seed for the fresh solver, not a
+pre-ledger pass or a repaired cosine packet.
 The minimum lawful next attempt is therefore a new same-packet artifact set,
 generated or manually instantiated under one fresh identity, whose first
 acceptance row is again the null-coordinate pre-ledger and whose search surface

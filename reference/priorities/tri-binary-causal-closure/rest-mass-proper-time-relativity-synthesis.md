@@ -1,14 +1,14 @@
 # Tri-Binary Causal Closure Synthesis
 
-This detailed priority file supports [Tri-Binary Causal Closure](tri-binary-causal-closure.md). It preserves the active-development synthesis, theorem roadmap, and review priorities that were formerly embedded in the workstream control file.
+This detailed priority file supports [tri-binary causal closure](tri-binary-causal-closure.md). It preserves the active-development synthesis, theorem roadmap, and review priorities that were formerly embedded in the workstream control file.
 
-The proof-dependency surface is [Tri-Binary Dependency Map](tri-binary-dependency-map.md). The plain-language companion is [Plain-Language Relativity Bridge](plain-language-relativity-bridge.md).
+The proof-dependency surface is [tri-binary dependency map](tri-binary-dependency-map.md). The plain-language companion is [Plain-Language Relativity Bridge](plain-language-relativity-bridge.md).
 
 ## Synthesis Status and Scope
 
 This document is a synthesis and proof roadmap for the energy argument extending [Kinetic and Potential Energy](../../../content/markdown/aaa/dynamics/energy.md). It is not yet a completed theorem. Its purpose is to organize the current claim in academic order, preserve the conceptual content of the development, remove repetition, and identify the mathematical closures that must eventually be carried into the main dynamics, assembly, and spacetime chapters.
 
-The active development dependency map for this synthesis is [Tri-Binary Dependency Map](tri-binary-dependency-map.md). For publication as a reference priority document, unresolved items must be retained as explicit roadmap targets, routed into the priority system, or cut from theorem-level prose. Before textbook-facing promotion, those items must be mathematically closed or recast as clearly labeled conjectures.
+The active development dependency map for this synthesis is [tri-binary dependency map](tri-binary-dependency-map.md). For publication as a reference priority document, unresolved items must be retained as explicit roadmap targets, routed into the priority system, or cut from theorem-level prose. Before textbook-facing promotion, those items must be mathematically closed or recast as clearly labeled conjectures.
 
 Inline roadmap tags of the form [→ Target N](#theorem-roadmap) are deployment handoff markers. They do not prove the tagged claim; they identify the numbered theorem burden that must close before the claim can leave active-development status.
 

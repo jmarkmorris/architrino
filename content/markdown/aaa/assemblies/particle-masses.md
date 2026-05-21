@@ -286,6 +286,8 @@ $$
 
 For scalar mass to be quotient-visible, this defect must remain below the declared trace tolerance. A scalar source can pass its no-hidden-handle test while the composed tensor trace still fails; in that case the discarded label is invisible in the homogeneous scalar source but mass-visible in anisotropic or pressure-sensitive response.
 
+The trace-free part of this test is limited by what the branch actually probes. If $\mathcal{V}_{\mathcal M}$ is the span of retained reversible trace-free response tensors, then scalar mass only sees the projection of $E_{\text{internal}}\mathcal{Z}_{\mathrm{tf},ab}$ onto $\mathcal{V}_{\mathcal M}$. Full trace-free descent is required only when the retained response directions reconstruct the full trace-free tensor. Otherwise the scalar mass claim is a projected claim: labels that move response-visible components are mass handles, while labels that move only orthogonal unprobed components remain invisible to scalar mass at this order.
+
 The pressure specialization has the same discipline. For a branch-preserving pressure perturbation,
 
 $$

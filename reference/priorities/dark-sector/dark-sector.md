@@ -65,7 +65,7 @@ where $A_{\mathrm{int}}$ is the internal action or assembly record, $\mathcal{B}
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [strong-field hypothesis bank](../strong-field-closure/hypothesis-bank.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
-- [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md)
+- [tri-binary](../tri-binary/tri-binary.md)
 - [radiation Gate C](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md)
 - [validation-gates](../validation-gates/validation-gates.md)
 

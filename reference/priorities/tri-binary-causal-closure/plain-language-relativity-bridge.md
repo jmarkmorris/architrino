@@ -1,6 +1,6 @@
 # Plain-Language Relativity Bridge
 
-This detailed priority file supports [Tri-Binary Causal Closure](tri-binary-causal-closure.md) and the detailed synthesis in [Tri-Binary Causal Closure Synthesis](rest-mass-proper-time-relativity-synthesis.md).
+This detailed priority file supports [tri-binary causal closure](tri-binary-causal-closure.md) and the detailed synthesis in [tri-binary causal-closure synthesis](rest-mass-proper-time-relativity-synthesis.md).
 
 ## Purpose
 

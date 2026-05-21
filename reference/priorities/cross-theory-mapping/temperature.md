@@ -14,7 +14,7 @@
 1. `standard_temperature_baseline` - Keep thermodynamic, kinetic, statistical, radiation, cosmological, and horizon-temperature meanings separated before mapping them into $\mathbb{A}\mathbb{A}\mathbb{A}$. Status: `draft`. Depends on: none.
 2. `ensemble_temperature_definition` - Convert the radiation chapter's ensemble-temperature relation into a reusable condition for when temperature is available. Status: `draft`. Depends on: [entropy](entropy.md).
 3. `kelvin_kb_bridge` - Route the Kelvin and $k_B$ discussion through Noether-Sea ensemble dynamics without treating a single Noether core as thermodynamically hot. Status: `draft`. Depends on: `ensemble_temperature_definition`, [mass-map](../mass-map/mass-map.md).
-4. `blackbody_temperature_gate` - Tie Planck-spectrum recovery to Gate A, Gate B, Gate C, detailed balance, and thermalization depth. Status: `draft`. Depends on: [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md).
+4. `blackbody_temperature_gate` - Tie Planck-spectrum recovery to Gate A, Gate B, Gate C, detailed balance, and thermalization depth. Status: `draft`. Depends on: [tri-binary](../tri-binary/tri-binary.md).
 5. `cosmology_temperature_handoff` - Separate intrinsic Noether-core energy, local emissive ensemble temperature, and observer-inferred CMB temperature. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
 
 ## Scope
@@ -242,7 +242,7 @@ This split should be promoted anywhere cosmology prose risks converting the obse
 
 - [entropy](entropy.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
-- [tri-binary-causal-closure](../tri-binary-causal-closure/tri-binary-causal-closure.md)
+- [tri-binary](../tri-binary/tri-binary.md)
 - [mass-map](../mass-map/mass-map.md)
 - [validation-gates](../validation-gates/validation-gates.md)
 

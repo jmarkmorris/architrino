@@ -230,6 +230,33 @@ local shear subspace. The successor solver should seed its fold-adapted
 collocation search with this direction, then add the full structural equations
 and interval bounds on the same new packet identity.
 
+The finite form of that seed is now explicit:
+`fold_shear_deformed_candidate.seed_cosine_residuals.v0.json` sets
+$$
+X_\varepsilon(\theta)
+=
+1.25\cos(2\pi\theta)+\varepsilon H(\theta),
+\qquad
+\varepsilon=0.0625,
+$$
+where $H$ is the live half-period fold-shear witness. Since the declared
+fixed-period collar rows are affine in $X$, the residual surpluses satisfy
+$$
+g_m(\varepsilon)=\varepsilon(A\xi)_m-\kappa_m.
+$$
+The all-row threshold is
+$$
+\max_m\frac{\kappa_m}{(A\xi)_m}
+=
+0.0515044597755009,
+$$
+and the generated seed records minimum finite surplus
+$$
+0.00106743573978125.
+$$
+This gives the solver a concrete finite initial history, still below pre-ledger
+claim level.
+
 ## Null-Coordinate Pre-Ledger Acceptance Targets
 
 Before any branch-chart construction, the successor packet must run the null-coordinate pre-ledger on its own frozen identity and record:

@@ -347,6 +347,14 @@ $$
 
 be the scalar exposed source after the mass-facing exposure quotient has descended. Around the weak homogeneous reference cell, the scalar mass trace has the first-order form
 
+Also define the trace-free exposed numerator
+
+$$
+\mathcal{N}_{\mathrm{tf},ab}(A)
+\equiv
+E_{\text{internal}}(A)\mathcal{Z}_{\mathrm{tf},ab}(A).
+$$
+
 $$
 m_{\mathrm{tr}}(A)
 =
@@ -391,7 +399,73 @@ $$
 
 This equation is the subthreshold exposed-pressure trace lemma. Below $\mathcal{R}_{\text{tr},*}$, pressure changes scalar mass trace only through a quotient-visible exposed-source change $\delta_PM_{0}^{\mathrm{src}}$, the shared isotropic delay-pressure coefficient $C_{\chi}^{\mathrm{iso}}$, and the trace-free contraction of exposed anisotropy with the reversible symmetric pressure-dressed medium tensor. A pressure replay that improves the scalar mass trace by introducing an independent $\delta\mathcal{M}_0$ row, a hidden source-handle shift, or an unlogged loss term has not advanced the mass map; it has split the branch or left the reversible domain.
 
-The residual $\mathcal{R}_{\mathrm{comp}}$ must retain second-order pressure terms, exposure drift not yet proven to descend through the quotient, internal-energy drift beyond $M_{0}^{\mathrm{src}}$, tensor residuals $\mathcal{R}_{\mathcal M}^{ab}$, projection-label mismatch, and thresholded transport events.
+The pressure row also fixes the response-visible trace-free span for this specialization. At first order the pressure-visible span is contained in
+
+$$
+\mathcal{V}_{P,A}
+\subseteq
+\operatorname{span}
+\left\{
+Q_{\chi}^{ab},
+S_{\mathrm{dev}}^{ab}
+\right\},
+$$
+
+or in the smaller span of the declared combination when the branch replay retains only one pressure direction. Therefore the pressure trace constrains only the projection of $E_{\text{internal}}(A)\mathcal{Z}_{\mathrm{tf},ab}(A)$ onto $\mathcal{V}_{P,A}$. A trace-free exposure difference orthogonal to $Q_{\chi}^{ab}$ and $S_{\mathrm{dev}}^{ab}$ is not a pressure scalar-mass handle in this row, although it may still be visible to another retained tensor probe.
+
+The displayed pressure equation is the weak homogeneous first-order form. In a finite background anisotropy, the product-rule form is
+
+$$
+\delta_Pm_{\mathrm{tr}}
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+(1+\delta\mathcal{M}_0)\delta_PM_0^{\mathrm{src}}
++
+M_0^{\mathrm{src}}\delta_P\delta\mathcal{M}_0
++
+\frac{1}{3}
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\delta_P\mathcal{N}_{\mathrm{tf},ab}
++
+\frac{1}{3}
+\mathcal{N}_{\mathrm{tf},ab}
+\delta_P\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right]
++
+\mathcal{R}_{P}^{\mathrm{full}}.
+$$
+
+The residual $\mathcal{R}_{\mathrm{comp}}$ or $\mathcal{R}_{P}^{\mathrm{full}}$ must retain second-order pressure terms, exposure drift not yet proven to descend through the quotient, internal-energy drift beyond $M_{0}^{\mathrm{src}}$, tensor residuals $\mathcal{R}_{\mathcal M}^{ab}$, projection-label mismatch, medium-label drift, and thresholded transport events. In particular, residual terms include
+
+$$
+M_0^{\mathrm{src}}\mathcal{R}_{\mathcal M0},
+\qquad
+\frac{1}{3}
+\mathcal{N}_{\mathrm{tf},ab}
+\mathcal{R}_{\mathcal M,\mathrm{tf}}^{ab},
+\qquad
+\delta\mathcal{M}_0\,\delta_PM_0^{\mathrm{src}},
+\qquad
+\frac{1}{3}
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\delta_P\mathcal{N}_{\mathrm{tf},ab}.
+$$
+
+If the restored representative changes the medium response itself, the common-medium assumption has failed unless
+
+$$
+\mathcal{R}_{\mathrm{med-label}}
+=
+M_0^{\mathrm{src}}\Delta_d\delta\mathcal{M}_0
++
+\frac{1}{3}
+\mathcal{N}_{\mathrm{tf},ab}
+\Delta_d\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+$$
+
+is below tolerance.
 
 Two special cases are useful as branch diagnostics:
 
