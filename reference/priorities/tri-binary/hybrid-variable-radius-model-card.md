@@ -1,14 +1,24 @@
 # Hybrid Variable-Radius Tri-Binary Model Card
 
-Promotion status: `priority-only`. This packet records the proposed merge between the nested tri-binary model and the same-level tri-binary model. It does not authorize migration into `content/markdown/aaa`, simulations, scene assets, or app copy. It defines a branch-family target in which the former nested and same-level pictures are sectors of one variable-radius, bounded-speed Noether-core model. The slot-radius shorthand $R_a$ is made into a derived support functional in [hybrid-support-radius-functional.md](hybrid-support-radius-functional.md).
+Promotion status: `priority-only`. This packet records the proposed merge between the nested tri-binary model and the same-level tri-binary model. It does not authorize migration into `content/markdown/aaa`, simulations, scene assets, or app copy. It defines a branch-family target in which the former nested and same-level pictures are sectors of one variable-radius, bounded-speed Noether-core model. After [neutral-knot-cloud-branch-model.md](neutral-knot-cloud-branch-model.md), this hybrid packet is a binary-slot sector of the broader neutral six-site knot-cloud branch family. The slot-radius shorthand $R_a$ is made into a derived support functional in [hybrid-support-radius-functional.md](hybrid-support-radius-functional.md).
 
-The working decision is not to replace the old layer picture immediately. The safer mathematical move is to demote fixed radial nesting from ontology to a sector condition. The three binaries remain three binary slots in one six-architrino Noether-core branch. Their radii, speeds, causal-root ledgers, and event rows decide whether a retained branch lies in a nested sector, a same-level sector, or a transition sector.
+The working decision is not to replace the old layer picture immediately. The safer mathematical move is to demote fixed radial nesting and exact pairing from ontology to sector conditions. The general base branch is six labeled architrinos with three positive and three negative sites. The three binaries remain available only when an optional partition into three binary slots is declared and certified. Their radii, speeds, causal-root ledgers, and event rows decide whether a retained branch lies in a nested sector, a same-level sector, a transition sector, or outside the binary-slot sector altogether.
 
 ---
 
 ## 1. Merge Hypothesis
 
-Let $a\in\{1,2,3\}$ index the three binary slots, and let $\sigma\in\{+,-\}$ index the two architrinos in each binary. The base branch is a set of closed arclength curves in $\mathbb{R}^3$ with a declared support descriptor:
+The general base branch uses site labels $i\in I=\{1,\ldots,6\}$ with $\sum_i\sigma_i=0$ and no required pair relation. This hybrid sector adds a partition
+
+$$
+\mathcal{P}=\{P_1,P_2,P_3\},
+\qquad
+|P_a|=2,
+\qquad
+\sum_{i\in P_a}\sigma_i=0.
+$$
+
+Only after $\mathcal{P}$ is declared may one write $i=(a,\sigma)$, with $a\in\{1,2,3\}$ indexing the three binary slots and $\sigma\in\{+,-\}$ indexing the two architrinos in each slot. The sector branch is a set of closed arclength curves in $\mathbb{R}^3$ with a declared support descriptor:
 
 $$
 \mathbf{x}_{a,\sigma}(t)

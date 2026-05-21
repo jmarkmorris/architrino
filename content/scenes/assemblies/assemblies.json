@@ -41,7 +41,7 @@
     {
       "id": "standard_model",
       "title": "Standard Model Assemblies",
-      "radius": 2.688,
+      "radius": 2.35,
       "color": "#2f6b6f",
       "position": [
         0,
@@ -57,11 +57,11 @@
     {
       "id": "particle_masses",
       "title": "Particle Masses",
-      "radius": 2.688,
+      "radius": 2.35,
       "color": "#5a1f2e",
       "position": [
-        10.24,
-        -2.34,
+        9.7,
+        3.15,
         0
       ],
       "motion": {
@@ -74,11 +74,11 @@
     {
       "id": "fermions",
       "title": "Fermions",
-      "radius": 2.688,
+      "radius": 2.35,
       "color": "#5d3a9f",
       "position": [
-        4.56,
-        -9.46,
+        6,
+        -8.25,
         0
       ],
       "motion": {
@@ -90,11 +90,11 @@
     {
       "id": "electroweak_bosons",
       "title": "Electroweak Bosons",
-      "radius": 2.688,
+      "radius": 2.35,
       "color": "#2f6b6f",
       "position": [
-        -4.56,
-        -9.46,
+        -6,
+        -8.25,
         0
       ],
       "motion": {
@@ -107,11 +107,11 @@
     {
       "id": "gluons",
       "title": "Gluons",
-      "radius": 2.688,
+      "radius": 2.35,
       "color": "#3a5f9f",
       "position": [
-        -10.24,
-        -2.34,
+        -9.7,
+        3.15,
         0
       ],
       "motion": {
@@ -124,11 +124,11 @@
     {
       "id": "mesons_doc",
       "title": "Mesons",
-      "radius": 2.688,
+      "radius": 2.35,
       "color": "#3a5f9f",
       "position": [
-        -8.21,
-        6.55,
+        0,
+        10.2,
         0
       ],
       "motion": {
