@@ -2,7 +2,7 @@
 
 This document defines how agency language is used in $\mathbb{A}\mathbb{A}\mathbb{A}$ without adding a separate agency substance or a law-breaking freedom. The detailed quantum-mechanical context remains in [Reality, Quantum, and Causality](../quantum/reality-quantum-causality.md); this page isolates the philosophical and dynamical interpretation.
 
-It also belongs with [Measurement Ontology](../quantum/measurement-ontology.md), [Superposition Mechanism](../theory-bridges/superposition-mechanism.md), [Philosophy of Science](philosophy-of-science.md), and [Information / Computation](information-computation.md).
+It also belongs with [Measurement Ontology](../quantum/measurement-ontology.md), [Superposition Mechanism](theory-bridges/superposition-mechanism.md), [Philosophy of Science](philosophy-of-science.md), and [Information / Computation](information-computation.md).
 
 ## Internal vs External Causation
 

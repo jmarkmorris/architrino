@@ -1,6 +1,6 @@
 # Dynamic Pair-Provenance Source-Measure Packet
 
-This packet turns `pair_provenance_measure` into a source-measure proof target. It does not claim Bell closure. Its purpose is to define the exact mathematical object that must sit between the angular-momentum ledger and the Bell-family residual harness before [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md) can be rewritten as a passed or failed $\mathbb{A}\mathbb{A}\mathbb{A}$ account.
+This packet turns `pair_provenance_measure` into a source-measure proof target. It does not claim Bell closure. Its purpose is to define the exact mathematical object that must sit between the angular-momentum ledger and the Bell-family residual harness before [bell-theorem](../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) can be rewritten as a passed or failed $\mathbb{A}\mathbb{A}\mathbb{A}$ account.
 
 The immediate trigger is the executable negative control in `scripts/quantum/bell-family-residual-harness.mjs`: a finite pair-provenance grid plus local axis kernels can preserve no-signaling and measurement independence while still collapsing to Bell-local product screening. That result is valuable because it rules out a tempting shortcut. Explicit pair provenance is not enough; the source measure and apparatus response must show why the completed record law does not reduce to
 

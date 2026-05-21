@@ -72,7 +72,7 @@ If the $R_L$ or response coefficient needed for $\Delta a_\mu$ produces excluded
 - [noether-core.md](../../spacetime/noether-core.md)
 - [particle-masses.md](../particle-masses.md)
 - [quantum-number-mapping.md](./quantum-number-mapping.md)
-- [weak-mixing-ckm.md](../../theory-bridges/weak-mixing-ckm.md)
+- [weak-mixing-ckm.md](../../philosophy-history/theory-bridges/weak-mixing-ckm.md)
 - [reaction-ledger.md](../../validation/reaction-ledger.md)
 
 ## Status

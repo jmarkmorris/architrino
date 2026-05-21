@@ -1528,57 +1528,57 @@
     {
       "id": "theory_bridges__bell_theorem",
       "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/theory-bridges/bell_theorem.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json"
     },
     {
       "id": "theory_bridges__collapse_problem",
       "name": "Measurement Problem and Collapse",
-      "path": "content/scenes/theory-bridges/collapse_problem.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/collapse_problem.json"
     },
     {
       "id": "theory_bridges__entanglement_nonlocality",
       "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/theory-bridges/entanglement_nonlocality.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json"
     },
     {
       "id": "theory_bridges__klein_gordon_scalar_fields",
       "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
-      "path": "content/scenes/theory-bridges/klein_gordon_scalar_fields.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json"
     },
     {
       "id": "theory_bridges__pilot_wave_character",
       "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/theory-bridges/pilot_wave_character.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json"
     },
     {
       "id": "theory_bridges__planck_scale_tri_binary_alignment",
       "name": "Planck Scale Tri-Binary Alignment",
-      "path": "content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json"
     },
     {
       "id": "theory_bridges__quantum_operator_mapping",
       "name": "Quantum Operator Mapping",
-      "path": "content/scenes/theory-bridges/quantum_operator_mapping.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json"
     },
     {
       "id": "theory_bridges__special_relativity_noether_core",
       "name": "Special Relativity and Deformable Noether Cores",
-      "path": "content/scenes/theory-bridges/special_relativity_noether_core.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json"
     },
     {
       "id": "theory_bridges__superposition_mechanism",
       "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/theory-bridges/superposition_mechanism.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json"
     },
     {
       "id": "theory_bridges",
       "name": "Theory Bridges",
-      "path": "content/scenes/theory-bridges/theory_bridges.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json"
     },
     {
       "id": "theory_bridges__weak_mixing_ckm",
       "name": "Weak Mixing CKM",
-      "path": "content/scenes/theory-bridges/weak_mixing_ckm.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json"
     },
     {
       "id": "substance_structure_potential",
@@ -1593,12 +1593,17 @@
     {
       "id": "theory_bridges__spacetime_models_and_noether_sea",
       "name": "Spacetime Models and the Noether Sea",
-      "path": "content/scenes/theory-bridges/spacetime_models_and_noether_sea.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json"
     },
     {
       "id": "theory_bridges__return_cycle_lorentz_quantization",
       "name": "Return-Cycle Lorentz Quantization",
-      "path": "content/scenes/theory-bridges/return_cycle_lorentz_quantization.json"
+      "path": "content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json"
+    },
+    {
+      "id": "inherited_theory_interface",
+      "name": "Inherited Theory Interface",
+      "path": "content/scenes/philosophy_history/inherited_theory_interface.json"
     }
   ]
 }

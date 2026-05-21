@@ -137,7 +137,7 @@ without adding instantaneous causal influence between detectors. If instead meas
 - **Substrate nonseparability:** retain strict measurement independence and no-signaling; Bell violation is recovered through nonfactorizable pair-provenance and apparatus-response coupling.
 - **Controlled relaxation of measurement independence:** relax measurement independence in the declared substrate response variables; the relaxation must be bounded to prevent macroscopic backward causation or signaling claims.
 
-A mere shared-source story is not enough: if the retained provenance screens the two detector wings into independent local laws, the account has fallen back into the Bell-local class. The detailed derivation and residual tests belong to [Bell's Theorem](../theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../theory-bridges/entanglement-nonlocality.md).
+A mere shared-source story is not enough: if the retained provenance screens the two detector wings into independent local laws, the account has fallen back into the Bell-local class. The detailed derivation and residual tests belong to [Bell's Theorem](../philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../philosophy-history/theory-bridges/entanglement-nonlocality.md).
 
 The routing boundary is:
 
@@ -146,7 +146,7 @@ The routing boundary is:
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) owns moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and preferred-frame leakage bounds.
 - [Emergent Metric](../spacetime/emergent-metric.md) owns metric reconstruction from observer clocks, rulers, and signals.
 - [Wavefunction Ontology](../quantum/wavefunction-ontology.md) and [Measurement Ontology](../quantum/measurement-ontology.md) own quantum-state and measurement descriptions at the observer-accessible layer.
-- [Bell's Theorem](../theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../theory-bridges/entanglement-nonlocality.md) own Bell-family correlation recovery, no-signaling, measurement-independence, and pair-provenance closure tests.
+- [Bell's Theorem](../philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../philosophy-history/theory-bridges/entanglement-nonlocality.md) own Bell-family correlation recovery, no-signaling, measurement-independence, and pair-provenance closure tests.
 
 ## Terminology Discipline (Locked Definitions)
 

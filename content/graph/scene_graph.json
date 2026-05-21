@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 497,
-      "edges": 1239,
-      "scenes": 320,
+      "nodes": 498,
+      "edges": 1240,
+      "scenes": 321,
       "markdownIndexes": 0,
       "markdownDocs": 177,
       "runtimeEdges": 476,
@@ -1981,67 +1981,67 @@
     {
       "id": "theory_bridges__bell_theorem",
       "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/theory-bridges/bell_theorem.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
       "nodeType": "scene"
     },
     {
       "id": "theory_bridges__collapse_problem",
       "name": "Measurement Problem and Collapse",
-      "path": "content/scenes/theory-bridges/collapse_problem.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
       "nodeType": "scene"
     },
     {
       "id": "theory_bridges__entanglement_nonlocality",
       "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/theory-bridges/entanglement_nonlocality.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
       "nodeType": "scene"
     },
     {
       "id": "theory_bridges__klein_gordon_scalar_fields",
       "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
-      "path": "content/scenes/theory-bridges/klein_gordon_scalar_fields.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json",
       "nodeType": "scene"
     },
     {
       "id": "theory_bridges__pilot_wave_character",
       "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/theory-bridges/pilot_wave_character.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
       "nodeType": "scene"
     },
     {
       "id": "theory_bridges__planck_scale_tri_binary_alignment",
       "name": "Planck Scale Tri-Binary Alignment",
-      "path": "content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
       "nodeType": "scene"
     },
     {
       "id": "theory_bridges__quantum_operator_mapping",
       "name": "Quantum Operator Mapping",
-      "path": "content/scenes/theory-bridges/quantum_operator_mapping.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json",
       "nodeType": "scene"
     },
     {
       "id": "theory_bridges__special_relativity_noether_core",
       "name": "Special Relativity and Deformable Noether Cores",
-      "path": "content/scenes/theory-bridges/special_relativity_noether_core.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
       "nodeType": "scene"
     },
     {
       "id": "theory_bridges__superposition_mechanism",
       "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/theory-bridges/superposition_mechanism.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
       "nodeType": "scene"
     },
     {
       "id": "theory_bridges",
       "name": "Theory Bridges",
-      "path": "content/scenes/theory-bridges/theory_bridges.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "nodeType": "scene"
     },
     {
       "id": "theory_bridges__weak_mixing_ckm",
       "name": "Weak Mixing CKM",
-      "path": "content/scenes/theory-bridges/weak_mixing_ckm.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json",
       "nodeType": "scene"
     },
     {
@@ -2059,13 +2059,19 @@
     {
       "id": "theory_bridges__spacetime_models_and_noether_sea",
       "name": "Spacetime Models and the Noether Sea",
-      "path": "content/scenes/theory-bridges/spacetime_models_and_noether_sea.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json",
       "nodeType": "scene"
     },
     {
       "id": "theory_bridges__return_cycle_lorentz_quantization",
       "name": "Return-Cycle Lorentz Quantization",
-      "path": "content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
+      "path": "content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "inherited_theory_interface",
+      "name": "Inherited Theory Interface",
+      "path": "content/scenes/philosophy_history/inherited_theory_interface.json",
       "nodeType": "scene"
     },
     {
@@ -2591,6 +2597,90 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+      "name": "Angular Momentum and Spin",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md",
+      "name": "Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
+      "name": "Measurement Problem and Collapse",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+      "name": "Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+      "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+      "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+      "name": "Mapping the Planck Scale to the Tri-Binary Geometry",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+      "name": "Quantum Operator Mapping",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
+      "name": "Theory Bridges",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+      "name": "Return-Cycle Lorentz Quantization",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md",
+      "name": "Spacetime Models and the Noether Sea",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "name": "Special Relativity and Deformable Noether Cores",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md",
+      "name": "Superposition Mechanism: Traditional vs. Architrino Assembly Architecture",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
+      "name": "Weak Mixing and CKM",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/philosophy-history/theory-differentials.md",
       "name": "Theory Differentials",
       "path": "content/markdown/aaa/philosophy-history/theory-differentials.md",
@@ -2780,90 +2870,6 @@
       "id": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "name": "Spacetime Assemblies",
       "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
-      "name": "Angular Momentum and Spin",
-      "path": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/bell-theorem.md",
-      "name": "Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response",
-      "path": "content/markdown/aaa/theory-bridges/bell-theorem.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/collapse-problem.md",
-      "name": "Measurement Problem and Collapse",
-      "path": "content/markdown/aaa/theory-bridges/collapse-problem.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-      "name": "Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture",
-      "path": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
-      "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
-      "path": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-      "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
-      "path": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
-      "name": "Mapping the Planck Scale to the Tri-Binary Geometry",
-      "path": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-      "name": "Quantum Operator Mapping",
-      "path": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/README.md",
-      "name": "Theory Bridges",
-      "path": "content/markdown/aaa/theory-bridges/README.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
-      "name": "Return-Cycle Lorentz Quantization",
-      "path": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
-      "name": "Spacetime Models and the Noether Sea",
-      "path": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
-      "name": "Special Relativity and Deformable Noether Cores",
-      "path": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/superposition-mechanism.md",
-      "name": "Superposition Mechanism: Traditional vs. Architrino Assembly Architecture",
-      "path": "content/markdown/aaa/theory-bridges/superposition-mechanism.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
-      "name": "Weak Mixing and CKM",
-      "path": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5077,6 +5083,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
+      "nodeType": "scene",
+      "id": "inherited_theory_interface",
+      "name": "Inherited Theory Interface",
+      "path": "content/scenes/philosophy_history/inherited_theory_interface.json",
+      "searchTarget": "content/scenes/philosophy_history/inherited_theory_interface.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "nodeType": "scene",
       "id": "major_thinkers",
@@ -5119,6 +5134,123 @@
       "name": "Substance, Structure, and the Plenum of Potential",
       "path": "content/scenes/philosophy_history/substance_structure_potential.json",
       "searchTarget": "content/scenes/philosophy_history/substance_structure_potential.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__bell_theorem",
+      "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__collapse_problem",
+      "name": "Measurement Problem and Collapse",
+      "path": "content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__entanglement_nonlocality",
+      "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__klein_gordon_scalar_fields",
+      "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
+      "path": "content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__pilot_wave_character",
+      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__planck_scale_tri_binary_alignment",
+      "name": "Planck Scale Tri-Binary Alignment",
+      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__quantum_operator_mapping",
+      "name": "Quantum Operator Mapping",
+      "path": "content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__return_cycle_lorentz_quantization",
+      "name": "Return-Cycle Lorentz Quantization",
+      "path": "content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__spacetime_models_and_noether_sea",
+      "name": "Spacetime Models and the Noether Sea",
+      "path": "content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__special_relativity_noether_core",
+      "name": "Special Relativity and Deformable Noether Cores",
+      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__superposition_mechanism",
+      "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "nodeType": "scene",
+      "id": "theory_bridges",
+      "name": "Theory Bridges",
+      "path": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json",
+      "nodeType": "scene",
+      "id": "theory_bridges__weak_mixing_ckm",
+      "name": "Weak Mixing CKM",
+      "path": "content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json",
       "implicit": false
     },
     {
@@ -5578,123 +5710,6 @@
       "name": "Up Quark",
       "path": "content/scenes/standard-model-particles/up_quark.json",
       "searchTarget": "content/scenes/standard-model-particles/up_quark.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/bell_theorem.json",
-      "nodeType": "scene",
-      "id": "theory_bridges__bell_theorem",
-      "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/theory-bridges/bell_theorem.json",
-      "searchTarget": "content/scenes/theory-bridges/bell_theorem.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/collapse_problem.json",
-      "nodeType": "scene",
-      "id": "theory_bridges__collapse_problem",
-      "name": "Measurement Problem and Collapse",
-      "path": "content/scenes/theory-bridges/collapse_problem.json",
-      "searchTarget": "content/scenes/theory-bridges/collapse_problem.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/entanglement_nonlocality.json",
-      "nodeType": "scene",
-      "id": "theory_bridges__entanglement_nonlocality",
-      "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/theory-bridges/entanglement_nonlocality.json",
-      "searchTarget": "content/scenes/theory-bridges/entanglement_nonlocality.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/klein_gordon_scalar_fields.json",
-      "nodeType": "scene",
-      "id": "theory_bridges__klein_gordon_scalar_fields",
-      "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
-      "path": "content/scenes/theory-bridges/klein_gordon_scalar_fields.json",
-      "searchTarget": "content/scenes/theory-bridges/klein_gordon_scalar_fields.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/pilot_wave_character.json",
-      "nodeType": "scene",
-      "id": "theory_bridges__pilot_wave_character",
-      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/theory-bridges/pilot_wave_character.json",
-      "searchTarget": "content/scenes/theory-bridges/pilot_wave_character.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json",
-      "nodeType": "scene",
-      "id": "theory_bridges__planck_scale_tri_binary_alignment",
-      "name": "Planck Scale Tri-Binary Alignment",
-      "path": "content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json",
-      "searchTarget": "content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/quantum_operator_mapping.json",
-      "nodeType": "scene",
-      "id": "theory_bridges__quantum_operator_mapping",
-      "name": "Quantum Operator Mapping",
-      "path": "content/scenes/theory-bridges/quantum_operator_mapping.json",
-      "searchTarget": "content/scenes/theory-bridges/quantum_operator_mapping.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
-      "nodeType": "scene",
-      "id": "theory_bridges__return_cycle_lorentz_quantization",
-      "name": "Return-Cycle Lorentz Quantization",
-      "path": "content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
-      "searchTarget": "content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/spacetime_models_and_noether_sea.json",
-      "nodeType": "scene",
-      "id": "theory_bridges__spacetime_models_and_noether_sea",
-      "name": "Spacetime Models and the Noether Sea",
-      "path": "content/scenes/theory-bridges/spacetime_models_and_noether_sea.json",
-      "searchTarget": "content/scenes/theory-bridges/spacetime_models_and_noether_sea.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/special_relativity_noether_core.json",
-      "nodeType": "scene",
-      "id": "theory_bridges__special_relativity_noether_core",
-      "name": "Special Relativity and Deformable Noether Cores",
-      "path": "content/scenes/theory-bridges/special_relativity_noether_core.json",
-      "searchTarget": "content/scenes/theory-bridges/special_relativity_noether_core.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/superposition_mechanism.json",
-      "nodeType": "scene",
-      "id": "theory_bridges__superposition_mechanism",
-      "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/theory-bridges/superposition_mechanism.json",
-      "searchTarget": "content/scenes/theory-bridges/superposition_mechanism.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "nodeType": "scene",
-      "id": "theory_bridges",
-      "name": "Theory Bridges",
-      "path": "content/scenes/theory-bridges/theory_bridges.json",
-      "searchTarget": "content/scenes/theory-bridges/theory_bridges.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/theory-bridges/weak_mixing_ckm.json",
-      "nodeType": "scene",
-      "id": "theory_bridges__weak_mixing_ckm",
-      "name": "Weak Mixing CKM",
-      "path": "content/scenes/theory-bridges/weak_mixing_ckm.json",
-      "searchTarget": "content/scenes/theory-bridges/weak_mixing_ckm.json",
       "implicit": false
     },
     {
@@ -6796,6 +6811,132 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+      "name": "Angular Momentum and Spin",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md",
+      "name": "Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
+      "name": "Measurement Problem and Collapse",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+      "name": "Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+      "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+      "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+      "name": "Mapping the Planck Scale to the Tri-Binary Geometry",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+      "name": "Quantum Operator Mapping",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/README.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
+      "name": "Theory Bridges",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/README.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+      "name": "Return-Cycle Lorentz Quantization",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md",
+      "name": "Spacetime Models and the Noether Sea",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "name": "Special Relativity and Deformable Noether Cores",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md",
+      "name": "Superposition Mechanism: Traditional vs. Architrino Assembly Architecture",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
+      "name": "Weak Mixing and CKM",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-differentials.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/theory-differentials.md",
@@ -7081,132 +7222,6 @@
       "name": "Spacetime Assemblies",
       "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "searchTarget": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
-      "name": "Angular Momentum and Spin",
-      "path": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/bell-theorem.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/bell-theorem.md",
-      "name": "Bell's Theorem: Traditional Derivation and Architrino Assembly Architecture Response",
-      "path": "content/markdown/aaa/theory-bridges/bell-theorem.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/bell-theorem.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/collapse-problem.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/collapse-problem.md",
-      "name": "Measurement Problem and Collapse",
-      "path": "content/markdown/aaa/theory-bridges/collapse-problem.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/collapse-problem.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-      "name": "Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture",
-      "path": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
-      "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
-      "path": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-      "name": "Pilot-Wave Character: Traditional de Broglie–Bohm Theory and Architrino Assembly Architecture",
-      "path": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
-      "name": "Mapping the Planck Scale to the Tri-Binary Geometry",
-      "path": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-      "name": "Quantum Operator Mapping",
-      "path": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/README.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/README.md",
-      "name": "Theory Bridges",
-      "path": "content/markdown/aaa/theory-bridges/README.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/README.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
-      "name": "Return-Cycle Lorentz Quantization",
-      "path": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
-      "name": "Spacetime Models and the Noether Sea",
-      "path": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
-      "name": "Special Relativity and Deformable Noether Cores",
-      "path": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/superposition-mechanism.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/superposition-mechanism.md",
-      "name": "Superposition Mechanism: Traditional vs. Architrino Assembly Architecture",
-      "path": "content/markdown/aaa/theory-bridges/superposition-mechanism.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/superposition-mechanism.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
-      "name": "Weak Mixing and CKM",
-      "path": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
-      "searchTarget": "content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
       "implicit": false
     },
     {
@@ -7801,14 +7816,14 @@
       "to": "scene:content/scenes/cosmology/cosmology.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -7843,14 +7858,14 @@
       "to": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[13]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/proof-programs/proof_programs.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -7875,17 +7890,10 @@
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
-      "to": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[8]"
-    },
-    {
-      "from": "scene:content/scenes/architrino_assembly_architecture.json",
       "to": "scene:content/scenes/validation/validation.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/assemblies/assemblies.json",
@@ -10961,11 +10969,32 @@
       "field": "scene.children[0]"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/inherited_theory_interface.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
+      "to": "scene:content/scenes/philosophy_history/theory_differentials.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/inherited_theory_interface.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
+      "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/inherited_theory_interface.json",
+      "field": "scene.children[0]"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -10979,21 +11008,28 @@
       "to": "scene:content/scenes/philosophy_history/historical_context_missed_opportunities.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11007,28 +11043,14 @@
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/theory_differentials.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/theory_mapping.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -11036,6 +11058,90 @@
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
       "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[11]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/proof-programs/proof_programs.json",
@@ -11491,90 +11597,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/standard-model-particles/up_quark.json",
       "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/bell_theorem.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/collapse_problem.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/entanglement_nonlocality.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/klein_gordon_scalar_fields.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[9]"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/pilot_wave_character.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[11]"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/quantum_operator_mapping.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/spacetime_models_and_noether_sea.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[8]"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/special_relativity_noether_core.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[6]"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/superposition_mechanism.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/theory_bridges.json",
-      "to": "scene:content/scenes/theory-bridges/weak_mixing_ckm.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/theory-bridges/theory_bridges.json",
-      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/validation/action_energy.json",
@@ -12410,6 +12432,90 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/collapse_problem.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/theory_differentials.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-differentials.md",
       "edgeType": "markdown_doc",
@@ -12638,90 +12744,6 @@
       "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/muon-tau.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/standard-model-particles/tau.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/bell_theorem.json",
-      "to": "markdown_doc:content/markdown/aaa/theory-bridges/bell-theorem.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/theory-bridges/bell_theorem.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/collapse_problem.json",
-      "to": "markdown_doc:content/markdown/aaa/theory-bridges/collapse-problem.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/theory-bridges/collapse_problem.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/entanglement_nonlocality.json",
-      "to": "markdown_doc:content/markdown/aaa/theory-bridges/entanglement-nonlocality.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/theory-bridges/entanglement_nonlocality.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/klein_gordon_scalar_fields.json",
-      "to": "markdown_doc:content/markdown/aaa/theory-bridges/klein-gordon-scalar-fields.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/theory-bridges/klein_gordon_scalar_fields.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/pilot_wave_character.json",
-      "to": "markdown_doc:content/markdown/aaa/theory-bridges/pilot-wave-character.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/theory-bridges/pilot_wave_character.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json",
-      "to": "markdown_doc:content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/theory-bridges/planck_scale_tri_binary_alignment.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/quantum_operator_mapping.json",
-      "to": "markdown_doc:content/markdown/aaa/theory-bridges/quantum-operator-mapping.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/theory-bridges/quantum_operator_mapping.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
-      "to": "markdown_doc:content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/theory-bridges/return_cycle_lorentz_quantization.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/spacetime_models_and_noether_sea.json",
-      "to": "markdown_doc:content/markdown/aaa/theory-bridges/spacetime-models-and-noether-sea.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/theory-bridges/spacetime_models_and_noether_sea.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/special_relativity_noether_core.json",
-      "to": "markdown_doc:content/markdown/aaa/theory-bridges/special-relativity-noether-core.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/theory-bridges/special_relativity_noether_core.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/superposition_mechanism.json",
-      "to": "markdown_doc:content/markdown/aaa/theory-bridges/superposition-mechanism.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/theory-bridges/superposition_mechanism.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/theory-bridges/weak_mixing_ckm.json",
-      "to": "markdown_doc:content/markdown/aaa/theory-bridges/weak-mixing-ckm.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/theory-bridges/weak_mixing_ckm.json",
       "field": "scene.source.path"
     },
     {

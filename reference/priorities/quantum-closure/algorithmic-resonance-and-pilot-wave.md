@@ -1,6 +1,6 @@
 # Algorithmic Resonance and Pilot-Wave Closure
 
-This detailed priority file supports [Quantum Closure](quantum-closure.md). It covers [Algorithmic Resonance and Shor's Algorithm](../../../content/markdown/aaa/quantum/algorithmic-resonance.md) and [Pilot-Wave Character](../../../content/markdown/aaa/theory-bridges/pilot-wave-character.md).
+This detailed priority file supports [Quantum Closure](quantum-closure.md). It covers [Algorithmic Resonance and Shor's Algorithm](../../../content/markdown/aaa/quantum/algorithmic-resonance.md) and [Pilot-Wave Character](../../../content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
 
 ## Core Opportunity
 
@@ -79,7 +79,7 @@ where $D_{\max}$ is the maximum controlled operation depth before deterministic 
 
 | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ file | Promotion condition |
 | --- | --- |
-| [pilot-wave-character](../../../content/markdown/aaa/theory-bridges/pilot-wave-character.md) | The guidance/amplitude/feedback reduction is stated with a transfer operator or return-map object. |
+| [pilot-wave-character](../../../content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md) | The guidance/amplitude/feedback reduction is stated with a transfer operator or return-map object. |
 | [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md) | Coherence depth and register-scale failure modes are expressed as computable bounds. |
 | [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) | Quantum-computing claims remain downstream stress tests, not primary evidence for the ontology. |
 

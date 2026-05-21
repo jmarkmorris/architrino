@@ -16,7 +16,7 @@ Do not use this lane as the primary home for:
 - substrate ontology; use [Foundations](../foundations/ontology.md),
 - dynamical laws; use [Dynamics](../dynamics/master-equation.md),
 - assembly definitions; use [Assemblies](../spacetime/noether-core.md),
-- detailed equation-by-equation bridges; use [Theory Bridges](../theory-bridges/README.md),
+- detailed equation-by-equation bridges; use [Theory Bridges](theory-bridges/README.md),
 - validation gates and parameter tracking; use [Validation](../validation/failure-criteria.md).
 
 ## Reading Order

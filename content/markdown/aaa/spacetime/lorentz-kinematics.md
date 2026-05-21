@@ -4,7 +4,7 @@ This chapter is the focused program statement for deriving operational Lorentz b
 
 The opening abstract states the target; the later sections move through the governing delayed dynamics, the anisotropy mechanism, and the conditions under which assembly-built observers could recover standard Lorentz kinematics.
 
-For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether-core story, see [Special Relativity and Deformable Noether Cores](../theory-bridges/special-relativity-noether-core.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../theory-bridges/return-cycle-lorentz-quantization.md).
+For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether-core story, see [Special Relativity and Deformable Noether Cores](../philosophy-history/theory-bridges/special-relativity-noether-core.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
 
 ## Abstract
 

@@ -13,7 +13,7 @@ For sector visibility, this packet consumes the shared [exposure-quotient theore
 | [quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md) | First-pass mass predictions for `u,d,c,s,t,b` and any geometry needed to define mass-basis states. |
 | [quantum-number-mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md) | Remaining quantum-number dictionary pieces from tri-binary geometry. |
 | [color-charge-su3](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) | Confinement energetics and color-singlet bound-state checks. |
-| [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md) | CKM / PMNS overlap-integral derivations, CP phase tests, and weak `V-A` chirality. |
+| [weak-mixing-ckm](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md) | CKM / PMNS overlap-integral derivations, CP phase tests, and weak `V-A` chirality. |
 | [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Weak corridor provenance and the status of $W^\pm$ as charge-routing bundles versus carriers of pro/anti Noether-core provenance. |
 
 ## Pulled-Back Color SU(3) Interfaces

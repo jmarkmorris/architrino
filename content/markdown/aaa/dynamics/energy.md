@@ -793,7 +793,7 @@ In this language, a discrete input can **lock in** a new tri-binary configuratio
 
 ### Bookkeeping Table: One $h$ of Closed-Cycle Action (Outer $v < c_f$)
 
-For the $h$ versus $\hbar$ convention used here, see [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md).
+For the $h$ versus $\hbar$ convention used here, see [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 Assumptions for this bookkeeping pass:
 

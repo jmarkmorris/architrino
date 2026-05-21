@@ -48,10 +48,6 @@
         "scenePath": "content/scenes/quantum/quantum.json"
       },
       {
-        "nodeId": "theory_bridges",
-        "scenePath": "content/scenes/theory-bridges/theory_bridges.json"
-      },
-      {
         "nodeId": "cosmology",
         "scenePath": "content/scenes/cosmology/cosmology.json"
       },
@@ -115,8 +111,8 @@
       "radius": 2.688,
       "color": "#1c2a4f",
       "position": [
-        6.6,
-        12.57,
+        7.1,
+        12.3,
         0
       ],
       "motion": {
@@ -131,8 +127,8 @@
       "radius": 2.688,
       "color": "#6c4f8d",
       "position": [
-        11.69,
-        8.07,
+        12.3,
+        7.1,
         0
       ],
       "motion": {
@@ -147,8 +143,8 @@
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
-        14.1,
-        1.71,
+        14.2,
+        0,
         0
       ],
       "motion": {
@@ -163,8 +159,8 @@
       "radius": 2.688,
       "color": "#7a4a1f",
       "position": [
-        13.28,
-        -5.04,
+        12.3,
+        -7.1,
         0
       ],
       "motion": {
@@ -179,8 +175,8 @@
       "radius": 2.688,
       "color": "#8b5e34",
       "position": [
-        9.42,
-        -10.63,
+        7.1,
+        -12.3,
         0
       ],
       "motion": {
@@ -195,8 +191,8 @@
       "radius": 2.688,
       "color": "#2f4f7a",
       "position": [
-        3.4,
-        -13.79,
+        0,
+        -14.2,
         0
       ],
       "motion": {
@@ -206,29 +202,13 @@
       "fixedPosition": true
     },
     {
-      "id": "theory_bridges",
-      "title": "Theory Bridges",
-      "radius": 2.688,
-      "color": "#4f5d75",
-      "position": [
-        -3.4,
-        -13.79,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Theory Bridges",
-      "fixedPosition": true
-    },
-    {
       "id": "cosmology",
       "title": "Cosmology",
       "radius": 2.688,
       "color": "#3c6a7a",
       "position": [
-        -9.42,
-        -10.63,
+        -7.1,
+        -12.3,
         0
       ],
       "motion": {
@@ -244,8 +224,8 @@
       "radius": 2.688,
       "color": "#243d8f",
       "position": [
-        -13.28,
-        -5.04,
+        -12.3,
+        -7.1,
         0
       ],
       "motion": {
@@ -260,8 +240,8 @@
       "radius": 2.688,
       "color": "#3f6a5a",
       "position": [
-        -14.1,
-        1.71,
+        -14.2,
+        0,
         0
       ],
       "motion": {
@@ -276,8 +256,8 @@
       "radius": 2.688,
       "color": "#6f5a2f",
       "position": [
-        -11.69,
-        8.07,
+        -12.3,
+        7.1,
         0
       ],
       "motion": {
@@ -292,8 +272,8 @@
       "radius": 2.688,
       "color": "#6a3c3c",
       "position": [
-        -6.6,
-        12.57,
+        -7.1,
+        12.3,
         0
       ],
       "motion": {

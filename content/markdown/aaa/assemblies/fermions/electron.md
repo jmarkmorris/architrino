@@ -102,7 +102,7 @@ For the electron branch, the gate is conservative: any finite-size or Noether-Se
 - [particle-masses.md](../particle-masses.md)
 - [quantum-number-mapping.md](./quantum-number-mapping.md)
 - [muon-tau.md](./muon-tau.md)
-- [weak-mixing-ckm.md](../../theory-bridges/weak-mixing-ckm.md)
+- [weak-mixing-ckm.md](../../philosophy-history/theory-bridges/weak-mixing-ckm.md)
 - [reaction-ledger.md](../../validation/reaction-ledger.md)
 - [atomic-structure.md](../../nuclear-atomic/atomic-structure.md)
 - [wavefunction-ontology.md](../../quantum/wavefunction-ontology.md)

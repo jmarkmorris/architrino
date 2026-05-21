@@ -19,7 +19,7 @@ This document should map the main crisis-axes rather than collapse them into one
 - where patchwork closure displaced substrate derivation,
 - and where unresolved tensions may indicate missing causal structure rather than merely harder calculation.
 
-Several of the crisis-axes treated below also connect directly to [Measurement Ontology](../quantum/measurement-ontology.md), [Bell Theorem](../theory-bridges/bell-theorem.md), [Dark Matter](../cosmology/dark-matter.md), [Parameter Ledger](../validation/parameter-ledger.md), and [Gauge Structure Emergence](../interactions/gauge-structure-emergence.md).
+Several of the crisis-axes treated below also connect directly to [Measurement Ontology](../quantum/measurement-ontology.md), [Bell Theorem](theory-bridges/bell-theorem.md), [Dark Matter](../cosmology/dark-matter.md), [Parameter Ledger](../validation/parameter-ledger.md), and [Gauge Structure Emergence](../interactions/gauge-structure-emergence.md).
 
 This document also needs one standard coverage template so each crisis-axis is treated systematically rather than rhetorically.
 

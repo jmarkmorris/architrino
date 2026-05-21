@@ -621,7 +621,7 @@ Weak-measurement trajectory reconstructions sharpen this comparison without sett
 
 In dBB, energy quantization follows from the requirement that $\psi$ be single-valued and normalizable, which selects discrete eigenvalues.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but equally rigorous mechanism: **phase-locking of the self-consistent response loop**. An assembly in a confining potential (e.g., an electron tri-binary bound to an atomic nucleus) must satisfy a closure condition: the wake it generates, after propagating through the surrounding medium and reflecting off the confining potential, must return to the assembly with the correct phase to sustain its current orbital frequency. Only a discrete set of orbital configurations satisfies this condition—the resonance bands indexed by integer $f$ (see [Superposition Mechanism](../../../../markdown/aaa/theory-bridges/superposition-mechanism.md)). Transitions between bands occur when the action transfer per cycle crosses the $h$-scale threshold.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but equally rigorous mechanism: **phase-locking of the self-consistent response loop**. An assembly in a confining potential (e.g., an electron tri-binary bound to an atomic nucleus) must satisfy a closure condition: the wake it generates, after propagating through the surrounding medium and reflecting off the confining potential, must return to the assembly with the correct phase to sustain its current orbital frequency. Only a discrete set of orbital configurations satisfies this condition—the resonance bands indexed by integer $f$ (see [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)). Transitions between bands occur when the action transfer per cycle crosses the $h$-scale threshold.
 
 This is the wake-based analog of the Bohr-Sommerfeld quantization condition, derived from the self-consistency of the causal response loop rather than imposed as a boundary condition on an abstract wave.
 
@@ -817,7 +817,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizati
 | **Guidance equation** $\dot{\mathbf{q}}_k = (\hbar/m_k)\operatorname{Im}(\nabla_k\psi/\psi)$ | Master Equation: acceleration is the vector sum of all Jacobian-weighted inverse-square causal wake-surface intersections. In the coarse-grained, slow-assembly limit, the net wake gradient produces an effective velocity field identifiable with $\nabla S/m$. |
 | **Quantum potential** $Q = -(\hbar^2/2m)(\nabla^2 R/R)$ | Jointly: self-hit non-Markovian feedback (path-history-dependent forces from own past emissions) plus Noether-Sea medium response (context-dependent effective potential from the surrounding tri-binary medium). |
 | **Quantum equilibrium** $\rho = |\psi|^2$ | Emergent statistical distribution over attractor basin volumes, mapped from unresolved Noether-Sea boundary and path-history structure. The Born rule is a **target derivation**, not an axiom; it belongs to the statistics gate below. |
-| **Configuration-space nonlocality** | Non-separable hidden-variable geometry from shared creation events (see [Entanglement and Nonlocality](../../../../markdown/aaa/theory-bridges/entanglement-nonlocality.md)). Correlations are carried in the joint internal configuration, not mediated by a field on $\mathbb{R}^{3N}$. |
+| **Configuration-space nonlocality** | Non-separable hidden-variable geometry from shared creation events (see [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)). Correlations are carried in the joint internal configuration, not mediated by a field on $\mathbb{R}^{3N}$. |
 | **Wave passes through both slits** | Causal wake passes through both slits; assembly passes through one. Guidance through the modulated wake landscape reproduces the interference pattern. |
 | **Markovian guidance** (given $\psi$) | Non-Markovian guidance: acceleration depends on full past worldline via causal sets $\mathcal{C}_{ij}(t)$ and self-hit history. Richer dynamics; hysteresis and discrete mode-locking absent in standard dBB. |
 | **Two ontological categories** (particles + wave) | **One ontological category**: architrinos generate and are guided by their own causal wake. Ontological economy is maximal. |
@@ -900,14 +900,14 @@ $$
 
 Detailed interface chapters:
 - ontology/statistics side: [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md)
-- metastability/separatrix side: [Superposition Mechanism](../../../../markdown/aaa/theory-bridges/superposition-mechanism.md)
+- metastability/separatrix side: [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)
 - dynamical substrate side: [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md)
 
 ## Superposition Mechanism: QM vs. 𝔸𝔸𝔸
 
 This document establishes the ontological and mathematical mapping between the traditional quantum mechanical concept of state superposition and the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$).
 
-It should be read alongside [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Collapse Problem](../../../../markdown/aaa/theory-bridges/collapse-problem.md), and [Pilot-Wave Character](../../../../markdown/aaa/theory-bridges/pilot-wave-character.md).
+It should be read alongside [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Collapse Problem](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
 
 #### Traditional Quantum Mechanical View
 
@@ -977,13 +977,13 @@ Closure requirements:
 - any claimed branch formation names $\mathcal{K}_A$, $\mathcal{Q}$, $W$, and the record window,
 - no instantaneous-update limit appears once finite $c_f$ and interaction extent are enforced.
 
-Primary synthesis location: [Pilot-Wave Character](../../../../markdown/aaa/theory-bridges/pilot-wave-character.md).
+Primary synthesis location: [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
 
-For the correlated two-system extension of the same closure program, see [Entanglement and Nonlocality](../../../../markdown/aaa/theory-bridges/entanglement-nonlocality.md).
+For the correlated two-system extension of the same closure program, see [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md).
 
 ## Measurement Problem and Collapse
 
-This document maps the traditional "Measurement Problem" and the phenomenon of wavefunction collapse to the deterministic, non-Markovian micro-dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). In this framework, "collapse" is not a fundamental discontinuous axiom but an emergent, finite-time dynamical process: the deterministic resolution of a metastable state across a phase-space separatrix. It should be read alongside [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Superposition Mechanism](../../../../markdown/aaa/theory-bridges/superposition-mechanism.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), and [Pilot-Wave Character](../../../../markdown/aaa/theory-bridges/pilot-wave-character.md).
+This document maps the traditional "Measurement Problem" and the phenomenon of wavefunction collapse to the deterministic, non-Markovian micro-dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). In this framework, "collapse" is not a fundamental discontinuous axiom but an emergent, finite-time dynamical process: the deterministic resolution of a metastable state across a phase-space separatrix. It should be read alongside [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
 
 #### The Traditional Measurement Problem
 
@@ -1059,7 +1059,7 @@ Treating collapse as a deterministic, finite-time threshold resolution imposes s
 
 This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that ordinary pair entanglement is not a mysterious connection between distant systems but a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and rendered operationally irreducible by the epistemic limitations of Physical Observers. Bell-level operational equivalence remains a closure target until the pair-provenance ledger and local apparatus-response maps have passed the Bell gate.
 
-It forms a tight cluster with [Bell Theorem](../../../../markdown/aaa/theory-bridges/bell-theorem.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Superposition Mechanism](../../../../markdown/aaa/theory-bridges/superposition-mechanism.md), and [Pilot-Wave Character](../../../../markdown/aaa/theory-bridges/pilot-wave-character.md).
+It forms a tight cluster with [Bell Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
 
 ---
 
@@ -1107,7 +1107,7 @@ The distinction is important because the black-hole case uses a very special ent
 
 The same restraint applies to observer-dependent entanglement in relativistic quantum-field settings. Different observers, accelerated frames, access regions, or mode decompositions may assign different particle content or different bipartitions to the same effective field record. The retained data product is the correlation table for a declared preparation, detector region, mode split, and record window; the interpretation is secondary.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is handled as a projection issue on the observer-level description. A Physical Observer may reconstruct a density matrix on one tensor-factor split while another observer reconstructs a different split, but neither reconstruction changes the underlying $\mathbb{U}_{\text{now}}$ state. The corresponding operator-map burden is the subsystem-partition guardrail in [Quantum Operator Mapping](../../../../markdown/aaa/theory-bridges/quantum-operator-mapping.md#subsystem-partition-guardrail): the pair-provenance ledger, apparatus kernels, no-signaling residuals, and record-autonomy tests must be declared before an entanglement value is used as a closure claim.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is handled as a projection issue on the observer-level description. A Physical Observer may reconstruct a density matrix on one tensor-factor split while another observer reconstructs a different split, but neither reconstruction changes the underlying $\mathbb{U}_{\text{now}}$ state. The corresponding operator-map burden is the subsystem-partition guardrail in [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#subsystem-partition-guardrail): the pair-provenance ledger, apparatus kernels, no-signaling residuals, and record-autonomy tests must be declared before an entanglement value is used as a closure claim.
 
 ---
 
@@ -1153,7 +1153,7 @@ The correlations established at $t_0$ are carried forward in the **internal conf
 
 #### Measurement as Threshold Resolution
 
-When a measurement apparatus (itself an assembly of architrinos) interacts with particle $A$, the measurement is a complex assembly interaction governed by the Master Equation. The apparatus drives $A$ across a phase-space separatrix into a definite attractor basin (see [Superposition Mechanism](../../../../markdown/aaa/theory-bridges/superposition-mechanism.md)). The outcome depends on:
+When a measurement apparatus (itself an assembly of architrinos) interacts with particle $A$, the measurement is a complex assembly interaction governed by the Master Equation. The apparatus drives $A$ across a phase-space separatrix into a definite attractor basin (see [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)). The outcome depends on:
 
 1. The internal microstate of $A$ (including binary phases, wake history),
 2. The internal microstate of the apparatus,
@@ -1197,7 +1197,7 @@ $$
 
 where $\mathcal{H}_A$ and $\mathcal{H}_B$ are the path-history data carried by the two daughter assemblies, $\Delta\Theta_{AB}^{\text{bin/wake}}$ records their correlated binary-orientation and wake-phase relations, and $\mathsf{Cons}_{AB}$ records the conservation constraints inherited from the source event. This is not an additional force or influence. It is the candidate hidden-variable domain over which the Bell closure must integrate.
 
-Let $K_A$ and $K_B$ be the two local apparatus-response kernels. For spin tests, their one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md). The observer-level joint response target is
+Let $K_A$ and $K_B$ be the two local apparatus-response kernels. For spin tests, their one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). The observer-level joint response target is
 
 $$
 \begin{aligned}
@@ -1276,7 +1276,7 @@ This structure avoids the conceptual difficulties of standard nonlocality:
 - **No frame-dependent causal ordering**: absolute time provides a unique, consistent ordering.
 - **No tension with causality**: all causal influences propagate at $c_f$ or below; the correlations are set up in the shared causal past.
 
-Temporal-nonlocality and retrocausal interpretations remain useful only as comparison routes. They help identify which Bell assumption is being changed in observer-level language, especially when relativistic frame order is ambiguous. They are not the mechanism here. The $\mathbb{A}\mathbb{A}\mathbb{A}$ account must keep the hidden-variable ledger forward-causal in absolute time and must report the same measurement-independence, no-signaling, and Bell-correlation residuals used in [Bell Theorem](../../../../markdown/aaa/theory-bridges/bell-theorem.md#bell-closure-diagnostics).
+Temporal-nonlocality and retrocausal interpretations remain useful only as comparison routes. They help identify which Bell assumption is being changed in observer-level language, especially when relativistic frame order is ambiguous. They are not the mechanism here. The $\mathbb{A}\mathbb{A}\mathbb{A}$ account must keep the hidden-variable ledger forward-causal in absolute time and must report the same measurement-independence, no-signaling, and Bell-correlation residuals used in [Bell Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md#bell-closure-diagnostics).
 
 #### No-Signaling: Why Correlations Cannot Transmit Information
 
@@ -1388,7 +1388,7 @@ The philosophy-facing framing of this problem lives in [Crisis in Physics](../..
 
 ## Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸
 
-This document presents the standard derivation and physical content of Bell's theorem, then states how the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) should approach the experimentally observed violations of Bell inequalities. It is a bridge document, not the final mechanism. The final account must be rebuilt from the architrino-level angular-momentum and spin ledger developed in [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md).
+This document presents the standard derivation and physical content of Bell's theorem, then states how the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) should approach the experimentally observed violations of Bell inequalities. It is a bridge document, not the final mechanism. The final account must be rebuilt from the architrino-level angular-momentum and spin ledger developed in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 The phrase "hidden variable" is inherited from the Bell literature. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the relevant variables are not hidden from nature. They are unresolved by the observer-level quantum abstraction. The task is therefore not to defend a vague hidden-variable category, but to identify the exact architrino, Noether-core, causal-wake, and measurement-apparatus variables whose coarse description becomes quantum spin statistics.
 
@@ -1704,7 +1704,7 @@ $$
 
 That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter Noether cores redistribute action across inner, middle, and outer binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
 
-**Measurement geometry.** When detector $A$ measures along axis $\hat{m}_A$, the apparatus does not read a tiny arrow. It drives the local assembly through a finite-time coupling process whose outcome depends on the full spin ledger: ordered binary-plane geometry, phase, active causal wakes, local Noether-Sea state, and the apparatus potential. The Stern-Gerlach-like scaffold in [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) formulates this as apparatus potential-gradient coupling, basin-boundary crossing, angular-momentum exchange, and wake / Noether-Sea recoil. A correct theory must derive how that coupling produces the two observed outcomes called spin-up and spin-down along $\hat{m}_A$.
+**Measurement geometry.** When detector $A$ measures along axis $\hat{m}_A$, the apparatus does not read a tiny arrow. It drives the local assembly through a finite-time coupling process whose outcome depends on the full spin ledger: ordered binary-plane geometry, phase, active causal wakes, local Noether-Sea state, and the apparatus potential. The Stern-Gerlach-like scaffold in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) formulates this as apparatus potential-gradient coupling, basin-boundary crossing, angular-momentum exchange, and wake / Noether-Sea recoil. A correct theory must derive how that coupling produces the two observed outcomes called spin-up and spin-down along $\hat{m}_A$.
 
 **Why this is not action at a distance.** No usable signal, energy, or causal wake is allowed to pass from one detector to the other during spacelike-separated measurement. The Bell-level difficulty is therefore not solved by adding a signal. It must be solved by showing that the full pair provenance and each local measurement interaction do not compress into the factorizable local-response model that Bell excludes.
 
@@ -1829,7 +1829,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - No-signaling is exact: no measurement protocol on $A$ can alter the marginal statistics at $B$.
 - Measurement-independence leakage is explicitly bounded by $\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}}$ rather than absorbed into the pair-provenance explanation.
 - Correlation recovery is checked through $\Delta_{\mathrm{Bell}}$ against the full $-\cos\theta$ curve, not only by a single CHSH setting choice.
-- Decoherence rates for entangled pairs depend on local Noether-Sea density, providing an environmental sensitivity absent in bare QM (shared prediction with [Entanglement and Nonlocality](../../../../markdown/aaa/theory-bridges/entanglement-nonlocality.md)).
+- Decoherence rates for entangled pairs depend on local Noether-Sea density, providing an environmental sensitivity absent in bare QM (shared prediction with [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)).
 
 **Failure Modes:**
 - If the Master Equation dynamics for a tri-binary measurement interaction yield a response function that is **not** $\cos^2(\alpha/2)$—for instance, a linear or piecewise-linear function—the resulting $E(\theta_{AB})$ will disagree with the quantum prediction and with experiment. This is a falsification of the specific mechanism, requiring revision of the measurement model or the assembly-apparatus coupling.
@@ -1843,7 +1843,7 @@ The Bell claim therefore stops at the closure target and failure conditions. A c
 
 ## Special Relativity and Deformable Noether Cores
 
-This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether-core assemblies. It is a mapping document: the canonical Noether-core geometry remains in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md), the canonical mass thesis remains in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md).
+This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether-core assemblies. It is a mapping document: the canonical Noether-core geometry remains in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md), the canonical mass thesis remains in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
 
 ### Bridge Thesis
 
@@ -2212,7 +2212,7 @@ To promote this bridge from mapping to derivation, the following targets must cl
 
 This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether-core chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether-core causal-root ledger.
 
-The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Cores](../../../../markdown/aaa/theory-bridges/special-relativity-noether-core.md).
+The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Cores](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md).
 
 ### Naming And Scope
 
@@ -3159,7 +3159,7 @@ Left/right coupling note (SM statement): charged-current SU(2), and therefore CK
 Left/right coupling note ($\mathbb{A}\mathbb{A}\mathbb{A}$ geometric test): for LH helicity the weak-coupling triad should face forward (exposed), while for RH it should rotate into the wake/shield.
 Chiral Selection Mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis): for right-handed helicity, the weak-coupling triad is rotated into the particle’s own wake/slipstream. A charged $W$ corridor cannot dock onto a weak-coupling triad in that hidden coupling posture, so right-handed fermions are sterile to charged-current interactions.
 
-This left/right exposure criterion is a downstream consumer of [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md). Until the spinor and helicity ledger is derived, the weak-sector model should treat helicity exposure as a validation target rather than as an independent explanation of handedness.
+This left/right exposure criterion is a downstream consumer of [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). Until the spinor and helicity ledger is derived, the weak-sector model should treat helicity exposure as a validation target rather than as an independent explanation of handedness.
 
 Validation task: simulate exposure vs helicity to confirm or falsify this geometric criterion.
 
@@ -3200,7 +3200,7 @@ where $R_{\mathrm{rel}}$ records axial-frame orientation relative to the fixed N
 
 This first model is deliberately local. It defines the operator-level exposure gate for one generation-I down-type quark in free-neutron beta reaction. It is not yet a decay-rate derivation, a nuclear form-factor model, or a completed lepton-provenance account.
 
-The handedness label in this operator is an inherited observer-level weak-channel label, not a newly derived substrate spin variable. The exposure gate below is a test object that must be supplied by the ordered-core spinor/helicity ledger in [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md) before it can count as a proof of weak handedness.
+The handedness label in this operator is an inherited observer-level weak-channel label, not a newly derived substrate spin variable. The exposure gate below is a test object that must be supplied by the ordered-core spinor/helicity ledger in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) before it can count as a proof of weak handedness.
 
 Let the six polar sites of the active quark be
 $$
@@ -3220,7 +3220,7 @@ $$
 =\{a\in S\mid \eta_a^{(h)}=1\}.
 $$
 
-This gate is the weak-sector term of the spinor-to-metric compatibility residual in [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual). If $\Sigma_{\mathrm{spin}}^{(h)}(\theta;W)$ is the exposure class predicted by the ordered-core spinor/helicity ledger on record window $W$, the local mismatch can be written
+This gate is the weak-sector term of the spinor-to-metric compatibility residual in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual). If $\Sigma_{\mathrm{spin}}^{(h)}(\theta;W)$ is the exposure class predicted by the ordered-core spinor/helicity ledger on record window $W$, the local mismatch can be written
 $$
 \Delta_{\mathrm{WCT}}(\theta;W)
 =
@@ -3710,7 +3710,7 @@ Use the same overlap/holonomy machinery in the lepton-neutral sector with a diff
 
 This chapter treats the Planck scale as an exploratory alignment-horizon problem for the tri-binary rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed tri-binary framework, then test which parts survive once full closure conditions are imposed.
 
-Its closest companions are [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/theory-bridges/angular-momentum-and-spin.md), [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md), [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
+Its closest companions are [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md), [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 

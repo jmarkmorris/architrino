@@ -1,0 +1,298 @@
+# Return-Cycle Lorentz Quantization
+
+This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether-core chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether-core causal-root ledger.
+
+The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Noether Core Geometry](../../spacetime/noether-core-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Cores](./special-relativity-noether-core.md).
+
+## Naming And Scope
+
+The older working phrase `branch-quantized Lorentz response` remains mathematically accurate. It says that a stable material assembly realizes Lorentz behavior through branch classes of the causal-root ledger. The preferred topic name, **Return-Cycle Lorentz Quantization**, is better for a bridge document because it names the mechanism before the classification:
+
+- `return-cycle` identifies the closed causal-wake path that must phase-close;
+- `Lorentz` identifies the observer-level target law;
+- `quantization` identifies that the admissible realizations are discrete branch classes, not arbitrary continuous material states.
+
+The claim is therefore not
+$$
+\gamma(v)\quad\text{is a step function}.
+$$
+The claim is
+$$
+\text{realized material Lorentz response}
+\quad
+\text{is branch-indexed by closed return-cycle ledgers}.
+$$
+At the effective observer level, the measured envelope can still be the usual smooth function
+$$
+\gamma_\star(v)
+=
+\frac{1}{\sqrt{1-v^2/c_\star^2}}.
+$$
+
+## Level Separation
+
+The bridge separates four levels:
+
+| Level | Role |
+| --- | --- |
+| Substrate ontology | Architrinos evolve in the Euclidean void under absolute time and delayed causal wakes. |
+| Assembly dynamics | A Noether core must close inner, middle, and outer binary return cycles through a causal-root ledger. |
+| Geometry projection | The outer-binary exclusion envelope exposes an oblate spheroid with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
+| Observer law | Physical Observers infer Lorentz contraction, clock dilation, and two-way signal invariance after branch averaging and Noether-Sea dressing. |
+
+This level separation is essential. The Lorentz equation is not being promoted to substrate ontology. It is an observer-level envelope that must be implemented by closed assembly dynamics.
+
+## One-Way Roots Are Not Yet Lorentz Geometry
+
+A one-way causal leg along the drift direction exposes the preferred Noether-Sea frame. In a homogeneous dressed channel with speed $c_\star$, define
+$$
+\beta_\star\equiv\frac{v}{c_\star},
+\qquad
+\gamma_\star\equiv\frac{1}{\sqrt{1-\beta_\star^2}}.
+$$
+For an envelope semiaxis $R_{\parallel}$ along drift, the forward and rear one-way legs are
+$$
+t_{+}
+=
+\frac{R_{\parallel}}{c_\star-v},
+\qquad
+t_{-}
+=
+\frac{R_{\parallel}}{c_\star+v}.
+$$
+They are unequal. A single one-way leg therefore cannot be the Lorentz law, because it carries the preferred-frame asymmetry directly.
+
+The first structural step is to change the object being analyzed. A material clock or ruler is not a one-way signal. It is a closed branch that must return with the correct phase, root count, and wake ledger. The Lorentz-relevant object is the closed return cycle.
+
+## Closed Return Derivation
+
+The longitudinal closed return time is the sum of the forward and rear legs:
+$$
+T_{\parallel}
+=
+t_{+}+t_{-}
+=
+\frac{R_{\parallel}}{c_\star-v}
++
+\frac{R_{\parallel}}{c_\star+v}.
+$$
+Combining the fractions gives
+$$
+T_{\parallel}
+=
+\frac{2R_{\parallel}c_\star}{c_\star^2-v^2}
+=
+\frac{2R_{\parallel}}{c_\star}\gamma_\star^2.
+$$
+
+The transverse return cycle uses part of the causal budget to keep pace with the translated receiver. The remaining transverse closure speed is
+$$
+c_{\perp}
+=
+c_\star\sqrt{1-\frac{v^2}{c_\star^2}}
+=
+\frac{c_\star}{\gamma_\star}.
+$$
+For transverse semiaxis $R_{\perp}$,
+$$
+T_{\perp}
+=
+\frac{2R_{\perp}}{c_{\perp}}
+=
+\frac{2R_{\perp}}{c_\star}\gamma_\star.
+$$
+
+The Lorentz-admissible closure condition is that the same material branch closes with one period in the longitudinal and transverse channels:
+$$
+T_{\parallel}
+=
+T_{\perp}
++
+O(\epsilon_{\mathrm{LV}}T_0).
+$$
+In the homogeneous zero-leakage limit,
+$$
+\frac{2R_{\parallel}}{c_\star}\gamma_\star^2
+=
+\frac{2R_{\perp}}{c_\star}\gamma_\star,
+$$
+so
+$$
+\xi(v)
+\equiv
+\frac{R_{\parallel}(v)}{R_{\perp}(v)}
+=
+\frac{1}{\gamma_\star(v)}.
+$$
+This is the direct Lorentz-to-geometry map.
+
+## Spheroid Projection
+
+The moving Noether-core envelope is represented by an oblate spheroid,
+$$
+\frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp}^2}
++
+\frac{x_{\parallel}^2}{R_{\parallel}^2}
+=
+1,
+$$
+with Lorentz-compatible semiaxes
+$$
+R_{\parallel}
+=
+\frac{R_{\perp}}{\gamma_\star}
+$$
+in the homogeneous zero-leakage limit. If energy state or Noether-Sea conditions also change the transverse scale, separate the shape and scale channels:
+$$
+R_{\perp}(v,E,n)
+=
+\lambda(v,E,n)R_0,
+\qquad
+R_{\parallel}(v,E,n)
+=
+\frac{\lambda(v,E,n)R_0}{\gamma_\star(v)}.
+$$
+Thus $\gamma_\star$ maps to the shape channel $\xi$, while $\lambda$ remains a separate scale, energy, and medium-response channel.
+
+The outer binary is special because it supplies the leading visible envelope. It is not sufficient by itself. A Lorentz-admissible branch must also retune the hidden inner and middle ledgers so that clock closure, action conservation, and leakage bounds are solved by the same branch.
+
+## Quantized Realization
+
+Return-Cycle Lorentz Quantization can now be stated as a branch map. For a stable branch class $q$, define
+$$
+\gamma_{\mathrm{rul}}^{(q)}(v)
+\equiv
+\frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)}
+=
+\frac{1}{\xi_q(v)},
+\qquad
+\gamma_{\mathrm{clk}}^{(q)}(v)
+\equiv
+\frac{T_q(v)}{T_0}.
+$$
+The realized material Lorentz response is the branch-indexed tuple
+$$
+q
+\longmapsto
+\left(
+\xi_q(v),
+\gamma_{\mathrm{rul}}^{(q)}(v),
+\gamma_{\mathrm{clk}}^{(q)}(v),
+\mathcal{L}_{\mathrm{root}}^{(q)}(v)
+\right).
+$$
+The admissible set at fixed background conditions is
+$$
+\Gamma_{\mathrm{adm}}(v)
+=
+\left\{
+\left(
+\gamma_{\mathrm{clk}}^{(q)}(v),
+\gamma_{\mathrm{rul}}^{(q)}(v)
+\right)
+:
+q\in\mathcal{Q}_{\mathrm{stable}}(v)
+\right\}.
+$$
+A successful homogeneous weak-field Lorentz limit requires
+$$
+\gamma_{\mathrm{clk}}^{(q)}(v)
+=
+\gamma_{\mathrm{rul}}^{(q)}(v)
+=
+\gamma_\star(v)
++
+O(\epsilon_{\mathrm{LV}})
+$$
+for every branch class admitted as stable clock/ruler material.
+
+This is the precise sense in which the Lorentz equation is quantized. The smooth curve remains the observer-level envelope. The Noether-core implementation is discrete because each accepted material realization must be a closed causal-root ledger class.
+
+## All-Layer Closure Burden
+
+The full branch state is not just the outer spheroid. For branch $q$, use the all-layer state
+$$
+B_q(v)
+=
+\left(
+R_I,R_M,R_O;\,
+\omega_I,\omega_M,\omega_O;\,
+s_I,s_M,s_O;\,
+\mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O;\,
+\mathcal{L}_{\mathrm{root}};\,
+\mathcal{L}_{\mathrm{wake}}
+\right)_q.
+$$
+A one-$h$ full-cycle transaction should be treated as a branch update,
+$$
+B_q(v)
+\longrightarrow
+B_{q'}(v+\Delta v),
+$$
+subject to the action ledger
+$$
+\Delta A_{\text{cycle}}
+=
+\sigma h,
+\qquad
+\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}
+=
+\sigma\hbar,
+$$
+and the all-layer energy ledger
+$$
+\sum_{\ell\in\{I,M,O\}}
+\int_{B_q\to B_{q'}}\omega_\ell\,dI_\ell
++
+\Delta E_{\text{wake}}
+=
+\Delta E_{\text{coupl}}.
+$$
+The geometry projection is then the visible part of the sequence
+$$
+\text{one-}h\text{ action transaction}
+\longrightarrow
+\text{tri-binary branch update}
+\longrightarrow
+\text{outer-envelope oblation}
+\longrightarrow
+\text{effective }\gamma_\star(v).
+$$
+
+This sequence is the main reason the term `return-cycle` is preferred. The breakthrough is not simply that the outer envelope becomes an ellipsoid. The stronger claim is that the ellipsoid is the visible projection of a closed all-layer branch ledger.
+
+## Prediction And Failure Mode
+
+The mathematical prediction is not a generic Lorentz-violation coefficient. It is a structured residual. Inside a fixed nonresonant branch chart, deviations from the Lorentz coefficient target should be smooth and even in drift speed. Near a chart-changing event, any surviving residual should carry a branch signature: separator approach, inter-layer resonance, finite-memory cutoff, Jacobian-floor loss, or causal-root multiplicity change.
+
+Schematically, the two-way anisotropy diagnostic should decompose as
+$$
+\Delta_{\mathrm{tw}}(\beta,\theta)
+=
+\Delta_{\mathrm{tw}}^{\mathrm{smooth}}(\beta,\theta)
++
+\sum_{r\in\mathcal{R}_{\mathrm{res}}}
+B_r\,\mathcal{W}_r(\beta)\cos(2m_r\theta+\varphi_r),
+$$
+where each residual label $r$ must be traceable to a named branch-chart feature. A residual with no branch source is not a successful prediction; it is fitting error or an incomplete closure model.
+
+The failure mode is equally sharp. If the outer envelope gives
+$$
+\xi_q(v)
+\approx
+\frac{1}{\gamma_\star(v)}
+$$
+but the clock channel gives a different factor,
+$$
+\gamma_{\mathrm{clk}}^{(q)}(v)
+\neq
+\gamma_{\mathrm{rul}}^{(q)}(v)
++O(\epsilon_{\mathrm{LV}}),
+$$
+then the bridge fails. The theory must not tune the ruler, clock, momentum, and signal channels separately.
+
+## Status
+
+Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The current corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
+
+If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether-core geometry.

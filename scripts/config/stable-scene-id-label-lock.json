@@ -93,18 +93,6 @@
         "periodic_table": "Periodic Table"
       }
     },
-    "content/scenes/philosophy_history/philosophy_history.json": {
-      "sceneId": "philosophy_history",
-      "sceneName": "Philosophy-History",
-      "objects": {
-        "crisis_in_physics": "Crisis in Physics",
-        "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
-        "major_thinkers": "Major Thinkers",
-        "religious_ontologies": "Religious Ontologies",
-        "theory_mapping": "Theory Mapping",
-        "unknowns_paradoxes_scene": "Unknowns & Paradoxes"
-      }
-    },
     "content/scenes/quantum/quantum.json": {
       "sceneId": "quantum",
       "sceneName": "Quantum",
@@ -117,7 +105,7 @@
         "wavefunction_ontology": "Wavefunction Ontology"
       }
     },
-    "content/scenes/theory-bridges/theory_bridges.json": {
+    "content/scenes/philosophy_history/theory_bridges/theory_bridges.json": {
       "sceneId": "theory_bridges",
       "sceneName": "Theory Bridges",
       "objects": {
@@ -185,11 +173,10 @@
         "crisis_in_physics": "Crisis in Physics",
         "historical_context_missed_opportunities": "Historical Context and Missed Opportunities",
         "information_computation": "Information / Computation",
+        "inherited_theory_interface": "Inherited Theory Interface",
         "major_thinkers": "Major Thinkers",
         "philosophy_of_science": "Philosophy of Science",
-        "religious_ontologies": "Religious Ontologies",
-        "theory_mapping": "Theory Mapping",
-        "theory_differentials": "Theory Differentials"
+        "religious_ontologies": "Religious Ontologies"
       }
     },
     "content/scenes/validation/action_energy.json": {

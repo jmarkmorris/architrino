@@ -213,7 +213,7 @@ with calibration and mistag rates attached. Here $d_0$ is impact-parameter infor
 | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ file | Promotion condition |
 | --- | --- |
 | [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md) | The discrete axial-frame branch claim is stated as a quotient/minimization problem, not a loose angle list. |
-| [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md) | CKM/PMNS overlap uses the same weak-exposure domain as `V-A` and weak-reaction provenance. |
+| [weak-mixing-ckm](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md) | CKM/PMNS overlap uses the same weak-exposure domain as `V-A` and weak-reaction provenance. |
 | [gauge-symmetries](../../../content/markdown/aaa/interactions/gauge-symmetries.md) | Gauge covariance records the assembly-level assumptions and failure conditions behind the effective theorem spine. |
 | [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md) | Emergence prose is normalized so Noether-Sea structure is mechanism, while gauge fields remain effective bookkeeping. |
 

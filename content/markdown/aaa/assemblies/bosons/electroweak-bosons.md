@@ -4,7 +4,7 @@
 **Core Principle:** Bosons are discrete, propagating assemblies of architrinos organized into phase-locked modes.
 This chapter is the bosonic-side companion to [Gauge Structure Emergence](../../interactions/gauge-structure-emergence.md), [Weak Mixing Angle](../fermions/weak-mixing-angle.md), and [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md).
 
-Spin labels in this chapter are downstream mapping targets, not completed derivations. The Higgs is treated as a scalar target because its candidate motion is radial, while the photon and weak corridors are treated as vector-mode targets because each carries a distinguished propagation or interaction axis together with transverse phase structure. The proof obligations for these labels sit in [Angular Momentum and Spin](../../theory-bridges/angular-momentum-and-spin.md).
+Spin labels in this chapter are downstream mapping targets, not completed derivations. The Higgs is treated as a scalar target because its candidate motion is radial, while the photon and weak corridors are treated as vector-mode targets because each carries a distinguished propagation or interaction axis together with transverse phase structure. The proof obligations for these labels sit in [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 ---
 
@@ -520,6 +520,6 @@ Operational closure requirement:
 - measured rate hierarchies must be reproducible from overlap weights plus kinematics.
 
 Primary closure integrations:
-- Quark sector: [theory-bridges/weak-mixing-ckm.md](../../theory-bridges/weak-mixing-ckm.md)
+- Quark sector: [theory-bridges/weak-mixing-ckm.md](../../philosophy-history/theory-bridges/weak-mixing-ckm.md)
 - Lepton sector: [assemblies/fermions/neutrinos.md](../fermions/neutrinos.md)
 - Angle bridge: [assemblies/fermions/weak-mixing-angle.md](../fermions/weak-mixing-angle.md)

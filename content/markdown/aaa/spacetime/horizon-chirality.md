@@ -299,7 +299,7 @@ $$
 \hat J_{\text{net}}\parallel\pm\hat{\mathbf V},
 $$
 
-is not enough to identify weak left/right exposure. The same record must also pass the row-local parity and gauge-control checks used in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md) and the $\Delta_{\mathrm{WCT}}$ exposure record used in [Weak Mixing and CKM](../theory-bridges/weak-mixing-ckm.md). Until then, axial sign remains a candidate bridge variable rather than a weak-chirality derivation.
+is not enough to identify weak left/right exposure. The same record must also pass the row-local parity and gauge-control checks used in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md) and the $\Delta_{\mathrm{WCT}}$ exposure record used in [Weak Mixing and CKM](../philosophy-history/theory-bridges/weak-mixing-ckm.md). Until then, axial sign remains a candidate bridge variable rather than a weak-chirality derivation.
 
 ## Status Table
 
@@ -381,7 +381,7 @@ That yields a disciplined provisional picture:
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition.
 - [black-holes.md](./black-holes.md): horizon interface and strong-field ontology.
 - [tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md): regime map, planarity diagnostics, and alignment observables.
-- [planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md): terminal planar lock and alignment-horizon interpretation.
-- [angular-momentum-and-spin.md](../theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
+- [planck-scale-tri-binary-alignment.md](../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md): terminal planar lock and alignment-horizon interpretation.
+- [angular-momentum-and-spin.md](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
 - [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md): matter/antimatter chirality convention.
 - [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md): ordered-triad and chirality language.

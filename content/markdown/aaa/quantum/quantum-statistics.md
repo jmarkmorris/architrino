@@ -4,7 +4,7 @@ This chapter states the $\mathbb{A}\mathbb{A}\mathbb{A}$ proof target for Fermi-
 
 The working hypothesis is direct: the transition between Fermi-Dirac and Bose-Einstein behavior is controlled by the oblation of Noether-core orbits. A fully three-dimensional Noether-core envelope supplies the candidate basis for exclusion-like packing. A strongly oblated, effectively two-dimensional orbital support opens the candidate coherent shared-state regime associated with Bose-Einstein behavior.
 
-This hypothesis is downstream of the ordered-frame spinor program in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md). Volume exclusion can explain why same-state packing becomes costly, but it does not by itself derive the fermionic exchange sign or the spin-statistics connection.
+This hypothesis is downstream of the ordered-frame spinor program in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md). Volume exclusion can explain why same-state packing becomes costly, but it does not by itself derive the fermionic exchange sign or the spin-statistics connection.
 
 ## Standard Observer-Level Roles
 
@@ -49,7 +49,7 @@ $$
 
 and with the corresponding angular-momentum residuals below tolerance. Without that row, volumetric exclusion may explain why same-state packing is dynamically costly, but it does not yet derive the antisymmetric exchange phase used by the observer-level fermion chart.
 
-In the pullback notation of [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback), the exchange sign must be consumed as $\epsilon_{\mathrm{ex}}(r_\star)=(-1)^{\Pi_{W,r_\star}^{2\pi}}$ from the same retained row that supplies spinor closure, gauge control, and angular-momentum balance. A separately selected exchange sign is only observer-level bookkeeping, not a derived spin-statistics mechanism.
+In the pullback notation of [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback), the exchange sign must be consumed as $\epsilon_{\mathrm{ex}}(r_\star)=(-1)^{\Pi_{W,r_\star}^{2\pi}}$ from the same retained row that supplies spinor closure, gauge control, and angular-momentum balance. A separately selected exchange sign is only observer-level bookkeeping, not a derived spin-statistics mechanism.
 
 ## Bose-Einstein Regime: 2D Coherence
 
@@ -173,7 +173,7 @@ This chapter depends on:
 - [Wavefunction Ontology](./wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
 - and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) for the photon-channel case where coherent planar-pair modes must recover Bose-Einstein occupation behavior.
 
-It also sets targets for [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md): antisymmetric and symmetric state spaces should be recoverable as effective summaries of these two assembly-geometric regimes.
+It also sets targets for [Quantum Operator Mapping](../philosophy-history/theory-bridges/quantum-operator-mapping.md): antisymmetric and symmetric state spaces should be recoverable as effective summaries of these two assembly-geometric regimes.
 
 ## Closure Targets
 
@@ -181,7 +181,7 @@ The next proof steps are:
 
 1. Extract $\xi$ from simulated or analytic Noether-core orbit data.
 2. Identify the stability threshold separating volumetric exclusion from coherent 2D support.
-3. Derive how exchange of two 3D Noether-core assemblies produces fermionic antisymmetry at the effective level, using the same retained non-gauge ordered-core row that passes the $2\pi/4\pi$ spinor, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual).
+3. Derive how exchange of two 3D Noether-core assemblies produces fermionic antisymmetry at the effective level, using the same retained non-gauge ordered-core row that passes the $2\pi/4\pi$ spinor, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual).
 4. Derive how phase-compatible 2D-supported channel excitations produce bosonic symmetric occupation.
 5. Check that mixed regimes do not create forbidden intermediate statistics for ordinary low-energy matter.
 

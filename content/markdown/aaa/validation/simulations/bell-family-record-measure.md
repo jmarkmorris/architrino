@@ -77,7 +77,7 @@ $$
 \left[|S|-2\sqrt{2}\right]_+.
 $$
 
-For GHZ, the script uses the context signs in [Bell's Theorem](../../theory-bridges/bell-theorem.md#bell-family-strengthenings-ghz-and-hardy):
+For GHZ, the script uses the context signs in [Bell's Theorem](../../philosophy-history/theory-bridges/bell-theorem.md#bell-family-strengthenings-ghz-and-hardy):
 
 $$
 \mathcal{C}_{\mathrm{GHZ}}=\{XXX,XYY,YXY,YYX\},
@@ -255,7 +255,7 @@ The native proof packet must supply:
 4. a compression audit showing why the completed record law does not reduce to Bell-local product screening;
 5. no-signaling and measurement-independence residuals evaluated on the same packet.
 
-The single-core Stern-Gerlach response in [Angular Momentum and Spin](../../theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) is a prerequisite, not the Bell proof itself. Bell-family closure starts only after the pair-provenance measure and the joint record basins are explicit.
+The single-core Stern-Gerlach response in [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) is a prerequisite, not the Bell proof itself. Bell-family closure starts only after the pair-provenance measure and the joint record basins are explicit.
 
 ## Acceptance Boundary
 
@@ -266,6 +266,6 @@ A future closure packet becomes promotable only if:
 1. the probability tables are generated from declared substrate variables rather than written by hand;
 2. $\Delta_{\mathrm{MI}}$ and $\Delta_{\mathrm{NS}}$ remain within tolerance;
 3. CHSH, GHZ, and Hardy benchmarks are evaluated together;
-4. the same $\mu_{*,T}^{(n)}$ also agrees with the record and repeated-frequency discipline in [Quantum Operator Mapping](../../theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence);
+4. the same $\mu_{*,T}^{(n)}$ also agrees with the record and repeated-frequency discipline in [Quantum Operator Mapping](../../philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence);
 5. the product-screening audit does not collapse the completed hidden-variable record into $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$;
 6. failure cases are reported when the model reduces to classical-axis response, separable pair measure, product-screened pair provenance, context-independent GHZ values, forbidden Hardy events, setting-dependent provenance, or signaling marginals.

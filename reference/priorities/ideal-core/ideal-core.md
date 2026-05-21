@@ -5,7 +5,7 @@
 - Keep `Task Queue` ordered as the current Ideal Core app work queue, with the most important active item first.
 - Keep this priority file app-facing: runtime access, visualization requirements, lesson flow, controls, charts, and acceptance gates. Its task queue is app-local and is not part of the global theory priority score table unless the operator/developer explicitly selects Ideal Core work.
 - Use [../ellipsoid/ideal-core.md](../ellipsoid/ideal-core.md) as the earlier design brief for the Noether-core instrument and central spherical viewing model.
-- Use [../../../content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md) as the current theory bridge for Lorentz-factor quantization, return-cycle closure, and Lorentz spheroid geometry.
+- Use [../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) as the current theory bridge for Lorentz-factor quantization, return-cycle closure, and Lorentz spheroid geometry.
 - Do not treat the app as proof by itself; use it to make the candidate geometry, equations, and closure defects visible.
 
 ## Workstream Metadata
@@ -326,5 +326,5 @@ This priority is done when:
 - [../ellipsoid/ideal-core.md](../ellipsoid/ideal-core.md)
 - [../../../content/markdown/aaa/spacetime/lorentz-kinematics.md](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
 - [../../../content/markdown/aaa/spacetime/noether-core-geometry.md](../../../content/markdown/aaa/spacetime/noether-core-geometry.md)
-- [../../../content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/theory-bridges/return-cycle-lorentz-quantization.md)
-- [../../../content/markdown/aaa/theory-bridges/special-relativity-noether-core.md](../../../content/markdown/aaa/theory-bridges/special-relativity-noether-core.md)
+- [../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
+- [../../../content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md)

@@ -119,7 +119,7 @@ The xenon isotope signal may be promoted into an authored validation note only i
 | Future target | Role after the promotion gate passes |
 | --- | --- |
 | [Measurement Ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | External benchmark for a biological record channel whose endpoint is a durable behavioral, electrophysiological, optical, or spin-spectroscopy record. |
-| [Angular Momentum and Spin](../../../content/markdown/aaa/theory-bridges/angular-momentum-and-spin.md) | External pressure on spin-sensitive coupling without treating nuclear spin as primitive consciousness. |
+| [Angular Momentum and Spin](../../../content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) | External pressure on spin-sensitive coupling without treating nuclear spin as primitive consciousness. |
 | [Known Tensions](../../../content/markdown/aaa/validation/known-tensions.md) | Optional validation tension only if replication remains robust and conventional nuisance explanations fail. |
 
 ## Explicit Non-Promotion Rules

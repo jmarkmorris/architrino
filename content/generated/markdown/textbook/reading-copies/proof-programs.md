@@ -22023,7 +22023,7 @@ That order matters. Without a transverse seed packet, the return map is not well
 
 This chapter is the top bottleneck because it is upstream of several attractive but softer narratives.
 
-- It is upstream of the terminal aligned-mode story in [Mapping the Planck Scale to the Tri-Binary Geometry](../../../../markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md).
+- It is upstream of the terminal aligned-mode story in [Mapping the Planck Scale to the Tri-Binary Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md).
 - It is upstream of the planar-lock and branch-selection story in [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md).
 - It is upstream of any reliable effective reduction in [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md) and [Gauge Symmetries](../../../../markdown/aaa/interactions/gauge-symmetries.md).
 

@@ -1,12 +1,12 @@
 # Tri-Binary Action-Increment Protocol
 
-This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](run-protocols.md) and [Convergence Tests](convergence-tests.md) to the question left open by [Tri-Binary Dynamics](../../dynamics/tri-binary-dynamics.md), [Dyadic Resonance Lock](../../dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../theory-bridges/planck-scale-tri-binary-alignment.md).
+This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](run-protocols.md) and [Convergence Tests](convergence-tests.md) to the question left open by [Tri-Binary Dynamics](../../dynamics/tri-binary-dynamics.md), [Dyadic Resonance Lock](../../dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md).
 
 The target is narrow. The run must compute the smallest accepted Master-Equation projected action increment from stable tri-binary branch transitions. It may compare the resulting scale to the observer-level `$h,\hbar$` benchmark after the computation. It may not insert $\hbar$ as an input step size.
 
 ## Closure Question
 
-The action-angle bridge in [Angular Momentum and Spin](../../theory-bridges/angular-momentum-and-spin.md#the-h-and-hbar-convention) states the conditional theorem target:
+The action-angle bridge in [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md#the-h-and-hbar-convention) states the conditional theorem target:
 $$
 \Delta I_i=\hbar
 \quad\Longrightarrow\quad
