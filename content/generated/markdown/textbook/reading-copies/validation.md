@@ -56,7 +56,40 @@ The **new SI** defines all units via **exact values** of seven constants:
 | Avogadro constant | $N_A$ | $6.02214076 \times 10^{23}$ mol⁻¹ | mole (mol) |
 | Luminous efficacy of 540 THz radiation | $K_{\text{cd}}$ | 683 lm/W | candela (cd) |
 
-**Key insight:** These are **not measurements**—they are **definitions**. The universe doesn't "have" these values; we've **chosen** them as the basis for our measurement system.
+**Key insight:** These SI rows are definitions, not measurements. Their exactness is a property of the unit system. A physical closure claim still has to recover the observer-level records that make those definitions useful: spectral frequencies, charge inventories, action increments, thermal energy scales, and signal propagation.
+
+#### CODATA 2022 Benchmark Discipline
+
+The 2022 CODATA constants tables add a second layer to the SI discussion. Exact SI-defining constants, adjusted constants, and derived conversion factors should not be mixed as if they carried the same evidential status.
+
+| Class | Examples | How $\mathbb{A}\mathbb{A}\mathbb{A}$ should use it |
+| --- | --- | --- |
+| Exact SI definitions | $c$, $h$, $e$, $k_B$, $N_A$, $\Delta\nu_{\mathrm{Cs}}$ | Treat as unit conventions and observer-level target scales. A derivation must recover why the same convention is stable across clocks, rulers, charges, action records, and thermodynamic records. |
+| Adjusted dimensionless or near-direct benchmarks | $\alpha$, $\alpha^{-1}$, $m_p/m_e$, magnetic-moment ratios | Use as high-pressure residual rows because they are mostly independent of arbitrary unit scale. |
+| Adjusted dimensional benchmarks | $G$, $m_e c^2$, $m_p c^2$, $m_n c^2$, $m_\mu c^2$, $R_\infty$ | Use only after the substrate-to-observer unit map is declared. These rows test mass, gravity, and spectral closure, but they cannot be inserted as primitive inputs. |
+| Derived conversion factors | $\ell_P$, $m_P$, $t_P$, electron volt relationships, atomic-mass relationships | Use as consistency checks, not independent constraints, because their uncertainties inherit the constants used to construct them. |
+
+The current numerical anchors are severe in different ways. The fine-structure constant is
+$$
+\alpha=7.2973525643\times10^{-3},
+\qquad
+u_r(\alpha)\approx1.51\times10^{-10},
+$$
+while the Newtonian constant is
+$$
+G=6.67430\times10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}},
+\qquad
+u_r(G)\approx2.25\times10^{-5}.
+$$
+Thus $\alpha$ is a much sharper dimensionless target than $G$, while Planck-unit rows such as $\ell_P$, $m_P$, and $t_P$ inherit roughly half of the relative uncertainty of $G$ through square-root dependence. A Planck-alignment claim should therefore not over-read the apparent precision of derived Planck-unit numbers.
+
+The standard uncertainty convention matters for scoring. For a measured or adjusted row $X$, use
+$$
+Z_X
+=
+\frac{X_{\mathbb{A}\mathbb{A}\mathbb{A}}-X_{\mathrm{CODATA}}}{u(X_{\mathrm{CODATA}})}
+$$
+when the same observable has been derived from the same record. For exact SI rows, do not form a false zero-uncertainty residual; instead test whether the unit map and the adjusted rows that depend on it close simultaneously.
 
 ---
 
@@ -144,9 +177,9 @@ The speed of light $c$ is **not fundamental**. It is the low-gradient operationa
 
 **Key relation:**
 $$
-c_{\text{eff}}(\mathbf{x},t)=\frac{c_f}{\chi_{\text{sea}}(\mathbf{x},t)},
+c_\gamma(\mathbf{x},t)=\frac{c_f}{\chi_\gamma(\mathbf{x},t)},
 \qquad
-\chi_{\text{sea}}(\mathbf{x},t)=f\!\left(\rho_{\text{core}}(\mathbf{x},t),n(\mathbf{x},t),\text{Noether-Sea state}\right)
+\chi_\gamma(\mathbf{x},t)=f_\gamma\!\left(\rho_{\text{core}}(\mathbf{x},t),n(\mathbf{x},t),\text{Noether-Sea state}\right)
 $$
 
 In the low-energy limit (flat spacetime, weak Noether-Sea gradients):
@@ -155,13 +188,13 @@ c \approx c_f \quad (\text{small corrections from Noether-Sea refraction})
 $$
 
 **What we must show:**
-- Photons are planar assemblies (2D tri-binaries, bosonic statistics)
+- Photons are coaxial contra-rotating pro/anti planar pairs whose bosonic/statistical behavior is recovered as a downstream closure target
 - Their propagation through the Noether Sea is **not instantaneous** but limited by $c_f$
 - The effective speed $c$ measured by operational observers (made of assemblies) matches $c_f$ within experimental precision (~$10^{-17}$ for Lorentz tests)
 
 **Prediction:**
-- In strong gravitational fields (dense Noether Sea): $c_{\text{eff}} < c_f$ (gravitational lensing, Shapiro delay)
-- At Planck scales (Noether-Sea microstructure resolves): $c_{\text{eff}} \neq c_f$ (Lorentz violation signatures)
+- In strong gravitational fields (dense Noether Sea): $c_\gamma < c_f$ in the photon channel (gravitational lensing, Shapiro delay)
+- At Planck scales (Noether-Sea microstructure resolves): $c_\gamma \neq c_f$ in the photon channel (Lorentz violation signatures)
 
 ---
 
@@ -296,7 +329,7 @@ This is a **psychophysical constant**, not a physical one. It relates:
 The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), where the human eye is most sensitive.
 
 **What we can say:**
-- Photons at 540 THz are planar assemblies with Middle Binary frequency $\omega = 2\pi \times 540 \times 10^{12}$ rad/s
+- Photons at 540 THz are planar-mode phase records with $\omega = 2\pi \times 540 \times 10^{12}$ rad/s; assigning that frequency to a specific Middle Binary is still a derivation target.
 - The human retina's photoreceptors (assemblies themselves) couple resonantly to this frequency
 - The constant 683 lm/W is **arbitrary**—it's a choice of units based on human biology
 
@@ -307,7 +340,7 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 | SI Constant | Status in $\mathbb{A}\mathbb{A}\mathbb{A}$ | Derivation Pathway |
 |-------------|-------------------------------|-------------------|
 | $\Delta \nu_{\text{Cs}}$ | **Derivable** | Hyperfine splitting from Middle Binary magnetic moments |
-| $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_{\text{sea}}$ |
+| $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_\gamma$ |
 | $h$ | **Derivation target (open)** | Closed-cycle action quantization; equivalent outer-binary rotational-action increments in units of $\hbar$; lower recordable basin-measure scale after quantum closure |
 | $e$ | **Recovered observer benchmark** | $|e|=6\epsilon$ after choosing the observer-level electric bookkeeping normalization |
 | $k_B$ | **Derivable** | Noether-Sea thermal equilibrium + assembly mass |
@@ -466,6 +499,58 @@ The following observer-level quantities are closure targets, not primitive input
 
 If the theory must reset them independently for each chapter, parameter closure has failed.
 
+#### CODATA Benchmark Contract
+
+The NIST/CODATA constants tables should be used as a benchmark contract, not as an extra ontology layer. The 2022 CODATA adjustment separates three different kinds of entries:
+
+- exact SI-defining constants, whose numerical values are fixed by unit convention;
+- adjusted measured constants, whose quoted standard uncertainties are experimental and theoretical benchmark widths;
+- derived conversion factors, whose uncertainty follows from the constants used to construct them.
+
+This distinction controls how residuals are formed. If a candidate closure predicts a measured dimensionless or conversion-independent quantity $X$, compare it to the CODATA value by
+$$
+Z_X
+=
+\frac{X_{\mathbb{A}\mathbb{A}\mathbb{A}}-X_{\mathrm{CODATA}}}{u(X_{\mathrm{CODATA}})},
+\qquad
+\rho_X
+=
+\frac{X_{\mathbb{A}\mathbb{A}\mathbb{A}}-X_{\mathrm{CODATA}}}{X_{\mathrm{CODATA}}},
+$$
+where $u(X)$ is the quoted standard uncertainty. If $X$ is exact by SI definition, the residual is not a measurement residual. The closure test is instead whether the same substrate-to-observer unit map recovers the exact convention while also passing the adjusted measured rows that depend on it.
+
+The uncertainty convention is also fixed. A standard uncertainty $u(y)$ is an estimated standard deviation for the result $y$, and the relative standard uncertainty is
+$$
+u_r(y)=\frac{u(y)}{|y|}
+$$
+for $y\ne0$. When the quoted distribution is approximately Gaussian, $y\pm u(y)$ is the one-standard-uncertainty comparison interval, not a broad tolerance band to be enlarged after a fit.
+
+Useful 2022 CODATA rows for the current closure stack are:
+
+| Quantity | CODATA 2022 value | Standard uncertainty | Ledger role |
+| --- | ---: | ---: | --- |
+| $c$ | $299792458\,\mathrm{m\,s^{-1}}$ | exact | SI convention and low-gradient photon-channel benchmark; not primitive ontology unless $c_\gamma\to c_f$ is derived. |
+| $h$ | $6.62607015\times10^{-34}\,\mathrm{J\,Hz^{-1}}$ | exact | SI convention and action benchmark; the Planck-alignment program must recover the action scale rather than fit it. |
+| $\hbar$ | $1.054571817\ldots\times10^{-34}\,\mathrm{J\,s}$ | exact | Radian-normalized action benchmark derived from $h/(2\pi)$ in SI units. |
+| $e$ | $1.602176634\times10^{-19}\,\mathrm{C}$ | exact | Observer-level electric-charge convention; substrate polarity bookkeeping still uses $\epsilon$ and the charge-reconstruction map. |
+| $k_B$ | $1.380649\times10^{-23}\,\mathrm{J\,K^{-1}}$ | exact | Thermodynamic unit convention; Noether-Sea thermodynamics must recover the energy-temperature map. |
+| $N_A$ | $6.02214076\times10^{23}\,\mathrm{mol^{-1}}$ | exact | Counting convention, not a substrate particle number. |
+| $\alpha$ | $7.2973525643\times10^{-3}$ | $1.1\times10^{-12}$ | Dimensionless electromagnetic benchmark; strong test of any charge/action/signal-speed closure. |
+| $\alpha^{-1}$ | $137.035999177$ | $2.1\times10^{-8}$ | Same benchmark in inverse form; do not count both as independent residuals. |
+| $G$ | $6.67430\times10^{-11}\,\mathrm{m^3\,kg^{-1}\,s^{-2}}$ | $1.5\times10^{-15}\,\mathrm{m^3\,kg^{-1}\,s^{-2}}$ | Gravity-side benchmark with comparatively weak relative uncertainty $u_r\approx2.25\times10^{-5}$. |
+| $m_e c^2$ | $0.51099895069\,\mathrm{MeV}$ | $1.6\times10^{-10}\,\mathrm{MeV}$ | Mass-map benchmark after $A_0$, shielding, and response-map extraction; not an input. |
+| $m_p c^2$ | $938.27208943\,\mathrm{MeV}$ | $2.9\times10^{-7}\,\mathrm{MeV}$ | Hadronic mass benchmark after confinement and residual-strong closure. |
+| $m_n c^2$ | $939.56542194\,\mathrm{MeV}$ | $4.8\times10^{-7}\,\mathrm{MeV}$ | Neutron/proton split benchmark; tests hadronic plus electromagnetic and weak-stability bookkeeping. |
+| $m_\mu c^2$ | $105.6583755\,\mathrm{MeV}$ | $2.3\times10^{-6}\,\mathrm{MeV}$ | Charged-lepton hierarchy benchmark after the first mass map exists. |
+| $m_p/m_e$ | $1836.152673426$ | $3.2\times10^{-8}$ | Dimensionless mass-ratio benchmark for hierarchy closure. |
+| $u$ | $1.66053906892\times10^{-27}\,\mathrm{kg}$ | $5.2\times10^{-37}\,\mathrm{kg}$ | Atomic-mass conversion benchmark for nuclear and chemistry-facing rows. |
+| $R_\infty$ | $10973731.568157\,\mathrm{m^{-1}}$ | $1.2\times10^{-5}\,\mathrm{m^{-1}}$ | Spectral benchmark binding $m_e$, $\alpha$, $h$, and $c$ in the hydrogen/atomic closure stack. |
+| $\ell_P$ | $1.616255\times10^{-35}\,\mathrm{m}$ | $1.8\times10^{-40}\,\mathrm{m}$ | Derived Planck-unit comparison dominated by $G$ uncertainty; not independent of $h,c,G$. |
+| $m_P$ | $2.176434\times10^{-8}\,\mathrm{kg}$ | $2.4\times10^{-13}\,\mathrm{kg}$ | Derived Planck-unit comparison dominated by $G$ uncertainty; not an extra fitted mass. |
+| $t_P$ | $5.391247\times10^{-44}\,\mathrm{s}$ | $6.0\times10^{-49}\,\mathrm{s}$ | Derived Planck-time comparison dominated by $G$ uncertainty; use only after the alignment map declares its SI conversion. |
+
+The most important mining consequence is procedural: exact rows such as $h$, $e$, $k_B$, and $c$ are not easier physical targets because their listed uncertainty is zero. They are exact in SI because the units are defined through them. The physical pressure comes from the adjusted and dimensionless rows, especially $\alpha$, $m_p/m_e$, $R_\infty$, particle mass-energy equivalents, and $G$.
+
 #### Naturalness and sensitivity
 
 When a symbol is claimed as a closure output rather than a free fit, use the fine-tuning quotient
@@ -506,8 +591,8 @@ These quantities belong to tri-binary architecture, shielding, branch structure,
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch tri-binary Noether-core reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md), [../dynamics/tri-binary-dynamics.md](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md), [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md) |
-| G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open | certificate packet tying the finite closure graph $\mathcal{G}_{A_0}$, active root ledger, quotient Floquet gap $\Delta_{\mathbf{k}}$, shielding extraction, and $\mathcal{M}_{\text{sea}}^{ab}$ response probe into one promotion sequence | [simulations/a0-branch-certificate-protocol.md](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
-| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether core | [../spacetime/noether-core.md](../../../../markdown/aaa/spacetime/noether-core.md), [../spacetime/noether-core-geometry.md](../../../../markdown/aaa/spacetime/noether-core-geometry.md), [../dynamics/tri-binary-dynamics.md](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) |
+| G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open; compact finite-coordinate no-go recorded, branch-chart revision required before Tier 1 continuation | certificate packet tying the finite closure graph $\mathcal{G}_{A_0}$, active root ledger, quotient Floquet gap $\Delta_{\mathbf{k}}$, shielding extraction, and $\mathcal{M}_{\text{sea}}^{ab}$ response probe into one promotion sequence | [simulations/a0-branch-certificate-protocol.md](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
+| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether core | [../spacetime/noether-swarm.md](../../../../markdown/aaa/spacetime/noether-swarm.md), [../spacetime/noether-core-geometry.md](../../../../markdown/aaa/spacetime/noether-core-geometry.md), [../dynamics/tri-binary-dynamics.md](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) |
 | G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [../dynamics/tri-binary-dynamics.md](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
 | G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md) |
 | G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md) |
@@ -640,17 +725,19 @@ The current assembly-side inertial map is
 $$
 m_{\text{inertial}}(A)
 \approx
-\alpha\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2},
+\alpha_{\mathrm{m}}\,\frac{\zeta(A)\,E_{\text{internal}}(A)}{c_{\text{eff}}^2},
 $$
-with $\alpha$ fixed once by a reference assembly rather than re-fit separately for each particle.
+with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly rather than re-fit separately for each particle.
 
 This relation means that $m_{\text{inertial}}(A)$ is not a primitive parameter. It is an output of shielding, internal energy, and medium response.
+
+Notation note: $\alpha_{\mathrm{m}}$ denotes the mass-map normalization; bare $\alpha$ remains reserved for the measured fine-structure benchmark or for a locally declared weak-mixing branch angle, while $\alpha_i$ denotes PPN preferred-frame coefficients.
 
 In a resolved Noether-Sea environment, this scalar relation is the homogeneous isotropic limit of the tensor response
 $$
 p_{\text{int}}^a
 \approx
-\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b},
 \qquad
 \mathcal{M}_{\text{sea}}^{ab}
@@ -665,6 +752,8 @@ $$
 \frac{\zeta(A_0)E_{\text{internal}}(A_0)}{E_0},
 $$
 together with the unresolved constants and response-map assumptions needed to turn that dimensionless coefficient into an observer-level mass prediction.
+
+The current compact finite-coordinate no-go is a status blocker inside $\mathcal{P}_{A_0}$, not an additional free parameter and not a benchmark input. It requires a predeclared branch-chart revision before Tier 1 continuation can be interpreted as progress toward the mass-facing output above.
 
 #### 6. Planck-alignment map
 
@@ -729,7 +818,7 @@ The shortest path to a better closure score is:
 
 1. Fix the status of $\kappa$ once, with an explicit statement of what part is physical coupling and what part is absorbed normalization.
 2. Derive or numerically extract a reusable constitutive parameterization for $(\Omega,\xi)$, then hold it fixed across redshift, Shapiro delay, lensing, and preferred-frame tests.
-3. Derive the $A_0$ reference-attractor packet, then replace symbolic shielding language with an operational $\zeta(A)$ extraction protocol and a reusable $\mathcal{M}_{\text{sea}}^{ab}$ response map that can be applied to electron, quark, and neutrino assemblies without redefinition.
+3. Resolve the $A_0$ branch-chart revision and accepted branch packet, then replace symbolic shielding language with an operational $\zeta(A)$ extraction protocol and a reusable $\mathcal{M}_{\text{sea}}^{ab}$ response map that can be applied to electron, quark, and neutrino assemblies without redefinition.
 4. Decide whether the Planck-alignment map yields $(h,G)$ as true outputs or only as analogy-level scaling relations.
 5. Reduce the weak-mixing angle program from discrete branch suggestion to an actual minimization problem for $E_{\text{eff}}(\alpha,\phi_c)$.
 
@@ -802,7 +891,7 @@ Each reaction record should state:
 | Noether-Sea input/output | Neutral cores, axial material, or medium excitations recruited or returned |
 | Conserved inventory | $E/P$ totals and charge/polarity balance |
 | Energy-momentum and angular-momentum ledger | Internal energy, recoil, emitted assemblies, spin/vector ledger terms, wake-carried angular momentum, and medium excitation |
-| Radiation event record, when applicable | Source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status |
+| Radiation event record, when applicable | Source assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, photon Gate B event residual when $E_\gamma\ne0$, and closure status |
 | Provenance data | Source identity, emission time, causal-root branch, and local medium state |
 | Closure status | What is established, what is assumed, and what remains to derive |
 
@@ -866,6 +955,178 @@ $$
 $$
 
 componentwise across the tuple. Nonzero physical recoil, medium heating, remnant excitation, outgoing product energy, or photon output is allowed only as a named term inside $Y_{\mathsf e}$; it is not allowed as an implicit loss.
+
+The stronger event-balance target bundles energy, momentum, and angular momentum instead of checking photon polarization separately from the source ledger. For $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$, define source depletion by
+
+$$
+\Delta\mathcal Q_{\mathrm{src}}^{0}
+=
+\mathcal Q_{\mathrm{src}}^{-}
+-
+\mathcal Q_{\mathrm{src}}^{+}.
+$$
+
+A resolved radiative event closes only if
+
+$$
+\Delta\mathcal Q_{\mathrm{src}}^{0}
+=
+\mathcal Q_{\gamma}^{\mathrm{sub}}
++
+\mathcal Q_{\mathrm{recoil}}^{0}
++
+\mathcal Q_{\mathrm{med}}^{0}
++
+\mathcal Q_{\mathrm{wake}}^{0}
++
+\mathcal Q_{\mathrm{handoff}}^{0}
++
+\mathcal Q_{\mathrm{rem}}^{0},
+$$
+
+with normalized residual
+
+$$
+\Delta_{\mathrm{evt}}^\gamma
+=
+\sum_{\mathcal Q\in\{E,\mathbf p,\mathbf J\}}
+\frac{
+\left\|
+\Delta\mathcal Q_{\mathrm{src}}^{0}
+-
+\mathcal Q_{\gamma}^{\mathrm{sub}}
+-
+\mathcal Q_{\mathrm{recoil}}^{0}
+-
+\mathcal Q_{\mathrm{med}}^{0}
+-
+\mathcal Q_{\mathrm{wake}}^{0}
+-
+\mathcal Q_{\mathrm{handoff}}^{0}
+-
+\mathcal Q_{\mathrm{rem}}^{0}
+\right\|
+}{
+\varepsilon_{\mathcal Q}
++
+\left\|
+\Delta\mathcal Q_{\mathrm{src}}^{0}
+\right\|
+}.
+$$
+
+The Gate B angular-momentum row is the $\mathcal Q=\mathbf J$ projection of this same identity. Let the event window be labeled by superscript $0$, and let $\mathbf J_{\mathrm{src}}^-$ and $\mathbf J_{\mathrm{src}}^+$ be the source angular-momentum ledger before and after the event. Define
+
+$$
+\Delta\mathbf J_{\mathrm{src}}^{0}
+=
+\mathbf J_{\mathrm{src}}^-
+-
+\mathbf J_{\mathrm{src}}^+.
+$$
+
+The photon event row is
+
+$$
+\Delta\mathbf J_{\mathrm{src}}^{0}
+=
+\mathbf J_{\gamma}^{\mathrm{sub}}
++
+\mathbf J_{\mathrm{recoil}}^{0}
++
+\mathbf J_{\mathrm{med}}^{0}
++
+\mathbf J_{\mathrm{wake}}^{0}
++
+\mathbf J_{\mathrm{handoff}}^{0}
++
+\mathbf J_{\mathrm{rem}}^{0}.
+$$
+
+Define the corresponding balance defect by
+
+$$
+\mathbf B_{\gamma}^{0}
+=
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\gamma}^{\mathrm{sub}}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}.
+$$
+
+For a Gate B-admissible photon row, helicity is the projection
+
+$$
+\lambda_{\mathrm{hel}}
+=
+\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar},
+\qquad
+\lambda_{\mathrm{hel}}\in\{+1,-1\},
+$$
+
+and the event balance bounds the projection error:
+
+$$
+\left|
+\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
+-
+\frac{
+\hat{\mathbf e}\cdot
+\left(
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+\right)
+}{\hbar}
+\right|
+\le
+\frac{\|\mathbf B_{\gamma}^{0}\|}{\hbar}.
+$$
+
+The normalized event-balance residual is
+
+$$
+\Delta_{\mathrm{bal}}^\gamma
+=
+\frac{
+\left\|
+\Delta\mathbf J_{\mathrm{src}}^{0}
+-
+\mathbf J_{\gamma}^{\mathrm{sub}}
+-
+\mathbf J_{\mathrm{recoil}}^{0}
+-
+\mathbf J_{\mathrm{med}}^{0}
+-
+\mathbf J_{\mathrm{wake}}^{0}
+-
+\mathbf J_{\mathrm{handoff}}^{0}
+-
+\mathbf J_{\mathrm{rem}}^{0}
+\right\|
+}{
+1+\left\|\Delta\mathbf J_{\mathrm{src}}^{0}\right\|
+}.
+$$
+
+The denominator is understood in the normalized angular-momentum units of the event ledger. Missing source, recoil, medium, wake, handoff, or remnant rows keep the photon record provisional even when the outgoing photon substrate ledger is algebraically clean.
 
 #### Provenance-Preserving Polarity Inventory
 
@@ -1526,10 +1787,10 @@ The witness empties the target gate when $\mathcal{C}_T\!\mid c=\varnothing$. It
 | Failure mode | Mathematical test | Routed workstream |
 | --- | --- | --- |
 | Empty intersection | $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}=\varnothing$ or $\operatorname{Ext}_S(c)=\varnothing$ for a proposed local promotion. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [Closure Scorecard](../../../../markdown/aaa/validation/closure-scorecard.md) |
-| Hidden tuning | A shared variable or map has sector-specific values $p_S\ne p_T$ with no recorded state variable, or the same benchmark family is recovered only by changing $\Pi_S$, $Q_S$, $\mathcal{R}$, $\{B_i\}$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, $\rho_{\text{core}}(\mathbf{x},t)$, or $\chi_{\text{sea}}(\mathbf{x},t)$ between cases. | [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) |
+| Hidden tuning | A shared variable or map has sector-specific values $p_S\ne p_T$ with no recorded state variable, or the same benchmark family is recovered only by changing $\Pi_S$, $Q_S$, $\mathcal{R}$, $\{B_i\}$, the branch-chart revision record, equality map, root-coordinate split, $\mathcal{M}_{\mathrm{sea}}^{ab}$, $\rho_{\text{core}}(\mathbf{x},t)$, or $\chi_{\text{sea}}(\mathbf{x},t)$ between cases. Branch-chart revisions selected after residual inspection rather than declared from branch geometry fail this test. | [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) |
 | Null-result violation | $\mathcal{R}_{\mathrm{null}}(\theta)>0$ for a predicted added channel in a validated comparison regime. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) |
 | Missing conservation/provenance field | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)$ has an undefined or nonzero required row after all claimed outputs, recoil, medium updates, remnants, polarity / charge, architrino inventory, source identity, emission time, causal-root branch, and branch-Jacobian records are included. | [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) |
-| Benchmark-only fitting | A target benchmark in $\mathfrak{B}^{\mathrm{obs}}_S$ is used as an input to $\mathcal{L}_A$, $\Pi_S$, $Q_S$, $\mathcal{R}$, $\{B_i\}$, or $\mathcal{M}_{\mathrm{sea}}^{ab}$ rather than as an output of a replayable closure record. | [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md) |
+| Benchmark-only fitting | A target benchmark in $\mathfrak{B}^{\mathrm{obs}}_S$ is used as an input to $\mathcal{L}_A$, $\Pi_S$, $Q_S$, $\mathcal{R}$, $\{B_i\}$, a branch-chart revision, an equality map, a root-coordinate split, or $\mathcal{M}_{\mathrm{sea}}^{ab}$ rather than as an output of a replayable closure record. | [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md) |
 | Incompatible effective limits | Two sectors require asymptotic maps whose overlap is empty, for example incompatible weak-field metric limits, photon / radiation limits, blackbody / BBN transport limits, or quantum no-signaling / gravity causal limits. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md), [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) |
 
 ### Preferred-Frame Hiding Stop Condition
@@ -2207,11 +2468,11 @@ Method 2 — Green’s function (path-history integral)
 Method 3 — Event-driven radial-transport + per-hit EOM (current canonical)
 - Pros
   - Directly implements the project’s delayed, radial-only interaction law with constant emission cadence.
-  - Natural support for self-hits and superposition; local $1/r^2$ weighting makes near sources dominate.
+  - Natural support for self-hits and superposition; local $1/r^2$ weighting makes nearby coherent roots dominate once the far-field cutoff, screening, cancellation, or summation prescription is declared.
   - Numerically lightweight for particle dynamics; works cleanly with impulsive or mollified ODE integration.
 - Cons
   - Not derived from the scalar wave equation; global field-energy accounting is indirect (via mollified potentials).
-  - Omits the explicit path-history-time Jacobian factor from Method 2; relies on $\kappa$ calibration.
+  - Must retain the causal-root Jacobian factor from the master equation; a reduced test harness that omits it is a noncanonical approximation rather than a calibration of $\kappa$.
   - Accuracy depends on robust causal-root finding and regularization choices in complex multi-hit scenarios.
 
 ---
@@ -2721,12 +2982,16 @@ Plain language: We don’t keep a permanent 1/r field glued to the point. Instea
 
 Existing text excerpt:
 > ### **Self-Interaction**
-> An architrino can intersect an expanding causal isochron that it emitted itself at an earlier point in its history. Self-hit can occur when an architrino’s speed exceeds the primitive wake speed ($\|\mathbf{v}_a\| > c_f$). In this regime, the architrino moves ahead of previously emitted causal wake surfaces, allowing it to interact with its own causal wake. This self-hit contribution is repulsive and plays a key role in the stability of emergent structures.
+> An architrino can intersect an expanding causal isochron that it emitted itself at an earlier point in its history. Self-hit occurs when the same-source causal-root set is nonempty, $\mathcal{C}_{aa}(t)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake. The like-polarity self-hit contribution is repulsive and plays a key role in the stability of emergent structures.
 
 Detailed explanation (conditions and effects):
 
 - Root multiplicity and self-roots:
-  - When $\|\mathbf{v}_a\|>c_f$ (or $\|\mathbf{v}_a\|>1$ in $c_f=1$ units), the worldline can outrun recent wake surfaces, so $\mathcal{C}_a(t)$ includes emission times from the same architrino (self-hits).
+  - The simulation should open the self-hit channel only when it finds same-source roots
+    $$
+    \mathcal{C}_{aa}(t)=\{\,s<t:\|\mathbf{x}_a(t)-\mathbf{x}_a(s)\|=c_f(t-s)\,\}.
+    $$
+    A speed excursion above $c_f$ flags a candidate interval; it is not an acceptance test without root existence and a nonzero Jacobian/transversality margin.
 
 - Repulsive character:
   - For like-on-like (self) interaction, $\sigma_{q_a q_a}=+1$ ensures the self-contribution points outward along $+\hat{\mathbf{r}}$, opposing further collapse.
@@ -2734,7 +2999,7 @@ Detailed explanation (conditions and effects):
 - Stabilization and scale selection:
   - In binaries and nested assemblies, delayed attraction competes with self-repulsion. Their balance sets a minimal sustainable radius $d_0$ and a fastest natural frequency $2\pi/t_0$.
 
-Plain language: If you move fast enough, you can run into your own earlier causal isochrons; those hits always push you away and help set the smallest sizes and fastest rhythms of stable structures.
+Plain language: A fast interval can make self-hit possible, but the code must still solve the same-source root equation; only actual same-source hits push outward and help set the smallest sizes and fastest rhythms of stable structures.
 
 #### Superposition and Locality
 
@@ -2743,20 +3008,20 @@ Existing text excerpt:
 >     $$
 >     \Phi_{\text{net}} = \sum_{i} \Phi_i
 >     $$
->     The total acceleration on a particle at any instant is the vector sum of the contributions from every intersecting causal wake surface. Operationally, every architrino is continuously immersed in the superposed wakes of all others (and, when kinematics permit, its own); calculating the path-history integral is tractable by isolating each causal emission event, evaluating the $1/r^2$ kernel at that emission, and then summing—nearby sources dominate because their contributions fall off most slowly and cancelation is more complete at long range.
+>     The total acceleration on a particle at any instant is the vector sum of the contributions from every intersecting causal wake surface. Operationally, every architrino is continuously immersed in the superposed wakes of all others (and, when the same-source root condition permits, its own); calculating the path-history integral is tractable by isolating each causal emission event, evaluating the Jacobian-weighted $1/r^2$ kernel at that emission, and then summing under a declared finite active horizon, screening rule, cancellation argument, or summation prescription.
 
 Detailed explanation (why near fields dominate):
 
   - Linear addition at the causal-surface level:
     - Because each source contributes a distribution supported on its causal wake surfaces, the total field is a sum of these measures; the acceleration law is linear in the summed contributions.
 
-  - Locality from $1/r^2$:
-    - The surface density on each causal wake surface scales as $1/r^2$, so nearby hits contribute disproportionately compared to distant ones. Random phases and geometries of distant sources enhance cancellation.
+  - Locality from $1/r^2$ plus convergence control:
+    - The surface density on each causal wake surface scales as $1/r^2$, so nearby coherent hits contribute disproportionately compared to distant ones. In an infinite three-dimensional source population this does not by itself guarantee convergence, because the number of sources in a radial layer grows like $r^2\,dr$. Random phases, angular cancellation, screening, finite active horizons, or explicit mean-field/principal-value subtraction must be part of the branch prescription.
 
 - Practical consequence:
-  - Simulations can prioritize nearby sources and recent roots, using multipole or sampling approximations for far-field backgrounds.
+  - Simulations can prioritize nearby sources and recent roots only after declaring the far-field treatment: cutoff error, multipole cancellation, screened background, sampled mean field, or principal-value subtraction.
 
-Plain language: Add the pushes from all causal wake surfaces; the closest ones matter most because each hit falls off like one over distance squared, and distant pushes mostly cancel out.
+Plain language: Add the pushes from all causal wake surfaces, but do not assume one over distance squared makes an infinite universe automatically finite; the simulation must say how distant wakes cancel, screen, or get summarized.
 
 #### Units and Constants
 
@@ -3109,11 +3374,27 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
 - If a diffusion tensor $D^{ij}(z)$ is inferred from jump or ledger increments, require it to remain positive semidefinite on the retained domain and stable under refinement.
 - If a response kernel $\chi_{AB}$ is promoted, require the causal dispersion residual $\mathcal R_{\mathrm{KK}}(\chi_{AB})\le0.05$ on the declared frequency band and require any fluctuation-dissipation residual to be reported from the same record.
 
+7. Revised branch-coordinate model selection when a run changes a reduced branch coordinate, chart partition, or residual basis before rerun:
+- The proposed coordinate must declare its source fields, equality map, symmetry quotients, and excluded locked keys before any coefficient fit or rerun.
+- The selection report must include a held-out residual check, and it must include a phase-origin check whenever the coordinate uses an observation-phase split.
+- The design must remain overdetermined after quotienting, with $N_{\mathrm{eq}}>N_{\mathrm{coef}}$ or $R_{\mathrm{df}}>0$. Report
+  $$
+  R_{\mathrm{df}}=\frac{N_{\mathrm{eq}}-N_{\mathrm{coef}}}{N_{\mathrm{eq}}},
+  \qquad
+  \frac{\operatorname{tr}H}{N_{\mathrm{eq}}}\le\frac{1}{2},
+  \qquad
+  \max_i H_{ii}\le\frac{1}{2},
+  $$
+  or an explicitly justified equivalent if a linear hat matrix $H$ is not available.
+- Branch identity must persist under temporal refinement, history-window refinement, regulator refinement when a regulator is used, and root-ledger refinement. A coordinate that only improves the fitted residual while changing the active branch identity fails model selection.
+
 ##### Machine-checkable convergence output
 
 Every promoted claim must emit `convergence_table.csv` with one row for each required gate: temporal refinement, history-resolution refinement, history-interpolation refinement when delayed states are reconstructed from stored history, spatial refinement, cross-integrator validation, regulator ladder when used, transition-window refinement when a fold-layer or active-root status transition is claimed, and negative control. Each row records the two run identifiers being compared, the restricted observable channel, $E_{\mathrm{rel}}(\Phi)$, $E_{\mathrm{rel}}(\|\nabla\Phi\|)$, $D_W$, $D_{JS}$, $E_{\mathrm{hist}}$ when applicable, $p_{\mathrm{obs}}$, active-root mismatch, self-hit or stability-window shift, transition-window status, pass/fail status, and failure code.
 
 For continuum or stochastic promotions, append rows for `moment-closure`, `distribution-moments`, `diffusion-tensor`, `causal-response`, and `fluctuation-dissipation` when those channels are claimed. These rows must include the artifact hash of the direct event-root run and the artifact hash of the reduced continuum or stochastic run being compared.
+
+For revised branch-coordinate promotions, append rows for `branch-coordinate-source`, `branch-coordinate-heldout`, `branch-coordinate-phase-origin` when applicable, `branch-coordinate-design`, and `branch-identity-refinement`. These rows must include the artifact hash of the predeclared coordinate packet and the rerun candidate that consumes it.
 
 The regulator row must include each promoted observable $Y$ and the value of
 $$
@@ -3138,11 +3419,11 @@ If the null run still passes the convergence gates above, treat the claim as num
 
 ##### Global acceptance rule
 
-A claim is numerically validated only if all four refinement gates pass and the null test fails as required.
+A claim is numerically validated only if all applicable refinement gates pass and the null test fails as required. Conditional gates such as revised branch-coordinate model selection apply only when the claim changes the reduced coordinate, chart partition, or residual basis before rerun.
 
 ### Perspective
 
-This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices—reduction to two true primitives (±$\epsilon$ architrinos) and choosing $\epsilon$=|e/6|—help with parsimony and charge bookkeeping, but the outsized wins come from how delayed line-of-action action, Jacobian-weighted causal flux, and a self-interaction threshold conspire to produce stability, scale selection, and emergent “magnetic-like” behavior without ever invoking right-hand-rule cross products.
+This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices—reduction to two true primitives (±$\epsilon$ architrinos) and choosing $\epsilon$=|e/6|—help with parsimony and charge bookkeeping, but the outsized wins come from how delayed line-of-action action, Jacobian-weighted causal flux, and same-source causal-root branches conspire to produce stability, scale selection, and emergent “magnetic-like” behavior without ever invoking right-hand-rule cross products.
 
 Historically, general relativity and quantum mechanics are extraordinarily successful as effective theories that summarize large classes of phenomena. We position this neoclassical, delayed line-of-action model as a simpler dynamical substrate whose coherent assemblies recover GR/QM-like phenomenology in appropriate coarse-grained, slow/weak, or phase-locked limits.
 
@@ -3176,14 +3457,18 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 ---
 
-#### Self-Hit Onset Boundary at $\|\mathbf{v}\| = c_f$
+#### Self-Hit Root Onset
 
 - What we assume:
-- When a worldline outruns its own recently emitted isochrons ($\|\mathbf{v}\| > c_f$, or $\|\mathbf{v}\| > 1$ in $c_f=1$ units), the causal roots include self-hits.
+- Same-source self-hit is accepted only when the root equation
+  $$
+  \mathcal{C}_{aa}(t)=\{\,s<t:\|\mathbf{x}_a(t)-\mathbf{x}_a(s)\|=c_f(t-s)\,\}
+  $$
+  is nonempty and the active root passes the transversality/Jacobian floor. A speed excursion above $c_f$ is a necessary warning condition for simple nontrivial roots, not a sufficient criterion.
   - Self-hits are always repulsive (like-on-like).
 
 - Why it matters:
-  - This nonlinearity is the core stabilizer. Slow motion ($\|\mathbf{v}\| < c_f$) is dominated by external attraction/repulsion. Crossing $\|\mathbf{v}\| = c_f$ turns on an internal, strong, repulsive channel that can balance or overtake inward trends.
+  - This nonlinearity is the core stabilizer. Strictly sub-field-speed interval history rules out nontrivial self-hit roots on that interval, while super-field-speed curved history can open an internal, strong, repulsive channel that balances or overtakes inward trends.
   - Scale selection emerges: the balance of delayed attraction with self-repulsion defines a smallest sustainable orbital radius d0 and a fastest natural frequency, yielding a canonical time unit t0.
 
 ---
@@ -3195,7 +3480,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - We use a narrow Gaussian isochron $\delta_\eta$ when continuous-time derivatives are needed.
 
 - Why it matters:
-  - Locality: inverse-square geometric weighting together with finite-speed branch selection ensures near sources dominate; far sources cancel via multipole suppression.
+  - Locality: inverse-square geometric weighting together with finite-speed branch selection makes nearby coherent roots dominant, but infinite populations still require an explicit cutoff, screening rule, cancellation estimate, sampled mean field, or principal-value/mean-field subtraction.
   - Bookkeeping: with $\delta_\eta$ you can integrate numerically with standard ODE solvers; with $\delta$ you can reason about impulses and events. Both views agree in the $\eta\to 0$ limit for integrals over resolved intervals.
 
 ---
@@ -3455,6 +3740,8 @@ The first mass-map target has a specialized protocol in [$A_0$ Branch Certificat
 3. Tier 2 internal-energy and shielding extraction.
 4. Tier 3 medium-response tensor probes.
 
+A rerun after a finite-coordinate no-go must include the predeclared branch-chart revision record; residual-selected coordinates, locked keys promoted into branch geometry, or benchmark-derived inputs invalidate the packet as hidden fitting.
+
 No simulation run should report $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\mathcal{M}_{\text{sea}}^{ab}$ as accepted outputs unless the preceding branch-certificate gates have passed.
 
 #### Cosmology Shared-Residual Protocol
@@ -3462,6 +3749,53 @@ No simulation run should report $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\m
 The first cosmology-facing validation scaffold is [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md). It specializes the campaign-packet rule to the shared dark-energy and cosmology calibration gate. The packet tests whether SN, BAO, CMB, weak-lensing, redshift-space-distortion, BBN, and pre-BBN branch residuals can consume one $\theta_{\mathrm{sea}}$ without per-observable retuning.
 
 No cosmology packet should report a promoted dark-energy, $H_0$, $S_8$, BBN, CMB, or growth closure unless its ordinary residuals and cross-family projection penalty are both inside declared tolerances.
+
+#### Public Gravitational-Wave Benchmark Protocol
+
+A public gravitational-wave benchmark packet tests the effective gravitational-radiation limit against versioned open strain and parameter-estimation records. The packet is not evidence for a fundamental metric ripple in the Euclidean void. It is an observer-level validation object: the $\mathbb{A}\mathbb{A}\mathbb{A}$ simulation must predict detector strain, phase, event-ledger energy balance, and any photon/gravity timing residual through its Noether-Sea response map and then compare those predictions to public artifacts.
+
+The packet object is
+$$
+\mathcal{C}_{\mathrm{GW}}
+=
+\big(
+\mathsf{event\_id},
+\mathsf{catalog},
+\mathsf{event\_version},
+\mathcal{D},
+\mathcal{S}_h,
+\mathcal{P}_{\mathrm{PE}},
+\mathcal{P}_{\mathrm{wave}},
+\mathcal{Q}_{\mathrm{det}},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}},
+\mathcal{R}_{\mathrm{GW}},
+\Pi_{\mathrm{wave}},
+\mathcal{F}
+\big).
+$$
+Here $\mathcal{D}$ names the detectors, $\mathcal{S}_h$ names the strain files, $\mathcal{P}_{\mathrm{PE}}$ names posterior-sample and parameter-estimation records, $\mathcal{P}_{\mathrm{wave}}$ names the waveform-family or numerical-relativity provenance, $\mathcal{Q}_{\mathrm{det}}$ carries calibration, data-quality, injection-mask, down-sampling, and glitch-treatment records, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event conservation ledger, $\mathcal{R}_{\mathrm{GW}}$ is the residual vector, and $\Pi_{\mathrm{wave}}$ maps each fitted or plotted sample back to public artifacts.
+
+The residual vector is
+$$
+\mathcal{R}_{\mathrm{GW}}
+=
+\big(
+R_h,R_\phi,R_E,R_J,R_{c_g},R_{\mathrm{det}},R_{\mathrm{PE}},R_{\mathrm{prov}}
+\big).
+$$
+$R_h$ compares whitened or otherwise declared detector strain on the predeclared analysis window; $R_\phi$ compares unwrapped inspiral-merger phase on the declared frequency band; $R_E$ checks source masses, remnant mass, radiated energy, recoil, ejecta or heat-channel terms, and boundary exchange in one conservation ledger; $R_J$ checks angular-momentum accounting when the packet claims spin or recoil closure; $R_{c_g}$ is used only for multimessenger timing rows; and the final three residuals are provenance-completeness checks.
+
+For a multimessenger row,
+$$
+R_{c_g}
+=
+\frac{\Delta t_{\mathrm{obs}}-\Delta t_{\mathrm{src}}}{D_L/c_\gamma},
+\qquad
+\Delta t_{\mathrm{obs}}=t_\gamma-t_{\mathrm{GW}}.
+$$
+The intrinsic source-emission delay $\Delta t_{\mathrm{src}}$ must be declared before fitting the gravity-channel speed. A packet fails as hidden tuning if it absorbs photon/gravity timing into an undeclared source delay, changes the analysis band after inspecting residuals, substitutes a cleaned strain product without recording a new provenance row, or changes waveform family after comparing to the data.
+
+The minimum artifact list is `event.json`, `strain_files.json`, `detector_quality.json`, `parameter_estimation.json`, `waveform_provenance.json`, `analysis_window.json`, `strain_residuals.csv`, `phase_residuals.csv`, `energy_ledger.csv`, `speed_residual.json` when applicable, `artifact_hashes.json`, and `failure_report.md`. For long binary-neutron-star inspirals the packet must also include a glitch/cleaning row, a low-frequency cutoff row, and a reason if any detector is excluded from a visible-strain comparison. For short binary-black-hole benchmarks the packet must include an inspiral-merger-ringdown window, detector arrival-time comparison, and ringdown handoff row.
 
 #### Tier 0 / Tier 1 Campaign Packet
 
@@ -3547,6 +3881,7 @@ An auditable $A_0$ branch certificate should preserve one top-level packet shape
 | `sea_cell` | $u^i_{\text{sea}}$, $G_{\text{grad}}$, $n$, $\chi_{\text{sea}}$, declared $c_\star$, and boundary conditions | fixes the homogeneous Noether-Sea cell and prevents mixing $c_f$ with $c_{\text{eff}}$ |
 | `branch_label` | layer windings, inter-layer closure integers, handedness, carrier ellipticity, and active root-branch summary | identifies the branch being certified |
 | `z_lambda` | quotient-coordinate row $z_\Lambda$: $\varepsilon_{IM}$, $\varepsilon_{MO}$, $T_I/T_M$, $T_M/T_O$, $\delta_M$, layer ellipticities, $G_{\ell m}$, $\chi_N$, $H_I,H_M,H_O$, $\Phi_{\text{rel}}$, removed gauges $SO(3)$, $S^1_{\mathbf{k}}$, $\Gamma_\Lambda$, branch class $[\Lambda]$, and quotient-degeneracy status | records the reduced moduli coordinate rather than an unquotiented carrier representative |
+| `branch_chart_revision` | conditional pre-rerun record for any revised reduced branch coordinate, including source fields, equality map, equation and coefficient counts, held-out residual rule, phase-origin rule when a phase split is used, symmetry or quotient behavior, locked-key exclusion, benchmark exclusion, and `accepted_history_boundary: false` | prevents residual-selected coordinates or post-fit added columns from masquerading as branch geometry |
 | `state_vector` | six architrino labels, polarities, reduced geometry, frequencies, phase offsets, carrier chart, history segment, and center gauge | gives the reduced Noether-core state vector |
 | `closure_system` | active variables, causal-root equations, layer phase closure, inter-layer closure, center-gauge closure, speed-ordering inequalities, and tolerances | ties closure labels to equations rather than only to names |
 | `root_ledger` | active and raw partner, self, and inter-layer root classes with delays, branch Jacobians, separator flags, parity events, and excluded near-zero self roots separated | verifies finite causal-root bookkeeping |
@@ -3685,6 +4020,14 @@ Required checks:
 7. convergence under the standards in [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md);
 8. a Floquet or monodromy report stating whether the state-dependent delay derivative term was included in the variational operator;
 9. `transition_records.json` whenever the run crosses a fold-layer, separator, or active-root status transition.
+
+##### Branch-Chart Revision Checkpoint
+
+If a Tier 1 diagnostic or corrected carrier attempt reaches a finite-coordinate no-go and proposes a revised branch chart, the revision is admissible only as a pre-rerun record. The proposed reduced coordinate $z_\Lambda^\star$ or finer branch partition $\mu^\star$ must be declared from branch geometry, causal-root data, quotient-row data, or corrected carrier state before residual fitting. It may not be selected from residual-sign binning, particle benchmarks, fitted weights, or post-fit cancellation.
+
+The pre-rerun record must report `coordinate_source_fields`, `equality_map`, `equation_count`, `coefficient_count`, held-out residual checks, phase-origin checks when a phase split is used, locked-key exclusions, symmetry quotients, benchmark exclusions, and `accepted_history_boundary: false`. The design must remain overdetermined after quotienting, for example by satisfying $N_{\mathrm{eq}}>N_{\mathrm{coef}}$ or $R_{\mathrm{df}}>0$, and the same branch identity must survive the refinement checks in [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md).
+
+Such a row is a revision candidate only. A branch-chart checker may authorize only a new Tier 1 rerun path; it does not accept history. If the checker rejects the packet for a hidden fit split, inadequate degrees of freedom, or held-out residual failure, then the compact-coordinate no-go remains a controlled chart failure. If the checker passes, the branch still requires corrected one-period residuals, quotient-row identity, monodromy or $\Delta_{\mathbf{k}}$, and $\eta$-ladder persistence with the same branch identity.
 
 Tier 1 passes only if the same branch remains stable before any $\eta\to0^+$ extrapolation.
 
@@ -4000,30 +4343,42 @@ Modern physics columns use the same categories for the effective-theory stack (`
 
 The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb{A}$ score minus $\max(\text{Modern Physics Operational},\text{Modern Physics Mechanism})$; negative values mark current $\mathbb{A}\mathbb{A}\mathbb{A}$ deficits against the stronger modern-physics comparator.
 
-| Category | Weight | Description | Modern Physics Operational | Modern Physics Mechanism | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-16 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-17 | $\Delta$ |
-| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
-| Axiom+Notation | 4 | Canonical symbols, definitions, and cross-chapter mathematical language consistency. | 96 | 82 | 92 | 93 | -3 |
-| Master EOM+Local Dynamics | 10 | Certified closure of the core equations of motion: local field/effective equations in modern physics and delayed path-history dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 96 | 75 | 60 | 63 | -33 |
-| Potential+Action Closure | 9 | Action, potential, variational, and force/acceleration closure, including whether the central dynamics derive from a stable mathematical principle. | 98 | 86 | 45 | 49 | -49 |
-| Conservation+Invariant Closure | 7 | Energy, momentum, angular momentum, charge, quantum-number, and symmetry-invariant closure, including no-go consistency. | 98 | 92 | 50 | 53 | -45 |
-| Formula+Coefficient Recovery | 13 | Explicit recovery of target formulas and coefficients: Lorentz behavior, clock/redshift laws, PPN terms, mass formulas, quantum probabilities, and Standard Model mappings. | 96 | 78 | 28 | 33 | -63 |
-| Parameter+Scale Closure | 10 | Determination status of constants, couplings, scales, constitutive coefficients, and renormalization or calibration freedom. | 70 | 42 | 25 | 28 | -42 |
-| Empirical Precision+Benchmark Validation | 14 | Agreement with direct observation, precision tests, benchmark experiments, simulations, and quantitative pass/fail thresholds. | 98 | 78 | 20 | 24 | -74 |
-| Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 82 | 48 | 42 | 47 | -35 |
-| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and tri-binary/Noether-core dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 60 | -22 |
-| UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 70 | 35 | 30 | 32 | -38 |
-| Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 88 | 80 | 82 | -16 |
-| Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 99 | 82 | 72 | 77 | -22 |
-| Theory Architecture+Ontic Logic | 8 | Unified theoretical architecture, explanatory parsimony, substrate logic, and avoidance of ad-hoc patching, scored separately from validated formula recovery. | 58 | 35 | 96 | 97 | 39 |
-| **TOTAL** | **100** | **Weighted mean across all categories.** | **88** | **67** | **46** | **50** | **-38** |
+| Category | Weight | Description | Modern Physics Operational | Modern Physics Mechanism | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-16 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-19 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-20 | $\Delta$ |
+| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Axiom+Notation | 4 | Canonical symbols, definitions, and cross-chapter mathematical language consistency. | 96 | 82 | 92 | 94 | 95 | -1 |
+| Master EOM+Local Dynamics | 10 | Certified closure of the core equations of motion: local field/effective equations in modern physics and delayed path-history dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 96 | 75 | 60 | 67 | 72 | -24 |
+| Potential+Action Closure | 9 | Action, potential, variational, and force/acceleration closure, including whether the central dynamics derive from a stable mathematical principle. | 98 | 86 | 45 | 56 | 61 | -37 |
+| Conservation+Invariant Closure | 7 | Energy, momentum, angular momentum, charge, quantum-number, and symmetry-invariant closure, including no-go consistency. | 98 | 92 | 50 | 58 | 63 | -35 |
+| Formula+Coefficient Recovery | 13 | Explicit recovery of target formulas and coefficients: Lorentz behavior, clock/redshift laws, PPN terms, mass formulas, quantum probabilities, and Standard Model mappings. | 96 | 78 | 28 | 40 | 43 | -53 |
+| Parameter+Scale Closure | 10 | Determination status of constants, couplings, scales, constitutive coefficients, and renormalization or calibration freedom. | 70 | 42 | 25 | 34 | 37 | -33 |
+| Empirical Precision+Benchmark Validation | 14 | Agreement with direct observation, precision tests, benchmark experiments, simulations, and quantitative pass/fail thresholds. | 98 | 78 | 20 | 31 | 34 | -64 |
+| Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 82 | 48 | 42 | 54 | 59 | -23 |
+| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and tri-binary/Noether-core dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 66 | 69 | -13 |
+| UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 70 | 35 | 30 | 38 | 42 | -28 |
+| Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 88 | 80 | 86 | 90 | -8 |
+| Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 99 | 82 | 72 | 84 | 88 | -11 |
+| Theory Architecture+Ontic Logic | 8 | Unified theoretical architecture, explanatory parsimony, substrate logic, and avoidance of ad-hoc patching, scored separately from validated formula recovery. | 58 | 35 | 96 | 98 | 99 | 41 |
+| **TOTAL** | **100** | **Weighted mean across all categories.** | **88** | **67** | **46** | **55** | **59** | **-29** |
 
-### 2026-05-17 Assessment Notes
+### 2026-05-20 Assessment Notes
 
-The 2026-05-17 assessment raises the weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score from `46` to `50`. The move is driven by new equation-bearing and executable scaffolds, not by completed benchmark recovery. The strongest gains are in formula/coefficient recovery, cross-regime bridge, internal constituent dynamics, and coverage/interface readiness.
+The 2026-05-20 assessment raises the weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score from `55` to `59`. The gain is real but deliberately limited: May 20 work moved several live areas from vague obligation to exact certificate, residual, no-go, or fail-closed form, while leaving the decisive coefficient and benchmark recoveries open.
 
-The main mathematical additions are the branch-chart closure object and dual-mollified finite-memory law in the Master EOM, the explicit Noether-Sea cadence and static response vector in the clock/redshift program, the generation-mass and Higgs-matching residuals, the assembly/ambient Noether-Sea interface diagnostic, and the retuning, static-response, hydrogen spectral-row, and redshift-budget toy packets. These additions make the proof obligations sharper because they name coefficient rows, shared-record constraints, failure witnesses, and replayable variables.
+The largest gains are in Master EOM+Local Dynamics, Potential+Action Closure, Conservation+Invariant Closure, Falsification Gates, and Cross-Regime Bridge. The master-equation stack now has the normalized delayed-interior characteristic-tail kernel, receiver-gradient cancellation, and wake-history energy/momentum/angular-momentum increments in corpus prose. The spiral program has a retained A1 tangential-pass/radial-blocked benchmark, a VP-1 outward tangential-drive failure, and an explicit force-ratio obstruction showing that $\Gamma=b_\ast^2c_f^2r_\ast/(\kappa q_1^2)$ is not fixed by the branch kinematics alone. The proof-program ledger also now records accepted fold constants, multiple parent-complement rejection routes, and a fresh fold-adapted collocation target rather than treating the failed cosine packet as an ambiguous near miss.
 
-The total remains low under the validated-closure lens because the central coefficients are still not derived from accepted attractors. The first certified $A_0$ branch is still absent, $\zeta(A)$ and $E_{\text{internal}}(A)$ are not yet extracted from a validated branch ledger, the static response vector and hydrogen row use scaffolded records rather than physical constitutive simulations, PPN and Lorentz coefficients are not recovered from a single accepted Noether-Sea response map, Born/Bell closure remains a finite-window basin-measure target, and cosmology still lacks an empirical shared-state fit.
+Formula, parameter, and empirical scores rise only modestly. The $A_0$ mass-map work now has a compact finite-coordinate no-go, a branch-chart revision contract, fail-closed anti-overfit checks, energy/shielding and medium-response handoffs, and normalized $\alpha_m$ mass-map notation across the corpus. Angular-momentum work has populated symbolic certificate instances, spinor return-table controls, photon Gate B substrate residuals, Stern-Gerlach-like diagnostics, and Bell handoff packets. These are stronger mathematical objects, but they are still blocked on retained branch-chart rows, native photon Gate A branches, event ledgers, apparatus models, or accepted source measures.
+
+The total remains far below modern operational closure because no first accepted $A_0$ branch exists; $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz / PPN coefficients, photon-channel coefficients, Born/Bell measures, weak mixing, Standard Model mass formulas, and cosmological residual fits are still not recovered from one accepted native record. May 20 improves closure pressure by making failures and next certificates sharper, not by passing the central benchmark rows.
+
+### 2026-05-19 Assessment Notes
+
+The 2026-05-19 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `55`. The gain is broad but still pre-closure: the corpus now carries more explicit proof scaffolds, branch-certificate packet schemas, CODATA benchmark discipline, Standard Model mapping targets, quantum record-measure residuals, and shared cosmology residual gates. These changes improve mathematical auditability and executable validation readiness, but they do not yet close the first accepted branch, derive the central constants, or pass precision benchmark rows.
+
+The largest score changes come from the proof and validation surfaces. The collinear-breather and Master EOM material now contain stronger dual-mollified branch-chart, finite-certificate, fold-layer, impulse-bound, continuity, and self-map structures. The $A_0$ branch-certificate protocol and run protocols now specify machine-checkable residual vectors, gate semantics, artifact lists, hidden-tuning failures, and promotion boundaries. These additions justify higher scores for Master EOM+Local Dynamics, Potential+Action Closure, UV/IR+Regularization Completion, Falsification Gates, and Empirical Precision+Benchmark Validation.
+
+Formula, parameter, and cross-regime scores also rise because the corpus now separates exact SI conventions from adjusted CODATA benchmark rows, states the high-pressure roles of $\alpha$, $m_p/m_e$, $R_\infty$, particle masses, and $G$, and gives the hydrogen $\Gamma_N$ spectral row an executable shared-row scaffold rather than a per-line fit. The electroweak, weak-mixing, CKM/PMNS, Higgs, mass-map, Noether-Sea, and cosmology files now expose more of the required shared-record structure across particle, atomic, gravitational, thermodynamic, and cosmological regimes.
+
+The total remains far below modern operational closure because the decisive derivations are still open. The first certified $A_0$ branch has not passed; $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are not accepted outputs; Lorentz, PPN, redshift, and photon-channel coefficients still lack one accepted Noether-Sea constitutive map; Born/Bell closure still has negative controls and measure targets rather than a positive pair-provenance theorem; Standard Model mixing and mass formulas remain shared-record theorem targets; and cosmology has a shared residual scaffold but not a fit to SN, BAO, CMB, growth, BBN, and pre-BBN rows with one $\theta_{\mathrm{sea}}$.
 
 ### 2026-05-16 Assessment Notes
 

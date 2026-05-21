@@ -15,8 +15,8 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 
 ### Correlation and No-Go Interfaces
 
-- [entanglement-nonlocality.md](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md): pair-provenance account of nonlocal correlations, with Bell-level operational equivalence kept as a closure gate and black-hole connected geometry treated as a special horizon-interface case.
-- [bell-theorem.md](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md): Bell constraints and the causal-delay interpretation within the theory.
+- [entanglement-nonlocality.md](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md): pair-provenance account of nonlocal correlations, with Bell-level operational equivalence kept as a joint response-kernel closure target and black-hole connected geometry treated as a special horizon-interface case.
+- [bell-theorem.md](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md): Bell constraints, the full singlet joint-law residual, and the causal-delay interpretation within the theory.
 - [reality-quantum-causality.md](../../../../markdown/aaa/quantum/reality-quantum-causality.md): wider ontology and determinism framing for the quantum branch.
 
 ### Closure Ledgers
@@ -24,8 +24,9 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 - **Born-rule basin-measure ledger:** [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md), [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), and [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md) own the transfer-operator, invariant-measure, finite-time separatrix, and effective wave-equation targets.
 - **Semi-classical and scattering ledger:** [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md) owns WKB, Airy turning-point, and tunneling-action envelope checks, while [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md) owns $S$-matrix unitarity, optical-theorem, resonance-pole, and Born-approximation recovery targets.
 - **Symmetry, holonomy, and index ledger:** [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) owns parity/time-reversal antiunitary benchmarks, Berry-phase/Chern-number holonomy checks, and supersymmetric-index comparison guardrails.
-- **Spin-statistics / exchange ledger:** [quantum-statistics.md](../../../../markdown/aaa/quantum/quantum-statistics.md), [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md), and [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) own the route from 3D volumetric exclusion to fermionic antisymmetry and from coherent 2D support to bosonic symmetric occupation.
-- **Photon Gate A/B/C ledger:** [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface) owns the photon-channel theorem scaffold, while [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md#photon-closure-gates) records the Gate A/B/C acceptance filters. Gate B is the quantum-facing bridge where planar-pair capture must recover Malus' law and the native squared-amplitude rule without replacing the broader Born-rule basin-measure program; it inherits the spin and helicity ledger from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). Gate A and Gate C constrain the same photon branch through kinematics, optics, transition vertices, Bose-Einstein occupation behavior, and validated QED limits.
+- **Spin-statistics / exchange ledger:** [quantum-statistics.md](../../../../markdown/aaa/quantum/quantum-statistics.md), [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md), and [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) own the route from 3D volumetric exclusion to fermionic antisymmetry and from coherent 2D support to bosonic symmetric occupation. Fermionic exchange may consume the spinor label only from the same retained non-gauge ordered-core row that passes the $2\pi/4\pi$, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+- **Spin, measurement, and Bell ledger:** [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md), and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md) own the lifted Stern-Gerlach response, pair-provenance joint law, measurement-independence, no-signaling, and product-screening audits. The current Bell no-go is sharper than a gate: two independent one-wing threshold-pullback kernels over a setting-independent source measure imply the CHSH bound, and exact singlet recovery requires $\Delta_{\mathrm{prod}}\ge(\sqrt2-1)/8$ in the per-cell residual normalization. Bell closure therefore requires a derived non-product joint response or non-restartable provenance compression, while spinor, exchange, weak, and fermion-metric consumers must share the same retained spinor-label pullback record.
+- **Photon Gate A/B/C ledger:** [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface) owns the photon-channel theorem scaffold, while [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md#photon-closure-gates) records the Gate A/B/C acceptance filters. Gate B is the quantum-facing bridge where planar-pair capture must recover Malus' law and the native squared-amplitude rule without replacing the broader Born-rule basin-measure program; it inherits the spin and helicity ledger from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and the source-depletion/recoil/wake/handoff event residual from [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md). Photon helicity is now an event-window projection of that same balance, with error controlled by $\|\mathbf B_{\gamma}^{0}\|/\hbar$. Gate A and Gate C constrain the same photon branch through kinematics, optics, transition vertices, Bose-Einstein occupation behavior, and validated QED limits.
 
 ## Reality, Causality, and Navigation
 
@@ -112,7 +113,7 @@ From the viewpoint of an embedded assembly:
 - Two key absolute-level configurations look “stealthy” or acausal at this emergent level:
 
 1. **Near-field-speed assemblies ("Stealth" vs. "Reactive" Modes)**
-   - **Near-$c_f$ Linear Fragility (Self-Hit Resonance):** Approaching $c_f$ from below does **not** produce self-hit; the wake front stays ahead and cannot intersect the trajectory. At exactly $v = c_f$ the coupling is **zero-action** (a separatrix): the front co-moves but does not intersect the path. Self-hit resonance turns on only for $v>c_f$, when the wake front can overlap the path and phase-lock. In that regime small perturbations are strongly amplified or damped depending on phase. The wake amplitude does **not** diverge; "pileup" here means coherent reinforcement of a finite wake, not a singularity. Linear near-$c_f$ states are therefore **fragile** and short-lived unless the system actively de-phases the feedback.
+   - **Near-$c_f$ Linear Fragility (Self-Hit Resonance):** Approaching $c_f$ from below does **not** produce self-hit on a strictly sub-field-speed interval; the triangle inequality forbids the same-source root. At exactly $v = c_f$, straight-line motion gives a degenerate tangent family rather than a clean simple branch. Self-hit resonance is admitted only when the same-source root set is nonempty and passes the transversality/Jacobian floor. A super-field-speed curved interval is therefore a candidate source of self-hit, not a speed-only acceptance test. In that regime small perturbations are strongly amplified or damped depending on phase. The wake amplitude does **not** diverge; "pileup" here means coherent reinforcement of a finite wake, not a singularity. Linear near-$c_f$ states are therefore **fragile** and short-lived unless the system actively de-phases the feedback.
    - **The Curvature Solution (Stable Stealth):** Stable assemblies at $v \approx c_f$ (like the middle binary) use **curvature or internal modulation** to continuously rotate/de-phase their self-hit geometry. This allows the assembly to keep a "hard" potential front externally while avoiding runaway self-reinforcement.
    - **Operational Effect:** A receiver sees little change until the corkscrewing assembly is very close, then feels a rapid, modulated potential surge—a "digital" shockwave delivered without warning.
 
@@ -870,20 +871,32 @@ P_n(T)
 }.
 $$
 
-The closure target for this chapter is:
+Let $\mathcal{P}_\theta:\Gamma_{\text{eff}}^{(T)}\to\Omega_\theta$ be the effective record projection for apparatus context $\theta$, and let $\Omega_n^\theta=\mathcal{P}_\theta(B_n^{(T)})$ be the projected record region. The closure target for this chapter is:
 $$
 \Delta_{\mathrm{Born}}(T)
 =
 \sup_n
 \left|
-P_n(T)-\int_{B_n^{(T)}}|\psi_n|^2\,d\Gamma
+P_n(T)-\int_{\Omega_n^\theta}|\psi_\theta(q)|^2\,d\nu_\theta(q)
 \right|
 \le
 \varepsilon_{\mathrm{Born}}
 $$
 in the same regime where the envelope dynamics reduce to effective Schrödinger evolution.
 
+Equivalently, the native basin measure must push forward to the effective Hilbert-envelope density,
+
+$$
+(\mathcal{P}_\theta)_*\mu_{*,T}
+\approx
+|\psi_\theta(q)|^2d\nu_\theta(q),
+$$
+
+on the declared record regions. This keeps basin-space measures and effective wavefunction measures in their proper domains.
+
 This is the Born-rule basin-measure ledger. It should stay distinct from the spin-statistics / exchange ledger in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md), which asks why effective states are antisymmetric or symmetric in the first place. Photon-channel squared-amplitude capture is a special measurement-channel bridge in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), not a replacement for the basin-measure derivation.
+
+Spin and Bell records add stricter handoffs. Spin-$\tfrac{1}{2}$ probabilities consume the lifted Stern-Gerlach apparatus basins in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#spin--discrete-outcome-measurements), not an abstract eigenlabel by itself. Bell-pair probabilities consume the full joint response law from pair provenance, with measurement-independence, no-signaling, and product-screening audits before the correlation curve may be treated as recovered.
 
 #### Basin-Measure Necessity
 
@@ -1644,7 +1657,120 @@ For fermion spin-$\tfrac{1}{2}$, the standard Stern-Gerlach recovery target is a
 
 The spin operator is therefore a compact generator of the recovered record statistics and basis rotations, not a new substrate degree of freedom. Its eigenlabels are licensed only when the apparatus kernel maps the Noether-core spin ledger into stable basin records with the standard half-angle probabilities.
 
-The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full Noether-core spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure recover the spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is now explicit: the angular impulse is the core-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
+The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full Noether-core spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure supply the comparison target for spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is now explicit: the angular impulse is the core-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
+
+For an apparatus axis $\hat{\mathbf m}$, let $Z_0\in\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}$ be the incoming target-plus-apparatus state, let $\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}$ be the finite interaction map, let $G_{\mathrm{rec}}$ be the successful-record gate, and let $\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}$ be the signed separatrix functional. The lifted plus basin is
+
+$$
+B_{+}^{\mathrm{lift}}(\hat{\mathbf m})
+=
+\left\{
+Z_0:
+G_{\mathrm{rec}}
+\left(
+\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
+\right)=1,
+\quad
+\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}
+\left(
+\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
+\right)>0
+\right\}.
+$$
+
+The lifted plus probability is the pullback measure
+
+$$
+P_{+}^{\mathrm{lift}}(\hat{\mathbf m})
+=
+\int_{\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}}
+\mathbf 1_{B_{+}^{\mathrm{lift}}(\hat{\mathbf m})}(Z_0)
+\,d\mu_{\hat{\mathbf m}}^{\mathrm{in}}(Z_0).
+$$
+
+The complementary recorded basin is
+
+$$
+B_{-}^{\mathrm{lift}}(\hat{\mathbf m})
+=
+\left\{
+Z_0:
+G_{\mathrm{rec}}
+\left(
+\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
+\right)=1,
+\quad
+\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}
+\left(
+\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
+\right)<0
+\right\},
+$$
+
+with
+
+$$
+P_{-}^{\mathrm{lift}}(\hat{\mathbf m})
+=
+\int_{\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}}
+\mathbf 1_{B_{-}^{\mathrm{lift}}(\hat{\mathbf m})}(Z_0)
+\,d\mu_{\hat{\mathbf m}}^{\mathrm{in}}(Z_0).
+$$
+
+The record-normalization residual is
+
+$$
+\Delta_{\mathrm{rec}}^{\mathrm{lift}}
+=
+\left|
+P_{+}^{\mathrm{lift}}(\hat{\mathbf m})
++
+P_{-}^{\mathrm{lift}}(\hat{\mathbf m})
+-
+\mu_{\hat{\mathbf m}}^{\mathrm{in}}
+\left(
+G_{\mathrm{rec}}\circ\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}=1
+\right)
+\right|.
+$$
+
+The ideal two-outcome Stern-Gerlach comparison requires $\Delta_{\mathrm{rec}}^{\mathrm{lift}}$ below tolerance before conditioning on successful records. A missing reject basin is not a harmless omission; it hides detector loss or failed record formation inside the plus-channel probability.
+
+The half-angle law is then a consistency residual, not an inserted record rule:
+
+$$
+\Delta_{\mathrm{half}}^{\mathrm{lift}}
+=
+\left|
+P_{+}^{\mathrm{lift}}(\hat{\mathbf m})
+-
+\cos^2\left(
+\frac{\alpha(Z_0,\hat{\mathbf m})}{2}
+\right)_{\mu}
+\right|.
+$$
+
+Here $(\cdot)_{\mu}$ means the comparison is averaged using the derived effective spinor coordinate and incoming measure. The full substrate normal is
+
+$$
+\mathcal N_{\hat{\mathbf m}}^{\mathrm{SG}}(Z,t)
+=
+D_Z
+\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}(Z(t)).
+$$
+
+The reduced normal
+
+$$
+\mathcal N_{\hat{\mathbf m}}^{\mathrm{SG,red}}
+=
+dp_{+}
+-
+\rho_{\hat{\mathbf m}}^{\mathrm{rec}}(\theta_{\mathrm{rec}})
+d\theta_{\mathrm{rec}}
+$$
+
+is only a comparison target after $\psi(Z)$ and $p_+(Z;\hat{\mathbf m})$ are derived from the apparatus model. Equivalently, the reduced Stern-Gerlach record coordinate is the invariant-measure coordinate $u_{\hat{\mathbf m}}(\theta_{\mathrm{rec}})=\int_0^{\theta_{\mathrm{rec}}}\rho_{\hat{\mathbf m}}^{\mathrm{rec}}(s)\,ds$, not necessarily the raw phase $\theta_{\mathrm{rec}}/(2\pi)$. The raw phase appears only in the calibrated constant-phase-speed limit.
 
 This is a single-core measurement statement. Bell-pair response and photon-polarization correlations additionally require the pair-provenance ledger and photon Gate B; they should not be treated as closed by the measurement ontology alone.
 
@@ -1940,7 +2066,7 @@ The answer must not erase substrate identity. Individual architrinos remain prov
 
 ### Noether-Core Geometry Basis
 
-The relevant object is the Noether core, the triply nested binary assembly described in [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md). Its geometric footprint is the dynamic exclusion envelope described in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md).
+The relevant object is the Noether core, the triply nested binary assembly described in [Noether Swarm](../../../../markdown/aaa/spacetime/noether-swarm.md). Its geometric footprint is the dynamic exclusion envelope described in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md).
 
 In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
@@ -1958,6 +2084,20 @@ The exclusion is not a hard material wall. It is a path-history and wake-geometr
 - and nearby cores cannot share the same local state without disrupting those orbit closures.
 
 At the effective quantum level, that obstruction must appear as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the candidate inability of two volumetric Noether-core envelopes to occupy the same state without losing stable nested-binary identity. The exchange sign still has to come from the ordered-frame spinor proof, not from volume exclusion alone.
+
+The blocker can be stated directly. Fermionic exchange-sign recovery cannot be credited to the 3D exclusion envelope until the same ordered-core program supplies a retained non-gauge row $r_\star$ with
+
+$$
+\Pi_{W,r_\star}^{2\pi}=1,
+\qquad
+\Pi_{W,r_\star}^{4\pi}=0,
+\qquad
+\Delta_{\mathrm{gc}}(r_\star)\le\varepsilon_{\mathrm{gc}},
+$$
+
+and with the corresponding angular-momentum residuals below tolerance. Without that row, volumetric exclusion may explain why same-state packing is dynamically costly, but it does not yet derive the antisymmetric exchange phase used by the observer-level fermion chart.
+
+In the pullback notation of [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback), the exchange sign must be consumed as $\epsilon_{\mathrm{ex}}(r_\star)=(-1)^{\Pi_{W,r_\star}^{2\pi}}$ from the same retained row that supplies spinor closure, gauge control, and angular-momentum balance. A separately selected exchange sign is only observer-level bookkeeping, not a derived spin-statistics mechanism.
 
 ### Bose-Einstein Regime: 2D Coherence
 
@@ -2069,12 +2209,14 @@ $$
 $$
 Here $\mathcal{H}^{(N)}_\theta=\mathcal{H}_\theta^{\otimes N}$ and $\mu^{\mathrm{prov}}$ denotes the same retained physical ensemble after a swap of inaccessible provenance labels. The first two terms demand antisymmetric and symmetric state-space recovery in the proposed geometric regimes. The third term checks that the observer-level quotient is legitimate: swapping labels that the apparatus cannot access should not change the retained observable state beyond tolerance. If this residual fails, the proposed Fermi-Dirac or Bose-Einstein rule has been imposed as formal bookkeeping rather than derived from assembly geometry.
 
+For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on records that also satisfy $\Delta_{\mathrm{pull}}(\theta;W,r_\star)\le\varepsilon_{\mathrm{pull}}$ with zero retune penalty in the same-record spinor-label pullback. This ties the effective exchange projection to the same non-gauge ordered-core row instead of allowing the antisymmetric projector to be fitted after the fact.
+
 ### Interfaces
 
 This chapter depends on:
 
 - [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md) for the oblate spheroidal exclusion envelope,
-- [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md) for the tri-binary scaffold,
+- [Noether Swarm](../../../../markdown/aaa/spacetime/noether-swarm.md) for the tri-binary scaffold,
 - [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
 - and [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) for the photon-channel case where coherent planar-pair modes must recover Bose-Einstein occupation behavior.
@@ -2087,8 +2229,8 @@ The next proof steps are:
 
 1. Extract $\xi$ from simulated or analytic Noether-core orbit data.
 2. Identify the stability threshold separating volumetric exclusion from coherent 2D support.
-3. Derive how exchange of two 3D Noether-core assemblies produces fermionic antisymmetry at the effective level.
+3. Derive how exchange of two 3D Noether-core assemblies produces fermionic antisymmetry at the effective level, using the same retained non-gauge ordered-core row that passes the $2\pi/4\pi$ spinor, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual).
 4. Derive how phase-compatible 2D-supported channel excitations produce bosonic symmetric occupation.
 5. Check that mixed regimes do not create forbidden intermediate statistics for ordinary low-energy matter.
 
-Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether-core exclusion plus the ordered-frame spinor exchange phase; Bose-Einstein statistics are expected to arise when Noether-core orbital support is oblated into an effectively 2D coherent channel.
+Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether-core exclusion plus the ordered-frame spinor exchange phase on the same retained row; Bose-Einstein statistics are expected to arise when Noether-core orbital support is oblated into an effectively 2D coherent channel.

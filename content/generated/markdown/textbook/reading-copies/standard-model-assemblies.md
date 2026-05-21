@@ -30,17 +30,17 @@ At the current level of the theory, the compact mass-map roadmap formula is an e
 $$
 m_{\text{inertial}}(A)
 \approx
-\alpha\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
+\alpha_{\mathrm{m}}\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
 $$
 
-This is the clean scalar form of the thesis. It says that the observer-facing inertial mass is controlled by the shielded part of the internal assembly ledger, with $\alpha$ fixed once by a reference assembly in the regime where the effective low-energy closure is being matched.
+This is the clean scalar form of the thesis. It says that the observer-facing inertial mass is controlled by the shielded part of the internal assembly ledger, with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly in the regime where the effective low-energy closure is being matched. Here $\alpha_{\mathrm{m}}$ denotes the single mass-normalization constant for the declared weak homogeneous regime; it is not the fine-structure constant and not a per-particle fit parameter.
 
 The scalar form is not the whole derivation. In a resolved Noether-Sea environment, the denominator $c_{\text{eff}}^2$ is the isotropic weak-field limit of a medium-response tensor:
 
 $$
 p_{\text{int}}^a
 \approx
-\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b},
 \qquad
 \mathcal{M}_{\text{sea}}^{ab}
@@ -49,6 +49,105 @@ p_{\text{int}}^a
 $$
 
 in a homogeneous isotropic Noether-Sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
+
+##### Exposed Inertial-Response Trace
+
+The scalar shielding coefficient $\zeta(A)$ should be read as the isotropic trace part of a larger exposed response. For an accepted assembly branch $A$, let $\mathcal{L}_A(\hat R)$ denote the mass-facing scalar angular far-field ledger over extraction direction $\hat R$, and let $\|\mathcal{L}_{\text{naive}}\|$ denote the corresponding unshielded constituent-sum norm. The trace-free exposed leakage is
+$$
+\mathcal{Z}_{\mathrm{tf}}^{ab}(A)
+=
+\frac{1}{4\pi\|\mathcal{L}_{\text{naive}}\|}
+\int_{S^2}
+\left(
+3\hat R^a\hat R^b-h^{ab}
+\right)
+\mathcal{L}_A(\hat R)\,d\Omega,
+\qquad
+h_{ab}\mathcal{Z}_{\mathrm{tf}}^{ab}(A)=0.
+$$
+The exposed-response tensor is therefore
+$$
+\mathcal{Z}_{A}^{ab}
+=
+\zeta(A)h^{ab}
++
+\mathcal{Z}_{\mathrm{tf}}^{ab}(A).
+$$
+
+For the scalar inertial readout, only the reversible symmetric part of the Noether-Sea response belongs in the mass trace. Define
+$$
+\mathcal{M}_{+}^{ab}
+\equiv
+\frac{1}{2}
+\left(
+\mathcal{M}_{\text{sea}}^{ab}
++
+\mathcal{M}_{\text{sea}}^{ba}
+\right),
+$$
+and set
+$$
+\mathsf{I}_{A}^{ab}
+=
+\frac{\alpha_{\mathrm{m}}E_{\text{internal}}(A)}{2}
+\left(
+\mathcal{Z}_{A}^{a}{}_{c}\mathcal{M}_{+}^{cb}
++
+\mathcal{Z}_{A}^{b}{}_{c}\mathcal{M}_{+}^{ca}
+\right).
+$$
+The scalar mass readout is the rotational trace
+$$
+m_{\mathrm{tr}}(A)
+\equiv
+\frac{1}{3}h_{ab}\mathsf{I}_{A}^{ab}.
+$$
+In the homogeneous isotropic limit this reduces to the roadmap scalar formula. Pure exposure anisotropy changes direction-dependent inertia without changing the scalar trace unless it contracts with a trace-free part of the medium response. Antisymmetric response residue belongs to orientation, transport, loss accounting, or branch transition, not to scalar rest mass.
+
+##### Reference-Normalized Mass Ratio
+
+Because $\alpha_{\mathrm{m}}$ is a single normalization for a declared weak homogeneous regime, the first nontrivial mass-map prediction is not an absolute mass. It is a reference-normalized ratio in which $\alpha_{\mathrm{m}}$ cancels.
+
+For two accepted assemblies $A$ and $B$ in the same homogeneous isotropic Noether-Sea response record, if both assemblies are evaluated through the same scalar exposure quotient and share the same low-energy response limit
+$$
+\mathcal{M}_{\text{sea}}^{ab}\to\frac{h^{ab}}{c_{\text{eff}}^2},
+$$
+then the scalar roadmap implies
+$$
+\frac{m_{\text{inertial}}(A)}{m_{\text{inertial}}(B)}
+\approx
+\frac{\zeta(A)E_{\text{internal}}(A)}
+{\zeta(B)E_{\text{internal}}(B)}.
+$$
+Equivalently, once a reference assembly $A_{\mathrm{ref}}$ fixes $\alpha_{\mathrm{m}}$ in that regime, every later scalar mass prediction must factor through
+$$
+m_{\text{inertial}}(A)
+\approx
+m_{\text{inertial}}(A_{\mathrm{ref}})
+\frac{\zeta(A)E_{\text{internal}}(A)}
+{\zeta(A_{\mathrm{ref}})E_{\text{internal}}(A_{\mathrm{ref}})}.
+$$
+
+In anisotropic or pressure-dependent cells, the same anti-fitting principle must be stated directionally. Let $\mathsf{I}_{A}^{ab}$ be the exposed inertial-response tensor for $A$ and let $\hat v$ be a declared probe direction. The directional mass readout is
+
+$$
+m_{\hat v}(A)
+=
+\hat v_a\mathsf{I}_{A}^{ab}\hat v_b,
+$$
+
+so the tensor ratio target is
+
+$$
+\frac{m_{\hat v}(A)}{m_{\hat v}(B)}
+=
+\frac{\hat v_a\mathsf{I}_{A}^{ab}\hat v_b}
+{\hat v_a\mathsf{I}_{B}^{ab}\hat v_b}.
+$$
+
+In the reversible below-threshold regime, $\mathsf{I}_{A}^{ab}$ is built from the same branch-derived exposure, internal energy, and symmetric medium-response tensor for every channel in the declared response record. Thus $\alpha_{\mathrm{m}}$ still cancels from the ratio, but trace-free exposure and trace-free medium response no longer disappear unless the homogeneous isotropic limit has been proven.
+
+This ratio form is a sharper anti-fitting invariant than the absolute scalar formula. Changing $\alpha_{\mathrm{m}}$ cannot improve one particle without changing all particles in the same regime. Changing $\zeta(A)$ is admissible only when it is produced by the branch ledger and exposure quotient for $A$, not when it is selected from the observed mass table. Failure of the tensor replacement in anisotropic or pressure-dependent cells is evidence that the scalar mass map is being used outside its regime.
 
 Superfluid-vacuum and Nambu-Jona-Lasinio-style comparisons add a useful caution: an excitation gap can look like a rest-energy term without being the ontology of mass. For an accepted assembly branch $A$, the native analogue would be a branch gap
 $$
@@ -93,6 +192,43 @@ $$
 
 For the isotropic mass-facing scalar sector, $\zeta(A)$ is the scalar summary of $\mathcal{E}_0(A)$. If anisotropic leakage survives, the sector must report a tensor exposure instead of hiding that residue inside $\zeta(A)$.
 
+The useful factorization is that the mass-map numerator should pass through the same quotient. Let $\overline{\mathcal{B}}_0$ be the mass-facing recovery map from the scalar exposure quotient to the exposed source. Then the scalar roadmap numerator is
+
+$$
+M_0^{\mathrm{src}}(A)
+=
+\overline{\mathcal{B}}_0(\mathcal{E}_0(A))
+=
+\zeta(A)E_{\text{internal}}(A),
+$$
+
+so the inertial-mass target becomes
+
+$$
+m_{\text{inertial}}(A)
+\approx
+\alpha_{\mathrm{m}}\,
+\frac{M_0^{\mathrm{src}}(A)}{c_{\text{eff}}^2}.
+$$
+
+This is stronger than treating $\zeta(A)$ as an adjustable small coefficient. If two restored representatives $d_1$ and $d_2$ become the same scalar exposure after projection and quotient, then the exposed source must also agree up to the declared scalar-exposure tolerance:
+
+$$
+Q_0\Pi_0\mathcal{L}_A[d_1]
+=
+Q_0\Pi_0\mathcal{L}_A[d_2]
+\quad\Longrightarrow\quad
+\left|
+M_{0,d_1}^{\mathrm{src}}
+-
+M_{0,d_2}^{\mathrm{src}}
+\right|
+\le
+\epsilon_{0,\mathrm{handle}}E_{\text{internal}}(A).
+$$
+
+When this implication fails, the discarded label is not a hidden quotient label. It is a mass-visible branch selector, so the scalar exposure must retain that label, be promoted to an anisotropic or tensor exposure, or remain unpromoted.
+
 An exposure map is admissible only when the source ledger has branch-ledger provenance, $\Pi_S$ is idempotent on the retained sector data, $Q_S$ does not identify benchmark-distinct ledgers, and the discarded residue is below the declared tolerance. A useful reader-facing error contract is
 $$
 \epsilon_S
@@ -103,6 +239,97 @@ $$
 +\epsilon_{S,\mathrm{rec}}.
 $$
 Any discarded channel above tolerance blocks promotion of the sector response. It cannot be absorbed into shielding, fitted by the benchmark, or left as an unnamed hidden variable.
+
+##### Scalar Mass-Trace Composition
+
+The current mass map can now be stated as a composition chain rather than a single shielding slogan. The scalar exposed source descends through the mass-facing quotient,
+
+$$
+M_0^{\mathrm{src}}(A)
+=
+\overline{\mathcal{B}}_0(\mathcal{E}_0(A))
+=
+\zeta(A)E_{\text{internal}}(A),
+$$
+
+and the same source is then inserted into the exposed inertial-response tensor through the reversible symmetric medium response. To first order around a weak homogeneous reference cell, the scalar trace has the form
+
+$$
+m_{\mathrm{tr}}(A)
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+M_{0}^{\mathrm{src}}(A)(1+\delta\mathcal{M}_{0})
++
+\frac{1}{3}
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf},ab}(A)
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right]
++
+\mathcal{R}_{\mathrm{chain}}.
+$$
+
+Here $\delta\mathcal{M}_{0}$ is the trace part of the reversible medium-response perturbation, $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ is its trace-free part, and $\mathcal{R}_{\mathrm{chain}}$ holds terms that have not yet been derived from a branch record. This formula is stronger than the scalar roadmap relation because it names the only first-order places where scalar mass can change: the quotient-visible source, the trace medium response, and the trace-free exposure / trace-free medium contraction.
+
+The quotient test must therefore apply to the whole composed trace, not only to $M_0^{\mathrm{src}}(A)$. If two restored representatives are identified by the scalar quotient, write $\Delta_dF=F[d_1]-F[d_2]$. The first-order trace defect is
+
+$$
+\Delta_{\mathrm{tr}}(d_1,d_2)
+=
+(1+\delta\mathcal{M}_0)\Delta_dM_0^{\mathrm{src}}
++
+\frac{1}{3}
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\Delta_d
+\left(
+E_{\text{internal}}\mathcal{Z}_{\mathrm{tf},ab}
+\right).
+$$
+
+For scalar mass to be quotient-visible, this defect must remain below the declared trace tolerance. A scalar source can pass its no-hidden-handle test while the composed tensor trace still fails; in that case the discarded label is invisible in the homogeneous scalar source but mass-visible in anisotropic or pressure-sensitive response.
+
+The trace-free part of this test is limited by what the branch actually probes. If $\mathcal{V}_{\mathcal M}$ is the span of retained reversible trace-free response tensors, then scalar mass only sees the projection of $E_{\text{internal}}\mathcal{Z}_{\mathrm{tf},ab}$ onto $\mathcal{V}_{\mathcal M}$. Full trace-free descent is required only when the retained response directions reconstruct the full trace-free tensor. Otherwise the scalar mass claim is a projected claim: labels that move response-visible components are mass handles, while labels that move only orthogonal unprobed components remain invisible to scalar mass at this order.
+
+The pressure specialization has the same discipline. For a branch-preserving pressure perturbation,
+
+$$
+\delta_Pm_{\mathrm{tr}}(A)
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+\delta_PM_{0}^{\mathrm{src}}(A)
++
+M_{0}^{\mathrm{src}}(A)\,\delta_P\delta\mathcal{M}_{0}
++
+\frac{1}{3}
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf},ab}(A)
+\delta_P\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right]
++
+\mathcal{R}_{P}.
+$$
+
+Thus pressure cannot improve a mass prediction by adding a hidden scalar row. It must either change the quotient-visible source, change the shared reversible medium-response tensor, or leave the scalar trace unchanged to first order. In a density-only pressure channel with packing headroom $s_n$ and density modulus $K_{\mathrm{pack}}$, the corresponding limit is
+
+$$
+\left.
+\frac{\partial m_{\mathrm{tr}}}{\partial P}
+\right|_{n\text{-only}}
+\propto
+\frac{s_n}{K_{\mathrm{pack}}},
+\qquad
+\lim_{s_n\to0^+}
+\left.
+\frac{\partial m_{\mathrm{tr}}}{\partial P}
+\right|_{n\text{-only}}
+=0.
+$$
+
+This does not mean dense matter stops responding to pressure. It means the scalar density channel stops carrying that response when packing headroom closes; any remaining response must appear in exposed-source drift, envelope ratios $\lambda$ and $\xi$, trace-free strain, reversible wake/contact stiffness, tensor response, or a threshold/branch event.
 
 #### The Noether Core as a Causal Knot
 
@@ -118,7 +345,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
 
 ##### Internal Energy Shielding ($\zeta$-Factor)
 - **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested binary rotations. For a tri-binary, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
-- **Shielding:** The pro/anti structure of the [Noether core](../../../../markdown/aaa/spacetime/noether-core.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
+- **Shielding:** The pro/anti structure of the [Noether core](../../../../markdown/aaa/spacetime/noether-swarm.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
 - **Result:** When an external force attempts to accelerate the assembly, the effective far-field response couples only to the exposed, shielded part of the internal ledger:
   $$
   m_{\text{apparent}}c_{\text{eff}}^2 \sim \zeta(A)\,E_{\text{internal}}(A).
@@ -169,7 +396,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 
 #### Mass-Channel Categories
 
-The mass thesis must keep the particle categories separate. The photon channel is treated as a massless planar-pair transport mode: it carries phase, momentum, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether-Sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), and for the spin ledger see [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+The mass thesis must keep the particle categories separate. The photon channel is treated as a massless coaxial contra-rotating pro/anti planar-pair transport mode: it carries phase, momentum, source/event-ledger energy, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether-Sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), and for the spin ledger see [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 #### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
@@ -261,7 +488,7 @@ The mass program in $\mathbb{A}\mathbb{A}\mathbb{A}$ should meet an analogous na
 $$
 m_{\text{inertial}}(A)
 \approx
-\alpha\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2},
+\alpha_{\mathrm{m}}\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2},
 $$
 
 but a derivation in which $\zeta(A)$ is fixed by the same root ledger, shielding geometry, and Noether-Sea response that also preserves stability and equivalence-principle behavior. If $\zeta(A)$ has to be tuned independently for each particle family, the analogy to QCD naturalness fails and the hierarchy has only been renamed.
@@ -295,19 +522,41 @@ E_{\mathrm{sector}}(A_{f,a};\theta)
 $$
 Here $\zeta_{\mathrm{sh}}$ depends on the shielding class, $\alpha_{\mathrm{m}}$ is a single mass normalization for the declared weak homogeneous regime, and $E_{\mathrm{sector}}$ is zero for charged leptons while quark contributions must be derived from the same color/topology and strong-sector ledger used in the hadronic chapters. The allowed family dependence is therefore carried by axial inventory, color/topology, and internal-energy bookkeeping, not by changing the shielding law.
 
-The fitting residual is
+The first hierarchy residual should be ratio-first. It is evaluated only after the branch ledger, scalar exposure quotient, internal energy, sector term, and shared response record have emitted predicted values $M_{\mathrm{sh}}(A_c;\theta)$ without using the observed mass table. Let $c=(f,a)$ range over the nine generation channels, write $A_c=A_{f,a}$ and $m_c^{\mathrm{obs}}=m_{f,a}^{\mathrm{obs}}$, and fix a reference channel $c_{\mathrm{ref}}$ before evaluating the benchmark rather than choosing it to improve the residual. For quark channels, $m_c^{\mathrm{obs}}$ denotes the predeclared scheme-and-scale benchmark row with its covariance, not a scheme-free constituent mass. The ratio residual is
+$$
+\mathcal{R}_{\mathrm{gen\,ratio}}(\theta)
+=
+\sum_{c\ne c_{\mathrm{ref}}}
+\frac{
+\left[
+\log\frac{M_{\mathrm{sh}}(A_c;\theta)}
+{M_{\mathrm{sh}}(A_{c_{\mathrm{ref}}};\theta)}
+-
+\log\frac{m_c^{\mathrm{obs}}}
+{m_{c_{\mathrm{ref}}}^{\mathrm{obs}}}
+\right]^2
+}{\sigma_{c/c_{\mathrm{ref}}}^{2}}.
+$$
+The shared factor $\alpha_{\mathrm{m}}/c_{\mathrm{eff}}^2$ cancels inside each predicted ratio when the channels share one homogeneous weak-field response record. The displayed denominator is the diagonal approximation to the log-ratio covariance; a full comparison should replace it by the covariance matrix on the ratio vector when shared benchmark uncertainties matter. The absolute scale is therefore a separate reference calibration,
+$$
+\mathcal{R}_{\mathrm{gen\,scale}}(\theta)
+=
+\frac{
+\left[
+\log\!\left(
+\frac{M_{\mathrm{sh}}(A_{c_{\mathrm{ref}}};\theta)}
+{m_{c_{\mathrm{ref}}}^{\mathrm{obs}}}
+\right)
+\right]^2
+}{\sigma_{c_{\mathrm{ref}}}^{2}},
+$$
+and the combined benchmark residual is
 $$
 \mathcal{R}_{\mathrm{gen\,mass}}(\theta)
 =
-\sum_{f\in\{\ell,u,d\}}
-\sum_{a=0}^{2}
-\frac{
-\left[
-\log M_{\mathrm{sh}}(A_{f,a};\theta)
--
-\log m^{\mathrm{obs}}_{f,a}
-\right]^2
-}{\sigma_{f,a}^{2}}
+\mathcal{R}_{\mathrm{gen\,ratio}}(\theta)
++
+\mathcal{R}_{\mathrm{gen\,scale}}(\theta)
 +
 \lambda_{\mathrm{split}}
 \sum_{f}
@@ -317,7 +566,7 @@ $$
 +
 \mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta).
 $$
-Here $\theta_f$ denotes the record that would be used if family $f$ were fit separately, while $\theta_{\mathrm{shared}}$ is the one promoted record. The second term is the no-retuning guard: it penalizes any attempt to fit charged leptons, up-type quarks, and down-type quarks with different shielding maps or different medium-response coefficients. The null-result term prevents the fit from improving the observed masses by adding partner branches, extra gauge modes, or proton-instability channels that are not independently suppressed.
+Here $\theta_f$ denotes the record that would be used if family $f$ were fit separately, while $\theta_{\mathrm{shared}}$ is the one promoted record. The split term is the no-retuning guard: it penalizes any attempt to fit charged leptons, up-type quarks, and down-type quarks with different shielding maps or different medium-response coefficients. The null-result term prevents the fit from improving the observed masses by adding partner branches, extra gauge modes, or proton-instability channels that are not independently suppressed.
 
 The first benchmark is not exact mass prediction. It is monotone hierarchy and shared-map survival:
 $$
@@ -396,9 +645,11 @@ The minimal $A_0$ output contract is:
 | Shielding extraction | far-field wake coefficients, the naive constituent sum, preliminary $\zeta(A_0)$, and residual leakage $\mathcal{L}_{\text{aniso}}$ | turns shielding from a symbolic term into an extracted geometric response |
 | Medium response | the homogeneous baseline for $\mathcal{M}_{\text{sea}}^{ab}$, plus acceleration and gradient probes | connects inertial response, gravitational response, and equivalence-principle tests |
 
-The detailed simulation-facing schema is the $A_0$ branch certificate packet: `metadata`, `sea_cell`, `branch_label`, `state_vector`, `closure_system`, `root_ledger`, `term_classification`, `residuals`, `stability`, `group_velocity_anisotropy`, `energy_ledger`, `far_field_shielding`, `medium_response`, `mass_summary`, `certificate_gates`, and `failure_code`. The canonical chapter names this interface so the mass thesis has a concrete handoff; the detailed protocol belongs in [$A_0$ Branch Certificate Protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md).
+The detailed simulation-facing schema is the $A_0$ branch certificate packet: `metadata`, `sea_cell`, `branch_label`, `z_lambda`, conditional `branch_chart_revision`, `state_vector`, `closure_system`, `root_ledger`, `term_classification`, `residuals`, `stability`, `group_velocity_anisotropy`, `energy_ledger`, `far_field_shielding`, `medium_response`, `mass_summary`, `certificate_gates`, and `failure_code`. The canonical chapter names this interface so the mass thesis has a concrete handoff; the detailed protocol belongs in [$A_0$ Branch Certificate Protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md).
 
 The accepted $A_0$ branch must have small closure residuals over at least one closed cycle, a positive non-symmetry Floquet gap, no secular drift after symmetry modes are removed, a group-velocity anisotropy diagnostic that remains separate from shielding leakage, and a shielding estimate stable under increasing far-field extraction radius and angular resolution. No observed particle mass, charged-lepton ratio, electron radius, or measured $\alpha$ value should be used as an input to this gate.
+
+Current compact-carrier diagnostics have reached a finite-coordinate no-go for the compact branch chart tested so far. That result is a branch-certificate status blocker, not a mass result: $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, and the baseline mass prediction remain unavailable until a predeclared branch-chart revision and an accepted branch packet pass the same gates above. Even if a branch-chart checker clears a revised coordinate, the clearance authorizes only a Tier 1 rerun candidate; it does not accept the branch, supply accepted $A_0$ history, or make the downstream mass-facing quantities available.
 
 The canonical chapter should carry this interface but not the detailed simulation protocol. Its role is to state the mass thesis, define the terms, and make clear which derivations remain open; implementation details belong with the simulation and proof-program material once the $A_0$ state vector and output schema are formalized.
 
@@ -430,7 +681,7 @@ This chapter gives the current assembly-level interpretation of color charge and
 
 ##### Tri‑binary scaffold (the “Noether core”)
 
-Each fermion is built on a **tri‑binary scaffold**: three nested electrino:positrino binaries sharing a center. We sometimes call this scaffold a **Noether core** to emphasize that all conserved quantities (electric charge, color, baryon number, etc.) are encoded in its internal symmetries, in the spirit of Noether’s theorem; see [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md).
+Each fermion is built on a **tri‑binary scaffold**: three nested electrino:positrino binaries sharing a center. We sometimes call this scaffold a **Noether core** to emphasize that all conserved quantities (electric charge, color, baryon number, etc.) are encoded in its internal symmetries, in the spirit of Noether’s theorem; see [Noether Swarm](../../../../markdown/aaa/spacetime/noether-swarm.md).
 
 We label the three binaries by their dynamical regime:
 
@@ -969,7 +1220,7 @@ This chapter is a placeholder for the electron assembly in $\mathbb{A}\mathbb{A}
 
 #### Current framing
 
-The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Nested Binaries and the Noether Core](../../../../markdown/aaa/spacetime/noether-core.md), [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md), and [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
+The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Noether Swarm](../../../../markdown/aaa/spacetime/noether-swarm.md), [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md), and [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
 
 #### Axial Inventory and Generation Core
 
@@ -1061,7 +1312,7 @@ For the electron branch, the gate is conservative: any finite-size or Noether-Se
 
 #### Related Chapters
 
-- [noether-core.md](../../../../markdown/aaa/spacetime/noether-core.md)
+- [noether-swarm.md](../../../../markdown/aaa/spacetime/noether-swarm.md)
 - [particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md)
 - [quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md)
 - [muon-tau.md](../../../../markdown/aaa/assemblies/fermions/muon-tau.md)
@@ -1076,7 +1327,7 @@ This page now records the electron ontology target needed by the atomic, quantum
 
 ### Neutrinos
 
-This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. A neutrino is modeled as a near-planar pro/anti [Noether-core](../../../../markdown/aaa/spacetime/noether-core.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to explain why neutrinos are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
+This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. A neutrino is modeled as a near-planar pro/anti [Noether-core](../../../../markdown/aaa/spacetime/noether-swarm.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to explain why neutrinos are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
 
 The opening section states the working geometry and the plain-language interpretation. The later closure program records how PMNS-style mixing is meant to arise from residual internal-binary exposure in a pro/anti core pair. The exact locked geometry remains open; "near-photon" is the current controlled descriptor, not a finished derivation.
 
@@ -1403,11 +1654,13 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the sector exposure map is:
 
 This table is a bridge statement, not a proof. The closure burden is to derive one assembly record whose projections recover all five readouts without redefining the exposed domain from sector to sector.
 
+Once handed weak exposure is claimed as derived, the exposed weak-coupling triad must be the weak consumer projection $\Pi_{\mathrm{weak}}\mathcal L_\star$ of the same retained spinor-label pullback record used for spinor closure, exchange sign, and matter response. Otherwise the table has only matched sector labels, not recovered one assembly record with consistent projections.
+
 ##### Charged-current chirality (Why right-handed charged-current coupling is zero)
 Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
-*   **Geometric Mechanism:** Chirality is the alignment of the particle's **Spin** with its **Momentum**.
+*   **Geometric Mechanism:** At the observer level, chirality is the weak-channel handedness label. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the charged-current blocker is weak-coupling-triad exposure, which may be consumed only after the ordered-core spinor/helicity ledger supplies the same branch record.
 *   **Lock-out:** In the "Right-Handed" configuration, the **weak-coupling triad** is geometrically rotated *into the wake* of the particle or shielded by the binary arms.
-*   **Result:** The $W$ boson (which has its own helicity) cannot physically "dock" with the weak-coupling triad to perform the swap.
+*   **Result:** The charged $W$ corridor cannot physically "dock" with the weak-coupling triad in that hidden posture.
 *   Therefore, $e^-_R$ has no accessible charged-current weak-coupling triad. For the charged-current $SU(2)_L$ channel, $T_3^{(R)} = 0$.
 
 ---
@@ -1936,7 +2189,7 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any core offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which core axis is exceptional relative to the other two. |
 | **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-core spinor topology.** The tri-binary Noether core is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
-| **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The spin projection relative to momentum exposes the weak-coupling triad to the ambient Noether Sea (interaction allowed).<br>• **Right ($R$):** The opposite spin projection relative to momentum rotates the weak-coupling triad into the particle's wake or shield (interaction blocked). |
+| **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The same ordered-core spinor/exposure record exposes the weak-coupling triad to the ambient Noether Sea (interaction allowed).<br>• **Right ($R$):** The same record hides the weak-coupling triad in the particle's wake or shield (interaction blocked). Spin-projection language is observer-level shorthand until the $SU(2)\to SO(3)$ lift and $\Delta_{\mathrm{WCT}}$ row pass. |
 | **Generation** | I, II, III | Mass hierarchy (Flavor). | **Core Shielding Level.**<br>• **Gen I:** Tri-Binary (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (Exposed Core). |
 | **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-core vs anti-core orientation. |
 
@@ -1947,6 +2200,8 @@ For the **Elementary Fermions** (Quarks and Leptons), this table is complete at 
 This is a closure target, not a completed proof. The tri-binary Noether core has three non-coplanar binary planes with ordered normals. Keeping the conserved angular-momentum ledger fixed, the visible ordered frame projects to $SO(3)$, while the causal-root and phase history may carry an additional sheet label.
 
 The target is that a $2\pi$ spatial rotation returns the visible ordered frame but transports the history-lifted state to the opposite sheet, while a $4\pi$ rotation restores the full state. If this lift exists, it supplies the geometric route to spin-$\tfrac{1}{2}$ behavior through the $SU(2)\to SO(3)$ double cover. If the history lift closes after $2\pi$, the ordered-core route does not derive fermion spinor behavior.
+
+The stronger obstruction is that visible $SO(3)$ return plus conserved $\mathbf J$ is still insufficient. The spin row needs quotient-surviving active-root parity: at least one retained non-gauge history row must be odd after $2\pi$ and restored after $4\pi$, while gauge-control and angular-momentum residuals remain below tolerance.
 
 ##### Angular momentum notation bridge
 
@@ -2644,7 +2899,7 @@ We separate two structures that are often spoken about together but should not b
 
 ##### 1. Core frame
 
-The [Noether core](../../../../markdown/aaa/spacetime/noether-core.md) is the neutral tri-binary scaffold. It defines:
+The [Noether core](../../../../markdown/aaa/spacetime/noether-swarm.md) is the neutral tri-binary scaffold. It defines:
 
 - generation via shielding level,
 - matter/antimatter braid orientation,
@@ -3045,7 +3300,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Photon-channel speed:** The planar (edge-on) orientation minimizes interaction with the ambient Noether-Sea assembly network. In weak homogeneous Noether-Sea conditions the local photon-channel speed $c_\gamma$ approaches the primitive wake speed $c_f$; in material media or strong Noether-Sea gradients, $c_\gamma < c_f$ is the observer-level transport summary.
 
 #### Interaction Rules: Capture and Release
-*   **Emission (Planar-Mode Release):** Driven by accelerated motion in the source binary. The accepted action ledger enters a stable planar-pair mode along a tangential vector.
+*   **Emission (Planar-Mode Release):** Driven when a source residual routes an accepted action ledger into planar-mode nucleation. Acceleration is a common trigger geometry, but the event record must still name source depletion, recoil, wake, handoff, medium, and remnant rows.
 *   **Absorption (Planar-Mode Capture):**
     *   Absorption is not the annihilation of a quantum field operator.
     *   It is the **mechanical re-capture** of the planar mode by an internal binary in the target atom.
@@ -3057,7 +3312,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
 *   **Attenuation & Refraction:**
     *   As the photon train passes through regions of varying density (dielectric media or dense Noether Sea), the planar mode **re-couples** transiently with ambient assemblies.
     *   **Refraction:** This transient recoupling and delay response lowers the effective photon-channel speed $c_\gamma$ relative to its weak homogeneous value.
-    *   **Attenuation:** Incoherent scattering can "strip" units off the train, depleting the beam energy over distance (scattering) or absorbing it entirely (opacity).
+    *   **Attenuation:** Incoherent scattering routes parts of the packet ledger into scattering, capture, recoil, or medium rows, depleting the beam energy over distance or absorbing it entirely (opacity).
 
 #### Phenomenology
 *   **Energy-Frequency:** For a periodic source $\omega=2\pi\nu$, the closure target is the photon-channel relation $E_\gamma=h\nu$; the cycle being counted is the propagating planar-mode phase cycle, not a rest-state volumetric clock.
@@ -3141,7 +3396,69 @@ P_{\perp}^{ab}
 h^{ab}-\hat{e}^a\hat{e}^b.
 $$
 
-Gate B must show that the planar-pair ledger lives in the image of $P_{\perp}$ and has no accepted free longitudinal component. A longitudinal or mixed-axis vector channel belongs to a massive corridor, a medium-bound recoupling, or a Gate A failure mode; it is not an additional free photon polarization.
+Let $P_{\parallel}^{ab}=\hat{e}^a\hat{e}^b$ be the complementary longitudinal projector. Gate B must show that the planar-pair ledger lives in the image of $P_{\perp}$ and has no accepted free longitudinal component. A longitudinal or mixed-axis vector channel belongs to a massive corridor, a medium-bound recoupling, or a Gate A failure mode; it is not an additional free photon polarization.
+
+The substrate closure target starts from the planar-pair amplitude rather than from a preselected polarization vector:
+
+$$
+\mathbf a_{\gamma}^{\mathrm{sub}}
+=
+\mathbf a_{\mathrm{pro}}
++
+\mathbf a_{\mathrm{anti}}
++
+\mathbf a_{\mathrm{wake}},
+\qquad
+\mathbf a_{\perp}^{\mathrm{sub}}
+=
+P_{\perp}
+\mathbf a_{\gamma}^{\mathrm{sub}},
+\qquad
+\mathbf a_{\parallel}^{\mathrm{sub}}
+=
+P_{\parallel}
+\mathbf a_{\gamma}^{\mathrm{sub}}.
+$$
+
+The first two substrate residuals check static charge-like cancellation and longitudinal leakage:
+
+$$
+\Delta_Q^\gamma
+=
+\frac{
+\left|
+q_{\mathrm{pro}}^{\mathrm{eff}}
++
+q_{\mathrm{anti}}^{\mathrm{eff}}
+\right|
+}{
+\left|
+q_{\mathrm{pro}}^{\mathrm{eff}}
+\right|
++
+\left|
+q_{\mathrm{anti}}^{\mathrm{eff}}
+\right|
++
+\varepsilon_Q
+},
+\qquad
+\Delta_{\parallel}^{\mathrm{sub}}
+=
+\frac{
+\left\|
+\mathbf a_{\parallel}^{\mathrm{sub}}
+\right\|
+}{
+\left\|
+\mathbf a_{\gamma}^{\mathrm{sub}}
+\right\|
++
+\varepsilon_{\mathrm{amp}}
+}.
+$$
+
+A free photon branch requires small $\Delta_Q^\gamma$, nonzero $\mathbf a_{\perp}^{\mathrm{sub}}$, and small $\Delta_{\parallel}^{\mathrm{sub}}$ in the same Gate A event window. These are closure conditions on the coaxial contra-rotating pro/anti planar pair, not independent postulates about a photon field.
 
 Choose transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ and write the effective polarization ledger as
 
@@ -3161,14 +3478,44 @@ $$
 \frac{1}{\sqrt{2}}
 \left(\hat{\mathbf{u}}\pm i\hat{\mathbf{v}}\right),
 \qquad
-J_{\gamma,\parallel}
-=
-\lambda_{\text{hel}}\hbar,
-\quad
-\lambda_{\text{hel}}\in\{+1,-1\}.
+\lambda_{\mathrm{hel}}\in\{+1,-1\}.
 $$
 
-The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-core spinor, and not a massive-vector longitudinal mode.
+The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-core spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
+
+$$
+\mathbf J_{\gamma}^{\mathrm{sub}}
+=
+\mathbf J_{\mathrm{pro}}
++
+\mathbf J_{\mathrm{anti}}
++
+\mathbf J_{\gamma,\mathrm{wake}},
+$$
+
+with
+
+$$
+\Delta_{\mathrm{hel}}^\gamma
+=
+\left|
+\frac{
+\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}
+}{\hbar}
+-
+\lambda_{\mathrm{hel}}
+\right|
++
+\frac{
+\left\|
+P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
+\right\|
+}{
+\hbar+\varepsilon_J
+}.
+$$
+
+A clean free branch must route source remnant, recoil, material handoff, and unrelated medium rows outside the photon-only ledger through the event-balance equation. Only after Gate A, the event-window helicity projection, and the transverse leakage residual pass may the target be summarized by $\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar\hat{\mathbf e}$. Reaction chapters consume this as the photon Gate B event residual, not as a source-free helicity proof.
 
 An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming axis $\hat{\mathbf{e}}_\gamma$, the closure target is
 
@@ -3613,7 +3960,7 @@ Key properties of hadrons:
 
 Protons and neutrons are the most familiar hadrons; they make up atomic nuclei. Mesons are typically unstable and mediate strong-force effects in nuclear processes.
 
-While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether cores](../../../../markdown/aaa/spacetime/noether-core.md) connected by color flux tubes.
+While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether cores](../../../../markdown/aaa/spacetime/noether-swarm.md) connected by color flux tubes.
 
 Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations.
 

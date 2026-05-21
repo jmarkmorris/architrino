@@ -134,6 +134,30 @@ For photon channels, keep the two photon ledgers separate. Gate A records propag
 
 Gate B entries are bookkeeping requirements until the transverse planar-pair ledger is derived. A reaction chapter may require helicity, polarization, analyzer pass/reject routing, or no-longitudinal-mode closure, but it should not treat the mode taxonomy itself as the proof. Rejected photon action must route through local reflection, absorption, scattering, heat, or another allowed material update, not through an extra longitudinal free-photon branch.
 
+The compact event contract for photon Gate B is the residual vector
+
+$$
+\mathcal R_{\gamma B}^{\mathrm{event}}
+=
+\left(
+\Delta_A,
+\Delta_Q^\gamma,
+\Delta_{\mathrm{surv}}^\gamma,
+\Delta_{\parallel}^{\mathrm{sub}},
+\Delta_{\mathrm{hel}}^\gamma,
+\Delta_{\epsilon}^{\gamma},
+\Delta_{\mathrm{src}}^\gamma,
+\Delta_{\mathrm{recoil}}^\gamma,
+\Delta_{\mathrm{med}}^\gamma,
+\Delta_{\mathrm{wake}}^\gamma,
+\Delta_{\mathrm{handoff}}^\gamma,
+\Delta_{\mathrm{rem}}^\gamma,
+\Delta_{\mathrm{bal}}^\gamma
+\right).
+$$
+
+Here $\Delta_A$ is the photon Gate A residual; $\Delta_Q^\gamma$, $\Delta_{\mathrm{surv}}^\gamma$, $\Delta_{\parallel}^{\mathrm{sub}}$, $\Delta_{\mathrm{hel}}^\gamma$, and $\Delta_{\epsilon}^{\gamma}$ test the planar-pair substrate, transverse survival, longitudinal exclusion, helicity, and analyzer-basin rows; and $\Delta_{\mathrm{src}}^\gamma$, $\Delta_{\mathrm{recoil}}^\gamma$, $\Delta_{\mathrm{med}}^\gamma$, $\Delta_{\mathrm{wake}}^\gamma$, $\Delta_{\mathrm{handoff}}^\gamma$, $\Delta_{\mathrm{rem}}^\gamma$, and $\Delta_{\mathrm{bal}}^\gamma$ test the source, recoil, medium, causal-wake, analyzer-handoff, remnant, and event-balance rows. A reaction chapter may cite this vector as a bookkeeping contract, not as a derivation of photon polarization.
+
 7. **Execute provenance-conserving relock**
 Update assembly graph by relocking existing substrate content.
 No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes from local Noether-core availability.
@@ -272,6 +296,21 @@ $$
 \qquad
 \mathrm{BR}_{\mathrm{map}} \rightarrow \mathrm{BR}_{\mathrm{PDG}}
 $$
+
+For weak-channel rows that report a mass, width, branching fraction, lifetime, or mixing entry, the observer-facing comparison must keep the published uncertainty convention as part of the target. A compact residual is
+
+$$
+\mathcal R_{\mathrm{weak}}
+=
+C_{\mathrm{weak}}^{-1/2}
+\left(
+\mathbf y_{\mathrm{PDG}}
+-
+\mathbf y_{\mathrm{map}}
+\right),
+$$
+
+where $\mathbf y_{\mathrm{PDG}}$ may include $M_W$, $\Gamma_W$, $M_Z$, $\Gamma_Z$, weak mixing angles, CKM entries, PMNS entries, lifetimes, or branching fractions, and $C_{\mathrm{weak}}$ is the declared covariance or uncertainty rule for those rows. If a row is an upper limit, an asymmetric uncertainty, or a result with separated statistical and systematic errors, the channel must preserve that convention instead of converting it into an unmarked symmetric error.
 
 For low-energy charged weak processes the same mapping must also recover the contracted current-current limit
 $$
@@ -427,6 +466,92 @@ m_b^\theta,\,
 \right),
 $$
 where $J_b^\theta$ is the recovered spin label, $P_b^\theta$ the parity or transverse/longitudinal projector record when applicable, $m_b^\theta$ the mass or gap, $\omega_b^\theta(k)$ the dispersion, and $\mathcal{C}_b^\theta$ the coupling ledger to fermion, photon, weak, color, or gravitational channels. A collective-mode interpretation is admissible only when one Noether-Sea and assembly branch supplies $\mathcal{M}_b^\theta$ while also suppressing unobserved scalar, vector, tensor, mirror, or hidden channels. Otherwise "boson as excitation" is an analogy, not gauge-structure emergence.
+
+### Gauge-Covariance Recovery Target
+
+The Standard Model gauge equations are comparison constraints on the effective record, not evidence for primitive continuum gauge fields in the substrate. A successful emergence map must recover the covariance structure of a connection and curvature after coarse-graining causal wakes, axial-layer bookkeeping, and Noether-Sea response into observer-level variables. For a declared low-energy branch $\theta$, write the effective comparison operators as
+$$
+D_\mu^\theta=\partial_\mu-i g_\theta A_{\mathrm{eff},\mu}^\theta,
+\qquad
+F_{\mu\nu}^\theta=\frac{i}{g_\theta}[D_\mu^\theta,D_\nu^\theta].
+$$
+If $U(x)$ is an allowed effective gauge relabeling, then the record should transform as
+$$
+\Psi_\theta' = U\Psi_\theta,
+\qquad
+D_\mu^{\theta'}\Psi_\theta'=U D_\mu^\theta\Psi_\theta,
+\qquad
+F_{\mu\nu}^{\theta'}=U F_{\mu\nu}^\theta U^{-1}.
+$$
+This is a redundancy test. It asks whether different gauge charts describe the same observer-level channel, not whether the Noether Sea itself has been changed.
+
+A compact residual for the comparison is
+$$
+\mathcal{R}_{\mathrm{cov}}(\theta;U)
+=
+\sup_{\Psi\in\mathcal{D}_\theta}
+\frac{
+\left\|
+D^{\theta'}(U\Psi)-U D^\theta\Psi
+\right\|
+}{
+\left\|D^\theta\Psi\right\|+\varepsilon_{\mathrm{op}}
+}.
+$$
+The electroweak or color branch passes only when this residual stays below its declared tolerance on the same record domain used for charge, chirality, mixing, and null-channel tests. If covariance appears only after changing the physical branch ledger, the construction has not recovered gauge redundancy; it has renamed a different physical state.
+
+The same discipline applies to holonomy. For a closed observer-level loop $\gamma$, the non-Abelian comparison object is
+$$
+W_\gamma^\theta
+=
+\operatorname{Tr}\,
+\mathcal{P}
+\exp\!\left(
+i g_\theta\oint_\gamma A_{\mathrm{eff},\mu}^\theta\,d\ell^\mu
+\right).
+$$
+This Wilson-loop language is useful because it tests gauge-invariant loop content. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the loop value must be reconstructed from the closed causal-wake and axial-layer provenance sampled by the apparatus channel. It is not a claim that the loop integral is fundamental ontology.
+
+Topological sectors supply a stronger global guardrail. In an effective non-Abelian chart, a standard comparison integer is
+$$
+k_\theta
+=
+\frac{1}{8\pi^2}
+\int_{\mathcal{D}_\theta}
+\operatorname{tr}\!\left(F_{\mathrm{eff}}\wedge F_{\mathrm{eff}}\right),
+\qquad
+\mathcal{R}_{\mathrm{top}}(\theta)
+=
+\inf_{N\in\mathbb{Z}}
+\left|k_\theta-N\right|.
+$$
+This target belongs to the gauge recovery map only after $\mathcal{D}_\theta$, $F_{\mathrm{eff}}$, and the apparatus-accessible sector have been declared. It passes when the integer sector is fixed by the same branch record that supplies the local gauge response. It fails if the winding number is imported as an external bundle label while the assembly and Noether-Sea provenance remain silent.
+
+### Scattering-Amplitude Comparison Target
+
+Gauge recovery also has a scattering side. Standard perturbative QFT packages interactions into amplitudes with physical poles, residues, color factors, and numerator identities. In this framework those amplitudes are comparison-layer summaries of finite event windows. The branch ledger must still carry the participating assemblies, causal wakes, transient channel, Noether-Sea exchange, recoil, and final records.
+
+For a channel $I$ with intermediate invariant $P_I^2$, the observer-level amplitude extracted from branch $\theta$ should factorize at a physical pole:
+$$
+\mathcal{A}_{n,\theta}
+\xrightarrow{P_I^2\to m_h^2}
+\sum_h
+\mathcal{A}_{L,\theta}^{(h)}
+\frac{i}{P_I^2-m_h^2+i0}
+\mathcal{A}_{R,\theta}^{(h)}
++\mathcal{A}_{\mathrm{reg},\theta}.
+$$
+This equation is a locality-emergence test. It says that a boundary of the event-window description must reduce to two lower-channel records connected by the same accepted transient channel $h$. If the pole residue cannot be traced to a replayable branch-boundary decomposition, the amplitude has been fitted but not derived.
+
+Color/kinematics duality supplies a sharper optional comparison. Whenever an oriented color triple satisfies a Jacobi relation, the corresponding kinematic numerators should satisfy the matched relation on a closed representation,
+$$
+c_i+c_j+c_k=0
+\quad\Longrightarrow\quad
+n_i^\theta+n_j^\theta+n_k^\theta\to0.
+$$
+The native value of this test is not the formal identity by itself. The value is whether the existing H/M/L color-exceptionality relation $Q_H+Q_M+Q_L=0$ and the scattering numerator ledger can be derived as two projections of the same branch geometry.
+
+Positive-geometry amplitude work adds one more useful guardrail. If an amplitude is represented by a positive-coordinate auxiliary geometry, then physical boundaries should carry the factorization residues above, while spurious cell boundaries should cancel in the sum. In native terms, a positive-geometry chart is admissible only as a certificate for boundary factorization, spurious-pole cancellation, and record-domain consistency. It does not replace the causal-wake and assembly derivation.
 
 ### Higgs Mechanism and VEV Reinterpretation
 

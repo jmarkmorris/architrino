@@ -2831,15 +2831,15 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/spacetime/noether-core.md",
-      "name": "Nested Binaries and the Noether Core",
-      "path": "content/markdown/aaa/spacetime/noether-core.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/spacetime/noether-sea.md",
       "name": "Noether Sea",
       "path": "content/markdown/aaa/spacetime/noether-sea.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/spacetime/noether-swarm.md",
+      "name": "Noether Swarm",
+      "path": "content/markdown/aaa/spacetime/noether-swarm.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7162,21 +7162,21 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/noether-core.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/spacetime/noether-core.md",
-      "name": "Nested Binaries and the Noether Core",
-      "path": "content/markdown/aaa/spacetime/noether-core.md",
-      "searchTarget": "content/markdown/aaa/spacetime/noether-core.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/spacetime/noether-sea.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/spacetime/noether-sea.md",
       "name": "Noether Sea",
       "path": "content/markdown/aaa/spacetime/noether-sea.md",
       "searchTarget": "content/markdown/aaa/spacetime/noether-sea.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/noether-swarm.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/spacetime/noether-swarm.md",
+      "name": "Noether Swarm",
+      "path": "content/markdown/aaa/spacetime/noether-swarm.md",
+      "searchTarget": "content/markdown/aaa/spacetime/noether-swarm.md",
       "implicit": false
     },
     {
@@ -12678,7 +12678,7 @@
     },
     {
       "from": "scene:content/scenes/spacetime/noether_core.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/noether-core.md",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/noether-swarm.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/noether_core.json",
       "field": "scene.source.path"

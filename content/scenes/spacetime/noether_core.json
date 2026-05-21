@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "spacetime__noether_core",
-    "title": "Noether Core",
+    "title": "Noether Swarm",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/spacetime/noether-core.md"
+      "path": "content/markdown/aaa/spacetime/noether-swarm.md"
     },
     "view": {
       "columns": 1,

@@ -1,6 +1,6 @@
 # Noether Core Geometry
 
-This chapter is the canonical home for the geometric footprint of the Noether core: its dynamic exclusion zone, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether Sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether-Sea density, strain, and delay variables are coarse-grained. The nested-binary scaffold itself belongs in [Nested Binaries and the Noether Core](./noether-core.md). The delayed dynamics that stabilize and deform the tri-binary belong in [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md).
+This chapter is the canonical home for the geometric footprint of the Noether core: its dynamic exclusion zone, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether Sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether-Sea density, strain, and delay variables are coarse-grained. The nested-binary scaffold itself belongs in [Noether Swarm](./noether-swarm.md). The delayed dynamics that stabilize and deform the tri-binary belong in [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md).
 
 The core is not a static object. It is a dynamic system of six architrinos in a triply nested binary configuration. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the Noether core's effective exclusion envelope.
 
@@ -16,7 +16,7 @@ This chapter owns:
 This chapter does not own:
 
 - primitive architrino ontology; see [Architrino](../foundations/architrino.md),
-- the nested-binary scaffold; see [Nested Binaries and the Noether Core](./noether-core.md),
+- the nested-binary scaffold; see [Noether Swarm](./noether-swarm.md),
 - exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md) and [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md),
 - observer clocks and rulers; see [Proper Time and Time Dilation](proper-time-and-time-dilation.md),
 - or metric reconstruction; see [Emergent Metric](emergent-metric.md).

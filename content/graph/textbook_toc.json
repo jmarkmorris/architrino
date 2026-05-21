@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 154,
-      "sections": 1231
+      "sections": 1232
     }
   },
   "tocRoot": {
@@ -1620,40 +1620,48 @@
           },
           {
             "id": "spacetime__noether_core",
-            "title": "Noether Core",
+            "title": "Noether Swarm",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/spacetime/noether_core.json",
-            "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+            "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "The Hierarchy of Orbits",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
-                "markdownSection": "The Hierarchy of Orbits",
-                "sectionKey": "the hierarchy of orbits",
+                "title": "General Neutral Swarm",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
+                "markdownSection": "General Neutral Swarm",
+                "sectionKey": "general neutral swarm",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "The Noether Core: A Triply Nested Binary",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
-                "markdownSection": "The Noether Core: A Triply Nested Binary",
-                "sectionKey": "the noether core a triply nested binary",
+                "title": "Shell Swarm",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
+                "markdownSection": "Shell Swarm",
+                "sectionKey": "shell swarm",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Properties of the Noether Core",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
-                "markdownSection": "Properties of the Noether Core",
-                "sectionKey": "properties of the noether core",
+                "title": "Nested Shell Swarm",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
+                "markdownSection": "Nested Shell Swarm",
+                "sectionKey": "nested shell swarm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Properties of the Nested Shell Swarm",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
+                "markdownSection": "Properties of the Nested Shell Swarm",
+                "sectionKey": "properties of the nested shell swarm",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "Integer Phase-Closure States",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
                 "markdownSection": "Integer Phase-Closure States",
                 "sectionKey": "integer phase closure states",
                 "headingLevel": 2
@@ -1661,7 +1669,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Cadence-Scale Retuning Hypothesis",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
                 "markdownSection": "Cadence-Scale Retuning Hypothesis",
                 "sectionKey": "cadence scale retuning hypothesis",
                 "headingLevel": 2
@@ -1669,7 +1677,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Rest-Level Scaling Curve",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
                 "markdownSection": "Rest-Level Scaling Curve",
                 "sectionKey": "rest level scaling curve",
                 "headingLevel": 2
@@ -1677,7 +1685,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Reduced Noether-Core Closure Label",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
                 "markdownSection": "Reduced Noether-Core Closure Label",
                 "sectionKey": "reduced noether core closure label",
                 "headingLevel": 2
@@ -1685,7 +1693,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Geometry and Exclusion Envelope",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
                 "markdownSection": "Geometry and Exclusion Envelope",
                 "sectionKey": "geometry and exclusion envelope",
                 "headingLevel": 2
@@ -1693,7 +1701,7 @@
               {
                 "kind": "markdown-section",
                 "title": "The Core Hierarchy and Fermion Generations",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
                 "markdownSection": "The Core Hierarchy and Fermion Generations",
                 "sectionKey": "the core hierarchy and fermion generations",
                 "headingLevel": 2
@@ -1701,7 +1709,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Tri-Binary Alignment and Planck-Scale Framing",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
                 "markdownSection": "Tri-Binary Alignment and Planck-Scale Framing",
                 "sectionKey": "tri binary alignment and planck scale framing",
                 "headingLevel": 2
@@ -1709,7 +1717,7 @@
               {
                 "kind": "markdown-section",
                 "title": "The Foundation for Fermions",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core.md",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-swarm.md",
                 "markdownSection": "The Foundation for Fermions",
                 "sectionKey": "the foundation for fermions",
                 "headingLevel": 2

@@ -121,7 +121,29 @@ where $\Xi_e$ denotes electron-assembly internal state variables. In Master Equa
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration generate a wake shock in the electron assembly by increasing $\mathcal{R}_{\Theta}^{\mathrm{br}}$. In the corrected master-law picture, the received interaction is shaped not only by inverse-square proximity but also by Jacobian-weighted bunching of delayed causal flux along the active branches during the deflection. When the local shock intensity exceeds the inherited planar-mode stability threshold, shed energy nucleates a photon mode modeled as a coaxial contra-rotating pro/anti planar pair in the Noether Sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
 
-A minimal radiation-inherited energy ledger for each resolved event is
+A minimal radiation-inherited event ledger starts with the projectile source depletion. For $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$,
+
+$$
+\Delta\mathcal Q_{e}^{0}
+=
+\mathcal Q_{e}^{-}
+-
+\mathcal Q_{e}^{+}
+=
+\mathcal Q_{\gamma}^{\mathrm{sub}}
++
+\mathcal Q_{Z,\mathrm{recoil}}^{0}
++
+\mathcal Q_{\mathrm{med}}^{0}
++
+\mathcal Q_{\mathrm{wake}}^{0}
++
+\mathcal Q_{\mathrm{handoff}}^{0}
++
+\mathcal Q_{\mathrm{rem}}^{0}.
+$$
+
+The energy component reduces to
 
 $$
 E_{\text{exc}}^{\mathrm{br}}
@@ -250,6 +272,8 @@ Use the same photon-channel event record here as in [Synchrotron Cascades](../..
 - local Noether-Sea state variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and relevant causal-branch Jacobian data;
 - closure residual $\mathcal{R}_{\Theta}^{\mathrm{br}}$, excitation energy $E_{\text{exc}}^{\mathrm{br}}$, and wake-strain or shock-intensity status relative to the planar-mode threshold;
 - photon output $E_\gamma$, direction, polarization basis, transverse angular-momentum ledger, and local photon-channel speed $c_\gamma$;
+- photon Gate B event residual, including source depletion, recoil, causal-wake, accepted/rejected handoff, helicity, and balance rows;
+- causal-wake ledger and identity-routing fields from the shared radiation schema, so photon output is not treated as a source of new substrate identities;
 - residual medium excitation $\Delta E_{\mathrm{med}}$ and any non-radiative channel that receives sub-threshold energy.
 
 This record is a derivation target. It should recover standard $d\sigma/dk$, screening, form-factor, and emissivity limits before any Noether-Sea-dependent deviation is treated as physical. The polarization basis and transverse angular-momentum ledger are photon Gate B handoffs from [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md); this chapter records emission provenance, not photon spin closure.
@@ -617,7 +641,30 @@ Use the same photon-channel event record here as in [Radiation](../../../../mark
 - Noether-core velocity-deformation state, effective magnetic-state map $\mathcal{V}_{\mathrm{NS}}$, gradient forcing $G_{\text{grad}}$, and local Noether-Sea variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and causal-branch Jacobian data;
 - closure residual $\mathcal{R}_{\Theta}^{\mathrm{syn}}$, wake-strain eigenvalue or threshold status, and photon-channel drive $\mathcal{S}_{\gamma}^{\mathrm{syn}}$ that permits or forbids planar-mode nucleation;
 - photon output $E_\gamma$, direction, polarization basis, transverse angular-momentum ledger, and local photon-channel speed $c_\gamma$;
+- photon Gate B event residual, including source depletion, recoil, causal-wake, accepted/rejected handoff, helicity, and balance rows;
 - recoil, medium excitation, residual core energy, and pair-channel handoff terms when the emitted photon enters a cascade loop.
+
+For the emitting charged assembly, the source-depletion identity is
+
+$$
+\Delta\mathcal Q_{e^\pm}^{0}
+=
+\mathcal Q_{\gamma}^{\mathrm{sub}}
++
+\mathcal Q_{\mathrm{recoil}}^{0}
++
+\mathcal Q_{\mathrm{med}}^{0}
++
+\mathcal Q_{\mathrm{wake}}^{0}
++
+\mathcal Q_{\mathrm{handoff}}^{0}
++
+\mathcal Q_{\mathrm{rem}}^{0},
+\qquad
+\mathcal Q\in\{E,\mathbf p,\mathbf J\}.
+$$
+
+Pair-production cascade vertices close the incoming photon ledger and then recruit identity-routed charged-assembly content from the named target or Noether-Sea reservoir; they do not treat photon energy alone as an identity source.
 
 This record is a derivation target. It must recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, standard polarization limits, and Breit-Wheeler behavior in validated regimes before any Noether-Sea-dependent deviation is treated as physical. The polarization basis, transverse angular-momentum ledger, and linear-polarization limits are photon Gate B consumers from [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), not a local derivation of photon helicity.
 
@@ -733,7 +780,7 @@ Status convention used below:
 
 This file uses the following provisional mapping targets.
 
-- **Synchrotron emission (provisional):** a charged tri-binary assembly in curved transport through $\mathcal{V}_{\mathrm{NS}}$ develops a Noether-core velocity deformation. Gradient forcing $G_{\text{grad}}$ and causal-branch Jacobian bunching can leave $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ after ordinary adiabatic retuning fails; when the associated wake-strain state crosses the inherited planar-mode threshold, a photon assembly nucleates and carries away energy-momentum. This nucleation threshold must be derivable from wake-strain eigenvalue conditions in simulations; hand-tuning the threshold to match observed $P_{\mathrm{syn}}(\gamma,B)$ or $\nu_c\propto\gamma^2B$ constitutes a fit, not a derivation. The mapping succeeds only if the threshold emerges naturally from the architrino master equation applied to curved charged-assembly trajectories in anisotropic Noether-Sea states.
+- **Synchrotron emission (provisional):** a charged tri-binary assembly in curved transport through $\mathcal{V}_{\mathrm{NS}}$ develops a Noether-core velocity deformation. Gradient forcing $G_{\text{grad}}$ and causal-branch Jacobian bunching can leave $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ after ordinary adiabatic retuning fails; when the associated wake-strain state crosses the inherited planar-mode threshold, a photon assembly nucleates and carries the photon-row share of the source-depletion ledger. Recoil, medium, wake, handoff, and remnant rows close the rest. This nucleation threshold must be derivable from wake-strain eigenvalue conditions in simulations; hand-tuning the threshold to match observed $P_{\mathrm{syn}}(\gamma,B)$ or $\nu_c\propto\gamma^2B$ constitutes a fit, not a derivation. The mapping succeeds only if the threshold emerges naturally from the architrino master equation applied to curved charged-assembly trajectories in anisotropic Noether-Sea states.
 - **Magnetic field ontology (provisional Option B):** observer-level $B$ is currently treated as the effective coarse-grained directional (vector/tensor) vorticity-anisotropy state of the Noether Sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$, rather than as a separate fundamental void field (Option A). This is a mapping option, not settled ontology. Charged-assembly curvature is therefore interpreted provisionally as transport through an anisotropic Noether-Sea state with explicit directionality. In validated limits, this mapping must: (i) derive the effective Lorentz-force law $\mathbf{F}_{\mathrm{eff}} = q(\mathbf{v}/c) \times \mathbf{B}_{\mathrm{eff}}$ from anisotropic Noether-Sea transport together with the Jacobian-weighted geometry of delayed causal flux, rather than by postulating a primitive cross-product force term; (specifically, show that vorticity-tensor gradients $\partial_i \mathcal{V}^j_{\mathrm{NS}}$ produce perpendicular deflection under boost); (ii) reproduce Maxwell-level electromagnetic-wave propagation (dispersion relation $\omega = ck$ for photon modes in uniform $\mathcal{V}_{\mathrm{NS}}$); (iii) recover synchrotron polarization geometry ($\mathbf{E}_\gamma \perp \mathbf{B}_{\mathrm{eff}}$, $\mathbf{E}_\gamma \perp \mathbf{v}$ in observer frame) from directional emission rules in the Noether-Sea anisotropy basis, while inheriting photon helicity and analyzer statistics from Gate B rather than deriving them locally. **Falsification criterion:** if simulations with anisotropic Noether-Sea states fail to produce the factor-of-$\gamma^2$ frequency scaling in $\nu_c$ (tested via swept $B$-field and $\gamma$ at fixed pitch angle), or if polarization vectors misalign with standard geometry by $>15^\circ$ systematically, Option B is ruled out and the theory must revert to treating $\mathbf{B}$ as a separate substrate field (Option A) or propose a new mapping.
 - **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by overlap of two coaxial contra-rotating pro/anti planar-pair photon assemblies above threshold, not ex nihilo creation. The incoming photon assemblies supply energy, momentum, and trigger geometry, not new architrino identities; the recruited Noether-Sea content must supply the identity-routed inventory. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling. Operational constraint: pair-channel cross-section $\sigma_{\gamma\gamma}(s)$ computed from this nucleation picture must reproduce
 $$

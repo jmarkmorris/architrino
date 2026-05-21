@@ -22,7 +22,7 @@ The Noether Sea enters this picture as ambient substrate contents, not as the fi
 
 The Noether-Sea transport picture is useful for separating reversible medium response from dissipative resistance. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
 
-For the underlying assembly carrier of this medium, see [Noether Core](../../../../markdown/aaa/spacetime/noether-core.md).
+For the underlying assembly carrier of this medium, see [Noether Core](../../../../markdown/aaa/spacetime/noether-swarm.md).
 
 ### Hydrogen as a Four-Fermion Boundary Test
 
@@ -713,6 +713,53 @@ $$
 
 Those labels describe the effective electron-assembly envelope around the nucleus. They should not be read as the internal Noether-core spinor ledger of the electron itself.
 
+The sharper recovery target is a residual on the declared envelope extractor. For an electron assembly branch $\mathcal B_e$, local Noether-Sea record $\theta_{\mathrm{sea}}^{(\ell)}$, central-potential approximation $V_{\mathrm{eff}}$, and record window $W$, write
+
+$$
+\Psi_{\mathrm{env}}
+=
+\mathcal E_{\mathrm{orb}}
+\left(
+\mathcal B_e,
+\theta_{\mathrm{sea}}^{(\ell)},
+V_{\mathrm{eff}},
+W
+\right).
+$$
+
+The extractor must first pass restartability, central-chart, record-channel, and normalization checks, collected as $\mathcal R_{\mathrm{env}}$. Only then should the angular labels be tested by
+
+$$
+\mathcal R_{\mathrm{orb}}
+=
+\left(
+\mathcal R_{\mathrm{env}},
+\Delta_{2\pi},
+\Delta_{\Omega},
+\Delta_{\ell m},
+\Delta_{\mathrm{int}}
+\right),
+$$
+
+where
+
+$$
+\Delta_{2\pi}
+=
+\sup_{r,\theta,\phi}
+\frac{
+\left|
+\Psi_{\mathrm{env}}(r,\theta,\phi+2\pi)
+-
+\Psi_{\mathrm{env}}(r,\theta,\phi)
+\right|
+}{
+\left\|\Psi_{\mathrm{env}}\right\|+\varepsilon_{\Psi}
+}
+$$
+
+tests azimuthal single-valuedness, $\Delta_{\Omega}$ tests the angular operator against $\ell(\ell+1)$ and $m$, $\Delta_{\ell m}$ enforces $\ell\in\mathbb N_0$, $m\in\mathbb Z$, and $|m|\le\ell$, and $\Delta_{\mathrm{int}}$ checks that the observer-level orbital envelope has not been mistaken for the internal Noether-core spin ledger. The orbital row is promotable only when all five residuals pass for the same envelope branch.
+
 ## Nucleon Structure
 
 This chapter fixes the current proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Transient Hadrons: Mesons and Δ Resonances](../../../../markdown/aaa/assemblies/mesons/mesons.md).
@@ -1335,6 +1382,20 @@ $$
 
 The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether-core ledgers have already been derived.
 
+The direct angular consumer is the effective angular-envelope recovery lemma from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma). Once the native extractor supplies a central record-facing envelope whose angular part is a regular single-valued function on $S^2$, the angular step is
+
+$$
+-\Delta_{S^2}Y=\lambda Y
+\quad\Longrightarrow\quad
+\lambda=\ell(\ell+1),
+\qquad
+\ell\in\mathbb N_0,
+\qquad
+m\in\{-\ell,\ldots,\ell\}.
+$$
+
+Atomic spectra then consume $(n,\ell,m)$ as envelope labels for energy gaps and line strengths. The spectral burden remains the native extraction of the electron-envelope basin, its radial energy functional, and the local clock/rate conversion; the angular lemma does not by itself derive the Rydberg constant or spin-sensitive splittings.
+
 The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, the Noether-Sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, and the local clock/rate response encoded by $\Gamma_N(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
 
 Spectral lines should then be recovered as transitions between effective envelope basins:
@@ -1897,7 +1958,7 @@ $$
 \{\mathbf R_A\},
 \mathcal B_{e,1},\ldots,\mathcal B_{e,N},
 \mathcal B_{\mathrm{bond}},
-\Theta_{\mathrm{sea}}^{(\ell)}
+\mathcal{N}_{\mathrm{sea}}^{(\ell)}
 \right).
 $$
 
@@ -1989,11 +2050,72 @@ Below the critical surface, the response belongs to the mass and inertia program
 $$
 p_{\text{int}}^a
 \approx
-\alpha\,\zeta(A)E_{\text{internal}}(A)\,
+\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b}.
 $$
 
 This is the condensed-matter version of medium-dressed inertial response. The Noether Sea may shape the response tensor, the local delay factor, and the stability margin, but it must not drain energy from a stable bound state merely because that state is moving through the medium.
+
+The algebraic reason for this distinction is that the reversible kinetic scalar can consume only the symmetric part of the medium-response tensor. Decompose
+
+$$
+\mathcal{M}_{\text{sea}}^{ab}
+=
+\mathcal{M}_{+}^{ab}
++
+\mathcal{M}_{-}^{ab},
+\qquad
+\mathcal{M}_{+}^{ab}
+=
+\frac{1}{2}
+\left(
+\mathcal{M}_{\text{sea}}^{ab}
++
+\mathcal{M}_{\text{sea}}^{ba}
+\right),
+\qquad
+\mathcal{M}_{-}^{ab}
+=
+\frac{1}{2}
+\left(
+\mathcal{M}_{\text{sea}}^{ab}
+-
+\mathcal{M}_{\text{sea}}^{ba}
+\right).
+$$
+
+The below-threshold reversible energy is the quadratic form
+
+$$
+K_{\mathrm{rev}}
+=
+\frac{1}{2}\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)\,
+V_{\text{cm},a}\mathcal{M}_{+}^{ab}V_{\text{cm},b},
+\qquad
+p_{\mathrm{rev}}^{a}
+=
+\frac{\partial K_{\mathrm{rev}}}{\partial V_{\text{cm},a}}
+=
+\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)\,
+\mathcal{M}_{+}^{ab}V_{\text{cm},b}.
+$$
+
+The antisymmetric part drops out because
+
+$$
+V_{\text{cm},a}\mathcal{M}_{-}^{ab}V_{\text{cm},b}=0.
+$$
+
+Thus the directional inertial readout below threshold is
+
+$$
+m_{\mathrm{eff}}(\hat v;A,\theta_{\mathrm{sea}})
+=
+\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)\,
+\hat v_a\mathcal{M}_{+}^{ab}(\theta_{\mathrm{sea}})\hat v_b.
+$$
+
+This is not a completed derivation of $\mathcal{M}_{+}^{ab}$; it is the reversible-response lemma that any derivation must satisfy. If an antisymmetric response, drag-like coefficient, or nonzero work-loss term appears below $\mathcal{R}_{\text{tr},*}$, it cannot be hidden inside scalar mass. It must either vanish in the branch-preserving limit or be routed to an orientation, excitation, heating, radiation-like, boundary-exchange, or branch-transition channel.
 
 ### Lattice and Band-Response Recovery
 
@@ -2178,6 +2300,43 @@ $$
 $$
 
 where $\Delta N_s$ is the changed phonon occupation in the effective branch description. A coherent recoil-free or elastic event has $\Delta N_s=0$ for the relevant phonon channels and must route momentum through the whole branch or boundary record. This is the material analogue of distinguishing reversible retuning from heating.
+
+### Order-Parameter Defects and Critical Transport
+
+Defect and vortex language is useful only when a material branch supplies an effective order-parameter record. Let
+$$
+Q:\Omega\setminus D\longrightarrow\mathcal{Q}
+$$
+be an observer-level order-parameter map for a material region with defect set $D$ and target space $\mathcal{Q}$. A loop $\gamma$ around a line defect may then carry a homotopy label
+$$
+\mathcal{I}_\gamma
+=
+\left[Q|_\gamma\right]\in\pi_1(\mathcal{Q}),
+$$
+or, in a phase-like branch,
+$$
+\nu_\gamma
+=
+\frac{1}{2\pi}\oint_\gamma d\varphi
+\in\mathbb Z.
+$$
+These are recovery or comparison objects. They do not replace the architrino, causal-wake, or Noether-Sea branch records that must generate the effective material description.
+
+The transport consequence is a gap rule. A stable branch may deform, strain, or retune without changing its defect label while the relevant stability gap remains open:
+$$
+\Delta_{\mathbf{k}}>0
+\quad\Longrightarrow\quad
+\Delta\mathcal{I}_\gamma=0
+$$
+for branch-preserving perturbations. If a material event changes the topological label, creates a vortex or dislocation, unbinds a defect pair, or opens an edge mode, the event has crossed a branch threshold. In the condensed-matter closure target that means
+$$
+\Delta\mathcal{I}_\gamma\ne0
+\quad\Longrightarrow\quad
+\Delta_{\mathbf{k}}\to0
+\quad\text{or}\quad
+\mathcal{R}_{\text{tr}}\ge\mathcal{R}_{\text{tr},*}.
+$$
+Below that threshold the response remains reversible retuning or coherent transport. Above it, the energy and momentum ledger must route the event through lattice excitation, surface transport, heating, radiation-like shedding, boundary exchange, or structural transition.
 
 ### Hall and Topological Response Benchmarks
 

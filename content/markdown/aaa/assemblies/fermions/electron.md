@@ -6,7 +6,7 @@ This chapter is a placeholder for the electron assembly in $\mathbb{A}\mathbb{A}
 
 ## Current framing
 
-The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Nested Binaries and the Noether Core](../../spacetime/noether-core.md), [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md), and [Weak Mixing Angle](./weak-mixing-angle.md).
+The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Noether Swarm](../../spacetime/noether-swarm.md), [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md), and [Weak Mixing Angle](./weak-mixing-angle.md).
 
 ## Axial Inventory and Generation Core
 
@@ -98,7 +98,7 @@ For the electron branch, the gate is conservative: any finite-size or Noether-Se
 
 ## Related Chapters
 
-- [noether-core.md](../../spacetime/noether-core.md)
+- [noether-swarm.md](../../spacetime/noether-swarm.md)
 - [particle-masses.md](../particle-masses.md)
 - [quantum-number-mapping.md](./quantum-number-mapping.md)
 - [muon-tau.md](./muon-tau.md)

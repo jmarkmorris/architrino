@@ -892,7 +892,7 @@ This page owns:
 
 This page does not own:
 
-- Noether-core internal architecture; see [Nested Binaries and the Noether Core](noether-core.md).
+- Noether-core internal architecture; see [Noether Swarm](noether-swarm.md).
 - Noether-core exclusion-envelope geometry; see [Noether Core Geometry](noether-core-geometry.md).
 - Pro/anti coupling hypotheses and cluster motifs; see [Spacetime Assemblies](spacetime-assemblies.md).
 - Effective metric derivation; see [Emergent Metric](emergent-metric.md).

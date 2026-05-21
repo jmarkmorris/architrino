@@ -490,6 +490,6 @@ The reduced branch certificate is the executable handoff between this workstream
 ## Related AAA Notes
 
 - [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md)
-- [noether-core](../../../content/markdown/aaa/spacetime/noether-core.md)
+- [noether-swarm](../../../content/markdown/aaa/spacetime/noether-swarm.md)
 - [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md)
 - [architrino-si-base-units](../../../content/markdown/aaa/validation/architrino-si-base-units.md)

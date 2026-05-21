@@ -17,7 +17,7 @@ Use this lane for documents that:
 Do not use this lane as the primary home for:
 
 - substrate ontology; use [Foundations](../../foundations/ontology.md),
-- assembly definitions; use [Assemblies](../../spacetime/noether-core.md),
+- assembly definitions; use [Assemblies](../../spacetime/noether-swarm.md),
 - dynamical laws; use [Dynamics](../../dynamics/master-equation.md),
 - canonical spacetime mechanism chapters; use [Spacetime](../../spacetime/observer-framework.md),
 - broad historical orientation; use [Philosophy and History](../theory-mapping.md).

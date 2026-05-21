@@ -1880,13 +1880,15 @@ The entropy statement also has a domain-of-validity gate. A finite subsystem adm
 
 ---
 
-## Theory Mapping
+## Inherited Theory Interface
+
+### Theory Mapping
 
 This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), and [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges/README.md).
 
 The document is organized as a matrix rather than a linear history. The first sections explain the comparison method; the later layers then group theories by assembly, spacetime, cosmology, and epistemic-observation roles.
 
-### Overview
+#### Overview
 
 **Purpose:** This chapter provides a compact but disciplined map of major physical theories and programs. Each entry moves from accessible orientation to technical compression: (1) high-level summary, (2) conceptual view, (3) representative mathematical form, and (4) the $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective.
 
@@ -1904,7 +1906,7 @@ The document is organized as a matrix rather than a linear history. The first se
 
 The chapter therefore serves two reading functions at once. It introduces the inherited theory stack in compressed form, and it makes explicit where $\mathbb{A}\mathbb{A}\mathbb{A}$ claims continuity, where it claims reinterpretation, and where it claims incompatibility.
 
-#### Theory-Mapping Entry Template (Unified)
+##### Theory-Mapping Entry Template (Unified)
 
 Use this template for each theory entry.
 
@@ -1939,11 +1941,11 @@ Template conformance test protocol for each theory entry:
 
 ---
 
-### Core Assembly Layer (Noether Core / Tri-Binary)
+#### Core Assembly Layer (Noether Core / Tri-Binary)
 
 These are particle-physics level theories that map most directly to assemblies, decorations, and interaction rules. In the architrino view, they are effective summaries of assembly microdynamics rather than fundamental entities.
 
-#### Standard Model (SM)
+##### Standard Model (SM)
 
 **Theory Name:** Standard Model (SM). **Short Name:** SM. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
 
@@ -1969,7 +1971,7 @@ match $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$.
 - Prove three stable assembly families arise from distinct phase-winding classes.
 
 ---
-#### Quantum Field Theory (QFT)
+##### Quantum Field Theory (QFT)
 
 **Theory Name:** Quantum Field Theory (QFT). **Short Name:** QFT. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
 
@@ -1994,7 +1996,7 @@ $$
 
 ---
 
-#### Relativistic Scalar Fields / Klein-Gordon Equation
+##### Relativistic Scalar Fields / Klein-Gordon Equation
 
 **Theory Name:** Relativistic Scalar Fields / Klein-Gordon Equation. **Short Name:** Klein-Gordon. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
 
@@ -2024,7 +2026,7 @@ $$
 
 ---
 
-#### Quantum Chromodynamics (QCD)
+##### Quantum Chromodynamics (QCD)
 
 **Theory Name:** Quantum Chromodynamics (QCD). **Short Name:** QCD. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
 
@@ -2052,7 +2054,7 @@ $$
 - Show color-neutral composites minimize curvature/torque while isolated color charges are unstable.
 
 ---
-#### Quantum Electrodynamics (QED)
+##### Quantum Electrodynamics (QED)
 
 **Theory Name:** Quantum Electrodynamics (QED). **Short Name:** QED. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
 
@@ -2080,7 +2082,7 @@ Historically, the Liénard-Wiechert moving-source potentials already pointed in 
 - Derive the effective field potential as a coarse-grained summary of causal wakes from tri-binary motion.
 
 ---
-#### Electroweak Theory (EW)
+##### Electroweak Theory (EW)
 
 **Theory Name:** Electroweak Theory (EW). **Short Name:** EW. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
 
@@ -2106,7 +2108,7 @@ $$
 - Map assembly orientation breaking to SU(2) x U(1) -> U(1) residual symmetry.
 
 ---
-#### Neutrino Oscillations (PMNS Framework)
+##### Neutrino Oscillations (PMNS Framework)
 
 **Theory Name:** Neutrino Oscillations (PMNS Framework). **Short Name:** PMNS. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
 
@@ -2128,7 +2130,7 @@ $$
 
 ---
 
-#### Axion Theory (Peccei-Quinn)
+##### Axion Theory (Peccei-Quinn)
 
 **Theory Name:** Axion Theory (Peccei-Quinn). **Short Name:** Peccei-Quinn. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
 
@@ -2150,7 +2152,7 @@ $$
 
 ---
 
-#### Supersymmetry (SUSY)
+##### Supersymmetry (SUSY)
 
 **Theory Name:** Supersymmetry (SUSY). **Short Name:** SUSY. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
 
@@ -2172,7 +2174,7 @@ $$
 
 ---
 
-#### Technicolor / Composite Higgs
+##### Technicolor / Composite Higgs
 
 **Theory Name:** Technicolor / Composite Higgs. **Short Name:** Technicolor Composite Higgs. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
 
@@ -2191,11 +2193,11 @@ $$
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of tri-binary assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
-### Spacetime / Gravity (Emergent Metric)
+#### Spacetime / Gravity (Emergent Metric)
 
 These are theories of spacetime structure and gravitational dynamics. In the architrino view, they are emergent descriptions of how the Noether Sea modulates signal speeds, clock rates, and effective geometry.
 
-#### General Relativity (GR)
+##### General Relativity (GR)
 
 **Theory Name:** General Relativity (GR). **Short Name:** GR. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
@@ -2222,7 +2224,7 @@ $$
 - Show geodesic motion emerges from straight-line motion in the medium with variable signal speed.
 
 ---
-#### Special Relativity (SR)
+##### Special Relativity (SR)
 
 **Theory Name:** Special Relativity (SR). **Short Name:** SR. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
@@ -2253,7 +2255,7 @@ For the assembly-level closure used in this program, see [Effective Energy-Momen
 - Prove time dilation and length contraction from dual deformation, phase-rate comparisons across assemblies, and bounded preferred-frame leakage.
 
 ---
-#### Newtonian Mechanics and Gravity
+##### Newtonian Mechanics and Gravity
 
 **Theory Name:** Newtonian Mechanics and Gravity. **Short Name:** Newtonian Mechanics Gravity. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
@@ -2278,7 +2280,7 @@ $$
 - Show Newtonian limit as the small-curvature expansion of the emergent metric.
 
 ---
-#### Modified Gravity (MOND / TeVeS)
+##### Modified Gravity (MOND / TeVeS)
 
 **Theory Name:** Modified Gravity (MOND / TeVeS). **Short Name:** MOND / TeVeS. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
@@ -2300,7 +2302,7 @@ $$
 
 ---
 
-#### String Theory
+##### String Theory
 
 **Theory Name:** String Theory. **Short Name:** String Theory. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
@@ -2323,7 +2325,7 @@ $$
 
 ---
 
-#### Loop Quantum Gravity (LQG)
+##### Loop Quantum Gravity (LQG)
 
 **Theory Name:** Loop Quantum Gravity (LQG). **Short Name:** LQG. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
@@ -2346,7 +2348,7 @@ $$
 
 ---
 
-#### Cosmic Censorship / Holographic Principle / AdS-CFT
+##### Cosmic Censorship / Holographic Principle / AdS-CFT
 
 **Theory Name:** Cosmic Censorship / Holographic Principle / AdS-CFT. **Short Name:** Cosmic Censorship Holographic. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
 
@@ -2390,11 +2392,11 @@ That yields a disciplined shorthand: Horizon interface for the Planck-aligned in
 - Treat black-hole entropy and Page-curve recovery as downstream consistency targets after the native horizon-interface mechanism is specified, not as source derivations for the ontology.
 
 ---
-### Cosmology / Large-Scale Assembly
+#### Cosmology / Large-Scale Assembly
 
 These theories describe the universe at large scales: expansion history, structure formation, and cosmic origins. In the architrino view, they map to how spacetime assemblies evolve, cool, and transport energy across epochs.
 
-#### Lambda-CDM (Big Bang Cosmology)
+##### Lambda-CDM (Big Bang Cosmology)
 
 **Theory Name:** Lambda-CDM (Big Bang Cosmology). **Short Name:** Big Bang Cosmology. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2418,7 +2420,7 @@ $$
 
 ---
 
-#### Inflationary Cosmology
+##### Inflationary Cosmology
 
 **Theory Name:** Inflationary Cosmology. **Short Name:** Inflationary Cosmology. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2441,7 +2443,7 @@ $$
 
 ---
 
-#### CMB Acoustic Peaks
+##### CMB Acoustic Peaks
 
 **Theory Name:** CMB Acoustic Peaks. **Short Name:** CMB Acoustic Peaks. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2463,7 +2465,7 @@ $$
 
 ---
 
-#### Big Bang Nucleosynthesis (BBN)
+##### Big Bang Nucleosynthesis (BBN)
 
 **Theory Name:** Big Bang Nucleosynthesis (BBN). **Short Name:** BBN. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2486,7 +2488,7 @@ $$
 
 ---
 
-#### Baryogenesis / Leptogenesis
+##### Baryogenesis / Leptogenesis
 
 **Theory Name:** Baryogenesis / Leptogenesis. **Short Name:** Baryogenesis Leptogenesis. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2508,7 +2510,7 @@ $$
 
 ---
 
-#### Dark Matter (Particle Hypotheses)
+##### Dark Matter (Particle Hypotheses)
 
 **Theory Name:** Dark Matter (Particle Hypotheses). **Short Name:** Particle Hypotheses. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2531,7 +2533,7 @@ $$
 
 ---
 
-#### Primordial Black Holes (PBH as DM)
+##### Primordial Black Holes (PBH as DM)
 
 **Theory Name:** Primordial Black Holes (PBH as DM). **Short Name:** PBH as DM. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2553,7 +2555,7 @@ $$
 
 ---
 
-#### Dark Energy (Beyond $\Lambda$)
+##### Dark Energy (Beyond $\Lambda$)
 
 **Theory Name:** Dark Energy (Beyond $\Lambda$). **Short Name:** Beyond $\Lambda$. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2575,7 +2577,7 @@ For a cosmological constant, $w=-1$.
 
 ---
 
-#### Holographic Dark Energy
+##### Holographic Dark Energy
 
 **Theory Name:** Holographic Dark Energy. **Short Name:** Holographic Dark Energy. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2597,7 +2599,7 @@ $$
 
 ---
 
-#### Quasi-Steady-State (Hoyle--Narlikar--Burbidge)
+##### Quasi-Steady-State (Hoyle--Narlikar--Burbidge)
 
 **Theory Name:** Steady-State / Quasi-Steady-State (Hoyle--Narlikar--Burbidge). **Short Name:** Hoyle--Narlikar--Burbidge. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2621,7 +2623,7 @@ $$
 
 ---
 
-#### Ekpyrotic / Cyclic Cosmology (Steinhardt--Turok)
+##### Ekpyrotic / Cyclic Cosmology (Steinhardt--Turok)
 
 **Theory Name:** Ekpyrotic / Cyclic Cosmology (Steinhardt--Turok). **Short Name:** Steinhardt--Turok. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2643,7 +2645,7 @@ $$
 
 ---
 
-#### Bounce Cosmologies (Generic)
+##### Bounce Cosmologies (Generic)
 
 **Theory Name:** Bounce Cosmologies (Generic). **Short Name:** Bounce Cosmologies. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2665,7 +2667,7 @@ $$
 
 ---
 
-#### Conformal Cyclic Cosmology (Penrose)
+##### Conformal Cyclic Cosmology (Penrose)
 
 **Theory Name:** Conformal Cyclic Cosmology (Penrose). **Short Name:** Penrose. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2687,7 +2689,7 @@ $$
 
 ---
 
-#### Multiverse (Generic)
+##### Multiverse (Generic)
 
 **Theory Name:** Multiverse (Generic). **Short Name:** Multiverse. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2710,7 +2712,7 @@ not a single canonical equation.
 
 ---
 
-#### Anthropic Principle
+##### Anthropic Principle
 
 **Theory Name:** Anthropic Principle. **Short Name:** Anthropic Principle. **Layer Bucket:** Cosmology / Large-Scale Assembly.
 
@@ -2740,11 +2742,11 @@ fine-tuning reflects conditional selection rather than design.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
 **Transition Relevance:** Transition relevance is high because cosmological inference will continue to be performed first in the legacy parameter language before any deeper substrate reconstruction is accepted.
 **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
-### Epistemic / Effective Observation Theories
+#### Epistemic / Effective Observation Theories
 
 These are theories and interpretations that describe how observers access and summarize dynamics: coarse-graining, probabilities, and measurement update. In the architrino view, they sit at the physical-observer level.
 
-#### Quantum Mechanics (QM)
+##### Quantum Mechanics (QM)
 
 **Theory Name:** Quantum Mechanics (QM). **Short Name:** QM. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
@@ -2767,7 +2769,7 @@ $$
 
 ---
 
-#### Schrödinger Equation
+##### Schrödinger Equation
 
 **Theory Name:** Schrödinger Equation. **Short Name:** Schrödinger. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
@@ -2862,7 +2864,7 @@ $$
 
 ---
 
-#### Quantum Spin / Pauli-Dirac Map
+##### Quantum Spin / Pauli-Dirac Map
 
 **Theory Name:** Quantum Spin / Pauli-Dirac Map. **Short Name:** Quantum Spin Map. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
@@ -2906,7 +2908,7 @@ This term shows how non-relativistic spin-$1/2$ behavior enters ordinary Schröd
 
 ---
 
-#### Statistical Mechanics / Thermodynamics
+##### Statistical Mechanics / Thermodynamics
 
 **Theory Name:** Statistical Mechanics / Thermodynamics. **Short Name:** Statistical Mechanics Thermodynamics. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
@@ -2928,7 +2930,7 @@ $$
 
 ---
 
-#### Copenhagen Interpretation
+##### Copenhagen Interpretation
 
 **Theory Name:** Copenhagen Interpretation. **Short Name:** Copenhagen Interpretation. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
@@ -2951,7 +2953,7 @@ $$
 
 ---
 
-#### Transactional Interpretation
+##### Transactional Interpretation
 
 **Theory Name:** Transactional Interpretation. **Short Name:** Transactional Interpretation. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
@@ -2972,7 +2974,7 @@ $$
 
 ---
 
-#### Many-Worlds (Everett)
+##### Many-Worlds (Everett)
 
 **Theory Name:** Many-Worlds (Everett). **Short Name:** Everett. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
@@ -2994,7 +2996,7 @@ with no collapse postulate.
 
 ---
 
-#### Pilot-Wave (de Broglie--Bohm)
+##### Pilot-Wave (de Broglie--Bohm)
 
 **Theory Name:** Pilot-Wave (de Broglie--Bohm). **Short Name:** Pilot-Wave. **Layer Bucket:** Epistemic / Effective Observation Theories.
 
@@ -3014,11 +3016,11 @@ $$
 **Transition Relevance:** Transition relevance is high because these formalisms still govern how quantum, thermal, and information-theoretic results are computed and compared.
 **Long-Term Relevance:** Long-term relevance is as a stable effective or inferential language, not as final ontology, provided the same successful predictions are retained.
 
-## Theory Differentials
+### Theory Differentials
 
 ---
 
-### Overview
+#### Overview
 
 This document defines the modern ontological network above $\mathbb{A}\mathbb{A}\mathbb{A}$, assuming $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct at substrate level.
 
@@ -3030,7 +3032,7 @@ One governing distinction in this chapter is the difference between predictive c
 
 This distinction also names a regime-capture problem. Modern physics has often converted success inside a measured domain into a boundary on what may count as fundamental explanation. In this chapter, such success is treated as evidence for an effective closure, not as automatic evidence for final ontology. A framework that works only inside a narrow range of speed, energy, curvature, particle-number stability, or observational access may still be indispensable, but under $\mathbb{A}\mathbb{A}\mathbb{A}$ it must be classified by the regime it actually governs and by the substrate mapping it still owes.
 
-#### Theory-Differential Template (Unified)
+##### Theory-Differential Template (Unified)
 
 Use this template for every concept entry (theory, framework, program, interpretation, law, principle, quantity, observable, parameter, or construct). Repetition is intentional: this chapter is a controlled comparison instrument, not a sequence of free-form essays.
 
@@ -3069,7 +3071,7 @@ Template conformance test protocol for each concept entry:
 
 Boilerplate quality rule: repeated template language is acceptable only as scaffolding. Each mature entry should name the specific regularity, observable, equation family, or inference pattern that survives, and its `Mapping Target` should identify the concrete derivation, recovery, or rejection needed under $\mathbb{A}\mathbb{A}\mathbb{A}$. Generic claims such as "captures a stable regularity" should be treated as placeholders until the entry states what regularity is actually meant.
 
-#### Dual-Stack Mapping Frame
+##### Dual-Stack Mapping Frame
 
 This chapter intentionally uses two different layer systems and they must not be conflated.
 
@@ -3102,7 +3104,7 @@ Scope rule:
 - include historically rejected theories with diagnostic value,
 - include fringe cases only as contrastive boundary checks.
 
-#### Theory-Like Concepts and Cross-Cutting Constructs
+##### Theory-Like Concepts and Cross-Cutting Constructs
 
 This document should not be limited to named theories, schools, or research programs. Some of the most important ontological confusions in physics are carried by **theory-like concepts** that appear across many theories and are often treated as if their meaning were obvious.
 
@@ -3136,7 +3138,7 @@ For this reason, a concept differential may address a named theory, a law, an ob
 - whether it survives only after reinterpretation,
 - and whether current usage mixes observation, effective law, and ontology in unstable ways.
 
-#### Unification Filter: Symmetry Container Is Not Enough
+##### Unification Filter: Symmetry Container Is Not Enough
 
 One comparative rule should be stated explicitly for unification programs. A large symmetry container, elegant embedding, or visually compelling algebraic organization is **not** by itself a serious closure result.
 
@@ -3154,7 +3156,7 @@ The same rule applies when assessing whether $\mathbb{A}\mathbb{A}\mathbb{A}$ ha
 
 Naturalness and unification are inference pressures, not independent laws. They gain weight when they compress tested constraints or predict new recovered structure; they lose weight when expected stabilizing sectors fail to appear in tested regimes. $\mathbb{A}\mathbb{A}\mathbb{A}$ should preserve the pressure without turning elegance, simplicity, or high-energy symmetry into ontology.
 
-#### Ontological Area
+##### Ontological Area
 
 Use one primary area:
 
@@ -3168,7 +3170,7 @@ Use one primary area:
 - **Unification / Beyond-Standard-Model**
 - **Methodology / Inference Framework**
 
-#### Sub-Ontological Area
+##### Sub-Ontological Area
 
 Use one primary sub-area, chosen as narrowly as possible. Examples:
 
@@ -3186,7 +3188,7 @@ Use one primary sub-area, chosen as narrowly as possible. Examples:
 - thermodynamic closure
 - symmetry extension
 
-#### Concept Status
+##### Concept Status
 
 Use one primary status label:
 
@@ -3197,7 +3199,7 @@ Use one primary status label:
 - **Underdetermined / Live Minority View**
 - **Fringe**
 
-#### $\mathbb{A}\mathbb{A}\mathbb{A}$ Relation Type
+##### $\mathbb{A}\mathbb{A}\mathbb{A}$ Relation Type
 
 Use one or more of:
 
@@ -3219,7 +3221,7 @@ The most easily confused relation labels should be interpreted as follows:
 - **Observationally Over-Inferred**: the underlying observations may be sound, but the concept adds interpretive claims that do not strictly follow from the data. The measurements may survive in a $\mathbb{A}\mathbb{A}\mathbb{A}$ reframing even if the standard ontology, mechanism, or narrative built from them does not.
 - **Deeply Incompatible**: the concept contains core ontological or dynamical commitments that cannot be retained within $\mathbb{A}\mathbb{A}\mathbb{A}$ even after reinterpretation, relocation in the stack, or effective reformulation. The conflict is substantive, not merely terminological.
 
-#### Section Title Format
+##### Section Title Format
 
 Use:
 
@@ -3233,7 +3235,7 @@ That is:
 - hyphen
 - **short name / acronym**
 
-#### Required Header Block
+##### Required Header Block
 
 At the top of each concept section, fill in:
 
@@ -3248,11 +3250,11 @@ At the top of each concept section, fill in:
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Good Mathematics, Wrong Primitives; Partially Recovered
 ```
 
-#### Required Content Blocks
+##### Required Content Blocks
 
 After the header block, complete the following subsections in order.
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 State briefly:
 
@@ -3262,7 +3264,7 @@ State briefly:
 
 This should be short and neutral.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 State explicitly:
 
@@ -3274,7 +3276,7 @@ State explicitly:
 
 This subsection should identify the concept's real metaphysical payload, not just its equations or usage.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 List the durable achievements:
 
@@ -3285,7 +3287,7 @@ List the durable achievements:
 
 This is where we separate wrong ontology from bad modeling. Many concepts are ontologically misframed while remaining operationally indispensable.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 Give the detailed assessment from the architrino perspective:
 
@@ -3297,7 +3299,7 @@ Give the detailed assessment from the architrino perspective:
 
 This is the core analytic section.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 Describe the concept's importance during a scientific transition from current physics to $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
@@ -3308,7 +3310,7 @@ Describe the concept's importance during a scientific transition from current ph
 
 This section should be practical rather than polemical.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 State what survives once the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack is mature:
 
@@ -3320,7 +3322,7 @@ State what survives once the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack is mature:
 
 This should answer: what will future physicists still mean when they invoke this concept?
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 Identify the clearest reason the concept cannot be ultimate:
 
@@ -3334,7 +3336,7 @@ Identify the clearest reason the concept cannot be ultimate:
 
 This forces each entry to state why it cannot simply remain the final story.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 End each section with a short explicit mapping target:
 
@@ -3397,9 +3399,9 @@ The inventory below is intentionally selective. It should track concepts with ma
 
 ---
 
-### Core Quantum and Particle Frameworks
+#### Core Quantum and Particle Frameworks
 
-#### Quantum Field Theory - QFT
+##### Quantum Field Theory - QFT
 
 **Concept Type:** Theory
 **Ontological Area:** Quantum Effective Theory
@@ -3410,41 +3412,41 @@ The inventory below is intentionally selective. It should track concepts with ma
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit; Good Mathematics, Wrong Primitives
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Quantum Field Theory is a theory in the continuum field ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Quantum Field Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats continuum field ontology as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Quantum Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Quantum Field Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Good Mathematics, Wrong Primitives**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The key relocation is that fields are effective summaries of causal wake and assembly behavior, while architrinos remain the primitive material inventory.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Quantum Field Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Quantum Field Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Quantum Field Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Standard Model - SM
+##### Standard Model - SM
 
 **Concept Type:** Theory
 **Ontological Area:** Assembly / Particle Structure
@@ -3455,41 +3457,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Stable Assembly Dynamics
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit; Mislocated Ontology
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Standard Model is a theory in the gauge structure domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Standard Model carries specific ontological commitments even when it is presented as "just mathematics." It typically treats gauge structure as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Standard Model gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Standard Model sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Stable Assembly Dynamics**. The relation type is **Recovered as Effective Limit; Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Standard Model specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Standard Model, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Standard Model is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Quantum Electrodynamics - QED
+##### Quantum Electrodynamics - QED
 
 **Concept Type:** Theory
 **Ontological Area:** Quantum Effective Theory
@@ -3500,41 +3502,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Quantum Electrodynamics is a theory in the electromagnetic gauge theory domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Quantum Electrodynamics carries specific ontological commitments even when it is presented as "just mathematics." It typically treats electromagnetic gauge theory as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Quantum Electrodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Quantum Electrodynamics sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Quantum Electrodynamics specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Quantum Electrodynamics, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Quantum Electrodynamics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Quantum Chromodynamics - QCD
+##### Quantum Chromodynamics - QCD
 
 **Concept Type:** Theory
 **Ontological Area:** Quantum Effective Theory
@@ -3545,41 +3547,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit; Good Mathematics, Wrong Primitives
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Quantum Chromodynamics is a theory in the strong interaction closure domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Quantum Chromodynamics carries specific ontological commitments even when it is presented as "just mathematics." It typically treats strong interaction closure as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Quantum Chromodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Quantum Chromodynamics sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Good Mathematics, Wrong Primitives**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Quantum Chromodynamics specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Quantum Chromodynamics, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Quantum Chromodynamics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Electroweak Theory - EW
+##### Electroweak Theory - EW
 
 **Concept Type:** Theory
 **Ontological Area:** Quantum Effective Theory
@@ -3590,41 +3592,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit; Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Electroweak Theory is a theory in the symmetry breaking domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Electroweak Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats symmetry breaking as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Electroweak Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Electroweak Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Electroweak Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Electroweak Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Electroweak Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Neutrino Oscillation Theory - PMNS
+##### Neutrino Oscillation Theory - PMNS
 
 **Concept Type:** Theory
 **Ontological Area:** Quantum Effective Theory
@@ -3635,41 +3637,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Neutrino Oscillation Theory is a theory in the flavor mixing domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Neutrino Oscillation Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats flavor mixing as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Neutrino Oscillation Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Neutrino Oscillation Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Neutrino Oscillation Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Neutrino Oscillation Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Neutrino Oscillation Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Effective Field Theory - EFT
+##### Effective Field Theory - EFT
 
 **Concept Type:** Framework
 **Ontological Area:** Methodology / Inference Framework
@@ -3680,41 +3682,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Effective Field Theory is a framework in the scale separation domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Effective Field Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats scale separation as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Effective Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Effective Field Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Effective Field Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Effective Field Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Effective Field Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Renormalization Group - RG
+##### Renormalization Group - RG
 
 **Concept Type:** Framework
 **Ontological Area:** Methodology / Inference Framework
@@ -3725,41 +3727,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Renormalization Group is a framework in the scale flow domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Renormalization Group carries specific ontological commitments even when it is presented as "just mathematics." It typically treats scale flow as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Renormalization Group gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Renormalization Group sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Renormalization Group specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Renormalization Group, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Renormalization Group is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Grand Unified Theories - GUT
+##### Grand Unified Theories - GUT
 
 **Concept Type:** Theory
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -3770,43 +3772,43 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Empirically Useful Placeholder
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Grand Unified Theories is a theory in the high-energy unification domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Grand Unified Theories carries specific ontological commitments even when it is presented as "just mathematics." It typically treats high-energy unification as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Grand Unified Theories gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Grand Unified Theories sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered; Empirically Useful Placeholder**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Grand Unified Theories specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Grand Unified Theories, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Grand Unified Theories is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 A second tension is methodological: high-energy symmetry can be treated as the default ontology before proton stability, chirality, flavor, and precision non-observation constraints have been closed. Under the unification filter, a GUT-style symmetry passes only when it reduces arbitrariness in the recovered record rather than relocating it.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Supersymmetry - SUSY
+##### Supersymmetry - SUSY
 
 **Concept Type:** Theory
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -3817,43 +3819,43 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation; Empirically Useful Placeholder
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Supersymmetry is a theory in the symmetry extension domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Supersymmetry carries specific ontological commitments even when it is presented as "just mathematics." It typically treats symmetry extension as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Supersymmetry gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Supersymmetry sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recoverable Only After Reinterpretation; Empirically Useful Placeholder**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Supersymmetry specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Supersymmetry, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Supersymmetry is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
 Its naturalness role should therefore be treated as a conditional repair, not as a guaranteed low-energy sector. Null searches in the expected stabilizer regime convert SUSY from a closure target into a constrained comparison framework unless a $\mathbb{A}\mathbb{A}\mathbb{A}$-native derivation independently requires the same spectrum.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Supergravity - SUGRA
+##### Supergravity - SUGRA
 
 **Concept Type:** Theory
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -3864,41 +3866,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation; Good Mathematics, Wrong Primitives
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Supergravity is a theory in the gravity-symmetry unification domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Supergravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats gravity-symmetry unification as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Supergravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Supergravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recoverable Only After Reinterpretation; Good Mathematics, Wrong Primitives**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Supergravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Supergravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Supergravity is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Technicolor / Composite Higgs - Composite Higgs
+##### Technicolor / Composite Higgs - Composite Higgs
 
 **Concept Type:** Theory
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -3909,41 +3911,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Technicolor / Composite Higgs is a theory in the electroweak compositeness domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Technicolor / Composite Higgs carries specific ontological commitments even when it is presented as "just mathematics." It typically treats electroweak compositeness as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Technicolor / Composite Higgs gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Technicolor / Composite Higgs sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Technicolor / Composite Higgs specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Technicolor / Composite Higgs, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Technicolor / Composite Higgs is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Axion Theory / Peccei-Quinn Mechanism - Axion / PQ
+##### Axion Theory / Peccei-Quinn Mechanism - Axion / PQ
 
 **Concept Type:** Theory
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -3954,43 +3956,43 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Axion Theory / Peccei-Quinn Mechanism is a theory in the strong CP repair domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Axion Theory / Peccei-Quinn Mechanism carries specific ontological commitments even when it is presented as "just mathematics." It typically treats strong CP repair as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Axion Theory / Peccei-Quinn Mechanism gets something durable right: it isolates the neutron-electric-dipole constraint as a precision observable that any serious replacement must preserve. Its durable value lies in the strong-CP comparison target, the axion-search null-result surface, astrophysical cooling bounds, and the mathematical idea of dynamical relaxation toward a CP-even effective state. None of that requires treating the axion field as final substrate ontology before the branch is derived.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Axion Theory / Peccei-Quinn Mechanism sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Empirically Useful Placeholder; Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
 The retained $\mathbb{A}\mathbb{A}\mathbb{A}$ content is the neutron-EDM residual and the possibility that a Peccei-Quinn-like relaxation law emerges effectively from assembly stability. If an axion-like particle is predicted by a future branch, its mass, coupling, abundance, and cooling signatures must route through the null-result and dark-sector gates rather than entering as a default repair.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Axion Theory / Peccei-Quinn Mechanism specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Axion Theory / Peccei-Quinn Mechanism, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Axion Theory / Peccei-Quinn Mechanism is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive neutron-EDM suppression from assembly and medium behavior, then decide whether any Peccei-Quinn-like effective relaxation appears as a consequence of that derivation. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Sterile Neutrino Dark Matter - Sterile Neutrino
+##### Sterile Neutrino Dark Matter - Sterile Neutrino
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology
@@ -4001,41 +4003,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive neutron-ED
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Sterile Neutrino Dark Matter is a theory in the dark sector domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Sterile Neutrino Dark Matter carries specific ontological commitments even when it is presented as "just mathematics." It typically treats dark sector as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Sterile Neutrino Dark Matter gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Sterile Neutrino Dark Matter sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Empirically Useful Placeholder**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Sterile Neutrino Dark Matter specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Sterile Neutrino Dark Matter, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Sterile Neutrino Dark Matter is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### WIMP Dark Matter - WIMP
+##### WIMP Dark Matter - WIMP
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology
@@ -4046,41 +4048,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 WIMP Dark Matter is a theory in the dark sector domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 WIMP Dark Matter carries specific ontological commitments even when it is presented as "just mathematics." It typically treats dark sector as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 WIMP Dark Matter gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, WIMP Dark Matter sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Empirically Useful Placeholder**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For WIMP Dark Matter specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For WIMP Dark Matter, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for WIMP Dark Matter is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Hidden Sector / Dark Sector Models
+##### Hidden Sector / Dark Sector Models
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology
@@ -4091,43 +4093,43 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Hidden Sector / Dark Sector Models is a theory in the dark sector domain. It was built to provide a mathematically controlled description of the phenomena grouped within core quantum and particle frameworks, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Hidden Sector / Dark Sector Models carries specific ontological commitments even when it is presented as "just mathematics." It typically treats dark sector as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Hidden Sector / Dark Sector Models gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Hidden Sector / Dark Sector Models sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Empirically Useful Placeholder; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains core computational language during migration because most precision particle calculations will still be expressed through this formalism even after the ontology is relocated. For Hidden Sector / Dark Sector Models specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack this survives as an effective closure law or modeling language rather than as final substrate ontology. For Hidden Sector / Dark Sector Models, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Hidden Sector / Dark Sector Models is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-### Quantum Foundations and Interpretations
+#### Quantum Foundations and Interpretations
 
-#### Quantum Mechanics - QM
+##### Quantum Mechanics - QM
 
 **Concept Type:** Theory
 **Ontological Area:** Quantum Effective Theory
@@ -4138,41 +4140,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Quantum Mechanics is a theory in the state evolution and probability domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Quantum Mechanics carries specific ontological commitments even when it is presented as "just mathematics." It typically treats state evolution and probability as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Quantum Mechanics gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Quantum Mechanics sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because it governs how current quantum practice is interpreted and where new substrate claims must confront measurement and probability language directly. For Quantum Mechanics specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the parts that clarify inference, decoherence, or effective statistics survive; the rest becomes historical interpretation or methodological caution. For Quantum Mechanics, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Quantum Mechanics is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Copenhagen Interpretation - Copenhagen
+##### Copenhagen Interpretation - Copenhagen
 
 **Concept Type:** Interpretation
 **Ontological Area:** Measurement / Information / Interpretation
@@ -4183,41 +4185,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology; Useful Measurement Rule
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Copenhagen Interpretation is a interpretation in the measurement interpretation domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Copenhagen Interpretation carries specific ontological commitments even when it is presented as "just mathematics." It typically treats measurement interpretation as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Copenhagen Interpretation gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Copenhagen Interpretation sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Mislocated Ontology; Useful Measurement Rule**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because it governs how current quantum practice is interpreted and where new substrate claims must confront measurement and probability language directly. For Copenhagen Interpretation specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the parts that clarify inference, decoherence, or effective statistics survive; the rest becomes historical interpretation or methodological caution. For Copenhagen Interpretation, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Copenhagen Interpretation is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Many-Worlds Interpretation - MWI
+##### Many-Worlds Interpretation - MWI
 
 **Concept Type:** Interpretation
 **Ontological Area:** Measurement / Information / Interpretation
@@ -4228,41 +4230,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Many-Worlds Interpretation is an interpretation in the branching ontology domain. It removes the collapse postulate and treats quantum dynamics as universally unitary; in its stronger modern forms, worlds are not added as a second law but read as emergent quasi-classical structure within the unitary state. In the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Many-Worlds Interpretation carries specific ontological commitments even when it is presented as "just mathematics." It typically treats branch autonomy as explanatorily central and may promote decohering branch structure into literal ontology unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as branch-weight interpretation, an ensemble summary, or an observer-facing update rule depending on the program.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Many-Worlds Interpretation gets two durable points right: measurement should not require an observer-exception clause, and decoherence mathematics identifies when alternatives become effectively autonomous in a record-facing description. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Many-Worlds Interpretation sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Deeply Incompatible**: the no-collapse motivation and branch-isolation mathematics survive as comparison pressure, while literal many-world ontology is not allowed to keep the ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because it governs how current quantum practice is interpreted and where new substrate claims must confront measurement and probability language directly. For Many-Worlds Interpretation specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the parts that clarify inference, decoherence, or effective statistics survive; the rest becomes historical interpretation or methodological caution. For Many-Worlds Interpretation, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Many-Worlds Interpretation is that its core claim depends on assumptions that cannot be absorbed into a substrate-first causal account without losing what made the proposal distinctive. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### de Broglie-Bohm Theory - dBB
+##### de Broglie-Bohm Theory - dBB
 
 **Concept Type:** Theory
 **Ontological Area:** Measurement / Information / Interpretation
@@ -4273,41 +4275,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 de Broglie-Bohm Theory is a theory in the hidden-variable dynamics domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 de Broglie-Bohm Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats hidden-variable dynamics as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 de Broglie-Bohm Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, de Broglie-Bohm Theory sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because it governs how current quantum practice is interpreted and where new substrate claims must confront measurement and probability language directly. For de Broglie-Bohm Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the parts that clarify inference, decoherence, or effective statistics survive; the rest becomes historical interpretation or methodological caution. For de Broglie-Bohm Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for de Broglie-Bohm Theory is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Objective Collapse Theory - GRW / CSL
+##### Objective Collapse Theory - GRW / CSL
 
 **Concept Type:** Theory
 **Ontological Area:** Measurement / Information / Interpretation
@@ -4318,41 +4320,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Objective Collapse Theory is a theory in the collapse dynamics domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Objective Collapse Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats collapse dynamics as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Objective Collapse Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Objective Collapse Theory sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because it governs how current quantum practice is interpreted and where new substrate claims must confront measurement and probability language directly. For Objective Collapse Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the parts that clarify inference, decoherence, or effective statistics survive; the rest becomes historical interpretation or methodological caution. For Objective Collapse Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Objective Collapse Theory is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Relational Quantum Mechanics - RQM
+##### Relational Quantum Mechanics - RQM
 
 **Concept Type:** Interpretation
 **Ontological Area:** Measurement / Information / Interpretation
@@ -4363,41 +4365,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Relational Quantum Mechanics is a interpretation in the observer-relative state assignment domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Relational Quantum Mechanics carries specific ontological commitments even when it is presented as "just mathematics." It typically treats observer-relative state assignment as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Relational Quantum Mechanics gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Relational Quantum Mechanics sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because it governs how current quantum practice is interpreted and where new substrate claims must confront measurement and probability language directly. For Relational Quantum Mechanics specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the parts that clarify inference, decoherence, or effective statistics survive; the rest becomes historical interpretation or methodological caution. For Relational Quantum Mechanics, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Relational Quantum Mechanics is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### QBism - QBism
+##### QBism - QBism
 
 **Concept Type:** Interpretation
 **Ontological Area:** Measurement / Information / Interpretation
@@ -4408,41 +4410,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 QBism is a interpretation in the agent-centered probability domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 QBism carries specific ontological commitments even when it is presented as "just mathematics." It typically treats agent-centered probability as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 QBism gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, QBism sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Deeply Incompatible**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because it governs how current quantum practice is interpreted and where new substrate claims must confront measurement and probability language directly. For QBism specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the parts that clarify inference, decoherence, or effective statistics survive; the rest becomes historical interpretation or methodological caution. For QBism, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for QBism is that its core claim depends on assumptions that cannot be absorbed into a substrate-first causal account without losing what made the proposal distinctive. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Decoherence Program - Decoherence
+##### Decoherence Program - Decoherence
 
 **Concept Type:** Program
 **Ontological Area:** Measurement / Information / Interpretation
@@ -4453,43 +4455,43 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Decoherence Program is a theory in the environment-induced classicality domain. It was built to provide a mathematically controlled description of the phenomena grouped within quantum foundations and interpretations, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Decoherence Program carries specific ontological commitments even when it is presented as "just mathematics." It typically treats environment-induced classicality as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Decoherence Program gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Decoherence Program sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because it governs how current quantum practice is interpreted and where new substrate claims must confront measurement and probability language directly. For Decoherence Program specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the parts that clarify inference, decoherence, or effective statistics survive; the rest becomes historical interpretation or methodological caution. For Decoherence Program, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Decoherence Program is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-### Spacetime, Gravity, and Quantum Gravity
+#### Spacetime, Gravity, and Quantum Gravity
 
-#### Newtonian Mechanics and Gravity
+##### Newtonian Mechanics and Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4500,41 +4502,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Newtonian Mechanics and Gravity is a theory in the weak-field mechanics domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Newtonian Mechanics and Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats weak-field mechanics as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Newtonian Mechanics and Gravity gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Newtonian Mechanics and Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Newtonian Mechanics and Gravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Newtonian Mechanics and Gravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Newtonian Mechanics and Gravity is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Special Relativity - SR
+##### Special Relativity - SR
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4545,41 +4547,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit; Mislocated Ontology
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Special Relativity is a theory in the relativistic kinematics domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Special Relativity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats relativistic kinematics as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Special Relativity gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Special Relativity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Special Relativity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Special Relativity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Special Relativity is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### General Relativity - GR
+##### General Relativity - GR
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4590,41 +4592,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit; Mislocated Ontology
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 General Relativity is a theory in the effective metric domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 General Relativity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats effective metric as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 General Relativity gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, General Relativity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The relocation separates fixed Euclidean void, Noether-Sea medium response, and effective metric behavior instead of treating spacetime geometry as the primitive substance.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For General Relativity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For General Relativity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for General Relativity is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Scalar-Tensor Gravity
+##### Scalar-Tensor Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4635,41 +4637,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Scalar-Tensor Gravity is a theory in the gravity and geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Scalar-Tensor Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats gravity and geometry as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Scalar-Tensor Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Scalar-Tensor Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Scalar-Tensor Gravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Scalar-Tensor Gravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Scalar-Tensor Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Brans-Dicke Theory
+##### Brans-Dicke Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4680,41 +4682,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Brans-Dicke Theory is a theory in the foundational framework domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Brans-Dicke Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats foundational framework as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Brans-Dicke Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Brans-Dicke Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Brans-Dicke Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Brans-Dicke Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Brans-Dicke Theory is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### $f(R)$ Gravity
+##### $f(R)$ Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4725,41 +4727,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 $f(R)$ Gravity is a theory in the gravity and geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 $f(R)$ Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats gravity and geometry as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 $f(R)$ Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, $f(R)$ Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For $f(R)$ Gravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For $f(R)$ Gravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for $f(R)$ Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Einstein-Cartan Theory
+##### Einstein-Cartan Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4770,41 +4772,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Einstein-Cartan Theory is a theory in the foundational framework domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Einstein-Cartan Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats foundational framework as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Einstein-Cartan Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Einstein-Cartan Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Einstein-Cartan Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Einstein-Cartan Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Einstein-Cartan Theory is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Massive Gravity
+##### Massive Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4815,41 +4817,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Massive Gravity modifies the relativistic spin-2 description by giving the gravitational field a finite range or mass-like term. Its strongest use here is comparative: it records what goes wrong when one tries to weaken gravity on large scales while still recovering local GR, stable perturbations, and observed gravitational-wave behavior.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Massive Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats gravity and geometry as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Massive Gravity gets something durable right by turning large-scale gravity modification into a tightly constrained mathematical problem. The vDVZ discontinuity, nonlinear recovery mechanisms, Boulware-Deser ghost problem, Higuchi-type de Sitter bounds, and gravitational-wave mode constraints are not ontology for this project, but they are valuable benchmark failures. Any $\mathbb{A}\mathbb{A}\mathbb{A}$ weakening or screening channel must show how local GR recovery, bounded energy, stable mode counting, and two-mode near-luminal gravitational-wave propagation survive.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Massive Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: the finite-range mathematics and no-go lessons are retained as comparison gates, while the massive graviton is not promoted to substrate content.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Massive Gravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Massive Gravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Massive Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. A second tension is technical: large-scale weakening often threatens the same constraints that make gravity locally successful. If a comparison model needs a ghost-like mode, order-one solar-system deviation, unstable de Sitter branch, or unconstrained extra gravitational-wave polarization, it is a warning label rather than a candidate import.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive a scale-dependent Noether-Sea response that can mimic finite-range weakening in cosmology while recovering the GR limit in validated local and gravitational-wave regimes. The useful target is therefore a constitutive equation for $G_{\text{eff}}(a,k)$ and its local-recovery factor, not a fundamental graviton mass.
 
 ---
 
-#### Bimetric Gravity
+##### Bimetric Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4860,41 +4862,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive a scale-de
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Bimetric Gravity is a theory in the gravity and geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Bimetric Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats gravity and geometry as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Bimetric Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Bimetric Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Bimetric Gravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Bimetric Gravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Bimetric Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Modified Newtonian Dynamics - MOND
+##### Modified Newtonian Dynamics - MOND
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4905,41 +4907,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Modified Newtonian Dynamics is a theory in the low-acceleration gravity domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Modified Newtonian Dynamics carries specific ontological commitments even when it is presented as "just mathematics." It typically treats low-acceleration gravity as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Modified Newtonian Dynamics gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Modified Newtonian Dynamics sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Modified Newtonian Dynamics specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Modified Newtonian Dynamics, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Modified Newtonian Dynamics is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Tensor-Vector-Scalar Gravity - TeVeS
+##### Tensor-Vector-Scalar Gravity - TeVeS
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -4950,41 +4952,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Tensor-Vector-Scalar Gravity is a theory in the covariant modified gravity domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Tensor-Vector-Scalar Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats covariant modified gravity as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Tensor-Vector-Scalar Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Tensor-Vector-Scalar Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Tensor-Vector-Scalar Gravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Tensor-Vector-Scalar Gravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Tensor-Vector-Scalar Gravity is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Emergent Gravity
+##### Emergent Gravity
 
 **Concept Type:** Program
 **Ontological Area:** Spacetime / Gravity
@@ -4995,41 +4997,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Emergent Gravity is a theory in the induced gravity domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Emergent Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats induced gravity as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Emergent Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Emergent Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Emergent Gravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Emergent Gravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Emergent Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Unimodular Gravity
+##### Unimodular Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -5040,41 +5042,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Unimodular Gravity is a theory in the gravity and geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Unimodular Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats gravity and geometry as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Unimodular Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Unimodular Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Unimodular Gravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Unimodular Gravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Unimodular Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Loop Quantum Gravity - LQG
+##### Loop Quantum Gravity - LQG
 
 **Concept Type:** Program
 **Ontological Area:** Spacetime / Gravity
@@ -5085,41 +5087,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Good Mathematics, Wrong Primitives
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Loop Quantum Gravity is a theory in the quantized geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Loop Quantum Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats quantized geometry as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Loop Quantum Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Loop Quantum Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Good Mathematics, Wrong Primitives**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Loop Quantum Gravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Loop Quantum Gravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Loop Quantum Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### String Theory / M-Theory
+##### String Theory / M-Theory
 
 **Concept Type:** Program
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -5130,41 +5132,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Good Mathematics, Wrong Primitives
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 String Theory / M-Theory is a theory in the high-dimensional unification domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 String Theory / M-Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats high-dimensional unification as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 String Theory / M-Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, String Theory / M-Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Good Mathematics, Wrong Primitives**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For String Theory / M-Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For String Theory / M-Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for String Theory / M-Theory is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Causal Set Theory - CST
+##### Causal Set Theory - CST
 
 **Concept Type:** Program
 **Ontological Area:** Spacetime / Gravity
@@ -5175,41 +5177,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Causal Set Theory is a theory in the discrete causal order domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Causal Set Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats discrete causal order as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Causal Set Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Causal Set Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Causal Set Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Causal Set Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Causal Set Theory is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Causal Dynamical Triangulations - CDT
+##### Causal Dynamical Triangulations - CDT
 
 **Concept Type:** Program
 **Ontological Area:** Spacetime / Gravity
@@ -5220,41 +5222,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Causal Dynamical Triangulations is a theory in the discrete geometry domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Causal Dynamical Triangulations carries specific ontological commitments even when it is presented as "just mathematics." It typically treats discrete geometry as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Causal Dynamical Triangulations gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Causal Dynamical Triangulations sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Causal Dynamical Triangulations specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Causal Dynamical Triangulations, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Causal Dynamical Triangulations is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Asymptotic Safety - AS
+##### Asymptotic Safety - AS
 
 **Concept Type:** Program
 **Ontological Area:** Spacetime / Gravity
@@ -5265,41 +5267,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Asymptotic Safety is a theory in the ultraviolet closure domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Asymptotic Safety carries specific ontological commitments even when it is presented as "just mathematics." It typically treats ultraviolet closure as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Asymptotic Safety gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Asymptotic Safety sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Empirically Useful Placeholder**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Asymptotic Safety specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Asymptotic Safety, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Asymptotic Safety is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Holography / AdS-CFT - Holography / AdS-CFT
+##### Holography / AdS-CFT - Holography / AdS-CFT
 
 **Concept Type:** Framework
 **Ontological Area:** Spacetime / Gravity
@@ -5310,43 +5312,43 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Holography / AdS-CFT is a framework in the duality and boundary encoding domain. It was built to provide a mathematically controlled description of the phenomena grouped within spacetime, gravity, and quantum gravity, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Holography / AdS-CFT carries specific ontological commitments even when it is presented as "just mathematics." It typically treats duality and boundary encoding as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Holography / AdS-CFT gets something durable right: it provides controlled examples where gravitational, quantum, entropy, and boundary-data accounting can be computed with unusual precision. Its durable value is strongest as a mathematical laboratory for horizon entropy, Page-curve-compatible bookkeeping, and bulk/effective reconstruction tests. It is weakest when the controlled anti-de Sitter setting is treated as direct evidence for the ontology of the observed cosmological environment.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Holography / AdS-CFT sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains important during migration because gravitational and relativistic phenomena must still be calculated in present language while their constitutive meaning is being rederived. For Holography / AdS-CFT specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack the successful parts survive as effective geometry or constitutive-medium summaries, while fundamental spacetime claims are either reduced or discarded. For Holography / AdS-CFT, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Holography / AdS-CFT is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the entropy, reconstruction, and unitarity constraints that holographic calculations sharpen while deriving the mechanism from horizon-interface alignment, path-history bookkeeping, Noether-Sea storage, and release-channel selection. The duality is a comparison framework unless those bookkeeping constraints are recovered natively.
 
 ---
 
-### Cosmology and Large-Scale History
+#### Cosmology and Large-Scale History
 
-#### $\Lambda$ Cold Dark Matter - $\Lambda$CDM
+##### $\Lambda$ Cold Dark Matter - $\Lambda$CDM
 
 **Concept Type:** Framework
 **Ontological Area:** Cosmology
@@ -5357,41 +5359,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the entro
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit; Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 $\Lambda$ Cold Dark Matter is a framework in the cosmological closure model domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 $\Lambda$ Cold Dark Matter carries specific ontological commitments even when it is presented as "just mathematics." It typically treats cosmological closure model as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 $\Lambda$ Cold Dark Matter gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, $\Lambda$ Cold Dark Matter sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For $\Lambda$ Cold Dark Matter specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For $\Lambda$ Cold Dark Matter, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for $\Lambda$ Cold Dark Matter is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Inflationary Cosmology
+##### Inflationary Cosmology
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -5402,41 +5404,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Inflationary Cosmology is a theory in the early-universe smoothing domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Inflationary Cosmology carries specific ontological commitments even when it is presented as "just mathematics." It typically treats early-universe smoothing as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Inflationary Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Inflationary Cosmology sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Partially Recovered; Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Inflationary Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Inflationary Cosmology, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Inflationary Cosmology is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Big Bang Nucleosynthesis - BBN
+##### Big Bang Nucleosynthesis - BBN
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology
@@ -5447,41 +5449,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Big Bang Nucleosynthesis is a theory in the light-element synthesis domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Big Bang Nucleosynthesis carries specific ontological commitments even when it is presented as "just mathematics." It typically treats light-element synthesis as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Big Bang Nucleosynthesis gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Big Bang Nucleosynthesis sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Big Bang Nucleosynthesis specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Big Bang Nucleosynthesis, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Big Bang Nucleosynthesis is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### CMB Acoustic Peak Theory
+##### CMB Acoustic Peak Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology
@@ -5492,41 +5494,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 CMB Acoustic Peak Theory is a theory in the radiation-baryon transfer domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 CMB Acoustic Peak Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats radiation-baryon transfer as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 CMB Acoustic Peak Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, CMB Acoustic Peak Theory sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For CMB Acoustic Peak Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For CMB Acoustic Peak Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for CMB Acoustic Peak Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Baryogenesis / Leptogenesis
+##### Baryogenesis / Leptogenesis
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -5537,41 +5539,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Baryogenesis / Leptogenesis is a theory in the matter asymmetry domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Baryogenesis / Leptogenesis carries specific ontological commitments even when it is presented as "just mathematics." It typically treats matter asymmetry as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Baryogenesis / Leptogenesis gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Baryogenesis / Leptogenesis sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Baryogenesis / Leptogenesis specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Baryogenesis / Leptogenesis, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Baryogenesis / Leptogenesis is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Dark Matter Particle Cosmology
+##### Dark Matter Particle Cosmology
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -5582,41 +5584,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Dark Matter Particle Cosmology is a theory in the dark matter ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Dark Matter Particle Cosmology carries specific ontological commitments even when it is presented as "just mathematics." It typically treats dark matter ontology as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Dark Matter Particle Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Dark Matter Particle Cosmology sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Empirically Useful Placeholder; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Dark Matter Particle Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Dark Matter Particle Cosmology, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Dark Matter Particle Cosmology is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Primordial Black Hole Dark Matter
+##### Primordial Black Hole Dark Matter
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -5627,15 +5629,15 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Primordial Black Hole Dark Matter is a theory in the dark matter ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Primordial Black Hole Dark Matter carries specific ontological commitments even when it is presented as "just mathematics." It typically treats dark matter ontology as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Primordial Black Hole Dark Matter gets something durable right: it turns a dark-sector interpretation into a constrained observable packet. The retained content is not the claim that primordial black holes are the dark matter, but the mass-function discipline, formation-clock inference, evaporation and null-result bounds, lensing and structure-growth constraints, and possible local compact-object signatures. A compact comparison projection is
 $$
@@ -5655,29 +5657,29 @@ t_f(M),\;
 $$
 where $\psi(M)$ is the compact-object mass function, $f_{\mathrm{PBH}}$ is the dark-matter fraction in that comparison model, $t_f(M)$ is the inferred formation epoch, $\Delta\mathbf{x}_{\mathrm{ephem}}$ is a solar-system ephemeris perturbation, and $\Phi_{\mathrm{HE}}$ denotes any high-energy particle or radiation flux tied to evaporation or analogous release. This projection is useful precisely because it separates observables from the interpretation that produced them.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Primordial Black Hole Dark Matter sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Partially Recovered**: the useful population, constraint, and detection mathematics survive as comparison pressure, while primordial-black-hole ontology is not allowed to keep the explanatory authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Primordial Black Hole Dark Matter specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Primordial Black Hole Dark Matter, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Primordial Black Hole Dark Matter is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the retained compact-object observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. If a primordial-Noether-core-defect or other neutral-assembly branch is proposed as the native analogue, it must recover the same mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result rows from one shared closure record. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Dark Energy / Quintessence
+##### Dark Energy / Quintessence
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -5688,41 +5690,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the retain
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder; Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Dark Energy / Quintessence is a theory in the late-time acceleration domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Dark Energy / Quintessence carries specific ontological commitments even when it is presented as "just mathematics." It typically treats late-time acceleration as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Dark Energy / Quintessence gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Dark Energy / Quintessence sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Empirically Useful Placeholder; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Dark Energy / Quintessence specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Dark Energy / Quintessence, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Dark Energy / Quintessence is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Steady State Cosmology - SSC
+##### Steady State Cosmology - SSC
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology
@@ -5733,7 +5735,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Steady State Cosmology is a theory in the cosmic history alternative domain. It tried to combine an expanding comparison history with constant large-scale matter density, usually by adding some continuous source of matter. Einstein's unpublished 1931 attempt is the sharp failure prototype: with dust-like matter, constant density and nonzero expansion require an explicit source term, but the source was not present in the field equations. In effective notation the pressure is
 $$
@@ -5744,37 +5746,37 @@ $$
 $$
 so $\dot{\rho}_{m,\mathrm{eff}}=0$ and $H_{\mathrm{eff}}\ne0$ require $\mathcal{S}_{m,\mathrm{eff}}=3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}$. Without that term, the nontrivial constant-density branch is not closed.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Steady State Cosmology carries specific ontological commitments even when it is presented as "just mathematics." It typically treats cosmic history alternative as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Steady State Cosmology still gets something limited but important right: it preserved the demand that cosmology account for source, density, and history rather than simply accept a singular global story. Its durable value for $\mathbb{A}\mathbb{A}\mathbb{A}$ is now mainly negative and diagnostic. It shows that an exponential or de Sitter-like effective scale factor is not enough; the continuity equation, source provenance, and observational evolution record must close together.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Steady State Cosmology sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Historically Illuminating Failure**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Steady State Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Steady State Cosmology, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Steady State Cosmology is that its explanatory core could not survive broader empirical scrutiny and its source accounting was often underdetermined. Einstein's failed version exposes the mathematical core of the problem: assigning energy to the geometric comparison term does not by itself create matter, and a constant-density expanding branch needs a source equation with a physical ledger. Later steady-state variants made that source more explicit, but the model family still failed the observed-evolution tests.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(t)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether-Sea histories, never as matter produced by the Euclidean void.
 
 ---
 
-#### Quasi-Steady State Cosmology - QSSC
+##### Quasi-Steady State Cosmology - QSSC
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology
@@ -5785,41 +5787,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conser
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Quasi-Steady State Cosmology is a theory in the cosmic history alternative domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Quasi-Steady State Cosmology carries specific ontological commitments even when it is presented as "just mathematics." It typically treats cosmic history alternative as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Quasi-Steady State Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Quasi-Steady State Cosmology sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Historically Illuminating Failure**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Quasi-Steady State Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Quasi-Steady State Cosmology, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Quasi-Steady State Cosmology is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which empirical pressure the older concept was trying to answer and show how that pressure is handled without reviving the failed ontology. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Ekpyrotic / Cyclic Cosmology
+##### Ekpyrotic / Cyclic Cosmology
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -5830,41 +5832,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Ekpyrotic / Cyclic Cosmology is a theory in the bounce and cycle histories domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Ekpyrotic / Cyclic Cosmology carries specific ontological commitments even when it is presented as "just mathematics." It typically treats bounce and cycle histories as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Ekpyrotic / Cyclic Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Ekpyrotic / Cyclic Cosmology sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Ekpyrotic / Cyclic Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Ekpyrotic / Cyclic Cosmology, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Ekpyrotic / Cyclic Cosmology is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Bounce Cosmology
+##### Bounce Cosmology
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -5875,41 +5877,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Bounce Cosmology is a theory in the non-singular cosmic history domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Bounce Cosmology carries specific ontological commitments even when it is presented as "just mathematics." It typically treats non-singular cosmic history as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Bounce Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Bounce Cosmology sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Bounce Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Bounce Cosmology, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Bounce Cosmology is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Conformal Cyclic Cosmology - CCC
+##### Conformal Cyclic Cosmology - CCC
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -5920,41 +5922,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Conformal Cyclic Cosmology is a theory in the cyclic conformal history domain. It treats each apparent big-bang boundary as conformally related to a remote future in which mass and scale become physically irrelevant. In the comparative stack it is best read as a mathematically controlled cosmology program and a source of smoothness constraints, not as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Conformal Cyclic Cosmology carries specific ontological commitments even when it is presented as "just mathematics." It typically treats cyclic conformal history as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Conformal Cyclic Cosmology gets something durable right by separating a data-facing problem from a standard interpretation. The smooth early effective record, the CMB horizon/smoothness burden, the low effective gravitational free-mode content of the early universe, and the observed positive late-time acceleration are real pressures that any serious replacement must preserve. Its conformal machinery is valuable as comparison mathematics only after those observables have been separated from the eon-to-eon ontology.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Conformal Cyclic Cosmology sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes** and to the cosmology validation layer. The relation type is **Recoverable Only After Reinterpretation**: CMB smoothness, scalar/tensor bounds, positive late-time acceleration, and long-history comparison pressure survive, while conformal eons and boundary matching do not become substrate primitives.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Conformal Cyclic Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience. Its most useful near-term role is to sharpen the question of why the effective early record is smooth without letting an external conformal-continuation story choose the answer.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Conformal Cyclic Cosmology, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Conformal Cyclic Cosmology is that its native variables are too easily promoted from successful descriptors into final ontology. A second tension is evidential: proposed pre-eon signals or conformal boundary traces remain underdetermined unless they are cleanly separated from standard CMB statistics, foregrounds, and source-model freedom. Localized CMB-spot claims, including proposed Hawking-point interpretations, therefore remain cross-instrument anomaly tests until their WMAP/Planck consistency, foreground residuals, and look-elsewhere statistics are fixed independently of the cyclic-history interpretation. Until those tensions are resolved, the concept cannot function as ultimate explanation even if it remains useful as a comparison framework.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. The concrete reduction target is a single Noether-Sea history that reproduces CMB smoothness, TT/TE/EE, blackbody behavior, scalar/tensor bounds, late-time acceleration, and redshift handoff without importing conformal eons as ontology.
 
 ---
 
-#### Multiverse Cosmology
+##### Multiverse Cosmology
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -5965,41 +5967,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Multiverse Cosmology is a theory in the ensemble cosmology domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Multiverse Cosmology carries specific ontological commitments even when it is presented as "just mathematics." It typically treats ensemble cosmology as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Multiverse Cosmology gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Multiverse Cosmology sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Multiverse Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Multiverse Cosmology, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Multiverse Cosmology is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Anthropic Principle
+##### Anthropic Principle
 
 **Concept Type:** Principle
 **Ontological Area:** Methodology / Inference Framework
@@ -6010,43 +6012,43 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Anthropic Principle is a principle in the selection effects domain. It was built to provide a mathematically controlled description of the phenomena grouped within cosmology and large-scale history, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Anthropic Principle carries specific ontological commitments even when it is presented as "just mathematics." It typically treats selection effects as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Anthropic Principle gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Anthropic Principle sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains crucial during migration because cosmological fit pipelines, population models, and expansion-history summaries are the main way legacy data stay in play while deeper ontology is reworked. For Anthropic Principle specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack only the empirically successful large-scale summaries survive, and they survive as effective history descriptions rather than as direct statements of substrate primitives. For Anthropic Principle, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Anthropic Principle is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-### Statistical, Thermal, and Bulk Descriptions
+#### Statistical, Thermal, and Bulk Descriptions
 
-#### Statistical Mechanics
+##### Statistical Mechanics
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -6057,41 +6059,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Statistical Mechanics is a theory in the ensemble closure domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Statistical Mechanics carries specific ontological commitments even when it is presented as "just mathematics." It typically treats ensemble closure as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Statistical Mechanics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Statistical Mechanics sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains indispensable during migration because bulk matter, transport, and ensemble descriptions are where most real calculations are done even when the microscopic ontology changes. For Statistical Mechanics specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these remain permanent bulk-limit descriptions and are among the most stable parts of the inherited scientific toolkit. For Statistical Mechanics, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Statistical Mechanics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Thermodynamics
+##### Thermodynamics
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -6102,41 +6104,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Thermodynamics is a theory in the bulk-state law domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Thermodynamics carries specific ontological commitments even when it is presented as "just mathematics." It typically treats bulk-state law as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Thermodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Thermodynamics sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains indispensable during migration because bulk matter, transport, and ensemble descriptions are where most real calculations are done even when the microscopic ontology changes. For Thermodynamics specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these remain permanent bulk-limit descriptions and are among the most stable parts of the inherited scientific toolkit. For Thermodynamics, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Thermodynamics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Kinetic Theory
+##### Kinetic Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -6147,41 +6149,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Kinetic Theory is a theory in the distribution dynamics domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Kinetic Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats distribution dynamics as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Kinetic Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Kinetic Theory sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains indispensable during migration because bulk matter, transport, and ensemble descriptions are where most real calculations are done even when the microscopic ontology changes. For Kinetic Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these remain permanent bulk-limit descriptions and are among the most stable parts of the inherited scientific toolkit. For Kinetic Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Kinetic Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Hydrodynamics
+##### Hydrodynamics
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -6192,41 +6194,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Hydrodynamics is a theory in the continuum transport domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Hydrodynamics carries specific ontological commitments even when it is presented as "just mathematics." It typically treats continuum transport as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Hydrodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Hydrodynamics sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains indispensable during migration because bulk matter, transport, and ensemble descriptions are where most real calculations are done even when the microscopic ontology changes. For Hydrodynamics specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these remain permanent bulk-limit descriptions and are among the most stable parts of the inherited scientific toolkit. For Hydrodynamics, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Hydrodynamics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Plasma Physics
+##### Plasma Physics
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -6237,41 +6239,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Plasma Physics is a theory in the collective charged media domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Plasma Physics carries specific ontological commitments even when it is presented as "just mathematics." It typically treats collective charged media as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Plasma Physics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Plasma Physics sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains indispensable during migration because bulk matter, transport, and ensemble descriptions are where most real calculations are done even when the microscopic ontology changes. For Plasma Physics specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these remain permanent bulk-limit descriptions and are among the most stable parts of the inherited scientific toolkit. For Plasma Physics, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Plasma Physics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Virial Theory
+##### Virial Theory
 
 **Concept Type:** Law
 **Ontological Area:** Statistical / Bulk Matter
@@ -6282,41 +6284,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Virial Theory is a law in the bound-system averages domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Virial Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats bound-system averages as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Virial Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Virial Theory sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains indispensable during migration because bulk matter, transport, and ensemble descriptions are where most real calculations are done even when the microscopic ontology changes. For Virial Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these remain permanent bulk-limit descriptions and are among the most stable parts of the inherited scientific toolkit. For Virial Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Virial Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Jeans Instability Theory
+##### Jeans Instability Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -6327,41 +6329,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Jeans Instability Theory is a theory in the gravitational collapse threshold domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Jeans Instability Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats gravitational collapse threshold as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Jeans Instability Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Jeans Instability Theory sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains indispensable during migration because bulk matter, transport, and ensemble descriptions are where most real calculations are done even when the microscopic ontology changes. For Jeans Instability Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these remain permanent bulk-limit descriptions and are among the most stable parts of the inherited scientific toolkit. For Jeans Instability Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Jeans Instability Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Halo Model of Structure Formation
+##### Halo Model of Structure Formation
 
 **Concept Type:** Framework
 **Ontological Area:** Statistical / Bulk Matter
@@ -6372,43 +6374,43 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Halo Model of Structure Formation is a framework in the large-scale structure statistics domain. It was built to provide a mathematically controlled description of the phenomena grouped within statistical, thermal, and bulk descriptions, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Halo Model of Structure Formation carries specific ontological commitments even when it is presented as "just mathematics." It typically treats large-scale structure statistics as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Halo Model of Structure Formation gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Halo Model of Structure Formation sits at **Bulk statistical level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 This remains indispensable during migration because bulk matter, transport, and ensemble descriptions are where most real calculations are done even when the microscopic ontology changes. For Halo Model of Structure Formation specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these remain permanent bulk-limit descriptions and are among the most stable parts of the inherited scientific toolkit. For Halo Model of Structure Formation, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Halo Model of Structure Formation is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-### Rejected Historical Theories
+#### Rejected Historical Theories
 
-#### Classical Luminiferous Aether Theory
+##### Classical Luminiferous Aether Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -6419,41 +6421,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Classical Luminiferous Aether Theory is a theory in the carrier ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within rejected historical theories, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Classical Luminiferous Aether Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats carrier ontology as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Classical Luminiferous Aether Theory still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Classical Luminiferous Aether Theory sits at **Historical contrast only**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Historically Illuminating Failure**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain useful during migration as contrast cases that show how predictive fragments can coexist with bad ontology or weak mechanism. For Classical Luminiferous Aether Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack they survive mainly as historical caution and as reminders that some wrong theories were wrong in content but still right in direction about specific problems. For Classical Luminiferous Aether Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Classical Luminiferous Aether Theory is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which empirical pressure the older concept was trying to answer and show how that pressure is handled without reviving the failed ontology. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Lorentz Ether Theory - LET
+##### Lorentz Ether Theory - LET
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -6464,41 +6466,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure; Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Lorentz Ether Theory is a theory in the medium-relative kinematics domain. It was built to provide a mathematically controlled description of the phenomena grouped within rejected historical theories, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Lorentz Ether Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats medium-relative kinematics as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Lorentz Ether Theory still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Lorentz Ether Theory sits at **Historical contrast only**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Historically Illuminating Failure; Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain useful during migration as contrast cases that show how predictive fragments can coexist with bad ontology or weak mechanism. For Lorentz Ether Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack they survive mainly as historical caution and as reminders that some wrong theories were wrong in content but still right in direction about specific problems. For Lorentz Ether Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Lorentz Ether Theory is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which empirical pressure the older concept was trying to answer and show how that pressure is handled without reviving the failed ontology. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Caloric Theory
+##### Caloric Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -6509,41 +6511,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Caloric Theory is a theory in the heat ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within rejected historical theories, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Caloric Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats heat ontology as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Caloric Theory still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Caloric Theory sits at **Historical contrast only**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Historically Illuminating Failure**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain useful during migration as contrast cases that show how predictive fragments can coexist with bad ontology or weak mechanism. For Caloric Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack they survive mainly as historical caution and as reminders that some wrong theories were wrong in content but still right in direction about specific problems. For Caloric Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Caloric Theory is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which empirical pressure the older concept was trying to answer and show how that pressure is handled without reviving the failed ontology. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Phlogiston Theory
+##### Phlogiston Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Statistical / Bulk Matter
@@ -6554,41 +6556,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Phlogiston Theory is a theory in the combustion ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within rejected historical theories, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Phlogiston Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats combustion ontology as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Phlogiston Theory still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Phlogiston Theory sits at **Historical contrast only**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Historically Illuminating Failure**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain useful during migration as contrast cases that show how predictive fragments can coexist with bad ontology or weak mechanism. For Phlogiston Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack they survive mainly as historical caution and as reminders that some wrong theories were wrong in content but still right in direction about specific problems. For Phlogiston Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Phlogiston Theory is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which empirical pressure the older concept was trying to answer and show how that pressure is handled without reviving the failed ontology. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Tired Light Cosmology
+##### Tired Light Cosmology
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology
@@ -6599,41 +6601,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred; Historically Illuminating Failure
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Tired Light Cosmology is a theory in the redshift interpretation domain. It was built to provide a mathematically controlled description of the phenomena grouped within rejected historical theories, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Tired Light Cosmology carries specific ontological commitments even when it is presented as "just mathematics." It typically treats redshift interpretation as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Tired Light Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Tired Light Cosmology sits at **Historical contrast only**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Observationally Over-Inferred; Historically Illuminating Failure**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain useful during migration as contrast cases that show how predictive fragments can coexist with bad ontology or weak mechanism. For Tired Light Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack they survive mainly as historical caution and as reminders that some wrong theories were wrong in content but still right in direction about specific problems. For Tired Light Cosmology, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Tired Light Cosmology is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Epicyclic Ptolemaic Cosmology
+##### Epicyclic Ptolemaic Cosmology
 
 **Concept Type:** Theory
 **Ontological Area:** Cosmology
@@ -6644,43 +6646,43 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Historically Illuminating Failure
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Epicyclic Ptolemaic Cosmology is a theory in the kinematic fit without mechanism domain. It was built to provide a mathematically controlled description of the phenomena grouped within rejected historical theories, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Epicyclic Ptolemaic Cosmology carries specific ontological commitments even when it is presented as "just mathematics." It typically treats kinematic fit without mechanism as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Epicyclic Ptolemaic Cosmology still gets something limited but important right: it preserved a real empirical pressure or explanatory demand even though its central ontology failed. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Epicyclic Ptolemaic Cosmology sits at **Historical contrast only**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Historically Illuminating Failure**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain useful during migration as contrast cases that show how predictive fragments can coexist with bad ontology or weak mechanism. For Epicyclic Ptolemaic Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack they survive mainly as historical caution and as reminders that some wrong theories were wrong in content but still right in direction about specific problems. For Epicyclic Ptolemaic Cosmology, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Epicyclic Ptolemaic Cosmology is that its explanatory core could not survive broader empirical scrutiny even though some motivating pressure was legitimate. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which empirical pressure the older concept was trying to answer and show how that pressure is handled without reviving the failed ontology. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-### Fringe or Borderline Contrast Cases
+#### Fringe or Borderline Contrast Cases
 
-#### Plasma Cosmology
+##### Plasma Cosmology
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -6691,41 +6693,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to explain which emp
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Plasma Cosmology is a theory in the non-standard large-scale plasma claims domain. It was built to provide a mathematically controlled description of the phenomena grouped within fringe or borderline contrast cases, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Plasma Cosmology carries specific ontological commitments even when it is presented as "just mathematics." It typically treats non-standard large-scale plasma claims as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Plasma Cosmology occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Plasma Cosmology sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Deeply Incompatible**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These are useful during migration mainly as boundary checks, helping distinguish legitimate substrate revision from unconstrained speculation. For Plasma Cosmology specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack they persist, if at all, as contrastive caution rather than as part of the accepted explanatory core. For Plasma Cosmology, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Plasma Cosmology is that its core claim depends on assumptions that cannot be absorbed into a substrate-first causal account without losing what made the proposal distinctive. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Electric Universe - EU
+##### Electric Universe - EU
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -6736,41 +6738,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Electric Universe is a theory in the electrical overreach domain. It was built to provide a mathematically controlled description of the phenomena grouped within fringe or borderline contrast cases, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Electric Universe carries specific ontological commitments even when it is presented as "just mathematics." It typically treats electrical overreach as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Electric Universe occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Electric Universe sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Deeply Incompatible**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These are useful during migration mainly as boundary checks, helping distinguish legitimate substrate revision from unconstrained speculation. For Electric Universe specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack they persist, if at all, as contrastive caution rather than as part of the accepted explanatory core. For Electric Universe, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Electric Universe is that its core claim depends on assumptions that cannot be absorbed into a substrate-first causal account without losing what made the proposal distinctive. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Simulation Hypothesis
+##### Simulation Hypothesis
 
 **Concept Type:** Construct
 **Ontological Area:** Methodology / Inference Framework
@@ -6781,41 +6783,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Deeply Incompatible
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Simulation Hypothesis is a construct in the externalist ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within fringe or borderline contrast cases, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Simulation Hypothesis carries specific ontological commitments even when it is presented as "just mathematics." It typically treats externalist ontology as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Simulation Hypothesis occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Simulation Hypothesis sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Deeply Incompatible**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These are useful during migration mainly as boundary checks, helping distinguish legitimate substrate revision from unconstrained speculation. For Simulation Hypothesis specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack they persist, if at all, as contrastive caution rather than as part of the accepted explanatory core. For Simulation Hypothesis, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Simulation Hypothesis is that its core claim depends on assumptions that cannot be absorbed into a substrate-first causal account without losing what made the proposal distinctive. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly which layer generates the concept, which layer measures it, and which layer is tempted to over-interpret it. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Strong Anthropic Landscape Programs
+##### Strong Anthropic Landscape Programs
 
 **Concept Type:** Program
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -6826,41 +6828,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Strong Anthropic Landscape Programs is a theory in the selection without mechanism domain. It was built to provide a mathematically controlled description of the phenomena grouped within fringe or borderline contrast cases, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Strong Anthropic Landscape Programs carries specific ontological commitments even when it is presented as "just mathematics." It typically treats selection without mechanism as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Strong Anthropic Landscape Programs occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Strong Anthropic Landscape Programs sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These are useful during migration mainly as boundary checks, helping distinguish legitimate substrate revision from unconstrained speculation. For Strong Anthropic Landscape Programs specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack they persist, if at all, as contrastive caution rather than as part of the accepted explanatory core. For Strong Anthropic Landscape Programs, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Strong Anthropic Landscape Programs is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Digital Physics
+##### Digital Physics
 
 **Concept Type:** Program
 **Ontological Area:** Methodology / Inference Framework
@@ -6871,43 +6873,43 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered; Good Mathematics, Wrong Primitives
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Digital Physics is a theory in the discrete computational ontology domain. It was built to provide a mathematically controlled description of the phenomena grouped within fringe or borderline contrast cases, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Digital Physics carries specific ontological commitments even when it is presented as "just mathematics." It typically treats discrete computational ontology as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Digital Physics occasionally gets a real pressure point into view, even when the surrounding narrative is much too loose or overextended. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Digital Physics sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Partially Recovered; Good Mathematics, Wrong Primitives**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These are useful during migration mainly as boundary checks, helping distinguish legitimate substrate revision from unconstrained speculation. For Digital Physics specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack they persist, if at all, as contrastive caution rather than as part of the accepted explanatory core. For Digital Physics, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Digital Physics is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-### Additional Major Academic Programs To Consider
+#### Additional Major Academic Programs To Consider
 
-#### Standard Model Effective Field Theory - SMEFT
+##### Standard Model Effective Field Theory - SMEFT
 
 **Concept Type:** Framework
 **Ontological Area:** Quantum Effective Theory
@@ -6918,41 +6920,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Standard Model Effective Field Theory is a framework in the effective operator expansion domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Standard Model Effective Field Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats effective operator expansion as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Standard Model Effective Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Standard Model Effective Field Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Standard Model Effective Field Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Standard Model Effective Field Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Standard Model Effective Field Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Conformal Field Theory - CFT
+##### Conformal Field Theory - CFT
 
 **Concept Type:** Theory
 **Ontological Area:** Quantum Effective Theory
@@ -6963,41 +6965,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Conformal Field Theory is a theory in the symmetry-constrained field theory domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Conformal Field Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats symmetry-constrained field theory as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Conformal Field Theory gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in controlled operator data, scaling limits, Ward identities, fixed-point behavior, and exactly or nearly solvable comparison targets. Those are technical and effective-closure assets, not a warrant to make scale-free continuum fields final ontology.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Conformal Field Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Conformal Field Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Conformal Field Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Conformal Field Theory is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover conformal behavior as a controlled effective fixed point of substrate and assembly dynamics, with explicit domain-of-validity conditions and declared symmetry-breaking departures. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Amplitude Program / On-Shell Methods
+##### Amplitude Program / On-Shell Methods
 
 **Concept Type:** Framework
 **Ontological Area:** Quantum Effective Theory
@@ -7008,41 +7010,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover conformal
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Amplitude Program / On-Shell Methods is a framework in the scattering structure domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Amplitude Program / On-Shell Methods carries specific ontological commitments even when it is presented as "just mathematics." It typically treats scattering structure as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Amplitude Program / On-Shell Methods gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Amplitude Program / On-Shell Methods sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Amplitude Program / On-Shell Methods specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Amplitude Program / On-Shell Methods, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Amplitude Program / On-Shell Methods is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Non-Commutative Geometry Programs - NCG
+##### Non-Commutative Geometry Programs - NCG
 
 **Concept Type:** Program
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -7053,41 +7055,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Non-Commutative Geometry Programs is a theory in the geometry generalization domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Non-Commutative Geometry Programs carries specific ontological commitments even when it is presented as "just mathematics." It typically treats geometry generalization as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Non-Commutative Geometry Programs gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Non-Commutative Geometry Programs sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Non-Commutative Geometry Programs specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Non-Commutative Geometry Programs, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Non-Commutative Geometry Programs is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Twistor Theory
+##### Twistor Theory
 
 **Concept Type:** Program
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -7098,41 +7100,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Twistor Theory is a theory in the geometric representation domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Twistor Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats geometric representation as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Twistor Theory gets something durable right: it exposes how null directions, spinor structure, scattering data, and geometric representation can simplify problems that look opaque in ordinary spacetime variables. Its durable value is as a compact representation and calculation strategy. The representation does not by itself decide substrate ontology.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Twistor Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Twistor Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Twistor Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Twistor Theory is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to use twistor-style representation only where it sharpens effective spin, null-propagation, or scattering closure, then translate the result back into assembly and medium variables. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Horava-Lifshitz Gravity
+##### Horava-Lifshitz Gravity
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -7143,41 +7145,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to use twistor-style
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Horava-Lifshitz Gravity is a theory in the anisotropic ultraviolet gravity domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Horava-Lifshitz Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats anisotropic ultraviolet gravity as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Horava-Lifshitz Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Horava-Lifshitz Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Horava-Lifshitz Gravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Horava-Lifshitz Gravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Horava-Lifshitz Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Entropic Gravity
+##### Entropic Gravity
 
 **Concept Type:** Program
 **Ontological Area:** Spacetime / Gravity
@@ -7188,41 +7190,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Entropic Gravity is a theory in the statistical gravity interpretation domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Entropic Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats statistical gravity interpretation as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Entropic Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Entropic Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Entropic Gravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Entropic Gravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Entropic Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Einstein-Aether Theory
+##### Einstein-Aether Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -7233,41 +7235,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Partially Recovered
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Einstein-Aether Theory is a theory in the preferred-frame gravity domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Einstein-Aether Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats preferred-frame gravity as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Einstein-Aether Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Einstein-Aether Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Partially Recovered**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Einstein-Aether Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Einstein-Aether Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Einstein-Aether Theory is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Galileon / Horndeski Theory
+##### Galileon / Horndeski Theory
 
 **Concept Type:** Theory
 **Ontological Area:** Spacetime / Gravity
@@ -7278,41 +7280,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Galileon / Horndeski Theory is a theory in the scalar-tensor modification domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Galileon / Horndeski Theory carries specific ontological commitments even when it is presented as "just mathematics." It typically treats scalar-tensor modification as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Galileon / Horndeski Theory gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Galileon / Horndeski Theory sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Empirically Useful Placeholder**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Galileon / Horndeski Theory specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Galileon / Horndeski Theory, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Galileon / Horndeski Theory is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Chameleon / Screening Modified Gravity
+##### Chameleon / Screening Modified Gravity
 
 **Concept Type:** Program
 **Ontological Area:** Spacetime / Gravity
@@ -7323,41 +7325,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Chameleon / Screening Modified Gravity is a theory in the environment-dependent gravity domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Chameleon / Screening Modified Gravity carries specific ontological commitments even when it is presented as "just mathematics." It typically treats environment-dependent gravity as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually handled through relativistic or effective cosmological structure. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Chameleon / Screening Modified Gravity gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Chameleon / Screening Modified Gravity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Empirically Useful Placeholder**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Chameleon / Screening Modified Gravity specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Chameleon / Screening Modified Gravity, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Chameleon / Screening Modified Gravity is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Eternal Inflation
+##### Eternal Inflation
 
 **Concept Type:** Program
 **Ontological Area:** Cosmology
@@ -7368,41 +7370,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the succes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Inflationary Eternal Inflation is a theory in the inflationary ensemble cosmology domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Inflationary Eternal Inflation carries specific ontological commitments even when it is presented as "just mathematics." It typically treats inflationary ensemble cosmology as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Inflationary Eternal Inflation gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Inflationary Eternal Inflation sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Inflationary Eternal Inflation specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Inflationary Eternal Inflation, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Inflationary Eternal Inflation is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Vacuum Landscape / String Landscape
+##### Vacuum Landscape / String Landscape
 
 **Concept Type:** Program
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -7413,41 +7415,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Vacuum Landscape / String Landscape is a theory in the vacuum multiplicity domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Vacuum Landscape / String Landscape carries specific ontological commitments even when it is presented as "just mathematics." It typically treats vacuum multiplicity as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Vacuum Landscape / String Landscape gets something limited but useful right: large theory spaces and weakly coupled sectors can reveal how easily a framework can become empirically underconstrained. Its durable value is therefore mostly diagnostic. It can nominate comparison residuals such as pre-BBN energy components, hidden-sector relics, moduli-like relaxation channels, or stochastic-background signatures, but it cannot promote vacuum multiplicity into ontology without direct closure.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Vacuum Landscape / String Landscape sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Vacuum Landscape / String Landscape specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Vacuum Landscape / String Landscape, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Vacuum Landscape / String Landscape is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate any sound data product from the stronger vacuum-multiplicity story and route proposed pre-BBN branches through BBN, CMB, structure-formation, gravitational-wave, and null-result residuals. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Swampland Program
+##### Swampland Program
 
 **Concept Type:** Program
 **Ontological Area:** Unification / Beyond-Standard-Model
@@ -7458,43 +7460,43 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate any soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Empirically Useful Placeholder
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Swampland Program is a theory in the quantum-gravity consistency filters domain. It was built to provide a mathematically controlled description of the phenomena grouped within additional major academic programs to consider, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Swampland Program carries specific ontological commitments even when it is presented as "just mathematics." It typically treats quantum-gravity consistency filters as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Swampland Program gets something durable right as a discipline of consistency filtering: it asks whether effective theories that look acceptable at low energy can actually belong to a deeper quantum-gravity completion. Its useful content for $\mathbb{A}\mathbb{A}\mathbb{A}$ is not the authority of any specific conjecture, but the demand that field ranges, cutoffs, de Sitter-like behavior, and inflationary histories be routed through explicit closure criteria rather than treated as freely adjustable effective models.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Swampland Program sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Empirically Useful Placeholder**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain highly relevant during migration because they contain mathematical techniques, consistency constraints, and alternative closure strategies that a substrate program must either recover or outperform. For Swampland Program specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack some survive as technical methods and some as partial effective sectors, but none should be granted final status without explicit derivation. For Swampland Program, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Swampland Program is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recast any useful swampland-style filter as a derivable cutoff, range, energy-condition, or cosmology-history residual inside assembly and medium dynamics. Conjectural filters remain comparison tools until they are either independently tested or recovered as native consistency conditions.
 
 ---
 
-### Cross-Cutting Concepts To Differentially Map
+#### Cross-Cutting Concepts To Differentially Map
 
-#### Mass
+##### Mass
 
 **Concept Type:** Quantity
 **Ontological Area:** Assembly / Particle Structure
@@ -7505,41 +7507,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recast any useful
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Medium and Constitutive Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Mass is a quantity in the inertia and coupling domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Mass carries specific ontological commitments even when it is presented as "just mathematics." It typically treats inertia and coupling as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Mass gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Mass sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Medium and Constitutive Regimes**. The relation type is **Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. Mass is therefore treated as an externally exposed assembly response, not as a primitive property of the architrino substance.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain central during migration because they travel across many theories and often carry hidden ontological assumptions that have to be unpacked before replacement work can stay disciplined. For Mass specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these survive as carefully re-situated concepts whose meaning depends on explicit layer placement rather than inherited ambiguity. For Mass, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Mass is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly which layer generates the concept, which layer measures it, and which layer is tempted to over-interpret it. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Entropy
+##### Entropy
 
 **Concept Type:** Quantity
 **Ontological Area:** Statistical / Bulk Matter
@@ -7550,19 +7552,19 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Entropy is a quantity in the state counting and irreversibility domain. It was built to provide a mathematically controlled description of heat exchange, state counting, unresolved records, and access-region bookkeeping, but those uses are not one undifferentiated object. In the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Entropy carries specific ontological commitments even when it is presented as "just mathematics." It typically treats state counting and irreversibility as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. The commitment changes with the entropy concept: Clausius entropy presupposes a reversible-process comparison class, Boltzmann entropy presupposes a macrostate partition, Gibbs/Shannon entropy presupposes a probability distribution over unresolved alternatives, and horizon or record entropy presupposes an access boundary or durable record channel. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, generally enters through statistics, uncertainty, or effective fitting rather than as primitive ontology.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Entropy gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Entropy sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
@@ -7574,25 +7576,25 @@ The expression does useful work only after the finite measure, coarse-graining, 
 
 This distinction also protects the thermodynamic comparison from a common overreach. The Clausius definition $dS=\delta Q_{\mathrm{rev}}/T$ is licensed only in a regime where the reversible path comparison is well-defined; Boltzmann and Gibbs/Shannon entropies then supply different statistical summaries rather than competing ontologies. A resource or available-energy reading is retained when the apparatus, reference resources, and allowed manipulations are physical parts of the record, not when "information" is treated as a disembodied cause.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain central during migration because they travel across many theories and often carry hidden ontological assumptions that have to be unpacked before replacement work can stay disciplined. For Entropy specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these survive as carefully re-situated concepts whose meaning depends on explicit layer placement rather than inherited ambiguity. For Entropy, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Entropy is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Temperature
+##### Temperature
 
 **Concept Type:** Quantity
 **Ontological Area:** Statistical / Bulk Matter
@@ -7603,41 +7605,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Temperature is a quantity in the bulk excitation measure domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Temperature carries specific ontological commitments even when it is presented as "just mathematics." It typically treats bulk excitation measure as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Temperature gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Temperature sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain central during migration because they travel across many theories and often carry hidden ontological assumptions that have to be unpacked before replacement work can stay disciplined. For Temperature specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these survive as carefully re-situated concepts whose meaning depends on explicit layer placement rather than inherited ambiguity. For Temperature, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Temperature is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### The Laws of Thermodynamics
+##### The Laws of Thermodynamics
 
 **Concept Type:** Law
 **Ontological Area:** Statistical / Bulk Matter
@@ -7648,19 +7650,19 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Statistical Population Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 The Laws of Thermodynamics is a law in the bulk-law structure domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 The Laws of Thermodynamics carries specific ontological commitments even when it is presented as "just mathematics." It typically treats bulk-law structure as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 The Laws of Thermodynamics gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, The Laws of Thermodynamics sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Statistical Population Regimes**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
@@ -7676,25 +7678,25 @@ $$
 $$
 This is not a rejection of thermodynamics. It is the domain-of-validity condition that lets thermodynamic success remain intact without converting a bounded-system law into final cosmological ontology.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain central during migration because they travel across many theories and often carry hidden ontological assumptions that have to be unpacked before replacement work can stay disciplined. For The Laws of Thermodynamics specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these survive as carefully re-situated concepts whose meaning depends on explicit layer placement rather than inherited ambiguity. For The Laws of Thermodynamics, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for The Laws of Thermodynamics is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Redshift
+##### Redshift
 
 **Concept Type:** Observable
 **Ontological Area:** Measurement / Information / Interpretation
@@ -7705,41 +7707,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Redshift is a observable in the observational spectral shift domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Redshift carries specific ontological commitments even when it is presented as "just mathematics." It typically treats observational spectral shift as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Redshift gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Redshift sits at **Inference layer**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain central during migration because they travel across many theories and often carry hidden ontological assumptions that have to be unpacked before replacement work can stay disciplined. For Redshift specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these survive as carefully re-situated concepts whose meaning depends on explicit layer placement rather than inherited ambiguity. For Redshift, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Redshift is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Spacetime Curvature
+##### Spacetime Curvature
 
 **Concept Type:** Construct
 **Ontological Area:** Spacetime / Gravity
@@ -7750,41 +7752,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Spacetime Curvature is a construct in the effective geometry descriptor domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Spacetime Curvature carries specific ontological commitments even when it is presented as "just mathematics." It typically treats effective geometry descriptor as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Spacetime Curvature gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Spacetime Curvature sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The Euclidean void keeps fixed metric identity; curvature language survives as an observer-level reconstruction of Noether-Sea and assembly behavior.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain central during migration because they travel across many theories and often carry hidden ontological assumptions that have to be unpacked before replacement work can stay disciplined. For Spacetime Curvature specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these survive as carefully re-situated concepts whose meaning depends on explicit layer placement rather than inherited ambiguity. For Spacetime Curvature, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Spacetime Curvature is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly which layer generates the concept, which layer measures it, and which layer is tempted to over-interpret it. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Vacuum Energy
+##### Vacuum Energy
 
 **Concept Type:** Quantity
 **Ontological Area:** Spacetime / Gravity
@@ -7795,41 +7797,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Medium and Constitutive Regimes
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology; Observationally Over-Inferred
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Vacuum Energy is a quantity in the background energy assignment domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Vacuum Energy carries specific ontological commitments even when it is presented as "just mathematics." It typically treats background energy assignment as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Vacuum Energy gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Vacuum Energy sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Medium and Constitutive Regimes**. The relation type is **Mislocated Ontology; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. Energy should be assigned to architrinos, wakes as interaction history, assemblies, and Noether-Sea state, not to the Euclidean void as a substance.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain central during migration because they travel across many theories and often carry hidden ontological assumptions that have to be unpacked before replacement work can stay disciplined. For Vacuum Energy specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these survive as carefully re-situated concepts whose meaning depends on explicit layer placement rather than inherited ambiguity. For Vacuum Energy, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Vacuum Energy is that the observational footing is weaker than the ontological story usually built on top of it. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the sound data product from the stronger ontological story and show what additional evidence would be required to move beyond placeholder status. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Fine-Structure Constant
+##### Fine-Structure Constant
 
 **Concept Type:** Parameter
 **Ontological Area:** Quantum Effective Theory
@@ -7840,41 +7842,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recovered as Effective Limit
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Fine-Structure Constant is a theory in the dimensionless coupling domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Fine-Structure Constant carries specific ontological commitments even when it is presented as "just mathematics." It typically treats dimensionless coupling as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Fine-Structure Constant gets a great deal right operationally: it is part of the inherited predictive package that $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover with little or no loss of empirical power. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Fine-Structure Constant sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain central during migration because they travel across many theories and often carry hidden ontological assumptions that have to be unpacked before replacement work can stay disciplined. For Fine-Structure Constant specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these survive as carefully re-situated concepts whose meaning depends on explicit layer placement rather than inherited ambiguity. For Fine-Structure Constant, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Fine-Structure Constant is that empirical and computational success by itself does not decide where in the stack the concept belongs. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legacy formalism as a controlled limit of substrate and assembly dynamics with explicit domain-of-validity conditions. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Wavefunction
+##### Wavefunction
 
 **Concept Type:** Construct
 **Ontological Area:** Measurement / Information / Interpretation
@@ -7885,41 +7887,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the legac
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Emergent Effective Closures
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Wavefunction is a construct in the state representation domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Wavefunction carries specific ontological commitments even when it is presented as "just mathematics." It typically treats state representation as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Wavefunction gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Wavefunction sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain central during migration because they travel across many theories and often carry hidden ontological assumptions that have to be unpacked before replacement work can stay disciplined. For Wavefunction specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these survive as carefully re-situated concepts whose meaning depends on explicit layer placement rather than inherited ambiguity. For Wavefunction, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Wavefunction is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly which layer generates the concept, which layer measures it, and which layer is tempted to over-interpret it. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Information
+##### Information
 
 **Concept Type:** Construct
 **Ontological Area:** Measurement / Information / Interpretation
@@ -7930,41 +7932,41 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Mislocated Ontology
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Information is a construct in the representation and state difference domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Information carries specific ontological commitments even when it is presented as "just mathematics." It typically treats representation and state difference as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability, when present, is generally secondary to the main structural claim and usually enters through statistics, uncertainty, or effective fitting.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Information gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Information sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain central during migration because they travel across many theories and often carry hidden ontological assumptions that have to be unpacked before replacement work can stay disciplined. For Information specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these survive as carefully re-situated concepts whose meaning depends on explicit layer placement rather than inherited ambiguity. For Information, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Information is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly which layer generates the concept, which layer measures it, and which layer is tempted to over-interpret it. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
-#### Probability
+##### Probability
 
 **Concept Type:** Construct
 **Ontological Area:** Measurement / Information / Interpretation
@@ -7975,39 +7977,4637 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Stack Placement:** Observation and Inference
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Relation:** Recoverable Only After Reinterpretation
 
-##### 1. Concept Summary
+###### 1. Concept Summary
 
 Probability is a construct in the epistemic and ensemble weighting domain. It was built to provide a mathematically controlled description of the phenomena grouped within cross-cutting concepts to differentially map, and in the comparative stack it is best read as a layer-specific explanatory framework rather than as an automatic statement of final ontology.
 
-##### 2. Ontological Commitments
+###### 2. Ontological Commitments
 
 Probability carries specific ontological commitments even when it is presented as "just mathematics." It typically treats epistemic and ensemble weighting as explanatorily central, assumes the background structure appropriate to its domain, and invites users to treat its native variables as real unless a separate layer analysis is supplied. Time is usually treated as the parameter native to the formalism rather than as a separately analyzed substrate variable. Probability enters either as an ontic claim, an ensemble summary, or an observer-facing update rule depending on the program.
 
-##### 3. What This Concept Gets Right
+###### 3. What This Concept Gets Right
 
 Probability gets something durable right: it captures a stable regularity that any serious replacement must preserve. Its durable value lies in the mathematical structure, phenomenological constraints, and comparison targets it contributes to the larger map.
 
-##### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
+###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
 In the neutral comparative stack, Probability sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Observation and Inference**. The relation type is **Recoverable Only After Reinterpretation**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse.
 
-##### 5. Transition-Period Relevance
+###### 5. Transition-Period Relevance
 
 These remain central during migration because they travel across many theories and often carry hidden ontological assumptions that have to be unpacked before replacement work can stay disciplined. For Probability specifically, the transition task is to keep the working calculations, observables, and fit procedures while making the stack placement explicit enough that ontology does not hitch a free ride on convenience.
 
-##### 6. Long-Term Relevance
+###### 6. Long-Term Relevance
 
 In a mature stack these survive as carefully re-situated concepts whose meaning depends on explicit layer placement rather than inherited ambiguity. For Probability, the mature role is determined by whether it remains a law, an approximation, an observational summary, or only a historical warning once the deeper causal account is in place.
 
-##### 7. Failure Mode or Limiting Tension
+###### 7. Failure Mode or Limiting Tension
 
 The clearest limiting tension for Probability is that its native variables are too easily promoted from successful descriptors into final ontology. Until that tension is resolved, the concept cannot function as ultimate explanation even if it remains indispensable in practice.
 
-##### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
+###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to state explicitly which layer generates the concept, which layer measures it, and which layer is tempted to over-interpret it. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
+
+### Theory Bridges
+
+#### Quantum Operator Mapping
+
+The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document establishes the formal mapping between abstract quantum operators and the topological torques acting on tri-binary assemblies, bounded by the causal-delay master equation.
+
+##### The Tri-Binary Qubit and Phase Space
+
+A physical qubit corresponds to the stable orientational states of a tri-binary assembly. Let $\hat{\mathbf{n}}_{\text{in}}$, $\hat{\mathbf{n}}_{\text{mid}}$, and $\hat{\mathbf{n}}_{\text{out}}$ denote the normal vectors of the inner ($v > c_f$), middle ($v = c_f$), and outer ($v < c_f$) binary orbital planes, respectively.
+
+The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ relative to the middle binary fulcrum $\hat{\mathbf{n}}_{\text{mid}}$.
+
+The abstract Hilbert space $\mathcal{H}$ serves as an effective description of the continuous non-Markovian phase space $\Gamma$. The dynamics of the constituent architrinos are governed by the delayed, line-of-action, Jacobian-weighted causal-root sum defined in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). This page uses that law as the substrate dynamics and treats Hilbert operators as recovered record-channel maps, not as primitive generators.
+
+Superposition is not a linear combination of independent ontological branches. It is a bounded, precessional limit cycle in $\Gamma$. During superposition, the assembly continuously emits polarized potential along its causal wake, exploring multiple stable path-histories simultaneously without settling into a singular orientational attractor.
+
+##### Functional Bounds and Well-Posedness
+
+To legitimately map to unitary evolution, the delay integro-differential system must exhibit global existence and uniqueness without finite-time blow-up.
+
+This is a regularity and domain-of-validity gate, not a claim that every future reachability question is algorithmically decidable. The useful comparison with fluid regularity problems is the discipline of separating a well-posed evolution law, finite-window observable control, and possible global pathologies. A quantum-operator chart may be valid on the retained interval even while a stronger unbounded prediction problem remains outside the chart's authority.
+
+Unitary evolution in $\mathcal{H}$ can be recovered only if the effective phase space $\Gamma_{\text{eff}}$ carries an approximately measure-preserving flow. A plausible closure route is to prove that the interaction kernel satisfies a uniform Lipschitz bound over the relevant path-history interval. The $1/r^2$ singularity may be regularized by the maximal-curvature radius $R_{\text{min}}$ if stable binaries impose the lower bound
+$$
+\|\mathbf{r}_i(t) - \mathbf{r}_j(t_{\text{hist}})\|^2 \ge 4R_{\text{min}}^2.
+$$
+Under that bounded-geometry condition, $\mathbf{a}_i(t)$ remains bounded on the modeled interval. This supports, but does not by itself prove, the well-posedness needed for continuous orientational transformations.
+
+##### QFT Locality Residual
+
+QFT microcausality is a recovery target for the effective operator map, not a substrate premise. Standard local QFT encodes the absence of operational influence between spacelike-separated observables by requiring local operators to commute outside the light cone. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this behavior must be recovered after coarse-graining architrino assemblies, causal wakes, apparatus kernels, and path-history provenance into observer-level operators. It should not be read backward as evidence that continuum fields are the final ontology.
+
+Let $A$ and $B$ be two apparatus-resolved record regions during a window $I=[t,t+\Delta t]$. Let $\widehat O_A(t')$ and $\widehat O_B(t')$ be the effective observables reconstructed from the same phase-space state $\Gamma$, path-history record $\mathcal{H}$, and local detector kernels. Define the normalized locality residual
+
+$$
+\Delta_{\mathrm{loc}}(A,B;I)
+=
+\sup_{t'\in I}
+\frac{\left\|[\widehat O_A(t'),\widehat O_B(t')]\right\|}
+{\|\widehat O_A(t')\|\,\|\widehat O_B(t')\|+\varepsilon_{\mathrm{op}}}.
+$$
+
+Here $\varepsilon_{\mathrm{op}}>0$ prevents division by a null record channel and is taken small only after both observables have nonzero calibration norms. The QFT locality recovery condition is
+
+$$
+\Delta_{\mathrm{loc}}(A,B;I)\le\epsilon_{\mathrm{loc}}
+$$
+
+for calibrated record regions whose recovered observer-sector separation is spacelike over $I$. The residual tests operation-order independence in the effective algebra; it does not require the substrate variables themselves to be continuum fields or exact equal-time local operators.
+
+The bound must be evaluated while preserving shared preparation provenance. An entangled pair may carry correlations inherited from a common preparation event, but those correlations must not become a controllable signal between separated detector settings. A large $\Delta_{\mathrm{loc}}$ in a validated low-energy QFT regime is therefore a failure of effective QFT recovery. A small $\Delta_{\mathrm{loc}}$ shows only that the operator reconstruction has recovered the tested commuting algebra in that regime; it does not promote the continuum field description to final ontology. If the residual is made small only by discarding path-history, detector-kernel, Born-rule, Bell, no-signaling, or gate-latency constraints, the locality recovery is a fitted abstraction rather than a closure result.
+
+The operator reconstruction also inherits the restartability test from [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md). On a declared coarse-graining $\mathcal{Q}$ and record window, the effective operator chart is valid only to the extent that its reduced transition law carries the path-history data needed for later records. If the corresponding divisibility residual $\Delta_{\mathrm{div}}(t_0,t_1,t_2;\mathcal{Q})$ is $O(1)$, the Hilbert-space description may still be useful as an effective branch envelope, but it has not earned a restartable observer-level state at $t_1$. After record autonomy, the same retained channel should drive $\Delta_{\mathrm{div}}$ below its declared tolerance before the operator state is used as a fresh initial condition.
+
+##### Scattering-Amplitude Factorization Guardrail
+
+The effective operator map must also recover the scattering-amplitude contract of QFT where that contract has been experimentally validated. This is not a substrate claim that Feynman diagrams or continuum fields are fundamental. It is a benchmark on the observer-level $S$-matrix extracted from finite event windows.
+
+For a declared scattering chart $\theta=(\mathcal{Q},\mathcal{K},W,T)$, let $S_\theta=1+iT_\theta$ be the effective operator that maps calibrated incoming records to outgoing records after external-state extraction. Write the corresponding $n$-record amplitude as $\mathcal{A}_{n,\theta}$. If a physical channel $I$ carries intermediate invariant $P_I^2$ and accepted transient channel $h$, the standard pole-factorization comparison is
+$$
+\mathcal{A}_{n,\theta}
+\xrightarrow{P_I^2\to m_h^2}
+\sum_h
+\mathcal{A}_{L,\theta}^{(h)}
+\frac{i}{P_I^2-m_h^2+i0}
+\mathcal{A}_{R,\theta}^{(h)}
++\mathcal{A}_{\mathrm{reg},\theta}.
+$$
+The corresponding residual should remove the pole before taking the boundary limit:
+$$
+\mathcal{R}_{\mathrm{amp}}(I;\theta)
+=
+\limsup_{P_I^2\to m_h^2}
+\frac{
+\left\|
+(P_I^2-m_h^2)\mathcal{A}_{n,\theta}
+-i\sum_h
+\mathcal{A}_{L,\theta}^{(h)}
+\mathcal{A}_{R,\theta}^{(h)}
+\right\|
+}{
+\sum_h
+\left\|
+\mathcal{A}_{L,\theta}^{(h)}
+\mathcal{A}_{R,\theta}^{(h)}
+\right\|
++\varepsilon_{\mathrm{amp}}
+}.
+$$
+The chart passes this guardrail only if $\mathcal{R}_{\mathrm{amp}}(I;\theta)\le\epsilon_{\mathrm{amp}}$ for the declared physical channels. The residue must be generated by the same deterministic event-window flow, transient assembly record, causal-wake path history, and final-state density used for the cross-section or reaction-rate comparison. If the factorization appears only after replacing the branch ledger with a separate amplitude ansatz, the operator map has reproduced the standard calculation but has not closed the reduction.
+
+Positive-geometry and on-shell-diagram methods sharpen the same test. When an auxiliary positive-coordinate representation is used, its canonical form may be accepted only as a comparison object whose physical boundary residues match the factorized channel records:
+$$
+\operatorname{Res}_{\partial_I}\Omega_\theta
+=
+\Omega_{L,\theta}^{(h)}\wedge\Omega_{R,\theta}^{(h)}.
+$$
+Any pole attached to an internal cell boundary rather than a physical branch boundary must cancel in the summed record. A compact spurious-boundary residual is
+$$
+\mathcal{R}_{\mathrm{spur}}(\theta)
+=
+\sum_{q\in\mathcal{S}_{\mathrm{spur}}(\theta)}
+\left\|
+\operatorname{Res}_{q}\Omega_\theta
+\right\|.
+$$
+This condition keeps positive geometry in its proper role: a powerful comparison certificate for factorization, locality emergence, and cancellation of unphysical singularities, not an ontological replacement for assembly state and causal-wake provenance.
+
+##### Hilbert-Representation Invariance Guardrail
+
+Effective Hilbert-space trajectories are not ontology by themselves. A time-dependent unitary re-description can change the apparent state-vector path while preserving all calibrated record probabilities if the operators and Hamiltonian are transformed with it. For
+$$
+|\psi'\rangle=U(t)|\psi\rangle,
+\qquad
+\widehat O'_a=U(t)\widehat O_aU^\dagger(t),
+$$
+the Hamiltonian transforms as
+$$
+H'=UHU^\dagger+i\hbar\,\dot U\,U^\dagger.
+$$
+
+A substrate interpretation of an effective operator model must therefore be invariant under this representational freedom:
+$$
+\Pi_{\mathrm{ont}}\!\left[\psi,H,\{\widehat O_a\}\right]
+=
+\Pi_{\mathrm{ont}}\!\left[\psi',H',\{\widehat O'_a\}\right],
+$$
+unless the apparatus kernel, preparation record, or retained boundary data have physically changed. Here $\Pi_{\mathrm{ont}}$ denotes the proposed mapping from the effective Hilbert description back to the underlying assembly, causal-wake, and record-channel content. If two unitarily related descriptions yield different substrate claims while predicting the same records, the proposal has reified a coordinate choice in Hilbert space rather than identifying a $\mathbb{A}\mathbb{A}\mathbb{A}$ object.
+
+This guardrail is especially important for superposition claims. A state vector may be expanded in many bases, so a statement that a superposition has formed becomes physically meaningful only after the record channel has fixed the effective coordinates being tested. The ontology-side claim must be expressed in terms of assembly state, causal-wake history, apparatus kernel, and record-autonomy criteria, not in terms of an unqualified Hilbert-basis expansion.
+
+For two effective Hilbert descriptions $D$ and $D'$ of the same declared setup $\theta=(\mathcal{Q},\mathcal{K},W,T)$, representation agreement is a record-probability statement:
+$$
+\Delta_{\mathrm{repr}}(D,D';\theta)
+=
+\sup_{R\in\mathcal{R}_\theta}
+D_{\mathrm{TV}}\!\left(
+P_D(R\mid\theta),
+P_{D'}(R\mid\theta)
+\right),
+$$
+where $\mathcal{R}_\theta$ is the calibrated record family for the apparatus channel. If $\Delta_{\mathrm{repr}}(D,D';\theta)\le\varepsilon_{\mathrm{repr}}$, then a zero amplitude or missing component in one representation is not a substrate-existence claim. It becomes an admissible branch removal only when the shared basin measure and record filter also give
+$$
+\mu_{*,T}(B_i)\mathbf{1}_{\mathrm{rec}}(i;\theta)
+\le
+\varepsilon_{\mathrm{Born}}.
+$$
+Otherwise the effective chart has hidden a record-bearing basin behind a coordinate choice.
+
+##### Subsystem-Partition Guardrail
+
+Entanglement and subsystem claims require the same discipline. In relativistic quantum-field descriptions, a change of observer, access region, or mode decomposition can change the effective subsystem split and therefore the entanglement assigned to the record. That dependence is useful comparison mathematics, but it is not a license to promote the chosen tensor factorization into substrate ontology.
+
+For a Physical Observer $O$, analysis window $W$, apparatus kernels $K_A,K_B$, and candidate closure record $\theta$, let
+$$
+\mathcal{P}_{AB}^{(O,W)}:\Gamma_W(\theta)\to
+\mathcal{R}_A^{(O,W)}\times\mathcal{R}_B^{(O,W)}
+$$
+be the declared projection from the retained substrate history to two observer-level record regions. The entanglement diagnostic is admissible only as a pushed-forward record statement,
+$$
+E_{AB}^{(O,W)}(\theta)
+=
+\mathcal{E}_{K_A,K_B}
+\left(
+(\mathcal{P}_{AB}^{(O,W)})_*\mu_{*,T}
+\right),
+$$
+where $\mu_{*,T}$ is the finite-window basin or metastable measure used by the same measurement packet, and $\mathcal{E}_{K_A,K_B}$ denotes the selected observer-level entanglement functional after the apparatus kernels are fixed.
+
+If a second observer or mode split uses $\mathcal{P}_{A'B'}^{(O',W')}$ and gives a different value, the first question is whether the projections, access regions, and kernels are different. Such a disagreement may be a real observer-level reconstruction effect while the underlying $\mathbb{U}_{\text{now}}$ state remains one definite substrate history. It becomes an ontology claim only if the proposed projection is replayable through the same preparation, apparatus, no-signaling, Bell, and record-autonomy constraints.
+
+##### Probability-Representation Guardrail
+
+Probability-list and generalized-probabilistic descriptions are useful comparison mathematics, but a list of outcome probabilities is not automatically an adequate observer-level state. The effective operator map also needs the record-channel topology: which calibrated states are close, which can be distinguished by declared apparatus records, and which remain connected by live branch or path-history structure. For a declared setup $(\mathcal{Q},\mathcal{K},W,T)$, let $s$ and $s'$ be two reduced effective state classes, let $P_{\mathcal{K}}(s)$ be the list of probabilities assigned to the calibrated record outcomes in that setup, and let $d_{\mathrm{rec}}(s,s';\mathcal{Q},\mathcal{K},W,T)$ be the corresponding record-distinguishability distance.
+
+A probability representation is admissible for closure only on a benchmark domain where it does not collapse record-distinguishable structure:
+$$
+d_{\mathrm{prob}}\!\left(P_{\mathcal{K}}(s),P_{\mathcal{K}}(s')\right)
+\ge
+\alpha_{\mathcal{K}}\,
+d_{\mathrm{rec}}(s,s';\mathcal{Q},\mathcal{K},W,T)
+-
+\varepsilon_{\mathrm{top}},
+\qquad
+\alpha_{\mathcal{K}}>0.
+$$
+This is a topology-preservation guardrail, not a claim that probability language is useless. If two states are far apart by the calibrated record geometry but arbitrarily close as probability lists, the probability representation may still be a convenient scaffold, but it cannot by itself carry the $\mathbb{A}\mathbb{A}\mathbb{A}$ operator closure. The missing structure must be supplied by the apparatus kernel, retained path-history data, basin family, and record-autonomy criteria.
+
+##### Admissible Quantization-Domain Guardrail
+
+The operator map is not a global quantization of every classical function. Groenewold-van Hove-type obstructions are useful here because they prevent a hidden overclaim: no bridge should assert that all smooth observer-level functions can be assigned operators while preserving every Poisson bracket as a commutator. The $\mathbb{A}\mathbb{A}\mathbb{A}$ target is narrower. For a declared coarse-graining $\mathcal{Q}$, apparatus kernel $\mathcal{K}$, retained access region $W$, and record window $T$, let
+$$
+\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}
+\subset C^\infty(M_{\mathcal{Q}})
+$$
+be the admissible effective observables whose records are physically calibrated by that setup. For $f,g\in\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$, define
+$$
+\Delta_{\mathrm{qmap}}(\mathcal{Q},\mathcal{K},W,T)
+=
+\sup_{f,g}
+\frac{
+\left\|
+[\widehat O_f,\widehat O_g]
+-
+i\hbar\,\widehat O_{\{f,g\}_{\mathcal{Q}}}
+\right\|_{\mathcal{K},W,T}
+}{
+\|\widehat O_f\|_{\mathcal{K},W,T}\,
+\|\widehat O_g\|_{\mathcal{K},W,T}
++\varepsilon_{\mathrm{op}}
+}.
+$$
+The quantization-domain closure condition is
+$$
+\Delta_{\mathrm{qmap}}(\mathcal{Q},\mathcal{K},W,T)\le\varepsilon_{\mathrm{qmap}}
+$$
+on the same record window used for Born weights, contextuality checks, and locality checks. The restriction to $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ is physical only when it is fixed before fitting the benchmark and justified by the apparatus channel, retained path-history data, and recordability criteria. If the admissible set is changed after seeing a failed observable, the operator map has hidden a quantization choice inside the closure.
+
+Time-like observables obey the same guardrail. Absolute time $t$ remains the substrate parameter, not an operator that every apparatus must quantize. Arrival, dwell, delay, or traversal-time quantities become admissible only when the setup supplies a clock-pointer variable, an access region, and a record rule that turn them into calibrated observer-level records. For example, a weak clock for a declared region $\Omega$ may define
+$$
+T_\Omega
+=
+\alpha_T^{-1}
+\left(
+Y_\Omega(A_\epsilon(t_1))-Y_\Omega(A_{\text{pre}})
+\right),
+$$
+but $T_\Omega$ belongs to $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ only for the declared apparatus kernel and record window that calibrate $Y_\Omega$. A negative or otherwise anomalous time-like value is therefore a signed conditional response in that domain, not a new substrate time variable and not evidence for backward-in-$t$ causation. If two time observables coincide in a standard benchmark, the coincidence is a recovery target for the declared record channel; if they differ, the operator map must preserve the distinction instead of forcing one global time operator.
+
+##### Observable-Domain Guardrail
+
+Dimensional or representation claims are meaningful only after the observable domain has been declared. Two effective descriptions can be operationally equivalent on a restricted apparatus record set even when their internal coordinates, apparent dimension, or auxiliary geometry differ. That equivalence is useful comparison mathematics, but it cannot be read backward as substrate ontology.
+
+For two effective descriptions $D_1$ and $D_2$ over the same declared setup $(\mathcal{Q},\mathcal{K},W,T)$, compare only the admissible observables already fixed by $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$. A compact residual is
+$$
+\Delta_{\mathrm{obs}}(D_1,D_2;\mathcal{Q},\mathcal{K},W,T)
+=
+\sup_{O\in\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}}
+D_{\mathrm{TV}}\!\left(
+P_{D_1}(R_O\,|\,\mathcal{Q},\mathcal{K},W,T),
+P_{D_2}(R_O\,|\,\mathcal{Q},\mathcal{K},W,T)
+\right).
+$$
+Here $D_{\mathrm{TV}}$ is total-variation distance between the two induced record distributions. If this residual is small, the two descriptions are equivalent only for that record channel and window. A claim about hidden dimensions, auxiliary spaces, or a different continuum field description still requires an $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping from assembly state, causal-wake history, apparatus kernel, and retained boundary data. If the equivalence disappears when the observable set is enlarged, the extra structure was a comparison chart, not a substrate discovery.
+
+##### Apparatus-Context Guardrail
+
+A self-adjoint operator is an effective observer-level record map, not a guarantee that the substrate carries a preassigned value for that operator in every possible measurement context. The same target assembly can be coupled to different apparatus kernels, and those kernels define different record channels. The closure problem is therefore contextual in the operational sense: each claimed observable must name the preparation, apparatus kernel, coarse-graining, and persistence window that make the record physically meaningful.
+
+The same rule applies before a record forms. A candidate branch split is an apparatus-context statement when the retained transition law loses restartability across the candidate alternatives, but it is not yet an autonomous record until the record and entropy-locking tests pass. This keeps "formation of a superposition" separate from both arbitrary representation choice and completed measurement.
+
+For a commuting measurement context $C$ with apparatus kernel $\mathcal{K}_C$, let
+$$
+r_{O,C}
+=
+R_{O,C}\!\left(
+\Phi_{\tau_C}^{\mathrm{tot}}(\Gamma_0;\mathcal{K}_C)
+\right)
+$$
+be the record assigned to effective observable $O$ after the coupled apparatus-target flow reaches its declared record time. If the standard benchmark fixes a context product $\chi_C$, the recovery residual may be written
+$$
+\Delta_{\mathrm{KS}}(C)
+=
+\Pr\!\left[
+\prod_{O\in C} r_{O,C}\ne \chi_C
+\right].
+$$
+For an observable $O$ appearing in two calibrated contexts $C$ and $C'$, the shared-record compatibility residual is
+$$
+\Delta_{\mathrm{ctx}}(O;C,C')
+=
+D_{\mathrm{TV}}\!\left(
+P(r_{O,C}),
+P(r_{O,C'})
+\right).
+$$
+The operator map passes this guardrail only when the context products and shared marginals are recovered within tolerance,
+$$
+\sup_C\Delta_{\mathrm{KS}}(C)\le\epsilon_{\mathrm{KS}},
+\qquad
+\sup_{O,C,C'}\Delta_{\mathrm{ctx}}(O;C,C')\le\epsilon_{\mathrm{ctx}},
+$$
+while the model does not introduce a global context-independent value map for all effective operators. This is the Kochen-Specker side of the operator-closure burden recorded in [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md); it is a constraint on apparatus-resolved records, not a new substrate ontology.
+
+A compact state-independent benchmark is the Mermin-Peres square. In a Pauli benchmark chart, let $\mathcal{C}_{\mathrm{MP}}$ be the three row contexts and three column contexts of the square, with benchmark product signs
+$$
+\chi_C\in\{+1,+1,+1,+1,+1,-1\}
+$$
+under a fixed row/column convention. The corresponding residual is the same apparatus-context test specialized to this calibrated square:
+$$
+\Delta_{\mathrm{MP}}
+=
+\max\!\left(
+\sup_{C\in\mathcal{C}_{\mathrm{MP}}}
+\Pr\!\left[
+\prod_{O\in C}r_{O,C}\ne\chi_C
+\right],
+\sup_{O,C,C'}
+D_{\mathrm{TV}}\!\left(P(r_{O,C}),P(r_{O,C'})\right)
+\right).
+$$
+Passing the benchmark means $\Delta_{\mathrm{MP}}\le\epsilon_{\mathrm{MP}}$ without assigning a global context-independent value $v(O)\in\{-1,+1\}$ to every effective observable. The parity proof explains why that last clause is mandatory: if such a value map existed, multiplying all six context-product equations would give $\prod_O v(O)^2=+1$ on the left, while the benchmark signs multiply to $-1$ on the right. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the context-indexed records from one substrate flow, not to hide a noncontextual value assignment inside the effective operator map.
+
+##### Symmetry and Geometric-Phase Guardrails
+
+Discrete symmetries and geometric phases are effective operator constraints, not automatic substrate identifications. A parity benchmark should specify the observer-level action on position and momentum records,
+$$
+\Pi\widehat{\mathbf{x}}\Pi^\dagger=-\widehat{\mathbf{x}},
+\qquad
+\Pi\widehat{\mathbf{p}}\Pi^\dagger=-\widehat{\mathbf{p}},
+$$
+while axial angular-momentum records obey the corresponding pseudo-vector rule. In a central-potential chart the comparison parity of a state is $(-1)^l$. The $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target is to derive the same even/odd selection structure from the apparatus-resolved assembly and wake geometry, not to assume a continuum spherical-harmonic ontology.
+
+Time reversal is more restrictive because the standard operator is antiunitary. A valid effective chart must preserve transition probabilities while conjugating amplitudes and reversing momentum-like records:
+$$
+\Theta i\Theta^{-1}=-i,
+\qquad
+\Theta\widehat{\mathbf{x}}\Theta^{-1}=\widehat{\mathbf{x}},
+\qquad
+\Theta\widehat{\mathbf{p}}\Theta^{-1}=-\widehat{\mathbf{p}}.
+$$
+For half-integer spin charts the standard benchmark is $\Theta^2=-1$, which forces Kramers degeneracy when the Hamiltonian is time-reversal invariant. A compact residual is
+$$
+\mathcal{R}_{\Theta}(\theta)
+=
+\max\left(
+\frac{\|[\Theta,H_\theta]\|_{\mathcal{K},W,T}}{\varepsilon_{\Theta H}},
+\frac{\left\|\Theta_\theta^2+I\right\|_{\mathrm{spin}}}{\varepsilon_{\Theta^2}},
+\frac{\max_a|\Delta E_a^{\mathrm{pair}}|}{\varepsilon_K}
+\right)
+\le 1
+$$
+on a declared half-integer-spin benchmark. Failure of this residual means the operator map has not recovered the tested antiunitary symmetry, even if it reproduces some energy levels.
+
+Adiabatic evolution adds a holonomy benchmark. For a slowly varied effective Hamiltonian $H_\theta(\lambda)$ with non-degenerate state $|n(\lambda)\rangle$, the comparison Berry connection and curvature are
+$$
+A_i^{(n)}(\lambda)
+=
+-i\left\langle n(\lambda)\middle|\partial_i n(\lambda)\right\rangle,
+\qquad
+F_{ij}^{(n)}
+=
+\partial_iA_j^{(n)}-\partial_jA_i^{(n)}.
+$$
+The effective geometric phase around a closed parameter loop $C$ is
+$$
+e^{i\gamma_n(C)}
+=
+\exp\!\left(-i\oint_C A_i^{(n)}\,d\lambda^i\right),
+$$
+with Chern-number benchmark
+$$
+\frac{1}{2\pi}\int_S F^{(n)}\in\mathbb{Z}
+$$
+for closed parameter surfaces where the effective bundle is defined. The native closure packet must identify the slow assembly controls, the avoided-crossing gap, and the record channel that reads the phase. A Berry phase inserted only as an abstract Hilbert-space phase is a comparison annotation, not an operator recovery.
+
+##### Supersymmetric Index Comparison
+
+Supersymmetric quantum mechanics is useful here as an external invariance benchmark. Its algebra
+$$
+H=\frac{1}{2}\{Q,Q^\dagger\},
+\qquad
+Q^2=0
+$$
+forces non-negative energy, pairs positive-energy bosonic and fermionic states, and leaves unpaired zero modes counted by the Witten index
+$$
+I_W=\operatorname{Tr}\left((-1)^F e^{-\beta H}\right)
+=
+\dim H_{0,B}-\dim H_{0,F}.
+$$
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not an imported supersymmetric ontology. It is a model for how an effective operator chart can carry a robust integer invariant while individual paired states move under parameter changes.
+
+If a future branch chart uses a supercharge-like factorization or Morse-theory analogy, it should report an index residual
+$$
+\mathcal{R}_{\mathrm{ind}}(\theta)
+=
+\max\left(
+\frac{\|H_\theta-\frac{1}{2}\{Q_\theta,Q_\theta^\dagger\}\|}{\varepsilon_H},
+\frac{\|Q_\theta^2\|}{\varepsilon_Q},
+\frac{|I_{\mathrm{branch}}-\sum_X(-1)^{\mu(X)}|}{\varepsilon_I}
+\right)
+\le 1.
+$$
+Here $X$ ranges over declared critical assemblies or branch critical points and $\mu(X)$ is the Morse index of the retained effective Hessian. Instanton or tunneling terms may lift paired approximate ground states, but they must do so through a declared Morse-Witten differential rather than through an unexplained deletion of records. This comparison is high value because it separates robust topological counting from ordinary spectral fitting.
+
+##### Unitary Evolution and Topological Torques
+
+Quantum gates correspond to continuous, energy-conserving topological torques applied to the tri-binary orbital planes.
+
+* **Pauli Operators ($X, Y, Z$):** These map to discrete $\pi$-rotations of the tri-binary orientation axes. The torque $\boldsymbol{\tau} = \int \mathbf{r} \times \mathbf{F}_{\text{hist}} d^3x$ is applied via external causal wakes, smoothly rotating $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ while the middle binary maintains the $v = c_f$ stability threshold.
+* **Hadamard Operator ($H$):** This operation is modeled as a critical bifurcation. The applied torque should drive the assembly into a controlled neighborhood of the saddle separating the $|0\rangle$ and $|1\rangle$ attractors, with an equiprobable meta-stable precessional state as the closure target rather than an assumed result.
+
+To prevent ionization or irreversible symmetry breaking during these operations, the total action $S = \int (T - V) dt$ must remain bounded. We define an ionization threshold $\Delta S_{\text{ionize}}$; any gate operation must satisfy $\Delta S \ll \Delta S_{\text{ionize}}$ to maintain the factorization of the tri-binary structure.
+
+##### Entanglement via Path-History Potentials
+
+Entanglement-like behavior must separate newly established causal coupling from correlations inherited from a shared preparation event. New gates and near-range phase-locking require delayed causal-wake exchange. Ordinary separated Bell-pair tests instead use a pair-provenance ledger that was fixed at preparation and later read out by local apparatus interactions. There is no instantaneous action at a distance and no newly transmitted setting information during spacelike-separated measurement.
+
+* **Causal phase-locking:** As the causal wakes of nearby or deliberately coupled assemblies intersect, the continuous $1/r^2$ path-history potentials can force their orbital phases into coupled attractors. This is a finite-speed interaction and must obey the latency and fidelity bounds below.
+* **Controlled-NOT (CNOT) Gate:** This represents conditional logic where the target assembly's allowable phase space is dynamically bounded by the causal wake of the control assembly. The $v=c_f$ middle binary of the target assembly acts as a resonant receiver, only permitting a bit-flip torque if the control assembly's wake possesses the specific polarization geometry of the $|1\rangle$ state.
+* **Bell-pair preparation:** Bell-state language is observer-level shorthand for a nonseparable pair-provenance record produced by a shared preparation event. After the pair is separated beyond causal contact for the measurement window, the Bell gate is not maintained by continuous bidirectional flux between detectors. The closure target is to derive the pair-provenance measure and the two local apparatus-response maps, then show that their compression reproduces the tested Bell correlations while preserving no-signaling and measurement independence.
+
+##### Measurement and Dynamical Collapse
+
+Wavefunction collapse is formalized as a deterministic, non-linear relaxation process rather than a probabilistic axiom.
+
+The measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether Sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the tri-binary assembly undergoes attractor relaxation, deterministically entering a completed record basin. The effective eigenstate label is licensed only after the apparatus kernel maps that basin to a stable record channel.
+
+Decoherence is the continuous loss of path-history coherence due to unresolved fluctuations in the local Noether-Sea state. It is an artifact of treating the observer-level vacuum as empty or structureless rather than as the effective quiet limit of a dense medium whose assemblies are still dynamically active.
+
+##### Falsifiability and Observables
+
+* **Gate Latency Scaling:** Because any newly established causal-wake coupling is limited by $c_f$, a two-qubit gate such as CNOT should acquire a distance-dependent setup or fidelity timescale with a lower bound of order $\Delta t \ge d/c_f$. Existing correlations inherited from a shared preparation event are a separate case and should not be described as newly transmitted during the gate.
+* **QFT Locality Residual:** In any regime claimed to recover local QFT, the normalized commutator residual $\Delta_{\mathrm{loc}}(A,B;I)$ must remain below $\epsilon_{\mathrm{loc}}$ for calibrated record regions outside the recovered effective causal cone. Passing this test is an effective-algebra result, not a promotion of continuum-field ontology.
+* **Quantization-Domain Residual:** In any regime claimed to recover quantum operators from a classical or coarse-grained chart, the admissible observable set $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ and residual $\Delta_{\mathrm{qmap}}$ must be reported. A global bracket-to-commutator claim over all smooth functions is rejected by the no-go ledger rather than treated as an open $\mathbb{A}\mathbb{A}\mathbb{A}$ obligation.
+* **Observable-Domain Residual:** When two effective descriptions are claimed to be equivalent, the declared observable set and residual $\Delta_{\mathrm{obs}}$ must be reported. A small value licenses only record-channel equivalence on that apparatus window, not a substrate claim about auxiliary dimensions or continuum field objects.
+* **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with local Noether-core density, represented by $\rho_{\text{core}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
+
+##### Statistical Measure and the Born Rule Emergence
+While the trajectory of a single tri-binary under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether Sea.
+
+* **Local Finite-Time Invariant Measure Target:** For a fixed preparation class, apparatus calibration, local Noether-Sea band, and record window $T$, the closure target is a local measure $\mu_{*,T}$ on the relevant record-window section $\Gamma_{\text{eff}}^{(T)}$, not a global measure over every physically possible state. If $\Phi_T$ is the finite-time apparatus-target flow, the required recovery is approximate invariance on that retained window:
+$$
+d_{\mathrm{TV}}\!\left((\Phi_T)_*\mu_{*,T},\,\mu_{*,T}\right)\le\varepsilon_\mu,
+\qquad
+\varepsilon_\mu\ll 1.
+$$
+* **Basin Volume Mapping Target:** The probability $P_k$ of relaxing into a specific eigenstate $|k\rangle$ should be derived from the phase-space volume of its corresponding record-window attractor basin $\mathcal{B}_k^{(T)}$, weighted by the inferred local measure:
+$$
+P_k(T)=\int_{\mathcal{B}_k^{(T)}} d\mu_{*,T}(\Gamma).
+$$
+* **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the calibrated limit of these weighted finite-time basin volumes. When the tri-binary's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the theory must show that microstate sensitivity plus the finite-time apparatus flow recover $\mu_{*,T}$ and push it through the record basins with $P_k(T)\to |\psi_k|^2$ in the relevant operating regime. This is a local invariant-measure recovery target, not an assumption of global ergodicity.
+* **Thermodynamic Ensemble Consistency Target:** The same $\mu_{*,T}$ must also support the thermodynamic summaries used to describe apparatus irreversibility and decoherence. For a declared coarse-graining $\mathcal{Q}$, access region $W$, record window $T$, and thermodynamic projection $\pi_{\mathrm{th}}:\Gamma_{\text{eff}}^{(T)}\to\mathcal{Y}_{\mathrm{th}}$, define
+$$
+\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)
+=
+d_{\mathrm{TV}}\!\left(
+(\pi_{\mathrm{th}})_*\mu_{*,T},
+\mu_{\mathrm{th}}^{\mathcal{Q},W,T}
+\right).
+$$
+Here $\mu_{\mathrm{th}}^{\mathcal{Q},W,T}$ is the observer-level thermodynamic ensemble fixed by the same retained energy, boundary data, apparatus calibration, and record channel. It is not a second ontological probability law. Let $\Delta_{\mathrm{Born}}(T)$ denote the distance between the derived basin weights and the calibrated $|\psi_k|^2$ target on the same window. A credible Born-rule closure should report
+$$
+\Delta_{\mathrm{Born}}(T)\le\varepsilon_{\mathrm{Born}},
+\qquad
+\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)\le\varepsilon_{\mathrm{ens}},
+$$
+on the same retained window. If the Born weights and the thermodynamic summaries require incompatible measures, the model has hidden an ensemble retuning inside the measurement account.
+
+The same derived weights must also support ordinary empirical use. For a repeated preparation class and a fixed apparatus record channel, let $D_N=\{N_k\}$ be $N$ recorded outcomes and $\widehat f_k=N_k/N$ the observed frequencies. The inference-facing residual is
+$$
+\Delta_{\mathrm{freq}}(N,T)
+=
+\sum_k\left|\widehat f_k-P_k(T)\right|.
+$$
+The closure target is not a decision-theory axiom and not a new probability postulate. It is the requirement that the same basin weights used above make repeated-record statistics converge in the calibrated regime:
+$$
+\Pr_{\mu_{*,T}}\!\left[
+\Delta_{\mathrm{freq}}(N,T)>\varepsilon_{\mathrm{freq}}(N)
+\right]\le\alpha_N,
+\qquad
+\varepsilon_{\mathrm{freq}}(N)\to0,\quad
+\alpha_N\to0.
+$$
+This is the native $\mathbb{A}\mathbb{A}\mathbb{A}$ version of the scientific-inference burden: once a record channel is declared, the derived $P_k(T)$ must be usable for confirmation and falsification in the same way the Born weights are used in laboratory quantum mechanics, without importing agent-centered rationality assumptions as substrate physics.
+
+##### Kinetic Limits and Decoherence
+The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether Sea, or in bridge prose the spacetime medium.
+
+* **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether Sea, the tri-binary orientation evolves according to an effective Fokker-Planck equation.
+* **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor.
+* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether-Sea state and the spatial density variables $\rho_{\text{core}}(\mathbf{x},t)$ or $n(\mathbf{x},t)$. It is not an intrinsic property of the tri-binary, but a measure of the local medium's entropy production rate during the operation.
+
+##### Statistical Falsifiability and Observables
+* **Finite-Time Born Rule Deviations:** If the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires the local invariant-measure approximation to settle over the apparatus record window, ultra-fast sequential measurements approaching the local path-history delay timescale $d/c_f$ become the natural place to search for deviations from standard $|\psi|^2$ statistics.
+* **Non-Markovian Memory Tails:** Autocorrelation functions of sequential measurements on a single qubit are a candidate place to search for heavy-tailed decay rather than simple exponential decay. The proposed source is persistent self-hit memory in the inner binary, but this remains a simulation and experimental-signature target.
+
+#### Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸
+
+This document maps the structural relationship between the de Broglie–Bohm pilot-wave formalism and the deterministic causal wake dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is comparative: if $\mathbb{A}\mathbb{A}\mathbb{A}$ recovers pilot-wave-style guidance, it must do so with a **single ontology**. The guiding structure cannot be a separate entity layered atop particles; it must be the physical causal wake generated by the architrinos themselves. Guidance, interference, and quantization are therefore closure targets for the same Master Equation that governs all motion, without adding a second ontological category.
+
+---
+
+##### Traditional de Broglie–Bohm Pilot-Wave Theory
+
+###### Core Postulates
+
+The de Broglie–Bohm (dBB) formulation of quantum mechanics (de Broglie 1927, Bohm 1952) retains definite particle trajectories while reproducing the full statistical content of standard quantum mechanics. It rests on two pillars:
+
+**1. The Guidance Equation.** A system of $N$ particles with positions $\mathbf{Q} = (\mathbf{q}_1, \dots, \mathbf{q}_N) \in \mathbb{R}^{3N}$ is guided by the wavefunction $\psi(\mathbf{Q}, t)$. The velocity of the $k$-th particle is:
+
+$$
+\dot{\mathbf{q}}_k = \frac{\hbar}{m_k} \operatorname{Im} \frac{\nabla_k \psi}{\psi}\bigg|_{\mathbf{Q}(t)},
+$$
+
+where $\nabla_k$ is the gradient with respect to $\mathbf{q}_k$. The particle follows a deterministic trajectory through configuration space, steered at every instant by the phase gradient of $\psi$.
+
+**2. The Wave Equation.** In its ordinary non-relativistic, fixed-particle-number form, the wavefunction $\psi$ evolves according to the standard Schrödinger equation:
+
+$$
+i\hbar \frac{\partial \psi}{\partial t} = \hat{H} \psi,
+$$
+
+independently of the particle configuration. $\psi$ is defined on the full $3N$-dimensional configuration space and acts as a real dynamical field that pilots the particles.
+
+###### The Quantum Potential
+
+Writing $\psi = R\, e^{iS/\hbar}$ in polar form, the guidance equation becomes $\dot{\mathbf{q}}_k = \nabla_k S / m_k$, and the Schrödinger equation splits into a continuity equation for $R^2$ and a modified Hamilton–Jacobi equation:
+
+$$
+\frac{\partial S}{\partial t} + \sum_k \frac{(\nabla_k S)^2}{2m_k} + V + Q = 0,
+$$
+
+where the **quantum potential** is:
+
+$$
+Q = -\sum_k \frac{\hbar^2}{2m_k} \frac{\nabla_k^2 R}{R}.
+$$
+
+$Q$ depends on the global shape of $R$ (the amplitude of $\psi$), not on its local value. This is the source of nonlocality in dBB: the quantum potential couples all particles instantaneously through configuration space, enabling entanglement correlations and interference.
+
+###### Statistical Content and the Born Rule
+
+If the initial particle distribution is $|\psi(\mathbf{Q}, t_0)|^2$ (the **quantum equilibrium hypothesis**), the guidance equation preserves this distribution for all future times ($|\psi|^2$-equivariance). All statistical predictions of standard QM—including the Born rule—follow as theorems, not axioms, once equilibrium is assumed.
+
+The lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is structural rather than ontological. The useful part of the Bohmian comparison is not the separate pilot wave; it is the contract among a deterministic flow, an invariant or transported measure, and the observer-level record statistics. Let $\Phi_{t-t_0}$ denote the retained deterministic causal-wake flow on a resolved state space $\Gamma_{\eta,h}$ with mollifier scale $\eta$ and retained path-history depth $h$. If $\mu_0$ is the preparation measure, then
+$$
+\mu_t
+=
+(\Phi_{t-t_0})_*\mu_0
+$$
+is the only admissible source of outcome weights in the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ channel. For an extracted effective wavefunction $\psi_{\mathrm{eff}}$ and a declared completed-record partition $\{B_k^\theta(t)\}$ of $\Gamma_{\eta,h}$, after any record filter $\mathbf{1}_{\mathrm{rec}}(k;\theta)$ has been applied, the Born comparison is therefore the residual
+$$
+\Delta_{\mathrm{Born}}^\theta(t)
+=
+\max_k
+\frac{
+\left|
+\mu_t(B_k^\theta(t))
+-
+\int_{\Omega_k^\theta(t)}
+|\psi_{\mathrm{eff}}(q,t)|^2\,dq
+\right|
+}{\varepsilon_k}.
+$$
+The closure target is $\Delta_{\mathrm{Born}}^\theta(t)\le1$ over the declared record window, with the same $\mu_t$ also generating the apparatus frequencies and thermodynamic summaries. This is the causal-wake analogue of equivariance: Born weights must be preserved or approached by the native deterministic state and basin map, not inserted as an observer-side probability rule.
+
+The stronger equivariance target compares currents, not only endpoint weights. If $\mathcal{P}_\theta:\Gamma_{\eta,h}\to\Omega_\theta$ is the effective configuration projection and $\rho_\theta(q,t)$ is the pushed-forward density, the record current induced by the deterministic flow should satisfy
+$$
+\partial_t\rho_\theta(q,t)
++
+\nabla_q\cdot \mathbf{J}_\theta(q,t)
+=
+\mathcal{R}_{\mathrm{eq}}^\theta(q,t),
+$$
+with
+$$
+\frac{\|\mathcal{R}_{\mathrm{eq}}^\theta\|_{\mathcal{D}'(\Omega_\theta\times T)}}{\epsilon_{\mathrm{eq}}}
++
+\frac{\|\mathbf{J}_\theta-\mathbf{J}_{\psi_{\mathrm{eff}}}\|_{W^{-1,1}}}{\epsilon_J}
+\le 1.
+$$
+This is the piece of the Bohmian lesson that can be promoted without adopting particle positions plus a separate configuration-space wave as ontology: the native flow must carry a measure and current whose compression behaves like the quantum continuity law.
+
+###### Ontological Inventory
+
+dBB theory has **two ontological categories**:
+
+1. **Particles**: point-like objects with definite positions $\mathbf{Q}(t)$ in 3D space.
+2. **The pilot wave $\psi$**: a real field on $3N$-dimensional configuration space that guides particles but is not itself composed of particles.
+
+The ontological status of $\psi$ is debated: is it a physical field (Valentini), a law of nature (Dürr, Goldstein, Zanghì), or an effective description of deeper structure? This two-category structure is the principal conceptual cost of the theory.
+
+---
+
+##### $\mathbb{A}\mathbb{A}\mathbb{A}$: Single-Ontology Guidance
+
+###### The Ontological Reduction
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework collapses the two ontological categories of dBB into one. There are only architrinos—point transmitter/receivers of polarized potential in a Euclidean void with absolute time. The "pilot wave" is not a separate entity; it is the **superposed causal wake** generated by the architrinos themselves and experienced by every architrino at every instant.
+
+Each architrino continuously emits expanding causal wake surfaces at wake speed $c_f$. At any absolute time $t$, the total potential wake contribution at the location of architrino $i$ is the linear superposition of all wake surfaces from all other architrinos (and from its own past emissions, in the self-hit regime) that intersect its position at time $t$:
+
+$$
+\mathbf{a}_i(t)
+=
+\sum_j \sum_{t_0 \in \mathcal{C}_{ij}(t)}
+\kappa\, \sigma_{ij}\,
+\frac{|q_i q_j|}{r_{ij}^2\,\left|J_{ij}(t;t_0)\right|}\,
+\hat{\mathbf{r}}_{ij}.
+$$
+
+This is the Master Equation. The causal wake is not postulated alongside the particles; it is **generated by** the particles and **acts back on** them. The guidance is therefore **self-consistent**: architrinos create the wake that steers them, and their motion updates the wake that will steer them in the future.
+
+###### The Experienced-Wake Perspective
+
+From the perspective of any single architrino, the dynamics reduce to a causal response loop:
+
+1. The architrino moves through a landscape of potential gradients from all other sources (the superposed wake).
+2. Each gradient arrives after a causal delay set by the wake speed $c_f$.
+3. These delayed gradients are the only forces that accelerate it.
+4. Its accumulated motion (velocity, trajectory) is the integrated record of past interactions with the wake.
+5. Its own emissions contribute to the wake that will later guide other architrinos—and, if it has ever exceeded $c_f$ and curved, itself.
+
+Stability and structure emerge when this response loop becomes periodic: the architrino locks into a repeating pattern within the wake it co-creates. Assemblies (binaries, tri-binaries, atoms) are precisely such self-consistent locked modes.
+
+This is the single-ontology guidance picture behind the pilot-wave comparison: the guiding structure is the causal wake, and the guided entities are the architrinos that generate it. There is no separate $\psi$ on configuration space.
+
+###### How the Causal Wake Plays the Role of $\psi$
+
+The structural correspondence between the dBB pilot wave and the $\mathbb{A}\mathbb{A}\mathbb{A}$ causal wake is systematic:
+
+**Phase gradient → velocity field.** In dBB, $\dot{\mathbf{q}}_k = \nabla_k S / m_k$: the particle velocity is set by the phase gradient of $\psi$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration of an architrino is set by the vector sum of line-of-action forces from intersecting wake surfaces, with magnitudes weighted by the causal Jacobians of the active branches. For a coarse-grained assembly moving slowly through a quasi-homogeneous Noether Sea, the net wake gradient produces an effective velocity field for the assembly's center of mass that can be identified with $\nabla S / m$ in the appropriate continuum limit.
+
+**Amplitude → density and basin structure.** In dBB, $R^2 = |\psi|^2$ gives the probability density (in equilibrium). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the local intensity of the superposed wake determines the density of stable attractor basins and the fractional phase-space volume leading to each basin. Regions of high wake amplitude correspond to regions where assemblies are more likely to be found, not because they are "spread out" but because the deterministic dynamics funnel trajectories toward those regions.
+
+**Quantum potential → self-hit and medium feedback.** The dBB quantum potential $Q$ depends on the global shape of $R$ and produces nonlocal, context-dependent forces absent in classical mechanics. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the analogous role is played jointly by:
+
+- **Self-hit dynamics**: an architrino's interaction with its own past emissions, producing non-Markovian forces that depend on path history and trajectory curvature.
+- **Noether-Sea feedback**: the local medium of Noether-Sea tri-binary assemblies responds to and modulates the propagation of causal wakes, introducing effective potential gradients that depend on the global density and stress of the medium.
+
+Together, these are the candidate trajectory-shaping resources that could recover the qualitative role of $Q$: context dependence, path-history dependence, and forces irreducible to classical pairwise potentials.
+
+###### Non-Markovian Memory: Beyond Standard Pilot-Wave Theory
+
+A structural feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ guidance that has no counterpart in standard dBB is **non-Markovian memory** from the self-hit regime. In dBB, the guidance equation is Markovian given $\psi$: the velocity at time $t$ depends on $\psi(\mathbf{Q}, t)$ and the current position $\mathbf{Q}(t)$, with no explicit dependence on the particle's past trajectory.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration at time $t$ depends on the **full past worldline** of each architrino, because:
+
+1. The causal set $\mathcal{C}_{ij}(t)$ (the emission times whose wake surfaces currently intersect the receiver) depends on where source $j$ was at all past times, not merely on its current position.
+2. Self-hit contributions ($j = i$) depend on whether the architrino ever exceeded $c_f$ and curved, introducing persistent memory of velocity-regime transitions that occurred arbitrarily far in the past.
+
+This path-history dependence enriches the guidance dynamics beyond the Markovian structure of dBB. It provides a natural mechanism for:
+
+- **Hysteresis**: an assembly's response to a perturbation depends on which attractor it previously occupied.
+- **Discrete stable modes**: the self-hit feedback loop admits a countable set of phase-locked configurations (the resonance bands of the outer binary), producing the quantization of energy levels without imposing it by hand.
+- **Measurement back-action**: the apparatus wake permanently alters the target assembly's self-hit geometry, making the measurement interaction irreversible at the micro-dynamic level.
+
+---
+
+##### Quantum Phenomena as Causal-Wake Guidance Effects
+
+###### Interference and Diffraction
+
+In dBB, interference arises because the pilot wave $\psi$ passes through all available paths (e.g., both slits) and the resulting amplitude/phase pattern steers particles into constructive-interference regions.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the comparison is structurally suggestive, but the mechanism must be derived from causal-wake dynamics rather than borrowed from dBB:
+
+- A translating tri-binary assembly emits causal wake surfaces continuously. When the assembly approaches a double slit, its wake, propagating at $c_f$ through the Noether Sea, passes through both openings.
+- Behind the barrier, the wake contributions from the two slits superpose linearly (the Master Equation is linear in sources). The resulting potential landscape has a modulated spatial structure: regions of constructive reinforcement alternate with regions of cancellation.
+- The assembly, guided by the total wake gradient at its location, is steered toward high-intensity regions. Over many identically prepared trials, the closure target is to recover the standard interference pattern.
+
+The assembly passes through one slit; the wake passes through both. This is the pilot-wave-style comparison, but the $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to realize the effect without a separate ontological wave.
+
+###### Tunneling
+
+In dBB, a particle can traverse a classically forbidden barrier because the pilot wave penetrates the barrier (with exponentially decaying amplitude), and the guidance equation can steer particles through the evanescent tail.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding mechanism involves the Noether Sea and the assembly's interaction with the medium:
+
+- The "barrier" is a region of high effective potential created by surrounding assemblies or medium configurations.
+- The assembly's causal wake extends into and through the barrier region, attenuated by the medium's response (analogous to evanescent coupling).
+- If the wake gradient at the assembly's location points into the barrier and the assembly's internal configuration (binary phases, wake history) places it near a basin boundary, the assembly can be driven across the barrier by the residual wake gradient.
+- The tunneling probability depends on the barrier geometry, the local medium density, and the assembly's internal phase—all computable from the Master Equation in principle.
+
+Weak-measurement trajectory reconstructions sharpen this comparison without settling the ontology. If a post-selected weak probe recovers an averaged path, flux, dwell time, or traversal-time response that agrees with a de Broglie--Bohm trajectory calculation, the retained content is the calibrated conditional ensemble observable. That result is useful comparison pressure on the causal-wake proof route, but it is not by itself evidence for a separate pilot wave, a completed intermediate record, or a literal Bohmian trajectory ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is to derive the same averaged response from below-threshold apparatus coupling, path-history data, and the record-forming basin selected at the end of the trial.
+
+###### Quantization of Energy Levels
+
+In dBB, energy quantization follows from the requirement that $\psi$ be single-valued and normalizable, which selects discrete eigenvalues.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but equally rigorous mechanism: **phase-locking of the self-consistent response loop**. An assembly in a confining potential (e.g., an electron tri-binary bound to an atomic nucleus) must satisfy a closure condition: the wake it generates, after propagating through the surrounding medium and reflecting off the confining potential, must return to the assembly with the correct phase to sustain its current orbital frequency. Only a discrete set of orbital configurations satisfies this condition—the resonance bands indexed by integer $f$ (see [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)). Transitions between bands occur when the action transfer per cycle crosses the $h$-scale threshold.
+
+This is the wake-based analog of the Bohr-Sommerfeld quantization condition, derived from the self-consistency of the causal response loop rather than imposed as a boundary condition on an abstract wave.
+
+De Broglie's 1924 phase-harmony argument sharpens this into a single action-optics closure target for $\mathbb{A}\mathbb{A}\mathbb{A}$. The useful content is not a second pilot-wave ontology; it is the requirement that the assembly's internal periodicity, the phase carried by the associated causal wake, and the dynamically possible path remain locked. For a retained assembly center $\mathbf{X}(t)$, effective action $S_{\mathrm{eff}}$, internal phase $\theta_{\mathrm{int}}(t)$, and wake phase $\theta_{\mathrm{wake}}(\mathbf{x},t)=S_{\mathrm{eff}}(\mathbf{x},t)/\hbar_{\mathrm{eff}}$, the phase-guidance residual may be stated as
+$$
+\mathcal{R}_{\mathrm{phase}}(\gamma)
+=
+\max\left(
+\sup_{t\in[0,T]}
+\frac{|\theta_{\mathrm{int}}(t)-\theta_{\mathrm{wake}}(\mathbf{X}(t),t)-2\pi k(t)|}{\varepsilon_\theta},
+\sup_{t\in[0,T]}
+\frac{\left|\,\mathbf{v}_{\mathrm{group}}(\mathbf{X}(t),t)-\dot{\mathbf{X}}(t)\,\right|}{\varepsilon_v},
+\frac{\left|\oint_\gamma \mathbf{p}_{\mathrm{eff}}\cdot d\mathbf{x}-n h_{\mathrm{eff}}\right|}{\varepsilon_I}
+\right)
+\le 1,
+$$
+with $k(t),n\in\mathbb{Z}$, $\mathbf{p}_{\mathrm{eff}}=\nabla S_{\mathrm{eff}}$, and $\gamma$ the closed retained orbit. The first term is phase harmony between the internal periodicity and the causal-wake phase along the realized path. The second term is the group-velocity recovery condition: the envelope of the effective wake packet must move with the assembly, not merely share its phase. The third term is the loop condition linking Fermat-style ray selection to Maupertuis action closure. Thus geometrical optics, dynamics, and stable quantization are one recovery burden: rays of the extracted wake phase must coincide with dynamically admissible causal-wake paths, and closed stable modes must return with integer action phase.
+
+###### Boundary Conditions and Spectral Quantization
+
+Standard bound-state quantization is not produced by integers alone. It is produced by normalizability, self-adjointness, and boundary matching. In one-dimensional comparison problems, finite jumps in $V(x)$ require
+$$
+[\psi]_{x=a}=0,
+\qquad
+[\psi']_{x=a}=0,
+$$
+while an attractive point potential carries the derivative jump
+$$
+[\psi']_{0}
+=
+-\frac{2mV_0}{\hbar^2}\psi(0).
+$$
+For three-dimensional central potentials, the radial substitution $\chi(r)=rR(r)$ leaves the self-adjoint boundary requirement
+$$
+\chi(0)=0
+$$
+for ordinary regular states. Equivalently, the radial Hamiltonian must make the boundary form vanish,
+$$
+\mathcal{B}_0[R,S]
+=
+\lim_{r\to0}
+r^2
+\left(
+S\frac{dR}{dr}
+-
+\frac{dS}{dr}R
+\right)
+=0
+$$
+for all admissible radial functions $R$ and $S$ in the effective domain.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue is not a literal wavefunction wall. It is a branch-domain condition on the assembly return map and causal-wake history. A candidate mode $\Gamma_n$ with return time $T_n$ must satisfy
+$$
+\mathcal{Q}_{\mathrm{bc}}(n)
+=
+\max\left(
+\frac{\operatorname{dist}(\mathcal{P}_{T_n}(\Gamma_n),\Gamma_n)}{\varepsilon_{\mathrm{return}}},
+\frac{|\Delta\varphi_n-2\pi q_n|}{\varepsilon_\varphi},
+\frac{|\Delta I_n-N_n h_{\mathrm{eff}}|}{\varepsilon_I},
+\frac{|\mathcal{B}_0^{\mathrm{eff}}|}{\varepsilon_{\mathrm{sa}}}
+\right)
+\le 1.
+$$
+Here $\mathcal{P}_{T_n}$ is the retained assembly return map, $\Delta\varphi_n$ is the closed-cycle phase return, $q_n\in\mathbb{Z}$ is the winding count, $\Delta I_n$ is the action returned through the mode, and $\mathcal{B}_0^{\mathrm{eff}}$ is the effective self-adjoint boundary residual after the coarse-grained chart has been extracted. This is the boundary-condition bridge: standard eigenvalue discreteness is recovered only when a native causal-wake mode also closes its return, phase, action, and effective-domain tests.
+
+Central potentials add a second comparison target. Standard quantum mechanics uses
+$$
+\hat{\mathbf{L}}=-i\hbar\,\mathbf{x}\times\nabla,
+\qquad
+[\hat L_i,\hat L_j]=i\hbar\,\epsilon_{ijk}\hat L_k,
+\qquad
+[\hat H,\hat L_i]=[\hat H,\hat L^2]=0
+$$
+for a central potential, allowing states to be labeled by $n,l,m$. The hydrogen benchmark is
+$$
+E_n^{\mathrm{QM}}=-\frac{\mathrm{Ry}}{n^2},
+\qquad
+l=0,\ldots,n-1,
+\qquad
+m=-l,\ldots,l,
+\qquad
+g_n=n^2.
+$$
+The effective atomic assembly closure should therefore report, for levels up to a declared $N$,
+$$
+\mathcal{R}_{\mathrm{H}}(N)
+=
+\max_{1\le n\le N}
+\left(
+\frac{|E_n^{\mathbb{A}\mathbb{A}\mathbb{A}}+\mathrm{Ry}_\theta/n^2|}{\varepsilon_E(n)},
+\frac{|g_n^{\mathbb{A}\mathbb{A}\mathbb{A}}-n^2|}{\varepsilon_g(n)}
+\right)
+\le 1,
+$$
+with fine-structure and Lamb-type splittings treated as later, smaller correction targets. The degeneracy test is important because ordinary central symmetry gives only the $2l+1$ angular degeneracy; hydrogen's $n^2$ pattern is a stronger Coulomb benchmark that a phase-locking story must reproduce rather than merely invoke.
+
+Scattering supplies the continuum counterpart of the same spectral test. In one dimension, a localized potential has an $S$-matrix built from reflection and transmission amplitudes, and probability conservation requires unitarity. In three-dimensional central scattering, the corresponding partial-wave benchmark is
+$$
+S_l(k)=e^{2i\delta_l(k)},
+\qquad
+f(\theta)
+=
+\frac{1}{2ik}
+\sum_{l=0}^{\infty}
+(2l+1)\left(e^{2i\delta_l(k)}-1\right)P_l(\cos\theta).
+$$
+The total cross-section and optical theorem become
+$$
+\sigma_T(k)
+=
+\frac{4\pi}{k^2}
+\sum_l(2l+1)\sin^2\delta_l(k),
+\qquad
+\sigma_T(k)=\frac{4\pi}{k}\operatorname{Im}f(0).
+$$
+An $\mathbb{A}\mathbb{A}\mathbb{A}$ scattering recovery should therefore report
+$$
+\mathcal{R}_{S}(K;\theta)
+=
+\max_{k\in K}
+\max\left(
+\frac{\|S_\theta(k)S_\theta^\dagger(k)-I\|}{\varepsilon_U},
+\frac{\left|\sigma_T^\theta(k)-4\pi\,\operatorname{Im}f_\theta(0;k)/k\right|}{\varepsilon_{\mathrm{opt}}},
+\sup_l\frac{|\sigma_l^\theta(k)-4\pi(2l+1)\sin^2\delta_l^\theta(k)/k^2|}{\varepsilon_l}
+\right)
+\le 1.
+$$
+This residual is a conservation and asymptotic-domain test. It does not require the substrate to contain an abstract incoming plane wave; it requires the retained causal-wake packet to reproduce the same outgoing flux ledger after the detector and access region have been declared.
+
+The analytic structure of the $S$-matrix is a separate benchmark. Bound states appear as poles on the positive imaginary momentum axis, while resonances appear as lower-half-plane poles with
+$$
+E=E_0-\frac{i\Gamma}{2},
+\qquad
+S(E)\sim e^{2i\theta(E)}
+\frac{E-E_0-i\Gamma/2}{E-E_0+i\Gamma/2}.
+$$
+Near such a pole the partial cross-section has the Breit-Wigner form
+$$
+\sigma_l(E)
+\approx
+\frac{4\pi}{k^2}(2l+1)
+\frac{\Gamma^2}{4(E-E_0)^2+\Gamma^2}.
+$$
+The native recovery target is to derive $E_0$ and $\Gamma$ from a metastable assembly basin and its escape channel. A resonance width fitted directly to a spectral peak without a path-history escape ledger is a phenomenological match, not a completed causal-wake explanation.
+
+The Lippmann-Schwinger equation provides a controlled perturbative comparison for weak effective potentials:
+$$
+|\psi\rangle
+=
+|\phi\rangle
++
+\frac{1}{E-H_0+i0^+}V|\psi\rangle.
+$$
+At first Born order the scattering amplitude is proportional to the Fourier transform of the effective potential. This gives a direct failure test for any proposed $V_{\mathrm{eff}}$: short-distance structure at scale $L$ should enter only through momentum transfers $q\sim 1/L$, and long-range Coulomb-like channels require a separate asymptotic phase treatment rather than the compact-support Born packet.
+
+###### Pointlike Idealizations and Running Couplings
+
+Pointlike effective potentials are useful only when their cutoff dependence is controlled. The two-dimensional attractive delta-potential comparison is the warning case. With dimensionless coupling $\tilde g=mg/\hbar^2$ and UV cutoff $\Lambda$, the bound-state energy scale can be written as
+$$
+E_B(\Lambda,\tilde g)
+=
+\frac{\Lambda^2}{2\left(e^{2\pi/\tilde g}-1\right)}.
+$$
+Keeping $E_B$ fixed while changing $\Lambda$ requires the coupling to run,
+$$
+\tilde g(\Lambda;E_B)
+=
+\frac{2\pi}{\log\!\left(1+\Lambda^2/(2E_B)\right)}.
+$$
+A pointlike comparison model is acceptable only if cutoff changes are compensated by the declared effective coupling:
+$$
+\mathcal{R}_{\mathrm{run}}(\Lambda_1,\Lambda_2)
+=
+\left|
+\frac{
+E_B(\Lambda_1,\tilde g(\Lambda_1))
+-
+E_B(\Lambda_2,\tilde g(\Lambda_2))
+}{E_B}
+\right|
+\le
+\varepsilon_{\mathrm{run}}.
+$$
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizations, not an imported ontology. Whenever a calculation uses a mollifier width $\eta$, a core cutoff $\epsilon_c$, a memory cutoff $\tau_{\min}$, or a point-source effective potential, the predicted spectrum, scattering response, or basin threshold must either be cutoff-independent inside tolerance or accompanied by a running effective parameter such as $\kappa_{\mathrm{eff}}(\Lambda)$. A spectrum that exists only at one arbitrary cutoff is a regularization artifact, not a recovered quantum level.
+
+---
+
+##### The Phenomenological Mapping
+
+| de Broglie–Bohm Concept | $\mathbb{A}\mathbb{A}\mathbb{A}$ Micro-Dynamics |
+|:---|:---|
+| **Pilot wave $\psi$ on $\mathbb{R}^{3N}$** | Superposed causal wake in physical $\mathbb{R}^3$, generated by all architrinos and experienced by each at its location. No separate ontological entity; wake is produced by and acts on the same architrinos. |
+| **Guidance equation** $\dot{\mathbf{q}}_k = (\hbar/m_k)\operatorname{Im}(\nabla_k\psi/\psi)$ | Master Equation: acceleration is the vector sum of all Jacobian-weighted inverse-square causal wake-surface intersections. In the coarse-grained, slow-assembly limit, the net wake gradient produces an effective velocity field identifiable with $\nabla S/m$. |
+| **Quantum potential** $Q = -(\hbar^2/2m)(\nabla^2 R/R)$ | Jointly: self-hit non-Markovian feedback (path-history-dependent forces from own past emissions) plus Noether-Sea medium response (context-dependent effective potential from the surrounding tri-binary medium). |
+| **Quantum equilibrium** $\rho = |\psi|^2$ | Emergent statistical distribution over attractor basin volumes, mapped from unresolved Noether-Sea boundary and path-history structure. The Born rule is a **target derivation**, not an axiom; it belongs to the statistics gate below. |
+| **Configuration-space nonlocality** | Non-separable hidden-variable geometry from shared creation events (see [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)). Correlations are carried in the joint internal configuration, not mediated by a field on $\mathbb{R}^{3N}$. |
+| **Wave passes through both slits** | Causal wake passes through both slits; assembly passes through one. Guidance through the modulated wake landscape reproduces the interference pattern. |
+| **Markovian guidance** (given $\psi$) | Non-Markovian guidance: acceleration depends on full past worldline via causal sets $\mathcal{C}_{ij}(t)$ and self-hit history. Richer dynamics; hysteresis and discrete mode-locking absent in standard dBB. |
+| **Two ontological categories** (particles + wave) | **One ontological category**: architrinos generate and are guided by their own causal wake. Ontological economy is maximal. |
+
+---
+
+##### Comparison: Structural Advantages and Open Costs
+
+###### Advantages Over Standard dBB
+
+**Ontological economy.** dBB requires particles *plus* a pilot wave $\psi$ on $\mathbb{R}^{3N}$—a high-dimensional, physically obscure entity. $\mathbb{A}\mathbb{A}\mathbb{A}$ requires only architrinos in $\mathbb{R}^3$. The causal wake is a derived object, not a primitive.
+
+**Physical 3D space.** The dBB pilot wave lives on $3N$-dimensional configuration space, raising the question of whether configuration space is physically real. In $\mathbb{A}\mathbb{A}\mathbb{A}$, all dynamics unfold in physical 3D Euclidean space with absolute time. The effective high-dimensional correlations arise from shared creation histories and conservation constraints, not from a literal high-dimensional field.
+
+**Natural non-Markovian structure.** dBB guidance is memoryless given $\psi$. $\mathbb{A}\mathbb{A}\mathbb{A}$ guidance inherently includes memory (self-hit, path history), providing richer dynamical resources for quantization, measurement back-action, and decoherence without additional postulates.
+
+**Unified guidance and interaction.** In dBB, the pilot wave guides but does not absorb energy from particles (it obeys the Schrödinger equation independently). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the causal wake is dynamically coupled to the architrinos: emissions deplete the emitter's kinetic budget, and receptions accelerate the receiver. Guidance and energy exchange are aspects of the same interaction law.
+
+###### Open Costs and Challenges
+
+**Born rule derivation.** dBB achieves Born-rule statistics by assuming quantum equilibrium ($\rho = |\psi|^2$) and proving equivariance. $\mathbb{A}\mathbb{A}\mathbb{A}$ must derive the Born rule from the Master Equation dynamics and the statistical properties of the Noether Sea. This is the statistics gate in the closure chain below.
+
+**Effective $\psi$ recovery.** The claim that the coarse-grained wake reproduces $\psi$ in the continuum limit requires explicit construction: define the coarse-graining scale, derive the effective wave equation, and show that it reduces to the Schrödinger equation in the non-relativistic, weak-field limit. This derivation is incomplete.
+
+**Computational tractability.** The full Master Equation with path-history dependence and self-hit is a coupled system of state-dependent delay differential equations for $\sim 10^{80}$ architrinos. Practical calculations require controlled coarse-graining at multiple scales. The hierarchy of effective theories (architrino → binary → tri-binary → assembly → continuum field) must be established with quantitative error bounds at each level.
+
+**Relativistic extension.** dBB has well-known difficulties with relativistic generalization (preferred foliation, particle creation/annihilation). $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time substrate handles the preferred foliation naturally but must demonstrate that emergent Lorentz invariance holds to the required precision ($< 10^{-17}$) and that particle creation/annihilation (assembly formation/dissolution) is correctly described.
+
+The comparison warning is that a preferred foliation is not disqualifying by itself; empirical failure appears only if the foliation leaks into observer-level signal statistics, clock/ruler behavior, or creation-channel rates. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure burden is therefore twofold: derive the effective Lorentz map tightly enough that preferred-frame leakage stays below the precision bound, and show that assembly association/dissociation induces the same record statistics that QFT encodes as particle creation and annihilation.
+
+---
+
+##### Observables, Falsifiability, and Failure Modes
+
+**Comparison claim:** The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework offers a single-ontology pilot-wave-style proof route in which the guiding structure is the physical causal wake generated by architrinos and guidance is governed by the Master Equation. The closure target is to show that quantum phenomena such as interference, tunneling, quantization, and entanglement arise from the self-consistent dynamics of this wake in the appropriate effective regimes.
+
+**Assumptions:**
+- Architrinos are the sole fundamental entities; no separate pilot wave is postulated.
+- The superposed wake at each location is the linear sum of all intersecting causal wake surfaces.
+- Self-hit and Noether-Sea feedback jointly play the role of the quantum potential.
+- Quantization arises from phase-locking of the causal response loop.
+- The Born rule is emergent from attractor basin statistics (to be derived).
+
+**Closure targets and candidate predictions:**
+- Recover standard quantum interference, diffraction, and tunneling phenomena after deriving the effective wave equation.
+- Match observed energy spectra, including the Rydberg constant and hydrogen fine structure, when the phase-locking conditions are solved for atomic-scale assemblies.
+- Derive decoherence timescales with environmental dependence through local Noether-Sea density, a sensitivity absent in bare dBB and potentially testable in precision interferometry.
+- Predict controlled deviations from standard Schrödinger evolution in extreme regimes, such as near Planck-core objects or high Noether-Sea density gradients, after the medium nonlinearity and self-hit threshold terms are quantified.
+
+**Failure Modes:**
+- If the coarse-grained wake does not reduce to the Schrödinger equation in the non-relativistic, weak-field limit, the framework fails to reproduce standard quantum mechanics at the effective level.
+- If the Born rule cannot be derived from the Master Equation dynamics and Noether-Sea statistics—even after accounting for chaotic mixing and attractor basin geometry—the statistical foundations are incomplete and the theory lacks predictive power for individual experiments.
+- If the phase-locking quantization condition yields energy levels that deviate from observed atomic spectra by more than the theory's estimated systematic uncertainty, the specific self-consistent loop mechanism is falsified.
+- If emergent Lorentz invariance fails at tested precision ($> 10^{-17}$ anisotropy in assembly dynamics), the substrate ontology is experimentally excluded regardless of the guidance structure.
+
+##### Closure Program Integration (quantum chain)
+
+This chapter is the primary synthesis for quantum closure in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+Three linked gates:
+1. **Envelope gate (effective wave equation):** derive the coarse-grained evolution law from the master-delay dynamics and recover Schrödinger form in the non-relativistic weak-field limit.
+2. **Statistics gate (Born):** derive basin-measure probabilities as an invariant measure of the coarse-grained dynamics.
+3. **Threshold gate (collapse/decoherence):** model finite-time separatrix crossing and record-making irreversibility.
+
+Keep this chain separate from the spin-statistics / exchange ledger in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md). The Born ledger asks how branch weights become $|\psi|^2$ probabilities once an effective state space exists; the spin-statistics ledger asks why the effective state space is fermionic or bosonic.
+
+Minimal mathematical spine:
+$$
+\text{master delay dynamics}\ \Longrightarrow\ \text{kinetic closure for }f(t,\mathbf{x},\mathbf{v})
+\Longrightarrow\ \psi=\sqrt{\rho}\,e^{iS/\hbar_{\mathrm{eff}}},
+$$
+$$
+i\hbar_{\mathrm{eff}}\partial_t\psi=
+\left(-\frac{\hbar_{\mathrm{eff}}^2}{2m}\nabla^2+V_{\mathrm{eff}}\right)\psi
+\quad (\text{in closure regime}),
+$$
+$$
+P_n=\mu_*(B_n)\stackrel{?}{=}\int_{B_n}|\psi_n|^2\,d\Gamma.
+$$
+
+Detailed interface chapters:
+- ontology/statistics side: [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md)
+- metastability/separatrix side: [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)
+- dynamical substrate side: [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md)
+
+#### Superposition Mechanism: QM vs. 𝔸𝔸𝔸
+
+This document establishes the ontological and mathematical mapping between the traditional quantum mechanical concept of state superposition and the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$).
+
+It should be read alongside [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Collapse Problem](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
+
+###### Traditional Quantum Mechanical View
+
+In standard quantum mechanics, a physical system can exist simultaneously in multiple mutually exclusive states. This is mathematically formalized by the superposition principle, where the state vector $|\psi\rangle$ is a linear combination of orthogonal basis states $|n\rangle$:
+$$
+|\psi\rangle = \sum_n c_n |n\rangle
+$$
+The coefficients $c_n$ are complex probability amplitudes. In ordinary non-relativistic, fixed-particle-number quantum mechanics, the system evolves deterministically according to the linear Schrödinger equation until a measurement occurs. Upon measurement, the orthodox (Copenhagen) interpretation posits a discontinuous "collapse" of the wavefunction, where the system instantaneously projects into a single basis state $|k\rangle$ with probability $P_k = |c_k|^2$ (the Born rule).
+
+Traditional superposition treats the indeterminacy as fundamental and ontological: prior to measurement, the particle possesses no definite state or trajectory.
+
+###### Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) Mechanism
+
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, superposition is an epistemic (operational) description of an underlying deterministic, multistable dynamical system. At the fundamental level, every architrino possesses a definite position and velocity in the Euclidean void at all absolute times. There is no ontological smearing.
+
+The linearity of quantum superposition arises strictly from the linearity of the Master Equation: the total potential experienced by any receiver is the exact, unmediated linear sum of all Jacobian-weighted inverse-square causal wake-surface intersections at its current location.
+
+This statement is substrate-level and should not be confused with the effective claim that a quantum state has formed a superposition in some Hilbert basis. Basis-dependent superposition language is admissible only after a preparation, apparatus kernel, retained coarse-graining, and record window have been declared. A change of Hilbert representation may move the apparent state-vector branch structure without changing the underlying assembly, causal-wake, or record-channel content.
+
+When a tri-binary assembly is described as being in a "superposition," it is physically occupying a metastable region of its configuration space—typically a boundary zone near a separatrix between resonance bands, or hovering near the symmetry-breaking velocity threshold ($v = c_f$). The assembly is continuously driven by the high-dimensional, deterministic flux of the local Noether Sea.
+
+Because a Physical Observer lacks access to the complete microstate and the exact path-history phases of the surrounding architrino weather, the system exhibits informational ambiguity. The assembly's exact trajectory is definite, but its eventual resolution into a stable basin is operationally unpredictable. The quantum state $|\psi\rangle$ is therefore a coarse-grained statistical envelope tracking this deterministic uncertainty.
+
+###### The Phenomenological Mapping
+
+The correspondence between the quantum formalism and architrino micro-dynamics is defined as follows:
+
+*   **The Wavefunction ($|\psi\rangle$)**: A coarse-grained, effective representation of the local superposed causal-wake structure and the corresponding informational ambiguity of the receiver's phase state.
+*   **Basis States ($|n\rangle$)**: Distinct, dynamically stable attractor basins of the tri-binary assembly. For example, these correspond to integer-indexed resonance bands or specific locked-phase geometries of the outer binary.
+*   **Linear Combination**: The direct physical consequence of the superposition of expanding causal wake surfaces. Distinct sources contribute additive radial accelerations without mutual interference.
+*   **Probability Amplitudes ($c_n$)**: A measure of the geometric basin of attraction (the fractional phase-space volume) leading to outcome $n$, mapped over the operational uncertainty bracket of the system's microstate.
+*   **Wavefunction Collapse**: The deterministic crossing of a phase-space separatrix triggered by an interaction (measurement). The measurement apparatus (itself an assembly) injects a targeted potential gradient that breaks the metastability, forcing the assembly into one specific attractor and leaving a permanent macroscopic record in the surrounding Noether Sea.
+*   **Decoherence**: The rapid, irreversible entanglement of the assembly's phase with the unmeasured degrees of freedom in the Noether Sea, effectively locking the system into its new basin and eliminating the metastable phase relationships.
+
+###### Observables and Falsifiability
+
+Treating superposition as a dynamically maintained metastability rather than a fundamental ontological blur imposes strict, testable constraints on the system.
+
+*   **Claim**: Superposition represents a metastable dynamical state subject to local causal wake interactions, and "collapse" is a continuous, finite-time threshold crossing.
+*   **Prediction**: The state transition (collapse) time is finite and bounded by the local field speed $c_f$, the physical extent of the interacting assemblies, and the local density of the Noether Sea.
+*   **Failure Mode**: Observation of strictly instantaneous state updates across space-like separated macroscopic distances—without mediation by previously correlated local hidden variables in the shared path history—falsifies the mechanism.
+*   **Closure Boundary**: This chapter supplies the separatrix and finite-threshold interface. Born weights require the basin-measure and transfer-operator closure developed in the quantum ontology chapters.
+
+###### Closure Interface: Finite-Time Separatrix Law
+
+In the integrated quantum closure program, this chapter contributes the threshold-time component.
+
+Let $\Sigma(X)=0$ define the separatrix in reduced state coordinates $X$. For trajectory $X_t$, define first-passage collapse time
+$$
+\tau_c=\inf\{t>0:\Sigma(X_t)=0\}.
+$$
+
+For a declared apparatus kernel $\mathcal{K}_A$, coarse-graining $\mathcal{Q}$, access region $W$, and competing basin family $\{B_i(t)\}$, the pre-record branch interval can be bounded by the first time at which multiple alternatives are recordable in the retained description:
+$$
+\tau_{\mathrm{split}}
+=
+\inf\{t>t_0:\exists i\ne j,
+N_{\mathcal{Q},W}(B_i(t))\ge 1,
+N_{\mathcal{Q},W}(B_j(t))\ge 1,
+\Delta_{\mathrm{div}}(t_0,t,T;\mathcal{Q},W)>\varepsilon_{\mathrm{div}}\}.
+$$
+Here $N_{\mathcal{Q},W}$ is the recordable basin count defined in [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md#lower-bound-on-recordable-basin-measure), and $\Delta_{\mathrm{div}}$ is the restartability residual used in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#what-makes-an-interaction-a-record). This is not a consciousness criterion. It is a guardrail against treating an arbitrary basis expansion as a physical branch event.
+
+Closure requirements:
+- $\tau_c$ is finite in measurement-strength regimes that produce records,
+- the distribution of $\tau_c$ is consistent with the same coarse-grained model that yields the outcome weights $P_n$,
+- any claimed branch formation names $\mathcal{K}_A$, $\mathcal{Q}$, $W$, and the record window,
+- no instantaneous-update limit appears once finite $c_f$ and interaction extent are enforced.
+
+Primary synthesis location: [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
+
+For the correlated two-system extension of the same closure program, see [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md).
+
+#### Measurement Problem and Collapse
+
+This document maps the traditional "Measurement Problem" and the phenomenon of wavefunction collapse to the deterministic, non-Markovian micro-dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). In this framework, "collapse" is not a fundamental discontinuous axiom but an emergent, finite-time dynamical process: the deterministic resolution of a metastable state across a phase-space separatrix. It should be read alongside [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
+
+###### The Traditional Measurement Problem
+
+In the textbook non-relativistic, fixed-particle-number framing of quantum mechanics, the evolution of a closed system is strictly linear and unitary, governed by the Schrödinger equation. However, upon "measurement," the system is postulated to undergo a discontinuous, non-unitary projection (collapse) into an eigenstate of the measured observable.
+
+This dualistic evolution introduces the Measurement Problem:
+1. The formalism provides no physical definition of what constitutes a "measurement" or an "observer."
+2. It fails to explain how a linear dynamic generates a nonlinear, irreversible outcome.
+3. It forces an artificial epistemic boundary (the Heisenberg cut) between the quantum system and the classical measurement apparatus.
+
+Traditional interpretations typically resolve this by either treating the wavefunction as a complete ontological entity that physically splits (Many-Worlds), accepting ad-hoc modifications to the Schrödinger equation (Objective Collapse theories), or treating the wavefunction as a purely informational tool with no underlying micro-reality (Copenhagen/QBism).
+
+###### Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) Mechanism
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework rejects the projection postulate as a fundamental physical process. Instead, the universe evolves continuously in absolute time within a Euclidean void, governed strictly by the deterministic Master Equation. There is no ontological distinction between a "measured system" and a "measurement apparatus"—both are interacting tri-binary assemblies immersed in the Noether Sea.
+
+What standard quantum mechanics describes as "wavefunction collapse" maps directly to **threshold resolution** in a multistable dynamical system.
+
+When an assembly is described by a quantum superposition, the effective branch envelope spans unresolved basin tubes before a completed record exists. The substrate state is not literally spread across several final eigenstates; it remains a deterministic assembly-plus-apparatus state whose retained coordinates have not yet resolved into one record basin. The "measurement" is a physical interaction where the macroscopic apparatus subjects the target assembly to a targeted, high-intensity potential gradient (a structured sum of causal wake surfaces).
+
+This interaction breaks the metastability. The incoming causal wakes drive the assembly's internal variables across a separatrix, forcing it to fall into one specific, stable attractor basin. Because the system's exact microstate and the exact phase of the incoming apparatus wakes are operationally inaccessible to the Physical Observer, the specific basin selected appears probabilistic. The "collapse" of the wavefunction is therefore the observer's necessary epistemic update following a deterministic, but chaotic, phase-space bifurcation.
+
+###### The Phenomenological Mapping
+
+The correspondence between the quantum mechanical measurement formalism and architrino threshold dynamics is defined as follows:
+
+*   **The Measured System**: A tri-binary assembly in a metastable configuration, delicately balanced between multiple stable geometric phases or orbital resonance bands.
+*   **The Apparatus**: A massive complex of tri-binary assemblies that injects a structured potential perturbation (action) sufficient to overwhelm the target's metastability.
+*   **The Measurement Interaction**: The deterministic exchange of causal wake surfaces between the apparatus and the target assembly.
+*   **Wavefunction Collapse**: The continuous, finite-time physical transit of the target assembly across a phase-space separatrix, settling into a new stable attractor.
+*   **Irreversibility / Record Creation**: The excess energy and phase information from the transition are dissipated into the surrounding Noether Sea and the macroscopic apparatus. This thermalization makes the transition operationally irreversible, cementing the macroscopic record.
+*   **The Born Rule ($P_k = |c_k|^2$)**: The emergent statistical distribution reflecting the relative fractional volumes of the competing attractor basins in the target's phase space, mapped over unresolved Noether-Sea boundary data and path-history structure.
+
+###### Overcoming the Heisenberg Cut
+
+Because both the target and the detector are governed by the same underlying Master Equation, the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework eliminates the Heisenberg cut. A "measurement" requires no conscious observer; it is merely an interaction involving sufficient action transfer (on the scale of $h$) and sufficient environmental dissipation to lock an assembly into a new limit cycle and prevent coherent revival.
+
+The threshold for a "record" is determined entirely by the stiffness of the local Noether Sea and the decoherence timescale of the surrounding assembly network.
+
+###### External Massive-Superposition Benchmark
+
+Penrose-Diosi gravitational-collapse proposals are useful here as an external benchmark, not as imported ontology. Their strongest diagnostic is the mass-displacement scale between two alternatives, usually summarized by a gravitational self-energy $\Delta E_G$ and a lifetime $\tau_G\sim\hbar/\Delta E_G$. The local comparison is whether a deterministic apparatus-target model can derive a finite record time $\tau_{\text{meas}}$ and compare it against that scale:
+$$
+\mathcal{Q}_{\mathrm{PD}}
+=
+\frac{\tau_{\text{meas}}\Delta E_G}{\hbar}.
+$$
+
+The interpretation of $\mathcal{Q}_{\mathrm{PD}}$ is limited. If the $\mathbb{A}\mathbb{A}\mathbb{A}$ threshold model predicts a different scaling from $\tau_G$, that difference becomes an experimental discriminator in massive interferometry and Bose-Einstein-condensate superposition tests. If a competing collapse model predicts continual spontaneous heating, that heating prediction must be checked against low-background laboratory bounds and compact-object heating constraints. The comparison should therefore preserve the observable pressure while keeping branch selection rooted in finite-time separatrix dynamics.
+
+The spontaneous-heating comparison is therefore a ledger constraint, not a second collapse mechanism. For any proposed apparatus-target run, the same record window that supplies Born weights and thermodynamic summaries must also account for declared work, recoil, emitted assemblies, medium excitation, and boundary exchange. The compact acceptance diagnostic is the measurement-and-heating residual in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#measurement-and-heating-residual):
+$$
+\mathcal{R}_{\mathrm{meas+heat}}(T;\theta)
+=
+\max\left(
+\frac{\Delta_{\mathrm{Born}}(T)}{\varepsilon_{\mathrm{Born}}},
+\frac{\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)}{\varepsilon_{\mathrm{ens}}},
+\frac{|\Delta E_{\mathrm{unrec}}(T;\theta)|}{\varepsilon_E}
+\right).
+$$
+The collapse comparison remains viable only when $\mathcal{R}_{\mathrm{meas+heat}}\le1$ on the declared channel. If the Born statistics require one ensemble while the heating bound requires another, or if $\Delta E_{\mathrm{unrec}}$ persists after all event-recorded channels have been included, the model has not closed the measurement account.
+
+###### Observables and Falsifiability
+
+Treating collapse as a deterministic, finite-time threshold resolution imposes strict constraints on measurement dynamics that deviate from standard instantaneous projection.
+
+*   **Claim**: Wavefunction collapse is a continuous dynamical transition across a separatrix, bounded by the field speed $c_f$ and the internal resonant frequencies of the interacting assemblies.
+*   **Candidate signature**: "Instantaneous" state reduction is an approximation. With sufficient temporal resolution (expected in the attosecond to zeptosecond regime), the transition between eigenstates should be tested for continuous trajectory evolution, intermediate states, and measurable hysteresis depending on the exact phase of the driving apparatus.
+*   **Failure Mode**: If experiments definitively demonstrate zero-time projection updates (e.g., transitions occurring strictly in zero absolute time with no measurable intermediate micro-dynamics or duration scaling with apparatus distance), the threshold resolution mechanism is falsified.
+*   **Closure Boundary**: A timing prediction is promotable only after a declared apparatus-target model supplies the separatrix geometry, finite record window, and basin-measure source used by the same measurement channel.
+
+#### Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸
+
+This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that ordinary pair entanglement is not a mysterious connection between distant systems but a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and rendered operationally irreducible by the epistemic limitations of Physical Observers. Bell-level operational equivalence remains a closure target until the pair-provenance ledger and local apparatus-response maps have passed the Bell gate.
+
+It forms a tight cluster with [Bell Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
+
+---
+
+##### Traditional Quantum Mechanical View
+
+###### Entangled States
+
+In standard quantum mechanics, two systems $A$ and $B$ are entangled when the composite state $|\Psi\rangle_{AB}$ cannot be written as a product of individual states:
+
+$$
+|\Psi\rangle_{AB} \neq |\phi\rangle_A \otimes |\chi\rangle_B.
+$$
+
+The canonical example is the spin-singlet state of two spin-$\tfrac{1}{2}$ particles:
+
+$$
+|\Psi^-\rangle = \frac{1}{\sqrt{2}}\bigl(|\!\uparrow\rangle_A |\!\downarrow\rangle_B - |\!\downarrow\rangle_A |\!\uparrow\rangle_B\bigr).
+$$
+
+Neither particle possesses a definite spin state individually; the state is irreducibly relational. Upon measuring particle $A$ along any axis and obtaining a result, the state of particle $B$ is instantaneously determined—regardless of the spatial separation between $A$ and $B$.
+
+###### The EPR Argument and Bell's Theorem
+
+Einstein, Podolsky, and Rosen (1935) argued that perfect correlations at a distance imply pre-existing values (hidden variables), concluding that quantum mechanics is incomplete. Bell (1964) showed that any theory reproducing quantum predictions while assigning pre-existing local values must violate an inequality:
+
+$$
+|S| \leq 2 \quad \text{(Bell-CHSH inequality for local hidden variables)}.
+$$
+
+Quantum mechanics predicts $|S| = 2\sqrt{2}$, and experiments confirm this violation. The standard conclusion is that no theory satisfying **Bell locality** (the outcomes at $A$ depend only on settings and hidden variables at $A$, not on the distant setting at $B$) and **measurement independence** (the choice of measurement settings is uncorrelated with the hidden variables) can reproduce all quantum predictions.
+
+###### The No-Signaling Constraint
+
+Despite the correlations, entanglement cannot transmit information faster than light. The marginal statistics at either detector, averaged over the distant partner's outcomes, are independent of the distant measurement choice. This is the **no-signaling theorem**, which holds in all standard formulations and in all experimentally tested scenarios.
+
+###### Pair Provenance vs. Horizon-Interface Geometry
+
+This note concerns ordinary pair-provenance entanglement: two assemblies are formed, filtered, or jointly selected by a shared event, and their later records remain correlated because the daughter ledgers inherit a common causal past. That is not the same claim as a literal connected geometry between every entangled pair.
+
+The useful black-hole signal is narrower. The thermofield-double construction for two black-hole exteriors gives a convincing case where entanglement is accompanied by an effective connected geometry. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that belongs to the strong-field black-hole regime and the horizon-interface layer, where effective geometry summarizes extreme Noether-Sea alignment and compression. It should not be exported to arbitrary Bell pairs as a settled ER=EPR theorem. For ordinary pairs, connected-geometry language is at most an aspirational closure target unless a separate derivation shows how the pair-provenance ledger induces that effective geometry.
+
+The distinction is important because the black-hole case uses a very special entangled state and a very special strong-field geometry. The safe statement is that some controlled black-hole states make entanglement and connected effective geometry two descriptions of the same coarse-grained structure. The unsafe statement is that every entangled pair carries the same connected-geometry interpretation. Ordinary Bell-pair closure should therefore stay with pair provenance, local apparatus response, and no-signaling statistics until a separate strong-field or continuum-limit derivation earns geometric language.
+
+###### Relativistic Subsystem Caution
+
+The same restraint applies to observer-dependent entanglement in relativistic quantum-field settings. Different observers, accelerated frames, access regions, or mode decompositions may assign different particle content or different bipartitions to the same effective field record. The retained data product is the correlation table for a declared preparation, detector region, mode split, and record window; the interpretation is secondary.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is handled as a projection issue on the observer-level description. A Physical Observer may reconstruct a density matrix on one tensor-factor split while another observer reconstructs a different split, but neither reconstruction changes the underlying $\mathbb{U}_{\text{now}}$ state. The corresponding operator-map burden is the subsystem-partition guardrail in [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#subsystem-partition-guardrail): the pair-provenance ledger, apparatus kernels, no-signaling residuals, and record-autonomy tests must be declared before an entanglement value is used as a closure claim.
+
+---
+
+##### $\mathbb{A}\mathbb{A}\mathbb{A}$ Mechanism
+
+###### Ontological Starting Point
+
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, every architrino possesses a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ in the Euclidean void at every absolute time $t$. There is no ontological indeterminacy. The complete microstate of a system is:
+
+$$
+\Gamma(t) = \bigl\{(\mathbf{x}_i(t),\, \mathbf{v}_i(t),\, q_i)\bigr\}_{i=1}^{N},
+$$
+
+and the Master Equation determines its future evolution given path-history data, with deterministic multistability at threshold regimes.
+
+Ordinary entanglement in this framework is not a primitive relation between distant systems. It is a **derived consequence** of three features of the underlying dynamics:
+
+1. **Shared causal origin** (correlated initial conditions from a common source event),
+2. **Conservation constraints** enforced at the source event and preserved by the dynamics,
+3. **Path-history structure** that carries and maintains these correlations through the causal wake geometry.
+
+###### Correlated Production: The Shared Causal Past
+
+Consider the production of an entangled pair, for example a neutral pion dissociating into an electron-positron pair, or parametric down-conversion producing correlated photon branches in the observer-level description.
+
+At the absolute time $t_0$ of the source event, the parent assembly fragments into two daughter assemblies $A$ and $B$. The fragmentation is governed by the Master Equation and conserves total charge, momentum, angular momentum, and energy. The daughter microstates $\Gamma_A(t_0)$ and $\Gamma_B(t_0)$ are therefore **jointly constrained** by the parent's microstate and the conservation laws:
+
+$$
+\Gamma_{\text{parent}}(t_0^-) \;\longrightarrow\; \Gamma_A(t_0^+),\; \Gamma_B(t_0^+) \quad \text{subject to conservation constraints.}
+$$
+
+The crucial point is that the architrino trajectories, wake phases, and internal binary orientations of $A$ and $B$ are **deterministically correlated** from this moment forward. These correlations are not imposed by any nonlocal influence. They are recorded in the pair-provenance ledger inherited from the shared causal past.
+
+###### Correlation Maintenance: Path-History Memory
+
+After separation, the two assemblies propagate through the Noether Sea, each following its own lawful trajectory. No causal wake from $A$ can influence $B$ (or vice versa) faster than $c_f$. Once the assemblies are separated by a distance $d > c_f \Delta t$, they evolve **causally independently** in the sense that no new information passes between them.
+
+The correlations established at $t_0$ are carried forward in the **internal configuration** of each assembly: the relative phases of its constituent binaries, the orientation of its tri-binary core, and the detailed structure of its wake history. These internal degrees of freedom are the **hidden variables** of the system. They are:
+
+- **Definite** at all times (no ontological indeterminacy),
+- **Inaccessible** to any Physical Observer who lacks the full microstate $\Gamma(t)$ (epistemic indeterminacy),
+- **Jointly constrained** by the source event (correlated hidden variables).
+
+###### Measurement as Threshold Resolution
+
+When a measurement apparatus (itself an assembly of architrinos) interacts with particle $A$, the measurement is a complex assembly interaction governed by the Master Equation. The apparatus drives $A$ across a phase-space separatrix into a definite attractor basin (see [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)). The outcome depends on:
+
+1. The internal microstate of $A$ (including binary phases, wake history),
+2. The internal microstate of the apparatus,
+3. The local Noether-Sea configuration.
+
+The outcome is **deterministic** given complete microstate knowledge, but **operationally unpredictable** to the Physical Observer, who lacks access to the relevant hidden variables.
+
+Because the hidden variables of $A$ and $B$ are correlated from the source event, the measurement outcome at $A$ constrains—statistically, from the Physical Observer's perspective—the outcome at $B$. This is not because $A$'s measurement causally influenced $B$, but because the correlated initial conditions supply the candidate joint distribution that the Bell closure must test against observed correlations.
+
+###### Addressing Bell's Theorem
+
+Bell's theorem excludes theories that are simultaneously **local** (in the Bell sense) and assign pre-existing values to all observables. Any completed $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell account must therefore be a **nonlocal hidden-variable theory** in the following precise sense:
+
+**What "nonlocal" means here.** The framework does not violate causality. No signal, influence, or energy propagates faster than $c_f$. If the Bell gate passes, the required nonlocality resides in the **ontological structure**: the existence of absolute time provides a global simultaneity surface, and the source event imprints **joint constraints** on the hidden variables of both particles that are not factorizable into independent local assignments.
+
+Formally, let $\lambda$ denote the complete hidden-variable specification (the full microstate at the source event plus all subsequent path-history data). Bell locality requires:
+
+$$
+P(a, b \,|\, \hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B, \lambda) = P(a \,|\, \hat{\mathbf{m}}_A, \lambda)\; P(b \,|\, \hat{\mathbf{m}}_B, \lambda),
+$$
+
+where $a, b$ are outcomes and $\hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program, this factorization is the gate to fail—not because of any superluminal influence at the time of measurement, but because $\lambda$ may encode **joint geometric constraints** (correlated binary-phase orientations, conserved angular-momentum projections, and path-history relations) that are lost when the pair is partitioned into independent local packages. The pair-provenance ledger by itself is not yet the proof. The proof must derive the two local apparatus-response maps and show that their observer-level compression fails Bell's factorized form while preserving no-signaling.
+
+The common-cause version of the same warning is sharper: conditioning on a shared source event must not simply screen the joint record law into two independent one-wing laws. If the retained pair-provenance record behaves as an ordinary screening variable, then the account has only rebuilt a Bell-local hidden-variable model. The useful claim is narrower: the pair-provenance object plus local response kernels must identify which observer-level compression prevents product factorization, while still leaving each one-wing marginal independent of the distant setting.
+
+**Pair-provenance response kernel.** The Bell gate can be written as an attempted compression of the full provenance into a measurable joint response. Define the pair-provenance hidden-variable object as
+
+$$
+\lambda_{AB}^{\text{prov}}
+=
+\big(
+\Gamma_{\text{parent}}(t_0^-),
+\Gamma_A(t_0^+),
+\Gamma_B(t_0^+),
+\mathcal{H}_A[t_0,t_A],
+\mathcal{H}_B[t_0,t_B],
+\Delta\Theta_{AB}^{\text{bin/wake}},
+\mathsf{Cons}_{AB}
+\big),
+$$
+
+where $\mathcal{H}_A$ and $\mathcal{H}_B$ are the path-history data carried by the two daughter assemblies, $\Delta\Theta_{AB}^{\text{bin/wake}}$ records their correlated binary-orientation and wake-phase relations, and $\mathsf{Cons}_{AB}$ records the conservation constraints inherited from the source event. This is not an additional force or influence. It is the candidate hidden-variable domain over which the Bell closure must integrate.
+
+Let $K_{ab}^{AB}$ be the joint-record response kernel induced by the pair-provenance record and the two local apparatus interactions. For spin tests, its one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), and the kernel must be a normalized record law:
+
+$$
+K_{ab}^{AB}\ge0,
+\qquad
+\sum_{a,b=\pm1}K_{ab}^{AB}=1.
+$$
+
+If $\Pi_{AB}^{\mathrm{sing}}$ is the singlet-like pair-provenance record, $P_{\mathrm{src}}^{\mathrm{sing}}$ is the source record, and $\zeta_A,\zeta_B$ collect unresolved local apparatus and Noether-Sea microstates, the observer-level joint response target is
+
+$$
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\int
+K_{ab}^{AB}
+\left(
+\hat{\mathbf m}_A,
+\hat{\mathbf m}_B;
+\Pi_{AB}^{\mathrm{sing}},
+\zeta_A,
+\zeta_B
+\right)
+d\nu_{A,\hat{\mathbf m}_A}(\zeta_A)
+d\nu_{B,\hat{\mathbf m}_B}(\zeta_B)
+d\rho_{\mathrm{src}}
+\left(
+\Pi_{AB}^{\mathrm{sing}}
+\middle|
+P_{\mathrm{src}}^{\mathrm{sing}}
+\right).
+$$
+
+Writing this integral does not pass the Bell gate. It names the diagnostic object: the derived joint-record kernel and provenance measure must reproduce the tested singlet joint law while preserving no-signaling and measurement independence, and they must identify exactly which provenance or response compression prevents reduction to Bell's factorized form. The compact singlet residual is
+
+$$
+\Delta_{\mathrm{joint}}^{\mathrm{sing}}
+=
+\sup_{a,b,\hat{\mathbf m}_A,\hat{\mathbf m}_B}
+\left|
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+-
+\frac14
+\left(
+1-ab\,\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
+\right)
+\right|.
+$$
+
+This single target implies the unbiased marginals and the correlation $E=-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B$ only after the record law is normalized. Product form belongs only as a failure audit:
+
+$$
+\Delta_{\mathrm{prod}}
+=
+\inf_{K_A,K_B}
+\sup_{a,b,\hat{\mathbf m}_A,\hat{\mathbf m}_B}
+\left|
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+-
+\int K_AK_B\,d\mu_{AB}^{\mathrm{rec}}
+\right|.
+$$
+
+If $\Delta_{\mathrm{prod}}$ vanishes in the completed record table, the expression has reduced to an ordinary measurement-independent Bell-local hidden-variable integral and the Bell gate fails.
+
+The threshold-pullback warning is now sharp. A deterministic one-wing basin kernel can reproduce its local probability law after pushing forward an invariant record-window measure, but two independent one-wing kernels over a setting-independent source measure imply the usual CHSH bound. If
+
+$$
+K_{ab}^{AB}
+=
+K_A^a(\hat{\mathbf m}_A;\Pi,\zeta_A)
+K_B^b(\hat{\mathbf m}_B;\Pi,\zeta_B),
+$$
+
+then after integrating $\zeta_A,\zeta_B$ the model has
+
+$$
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\int
+p_A(a|\hat{\mathbf m}_A,\Pi)
+p_B(b|\hat{\mathbf m}_B,\Pi)
+d\rho_{\mathrm{src}}(\Pi),
+$$
+
+so the standard CHSH proof applies. The Bell task is therefore not to repeat the one-wing threshold theorem twice. It is to derive the non-product joint response or non-restartable provenance compression that survives this no-go while keeping the local marginals screenable.
+
+The diagnostic must also exclude a hidden slide into measurement-independence denial. For the pair-provenance measure, define
+
+$$
+\Delta_{\mathrm{MI}}^{\mathrm{prov}}
+=
+\sup_{\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B}
+D_{\mathrm{TV}}\!\left(
+\rho_{AB}^{\mathrm{prov}}(\lambda_{AB}^{\mathrm{prov}}\mid \hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B),
+\rho_{AB}^{\mathrm{prov}}(\lambda_{AB}^{\mathrm{prov}})
+\right).
+$$
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route requires $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ to vanish, or to be bounded below an explicitly reported tolerance set by the simulation and experimental pipeline. The non-factorization must therefore come from the structure of the pair-provenance ledger and local response kernels, not from allowing the settings to preselect the hidden-variable ensemble.
+
+Here $D_{\mathrm{TV}}$ is total-variation distance on the pair-provenance distribution.
+
+The same gate should report no-signaling and correlation residuals:
+
+$$
+\Delta_{\mathrm{NS}}^{A}
+=
+\sup_{\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B,\hat{\mathbf{m}}'_B}
+\sum_a
+\left|
+P(a\mid \hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+-
+P(a\mid \hat{\mathbf{m}}_A,\hat{\mathbf{m}}'_B)
+\right|,
+$$
+
+with the analogous $\Delta_{\mathrm{NS}}^{B}$ for the other wing, and
+
+$$
+\Delta_{\mathrm{Bell}}
+=
+\sup_{\theta\in[0,\pi]}
+\left|
+E_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)+\cos\theta
+\right|.
+$$
+
+These residuals keep the observable constraint separate from the interpretation. The data product is the tested Bell correlation with no-signaling marginals; the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must earn that data product without importing a superdeterministic assumption.
+
+**Which Bell assumption must fail?** The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is closest in structure to de Broglie–Bohm theory: deterministic, definite trajectories, with correlations maintained through a shared dynamical structure (in Bohm's case, the pilot wave on configuration space; in $\mathbb{A}\mathbb{A}\mathbb{A}$, the correlated path-history wake geometry in absolute time). The comparison is useful, but it is a proof route rather than a completed Bell derivation. If the Bell gate passes, the nonlocality is ontological (the hidden-variable space is non-separable) but not operational (no usable signal).
+
+The Bohmian comparison also gives a warning about where the proof burden sits. A deterministic ontology can reproduce Bell correlations only if the hidden-variable space is not separable into two independent local packages at measurement time, or if another Bell assumption is explicitly changed. $\mathbb{A}\mathbb{A}\mathbb{A}$ should therefore not present pair provenance as an ordinary local hidden-variable repair. The derivation must show which shared path-history, basin-measure, or apparatus-response term prevents factorization while still preserving free settings and no-signaling.
+
+**Measurement independence** is preserved: the choice of measurement settings at $A$ and $B$ can be freely varied without correlation with the hidden variables $\lambda$ established at the source event. The theory does not invoke superdeterminism.
+
+###### The Absolute-Time Framework and Nonlocality
+
+The existence of absolute time $t$ is essential to the consistency of this picture. In the standard relativistic framework, the absence of a preferred foliation means that "which measurement happened first" is frame-dependent for spacelike-separated events. This makes it difficult to tell a coherent story about how correlations are maintained without invoking some form of action at a distance.
+
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, there is an objective temporal ordering. At any absolute time $t$, the complete microstate $\Gamma(t)$ is defined on a global simultaneity surface $\Sigma_t$. The shared source event fixes a nonseparable pair-provenance domain for $A$ and $B$, carried in their internal configurations and path histories for $t > t_0$. The measurement at $A$ (occurring at some absolute time $t_A$) resolves $A$'s configuration into a definite local basin; the measurement at $B$ (at $t_B$) does the same for $B$. Whether $t_A < t_B$ or $t_B < t_A$ is an objective fact, but it does not by itself solve Bell's theorem. The closure is earned only when the pushed-forward joint response kernel preserves no-signaling and measurement independence while failing product screening.
+
+This structure avoids the conceptual difficulties of standard nonlocality:
+
+- **No action at a distance**: $A$'s measurement does not send any signal or influence to $B$.
+- **No frame-dependent causal ordering**: absolute time provides a unique, consistent ordering.
+- **No tension with causality**: all causal influences propagate at $c_f$ or below; the correlations are set up in the shared causal past.
+
+Temporal-nonlocality and retrocausal interpretations remain useful only as comparison routes. They help identify which Bell assumption is being changed in observer-level language, especially when relativistic frame order is ambiguous. They are not the mechanism here. The $\mathbb{A}\mathbb{A}\mathbb{A}$ account must keep the hidden-variable ledger forward-causal in absolute time and must report the same measurement-independence, no-signaling, and Bell-correlation residuals used in [Bell Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md#bell-closure-diagnostics).
+
+###### No-Signaling: Why Correlations Cannot Transmit Information
+
+Any accepted Bell closure in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework must preserve no-signaling for a precise structural reason. The marginal probability of obtaining outcome $a$ at detector $A$ is computed from the joint-record law:
+
+$$
+P(a|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\sum_b
+P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B),
+$$
+
+and an admissible model must make this marginal independent of $\hat{\mathbf m}_B$. This independence is required because:
+
+1. The source-provenance distribution is set at the source event and does not depend on the distant setting $\hat{\mathbf m}_B$,
+2. No causal wake from the $B$-measurement apparatus reaches $A$ before $A$'s measurement (assuming spacelike separation in the emergent metric),
+3. The local dynamics at $A$ are fully determined by $A$'s microstate plus the local Noether Sea—no input from the distant setting.
+
+The correlations become visible only when outcomes from both sides are **compared** (via a classical, sub-$c_f$ communication channel). This is precisely the no-signaling structure observed experimentally.
+
+For binary outcomes this structure can be isolated without adding a new assumption. A normalized no-signaling joint record law has the form
+
+$$
+P(a,b|x,y)
+=
+\frac14
+\left[
+1
++
+a\,m_A(x)
++
+b\,m_B(y)
++
+ab\,C(x,y)
+\right],
+\qquad
+a,b\in\{-1,+1\},
+$$
+
+with $1+a\,m_A(x)+b\,m_B(y)+ab\,C(x,y)\ge0$. The local channels $m_A$ and $m_B$ carry only local settings; the only setting-pair term is the correlation channel $C(x,y)$. A product-screened pair provenance gives $C_{\mathrm{prod}}(x,y)=\int A_x(\Pi)B_y(\Pi)d\rho_{\mathrm{src}}(\Pi)$, so the live nonlocality question is whether $\mathbb{A}\mathbb{A}\mathbb{A}$ can derive a non-product $C(x,y)$ while preserving the local marginals.
+
+This can be recorded as a screenable marginal residual. For settings $\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B$ and outcomes $a,b$, define
+$$
+\Delta_{\mathrm{screen}}
+=
+\max_{a,\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B,\hat{\mathbf{m}}'_B}
+\left|
+\sum_b P(a,b\mid\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B)
+-
+\sum_b P(a,b\mid\hat{\mathbf{m}}_A,\hat{\mathbf{m}}'_B)
+\right|.
+$$
+The Bell-correlation recovery is admissible only with $\Delta_{\mathrm{screen}}\le\epsilon_{\mathrm{NS}}$ and the analogous $B$-side residual. This residual keeps the non-separable ontology from becoming an operational signal channel.
+
+---
+
+##### The Phenomenological Mapping
+
+| Quantum Formalism | $\mathbb{A}\mathbb{A}\mathbb{A}$ Micro-Dynamics |
+|:---|:---|
+| **Entangled state** $\lvert\Psi\rangle_{AB}$ | Joint constraint on the hidden variables $(\Gamma_A, \Gamma_B)$ inherited from a shared source event; the microstate is non-factorizable because conservation laws at fragmentation enforce correlated binary phases and orientations. |
+| **Non-separability** (no product-state decomposition) | The hidden-variable space $\lambda$ encodes geometric correlations (relative binary-plane angles, wake-phase offsets) that cannot be decomposed into independent local assignments without losing information. |
+| **Measurement collapse** (distant state update) | Local threshold resolution at each detector independently; the $\mathbb{U}_{\text{now}}$ universe-state perspective sees two separate, causally disconnected basin crossings whose outcomes are correlated by shared $\lambda$. |
+| **Bell inequality violation** ($\lvert S\rvert = 2\sqrt{2}$) | Closure target: the pair-provenance ledger plus both local apparatus-response maps must reproduce the observed Bell correlations while failing Bell locality because $\lambda$ is non-separable; the violation may not be asserted from shared provenance alone. |
+| **No-signaling** | Marginal statistics at each detector are independent of the distant setting; correlations are visible only upon classical comparison of results. |
+| **Black-hole thermofield-double connected geometry** | Special strong-field/horizon-interface effective geometry, not the default ontology of ordinary Bell-pair entanglement. The black-hole case motivates the comparison but does not settle ER=EPR for arbitrary entanglement. |
+| **Decoherence of entanglement** | Progressive loss of phase correlation between the two assemblies as each interacts with its local Noether-Sea environment, randomizing the internal wake phases that carry the correlated information. |
+| **Entanglement monogamy** | Conservation constraints at the source event distribute correlated hidden variables among a finite number of daughter assemblies; sharing a tight correlation with one partner limits the available phase-space for correlation with a third. |
+
+---
+
+##### Ontic vs. Epistemic: The Two-Level Reading
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework supports a clean two-level interpretation of entanglement:
+
+**Ontic level ($\mathbb{U}_{\text{now}}$ universe-state perspective).** The microstate $\Gamma(t)$ is always definite and global. After a source event at $t_0$, the daughter microstates $\Gamma_A(t)$ and $\Gamma_B$ are each fully determined for all $t > t_0$. For ordinary pair-provenance cases, the "entanglement" is the fact that $\Gamma_A$ and $\Gamma_B$ are jointly constrained: a bookkeeping statement about the initial conditions, not a dynamical link. Special black-hole and horizon-interface cases may additionally admit effective connected-geometry descriptions, but those belong to the strong-field geometry program rather than to ordinary pair provenance by default.
+
+**Epistemic level (Physical Observer).** The PO has access only to coarse-grained observables (effective fields, detector clicks). Unable to track the full microstate, the PO describes the system with a density matrix $\rho_{AB}$ that is non-separable. The PO interprets correlations as "entanglement" and the resolution of metastability as "collapse." These are accurate operational descriptions but do not reflect ontological indeterminacy or nonlocal influence.
+
+The persistent philosophical puzzles of entanglement—how can a measurement "here" instantaneously affect a system "there"?—are relocated by this reading rather than solved by assertion. There is no instantaneous effect. A successful Bell closure must show that the pair-provenance domain and two local apparatus interactions push forward to the tested joint law, with the comparison requiring ordinary sub-$c_f$ communication.
+
+---
+
+##### Comparison with Competing Interpretations
+
+| Interpretation | Hidden Variables? | Nonlocal Influence? | Collapse? | $\mathbb{A}\mathbb{A}\mathbb{A}$ Alignment |
+|:---|:---|:---|:---|:---|
+| **Copenhagen** | No | Ambiguous | Yes (axiom) | Rejects collapse axiom; $\lvert\psi\rangle$ is epistemic. |
+| **Many-Worlds** | No | No (all branches real) | No | Rejects ontic branching; one realized trajectory. |
+| **de Broglie–Bohm** | Yes (positions) | Yes (pilot wave) | Effective | Closest structural analogue; $\mathbb{A}\mathbb{A}\mathbb{A}$ replaces pilot wave with causal wake geometry. |
+| **QBism** | No (probabilities are personal) | No | No (belief update) | Shares epistemic reading of $\lvert\psi\rangle$ but rejects subjectivism; $\Gamma(t)$ is objective. |
+| **Superdeterminism** | Yes | No | No | Rejects; measurement independence preserved. |
+| **$\mathbb{A}\mathbb{A}\mathbb{A}$** | Yes (full microstate $\Gamma$) | No causal signal; Bell closure requires non-separable $\lambda$ | Effective (threshold crossing) | — |
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Bohmian mechanics because a completed Bell account would be deterministic and nonlocal in Bell's technical sense. The structural differences are:
+
+- **Guidance mechanism**: Bohm uses a pilot wave $\psi$ on configuration space; $\mathbb{A}\mathbb{A}\mathbb{A}$ uses superposed causal-wake geometry in 3D Euclidean space plus absolute time.
+- **Ontological economy**: $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require a separate ontological category for the wave; the wake structure is generated by the architrinos themselves.
+- **Non-Markovian memory**: $\mathbb{A}\mathbb{A}\mathbb{A}$'s self-hit dynamics introduce history dependence absent in standard Bohmian mechanics.
+- **Spacetime**: Bohm typically works within Minkowski spacetime; $\mathbb{A}\mathbb{A}\mathbb{A}$ replaces it with Euclidean void + absolute time, making the nonlocality conceptually transparent.
+
+---
+
+##### Observables and Falsifiability
+
+**Working closure route:** Ordinary entanglement correlations should be derived from a deterministic, nonseparable pair-provenance record established at a shared source event, maintained through path-history structure, and resolved by local detector kernels without superluminal influence. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
+
+**Assumptions:**
+- Complete microstate $\Gamma(t)$ is definite at all $t$.
+- Conservation constraints at the source event constrain the joint hidden-variable distribution; the Bell gate must derive the remaining measure structure rather than assume it.
+- Measurement is a local threshold crossing (no distant causal input).
+- Measurement independence holds (no superdeterminism).
+
+**Closure Targets and Constraints:**
+- Bell gate: derive the pair-provenance ledger, the two local apparatus-response maps, and the observer-level compression that reproduce the tested Bell correlations without invoking superluminal influence.
+- Measurement-independence guardrail: report $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ for any pair-provenance simulation or analytic Bell packet, and do not count a correlation fit as successful if it requires setting-dependent hidden-variable preparation.
+- Residual reporting: report $\Delta_{\mathrm{NS}}^{A}$, $\Delta_{\mathrm{NS}}^{B}$, and $\Delta_{\mathrm{Bell}}$ alongside any claimed Bell-pair recovery.
+- Photon-polarization gate: for entangled photon tests, Gate B must recover the transverse analyzer statistics and no-signaling behavior before the note may claim operational equivalence with quantum mechanics.
+- Decoherence timescales for entangled assemblies are expected to scale with the local Noether-Sea density and temperature, but the quantitative law remains a validation target.
+- No signaling: no protocol exploiting entanglement can transmit information faster than $c_f$, even in principle.
+
+**Failure Modes:**
+- If an experiment demonstrates **signaling** via entanglement (information transfer without a sub-$c_f$ channel), the mechanism fails.
+- If a Bell test with verified measurement independence and closed loopholes produces correlations **exceeding** the Tsirelson bound ($|S| = 2\sqrt{2}$), the quantum formalism itself would be violated, requiring revision at both levels.
+- If the pair-provenance ledger plus local apparatus-response maps fail to reproduce the full spin-singlet joint law from the hidden-variable geometry, the specific Bell-closure mechanism is falsified, though the general ontological framework may admit repair.
+
+**Bell Closure Gate:**
+- Simulate a minimal correlated-pair source event (e.g., a parent assembly fragmenting into two daughter tri-binaries) under the Master Equation and extract the joint outcome statistics as a function of relative measurement angle.
+- Derive the source-provenance distribution for a spin-singlet-like source event from the conservation constraints and verify the full joint law
+  $$
+  P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+  =
+  \frac14
+  \left(
+  1-ab\,\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
+  \right),
+  \qquad
+  a,b\in\{-1,+1\},
+  $$
+  which yields
+  $$
+  E_{\mathrm{SG}}
+  \left(
+  \hat{\mathbf m}_A,
+  \hat{\mathbf m}_B
+  \right)
+  =
+  -\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B.
+  $$
+- Investigate whether the non-separability of $\lambda$ can be given a precise geometric characterization in terms of correlated binary-plane orientations and wake-phase offsets.
+
+The philosophy-facing framing of this problem lives in [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), especially its Bell and measurement sections.
+
+#### Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸
+
+This document presents the standard derivation and physical content of Bell's theorem, then states how the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) should approach the experimentally observed violations of Bell inequalities. It is a bridge document, not the final mechanism. The final account must be rebuilt from the architrino-level angular-momentum and spin ledger developed in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+
+The phrase "hidden variable" is inherited from the Bell literature. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the relevant variables are not hidden from nature. They are unresolved by the observer-level quantum abstraction. The task is therefore not to defend a vague hidden-variable category, but to identify the exact architrino, Noether-core, causal-wake, and measurement-apparatus variables whose coarse description becomes quantum spin statistics.
+
+---
+
+##### Traditional Statement of Bell's Theorem
+
+###### The EPR Argument (Precursor)
+
+Einstein, Podolsky, and Rosen (1935) argued from two premises:
+
+- **Realism**: If, without disturbing a system, the outcome of a measurement can be predicted with certainty, there exists an element of physical reality corresponding to that outcome.
+- **Locality**: No action performed on one system can instantaneously affect a distant system.
+
+Applied to a pair of particles with perfectly anti-correlated spins, EPR concluded that both spin components must possess simultaneous definite values (predetermined by hidden variables $\lambda$), and that quantum mechanics, which assigns no such values, is therefore incomplete.
+
+The quantum formalist response (Bohr) rejected the premise that unmeasured observables possess definite values. The debate remained philosophical until Bell (1964) converted it into a quantitative, experimentally testable constraint.
+
+###### Bell's Derivation
+
+Consider a source that produces pairs of particles sent to two distant detectors. Detector $A$ measures along axis $\hat{m}_A$ and records outcome $a = \pm 1$; detector $B$ measures along $\hat{m}_B$ and records $b = \pm 1$.
+
+**Assumption 1 (Realism / Hidden Variables).** There exists a complete specification $\lambda$ (drawn from some space $\Lambda$ with distribution $\rho(\lambda)$) such that the outcomes are deterministic functions:
+
+$$
+a = A(\hat{m}_A, \lambda), \quad b = B(\hat{m}_B, \lambda).
+$$
+
+**Assumption 2 (Bell Locality).** The outcome at each detector depends only on the local measurement setting and the shared hidden variable, not on the distant setting:
+
+$$
+A(\hat{m}_A, \lambda) \text{ is independent of } \hat{m}_B, \quad B(\hat{m}_B, \lambda) \text{ is independent of } \hat{m}_A.
+$$
+
+This is the factorizability condition. For stochastic theories it generalizes to:
+
+$$
+P(a, b \,|\, \hat{m}_A, \hat{m}_B, \lambda) = P(a \,|\, \hat{m}_A, \lambda)\; P(b \,|\, \hat{m}_B, \lambda).
+$$
+
+**Assumption 3 (Measurement Independence).** The hidden variable $\lambda$ is statistically independent of the freely chosen measurement settings:
+
+$$
+\rho(\lambda \,|\, \hat{m}_A, \hat{m}_B) = \rho(\lambda).
+$$
+
+###### The CHSH Inequality
+
+From these three assumptions, Clauser, Horne, Shimony, and Holt (1969) derived the experimentally accessible inequality. Define the correlation function:
+
+$$
+E(\hat{m}_A, \hat{m}_B) = \int_\Lambda A(\hat{m}_A, \lambda)\, B(\hat{m}_B, \lambda)\, \rho(\lambda)\, d\lambda.
+$$
+
+For any four measurement settings $\hat{m}_A, \hat{m}_A', \hat{m}_B, \hat{m}_B'$, the CHSH combination:
+
+$$
+S = E(\hat{m}_A, \hat{m}_B) - E(\hat{m}_A, \hat{m}_B') + E(\hat{m}_A', \hat{m}_B) + E(\hat{m}_A', \hat{m}_B')
+$$
+
+satisfies:
+
+$$
+|S| \leq 2.
+$$
+
+This bound holds for any local, realistic, measurement-independent hidden-variable theory, regardless of the specific form of $A$, $B$, or $\rho$.
+
+###### Quantum Mechanical Prediction
+
+For the spin-singlet state $|\Psi^-\rangle = \frac{1}{\sqrt{2}}(|\!\uparrow\downarrow\rangle - |\!\downarrow\uparrow\rangle)$, quantum mechanics predicts:
+
+$$
+E_{\text{QM}}(\hat{m}_A, \hat{m}_B) = -\hat{m}_A \cdot \hat{m}_B = -\cos\theta_{AB},
+$$
+
+where $\theta_{AB}$ is the angle between the two measurement axes. With the optimal choice of settings ($\theta = \pi/4$ increments), this yields:
+
+$$
+|S_{\text{QM}}| = 2\sqrt{2} \approx 2.828,
+$$
+
+which violates the CHSH bound. The value $2\sqrt{2}$ is the **Tsirelson bound**, the maximum achievable by any quantum state.
+
+###### Bell-Family Strengthenings: GHZ and Hardy
+
+The CHSH inequality is the main statistical benchmark, but it is not the only Bell-family validation target. Two primary-source strengthenings are useful because they expose failures that can be hidden by fitting one averaged correlation curve.
+
+**GHZ perfect-correlation benchmark.** For a calibrated three-party GHZ state, choose local Pauli-type settings $X$ and $Y$ and define the four product contexts
+$$
+\mathcal{C}_{\mathrm{GHZ}}=\{XXX,XYY,YXY,YYX\}.
+$$
+Quantum mechanics assigns product signs $\chi_C\in\{-1,+1\}$ for those contexts such that
+$$
+\prod_{C\in\mathcal{C}_{\mathrm{GHZ}}}\chi_C=-1.
+$$
+Any context-independent local assignment of predetermined values $x_A,y_A,x_B,y_B,x_C,y_C\in\{-1,+1\}$ gives product $+1$, because every local value appears twice when the four context products are multiplied. This is the all-or-nothing GHZ obstruction: a model cannot pass by reproducing only a Bell average while carrying one fixed local value table across all contexts.
+
+For an $\mathbb{A}\mathbb{A}\mathbb{A}$ record model, the corresponding residual is
+$$
+\Delta_{\mathrm{GHZ}}
+=
+\max_{C\in\mathcal{C}_{\mathrm{GHZ}}}
+\left[
+1-\chi_C E_\theta(C)
+\right]_+,
+$$
+where $E_\theta(C)$ is the product expectation of the three declared apparatus records in context $C$ and $[x]_+\equiv\max(x,0)$. Passing this benchmark means deriving the context-indexed joint record distribution from pair or multiplet provenance and local detector kernels, not assigning context-independent substrate values to all effective $X$ and $Y$ operators.
+
+**Hardy zero/positive event benchmark.** Hardy's two-particle proof uses binary observables $U_i,D_i$ and a nonmaximally entangled state to combine three zero-probability constraints with one positive-probability event. In one common convention the quantum target is
+$$
+P(U_1=1,U_2=1)=0,
+\qquad
+P(D_1=1,U_2=0)=0,
+$$
+$$
+P(U_1=0,D_2=1)=0,
+\qquad
+P(D_1=1,D_2=1)>0.
+$$
+Local realism turns the positive $D_1=D_2=1$ event into a forbidden $U_1=U_2=1$ event. A compact validation margin is
+$$
+\Delta_{\mathrm{Hardy}}
+=
+\left[
+P_\theta(D_1=1,D_2=1)
+-
+P_\theta(U_1=1,U_2=1)
+-
+P_\theta(D_1=1,U_2=0)
+-
+P_\theta(U_1=0,D_2=1)
+\right]_+.
+$$
+The target is not to import Hardy's notation as ontology. The target is to make the declared joint record measure reproduce the zero constraints and the positive event while preserving measurement independence and no-signaling.
+
+###### Experimental Status
+
+Beginning with Freedman and Clauser (1972) and Aspect, Dalibard, and Roger (1982), and culminating in loophole-free tests (Hensen et al. 2015, Giustina et al. 2015, Shalm et al. 2015), experiments consistently observe $|S| > 2$, in agreement with the quantum prediction. The three principal loopholes have been individually and jointly closed:
+
+- **Locality loophole**: measurement settings chosen and outcomes recorded in spacelike-separated regions.
+- **Detection loophole**: sufficiently high detection efficiency to rule out biased subsamples.
+- **Freedom-of-choice loophole**: settings determined by sources (distant quasars, cosmic photons) causally disconnected from the particle source.
+
+Cosmic setting-choice tests make the measurement-independence burden concrete. They do not prove metaphysical freedom; they bound the possibility that the apparatus settings and the pair-preparation variables shared an unrecorded common cause inside the relevant past lightcone overlap. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, any proposed pair-provenance explanation must keep that setting-source correlation inside the declared $\Delta_{\mathrm{MI}}$ tolerance rather than using remote common-cause leakage as an untracked escape route.
+
+The experimental conclusion is unambiguous: at least one of the three Bell assumptions must fail.
+
+---
+
+##### The Logical Structure of the Theorem
+
+Bell's theorem is a **no-go theorem**: it excludes a class of theories, not a specific model. Its logical skeleton is:
+
+$$
+\text{(Realism)} \;\wedge\; \text{(Bell Locality)} \;\wedge\; \text{(Measurement Independence)} \;\Rightarrow\; |S| \leq 2.
+$$
+
+The contrapositive is:
+
+$$
+|S| > 2 \;\Rightarrow\; \neg\text{(Realism)} \;\vee\; \neg\text{(Bell Locality)} \;\vee\; \neg\text{(Measurement Independence)}.
+$$
+
+Experiment confirms $|S| > 2$. Therefore at least one assumption is false. The interpretive question is: *which one?*
+
+The major responses in the literature are:
+
+| Response | Assumption Denied | Representative Framework |
+|:---|:---|:---|
+| Orthodox QM (Copenhagen) | Realism | Standard textbook QM |
+| Many-Worlds | Bell Locality (implicitly, via branching) | Everettian QM |
+| Pilot-Wave | Bell Locality (explicitly) | de Broglie–Bohm |
+| Superdeterminism | Measurement Independence | 't Hooft, some retrocausal models |
+| Retrocausal | Bell Locality (via future boundary conditions) | Transactional, two-state-vector |
+
+---
+
+##### Architrino Assembly Architecture Placement
+
+###### What The Bell Abstraction Can And Cannot Decide
+
+At the Bell-abstraction level, any $\mathbb{A}\mathbb{A}\mathbb{A}$ completion that reproduces the experiments cannot reduce to a local factorizable response model with measurement-independent variables. That is the hard constraint. It does not decide what angular momentum is, what spin is, or how a Noether core responds to a detector. Those questions belong one level lower, in the architrino and causal-wake dynamics.
+
+The current placement is therefore:
+
+- **Realism is retained**: every architrino possesses a definite position $\mathbf{x}_i(t)$, velocity $\mathbf{v}_i(t)$, polarity $q_i$, and path-history ledger at every absolute time $t$. The complete microstate exists independently of observation.
+
+- **Measurement independence is retained**: detector settings are not assumed to be pre-correlated with the source microstate. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not invoke superdeterminism.
+
+- **Bell factorizability is a closure target, not a slogan**: if the completed substrate model is compressed into Bell variables, it must fail the factorized local-response form
+
+$$
+P(a, b \,|\, \hat{m}_A, \hat{m}_B, \lambda) \neq P(a \,|\, \hat{m}_A, \lambda)\; P(b \,|\, \hat{m}_B, \lambda),
+$$
+
+while still preserving no-signaling. The mechanism for that failure must be derived from the angular-momentum ledger and the detector coupling, not inserted by terminology.
+
+A shared past is not enough by itself. If a declared common-past record $C$ screens the two wings into independent one-wing laws while measurement independence and no-signaling hold, the model has re-entered the Bell-local class. A useful residual for this check is
+
+$$
+\Delta_{\mathrm{fact}}(C)
+=
+\sup_{\hat{m}_A,\hat{m}_B}
+D_{\mathrm{TV}}\!\left(
+P(a,b\mid \hat{m}_A,\hat{m}_B,C),
+P(a\mid \hat{m}_A,C)P(b\mid \hat{m}_B,C)
+\right).
+$$
+
+Here $C$ is not a new substrate object; it is the retained common-past or pair-provenance record used by the proposed Bell closure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ route must explain why the declared provenance and apparatus-response compression leaves a nonzero factorization residual while keeping the measurement-independence and no-signaling residuals below tolerance. If $\Delta_{\mathrm{fact}}(C)$ vanishes for the completed hidden-variable record, the closure has not escaped the theorem.
+
+The same point can be stated as a Markov-screening and restartability test. A finite-thickness screening region, common-past record, or pair-provenance ledger screens a Bell experiment only if the retained state at an intermediate time can be used as a restartable effective state for the later detector records. For $t_0<t_s<t_{\mathrm{rec}}$ and a declared Bell coarse-graining $\mathcal{Q}_{AB}$, define
+
+$$
+\Delta_{\mathrm{div}}^{AB}(t_0,t_s,t_{\mathrm{rec}};\mathcal{Q}_{AB})
+=
+\left\|
+\mathcal{T}^{\mathcal{Q}_{AB}}_{t_0\to t_{\mathrm{rec}}}
+-
+\mathcal{T}^{\mathcal{Q}_{AB}}_{t_s\to t_{\mathrm{rec}}}
+\mathcal{T}^{\mathcal{Q}_{AB}}_{t_0\to t_s}
+\right\|_{\mathrm{TV}\to\mathrm{TV}}.
+$$
+
+If $\Delta_{\mathrm{div}}^{AB}\le\varepsilon_{\mathrm{div}}$ and $\Delta_{\mathrm{fact}}(C)=0$ for the completed retained record, the proposed closure has supplied a restartable screened common cause and remains in the Bell-local class. If $\Delta_{\mathrm{div}}^{AB}=O(1)$ for the observer-level Bell variables, then the reduced variables have lost path-history information needed for the joint record law; that is a possible reason the Bell abstraction fails to factorize. This does not weaken Bell's theorem. It states the replacement burden: derive the non-restartable record compression from pair provenance, local apparatus kernels, and finite-time measurement dynamics while still passing the no-signaling, measurement-independence, and correlation gates below.
+
+###### Bell Closure Diagnostics
+
+The Bell gate should be checked by separate residuals, because different failures mean different physics. A model may fail by correlating the preparation variable with the settings, by allowing a signaling marginal, or by producing the wrong correlation curve. These are not interchangeable.
+
+Measurement-independence leakage is the first guardrail:
+
+$$
+\Delta_{\mathrm{MI}}
+=
+\sup_{\hat{m}_A,\hat{m}_B}
+D_{\mathrm{TV}}\!\left(
+\rho(\lambda\mid \hat{m}_A,\hat{m}_B),
+\rho(\lambda)
+\right),
+$$
+
+where $D_{\mathrm{TV}}$ is total-variation distance on the hidden-variable distribution. The $\mathbb{A}\mathbb{A}\mathbb{A}$ route requires $\Delta_{\mathrm{MI}}$ to vanish, or at minimum to remain below an explicitly reported experimental and simulation tolerance $\epsilon_{\mathrm{MI}}$. Otherwise the mechanism has drifted into a measurement-independence denial rather than the pair-provenance route stated above.
+
+No-signaling leakage is the second guardrail:
+
+$$
+\Delta_{\mathrm{NS}}^{A}
+=
+\sup_{\hat{m}_A,\hat{m}_B,\hat{m}'_B}
+\sum_a
+\left|
+P(a\mid \hat{m}_A,\hat{m}_B)
+-
+P(a\mid \hat{m}_A,\hat{m}'_B)
+\right|,
+$$
+
+with the analogous $\Delta_{\mathrm{NS}}^{B}$ obtained by exchanging the detector labels. Both must vanish within tolerance.
+
+For binary records, no-signaling has a useful finite-channel decomposition. Any normalized law for $a,b\in\{-1,+1\}$ can be written in Walsh form as
+
+$$
+P(a,b|x,y)
+=
+\frac14
+\left[
+1
++
+a\,m_A(x,y)
++
+b\,m_B(x,y)
++
+ab\,C(x,y)
+\right],
+$$
+
+where
+
+$$
+m_A=\sum_{a,b}aP(a,b|x,y),
+\qquad
+m_B=\sum_{a,b}bP(a,b|x,y),
+\qquad
+C=\sum_{a,b}abP(a,b|x,y).
+$$
+
+No-signaling is exactly the condition that the local channels reduce to $m_A(x)$ and $m_B(y)$. The only term then allowed to carry both settings without operational signaling is the correlation channel:
+
+$$
+P(a,b|x,y)
+=
+\frac14
+\left[
+1
++
+a\,m_A(x)
++
+b\,m_B(y)
++
+ab\,C(x,y)
+\right],
+$$
+
+with positivity condition
+
+$$
+1+a\,m_A(x)+b\,m_B(y)+ab\,C(x,y)\ge0.
+$$
+
+For the singlet target,
+
+$$
+m_A(x)=0,
+\qquad
+m_B(y)=0,
+\qquad
+C(x,y)=-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B.
+$$
+
+Product-screened response is the special subclass
+
+$$
+C_{\mathrm{prod}}(x,y)
+=
+\int
+A_x(\Pi)B_y(\Pi)\,
+d\rho_{\mathrm{src}}(\Pi).
+$$
+
+Thus the non-product burden is sharply located: a successful pair-provenance account must derive a correlation channel $C(x,y)$ that is not reducible to $C_{\mathrm{prod}}(x,y)$, while keeping $m_A$ and $m_B$ local and preserving positivity.
+
+Correlation recovery is the third guardrail:
+
+$$
+\Delta_{\mathrm{Bell}}
+=
+\sup_{\theta\in[0,\pi]}
+\left|
+E_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)+\cos\theta
+\right|.
+$$
+
+The target is therefore not simply "$|S|>2$." The target is simultaneous recovery of the tested Bell correlations, preservation of no-signaling, and preservation of measurement independence while the observer-level compression still fails Bell's factorized local-response form.
+
+###### Record-Reconstruction Guardrail
+
+Bell experiments end in ordinary records: detector clicks, settings logs, coincidence windows, and later statistical summaries. That observation is important because it keeps the evidence at the observer-accessible level. It is not, by itself, an explanation of the correlations. A completed $\mathbb{A}\mathbb{A}\mathbb{A}$ account must explain why the joint record distribution has the tested quantum form, not merely why final records exist.
+
+For a record map
+$$
+\pi_{AB}:\mathcal{M}_{AB}\to\mathcal{R}_A\times\mathcal{R}_B,
+$$
+the required joint distribution is
+$$
+P(a,b\mid\hat{m}_A,\hat{m}_B)
+=
+\mu_*^{AB}\!\left(
+\pi_{AB}^{-1}(a,b;\hat{m}_A,\hat{m}_B)
+\right).
+$$
+The guardrail is that this measure must simultaneously produce the singlet correlation, preserve the one-wing marginals, and avoid measurement-independence leakage:
+$$
+\Delta_{\mathrm{Bell}}\le\epsilon_{\mathrm{Bell}},
+\qquad
+\Delta_{\mathrm{NS}}^{A},\Delta_{\mathrm{NS}}^{B}\le\epsilon_{\mathrm{NS}},
+\qquad
+\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}},
+\qquad
+\Delta_{\mathrm{GHZ}}\le\epsilon_{\mathrm{GHZ}},
+\qquad
+\Delta_{\mathrm{Hardy}}>0
+\text{ in the calibrated Hardy regime.}
+$$
+Thus record reconstruction is the output surface of the Bell program, not a substitute for the pair-provenance and apparatus-response derivation.
+
+###### Why Angular Momentum Must Come First
+
+The non-separability of $\lambda$ requires a precise physical account. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the first object is not an abstract spin label. It is the full angular-momentum ledger of a pair-creation event: architrino positions and velocities, binary frequencies, Noether-core orientations, active causal-root branches, self-action terms, and causal-wake history.
+
+**Creation event.** When a parent assembly fragments into daughters $A$ and $B$ at absolute time $t_0$, the Master Equation and conservation laws jointly constrain the daughter microstates $\Gamma_A(t_0)$ and $\Gamma_B(t_0)$. For a spin-singlet-like event, the observer-level summary is
+
+$$
+\mathbf{J}_A+\mathbf{J}_B=\mathbf{0}.
+$$
+
+That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter Noether cores redistribute action across inner, middle, and outer binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
+
+A source-level pair-provenance record should therefore replace the generic $\lambda$ placeholder before any Bell calculation is called physical. For a singlet-like source, write
+
+$$
+P_{\mathrm{src}}^{\mathrm{sing}}
+=
+\left(
+B_{\mathrm{parent}}^-,
+W_{\mathrm{src}},
+t_0,
+t_{\mathrm{sep}},
+\Sigma_{\mathrm{src}},
+\mu_{\mathrm{src}},
+\Gamma_{\mathrm{src}}^{\mathrm{loc}}
+\right),
+$$
+
+where $B_{\mathrm{parent}}^-$ is the pre-fragmentation parent branch, $W_{\mathrm{src}}$ is the source event window, $t_{\mathrm{sep}}$ is the separation time, $\Sigma_{\mathrm{src}}$ is the source separatrix or accepted branch condition, $\mu_{\mathrm{src}}$ is the source-side measure, and $\Gamma_{\mathrm{src}}^{\mathrm{loc}}$ records local source geometry. The retained pair-provenance distribution is
+
+$$
+\rho_{\mathrm{src}}
+\left(
+\Pi_{AB}^{\mathrm{sing}}
+\middle|
+P_{\mathrm{src}}^{\mathrm{sing}}
+\right)
+=
+C_{\mathrm{pair}*}^{\mathrm{sing}}
+\mu_{\mathrm{src}}.
+$$
+
+Here $\Pi_{AB}^{\mathrm{sing}}$ is the daughter-pair provenance record and $C_{\mathrm{pair}*}^{\mathrm{sing}}$ is the singlet-pair construction or conditioning map. Later detector settings are excluded fields of $P_{\mathrm{src}}^{\mathrm{sing}}$; if they enter this source record, the model has moved into measurement-independence failure rather than Bell closure.
+
+**Measurement geometry.** When detector $A$ measures along axis $\hat{\mathbf m}_A$, the apparatus does not read a tiny arrow. It drives the local assembly through a finite-time coupling process whose outcome depends on the full spin ledger: ordered binary-plane geometry, phase, active causal wakes, local Noether-Sea state, and the apparatus potential. The Stern-Gerlach-like scaffold in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) formulates this as apparatus potential-gradient coupling, basin-boundary crossing, angular-momentum exchange, and wake / Noether-Sea recoil. A correct theory must derive how that coupling produces the two observed outcomes called spin-up and spin-down along $\hat{\mathbf m}_A$.
+
+**Why this is not action at a distance.** No usable signal, energy, or causal wake is allowed to pass from one detector to the other during spacelike-separated measurement. The Bell-level difficulty is therefore not solved by adding a signal. It must be solved by showing that the full pair provenance and each local measurement interaction do not compress into the factorizable local-response model that Bell excludes.
+
+###### Reproducing the Quantum Correlation Function
+
+The central quantitative test is whether the $\mathbb{A}\mathbb{A}\mathbb{A}$ hidden-variable structure reproduces the singlet correlation:
+
+$$
+E(\hat{\mathbf m}_A, \hat{\mathbf m}_B) = -\cos\theta_{AB}.
+$$
+
+**Classical-axis failure mode.** Suppose each daughter merely carries an opposite internal angular-momentum direction, distributed uniformly over the unit sphere:
+
+$$
+\hat{\mathbf n}_A=-\hat{\mathbf n}_B.
+$$
+
+The deterministic local response
+
+$$
+A(\hat{\mathbf m}_A,\hat{\mathbf n}_A)
+=
+\operatorname{sgn}
+\left(
+\hat{\mathbf m}_A\cdot\hat{\mathbf n}_A
+\right),
+\qquad
+B(\hat{\mathbf m}_B,\hat{\mathbf n}_B)
+=
+\operatorname{sgn}
+\left(
+\hat{\mathbf m}_B\cdot\hat{\mathbf n}_B
+\right)
+$$
+
+gives the conserved-opposite-axis correlation
+
+$$
+E_{\mathrm{axis}}(\theta)
+=
+-1+\frac{2\theta}{\pi},
+$$
+
+which is **linear** in $\theta$ and does not violate the CHSH bound. This is the well-known failure of all local hidden-variable models with sharp basin boundaries.
+
+This calculation is important because it shows what not to claim. Angular-momentum conservation at creation is not enough if it is reduced to preassigned opposite local axes. Simple smoothing of a local axis response is also not automatically enough; it must be checked against the full correlation function.
+
+A sharper obstruction is product screening. Even a model with an explicit finite pair-provenance ledger and local apparatus kernels fails Bell closure if the completed table can be reconstructed as
+$$
+P_\theta(\mathbf{r}|\mathbf{s})
+=
+\int_{\Pi}
+\prod_i
+K_i(r_i|s_i,\Pi)\,
+d\rho_{\mathrm{prov}}(\Pi).
+$$
+That form can preserve no-signaling and measurement independence while still staying inside the Bell-local bound. The validation harness records this as `bell.product_screening_collapse`, so pair provenance is useful only if the retained record law avoids this compression without introducing setting-dependent provenance or distant signaling.
+
+###### Threshold-Pullback Product-Screening No-Go
+
+The one-wing threshold-pullback theorem target from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#helicity-and-vector-modes) is not, by itself, a Bell solution. It proves how a deterministic basin kernel can reproduce a declared one-wing probability after pushing forward an invariant record-window measure. If two wings use independent copies of that construction over a setting-independent source measure, the result is exactly the Bell-local form.
+
+Let $x,y$ denote detector settings and let $\Pi$ denote the retained source or pair-provenance record. Suppose the two-wing kernel factorizes as
+
+$$
+K_{ab}^{\mathrm{prod}}(x,y;\Pi,\zeta_A,\zeta_B)
+=
+K_A^a(x;\Pi,\zeta_A)
+K_B^b(y;\Pi,\zeta_B),
+$$
+
+with $d\nu_{A,x}$, $d\nu_{B,y}$, and $d\rho_{\mathrm{src}}(\Pi)$ setting-independent in the Bell sense. After integrating unresolved local record variables, define
+
+$$
+p_A(a|x,\Pi)
+=
+\int K_A^a(x;\Pi,\zeta_A)\,d\nu_{A,x}(\zeta_A),
+\qquad
+p_B(b|y,\Pi)
+=
+\int K_B^b(y;\Pi,\zeta_B)\,d\nu_{B,y}(\zeta_B).
+$$
+
+Then the observed law becomes
+
+$$
+P(a,b|x,y)
+=
+\int
+p_A(a|x,\Pi)
+p_B(b|y,\Pi)
+d\rho_{\mathrm{src}}(\Pi).
+$$
+
+For $\pm1$ outcomes, set
+
+$$
+A_x(\Pi)=\sum_{a=\pm1}a\,p_A(a|x,\Pi),
+\qquad
+B_y(\Pi)=\sum_{b=\pm1}b\,p_B(b|y,\Pi),
+$$
+
+so $A_x(\Pi),B_y(\Pi)\in[-1,1]$. For each $\Pi$,
+
+$$
+\left|
+A_xB_y
++
+A_xB_{y'}
++
+A_{x'}B_y
+-
+A_{x'}B_{y'}
+\right|
+\le 2.
+$$
+
+Integrating over $d\rho_{\mathrm{src}}(\Pi)$ gives the CHSH bound $|S|\le2$. Therefore independent local threshold-pullback kernels can recover one-wing probabilities but cannot recover the singlet Bell law. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell packet must locate nonseparability in the derived joint response kernel, in a non-restartable pair-provenance compression, or in another explicitly stated structure that is not equivalent to the product form above, while still preserving measurement independence and no-signaling.
+
+The no-go is quantitative in the natural per-cell residual. If a candidate table is within $\Delta_{\mathrm{prod}}$ of a product-screened table for each outcome-setting cell, then each correlator differs by at most $4\Delta_{\mathrm{prod}}$, and the CHSH expression obeys
+
+$$
+|S|\le 2+16\Delta_{\mathrm{prod}}.
+$$
+
+At the CHSH-optimal singlet settings, a completed table within $\Delta_{\mathrm{joint}}^{\mathrm{sing}}$ of the singlet joint law must therefore satisfy
+
+$$
+\Delta_{\mathrm{prod}}
++
+\Delta_{\mathrm{joint}}^{\mathrm{sing}}
+\ge
+\frac{2\sqrt2-2}{16}
+=
+\frac{\sqrt2-1}{8}.
+$$
+
+Thus exact singlet recovery requires
+
+$$
+\Delta_{\mathrm{prod}}
+\ge
+\frac{\sqrt2-1}{8}
+\approx
+0.0518
+$$
+
+in this residual normalization. Driving the product-screening residual to zero and driving the singlet residual to zero are mutually incompatible closure targets.
+
+The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ route lies in the finite-time measurement interaction of a full Noether-core ledger rather than in a preassigned spin label. The ingredients to derive are:
+
+1. **Angular-momentum ledger geometry**: the internal spin ledger includes ordered binary-plane geometry, binary frequencies, causal-root branches, and causal-wake angular momentum.
+
+2. **Self-hit memory**: the daughter assembly's response is history-dependent, so the measurement interaction is not a memoryless readout of one vector.
+
+3. **Contextual apparatus coupling**: a detector axis defines a real local interaction geometry, not merely an argument inserted into a probability formula.
+
+4. **Pair provenance**: the two daughter ledgers come from one creation event and may retain relational constraints that are lost when one tries to split the state into two independent local packages.
+
+The quantitative closure target is therefore the full singlet joint law, not only the correlation curve. For a Bell packet
+
+$$
+\theta=
+\left(
+P_{\mathrm{src}}^{\mathrm{sing}},
+\mathcal{K}_A,
+\mathcal{K}_B,
+W,
+T
+\right),
+$$
+
+let the derived joint response kernel satisfy
+
+$$
+K_{ab}^{\theta}
+\left(
+\hat{\mathbf m}_A,
+\hat{\mathbf m}_B;
+\Pi,
+\zeta_A,
+\zeta_B
+\right)\ge0,
+\qquad
+\sum_{a,b=\pm1}K_{ab}^{\theta}=1.
+$$
+
+The record law is
+
+$$
+P_{\theta}(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\int
+K_{ab}^{\theta}\,
+d\nu_{A,\hat{\mathbf m}_A}\,
+d\nu_{B,\hat{\mathbf m}_B}\,
+d\rho_{\mathrm{src}}
+\left(
+\Pi
+\middle|
+P_{\mathrm{src}}^{\mathrm{sing}}
+\right).
+$$
+
+The singlet residual is
+
+$$
+\Delta_{\mathrm{joint}}^{\mathrm{sing}}
+=
+\sup_{a,b,\hat{\mathbf m}_A,\hat{\mathbf m}_B}
+\left|
+P_{\theta}(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+-
+\frac14
+\left(
+1-ab\,\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
+\right)
+\right|.
+$$
+
+If this residual is small, normalization, unbiased one-wing marginals, and the correlation
+
+$$
+E_\theta(\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+\sum_{a,b=\pm1}ab\,P_{\theta}(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
+=
+-\hat{\mathbf m}_A\cdot\hat{\mathbf m}_B
+$$
+
+follow as consequences. The local Stern-Gerlach kernels are deterministic basin indicators derived from the architrino-level angular-momentum and measurement-response dynamics, not ready-made spin-projection rules. The remaining Bell-level task is to derive the preparation and pair-provenance measures that make those local kernels reproduce the joint law while preserving no-signaling and measurement independence and while failing the product-screened local reconstruction above.
+
+**Status:** This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency Noether core, use the Master-Equation apparatus impulse and record-cycle invariant measure to realize $K_{\pm}^{\text{SG}}$, and then derive the pair-provenance measure for correlated cores. The single-core half-angle basin arithmetic and the external apparatus-term origins are now available in the reduced Stern-Gerlach chart, but this is not yet a Bell-pair correlation proof.
+
+---
+
+##### Comparison with Other Hidden-Variable Frameworks
+
+###### de Broglie–Bohm (Pilot-Wave) Theory
+
+This is the closest structural relative in the inherited taxonomy. Both $\mathbb{A}\mathbb{A}\mathbb{A}$ and Bohmian mechanics are deterministic and realistic; any successful $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell account will also be nonlocal in Bell's technical sense. Key differences:
+
+| Feature | de Broglie–Bohm | $\mathbb{A}\mathbb{A}\mathbb{A}$ |
+|:---|:---|:---|
+| Hidden variables | Particle positions in 3D | Full microstate $\Gamma(t)$ (positions, velocities, charges) in 3D |
+| Guidance mechanism | Pilot wave $\psi$ on configuration space $\mathbb{R}^{3N}$ | Superposed causal-wake geometry in physical 3D space |
+| Ontological economy | Two ontological categories (particles + wave) | One category (architrinos); wake structure is generated by architrinos |
+| Nonlocality mechanism | $\psi$ on configuration space couples all particles | To be derived from pair provenance plus measurement-response ledger |
+| Spacetime | Minkowski (standard) or absolute time (non-relativistic) | Euclidean void + absolute time (fundamental) |
+| Memory | Markovian (given $\psi$) | Non-Markovian (self-hit, path-history dependence) |
+
+In Bohmian mechanics, the pilot wave on $\mathbb{R}^{3N}$ provides nonlocal guidance: the full configuration helps determine the velocity field. In $\mathbb{A}\mathbb{A}\mathbb{A}$, it is premature to say that the entire Bell burden resides only in initial conditions. A pure initial-condition account that compresses into independent local response functions would fall back into the class excluded by Bell. The open task is to determine how the full angular-momentum ledger, pair provenance, and local measurement coupling appear when translated into Bell's variables.
+
+###### Superdeterminism
+
+Superdeterministic models deny measurement independence: the detector settings and the hidden variables share a common cause in the remote past, eliminating genuine free choice. $\mathbb{A}\mathbb{A}\mathbb{A}$ explicitly rejects this route. The creation event that sets $\lambda$ is causally disconnected from the apparatus settings (which can be determined by distant quasars or quantum random-number generators). Measurement independence is a structural feature of the theory, not an approximation.
+
+###### Retrocausal Models
+
+Retrocausal interpretations allow influences from future measurement settings to propagate backward in time to the source, effectively setting $\lambda$ in response to $\hat{m}_A$ and $\hat{m}_B$. $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time ontology categorically forbids backward-in-$t$ causation. All causal influences propagate forward in absolute time at or below $c_f$. The correlations in $\lambda$ are forward-causal consequences of the creation event, established before any measurement setting is chosen.
+
+Temporal-nonlocality language is therefore a comparison diagnostic, not a mechanism to import. In a relativistic observer description, different frames may assign different time orderings to spacelike-separated measurement records; that does not license future-boundary variables in the substrate ledger. A candidate Bell record should evaluate pair provenance, $\Delta_{\mathrm{MI}}$, $\Delta_{\mathrm{NS}}^{A}$, $\Delta_{\mathrm{NS}}^{B}$, and $\Delta_{\mathrm{Bell}}$ on the absolute-time record. If the correlation fit requires $\lambda$ to depend on later settings, the record has left the stated $\mathbb{A}\mathbb{A}\mathbb{A}$ route and should be classified with retrocausal or measurement-independence-denying comparison models.
+
+---
+
+##### The Role of Absolute Time
+
+The existence of a global time parameter $t$ is essential for the internal consistency of the $\mathbb{A}\mathbb{A}\mathbb{A}$ account of Bell violations.
+
+**Problem in relativistic frameworks.** In Minkowski spacetime, spacelike-separated measurements have no invariant temporal ordering. Telling a story about "what happens first" requires selecting a frame, and different frames give different orderings. This makes it conceptually difficult to describe how pre-established correlations are "read out" without invoking some form of action at a distance.
+
+**Resolution via absolute time.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, the temporal ordering of all events is objective. Measurements at $A$ and $B$ occur at definite absolute times $t_A$ and $t_B$, with $t_A < t_B$, $t_A = t_B$, or $t_A > t_B$ as an objective fact. In all three cases the account is the same:
+
+1. At $t_0 < \min(t_A, t_B)$: the creation event establishes $\lambda$.
+2. At each measurement time: the local apparatus drives the local assembly across a basin boundary. The one-wing basin crossing is local, but the validated observer-level law is the pushed-forward nonseparable pair-provenance response kernel, not a restartable product of two independent local hidden-variable packages.
+3. After both measurements: comparison of results (via sub-$c_f$ classical communication) reveals the correlations.
+
+No step may involve faster-than-$c_f$ signal transfer. The correlations are visible only upon comparison. The objective temporal ordering removes one frame-dependence puzzle, but it does not by itself solve Bell's theorem. The missing work is the lower-level derivation of the spin ledger and measurement-response kernel.
+
+**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it reflects the epistemic limitations of assembly-based measurement; see [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md).
+
+---
+
+##### Observables, Falsifiability, and Failure Modes
+
+**Closure target:** $\mathbb{A}\mathbb{A}\mathbb{A}$ must reproduce all experimentally observed Bell-family correlation constraints from architrino-level angular-momentum and measurement-response dynamics, without superluminal signaling or denial of measurement independence.
+
+**Assumptions:**
+- The full microstate $\Gamma(t)$ is definite at all $t$ (realism).
+- Conservation constraints at creation establish a joint pair ledger, but the detailed angular-momentum distribution must be derived.
+- Measurement is local threshold resolution (no distant causal input at measurement time).
+- Measurement independence holds (no superdeterminism, no retrocausation).
+- The measurement-response kernel of a Noether-core assembly interacting with an apparatus is a deterministic basin indicator, not a primitive $\cos^2(\alpha/2)$ rule. The single-core half-angle law is now computed in the reduced Stern-Gerlach chart; the Master-Equation burden is to derive the effective spinor coordinate and verify that the branch-sum apparatus impulse and record-cycle invariant measure realize that chart.
+
+**Required recoveries:**
+- All standard Bell-CHSH violations are reproduced: $|S| = 2\sqrt{2}$ for singlet pairs with optimal settings.
+- No violation of the Tsirelson bound: $|S| \leq 2\sqrt{2}$. Observing $|S| > 2\sqrt{2}$ would falsify both QM and any $\mathbb{A}\mathbb{A}\mathbb{A}$ model that reproduces QM.
+- GHZ product-sign contexts are recovered without assigning one context-independent local value table across all $X/Y$ settings.
+- Hardy's zero-probability constraints and positive event margin are recovered for the calibrated nonmaximally entangled regime.
+- No-signaling is exact: no measurement protocol on $A$ can alter the marginal statistics at $B$.
+- Measurement-independence leakage is explicitly bounded by $\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}}$ rather than absorbed into the pair-provenance explanation.
+- Correlation recovery is checked through $\Delta_{\mathrm{Bell}}$ against the full $-\cos\theta$ curve, not only by a single CHSH setting choice.
+- Decoherence rates for entangled pairs depend on local Noether-Sea density, providing an environmental sensitivity absent in bare QM (shared prediction with [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)).
+
+**Failure Modes:**
+- If the Master Equation dynamics for a tri-binary measurement interaction yield a response function that is **not** $\cos^2(\alpha/2)$—for instance, a linear or piecewise-linear function—the resulting $E(\theta_{AB})$ will disagree with the quantum prediction and with experiment. This is a falsification of the specific mechanism, requiring revision of the measurement model or the assembly-apparatus coupling.
+- If simulations of correlated pair creation under the Master Equation produce a hidden-variable distribution $\rho(\lambda)$ that is **separable** (factorizes into independent local distributions), the theory reduces to a local hidden-variable model and cannot violate the CHSH bound. This would be a fundamental failure requiring revision of the creation-event dynamics or the conservation-law implementation.
+- If the retained pair-provenance ledger and apparatus kernels reduce to the product-screened form $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$, then the model has explicit common-past data but still remains Bell-local. This is a failure even when no-signaling and measurement independence pass.
+- If $\Delta_{\mathrm{MI}}$ is nonzero in a way that is necessary for the correlation fit, the model has abandoned the stated $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route and must be reclassified before any corpus claim is promoted.
+- If any experiment demonstrates genuine **signaling** via entanglement (information transfer at $B$ contingent on the setting choice at $A$, without a classical channel), the entire framework fails.
+- If measurement independence is empirically falsified (e.g., via cosmic Bell tests showing setting–source correlations at a level incompatible with statistical noise), the assumption structure changes for all interpretations, not only $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+The Bell claim therefore stops at the closure target and failure conditions. A completed account requires lower-level angular-momentum, Stern-Gerlach response, source-measure, and pair-provenance derivations before this chapter can report success or failure.
+
+#### Special Relativity and Deformable Noether Cores
+
+This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether-core assemblies. It is a mapping document: the canonical Noether-core geometry remains in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md), the canonical mass thesis remains in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
+
+##### Bridge Thesis
+
+Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether-core account proposes the underlying implementation layer: a moving tri-binary assembly must preserve finite-speed causal wake closure while translating through the Noether Sea. That requirement deforms the core's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
+
+The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether-Sea dynamics.
+
+The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether-core assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether core realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three binary layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
+
+##### Ownership Boundary
+
+This chapter owns:
+
+- the side-by-side dictionary between special-relativistic language and Noether-core implementation language,
+- the qualitative mechanism connecting deformation, clock slowing, and inertial response,
+- the first mathematical handoff from Lorentz kinematics to assembly closure variables,
+- and the list of closure targets needed to turn the mapping into a derivation.
+
+This chapter does not own:
+
+- the definition of a Noether core; see [Noether Swarm](../../../../markdown/aaa/spacetime/noether-swarm.md),
+- the geometry of the dynamic exclusion envelope; see [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md),
+- the proper-time map; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
+- the energy ledger; see [Energy](../../../../markdown/aaa/dynamics/energy.md),
+- or the exact delayed law; see [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
+
+##### The Two Stories
+
+| Special relativity story | Deformable Noether-core story |
+| --- | --- |
+| Physical clocks measure proper time $\tau$, and moving clocks satisfy $d\tau/dt = 1/\gamma$. | A physical clock is an assembly with a countable internal cycle. When a Noether-core clock moves through the Noether Sea, delayed wake paths must still close across the inner, middle, and outer binaries, so fewer stable internal cycles occur per unit absolute time $t$. |
+| Length contraction follows from Lorentz geometry: $L_{\parallel}=L_0/\gamma$. | The core's effective exclusion envelope deforms along the direction of translation. Stable delayed closure requires a longitudinal/transverse retuning of orbital paths, with the Lorentz-compatible target $R_{\parallel}=R_{\perp}/\gamma$ in the weak-field homogeneous limit. |
+| Rest energy is $E_0=m_0c^2$. | Rest energy is the observer-facing value of shielded internal causal history: the part of the trapped Noether-core energy ledger exposed through far-field coupling and Noether-Sea response. |
+| Momentum is $p=\gamma m_0v$. | Momentum is the medium-dressed response of a moving causal knot: the internal path-history ledger must relock under translation, and the Noether Sea supplies the effective response tensor that Physical Observers summarize as relativistic momentum. |
+| Energy and momentum obey $E^2=p^2c^2+m_0^2c^4$. | In the weak-field observer limit, center-of-mass energy and momentum should satisfy the same effective mass-shell relation with $c_{\text{eff}}$, while the substrate calculation resolves the internal ledger, shielding coefficient, and medium-response tensor. |
+| The invariant speed $c$ is a postulate of the observer-level theory. | The observed signal speed is the effective propagation speed $c_{\text{eff}}$ of photon-like and clock-synchronization channels in the local Noether Sea, approaching $c_f$ in the homogeneous weak-field limit. |
+| Lorentz symmetry is a spacetime symmetry. | Lorentz symmetry is an emergent operational symmetry of assemblies whose clocks, rulers, and signal channels are all built from the same finite-speed delayed closure dynamics. |
+
+##### Clock Channel
+
+In special relativity, the moving-clock law is usually written
+$$
+\frac{d\tau}{dt}=\frac{1}{\gamma},
+\qquad
+\gamma=\frac{1}{\sqrt{1-v^2/c^2}}.
+$$
+The equation is an observer-level statement: it tells Physical Observers how many proper-time units a moving clock records relative to an inertial coordinate description.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $t$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether-core-based clock, a natural clock channel is the middle binary or a transition built from the coupled tri-binary ledger. The proper-time map is therefore an extracted frequency ratio:
+$$
+\frac{d\tau}{dt}
+=
+\frac{\omega_{\text{clk}}(v,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{geometry})}{\omega_0}.
+$$
+The special-relativistic target is recovered when homogeneous weak-field conditions give
+$$
+\frac{\omega_{\text{clk}}(v)}{\omega_0}
+\approx
+\sqrt{1-\frac{v^2}{c_{\text{eff}}^2}}.
+$$
+
+The Noether-core mechanism behind that target is finite-speed causal closure. As the center of mass translates, each internal wake return must close across a slanted path-history geometry. The assembly can remain stable only if orbital phase, path length, envelope geometry, and inter-layer timing retune together. Clock slowing is then the observer-facing readout of a deeper assembly fact: the moving core has fewer available stable closure cycles per unit absolute time.
+
+##### Ruler Channel
+
+Special relativity packages moving-ruler behavior as
+$$
+L_{\parallel}(v)=\frac{L_0}{\gamma},
+\qquad
+L_{\perp}(v)=L_{\perp,0}.
+$$
+The standard equation is kinematic. It does not say what a ruler is made of.
+
+In the Noether-core implementation story, rods are made from bound assemblies whose equilibrium spacings are maintained by finite-speed wake exchange. A moving rod is not merely re-described by a new coordinate system. Its constituent assemblies must preserve stable closure while their center-of-mass state changes relative to the Noether Sea. The local geometric carrier is the deformable exclusion envelope:
+$$
+\mathcal{E}_{\text{excl}}
+=
+\mathcal{E}_{\text{excl}}(\mathbf{v},\mathbf{A}_i,\mathbf{A}_m,\mathbf{A}_o,R_i,R_m,R_o,n,\chi_{\text{sea}}).
+$$
+Here the subscripts $i,m,o$ refer to the inner, middle, and outer binary layers. The Lorentz-compatible weak-field target is the envelope-axis relation
+$$
+\frac{R_{\parallel}}{R_{\perp}}
+\to
+\frac{1}{\gamma_{\text{eff}}},
+\qquad
+\gamma_{\text{eff}}=\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}.
+$$
+
+The important point is that the contraction is not a primitive command imposed on matter. It is a closure condition on matter. If delayed wake exchange sets stable separations, and if those wake exchanges propagate through a medium with effective speed $c_{\text{eff}}$, then the equilibrium geometry of a moving bound system must change in the direction that preserves return timing and phase lock.
+
+In the geometry canon, this contraction is recorded first as the Noether-core envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$. The special-relativistic limit requires a derived map $\xi\to1/\gamma_{\text{eff}}$ together with a matching clock readout $\omega_{\text{clk}}/\omega_0\to1/\gamma_{\text{eff}}$; neither equality is the definition of $\xi$.
+
+###### Closed Return Cycle And Spheroid Map
+
+The shortest derivation of the spheroid map uses the difference between a one-way leg and a closed return cycle. A one-way causal leg in the drift direction exposes the preferred Noether-Sea frame:
+$$
+t_{+}=\frac{R_{\parallel}}{c_{\text{eff}}-v},
+\qquad
+t_{-}=\frac{R_{\parallel}}{c_{\text{eff}}+v}.
+$$
+Those legs are unequal. A physical clock or ruler branch is not built from either leg alone, however. It is built from a return cycle that must close with a stable phase and root ledger. The longitudinal return time is
+$$
+T_{\parallel}
+=
+\frac{R_{\parallel}}{c_{\text{eff}}-v}
++
+\frac{R_{\parallel}}{c_{\text{eff}}+v}
+=
+\frac{2R_{\parallel}}{c_{\text{eff}}}\gamma_{\text{eff}}^2.
+$$
+The transverse cycle uses the remaining transverse causal budget,
+$$
+c_{\perp}
+=
+c_{\text{eff}}
+\sqrt{1-\frac{v^2}{c_{\text{eff}}^2}}
+=
+\frac{c_{\text{eff}}}{\gamma_{\text{eff}}},
+$$
+so
+$$
+T_{\perp}
+=
+\frac{2R_{\perp}}{c_{\perp}}
+=
+\frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}.
+$$
+
+If the same branch is to act as Lorentz-admissible clock and ruler material, the longitudinal and transverse return cycles must close with the same period:
+$$
+T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_0).
+$$
+In the homogeneous zero-leakage limit this gives
+$$
+\frac{2R_{\parallel}}{c_{\text{eff}}}\gamma_{\text{eff}}^2
+=
+\frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}},
+$$
+and therefore
+$$
+\xi(v)
+\equiv
+\frac{R_{\parallel}(v)}{R_{\perp}(v)}
+=
+\frac{1}{\gamma_{\text{eff}}(v)}.
+$$
+
+The moving Noether-core envelope is then the oblate spheroid
+$$
+\frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp}^2}
++
+\frac{x_{\parallel}^2}{R_{\parallel}^2}
+=1,
+\qquad
+R_{\parallel}=\frac{R_{\perp}}{\gamma_{\text{eff}}},
+$$
+up to leakage and branch-resolution corrections. If a separate energy or medium response changes the transverse scale, write
+$$
+R_{\perp}(v,E,n)=\lambda(v,E,n)R_0,
+\qquad
+R_{\parallel}(v,E,n)
+=
+\frac{\lambda(v,E,n)R_0}{\gamma_{\text{eff}}(v)}.
+$$
+Thus $\gamma_{\text{eff}}$ maps to the shape channel $\xi$, while $\lambda$ remains the separate scale channel.
+
+This is the bridge insight. The one-way legs reveal the substrate anisotropy; the closed return cycle determines the geometry that hides it from Physical Observers. The Lorentz factor is therefore not painted onto the ellipsoid. It is the return-cycle closure condition expressed as an axis ratio.
+
+This is also the precise meaning of quantizing the Lorentz response. The smooth equation for $\gamma_{\text{eff}}(v)$ remains the effective observer law, but a Noether-core assembly realizes any admitted value only through a discrete stable branch class $q$ with a definite causal-root ledger, return-cycle period, and envelope projection. The continuous Lorentz curve is therefore treated as the common observer envelope of branch-indexed Noether-core closure states, not as an independent kinematic rule imposed on matter.
+
+##### Branch-Quantized Lorentz Response
+
+The Lorentz factor is usually written as a smooth function,
+$$
+\gamma_{\text{eff}}(v)=\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}.
+$$
+In the observer-level theory this is the correct continuous kinematic envelope. The Noether-core implementation adds a deeper condition: the core can realize this envelope only by moving through admissible branch classes of the tri-binary causal-root ledger.
+
+For a stable Noether-core branch $q$, define the layer state
+$$
+B_q(v)
+=
+\left(
+R_I,R_M,R_O;\,
+\omega_I,\omega_M,\omega_O;\,
+s_I,s_M,s_O;\,
+\mathcal{L}_{\mathrm{root}};\,
+\mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O;\,
+\mathcal{L}_{\mathrm{wake}}
+\right)_q.
+$$
+Here $R_\ell$ are layer radii, $\omega_\ell$ are layer angular frequencies, $s_\ell$ are characteristic layer speeds, $\mathbf{A}_\ell$ are layer axes, $\mathcal{L}_{\mathrm{root}}$ is the active causal-root ledger, and $\mathcal{L}_{\mathrm{wake}}$ records the causal-wake exchange needed for conservation. The branch index $q$ is not an added particle label. It names a stable admissible closure class.
+
+A one-$h$ full-cycle action transaction should therefore be treated as a branch update,
+$$
+B_q(v)
+\longrightarrow
+B_{q'}(v+\Delta v),
+$$
+not as an outer-binary-only energy deposit. The scalar action condition is
+$$
+\Delta A_{\text{cycle}}=\sigma h,
+\qquad
+\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}=\sigma\hbar,
+$$
+and the energy condition is the all-layer action-angle ledger
+$$
+\sum_{\ell\in\{I,M,O\}}
+\int_{B_q\to B_{q'}}\omega_\ell\,dI_\ell
++
+\Delta E_{\text{wake}}
+=
+\Delta E_{\text{coupl}}.
+$$
+Thus all three radii, all three frequencies, and all three characteristic speeds are allowed to change. The outer binary is special because it sets the leading exclusion-envelope boundary, not because the other layers are spectators.
+
+The bridge to Lorentz behavior is then:
+$$
+\text{one-}h\text{ action transaction}
+\longrightarrow
+\text{tri-binary branch update}
+\longrightarrow
+\text{outer-envelope oblation}
+\longrightarrow
+\text{effective }\gamma_{\text{eff}}(v).
+$$
+For the branch $q$, define the realized clock and ruler factors
+$$
+\gamma_{\mathrm{clk}}^{(q)}(v)
+\equiv
+\frac{T_q(v)}{T_0},
+\qquad
+\gamma_{\mathrm{rul}}^{(q)}(v)
+\equiv
+\frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)}.
+$$
+The Lorentz bridge closes only if, in a homogeneous weak-field Noether-Sea cell,
+$$
+\gamma_{\mathrm{clk}}^{(q)}(v)
+=
+\gamma_{\mathrm{rul}}^{(q)}(v)
+=
+\gamma_{\text{eff}}(v)+O(\epsilon_{\mathrm{LV}})
+$$
+for every branch class admitted as a stable clock/ruler material. This is the sense in which the Lorentz response is branch-quantized: the substrate realizes a continuous observer law through discrete admissible ledger classes, and any residual deviation should carry the signature of a branch transition, separator approach, inter-layer resonance, or incomplete wake ledger.
+
+This target also clarifies which part of the Noether core should be modeled. The full branch solve must include inner, middle, and outer binaries because clock rate, action storage, separator sensitivity, and conservation all live in the coupled tri-binary ledger. The outer binary then supplies the leading geometric projection:
+$$
+\xi_q(v)
+\equiv
+\frac{R_{\parallel,q}(v)}{R_{\perp,q}(v)}
+\to
+\frac{1}{\gamma_{\text{eff}}(v)}.
+$$
+An outer-only model can be useful as a first observable projection or reduced diagnostic, but it cannot prove Lorentz closure unless the inner and middle ledgers have already been shown to retune consistently and stay hidden below the preferred-frame leakage bound.
+
+##### Mass-Energy Channel
+
+Special relativity compresses rest energy into
+$$
+E_0=m_0c^2.
+$$
+That equation is extremely successful as observer-level bookkeeping. The bridge question is what implements $m_0$.
+
+The Noether-core mass thesis is that observed mass is not a primitive property of individual architrinos. It is the externally exposed response of trapped internal causal history. A compact scalar roadmap formula is
+$$
+m_{\text{inertial}}(A)
+\approx
+\alpha_{\mathrm{m}}\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
+$$
+Here $A$ is the assembly, $E_{\text{internal}}(A)$ is the internal energy ledger, $\zeta(A)$ is the shielding/exposure factor, and $\alpha_{\mathrm{m}}$ is the weak-field matching normalization once a reference assembly is fixed.
+
+The SR-side phrase "mass is energy divided by $c^2$" becomes, in the Noether-core bridge:
+$$
+\text{observed rest mass}
+\quad\leftrightarrow\quad
+\text{shielded internal ledger exposed through Noether-Sea response}.
+$$
+This keeps the force of $E_0=m_0c^2$ while relocating its ontology. The equation remains the observer-level conversion law; the deeper task is to derive the internal ledger, shielding coefficient, and response tensor from Noether-core dynamics.
+
+The first mass-side gate is the $A_0$ reference attractor defined in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#reference-attractor-gate). That gate must produce a calibration-free internal-energy ledger, shielding coefficient, and medium-response baseline before $m_0$ is treated as a particle-specific prediction rather than a roadmap output.
+
+##### Energy-Momentum Channel
+
+Special relativity unifies energy and momentum through the mass shell
+$$
+E^2=p^2c^2+m_0^2c^4.
+$$
+Equivalently,
+$$
+E=\gamma m_0c^2,
+\qquad
+p=\gamma m_0v.
+$$
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ bridge should preserve this relation as an effective closure in homogeneous weak-field conditions:
+$$
+E_{\text{CM}}^2
+=
+p_{\text{CM}}^2 c_{\text{eff}}^2
++M_0^2c_{\text{eff}}^4.
+$$
+The terms are not substrate primitives. They are center-of-mass summaries of a dressed assembly state. The more resolved theorem target should include the internal energy ledger, shielding coefficient, deformation state, and Noether-Sea response tensor:
+$$
+p_{\text{int}}^a
+\approx
+\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
+\mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b}.
+$$
+In an isotropic homogeneous cell,
+$$
+\mathcal{M}_{\text{sea}}^{ab}
+\to
+\frac{h^{ab}}{c_{\text{eff}}^2}.
+$$
+The scalar mass-shell relation is therefore the low-information summary of a richer assembly-plus-medium response.
+
+##### Why The Same Factor Appears
+
+The same Lorentz factor appears in clock, ruler, momentum, and energy formulas because the inherited theory imposes one invariant interval. The bridge target is to show that the same factor appears in $\mathbb{A}\mathbb{A}\mathbb{A}$ because the same delayed closure problem controls all four channels.
+
+The proposed common source is:
+
+1. finite field speed for causal wake transfer,
+2. stable phase closure across nested binaries,
+3. deformation of the dynamic exclusion envelope,
+4. clock-frequency extraction from internal cycles,
+5. and medium-dressed response to acceleration.
+
+If these are solved separately, the theory risks producing unrelated correction factors. If they are solved as one closure problem, then the repeated appearance of $\gamma$ becomes a success signal rather than a coincidence.
+
+The branch-quantized version of this statement is stricter. The same branch update $B_q\to B_{q'}$ must account for the clock factor, the ruler factor, the momentum response, and the exposed energy response. If the outer envelope gives the right contraction while the middle-binary clock channel gives a different factor, the bridge has failed rather than found a new Lorentz law.
+
+##### Domain Of Validity
+
+This bridge is expected to match special relativity only in the regime where:
+
+- the local Noether Sea is approximately homogeneous and isotropic,
+- the assembly remains in a stable attractor basin,
+- acceleration is weak enough that radiation and irreversible reconfiguration are negligible,
+- photon-like signal channels and material clock channels share the same effective $c_{\text{eff}}$ to tested accuracy,
+- and residual preferred-frame leakage remains below current precision bounds.
+
+Outside that regime, $\mathbb{A}\mathbb{A}\mathbb{A}$ should not merely repeat special relativity. It should predict controlled deviations tied to medium density, deformation anisotropy, strong gradients, or failure of stable closure.
+
+##### Closure Targets
+
+To promote this bridge from mapping to derivation, the following targets must close:
+
+1. Derive a translating Noether-core attractor family from the delayed master equation.
+2. Extract the velocity-dependent clock frequency $\omega_{\text{clk}}(v)$ and prove the weak-field limit $\omega_{\text{clk}}/\omega_0\to 1/\gamma_{\text{eff}}$.
+3. Derive the velocity-dependent exclusion-envelope axis ratio $R_{\parallel}/R_{\perp}\to 1/\gamma_{\text{eff}}$.
+4. Compute the internal energy ledger $E_{\text{internal}}(A)$ without assuming the mass being derived.
+5. Derive the shielding factor $\zeta(A)$ from far-field wake cancellation.
+6. Derive the Noether-Sea response tensor $\mathcal{M}_{\text{sea}}^{ab}$ and show its isotropic limit is $h^{ab}/c_{\text{eff}}^2$.
+7. Show that clock, ruler, momentum, and energy channels share the same $\gamma_{\text{eff}}$ to the required order.
+8. Bound preferred-frame leakage and identify the leading measurable correction terms.
+9. Derive the branch-quantized Lorentz response: for each stable admissible causal-root ledger class $q$, compute $B_q(v)$, extract $\gamma_{\mathrm{clk}}^{(q)}$ and $\gamma_{\mathrm{rul}}^{(q)}$, and show that all accepted clock/ruler branches collapse to the same effective $\gamma_{\text{eff}}$ within $O(\epsilon_{\mathrm{LV}})$.
+10. Prove that the outer-envelope oblation is the observable projection of an all-three-binary branch update, not an independently assigned deformation law.
+
+##### Summary Commitment
+
+> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether cores preserve finite-speed causal wake closure by retuning internal phase, all three binary layers, outer-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.
+
+#### Return-Cycle Lorentz Quantization
+
+This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether-core chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether-core causal-root ledger.
+
+The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Cores](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md).
+
+##### Naming And Scope
+
+The older working phrase `branch-quantized Lorentz response` remains mathematically accurate. It says that a stable material assembly realizes Lorentz behavior through branch classes of the causal-root ledger. The preferred topic name, **Return-Cycle Lorentz Quantization**, is better for a bridge document because it names the mechanism before the classification:
+
+- `return-cycle` identifies the closed causal-wake path that must phase-close;
+- `Lorentz` identifies the observer-level target law;
+- `quantization` identifies that the admissible realizations are discrete branch classes, not arbitrary continuous material states.
+
+The claim is therefore not
+$$
+\gamma(v)\quad\text{is a step function}.
+$$
+The claim is
+$$
+\text{realized material Lorentz response}
+\quad
+\text{is branch-indexed by closed return-cycle ledgers}.
+$$
+At the effective observer level, the measured envelope can still be the usual smooth function
+$$
+\gamma_\star(v)
+=
+\frac{1}{\sqrt{1-v^2/c_\star^2}}.
+$$
+
+##### Level Separation
+
+The bridge separates four levels:
+
+| Level | Role |
+| --- | --- |
+| Substrate ontology | Architrinos evolve in the Euclidean void under absolute time and delayed causal wakes. |
+| Assembly dynamics | A Noether core must close inner, middle, and outer binary return cycles through a causal-root ledger. |
+| Geometry projection | The outer-binary exclusion envelope exposes an oblate spheroid with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
+| Observer law | Physical Observers infer Lorentz contraction, clock dilation, and two-way signal invariance after branch averaging and Noether-Sea dressing. |
+
+This level separation is essential. The Lorentz equation is not being promoted to substrate ontology. It is an observer-level envelope that must be implemented by closed assembly dynamics.
+
+##### One-Way Roots Are Not Yet Lorentz Geometry
+
+A one-way causal leg along the drift direction exposes the preferred Noether-Sea frame. In a homogeneous dressed channel with speed $c_\star$, define
+$$
+\beta_\star\equiv\frac{v}{c_\star},
+\qquad
+\gamma_\star\equiv\frac{1}{\sqrt{1-\beta_\star^2}}.
+$$
+For an envelope semiaxis $R_{\parallel}$ along drift, the forward and rear one-way legs are
+$$
+t_{+}
+=
+\frac{R_{\parallel}}{c_\star-v},
+\qquad
+t_{-}
+=
+\frac{R_{\parallel}}{c_\star+v}.
+$$
+They are unequal. A single one-way leg therefore cannot be the Lorentz law, because it carries the preferred-frame asymmetry directly.
+
+The first structural step is to change the object being analyzed. A material clock or ruler is not a one-way signal. It is a closed branch that must return with the correct phase, root count, and wake ledger. The Lorentz-relevant object is the closed return cycle.
+
+##### Closed Return Derivation
+
+The longitudinal closed return time is the sum of the forward and rear legs:
+$$
+T_{\parallel}
+=
+t_{+}+t_{-}
+=
+\frac{R_{\parallel}}{c_\star-v}
++
+\frac{R_{\parallel}}{c_\star+v}.
+$$
+Combining the fractions gives
+$$
+T_{\parallel}
+=
+\frac{2R_{\parallel}c_\star}{c_\star^2-v^2}
+=
+\frac{2R_{\parallel}}{c_\star}\gamma_\star^2.
+$$
+
+The transverse return cycle uses part of the causal budget to keep pace with the translated receiver. The remaining transverse closure speed is
+$$
+c_{\perp}
+=
+c_\star\sqrt{1-\frac{v^2}{c_\star^2}}
+=
+\frac{c_\star}{\gamma_\star}.
+$$
+For transverse semiaxis $R_{\perp}$,
+$$
+T_{\perp}
+=
+\frac{2R_{\perp}}{c_{\perp}}
+=
+\frac{2R_{\perp}}{c_\star}\gamma_\star.
+$$
+
+The Lorentz-admissible closure condition is that the same material branch closes with one period in the longitudinal and transverse channels:
+$$
+T_{\parallel}
+=
+T_{\perp}
++
+O(\epsilon_{\mathrm{LV}}T_0).
+$$
+In the homogeneous zero-leakage limit,
+$$
+\frac{2R_{\parallel}}{c_\star}\gamma_\star^2
+=
+\frac{2R_{\perp}}{c_\star}\gamma_\star,
+$$
+so
+$$
+\xi(v)
+\equiv
+\frac{R_{\parallel}(v)}{R_{\perp}(v)}
+=
+\frac{1}{\gamma_\star(v)}.
+$$
+This is the direct Lorentz-to-geometry map.
+
+##### Spheroid Projection
+
+The moving Noether-core envelope is represented by an oblate spheroid,
+$$
+\frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp}^2}
++
+\frac{x_{\parallel}^2}{R_{\parallel}^2}
+=
+1,
+$$
+with Lorentz-compatible semiaxes
+$$
+R_{\parallel}
+=
+\frac{R_{\perp}}{\gamma_\star}
+$$
+in the homogeneous zero-leakage limit. If energy state or Noether-Sea conditions also change the transverse scale, separate the shape and scale channels:
+$$
+R_{\perp}(v,E,n)
+=
+\lambda(v,E,n)R_0,
+\qquad
+R_{\parallel}(v,E,n)
+=
+\frac{\lambda(v,E,n)R_0}{\gamma_\star(v)}.
+$$
+Thus $\gamma_\star$ maps to the shape channel $\xi$, while $\lambda$ remains a separate scale, energy, and medium-response channel.
+
+The outer binary is special because it supplies the leading visible envelope. It is not sufficient by itself. A Lorentz-admissible branch must also retune the hidden inner and middle ledgers so that clock closure, action conservation, and leakage bounds are solved by the same branch.
+
+##### Quantized Realization
+
+Return-Cycle Lorentz Quantization can now be stated as a branch map. For a stable branch class $q$, define
+$$
+\gamma_{\mathrm{rul}}^{(q)}(v)
+\equiv
+\frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)}
+=
+\frac{1}{\xi_q(v)},
+\qquad
+\gamma_{\mathrm{clk}}^{(q)}(v)
+\equiv
+\frac{T_q(v)}{T_0}.
+$$
+The realized material Lorentz response is the branch-indexed tuple
+$$
+q
+\longmapsto
+\left(
+\xi_q(v),
+\gamma_{\mathrm{rul}}^{(q)}(v),
+\gamma_{\mathrm{clk}}^{(q)}(v),
+\mathcal{L}_{\mathrm{root}}^{(q)}(v)
+\right).
+$$
+The admissible set at fixed background conditions is
+$$
+\Gamma_{\mathrm{adm}}(v)
+=
+\left\{
+\left(
+\gamma_{\mathrm{clk}}^{(q)}(v),
+\gamma_{\mathrm{rul}}^{(q)}(v)
+\right)
+:
+q\in\mathcal{Q}_{\mathrm{stable}}(v)
+\right\}.
+$$
+A successful homogeneous weak-field Lorentz limit requires
+$$
+\gamma_{\mathrm{clk}}^{(q)}(v)
+=
+\gamma_{\mathrm{rul}}^{(q)}(v)
+=
+\gamma_\star(v)
++
+O(\epsilon_{\mathrm{LV}})
+$$
+for every branch class admitted as stable clock/ruler material.
+
+This is the precise sense in which the Lorentz equation is quantized. The smooth curve remains the observer-level envelope. The Noether-core implementation is discrete because each accepted material realization must be a closed causal-root ledger class.
+
+##### All-Layer Closure Burden
+
+The full branch state is not just the outer spheroid. For branch $q$, use the all-layer state
+$$
+B_q(v)
+=
+\left(
+R_I,R_M,R_O;\,
+\omega_I,\omega_M,\omega_O;\,
+s_I,s_M,s_O;\,
+\mathbf{A}_I,\mathbf{A}_M,\mathbf{A}_O;\,
+\mathcal{L}_{\mathrm{root}};\,
+\mathcal{L}_{\mathrm{wake}}
+\right)_q.
+$$
+A one-$h$ full-cycle transaction should be treated as a branch update,
+$$
+B_q(v)
+\longrightarrow
+B_{q'}(v+\Delta v),
+$$
+subject to the action ledger
+$$
+\Delta A_{\text{cycle}}
+=
+\sigma h,
+\qquad
+\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}
+=
+\sigma\hbar,
+$$
+and the all-layer energy ledger
+$$
+\sum_{\ell\in\{I,M,O\}}
+\int_{B_q\to B_{q'}}\omega_\ell\,dI_\ell
++
+\Delta E_{\text{wake}}
+=
+\Delta E_{\text{coupl}}.
+$$
+The geometry projection is then the visible part of the sequence
+$$
+\text{one-}h\text{ action transaction}
+\longrightarrow
+\text{tri-binary branch update}
+\longrightarrow
+\text{outer-envelope oblation}
+\longrightarrow
+\text{effective }\gamma_\star(v).
+$$
+
+This sequence is the main reason the term `return-cycle` is preferred. The breakthrough is not simply that the outer envelope becomes an ellipsoid. The stronger claim is that the ellipsoid is the visible projection of a closed all-layer branch ledger.
+
+##### Prediction And Failure Mode
+
+The mathematical prediction is not a generic Lorentz-violation coefficient. It is a structured residual. Inside a fixed nonresonant branch chart, deviations from the Lorentz coefficient target should be smooth and even in drift speed. Near a chart-changing event, any surviving residual should carry a branch signature: separator approach, inter-layer resonance, finite-memory cutoff, Jacobian-floor loss, or causal-root multiplicity change.
+
+Schematically, the two-way anisotropy diagnostic should decompose as
+$$
+\Delta_{\mathrm{tw}}(\beta,\theta)
+=
+\Delta_{\mathrm{tw}}^{\mathrm{smooth}}(\beta,\theta)
++
+\sum_{r\in\mathcal{R}_{\mathrm{res}}}
+B_r\,\mathcal{W}_r(\beta)\cos(2m_r\theta+\varphi_r),
+$$
+where each residual label $r$ must be traceable to a named branch-chart feature. A residual with no branch source is not a successful prediction; it is fitting error or an incomplete closure model.
+
+The failure mode is equally sharp. If the outer envelope gives
+$$
+\xi_q(v)
+\approx
+\frac{1}{\gamma_\star(v)}
+$$
+but the clock channel gives a different factor,
+$$
+\gamma_{\mathrm{clk}}^{(q)}(v)
+\neq
+\gamma_{\mathrm{rul}}^{(q)}(v)
++O(\epsilon_{\mathrm{LV}}),
+$$
+then the bridge fails. The theory must not tune the ruler, clock, momentum, and signal channels separately.
+
+##### Status
+
+Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The current corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
+
+If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether-core geometry.
+
+#### Spacetime Models and the Noether Sea
+
+This bridge compares inherited mathematical models of space, time, vacuum, aether, and emergent spacetime with the Noether-Sea implementation layer in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is not the canonical home of the spacetime mechanism. The mechanism remains in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md).
+
+The purpose is narrower: keep historically important models available as disciplined comparisons without letting their vocabulary become native ontology. Terms such as absolute space, vacuum, aether, elastic medium, analog metric, condensate, and superfluid can help locate a mathematical burden, but none of them replaces `Noether Sea`.
+
+##### Bridge Rule
+
+Use inherited spacetime models as comparison projections, not as identity claims.
+
+The native stack is:
+
+| Level | Native term | Role |
+| --- | --- | --- |
+| fixed spatial container | Euclidean void | The 3D spatial arena does not curve or expand. |
+| global temporal parameter | absolute time | The primitive ordering parameter for substrate dynamics. |
+| formal background | absolute timespace | The product $\mathbb{R}\times\mathbb{R}^3$. |
+| substrate contents | Noether Sea | The ambient population of coupled Noether cores. |
+| bridge language | spacetime medium | Reader-facing translation toward effective spacetime language. |
+| observer-level geometry | effective spacetime or effective metric | The metric reconstructed by Physical Observers from clocks, rulers, and signal behavior. |
+
+Any outside model must therefore answer five questions before it can influence authored $\mathbb{A}\mathbb{A}\mathbb{A}$ prose:
+
+1. Which observer-level successes does the model preserve?
+2. Which part maps to Noether-Sea state rather than to the Euclidean void?
+3. Which inference is forbidden because it would import the outside model's ontology?
+4. Which equation, invariant, or constitutive law would have to be derived?
+5. Which failure mode would falsify the comparison?
+
+##### Boundary-Response Equivalence
+
+Analog and vacuum-response comparisons should preserve the effective boundary response, not the literal laboratory object. A moving mirror, a superconducting circuit, a condensate interface, or another apparatus can serve as the same comparison only when the calibrated response kernel is equivalent on the declared window. For two boundary implementations $B_1$ and $B_2$, observer-level response channel $A$, and window $W$, a compact local residual is
+$$
+\Delta_{\mathrm{bc}}(B_1,B_2;W)
+=
+\sup_{A,t\in W}
+\frac{
+\left\|G_A^{B_1}(t)-G_A^{B_2}(t)\right\|
+}{
+\left\|G_A^{B_1}(t)\right\|
++\left\|G_A^{B_2}(t)\right\|
++\varepsilon
+}.
+$$
+
+The comparison is admissible only when $\Delta_{\mathrm{bc}}\le\epsilon_{\mathrm{bc}}$ for the apparatus class and when the same energy, momentum, and record channels are retained. Passing this residual says that two implementations realize the same effective boundary condition for a specific test; it does not import quantum-vacuum ontology, analog-medium ontology, or a new Noether-Sea mechanism.
+
+##### Historical Ladder
+
+The bridge should cover the major mathematical families rather than only modern GR-adjacent language. The point is not to endorse every family. The point is to know what each one contributed and which $\mathbb{A}\mathbb{A}\mathbb{A}$ object receives the useful part.
+
+| Historical model family | Mathematical core | What survives as a comparison | $\mathbb{A}\mathbb{A}\mathbb{A}$ placement |
+| --- | --- | --- | --- |
+| Euclidean 3D space plus universal time | A flat spatial metric $h_{ij}$ on $\mathbb{R}^3$ with a universal parameter $t$. | The earliest clean 3D + T background picture. | This is closest to absolute timespace: $\mathbb{R}\times\mathbb{R}^3$ with absolute time and Euclidean void. |
+| Newtonian absolute space and action-at-a-distance gravity | Euclidean geometry, inertial frames, absolute time, and an inverse-square potential. | Weak-field potential language and low-speed limiting behavior. | Keep the background, but replace instantaneous action with delayed causal wakes plus Noether-Sea response. |
+| Plenum and vortex-mechanical programs | Continuum motion, pressure, circulation, and vortex organization. | The intuition that geometry and matter behavior may arise from structured motion in a pervasive substrate. | Useful only as a warning and comparison: the Noether Sea is not a featureless plenum, and circulation claims need explicit Noether-core dynamics. |
+| Wave and elastic-aether theories | Wave equations, elastic moduli, transverse waves, boundary conditions, and medium stress. | Stress, stiffness, wave-speed, and polarization burdens. | Translate only into explicit Noether-Sea compliance, delay, alignment, and response variables. |
+| Maxwellian electromagnetic aether | Field equations plus mechanical medium imagery for electromagnetic propagation. | The success belongs to field equations and wave propagation, not to the mechanical imagery. | Effective electromagnetic fields must be recovered from assembly and wake behavior; the aether analogy cannot become ontology. |
+| Lorentz aether theory | A preferred rest frame hidden by Lorentz contraction, clock slowing, and electromagnetic dynamics. | A preferred substrate frame can be operationally hidden if clocks, rulers, and signals co-transform. | This is a close bridge for absolute time plus Euclidean void, but the closure burden is emergent Lorentz behavior with bounded preferred-frame leakage. |
+| Minkowski spacetime | A 4D pseudo-Riemannian metric with invariant interval and Lorentz symmetry. | Observer-level kinematic bookkeeping. | Treated as the homogeneous effective geometry reconstructed by Physical Observers, not as substrate ontology. |
+| General-relativistic metric spacetime | Dynamic metric geometry, curvature, geodesics, Einstein equation, and PPN observables. | The strongest tested observer-level gravitational target. | Detailed mapping belongs in the spacetime lane; this bridge records only the comparison interface. |
+| Kaluza-Klein and higher-dimensional geometry | Gauge fields from higher-dimensional metric components or compact dimensions. | A useful reminder that geometry can encode force bookkeeping. | Comparison only unless a $\mathbb{A}\mathbb{A}\mathbb{A}$-native hidden coordinate or fiber variable is derived from assembly state. |
+| Metric-affine, torsion, and Einstein-Cartan programs | Independent connection, torsion, spin coupling, and generalized geometric variables. | A structured way to ask whether spin, torsion, or nonmetricity survive as effective observer-level residues. | Possible deviation channels in the ADM/Cartan handoff, not primitive geometry of the Euclidean void. |
+| ADM and canonical spacetime decompositions | Lapse, shift, spatial metric, constraints, and foliation-based dynamics. | A practical 3+1 language for mapping observer geometry. | Directly useful as the reconstruction surface $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
+| Sakharov induced gravity | Gravity as an induced or elastic response of quantum vacuum degrees of freedom. | The idea that GR-like dynamics can be effective rather than fundamental. | Recast as a Noether-Sea microstructure-to-metric response problem, not as proof from QFT vacuum ontology. |
+| Jacobson thermodynamic spacetime | Einstein equation as an equation of state from local horizon thermodynamics, boost-energy flux, and the Clausius relation. | Thermodynamic and equation-of-state pressure on any emergent metric theory. | A high-value comparison for deriving GR-like limits from Noether-Sea entropy, stress, energy exchange, and finite-boundary observer data. |
+| Analog gravity and acoustic metrics | Effective Lorentzian metrics for perturbations in fluids or condensates. | Concrete examples where signal propagation in a medium carries metric form. | Useful if it sharpens the signal-channel map; insufficient if it only supplies scalar speed. |
+| Superfluid vacuum and condensed-matter vacuum models | Order parameters, phonons, vortices, critical velocities, collective excitations, and phase transitions. | Strong mathematics for coherent media, low dissipation, and emergent quasiparticles. | Comparison only until the Noether-Sea side has a defined order parameter, excitation spectrum, and threshold law. |
+| Khoury-style superfluid dark matter | A dark-sector condensate phase whose phonons mediate MOND-like galactic behavior while other regimes resemble cold dark matter. | A worked example of one substance with phase-dependent phenomenology, collective excitations, and environment-dependent transition behavior. | Useful for the question "when does a Noether-Sea sector behave as a coherent phase?", not evidence that the Noether Sea is literally a superfluid. |
+| Bose-Einstein-condensate and fuzzy-dark-matter models | Macroscopic wavefunction, coherence length, de Broglie scale, and Gross-Pitaevskii-like dynamics. | Coherence-scale and phase-locking diagnostics. | Comparison for collective Noether-Sea phase behavior only if a native wavefunction/order parameter is derived. |
+| Berezhiani-Khoury BEC long-range interaction | Contact source coupling inside a condensate can produce an emergent inverse-square interaction whose finite range is set by self-interaction, density, and constituent mass. | A worked example where long-range behavior depends on the coherent background and on the derivative handoff between a collective mode and the source. | Useful for derivative-coupling and range-control tests on Noether-Sea collective response; not evidence that the Noether Sea is a literal BEC. |
+| Einstein-aether and vector-tensor preferred-frame theories | Metric plus unit timelike vector field and preferred-frame coefficients. | A modern mathematical way to parameterize Lorentz violation and preferred-frame observables. | Useful for bounding leakage, but the preferred frame is absolute time plus Euclidean void, not an added vector field ontology. |
+| Horava-Lifshitz-type anisotropic scaling | Preferred foliation and different UV scaling for time and space. | The idea that a preferred foliation can coexist with effective relativistic behavior. | Comparison only; $\mathbb{A}\mathbb{A}\mathbb{A}$ already has absolute time, so the question is empirical leakage and low-energy recovery. |
+| Causal-set and discrete-spacetime programs | Partial order, discreteness, and causal reconstruction. | Useful contrast for causal ordering and continuum emergence. | $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps continuous Euclidean void and absolute time; discreteness, if any, belongs to assemblies or ledgers, not the void. |
+| Loop, spin-network, and other quantum-geometry programs | Quantized geometric operators and graph-like states. | A comparison for area, volume, horizon, and spin-network claims. | Comparison framework unless a Noether-core graph or horizon ledger imports a specific validated constraint. |
+| String, brane, holographic, and AdS/CFT programs | Extended objects, extra dimensions, dual boundary descriptions, and holographic entropy relations. | High-value consistency checks when entropy, unitarity, or horizon accounting becomes unavoidable. AdS/CFT is especially valuable as a controlled anti-de Sitter laboratory, not as direct evidence that our late-time de Sitter-like universe has the same boundary structure. | Comparison framework; do not promote to closure target unless a specific tested benchmark is imported. |
+| de Sitter quantum-gravity and dS/CFT attempts | Positive-curvature late-time comparison geometry, observer horizons, finite-access entropy, and proposed future-boundary or statistical descriptions. | A sharp reminder that the observed universe is not anti-de Sitter and that horizon-limited access must be handled without pretending there is an AdS-style spatial boundary. | Comparison framework only; the native target is a Noether-Sea observer-horizon ledger, not a literal boundary CFT. |
+
+Causal-set programs are strongest here as a discipline on what causal ordering can and cannot buy. Their useful mathematical lesson is that causal relations can carry much of the effective spacetime structure, while local scale still has to be supplied by a separate volume, clock, or ruler channel. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the corresponding recovery burden is not to make spacetime atomic. It is to show that Physical Observers reconstruct the same effective causal order, local clock scale, and bounded preferred-frame leakage from Noether-Sea signal, density, delay, and ruler-response variables.
+
+A second comparison lesson is the distinction between a continuum approximation and a continuum limit. For this bridge, the correct project phrase is **continuum approximation**: effective fields, metrics, and volumes become valid when many Noether-core degrees of freedom are coarse-grained, but the Euclidean void is not being replaced by an actual continuum-limit geometry and the Noether-Sea assembly inventory is not erased by taking a regulator to zero.
+
+##### Comparison Matrix
+
+| Inherited model | What it preserves | $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer | Forbidden inference | Closure target |
+| --- | --- | --- | --- | --- |
+| Euclidean 3D + T absolute background | Flat 3D geometry, universal time order, inertial baseline, and ordinary vector calculus. | Absolute timespace $\mathbb{R}\times\mathbb{R}^3$, with dynamics on simultaneity slices $\Sigma_t$. | Empty space by itself explains matter, inertia, or gravity. | Show how delayed wakes and Noether-Sea state add all observed fields, clocks, rulers, and gravitational behavior on top of the fixed container. |
+| Newtonian gravity | Low-speed potential mechanics and inverse-square weak-field limits. | $\Phi_N$ remains a benchmark potential; the substrate mechanism is delayed causal-wake summation plus medium response. | Instantaneous action-at-a-distance is fundamental. | Recover Newtonian acceleration as the leading observer-level limit of the delayed ledger and effective metric map. |
+| Lorentz aether | Hidden preferred frame plus Lorentz-contracted matter and slowed clocks. | Absolute time and Euclidean void supply the preferred substrate frame; assemblies and signal channels must hide it operationally. | The Noether Sea is a mechanical luminiferous aether. | Derive shared clock/ruler/signal retuning with $\epsilon_{\text{LV}}$ and PPN preferred-frame coefficients below bounds. |
+| Special-relativistic Minkowski spacetime | Lorentz kinematics, invariant signal speed, mass-shell bookkeeping, and relativity of simultaneity for Physical Observers. | Homogeneous weak-field limit of deformable assemblies, synchronized signal channels, and Noether-Sea-dressed clocks and rulers. | Lorentz symmetry is primitive substrate geometry. | Show that stable assembly closure drives the same $\gamma_{\text{eff}}$ factor in clock, ruler, signal, energy, and momentum channels while preferred-frame leakage remains below bounds. |
+| General-relativistic metric spacetime | Proper time, geodesic motion, redshift, Shapiro delay, lensing, frame dragging, gravitational waves, and PPN observables. | Effective metric $g^{\text{eff}}_{\mu\nu}$ reconstructed from Noether-Sea clock, ruler, signal, drift, and compliance channels. | The Euclidean void itself curves. | Derive one constitutive map from Noether-Sea state to ADM/Cartan fields that recovers GR in tested regimes. |
+| Elastic or continuum-medium spacetime | Stress, strain, compliance, wave propagation, and equation-of-state language. | Coarse Noether-Sea variables such as density, delay factor, stress, drift, alignment, and spatial compliance. | The medium is a featureless continuum with no assembly microstructure. | Derive continuum stress and compliance tensors from Noether-core population dynamics and identify their valid averaging scale. |
+| Analog-gravity or acoustic-metric models | Effective metrics can emerge from signal propagation through a medium. | Signal cones and clock/ruler maps emerge from Noether-Sea delay and assembly response. | The analogy proves gravity or fixes the metric by signal speed alone. | Extend scalar speed maps to the full ADM/Cartan handoff $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
+| Superfluid and condensate vacuum models | Coherence, order parameters, critical thresholds, quantized circulation, collective excitations, and low-dissipation transport. | Possible comparison class for coherent Noether-Sea phases only when the local document supplies a defined order parameter, excitation spectrum, critical threshold, or circulation analogue. | The Noether Sea is superfluid merely because it is coherent or low-dissipation. | Derive a concrete constitutive model: order parameter, transport equation, critical-velocity criterion, two-fluid analogue, quantized-vorticity analogue, or explicit reason the analogy fails. |
+| Berezhiani-Khoury-style superfluid dark matter | Phase-dependent behavior: cold-dark-matter-like cosmology and cluster behavior, plus phonon-mediated MOND-like galactic behavior in a superfluid phase. | Comparison for environment-dependent Noether-Sea phase behavior, excitation channels, two-component response, and galactic-scale effective-force recovery. | Noether-Sea ontology is dark matter superfluidity, or MOND behavior follows without a native phonon/order-parameter derivation. | Define the Noether-Sea analogue of condensate fraction, phonon mode, critical temperature/velocity, normal fraction, and baryon-coupling channel, then test whether it recovers or rejects MOND-like scaling. |
+| Berezhiani-Khoury BEC long-range interaction | A complex scalar condensate with contact source coupling can produce a mediated inverse-square force with $\ell^{-1}\propto\sqrt{\lambda n/m}$, and with $\ell\to\infty$ when the self-interaction is removed. | Comparison for coherent-background amplification, derivative phonon-source coupling, source-induced deformation, screening, and instability tests. | A contact-coupled BEC or phonon is the Noether Sea, or a native long-range Noether-Sea force follows without deriving the collective mode and coupling channel. | Define a Noether-Sea collective response variable, a source coupling, a range residual, a deformation parameter, and a failure condition for dense-source or unstable regimes. |
+| Sakharov or Jacobson-style emergent gravity | Metric dynamics may be thermodynamic, induced, or equation-of-state behavior rather than fundamental geometry. | Einstein-like behavior is a long-wavelength response of Noether-Sea microstructure. | The thermodynamic analogy derives $\mathbb{A}\mathbb{A}\mathbb{A}$ by itself. | Show how Noether-Sea entropy, stress, boundary-wake data, and energy exchange recover the Einstein equation or its validated weak-field approximation through one shared record. |
+| Quantum-vacuum or QFT-field ontology | Vacuum polarization, zero-point behavior, field excitations, and Standard Model effective predictions. | Observer-level fields are effective summaries of assembly and wake behavior in the Noether Sea. | The QFT vacuum is the substrate ontology. | Recover validated QFT limits while assigning substrate-level causation to assemblies, wakes, and Noether-Sea response. |
+| Preferred-foliation and vector-aether models | Controlled parameterization of Lorentz violation, foliation effects, and preferred-frame bounds. | Absolute time is already the foliation; leakage appears through observer-level anisotropy and PPN channels. | A new vector field is the substrate. | Map leakage into $\Xi_i$, $(\alpha_1,\alpha_2,\alpha_3)$, and two-way signal-speed diagnostics. |
+| Quantum-geometry and holographic programs | Horizon entropy, unitarity pressure, boundary/bulk mappings, and discrete geometric observables. | Comparison targets for strong-field and horizon ledgers, with AdS/CFT treated as a controlled model and de Sitter holography treated as an unresolved horizon-access problem. | The Noether Sea is a spin network, string background, holographic boundary theory, or de Sitter boundary CFT. | Import only specific tested or mathematical constraints, such as entropy scaling, Page-curve-compatible accounting, horizon regularity, or observer-horizon entropy bookkeeping, and route them through strong-field and cosmology closure. |
+| Causal-set and discrete-spacetime programs | Causal-order reconstruction, Lorentz-sensitive discreteness tests, and the continuum-approximation distinction. | Comparison target for effective causal order reconstructed by Physical Observers from Noether-Sea clock, ruler, and signal behavior. | Discrete spacetime atoms, causal-set growth rules, or causal-set partial order replace absolute time, Euclidean void, Noether Sea, or causal wake roots. | Recover effective causal order and local scale through the same constitutive map used for clocks, rulers, signal transport, and preferred-frame leakage bounds. |
+
+##### Superfluid Comparison Discipline
+
+The superfluid family is valuable precisely because it is mathematically demanding. A superfluid claim is not licensed by the words `coherent`, `low-dissipation`, or `medium`. It requires a local technical object.
+
+For a Noether-Sea comparison to become superfluid-like rather than merely medium-like, the local document must supply at least one of the following:
+
+| Required object | Mathematical form to look for | What it would buy |
+| --- | --- | --- |
+| Order parameter | A native $\Psi_{\text{sea}}=\sqrt{\rho_s}e^{i\theta}$ analogue or a replacement with the same phase/stiffness role. | Coherence is no longer just prose; it has phase and amplitude data. |
+| Excitation spectrum | A phonon-like branch $\omega(k)$, roton-like gap, or other collective-mode dispersion. | Transport and radiation comparisons become testable. |
+| Critical threshold | A Landau-like bound $v_c=\min_k \omega(k)/k$ or a native residual threshold. | "No drag below threshold" becomes a derivable condition rather than an analogy. |
+| Two-component split | A superfluid/normal fraction analogue or phase-mixture model. | Environment-dependent behavior can differ between galaxies, clusters, and cosmology without changing ontology. |
+| Vorticity quantization | A circulation condition such as $\oint \nabla\theta\cdot d\ell=2\pi n$ or a native ledger equivalent. | Vortex language becomes mathematical rather than decorative. |
+| Baryon or matter coupling | An explicit coupling channel between ordinary assemblies and the collective mode. | MOND-like or fifth-force comparisons become falsifiable. |
+
+Berezhiani-Khoury-style superfluid dark matter is a useful comparison because it makes this discipline visible. In that model, the same dark-sector substance is intended to behave like ordinary cold dark matter in cosmological regimes while forming a galactic superfluid phase whose phonons mediate a MOND-like force. The Noether-Sea bridge should borrow only the structure of that question: can one substrate have phase-dependent effective behavior with distinct collective modes and observational regimes? It should not borrow the conclusion unless $\mathbb{A}\mathbb{A}\mathbb{A}$ derives the corresponding Noether-Sea phase variables.
+
+The older Sinha-Sivaram-Sudarshan superfluid-vacuum papers sharpen a different part of the same discipline. Their useful source signal is not the literal aether claim. It is the demand that a coherent vacuum-medium comparison specify a gap, an excitation spectrum, and a critical threshold before using low-dissipation language. A BCS-like comparison has the schematic spectrum
+$$
+E_k^{\mathrm{cmp}}
+=
+\sqrt{\epsilon_k^2+|\Delta_{\mathrm{cmp}}|^2},
+\qquad
+v_c^{\mathrm{cmp}}
+=
+\min_k\frac{E_k^{\mathrm{cmp}}}{\hbar k}.
+$$
+In the source model the gap was identified with rest energy and a Compton-scale estimate pushed the critical velocity toward $c_0$. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that is only a comparison test. A Noether-Sea branch may borrow the structure only after it defines a native excitation gap, explains which assemblies or collective modes carry it, and shows that any low-dissipation or transparent regime follows from $v_{\mathrm{rel}}<v_c^\theta$ rather than from naming the medium a superfluid.
+
+The longer Berezhiani-Khoury theory paper sharpens the comparison into source-side technical criteria. Its useful contribution for this bridge is not the dark-matter ontology, but the way it ties phase behavior, an order-parameter phase, a phonon effective action, a two-component finite-temperature description, and observational failure modes into one calculable structure:
+
+| Source structure | Source-side mathematical marker | Noether-Sea comparison criterion |
+| --- | --- | --- |
+| Condensation and phase onset | $\lambda_{\rm dB}\sim 1/(mv)\gtrsim(m/\rho)^{1/3}$ and $\Gamma t_{\rm dyn}\gtrsim 1$. | A coherent Noether-Sea phase comparison needs a native coherence threshold and a relaxation criterion, not only a qualitative claim of coherence. |
+| Condensate fraction | For free particles, $f_s=N_{\rm cond}/N\simeq1-(T/T_c)^{3/2}$ below $T_c$. | Environment-dependent behavior must expose a phase fraction or an explicit statement that no such fraction has been derived. |
+| Order parameter and phonon | A phase field $\theta$ with $X=\dot\theta-m\Phi-(\nabla\theta)^2/(2m)$ and $\mathcal{L}=P(X)$. | A Noether-Sea analogue must identify the variable that carries phase, stiffness, and collective-mode gradients. |
+| Polytropic equation of state | $P(\mu)=2\Lambda(2m\mu)^{3/2}/3$ and $P=\rho^3/(12\Lambda^2m^6)$. | Medium-response prose should be replaced by an explicit pressure/compliance law or by a stated failure of the polytropic analogy. |
+| MOND-like phonon action | $P(X)=2\Lambda(2m)^{3/2}X\sqrt{|X|}/3$. | A MOND-like comparison must name the non-analytic effective action or the native equation that replaces it. |
+| Baryon coupling | $\mathcal{L}_{\rm int}=-(\alpha\Lambda/M_{\rm Pl})\theta\rho_b$ and $a_\phi=(\alpha\Lambda/M_{\rm Pl})\phi'$. | Any matter-coupled collective mode must state the ordinary-assembly coupling channel and its acceleration residual. |
+| Finite-temperature two-fluid behavior | A Landau-style finite-temperature form $F(X,B,Y)$, with normal-fluid variables and stability conditions such as $\beta\ge3/2$ in the source model. | Galaxy/cluster phase claims need a superfluid-like and normal-like split with a perturbative stability check, or they remain analogy only. |
+| Critical velocity and local coherence | $c_s=\sqrt{2\mu/m}$, $v_s\sim\|\nabla\phi\|/m$, and $v_c\sim(\rho/m^4)^{1/3}$. | Low-dissipation transport and local loss of coherence must be tied to a threshold residual, not inferred from the word `superfluid`. |
+| Cluster and merger separation | Subsonic superfluid components can pass with low dissipation, while normal components can lag and produce distinct mass-response peaks. | A Noether-Sea comparison must route density, friction, and lensing through the same effective-metric handoff before making cluster-scale claims. |
+| Vortices | $\omega_{\rm cr}\sim1/(mR^2)$ and vortex line density $\sigma_v\sim m\omega$. | Vortex language needs a circulation or vorticity analogue plus a predicted density, count, or absence condition. |
+| Cold-atom analogue | The unitary Fermi gas has a non-analytic phonon action $P(X)\sim X^{5/2}$; the source model's $P\sim\rho^3$ points toward three-body interaction structure. | Cold-atom analogies are admissible only when the equation of state, symmetry, and mode content match the Noether-Sea comparison target. |
+
+A minimal source-derived MOND-like check can be stated without importing the source ontology. For a declared radial window $W$, ordinary matter mass profile $M_{\text{matter}}(r)$, Newtonian benchmark acceleration $a_N(r)=G_NM_{\text{matter}}(r)/r^2$, and native collective-mode acceleration $a_{\text{mode}}(r)$, define
+
+$$
+\Delta_{\text{MOND-like}}(W)
+=
+\sup_{r\in W}
+\frac{
+\left|a_{\text{mode}}(r)-\sqrt{a_0a_N(r)}\right|
+}{
+\sqrt{a_0a_N(r)}+\varepsilon
+}.
+$$
+
+This residual is a comparison handoff, not a doctrine. If no native $a_{\text{mode}}$ or matter-coupling channel has been derived, the residual is undefined and the MOND-like comparison fails the technical test.
+
+The later Berezhiani-Khoury BEC long-range-interaction paper sharpens a separate comparison: a source can have only contact coupling in vacuum and still acquire an effective long-range interaction after it is submerged in a coherent condensate. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is a handoff criterion, not an ontology import. A Noether-Sea comparison may borrow the logic only when a coherent background variable, a collective mode, and a source-coupling operator are all named on the Noether-Sea side.
+
+| Source signal | Source-side mathematical marker | Noether-Sea comparison criterion |
+| --- | --- | --- |
+| Vacuum contact becomes condensate-mediated range | A source coupling such as $|\Phi|^2J/\Lambda^2$ has no long-range vacuum force, but a coherent background $\Phi=ve^{i\mu t}$ changes the mediated response. | A Noether-Sea long-range comparison must identify the ambient state variable that changes the source response; contact with the Noether Sea is not enough by itself. |
+| Range is controlled by condensate parameters | The weak-distortion range obeys $\ell=(2\lambda v^2)^{-1/2}\simeq(2mc_s)^{-1}$, equivalently $\ell^{-1}$ scales like $\sqrt{\lambda n/m}$. | Any imported range claim needs a native range functional $\ell_{\text{sea}}[\mathcal{X}_{\text{sea}},\mathcal{Y}_{\text{coh}}]$ and a residual against the observer-level force window. |
+| Derivative phonon-source handoff | In the $\lambda=0$ low-energy limit, the gapless mode has $\omega_k=k^2/(2m)$ but couples through a momentum-dependent form factor after kinetic mixing between phase and modulus. | The Noether-Sea analogue must name the derivative or gradient operator that hands the source channel to the collective mode; a gapless mode alone does not license an inverse-square force. |
+| Weakly versus strongly deformed condensate | Linear treatment fails when the source size and density violate a deformation bound such as $\rho R^2/\Lambda^2<1$, or the equivalent point-source breakdown radius $r_*=M/(4\pi\Lambda^2)$. | A Noether-Sea comparison needs a deformation residual that says when the background response remains linear and when the source changes the local medium state. |
+| Dense-source screening | For repulsive source coupling and strong deformation, the effective source strength is screened; in the homogeneous spherical model $M_{\text{eff}}$ crosses from the source mass to a shell-controlled value. | If dense assemblies reduce local Noether-Sea response, the effective-metric handoff must use the screened source strength, not the bare matter inventory alone. |
+| Instability for the opposite coupling sign | For attractive coupling in the strongly deformed regime, soft modes become unstable once the same deformation threshold is crossed. | A BEC analogy fails if the native coupling sign or dense-source response destroys the coherent phase on the window being used for comparison. |
+| Galactic dark-matter application | The paper treats the force as galactic-scale and model-dependent, with screening and finite condensate-core size restricting where it can compete with gravity. | This is only a comparison framework for range-limited collective response; it does not establish MOND-like scaling, dark matter ontology, or a Noether-Sea force law. |
+
+A compact derivative-coupling handoff can be expressed at bridge level. Let $S_A(\mathbf{x},t)$ be the ordinary-assembly source channel under comparison, $q_{\text{coh}}$ a candidate collective Noether-Sea coordinate, and $\mathcal{D}_{\text{coh}}$ the native gradient or path-history operator that couples them. The comparison is admissible only if the effective interaction has the schematic form
+
+$$
+\mathcal{L}_{\text{handoff}}
+\sim
+g_A\,S_A\,\mathcal{D}_{\text{coh}}q_{\text{coh}},
+$$
+
+with $q_{\text{coh}}$, $\mathcal{D}_{\text{coh}}$, and $g_A$ derived or explicitly declared as comparison placeholders. A useful range residual for a declared radial window $W$ is then
+
+$$
+\Delta_{\ell}(W)
+=
+\sup_{r\in W}
+\frac{
+\left|a_{\text{sea-mode}}(r)-a_0(r)e^{-r/\ell_{\text{sea}}}\right|
+}{
+\left|a_{\text{sea-mode}}(r)\right|
++\left|a_0(r)e^{-r/\ell_{\text{sea}}}\right|
++\varepsilon
+}.
+$$
+
+This residual is undefined unless $a_{\text{sea-mode}}$, $a_0$, and $\ell_{\text{sea}}$ have native definitions. The failure condition is equally important: if no coherent $q_{\text{coh}}$ exists, if $\mathcal{D}_{\text{coh}}$ is only a borrowed phonon operator, if the source pushes the local Noether-Sea state outside the linear response window, or if the coupling sign destabilizes the collective mode, then the BEC analogy must be rejected for that calculation.
+
+##### Mathematical Handoff
+
+The common handoff is not a metaphor. It is a map from substrate and medium variables to the observer-level geometry:
+
+$$
+\mathcal{X}_{\text{sea}}
+=
+\left(
+h_{ij},
+\rho_{\text{core}},
+n,
+\chi_{\text{sea}},
+\sigma^{ab}_{\text{sea}},
+u^i_{\text{sea}},
+e^a{}_i,
+\mathcal{M}_{\text{sea}}^{ab}
+\right),
+$$
+
+followed by the ADM/Cartan reconstruction target
+
+$$
+\mathcal{X}_{\text{sea}}
+\longrightarrow
+\left(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij}\right)
+\longrightarrow
+g^{\text{eff}}_{\mu\nu}.
+$$
+
+The resulting observer-level line element has the shared target form
+
+$$
+ds_{\rm eff}^2
+=
+-N^2c_0^2dt^2
++
+\gamma_{ij}
+\left(dx^i-u^i_{\text{sea}}dt\right)
+\left(dx^j-u^j_{\text{sea}}dt\right).
+$$
+
+This equation is the filter for comparison language. A spacetime model is useful only insofar as it clarifies one of the channels in $\mathcal{X}_{\text{sea}}$, sharpens the map to $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$, or names an observational recovery target for $g^{\text{eff}}_{\mu\nu}$.
+
+For superfluid comparisons, a second optional handoff is required before the analogy can become technical:
+
+$$
+\mathcal{Y}_{\text{coh}}
+=
+\left(
+\Psi_{\text{sea}}\ \text{or its native replacement},
+\rho_s,
+\rho_n,
+\frac{T}{T_c}\ \text{or a native threshold ratio},
+\omega(k),
+c_s,
+v_c,
+\omega_{\mathrm{cr}},
+\sigma_v,
+\Delta_{\text{MOND-like}},
+\ell_{\text{sea}},
+\Delta_{\ell},
+\mathcal{D}_{\text{coh}},
+\Theta_{\text{def}},
+\Gamma_{\text{matter}\leftrightarrow\text{mode}}
+\right).
+$$
+
+Here $\Theta_{\text{def}}$ is a declared deformation parameter or residual measuring whether the ordinary source leaves the coherent background in its linear response regime. Without such a coherent-phase data object, `superfluid` and `BEC` should remain comparison labels in this bridge, not terms used in canonical Noether-Sea mechanism prose.
+
+##### Analogy Discipline
+
+The bridge also fixes a prose rule for active theory chapters:
+
+| If the prose wants to say... | Use this instead unless the model is derived |
+| --- | --- |
+| "The Noether Sea is a superfluid." | "The Noether Sea has a low-dissipation or coherent-response comparison target." |
+| "Spacetime is an elastic medium." | "Effective spacetime behavior is reconstructed from Noether-Sea stress and compliance." |
+| "The metric is the medium." | "The metric is the observer-level summary of clock, ruler, and signal behavior in the medium." |
+| "Transport through the Sea explains the effect." | Name the actual variable: delay factor, response tensor, drift field, compliance metric, residual, or event ledger. |
+| "Vacuum energy causes the behavior." | State the Noether-Sea inventory, excitation, or reaction channel that carries the energy. |
+| "The theory is aether-like." | State whether the comparison is to hidden preferred-frame kinematics, wave propagation, elastic stress, or medium ontology. |
+| "The model is MOND-like." | Name the scaling law, acceleration regime, coupling channel, and recovery target. |
+
+This discipline keeps strong comparisons available without promoting them prematurely. In a bridge document, analogy can be explicit. In canonical mechanism chapters, analogy should give way to the native object and the relevant closure target.
+
+##### Closure Tests
+
+A spacetime comparison becomes more than a guide only when it passes the following tests:
+
+1. **Variable test:** it identifies which Noether-Sea variables enter the calculation.
+2. **Map test:** it contributes to the same ADM/Cartan handoff used by [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+3. **Recovery test:** it recovers the relevant observer-level limits: Lorentz kinematics, weak-field GR, PPN bounds, photon propagation, clock redshift, lensing, or thermodynamic consistency.
+4. **No-import test:** it does not import the outside model's ontology as a substitute for Noether-Sea ontology.
+5. **Failure test:** it states what result would demote the comparison to a failed analogy.
+
+For superfluid and condensate comparisons, add these stricter tests:
+
+1. **Order-parameter test:** the comparison names a native coherent variable or explicitly says no such variable has been derived.
+2. **Mode test:** the comparison states the collective excitation or admits that no phonon-like branch is available.
+3. **Threshold test:** the comparison provides a critical threshold or keeps low-dissipation language out of mechanism prose.
+4. **Phase-fraction test:** the comparison supplies a superfluid-like and normal-like fraction, a threshold ratio such as $T/T_c$, or an explicit rejection of two-component behavior.
+5. **Coupling test:** any MOND-like or fifth-force claim names the ordinary-assembly coupling and evaluates an acceleration residual such as $\Delta_{\text{MOND-like}}$ on a declared window.
+6. **Vortex and merger test:** vortex or low-friction merger claims provide a critical angular velocity, line-density estimate, sound-speed criterion, or a native failure condition.
+7. **Derivative-handoff test:** any condensate-mediated long-range comparison names the native operator, such as $\mathcal{D}_{\text{coh}}$, that couples the source channel to the collective mode.
+8. **Range and deformation test:** any finite-range or inverse-square condensate comparison defines $\ell_{\text{sea}}$, $\Delta_{\ell}$, and a deformation residual such as $\Theta_{\text{def}}$, or else rejects the comparison for dense-source regimes.
+
+The most important failure mode is hidden synonym drift. If a comparison term starts replacing `Noether Sea`, `effective metric`, `medium response`, `causal wake`, or `closure target`, the bridge has stopped clarifying and has started importing ontology.
+
+##### External Anchor Points
+
+This document is an internal bridge, not a bibliography, but several external mathematical anchors fix the comparison classes:
+
+| Anchor | Use in this bridge |
+| --- | --- |
+| Newtonian and Galilean mechanics | Source of the 3D + T absolute-background comparison and weak-field potential limit. |
+| Lorentz aether theory | Preferred-frame comparison with hidden operational symmetry. |
+| Minkowski spacetime | Observer-level flat relativistic geometry. |
+| Einstein GR | Tested metric target, with detailed mapping delegated to the spacetime mechanism chapters. |
+| Sakharov induced gravity | Induced/effective gravity as a quantum-vacuum elasticity comparison. |
+| Jacobson thermodynamic spacetime | Einstein equation as equation-of-state comparison. |
+| Visser acoustic metrics | Explicit analog-gravity example where perturbations see an effective Lorentzian geometry. |
+| Volovik-style superfluid vacuum programs | Condensed-matter vacuum comparison using quasiparticles and collective modes. |
+| Berezhiani-Khoury superfluid dark matter | Phase-dependent dark-sector model with phonon-mediated MOND-like galactic behavior. |
+| Berezhiani-Khoury BEC long-range interaction | Contact-to-long-range condensate response with derivative phonon-source coupling, screening, and range control. |
+
+##### Summary Commitment
+
+The Noether Sea is not renamed by its comparisons. Absolute space, Newtonian mechanics, aether theory, Minkowski spacetime, GR, elastic media, analog gravity, induced gravity, thermodynamic spacetime, condensate models, superfluid models, and quantum-vacuum language each preserve useful mathematics or intuition. Their role in $\mathbb{A}\mathbb{A}\mathbb{A}$ is to expose closure burdens for the native substrate stack:
+
+$$
+\text{absolute time}
++
+\text{Euclidean void}
++
+\text{Noether Sea}
+\longrightarrow
+\text{effective spacetime}.
+$$
+
+That is why analogy belongs here. Mechanism chapters should inherit the disciplined result: use the native Noether-Sea variables first, and use outside spacetime models only when they name a concrete equation, test, or failure mode.
+
+#### Relativistic Scalar Fields and the Klein-Gordon Equation
+
+This bridge maps relativistic scalar-field language, especially the Klein-Gordon equation, onto the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer. It is a bridge document, not the canonical owner of scalar collective dynamics. The broad theory entry remains in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), while the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms live in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
+
+##### Bridge Thesis
+
+The Klein-Gordon equation is the canonical relativistic wave equation for a spin-0 scalar degree of freedom. It is not a complete particle-physics theory by itself, but it is the simplest bridge between scalar fields in quantum theory, curved-spacetime field theory, and cosmological scalar-field models.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, a scalar field should not be read as a fundamental continuous substance unless separately derived. The working bridge is:
+
+$$
+\text{scalar field } \phi
+\quad\leftrightarrow\quad
+\text{coarse-grained scalar amplitude of assembly or Noether-Sea response}.
+$$
+
+The bridge target is to derive when a collective mode of Noether-core clusters or Noether-Sea state variables obeys a Klein-Gordon-like equation, and when delayed path-history effects force corrections.
+
+##### Scalar Field Meaning
+
+As a pure mathematical object, a scalar field is a map
+$$
+\phi:M\to K,
+$$
+usually with $K=\mathbb{R}$ or $\mathbb{C}$. It assigns one scalar value to each point of the domain and carries no intrinsic direction, orientation, or tensor index.
+
+Here scalar primarily means Lorentz scalar: the field has no spacetime vector or tensor index. Within spin-0 sectors, an ordinary scalar is parity-even, while a pseudoscalar is parity-odd. Axions and pion-like modes are standard pseudoscalar examples.
+
+The Standard Model Higgs is Lorentz-scalar in spacetime, but the full Higgs field also carries electroweak gauge structure before symmetry breaking. Singular or distributional sources, such as Dirac deltas, are generalized scalar objects rather than ordinary finite-valued scalar fields; regularized versions recover ordinary scalar profiles.
+
+##### Klein-Gordon Role
+
+In relativistic quantum theory, a free massive scalar mode obeys a second-order wave equation whose mass term acts like a restoring gap. In curved spacetime, the same field is written with the metric-compatible wave operator, so the scalar mode propagates on, and contributes stress-energy to, the gravitational geometry.
+
+The Klein-Gordon equation can be read as the wave-equation form of the relativistic energy-momentum relation
+$$
+E^2=p^2c^2+m^2c^4.
+$$
+
+Historically, it failed as a single-particle probability equation because its conserved density is not positive definite. Its stable role appears in field theory: $\phi$ is not a probability amplitude for one particle, but a scalar field whose quantized normal modes give spin-0 particle and antiparticle excitations.
+
+A real scalar field describes a neutral scalar sector, while a complex scalar field carries an internal phase and can represent distinct charge-conjugate particle/antiparticle sectors. The Higgs excitation and pion modes are useful comparison examples, with the caveat that the full Higgs sector carries electroweak gauge structure and pions are composite QCD states rather than elementary Klein-Gordon fields.
+
+##### Mode Dictionary
+
+In second-quantized language, a scalar field is expanded into modes with creation and annihilation operators,
+$$
+\hat{\phi}(x)=\sum_k\left(a_k u_k(x)+a_k^\dagger u_k^*(x)\right).
+$$
+
+Under $\mathbb{A}\mathbb{A}\mathbb{A}$, this should be read as effective bookkeeping for stable mode contributions from Noether-core clusters, not as literal creation or destruction of substrate entities.
+
+| QFT language | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
+| --- | --- |
+| Vacuum state | Reference Noether-Sea background |
+| Scalar field $\phi$ | Coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response |
+| Mode $u_k$ | Normal-mode pattern supported by a Noether-core cluster or medium region |
+| Creation operator $a_k^\dagger$ | Coherent addition, nucleation, or release of a cluster contribution into mode $k$ |
+| Annihilation operator $a_k$ | Absorption, damping, or reconfiguration of that contribution back into the surrounding Noether Sea |
+| Number operator $N_k=a_k^\dagger a_k$ | Effective occupation count of stable mode contributions |
+| Particle | Observer-facing name for a stable quantized mode contribution |
+
+##### Flat-Spacetime Equation
+
+The flat-spacetime Klein-Gordon equation is
+$$
+\left(\Box - \frac{m^2c^2}{\hbar^2}\right)\phi = 0,
+\qquad
+\Box = -\frac{1}{c^2}\frac{\partial^2}{\partial t^2}+\nabla^2
+$$
+in the mostly-plus metric convention.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ bridge reads this as a continuum-limit target. A mature derivation should show when linearization around a homogeneous Noether-Sea background yields a dispersion relation of the form
+$$
+\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2,
+$$
+with $\omega_0$ supplying the Klein-Gordon-like mode gap.
+
+##### Curved-Spacetime Equation
+
+The curved-spacetime scalar-field equation with optional curvature coupling is
+$$
+\left(\nabla^\mu\nabla_\mu - \frac{m^2c^2}{\hbar^2} - \xi R\right)\phi = 0.
+$$
+Here $\nabla^\mu\nabla_\mu$ is the metric wave operator, $R$ is scalar curvature, and $\xi$ controls nonminimal coupling between the scalar mode and curvature.
+
+The corresponding curved-spacetime action is commonly written:
+$$
+S_\phi =
+\int d^4x\,\sqrt{-g}\,
+\left[
+-\frac{1}{2}g^{\mu\nu}\nabla_\mu\phi\nabla_\nu\phi
+-\frac{1}{2}\left(\frac{m^2c^2}{\hbar^2}+\xi R\right)\phi^2
+-V(\phi)
+\right].
+$$
+
+When coupled to general relativity, this scalar action contributes an effective stress-energy tensor,
+$$
+G_{\mu\nu}=8\pi G\left(T_{\mu\nu}^{\mathrm{matter}}+T_{\mu\nu}^{(\phi)}\right),
+$$
+so scalar-field energy density, pressure, and gradients can affect curvature. This is the common mathematical route behind subjects such as Higgs-like scalar modes, inflaton fields, quintessence, boson stars, scalar-tensor gravity, and semiclassical matter-on-geometry models.
+
+Operationally, the metric background used in this equation is normally reconstructed through signal-mediated observations: clock synchronization, radar distance, redshift, lensing, null-cone timing, and later multi-messenger channels. The Klein-Gordon field need not itself be electromagnetic, but its spacetime stage is usually calibrated through Physical Observer readout.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, this places Klein-Gordon-like scalar behavior in the effective continuum layer. The $\mathbb{U}_{\text{now}}$ universe-state perspective would track the underlying architrino positions, velocities, and causal wake intersections directly, while Physical Observers infer scalar propagation on an emergent metric.
+
+##### Source Terms
+
+With a source term, the same equation can be written schematically as
+$$
+\left(\nabla^\mu\nabla_\mu - \frac{m^2c^2}{\hbar^2} - \xi R\right)\phi = J.
+$$
+
+Here $J$ may be an ordinary source density, a distributional point or surface source, or a regularized source $J_\eta$ used for calculation. This distinction matters because a Dirac delta is not an infinite-valued ordinary scalar field; it is a distributional source whose mollified version becomes an ordinary finite scalar profile.
+
+##### Variational Scalar Closure Benchmark
+
+The statistical-field-theory comparison gives a concrete continuum test: if a coarse scalar mode is legitimate, it should have a controlled quadratic fluctuation operator around a saddle of an effective free-energy or action functional. In $\mathbb{A}\mathbb{A}\mathbb{A}$ notation the bridge target can be stated as
+$$
+\mathcal{F}_{\mathrm{eff}}[\phi]
+=
+\int_{\Sigma_t}
+\left[
+\frac{K_\phi}{2}\|\nabla\phi\|^2
++V_{\mathrm{eff}}(\phi)
+\right]\,dV,
+$$
+where
+$$
+\phi
+$$
+is a coarse-grained Noether-Sea or assembly-response amplitude, not a substrate primitive. A homogeneous branch
+$$
+\phi=\phi_\ast
+$$
+is a candidate background only if
+$$
+V_{\mathrm{eff}}'(\phi_\ast)=0.
+$$
+Linearizing gives
+$$
+\partial_t^2\delta\phi
+\approx
+c_{\mathrm{eff}}^2\Delta\delta\phi
+-\omega_0^2\delta\phi,
+\qquad
+\omega_0^2\propto V_{\mathrm{eff}}''(\phi_\ast),
+$$
+which is the bridge route to the Klein-Gordon dispersion target.
+
+The same benchmark supplies a defect test. If
+$$
+V_{\mathrm{eff}}
+$$
+has two locally stable branches
+$$
+\phi_-
+\quad\text{and}\quad
+\phi_+,
+$$
+then a one-dimensional interface profile should satisfy the saddle equation
+$$
+K_\phi\frac{d^2\phi}{dx^2}
+=
+V_{\mathrm{eff}}'(\phi),
+\qquad
+\lim_{x\to-\infty}\phi(x)=\phi_-,
+\qquad
+\lim_{x\to+\infty}\phi(x)=\phi_+.
+$$
+Its interface cost is
+$$
+\sigma_\phi
+=
+\int_{-\infty}^{\infty}
+\left[
+\frac{K_\phi}{2}\left(\frac{d\phi}{dx}\right)^2
++V_{\mathrm{eff}}(\phi)-V_{\mathrm{eff}}(\phi_\pm)
+\right]\,dx,
+$$
+with the appropriate branch value subtracted on each side. For this bridge, such domain-wall or kink-like profiles are comparison diagnostics for coarse scalar closure; they are not evidence that the underlying architrino ontology is a continuous scalar field.
+
+##### $\mathbb{A}\mathbb{A}\mathbb{A}$ Reading
+
+$\phi$ should be treated as a coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response, not as a fundamental continuous substance.
+
+The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the medium. Particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling.
+
+The metric wave operator $\nabla^\mu\nabla_\mu$ belongs to emergent metric closure, not to the substrate-level Euclidean void. The curvature-coupling term $\xi R\phi^2$ is therefore read as a bridge term: scalar-mode behavior changes with effective medium curvature, density, or stress.
+
+In this reading, $T_{\mu\nu}^{(\phi)}$ is a useful GR-facing stress-energy summary of scalar collective behavior rather than final ontology.
+
+##### What Still Works
+
+Relativistic scalar-field equations remain indispensable for spin-0 sectors, scalar perturbations, effective field theory, cosmology, and curved-spacetime comparison work. They provide a compact target for any substrate theory that claims to recover continuum field behavior.
+
+Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the scalar field, mass parameter, potential $V(\phi)$, and curvature coupling $\xi R\phi^2$ are reclassified as effective descriptors of collective assembly response, medium stiffness, nonlinear relaxation, and emergent-metric feedback.
+
+Transition relevance is high because scalar-field language is used across particle physics, inflationary cosmology, dark-energy models, and modified-gravity programs.
+
+Long-term relevance is as a benchmark continuum limit: the mature stack should derive when a scalar collective mode obeys a Klein-Gordon-like equation, when it reduces to an ordinary scalar wave equation, and when delayed path-history effects produce measurable departures.
+
+##### Closure Targets
+
+To promote this bridge from mapping to derivation, the following targets must close:
+
+1. Derive a coarse-grained scalar amplitude $\phi$ from Noether-Sea density, compression, or radial breathing modes.
+2. Derive normal coordinates $Q_k(t)$ for Noether-core cluster modes so that $\phi(\mathbf{x},t)\approx\sum_k Q_k(t)u_k(\mathbf{x})$ in the continuum limit.
+3. Show how stable discrete increments of $Q_k$ produce the effective occupation-count behavior encoded by $a_k^\dagger$, $a_k$, and $N_k$.
+4. Show when linearization around a homogeneous Noether-Sea background yields $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$.
+5. Relate the effective mass parameter $m$ to assembly stiffness, confinement energy, or radial restoring dynamics rather than treating it as primitive.
+6. Determine whether effective curvature coupling $\xi R\phi^2$ emerges from medium-density gradients, strain response, or scalar-tensor leakage in the emergent metric closure.
+7. Derive an effective functional $\mathcal{F}_{\mathrm{eff}}[\phi]$ with a positive fluctuation operator on the retained branch, and identify any zero modes as symmetry or collective-coordinate directions rather than as unstable scalar modes.
+8. If multiple scalar branches exist, compute the interface profile and interface cost $\sigma_\phi$ as a defect benchmark, then test whether such interfaces are stable, proliferate, or are excluded by the underlying delayed dynamics.
+
+##### Summary Commitment
+
+> **Scalar-Field Bridge Commitment:** Relativistic scalar-field equations are retained as effective continuum summaries where they work. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $\phi$, $m$, $V(\phi)$, and $\xi R\phi^2$ must be derived as collective assembly or Noether-Sea response variables, not assumed as substrate primitives.
+
+#### Weak Mixing CKM
+
+This chapter is the main bridge from Standard Model CKM language to the assembly-level weak-mixing picture. Its purpose is to let a reader see, in one place, which ingredients are standard, which are geometric reinterpretations, and which closure relations remain postulates or fit targets. It should be read with [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), and [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md).
+
+##### Weak Mixing: $\mathbb{A}\mathbb{A}\mathbb{A}$ to SM
+
+This chapter is written as a bridge text: it first states CKM in standard SM language, then translates each ingredient into $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry. The goal is that a reader with QM and introductory QFT can identify exactly what is standard, what is assumed in $\mathbb{A}\mathbb{A}\mathbb{A}$, and what is predicted.
+
+###### Before/after mapping at a glance
+
+| Standard-Model concept | $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping used here | Status in this chapter |
+| --- | --- | --- |
+| Quark weak basis in charged current | Exposed weak-coupling-triad basis | $\mathbb{A}\mathbb{A}\mathbb{A}$ premise |
+| Quark mass basis | Shielding eigenstates by generation tier (Gen I/II/III) | $\mathbb{A}\mathbb{A}\mathbb{A}$ premise |
+| CKM entry $V_{ij}$ | Overlap amplitude between weak-basis and mass-basis states | SM object with $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation |
+| $\theta_{12},\theta_{23},\theta_{13}$ | Generation-chain transport amplitudes $(\kappa_{12},\kappa_{23},\sigma)$ via exponential ansatz | $\mathbb{A}\mathbb{A}\mathbb{A}$ postulate + calibration |
+| CKM phase $\delta$ | Geometric holonomy angle via closure $\cos\delta=s_{13}/(s_{12}s_{23})$ | $\mathbb{A}\mathbb{A}\mathbb{A}$ postulate leading to prediction |
+| Rates $\propto \lvert V_{ij}\rvert^2$ | Overlap-weighted transition probabilities (plus kinematics/hadronic factors) | SM observable mapping |
+| $W^\pm$ exchange | Transient corridor assembled during interaction in the Noether Sea | $\mathbb{A}\mathbb{A}\mathbb{A}$ descriptive hypothesis |
+
+###### The Cabibbo–Kobayashi–Maskawa matrix (CKM) in the Standard Model
+Quark flavor change in charged-current weak interactions is governed by one unitary matrix:
+$$
+V_{\mathrm{CKM}}=U_{uL}^\dagger U_{dL}.
+$$
+It enters the Lagrangian as
+$$
+\mathcal{L}_{CC}=\frac{g}{\sqrt{2}}\;\bar u_i\gamma^\mu(1-\gamma^5)V_{ij}d_j\,W^+_\mu+\text{h.c.}
+$$
+This is the statement that weak-interaction eigenstates are not aligned with mass eigenstates.
+
+Interpretation of the angles and phase (with the hierarchical view used in this document):
+- $\theta_{12}$ (Cabibbo angle): dominant mixing between generations 1 and 2.
+- $\theta_{23}$: next-largest mixing between generations 2 and 3.
+- $\delta$: CP-violating phase; it controls interference signs and produces CP-asymmetric reaction observables.
+- $\theta_{13}$ (small): direct 1↔3 mixing; in the minimal $\mathbb{A}\mathbb{A}\mathbb{A}$ reduction below it is treated as a suppressed composite channel.
+
+Overall physics interpretation: CKM is not an extra force. It is the measurable misalignment between the quark mass basis (set by Yukawa diagonalization) and the weak SU(2) interaction basis. Experimentally, this misalignment sets charged-current transition rates via $\lvert V_{ij}\rvert^2$ and fixes CP-violating interference through rephasing-invariant combinations such as the Jarlskog invariant.
+
+The Standard Model source of this matrix is the simultaneous diagonalization problem for the two quark Yukawa matrices. After electroweak symmetry breaking one may diagonalize
+$$
+y_u\mapsto D_u,\qquad y_d\mapsto D_d,
+$$
+but the left-handed rotations need not agree:
+$$
+V_{\mathrm{CKM}}=U_{uL}^{\dagger}U_{dL}.
+$$
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ translation must therefore recover one mass-basis operator and one weak-basis operator whose mismatch produces this unitary matrix. If the assembly model fits CKM entries without first defining those two bases from the same shielding and weak-coupling-triad record, it has only reproduced a table of numbers.
+
+###### How to read CKM rows (first-year guide)
+Mass eigenstates are the definite-mass quark states $(u,c,t)$ and $(d,s,b)$. A charged-current interaction does not couple an up-type quark to only one down-type mass eigenstate; it couples to a superposition weighted by one CKM row:
+$$
+\lvert d^{(w)}_u\rangle=V_{ud}\lvert d\rangle+V_{us}\lvert s\rangle+V_{ub}\lvert b\rangle,
+$$
+$$
+\lvert d^{(w)}_c\rangle=V_{cd}\lvert d\rangle+V_{cs}\lvert s\rangle+V_{cb}\lvert b\rangle,
+$$
+$$
+\lvert d^{(w)}_t\rangle=V_{td}\lvert d\rangle+V_{ts}\lvert s\rangle+V_{tb}\lvert b\rangle.
+$$
+The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing.
+Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
+
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at tri-binary (IMO), bi-binary (IM-), and uni-binary (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
+
+###### Weak mixing in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms
+- The weak force is the only one that swaps quark types (down ↔ up, strange ↔ charm, etc.).
+- Each quark has two “bases”: a **weak basis** (set by the weak-coupling triad) and a **mass basis** (set by shielding and medium-dressed inertial response). These bases aren’t aligned.
+- When a W acts, it “sees” the weak basis; the chance to land in a particular mass state is set by the overlap between these bases → the CKM numbers.
+- Big overlaps (similar shielding) give big CKM entries; mismatched shielding gives tiny entries.
+
+- In this $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, a $W^\pm$ is not created ex nihilo and is not treated as a preexisting free field quantum; it is a transient “corridor” that associates during a weak interaction:
+  - Assembly mechanism: localized polarization of the Noether Sea provides two neutral cores, while the interacting weak-coupling triad transfers a six-charge excess ($\pm e$ net) into the corridor.
+  - Geometrically it’s a short-lived, high-tension bundle (see [assemblies/bosons/electroweak-bosons.md](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md)) that ferries charge/phase between source and sink.
+  - It dissociates quickly (lifetime set by corridor instability), matching the short-lived SM W.
+  - So: it is a transient, bound excitation of the Noether-Sea medium from reconfiguration of participants’ wakes and axial structure, not from a standing background field.
+
+##### Minimal premises
+- **Generations = shielding level:** Gen I tri-binary (u,d), Gen II bi-binary (c,s), Gen III uni-binary (t,b).
+- **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
+- **Mass basis = shielding eigenstates:** Core shielding, trapped internal causal history, and Noether-Sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md).
+
+Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
+Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether Sea ahead of the translating quark group, where cores are unshadowed and available to couple.
+
+Noether-Sea sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty background here, only the Noether Sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during heavy-to-light weak dissociation as speculative until energy/number flow is explicitly budgeted.
+
+Left/right coupling note (SM statement): charged-current SU(2), and therefore CKM mixing, act only on left-handed quarks (equivalently right-handed antiquarks). Right-handed quarks are SU(2) singlets and do not mix via CKM.
+
+Left/right coupling note ($\mathbb{A}\mathbb{A}\mathbb{A}$ geometric test): for the inherited left-channel exposure class the weak-coupling triad should face forward, while for the inherited right-channel exposure class it should rotate into the wake/shield. This is not yet a standalone helicity derivation; helicity language is available only when a propagation or momentum-axis record has been supplied by the same branch.
+Candidate chiral-selection mechanism ($\mathbb{A}\mathbb{A}\mathbb{A}$ hypothesis): in the right-channel exposure class, the weak-coupling triad is rotated into the particle's own wake/slipstream. A charged $W$ corridor cannot dock onto a weak-coupling triad in that hidden coupling posture, so right-handed fermions are sterile to charged-current interactions.
+
+This left/right exposure criterion is a downstream consumer of [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). Until the spinor and helicity ledger is derived, the weak-sector model should treat helicity exposure as a validation target rather than as an independent explanation of handedness.
+
+Validation task: simulate exposure vs helicity to confirm or falsify this geometric criterion.
+
+##### Unified weak-sector closure route
+
+The comparison with the fermion dictionary, weak-mixing angle note, neutrino chapter, and reaction ledger suggests one shared closure route rather than four unrelated open problems. The same exposed axial geometry should carry:
+
+1. the left-channel selection rule,
+2. the weak-basis versus mass-basis overlap,
+3. the CKM/PMNS matrix weights and phases,
+4. and the event-level provenance of weak reactions.
+
+In compact form, the proof route is:
+$$
+\text{axial-frame geometry}
+\longrightarrow
+\text{weak-coupling-triad exposure}
+\longrightarrow
+\{V_{\mathrm{CKM}},U_{\mathrm{PMNS}}\}
+\longrightarrow
+\text{weak-reaction provenance}.
+$$
+
+This is stronger than a loose analogy among chapters, but it is still a derivation target. The current accepted synthesis is that weak `V-A` selection, flavor mixing, and weak-corridor bookkeeping are three readouts of the same exposure problem. To close the route, the corpus needs one operator-level model that does four jobs without changing definitions between them:
+
+- identify which polar sites are exposed to a charged corridor for a moving assembly,
+- suppress right-handed charged-current docking in the same geometry that allows left-handed docking,
+- define the weak-basis states whose overlap with shielding eigenstates yields $V_{\mathrm{CKM}}$ and $U_{\mathrm{PMNS}}$,
+- and specify whether the $W^\pm$ corridor carries only the charged transaction payload or also pro/anti Noether core provenance for the outgoing lepton assemblies.
+
+The minimal mathematical object is therefore not only a mixing matrix. It is a coupled tuple:
+$$
+\bigl(R_{\mathrm{rel}},\alpha,c;\ \Sigma_{\mathrm{WCT}};\ \mathcal{W}_{\pm};\ \mathcal{P}_{ij}\bigr),
+$$
+where $R_{\mathrm{rel}}$ records axial-frame orientation relative to the fixed Noether-core frame, $(\alpha,c)$ record the branch and color-sector data, $\Sigma_{\mathrm{WCT}}$ is the weak-coupling-triad domain, $\mathcal{W}_{\pm}$ is the charged-corridor action on that domain, and $\mathcal{P}_{ij}$ is the admissible provenance-path set used in the overlap sum. The first proof step is to define these objects for one controlled channel, such as $d\to u$ in free-neutron beta reaction, before trying to claim the full CKM or PMNS hierarchy.
+
+##### First beta exposure operator: $d\to u$
+
+This first model is deliberately local. It defines the operator-level exposure gate for one generation-I down-type quark in free-neutron beta reaction. It is not yet a decay-rate derivation, a nuclear form-factor model, or a completed lepton-provenance account.
+
+The handedness label in this operator is an inherited observer-level weak-channel label, not a newly derived substrate spin variable. The exposure gate below is a test object that must be supplied by the ordered-core spinor/helicity ledger in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) before it can count as a proof of weak handedness.
+
+Let the six polar sites of the active quark be
+$$
+S=\{H_+,H_-,M_+,M_-,L_+,L_-\},
+$$
+with axial inventory $A_a\in\{E,P\}$ at each site $a\in S$. Let $\hat{\mathbf n}_a(R_{\mathrm{rel}})$ be the outward polar-site direction after the axial frame is placed relative to the fixed Noether-core frame, and let $\hat{\mathbf v}$ be the quark drift direction through the local Noether Sea.
+
+The finite-state exposure score for handedness $h\in\{L,R\}$ is
+$$
+\eta_a^{(h)}
+=E_{\mathrm{front}}\!\left(\hat{\mathbf n}_a(R_{\mathrm{rel}})\cdot\hat{\mathbf v}\right)
+E_{\mathrm{phase}}^{(h)}(a),
+$$
+where $E_{\mathrm{front}}=1$ on the leading side and $0$ in the wake in this first model, while $E_{\mathrm{phase}}^{(h)}$ records whether the corridor spiral can lock to the local path-history phase. The exposed weak-coupling-triad domain is then
+$$
+\Sigma_{\mathrm{WCT}}^{(h)}
+=\{a\in S\mid \eta_a^{(h)}=1\}.
+$$
+
+This gate is the weak-sector term of the spinor-to-metric compatibility residual in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual). If $\Sigma_{\mathrm{spin}}^{(h)}(\theta;W)$ is the exposure class predicted by the ordered-core spinor/helicity ledger on record window $W$, the local mismatch can be written
+$$
+\Delta_{\mathrm{WCT}}(\theta;W)
+=
+d_{\Sigma}\!\left(
+\Sigma_{\mathrm{WCT}}^{(L)},
+\Sigma_{\mathrm{spin}}^{(L)}
+\right)
++
+d_{\Sigma}\!\left(
+\Sigma_{\mathrm{WCT}}^{(R)},
+\Sigma_{\mathrm{spin}}^{(R)}
+\right)
++
+\sum_{a\in S}\left(\eta_a^{(R)}\right)^2.
+$$
+The last term records right-handed charged-current leakage in the hard-gate model, or its declared smooth replacement if later simulations soften the exposure function. The weak sector may consume the spinor ledger only when this residual stays below tolerance using the same $\theta$ that also supplies the CKM overlap and beta-reaction provenance record.
+
+Equivalently, the handed exposure class must be the weak consumer projection $\Sigma_{\mathrm{spin}}^{(h)}(\theta;W)=\Pi_{\mathrm{weak}}\mathcal L_\star(\theta;W,r_\star)$ of the same retained spinor-label pullback record. It is not a separately selected handedness label that can be tuned after the CKM and beta-reaction rows have been chosen.
+
+That consumer condition inherits the row-local spinor blocker from the angular-momentum ledger. The exposure class $\Sigma_{\mathrm{spin}}^{(h)}(\theta;W)$ may be used in the weak-coupling-triad residual only if the same branch record also supplies a passed causal-writhe and gauge-control row:
+
+$$
+\Delta_{\Pi_W}(\theta;W)\le\varepsilon_{\Pi_W},
+\qquad
+\Delta_{\mathrm{gc}}(\theta;W)\le\varepsilon_{\mathrm{gc}},
+\qquad
+\Delta_{\mathbf J}^{2\pi},
+\Delta_{\mathbf J}^{4\pi}
+\le
+\varepsilon_{\mathbf J}.
+$$
+
+If these rows are missing, the weak exposure model remains a validation target for handedness, not an independent derivation of left/right selection.
+
+The beta gate is open only when $h=L$, $\lvert\Sigma_{\mathrm{WCT}}^{(L)}\rvert=3$, and the exposed sites have the down-state inventory $A_{\Sigma}=3E$. The right-handed channel is blocked at this finite-state level:
+$$
+\mathcal{W}_{-}^{du}\lvert d_R;c,\alpha\rangle=0,
+$$
+with later simulations allowed to replace this hard zero by a bounded suppression factor if the wake geometry requires a smooth exposure model.
+
+For the active left-handed branch, write the down-like and up-like states as
+$$
+\lvert d_L;c,\alpha\rangle
+=\lvert C_{\mathrm{IMO}};\ A_{\mathrm{sh}}=(1E,2P),\ A_{\Sigma}=3E;\ c,\alpha\rangle,
+$$
+$$
+\lvert u_L;c,\alpha\rangle
+=\lvert C_{\mathrm{IMO}};\ A_{\mathrm{sh}}=(1E,2P),\ A_{\Sigma}=3P;\ c,\alpha\rangle.
+$$
+Here $C_{\mathrm{IMO}}$ is the generation-I tri-binary Noether core, $A_{\mathrm{sh}}$ is the shielded axial inventory outside the exposed triad, and $(c,\alpha)$ records the color-sector branch and axial-frame offset inherited from the weak-mixing-angle program.
+
+The first beta exposure operator is
+$$
+\mathcal{W}_{-}^{du}\lvert d_L;c,\alpha\rangle
+=g_{\mathrm W}\,\eta_L(R_{\mathrm{rel}},\hat{\mathbf v})\,V_{ud}\,
+\lvert u_L;c,\alpha\rangle
+\otimes
+\lvert W^-;\Delta A_W=3(E-P)\rangle.
+$$
+Here $g_{\mathrm W}$ is the effective charged-corridor coupling normalization. The factor $\eta_L$ is $1$ when the finite-state gate above is open and $0$ otherwise. $V_{ud}$ is the same weak-basis to shielding-eigenstate overlap used by the CKM section; it is near unity here because both the incoming $d$ and outgoing $u$ occupy the generation-I tri-binary shielding tier. The $W^-$ state records the opposite transaction to the quark-side $3E\to3P$ change:
+$$
+\Delta Q_q=3(q_P-q_E)=6\epsilon=e,\qquad
+\Delta Q_{W^-}=3(q_E-q_P)=-6\epsilon=-e.
+$$
+
+In the neutron, this operator acts on one active down-like quark while the spectator $u$ and $d$ assemblies pass through by identity. The conservative provenance stance is the transaction-payload corridor: the $W^-$ carries the charged triad transaction and phase relation, while the electron and antineutrino core material must still be identified from local Noether-Sea or incoming-assembly provenance in the reaction ledger.
+
+This operator gives the first closure test for the unified route. It must fail if the same $\Sigma_{\mathrm{WCT}}$ cannot serve the left-handed gate, the $V_{ud}$ overlap, and the beta-reaction provenance record; if it changes the spectator quarks; or if a right-handed $d$ docks to the charged corridor without strong suppression.
+
+##### Geometric picture of CKM
+- A down-type quark state in the **weak basis** is a weak-coupling-triad configuration living on a specific core (shielding level) but not yet diagonal in mass.
+- The **mass basis** is the set of stable shielding eigenstates (Gen I/II/III). The overlap between the weak-basis state and each mass eigenstate gives the CKM elements for that row/column.
+- **Suppression intuition:** Larger shielding mismatch → smaller geometric overlap. Thus $\lvert V_{ud}\rvert$ is large (same shielding tier), $\lvert V_{us}\rvert$ smaller (tri ↔ bi), $\lvert V_{ub}\rvert$ tiny (tri ↔ uni). Similar logic for the up-type rows.
+- **Provenance lens:** $V_{ij}$ can be read as a coherent sum over admissible architrino transport paths from weak-state geometry to shielding eigenstate geometry; $\lvert V_{ij}\rvert^2$ is the net channel weight after interference.
+
+###### Wolfenstein parametrization (to 𝒪(λ³))
+
+Use this as a target when deriving overlaps/angles from shielding geometry and weak-coupling-triad alignment.
+
+With the parameters below, this Wolfenstein form reproduces the PDG magnitudes above to 𝒪(λ³).
+
+Matrix form (Wolfenstein to 𝒪(λ³)):
+
+$$
+V \simeq
+\begin{pmatrix}
+1 - \tfrac12\lambda^2 & \lambda & A\lambda^3(\rho - i\eta)\\
+-\lambda & 1 - \tfrac12\lambda^2 & A\lambda^2\\
+A\lambda^3(1-\rho - i\eta) & -A\lambda^2 & 1
+\end{pmatrix},\quad
+\lambda\approx0.225,\ A\approx0.83,\ \rho\approx0.14,\ \eta\approx0.35.
+$$
+
+###### Charged $W$ corridor (architrino budget, descriptive)
+
+Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether cores (3P/3E each)** plus a **six-charge excess** that carries net charge $\pm e$:
+- $W^+$ payload: 9 positrinos + 3 electrinos (net $+6(e/6)=+e$) on the outer sites of the two cores.
+- $W^-$ payload: 3 positrinos + 9 electrinos (net $-6(e/6)=-e$).
+
+The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget.
+Ontology note ($\mathbb{A}\mathbb{A}\mathbb{A}$): this corridor is a transient bound excitation of the Noether-Sea medium assembled from local polarization + transferred Active-Triad excess, not ex nihilo particle creation.
+
+###### PDG CKM (2024 central values, magnitude)
+
+$$
+\begin{array}{c|ccc}
+V_{ij} & d & s & b\\
+\hline
+u & 0.974 & 0.225 & 0.0037\\
+c & 0.225 & 0.973 & 0.041\\
+t & 0.0087 & 0.040 & 0.999
+\end{array}
+$$
+Data note (source/uncertainty): values shown are rounded PDG 2024 central values for readability. For uncertainties and global-fit intervals, see Particle Data Group, *Review of Particle Physics* (2024), CKM quark-mixing review/table.
+
+###### $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding-tier view (IMO = Inner/Middle/Outer present)
+
+Interpretation (hypothesis): overlaps fall with shielding mismatch. Rows = up-type cores, cols = down-type cores. What “overlap” means here: the projection of a weak-basis state (weak-coupling-triad configuration) onto a mass eigenstate (shielding geometry). In practice it is an inner product of their wavefunctions/configurations; $\lvert\langle \text{mass} | \text{weak} \rangle\rvert^2$ gives the CKM entry’s probability weight. A concrete minimal functional is defined in the next section.
+
+$$
+\begin{array}{c|ccc}
+V_{ij} & \text{d (IMO)} & \text{s (IM-)} & \text{b (I--)}\\
+\hline
+\text{u (IMO)} & \text{high overlap} & \text{medium} & \text{tiny}\\
+\text{c (IM-)} & \text{medium} & \text{high} & \text{medium-low}\\
+\text{t (I--)} & \text{tiny} & \text{medium-low} & \text{high}
+\end{array}
+$$
+
+Legend: IMO = Inner+Middle+Outer; IM- = Inner+Middle; I-- = Inner only. Qualitative “high/medium/tiny” encodes the shielding-match hypothesis; actual values must be derived from overlap integrals.
+
+Quantitative target (heuristic): “high” should land near 0.2–1, “medium” ~10⁻²–10⁻¹, “tiny” ~10⁻³–10⁻² to match PDG magnitudes (e.g., $\lvert V_{ud}\rvert$, $\lvert V_{us}\rvert$, $\lvert V_{ub}\rvert$).
+
+###### Using CKM in amplitudes (quick examples)
+
+- **Rule:** For a charged-current vertex with $W$, multiply by $V_{ij}$ where $i$ is up-type (u,c,t) and $j$ is down-type (d,s,b); rates scale with $\lvert V_{ij}\rvert^2$. Neutral currents (Z/γ) are flavor-diagonal at tree level (no CKM factor at tree level); flavor-changing neutral currents appear only via loops.
+- **Beta reaction (SM label: `beta decay`):** $d \to u\,e^- \bar\nu_e$ uses $V_{ud}\approx0.974$; $\mathcal{M}\propto G_F V_{ud}$, rate $\propto \lvert V_{ud}\rvert^2$ times nuclear form factors.
+- **Semileptonic $B$ reaction:** $b \to c\,\ell^- \bar\nu_\ell$ uses $V_{cb}\approx0.041$; $\Gamma \propto \lvert V_{cb}\rvert^2 G_F^2 m_b^5$ (times hadronic form factor).
+- **Loop/rare $b\to s$:** factors like $V_{tb} V^*_{ts}$ set the suppression and the CP phase in interference terms.
+
+###### Neutral-current and GIM recovery target
+
+The mass-basis rotation must leave the photon and $Z$ currents flavor diagonal at tree level while placing $V_{\mathrm{CKM}}$ only in charged currents. A compact tree-level residual is
+$$
+\mathcal{R}_{\mathrm{FCNC}}^{\mathrm{tree}}(\theta)
+=
+\sum_{i\ne j}
+\left(
+\left|J^{\gamma,\theta}_{ij}\right|^2
+\;+\;
+\left|J^{Z,\theta}_{ij}\right|^2
+\right),
+$$
+and the Standard Model recovery target is
+$$
+\mathcal{R}_{\mathrm{FCNC}}^{\mathrm{tree}}(\theta)=0.
+$$
+
+Loop-level flavor-changing neutral currents are not zero; they are suppressed by unitarity and mass splittings. For a benchmark such as $b\to s\gamma$, the branch must reproduce the GIM cancellation structure
+$$
+\mathcal{M}_{b\to s\gamma}^{\theta}
+\propto
+\sum_{i=u,c,t}
+V_{ib}(\theta)V_{is}^{*}(\theta)\,f_i(\theta),
+$$
+with exact cancellation when the loop functions are equal:
+$$
+\sum_{i=u,c,t}V_{ib}V_{is}^{*}=0.
+$$
+The nonzero Standard Model amplitude is then controlled by mass-dependent differences among the $f_i$, not by a tree-level neutral weak corridor. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is a provenance gate: neutral corridors may transmit phase and energy, but they must not directly change generation labels unless the event ledger includes the charged-current loop history that carries the CKM factors.
+
+##### CKM geometric-overlap minimal model
+
+Bridge note: equations in this section keep SM unitary CKM structure, while provenance/path language is the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretive layer.
+
+For each up-channel $i\in\{u,c,t\}$, define the down-type weak state as a superposition of down-type mass eigenstates:
+$$
+\lvert d_i^{(w)}\rangle=\sum_{j\in\{d,s,b\}}V_{ij}\lvert d_j^{(m)}\rangle,\qquad
+V_{ij}\equiv\langle d_j^{(m)}\vert d_i^{(w)}\rangle.
+$$
+On the weak-coupling-triad domain $\Sigma_{\mathrm{WCT}}$, model this overlap as
+$$
+V_{ij}=\int_{\Sigma_{\mathrm{WCT}}}\psi_{j,m}^{d*}(x)\,\psi_{i,w}^{d}(x)\,d\mu(x),
+$$
+Equivalent path-sum view (interpretive): $V_{ij}=\sum_{p\in\mathcal{P}_{ij}} a_p e^{i\phi_p}$ over admissible provenance paths $p$; the overlap integral is a continuum coarse-graining of the same idea.
+$a_p$ is a nonnegative transport weight (magnitude), $\phi_p$ is the path phase (holonomy/precession contribution), and admissible paths in $\mathcal{P}_{ij}$ are those that satisfy boundary matching and conservation constraints for the channel.
+At the coarse-grained level, unitarity is imposed by CKM normalization conditions $\sum_j \lvert V_{ij}\rvert^2=1$ and $\sum_i \lvert V_{ij}\rvert^2=1$, equivalent to $V^\dagger V=I$.
+then use the standard unitary decomposition
+$$
+V=R_{23}(\theta_{23})\,R_{13}(\theta_{13},\delta)\,R_{12}(\theta_{12}),
+\qquad s_{ij}\equiv\sin\theta_{ij}.
+$$
+
+The comparison value of any larger generation symmetry is therefore a benchmark, not an import. The CKM/generation closure check should require one shared branch record $\theta$ to satisfy
+$$
+\mathcal R_{\mathrm{CKM,gen}}(\theta)
+=
+d_{\mathrm{unit}}\!\left(V^\dagger(\theta)V(\theta),I\right)
++d_{\mathrm{CKM}}\!\left(\{\lvert V_{ij}(\theta)\rvert\},\{\lvert V_{ij}\rvert_{\mathrm{obs}}\}\right)
++d_{\mathrm{CP}}\!\left(J(\theta),J_{\mathrm{obs}}\right)
++\max_{a\in\{0,1,2\}}
+d_{\mathrm{rep}}\!\left(
+\Pi_{\mathrm{gauge}}T_{\mathrm{gen}}^aA,
+\Pi_{\mathrm{gauge}}A
+\right)
++\mathcal R_{\mathrm{null}}(\theta).
+$$
+The residual accepts a candidate only when the same shielding-tier record gives unitary mixing, the observed CKM hierarchy and CP invariant, unchanged Standard Model gauge representation across the three charged-fermion tiers, and no added-channel leakage. A comparison framework that reproduces one angle, one phase, or the number three is not yet a $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
+
+Assumptions introduced in this section ($\mathbb{A}\mathbb{A}\mathbb{A}$ side):
+- **A1:** Generation transport is represented by a three-node chain $(1\leftrightarrow2\leftrightarrow3)$.
+- **A2:** Mixing-angle magnitudes follow exponential transport-action suppression.
+- **A3:** The CP phase is constrained by holonomy closure $\cos\delta=s_{13}/(s_{12}s_{23})$.
+
+Minimal geometric reduction: the generation manifold is the three-node chain $(1\leftrightarrow2\leftrightarrow3)$ with two edge actions $(\kappa_{12},\kappa_{23})$ and one nonlocal torsion penalty $\sigma$ for direct $1\leftrightarrow3$ transport. Define
+$$
+s_{12}=e^{-\kappa_{12}},\qquad
+s_{23}=e^{-\kappa_{23}},\qquad
+s_{13}=e^{-(\kappa_{12}+\kappa_{23}+\sigma)}=\xi\,s_{12}s_{23},
+\quad \xi\equiv e^{-\sigma}\in(0,1].
+$$
+This captures hierarchy with three real parameters for magnitudes.
+Define $\xi\equiv e^{-\sigma}$ as the **Direct-Transport Suppression Factor**: it measures the penalty for bypassing the intermediate generation in direct $1\leftrightarrow3$ transport.
+Provenance interpretation: $\kappa_{12}$ and $\kappa_{23}$ are nearest-neighbor transport costs on the generation chain, while $\sigma$ is the extra nonlocal cost for direct $1\leftrightarrow3$ provenance routes.
+
+Holonomy closure postulate (no extra phase fit):
+$$
+\cos\delta=\xi=\frac{s_{13}}{s_{12}s_{23}}.
+$$
+Interpretation: the same nonlocal suppression that attenuates direct $1\leftrightarrow3$ overlap fixes the geometric holonomy angle; in provenance terms, $\delta$ is the loop phase accumulated around closed generation-path cycles.
+
+Parameter counting (why three calibration inputs): a unitary $3\times3$ CKM matrix has four physical parameters $(\theta_{12},\theta_{23},\theta_{13},\delta)$. The closure postulate $\cos\delta=s_{13}/(s_{12}s_{23})$ removes one independent degree of freedom, leaving three independent inputs.
+
+Calibration vs prediction in this section:
+- **Calibrated inputs:** $\lvert V_{us}\rvert,\ \lvert V_{cb}\rvert,\ \lvert V_{ub}\rvert$.
+- **Derived from closure + calibration:** $\delta,\ J,\ \lvert V_{td}\rvert,\ \lvert V_{ud}\rvert,\ \lvert V_{cd}\rvert,\ \lvert V_{cs}\rvert,\ \lvert V_{ts}\rvert,\ \lvert V_{tb}\rvert$.
+
+Using PDG central magnitudes as calibration inputs
+$$
+s_{12}=\lvert V_{us}\rvert=0.225,\quad s_{23}=\lvert V_{cb}\rvert=0.041,\quad s_{13}=\lvert V_{ub}\rvert=0.0037,
+$$
+gives
+$$
+\kappa_{12}=1.492,\quad \kappa_{23}=3.194,\quad \sigma=0.914,\quad \xi=0.401.
+$$
+
+> **Key result (holonomy closure):** Using only $\left(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert\right)$ as calibration inputs, the model predicts $\delta=66.35^\circ$.
+> Compared with the quoted global-fit benchmark $\gamma\approx 65.9^{+3.3}_{-3.5}\,^\circ$ (standard CKM phase convention), this is within $1\sigma$.
+
+Predictions not used in calibration:
+
+$$
+\begin{array}{l|l|l}
+\text{Quantity} & \text{Model expression} & \text{Value}\\
+\hline
+\text{CKM phase }\delta & \arccos\!\left(\frac{s_{13}}{s_{12}s_{23}}\right) & 1.158\ \text{rad}=66.35^\circ\\
+\text{Jarlskog }J & c_{12}c_{23}c_{13}^2 s_{12}s_{23}s_{13}\sin\delta & 3.04\times10^{-5}\\
+\lvert V_{td}\rvert & \left\lvert s_{12}s_{23}-c_{12}c_{23}s_{13}e^{i\delta}\right\rvert & 8.45\times10^{-3}
+\end{array}
+$$
+
+where $c_{ij}\equiv\sqrt{1-s_{ij}^2}$. The resulting magnitude matrix is numerically close to the PDG central hierarchy, and the phase/Jarlskog emerge from the overlap geometry rather than an independent CP fit parameter.
+
+The basis-invariant CP check is stronger than reading off one phase convention. If $Y_u$ and $Y_d$ are the Hermitian mass-basis operators represented by the branch, define
+$$
+C_{\mathrm{CP}}(\theta)=[Y_u(\theta),Y_d(\theta)].
+$$
+The Standard Model comparison requires
+$$
+\det C_{\mathrm{CP}}(\theta)
+\propto
+-2i\,F_u(\theta)F_d(\theta)J(\theta),
+$$
+with
+$$
+F_u=(y_t-y_c)(y_t-y_u)(y_c-y_u),
+\qquad
+F_d=(y_b-y_s)(y_b-y_d)(y_s-y_d).
+$$
+Thus CP violation must vanish if any same-type Yukawa eigenvalues coincide, if any mixing angle collapses, or if the holonomy phase is removable by a basis redefinition. This gives the geometry a falsifier: the proposed CKM holonomy must reproduce $J$ as a rephasing-invariant commutator measure, not merely as a fitted angle in one matrix convention.
+
+###### Uncertainty propagation for holonomy closure
+
+Define
+$$
+x \equiv \cos\delta_{\text{pred}}=\frac{s_{13}}{s_{12}s_{23}}.
+$$
+For input vector
+$$
+\mathbf{s}=(s_{12},s_{23},s_{13})^\top
+$$
+with covariance matrix $\Sigma_s$, use first-order propagation
+$$
+\sigma_x^2 = \nabla_{\mathbf{s}}x^\top\,\Sigma_s\,\nabla_{\mathbf{s}}x,
+$$
+with Jacobian
+$$
+\frac{\partial x}{\partial s_{13}}=\frac{1}{s_{12}s_{23}}=\frac{x}{s_{13}},\qquad
+\frac{\partial x}{\partial s_{12}}=-\frac{s_{13}}{s_{12}^2s_{23}}=-\frac{x}{s_{12}},\qquad
+\frac{\partial x}{\partial s_{23}}=-\frac{s_{13}}{s_{12}s_{23}^2}=-\frac{x}{s_{23}}.
+$$
+
+So
+$$
+\sigma_x^2
+=
+x^2\!\left[
+\frac{\sigma_{13}^2}{s_{13}^2}
++\frac{\sigma_{12}^2}{s_{12}^2}
++\frac{\sigma_{23}^2}{s_{23}^2}
+-2\frac{\mathrm{Cov}(s_{13},s_{12})}{s_{13}s_{12}}
+-2\frac{\mathrm{Cov}(s_{13},s_{23})}{s_{13}s_{23}}
++2\frac{\mathrm{Cov}(s_{12},s_{23})}{s_{12}s_{23}}
+\right].
+$$
+If correlations are unavailable, set off-diagonal covariances to zero.
+
+Map to phase uncertainty via
+$$
+\delta_{\text{pred}}=\arccos x,\qquad
+\sigma_{\delta,\text{pred}}=\frac{\sigma_x}{\sqrt{1-x^2}}
+\quad(\text{radians}),
+$$
+valid away from $|x|\approx1$. Near boundaries, use Monte Carlo propagation with clipping $x\in[-1,1]$.
+
+###### Confidence-interval closure test
+
+At confidence level $p$ (normal quantile $z_p$):
+$$
+I_x^{(p)}=
+\big[\max(-1,x-z_p\sigma_x),\ \min(1,x+z_p\sigma_x)\big].
+$$
+
+If an external phase estimate $\delta_{\text{ext}}\pm\sigma_{\delta,\text{ext}}$ is available, convert it to
+$$
+x_{\text{ext}}=\cos\delta_{\text{ext}},\qquad
+\sigma_{x,\text{ext}}=|\sin\delta_{\text{ext}}|\,\sigma_{\delta,\text{ext}}.
+$$
+Define residual and pull:
+$$
+r_x \equiv x-x_{\text{ext}},\qquad
+Z_{\text{closure}}\equiv
+\frac{|r_x|}{\sqrt{\sigma_x^2+\sigma_{x,\text{ext}}^2}}.
+$$
+
+**Pass criterion (closure holds at CL $p$):**
+$$
+Z_{\text{closure}}\le z_p.
+$$
+Equivalent interval criterion: $I_x^{(p)}$ overlaps $I_{x,\text{ext}}^{(p)}$.
+
+This upgrades the CKM closure check from central-value comparison to a statistically testable confidence-interval statement.
+
+Post-fit prediction CKM magnitude check (calibrated only on $\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert$). The remaining entries
+$\{\lvert V_{ud}\rvert,\lvert V_{cd}\rvert,\lvert V_{cs}\rvert,\lvert V_{td}\rvert,\lvert V_{ts}\rvert,\lvert V_{tb}\rvert\}$ are predictions:
+
+Calibration anchors: $\lvert V_{us}\rvert,\ \lvert V_{cb}\rvert,\ \lvert V_{ub}\rvert$.
+
+$$
+\begin{array}{c|ccc}
+\text{Model }V_{ij} & d & s & b\\
+\hline
+u & 0.97435 & 0.22500^{*} & 0.00370^{*}\\
+c & 0.22487 & 0.97353 & 0.04100^{*}\\
+t & 0.00845 & 0.04029 & 0.99915
+\end{array}
+\qquad
+\begin{array}{c|ccc}
+\text{PDG 2024 }V_{ij} & d & s & b\\
+\hline
+u & 0.974 & 0.225 & 0.0037\\
+c & 0.225 & 0.973 & 0.041\\
+t & 0.0087 & 0.040 & 0.999
+\end{array}
+$$
+
+$^{*}$ calibrated inputs; all other entries are post-fit predictions.
+
+Equivalent one-line prediction:
+$$
+J^2=c_{12}^2c_{23}^2c_{13}^4\,s_{12}^2s_{23}^2s_{13}^2
+\left(1-\frac{s_{13}^2}{s_{12}^2s_{23}^2}\right),
+$$
+so once $(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert)$ are calibrated, $J$ is fixed.
+
+##### Working hypotheses
+1. **Basis misalignment source:** The weak-coupling-triad orientation couples weakly to shielding-induced response axes, producing a small rotation between weak and mass bases proportional to the shielding contrast.
+2. **Matrix structure:** Off-diagonal CKM elements scale as geometric transport amplitudes on the generation chain, with $s_{13}=\xi s_{12}s_{23}$ enforcing the observed hierarchy.
+3. **CP phase:** The CKM phase is identified with a transport holonomy angle constrained by $\cos\delta=\xi$.
+
+##### What to compute next
+- Derive $(\kappa_{12},\kappa_{23},\sigma)$ from first-principles $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry (radii ratios, wake exposure, and triad transport), rather than CKM calibration.
+- Prove or falsify the holonomy closure law $\cos\delta=\xi$ from explicit triad transport on the Noether-Sea background.
+- Quantify scale dependence: test whether the fitted actions remain stable under renormalization-scale translation of CKM inputs.
+- Simulate wake exposure to confirm/deny a forward-hemisphere weak-coupling triad; falsify the model if trailing-site coupling dominates.
+- Extend the same overlap geometry to PMNS and test whether the larger lepton mixing follows from different shielding/transport actions.
+
+##### Pointers
+- weak-coupling triad & shielding definitions: [assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md) (Sections on weak isospin, generation hierarchy).
+- Gauge-boson couplings: [assemblies/bosons/electroweak-bosons.md](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) (W/Z corridors acting on the weak-coupling triad).
+
+_Status: accepted closure route, not a completed derivation. The chapter now treats exposure, overlap, and holonomy as one weak-sector proof target. Provenance language below is illustrative only until a reaction ledger supplies the participating cores, architrino inventory, corridor payload, and event residuals._
+
+##### Future Capability Illustration: Weak-Reaction Provenance
+
+The conjectural weak-provenance material below is an illustration of what a future $\mathbb{A}\mathbb{A}\mathbb{A}$ reaction ledger should be able to record. It is not a claim that the listed rows are correct. Several rows may be replaced once weak-coupling-triad exposure, corridor sourcing, spin/helicity closure, and event-level residual routing are derived from the same substrate record.
+
+- **Goal:** build a ledger to track weak transmutation events, ensuring charge, shielding, corridor payload, Noether core sourcing, and architrino counts close. Mark allowed vs. unseen channels and why.
+- **Forward axial sites:** weak-coupling triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
+- **Environmental partners:**
+  - Photon: a coaxial contra-rotating pro/anti planar pair.
+  - Noether Sea: hypothesized as paired pro/anti Noether cores; a local interaction could draw neutral core content to participate while preserving recorded provenance.
+- **Architrino budget example:** reacting with a Noether-Sea super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
+- **Capability target:** a mature reaction ledger would state the corridor provenance stance, participating cores/architrinos, candidate products, and forbidden outcomes with reasons such as shielding mismatch, insufficient flux-tube closure, or unmet charge quantization.
+
+###### Illustrative future ledger rows (speculative; not a correctness claim)
+
+| Reactant set | Core shielding (IMO/HML) | weak-coupling-triad polarity | Sea cores tapped? | Candidate products | Corridor(s) | Illustrative status | Reason/constraint |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| $d$ (IMO) → $u$ (IMO) + $W^-$ | tri → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | likely | Matches $V_{ud}$; charge quantized |
+| $s$ (IM-) → $u$ (IMO) + $W^-$ | bi → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{us}\rvert$ |
+| $b$ (I--) → $c$ (IM-) + $W^-$ | uni → bi | E→P swap | 0 | $c + \,\, \ell^- + \bar\nu$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{cb}\rvert$ |
+| $t$ (I--) → $b$ (I--) + $W^+$ | uni → uni | P→E swap | 0 | $b + W^+$ | $W^+$ | allowed (dominant) | minimal mismatch; $\lvert V_{tb}\rvert\approx1$ |
+| $d$ (IMO) + Sea (4 cores) → $u$ (IMO) + $W^-$ | tri + sea | E→P swap | 4 | $u + W^-$ | $W^-$ | speculative | Sea supplies corridor, check energy budget |
+| $q$ + Sea → $q$ (same) + $Z$ | any | none | 4 | $Z$ | $Z$ | speculative | Neutral corridor, no flavor change |
+| $d$ (IMO) → $u$ (IMO) without $W$ | tri → tri | E→P | 0 | forbidden | — | no | Need $W$ to carry charge/spin |
+| $t$ (I--; weak-active sites 1/5) → $b$ (I--; weak-active 4/2) + $W^+$ → $b + e^+ + \nu_e$ | uni → uni | P→E swap | 0–4 (corridor draw) | $b + e^+ + \nu_e$ | $W^+$ forward corridor | allowed (dominant) | CKM $\lvert V_{tb}\rvert\approx1$; forward Sea cores assemble $W^+$; lepton leg is weak singlet (0/6) |
+| $t$ (I--; 1/5) → $b$ (I--; 4/2) + $W^+$ → $b + q\bar q$ (e.g., $u\bar d$ or $c\bar s$) | uni → uni | P→E swap | 0–4 | $b + q\bar q$ | $W^+$ forward corridor | allowed (dominant; SM $W\to q\bar q$ branching $\sim67\%$) | CKM $\lvert V_{tb}\rvert\approx1$; $q\bar q$ from $W^+$ (anti-down weak-active 2/4, up 1/5); charge hand-off via corridor. Branching fraction note is an SM reference point, not an $\mathbb{A}\mathbb{A}\mathbb{A}$-derived output. |
+| $e^- (6/0)$ + $e^+ (0/6)$ → $Z$ → $\nu_\mu + \bar\nu_\mu$ | leptons | WK: e 6/0, e+ 0/6 | 0–4 | $\nu_\mu + \bar\nu_\mu$ | neutral corridor ($Z$) | allowed (NC) | $Z$ neutral; couples to L/R leptons; final $\nu,\bar\nu$ weak-active 3/0, 0/3 |
+| $\mu^- (Gen\ II, 6E)$ → $e^- (Gen\ I, 6E) + \bar\nu_e + \nu_\mu$ | bi → tri | E→P swap on weak-coupling triad; shed outer binary | 0–4 | $e^- + \bar\nu_e + \nu_\mu$ | $W^-$ corridor | allowed (leptonic) | Shielding drop (Gen II→I); forward $W^-$ transfers charge; stripped core re-emerges as $\nu_\mu$, Sea/anti-Sea absorbs balance ($\bar\nu_e$) |
+| Neutron $n(udd)$ → Proton $p(uud)$ + $e^- + \bar\nu_e$ | tri → tri (one $d\to u$; two spectators) | E→P on one $d$ | 0–4 | $p + e^- + \bar\nu_e$ | $W^-$ forward corridor | allowed (`beta reaction`; SM label: `beta decay`) | spectators intact; $d\to u$ flip; lepton leg weak-active (6/0), $\bar\nu_e$ weak singlet (0/3) |
+| $W$ corridor budget (generic) | — | — | 2 neutral cores + 6 excess decorations | returns neutral cores to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 cores + (9P,3E) → +e; $W^-$: 2 cores + (3P,9E) → –e; cores end neutral |
+
+Notes:
+- “Sea cores tapped” = how many Noether-Sea cores are pulled transiently (if any). Default 0 unless we posit corridor assembly needs external cores.
+- Populate further rows for $c\leftrightarrow s$, $b\to u$, rare loop-induced $b\to s$, and anti-quark channels (same CKM but right-handed anti-doublets).
+
+###### Provenance
+
+- We ultimately want **provenance**, not just bookkeeping: track every architrino’s path through a reaction, so simulations can reproduce PDG observables from first principles.
+- Beyond individual architrinos, track **sub-assembly provenance**: entire Noether cores may transfer intact, detach outer binaries, dissociate, reassociate, or relock into different groupings while their architrino identities persist. Knowing which cores move as units vs fragment gives insight into allowed channels and lifetimes.
+- Conservation: electrinos IN = electrinos OUT. Same for positrinos. Transmutation: reactants → products; true understanding is to map (simulate) each architrino's path.
+- Point to ponder: What becomes of a spare electrino and positrino from a reaction? Do they couple and spiral inward to max curvature? Do they become highly reactive at some point?
+
+Charge Conservation Enforcement (speculative, to simulate):
+- Free $\pm\epsilon$ axial architrinos are dynamically suppressed by the strong Noether-Sea dielectric response (no long-lived spare-polarity propagation in the coarse-grained ledger).
+- Any spare axial architrinos must close through one of the following channels:
+  - **Product incorporation:** absorbed into a final-state assembly while preserving charge/polarity bookkeeping.
+  - **Current carriage:** carried out on charged lepton/neutrino legs as part of the weak-current flow.
+  - **Immediate neutral relock:** paired with opposite-polarity architrinos drawn from the Sea, routing energy into short coaxial contra-rotating pro/anti planar-pair photon modes while all participating identities remain in the ledger.
+- Practical rule for simulations: treat a true long-range "escape" channel as forbidden unless a dedicated high-resolution run demonstrates otherwise.
+
+Decision cues to log in sims: initial separation, relative phase, local Noether-core density; pick dominant channel based on these and record energy/charge routing.
+
+Provenance TODOs:
+- Validate the explicit overlap functional in this document by reconstructing $(\kappa_{12},\kappa_{23},\sigma)$ from simulated transport trajectories.
+- Build per-architrino tracking in simulations to recover CKM magnitudes and CP phase from first principles.
+- Add sub-assembly tracking: which Noether cores move intact vs. fragment in each channel; ensure charge/polarity balances close at both architrino and core levels.
+
+##### Closure Integration: CKM-Holonomy and Lepton Handoff
+
+This chapter is the primary quark-mixing closure surface for $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+###### CKM closure target (quark sector)
+
+Compute transport actions from first-principles triad geometry:
+$$
+\kappa_{ab}=
+\int_{\Gamma_{ab}}
+\mathcal{L}_{\mathrm{trans}}
+\bigl(\rho_{\text{core}}(\mathbf{x},t),\nabla\rho_{\text{core}}(\mathbf{x},t),\text{shielding},\text{wake exposure}\bigr)\,ds,
+$$
+rather than fitting them from CKM inputs.
+
+Then derive the phase via geometric holonomy:
+$$
+\delta=\oint_{\mathcal{C}_{123}}\omega,
+$$
+and test whether
+$$
+\cos\delta=\frac{s_{13}}{s_{12}s_{23}}
+$$
+is a theorem of the transport bundle, not a postulate.
+
+###### Statistical acceptance rule
+
+For
+$$
+x\equiv \cos\delta_{\mathrm{pred}}=\frac{s_{13}}{s_{12}s_{23}},
+$$
+and covariance $\Sigma_s$ from the calibration inputs, require closure pull
+$$
+Z_{\mathrm{closure}}=
+\frac{|x-x_{\mathrm{ext}}|}{\sqrt{\sigma_x^2+\sigma_{x,\mathrm{ext}}^2}}
+$$
+to satisfy $Z_{\mathrm{closure}}\le z_p$ at the chosen confidence level.
+
+###### PMNS handoff
+
+Use the same overlap/holonomy machinery in the lepton-neutral sector with a different internal Hamiltonian and weaker exterior coupling. The detailed lepton closure model is integrated in:
+- [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md)
+
+#### Planck Scale Tri-Binary Alignment
+
+This chapter treats the Planck scale as an exploratory alignment-horizon problem for the tri-binary rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed tri-binary framework, then test which parts survive once full closure conditions are imposed.
+
+Its closest companions are [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md), [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
+
+The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
+
+##### Thesis
+
+This chapter maps the Planck scale into tri-binary geometry and dynamics. The inherited Planck formulas are used as constraints and comparison targets, not as settled ontology. The immediate aim is to identify which geometric quantities, delay-feedback conditions, and alignment variables would have to be derived before the Planck scale can be claimed as a tri-binary closure result.
+
+We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of tri-binary assemblies in the Noether Sea:
+
+>
+> **Working Thesis (Planck Alignment Horizon).**
+>
+> A tri-binary reaches the Planck state when, in the forward sector, both component speeds approach the field speed $c_f$ and the **full delay-feedback loop** admits a final, marginally stable, phase-locked configuration. The component-speed statement and the combined-speed statement are distinct: $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ name the terminal component limits, while $v_{\text{eff}}=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}\|$ names the forward-sector vector sum used for wedge geometry. In this state:
+> 1. The kinematic transition to flattening occurs as $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ in the forward sector, starving new one-way causal updates ahead of the forward edge (local horizon behavior).
+> 2. The geometry collapses from a 3D precessing ellipsoid (fermion-like) to a 2D, co-planar disk (boson-like).
+> 3. In the planar limit, the combined in-plane motion outruns $c_f$, so the emission history forms a Mach-wedge causal wake with half-angle
+>    $$
+>    \sin\theta = \frac{c_f}{v_{\text{eff}}} \quad (\;v_{\text{eff}} > c_f\;),
+>    $$
+>    so for orthogonal components near $c_f$ ($v_{\text{eff}} \approx \sqrt{2}\,c_f$), $\theta \approx 45^\circ$.
+> 4. The wedge modifies the delay-feedback geometry, constraining which loops can close; the terminal aligned mode is the last wedge-compatible, phase-locked configuration.
+> 5. The assembly acquires the **minimum closed-cycle action** $\mathcal{A}_{\text{align}}^{\text{cycle}}$, identified with the universal quantum $h$ (not a system-specific lower bound), together with the radian-normalized rotational-action variable $I_{\text{align}}=\mathcal{A}_{\text{align}}^{\text{cycle}}/(2\pi)$, and an **alignment radius** $R_{\text{align}}$, defined by the Planck-alignment circumference $2\pi R_{\text{align}} = \ell_P$:
+>    $$
+>      \mathcal{A}_{\text{align}}^{\text{cycle}} \;\stackrel{\text{hyp.}}{\approx}\; h,
+>      \qquad
+>      I_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \hbar,
+>      \qquad
+>      R_{\text{align}} \;\stackrel{\text{hyp.}}{\approx}\; \ell_P/(2\pi).
+>    $$
+>
+
+These identifications are **conjectured mappings**, not definitions. They must eventually be derived from the master equations and compared to empirical values.
+
+In plain terms, the Planck scale is a **dynamic alignment horizon**, not a minimal length by fiat: under extreme stress the assembly’s internal geometry snaps into a universal, planar lock, forward-sector updates are starved, and no smaller stable mode remains.
+
+##### Operational Probing Limit
+
+The same scale also appears from the standard quantum-gravity probing argument. A probe of energy $E$ cannot localize structure more sharply than its quantum wavelength, but concentrating too much energy into the same region also produces a gravitational horizon. In $\mathbb{A}\mathbb{A}\mathbb{A}$ notation this gives the effective lower bound
+
+$$
+\ell_{\mathrm{probe}}(E)
+\sim
+\max\!\left(
+\frac{\hbar c_f}{E},
+\frac{2GE}{c_f^4}
+\right).
+$$
+
+The first term is the wavelength-limited localization scale. The second term is the gravitational-radius scale associated with the same energy concentration. The minimum occurs when the two constraints meet,
+
+$$
+E_{\mathrm{cross}}^2 \sim \frac{\hbar c_f^5}{2G},
+\qquad
+\ell_{\mathrm{probe,min}} \sim O(\ell_P).
+$$
+
+Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This supports the interpretation of $\ell_P$ as the observed trace of a tri-binary alignment horizon rather than as proof that spacetime is made of smaller static beads.
+
+**Regime clarification (to prevent speed-label conflicts):**
+- In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are component-speed saturation statements in the terminal alignment regime.
+- The statement "$v_{\text{eff}} > c_f$" refers to a **combined in-plane effective motion** used for Mach-wedge causal geometry, not a claim that either component speed is individually $> c_f$.
+- The local one-way starvation condition begins when a forward component approaches $c_f$; the Mach-wedge condition is the stronger combined-speed condition $v_{\text{eff}}>c_f$.
+- The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [tri-binary-dynamics.md](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md)).
+
+---
+
+##### What Planck Units Imply About the Outer Binary
+
+We treat the Planck relations as constraints on a **specific alignment geometry**, not as abstract dimensional coincidences. Using $f_P \ell_P = c$ with $c \approx c_f$ and the circular orbit relation $v = 2\pi R f$, the aligned state ($v_{\text{align}} = c_f$, $f_{\text{align}} = f_P$) gives:
+$$
+2\pi R_{\text{align}} f_P = c_f \quad \Rightarrow \quad 2\pi R_{\text{align}} = \ell_P.
+$$
+So the Planck length maps to the **outer circumference**, with $R_{\text{align}} = \ell_P/(2\pi)$.
+
+With $E = h f$, the action per cycle is $S = E/f = h$; here $h$ is the action increment per unit frequency (per cycle), so the $2\pi$ factor belongs to the geometry (circumference), not the constant.
+Outside the alignment point, the $R$–$f$ mapping is not fixed by kinematics alone; it requires the full delay-feedback dynamics (i.e., $v(R)$ from the equations of motion).
+
+**Economy hypothesis:** $G$ and $h$ are linked through the alignment geometry. The effective compliance scales with the **alignment area** of the outer orbit ($R_{\text{align}}^2$), while $c_f^3$ provides the causal throughput scale and $h$ sets the action-per-cycle. This is the compact, geometry-first linkage we are testing:
+$$
+G \propto \frac{c_f^3 (\text{alignment geometry})}{h}.
+$$
+Geometrically, a single alignment area sets the coupling scale; with $R_{\text{align}} = \ell_P/(2\pi)$ and $h = 2\pi\hbar$, this matches $G \sim c^3 \ell_P^2/\hbar$ up to the expected $2\pi$ factors.
+Here, $h$ sets the action-per-cycle and the geometry fixes the length scale; universality follows from a universal alignment mechanism, not from a direct proportionality between $G$ and $h$.
+
+This leaves three coherent origin stories to keep in view:
+1. **One-constant ontology:** a deeper invariance in the delay-geometry produces both $c_f$ and $h$, with $G$ a composite of those.
+2. **Two-constant ontology:** $c_f$ (signal speed) and $h$ (action-per-cycle) are primitive; $G$ is an emergent bookkeeping constant fixed by a universal alignment geometry.
+3. **Three-constant ontology:** $c_f$, $h$, and $G$ are independent; the proportional form is a dimensional coincidence or a near-alignment approximation.
+We keep these as open threads while we test whether alignment alone can lock the scale.
+
+###### Planck Units as Outer-Binary Mappings (Alignment State)
+
+| Planck Unit | Expression | Cascade | Outer-binary mapping (alignment interpretation) |
+| --- | --- | --- | --- |
+| Frequency $f_P$ | $f_P$ | Start from measurable cadence; sets the clock | Alignment orbital cadence in Hz (cycles per second). |
+| Energy $E_P$ | $E_P = h f_P$ | Energy from Planck frequency | Action-per-cycle scale at alignment. |
+| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | Outer-binary **circumference** at alignment ($R_{\text{align}} = \ell_P / 2\pi$). |
+| Radius $R_{\text{align}}$ | $R_{\text{align}} = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the outer binary. |
+| Alignment geometry $A_{\text{align}}$ | $A_{\text{align}} = R_{\text{align}}^2$ | Square of the alignment radius | Planar alignment area scale. |
+| Gravitation $G$ | $G \propto c_f^3 A_{\text{align}} / h$ | Express in terms of $A_{\text{align}}$ and $h$ | Medium compliance tied to the alignment geometry scale ($A_{\text{align}}$). |
+| Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether Sea. |
+| Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
+| Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Corner case: an energy-equivalent scale for alignment, not a rest-mass of the planar, field-speed state. |
+| Time $t_P$ | $t_P = 1/f_P$ | Invert the cadence to get period | One orbital **period** at alignment if $f_{\text{align}} = f_P$. |
+| Temperature $T_P$ | $T_P = E_P / k_B$ | Convert energy to temperature | Effective temperature of alignment-scale excitations. |
+
+---
+
+##### Kinematic and Dynamical Alignment Conditions
+
+###### Effective Forward Speed (Necessary Condition)
+
+For an architrino on the forward edge of the Outer binary, define
+
+$$
+v_{\text{eff}}(\theta) \;=\; \bigl|\mathbf{v}_{\text{trans}} + \mathbf{v}_{\text{orb}}^{\text{tan}}(\theta)\bigr|
+$$
+
+with $\theta$ the orbital phase and the “forward sector” the subset where the tangential velocity projects along $\mathbf{v}_{\text{trans}}$.
+
+We define the **kinematic alignment horizon** as the locus where the forward-sector components satisfy
+$$
+v_{\text{trans}} \to c_f \quad \text{and} \quad v_{\text{orb}}^{\text{tan}}(\theta) \to c_f,
+$$
+so the component speeds approach the wake-speed limit at the onset of flattening. The combined forward-sector speed is a separate diagnostic:
+$$
+v_{\text{eff}}(\theta)=\|\mathbf{v}_{\text{trans}}+\mathbf{v}_{\text{orb}}^{\text{tan}}(\theta)\|.
+$$
+When $v_{\text{eff}}>c_f$, the same geometry supports the Mach-wedge analysis used above; when $v_{\text{eff}}\lesssim c_f$, the claim is only one-way update starvation along the saturated forward component.
+
+At this point, **one-way** forward-sector updates (new field information emitted ahead) cannot overtake the architrino. This is a necessary condition for horizon-like behavior, but not sufficient for a stable aligned state. The sufficiency comes from the **round-trip response**: the one-way delay distorts phase closure until the final aligned mode becomes the only stable lock.
+
+###### Delay-Feedback Closure (Sufficiency Condition)
+
+Actual Planck alignment requires closure of the **action-response loop**:
+
+- **One-way delay**: time between an emission and its arrival at a receiver:
+  $$
+  \Delta t_{\text{one-way}} = d / c_f.
+  $$
+- **Round-trip response**: the full delay between an emitted wake and its subsequent influence on the emitter’s own trajectory after the assembly has responded and moved.
+
+A stable, phase-locked mode must satisfy a **closure condition** on this round-trip delay combined with orbital motion. Schematic:
+
+$$
+\Phi_n \equiv \omega_n \Delta t_{\text{rt}} + \phi_{\text{geom}}(n) = 2\pi k_n,
+$$
+
+for integer $k_n$, where $\Delta t_{\text{rt}}$ is the effective round-trip delay and $\phi_{\text{geom}}$ encodes geometric phase due to tri-binary structure.
+
+> **Working hypothesis (Terminal Mode):**
+> There exists a final mode $n_{\text{max}}$ in which:
+> - The component-saturation condition $v_{\text{trans}}\to c_f$ and $v_{\text{orb}}^{\text{tan}}\to c_f$ is met in the forward sector, with any $v_{\text{eff}}>c_f$ Mach-wedge behavior treated as the stronger combined-speed branch, **and**
+> - The round-trip phase condition admits a marginally stable, fully aligned solution.
+>
+> Attempts to push beyond this state destabilize the delay loop (e.g., runaway self-hit, dissociation) rather than producing further stable modes.
+
+Demonstrating this terminal aligned mode is an **open dynamical problem** for the delay-equation system.
+
+---
+
+##### Energy as Causal-Wake Interaction History
+
+This framing keeps emitters implicit and treats the architrino as a minimal mover responding to the local superposed causal-wake potential $\phi(\mathbf{x}, t)$ and its gradient $\nabla \phi$.
+
+1. An architrino moves through a sea of potential gradients from many emitters.
+2. Each emitter’s influence arrives after a delay.
+3. Those delayed gradients are the only things that can push or pull it.
+4. Its speed at any moment is the sum of those time-lagged pushes.
+5. “Kinetic energy” is just a name for that accumulated motion.
+6. So it is not stored inside the architrino; it is the record of many delayed interactions.
+7. Change the delay geometry (translation, gravity well), and the push timing changes.
+8. Change the timing, and the speed changes.
+9. Therefore the kinetic term is an interaction history with emitter wake history, not a private reservoir.
+
+In this causal-wake framing:
+
+- The architrino's identity is the consistent causal loop: receive wake gradients, respond, move into a new wake environment, and respond again.
+- Stability or structure emerges only when this response loop becomes periodic.
+- Momentum is the conserved motion state produced by past interactions; if received wake gradients vanish, the architrino coasts unchanged.
+
+###### Field-Speed Regimes in the Causal-Wake View
+
+- **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic (ahead starves, behind dominates). Phase-locking becomes delicate; alignment effects intensify.
+- **At $v > c_f$:** It outruns newly emitted causal-wake propagation. The only gradients it can receive are from delayed emissions and the medium behind or sideways, which leads to self-hit dynamics. This creates a strong inward or centripetal feedback candidate that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
+
+---
+
+##### Discrete Ladder and Phase-Slip Dynamics (Hypothesis)
+
+> **Working Hypothesis (Discrete Ladder).**
+> The tri-binary supports a discrete set of delay-locked modes indexed by $n$, each with characteristic radius $r_n$, frequency $\omega_n$, and delay $\Delta t_n = r_n/c_f$. Stability requires a phase-closure condition between orbital motion and causal wake.
+
+Under increasing translational stress or deepening gravitational potential:
+
+1. External stress or medium loading shifts the effective delay geometry, inducing a **phase lag** $\delta\phi$.
+2. When $\delta\phi > \delta\phi_{\text{crit}}(n)$, mode $n$ loses stability.
+3. The Outer binary **falls inward**; by angular-momentum conservation, $\omega$ rises.
+4. The assembly **re-locks** onto a new mode $n+1$ with smaller $r_{n+1}$, higher $\omega_{n+1}$.
+
+This “ratchet” yields a **staircase** of quasi-stable plateaus in radius/frequency space.
+
+> **Working Hypothesis (Top Rung = Planck Alignment).**
+> Working hypothesis: the ladder terminates at a unique top rung $n_{\text{max}}$ where full planar alignment is achieved and the forward-sector components satisfy $v_{\text{trans}} \to c_f$ and $v_{\text{orb}}^{\text{tan}} \to c_f$ at the onset of flattening. This is the proposed Planck alignment state.
+
+**Failure mode:** If simulations or analytic work reveal:
+- a continuum of stable modes beyond the aligned state, or
+- multiple distinct aligned endpoints,
+then the “single top rung” picture must be modified or abandoned.
+
+---
+
+##### Spin Transition and Configuration-Space Topology (Hypothesis)
+
+We propose an effective spin/statistics mapping via a reduction in configuration-space structure.
+
+###### Fermionic Regime: 3D Precessing Tri-Binary
+
+In the low-energy / weak-alignment regime:
+
+- Inner, Middle, and Outer binaries occupy **non-coplanar planes**.
+- Total angular momentum **J** is fixed (no external torque), but the normals of the three binary planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
+- The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
+
+> **Hypothesis:** The effective orientation space of such a tri-binary behaves like an $SU(2)$-type double cover of spatial rotations:
+> a $2\pi$ rotation changes the internal causal phase; a $4\pi$ rotation restores it.
+> This is the candidate route to spin-$\tfrac{1}{2}$-like behavior and Pauli-style exclusion from overlapping 3D precession volumes.
+
+A rigorous mapping from the detailed tri-binary phase space to an $SU(2)$ bundle is not yet derived; it is a closure target.
+
+###### Bosonic Regime: Fully Aligned Planar Disk
+
+In the Planck alignment state:
+
+- All three binaries become **co-planar**.
+- Precession cone angle collapses to zero.
+- Orientation reduces effectively to an angle within the plane.
+
+> **Hypothesis:** The effective configuration space of this aligned assembly behaves like a simple $SO(2)\simeq U(1)$ phase:
+> - A $2\pi$ rotation returns the full causal configuration.
+> - Multiple such disks can stack or occupy similar states without the 3D exclusion volume of the non-coplanar regime, yielding spin-$1$-like, boson-like stacking behavior.
+
+Again, this $SU(2)\to U(1)$ reduction is a geometric hypothesis, not yet a fully proven group-theoretic derivation.
+
+For the particle-level interpretation of aligned versus precessing assembly behavior, compare [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
+
+---
+
+##### Emergent Constants: $\hbar$, $\ell_P$, and $G$
+
+###### Assumption on Speeds: $c \approx c_f$ in the Low-Energy Limit
+
+We adopt:
+
+> **Assumption (A-cf-match).**
+> In low-energy, weak-field regimes relevant to standard lab physics, the effective propagation speed of electromagnetic disturbances, $c$, coincides with the fundamental field speed $c_f$ to within current experimental bounds. Deviations, if any, are confined to Planck-adjacent or extreme-curvature regimes.
+
+Whenever we identify $c$ with $c_f$ in Planck formulas, we explicitly appeal to A-cf-match.
+
+###### Minimal Cycle Action: $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text{align}}$, and $h$
+
+Let $I$ denote the radian-normalized total rotational action of a tri-binary assembly: the action-angle variable that has the same units and role as angular momentum. Let $\mathcal{A}_{\text{cycle}}=2\pi I$ denote the corresponding closed-cycle action.
+
+- For generic modes $n$, $I(n)$ and $\mathcal{A}_{\text{cycle}}(n)$ depend on axial structure and environment.
+- For the Planck alignment state $n_{\text{max}}$, we expect a **universal attractor** dominated by:
+  - the fundamental charge unit $\epsilon = e/6$ (A2),
+  - the coupling $\kappa$ (A6),
+  - and the causal speed $c_f$ (A1).
+
+> **Conjectured Mapping (Cycle Action and Angular Momentum):**
+> The closed-cycle action associated with this aligned state,
+> $$
+>   \mathcal{A}_{\text{align}}^{\text{cycle}} \equiv 2\pi I(n_{\text{max}}),
+> $$
+> is proposed to **coincide with** the Planck action quantum $h$:
+> $$
+>   \mathcal{A}_{\text{align}}^{\text{cycle}} \stackrel{\text{hyp.}}{\approx} h,
+>   \qquad
+>   I_{\text{align}}\equiv I(n_{\text{max}}) \stackrel{\text{hyp.}}{\approx} \hbar.
+> $$
+> This must ultimately be derived from the architrino master equation and checked numerically.
+
+If the dynamics admit multiple distinct aligned states with significantly different $\mathcal{A}_{\text{align}}^{\text{cycle}}$ or $I_{\text{align}}$, this identification fails.
+
+###### Topological Bound Comparison
+
+Soliton and supersymmetric field theory provide a disciplined comparison pattern: sometimes a charge sector supplies a lower bound, and special solutions saturate it by satisfying first-order equations. For this chapter that pattern should be used only as a proof template, not as imported ontology.
+
+Let
+$$
+Q_{\mathrm{align}}
+$$
+denote the retained topological and phase-lock data of the aligned tri-binary branch: winding class, layer-lock integers, chirality sign if retained, and the active causal-root ledger over one cycle. A useful theorem target is a bound of the form
+$$
+\mathcal{A}_{\text{cycle}}[\Gamma]
+\ge
+\mathcal{B}(Q_{\mathrm{align}})
+$$
+for all admissible histories
+$$
+\Gamma
+$$
+in the same sector. Planck alignment would become much stronger if the terminal aligned mode were shown to saturate the bound,
+$$
+\mathcal{A}_{\text{align}}^{\text{cycle}}
+=
+\mathcal{B}(Q_{\mathrm{align}}),
+$$
+and if the saturation equations reduced to explicit first-order delay-geometry closure conditions, such as field-speed component saturation, finite branch ledger closure, and zero holonomy after one cycle.
+
+The failure test is equally important. If no sectorwise lower bound exists, or if the aligned branch is not the minimizer within its own
+$$
+Q_{\mathrm{align}}
+$$
+sector, then the identification
+$$
+\mathcal{A}_{\text{align}}^{\text{cycle}}\stackrel{\text{hyp.}}{\approx}h
+$$
+remains only a dimensional and operational mapping rather than a dynamical derivation.
+
+###### Alignment Radius: $R_{\text{align}}$ and $\ell_P$
+
+Define
+
+$$
+R_{\text{align}} \equiv r_{\text{Outer}}(n_{\text{max}}).
+$$
+
+Let $\ell_P^{\text{(emp)}}$ be the standard Planck length defined operationally by GR/QM constants (using $h = 2\pi\hbar$ with $f$):
+
+$$
+\ell_P^{\text{(emp)}} = \sqrt{\frac{h\,G}{2\pi c^3}}.
+$$
+
+> **Empirical Check (Length):**
+> We compare the dynamically derived alignment radius $R_{\text{align}}$ to the empirical Planck length divided by $2\pi$:
+> $$
+>  R_{\text{align}} \stackrel{\text{hyp.}}{\approx} \ell_P^{\text{(emp)}}/(2\pi),
+> $$
+> assuming A-cf-match.
+
+Equivalently, within the architrino theory we can invert the relation to define an **effective gravitational constant**:
+
+$$
+G_{\text{eff}} \equiv \frac{R_{\text{align}}^2 c_f^3}{\mathcal{A}_{\text{align}}^{\text{cycle}}}.
+$$
+
+Our program is to compute $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text{align}}$, and $R_{\text{align}}$ from first principles, then compare $G_{\text{eff}}$ to the measured $G$.
+
+###### $G$ as Noether Sea Compliance
+
+Qualitatively, gravitational coupling strength reflects the **elastic response of the spacetime medium**:
+
+> **Heuristic View:**
+> $G$ is inversely related to the **stiffness** of tri-binary spacetime assemblies against being driven toward the alignment phase. High energy density in aligned cores deforms the surrounding tri-binary medium, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
+
+A full derivation of $G$ from medium compliance is still to be done; the formula above gives a target relationship.
+
+---
+
+##### Horizon Microstructure and “Condensate-Like” Phases (Conjecture)
+
+With Planck alignment as an endpoint rather than a point singularity:
+
+- Black-hole-like objects are interpreted as regions where large numbers of tri-binaries are **driven close to or into** the alignment state.
+- The horizon-adjacent interface is then modeled by patches whose characteristic scale is $R_{\text{align}}$, while any core-volume packing interpretation remains a separate conjecture.
+
+> **Conjecture (Condensate-Like Aligned Phase).**
+> We conjecture that black-hole cores correspond to a **condensate-like phase** dominated by planar-aligned, effectively bosonic tri-binaries. This analogy is structural:
+> - Many nearly identical aligned assemblies occupy a low-dimensional configuration manifold (planar disk orientation).
+> - Entropy and area scaling would have to emerge from counting alignment-compatible boundary labels on horizon-adjacent surfaces, not from arbitrary volume packing.
+
+The area-counting part of the conjecture is narrow. If a horizon-adjacent surface is decomposed into patches with $A_{\mathrm{eff}}(P_a)=a_{\theta}A_{\text{align}}+\mathcal{O}(\epsilon_A A_{\text{align}})$ for the retained strong-field record $\theta$, the required local statement is not a literal independent count on one patch. Since $\log|\mathcal{L}_a|=1/4$ would require $|\mathcal{L}_a|=e^{1/4}$, the coefficient must be an area-normalized block entropy density over alignment-compatible labels:
+$$
+s_{\mathrm{align}}
+=
+\lim_{|U|\to\infty}
+\frac{1}{|U|}
+\log|\mathcal{L}_U|,
+\qquad
+a_{\theta}
+=
+\lim_{|U|\to\infty}
+\frac{A_{\mathrm{eff}}(U)}
+{|U|A_{\text{align}}},
+\qquad
+\frac{s_{\mathrm{align}}}{a_{\theta}}
+\longrightarrow
+\frac{1}{4},
+$$
+where $\mathcal{L}_U$ is the observer-distinguishable set of alignment-compatible labels on a connected block $U$ and $A_{\mathrm{eff}}(U)\to A_H$ in the large-area limit. Thus the Planck-alignment program does not get black-hole entropy merely by naming a small area. It must show that terminal tri-binary alignment supplies a universal local entropy density, the associated patch-area normalization, and correlations between neighboring patches that do not restore volume or arbitrary history-length scaling.
+
+We deliberately use “condensate-like” here; a full condensate claim would require:
+
+- a derived many-body Hamiltonian for aligned tri-binaries,
+- demonstration of macroscopic occupation of a single mode,
+- consistent thermodynamic treatment (BH entropy, specific heat, etc.).
+
+Those steps remain open.
+
+---
+
+##### Constraints, Assumptions, and Failure Modes
+
+1. **Lorentz Invariance at Low Speeds.**
+   The translational lever (v-dependent alignment) must be strongly nonlinear:
+   - For $v_{\text{trans}} \ll c_f$, corrections to phase-lock must be negligible; no detectable sidereal modulation of spectra (< $10^{-17}$).
+   - Observable deviations only near Planck-adjacent or extreme-curvature regimes.
+
+2. **Universality of $R_{\text{align}}$.**
+   The alignment radius must be a property of the **medium**:
+   - Different tri-binary decorations (electron-like, muon-like, quark-like) driven to alignment should converge to the same $R_{\text{align}}$ within small tolerances.
+   - Large species-dependence would undermine the identification with a universal $\ell_P$.
+
+3. **Uniqueness of Aligned Mode.**
+   Simulations must show:
+   - A **terminal** aligned attractor, not a family of inequivalent aligned states with very different cycle action or radius.
+   - Clear loss of stability when trying to force $v_{\text{eff}} > c_f$.
+
+4. **Angular Momentum Conservation at Spin Flip.**
+   Transition from fermion-like ellipsoid to boson-like disk must:
+   - Conserve total angular momentum via emission of spin-1 radiation (circularly polarized bosons).
+   - Produce potentially observable signatures (e.g. polarization patterns near strong-gravity regions).
 
 ## Substance, Structure, and the Plenum of Potential
 
@@ -8041,7 +12641,7 @@ The second distinction is between substance and causal structure. If architrinos
 
 A wake is the causal-isochron residue of architrino emission. It is source-provenanced, path-history dependent, and finite-speed. Its role is to deliver delayed interaction when it intersects a receiver according to the [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md). It has physical consequence because it can accelerate an architrino at a reception event.
 
-Its reality, however, is structural rather than substantive. A wake has no independent identity apart from its source history. It is not a free-standing medium with its own internal constituents. It is not a second material layer added beside architrinos. It is a lawful causal geometry generated by architrino motion and evaluated at later intersections.
+Its reality, however, is structural rather than substantive. A wake has no independent identity apart from its source history. It is not a free-standing medium with its own internal constituents. It is not a second material layer added beside architrinos. It is a lawful causal geometry generated by architrino motion and evaluated at later intersections. The practical test is whether any wake state remains to be specified after the source identity, polarity, and path history are fixed. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the answer is no: the wake is physically real as a delayed interaction record, but not autonomous as a separate substance or primitive field.
 
 This is why $\mathbb{A}\mathbb{A}\mathbb{A}$ prefers `wake` or `causal wake` at the substrate level and reserves `field` for effective or comparative language. A field description can be a powerful continuum summary of many wake contributions. It should not be allowed to erase the source-provenanced, path-history character of the underlying interaction.
 
@@ -10939,7 +15539,7 @@ This vocabulary should not be read as branch-choice metaphysics. In quantum comp
 
 ### Primitive Metastability
 
-The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether core](../../../../markdown/aaa/spacetime/noether-core.md) architecture, every Noether core contains a middle binary at the field-speed hinge $v=c_f$, while [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
+The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether core](../../../../markdown/aaa/spacetime/noether-swarm.md) architecture, every Noether core contains a middle binary at the field-speed hinge $v=c_f$, while [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
 
 This does not make every Noether core an agent. A bare Noether core has a threshold-sensitive internal hinge, but it has not yet been shown to set its own threshold, hold a bias, or reuse feedback. The philosophical ladder is:
 
