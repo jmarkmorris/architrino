@@ -45,7 +45,7 @@ and the compact-binary waveform residuals $R_h$, $R_\phi$, and $R_E$ without a s
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | [strong-field-closure](../strong-field-closure/strong-field-closure.md) | Use compact-binary timing as a bridge between weak-field PPN and strong-field dynamics. |
-| This file | [tri-binary/residual-routing-event-ledger](../tri-binary/residual-routing-event-ledger.md) | Treat orbital decay as a routed conservation-ledger problem. |
+| This file | [tri-binary-causal-closure/residual-routing-event-ledger](../tri-binary-causal-closure/residual-routing-event-ledger.md) | Treat orbital decay as a routed conservation-ledger problem. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Add binary-pulsar timing to gravity and radiation acceptance sets. |
 
 ## Failure Modes

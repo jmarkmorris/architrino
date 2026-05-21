@@ -34,7 +34,7 @@ This case is useful but risky. It can sharpen boundary-sensitive Noether-Sea and
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | [mass-map/condensed-matter-medium-transport](../mass-map/condensed-matter-medium-transport.md) | Route material boundary response through medium transport rather than empty-space ontology. |
-| This file | [tri-binary/radiation-gate-c-benchmarks](../tri-binary/radiation-gate-c-benchmarks.md) | Test photon-channel mode restrictions and event-ledger balance. |
+| This file | [tri-binary-causal-closure/radiation-gate-c-benchmarks](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md) | Test photon-channel mode restrictions and event-ledger balance. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Prevent Casimir reasoning from importing unconstrained vacuum-energy claims. |
 
 ## Failure Modes

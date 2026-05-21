@@ -1,0 +1,539 @@
+# Mathematical Foundations of the Tri-Binary Architecture
+
+This priority draft states the same-level tri-binary architecture as a theorem-target program, not as a completed proof. It replaces the former nested-radius ontology with deformable, phase-locked spatiotemporal choreographies on a common support scale, but it does not promote any downstream claim until a retained branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, closure residuals, central inventory accounting, energy/action ledgers, exposure maps, and stability data.
+
+Promotion status: `priority-only`. This document is not ready for direct promotion into `content/markdown/aaa` until the same-level branch certificate exists and at least one candidate branch survives the certificate gates below.
+
+---
+
+## 1. Claim Scope
+
+The tri-binary hypothesis is that stable Noether-core and fermion assemblies are not three radially nested binaries. They are same-level choreographies of architrinos sharing one dynamic support band in the Euclidean substrate. The architecture is attractive because it may replace the former special roles of `inner`, `middle`, and `outer` layers with symmetric phase offsets, central inventory, and topological branch data.
+
+The current mathematical status is:
+
+| Claim family | Status in this draft | Required closure object |
+| --- | --- | --- |
+| DDE well-posedness | theorem target | same-level branch certificate with finite active roots, positive Jacobian floors, finite memory depth, and closed tangential residuals |
+| Spinor holonomy | theorem target | retained framed-wake row with $2\pi$ / $4\pi$ parity, gauge-control residual, and angular-momentum ledger closure |
+| Lorentz recovery | theorem target | moving-branch export showing clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage |
+| Mass and generation hierarchy | theorem target | history-dressed energy, exposure quotient, and Noether-Sea medium-response tensor; topological complexity may index branch families but does not replace the mass formula |
+| Color / $SU(3)$ | theorem target | continuous phase-bundle connection and generator recovery; $\mathcal{S}_3$ is only a discrete color-slot scaffold |
+| Strong-field and cosmology claims | speculative comparison targets | finite-boundary continuation, event-ledger closure, and observer-level recovery gates |
+
+---
+
+## 2. Ontology And Inventory
+
+The substrate ontology remains a fixed Euclidean void $(\mathbb{R}^3,\delta_{ij})$ with absolute time $t$. Architrinos carry polarity
+
+$$
+q_i=\sigma_i\epsilon,\qquad \sigma_i\in\{+1,-1\},\qquad \epsilon=\frac{e}{6},
+$$
+
+and interact through causal wakes propagating at primitive speed $c_f$.
+
+### 2.1 Noether-Core Inventory
+
+A neutral Noether core remains a six-architrino branch with
+
+$$
+N_+=N_-=3,
+\qquad
+Q_{\mathrm{core}}=\epsilon(N_+-N_-)=0.
+$$
+
+The same-level tri-binary change concerns the choreography geometry, not the substrate charge unit.
+
+### 2.2 Fermion Inventory
+
+A charged twelve-architrino fermion branch must satisfy the integer charge ledger
+
+$$
+N_+ + N_- = 12,
+\qquad
+Q=\epsilon(N_+-N_-).
+$$
+
+For an electron-like branch with $Q=-e=-6\epsilon$, the inventory is therefore
+
+$$
+N_+=3,
+\qquad
+N_-=9.
+$$
+
+Equivalently, a minimal electron-like bookkeeping split is
+
+$$
+C_{\mathrm{cent}}=(0,6),
+\qquad
+S_{\mathrm{chor}}=(3,3),
+$$
+
+where $C_{\mathrm{cent}}$ is the uncompensated central inventory and $S_{\mathrm{chor}}$ is the neutral same-level choreography. The central inventory is a ledger requirement, not permission to place six unresolved point charges at one singular point. Any physical representative must still pass the noncollision, regularization, root-ledger, and energy-ledger gates.
+
+The phrase `polar charge` should therefore be read only as a legacy pointer to this central inventory problem. It is not a separate electric charge unless the integer inventory ledger supplies the corresponding net $Q$.
+
+Pair production must preserve the same ledger:
+
+$$
+Q_{\mathrm{in}}=0
+\quad\Longrightarrow\quad
+Q_{\mathrm{matter}}+Q_{\mathrm{antimatter}}=0,
+$$
+
+with provenance rows recording which architrinos enter each daughter branch.
+
+---
+
+## 3. Same-Level Branch Certificate
+
+The architecture needs a replacement for the nested branch machinery. For a candidate branch class $q$ over a time window $W$, define a same-level tri-binary certificate
+
+$$
+\mathcal{C}_{\mathrm{tri}}^{(q)}(W)
+=
+\left(
+X_q,
+\mathcal{H}_q,
+\mathcal{I}_q,
+\Phi_q,
+\mathcal{K}_q,
+\mathcal{A}_q,
+J_{\min}^{(q)},
+h_{\mathrm{mem}}^{(q)},
+\Delta_{\mathbf{k}}^{(q)},
+\mathcal{E}_{\mathrm{hist}}^{(q)},
+\mathcal{Z}_q^{ab},
+\mathcal{M}_{\mathrm{sea},q}^{ab},
+\mathcal{R}_{\mathrm{tri}}^{(q)},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}Q}^{(q)}
+\right).
+$$
+
+The entries are:
+
+| Entry | Meaning |
+| --- | --- |
+| $X_q$ | state vector of positions, velocities, polarities, center gauge, and declared support band |
+| $\mathcal{H}_q$ | retained history segment over $[t-h_{\mathrm{mem}},t]$ |
+| $\mathcal{I}_q$ | central inventory ledger $(N_+,N_-;C_{\mathrm{cent}},S_{\mathrm{chor}})$ |
+| $\Phi_q$ | same-level phase offsets, winding data, and closure labels |
+| $\mathcal{K}_q$ | topological carrier label and framed-wake braid data |
+| $\mathcal{A}_q$ | active causal-root ledger, including partner, self, and cross-binary roots |
+| $J_{\min}^{(q)}$ | minimum active branch Jacobian floor |
+| $h_{\mathrm{mem}}^{(q)}$ | finite memory depth used by the retained roots |
+| $\Delta_{\mathbf{k}}^{(q)}$ | non-gauge stability or return-map gap |
+| $\mathcal{E}_{\mathrm{hist}}^{(q)}$ | history-dressed energy/action ledger |
+| $\mathcal{Z}_q^{ab}$ | exposed wake-response tensor and scalar exposure quotient |
+| $\mathcal{M}_{\mathrm{sea},q}^{ab}$ | Noether-Sea medium-response tensor |
+| $\mathcal{R}_{\mathrm{tri}}^{(q)}$ | residual vector for branch promotion |
+| $\mathcal{L}_{E\mathbf{p}\mathbf{J}Q}^{(q)}$ | event ledger for energy, momentum, angular momentum, and charge provenance |
+
+The residual vector should at least contain
+
+$$
+\mathcal{R}_{\mathrm{tri}}
+=
+\left(
+\mathcal{R}_{\mathrm{state}},
+\mathcal{R}_{\mathrm{phase}},
+\mathcal{R}_{\mathrm{root}},
+\mathcal{R}_{\mathrm{Jac}},
+\mathcal{R}_{\mathrm{speed}},
+\mathcal{R}_{\mathrm{tan}},
+\mathcal{R}_{\mathrm{inventory}},
+\mathcal{R}_{E},
+\mathcal{R}_{\mathrm{top}},
+\mathcal{R}_{\mathrm{exposure}},
+\mathcal{R}_{\mathrm{Lorentz}},
+\mathcal{R}_{\mathrm{event}}
+\right),
+$$
+
+with a declared tolerance vector $\epsilon_{\mathrm{tri}}$. A candidate branch is promotable only if
+
+$$
+\max_i\frac{\|\mathcal{R}_{\mathrm{tri},i}\|}{\epsilon_{\mathrm{tri},i}}\le1,
+\qquad
+J_{\min}^{(q)}>\epsilon_J,
+\qquad
+\Delta_{\mathbf{k}}^{(q)}>0,
+$$
+
+and all event-ledger rows close on the same retained branch.
+
+### 3.1 Same-Level Carrier Conditions
+
+The same-level hypothesis replaces radius-ratio gates with support-band, phase-offset, and topology gates. Relative to the branch center $\mathbf{C}(t)$, define the orbital velocity
+
+$$
+\mathbf{u}_i(t)=\dot{\mathbf{x}}_i(t)-\dot{\mathbf{C}}(t).
+$$
+
+A candidate branch must declare the ideal same-level carrier constraints
+
+$$
+R-\delta\le \|\mathbf{x}_i(t)-\mathbf{C}(t)\|\le R+\delta,
+\qquad
+\|\mathbf{u}_i(t)\|=c_f,
+$$
+
+for the active carrier interval, plus speed residuals $\mathcal{R}_{\mathrm{speed},i}=\|\mathbf{u}_i(t)\|-c_f$ and phase offsets
+
+$$
+\Phi_q=\{\phi_1,\phi_2,\phi_3;\Delta\phi_{12},\Delta\phi_{23},\Delta\phi_{31}\}.
+$$
+
+The velocity condition is not a proof of closure. Because exact $c_f$ motion can create tangent or near-separator root behavior, the branch must still pass the root and Jacobian gates.
+
+For a fixed-speed row, the tangential closure residual is
+
+$$
+\mathcal{R}_{\mathrm{tan},i}(t)
+=
+\dot{\mathbf{x}}_i(t)\cdot
+\sum_{(j,s)\in\mathcal{A}_i(t)}
+\mathbf{F}_{ij}(t,s),
+$$
+
+and must vanish within tolerance on the retained branch. This is the replacement for assuming that same-level motion automatically remains on a closed carrier.
+
+---
+
+## 4. Root Ledger And Well-Posedness
+
+Antipodal pairing can bound the mutual partner delay, but it does not by itself prove well-posedness for the full non-Markovian system. The retained causal-root set must be explicit:
+
+$$
+\mathcal{A}_{ij}(t)
+=
+\left\{
+s<t:
+\left\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\right\|
+=c_f(t-s)
+\right\}.
+$$
+
+For each retained active root, define
+
+$$
+J_{ij}(t,s)
+=
+1-
+\frac{\dot{\mathbf{x}}_j(s)\cdot
+\left(\mathbf{x}_i(t)-\mathbf{x}_j(s)\right)}
+{c_f\left\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\right\|}.
+$$
+
+The root-ledger gate is
+
+$$
+0<\epsilon_J
+<
+\inf_{(i,j,t,s)\in\mathcal{A}_q}
+|J_{ij}(t,s)|,
+\qquad
+|\mathcal{A}_q(t)|<\infty,
+\qquad
+h_{\mathrm{mem}}^{(q)}<\infty.
+$$
+
+Near-zero self roots are not silently discarded. They must be assigned one of three statuses:
+
+| Status | Meaning |
+| --- | --- |
+| `retained-positive-delay` | a nonzero same-source root passes the Jacobian floor |
+| `regularized-fold-layer` | a controlled $\eta>0$ fold-layer rule replaces the singular ideal root |
+| `reject` | the branch has unresolved tangent or near-zero self-root behavior |
+
+---
+
+## 5. NHIM And SRB Targets
+
+The choreography may support a strange attractor or an SRB measure, but this is a theorem target. Let $\lambda_\perp$ denote transverse normal exponents, $\lambda_{\parallel}^-$ internal stable exponents, and $\lambda_{\parallel}^+$ internal unstable exponents. The corrected domination target is
+
+$$
+\max \operatorname{Re}(\lambda_{\perp})
+<
+\min \operatorname{Re}(\lambda_{\parallel}^-)
+\le 0
+\quad\text{and}\quad
+\max \operatorname{Re}(\lambda_{\parallel}^+)>0.
+$$
+
+The second inequality is required if the branch is claimed to carry positive Kolmogorov-Sinai entropy. If all parallel exponents are nonpositive, the branch may still be a stable limit cycle or quasiperiodic carrier, but it is not an SRB strange-attractor claim.
+
+Simulation and proof packets must therefore report:
+
+$$
+h_{\mathrm{KS}}^{(q)},
+\qquad
+\lambda_\perp,
+\qquad
+\lambda_{\parallel}^-,
+\qquad
+\lambda_{\parallel}^+,
+\qquad
+\Delta_{\mathbf{k}}^{(q)}.
+$$
+
+---
+
+## 6. Topological Carrier In The Euclidean Void
+
+The fundamental ambient space is $\mathbb{R}^3$, not $S^3$. Hopf and Clifford language is allowed only as a construction chart. Let
+
+$$
+F:S^3\setminus\{N\}\to\mathbb{R}^3
+$$
+
+be stereographic projection, for example
+
+$$
+F(u_0,u_1,u_2,u_3)
+=
+\frac{R_0}{1-u_0}(u_1,u_2,u_3),
+\qquad
+u\in S^3,\quad N=(1,0,0,0).
+$$
+
+A Hopf-carrier torus in the construction space may be written
+
+$$
+\mathbb{T}_\alpha
+=
+\left\{
+(z_1,z_2)\in\mathbb{C}^2:
+|z_1|=\cos\alpha,\ |z_2|=\sin\alpha
+\right\}
+\subset S^3.
+$$
+
+Physical trajectories are then projected paths
+
+$$
+\mathbf{x}_i(t)=F(u_i(t)),
+\qquad
+u_i(t)\in\mathbb{T}_{\alpha_i},
+$$
+
+restricted to the Euclidean support band declared in the branch certificate. Collision avoidance is a Euclidean gate,
+
+$$
+d_{\min}^{(q)}
+=
+\inf_{i\ne j,\ t\in W}
+\left\|\mathbf{x}_i(t)-\mathbf{x}_j(t)\right\|
+>\epsilon_x,
+$$
+
+not a consequence of construction-space terminology alone.
+
+---
+
+## 7. Spinor Holonomy Target
+
+The framed-wake idea becomes a concrete spin target only after the same retained row supplies a non-gauge parity. Let $\mathcal{W}_q$ denote the framed wake-ribbon record of branch $q$, and let $\Pi_{\mathcal{W}}^\theta$ be the parity of the framed-wake continuation after a spatial rotation by angle $\theta$. The spinor closure target is
+
+$$
+\Pi_{\mathcal{W}}^{2\pi}=1,
+\qquad
+\Pi_{\mathcal{W}}^{4\pi}=0,
+\qquad
+\Delta_{\mathrm{gc}}(\mathcal{W}_q)\le\epsilon_{\mathrm{gc}},
+$$
+
+with angular-momentum and event-ledger residuals below tolerance. This is a target for recovering the $SU(2)$ double-cover behavior. It is not a completed derivation of a Dirac spinor until the branch row also supplies root, phase, torque, wake, stability, and gauge-control data.
+
+---
+
+## 8. Lorentz And Photon Recovery Targets
+
+Operational proper time is not fundamental at the substrate level. A same-level branch may define a candidate clock ratio by comparing retained branch periods:
+
+$$
+\Theta_{\mathrm{clk}}^{(q)}(\mathbf{v})
+=
+\frac{T_q(\mathbf{0})}{T_q(\mathbf{v})}.
+$$
+
+Lorentz recovery requires
+
+$$
+\mathcal{R}_{\mathrm{Lorentz}}^{(q)}
+=
+\left(
+\Theta_{\mathrm{clk}}^{(q)}-\gamma_{\mathrm{eff}}^{-1},
+\xi_q-\gamma_{\mathrm{eff}}^{-1},
+\mathcal{A}_{\mathrm{pf}}^{(q)}
+\right)
+$$
+
+to fall below tolerance, where $\mathcal{A}_{\mathrm{pf}}^{(q)}$ is the preferred-frame leakage diagnostic. The equality $\Theta_{\mathrm{clk}}^{(q)}=\gamma_{\mathrm{eff}}^{-1}$ is therefore a closure target, not an assumption.
+
+The photon limit is likewise a branch-transition target. A candidate planar photon branch must report:
+
+$$
+\mathcal{R}_{\gamma}
+=
+\left(
+\mathcal{R}_{\mathrm{GateA}},
+\mathcal{R}_{\mathrm{transverse}},
+\mathcal{R}_{\mathrm{longitudinal}},
+\mathcal{R}_{\mathrm{ledger}},
+\mathcal{R}_{\mathrm{speed}}
+\right),
+$$
+
+and it should be compared with the canonical photon requirement that a free photon is a coaxial contra-rotating pro/anti planar pair. The same-level choreography may supply a route into that branch, but it does not by itself define the photon.
+
+---
+
+## 9. Mass, Generation, And Color
+
+Topological complexity may classify branch families, but it is not a mass formula. For a branch $A$, the mass-side target remains
+
+$$
+m_{\mathrm{tr}}(A)
+\approx
+\frac{1}{3}h_{ab}\mathsf{I}_A^{ab},
+$$
+
+where $\mathsf{I}_A^{ab}$ is built from history-dressed internal energy, exposure, and Noether-Sea response. A mapping-class or Dehn-surgery complexity $\lambda_\phi(A)$ can enter only through derived branch data such as
+
+$$
+E_{\mathrm{internal}}(A;\lambda_\phi),
+\qquad
+\zeta(A;\lambda_\phi),
+\qquad
+\mathcal{Z}_A^{ab}(\lambda_\phi),
+\qquad
+\mathcal{M}_{\mathrm{sea},A}^{ab}.
+$$
+
+Thus the useful generation hypothesis is:
+
+$$
+\lambda_\phi
+\longrightarrow
+\left(E_{\mathrm{internal}},\zeta,\mathcal{Z}^{ab}\right)
+\longrightarrow
+m_{\mathrm{tr}},
+$$
+
+not $m\propto\ln(\lambda_\phi)$ as a standalone law.
+
+For color, the threefold binary permutation symmetry supplies at most a discrete color-slot scaffold:
+
+$$
+\mathcal{S}_3\subset \mathrm{Weyl}(SU(3)).
+$$
+
+Recovering continuous $SU(3)$ requires a branch-family bundle with a continuous phase connection, local generators, curvature, and confinement/transport rules. A candidate closure target is
+
+$$
+\nabla_\mu^{\mathrm{color}}
+=
+\partial_\mu + A_\mu^A T_A,
+\qquad
+[T_A,T_B]=\mathrm{i}f_{AB}{}^C T_C,
+$$
+
+with $A_\mu^A$ derived from continuous choreography phase transport rather than inserted as an inherited gauge field.
+
+---
+
+## 10. Strong-Field And Cosmology Targets
+
+The same-level tri-binary may give a cleaner strong-field continuation than the nested model, but the claim is not established here. A compact strong-field region $\Omega$ must satisfy a finite-boundary continuation gate:
+
+$$
+F_H=0,
+\qquad
+\mathcal{R}_H(\Omega)<\infty,
+\qquad
+0<|\mathcal{B}_H|<\infty,
+\qquad
+\mathcal{L}_{E\mathbf{p}\mathbf{J}Q}=0
+\quad\text{within tolerance}.
+$$
+
+The black-hole and inflation-like claims should be read as speculative comparison programs until this gate is populated. The Euclidean void does not expand; any $R\propto e^{Ht}$ or inflation-like language must be translated into effective observer variables, Noether-Sea evolution, transport, and clock-rate comparison before promotion.
+
+---
+
+## 11. History-Dressed Energy Target
+
+The useful energy expression is a branch-restricted conservation target. For a retained branch, define
+
+$$
+E_{\mathrm{hist}}^{(q)}(t)
+=
+\sum_i \mathbf{p}_i(t)\cdot\dot{\mathbf{x}}_i(t)
+-\mathcal{L}(t)
++
+\sum_{i\ne j}
+\int_{t-\tau_{ij}}^t
+\frac{\partial\mathcal{L}}{\partial\mathbf{x}_j(s)}
+\cdot\dot{\mathbf{x}}_j(s)
+\left(1-\dot{\tau}_{ij}(s)\right)\,ds.
+$$
+
+The branch passes the energy/action row only if
+
+$$
+\mathcal{R}_{E}^{(q)}
+=
+\sup_{t\in W}
+\frac{|E_{\mathrm{hist}}^{(q)}(t)-E_{\mathrm{hist}}^{(q)}(t_0)|}
+{\epsilon_E}
+\le1,
+$$
+
+using the same active roots and endpoint convention as the force residuals. This prevents an attractive topological carrier from being promoted while the action ledger remains open.
+
+---
+
+## 12. Simulation Protocol
+
+A same-level tri-binary simulation packet must emit the fields below even when some are `not_computed`:
+
+1. `metadata`: code version, source commit, tolerances, $\eta$, history-window rule.
+2. `state_vector`: positions, velocities, polarities, support band, center gauge.
+3. `central_inventory`: $(N_+,N_-;C_{\mathrm{cent}},S_{\mathrm{chor}},Q)$.
+4. `phase_topology`: phase offsets, winding rows, projected carrier label, framed-wake record.
+5. `root_ledger`: active partner, self, and cross-binary roots with delays and Jacobians.
+6. `residuals`: complete $\mathcal{R}_{\mathrm{tri}}$ row with values, tolerances, statuses, and notes.
+7. `stability`: Lyapunov spectrum, NHIM domination check, return-map gap.
+8. `energy_action`: $E_{\mathrm{hist}}$, action increments, endpoint convention.
+9. `exposure_medium`: $\mathcal{Z}^{ab}$, $\zeta$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, leakage.
+10. `observer_exports`: Lorentz, photon, mass, color, and strong-field rows marked as passed, failed, or not computed.
+11. `event_ledger`: $E$, $\mathbf{p}$, $\mathbf{J}$, $Q$, source provenance, recoil, and medium update.
+
+Reserved failure codes:
+
+| Failure code | Trigger |
+| --- | --- |
+| `inventory-mismatch` | integer charge ledger fails the declared branch type |
+| `projection-collision` | projected Euclidean paths violate $d_{\min}>\epsilon_x$ |
+| `phase-lock-drift` | phase-offset or winding residual exceeds tolerance |
+| `root-ledger-empty` | required partner, self, or cross-binary roots are absent |
+| `jacobian-floor-violation` | $J_{\min}\le\epsilon_J$ |
+| `near-zero-self-root-unresolved` | tangent or near-zero same-source roots lack a retained or regularized status |
+| `tangential-residual-open` | fixed-speed branch has nonzero tangential force residual |
+| `nhim-domination-fail` | Lyapunov spectrum fails the declared stability or SRB target |
+| `energy-ledger-open` | $E_{\mathrm{hist}}$ is not conserved within tolerance |
+| `exposure-quotient-open` | mass/exposure rows change under branch or extraction refinement |
+| `lorentz-export-overclaim` | clock/ruler/signal rows are asserted without passing observer-export residuals |
+| `color-connection-missing` | $\mathcal{S}_3$ color slots are promoted without a continuous connection target |
+| `strong-field-continuation-open` | finite-boundary continuation is not supplied for strong-field claims |
+
+---
+
+## 13. Working Conclusion
+
+The same-level tri-binary is a promising replacement for the nested model because it attacks the old architecture's special-layer assumptions, fragile polar-charge placement, and anisotropy burden. The mathematical upgrade is conditional: it becomes stronger than the nested corpus only after the same-level branch certificate replaces the old NTB machinery rather than bypassing it.
+
+The immediate deliverable is therefore one retained same-level branch packet, not a broad rewrite of the corpus. Until that packet exists, this document should be used as a disciplined architecture and certificate plan.

@@ -1,4 +1,4 @@
-# Tri-Binary Legacy Source: Rest Mass, Proper Time, and Relativistic Limits
+# Tri-Binary Causal Closure: Rest Mass, Proper Time, and Relativistic Limits
 
 ## Workstream Metadata
 
@@ -25,13 +25,13 @@
 - `deployment_handoff` routed unresolved synthesis claims through theorem-roadmap tags and priority-table handoff rows before deployment.
 - `residual_routing_event_ledger` promoted the shared event-ledger grammar into a first radiation worked-case scaffold; non-radiation sector cases remain open.
 - `lorentz_test_residual_handoff` completed the RMS/PPN/SME residual-export schema in `master-equation-closure`; numerical population remains blocked until the Lorentz/GR bridge supplies one shared branch artifact.
-- `shared_branch_certificate_contract` promoted the shared causal-closure certificate target into [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md); population remains blocked until a retained branch supplies the clock, ruler, signal, metric, mass-response, sector, and event-ledger rows together.
+- `shared_branch_certificate_contract` promoted the shared causal-closure certificate target into [tri-binary dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md); population remains blocked until a retained branch supplies the clock, ruler, signal, metric, mass-response, sector, and event-ledger rows together.
 
 ## Scope
 
 This workstream owns the synthesis bridge from tri-binary Noether-core closure to rest mass, proper time, effective Lorentz/GR behavior, photon propagation, and measurement. It is a proof-architecture and routing surface: active-development claims can live here while the dependency ladder is being built, but unresolved claims must be closed, retained as explicit roadmap items, routed to another priority workstream, or cut before deployment.
 
-The deployed dynamics baseline is [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md). That chapter owns the Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and stability tests. This priority document should import those mechanisms rather than re-defining them, then test whether they support the mass, time, relativity, photon, and measurement claims in the sibling synthesis file.
+The deployed dynamics baseline is [tri-binary dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md). That chapter owns the Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and stability tests. This priority document should import those mechanisms rather than re-defining them, then test whether they support the mass, time, relativity, photon, and measurement claims in the sibling synthesis file.
 
 ## Detailed Priority Files
 

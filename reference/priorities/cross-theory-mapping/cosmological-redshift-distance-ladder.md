@@ -468,7 +468,7 @@ Uncertain claims staged for the next proof packet:
 | --- | --- | --- |
 | This file | [cosmology-closure](../cosmology-closure/cosmology-closure.md) | Convert narrative cosmology into a component transfer-function queue. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Add cosmology failure witnesses for frame split, image blur, and incompatible transport limits. |
-| This file | [tri-binary/radiation-gate-c-benchmarks](../tri-binary/radiation-gate-c-benchmarks.md) | Keep CMB photon loading tied to local radiation event ledgers. |
+| This file | [tri-binary-causal-closure/radiation-gate-c-benchmarks](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md) | Keep CMB photon loading tied to local radiation event ledgers. |
 
 ## Failure Modes
 
