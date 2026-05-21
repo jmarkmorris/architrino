@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "dynamics__tri_binary_dynamics",
-    "title": "Tri-Binary Dynamics",
+    "id": "theory_bridges__planck_scale_nested_shell_swarm_alignment",
+    "title": "Planck Scale Nested Shell Swarm Alignment",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/dynamics/tri-binary-dynamics.md"
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md"
     },
     "view": {
       "columns": 1,

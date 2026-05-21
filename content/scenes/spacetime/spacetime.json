@@ -16,14 +16,6 @@
         "scenePath": "content/scenes/spacetime/noether_sea.json"
       },
       {
-        "nodeId": "noether_core",
-        "scenePath": "content/scenes/spacetime/noether_core.json"
-      },
-      {
-        "nodeId": "noether_core_geometry",
-        "scenePath": "content/scenes/spacetime/noether_core_geometry.json"
-      },
-      {
         "nodeId": "spacetime_assemblies",
         "scenePath": "content/scenes/spacetime/spacetime_assemblies.json"
       },
@@ -64,47 +56,13 @@
       "fixedPosition": true
     },
     {
-      "id": "noether_core",
-      "title": "Noether Core",
-      "radius": 2.05,
-      "color": "#3a5f9f",
-      "position": [
-        0,
-        8.2,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Noether Core",
-      "labelBadge": "doc",
-      "fixedPosition": true
-    },
-    {
-      "id": "noether_core_geometry",
-      "title": "Noether Core Geometry",
-      "radius": 2.05,
-      "color": "#2f4f7a",
-      "position": [
-        6.41,
-        5.11,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Noether Core Geometry",
-      "labelBadge": "doc",
-      "fixedPosition": true
-    },
-    {
       "id": "spacetime_assemblies",
       "title": "Spacetime Assemblies",
       "radius": 2.05,
       "color": "#6a3c3c",
       "position": [
-        7.99,
-        -1.82,
+        0,
+        8.2,
         0
       ],
       "motion": {
@@ -120,8 +78,8 @@
       "radius": 2.05,
       "color": "#3f6a5a",
       "position": [
-        3.56,
-        -7.39,
+        7.8,
+        2.53,
         0
       ],
       "motion": {
@@ -137,8 +95,8 @@
       "radius": 2.05,
       "color": "#2f6b6f",
       "position": [
-        -3.56,
-        -7.39,
+        4.82,
+        -6.63,
         0
       ],
       "motion": {
@@ -153,8 +111,8 @@
       "radius": 2.05,
       "color": "#243d8f",
       "position": [
-        -7.99,
-        -1.82,
+        -4.82,
+        -6.63,
         0
       ],
       "motion": {
@@ -169,8 +127,8 @@
       "radius": 2.05,
       "color": "#4a3b6f",
       "position": [
-        -6.41,
-        5.11,
+        -7.8,
+        2.53,
         0
       ],
       "motion": {

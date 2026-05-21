@@ -341,7 +341,7 @@ Scoring system:
   - black-holes.md,
   - singularity-resolution.md,
   - the aligned cosmology chapters,
-  - and the equivalence-principle rewrite in tri-binary-dynamics.md.
+  - and the equivalence-principle rewrite in nested-shell-swarm-dynamics.md.
 - The actual priority here is now narrow and quantitative:
   - derive a stronger observer-level strong-field prediction set,
   - decide the release-channel selection between jets, diffuse outflow, and dark-sector escape,

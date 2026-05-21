@@ -7,7 +7,7 @@ This priority packet captures the 2026-05-17 operator discussion on ideal Noethe
 - **Status:** derivation scaffold.
 - **Main claim:** for a group-velocity-zero Noether core at integer rest level $N$, the fixed $Nh$ action ledger determines the outer product $r_O v_O\propto Nh$. It does not by itself determine separate functions $r_O(N)$ and $v_O(N)$.
 - **Open burden:** the actual curve is not determined until the outer action share, rotational bookkeeping coefficient, speed closure, exclusion-threshold map, and delayed root-ledger balance are fixed on a branch chart. The former $r_O\propto Nh$ law is only the fixed-speed branch subcase.
-- **Promotion targets:** [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics.md](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [noether-core.md](../../../content/markdown/aaa/spacetime/noether-core.md), [noether-core-geometry.md](../../../content/markdown/aaa/spacetime/noether-core-geometry.md), and [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md) after the constants and branch assumptions are certified.
+- **Promotion targets:** [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics.md](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [noether-swarm.md](../../../content/markdown/aaa/noether-swarm/noether-swarm.md), [noether-core-geometry.md](../../../content/markdown/aaa/spacetime/noether-core-geometry.md), and [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md) after the constants and branch assumptions are certified.
 
 ## Notation Discipline
 

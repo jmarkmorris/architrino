@@ -48,9 +48,9 @@ This is a derivation / closure negative result. It is not an $A_0$ attractor, no
 - Recommended change: refine the Reference Attractor Gate to distinguish a checker-cleared revised coordinate from an accepted attractor. The text should keep $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, and $\mathcal{M}_{\text{sea}}^{ab}$ unavailable until Tier 1, Tier 2, and Tier 3 gates pass.
 - Current blocker: the checker did not clear a rerun candidate, so no mass-facing quantity should be added.
 
-### 3. Tri-Binary Dynamics
+### 3. Nested Shell Swarm Dynamics
 
-- Target: [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md)
+- Target: [Nested Shell Swarm Dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
 - Priority: medium
 - Claim bucket: derivation / closure target
 - Risk: medium
@@ -101,7 +101,7 @@ Do not edit authored AAA prose to claim any of the following:
 
 ## Next User-Facing Documentation Recommendations
 
-The validation-facing batch, Particle Masses Reference Attractor Gate, Tri-Binary Dynamics carrier caveat, and Energy handoff caveat now carry the fail-closed branch-chart revision semantics.
+The validation-facing batch, Particle Masses Reference Attractor Gate, Nested Shell Swarm Dynamics carrier caveat, and Energy handoff caveat now carry the fail-closed branch-chart revision semantics.
 
 No further $A_0$ branch-chart user-facing prose change is recommended from this packet until a revised coordinate passes the pre-rerun checker or a later branch, shielding, energy, or medium-response artifact exists. Further work should return to the branch-chart derivation, simulation runner, or a separate non-$A_0$ mass-map notation packet rather than adding more corpus caveats.
 

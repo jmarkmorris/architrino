@@ -1,6 +1,6 @@
-# Mathematical Foundations of the Tri-Binary Architecture
+# Mathematical Foundations of the Swarm Architecture
 
-This priority draft states the same-level tri-binary architecture as a theorem-target program, not as a completed proof. After [hybrid-variable-radius-model-card.md](hybrid-variable-radius-model-card.md), the same-level architecture should be read as one sector of a hybrid variable-radius tri-binary family rather than as an automatic replacement for the nested model. It proposes deformable, phase-locked spatiotemporal choreographies that may occupy a radial same-level sector with a common support band, but it does not promote any downstream claim until a retained branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, closure residuals, central inventory accounting, energy/action ledgers, exposure maps, and stability data.
+This priority draft states the same-level swarm-sector architecture as a theorem-target program, not as a completed proof. After [neutral-knot-cloud-branch-model.md](neutral-knot-cloud-branch-model.md) and [hybrid-variable-radius-model-card.md](hybrid-variable-radius-model-card.md), the same-level architecture should be read as one sector of a broader neutral six-site knot-cloud family rather than as an automatic replacement for the nested model. It proposes deformable, phase-locked spatiotemporal choreographies that may occupy a radial same-level sector with a common support band, but it does not promote any downstream claim until a retained branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, closure residuals, central inventory accounting, energy/action ledgers, exposure maps, and stability data.
 
 Promotion status: `priority-only`. This document is not ready for direct promotion into `content/markdown/aaa` until the same-level branch certificate exists and at least one candidate branch survives the certificate gates below.
 
@@ -10,7 +10,7 @@ Development posture: build hybrid and same-level tri-binary architecture documen
 
 ## 1. Claim Scope
 
-The same-level sector hypothesis is that stable Noether-core and fermion assemblies may not require three permanently radially nested binaries. They may instead admit choreographies of architrinos whose retained support descriptor places them in a radial same-level sector or a nearby transition sector in the Euclidean substrate. The architecture is attractive because it may replace some former special roles of `inner`, `middle`, and `outer` layers with symmetric phase offsets, central inventory, and topological branch data. The hybrid model card keeps the stronger merge possibility open: the former labels may survive as geometric-order, continuation-history, or weak-stress-role labels when the retained radius-sector row supports them.
+The same-level sector hypothesis is that stable Noether-core and fermion assemblies may not require three permanently radially nested binaries. The broader knot-cloud hypothesis also removes mandatory pairing: a neutral Noether core may be six labeled architrinos, three positive and three negative, on closed free-support bounded-speed paths. Pairing, binary slots, exact antipodality, and common-radius behavior then become sector rows. The same-level architecture is attractive because it may replace some former special roles of `inner`, `middle`, and `outer` layers with symmetric phase offsets, central inventory, and topological branch data. The hybrid model card keeps the stronger merge possibility open: the former labels may survive as geometric-order, continuation-history, or weak-stress-role labels when the retained radius-sector row supports them.
 
 The current mathematical status is:
 
@@ -41,6 +41,7 @@ The same-level architecture now has the following priority-side companion packet
 
 | Packet | Role |
 | --- | --- |
+| [neutral-knot-cloud-branch-model.md](neutral-knot-cloud-branch-model.md) | General neutral six-site branch model with no required binary pairing, hollow support band, cloud occupancy rows, topology ledger, all-pairs roots, and optional sector reductions. |
 | [hybrid-variable-radius-model-card.md](hybrid-variable-radius-model-card.md) | Merge card treating nested, same-level, and transition geometries as sectors of one variable-radius, bounded-speed Noether-core branch family. |
 | [hybrid-support-radius-functional.md](hybrid-support-radius-functional.md) | Support-radius functional extracting $R_a$ from the free-support descriptor and emitting spread, gap, transition, and derivative rows for hybrid sectors. |
 | [proof-program-and-decision-gate.md](proof-program-and-decision-gate.md) | Integration map for retained branch packets, proof dependencies, and the architecture decision gate. |

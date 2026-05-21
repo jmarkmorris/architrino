@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "theory_bridges__planck_scale_tri_binary_alignment",
-    "title": "Planck Scale Tri-Binary Alignment",
+    "id": "assemblies__gauge_symmetries",
+    "title": "Gauge Symmetries",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md"
+      "path": "content/markdown/aaa/interactions/gauge-symmetries.md"
     },
     "view": {
       "columns": 1,

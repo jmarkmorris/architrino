@@ -2,7 +2,7 @@
 
 Status. Proof packet for `fundamental_angular_momentum_ledger`, `tri_binary_partition_rule`, and the reduced `worked_three_layer_noether_transition` branch in [angular-momentum-spin.md](angular-momentum-spin.md). This packet is a branch-chart evaluation object, not a theorem promotion into AAA prose.
 
-Claim level. The equations below turn the existing scaffold in [core-angular-momentum-ledger.md](core-angular-momentum-ledger.md) and [tri-binary-partition-and-spinor.md](tri-binary-partition-and-spinor.md) into a replayable certificate target. A passing certificate would validate one retained Noether-core branch chart for angular-momentum conservation and tri-binary partition closure. It would not by itself prove global branch uniqueness, spinor closure, measurement response, or Bell correlations.
+Claim level. The equations below turn the existing scaffold in [core-angular-momentum-ledger.md](core-angular-momentum-ledger.md) and [swarm-partition-and-spinor.md](swarm-partition-and-spinor.md) into a replayable certificate target. A passing certificate would validate one retained Noether-core branch chart for angular-momentum conservation and tri-binary partition closure. It would not by itself prove global branch uniqueness, spinor closure, measurement response, or Bell correlations.
 
 ## Evaluation Object
 

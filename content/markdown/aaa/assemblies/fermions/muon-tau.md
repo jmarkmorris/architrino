@@ -6,7 +6,7 @@ This chapter is a placeholder for the heavier charged lepton excitation states i
 
 ## Current framing
 
-Muon and tau states are treated as higher-excitation charged lepton assemblies that share the same broad charge pattern as the [electron](./electron.md) while differing in shielding, excitation, and dissociation-accessible relaxation channels. In the present architecture they are the heavier charged-lepton branches of the same shielding ladder used in [Nested Binaries and the Noether Core](../../spacetime/noether-core.md) and [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md).
+Muon and tau states are treated as higher-excitation charged lepton assemblies that share the same broad charge pattern as the [electron](./electron.md) while differing in shielding, excitation, and dissociation-accessible relaxation channels. In the present architecture they are the heavier charged-lepton branches of the same shielding ladder used in [Noether Swarm](../../noether-swarm/noether-swarm.md) and [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md).
 
 ## Axial Inventory and Shielding-Coherence Classes
 
@@ -69,7 +69,7 @@ If the $R_L$ or response coefficient needed for $\Delta a_\mu$ produces excluded
 ## Related Chapters
 
 - [electron.md](./electron.md)
-- [noether-core.md](../../spacetime/noether-core.md)
+- [noether-swarm.md](../../noether-swarm/noether-swarm.md)
 - [particle-masses.md](../particle-masses.md)
 - [quantum-number-mapping.md](./quantum-number-mapping.md)
 - [weak-mixing-ckm.md](../../philosophy-history/theory-bridges/weak-mixing-ckm.md)

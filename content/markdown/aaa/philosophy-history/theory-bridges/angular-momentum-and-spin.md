@@ -12,7 +12,7 @@ The related material is best read as an ordered path rather than as a flat list 
 
 1. Start with primitive ontology in [Architrino](../../foundations/architrino.md) and [Foundational Ontology](../../foundations/ontology.md).
 2. Use [Master Equation](../../dynamics/master-equation.md) and [Causal Action Functional](../../dynamics/causal-action-functional.md) for delayed conservation and wake-history bookkeeping.
-3. Use [Tri-Binary Dynamics](../../dynamics/tri-binary-dynamics.md) for the Noether-core mechanics that spin must descend from.
+3. Use [Nested Shell Swarm Dynamics](../../noether-swarm/nested-shell-swarm-dynamics.md) for the Noether-core mechanics that spin must descend from.
 4. Treat [Measurement Ontology](../../quantum/measurement-ontology.md), [Electroweak Bosons](../../assemblies/bosons/electroweak-bosons.md), and [Bell's Theorem](./bell-theorem.md) as downstream tests rather than source derivations.
 
 ## Primitive Status

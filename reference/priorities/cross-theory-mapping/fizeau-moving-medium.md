@@ -36,7 +36,7 @@ This case is a guardrail against loose medium analogies. In $\mathbb{A}\mathbb{A
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | [mass-map/condensed-matter-medium-transport](../mass-map/condensed-matter-medium-transport.md) | Add moving material as a transport benchmark for medium-dressed propagation. |
-| This file | [tri-binary](../tri-binary/tri-binary.md) | Use Fizeau as a velocity-addition check tied to Lorentz closure. |
+| This file | [swarm](../swarm/swarm.md) | Use Fizeau as a velocity-addition check tied to Lorentz closure. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Prevent material refractive behavior from being mistaken for substrate drag. |
 
 ## Failure Modes

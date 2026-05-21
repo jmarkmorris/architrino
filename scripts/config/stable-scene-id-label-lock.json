@@ -7,6 +7,8 @@
       "objects": {
         "electroweak_bosons": "Electroweak Bosons",
         "fermions": "Fermions",
+        "gauge_structure_emergence": "Gauge Structure Emergence",
+        "gauge_symmetries": "Gauge Symmetries",
         "gluons": "Gluons",
         "mesons_doc": "Mesons",
         "particle_masses": "Particle Masses",
@@ -50,7 +52,8 @@
         "effective_lagrangian": "Effective Lagrangian",
         "kinetic_and_potential_energy": "Kinetic and Potential Energy",
         "master_equation_of_motion": "Master Equation of Motion",
-        "tri_binary_dynamics": "Tri-Binary Dynamics"
+        "proof_programs": "Proof Programs",
+        "dyadic_resonance_lock": "Dyadic Resonance Lock"
       }
     },
     "content/scenes/foundations/foundations.json": {
@@ -114,7 +117,7 @@
         "entanglement_nonlocality": "Entanglement and Nonlocality",
         "klein_gordon_scalar_fields": "Relativistic Scalar Fields and the Klein-Gordon Equation",
         "pilot_wave_character": "Pilot-Wave Character",
-        "planck_scale_tri_binary_alignment": "Planck Scale Tri-Binary Alignment",
+        "planck_scale_nested_shell_swarm_alignment": "Planck Scale Nested Shell Swarm Alignment",
         "quantum_operator_mapping": "Quantum Operator Mapping",
         "special_relativity_noether_core": "Special Relativity and Deformable Noether Cores",
         "superposition_mechanism": "Superposition Mechanism",
@@ -127,8 +130,6 @@
       "objects": {
         "effective_metric": "Effective Metric",
         "medium_exclusion_volume": "Medium Exclusion Volume",
-        "noether_core": "Noether Core",
-        "noether_core_geometry": "Noether Core Geometry",
         "noether_sea": "Noether Sea",
         "physical_observers": "Physical Observers",
         "spacetime_assemblies": "Spacetime Assemblies",

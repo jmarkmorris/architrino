@@ -1,30 +1,125 @@
-# Nested Binaries and the Noether Core
+# Noether Swarm
 
-The principle of emergence in this model is recursive. The stable orbiting binary is the foundational assembly, but it is not the end of the story. These binaries can themselves be treated as composite objects that can form larger, more complex systems. This leads to the concept of nested binaries.
+The **Noether swarm** is the neutral six-architrino assembly scaffold that later supports both the Noether Sea and Standard Model particle architecture. The general object is not assumed to be a set of exact binaries. It is a closed, charge-neutral, bounded-speed six-body branch in which three positive architrinos and three negative architrinos maintain a persistent causal-return ledger.
 
-This chapter owns the Noether core as the assembly scaffold that later supports both the Noether Sea and Standard Model particle architecture: nested binary hierarchy, shielding, generation-tier role, and fermion foundation. It appears in the Noether Sea and effective-spacetime branch because the medium is built from populations of neutral Noether cores, not from a primitive spacetime substance. The core's dynamic exclusion-zone geometry is developed separately in [Noether Core Geometry](./noether-core-geometry.md), while metric-level translation belongs to [Emergent Metric](emergent-metric.md).
+Older chapters in the corpus use **Noether core**, **tri-binary**, and **nested binary** for the highly structured nested-shell sector. This chapter now treats that structure as a special sector of the broader Noether swarm. The downstream corpus still mostly describes the nested shell swarm and has not yet been generalized; the older terms should therefore be read as nested-shell terminology unless a later page explicitly promotes the more general swarm case. The swarm's dynamic exclusion-zone geometry is developed separately in [Noether Core Geometry](../spacetime/noether-core-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
 
-## The Hierarchy of Orbits
+## General Neutral Swarm
 
-Just as an Electrino and a Positrino can form a stable binary, two binaries can orbit a common center to form a larger, second-order binary. This process can, in principle, repeat. The key to stability is a significant separation in scale: for a nested system to be stable, each new surrounding orbit must have a much larger radius and a much lower frequency than the inner orbit(s).
+A **neutral swarm** is the broad Noether-carrier case. It contains six architrinos indexed by $i\in\{1,\ldots,6\}$, with polarity signs $\sigma_i\in\{+1,-1\}$ satisfying
 
-This nesting creates a scale-separated hierarchy. Each level operates at a distinct radius, frequency, energy scale, and causal-root ledger.
+$$
+\#\{i:\sigma_i=+1\}
+=
+\#\{i:\sigma_i=-1\}
+=3,
+\qquad
+\sum_{i=1}^{6}\sigma_i=0.
+$$
 
-## The Noether Core: A Triply Nested Binary
+This charge-neutral ledger is imposed before any binary slots, shell radii, or near-antipodal matching are assumed. Each positive architrino has three attractive channels to negative architrinos and two repellent channels to the other positive architrinos. Each negative architrino has the polarity-reversed version of the same count: three attractive channels to positives and two repellent channels to negatives. That $3+2$ channel count is part of the neutral swarm bookkeeping even when no binary partition has been certified.
 
-A candidate stable configuration is the **triply nested binary**. This structure, consisting of three binaries nested within each other, is called a **Noether Core** and supplies the assembly scaffold later used in [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md).
+The intrinsic path of architrino $i$ may be represented by a closed arclength curve
 
--   **Why Three?** The stability of a triply nested structure is a theorem target tied to the three-dimensional nature of Euclidean space. Each binary defines an orbital plane. The working claim is that three mutually orthogonal orbital planes can form a dynamically stable, symmetric, 3D structure that is resistant to perturbation; the proof burden is to derive that role count from the delayed causal dynamics rather than assuming it.
+$$
+Y_i:\mathbb{R}/L_i\mathbb{Z}\to\mathbb{R}^3,
+\qquad
+\left\lVert Y_i'(s)\right\rVert=1,
+\qquad
+Y_i(s+L_i)=Y_i(s).
+$$
 
--   **Why "Noether Core"?** This assembly is named in honor of Emmy Noether. Noether's theorem links symmetries in physical systems to conserved quantities. The highly symmetric tri-binary core is the candidate scaffold through which spin, branch-quantized energy records, and other conserved observer-level labels should be recovered from closure labels and emitted causal-wake envelopes.
+Its physical trajectory is allowed to move along that support with a bounded speed factor,
 
-## Properties of the Noether Core
+$$
+X_i(t)=Y_i(\lambda_i(t)),
+\qquad
+\dot{\lambda}_i(t)=\nu_i(t),
+\qquad
+0<\nu_-\leq\nu_i(t)\leq\nu_+<\infty.
+$$
 
--   **Energy-Separated Scales:** In low-energy conditions, the three binaries that make up a Noether core have energy-separated orbital radii and frequencies. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
+The bounded speed factor $\nu_i(t)$ is the place where speed-lapse behavior enters the architecture. A branch may temporarily push an architrino over a local hinge into a self-hit mode, but an admissible neutral swarm must still return to a closed causal ledger within the branch's recovery tolerance. The general neutral swarm therefore allows radius variation, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to three exact binaries.
 
--   **Internal Stabilization:** The system is expected to be stable only on branches where the high-frequency causal-wake emissions from the innermost binary, inter-layer wake exchange, and outer-layer shielding close into a persistent return cycle. The time-averaged potential picture is useful, but the theorem burden is to show that the root ledger, phase closure, and separator conditions keep the coupled hierarchy on the same branch.
+## Shell Swarm
 
--   **Energy Shielding via Superposition:** From a distance, a Noether core appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive- and negative-polarity architrinos within the nested structure causes their wake contributions to largely cancel out through superposition. This shielding effect is the working mechanism for how highly energetic structures can form the basis for relatively low-mass observed particles; quantitative extraction remains a mass-map closure target.
+A **shell swarm** is a neutral swarm whose six trajectories remain in a controlled radial band around a branch center $C(t)$. For a representative shell scale $R_*$ and band limits $R_-<R_+$, the sector condition is
+
+$$
+R_-\leq
+\left\lVert X_i(t)-C(t)\right\rVert
+\leq R_+,
+\qquad
+i=1,\ldots,6.
+$$
+
+A narrow shell branch has small relative spread,
+
+$$
+\frac{R_+-R_-}{R_*}\leq\varepsilon_{\mathrm{shell}},
+$$
+
+while a broader shell branch keeps only the hollow-band condition. This is still not the nested-shell model. It is a one-band neutral swarm whose support is spatially organized strongly enough to produce a persistent exclusion envelope, shielding pattern, and Noether-Sea coupling channel.
+
+Near-antipodality is an optional shell-sector constraint, not a definition of the neutral swarm. A shell branch may carry an approximate polarity-reversing matching $\iota$ with $\iota^2=\mathrm{id}$ and $\sigma_{\iota(i)}=-\sigma_i$. Relative to a branch center $C(t)$, define the near-antipodality defect
+
+$$
+\delta_{\mathrm{anti},i}(t)
+=
+\frac{
+\left\lVert X_i(t)+X_{\iota(i)}(t)-2C(t)\right\rVert
+}{R_*}.
+$$
+
+Exact antipodality, $\delta_{\mathrm{anti},i}=0$, is an ideal symmetry chart. It should not be expected in ordinary conditions: an external potential can disturb one member of the matching first, and the delayed response takes time to circulate through the full six-body causal ledger. The physical shell claim is therefore near-antipodality plus recovery,
+
+$$
+\sup_{t\in J}\delta_{\mathrm{anti},i}(t)
+\leq
+\varepsilon_{\mathrm{anti}},
+\qquad
+\delta_{\mathrm{anti},i}(t+T_{\mathrm{rec}})
+\leq
+\kappa\,\delta_{\mathrm{anti},i}(t)+\varepsilon_{\mathrm{drive}},
+$$
+
+for a branch interval $J$, recovery time $T_{\mathrm{rec}}$, contraction factor $0\leq\kappa<1$, and driving residue $\varepsilon_{\mathrm{drive}}$. Near-antipodality is useful because it captures the shell branch's tendency to restore opposite-side balance without pretending that the two matched architrinos remain in lockstep under perturbation.
+
+## Nested Shell Swarm
+
+A **nested shell swarm** is a shell swarm with three ordered radial support bands. It is the sector most of the existing corpus currently describes. The old phrase **Noether core** names this nested-shell sector unless the surrounding context explicitly says otherwise.
+
+The geometric shell labels are
+
+$$
+I,\ M,\ O
+$$
+
+for **inner**, **middle**, and **outer** radial order. These are geometry labels: they say which support band is deepest, intermediate, or most externally exposed. They do not by themselves prove a dynamical role, a generation label, or a particle identity.
+
+The role labels are
+
+$$
+H,\ M,\ L
+$$
+
+for **high**, **middle**, and **low** branch role. In the weak-stress nested-shell chart, $H$ is the high-cadence or high-stress role, $M$ is the hinge or transfer role, and $L$ is the low-cadence or external-coupling role. The letter $M$ is therefore context-dependent: in $I/M/O$ it means middle radius, while in $H/M/L$ it means the middle role between high and low branch response. The usual weak-stress branch is expected to align these two orderings approximately, but that alignment is a branch result rather than a naming axiom.
+
+The recursive binary picture remains valuable inside this sector. Just as an Electrino and a Positrino can form a stable binary, two binary-like slots can orbit a common center to form a larger, second-order structure, and three energy-separated slots can form a nested shell hierarchy. The key to stability is still separation of scale: each surrounding support band must have a larger radius, a lower cadence, and a compatible causal-root ledger than the deeper support band.
+
+In this sector, a candidate stable configuration is the **triply nested binary**. It consists of three binary-like shell slots nested within each other and supplies the assembly scaffold later used in [Nested Shell Swarm Dynamics](nested-shell-swarm-dynamics.md).
+
+-   **Why Three?** The stability of a triply nested structure is a theorem target tied to the three-dimensional nature of Euclidean space. Each binary-like slot defines an orbital plane or dominant support sheet. The working claim is that three mutually orthogonal support sheets can form a dynamically stable, symmetric, three-dimensional structure that is resistant to perturbation; the proof burden is to derive that role count from the delayed causal dynamics rather than assuming it.
+
+-   **Why "Noether"?** This assembly family is named in honor of Emmy Noether. Noether's theorem links symmetries in physical systems to conserved quantities. The highly symmetric nested shell swarm is the candidate scaffold through which spin, branch-quantized energy records, and other conserved observer-level labels should be recovered from closure labels and emitted causal-wake envelopes.
+
+## Properties of the Nested Shell Swarm
+
+-   **Energy-Separated Scales:** In low-energy nested-shell conditions, the three shell slots have energy-separated orbital radii and cadences. The innermost slot is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
+
+-   **Internal Stabilization:** The system is expected to be stable only on branches where the high-frequency causal-wake emissions from the innermost slot, inter-layer wake exchange, and outer-layer shielding close into a persistent return cycle. The time-averaged potential picture is useful, but the theorem burden is to show that the root ledger, phase closure, and separator conditions keep the coupled hierarchy on the same branch.
+
+-   **Energy Shielding via Superposition:** From a distance, a nested shell swarm appears to have far less energy and a much smaller potential signature than the raw sum of its six constituent architrinos. The rapid oscillation of the positive- and negative-polarity architrinos within the nested structure causes their wake contributions to largely cancel out through superposition. This shielding effect is the working mechanism for how highly energetic structures can form the basis for relatively low-mass observed particles; quantitative extraction remains a mass-map closure target.
 
 ## Integer Phase-Closure States
 
@@ -375,7 +470,7 @@ Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compat
 
 ## Geometry and Exclusion Envelope
 
-The same tri-binary motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the core definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-zone interpretation, and deformation channels, see [Noether Core Geometry](./noether-core-geometry.md).
+The same tri-binary motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the core definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-zone interpretation, and deformation channels, see [Noether Core Geometry](../spacetime/noether-core-geometry.md).
 
 ## The Core Hierarchy and Fermion Generations
 
@@ -393,7 +488,7 @@ The **inner binary** (maximal curvature, self-hit regime) is a stabilization out
 
 As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **speed approaches $c_f$**, while the **middle binary** remains on the declared hinge branch as its radius/frequency shift. At the horizon-alignment target, the **middle and outer binaries reach $c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
 
-**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](singularity-resolution.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md).
+**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](../spacetime/singularity-resolution.md) and [Mapping the Planck Scale to the Nested Shell Swarm Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md).
 
 ## The Foundation for Fermions
 

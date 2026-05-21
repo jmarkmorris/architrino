@@ -1645,7 +1645,7 @@ In the modular cosmology map, this page provides:
 
 ## Inflation Model
 
-This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), and the strong-field pages [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Mapping the Planck Scale to the Tri-Binary Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md).
+This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation of inflation-like behavior as a high-curvature alignment regime rather than as a separate inflaton ontology. Its purpose is to keep local-process, recycling, and strong-field framing explicit before any full quantitative closure is claimed. It sits between [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), and the strong-field pages [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Mapping the Planck Scale to the Nested Shell Swarm Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md).
 
 ### Core Idea
 
@@ -1719,6 +1719,69 @@ $$
 The scalar/tensor gate should be read as a closure burden on the high-curvature transfer channel. If $\mathbb{A}\mathbb{A}\mathbb{A}$ uses SMBH-core or horizon-interface dynamics to explain inflation-like behavior, those dynamics must supply the same near-Gaussian scalar spectrum and allowed tensor sector without retuning the CMB, BBN, and expansion interfaces separately.
 
 Smoothness is a separate benchmark from scalar amplitude and tensor suppression. Inflationary language is often credited with explaining why the early effective record has low gravitational free-mode content, while generic strong-field collapse is expected to develop complicated anisotropic curvature. In this framework that pressure becomes a medium-history constraint, not an inflaton ontology. The high-curvature release channel must therefore deliver the CMB-facing smoothness residual defined in [CMB](../../../../markdown/aaa/cosmology/CMB.md) using the same Noether-Sea variables that supply $\left(A_s^{\theta},n_s^{\theta},\alpha_s^{\theta},r^{\theta}\right)$.
+
+#### Slow-Roll Comparison Dictionary
+
+The standard slow-roll formulas are useful here as a compact benchmark dictionary, but the entries are comparison variables. Let a candidate high-curvature release record $\theta$ define effective observer variables $a_\theta$, $H_\theta$, and $N_\theta\equiv\ln a_\theta$ through the redshift, clock-rate, and transfer map. They do not describe expansion of the Euclidean void. The first comparison slow-roll coordinate is
+$$
+\varepsilon_\theta
+\equiv
+-\frac{d\ln H_\theta}{dN_\theta},
+\qquad
+\varepsilon_\theta<1
+$$
+for an inflation-like effective interval, and the second coordinate is
+$$
+\eta_\theta
+\equiv
+\varepsilon_\theta
+-
+\frac{1}{2\varepsilon_\theta}
+\frac{d\varepsilon_\theta}{dN_\theta}.
+$$
+If a branch introduces an effective potential surrogate $V_\theta(\varphi)$ for comparison with single-field models, it must also expose
+$$
+\epsilon_{v,\theta}
+\equiv
+\frac{M_{\mathrm{pl}}^2}{2}
+\left(\frac{V_{\theta,\varphi}}{V_\theta}\right)^2,
+\qquad
+\eta_{v,\theta}
+\equiv
+M_{\mathrm{pl}}^2
+\frac{V_{\theta,\varphi\varphi}}{V_\theta},
+$$
+with $\varepsilon_\theta\approx\epsilon_{v,\theta}$ and $\eta_\theta\approx\eta_{v,\theta}-\epsilon_{v,\theta}$ only in the effective slow-roll limit. These are not new substrate fields; they are a way to test whether the release record lands in the same observable region as slow-roll inflation.
+
+At the comparison horizon-crossing surface $k=a_\theta H_\theta$, the scalar and tensor amplitudes become
+$$
+\Delta_{\mathrm{s}}^{2,\theta}(k)
+=
+\left.
+\frac{H_\theta^2}
+{8\pi^2M_{\mathrm{pl}}^2\varepsilon_\theta}
+\right|_{k=a_\theta H_\theta},
+\qquad
+\Delta_{\mathrm{t}}^{2,\theta}(k)
+=
+\left.
+\frac{2H_\theta^2}
+{\pi^2M_{\mathrm{pl}}^2}
+\right|_{k=a_\theta H_\theta},
+$$
+so that
+$$
+n_s^\theta-1
+=
+\frac{d\ln \Delta_{\mathrm{s}}^{2,\theta}}{d\ln k},
+\qquad
+r^\theta
+=
+\frac{\Delta_{\mathrm{t}}^{2,\theta}}{\Delta_{\mathrm{s}}^{2,\theta}}
+\approx
+16\varepsilon_\theta.
+$$
+A branch that claims a slow-roll-like scalar/tensor match should therefore supply $\{\varepsilon_\theta,\eta_\theta,N_\theta,\Delta_{\mathrm{s}}^{2,\theta},\Delta_{\mathrm{t}}^{2,\theta},n_s^\theta,r^\theta\}$ from one high-curvature release record. If it also predicts a bispectrum, the single-field slow-roll comparison target is $f_{\mathrm{NL}}^\theta=O(\varepsilon_\theta,\eta_\theta)$; a large non-Gaussian residual requires an explicit additional interaction, branch, or source-measure record.
 
 Eternal-inflation and landscape language add no ontology by themselves. They become useful only when they nominate data products that can be tested without assuming the multiverse interpretation. Two examples are the effective spatial-curvature channel and localized CMB residuals. For a candidate high-curvature release record $\theta$, define a comparison-only residual
 $$
@@ -1935,6 +1998,62 @@ $$
 \exp\!\left(\frac{E_D}{k_BT}\right),
 $$
 with $E_D$ the deuterium binding energy and $\eta$ the baryon-to-photon ledger variable. These equations are observer-level benchmarks for the thermal record. A native local-reactor branch may reinterpret where the history occurs, but it must reproduce the same freeze-out, deuterium-bottleneck, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ residuals without fitting them in separate source zones.
+
+#### Weak-Rate and Relativistic-Species Gate
+
+The neutrino and weak-rate side of BBN is a hard interface, not optional explanatory color. A candidate local-reactor record $\theta$ must compute the weak conversion channels within the same thermal and source-window history that supplies photon loading and baryon provenance:
+$$
+\lambda_{n\to p}^{\theta}:\quad
+\begin{cases}
+n+e^+\to p+\bar{\nu}_e,\\
+n+\nu_e\to p+e^-,\\
+n\to p+e^-+\bar{\nu}_e,
+\end{cases}
+\qquad
+\lambda_{p\to n}^{\theta}:\quad
+\begin{cases}
+p+\bar{\nu}_e\to n+e^+,\\
+p+e^-\to n+\nu_e,\\
+p+e^-+\bar{\nu}_e\to n.
+\end{cases}
+$$
+The freeze-out comparison is controlled by when these rates fall below the effective BBN clock,
+$$
+\lambda_{n\to p}^{\theta}(T)
+\sim
+\lambda_{p\to n}^{\theta}(T)
+\sim
+H_{\mathrm{eff,BBN}}^\theta(T),
+$$
+where $H_{\mathrm{eff,BBN}}^\theta$ is the observer-level cooling and dilution rate inferred from the local transport record, not expansion of the Euclidean void. Any extra relativistic component changes the same clock through
+$$
+H_{\mathrm{eff,BBN}}^\theta
+\propto
+\left(
+\rho_\gamma^\theta
++\rho_{e^\pm}^\theta
++\rho_{\nu_\alpha}^\theta
++\rho_{\nu_s}^\theta
++\cdots
+\right)^{1/2},
+$$
+so the relativistic-species residual must be tracked as
+$$
+N_{\text{eff}}^\theta
+\equiv
+\frac{\rho_{\mathrm{rel}}^\theta-\rho_\gamma^\theta}
+{\rho_{\nu,1}^\theta}.
+$$
+The equilibrium neutron-to-proton comparison then reads
+$$
+\frac{n_n^\theta}{n_p^\theta}
+\approx
+\exp\!\left(
+-\frac{\Delta m_{np}c_0^2}{k_BT}
+-\xi_{\nu_e}^\theta
+\right),
+$$
+where $\xi_{\nu_e}^\theta$ is retained only when the branch declares a neutrino-sector asymmetry. A viable branch must therefore recover the same $n_n/n_p$, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ surfaces from one local source-window record. A sterile or hidden relativistic sector that improves one isotope while shifting the weak-rate clock, neutrino asymmetry, or photon loading independently fails this gate.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ SMBH-Local Nucleation Chain
 
@@ -2470,7 +2589,30 @@ $$
 
 where $\tau_{\mathrm{th}}^{-1}$ is the effective rate for the already-recorded capture/release, Compton-like redistribution, pair-channel, and medium-exchange processes. The target is $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before decoupling for spectral relaxation, followed by sufficiently weak post-decoupling coupling to preserve anisotropy, polarization, and damping information rather than erase it.
 
-Thermalization mechanisms that use opacity or distributed absorbers must also pass a side-effect test. Let $\chi_{\mathrm{op}}^\theta(\nu,t)$ be the effective opacity supplied by the proposed medium component and let $\mathcal{A}_{\ell}^{\theta}$, $\mathcal{P}_{\ell}^{\theta}$, and $\mathcal{D}_{\mathrm{FIR}}^\theta$ denote the induced changes in temperature anisotropy, polarization, and far-infrared/submillimeter background intensity. The side-effect residual is
+The same theorem target has a line-of-sight version for steady-state or distributed-source branches. An effective microwave photosphere is not a new ontological origin surface; it is the comparison locus where the declared photon-channel transport becomes optically thin enough that photons stop being repeatedly thermalized along a given direction. For observer position $\mathbf{x}_{\mathrm{obs}}$, sky direction $\hat{\mathbf{n}}$, Euclidean path length $\ell$, and path-history time $t_\ell$ supplied by the same transport record, define
+
+$$
+\tau_{\mathrm{mw}}^\theta(\nu,\hat{\mathbf{n}},D)
+=
+\int_0^D
+\chi_{\mathrm{op}}^\theta
+\left(\nu,\mathbf{x}_{\mathrm{obs}}+\ell\hat{\mathbf{n}},t_\ell\right)
+\,d\ell,
+\qquad
+D_{\mathrm{eff}}^\theta(\nu,\hat{\mathbf{n}})
+=
+\inf\{D>0:\tau_{\mathrm{mw}}^\theta(\nu,\hat{\mathbf{n}},D)\ge1\}.
+$$
+
+Here $\chi_{\mathrm{op}}^\theta$ is the proposed microwave-band opacity, not the Noether-Sea delay factor $\chi_{\text{sea}}$. The CMB-pixel question is therefore a derived closure target. For angular beam or pixel width $\Delta\alpha$ in radians, use the transverse comparison scale
+$$
+L_{\perp}^{\theta}(\nu,\hat{\mathbf{n}},\Delta\alpha)
+\simeq
+D_{\mathrm{eff}}^\theta(\nu,\hat{\mathbf{n}})\,\Delta\alpha.
+$$
+This scale is meaningful only after the branch computes $D_{\mathrm{eff}}^\theta$ from its source, transport, and thermalization record. If no finite $D_{\mathrm{eff}}^\theta$ exists, or if it varies too strongly with frequency or sky direction, the distributed-source interpretation has not supplied a stable CMB comparison surface.
+
+Thermalization mechanisms that use this opacity or distributed absorbers must also pass a side-effect test. Let $\mathcal{A}_{\ell}^{\theta}$, $\mathcal{P}_{\ell}^{\theta}$, and $\mathcal{D}_{\mathrm{FIR}}^\theta$ denote the induced changes in temperature anisotropy, polarization, and far-infrared/submillimeter background intensity. The side-effect residual is
 $$
 \mathcal{R}_{\mathrm{op}}^\theta
 =
@@ -4341,6 +4483,74 @@ T(k)\sim k^{-2}\ \text{for }k\gg k_{\mathrm{eq}},
 $$
 up to the declared baryon acoustic, neutrino/free-streaming, and nonlinear corrections. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not an import of metric expansion ontology. It is the observer-level shape test that the same medium-state history must pass while computing $G_{\text{eff}}(a,k)$, CMB lensing, $f\sigma_8$, and high-redshift halo statistics.
 
+#### Component Transfer and Free-Streaming Interface
+
+Linear perturbation theory is useful only when its variables are kept at the effective observer level. For each component $x$ in the comparison packet, use
+$$
+\mathbf{y}_x^\theta(k,z)
+=
+\left(
+\delta_x^\theta,\,
+\theta_x^\theta,\,
+\sigma_x^\theta,\,
+\delta p_x^\theta
+\right),
+$$
+where $\delta_x$ is the density contrast, $\theta_x$ is the velocity-divergence variable, $\sigma_x$ is the anisotropic-stress variable, and $\delta p_x$ is the pressure perturbation. A transfer-function branch is then a map
+$$
+\mathbf{y}_x^\theta(k,z)
+=
+\mathsf{T}_x^\theta(k,z;\theta_{\mathrm{sea}})
+\,\mathbf{y}_{\mathrm{init}}^\theta(k),
+\qquad
+P_{xy}^\theta(k,z)
+=
+T_x^\theta(k,z)T_y^\theta(k,z)P_{\mathrm{seed}}^\theta(k),
+$$
+with the same $\theta_{\mathrm{sea}}$ used for CMB lensing, BAO, BBN, and low-redshift growth. In an adiabatic comparison packet the initial component contrasts must satisfy
+$$
+\frac{\delta\rho_x^\theta}
+{\bar\rho_x^\theta+\bar p_x^\theta}
+=
+\frac{\delta\rho_y^\theta}
+{\bar\rho_y^\theta+\bar p_y^\theta},
+\qquad
+\delta_b^\theta
+=
+\delta_{\mathrm{dm}}^\theta
+=
+\frac{3}{4}\delta_\nu^\theta
+=
+\frac{3}{4}\delta_\gamma^\theta,
+$$
+unless the branch explicitly declares an isocurvature source and carries it through the CMB, BBN, and matter-power residuals.
+
+Neutrino and warm-dark-sector signals sharpen the small-scale transfer test. For ordinary massive neutrinos,
+$$
+f_\nu^\theta
+\equiv
+\frac{\Omega_\nu^\theta}{\Omega_m^\theta}
+\approx
+\frac{\Sigma m_\nu^\theta}
+{94\,\mathrm{eV}\,\Omega_m^\theta h_\theta^2},
+\qquad
+\frac{\Delta P_\delta^\theta}{P_\delta^\theta}
+\approx
+-8f_\nu^\theta
+$$
+below the free-streaming scale. For a sterile-neutrino or warm neutral-assembly comparison branch, retain the production-history dependence explicitly:
+$$
+\lambda_{\mathrm{FS}}^\theta
+=
+\int_0^{t_{\mathrm{eq}}^\theta}
+\frac{v^\theta(t)}{a_\theta(t)}\,dt
+\approx
+1.2\,\mathrm{Mpc}
+\left(\frac{1\,\mathrm{keV}}{m_s^\theta}\right)
+\left(\frac{\langle p/T\rangle_\theta}{3.15}\right).
+$$
+The key variable is not mass alone but the momentum distribution inherited from the production channel. A branch that changes $\langle p/T\rangle_\theta$, $f_\nu^\theta$, or $\lambda_{\mathrm{FS}}^\theta$ independently of its BBN and CMB records has split the shared cosmology state.
+
 #### Linear and Nonlinear Dark-Sector Split
 
 Hybrid dark-sector comparisons make one useful mathematical demand explicit: the linear growth record and the nonlinear rotation-curve record must be separated before they are recombined. A nearly pressureless fluid, scalar, or neutral-assembly population can reproduce the expansion history, acoustic peak loading, and linear matter power spectrum if its effective equation of state and sound speed are small,
@@ -4707,7 +4917,7 @@ For $S_8$:
 
 ### DESI-Era Data-Product Gate
 
-The 2025 DESI first-three-year BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. As of April 2026, DESI has completed the observations for its originally planned five-year survey, but the first dark-energy results from the full five-year dataset are expected in 2027. This is a data-product signal, not an ontology claim. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth.
+The 2025 DESI first-three-year BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. DESI has also released first-three-year BAO cosmology chains and supporting products in advance of the full public DR2 catalogue, and as of April 2026 DESI has completed the observations for its originally planned five-year survey. The first dark-energy results from the full five-year dataset are expected in 2027. These are data-product signals, not ontology claims. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ question is whether one Noether-Sea medium history can satisfy
 $$
@@ -4723,6 +4933,40 @@ $$
 without assigning separate medium states to each inference pipeline. If the preferred $w(a)$ trend requires one state for distance data and another for growth, the cosmology branch has only hidden the tension.
 
 This is the local form of the shared calibration gate in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates). The sets $\mathcal{C}_{H_0}$, $\mathcal{C}_{S_8}$, $\mathcal{C}_{\mathrm{BAO/SN/CMB}}$, and $\mathcal{C}_{\mathrm{growth}}$ should be read as constraints on projections of one $\theta_{\mathrm{sea}}$, not as independent fit islands. A low distance residual paired with an incompatible growth projection is therefore not a win for the medium-relaxation interpretation; it is evidence that the interpretation has not yet closed.
+
+The current benchmark family can be summarized as a residual-contract table:
+
+| Observable pressure | Typical data-product comparison | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
+| --- | --- | --- |
+| Early CMB inference | Planck-like base-LambdaCDM inference gives $H_0$ near $67.4\ \mathrm{km\,s^{-1}\,Mpc^{-1}}$ and $\sigma_8$ near $0.81$; ACT DR6 supplies an independent high-resolution spectra and lensing comparison. | The CMB row constrains the effective acoustic, thermalization, damping, and lensing transfer map, not a primitive expanding void. |
+| Local distance ladder | SH0ES/Pantheon+-style Cepheid/SN ladders give a local coefficient near $73\ \mathrm{km\,s^{-1}\,Mpc^{-1}}$ with about percent-level uncertainty. | The local coefficient is $H_{\mathrm{eff,ladder}}$, the slope of the corrected redshift-transfer map after source, endpoint, launch, calibration, and path-history terms are separated. |
+| BAO standard ruler | DESI BAO rows report $D_M/r_d$, $D_H/r_d$, or $D_V/r_d$ by tracer and effective redshift, with CMB, SN, and weak-lensing combinations testing $w_0w_a$-style extensions. | BAO constrains the joint pair $(D^\theta(z),r_d^\theta)$; changing the sound-ruler calibration for CMB while changing the propagation map for BAO is a shared-state failure. |
+| Late growth | DES Year-3 3$\times$2pt weak-lensing and clustering analyses give an $S_8$ value below the Planck-inferred value, while RSD and lensing rows probe $f\sigma_8$ and growth response. | $S_8$ is a growth projection of $\theta_{\mathrm{sea}}$. It must remain compatible with CMB lensing and BAO distances, not merely lower the late-time amplitude. |
+| Euclid readiness | Euclid Q1 is public but not a cosmology release; major public cosmology products depend on later releases. | Current Euclid use is packet-readiness: masks, catalogues, spectroscopy, photo-$z$, and future covariance shape. It is not yet a public $S_8$ or BAO residual row. |
+
+This table fixes the claim level. The benchmark values are observer-level comparison coordinates in LambdaCDM-era pipelines. They are useful because they force the medium-relaxation proposal to match early spectra, low-redshift slopes, standard rulers, and late growth with one shared state; they are not direct measurements of substrate expansion.
+
+The corresponding DESI-era distance-growth score should keep the BAO ruler visible:
+
+$$
+\mathcal{R}_{\mathrm{DESI}\text{-}\mathrm{era}}(\theta_{\mathrm{sea}})
+=
+\mathcal{R}_{\mathrm{CMB}}(\theta_{\mathrm{sea}})
++\sum_i
+\left\|
+\mathbf C_{\mathrm{BAO},i}^{-1/2}
+\left[
+\mathbf b_{\mathrm{BAO}}^\theta(z_i)
+-
+\mathbf b_{\mathrm{BAO}}^{\mathrm{obs}}(z_i)
+\right]
+\right\|^2
++\mathcal{R}_{\mathrm{SN/H_0}}(\theta_{\mathrm{sea}})
++\mathcal{R}_{\mathrm{growth}}(\theta_{\mathrm{sea}})
++\lambda_{\mathrm{split}}\mathcal{P}_{\mathrm{proj}}.
+$$
+
+Here $\mathbf b_{\mathrm{BAO}}(z_i)$ contains the reported subset of $D_M/r_d$, $D_H/r_d$, and $D_V/r_d$ for each tracer bin. The last term is not optional bookkeeping. It prevents a branch from fitting a DESI-like distance trend, a Planck-like CMB anchor, and a DES-like growth amplitude by using three incompatible Noether-Sea projections.
 
 ### Dipole and Bulk-Flow Diagnostic
 

@@ -1,6 +1,6 @@
 # Tri-Binary Source Signal Triage
 
-Promotion status: `priority-only`. This document mines [entourage-tri-binary-rearchitecture.md](entourage-tri-binary-rearchitecture.md) for same-level tri-binary source signals and classifies each signal as a safe mathematical target, a deferred theorem target, a speculative comparison, or an overclaim to reject until a retained branch packet exists.
+Promotion status: `priority-only`. This document mines [swarm-rearchitecture-source.md](swarm-rearchitecture-source.md) for same-level tri-binary source signals and classifies each signal as a safe mathematical target, a deferred theorem target, a speculative comparison, or an overclaim to reject until a retained branch packet exists.
 
 The source discussion is intentionally treated as analysis material, not canon. Its strongest value is not its confident conclusions. Its strongest value is the list of proof burdens it exposes: causal-root regularity, fixed-speed tangential closure, noncollision clearance, history-dressed conservation, isotropic Lorentz export, spinor holonomy, continuous color connection, and central inventory replacement.
 
@@ -15,7 +15,7 @@ Each source signal receives one of four outcomes.
 | `converted` | The signal has been converted into a concrete definition, residual, lemma target, proof route, or simulation observable in this directory. |
 | `deferred-with-blocker` | The signal is valuable, but cannot be stated as even a theorem target until another row is supplied. |
 | `priority-only` | The signal remains useful as workstream source material, but is too operational, broad, or speculative for corpus promotion. |
-| `rejected-as-overclaim` | The signal asserts completed closure, exact recovery, or migration readiness without the retained branch packet required by [tri-binary-architecture.md](tri-binary-architecture.md). |
+| `rejected-as-overclaim` | The signal asserts completed closure, exact recovery, or migration readiness without the retained branch packet required by [swarm-architecture.md](swarm-architecture.md). |
 
 ---
 

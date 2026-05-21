@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "spacetime__noether_core",
-    "title": "Noether Core",
+    "id": "noether_swarm__swarm_geometry",
+    "title": "Swarm Geometry",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,10 +11,9 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/spacetime/noether-core.md"
+      "path": "content/markdown/aaa/spacetime/noether-core-geometry.md"
     },
     "view": {
-      "columns": 1,
       "autoOpen": true
     }
   },

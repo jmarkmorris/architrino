@@ -11,6 +11,10 @@
     },
     "children": [
       {
+        "nodeId": "mode_taxonomy",
+        "scenePath": "content/scenes/reactions/mode_taxonomy.json"
+      },
+      {
         "nodeId": "bremsstrahlung",
         "scenePath": "content/scenes/reactions/bremsstrahlung.json"
       },
@@ -22,13 +26,30 @@
   },
   "objects": [
     {
+      "id": "mode_taxonomy",
+      "title": "Mode Taxonomy",
+      "radius": 2.688,
+      "color": "#3c6a7a",
+      "position": [
+        0,
+        10.5,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Mode Taxonomy",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
       "id": "bremsstrahlung",
       "title": "Bremsstrahlung",
       "radius": 2.688,
       "color": "#5a1f2e",
       "position": [
-        0,
-        10.5,
+        9.09,
+        -5.25,
         0
       ],
       "motion": {
@@ -44,8 +65,8 @@
       "radius": 2.688,
       "color": "#2f4f7a",
       "position": [
-        0,
-        -10.5,
+        -9.09,
+        -5.25,
         0
       ],
       "motion": {

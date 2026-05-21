@@ -8,7 +8,7 @@ This chapter gives the current assembly-level interpretation of color charge and
 
 ### Tri‑binary scaffold (the “Noether core”)
 
-Each fermion is built on a **tri‑binary scaffold**: three nested electrino:positrino binaries sharing a center. We sometimes call this scaffold a **Noether core** to emphasize that all conserved quantities (electric charge, color, baryon number, etc.) are encoded in its internal symmetries, in the spirit of Noether’s theorem; see [Nested Binaries and the Noether Core](../../spacetime/noether-core.md).
+Each fermion is built on a **tri‑binary scaffold**: three nested electrino:positrino binaries sharing a center. We sometimes call this scaffold a **Noether core** to emphasize that all conserved quantities (electric charge, color, baryon number, etc.) are encoded in its internal symmetries, in the spirit of Noether’s theorem; see [Noether Swarm](../../noether-swarm/noether-swarm.md).
 
 We label the three binaries by their dynamical regime:
 

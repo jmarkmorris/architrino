@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "noether_swarm",
+    "title": "Noether Swarm",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    },
+    "centerOn": "neutral_swarm",
+    "children": [
+      {
+        "nodeId": "neutral_swarm",
+        "scenePath": "content/scenes/noether-swarm/neutral_swarm.json"
+      },
+      {
+        "nodeId": "shell_swarm",
+        "scenePath": "content/scenes/noether-swarm/shell_swarm.json"
+      },
+      {
+        "nodeId": "nested_shell_swarm",
+        "scenePath": "content/scenes/noether-swarm/nested_shell_swarm.json"
+      },
+      {
+        "nodeId": "nested_shell_swarm_dynamics",
+        "scenePath": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json"
+      },
+      {
+        "nodeId": "swarm_geometry",
+        "scenePath": "content/scenes/noether-swarm/swarm_geometry.json"
+      },
+      {
+        "nodeId": "swarm_dynamics",
+        "scenePath": "content/scenes/noether-swarm/swarm_dynamics.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "neutral_swarm",
+      "title": "Neutral Swarm",
+      "radius": 2.05,
+      "color": "#2f6b6f",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Neutral Swarm",
+      "fixedPosition": true
+    },
+    {
+      "id": "shell_swarm",
+      "title": "Shell Swarm",
+      "radius": 2.05,
+      "color": "#3f6a5a",
+      "position": [
+        0,
+        8.2,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Shell Swarm",
+      "fixedPosition": true
+    },
+    {
+      "id": "nested_shell_swarm",
+      "title": "Nested Shell Swarm",
+      "radius": 2.05,
+      "color": "#5a1f2e",
+      "position": [
+        7.8,
+        2.53,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Nested Shell Swarm",
+      "fixedPosition": true
+    },
+    {
+      "id": "swarm_geometry",
+      "title": "Swarm Geometry",
+      "radius": 2.05,
+      "color": "#2f4f7a",
+      "position": [
+        -4.82,
+        -6.63,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Swarm Geometry",
+      "fixedPosition": true
+    },
+    {
+      "id": "nested_shell_swarm_dynamics",
+      "title": "Nested Shell Swarm Dynamics",
+      "radius": 2.05,
+      "color": "#3f6a5a",
+      "position": [
+        4.82,
+        -6.63,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Nested Shell Swarm Dynamics",
+      "labelBadge": "doc",
+      "fixedPosition": true
+    },
+    {
+      "id": "swarm_dynamics",
+      "title": "Swarm Dynamics",
+      "radius": 2.05,
+      "color": "#6c4f8d",
+      "position": [
+        -7.8,
+        2.53,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Swarm Dynamics",
+      "fixedPosition": true
+    }
+  ]
+}

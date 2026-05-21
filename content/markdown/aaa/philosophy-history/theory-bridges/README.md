@@ -17,7 +17,7 @@ Use this lane for documents that:
 Do not use this lane as the primary home for:
 
 - substrate ontology; use [Foundations](../../foundations/ontology.md),
-- assembly definitions; use [Assemblies](../../spacetime/noether-core.md),
+- assembly definitions; use [Assemblies](../../noether-swarm/noether-swarm.md),
 - dynamical laws; use [Dynamics](../../dynamics/master-equation.md),
 - canonical spacetime mechanism chapters; use [Spacetime](../../spacetime/observer-framework.md),
 - broad historical orientation; use [Philosophy and History](../theory-mapping.md).
@@ -42,7 +42,7 @@ Each mature bridge should include:
 - [Entanglement and Nonlocality](./entanglement-nonlocality.md)
 - [Relativistic Scalar Fields and the Klein-Gordon Equation](./klein-gordon-scalar-fields.md)
 - [Pilot-Wave Character](./pilot-wave-character.md)
-- [Mapping the Planck Scale to the Tri-Binary Geometry](./planck-scale-tri-binary-alignment.md)
+- [Mapping the Planck Scale to the Nested Shell Swarm Geometry](./planck-scale-nested-shell-swarm-alignment.md)
 - [Quantum Operator Mapping](./quantum-operator-mapping.md)
 - [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md)
 - [Special Relativity and Deformable Noether Cores](./special-relativity-noether-core.md)

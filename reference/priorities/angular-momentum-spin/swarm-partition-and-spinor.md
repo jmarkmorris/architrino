@@ -1,4 +1,4 @@
-# Tri-Binary Partition and Spinor Closure
+# Swarm Partition and Spinor Closure
 
 This detailed priority file supports [Angular Momentum and Spin Closure](angular-momentum-spin.md). It preserves the tri-binary partition theorem target, solved minimal transition, ordered Noether-core frame, spinor proof obligations, and component-resolved causal-writhe hypothesis.
 

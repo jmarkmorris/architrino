@@ -56,8 +56,8 @@
         "scenePath": "content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json"
       },
       {
-        "nodeId": "planck_scale_tri_binary_alignment",
-        "scenePath": "content/scenes/philosophy_history/theory_bridges/planck_scale_tri_binary_alignment.json"
+        "nodeId": "planck_scale_nested_shell_swarm_alignment",
+        "scenePath": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_swarm_alignment.json"
       }
     ]
   },
@@ -250,8 +250,8 @@
       "fixedPosition": true
     },
     {
-      "id": "planck_scale_tri_binary_alignment",
-      "title": "Planck Scale Tri-Binary Alignment",
+      "id": "planck_scale_nested_shell_swarm_alignment",
+      "title": "Planck Scale Nested Shell Swarm Alignment",
       "radius": 2.688,
       "color": "#7a4a1f",
       "position": [
@@ -262,7 +262,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Planck Scale Tri-Binary Alignment",
+      "labelTitle": "Planck Scale Nested Shell Swarm Alignment",
       "labelBadge": "doc",
       "fixedPosition": true
     }

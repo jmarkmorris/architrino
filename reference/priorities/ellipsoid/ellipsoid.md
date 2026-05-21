@@ -32,14 +32,14 @@ The immediate organization goal is to keep three materials distinct:
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
 | [effective-metric-deformation.md](effective-metric-deformation.md) | Preserves the shape-plus-scale deformation draft for effective metric, proper time, lensing, anisotropy, Planck alignment, and cosmology. | [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md), [horizon-chirality](../../../content/markdown/aaa/spacetime/horizon-chirality.md) |
-| [raw-notes.md](raw-notes.md) | Preserves scratch notes and open questions that should not be promoted until classified. | [energy](../../../content/markdown/aaa/dynamics/energy.md), [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) |
+| [raw-notes.md](raw-notes.md) | Preserves scratch notes and open questions that should not be promoted until classified. | [energy](../../../content/markdown/aaa/dynamics/energy.md), [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) |
 | [ideal-core.md](ideal-core.md) | App design brief for a technical Noether-core inspection instrument. | [animator](../animator/animator.md), [simulations](../simulations/simulations.md), [about-the-webapp](../../../content/markdown/aaa/archie/about-the-webapp.md) |
 
 ## Promotion Map
 
 | Task | Detailed file | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `raw_note_route_decision` | [raw-notes.md](raw-notes.md) | [energy](../../../content/markdown/aaa/dynamics/energy.md), [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), and [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | Each raw note is either promoted into a named theorem target, routed to another workstream, or left parked as exploratory intuition. |
+| `raw_note_route_decision` | [raw-notes.md](raw-notes.md) | [energy](../../../content/markdown/aaa/dynamics/energy.md), [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), and [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | Each raw note is either promoted into a named theorem target, routed to another workstream, or left parked as exploratory intuition. |
 | `ideal_core_route_decision` | [ideal-core.md](ideal-core.md) | [animator](../animator/animator.md) and [simulations](../simulations/simulations.md) | The app brief is tied to a concrete simulation or visualization use case before implementation work is promoted. |
 | `ellipsoid_retirement_review` | [effective-metric-deformation.md](effective-metric-deformation.md), [raw-notes.md](raw-notes.md), and [ideal-core.md](ideal-core.md) | Existing priority workstreams or deferred archive | No ellipsoid-only priority remains unless it has a distinct equation, simulation target, observable, or app owner that cannot live in an existing workstream. |
 
@@ -67,4 +67,4 @@ This directory can be retired after all three sibling files have explicit outcom
 - [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md)
 - [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md)
 - [horizon-chirality](../../../content/markdown/aaa/spacetime/horizon-chirality.md)
-- [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md)
+- [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)

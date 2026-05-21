@@ -1241,7 +1241,7 @@ Primary theory anchors:
 1. [dynamics/master-equation.md](../dynamics/master-equation.md)
 2. [dynamics/causal-action-functional.md](../dynamics/causal-action-functional.md)
 3. [dynamics/binary-dynamics.md](../dynamics/binary-dynamics.md)
-4. [dynamics/tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md)
+4. [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md)
 5. `spacetime/*`
 6. [validation/constraint-ledger.md](../validation/constraint-ledger.md)
 7. [validation/no-go-theorems.md](../validation/no-go-theorems.md)
