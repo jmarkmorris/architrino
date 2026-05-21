@@ -32,6 +32,28 @@ $$
 
 on one retained active-root ledger. This is developed in [intrinsic-curve-dynamics-equation.md](intrinsic-curve-dynamics-equation.md) and formalized as a theorem target in [minimal-dynamics-closure-theorem.md](minimal-dynamics-closure-theorem.md).
 
+The bounded speed factor extension broadens this fixed-speed target without discarding it. In center time $u$, the branch equation becomes
+
+$$
+\nu_i\nu_i'\mathbf{T}_i+\nu_i^2\mathbf{K}_i
+=
+\Gamma\widetilde{\mathbf{F}}_i^\nu,
+$$
+
+with the fixed-speed equation recovered only on the special slice $\nu_i\equiv1$. The free-support row further says that these closed curves live in $\mathbb{R}^3$ with a support descriptor; fixed-radius or spherical motion is a sector condition, not a base assumption.
+
+The tangential bounded-speed row is now a scalar ODE rather than a residual to suppress:
+
+$$
+\frac{d\nu_i}{du}
+=
+\Gamma T_i(u)\cdot F_i^\nu(u).
+$$
+
+It closes only when the tangent forcing has zero period mean, its primitive excursion stays inside the speed band, and the clock/length row fixes an admissible initial speed. Free-support branches also need support multiplier work to be either zero, exact, or assigned to the Noether/event exchange ledger.
+
+The bounded-speed rows are coupled rather than sequential once they become a certificate. The speed ODE changes $\chi_i$, $\Lambda_i$, causal roots, Jacobian weights, delayed directions, support multipliers, action scale, and event surfaces. Thus the scalar speed row and the normal reconstruction row are diagnostic unless they are joined in the coupled residual $\mathcal{R}_{\mathrm{cpl}}^\nu$ of [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md).
+
 ---
 
 ## 2. Numerical Evidence So Far
@@ -59,7 +81,29 @@ The current screens all remain negative.
 | [unit-speed-chart-reparameterization.md](unit-speed-chart-reparameterization.md) | proves construction-speed spread is a chart row removable by arclength inverse when $S_i>0$ and lengths match | force/root/curvature closure must be recomputed in the arclength-inverse chart |
 | [variable-speed-factor-extension.md](variable-speed-factor-extension.md) | replaces strict fixed speed by a bounded speed factor $\nu_i$, modifies causal-root Jacobians to $1-\nu_j^-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$, and allows short controlled self-hit intervals | the current exact-antipodal $M=3$ rows remain the $\nu_i\equiv1$ special case until root, tail, action, and proof-budget rows are rerun |
 | [bounded-speed-factor-proof-stack-impact-map.md](bounded-speed-factor-proof-stack-impact-map.md) | maps the bounded speed factor through time maps, root/Jacobian rows, force dynamics, action/Noether, Krawczyk, stability, and self-hit rows | every fixed-speed packet must either declare $\nu_i\equiv1$ or emit bounded-speed successor fields |
+| [bounded-speed-factor-executable-solver-protocol.md](bounded-speed-factor-executable-solver-protocol.md) | defines the finite-mode unknowns $(a,b,\gamma)$, causal-time nodes, bounded-speed residual vector, Krawczyk rows, and first-event surfaces | first executable route for testing whether exact-antipodal $M=3$ opens off the fixed-speed subspace |
+| [bounded-speed-factor-branch-search-certificate.md](bounded-speed-factor-branch-search-certificate.md) | turns the bounded-speed proof stack into a branch-search decision object with a fixed chart, single residual, margin vector, trichotomy, execution order, and report schema | no candidate box has yet emitted the interval/Krawczyk decision and margin vector needed for acceptance, event reset, or certified rejection |
+| [bounded-speed-factor-finite-mode-branch-system.md](bounded-speed-factor-finite-mode-branch-system.md) | spells out the full finite-mode branch variables, residual rows, dimension count, gauge slots, and truncation split for the bounded-speed search | the equations are now executable in principle, but no finite artifact has populated the residual vector on a concrete branch box |
+| [bounded-speed-factor-symmetry-gauge-reduction.md](bounded-speed-factor-symmetry-gauge-reduction.md) | identifies the symmetry actions, gauge slice, neutral-mode projection, and bordered Jacobian needed before range/cokernel statements are meaningful | no current bounded-speed branch box has passed a gauge-rank certificate |
+| [bounded-speed-factor-branch-krawczyk-decision-theorem.md](bounded-speed-factor-branch-krawczyk-decision-theorem.md) | gives the interval inclusion/exclusion theorem and rejection taxonomy for bounded-speed branch boxes | the next mathematical solve must instantiate its branch box, derivative enclosure, and event partitions |
+| [bounded-speed-factor-center-time-dynamics.md](bounded-speed-factor-center-time-dynamics.md) | converts the bounded speed factor from intrinsic arclength to center time $u$, event time $u-\eta$, physical velocity, acceleration, root sheets, and projection residuals | fixes the dynamics convention before action, Krawczyk, or self-hit rows consume $\nu_i$ |
+| [bounded-speed-factor-speed-ode-solvability.md](bounded-speed-factor-speed-ode-solvability.md) | gives the zero-mean tangent-force condition, primitive excursion, speed-band interval, and clock/length feasibility test for $\nu_i$ | tangent leakage is not solved unless this scalar ODE row closes on the same ledger |
+| [bounded-speed-factor-normal-reconstruction-theorem.md](bounded-speed-factor-normal-reconstruction-theorem.md) | turns the normal equation into a closed-curve reconstruction problem with tangent holonomy, position closure, frame monodromy, support-radial compatibility, and Krawczyk rows | small normal residual is not enough unless it reconstructs closed arclength curves on the same ledger |
+| [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md) | joins curves, speed factors, roots, support variables, action scale, and event rows into one live-ledger Krawczyk theorem target | separate speed, normal, root, support, and action diagnostics are not a bounded-speed certificate until the coupled row closes |
+| [bounded-speed-factor-event-normal-forms.md](bounded-speed-factor-event-normal-forms.md) | classifies bounded-speed continuation events, including speed-band exits, physical-period loss, ordinary self-hit onset, and antipodal speed-pair failure | prevents solver failures from being misread as dynamics obstructions |
+| [bounded-speed-factor-self-hit-return-lemma.md](bounded-speed-factor-self-hit-return-lemma.md) | gives the nontrapping inequality, speed-band normal-velocity cap, and dwell-time bound for a bounded-speed self-hit interval | turns "must return quickly" into a certifiable center-time row instead of a verbal condition |
+| [free-support-bounded-speed-dynamics.md](free-support-bounded-speed-dynamics.md) | makes closed arclength curves in $\mathbb{R}^3$ with support-band rows the base geometry and derives radial/support decompositions | prevents fixed-radius or spherical rows from being mistaken for global assumptions |
+| [free-support-action-compatibility-theorem.md](free-support-action-compatibility-theorem.md) | adds support multipliers, support work, and Noether support residuals to the free-support row | prevents support constraints from becoming hidden external work |
+| [hybrid-support-radius-functional.md](hybrid-support-radius-functional.md) | defines slot radii $R_a$ as support-descriptor functionals with first/second variations, spread rows, gap rows, transition rows, and mixing residuals | hybrid nested/same-level sectors are differentiable residual rows, not primitive radius labels |
+| [attraction-repulsion-inventory-theorem.md](attraction-repulsion-inventory-theorem.md) | proves each neutral site has three opposite-polarity and two same-polarity source sites, then inserts the count into weighted delayed force sums | captures the structural attraction bias without overclaiming dynamics closure |
+| [attraction-repulsion-force-moment-decomposition.md](attraction-repulsion-force-moment-decomposition.md) | decomposes the weighted bounded-speed force into attraction and repulsion tangent-power, normal-drive, and support-radial moment rows | the $3$-$2$ count becomes a force diagnostic only through weighted projections, not by count alone |
 | [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md) | derives causal-time root sheets, $D_vJ_{ij}^{\nu}$, force derivatives, and bounded-speed Krawczyk envelopes | fixed-speed root-sheet and tail certificates cannot be reused after $\nu_i$ becomes a branch variable |
+| [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md) | derives implicit second root variations, second Jacobian variations, force-weight Hessians, and row-weighted sheet Lipschitz constants | bounded-speed Hessian, monodromy, and Krawczyk $Z$ rows are stale unless they consume these second-sheet constants |
+| [bounded-speed-factor-tail-krawczyk-certificate.md](bounded-speed-factor-tail-krawczyk-certificate.md) | supplies causal-time support-tail cells, interval exclusion or root-tube assimilation, coefficient-box persistence, and bounded-speed Krawczyk chart radii | turns the support-tail problem into a bounded-speed certificate target rather than a fixed-speed carryover |
+| [bounded-speed-factor-tail-cover-completeness-lemma.md](bounded-speed-factor-tail-cover-completeness-lemma.md) | upgrades local bounded-speed tail predicates into a finite owned cover with no gaps, no duplicate ownership, and coefficient-box persistence | local tail Krawczyk cells are not usable in a coupled proof budget until the global cover predicate closes |
+| [bounded-speed-factor-action-stability-closure.md](bounded-speed-factor-action-stability-closure.md) | gives bounded-speed action, speed-factor storage/exchange, Noether-current, Hessian, monodromy, and observer-export rows | prevents bounded-speed dynamics evidence from being promoted without conservation and stability closure |
+| [bounded-speed-factor-variational-noether-closure.md](bounded-speed-factor-variational-noether-closure.md) | states when the speed-factor Euler-Lagrange row, tangential speed ODE, storage/exchange, support work, period multiplier, and Noether current are one variational ledger | a speed ODE alone cannot support conservation unless this action identity and Noether envelope close |
+| [bounded-speed-factor-self-hit-exchange-closure.md](bounded-speed-factor-self-hit-exchange-closure.md) | turns a finite self-hit return into an exchange event with speed energy, self-hit potential, partner/cross work, support/constraint work, event work, endpoint exits, and provenance rows | finite return is not enough unless the exchange and event ledgers close |
 | [bounded-speed-factor-master-retention-theorem.md](bounded-speed-factor-master-retention-theorem.md) | states the bounded-speed master residual, action, Krawczyk, Noether, event, and stability rows | no bounded-speed retained branch exists until the whole successor stack is rerun on one ledger |
 | [arclength-inverse-variation-formulas.md](arclength-inverse-variation-formulas.md) | gives fixed-arclength variation formulas for inverse phase, tangent, curvature, and delayed source phase | successor rank/Newton packets must include inverse-phase and root-delay terms, not fixed-construction-phase derivatives |
 | [branch-tangent-sensitivity-equations.md](branch-tangent-sensitivity-equations.md) | differentiates inverse phase, retained roots, Jacobians, force terms, residuals, $\Gamma$, curl, and event margins along a coefficient-space branch tangent | no current solver packet emits the full tangent audit; successor matrices must use these rows |
@@ -108,7 +152,7 @@ The current screens all remain negative.
 | [antipodal-relaxation-column-certificate.md](antipodal-relaxation-column-certificate.md) | requires pair-midpoint columns to span the exact-antipodal cokernel obstruction before relaxation opens | current $M=3$ data has no certified exact-antipodal obstruction, so relaxation remains premature |
 | [collocation-refinement-error-certificate.md](collocation-refinement-error-certificate.md) | bounds off-grid residuals, root-label drift, excluded-gap failures, and projector drift between collocation nodes | current refined-grid failures mean future obstruction/closure rows need explicit $\epsilon_{\mathrm{disc}}$ rather than sampled-node trust |
 | [finite-mode-branch-convergence-theorem.md](finite-mode-branch-convergence-theorem.md) | states the uniform-refinement theorem needed to pass from finite Fourier rows to a curve-level branch | current $M=3$ evidence is local descent, not a convergent certified refinement sequence |
-| [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md) | proves ordinary same-curve self roots cannot pass a positive Jacobian floor in the fixed-speed arclength chart | under variable speed, ordinary self-hit rows require the overspeed hinge, short-duration, action, and event rows from the speed-factor extension |
+| [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md) | proves ordinary same-curve self roots cannot pass a positive Jacobian floor in the fixed-speed arclength chart | under a bounded speed factor, ordinary self-hit rows require the overspeed hinge, short-duration, action, and event rows from the speed-factor extension |
 | [fold-layer-regularization-action-theorem.md](fold-layer-regularization-action-theorem.md) | states the regulated action, weak-limit, curl, and event-ledger conditions for any fold-layer force | no fold-layer is currently included; opening it requires action/event proof, not just residual improvement |
 | [medium-response-constitutive-closure-theorem.md](medium-response-constitutive-closure-theorem.md) | states the constitutive, memory, passivity, isotropy, curl, and conservation rows for any medium-response force | no medium response is currently included; opening it requires exchange ledgers and symmetry residuals |
 | [delayed-force-lipschitz-envelope.md](delayed-force-lipschitz-envelope.md) | derives per-root force derivative bounds from $\eta_0$, $J_0$, and curve-variation constants | current $M=3$ packets do not emit the derivative envelope needed for trust, refinement, Krawczyk, or curl bounds |
@@ -191,6 +235,24 @@ $$
 
 plus the root, support, noncollision, event/action, and stability rows.
 
+In the bounded speed factor row these fixed-speed residuals are replaced by
+
+$$
+\mathcal{R}_{\nu\mathrm{band}},
+\qquad
+\mathcal{R}_{\mathrm{speedODE}}^\nu,
+\qquad
+\mathcal{R}_{N\mathrm{rec}}^\nu,
+\qquad
+\mathcal{R}_{H},
+\qquad
+\mathcal{R}_{\parallel}^{\nu},
+\qquad
+\mathcal{R}_{\perp}^{\nu},
+$$
+
+plus the same root, support, noncollision, event/action, and stability rows on the bounded-speed ledger.
+
 The status of $\mathcal{R}_T$ is subtler than the force rows. In a constant-speed Fourier chart it is an algebraic row,
 
 $$
@@ -235,7 +297,7 @@ d_{\min}>\epsilon_x,
 |\mathcal{A}_i(\lambda)|<\infty.
 $$
 
-For a variable-speed branch, the first two equations are replaced by
+For a bounded speed factor branch, the first two equations are replaced by
 
 $$
 \nu_i\nu_i'
@@ -246,6 +308,8 @@ $$
 =
 \Gamma P_i^\perp\widetilde{\mathbf{F}}_i.
 $$
+
+The first equation is retained only if it passes the speed-ODE solvability certificate: zero period mean, bounded primitive excursion, admissible clock/length speed, and speed-band feasibility.
 
 The root ledger must also use the speed-weighted Jacobian
 
@@ -268,7 +332,7 @@ The most plausible missing rows are:
 1. plane-normal precession, so each binary plane can rotate slowly and change cross-binary causal-hit projections;
 2. antipodal relaxation, so the two partners in a binary are not forced to remain exact negatives when force balance wants a small separation asymmetry;
 3. a bounded speed-factor row, so small speed exchange can absorb tangential force without forcing $\mathbf{T}_i\cdot\widetilde{\mathbf{F}}_i=0$ pointwise;
-4. a controlled self/fold-layer row, if same-source delayed contributions can be regularized with a weak-limit and event ledger, or if a variable-speed self-hit mode satisfies the short-duration and action/event rows;
+4. a controlled self/fold-layer row, if same-source delayed contributions can be regularized with a weak-limit and event ledger, or if a bounded speed factor self-hit mode satisfies the short-duration and action/event rows;
 5. a declared Noether-Sea medium-response term, but only with a constitutive row and event/action closure.
 
 The first three are preferable before a new medium-response channel because they keep the dynamics inside the carrier/root ledger. The speed-factor row is not free proof slack: it changes the root map, period row, tail certificates, action ledger, and same-source event policy.
@@ -419,7 +483,7 @@ The master retention theorem now states the complete exact-antipodal $M=3$ meani
 
 The promotion theorem now composes those obligations into one decision surface. A same-level branch promotes only when geometry, support-complete roots, dynamics, finite-mode convergence, action scale, Noether conservation, root-dependent stability, inventory, and event rows all share one ledger convention. The current $M=3$ row is useful continuation evidence, but its promotion status is still `not-retained`.
 
-The same-source lemma removes a tempting but invalid fixed-speed escape route. In an arclength chart with $\nu_i\equiv1$, ordinary same-source roots satisfy chord length $\le$ arclength delay; equality forces a straight segment and $J_{\mathrm{self}}=0$. The variable-speed extension reopens only a controlled version: an ordinary self-hit requires an overspeed hinge, a positive $J_{\mathrm{self}}$ floor, short duration, overspeed budget, and action/event rows. Without those rows, a same-source force channel must still be a declared regularized fold-layer or split-source representative.
+The same-source lemma removes a tempting but invalid fixed-speed escape route. In an arclength chart with $\nu_i\equiv1$, ordinary same-source roots satisfy chord length $\le$ arclength delay; equality forces a straight segment and $J_{\mathrm{self}}=0$. The bounded speed factor extension reopens only a controlled version: an ordinary self-hit requires an overspeed hinge, a positive $J_{\mathrm{self}}^{\nu}$ floor, a short center-time duration $\operatorname{dur}_u(\mathcal{H}_i)\le\tau_{\mathrm{hit}}^u$, overspeed budget, return certificate, and action/event rows. Without those rows, a same-source force channel must still be a declared regularized fold-layer or split-source representative.
 
 The fold-layer theorem keeps that route honest. A fold-layer can enter only as a regulated action term with bounded force and derivative rows, a weak-limit or finite-regulator convention, combined one-form curl, and event-ledger conservation. It is not a hidden way to add an untracked force.
 

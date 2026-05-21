@@ -64,6 +64,16 @@ N_+(B)=N_-(B)=3,
 Q(B)=0.
 $$
 
+For a neutral three-binary same-level site set, this integer row also implies the source-site inventory in [attraction-repulsion-inventory-theorem.md](attraction-repulsion-inventory-theorem.md):
+
+$$
+N_{\mathrm{attr}}(i)=3,
+\qquad
+N_{\mathrm{rep}}(i)=2
+$$
+
+for each receiver $i$, excluding itself. This row is a structural inventory bias only; weighted delayed force closure still depends on root delays, Jacobians, directions, multiplicities, and any self or medium-response rows.
+
 For the same-level architecture, its bookkeeping split is
 
 $$
@@ -84,7 +94,7 @@ $$
 
 Here $S_{\mathrm{chor}}$ is the neutral same-level choreography inventory. $C_{\mathrm{cent}}=(0,0)$ means the neutral Noether-core row has no uncompensated central inventory.
 
-Proof target: show that the neutral choreography row can be represented by noncolliding architrino worldlines whose retained causal-root ledger has finite active roots, a positive Jacobian floor, finite memory depth, closed tangential residuals, and closed history-dressed energy.
+Proof target: show that the neutral choreography row can be represented by noncolliding architrino worldlines whose retained causal-root ledger has finite active roots, a positive Jacobian floor, finite memory depth, fixed-speed tangent closure or bounded-speed speed-ODE closure, and closed history-dressed energy.
 
 ---
 
@@ -222,7 +232,7 @@ $$
 |J_{ab}(t,s)|.
 $$
 
-The same-level choreography row must also close the fixed-speed tangential residual. Relative to the branch center $\mathbf{C}(t)$, use
+In the fixed-speed special case, the same-level choreography row must also close the tangential residual. Relative to the branch center $\mathbf{C}(t)$, use
 
 $$
 \mathbf{u}_a(t)=\dot{\mathbf{x}}_a(t)-\dot{\mathbf{C}}(t),
@@ -239,6 +249,8 @@ $$
 $$
 
 within the declared tolerance. Central inventory cannot compensate for an open same-level choreography residual.
+
+In the bounded speed factor case, this pointwise fixed-speed row is replaced by the scalar speed equation, primitive excursion, speed-band feasibility, and clock/length row from [bounded-speed-factor-speed-ode-solvability.md](bounded-speed-factor-speed-ode-solvability.md), plus the support/action exchange rows if free-support constraints are active. Central inventory cannot compensate for an open speed-ODE, support, or action ledger either.
 
 ---
 
@@ -711,6 +723,7 @@ The central-inventory and event-ledger addition to a same-level branch certifica
 | Certificate row | Required object | Passing condition | Failure modes |
 | --- | --- | --- | --- |
 | `integer_inventory` | $(N_+,N_-;C_{\mathrm{cent}},S_{\mathrm{chor}},Q)$ | integer counts match branch type and $Q=\epsilon(N_+-N_-)$ | `inventory-mismatch`, `charge-index-noninteger` |
+| `attraction_repulsion_inventory` | per-site $(N_{\mathrm{attr}},N_{\mathrm{rep}})=(3,2)$ for a neutral same-level six-site row | emitted beside weighted delayed force sums as structural bias, not closure proof | `attraction-repulsion-inventory-open`, `structural-bias-overread` |
 | `central_choreography_split` | resolved split between $C_{\mathrm{cent}}$ and $S_{\mathrm{chor}}$ | central inventory is ledgered and choreography remains neutral where declared | `central-inventory-singularity`, `choreography-not-neutral` |
 | `noncollision` | $d_{\min}^{(B)}>\epsilon_x$ or declared regularized support | no unresolved coincident point representatives | `projection-collision`, `central-inventory-singularity` |
 | `regularization` | $\eta>0$ rule, split-source representative, or absent-by-policy status | no unresolved near-zero self roots; any split-source Jacobian floor stays positive | `near-zero-self-root-unresolved`, `jacobian-floor-violation`, `regularization-unset` |

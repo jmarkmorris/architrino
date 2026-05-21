@@ -333,7 +333,7 @@ Use this protocol when Op starts multiple threads with this same prompt and want
 
 Default path shards:
 - Shard 1: `content/markdown/aaa/archie`, terminology, guides, glossary, canon policy.
-- Shard 2: `content/markdown/aaa/foundations`, `content/markdown/aaa/spacetime`, `content/markdown/aaa/theory-bridges`.
+- Shard 2: `content/markdown/aaa/foundations`, `content/markdown/aaa/spacetime`, `content/markdown/aaa/philosophy-history/theory-bridges`.
 - Shard 3: `content/markdown/aaa/dynamics`, `content/markdown/aaa/interactions`, `content/markdown/aaa/assemblies`.
 - Shard 4: `content/markdown/aaa/reactions`, `content/markdown/aaa/cosmology`, `content/markdown/aaa/validation`.
 - Shard 5: `content/markdown/aaa/philosophy-history`, overviews, READMEs, reader-orientation documents.

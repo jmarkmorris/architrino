@@ -1,6 +1,6 @@
 # Fold-Layer Regularization Action Theorem
 
-Promotion status: `priority-only`. This packet states the theorem target required before a self/fold-layer contribution may enter the same-level tri-binary force ledger. It follows from [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md): an ordinary same-curve self root cannot be retained with a positive Jacobian floor in the fixed-speed arclength chart, so any fixed-speed self/fold contribution must be a regulated action object with energy and event accounting. A bounded variable-speed ordinary self-hit is a separate admissibility route only under [variable-speed-factor-extension.md](variable-speed-factor-extension.md).
+Promotion status: `priority-only`. This packet states the theorem target required before a self/fold-layer contribution may enter the same-level tri-binary force ledger. It follows from [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md): an ordinary same-curve self root cannot be retained with a positive Jacobian floor in the fixed-speed arclength chart, so any fixed-speed self/fold contribution must be a regulated action object with energy and event accounting. A bounded speed factor ordinary self-hit is a separate admissibility route only under [variable-speed-factor-extension.md](variable-speed-factor-extension.md).
 
 This packet does not introduce a fold-layer into the current $M=3$ rows. It defines the conditions under which one would be mathematically admissible.
 
@@ -31,7 +31,7 @@ $$
 
 The boundary/event term $\mathcal{B}_{\mathrm{fold}}^{\varepsilon}$ must be ledgered. It cannot be discarded if it carries energy, momentum, angular momentum, charge, source provenance, or Noether-Sea exchange.
 
-For a bounded variable-speed branch, the fold action must use the causal-time measure
+For a bounded speed factor branch, the fold action must use the causal-time measure
 
 $$
 du_i
@@ -78,7 +78,7 @@ J_{ii}=0,
 \partial_\eta^2G_{ii}\ne0,
 $$
 
-but the variable-speed self-hit route in [variable-speed-factor-extension.md](variable-speed-factor-extension.md) is different: it requires $G_{ii}=0$ with a positive Jacobian floor and a short, ledgered speed-factor excursion. The energy ledger for that route must include the variable kinetic term
+but the bounded speed factor self-hit route in [variable-speed-factor-extension.md](variable-speed-factor-extension.md) is different: it requires $G_{ii}=0$ with a positive Jacobian floor and a short, ledgered speed-factor excursion. The energy ledger for that route must include the variable kinetic term
 
 $$
 K_i=\frac12c_f^2\nu_i^2

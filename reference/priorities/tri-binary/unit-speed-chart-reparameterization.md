@@ -80,7 +80,7 @@ $$
 
 identically. Thus fixed speed is a consequence of the arclength clock, not a separate physical force equation.
 
-For a variable-speed branch, keep the same geometric arclength curve but introduce the causal-time coordinate
+For a bounded speed factor branch, keep the same geometric arclength curve but introduce the causal-time coordinate
 
 $$
 \chi_i(\lambda)

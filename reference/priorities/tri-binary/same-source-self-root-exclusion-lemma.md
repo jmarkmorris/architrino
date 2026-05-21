@@ -1,6 +1,6 @@
 # Same-Source Self-Root Exclusion Lemma
 
-Promotion status: `priority-only`. This packet sharpens the same-source row used by the same-level tri-binary root ledger. It shows that an ordinary same-curve, fixed-speed arclength-parametrized self root cannot be retained as a positive-delay Jacobian-regular delayed root. Therefore any same-source contribution in a retained fixed-speed branch must be either absent by branch policy, represented by a genuinely split source, or supplied by an explicit regularized fold-layer rule with its own action and event ledger. The bounded variable-speed exception is stated in [variable-speed-factor-extension.md](variable-speed-factor-extension.md).
+Promotion status: `priority-only`. This packet sharpens the same-source row used by the same-level tri-binary root ledger. It shows that an ordinary same-curve, fixed-speed arclength-parametrized self root cannot be retained as a positive-delay Jacobian-regular delayed root. Therefore any same-source contribution in a retained fixed-speed branch must be either absent by branch policy, represented by a genuinely split source, or supplied by an explicit regularized fold-layer rule with its own action and event ledger. The bounded speed factor exception is stated in [variable-speed-factor-extension.md](variable-speed-factor-extension.md).
 
 This does not retain a branch.
 
@@ -130,13 +130,13 @@ in the same arclength chart used by the intrinsic dynamics equation. Its only ad
 | --- | --- |
 | `absent-by-policy` | same-source ordinary roots are excluded from the branch force ledger |
 | `regularized-fold-layer` | a declared $\eta>0$ rule supplies a non-ordinary self/fold contribution with action and event ledgers |
-| `variable-speed-self-hit` | a bounded speed-factor row opens an ordinary self-hit with positive Jacobian floor, short duration, overspeed budget, and action/event ledgers |
+| `bounded-speed-self-hit` | a bounded speed-factor row opens an ordinary self-hit with positive Jacobian floor, short duration, overspeed budget, and action/event ledgers |
 | `split-source-retained` | the source is not the identical arclength curve, but a distinct resolved representative with its own root equation and Jacobian floor |
 | `reject` | a near-zero or tangent same-source row is used without a controlled replacement |
 
 The older label `retained-positive-delay` remains meaningful for non-identical source representatives, but not for the ordinary same-curve self row.
 
-In a bounded variable-speed row, the causal elapsed distance is no longer the same as arclength. An ordinary self-hit can open only when the speed factor satisfies the overspeed hinge condition from [variable-speed-factor-extension.md](variable-speed-factor-extension.md), and it remains admissible only with short-duration, overspeed-budget, action, and event rows. Without those rows, the fixed-speed exclusion logic still controls the same-source policy.
+In a bounded speed factor row, the causal elapsed distance is no longer the same as arclength. An ordinary self-hit can open only when the speed factor satisfies the overspeed hinge condition from [variable-speed-factor-extension.md](variable-speed-factor-extension.md), and it remains admissible only with short-duration, overspeed-budget, action, and event rows. Without those rows, the fixed-speed exclusion logic still controls the same-source policy.
 
 ---
 
@@ -221,7 +221,7 @@ Future branch packets should emit:
 
 | Field | Required payload |
 | --- | --- |
-| `same_source_policy` | `absent-by-policy`, `regularized-fold-layer`, `variable-speed-self-hit`, `split-source-retained`, or `reject` |
+| `same_source_policy` | `absent-by-policy`, `regularized-fold-layer`, `bounded-speed-self-hit`, `split-source-retained`, or `reject` |
 | `ordinary_self_root_check` | chord-arclength inequality status and any equality/Jacobian-zero events |
 | `fold_layer_regulator` | regulator scale and weak-limit convention if used |
 | `fold_layer_force` | explicit contribution to $\widetilde{\mathbf{F}}$ |
@@ -238,7 +238,7 @@ $$
 \qquad
 \texttt{same-source-split-source-unproven},
 \qquad
-\texttt{variable-speed-self-hit-unproven},
+\texttt{bounded-speed-self-hit-unproven},
 $$
 
 $$

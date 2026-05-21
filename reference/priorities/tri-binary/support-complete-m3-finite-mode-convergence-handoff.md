@@ -22,7 +22,7 @@ $$
 \{\mathbf{Y}_{i}^{(\nu)}\}_{i=1}^{6},
 $$
 
-common arclength period $L_\nu$, support scale $R_\nu$, and support-complete ledger
+common arclength period $L_\nu$, support descriptor scale $R_\nu$, and support-complete ledger
 
 $$
 \mathcal{L}_{M3}^{(\nu)}

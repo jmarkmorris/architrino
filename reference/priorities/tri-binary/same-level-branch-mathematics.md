@@ -52,9 +52,9 @@ R(t),\delta(t),
 \right),
 $$
 
-where $\mathbf{C}$ is the center gauge, $R\pm\delta$ is the declared common support band, $\mathcal{I}$ is the central inventory and polarity ledger, $\Phi$ records phase offsets and winding rows, and $\mathcal{K}$ records the topological carrier and framed-wake data.
+where $\mathbf{C}$ is the center gauge, $R\pm\delta$ is the declared radial-sector support band, $\mathcal{I}$ is the central inventory and polarity ledger, $\Phi$ records phase offsets and winding rows, and $\mathcal{K}$ records the topological carrier and framed-wake data.
 
-Plain language: the chart describes architrinos moving in one Euclidean void on one absolute clock, with all same-level geometry recorded relative to a declared center and common support band.
+Plain language: the chart describes architrinos moving in one Euclidean void on one absolute clock, with same-level geometry recorded relative to a declared center and support descriptor. The radial support band is the default sector row, not a spherical-path assumption.
 
 ---
 
@@ -108,7 +108,7 @@ This removes translational gauge motion from the branch chart. Moving-assembly e
 
 ### 2.2 Support Band And Noncollision
 
-The same-level condition is not a nested-radius hierarchy. It is the common support-band condition
+The same-level condition is not a nested-radius hierarchy. In the radial same-level sector, a sufficient support certificate is the common support-band condition
 
 $$
 0<R_-\le R(t)-\delta(t),
@@ -127,6 +127,8 @@ R(t)+\delta(t)
 \qquad
 \text{for every }i\text{ and }t\in W.
 $$
+
+More general hybrid sectors may replace this radial norm band by a declared support descriptor with equivalent lower/upper support margins, as in [free-support-bounded-speed-dynamics.md](free-support-bounded-speed-dynamics.md). The radial row above should therefore be read as a sector certificate, not as a spherical path assumption.
 
 Noncollision is an independent Euclidean gate:
 
@@ -304,6 +306,8 @@ In the center-gauge branch-existence chart with $\ddot{\mathbf{C}}=\mathbf{0}$, 
 
 A branch with $\mathcal{R}_{\mathrm{speed}}=0$ but $\mathcal{R}_{\mathrm{tan}}\ne0$ has not closed the carrier. The tangential residual is the theorem-target replacement for assuming that same-level $c_f$ motion automatically stays on a closed choreography.
 
+If the branch declares a bounded speed factor, this fixed-speed tangent row is replaced by the speed-ODE solvability row and the bounded-speed normal row; nonzero tangent force is allowed only when it produces a closed, band-limited $\nu_i$ on the same root/action ledger.
+
 ---
 
 ## 5. Lemma Targets For Branch Mathematics
@@ -378,7 +382,7 @@ c_f-\mathbf{v}_j\!\left(s_{ij}^{\alpha}(t)\right)
 }.
 $$
 
-The causal-root ledger can retain the same root label $\alpha$ only until one of the following occurs: the root exits the memory window, $J_{ij}$ reaches the Jacobian floor, a collision gate fails, a near-zero self root becomes unresolved, or the branch exits the declared support band.
+The causal-root ledger can retain the same root label $\alpha$ only until one of the following occurs: the root exits the memory window, $J_{ij}$ reaches the Jacobian floor, a collision gate fails, a near-zero self root becomes unresolved, or the branch exits the declared support descriptor.
 
 ### Proposition Target 3: Regularized DDE Well-Posedness For $\eta>0$
 
@@ -480,8 +484,8 @@ $$
 \mathcal{R}_{\mathrm{phase}},
 \mathcal{R}_{\mathrm{root}},
 \mathcal{R}_{\mathrm{Jac}},
-\mathcal{R}_{\mathrm{speed}},
-\mathcal{R}_{\mathrm{tan}},
+\mathcal{R}_{\mathrm{speed/clock}},
+\mathcal{R}_{\mathrm{dyn}},
 \mathcal{R}_{\mathrm{inventory}},
 \mathcal{R}_{E},
 \mathcal{R}_{\mathrm{top}},
@@ -510,12 +514,12 @@ The intended residual meanings for this packet are:
 
 | Residual | Branch-mathematics obligation |
 | --- | --- |
-| $\mathcal{R}_{\mathrm{state}}$ | support band, center gauge, noncollision, and state-vector consistency |
+| $\mathcal{R}_{\mathrm{state}}$ | support descriptor, center gauge, noncollision, and state-vector consistency |
 | $\mathcal{R}_{\mathrm{phase}}$ | same-level phase offsets, winding rows, and phase-lock closure |
 | $\mathcal{R}_{\mathrm{root}}$ | active causal-root ledger completeness and root-status assignment |
 | $\mathcal{R}_{\mathrm{Jac}}$ | positive Jacobian floor and transversality for retained roots |
-| $\mathcal{R}_{\mathrm{speed}}$ | fixed-speed carrier condition $\|\mathbf{u}_i\|=c_f$ |
-| $\mathcal{R}_{\mathrm{tan}}$ | tangential closure of the fixed-speed carrier |
+| $\mathcal{R}_{\mathrm{speed/clock}}$ | fixed-speed carrier condition or bounded-speed band, clock, and period rows |
+| $\mathcal{R}_{\mathrm{dyn}}$ | fixed-speed tangent/curvature closure or bounded-speed speed-ODE/normal closure |
 | $\mathcal{R}_{\mathrm{inventory}}$ | polarity ledger, central inventory, and charge provenance |
 | $\mathcal{R}_{E}$ | history-dressed energy/action conservation on the retained branch |
 | $\mathcal{R}_{\mathrm{top}}$ | topological carrier and framed-wake consistency |
@@ -540,6 +544,7 @@ The failure-code vocabulary must match the architecture draft exactly:
 | `jacobian-floor-violation` | $J_{\min}\le\epsilon_J$ |
 | `near-zero-self-root-unresolved` | tangent or near-zero same-source roots lack a retained or regularized status |
 | `tangential-residual-open` | fixed-speed branch has nonzero tangential force residual |
+| `speed-ode-solvability-open` | bounded-speed branch has not closed the scalar speed-ODE rows |
 | `nhim-domination-fail` | Lyapunov spectrum fails the declared stability or SRB target |
 | `energy-ledger-open` | $E_{\mathrm{hist}}$ is not conserved within tolerance |
 | `exposure-quotient-open` | mass/exposure rows change under branch or extraction refinement |

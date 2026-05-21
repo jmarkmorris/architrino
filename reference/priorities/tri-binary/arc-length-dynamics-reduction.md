@@ -1,6 +1,6 @@
 # Arc-Length Dynamics Reduction
 
-Promotion status: `priority-only`. This packet corrects the dynamics formulation used by the first deformation screens. Those screens parameterized a deformed carrier by a common angle $\theta=\omega t$ and then treated fixed-speed failure as a residual. For a retained fixed-speed branch, the cleaner formulation is to parameterize each support curve by an internal coordinate and build the physical time map from arclength. Fixed speed then becomes an exact constraint, and the remaining dynamics are force-versus-curvature closure on the active causal-root ledger. A bounded variable-speed branch instead uses the speed factor in [variable-speed-factor-extension.md](variable-speed-factor-extension.md).
+Promotion status: `priority-only`. This packet corrects the dynamics formulation used by the first deformation screens. Those screens parameterized a deformed carrier by a common angle $\theta=\omega t$ and then treated fixed-speed failure as a residual. For a retained fixed-speed branch, the cleaner formulation is to parameterize each support curve by an internal coordinate and build the physical time map from arclength. Fixed speed then becomes an exact constraint, and the remaining dynamics are force-versus-curvature closure on the active causal-root ledger. A bounded speed factor branch instead uses the speed factor in [variable-speed-factor-extension.md](variable-speed-factor-extension.md).
 
 This packet does not retain a branch. It changes the next search target.
 
@@ -60,7 +60,7 @@ $$
 
 This is the point missed by the first low-order screens: after a radial or phase deformation, $\theta$ is no longer physical time unless $S_i$ is constant.
 
-The variable-speed extension replaces this time map by
+The bounded speed factor extension replaces this time map by
 
 $$
 t_i(q)

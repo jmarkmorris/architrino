@@ -24,12 +24,8 @@
         "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
       },
       {
-        "nodeId": "theory_mapping",
-        "scenePath": "content/scenes/philosophy_history/theory_mapping.json"
-      },
-      {
-        "nodeId": "theory_differentials",
-        "scenePath": "content/scenes/philosophy_history/theory_differentials.json"
+        "nodeId": "inherited_theory_interface",
+        "scenePath": "content/scenes/philosophy_history/inherited_theory_interface.json"
       },
       {
         "nodeId": "substance_structure_potential",
@@ -96,8 +92,8 @@
       "radius": 2.688,
       "color": "#5a3f73",
       "position": [
-        6.47,
-        8.9,
+        7.07,
+        8.43,
         0
       ],
       "motion": {
@@ -107,35 +103,19 @@
       "fixedPosition": true
     },
     {
-      "id": "theory_mapping",
-      "title": "Theory Mapping",
+      "id": "inherited_theory_interface",
+      "title": "Inherited Theory Interface",
       "radius": 2.688,
       "color": "#2f4f7a",
       "position": [
-        10.46,
-        3.4,
+        10.83,
+        1.91,
         0
       ],
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Theory Mapping",
-      "fixedPosition": true
-    },
-    {
-      "id": "theory_differentials",
-      "title": "Theory Differentials",
-      "radius": 2.688,
-      "color": "#3f6a5a",
-      "position": [
-        6.47,
-        -8.9,
-        0
-      ],
-      "motion": {
-        "type": "fixed"
-      },
-      "labelTitle": "Theory Differentials",
+      "labelTitle": "Inherited Theory Interface",
       "fixedPosition": true
     },
     {
@@ -144,8 +124,8 @@
       "radius": 2.688,
       "color": "#7a5430",
       "position": [
-        10.46,
-        -3.4,
+        9.53,
+        -5.5,
         0
       ],
       "motion": {
@@ -161,8 +141,8 @@
       "radius": 2.688,
       "color": "#2f6b6f",
       "position": [
-        0,
-        -11,
+        3.76,
+        -10.34,
         0
       ],
       "motion": {
@@ -177,8 +157,8 @@
       "radius": 2.688,
       "color": "#4b0082",
       "position": [
-        -6.47,
-        -8.9,
+        -3.76,
+        -10.34,
         0
       ],
       "motion": {
@@ -193,8 +173,8 @@
       "radius": 2.688,
       "color": "#3a5f9f",
       "position": [
-        -10.46,
-        -3.4,
+        -9.53,
+        -5.5,
         0
       ],
       "motion": {
@@ -209,8 +189,8 @@
       "radius": 2.688,
       "color": "#2f4f7a",
       "position": [
-        -10.46,
-        3.4,
+        -10.83,
+        1.91,
         0
       ],
       "motion": {
@@ -225,8 +205,8 @@
       "radius": 2.688,
       "color": "#6a3c3c",
       "position": [
-        -6.47,
-        8.9,
+        -7.07,
+        8.43,
         0
       ],
       "motion": {

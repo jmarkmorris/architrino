@@ -183,6 +183,111 @@ $$
 
 Thus $\mathcal{R}_{\mathrm{tan}}$ is pair-even. This is not a numerical accident; it is the parity forced by exact antipodality, neutral opposite-pair polarity, and an antipodally closed root ledger.
 
+### Bounded Speed Factor Parity
+
+For a bounded speed factor branch, exact-antipodal parity also requires a speed-even involution:
+
+$$
+\nu_{\iota i}(\lambda)=\nu_i(\lambda),
+\qquad
+\nu_{\iota i}'(\lambda)=\nu_i'(\lambda).
+$$
+
+Equivalently,
+
+$$
+\chi_{\iota i}(\lambda)=\chi_i(\lambda),
+\qquad
+\chi_{\iota i}^{-1}(u)=\chi_i^{-1}(u).
+$$
+
+Only on this speed-even submanifold do the bounded-speed root and Jacobian rows obey
+
+$$
+G_{\iota i,\iota j}^{\nu}=G_{ij}^{\nu},
+\qquad
+J_{\iota i,\iota j}^{\nu}=J_{ij}^{\nu},
+$$
+
+and the force row remains pair-odd:
+
+$$
+\widetilde{\mathbf{F}}_{\iota i}^{\nu}
+=
+-\widetilde{\mathbf{F}}_i^{\nu}.
+$$
+
+The bounded-speed tangential residual
+
+$$
+\mathcal{R}_{\parallel,i}^{\nu}
+=
+\nu_i\nu_i'
+-
+\Gamma\mathbf{T}_i\cdot\widetilde{\mathbf{F}}_i^{\nu}
+$$
+
+is then pair-even, while the normal residual
+
+$$
+\mathcal{R}_{\perp,i}^{\nu}
+=
+\nu_i^2\mathbf{K}_i
+-
+\Gamma P_i^\perp\widetilde{\mathbf{F}}_i^{\nu}
+$$
+
+is pair-odd:
+
+$$
+\mathcal{R}_{\parallel,\iota i}^{\nu}
+=
+\mathcal{R}_{\parallel,i}^{\nu},
+\qquad
+\mathcal{R}_{\perp,\iota i}^{\nu}
+=
+-\mathcal{R}_{\perp,i}^{\nu}.
+$$
+
+If $\nu_{\iota i}\ne\nu_i$, the parity lemma fails through the clock map before any force projection is evaluated. With
+
+$$
+\delta\nu_i=\nu_{\iota i}-\nu_i,
+$$
+
+the inverse-clock defect is first order:
+
+$$
+\delta\chi_i^{-1}(u)
+\approx
+\nu_i(\lambda_i)
+\int_0^{\lambda_i}
+\frac{\delta\nu_i(\xi)}
+{\nu_i(\xi)^2}
+d\xi.
+$$
+
+Consequently the paired root defect contains the clock-leak term
+
+$$
+G_{\iota i,\iota j}^{\nu}-G_{ij}^{\nu}
+\approx
+\widehat{\mathbf{R}}_{ij}\cdot
+\left(
+\mathbf{T}_i\delta\chi_i^{-1}
+-
+\mathbf{T}_j^-\delta\chi_j^{-1,-}
+\right).
+$$
+
+Thus any exact-antipodal bounded-speed packet must emit either
+
+$$
+\nu_{\iota i}=\nu_i
+$$
+
+as an exact chart row or an explicit antipodal speed-pair failure status.
+
 ---
 
 ## 4. Why Pair-Even Does Not Mean Obstruction

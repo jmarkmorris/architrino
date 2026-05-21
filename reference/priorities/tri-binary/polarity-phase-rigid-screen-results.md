@@ -54,6 +54,8 @@ q_i=\sigma_i\epsilon,
 \sigma_i\in\{+1,-1\}.
 $$
 
+For every such neutral row, each receiver has the structural source-site inventory $(N_{\mathrm{attr}},N_{\mathrm{rep}})=(3,2)$ from [attraction-repulsion-inventory-theorem.md](attraction-repulsion-inventory-theorem.md). The screen still has to compute the delayed weighted force sums because the $3$-$2$ count is not a closure proof.
+
 Since global sign reversal does not change $\sigma_i\sigma_j$, this gives twenty assignments in the fixed enumeration used by the search.
 
 ---
@@ -146,7 +148,7 @@ The polarity-phase screen therefore does not identify a retained rigid branch.
 
 ## 5. Dynamics Inference
 
-The rigid tangential failure is not only a consequence of choosing opposite polarities inside each binary. Neutral polarity reassignment can shift which delayed line-of-action forces are attractive or repulsive, but the rigid geometry still leaves pointwise tangential leakage.
+The rigid tangential failure is not only a consequence of choosing opposite polarities inside each binary. Neutral polarity reassignment preserves the per-receiver $3$ attractive / $2$ repulsive site count while shifting which delayed line-of-action forces carry those signs; the rigid geometry still leaves pointwise tangential leakage.
 
 The live dynamics path remains deformation of the carrier curves or addition of a declared force-balance channel:
 
@@ -165,4 +167,3 @@ $$
 \qquad
 \texttt{not-retained}.
 $$
-

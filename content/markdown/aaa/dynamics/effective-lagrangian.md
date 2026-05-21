@@ -424,7 +424,7 @@ for the retained two-form $\omega_{\mathcal{Q}}$, or an equivalent Poisson-brack
 
 This gate keeps the exact and effective levels separate. The Master Equation owns the delayed causal dynamics; the effective Hamiltonian owns only those regimes where internal wake memory, branch changes, and unresolved Noether-Sea exchange have been compressed without losing the observer-level invariants being compared.
 
-The same domain restriction applies before translating an effective Hamiltonian chart into quantum operators. The admissible observable set in [Quantum Operator Mapping](../theory-bridges/quantum-operator-mapping.md#admissible-quantization-domain-guardrail) must be derived from this retained coarse-graining and record window, not chosen afterward as a free quantization convention.
+The same domain restriction applies before translating an effective Hamiltonian chart into quantum operators. The admissible observable set in [Quantum Operator Mapping](../philosophy-history/theory-bridges/quantum-operator-mapping.md#admissible-quantization-domain-guardrail) must be derived from this retained coarse-graining and record window, not chosen afterward as a free quantization convention.
 
 ### Topological Constraints and Assembly Stability
 
@@ -508,6 +508,6 @@ $$
 This is a comparison residual, not a new ontology. If it fails, the wave function and Hamiltonian remain useful fitting charts for that window rather than promoted quantum closure.
 
 The interface is closed only when:
-- the Euler-Lagrange equations of the coarse action reproduce the effective envelope equation used in [pilot-wave-character](../theory-bridges/pilot-wave-character.md);
+- the Euler-Lagrange equations of the coarse action reproduce the effective envelope equation used in [pilot-wave-character](../philosophy-history/theory-bridges/pilot-wave-character.md);
 - the phase-amplitude chart reports $\mathcal{R}_{\mathrm{env}}$ rather than assuming the Schrödinger limit;
 - memory contributions $\mathbf{j}_{\mathrm{mem}}$ remain explicit as controlled correction terms rather than hidden parameter absorbs.

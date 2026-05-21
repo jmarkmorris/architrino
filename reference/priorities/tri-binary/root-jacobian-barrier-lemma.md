@@ -94,7 +94,7 @@ $$
 -J_{ij,n}(\eta;\alpha).
 $$
 
-For a variable-speed row, the collocation nodes are common causal-time nodes
+For a bounded speed factor row, the collocation nodes are common causal-time nodes
 
 $$
 u_n=\frac{nH_*}{K},
@@ -119,7 +119,7 @@ $$
 d\zeta.
 $$
 
-Then the variable-speed root row is
+Then the bounded speed factor root row is
 
 $$
 G_{ij,n}^{\nu}(\eta;\alpha)

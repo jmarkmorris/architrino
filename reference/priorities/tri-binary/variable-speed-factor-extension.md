@@ -4,6 +4,8 @@ Promotion status: `priority-only`. This packet switches the same-level tri-binar
 
 The extension is motivated by the possibility that an architrino may briefly cross a same-source hinge into a controlled self-hit or fold-layer mode, then return to the ordinary partner/cross-binary ledger within a short time. It does not retain a branch. It states the equations and gate rows that a bounded-speed branch must emit before it can replace the current fixed-speed screens.
 
+Filename note: `variable-speed-factor-extension.md` is the legacy filename for the bounded speed factor packet. The canonical center-time chart for this packet is [bounded-speed-factor-center-time-dynamics.md](bounded-speed-factor-center-time-dynamics.md); the scalar tangential solvability row is [bounded-speed-factor-speed-ode-solvability.md](bounded-speed-factor-speed-ode-solvability.md).
+
 ---
 
 ## 1. Speed Factor And Time Map
@@ -68,6 +70,21 @@ t_i(\lambda_i)
 \frac{d\xi}{\nu_i(\xi)}.
 $$
 
+The dimensionless center-time form used by successor packets is
+
+$$
+u=\frac{c_f(t-t_0)}{R_*},
+\qquad
+\chi_i(\lambda_i)
+=
+\frac{c_f}{R_*}t_i(\lambda_i)
+=
+\int_0^{\lambda_i}
+\frac{d\xi}{\nu_i(\xi)},
+\qquad
+\Lambda_i(u)=\chi_i^{-1}(u).
+$$
+
 A common closed branch requires equal physical periods, or a declared winding relation:
 
 $$
@@ -92,6 +109,16 @@ m_iT_i=T_{\mathrm{com}},
 \qquad
 m_i\in\mathbb{N}.
 $$
+
+Equivalently, the dimensionless period row is
+
+$$
+H_i=\chi_i(L_i)=\frac{c_f}{R_*}T_i,
+\qquad
+H_*=\frac{c_f}{R_*}T_*,
+$$
+
+with either $H_i=H_*$ for every site or $m_iH_i=H_{\mathrm{com}}$ on a winding branch.
 
 Thus equal arclength length is no longer the period row by itself. The retained row is equal physical return time.
 
@@ -128,7 +155,7 @@ $$
 \mathbf{K}_i=\mathbf{Y}_i''.
 $$
 
-The fixed-speed model removed the tangential acceleration row because $\nu_i'=0$. The variable-speed model keeps it. If $\widetilde{\mathbf{F}}_i$ is the dimensionless delayed force and $\Gamma$ is the action-derived force-to-curvature scale, the intrinsic dynamics equation becomes
+The fixed-speed model removed the tangential acceleration row because $\nu_i'=0$. The bounded speed factor model keeps it. If $\widetilde{\mathbf{F}}_i$ is the dimensionless delayed force and $\Gamma$ is the action-derived force-to-curvature scale, the intrinsic dynamics equation becomes
 
 $$
 \nu_i^2\mathbf{K}_i
@@ -166,7 +193,7 @@ is replaced by a speed-factor evolution equation. The fixed-speed row is the spe
 
 ---
 
-## 3. Causal Roots With Variable Source Speed
+## 3. Causal Roots With Bounded Source Speed
 
 For a receiver site $i$ at arclength $\lambda$, define receiver time
 
@@ -219,7 +246,7 @@ G_\eta
 -J_{ij},
 $$
 
-with the variable-speed root Jacobian
+with the bounded-speed root Jacobian
 
 $$
 J_{ij}
@@ -246,7 +273,7 @@ $$
 1-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}
 $$
 
-in any variable-speed root ledger, tail certificate, Newton row, Krawczyk row, or root-front calculation.
+in any bounded-speed root ledger, tail certificate, Newton row, Krawczyk row, or root-front calculation.
 
 ---
 
@@ -307,16 +334,18 @@ A controlled self-hit mode is a connected event interval
 $$
 \mathcal{H}_i
 =
-\{\lambda:\text{a same-source ordinary root with }J_{\mathrm{self}}\ge J_{\mathrm{self},0}>0\text{ exists}\}.
+\{\lambda:\text{a same-source ordinary root with }J_{\mathrm{self}}^{\nu}\ge J_{\mathrm{self},0}>0\text{ exists}\}.
 $$
 
 It is admissible only if the branch emits:
 
 $$
-\operatorname{dur}_t(\mathcal{H}_i)
+\operatorname{dur}_u(\mathcal{H}_i)
 \le
-\tau_{\mathrm{hit}},
+\tau_{\mathrm{hit}}^u,
 $$
+
+where $\operatorname{dur}_u(\mathcal{H}_i)=|\chi_i(\mathcal{H}_i)|$ is the dimensionless center-time duration. Physical duration is recovered by $\operatorname{dur}_t=(R_*/c_f)\operatorname{dur}_u$.
 
 and
 
@@ -339,11 +368,13 @@ $$
 \texttt{self-hit-mode-unledgered}.
 $$
 
-This differs from the fixed-speed `regularized-fold-layer` row. A variable-speed self-hit can be an ordinary delayed root only when the overspeed hinge equation is crossed and the positive Jacobian floor survives. If the row is instead singular or near-zero, it still requires the fold-layer action regularization.
+This differs from the fixed-speed `regularized-fold-layer` row. A bounded-speed self-hit can be an ordinary delayed root only when the overspeed hinge equation is crossed and the positive Jacobian floor survives. If the row is instead singular or near-zero, it still requires the fold-layer action regularization.
 
 ---
 
 ## 5. Attraction/Repulsion Inventory Row
+
+The standalone inventory theorem is [attraction-repulsion-inventory-theorem.md](attraction-repulsion-inventory-theorem.md). This section records the bounded speed factor packet's local dependency on that row.
 
 In a neutral three-binary same-level carrier, every architrino sees three opposite-polarity source sites and two same-polarity source sites, excluding itself:
 
@@ -382,15 +413,15 @@ The count is therefore a structural bias, not a closure proof. It should be expo
 
 ---
 
-## 6. Variable-Speed Branch Theorem Target
+## 6. Bounded Speed Factor Branch Theorem Target
 
-**Theorem target: bounded variable-speed same-level branch.** Fix six closed arclength curves $\mathbf{Y}_i$, positive speed factors $\nu_i$, a source-pair policy, a same-source policy, and a support scale $R_*$. Suppose:
+**Theorem target: bounded speed factor same-level branch.** Fix six closed arclength curves $\mathbf{Y}_i$, positive speed factors $\nu_i$, a source-pair policy, a same-source policy, a normalization scale $R_*$, and a support descriptor. Suppose:
 
 1. the speed band holds: $0<\nu_-\le\nu_i\le\nu_+$;
 2. the physical return periods are equal or satisfy a declared winding relation;
-3. the variable-speed causal-root ledger is finite, has positive delay floor, and uses $J_{ij}=1-\nu_j^-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$ with a positive Jacobian floor;
+3. the bounded-speed causal-root ledger is finite, has positive delay floor, and uses $J_{ij}=1-\nu_j^-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$ with a positive Jacobian floor;
 4. any self-hit interval satisfies the short-duration, overspeed-budget, action, and event rows;
-5. the variable-speed dynamics equation
+5. the bounded-speed dynamics equation
 
 $$
 \nu_i^2\mathbf{K}_i+\nu_i\nu_i'\mathbf{T}_i
@@ -399,14 +430,14 @@ $$
 $$
 
 holds for all sites;
-6. the action-derived $\Gamma$, work-form curl, Noether/event ledger, support band, noncollision, convergence, and stability rows all use the same variable-speed ledger.
+6. the action-derived $\Gamma$, work-form curl, Noether/event ledger, support descriptor, noncollision, convergence, and stability rows all use the same bounded-speed ledger.
 
-Then the row is a variable-speed same-level dynamics/action candidate. It becomes a retained branch only after the master retention theorem is rerun with the variable-speed root, force, action, and event rows.
+Then the row is a bounded-speed same-level dynamics/action candidate. It becomes a retained branch only after the master retention theorem is rerun with the bounded-speed root, force, action, and event rows.
 
 Proof route:
 
 1. positive $\nu_i$ gives a regular time map and inverse source phases;
-2. differentiating the root equation gives the variable-speed Jacobian and root-sheet derivatives;
+2. differentiating the root equation gives the bounded-speed Jacobian and root-sheet derivatives;
 3. differentiating $\dot{\mathbf{x}}_i=c_f\nu_i\mathbf{T}_i$ gives the tangential and normal acceleration rows;
 4. the self-hit hinge condition identifies when ordinary same-source roots can appear;
 5. bounded self-hit duration and overspeed budget prevent the self row from becoming an unledgered singular force channel;
@@ -416,18 +447,22 @@ Proof route:
 
 ## 7. Output Schema
 
-A variable-speed branch packet must emit:
+A bounded speed factor branch packet must emit:
 
 | Field | Payload |
 | --- | --- |
 | `speed_factor` | $\nu_i(\lambda)$, $\nu_-$, $\nu_+$, $\nu_i'$, and speed-band status |
-| `time_map` | $t_i(\lambda)$, $T_i$, winding/equal-period row, and inverse source phase solver |
-| `variable_speed_roots` | $G_{ij}$, $J_{ij}$, root brackets, Jacobian floors, and tail certificates using $\nu_j^-$ |
+| `support_descriptor` | free-support, radial-sector, fixed-radius-special-case, nested, or transition support status with certified margins |
+| `center_time_map` | $u$, $\chi_i(\lambda)$, $\Lambda_i(u)$, $H_i$, winding/equal-period row, and inverse source phase solver |
+| `speed_ode_solvability` | zero-mean tangent forcing, primitive excursion, initial-speed interval, clock/length speed, and speed-band feasibility |
+| `bounded_speed_roots` | $G_{ij}^{\nu}$, $J_{ij}^{\nu}$, root brackets, Jacobian floors, and tail certificates using $\nu_j^-$ |
 | `dynamics_rows` | $\nu_i\nu_i'=\Gamma\mathbf{T}_i\cdot\widetilde{\mathbf{F}}_i$ and $\nu_i^2\mathbf{K}_i=\Gamma P_i^\perp\widetilde{\mathbf{F}}_i$ |
-| `self_hit_rows` | hinge intervals, $J_{\mathrm{self}}$ floors, $\tau_{\mathrm{hit}}$, $B_{\mathrm{hit}}$, action/event entries, and return rows |
+| `normal_reconstruction` | tangent holonomy, position closure, frame monodromy, support-radial compatibility, and root-ledger persistence for the normal row |
+| `self_hit_rows` | hinge intervals, $J_{\mathrm{self}}^{\nu}$ floors, $\tau_{\mathrm{hit}}^u$, $B_{\mathrm{hit}}$, action/event entries, and return rows |
 | `inventory_bias` | $N_{\mathrm{attr}}=3$, $N_{\mathrm{rep}}=2$, and force-weighted attraction/repulsion sums |
-| `action_event_rows` | speed-factor contribution to work, $\Gamma$, Noether/event, and conservation ledgers |
-| `status` | `variable-speed-candidate`, `fixed-speed-special-case`, `self-hit-mode-unledgered`, or first failed row |
+| `support_action_work` | support multiplier work, hidden-external-work status, and Noether support residuals when support constraints are active |
+| `action_event_rows` | speed-factor contribution to work, support work if active, $\Gamma$, Noether/event, and conservation ledgers |
+| `status` | `bounded-speed-candidate`, `fixed-speed-special-case`, `self-hit-mode-unledgered`, or first failed row |
 
 ---
 
@@ -439,12 +474,12 @@ $$
 \nu_i\equiv1.
 $$
 
-They remain useful as the special case, but they do not certify the variable-speed model. A variable-speed successor must rerun the root frontier, support-tail certificate, action scale, Krawczyk proof budget, and master retention theorem with the modified source-time map and Jacobian.
+They remain useful as the special case, but they do not certify the bounded speed factor model. A bounded-speed successor must rerun the root frontier, support-tail certificate, action scale, Krawczyk proof budget, and master retention theorem with the modified source-time map and Jacobian.
 
 Current status:
 
 $$
-\texttt{variable-speed-row-open},
+\texttt{bounded-speed-row-open},
 \qquad
 \texttt{self-hit-mode-unledgered},
 \qquad

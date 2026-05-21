@@ -4,6 +4,8 @@ Promotion status: `priority-only`. This packet turns the intrinsic curve equatio
 
 Claim level: solver specification and theorem-target support. This document does not claim a retained same-level branch, does not certify a nonlinear solution, and does not authorize migration into `content/markdown/aaa`.
 
+This packet is the fixed-speed intrinsic solver unless the unknown vector is augmented by a bounded speed factor. The bounded-speed executable successor is [bounded-speed-factor-executable-solver-protocol.md](bounded-speed-factor-executable-solver-protocol.md), where the solver variables are $(a,b,\gamma)$ and the residual includes $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, causal-time roots, and speed-band rows.
+
 ---
 
 ## 1. Solver Target

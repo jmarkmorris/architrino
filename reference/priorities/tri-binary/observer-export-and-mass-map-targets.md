@@ -2,7 +2,7 @@
 
 This priority note converts the same-level tri-binary observer-facing claims into export rows that a retained branch packet must compute before any downstream promotion. It is a priority-only theorem-target document. It does not authorize migration into `content/markdown/aaa`, scene assets, simulation defaults, or end-user language.
 
-Promotion status: `priority-only`. The material below becomes promotion-ready only after a same-level branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, closed tangential residuals, a history-dressed energy/action ledger, exposure and Noether-Sea response rows, and observer exports marked `passed`, `failed`, or `not_computed`.
+Promotion status: `priority-only`. The material below becomes promotion-ready only after a same-level branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, fixed-speed tangent closure or bounded-speed speed-ODE closure, a history-dressed energy/action ledger, exposure and Noether-Sea response rows, and observer exports marked `passed`, `failed`, or `not_computed`.
 
 If the branch uses the bounded speed factor in [variable-speed-factor-extension.md](variable-speed-factor-extension.md), every observer export below must be recomputed on the bounded-speed ledger. In particular, the moving-assembly clock/ruler row must replace the fixed-speed condition by
 
@@ -207,7 +207,7 @@ $$
 
 The Lorentz theorem target is therefore a ladder:
 
-1. Retained moving branch existence: $X_q^{(\mathbf{v})}$ has finite active causal roots, $J_{\min}^{(q)}(\mathbf{v})>\epsilon_J$, finite $h_{\mathrm{mem}}^{(q)}(\mathbf{v})$, and closed tangential residuals.
+1. Retained moving branch existence: $X_q^{(\mathbf{v})}$ has finite active causal roots, $J_{\min}^{(q)}(\mathbf{v})>\epsilon_J$, finite $h_{\mathrm{mem}}^{(q)}(\mathbf{v})$, and fixed-speed tangent closure or bounded-speed speed-ODE closure.
 2. Carrier retuning: the absolute constituent speed row and transverse carrier row explain the $\gamma^{-1}$ speed ratio without assuming it.
 3. Clock extraction: $T_q(\mathbf{v})$ is measured from the retained internal phase or invariant measure and gives $\Theta_{\mathrm{clk}}^{(q)}-\gamma^{-1}$ below tolerance.
 4. Ruler extraction: the moving branch envelope gives $\xi_q-\gamma^{-1}$ and $\lambda_q-1$ below tolerance.

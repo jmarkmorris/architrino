@@ -153,7 +153,7 @@ $$
 \hat{\mathbf{t}}_i(t)=\frac{\mathbf{u}_i(t)}{c_f}.
 $$
 
-For a bounded variable-speed row from [variable-speed-factor-extension.md](variable-speed-factor-extension.md), replace this by
+For a bounded speed factor row from [variable-speed-factor-extension.md](variable-speed-factor-extension.md), replace this by
 
 $$
 \mathbf{u}_i(t)=c_f\nu_i(t)\hat{\mathbf{t}}_i(t),
@@ -216,7 +216,7 @@ $$
 =0.
 $$
 
-In the variable-speed row, the same projection is not zero. It is the speed-factor evolution equation:
+In the bounded speed factor row, the same projection is not zero. It is the speed-factor evolution equation:
 
 $$
 \mathbf{u}_i(t)\cdot\mathbf{a}_i^{\mathrm{rel}}(t)
@@ -371,7 +371,7 @@ $$
 \frac{c_f^2-\left(\dot{\rho}_i(t)\right)^2}{\rho_i(t)}.
 $$
 
-For a variable-speed carrier, the same identity uses $\|\mathbf{u}_i\|^2=c_f^2\nu_i^2$:
+For a bounded speed factor carrier, the same identity uses $\|\mathbf{u}_i\|^2=c_f^2\nu_i^2$:
 
 $$
 \hat{\mathbf{n}}_i(t)\cdot\dot{\mathbf{u}}_i(t)
@@ -393,7 +393,7 @@ $$
 \frac{c_f^2-\left(\dot{\rho}_i(t)\right)^2}{\rho_i(t)}.
 $$
 
-The variable-speed residual replaces $c_f^2$ by $c_f^2\nu_i^2$ in this last term.
+The bounded speed factor residual replaces $c_f^2$ by $c_f^2\nu_i^2$ in this last term.
 
 A prescribed support-radius row must satisfy
 
@@ -462,7 +462,7 @@ $$
 =0.
 $$
 
-For a rigid-radius variable-speed row, the centripetal term is instead
+For a rigid-radius bounded speed factor row, the centripetal term is instead
 
 $$
 \frac{c_f^2\nu_i(t)^2}{R}.

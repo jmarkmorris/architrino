@@ -31,14 +31,14 @@ The entries are:
 
 | Certificate | Required content |
 | --- | --- |
-| $\mathsf{C}_{\mathrm{geom}}$ | closed arclength curves, equal-period row, support-band row, exact-antipodal or declared relaxed chart, center gauge, noncollision floor |
+| $\mathsf{C}_{\mathrm{geom}}$ | closed arclength curves, equal-period row, support descriptor or radial-sector support-band row, exact-antipodal or declared relaxed chart, center gauge, noncollision floor |
 | $\mathsf{C}_{\mathrm{root}}$ | support-complete active root ledger with brackets, excluded gaps, Jacobian floors, memory depth, tail exclusion or tail assimilation |
-| $\mathsf{C}_{\mathrm{dyn}}$ | support-complete tangential and curvature dynamics closure |
+| $\mathsf{C}_{\mathrm{dyn}}$ | support-complete dynamics closure: fixed-speed tangent/curvature rows or bounded-speed speed-ODE/normal rows |
 | $\mathsf{C}_{\mathrm{conv}}$ | finite-mode convergence from certified rows to a curve-level branch |
 | $\mathsf{C}_{\Gamma}$ | action-derived scale or tensorial inertia row, plus fitted/action compatibility |
 | $\mathsf{C}_{\mathrm{Noether}}$ | Noether action conservation closure for energy, momentum, angular momentum, charge, and source provenance |
 | $\mathsf{C}_{\mathrm{stab}}$ | root-dependent variational equation, monodromy, action Hessian or declared stability-energy row, gauge split, transverse stability or declared NHIM row |
-| $\mathsf{C}_{\mathrm{inventory}}$ | integer architrino inventory, polarity map, central-inventory ledger, and branch labels |
+| $\mathsf{C}_{\mathrm{inventory}}$ | integer architrino inventory, polarity map, attraction/repulsion site inventory when applicable, central-inventory ledger, and branch labels |
 | $\mathsf{C}_{\mathrm{event}}$ | event interval, endpoint convention, boundary exchange, and source provenance ledgers |
 | $\mathsf{C}_{\mathrm{export}}$ | observer-export rows marked `passed`, `failed`, or `not_computed`; exports do not define retention |
 
@@ -57,6 +57,8 @@ W,
 \eta_{\mathrm{mem}},
 \Pi_{\mathrm{src}},
 \Pi_{\mathrm{end}},
+\mathsf{Geom},
+\mathsf{Support},
 \mathsf{Root},
 \mathsf{Dyn},
 \mathsf{Limit},
@@ -64,6 +66,7 @@ W,
 \mathsf{Noether},
 \mathsf{Event},
 \mathsf{Stability},
+\mathsf{Inventory},
 \mathsf{Exports},
 \mathsf{Compare},
 \epsilon_{\mathrm{tol}},
@@ -76,6 +79,10 @@ The compact promotion predicate is
 $$
 \mathrm{Promote}_{\mathrm{ret}}(B,W)
 \Longleftrightarrow
+P_{\mathrm{geom}}
+\wedge
+P_{\mathrm{support}}
+\wedge
 P_{\mathrm{root}}
 \wedge
 P_{\mathrm{dyn}}
@@ -88,16 +95,18 @@ P_{\mathrm{Noether}}
 \wedge
 P_{\mathrm{event}}
 \wedge
+P_{\mathrm{inventory}}
+\wedge
 P_{\mathrm{stab}}.
 $$
 
-Here $P_{\mathrm{root}}$ means support-complete roots and floors; $P_{\mathrm{dyn}}$ means support-complete dynamics closure; $P_{\mathrm{lim}}$ means finite-mode convergence or direct curve-level certification; $P_{\Gamma}$ means action-derived scale and curl closure; $P_{\mathrm{Noether}}$ means conservation from one action/event ledger; $P_{\mathrm{event}}$ means inventory, source provenance, recoil, and boundary exchange closure; and $P_{\mathrm{stab}}$ means root-ledger-preserving stability.
+Here $P_{\mathrm{geom}}$ means closed arclength geometry, center gauge, equal-period or winding data, and noncollision floor; $P_{\mathrm{support}}$ means the declared support descriptor or radial-sector support-band row; $P_{\mathrm{root}}$ means support-complete roots and floors; $P_{\mathrm{dyn}}$ means support-complete dynamics closure; $P_{\mathrm{lim}}$ means finite-mode convergence or direct curve-level certification; $P_{\Gamma}$ means action-derived scale and curl closure; $P_{\mathrm{Noether}}$ means conservation from one action/event ledger; $P_{\mathrm{event}}$ means source provenance, recoil, and boundary exchange closure; $P_{\mathrm{inventory}}$ means integer polarity, central inventory, and attraction/repulsion inventory rows; and $P_{\mathrm{stab}}$ means root-ledger-preserving stability.
 
 ---
 
 ## 2. Dynamics Closure Row
 
-The dynamics row must be support-complete. It is not enough to lower the sampled residual. On the retained ledger,
+The dynamics row must be support-complete. It is not enough to lower the sampled residual. In the fixed-speed special case, on the retained ledger,
 
 $$
 \mathcal{R}_{\mathrm{tan}}
@@ -125,10 +134,23 @@ $$
 \tau_{\Gamma}.
 $$
 
+In a bounded-speed branch, the fixed-speed tangent row is replaced by the speed-ODE solvability packet:
+
+$$
+\frac{d\nu_i}{du}
+=
+\Gamma T_i(u)\cdot F_i^\nu(u),
+\qquad
+\mathcal{R}_{\mathrm{speedODE}}^\nu=0,
+$$
+
+with the zero-mean, primitive-excursion, speed-band, and clock/length rows from [bounded-speed-factor-speed-ode-solvability.md](bounded-speed-factor-speed-ode-solvability.md). The normal row becomes $\mathcal{R}_{\perp}^{\nu}=0$ on the same bounded-speed root ledger and must be upgraded to curve-level closure by [bounded-speed-factor-normal-reconstruction-theorem.md](bounded-speed-factor-normal-reconstruction-theorem.md). A bounded-speed packet that reports only a smaller fixed-speed tangent residual or sampled normal residual has not closed $\mathsf{C}_{\mathrm{dyn}}$.
+
 The dynamics closure row must cite either:
 
-1. [support-complete-m3-successor-certificate-target.md](support-complete-m3-successor-certificate-target.md), for a finite exact-antipodal $M=3$ candidate; or
-2. [finite-mode-branch-convergence-theorem.md](finite-mode-branch-convergence-theorem.md), for the continuum limit of a certified refinement sequence.
+1. [support-complete-m3-successor-certificate-target.md](support-complete-m3-successor-certificate-target.md), for a finite exact-antipodal fixed-speed $M=3$ candidate;
+2. [bounded-speed-factor-master-retention-theorem.md](bounded-speed-factor-master-retention-theorem.md), for a bounded-speed candidate; or
+3. [finite-mode-branch-convergence-theorem.md](finite-mode-branch-convergence-theorem.md), for the continuum limit of a certified refinement sequence.
 
 An active-window row, a fit-only row, a frozen-tail row, or a sample-grid row cannot promote.
 
@@ -189,6 +211,8 @@ $$
 \le
 \epsilon_{\mathrm{curl}}.
 $$
+
+If the branch uses a free-support descriptor with active support barriers, $\mathcal{S}_{\mathrm{constraints}}$ must contain the support multiplier row and the conservation ledger must include support work as in [free-support-action-compatibility-theorem.md](free-support-action-compatibility-theorem.md). Otherwise support viability is an external constraint, not a retained action row.
 
 For each Noether generator $\xi$, the conservation residual must obey
 

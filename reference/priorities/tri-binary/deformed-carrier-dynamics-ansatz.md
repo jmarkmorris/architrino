@@ -62,7 +62,7 @@ $$
 
 inside causal-root and force variations. In the center-gauge branch-existence chart, $\mathbf{Z}=\mathbf{0}$ and $\boldsymbol{\chi}_i=\boldsymbol{\xi}_i$.
 
-The deformation is admissible only inside the common support band
+In the radial same-level sector, the deformation is admissible only inside the common support band
 
 $$
 R-\delta
@@ -1086,7 +1086,7 @@ A deformed carrier ansatz remains `priority-only` unless it supplies all rows be
 
 | Row | Required output |
 | --- | --- |
-| Support band | $R-\delta\le\|\mathbf{y}_i\|\le R+\delta$ and support-band margins |
+| Support descriptor | radial sector: $R-\delta\le\|\mathbf{y}_i\|\le R+\delta$ and support-band margins; free-support sector: declared support functional and equivalent margins |
 | Speed | $\mathcal{R}_{\mathrm{speed}}\le\epsilon_v$ or declared controlled tolerance |
 | Phase and winding | $\mathcal{R}_{\mathrm{phase}}\le1$ and winding residuals |
 | Antipodal status | exact row or $\mathcal{R}_{\mathrm{anti}}\le1$ with partner-root rescreen |
@@ -1117,7 +1117,7 @@ A deformed support-band search should emit one record per candidate:
 | --- | --- |
 | `candidate_id` | deformation family, harmonic cutoff, polarity row, and retained-root convention |
 | `deformation_variables` | $b$, $\psi$, $\boldsymbol{\mu}$, $\mathbf{e}$, $\mathbf{C}$ and their coefficient tables |
-| `state_vector` | $\mathbf{x}_i$, $\mathbf{u}_i$, polarities, support band, center gauge |
+| `state_vector` | $\mathbf{x}_i$, $\mathbf{u}_i$, polarities, support descriptor, center gauge |
 | `speed_residuals` | $\mathcal{R}_{\mathrm{speed}}$ by site and aggregate norms |
 | `tangential_residuals` | rigid baseline, deformed value, gain, supremum, and rms |
 | `noncollision` | $d_{\min}$, node clearances, and closest-pair provenance |

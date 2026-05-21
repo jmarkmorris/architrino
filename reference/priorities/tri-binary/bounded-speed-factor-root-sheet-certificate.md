@@ -1,6 +1,6 @@
 # Bounded Speed Factor Root-Sheet Certificate
 
-Promotion status: `priority-only`. This packet is the bounded-speed successor to the fixed-speed root-sheet formulas in [support-complete-m3-root-sheet-variations.md](support-complete-m3-root-sheet-variations.md). It keeps the arclength curves as geometric objects, but moves every active root, tail sheet, derivative envelope, and Krawczyk input onto the causal-time clock defined by the bounded speed factor.
+Promotion status: `priority-only`. This packet is the bounded-speed successor to the fixed-speed root-sheet formulas in [support-complete-m3-root-sheet-variations.md](support-complete-m3-root-sheet-variations.md). It keeps the arclength curves as geometric objects, but moves every active root, tail sheet, derivative envelope, and Krawczyk input onto the causal-time clock defined by the bounded speed factor. Its second-variation layer is supplied by [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md).
 
 The fixed-speed sheet theorem remains valid only as the special case $\nu_i\equiv1$.
 
@@ -179,7 +179,7 @@ Write
 $$
 \xi_i(\lambda)=D_v\mathbf{Y}_i(\lambda),
 \qquad
-\upsilon_i(\lambda)=D_v\nu_i(\lambda).
+\rho_i(\lambda)=D_v\nu_i(\lambda).
 $$
 
 The variation of the clock at fixed arclength is
@@ -190,7 +190,7 @@ $$
 D_v\chi_i(\lambda)
 =
 -\int_0^\lambda
-\frac{\upsilon_i(\xi)}{\nu_i(\xi)^2}
+\frac{\rho_i(\xi)}{\nu_i(\xi)^2}
 d\xi.
 $$
 
@@ -315,7 +315,7 @@ D_v\nu_j^-\,
 \nu_j^-\mathbf{T}_j^-\cdot D_v\widehat{\mathbf{R}}_u.
 $$
 
-Setting $\nu_i\equiv1$ and $\upsilon_i\equiv0$ collapses these formulas to the fixed-speed root-sheet variation theorem.
+Setting $\nu_i\equiv1$ and $\rho_i\equiv0$ collapses these formulas to the fixed-speed root-sheet variation theorem.
 
 ---
 
@@ -457,6 +457,7 @@ A bounded-speed root-sheet packet must emit:
 | `jacobian` | $J_{ij}^{\nu}=1-\nu_j^-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$, sign label, and floor |
 | `sheet_slope` | $d\eta_u/du$ and mesh-lift bounds |
 | `coefficient_variations` | $\phi_{v,i}$, $\Xi_i$, $D_v\eta_u$, $D_vJ_{ij}^{\nu}$, and force derivatives |
+| `second_root_variations` | $D^2\eta^\nu$, $D^2J^\nu$, force-weight Hessians, and $L_R^{\mathrm{sheet},\nu}$ from [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md) |
 | `tail_persistence` | coefficient-box margins for causal-time tail slabs |
 | `krawczyk_envelope` | $L_R^{\nu,+}$ and $\rho_{\mathrm{chart}}^{\nu}$ |
 | `status` | `bounded-speed-root-sheet-certified`, fixed-speed special case, or first failed row |

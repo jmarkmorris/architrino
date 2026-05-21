@@ -867,7 +867,7 @@ This chapter centralizes the black-hole ontology and hands specific tasks to adj
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition and singularity replacement language.
 - [gr-phenomenology.md](./gr-phenomenology.md): weak-field and strong-field observational closure targets.
 - [../dynamics/tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md): tri-binary regime map, recycling sketches, and kinematic hypotheses.
-- [../theory-bridges/planck-scale-tri-binary-alignment.md](../theory-bridges/planck-scale-tri-binary-alignment.md): Planck-alignment interpretation of terminal horizon locking.
+- [../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md](../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md): Planck-alignment interpretation of terminal horizon locking.
 - [../cosmology/dark-energy.md](../cosmology/dark-energy.md): effective dark-energy source terms and late-time expansion history.
 - [../cosmology/CMB.md](../cosmology/CMB.md): recycling cosmology and SMBH-sourced chronology mapping.
 - [../cosmology/dark-matter.md](../cosmology/dark-matter.md): dark-sector processing and SMBH recycling constraints.

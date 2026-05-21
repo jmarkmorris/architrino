@@ -28,6 +28,8 @@ q_{a,-}=-\epsilon,
 \epsilon=\frac{|e|}{6}.
 $$
 
+This neutral polarity row also carries the site-count inventory from [attraction-repulsion-inventory-theorem.md](attraction-repulsion-inventory-theorem.md): each receiver has three opposite-polarity attractive source sites and two same-polarity repulsive source sites before delayed root weights are applied.
+
 A candidate same-level branch on a compact window $W=[t_0,t_0+T_*]$ is represented in the center-gauge chart by periodic support-band curves
 
 $$

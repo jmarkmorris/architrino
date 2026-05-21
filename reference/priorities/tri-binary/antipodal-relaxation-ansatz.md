@@ -242,7 +242,7 @@ $$
 1+\delta_*,
 $$
 
-after normalization by the chosen support scale $R_*$. Squaring gives
+after normalization by the chosen branch scale $R_*$. Squaring gives
 
 $$
 \|\mathbf{m}_a\|^2+\|\mathbf{r}_a\|^2

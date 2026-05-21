@@ -554,7 +554,7 @@ The theorem can promote into [particle-masses](../../../content/markdown/aaa/ass
 - [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md)
 - [energy](../../../content/markdown/aaa/dynamics/energy.md)
 - [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md)
-- [weak-mixing-ckm](../../../content/markdown/aaa/theory-bridges/weak-mixing-ckm.md)
+- [weak-mixing-ckm](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md)
 - [color-charge-su3](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md)
 - [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md)
 - [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md)

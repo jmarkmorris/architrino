@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "inherited_theory_interface",
+    "title": "Inherited Theory Interface",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "rings"
+    },
+    "children": [
+      {
+        "nodeId": "theory_mapping",
+        "scenePath": "content/scenes/philosophy_history/theory_mapping.json"
+      },
+      {
+        "nodeId": "theory_differentials",
+        "scenePath": "content/scenes/philosophy_history/theory_differentials.json"
+      },
+      {
+        "nodeId": "theory_bridges",
+        "scenePath": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "theory_mapping",
+      "title": "Theory Mapping",
+      "radius": 2.25,
+      "color": "#2f4f7a",
+      "position": [
+        0,
+        3.2,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Theory Mapping",
+      "fixedPosition": true
+    },
+    {
+      "id": "theory_differentials",
+      "title": "Theory Differentials",
+      "radius": 2.25,
+      "color": "#3f6a5a",
+      "position": [
+        -3.8,
+        -3.3,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Theory Differentials",
+      "fixedPosition": true
+    },
+    {
+      "id": "theory_bridges",
+      "title": "Theory Bridges",
+      "radius": 2.25,
+      "color": "#4f5d75",
+      "position": [
+        3.8,
+        -3.3,
+        0
+      ],
+      "motion": {
+        "type": "fixed"
+      },
+      "labelTitle": "Theory Bridges",
+      "fixedPosition": true
+    }
+  ]
+}

@@ -69,13 +69,15 @@ The rescore in [arclength-inverse-rescore-results.md](arclength-inverse-rescore-
 
 ## 2. Dimensional Scaling
 
-Use the support scale $R_*$ and arclength clock
+Use the normalization scale $R_*$ and arclength clock
 
 $$
 \lambda=\frac{c_ft}{R_*},
 \qquad
 \mathbf{x}_i(t)=R_*\mathbf{Y}_i(\lambda).
 $$
+
+Here $R_*$ is a normalization scale for the action row. The actual branch support data remain in the support descriptor; a fixed radius or common support band is an additional sector row, not a consequence of this scaling convention.
 
 Then
 
@@ -310,7 +312,7 @@ The entries mean:
 
 | Entry | Role |
 | --- | --- |
-| $R_*$ | declared support scale used by the root, force, action, and mass rows |
+| $R_*$ | declared normalization scale used by the root, force, action, and mass rows |
 | $E_\epsilon$ | branch charge-interaction scale $\kappa\epsilon^2/R_*$ |
 | $\eta_{\mathrm{mem}}$ | dimensionless memory depth used by the active-root, force, and action rows |
 | $\mathcal{A}_B$ | retained active causal-root ledger |
@@ -484,7 +486,7 @@ $$
 
 on the normal carrier modes.
 
-Third, a scalar fit can drift with discretization, Fourier order, support scale, or root policy:
+Third, a scalar fit can drift with discretization, Fourier order, normalization scale, support descriptor, or root policy:
 
 $$
 \Gamma^{\mathrm{fit}}(M,K,\mathcal{A})
@@ -522,12 +524,12 @@ $$
 
 ### T1. Scale-Action Reduction
 
-**Theorem target.** Fix a same-level branch class $B$ with support scale $R_*$, active causal-root ledger $\mathcal{A}_B$, branch history $\mathcal{H}_B$, and closed arclength curves $\mathbf{Y}_i$. Assume:
+**Theorem target.** Fix a same-level branch class $B$ with normalization scale $R_*$, support descriptor, active causal-root ledger $\mathcal{A}_B$, branch history $\mathcal{H}_B$, and closed arclength curves $\mathbf{Y}_i$. Assume:
 
 1. the causal-root ledger has finite active roots, finite memory, positive Jacobian floor, and noncollision floor;
 2. the normal virtual-work row is exact on the retained root stratum or is supplied by an action $\mathcal{S}_{\mathrm{hist}}$;
 3. the normal carrier inertia operator reduces to a common scalar $m_{\mathrm{car}}(B)$ on the carrier modes;
-4. the center-gauge, period, support-band, and unit-speed constraint rows close.
+4. the center-gauge, period, support descriptor, and fixed-speed or bounded-speed clock rows close.
 
 Then stationarity of $\mathcal{S}_B$ under normal variations implies
 
@@ -612,7 +614,7 @@ then the run cannot be promoted from `dynamics-screen` to retained branch. The f
 | `force-action-ledger-mismatch` | force, action, energy, or event rows use different active roots, regulators, endpoints, or histories |
 | `scale-row-dimension-error` | $\Gamma_K$ is not dimensionless or does not equal $\kappa\epsilon^2/(m_{\mathrm{car}}R_*c_f^2)$ under the declared convention |
 | `mass-map-gamma-mismatch` | the mass-map formula for $m_{\mathrm{tr}}$ and $\mu_{\mathrm{car}}$ gives a $\Gamma_K$ outside tolerance |
-| `gamma-refinement-drift` | fitted $\Gamma$ changes beyond tolerance under collocation, Fourier-order, support-scale, or root-policy refinement |
+| `gamma-refinement-drift` | fitted $\Gamma$ changes beyond tolerance under collocation, Fourier-order, normalization-scale, support-descriptor, or root-policy refinement |
 | `event-action-not-computed` | event/action rows are omitted while the result is described as more than dynamics-only |
 | `gamma-retention-overclaim` | a run with fitted $\Gamma$ but open residuals is described as a retained branch |
 
@@ -625,7 +627,7 @@ A solver packet that wants to promote a fitted scale into a derived quantity sho
 | Output field | Required value |
 | --- | --- |
 | `gamma_convention` | `curvature_from_force` or `force_from_curvature` |
-| `R_star` | declared support scale |
+| `R_star` | declared normalization scale |
 | `epsilon` | $\epsilon=|e|/6$ |
 | `E_epsilon` | $\kappa\epsilon^2/R_*$ |
 | `active_root_ledger` | same ledger used by force, action, energy, and event rows |

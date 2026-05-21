@@ -4,6 +4,8 @@ Promotion status: `priority-only`. This document specifies the retained-branch s
 
 The protocol is strict about one point: every accepted row must use the same state history, active causal-root ledger, regulator convention, endpoint convention, and branch label. A carrier that passes geometry on one root convention and energy on another is not a retained branch.
 
+For the bounded speed factor model, the same rule applies with $\nu_i$ included in the branch state. A packet that uses bounded-speed roots but fixed-speed action, stability, or observer-export rows is a mixed-ledger packet, not a retained branch. The executable successor rows are stated in [bounded-speed-factor-executable-solver-protocol.md](bounded-speed-factor-executable-solver-protocol.md) and [bounded-speed-factor-master-retention-theorem.md](bounded-speed-factor-master-retention-theorem.md).
+
 ---
 
 ## 1. Search Object
@@ -56,6 +58,8 @@ q_{a,+}=+\epsilon,
 \qquad
 q_{a,-}=-\epsilon.
 $$
+
+This neutral row carries the attraction/repulsion site inventory from [attraction-repulsion-inventory-theorem.md](attraction-repulsion-inventory-theorem.md): each receiver has $N_{\mathrm{attr}}=3$ opposite-polarity source sites and $N_{\mathrm{rep}}=2$ same-polarity source sites before root weights are applied.
 
 The center-gauge variables are
 
@@ -367,8 +371,8 @@ $$
 \mathcal{R}_{\mathrm{phase}},
 \mathcal{R}_{\mathrm{root}},
 \mathcal{R}_{\mathrm{Jac}},
-\mathcal{R}_{\mathrm{speed}},
-\mathcal{R}_{\mathrm{tan}},
+\mathcal{R}_{\mathrm{speed/clock}},
+\mathcal{R}_{\mathrm{dyn}},
 \mathcal{R}_{\mathrm{inventory}},
 \mathcal{R}_{E},
 \mathcal{R}_{\mathrm{top}},
@@ -382,14 +386,19 @@ The required search residuals are:
 
 | Residual | Protocol definition |
 | --- | --- |
-| $\mathcal{R}_{\mathrm{state}}$ | support-band violation, center-gauge violation, noncollision floor, and endpoint consistency |
+| $\mathcal{R}_{\mathrm{state}}$ | support descriptor violation, center-gauge violation, noncollision floor, and endpoint consistency |
 | $\mathcal{R}_{\mathrm{phase}}$ | phase-offset, winding, and return-section residuals |
 | $\mathcal{R}_{\mathrm{root}}$ | root equation residual plus root completeness status |
 | $\mathcal{R}_{\mathrm{Jac}}$ | Jacobian-floor ratio $\epsilon_J/J_{\min}^{(q)}$ |
+| $\mathcal{R}_{\mathrm{speed/clock}}$ | branch-mode speed, clock, period, or winding closure |
+| $\mathcal{R}_{\mathrm{dyn}}$ | branch-mode force/curvature closure |
 | $\mathcal{R}_{\mathrm{speed}}$ | angle-clock diagnostic $\sup_{i,t}|\|\mathbf{u}_i(t)\|-c_f|/\epsilon_v$; replaced by $\mathcal{R}_L$ and $\mathcal{R}_T$ in an arclength chart |
 | $\mathcal{R}_{L}$ | arclength period-compatibility row $L_i=L_*$ or declared rational winding data |
 | $\mathcal{R}_{T}$ | unit-tangent row $\|\mathbf{Y}'_i\|=1$ for intrinsic curve searches |
 | $\mathcal{R}_{\mathrm{tan}}$ | fixed-speed tangential force closure |
+| $\mathcal{R}_{\mathrm{speedODE}}^\nu$ | bounded-speed tangent forcing zero-mean, primitive-excursion, speed-band, and clock/length closure |
+| $\mathcal{R}_{\parallel}^{\nu}$ | bounded-speed tangential evolution row $\nu_i\nu_i'-\Gamma\mathbf{T}_i\cdot\widetilde{\mathbf{F}}_i^\nu$ |
+| $\mathcal{R}_{\perp}^{\nu}$ | bounded-speed normal row $\nu_i^2\mathbf{K}_i-\Gamma P_i^\perp\widetilde{\mathbf{F}}_i^\nu$ |
 | $\mathcal{R}_{\mathrm{curv}}$ | force-versus-curvature closure $\mathbf{Y}_i''-\Gamma P_i^\perp\widetilde{\mathbf{F}}_i$ |
 | $\mathcal{R}_{\mathrm{inventory}}$ | $(N_+,N_-;C_{\mathrm{cent}},S_{\mathrm{chor}},Q)$ consistency |
 | $\mathcal{R}_{E}$ | history-dressed energy/action conservation using the retained active roots |
@@ -430,6 +439,8 @@ $$
 \mathbf{Y}_i'(\lambda)\cdot
 \widetilde{\mathbf{F}}_i(\lambda).
 $$
+
+In the bounded speed factor chart, $\mathcal{R}_{\mathrm{tan}}=0$ is replaced by $\mathcal{R}_{\mathrm{speedODE}}^\nu$, $\mathcal{R}_{\parallel}^{\nu}$, and $\mathcal{R}_{\perp}^{\nu}$ on the same bounded-speed root ledger, with support/action exchange rows attached when free-support constraints are active.
 
 For optimization and acceptance, use the dimensionless scalar
 
@@ -652,13 +663,13 @@ A candidate may be retained for priority-side analysis only if all rows below pa
 | finite memory | $h_{\mathrm{mem}}\le h_{\max}$ |
 | memory completeness | active-window rows require $m_{\mathrm{mem}}>0$; retained action/export rows require support-complete memory or certified tail exclusion |
 | noncollision | $d_{\min} > \epsilon_x$ |
-| support band | $R-\delta\le\|\mathbf{y}_i(t)\|\le R+\delta$ for every active site |
+| support descriptor | radial sector: $R-\delta\le\|\mathbf{y}_i(t)\|\le R+\delta$ for every active site; free-support sector: declared support functional with equivalent certified margins |
 | root residual | $\mathcal{R}_{\mathrm{root}}\le1$ |
 | Jacobian floor | $J_{\min}^{(q)} > \epsilon_J$ |
 | root status | no required root is `reject` and no required row is absent |
-| speed or arclength | angle-clock rows require $\mathcal{R}_{\mathrm{speed}}\le1$; arclength rows require $\mathcal{R}_L\le1$ and $\mathcal{R}_T\le1$ |
-| tangential closure | $\sup_{i,t}|\mathcal{R}_{\mathrm{tan},i}(t)|/\epsilon_{\mathrm{tan}}\le1$ |
-| curvature closure | arclength rows require $\mathcal{R}_{\mathrm{curv}}\le1$ |
+| speed or arclength | angle-clock rows require $\mathcal{R}_{\mathrm{speed}}\le1$; arclength rows require $\mathcal{R}_L\le1$ and $\mathcal{R}_T\le1$; bounded-speed rows require $\mathcal{R}_{\nu\mathrm{band}}\le1$ and $\mathcal{R}_{\mathrm{speedODE}}^\nu\le1$ |
+| tangential closure | fixed-speed rows require $\sup_{i,t}|\mathcal{R}_{\mathrm{tan},i}(t)|/\epsilon_{\mathrm{tan}}\le1$; bounded-speed rows require $\mathcal{R}_{\parallel}^{\nu}\le1$ |
+| curvature closure | fixed-speed arclength rows require $\mathcal{R}_{\mathrm{curv}}\le1$; bounded-speed rows require $\mathcal{R}_{\perp}^{\nu}\le1$ |
 | phase/winding | $\mathcal{R}_{\mathrm{phase}}\le1$ and winding rows match declared integers |
 | inventory | $\mathcal{R}_{\mathrm{inventory}}\le1$ and $Q=\epsilon(N_+-N_-)$ |
 | history energy | $\mathcal{R}_E\le1$ |
@@ -689,7 +700,7 @@ The protocol uses existing same-level failure vocabulary. A failed run must repo
 | --- | --- |
 | `inventory-mismatch` | integer inventory does not match the branch type or declared $Q$ |
 | `projection-collision` | $d_{\min}\le\epsilon_x$ |
-| `support-band-escape` | some $\|\mathbf{y}_i\|$ leaves $[R-\delta,R+\delta]$ |
+| `support-band-escape` | a radial-sector row leaves $[R-\delta,R+\delta]$ or a free-support descriptor margin fails |
 | `phase-lock-drift` | phase, winding, or return-section residual exceeds tolerance |
 | `root-ledger-empty` | a required partner, self, or cross-binary root row is absent |
 | `memory-window-exit` | a required root continues outside the declared memory window |
@@ -801,7 +812,7 @@ Exit criterion: either a rigid phase-offset row passes the carrier and return-ma
 3. Track $h_{\mathrm{mem}}$, root labels, and $J_{\min}$ after every continuation step.
 4. Add node-clearance rows if the deformed path still passes near octahedral nodes.
 
-Exit criterion: retain only rows with $\mathcal{R}_{L} \le 1$, $\mathcal{R}_{T} \le 1$, $\mathcal{R}_{\mathrm{tan}} \le 1$, $\mathcal{R}_{\mathrm{curv}} \le 1$, $d_{\min} > \epsilon_x$, and no unresolved same-source tangent row.
+Exit criterion: fixed-speed rows retain only with $\mathcal{R}_{L} \le 1$, $\mathcal{R}_{T} \le 1$, $\mathcal{R}_{\mathrm{tan}} \le 1$, $\mathcal{R}_{\mathrm{curv}} \le 1$, $d_{\min} > \epsilon_x$, and no unresolved same-source tangent row. Bounded-speed rows instead require $\mathcal{R}_{\nu\mathrm{band}} \le 1$, $\mathcal{R}_{\mathrm{speedODE}}^\nu \le 1$, $\mathcal{R}_{\parallel}^{\nu} \le 1$, $\mathcal{R}_{\perp}^{\nu} \le 1$, and the same root/support/event guardrails.
 
 ### Stage 3: Nonplanar Direction Deformation
 
@@ -810,7 +821,7 @@ Exit criterion: retain only rows with $\mathcal{R}_{L} \le 1$, $\mathcal{R}_{T} 
 3. Recompute $\mathcal{K}_q$, winding rows, framed-wake data, and node-clearance diagnostics.
 4. Run the same root solver and event/action hooks on the deformed histories.
 
-Exit criterion: the candidate must pass root, Jacobian, noncollision, arclength or speed, tangential, curvature, phase, and history-energy rows before any spin, color, mass, or Lorentz row is interpreted.
+Exit criterion: the candidate must pass root, Jacobian, noncollision, support descriptor, arclength or bounded-speed clock, dynamics, phase, and history-energy rows before any spin, color, mass, or Lorentz row is interpreted.
 
 ### Stage 4: Root-Ledger And Regulator Continuation
 
@@ -848,7 +859,7 @@ Each run must emit this compact artifact list:
 | Artifact | Required content |
 | --- | --- |
 | `metadata` | source commit, code version, tolerances, $\eta$, search stage, and continuation path |
-| `state_vector` | $X_q$, $\mathcal{H}_q$, full-precision finite coefficients, support band, center gauge, polarities, and inventory |
+| `state_vector` | $X_q$, $\mathcal{H}_q$, full-precision finite coefficients, support descriptor, center gauge, polarities, and inventory |
 | `root_ledger` | $\mathcal{A}_q$, delays, Jacobians, statuses, root residual, and memory depth |
 | `residuals` | complete $\mathcal{R}_{\mathrm{tri}}$ values, tolerances, statuses, and failure codes |
 | `optimization` | $\mathcal{J}$, active constraints, weights, barriers, trust directions, retraction corrections, and refinement result |

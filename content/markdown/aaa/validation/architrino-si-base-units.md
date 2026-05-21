@@ -2,7 +2,7 @@
 
 This chapter examines how the modern SI system interfaces with $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to ask which defining constants might be derivable, which remain primitive, and what kinds of constant-relations the theory should eventually explain if its geometric closure program succeeds.
 
-It should be read together with [Parameter Ledger](parameter-ledger.md), [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale](../theory-bridges/planck-scale-tri-binary-alignment.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
+It should be read together with [Parameter Ledger](parameter-ledger.md), [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md), [Energy](../dynamics/energy.md), [Particle Masses](../assemblies/particle-masses.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md).
 
 ## Executive Summary
 
@@ -117,7 +117,7 @@ The hyperfine transition is caused by:
 - Interaction between the **outer electron's tri-binary** (magnetic moment from its Middle Binary orbital motion at $v \approx c_f$)
 - The **nuclear spin** (magnetic moment from proton/neutron Middle Binary configurations)
 
-This is an atomic-clock validation target, not a closed spin derivation. The electron magnetic moment, nuclear spin ledger, and hyperfine coupling must inherit [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md), [Atomic Structure](../nuclear-atomic/atomic-structure.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md) before $\Delta \nu_{\text{Cs}}$ can be claimed from first principles.
+This is an atomic-clock validation target, not a closed spin derivation. The electron magnetic moment, nuclear spin ledger, and hyperfine coupling must inherit [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Atomic Structure](../nuclear-atomic/atomic-structure.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md) before $\Delta \nu_{\text{Cs}}$ can be claimed from first principles.
 
 **What we must derive:**
 $$

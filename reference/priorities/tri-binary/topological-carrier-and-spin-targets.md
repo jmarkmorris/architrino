@@ -16,7 +16,7 @@ $$
 \mathbf{u}_{a,\sigma}(t)=\dot{\mathbf{x}}_{a,\sigma}(t)-\dot{\mathbf{C}}(t),
 $$
 
-where $\mathbf{C}(t)$ is the declared branch center. A candidate same-level carrier must keep all six architrinos inside one support band
+where $\mathbf{C}(t)$ is the declared branch center. A radial same-level carrier must keep all six architrinos inside one support band
 
 $$
 R-\delta
@@ -126,7 +126,7 @@ The Hopf-chart row must report $\alpha_a$, winding data, phase offsets, projecti
 
 ### 2.3 Deformed Support-Band Carrier
 
-The deformed support-band carrier drops rigid great-circle motion. It treats the retained branch as a deformable choreography inside
+The deformed radial support-band carrier drops rigid great-circle motion. It treats the retained branch as a deformable choreography inside
 
 $$
 \mathcal{B}_{R,\delta}
@@ -146,6 +146,8 @@ R-\delta\le\rho_{a,\sigma}(t)\le R+\delta.
 $$
 
 The phase $\theta_a(t)$ is then extracted from a declared return section or carrier chart, not assumed from a perfect circle. This family is the default target if exact great-circle nodes fail but the dynamics still appear to form a stable same-level support band. It must still supply winding rows, noncollision rows, causal-root rows, and closure residuals on the same retained window.
+
+A non-spherical carrier may replace $\mathcal{B}_{R,\delta}$ by a declared support functional with equivalent certified margins. In that case the root, action, support, and stability rows must be recomputed in the free-support chart rather than inherited from the radial sector.
 
 ---
 

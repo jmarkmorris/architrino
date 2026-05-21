@@ -792,4 +792,4 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 - [convergence-tests](../../../content/markdown/aaa/validation/simulations/convergence-tests.md)
 - [synthetic-observables](../../../content/markdown/aaa/validation/simulations/synthetic-observables.md)
 - [well-posedness-and-regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md)
-- [planck-scale-tri-binary-alignment](../../../content/markdown/aaa/theory-bridges/planck-scale-tri-binary-alignment.md)
+- [planck-scale-tri-binary-alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md)

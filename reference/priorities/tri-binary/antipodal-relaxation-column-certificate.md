@@ -10,7 +10,7 @@ $$
 \text{pair-midpoint degree of freedom required}.
 $$
 
-Relaxation is justified only if the newly opened pair-midpoint columns actually span the obstructing cokernel directions on a support-complete ledger.
+Relaxation is justified only if the newly opened pair-midpoint columns actually span the obstructing cokernel directions on a support-complete ledger. In the bounded speed factor model, speed-factor columns must be tested first or alongside midpoint columns, because unequal partner speeds can generate pair-even corrections without geometric midpoint motion.
 
 ---
 
@@ -90,6 +90,53 @@ B_Cm
 =
 -c_0.
 $$
+
+### Bounded Speed Factor Columns
+
+For a bounded speed factor branch, augment the exact-antipodal variables by speed-factor coefficients $b$. Let
+
+$$
+B_{\nu}
+=
+D_b\mathcal{F}_{\eta}^{\nu,\mathrm{anti}}(\alpha_0,b_0)
+$$
+
+be the bounded-speed columns, including clock-map, root, Jacobian, force, and residual derivatives. Their cokernel projection is
+
+$$
+B_{\nu,C}
+=
+P_{\mathrm{cok}}B_{\nu}.
+$$
+
+If the exact-antipodal bounded-speed chart enforces speed-even pairing,
+
+$$
+\nu_{\iota i}=\nu_i,
+$$
+
+then $B_{\nu,C}$ tests speed-even corrections that preserve exact-antipodal parity. If the chart permits independent partner speeds, $B_{\nu,C}$ also contains pair-even leakage terms that can imitate midpoint columns. The relaxation gate must therefore test the combined and separated column spans:
+
+$$
+\operatorname{ran}B_{\nu,C},
+\qquad
+\operatorname{ran}B_{m,C},
+\qquad
+\operatorname{ran}\left[B_{\nu,C}\ B_{m,C}\right].
+$$
+
+Opening antipodal relaxation is justified only if the obstruction remains outside the certified speed-column span:
+
+$$
+\operatorname{dist}
+\left(
+c_0,\operatorname{ran}B_{\nu,C}
+\right)
+>
+\epsilon_{\nu,\mathrm{span}},
+$$
+
+while the midpoint or combined span passes the cancellation test. Otherwise the correct next chart is bounded-speed continuation, not geometric antipodal relaxation.
 
 ---
 

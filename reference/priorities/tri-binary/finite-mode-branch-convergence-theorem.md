@@ -28,7 +28,7 @@ $$
 \{\mathbf{Y}_i^{(\nu)}\}_{i=1}^6
 $$
 
-with common arclength period $L_\nu$ and support scale normalized in the same chart. The packet is certified on one source-pair policy and one memory convention if it emits:
+with common arclength period $L_\nu$, one normalization scale, and support descriptor normalized in the same chart. The packet is certified on one source-pair policy and one memory convention if it emits:
 
 1. uniform noncollision floor $d_{\min}^{(\nu)}\ge d_0>0$;
 2. uniform delay floor $\eta_{\min}^{(\nu)}\ge\eta_0>0$;

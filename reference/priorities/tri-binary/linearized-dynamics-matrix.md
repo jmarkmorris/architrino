@@ -60,6 +60,8 @@ q_{a,+}=+\epsilon,
 q_{a,-}=-\epsilon.
 $$
 
+The corresponding structural inventory row is $(N_{\mathrm{attr}},N_{\mathrm{rep}})=(3,2)$ for every receiver, as isolated in [attraction-repulsion-inventory-theorem.md](attraction-repulsion-inventory-theorem.md). The linearized force matrix must still use the weighted delayed root sums below.
+
 All dimensionless force rows below remove the common factor $\kappa\epsilon^2/R^2$.
 
 ---

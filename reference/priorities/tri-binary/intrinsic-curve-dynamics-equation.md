@@ -1,6 +1,6 @@
 # Intrinsic Curve Dynamics Equation
 
-Promotion status: `priority-only`. This packet rewrites same-level tri-binary dynamics as an intrinsic curve equation. It builds on [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md): fixed speed is handled by arclength, and the remaining physical equation is that the delayed causal-wake force equals the curvature acceleration of each carrier curve. The bounded variable-speed extension is stated separately in [variable-speed-factor-extension.md](variable-speed-factor-extension.md); it recovers this packet when $\nu_i\equiv1$.
+Promotion status: `priority-only`. This packet rewrites same-level tri-binary dynamics as an intrinsic curve equation. It builds on [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md): fixed speed is handled by arclength, and the remaining physical equation is that the delayed causal-wake force equals the curvature acceleration of each carrier curve. The bounded speed factor extension is stated separately in [variable-speed-factor-extension.md](variable-speed-factor-extension.md); it recovers this packet when $\nu_i\equiv1$.
 
 This is a theorem-target formulation. It does not prove that a retained same-level branch exists.
 
@@ -14,7 +14,7 @@ $$
 \lambda=\frac{c_ft}{R_*},
 $$
 
-where $R_*$ is a declared support scale. A same-level branch is represented by six closed curves
+where $R_*$ is a declared normalization scale. A same-level branch is represented by six closed curves
 
 $$
 \mathbf{Y}_i:\mathbb{R}/L\mathbb{Z}\to\mathbb{R}^3,
@@ -56,7 +56,7 @@ $$
 \|\dot{\mathbf{x}}_i(t)\|=c_f.
 $$
 
-This is the fixed-speed special case. In the variable-speed model, the same arclength curve is traversed with a positive speed factor $\nu_i(\lambda)$:
+This is the fixed-speed special case. In the bounded speed factor model, the same arclength curve is traversed with a positive speed factor $\nu_i(\lambda)$:
 
 $$
 \dot{\mathbf{x}}_i(t)=c_f\nu_i(\lambda)\mathbf{T}_i(\lambda),

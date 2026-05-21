@@ -456,7 +456,7 @@ This normal form does not prove the dyadic lock; it states the minimum basin-mea
 
 ## Promotion Gate
 
-The theorem can promote into [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [superposition-mechanism](../../../content/markdown/aaa/theory-bridges/superposition-mechanism.md), [pilot-wave-character](../../../content/markdown/aaa/theory-bridges/pilot-wave-character.md), or [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md) only after at least one worked case reports:
+The theorem can promote into [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [superposition-mechanism](../../../content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), [pilot-wave-character](../../../content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md), or [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md) only after at least one worked case reports:
 
 1. a state space and coarse-graining;
 2. a transfer operator or return map;
@@ -498,10 +498,10 @@ The theorem can promote into [quantum-summary](../../../content/markdown/aaa/qua
 
 - [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md)
 - [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md)
-- [superposition-mechanism](../../../content/markdown/aaa/theory-bridges/superposition-mechanism.md)
+- [superposition-mechanism](../../../content/markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)
 - [reality-quantum-causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md)
 - [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md)
 - [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md)
-- [pilot-wave-character](../../../content/markdown/aaa/theory-bridges/pilot-wave-character.md)
+- [pilot-wave-character](../../../content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
 - [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md)
-- [bell-theorem](../../../content/markdown/aaa/theory-bridges/bell-theorem.md)
+- [bell-theorem](../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)

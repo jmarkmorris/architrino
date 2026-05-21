@@ -46,7 +46,7 @@ The rows mean:
 | $\mathsf{Noether}$ | total action, generator currents, conservation bounds |
 | $\mathsf{Event}$ | inventory, source provenance, endpoint, boundary, recoil, and Noether-Sea exchange rows |
 | $\mathsf{Stability}$ | root-dependent monodromy, neutral quotient, conservative/exchange classification, nonlinear recovery |
-| $\mathsf{Inventory}$ | $N_+$, $N_-$, $Q$, central-inventory status, architrino labels |
+| $\mathsf{Inventory}$ | $N_+$, $N_-$, $Q$, central-inventory status, architrino labels, $3$-$2$ attraction/repulsion source-site inventory when applicable, inventory-bias status, and antipodal inventory parity |
 | $\mathsf{Ledger}$ | one shared root, memory, source-pair, endpoint, action, event, and weighting convention |
 | $\mathsf{Status}$ | one primary decision status |
 
@@ -446,5 +446,5 @@ A master $M=3$ retained packet must emit:
 | `limit_status` | curve-level finite-mode convergence decision |
 | `noether_event_status` | generator-current and event-ledger decision |
 | `stability_status` | conservative/exchange and nonlinear recovery decision |
-| `inventory_status` | integer polarity and source-provenance decision |
+| `inventory_status` | integer polarity, source-provenance, attraction/repulsion inventory, inventory-bias, and antipodal parity decision |
 | `master_status` | one primary status from Section 4 or 5 |

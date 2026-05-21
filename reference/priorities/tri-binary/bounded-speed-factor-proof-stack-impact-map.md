@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet maps the bounded speed factor extension across the same-level tri-binary proof stack. It does not retain a branch. It classifies the existing fixed-speed packets as the special case $\nu_i\equiv1$ and states the successor outputs required before a bounded speed factor branch can replace a fixed-speed certificate.
 
-The source equation packet is [variable-speed-factor-extension.md](variable-speed-factor-extension.md). This packet is an impact map: every downstream row that used the fixed-speed clock, fixed-speed Jacobian, fixed-speed tangential residual, or fixed-speed variational equation must either declare
+The source equation packet is [variable-speed-factor-extension.md](variable-speed-factor-extension.md). The executable bounded-speed solve is refined by [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), and the neutral inventory force diagnostic is refined by [attraction-repulsion-force-moment-decomposition.md](attraction-repulsion-force-moment-decomposition.md). This packet is an impact map: every downstream row that used the fixed-speed clock, fixed-speed Jacobian, fixed-speed tangential residual, or fixed-speed variational equation must either declare
 
 $$
 \nu_i\equiv1
@@ -92,10 +92,12 @@ relative to this extension. They remain valid only as certificates on $\mathcal{
 | Existing row family | Fixed-speed reading | Bounded speed factor rerun burden |
 | --- | --- | --- |
 | arclength and unit-speed chart rows | $\chi_i(\lambda)=\lambda$ | emit $\chi_i$, $\chi_i^{-1}$, period/winding row, and $\nu_i$ variation envelopes |
-| intrinsic dynamics rows | $\mathbf{T}_i\cdot\widetilde{\mathbf{F}}_i=0$ and $\mathbf{K}_i=\Gamma P_i^\perp\widetilde{\mathbf{F}}_i$ | replace tangential closure by speed-factor evolution and normal curvature by $\nu_i^2\mathbf{K}_i$ |
+| intrinsic dynamics rows | $\mathbf{T}_i\cdot\widetilde{\mathbf{F}}_i=0$ and $\mathbf{K}_i=\Gamma P_i^\perp\widetilde{\mathbf{F}}_i$ | replace tangential closure by speed-factor evolution, speed-ODE solvability, normal curvature by $\nu_i^2\mathbf{K}_i$, and normal reconstruction of closed curves |
 | root/Jacobian rows | $J=1-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$ | use $J^\nu=1-\nu_j^-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$ and $\chi_j^{-1}$ source phases |
-| tail and Krawczyk rows | derivative envelopes in curve coefficients only | include speed-factor coefficients, inverse-time-map derivatives, and speed-band persistence |
-| action and Noether rows | speed is a fixed constraint, so tangential work must vanish | account for speed-factor kinetic, constraint, exchange, and current terms |
+| coupled certificate rows | roots, force, support, action, and event rows may be solved as separate fixed-speed diagnostics | solve curves, speed factors, roots, support variables, action scale, and event variables in one live-ledger residual $\mathcal{R}_{\mathrm{cpl}}^\nu$ |
+| inventory force rows | $3$-$2$ source count is a structural ledger row | emit weighted attraction/repulsion tangent-power, normal-drive, and support-radial moment splits before claiming any force bias |
+| tail and Krawczyk rows | derivative envelopes in curve coefficients only | include speed-factor coefficients, inverse-time-map derivatives, speed-band persistence, and a complete owned finite tail cover |
+| action and Noether rows | speed is a fixed constraint, so tangential work must vanish | account for speed-factor kinetic, constraint, exchange, support-work, and current terms |
 | stability rows | perturb only the curve and root delays | perturb the pair $(\mathbf{Y}_i,\nu_i)$ and root phases through $\delta\chi_i$ |
 | same-source self rows | ordinary self roots are excluded by chord-arclength and $J_{\mathrm{self}}=0$ | allow only overspeed-hinge self-hit intervals with positive $J^\nu_{\mathrm{self}}$ and event/action rows |
 
@@ -108,6 +110,8 @@ A bounded speed factor successor must replace common arclength time by common ca
 $$
 u=\frac{c_ft}{R_*}.
 $$
+
+The center-time derivation is isolated in [bounded-speed-factor-center-time-dynamics.md](bounded-speed-factor-center-time-dynamics.md), and the scalar tangent row is isolated in [bounded-speed-factor-speed-ode-solvability.md](bounded-speed-factor-speed-ode-solvability.md). Downstream rows should consume those packets' velocity, acceleration, event-time root, clock-variation, zero-mean tangent forcing, primitive excursion, and fixed-speed-limit formulas rather than rederive separate conventions.
 
 The site phase at causal time $u$ is
 
@@ -144,12 +148,12 @@ $$
 Thus the period residual is
 
 $$
-\mathcal{R}_{H,i}=H_i-H_1,
+\mathcal{R}_{H,i}=H_i-H_*,
 \qquad
-i=2,\ldots,6,
+i=1,\ldots,6,
 $$
 
-not merely $L_i-L_1$. The fixed-speed row is recovered because $\nu_i\equiv1$ gives $H_i=L_i$.
+with a separate period-gauge row if $H_*$ is eliminated by setting $H_*=H_1$. It is not merely $L_i-L_1$. The fixed-speed row is recovered because $\nu_i\equiv1$ gives $H_i=L_i$.
 
 A successor certificate must emit the time-map derivative:
 
@@ -554,7 +558,9 @@ F^{\nu}(x)
 =
 \begin{bmatrix}
 \mathcal{R}_{H}^{\nu}\\
-\mathcal{R}_{\mathrm{tan}}^{\nu}\\
+\mathcal{R}_{\nu\mathrm{band}}\\
+\mathcal{R}_{\mathrm{speedODE}}^\nu\\
+\mathcal{R}_{\parallel}^{\nu}\\
 \mathcal{R}_{K}^{\nu}\\
 \mathcal{R}_{\Gamma}^{\nu}\\
 \mathcal{R}_{\mathrm{curl}}^{\nu}
@@ -575,8 +581,8 @@ $$
 \rho_{\mathrm{tail}}^{\nu},
 \rho_d,
 \rho_s,
-\rho_H^{\nu},
-\rho_{\nu},
+\rho_H,
+\rho_{\nu\mathrm{band}},
 \rho_{\chi},
 \rho_{\Gamma}^{\nu},
 \rho_{\mathrm{curl}}^{\nu},
@@ -588,12 +594,26 @@ The new radii mean:
 
 | Radius | Required bounded speed factor margin |
 | --- | --- |
-| $\rho_H^{\nu}$ | equal physical periods or winding periods persist |
-| $\rho_{\nu}$ | $0<\nu_-<\nu_i<\nu_+$ persists on the coefficient box |
+| $\rho_H$ | equal physical periods or winding periods persist |
+| $\rho_{\nu\mathrm{band}}$ | $0<\nu_-<\nu_i<\nu_+$ persists on the coefficient box |
 | $\rho_{\chi}$ | $\chi_i^{-1}$ exists with bounded derivative and interval enclosure |
 | $\rho_{\mathrm{root}}^{\nu}$ | root brackets and excluded gaps persist for $G^{\nu}$ |
 | $\rho_J^{\nu}$ | $|J^{\nu}|>\epsilon_J$ persists |
-| $\rho_{\mathrm{tail}}^{\nu}$ | tail slabs remain root-free or root-assimilated for $G^{\nu}$ |
+| $\rho_{\mathrm{tail}}^{\nu}$ | tail slabs remain root-free or root-assimilated for $G^{\nu}$ on a complete owned finite cover |
+
+The local predicates are not sufficient by themselves. Before $\rho_{\mathrm{tail}}^{\nu}$ can enter the chart radius, the packet must also pass the finite-cover row of [bounded-speed-factor-tail-cover-completeness-lemma.md](bounded-speed-factor-tail-cover-completeness-lemma.md):
+
+$$
+\mathcal{R}_{\mathrm{cover}}^{\nu}=0,
+\qquad
+\rho_{\mathrm{tail}}^{\nu}\le\rho_{\mathrm{cover}}^{\nu}.
+$$
+
+If a tail run emits only pointwise or cellwise predicates, the status remains
+
+$$
+\texttt{bounded-speed-tail-cover-incomplete}.
+$$
 
 The Krawczyk row is then unchanged in form:
 
@@ -627,7 +647,7 @@ $$
 The root-dependent variational equation must perturb both the curve and the bounded speed factor:
 
 $$
-(\xi_i,\zeta_i)
+(\xi_i,\rho_i)
 =
 (\delta\mathbf{Y}_i,\delta\nu_i).
 $$
@@ -639,7 +659,7 @@ $$
 =
 -
 \int_0^\lambda
-\frac{\zeta_i(\xi)}{\nu_i(\xi)^2}
+\frac{\rho_i(\xi)}{\nu_i(\xi)^2}
 d\xi.
 $$
 
@@ -693,11 +713,11 @@ $$
 \nu_i\nu_i'\mathbf{T}_i
 \right)
 =
-2\nu_i\zeta_i\mathbf{K}_i
+2\nu_i\rho_i\mathbf{K}_i
 +
 \nu_i^2\delta\mathbf{K}_i
 +
-(\zeta_i\nu_i'+\nu_i\zeta_i')\mathbf{T}_i
+(\rho_i\nu_i'+\nu_i\rho_i')\mathbf{T}_i
 +
 \nu_i\nu_i'\delta\mathbf{T}_i.
 $$
@@ -705,19 +725,19 @@ $$
 Thus the bounded speed factor stability operator has the schematic form
 
 $$
-\mathcal{L}_{\mathrm{stab}}^{\nu}(\xi,\zeta)
+\mathcal{L}_{\mathrm{stab}}^{\nu}(\xi,\rho)
 =
 \delta
 \left(
 \nu^2K+\nu\nu'T
 \right)
 -
-D\Gamma_B^{\nu}[\xi,\zeta]\widetilde{\mathbf{F}}^{\nu}
+D\Gamma_B^{\nu}[\xi,\rho]\widetilde{\mathbf{F}}^{\nu}
 -
-\Gamma_B^{\nu}D\widetilde{\mathbf{F}}^{\nu}[\xi,\zeta].
+\Gamma_B^{\nu}D\widetilde{\mathbf{F}}^{\nu}[\xi,\rho].
 $$
 
-A Floquet or monodromy packet that freezes roots, omits $\zeta_i$, or computes the fixed-speed operator has status
+A Floquet or monodromy packet that freezes roots, omits $\rho_i$, or computes the fixed-speed operator has status
 
 $$
 \texttt{bounded-speed-stability-stale}.
@@ -799,12 +819,12 @@ $$
 The event interval must satisfy
 
 $$
-\operatorname{dur}_t(\mathcal{H}_i)
+\operatorname{dur}_u(\mathcal{H}_i)
 \le
-\tau_{\mathrm{hit}},
+\tau_{\mathrm{hit}}^u,
 $$
 
-and
+where $\operatorname{dur}_u(\mathcal{H}_i)=|\chi_i(\mathcal{H}_i)|$. Physical duration is $\operatorname{dur}_t=(R_*/c_f)\operatorname{dur}_u$. The interval must also satisfy
 
 $$
 \int_{\mathcal{H}_i}
@@ -837,17 +857,18 @@ Allowed self-row statuses are:
 
 ## 9. Impact Theorem Target
 
-**Theorem target: bounded speed factor proof-stack lift.** Fix one same-level tri-binary branch class, one source-pair policy, one same-source policy, one support scale $R_*$, one finite-mode chart, and one bounded speed factor basis. Suppose:
+**Theorem target: bounded speed factor proof-stack lift.** Fix one same-level tri-binary branch class, one source-pair policy, one same-source policy, one normalization scale $R_*$, one support descriptor, one finite-mode chart, and one bounded speed factor basis. Suppose:
 
 1. $0<\nu_-\le\nu_i\le\nu_+$ and $\chi_i^{-1}$ exists on the full event interval;
 2. equal physical periods or declared winding periods pass;
-3. the active and tail root ledgers use $G^{\nu}$, $J^{\nu}$, and derivative envelopes including $D\nu$ and $D\chi^{-1}$;
+3. the active and tail root ledgers use $G^{\nu}$, $J^{\nu}$, derivative envelopes including $D\nu$ and $D\chi^{-1}$, and a complete owned finite tail cover;
 4. the force ledger uses the same bounded speed factor root labels and Jacobians;
-5. $\mathcal{R}_{\mathrm{tan}}^{\nu}=0$ and $\mathcal{R}_{K}^{\nu}=0$ close with an action-derived $\Gamma_B^{\nu}$ or declared inertia operator;
-6. the action/curl/Noether rows vary both $\mathbf{Y}_i$ and $\nu_i$ and include speed-factor current and error terms;
+5. $\mathcal{R}_{\mathrm{speedODE}}^\nu$, $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, and $\mathcal{R}_{N\mathrm{rec}}^\nu$ close with an action-derived $\Gamma_B^{\nu}$ or declared inertia operator;
+6. the action/curl/Noether rows vary both $\mathbf{Y}_i$ and $\nu_i$ and include speed-factor current, support-work, and error terms;
 7. the Krawczyk or Newton proof budget is recomputed on the expanded coefficient vector $(\alpha,v,\Gamma)$;
 8. stability uses the root-dependent variational equation for $(\xi,\zeta)$;
-9. every same-source row is absent, fixed-speed-excluded, regularized, or bounded-speed-self-hit certified.
+9. the live-ledger coupled residual $\mathcal{R}_{\mathrm{cpl}}^\nu$ closes without frozen roots, stale support rows, stale action scale, or stale event variables;
+10. every same-source row is absent, fixed-speed-excluded, regularized, or bounded-speed-self-hit certified.
 
 Then the packet is a bounded speed factor dynamics/action candidate on the declared ledger. It is not retained until the master retention theorem is rerun on the same bounded speed factor ledger.
 
@@ -864,10 +885,12 @@ Proof route:
 1. positivity of $\nu_i$ gives a regular causal-time coordinate;
 2. differentiating $\chi_j(\lambda_j^-)=u-\eta$ gives $J^{\nu}$ and root-sheet derivatives;
 3. differentiating $\dot{\mathbf{x}}_i=c_f\nu_i\mathbf{T}_i$ gives the tangent and normal dynamics rows;
-4. adding $\nu_i$ columns to the action one-form decides whether tangential work is physical exchange or a fitted residual;
-5. bounded root/Jacobian, speed-band, time-map, and tail radii give the Krawczyk chart;
-6. the root-dependent $(\xi,\zeta)$ variational equation gives the stability handoff;
-7. the overspeed hinge is the only ordinary same-source route not excluded by the fixed-speed lemma.
+4. the normal reconstruction certificate closes tangent holonomy, position closure, support-radial compatibility, and root-ledger persistence for the normal row;
+5. adding $\nu_i$ columns to the action one-form decides whether tangential work is physical exchange or a fitted residual;
+6. bounded root/Jacobian, speed-band, time-map, and tail radii give the Krawczyk chart;
+7. the root-dependent $(\xi,\rho)$ variational equation gives the stability handoff;
+8. the coupled fixed-point row prevents independent subsolves from being mistaken for one bounded-speed certificate;
+9. the overspeed hinge is the only ordinary same-source route not excluded by the fixed-speed lemma.
 
 ---
 
@@ -877,17 +900,20 @@ A bounded speed factor successor packet must emit:
 
 | Field | Required payload |
 | --- | --- |
-| `branch_scope` | branch class, source-pair policy, same-source policy, support scale $R_*$, endpoint convention, finite-mode chart, and coefficient box |
+| `branch_scope` | branch class, source-pair policy, same-source policy, normalization scale $R_*$, support descriptor, endpoint convention, finite-mode chart, and coefficient box |
 | `specialization_status` | `bounded-speed-factor` or `fixed-speed-special-case` with explicit $\nu_i\equiv1$ declaration |
-| `speed_factor` | $\nu_i(\lambda)$, coefficient vector $v$, $\nu_-$, $\nu_+$, $\nu_i'$, speed-band margins, and whether $\nu_i$ is dynamical, constrained, prescribed, or fixed |
+| `speed_factor` | $\nu_i(\lambda)$, coefficient vector $b$, $\nu_-$, $\nu_+$, $\nu_i'$, speed-band margins, and whether $\nu_i$ is dynamical, constrained, prescribed, or fixed |
+| `speed_ode_solvability` | tangent forcing, zero-mean row, primitive excursion, speed-band interval, clock/length speed, and fixed-speed comparison |
 | `time_map` | $\chi_i$, $\chi_i^{-1}$, $D\chi_i$, $D\chi_i^{-1}$, $H_i$, $\mathcal{R}_H$, and winding/equal-period status |
 | `root_jacobian` | $G_{ij}^{\nu}$, $J_{ij}^{\nu}$, root brackets, excluded gaps, $D\eta^{\nu}$, $DJ^{\nu}$, noncollision floors, and source-pair completeness |
 | `force_ledger` | $\mathcal{A}_i^{\nu}$, $\widetilde{\mathbf{F}}_i^{\nu}$, self/fold/medium terms, and Jacobian-weighted force sums |
-| `dynamics_rows` | $\mathcal{R}_{\mathrm{tan}}^{\nu}$, $\mathcal{R}_{K}^{\nu}$, row weights, residual norms, and tolerance bounds |
-| `action_noether` | $\mathcal{S}_{\mathrm{tot}}^{\nu}$, $\Gamma_B^{\nu}$ or inertia operator, $\omega^{\nu}$, curl row, speed-factor Euler-Lagrange row, Noether currents, and conservation error envelope |
-| `tail_krawczyk` | support bound, tail slabs for $G^{\nu}$, coefficient-box persistence, $\rho_{\mathrm{chart}}^{\nu}$, $Y^{\nu}$, $Z^{\nu}$, range enclosure, and cokernel audit |
-| `stability` | $(\xi,\zeta)$ variational operator, root-delay variation with $\delta\chi$, return section, neutral quotient, current leaf, and monodromy spectrum |
-| `self_hit` | same-source policy, hinge intervals, $J_{\mathrm{self}}^{\nu}$ floors, $\tau_{\mathrm{hit}}$, $B_{\mathrm{hit}}$, return-to-baseline row, action entries, and event entries |
+| `force_moment_decomposition` | $A_i$, $R_i$, attraction/repulsion root partitions, tangent-power split, normal-drive split, support-radial moment split, and count-to-bias status |
+| `dynamics_rows` | $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, $\mathcal{R}_{N\mathrm{rec}}^\nu$, speed-ODE status, row weights, residual norms, and tolerance bounds |
+| `coupled_fixed_point` | $\mathcal{R}_{\mathrm{cpl}}^\nu$, coupled variable tuple, derivative block audit, Schur corrections, range/cokernel split, and stale-subsolve status |
+| `action_noether` | $\mathcal{S}_{\mathrm{tot}}^{\nu}$, $\Gamma_B^{\nu}$ or inertia operator, $\omega^{\nu}$, curl row, speed-factor Euler-Lagrange row, support-work row, Noether currents, and conservation error envelope |
+| `tail_krawczyk` | support bound, tail slabs for $G^{\nu}$, local predicates, tail-cover ownership map, coefficient-box persistence, $\rho_{\mathrm{cover}}^\nu$, $\rho_{\mathrm{chart}}^{\nu}$, $Y^{\nu}$, $Z^{\nu}$, range enclosure, and cokernel audit |
+| `stability` | $(\xi,\rho)$ variational operator, root-delay variation with $\delta\chi$, return section, neutral quotient, current leaf, and monodromy spectrum |
+| `self_hit` | same-source policy, hinge intervals, $J_{\mathrm{self}}^{\nu}$ floors, $\tau_{\mathrm{hit}}^u$, $B_{\mathrm{hit}}$, return-to-baseline row, action entries, and event entries |
 | `fixed_speed_comparison` | list of reused fixed-speed packets and the exact reason each is only a $\nu_i\equiv1$ special case or has been rerun |
 | `status` | first failed row or one of `fixed-speed-special-case`, `bounded-speed-row-open`, `bounded-speed-dynamics-action-candidate`, `bounded-speed-retention-rerun-required`, `self-hit-mode-unledgered`, `not-retained` |
 

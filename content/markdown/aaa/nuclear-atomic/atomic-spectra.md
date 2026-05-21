@@ -6,7 +6,7 @@ It should be read alongside [Atomic Structure](atomic-structure.md), [Electron](
 
 The note is still exploratory, so the opening should be read as a compact program statement rather than as a closed derivation.
 
-Spin-sensitive spectral structure is downstream of the angular-momentum proof program. This chapter may use observer-level labels such as fine structure, spin-orbit structure, Zeeman splitting, and hyperfine splitting as recovery targets, but those labels must inherit the single-core angular-momentum ledger, ordered-frame spinor closure, and measurement-response model in [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md). They are not independent derivations of spin.
+Spin-sensitive spectral structure is downstream of the angular-momentum proof program. This chapter may use observer-level labels such as fine structure, spin-orbit structure, Zeeman splitting, and hyperfine splitting as recovery targets, but those labels must inherit the single-core angular-momentum ledger, ordered-frame spinor closure, and measurement-response model in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md). They are not independent derivations of spin.
 
 ## Atomic Orbitals as Lattice Resonances
 
@@ -26,7 +26,7 @@ $$
 
 The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether-core ledgers have already been derived.
 
-The direct angular consumer is the effective angular-envelope recovery lemma from [Angular Momentum and Spin](../theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma). Once the native extractor supplies a central record-facing envelope whose angular part is a regular single-valued function on $S^2$, the angular step is
+The direct angular consumer is the effective angular-envelope recovery lemma from [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma). Once the native extractor supplies a central record-facing envelope whose angular part is a regular single-valued function on $S^2$, the angular step is
 
 $$
 -\Delta_{S^2}Y=\lambda Y
