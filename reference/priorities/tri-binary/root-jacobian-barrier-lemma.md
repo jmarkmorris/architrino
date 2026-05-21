@@ -17,6 +17,8 @@ The barrier lemma below gives sufficient conditions under which a collocation pe
 3. the finite memory window;
 4. the validity of rank and trust-region derivatives.
 
+The $M=3$ arclength-inverse trust screen in [arclength-inverse-m3-rank-and-trust-results.md](arclength-inverse-m3-rank-and-trust-results.md) makes one guardrail explicit: an apparently healthy active-root Jacobian floor is not enough. In that screen, $\rho=0.4$ still has active-root $J_{\min}\approx0.3259$ on the sampled roots under the working $\eta_{\max}=4$ window, but the off-grid active-root count has already changed from $5$-$5$ to $4$-$5$. The root-frontier refinement in [arclength-inverse-m3-root-frontier.md](arclength-inverse-m3-root-frontier.md) shows why: the missing roots continue just beyond $\eta=4$ and are recovered under $\eta_{\max}=4.5$. The root barrier must therefore track bracket endpoint signs, excluded-interval gaps, and memory-window exits, not only the smallest Jacobian among roots that remain visible after the step.
+
 The lemma is intentionally one-sided. If the bounds fail, the candidate is not disproven as physics; it is outside the certified root chart and must be rescreened with a new root ledger.
 
 ---
@@ -91,6 +93,79 @@ $$
 =
 -J_{ij,n}(\eta;\alpha).
 $$
+
+For a variable-speed row, the collocation nodes are common causal-time nodes
+
+$$
+u_n=\frac{nH_*}{K},
+$$
+
+not common arclength nodes. Let
+
+$$
+\theta_i^n=\chi_i^{-1}(u_n),
+\qquad
+\theta_j^-(u_n,\eta)=\chi_j^{-1}(u_n-\eta),
+$$
+
+where
+
+$$
+\chi_i(\theta)
+=
+\int_0^\theta
+\frac{\|\partial_\theta\mathbf{Z}_i(\zeta)\|}
+{\nu_i(\zeta)}
+d\zeta.
+$$
+
+Then the variable-speed root row is
+
+$$
+G_{ij,n}^{\nu}(\eta;\alpha)
+=
+\left\|
+\mathbf{Z}_i(\theta_i^n;\alpha)
+-
+\mathbf{Z}_j(\theta_j^-(u_n,\eta);\alpha)
+\right\|
+-\eta,
+$$
+
+with
+
+$$
+J_{ij,n}^{\nu}(\eta;\alpha)
+=
+1-
+\nu_j(\theta_j^-;\alpha)
+\mathbf{T}_j(\theta_j^-;\alpha)
+\cdot
+\widehat{\mathbf{R}}_{ij,n}(\eta;\alpha).
+$$
+
+The barrier inequalities below keep the same form, but their perturbation envelopes must include the variations of $\nu_i$ and $\chi_i^{-1}$. The fixed-speed row is recovered when $\nu_i\equiv1$. A full bounded-speed successor must also emit
+
+$$
+D_v\chi_i(\theta)
+=
+-\int_0^\theta
+\frac{D_v\nu_i(\zeta)}
+{\nu_i(\zeta)^2}
+d\zeta,
+$$
+
+and
+
+$$
+D_v\chi_i^{-1}(u)
+=
+-\frac{D_v\chi_i(\theta_i)}{\chi_i'(\theta_i)},
+\qquad
+\theta_i=\chi_i^{-1}(u),
+$$
+
+so the root, Jacobian, tail, and Krawczyk perturbation envelopes include speed-factor directions.
 
 Let $\alpha_0$ be a base collocation point with a declared active-root ledger. For every retained label
 
@@ -176,7 +251,7 @@ J_0>\epsilon_J,
 \eta_0>\epsilon_\eta.
 $$
 
-If same-source rows are present, their brackets must also carry one of the statuses `retained-positive-delay` or `regularized-fold-layer`. Otherwise the same-source interval below $\epsilon_{\eta,\mathrm{self}}$ is excluded from the chart.
+If same-source rows are present, their brackets must also carry one of the statuses `regularized-fold-layer` or `split-source-retained`. Otherwise the same-source interval below $\epsilon_{\eta,\mathrm{self}}$ is excluded from the chart. The ordinary same-curve arclength row cannot be retained as a positive-delay Jacobian-regular root by [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md).
 
 ---
 
@@ -661,8 +736,14 @@ Every intrinsic collocation run that uses this barrier lemma should emit the fol
 | `excluded_gap` | $\gamma_{\mathrm{gap}}$ or an interval-certified lower bound on excluded intervals |
 | `jacobian_envelope` | $J_0$, $\epsilon_J$, $\Lambda_J$, and the method used to bound $\Lambda_J$ |
 | `root_function_envelope` | $\Lambda_G$ and whether it came from analytic bounds, interval arithmetic, or automatic differentiation |
+| `bounded_speed_fields` | when active, $\nu_i$, $\chi_i$, $\chi_i^{-1}$, $D_v\chi_i$, $D_v\chi_i^{-1}$, $G^\nu$, and $J^\nu$ |
 | `root_displacement_bound` | $\rho_\eta=\Lambda_G/(J_0-\Lambda_J)$ and comparison with $\Delta_\eta$ |
-| `memory_bound` | $\eta_{\max}$ and the support or center-drift hypothesis that supplies it |
+| `root_count_by_node` | active-root count for every receiver/source/node row on the training grid and refined off-grid screens |
+| `first_missing_root_label` | first retained label that loses its bracket, if a clipped step changes the count |
+| `memory_window_frontier` | largest retained delay, first label crossing $\eta_{\max}$, and whether an extended window recovers the root |
+| `memory_bound` | $\eta_{\max}$, $\eta_{\mathrm{act}}$, $r_{\max}$, and the support or center-drift hypothesis that supplies it |
+| `memory_policy` | `fixed-window`, `active-window-certified`, or `support-complete-memory` |
+| `tail_certificate` | either $\eta_{\max}\ge2r_{\max}+m_\eta$ after in-window enumeration, or an interval proof such as [tail-interval-root-exclusion-certificate.md](tail-interval-root-exclusion-certificate.md) that the remaining tail is root-free |
 | `barrier_values` | all positive margins and logarithmic barrier values |
 | `root_chart_status` | `root-chart-certified`, `root-chart-rescreen-required`, or `root-chart-failed` |
 
@@ -681,6 +762,8 @@ Use these failure codes in the solver packet. Existing architecture codes are pr
 | `root-merge-risk` | $m_{\mathrm{sep}}\le0$ or $\rho_\eta\ge\Delta_\eta$ |
 | `root-label-derivative-invalid` | a finite-difference or trust-region step leaves the certified root chart |
 | `root-count-change` | the bracketed root solver finds a different active-root count without a declared branch event |
+| `memory-window-exit` | a retained root continues beyond the declared $\eta_{\max}$ window |
+| `tail-interval-uncertified` | $\eta_{\max}<2r_{\max}$ and the interval beyond $\eta_{\max}$ is not certified root-free |
 | `jacobian-floor-violation` | some retained root has $|J|\le\epsilon_J$ |
 | `finite-memory-window-exceeded` | some retained root has $\eta>\eta_{\max}$ |
 | `near-zero-self-root-unresolved` | a same-source near-zero interval is used without `retained-positive-delay` or `regularized-fold-layer` status |

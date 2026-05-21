@@ -204,8 +204,9 @@ where $\alpha$ labels the retained root, $\tau_{ij}^{\alpha}(t)=t-s_{ij}^{\alpha
 
 | Root status | Meaning |
 | --- | --- |
-| `retained-positive-delay` | a nonzero same-source root passes the Jacobian floor |
+| `absent-by-policy` | ordinary same-source roots are excluded from the branch force ledger |
 | `regularized-fold-layer` | a controlled $\eta>0$ fold-layer rule replaces the singular ideal root |
+| `split-source-retained` | a distinct resolved source representative supplies its own positive-delay root and Jacobian floor |
 | `reject` | the branch has unresolved tangent or near-zero self-root behavior |
 
 For
@@ -347,7 +348,7 @@ $$
 V_C(t-s)+2R_+.
 $$
 
-Remaining obligation: exclude unresolved near-zero self roots by assigning every same-source row one of the statuses in Section 3.
+Remaining obligation: exclude unresolved near-zero self roots by assigning every same-source row one of the statuses in Section 3. The ordinary same-curve arclength row is constrained by [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md): it cannot be retained as a positive-delay Jacobian-regular root.
 
 ### Proposition Target 2: Root Continuation By The Implicit Function Theorem
 

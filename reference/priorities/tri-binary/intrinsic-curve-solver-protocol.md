@@ -310,7 +310,7 @@ $$
 For each $(i,j,n)$:
 
 1. Set a memory window $0<\eta\le\eta_{\max}$, with $\eta_{\max}=2(1+\delta)$ in the center-gauge rest search unless a larger support-band bound is declared.
-2. Exclude the near-zero same-source interval $0<\eta<\eta_{\mathrm{self}}$ unless $\mathsf{root\_policy}$ declares `retained-positive-delay` or `regularized-fold-layer`.
+2. Exclude the near-zero same-source interval $0<\eta<\eta_{\mathrm{self}}$ unless $\mathsf{root\_policy}$ declares `regularized-fold-layer` or `split-source-retained`. Ordinary same-curve self roots are excluded by [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md).
 3. Sample $G_{ij,n}$ on an adaptive mesh fine enough to isolate every sign-changing bracket and every local near-zero candidate satisfying $|G|<\epsilon_G$.
 4. Refine each bracket with a bracket-preserving Newton, secant, or Brent step until
 
@@ -616,6 +616,32 @@ Report:
 | `rank` | $\operatorname{rank}(A_{\mathrm{curve}})$ |
 | `augmented_rank` | rank after appending $-\widehat{\mathcal{R}}(0)$ |
 | `left_null_obstructions` | projections $\mathbf{y}^{T}\widehat{\mathcal{R}}(0)$ for a basis of $\ker(A_{\mathrm{curve}}^T)$ |
+| `range_energy` | fraction $\|P_A\widehat{\mathcal{R}}(0)\|^2/\|\widehat{\mathcal{R}}(0)\|^2$ explained by the current finite-mode column space |
+| `left_null_pair_even_fraction` | fraction of any stable left-null obstruction supported on pair-even dynamics or tangential rows |
+| `actual_to_predicted_descent` | ratio between retracted nonlinear residual decrease and the corresponding linearized trust prediction |
+| `support_trade` | support-band change attached to each residual decrease, including $r_{\min}$, $r_{\max}$, and max coefficient |
+| `linear_step_vector` | full-precision reduced-basis step, lifted coefficient step, clipping radius, and length or gauge retraction correction used for reproduction |
+| `arclength_inverse_variation` | inverse phase, tangent, curvature, delayed source phase, and root-delay derivative status from [arclength-inverse-variation-formulas.md](arclength-inverse-variation-formulas.md) |
+| `eta_max` | declared finite-memory/search depth used for root enumeration and force evaluation |
+| `eta_active_max` | maximum retained active delay after root enumeration |
+| `r_max` | sampled or interval-certified support radius used to assess memory completeness |
+| `memory_policy` | `fixed-window`, `active-window-certified`, or `support-complete-memory` |
+| `memory_window_frontier` | maximum active delay by source pair, first label crossing the declared $\eta_{\max}$, and extended-window rescore if a crossing occurs |
+| `root_enumeration_certificate` | in-window root brackets, excluded-interval gap margins, and tail-exclusion status; the support bound alone only excludes roots beyond $2r_{\max}$, while [tail-interval-root-exclusion-certificate.md](tail-interval-root-exclusion-certificate.md) gives the sharper tail row |
+| `tail_force_error_bound` | omitted-force status for uncertified tails, including $N_{i,n}^{\mathrm{tail}}$, $J_{\mathrm{tail}}$, $\epsilon_F^{\mathrm{tail}}$, and failure status from [unresolved-tail-force-error-bound.md](unresolved-tail-force-error-bound.md) |
+| `adaptive_memory_trust_radius` | active-window, support-memory, and tail-certificate continuation radii from [adaptive-memory-trust-radius-lemma.md](adaptive-memory-trust-radius-lemma.md) |
+| `support_complete_obstruction_certificate` | left-null basis, cokernel residual norm, nonlinear remainder bound, tail/discretization error, and decision status from [support-complete-dynamics-obstruction-certificate.md](support-complete-dynamics-obstruction-certificate.md) |
+| `support_complete_newton_closure` | range right-inverse, Kantorovich radius, corrected range residual, cokernel closure norm, and decision status from [support-complete-newton-closure-certificate.md](support-complete-newton-closure-certificate.md) |
+| `antipodal_relaxation_column_certificate` | exact obstruction vector, pair-even fraction, projected pair-midpoint columns, and relaxation decision from [antipodal-relaxation-column-certificate.md](antipodal-relaxation-column-certificate.md) |
+| `gamma_fit_action_identifiability` | force-norm floor, fit uncertainty, action-derived $\Gamma_B$, scalar-inertia residual, and decision status from [gamma-fit-action-identifiability-lemma.md](gamma-fit-action-identifiability-lemma.md) |
+| `collocation_refinement_error` | residual derivative envelopes, root-label mesh guards, excluded-gap guards, projector drift, and $\epsilon_{\mathrm{disc}}$ from [collocation-refinement-error-certificate.md](collocation-refinement-error-certificate.md) |
+| `finite_mode_convergence` | refinement-sequence floors, compactness bounds, residual convergence, and limit status from [finite-mode-branch-convergence-theorem.md](finite-mode-branch-convergence-theorem.md) |
+| `same_source_self_root_policy` | ordinary self-root exclusion, fold-layer regulator, or split-source status from [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md) |
+| `fold_layer_regularization_action` | regulated fold action, weak-limit, curl, and event-ledger status from [fold-layer-regularization-action-theorem.md](fold-layer-regularization-action-theorem.md) |
+| `medium_response_constitutive_closure` | response map, memory, exchange, isotropy, curl, and conservation status from [medium-response-constitutive-closure-theorem.md](medium-response-constitutive-closure-theorem.md) |
+| `delayed_force_lipschitz_envelope` | $C_0,C_1,C_2$, root-direction-Jacobian derivative bounds, $L_F$, and consumers from [delayed-force-lipschitz-envelope.md](delayed-force-lipschitz-envelope.md) |
+| `root_ledger_floquet_stability` | return section, monodromy, gauge multiplier split, transverse spectrum, and perturbation recovery from [root-ledger-floquet-stability-certificate.md](root-ledger-floquet-stability-certificate.md) |
+| `noether_action_conservation_closure` | Noether current, event/action, conservation-bound, and ledger-match status from [noether-action-conservation-closure-theorem.md](noether-action-conservation-closure-theorem.md) |
 | `floor_sensitivity` | first-order changes in $d_{\min}$, $J_{\min}$, support margin, and root-bracket margin |
 | `conditioning` | condition number after gauge reduction and row weighting |
 
@@ -626,7 +652,27 @@ Failure codes:
 | `curve-linear-range-defect` | augmented-rank equality fails |
 | `curve-rank-ill-conditioned` | rank result changes under tolerance or mesh refinement |
 | `root-label-derivative-invalid` | derivative step changes active-root labels or root status |
+| `fixed-phase-derivative-invalid` | an arclength-inverse derivative was computed without inverse-phase or delayed-root phase variation |
 | `linear-step-floor-inadmissible` | Newton or least-squares step violates a hard floor to first order |
+| `finite-mode-root-ledger-loss` | clipped nonlinear improvement changes an active-root count or label on a refined grid |
+| `finite-mode-memory-window-exit` | clipped nonlinear improvement pushes a retained root outside the declared finite-memory/search window |
+| `finite-mode-tail-uncertified` | $\eta_{\max}<2r_{\max}$ and no excluded-interval certificate is supplied for the tail |
+| `tail-force-error-unbounded` | an uncertified tail has no finite count/Jacobian envelope, so omitted delayed-force error cannot be bounded |
+| `adaptive-memory-trust-radius-open` | the run has no certified continuation radius preserving the same active-root and memory ledger |
+| `obstruction-certificate-open` | left-null/cokernel residual, nonlinear remainder, tail error, or discretization projection data are missing |
+| `support-complete-newton-closure-open` | range/cokernel Newton certificate data are missing or fail on the support-complete ledger |
+| `antipodal-relaxation-column-certificate-open` | pair-midpoint columns have not been tested against a certified exact-antipodal obstruction |
+| `gamma-fit-action-identifiability-open` | fitted $\Gamma_K$ lacks action-derived $\Gamma_B$, scalar inertia, or fit uncertainty data |
+| `collocation-refinement-certificate-open` | off-grid residual, root-label, excluded-gap, or projector-drift errors are not bounded |
+| `finite-mode-convergence-open` | no uniformly certified refinement sequence promotes finite rows to a curve-level branch |
+| `ordinary-self-root-excluded` | ordinary same-curve self roots cannot be retained with positive Jacobian floor in the arclength chart |
+| `fold-layer-action-row-open` | fold-layer force is not generated by a certified regulated action and event ledger |
+| `medium-response-constitutive-closure-open` | medium response lacks a constitutive response/action and exchange-ledger certificate |
+| `delayed-force-lipschitz-envelope-open` | per-root force derivative constants are not emitted on the current ledger |
+| `root-ledger-floquet-stability-open` | root-ledger-preserving monodromy and perturbation-recovery rows are not certified |
+| `noether-conservation-closure-open` | action/event conservation rows are not derived on one matched ledger |
+| `support-traded-residual-reduction` | residual decreases mainly by expanding the support band without action-scale closure |
+| `pair-even-left-null-obstruction` | stable left-null obstruction is concentrated in pair-even rows and exact-antipodal continuation is overconstrained |
 
 The rank check is not an existence proof. It decides whether the chosen finite curve basis has local directions capable of reducing the current residual while staying inside the same root chart.
 
@@ -684,16 +730,17 @@ Every run of the intrinsic curve solver must emit one packet with the following 
 | --- | --- |
 | `metadata` | source commit, solver version, date, branch label, promotion status `priority-only`, and claim level |
 | `basis` | $M$, $K$, Fourier basis, computational phase convention, common $\ell$, and endpoint convention |
-| `variables` | coefficient vector, gauges, fixed polarity row, optimized parameters, fixed parameters, and diagnostic parameters |
+| `variables` | full-precision coefficient vector, gauges, fixed polarity row, optimized parameters, fixed parameters, and diagnostic parameters |
 | `tolerances` | $\epsilon_T$, $\epsilon_C$, $\epsilon_G$, $\epsilon_J$, $\epsilon_x$, $\epsilon_\eta$, $\epsilon_{\mathrm{tan}}$, $\epsilon_{\mathrm{curv}}$, and rank tolerance |
 | `root_policy` | partner, cross-binary, same-source, self/fold-layer, and medium-response statuses |
 | `root_ledger` | $\mathcal{A}_{i,n}$, delays, Jacobians, root residuals, labels, statuses, and force-used flags |
 | `force_rows` | force convention, polarity products, optional self or medium terms, and $\Gamma$ status |
+| `work_one_form` | finite-mode history-force one-form entries, one-form curl norm, and whether the force row is action-compatible |
 | `residuals` | normalized and raw values for $R_T$, $R_C$, support, root, tangential, and curvature rows |
 | `floors` | $d_{\min}$, $J_{\min}$, $\eta_{\min}$, support margin, root-bracket margin, and pass/fail status |
 | `objective` | weights, residual norm, barrier values, hard-gate status, and actual-to-predicted decrease history |
 | `rank_checks` | gauge dimension, residual dimension, singular values, rank, augmented rank, left-null obstructions, and conditioning |
-| `continuation` | stage, path parameters, accepted steps, rejected steps, root-count changes, and branch-event records |
+| `continuation` | stage, path parameters, accepted steps, rejected steps, full trust directions, retraction corrections, root-count changes, and branch-event records |
 | `refinement` | mesh and mode refinement results, residual convergence, root-ledger convergence, and aliasing diagnostics |
 | `event_action` | `not_computed`, `passed`, or `failed`; no branch claim may use `not_computed` rows |
 | `observer_exports` | exposure, Lorentz, photon, color, and strong-field rows marked `not_computed`, `passed`, or `failed` |

@@ -61,6 +61,8 @@ $$
 
 but only after the fit residual is below tolerance and the convention is recorded.
 
+The fit/action compatibility test is sharpened in [gamma-fit-action-identifiability-lemma.md](gamma-fit-action-identifiability-lemma.md): a fitted $\Gamma_K$ is compatible with an action-derived $\Gamma_B$ only inside the force-norm and uncertainty bounds on the same support-complete ledger.
+
 The rescore in [arclength-inverse-rescore-results.md](arclength-inverse-rescore-results.md) shows why this bookkeeping matters. On the equal-period projected $M=2$ candidate at $K=12$, the reciprocal force-from-curvature residual is about $0.6377$, matching the earlier projection packet, while the retained curvature-from-force residual is about $0.8952$. Those are not contradictory numbers; they are different least-squares questions away from an exact scalar-aligned zero.
 
 ---
@@ -157,7 +159,7 @@ $$
 d\lambda,
 $$
 
-plus a history-dependent causal-wake contribution whose first variation on the retained active-root stratum is
+plus a history-dependent force contribution whose first variation on the retained active-root stratum is
 
 $$
 \delta\mathcal{S}_{\mathrm{hist}}^\perp
@@ -198,11 +200,11 @@ $$
 \Gamma_KP_i^\perp\widetilde{\mathbf{F}}_i.
 $$
 
-This derivation has three non-negotiable obligations.
+This derivation has three non-negotiable obligations. The first obligation is sharpened in [history-force-variationality-condition.md](history-force-variationality-condition.md): the delayed force defines an action row only when its virtual-work one-form is closed on the same root stratum.
 
 | Obligation | Required object | Failure if omitted |
 | --- | --- | --- |
-| Exact action or virtual-work row | $\delta\mathcal{S}_{\mathrm{hist}}^\perp$ computed from the same active roots as the force | a force fit is not an action derivation |
+| Exact action or virtual-work row | $\delta\mathcal{S}_{\mathrm{hist}}^\perp$ computed from the same active roots as the force and passing the one-form curl test | a force fit is not an action derivation |
 | Carrier inertia | $m_{\mathrm{car}}(B)$ or an inertia operator whose scalar reduction is proven | $\Gamma$ remains a fitted parameter |
 | Ledger compatibility | energy, momentum, angular momentum, charge, source provenance, and Noether-Sea updates use the same history and root convention | dynamics-only row cannot support mass or observer export |
 
@@ -234,6 +236,52 @@ $$
 
 on the retained carrier modes, after quotienting gauge directions and tangent constraints. Otherwise the correct retained equation is tensorial or nonlocal in phase, not a scalar-$\Gamma$ equation.
 
+### Bounded Speed Factor Variant
+
+For the bounded speed factor model in [variable-speed-factor-extension.md](variable-speed-factor-extension.md), the fixed-speed kinetic action is no longer the right variational row. The branch velocity is
+
+$$
+\dot{\mathbf{x}}_i=c_f\nu_i\mathbf{T}_i,
+$$
+
+and the causal-time measure satisfies
+
+$$
+du_i=\frac{d\lambda_i}{\nu_i(\lambda_i)}.
+$$
+
+Thus the dimensionful carrier kinetic action contributes
+
+$$
+S_{\mathrm{car}}^{\nu}
+=
+\frac{R_*}{c_f}
+\sum_i\int
+\frac12m_{\mathrm{car}}c_f^2\nu_i(u)^2\,du
+=
+\frac{m_{\mathrm{car}}c_fR_*}{2}
+\sum_i\int
+\nu_i(\lambda)\,d\lambda.
+$$
+
+Stationarity must now recover both bounded-speed dynamics rows:
+
+$$
+\nu_i\nu_i'
+=
+\Gamma_B^{\nu}\mathbf{T}_i\cdot\widetilde{\mathbf{F}}_i^{\nu},
+\qquad
+\nu_i^2\mathbf{K}_i
+=
+\Gamma_B^{\nu}P_i^\perp\widetilde{\mathbf{F}}_i^{\nu}.
+$$
+
+The action ledger must therefore declare whether $m_{\mathrm{car}}$ is fixed, speed-weighted, or history-derived. A scalar action scale is admissible only when the same bounded-speed root ledger supplies the work-form curl, speed-factor variation, and inertia row. If this packet is used with $\nu_i\not\equiv1$ but without those rows, the status is
+
+$$
+\texttt{bounded-speed-action-row-open}.
+$$
+
 ---
 
 ## 4. Branch Inertia Ledger
@@ -246,6 +294,7 @@ $$
 \left(
 R_*,
 E_\epsilon,
+\eta_{\mathrm{mem}},
 \mathcal{A}_B,
 \mathcal{H}_B,
 \mathcal{S}_B,
@@ -263,6 +312,7 @@ The entries mean:
 | --- | --- |
 | $R_*$ | declared support scale used by the root, force, action, and mass rows |
 | $E_\epsilon$ | branch charge-interaction scale $\kappa\epsilon^2/R_*$ |
+| $\eta_{\mathrm{mem}}$ | dimensionless memory depth used by the active-root, force, and action rows |
 | $\mathcal{A}_B$ | retained active causal-root ledger |
 | $\mathcal{H}_B$ | branch history used by force, energy, and action rows |
 | $\mathcal{S}_B$ | action or exact virtual-work object |
@@ -303,6 +353,8 @@ and the same active-root ledger also passes the intrinsic dynamics residual
 $$
 \mathbf{K}_i-\Gamma_KP_i^\perp\widetilde{\mathbf{F}}_i=\mathbf{0}.
 $$
+
+The active-root ledger includes the memory depth. The $M=3$ root-frontier result in [arclength-inverse-m3-root-frontier.md](arclength-inverse-m3-root-frontier.md) shows that changing $\eta_{\mathrm{mem}}$ from $4$ to $4.5$ recovers delayed roots that the shallower window omits. Therefore $\Gamma_K$ values fitted under different memory depths are not directly interchangeable. A retained scale row must compute $\mathcal{A}_B$, $\mathcal{H}_B$, $\mathcal{S}_B$, and $\widetilde{\mathbf{F}}$ under one declared $\eta_{\mathrm{mem}}$.
 
 ---
 
@@ -555,7 +607,8 @@ then the run cannot be promoted from `dynamics-screen` to retained branch. The f
 | `gamma-fitted-not-derived` | $\Gamma$ is least-squares fitted without an action or inertia ledger |
 | `inertia-ledger-missing` | $m_{\mathrm{car}}$ or $\mathsf{M}_{B,\perp}$ is not emitted |
 | `inertia-not-scalar` | $\mathsf{M}_{B,\perp}$ does not reduce to $m_{\mathrm{car}}I$ on the claimed scalar row |
-| `history-action-not-exact` | the causal-wake virtual-work row is not shown to come from an action or exact branch-history form |
+| `history-action-not-exact` | the history-force virtual-work row is not shown to come from an action or exact branch-history form |
+| `history-one-form-curl-open` | the finite-mode exterior curl of the delayed-force work one-form is nonzero above tolerance |
 | `force-action-ledger-mismatch` | force, action, energy, or event rows use different active roots, regulators, endpoints, or histories |
 | `scale-row-dimension-error` | $\Gamma_K$ is not dimensionless or does not equal $\kappa\epsilon^2/(m_{\mathrm{car}}R_*c_f^2)$ under the declared convention |
 | `mass-map-gamma-mismatch` | the mass-map formula for $m_{\mathrm{tr}}$ and $\mu_{\mathrm{car}}$ gives a $\Gamma_K$ outside tolerance |

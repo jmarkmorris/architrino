@@ -253,6 +253,8 @@ $$
 
 with roots, force, and curvature recomputed after inverse arclength reparameterization.
 
+This target has now been partially tested in [arclength-inverse-m3-rank-and-trust-results.md](arclength-inverse-m3-rank-and-trust-results.md). The exact-antipodal $M=3$ restricted matrix has full $52$-column rank and a strong first-order range signal. Nonlinear clipped steps improve the $K=18$ residual while preserving the $5$-$5$ root convention through $\rho=0.3$, but off-grid root count changes by $\rho=0.4$. Thus the next blocker is not local $M=3$ rank. It is nonlinear root-ledger preservation, support-band growth, and eventual action-scale closure.
+
 Failure/status codes:
 
 $$

@@ -42,6 +42,7 @@ The same-level architecture now has the following priority-side companion packet
 | Packet | Role |
 | --- | --- |
 | [proof-program-and-decision-gate.md](proof-program-and-decision-gate.md) | Integration map for retained branch packets, proof dependencies, and the architecture decision gate. |
+| [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md) | Composite promotion theorem stating the full certificate tuple required before a same-level branch can leave priority-only status. |
 | [current-dynamics-synthesis.md](current-dynamics-synthesis.md) | Current dynamics conclusion: rigid carrier is a root seed, arclength curve dynamics is the closure problem, and no branch is retained yet. |
 | [source-signal-triage.md](source-signal-triage.md) | Source-mining triage separating converted theorem targets from overclaims in the rearchitecture discussion. |
 | [same-level-branch-mathematics.md](same-level-branch-mathematics.md) | Branch chart, admissible history space, causal-root ledger, Jacobian floor, finite-memory, regularized DDE, weak-limit, and tangential-residual theorem targets. |
@@ -56,6 +57,10 @@ The same-level architecture now has the following priority-side companion packet
 | [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md) | Arclength-clock reduction showing that fixed speed should be built into the deformed-curve time map and that force closure should be tested against curvature. |
 | [arclength-deformation-search-results.md](arclength-deformation-search-results.md) | First arclength-clock deformation screen showing common breathing improves tangential residuals but still fails force-versus-curvature closure. |
 | [intrinsic-curve-dynamics-equation.md](intrinsic-curve-dynamics-equation.md) | Intrinsic delayed curve equation $\mathbf{Y}_i''=\Gamma P_i^\perp\widetilde{\mathbf{F}}_i$ with root, curvature, period, and event/action closure rows. |
+| [variable-speed-factor-extension.md](variable-speed-factor-extension.md) | Bounded speed factor extension replacing strict $\|\dot{\mathbf{x}}_i\|=c_f$ with $\dot{\mathbf{x}}_i=c_f\nu_i\mathbf{T}_i$, bounded-speed roots, and controlled self-hit rows. |
+| [bounded-speed-factor-proof-stack-impact-map.md](bounded-speed-factor-proof-stack-impact-map.md) | Cross-stack impact map showing which fixed-speed rows survive only as $\nu_i\equiv1$ special cases and which bounded-speed successor outputs are required. |
+| [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md) | Bounded-speed causal-time root sheets, Jacobian variations, force derivatives, and Krawczyk envelope replacements for fixed-speed support-complete sheets. |
+| [bounded-speed-factor-master-retention-theorem.md](bounded-speed-factor-master-retention-theorem.md) | Master certificate for retaining a bounded-speed same-level branch after root, tail, action, Krawczyk, Noether, event, and stability rows are recomputed. |
 | [plane-normal-precession-ansatz.md](plane-normal-precession-ansatz.md) | Intrinsic arclength precession ansatz, unit-speed constraints, curvature formula, and line-of-action projection effects unavailable to pure radial breathing. |
 | [plane-normal-precession-search-results.md](plane-normal-precession-search-results.md) | First nonplanar arclength screen showing plane-normal freedom improves curvature alignment but leaves tangential and Jacobian residuals open. |
 | [binary-specific-plane-normal-search-results.md](binary-specific-plane-normal-search-results.md) | Binary-specific normal-mode screen showing loose low-mode nonplanar freedom fails period, tangential, curvature, and Jacobian refinement. |
@@ -68,16 +73,74 @@ The same-level architecture now has the following priority-side companion packet
 | [equal-period-constraint-qualification.md](equal-period-constraint-qualification.md) | Equal-period manifold lemma, restricted dynamics residual, and exact-antipodal $M=2$ dynamics-zero theorem target. |
 | [rational-winding-screen-results.md](rational-winding-screen-results.md) | Low-integer winding screen showing current refined $M=2$ lengths prefer the equal-period class over a nontrivial rational-winding branch. |
 | [unit-speed-chart-reparameterization.md](unit-speed-chart-reparameterization.md) | Arclength reparameterization lemma showing construction-speed spread is a chart row, with solver split between constant-speed Fourier and arclength-inverse shape charts. |
+| [arclength-inverse-variation-formulas.md](arclength-inverse-variation-formulas.md) | Fixed-arclength variation formulas for inverse phase, tangent, curvature, delayed source phase, and root-sensitive derivatives. |
+| [branch-tangent-sensitivity-equations.md](branch-tangent-sensitivity-equations.md) | Branch-direction derivative equations for inverse phase, delayed roots, Jacobians, force terms, residuals, $\Gamma$, curl, and event margins. |
 | [arclength-inverse-rescore-results.md](arclength-inverse-rescore-results.md) | Arclength-inverse rescore of the refined and projected $M=2$ candidates, including $\Gamma_K$ versus $\Gamma_F$ diagnostics and off-grid residual peaks. |
 | [arclength-inverse-restricted-rank-screen.md](arclength-inverse-restricted-rank-screen.md) | First equal-period-restricted arclength-inverse rank screen showing full restricted rank but an oversized linear step. |
 | [arclength-inverse-trust-region-results.md](arclength-inverse-trust-region-results.md) | Nonlinear clipped-step screen showing restricted arclength-inverse descent through $\rho=0.8$, with root-count loss at $\rho=1.2$ and support-band growth. |
+| [arclength-inverse-m3-rank-and-trust-results.md](arclength-inverse-m3-rank-and-trust-results.md) | Exact-antipodal $M=3$ arclength-inverse rank and trust screen showing full $52$-column restricted rank, root-preserving descent through $\rho=0.3$, and off-grid root-count loss at $\rho=0.4$. |
+| [arclength-inverse-m3-root-frontier.md](arclength-inverse-m3-root-frontier.md) | Root-frontier refinement showing the apparent $M=3$ root-count loss is a memory-window exit at $\eta=4$, with the missing roots recovered under $\eta_{\max}=4.5$. |
+| [adaptive-root-front-dynamics.md](adaptive-root-front-dynamics.md) | Root-front velocity law and continuation theorem target showing the first $M=3$ fixed-window exit occurs near $\rho\approx0.32056$ and is a memory chart event unless bracket/gap guardrails fail. |
+| [adaptive-memory-trust-radius-lemma.md](adaptive-memory-trust-radius-lemma.md) | Trust-radius inequalities for preserving the same adaptive-memory root chart, support row, tail certificate, and ledger convention during continuation. |
+| [branch-event-classification-theorem.md](branch-event-classification-theorem.md) | First-event classification theorem separating memory exits, support escape, root folds, root mergers, chart failures, tail-certificate failures, proof-budget failures, and action/$\Gamma$ obstructions. |
+| [branch-event-normal-forms.md](branch-event-normal-forms.md) | Local normal forms and reset rules for memory exits, tail transitions, root folds, root mergers, support escape, chart failures, and action/$\Gamma$ obstructions. |
+| [adaptive-memory-action-row.md](adaptive-memory-action-row.md) | Adaptive finite-memory theorem target tying $\eta_{\mathrm{mem}}$ to support radius, active-root completeness, history action, and the $\Gamma_K$ ledger. |
+| [tail-interval-root-exclusion-certificate.md](tail-interval-root-exclusion-certificate.md) | Tail-exclusion certificate using distance, monotone-Jacobian, or Lipschitz slabs to upgrade active-window memory toward support-complete memory. |
+| [tail-root-assimilation-theorem.md](tail-root-assimilation-theorem.md) | Complementary theorem for assimilating actual tail roots into an extended support-complete ledger with recomputed force, $\Gamma$, curl, action, and cokernel rows. |
+| [support-complete-m3-tail-resolution-protocol.md](support-complete-m3-tail-resolution-protocol.md) | Concrete $\rho=0.8$ exact-antipodal $M=3$ tail protocol for resolving $(4.5,5.5211575250+m_\eta]$ by exclusion or assimilation. |
+| [support-complete-m3-tail-interval-enclosures.md](support-complete-m3-tail-interval-enclosures.md) | Interval-arithmetic enclosures for $D_q$, $J_q$, endpoint signs, and Lipschitz tests on exact-antipodal $M=3$ tail slabs. |
+| [support-complete-m3-tail-newton-certificate.md](support-complete-m3-tail-newton-certificate.md) | Interval Newton and parametric Krawczyk certificate for excluding tail cells or certifying one-root tubes. |
+| [support-complete-m3-tail-margin-sensitivity.md](support-complete-m3-tail-margin-sensitivity.md) | Coefficient-box sensitivity formulas for fixed-delay tail predicates, Newton images, Krawczyk tubes, and the exported $\rho_{\mathrm{tail}}$. |
+| [support-complete-m3-tail-slab-schedule.md](support-complete-m3-tail-slab-schedule.md) | Owned-cell slab schedule assigning every support-tail cell exactly one coefficient-box persistent terminal predicate. |
+| [support-complete-m3-tail-mesh-lift.md](support-complete-m3-tail-mesh-lift.md) | Arclength-cell lift converting nodewise tail certificates into continuous tail exclusion or root-sheet assimilation. |
+| [support-complete-m3-tail-execution-ledger.md](support-complete-m3-tail-execution-ledger.md) | Executable tail ledger assigning every atomic tail cell a margin/error status and exporting $E_{\mathrm{tail}}$ to the master certificate. |
+| [support-complete-m3-tail-algorithm-termination.md](support-complete-m3-tail-algorithm-termination.md) | Termination theorem showing the adaptive support-tail subdivision is finite under regular root-sheet and excluded-gap hypotheses. |
+| [support-complete-m3-tail-frontier-shrinkage.md](support-complete-m3-tail-frontier-shrinkage.md) | Sampled $\eta_{\max}=5.0$ diagnostic splitting the support tail into observed-empty and deeper support-only subintervals for the next interval certificate. |
+| [support-complete-m3-root-sheet-variations.md](support-complete-m3-root-sheet-variations.md) | Root-sheet variation theorem supplying coefficient derivatives, force derivatives, curl contributions, action-scale derivatives, and Krawczyk envelopes after tail-root assimilation. |
+| [unresolved-tail-force-error-bound.md](unresolved-tail-force-error-bound.md) | Worst-case force and curvature-residual error row for uncertified finite-memory tails; it quantifies active-window risk but does not permit branch retention. |
+| [exact-antipodal-parity-lemma.md](exact-antipodal-parity-lemma.md) | Pair-even/pair-odd residual parity lemma showing why tangential pair-even residuals are expected and do not by themselves trigger antipodal relaxation. |
+| [symmetry-block-decomposition-theorem.md](symmetry-block-decomposition-theorem.md) | Row-aware pair-parity and binary-Fourier block theorem for cokernel obstructions and midpoint-relaxation selection. |
+| [support-complete-dynamics-obstruction-certificate.md](support-complete-dynamics-obstruction-certificate.md) | Cokernel obstruction certificate deciding when exact-antipodal support-complete dynamics is locally impossible and antipodal relaxation may be opened. |
+| [adjoint-cokernel-equations.md](adjoint-cokernel-equations.md) | Adjoint equations for the root-dependent dynamics cokernel, obstruction scalars, and relaxation-column projection tests. |
+| [support-complete-newton-closure-certificate.md](support-complete-newton-closure-certificate.md) | Constructive Newton/Kantorovich closure certificate for range closure plus cokernel tolerance on one support-complete ledger. |
+| [support-complete-m3-successor-certificate-target.md](support-complete-m3-successor-certificate-target.md) | Composite $M=3$ successor certificate distinguishing active-window descent, support-complete dynamics candidate, exact-antipodal obstruction, and relaxation-opening status. |
+| [support-complete-m3-executable-solve-theorem.md](support-complete-m3-executable-solve-theorem.md) | Ordered exact-antipodal $M=3$ solve theorem tying tail, mesh lift, root corrector, $\Gamma_B$, Krawczyk, mode refinement, obstruction, and relaxation decisions into one status. |
+| [support-complete-m3-corrector-system.md](support-complete-m3-corrector-system.md) | Exact-antipodal $M=3$ residual, derivative, Krawczyk, cokernel, action, and obstruction system after the tail ledger is support-complete. |
+| [support-complete-m3-action-scale-protocol.md](support-complete-m3-action-scale-protocol.md) | Post-tail $\Gamma_B$ computation, virtual-work curl, scalar inertia reduction, and fit/action compatibility protocol for exact-antipodal $M=3$. |
+| [support-complete-m3-krawczyk-proof-budget.md](support-complete-m3-krawczyk-proof-budget.md) | Computable Krawczyk proof-budget row for chart radius, SVD range closure, cokernel audit, and obstruction separation. |
+| [support-complete-m3-post-tail-proof-budget.md](support-complete-m3-post-tail-proof-budget.md) | Single-ledger post-tail proof budget composing $\rho_{\mathrm{chart}}$, derivative envelopes, Krawczyk range, cokernel, and action compatibility into one finite score. |
+| [support-complete-m3-augmented-root-corrector.md](support-complete-m3-augmented-root-corrector.md) | Equivalent explicit-delay corrector treating retained roots as variables and recovering implicit root sensitivities by Schur complement. |
+| [exact-antipodal-mode-refinement-certificate.md](exact-antipodal-mode-refinement-certificate.md) | Higher-mode exact-antipodal column test distinguishing finite-mode $M=3$ defect from genuine exact-antipodal obstruction before relaxation. |
+| [support-complete-m3-noether-event-handoff.md](support-complete-m3-noether-event-handoff.md) | Exact-antipodal $M=3$ Noether/event handoff for energy, momentum, angular momentum, charge, source provenance, and event residuals after a dynamics/action candidate. |
+| [support-complete-m3-stability-handoff.md](support-complete-m3-stability-handoff.md) | Exact-antipodal $M=3$ stability handoff for root-dependent monodromy, neutral-mode reduction, conservative/Krein classification, energy-momentum orbital stability, exchange-driven attraction, and nonlinear recovery. |
+| [support-complete-m3-finite-mode-convergence-handoff.md](support-complete-m3-finite-mode-convergence-handoff.md) | Exact-antipodal $M=3$ finite-mode convergence handoff from certified finite rows to a curve-level dynamics/action candidate. |
+| [support-complete-m3-master-retention-theorem.md](support-complete-m3-master-retention-theorem.md) | Master retention theorem integrating exact-antipodal $M=3$ tail, root, dynamics/action, convergence, Noether/event, stability, inventory, and ledger rows into one normalized certificate. |
+| [coefficient-space-branch-continuation-theorem.md](coefficient-space-branch-continuation-theorem.md) | Pseudo-arclength continuation theorem for following a support-complete dynamics/action zero through coefficient space until the first classified branch event. |
+| [branch-switching-bifurcation-theorem.md](branch-switching-bifurcation-theorem.md) | Lyapunov-Schmidt branch-switch theorem separating genuine extra-kernel bifurcations from event resets. |
+| [collocation-refinement-error-certificate.md](collocation-refinement-error-certificate.md) | Mesh-refinement certificate bounding off-grid residuals, root-ledger changes, and cokernel projection error between sampled nodes. |
+| [finite-mode-branch-convergence-theorem.md](finite-mode-branch-convergence-theorem.md) | Refinement theorem target promoting uniformly certified finite-mode rows to a curve-level same-level dynamics branch. |
+| [antipodal-relaxation-column-certificate.md](antipodal-relaxation-column-certificate.md) | Projected-column certificate deciding whether pair-midpoint relaxation can address an exact-antipodal cokernel obstruction. |
 | [antipodal-relaxation-ansatz.md](antipodal-relaxation-ansatz.md) | Pair-midpoint chart for relaxing exact antipodality while preserving center gauge, inventory, root floors, and spin/topology obligations. |
 | [retained-branch-dynamics-protocol.md](retained-branch-dynamics-protocol.md) | Concrete retained-branch search protocol with state variables, root solver, residual objective, continuation, stability diagnostics, and acceptance thresholds. |
 | [intrinsic-curve-solver-protocol.md](intrinsic-curve-solver-protocol.md) | Concrete Fourier/collocation solver protocol for the intrinsic curve equation, including gauges, root solve, barriers, rank checks, and output schema. |
 | [linearized-dynamics-matrix.md](linearized-dynamics-matrix.md) | Finite-mode first-order balance matrix around the rigid octahedral carrier, including root-shift columns and rank/solvability theorem targets. |
 | [minimal-dynamics-closure-theorem.md](minimal-dynamics-closure-theorem.md) | Minimal arclength-clock closure theorem target, residual vanishing conditions, transverse-zero continuation route, and observer/export separation. |
 | [root-jacobian-barrier-lemma.md](root-jacobian-barrier-lemma.md) | Sufficient perturbation and barrier conditions preserving active root labels, Jacobian floor, and finite memory in intrinsic collocation searches. |
+| [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md) | Chord-arclength lemma excluding ordinary same-curve positive-delay self roots with positive Jacobian floor. |
+| [fold-layer-regularization-action-theorem.md](fold-layer-regularization-action-theorem.md) | Regulated fold-layer action theorem for any admissible self/fold force contribution and event ledger. |
+| [medium-response-constitutive-closure-theorem.md](medium-response-constitutive-closure-theorem.md) | Constitutive closure theorem for admissible Noether-Sea medium-response force, action, and exchange rows. |
+| [delayed-force-lipschitz-envelope.md](delayed-force-lipschitz-envelope.md) | Per-root delayed-force derivative envelope supplying Lipschitz constants for trust, refinement, Newton, and variationality certificates. |
+| [root-ledger-floquet-stability-certificate.md](root-ledger-floquet-stability-certificate.md) | Root-ledger-preserving Floquet and perturbation-recovery certificate for local stability after dynamics closure. |
+| [root-dependent-variational-equation.md](root-dependent-variational-equation.md) | Root-dependent variational equation and monodromy construction for stability on a retained support-complete branch. |
+| [second-variation-action-stability-theorem.md](second-variation-action-stability-theorem.md) | Action Hessian, second root sensitivities, Morse/Floquet compatibility, and action-norm contraction theorem target. |
+| [conservative-monodromy-stability-classification.md](conservative-monodromy-stability-classification.md) | Noether/action-aware monodromy classification separating conservative elliptic stability from dissipative attraction. |
+| [noether-neutral-mode-reduction-theorem.md](noether-neutral-mode-reduction-theorem.md) | Symmetry-generator, conserved-level, and expected unit-multiplier quotient theorem for stability rows. |
+| [krein-elliptic-stability-theorem.md](krein-elliptic-stability-theorem.md) | Krein-signature theorem for conservative unit-circle multipliers and collision-instability risk. |
+| [energy-momentum-orbital-stability-theorem.md](energy-momentum-orbital-stability-theorem.md) | Conservative energy-momentum and symplectic-slice theorem for orbital stability modulo symmetries. |
 | [gamma-scale-action-row.md](gamma-scale-action-row.md) | Scale/action row deriving the curvature response coefficient $\Gamma_K$ from branch inertia, history action, and event ledgers rather than a fit. |
+| [history-force-variationality-condition.md](history-force-variationality-condition.md) | Virtual-work one-form exactness criterion and finite-mode curl test required before a delayed-force ledger can be treated as action-derived. |
+| [gamma-fit-action-identifiability-lemma.md](gamma-fit-action-identifiability-lemma.md) | Projection identity and tolerance bounds deciding whether fitted $\Gamma_K$ is compatible with an action-derived branch scale. |
+| [noether-action-conservation-closure-theorem.md](noether-action-conservation-closure-theorem.md) | Noether theorem target deriving energy, momentum, angular momentum, charge, and source-provenance conservation from one action/event ledger. |
 | [central-inventory-and-event-ledgers.md](central-inventory-and-event-ledgers.md) | Neutral core and charged fermion integer inventory, central-inventory split, pair-production provenance, reaction ledgers, and heat-channel restrictions. |
 | [observer-export-and-mass-map-targets.md](observer-export-and-mass-map-targets.md) | Moving-branch Lorentz export, photon transition, mass/exposure map, generation, color, strong-field, and cosmology export residuals. |
 
@@ -225,6 +288,21 @@ $$
 
 as developed in [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md). The tangential residual remains a necessary projection of this vector equation.
 
+For the bounded variable-speed row in [variable-speed-factor-extension.md](variable-speed-factor-extension.md), this fixed-speed residual is replaced by
+
+$$
+\mathbf{F}_i(t)
+-
+c_f^2
+\left(
+\nu_i^2\boldsymbol{\kappa}_i
++
+\nu_i\frac{d\nu_i}{d\ell_i}\mathbf{T}_i
+\right),
+$$
+
+and the tangential projection drives the speed factor instead of vanishing.
+
 ### 3.1 Same-Level Carrier Conditions
 
 The same-level hypothesis replaces radius-ratio gates with support-band, phase-offset, and topology gates. Relative to the branch center $\mathbf{C}(t)$, define the orbital velocity
@@ -233,7 +311,7 @@ $$
 \mathbf{u}_i(t)=\dot{\mathbf{x}}_i(t)-\dot{\mathbf{C}}(t).
 $$
 
-A candidate branch must declare the ideal same-level carrier constraints
+A fixed-speed candidate branch declares the ideal same-level carrier constraints
 
 $$
 R-\delta\le \|\mathbf{x}_i(t)-\mathbf{C}(t)\|\le R+\delta,
@@ -248,6 +326,16 @@ $$
 $$
 
 The velocity condition is not a proof of closure. Because exact $c_f$ motion can create tangent or near-separator root behavior, the branch must still pass the root and Jacobian gates.
+
+A variable-speed candidate replaces the second constraint by
+
+$$
+\|\mathbf{u}_i(t)\|
+=
+c_f\nu_i(t),
+\qquad
+0<\nu_-\le\nu_i(t)\le\nu_+.
+$$
 
 For a fixed-speed row, the tangential closure residual is
 
@@ -301,12 +389,14 @@ $$
 h_{\mathrm{mem}}^{(q)}<\infty.
 $$
 
-Near-zero self roots are not silently discarded. They must be assigned one of three statuses:
+Near-zero self roots are not silently discarded. In the fixed-speed intrinsic arclength chart, [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md) shows that an ordinary same-curve self root cannot be retained with a positive Jacobian floor. In the bounded variable-speed chart, [variable-speed-factor-extension.md](variable-speed-factor-extension.md) allows an ordinary self-hit only after the overspeed hinge, positive $J_{\mathrm{self}}$ floor, short-duration, overspeed-budget, action, and event rows pass. Self rows must therefore be assigned one of the statuses below:
 
 | Status | Meaning |
 | --- | --- |
-| `retained-positive-delay` | a nonzero same-source root passes the Jacobian floor |
+| `absent-by-policy` | ordinary same-source roots are excluded from the branch force ledger |
 | `regularized-fold-layer` | a controlled $\eta>0$ fold-layer rule replaces the singular ideal root |
+| `variable-speed-self-hit` | a bounded speed-factor row opens an ordinary self-hit for a short, ledgered interval |
+| `split-source-retained` | a distinct resolved source representative supplies its own positive-delay root and Jacobian floor |
 | `reject` | the branch has unresolved tangent or near-zero self-root behavior |
 
 ---

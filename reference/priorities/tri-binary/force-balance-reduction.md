@@ -105,7 +105,7 @@ $$
 \mathbf{F}_{ij}^{\alpha}(t).
 $$
 
-The self/fold-layer term is included only when the same-source row has status `retained-positive-delay` or when a declared `regularized-fold-layer` supplies a controlled $\eta>0$ contribution and weak limit. If the same-source root is absent, tangent, or unresolved, the branch status is a root-ledger fact, not a symmetry cancellation.
+The self/fold-layer term is included only when a declared `regularized-fold-layer` supplies a controlled $\eta>0$ contribution and weak limit, or when a `split-source-retained` representative supplies its own nonordinary source row. The ordinary same-curve arclength self root is excluded by [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md). If the same-source row is absent, tangent, or unresolved, the branch status is a root-ledger fact, not a symmetry cancellation.
 
 Let
 
@@ -151,6 +151,14 @@ $$
 \left\|\mathbf{u}_i(t)\right\|=c_f,
 \qquad
 \hat{\mathbf{t}}_i(t)=\frac{\mathbf{u}_i(t)}{c_f}.
+$$
+
+For a bounded variable-speed row from [variable-speed-factor-extension.md](variable-speed-factor-extension.md), replace this by
+
+$$
+\mathbf{u}_i(t)=c_f\nu_i(t)\hat{\mathbf{t}}_i(t),
+\qquad
+0<\nu_-\le\nu_i(t)\le\nu_+.
 $$
 
 For each retained hit, define the two scalar projections
@@ -207,6 +215,24 @@ $$
 \mathbf{u}_i(t)\cdot\mathbf{a}_i^{\mathrm{rel}}(t)
 =0.
 $$
+
+In the variable-speed row, the same projection is not zero. It is the speed-factor evolution equation:
+
+$$
+\mathbf{u}_i(t)\cdot\mathbf{a}_i^{\mathrm{rel}}(t)
+=
+c_f^2\nu_i(t)\dot{\nu}_i(t).
+$$
+
+In arclength form this is
+
+$$
+\nu_i\nu_i'
+=
+\Gamma\mathbf{T}_i\cdot\widetilde{\mathbf{F}}_i.
+$$
+
+Thus a nonzero tangential force projection is admissible only if it is ledgered as bounded speed-factor exchange. The fixed-speed model is the subcase $\nu_i'=0$.
 
 Substituting the class-separated sums gives
 
@@ -345,6 +371,16 @@ $$
 \frac{c_f^2-\left(\dot{\rho}_i(t)\right)^2}{\rho_i(t)}.
 $$
 
+For a variable-speed carrier, the same identity uses $\|\mathbf{u}_i\|^2=c_f^2\nu_i^2$:
+
+$$
+\hat{\mathbf{n}}_i(t)\cdot\dot{\mathbf{u}}_i(t)
+=
+\ddot{\rho}_i(t)
+-
+\frac{c_f^2\nu_i(t)^2-\left(\dot{\rho}_i(t)\right)^2}{\rho_i(t)}.
+$$
+
 Using $\dot{\mathbf{u}}_i=\mathbf{a}_i^{\mathrm{rel}}$, the radial support closure residual is
 
 $$
@@ -356,6 +392,8 @@ $$
 +
 \frac{c_f^2-\left(\dot{\rho}_i(t)\right)^2}{\rho_i(t)}.
 $$
+
+The variable-speed residual replaces $c_f^2$ by $c_f^2\nu_i^2$ in this last term.
 
 A prescribed support-radius row must satisfy
 
@@ -422,6 +460,12 @@ $$
 +
 \frac{c_f^2}{R}
 =0.
+$$
+
+For a rigid-radius variable-speed row, the centripetal term is instead
+
+$$
+\frac{c_f^2\nu_i(t)^2}{R}.
 $$
 
 This is the centripetal-support equation. With the same fixed-radius normalization as above, it may be written

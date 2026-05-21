@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet separates a physical dynamics obstruction from a computational chart obstruction in the same-level tri-binary intrinsic curve program. It builds on [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md), [intrinsic-curve-dynamics-equation.md](intrinsic-curve-dynamics-equation.md), [intrinsic-curve-solver-protocol.md](intrinsic-curve-solver-protocol.md), and [equal-period-constraint-qualification.md](equal-period-constraint-qualification.md).
 
-The main point is simple: for a regular closed curve, fixed carrier speed is obtained by arclength reparameterization. Therefore the construction-speed row $\mathcal{R}_T$ is not a force-balance residual in the same sense as $\mathcal{R}_{\mathrm{tan}}$ or $\mathcal{R}_{\mathrm{curv}}$. It is a chart row that appears when the solver insists that the computational Fourier phase is already proportional to arclength.
+The main point is simple: for a regular closed curve, fixed carrier speed is obtained by arclength reparameterization. Therefore the construction-speed row $\mathcal{R}_T$ is not a force-balance residual in the same sense as $\mathcal{R}_{\mathrm{tan}}$ or $\mathcal{R}_{\mathrm{curv}}$. It is a chart row that appears when the solver insists that the computational Fourier phase is already proportional to arclength. If the branch uses the bounded speed factor from [variable-speed-factor-extension.md](variable-speed-factor-extension.md), this packet supplies the geometric arclength part only; the physical clock is then controlled by $\nu_i$.
 
 No branch is retained.
 
@@ -79,6 +79,31 @@ $$
 $$
 
 identically. Thus fixed speed is a consequence of the arclength clock, not a separate physical force equation.
+
+For a variable-speed branch, keep the same geometric arclength curve but introduce the causal-time coordinate
+
+$$
+\chi_i(\lambda)
+=
+\int_0^\lambda
+\frac{d\xi}{\nu_i(\xi)}.
+$$
+
+The common period row becomes
+
+$$
+H_i=\chi_i(L_i)=H_*,
+$$
+
+not merely $L_i=L_*$. In a computational phase $\theta$, this is
+
+$$
+\chi_i(\theta)
+=
+\int_0^\theta
+\frac{S_i(\zeta)}{\nu_i(\zeta)}
+d\zeta.
+$$
 
 ---
 

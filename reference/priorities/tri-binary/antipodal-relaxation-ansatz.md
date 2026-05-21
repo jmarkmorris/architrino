@@ -601,6 +601,8 @@ $$
 
 The useful role of antipodal relaxation is specifically to add columns to the linearized operator that can reduce the pair-even rows unreachable by exact-antipodal radial, phase, and plane-normal modes.
 
+The arclength-inverse $M=3$ screens sharpen the opening rule. Exact-antipodal continuation should not be abandoned merely because a pair-even tangential residual is present. The parity calculation in [exact-antipodal-parity-lemma.md](exact-antipodal-parity-lemma.md) shows that $\mathcal{R}_{\mathrm{tan}}$ is expected to be pair-even while $\mathcal{R}_{K}$ is pair-odd when the root ledger is antipodally closed. In the current exact-antipodal evaluator, the $M=3$ restricted matrix still has full local rank and a strong range signal. The first apparent root loss is also not a pair-even obstruction: the missing same-sign binary-$3$ from binary-$2$ roots reappear when the memory window extends from $\eta_{\max}=4$ to $\eta_{\max}=4.5$. Antipodal relaxation opens only after an exact-antipodal $M=3$ or refined-grid successor passes the cokernel test in [support-complete-dynamics-obstruction-certificate.md](support-complete-dynamics-obstruction-certificate.md), showing a stable pair-even left-null obstruction not explained by root-ledger, memory-window, support-band, tail-force, action-scale, or discretization errors, and after [antipodal-relaxation-column-certificate.md](antipodal-relaxation-column-certificate.md) shows that pair-midpoint columns span the obstructing cokernel direction.
+
 ---
 
 ## 9. Added Residual Vector
@@ -784,4 +786,3 @@ $$
 $$
 
 It is not evidence of a retained same-level branch until a concrete relaxed curve family closes the full intrinsic dynamics, root, inventory, action, event, stability, and framed-wake rows together.
-

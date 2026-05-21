@@ -6,6 +6,8 @@ The same-level architecture replaces radial nesting with a common support band, 
 
 For deformed support-band rows, the preferred dynamics chart is now the arclength chart: fixed speed is encoded by the curve clock, and the remaining carrier equation is force-versus-curvature closure. Thus a deformed retained branch must close $\mathcal{R}_{L}$, $\mathcal{R}_{T}$, $\mathcal{R}_{\mathrm{tan}}$, and $\mathcal{R}_{\mathrm{curv}}$ on the same active-root ledger, not only an angle-clock speed residual.
 
+The composite promotion decision is stated in [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md). That theorem is the guardrail for any future migration: a same-level packet remains priority-only until geometry, roots, dynamics, convergence, action, conservation, stability, inventory, and event rows all close on one ledger convention.
+
 ---
 
 ## 1. Claim Map
@@ -215,6 +217,7 @@ The first proof-packet layer is now staged:
 
 | Packet | Status |
 | --- | --- |
+| Retained branch promotion theorem | composite promotion decision staged; no current same-level packet satisfies the required geometry, root, dynamics, convergence, action, conservation, stability, inventory, and event rows |
 | Current dynamics synthesis | integrated conclusion staged; next solve target is intrinsic finite-mode curve dynamics |
 | Branch mathematics | theorem targets stated; no retained branch yet |
 | Carrier/topology/spin | theorem targets stated; no retained framed-wake row yet |
@@ -240,9 +243,65 @@ The first proof-packet layer is now staged:
 | Equal-period constraint qualification | length row converted into a local codimension-$2$ manifold target; restricted dynamics rank/range test on $\ker D\mathbf{L}$ remains open |
 | Rational-winding screen | low-integer winding data prefer $(1,1,1)$; nontrivial winding row is unsupported for the current refined $M=2$ candidate |
 | Unit-speed chart reparameterization | construction-speed spread identified as a finite Fourier chart row; arclength-inverse chart still must close root, tangential, and curvature rows |
+| Arclength-inverse variation formulas | fixed-arclength derivative formulas stated; successor matrices must include inverse-phase and root-delay terms |
+| Branch-tangent sensitivity equations | derivative chain for branch tangent, roots, Jacobians, force terms, residuals, $\Gamma$, curl, and event margins stated |
 | Arclength-inverse rescore | projected row passes speed-floor and root-count screens, but $K=18$ force peaks persist and $\Gamma_K$ convention gives a harder curvature residual |
 | Arclength-inverse restricted rank screen | equal-period tangent matrix has full rank and descent directions; nonlinear trust-region acceptance remains open |
 | Arclength-inverse trust-region screen | restricted nonlinear descent survives through $K=18$ and $\rho=0.8$; root-count loss at $\rho=1.2$ and support-band growth keep the row unretained |
+| Bounded speed factor extension | generalizes the intrinsic curve model from $\nu_i\equiv1$ to bounded $\nu_i$, changing tangential force closure, root Jacobians, period rows, and self-hit admissibility |
+| Bounded speed factor root-sheet certificate | replaces fixed-speed root sheets by causal-time sheets with $J_{ij}^{\nu}$, clock-corrected coefficient variations, force derivatives, and Krawczyk envelopes |
+| Bounded speed factor master retention theorem | states the full bounded-speed successor of the exact-antipodal $M=3$ master theorem; no fixed-speed certificate can be read as bounded-speed retention |
+| Arclength-inverse $M=3$ rank and trust screen | exact-antipodal $M=3$ has full $52$-column restricted rank and root-preserving descent through $\rho=0.3$; $\rho=0.4$ loses off-grid root count, so no branch is retained |
+| Arclength-inverse $M=3$ root frontier | localizes the $\rho=0.4$ loss to roots crossing the fixed $\eta_{\max}=4$ memory window; extended $\eta_{\max}=4.5$ recovers them but opens the action/memory row |
+| Adaptive root-front dynamics | derives the implicit root-front velocity law and estimates the first $\eta=4$ crossing at $\rho\approx0.32056$; branch-event status still requires bracket/gap/Jacobian interval checks |
+| Adaptive memory trust-radius lemma | converts root-front speed, support growth, and tail-certificate margins into radius inequalities; current $\rho=0.8$ row has active-window headroom only and no support-complete radius under $\eta_{\mathrm{mem}}=4.5$ |
+| Branch-event classification theorem | classifies exact-antipodal $M=3$ first events and keeps proof-budget failures distinct from true dynamics obstructions |
+| Branch-event normal forms | gives transversality equations and local reset rules for each classified continuation event |
+| Adaptive memory/action row | support-bound theorem target states $\eta_{\mathrm{mem}}\ge2r_{\max}+m_\eta$ as a sufficient memory-completeness row and ties it to $\Gamma_K$ action consistency |
+| Tail-interval root exclusion certificate | gives distance, monotone-Jacobian, and Lipschitz slab tests for proving the remaining finite-memory tail is root-free |
+| Tail-root assimilation theorem | states how actual tail roots can be bracketed, ledgered, and recomputed instead of treated as an omitted-force uncertainty |
+| Support-complete $M=3$ tail resolution protocol | turns the $\rho=0.8$ tail interval $(4.5,5.5211575250+m_\eta]$ into the immediate finite exclusion-or-assimilation solve |
+| Support-complete $M=3$ tail interval enclosures | supplies the interval arithmetic needed to compute $D_q$, $J_q$, endpoint signs, and Lipschitz constants on the tail slabs |
+| Support-complete $M=3$ tail Newton certificate | adds interval Newton and parametric Krawczyk tests, while requiring root tubes rather than false isolated two-variable roots |
+| Support-complete $M=3$ tail margin sensitivity | computes coefficient-box persistence radii for $G$, $J$, Newton images, Krawczyk tubes, and $\rho_{\mathrm{tail}}$ |
+| Support-complete $M=3$ tail slab schedule | turns the observed/deep split into owned atomic cells and requires exactly one coefficient-box persistent terminal predicate per cell |
+| Support-complete $M=3$ tail mesh lift | upgrades nodewise tail exclusions and brackets to continuous arclength-cell exclusions or root sheets |
+| Support-complete $M=3$ tail execution ledger | packages endpoint ownership, terminal predicates, exact-antipodal pairing, $E_{\mathrm{tail}}$, and $\rho_{\mathrm{tail}}$ as the first blocker certificate |
+| Support-complete $M=3$ tail algorithm termination | proves adaptive support-tail subdivision is finite under explicit regular sheet, Jacobian, separation, and excluded-gap hypotheses |
+| Support-complete $M=3$ tail frontier shrinkage | uses $\eta_{\max}=4.5$ and $5.0$ rescoring agreement only as a diagnostic split into $(4.5,5.0]$ and the deeper support tail |
+| Support-complete $M=3$ root-sheet variations | supplies the derivative and second-variation rows needed if any tail roots are assimilated before action, curl, or Krawczyk rows are read |
+| Unresolved tail force error bound | gives a worst-case omitted-force and fitted-curvature perturbation row; current $M=3$ tail is `tail-force-error-unbounded` without a tail count/Jacobian envelope |
+| Exact-antipodal parity lemma | proves the expected pair-even tangential and pair-odd curvature residual split; antipodal relaxation requires a stable pair-even obstruction, not parity alone |
+| Symmetry block decomposition theorem | decomposes exact-antipodal obstruction, adjoint cokernel, and midpoint relaxation tests by row-aware pair sector and binary Fourier block |
+| Support-complete dynamics obstruction certificate | states the left-null/cokernel inequality required before declaring exact-antipodal support-complete dynamics locally impossible |
+| Adjoint cokernel equations | derives the root-dependent adjoint equations, obstruction scalar budget, and relaxation-column projection test behind the support-complete cokernel row |
+| Support-complete Newton closure certificate | states the range/cokernel Kantorovich certificate required before residual descent becomes a local dynamics-closure candidate |
+| Support-complete $M=3$ successor certificate target | composes the current $M=3$ memory, tail, refinement, Krawczyk, cokernel, $\Gamma$, and curl rows into one executable successor decision object |
+| Support-complete $M=3$ executable solve theorem | orders the exact-antipodal $M=3$ tail, mesh, root, action, Krawczyk, mode-refinement, obstruction, and relaxation decisions into one exhaustive status theorem |
+| Support-complete $M=3$ corrector system | defines the post-tail exact-antipodal residual, derivatives, Krawczyk range solve, cokernel audit, action compatibility, and obstruction decision |
+| Support-complete $M=3$ action-scale protocol | derives $\Gamma_B$ from virtual-work exactness and scalar inertia rather than treating $\Gamma_K^{\mathrm{fit}}$ as physical |
+| Support-complete $M=3$ Krawczyk proof budget | converts the corrector into chart-radius, derivative-envelope, range, cokernel, and obstruction inequalities |
+| Support-complete $M=3$ augmented root corrector | gives the equivalent explicit-delay system and Schur-complement bridge to root-sensitive derivatives |
+| Exact-antipodal mode-refinement certificate | tests higher exact-antipodal columns against any $M=3$ cokernel defect before relaxation is allowed |
+| Coefficient-space branch continuation theorem | states the pseudo-arclength tangent/corrector and first-event theorem for following a certified support-complete zero as a smooth branch |
+| Branch-switching bifurcation theorem | states the Lyapunov-Schmidt extra-kernel and symmetry-breaking normal forms that distinguish branch switches from event resets |
+| Antipodal relaxation column certificate | tests whether pair-midpoint columns span a certified exact-antipodal cokernel obstruction before opening relaxation |
+| Collocation refinement error certificate | supplies the off-grid residual, root-label, excluded-gap, and projector-drift error $\epsilon_{\mathrm{disc}}$ used by obstruction and closure rows |
+| Finite-mode branch convergence theorem | states the uniform-refinement route from certified finite Fourier rows to a curve-level same-level dynamics branch |
+| Same-source self-root exclusion lemma | proves ordinary same-curve self roots fail the positive-Jacobian retained-root gate in the fixed-speed arclength chart; variable-speed self-hit rows must satisfy the speed-factor hinge and event ledger |
+| Fold-layer regularization action theorem | states the regulated action, weak-limit, curl, and conservation rows required before a fold-layer force can enter the ledger |
+| Medium-response constitutive closure theorem | states the constitutive response, memory, passivity, isotropy, and exchange-ledger rows required before medium response can enter the force ledger |
+| Delayed force Lipschitz envelope | supplies per-root derivative constants needed by trust-radius, refinement, Krawczyk, and variationality certificates |
+| Root-ledger Floquet stability certificate | states the return-map, monodromy, gauge-neutral, transverse-spectrum, and perturbation-recovery rows required after dynamics closure |
+| Root-dependent variational equation | gives the linearized root-delay, force, projected dynamics, action-scale, and monodromy operator behind the Floquet row |
+| Second-variation action stability theorem | states the action Hessian, second root-sensitivity, Morse index, and Morse/Floquet compatibility rows behind action-side stability |
+| Conservative monodromy stability classification | separates conservative reciprocal-multiplier stability from dissipative attraction and requires a medium or event exchange row before contraction claims |
+| Noether neutral mode reduction theorem | identifies expected unit multipliers and Hessian null directions from gauge, Noether generators, conserved levels, and branch-family tangents |
+| Krein elliptic stability theorem | supplies the conservative unit-circle multiplier signature test, semisimplicity requirement, and opposite-sign collision instability criterion |
+| Energy-momentum orbital stability theorem | supplies the conservative fixed-current symplectic-slice Hessian test for orbital stability modulo symmetries |
+| History-force variationality condition | converts action compatibility into a finite-mode work-one-form curl test on the retained root stratum |
+| Gamma fit/action identifiability lemma | proves the residual penalty and tolerance bound connecting fitted $\Gamma_K$ to action-derived $\Gamma_B$ |
+| Noether action conservation closure theorem | upgrades event conservation from parallel ledger checks to a Noether consequence of one action/event convention |
 | Antipodal relaxation ansatz | pair-midpoint chart and certificate rows stated; spin/topology risks identified |
 | Retained branch dynamics protocol | staged retained-branch search algorithm and acceptance thresholds stated |
 | Intrinsic curve solver protocol | Fourier/collocation variables, gauges, root solve, barriers, rank checks, and output schema stated |

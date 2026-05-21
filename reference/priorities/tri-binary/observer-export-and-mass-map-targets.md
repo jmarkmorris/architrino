@@ -4,6 +4,16 @@ This priority note converts the same-level tri-binary observer-facing claims int
 
 Promotion status: `priority-only`. The material below becomes promotion-ready only after a same-level branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, closed tangential residuals, a history-dressed energy/action ledger, exposure and Noether-Sea response rows, and observer exports marked `passed`, `failed`, or `not_computed`.
 
+If the branch uses the bounded speed factor in [variable-speed-factor-extension.md](variable-speed-factor-extension.md), every observer export below must be recomputed on the bounded-speed ledger. In particular, the moving-assembly clock/ruler row must replace the fixed-speed condition by
+
+$$
+\|\mathbf{v}+\mathbf{u}_{\perp}^{(\mathbf{v})}\|
+=
+c_f\nu_{\perp}^{(\mathbf{v})},
+$$
+
+so Lorentz recovery becomes a theorem target about speed-factor retuning rather than a direct consequence of strict fixed speed. The mass map must likewise include the kinetic contribution proportional to $c_f^2\nu_i^2$ and any speed-factor storage or exchange.
+
 Claim discipline:
 
 | Claim family | Status here | Required closure object |

@@ -1,6 +1,6 @@
 # Intrinsic Curve Dynamics Equation
 
-Promotion status: `priority-only`. This packet rewrites same-level tri-binary dynamics as an intrinsic curve equation. It builds on [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md): fixed speed is handled by arclength, and the remaining physical equation is that the delayed causal-wake force equals the curvature acceleration of each carrier curve.
+Promotion status: `priority-only`. This packet rewrites same-level tri-binary dynamics as an intrinsic curve equation. It builds on [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md): fixed speed is handled by arclength, and the remaining physical equation is that the delayed causal-wake force equals the curvature acceleration of each carrier curve. The bounded variable-speed extension is stated separately in [variable-speed-factor-extension.md](variable-speed-factor-extension.md); it recovers this packet when $\nu_i\equiv1$.
 
 This is a theorem-target formulation. It does not prove that a retained same-level branch exists.
 
@@ -55,6 +55,14 @@ This automatically gives
 $$
 \|\dot{\mathbf{x}}_i(t)\|=c_f.
 $$
+
+This is the fixed-speed special case. In the variable-speed model, the same arclength curve is traversed with a positive speed factor $\nu_i(\lambda)$:
+
+$$
+\dot{\mathbf{x}}_i(t)=c_f\nu_i(\lambda)\mathbf{T}_i(\lambda),
+$$
+
+and the intrinsic dynamics equation changes as in [variable-speed-factor-extension.md](variable-speed-factor-extension.md).
 
 ---
 
@@ -373,4 +381,3 @@ $$
 $$
 
 This formulation is stricter than the first deformation searches but better aligned with the actual dynamics. It also gives a clear no-go result: if no low-mode curve can make the delayed force field tangent-free and curvature-aligned while preserving the root floors, then the branch needs either a controlled self/fold-layer row, a medium-response term, or a different carrier topology.
-

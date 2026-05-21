@@ -206,13 +206,14 @@ $$
 \mathrm{status}(a)
 \in
 \{
-\texttt{retained-positive-delay},
+\texttt{absent-by-policy},
 \texttt{regularized-fold-layer},
+\texttt{split-source-retained},
 \texttt{reject}
 \}.
 $$
 
-The branch is rejected unless all central-inventory labels avoid singular coincidence by one of the first two statuses and the associated causal-root Jacobians satisfy
+The branch is rejected unless all central-inventory labels avoid singular coincidence by an allowed resolved or regularized status and the associated causal-root Jacobians satisfy
 
 $$
 0<\epsilon_J
@@ -712,7 +713,7 @@ The central-inventory and event-ledger addition to a same-level branch certifica
 | `integer_inventory` | $(N_+,N_-;C_{\mathrm{cent}},S_{\mathrm{chor}},Q)$ | integer counts match branch type and $Q=\epsilon(N_+-N_-)$ | `inventory-mismatch`, `charge-index-noninteger` |
 | `central_choreography_split` | resolved split between $C_{\mathrm{cent}}$ and $S_{\mathrm{chor}}$ | central inventory is ledgered and choreography remains neutral where declared | `central-inventory-singularity`, `choreography-not-neutral` |
 | `noncollision` | $d_{\min}^{(B)}>\epsilon_x$ or declared regularized support | no unresolved coincident point representatives | `projection-collision`, `central-inventory-singularity` |
-| `regularization` | $\eta>0$ rule or retained positive-delay status | no unresolved near-zero self roots; Jacobian floor stays positive | `near-zero-self-root-unresolved`, `jacobian-floor-violation`, `regularization-unset` |
+| `regularization` | $\eta>0$ rule, split-source representative, or absent-by-policy status | no unresolved near-zero self roots; any split-source Jacobian floor stays positive | `near-zero-self-root-unresolved`, `jacobian-floor-violation`, `regularization-unset` |
 | `source_provenance` | label transfer row $\mathcal{R}_{\mathrm{src}}$ | every outgoing architrino has an incoming or Noether-Sea source | `source-provenance-open`, `orphan-outgoing-label` |
 | `pair_production` | $B_k+B_{-k}$ pair row | total pair inventory $(12,12)$ and zero net $Q$ with $24$ source labels | `pair-source-provenance-open`, `pair-charge-open` |
 | `reaction_inventory` | $\mathcal{R}_{N_+},\mathcal{R}_{N_-},\mathcal{R}_Q$ | signed inventory and charge rows close | `reaction-inventory-open`, `charge-residual-open` |
