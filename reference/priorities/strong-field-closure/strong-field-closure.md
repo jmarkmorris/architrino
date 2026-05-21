@@ -202,7 +202,7 @@ Failure modes to retain:
 ## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [tri-binary](../tri-binary/tri-binary.md)
+- [swarm](../swarm/tri-binary.md)
 - [dark-sector](../dark-sector/dark-sector.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [simulations](../simulations/simulations.md)

@@ -133,7 +133,7 @@ where the photon-sector rows compare against two-way cavity, clock-comparison, a
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [tri-binary](../tri-binary/tri-binary.md) | Make Lorentz behavior consume moving-assembly deformation and clock/ruler retuning. |
+| This file | [swarm](../swarm/tri-binary.md) | Make Lorentz behavior consume moving-assembly deformation and clock/ruler retuning. |
 | This file | [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Tie the cancellation to causal-root and Jacobian structure rather than postulated Minkowski geometry. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Add preferred-frame leakage as a direct gravity/relativity acceptance predicate. |
 

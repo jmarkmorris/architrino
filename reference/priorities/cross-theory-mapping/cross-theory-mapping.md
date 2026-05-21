@@ -99,7 +99,7 @@ This projection is a provenance channel from detector signals to benchmark varia
 | Draft case family | Candidate promotion target | Promotion gate |
 | --- | --- | --- |
 | Redshift and cosmology | [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md) | Redshift, clock, CMB, supernova, BAO, and $H(z)$ records consume the same Noether-Sea variables without tired-light image or time-dilation failure. |
-| Lorentz, Sagnac, and Fizeau | [tri-binary](../tri-binary/tri-binary.md), [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Two-way light speed, time dilation, length contraction, rotation, and moving-medium transport recover observer-level formulas while bounding preferred-frame leakage. |
+| Lorentz, Sagnac, and Fizeau | [swarm](../swarm/tri-binary.md), [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Two-way light speed, time dilation, length contraction, rotation, and moving-medium transport recover observer-level formulas while bounding preferred-frame leakage. |
 | Weak-field metric | [validation-gates](../validation-gates/validation-gates.md), [mass-map](../mass-map/mass-map.md) | One $\mathcal{M}_{\mathrm{sea}}^{ab}$ maps to redshift, Shapiro delay, lensing, precession, and PPN coefficients. |
 | Radiation and gravitational waves | [tri-binary-causal-closure/radiation-gate-c-benchmarks](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md), [strong-field-closure](../strong-field-closure/strong-field-closure.md) | Energy, momentum, angular momentum, recoil, medium updates, and waveform phase close in one event-ledger grammar. |
 | Quantum phase, spin, and Bell | [quantum-closure](../quantum-closure/quantum-closure.md), [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md) | Phase, spin, photon-analyzer response, detector basins, Born weights, no-signaling, and Bell correlations derive from path history and measure closure rather than postulated probabilities. |
@@ -121,7 +121,7 @@ This projection is a provenance channel from detector signals to benchmark varia
 ## Related Priorities
 
 - [validation-gates](../validation-gates/validation-gates.md)
-- [tri-binary](../tri-binary/tri-binary.md)
+- [swarm](../swarm/tri-binary.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [mass-map](../mass-map/mass-map.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)

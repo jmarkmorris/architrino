@@ -97,7 +97,7 @@ is nonempty. Local sector success is therefore not mature until at least one sha
 
 ## Related Priorities
 
-- [tri-binary](../tri-binary/tri-binary.md)
+- [swarm](../swarm/tri-binary.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)

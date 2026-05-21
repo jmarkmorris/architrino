@@ -570,7 +570,7 @@ Sixth continuation status: four additional theory lemmas were promoted without a
 ## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [tri-binary](../tri-binary/tri-binary.md)
+- [swarm](../swarm/tri-binary.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 

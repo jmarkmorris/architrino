@@ -19,7 +19,7 @@
 ## Next Team-Agent Prompt
 
 ```text
-Cody, continue in team-agent mode inside `reference/priorities/tri-binary/` only.
+Cody, continue in team-agent mode inside `reference/priorities/swarm/` only.
 
 Context:
 - The bounded speed factor proof stack now has a branch-search decision layer:
@@ -45,17 +45,17 @@ Required mathematical output:
 - First decision status: exactly one of retained candidate, event reset, certified local rejection, or proof-budget/refinement status, with the first failed row named.
 
 Constraints:
-- Edit authority: safe scoped edits allowed inside `reference/priorities/tri-binary/` only.
-- Write new documents only in `reference/priorities/tri-binary/`.
+- Edit authority: safe scoped edits allowed inside `reference/priorities/swarm/` only.
+- Write new documents only in `reference/priorities/swarm/`.
 - Preserve TeX delimiters and use inline `$...$` and display `$$...$$` consistently.
 - Use canonical terms: architrino, bounded speed factor, causal root sheet, live ledger, self-hit, Noether Sea as standalone noun, and Noether-Sea as compound modifier.
 - Do not introduce new project terminology unless the local documents already establish it.
 - Do not edit `content/markdown/aaa`, simulations, scene assets, or app code.
 
 Expected result:
-- One or more concrete branch-box artifact packets in `reference/priorities/tri-binary/`.
+- One or more concrete branch-box artifact packets in `reference/priorities/swarm/`.
 - Integrations into `tri-binary.md`, `tri-binary-architecture.md`, `proof-program-and-decision-gate.md`, `current-dynamics-synthesis.md`, and the bounded-speed master/solver packets as needed.
-- Validation with `git diff --check -- reference/priorities/tri-binary`, a terminology scan for disallowed/stale phrases, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
+- Validation with `git diff --check -- reference/priorities/swarm`, a terminology scan for disallowed/stale phrases, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
 - Final status must say whether the artifact is a retained candidate, event reset, certified local rejection, or proof-budget/refinement status. If no branch is retained, state the first mathematical blocker.
 ```
 
