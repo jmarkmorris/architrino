@@ -30,12 +30,60 @@ The current mathematical status is:
 The substrate ontology remains a fixed Euclidean void $(\mathbb{R}^3,\delta_{ij})$ with absolute time $t$. Architrinos carry polarity
 
 $$
-q_i=\sigma_i\epsilon,\qquad \sigma_i\in\{+1,-1\},\qquad \epsilon=\frac{e}{6},
+q_i=\sigma_i\epsilon,\qquad \sigma_i\in\{+1,-1\},\qquad \epsilon=\frac{|e|}{6},
 $$
 
 and interact through causal wakes propagating at primitive speed $c_f$.
 
-### 2.1 Noether-Core Inventory
+### 2.1 Companion Proof Packets
+
+The same-level architecture now has the following priority-side companion packets in this directory:
+
+| Packet | Role |
+| --- | --- |
+| [proof-program-and-decision-gate.md](proof-program-and-decision-gate.md) | Integration map for retained branch packets, proof dependencies, and the architecture decision gate. |
+| [current-dynamics-synthesis.md](current-dynamics-synthesis.md) | Current dynamics conclusion: rigid carrier is a root seed, arclength curve dynamics is the closure problem, and no branch is retained yet. |
+| [source-signal-triage.md](source-signal-triage.md) | Source-mining triage separating converted theorem targets from overclaims in the rearchitecture discussion. |
+| [same-level-branch-mathematics.md](same-level-branch-mathematics.md) | Branch chart, admissible history space, causal-root ledger, Jacobian floor, finite-memory, regularized DDE, weak-limit, and tangential-residual theorem targets. |
+| [topological-carrier-and-spin-targets.md](topological-carrier-and-spin-targets.md) | Candidate carrier families, phase-lock rows, noncollision node clearances, framed-wake parity targets, angular-momentum ledgers, and color-slot scaffold. |
+| [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md) | Worked zero-offset octahedral carrier row with exact Euclidean noncollision floor, antipodal partner root, same-source root status, first cross-root/Jacobian screening, and neutral tangential-residual failure in the rigid row. |
+| [rigid-carrier-dynamics-results.md](rigid-carrier-dynamics-results.md) | Phase-offset and radial-support diagnostics showing rigid octahedral rows improve but do not close force balance. |
+| [polarity-phase-rigid-screen-results.md](polarity-phase-rigid-screen-results.md) | Neutral polarity-assignment and rigid phase-offset screen showing polarity reassignment slightly improves but does not close tangential force balance. |
+| [force-balance-reduction.md](force-balance-reduction.md) | Projection reduction for partner, cross-binary, self/fold-layer, and medium-response terms in tangential and radial/support closure. |
+| [deformed-carrier-dynamics-ansatz.md](deformed-carrier-dynamics-ansatz.md) | Low-order deformation variables, root/force linearization, and ansatz packets for radial breathing, phase modulation, plane-normal precession, antipodal relaxation, and center-gauge motion. |
+| [low-order-deformation-search-results.md](low-order-deformation-search-results.md) | First bounded deformation search showing radial breathing improves tangential residuals but fails speed/radial closure. |
+| [pair-specific-deformation-search-results.md](pair-specific-deformation-search-results.md) | Site-specific radial and speed-coupled phase screen showing better speed/root behavior but persistent tangential and support residuals. |
+| [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md) | Arclength-clock reduction showing that fixed speed should be built into the deformed-curve time map and that force closure should be tested against curvature. |
+| [arclength-deformation-search-results.md](arclength-deformation-search-results.md) | First arclength-clock deformation screen showing common breathing improves tangential residuals but still fails force-versus-curvature closure. |
+| [intrinsic-curve-dynamics-equation.md](intrinsic-curve-dynamics-equation.md) | Intrinsic delayed curve equation $\mathbf{Y}_i''=\Gamma P_i^\perp\widetilde{\mathbf{F}}_i$ with root, curvature, period, and event/action closure rows. |
+| [plane-normal-precession-ansatz.md](plane-normal-precession-ansatz.md) | Intrinsic arclength precession ansatz, unit-speed constraints, curvature formula, and line-of-action projection effects unavailable to pure radial breathing. |
+| [plane-normal-precession-search-results.md](plane-normal-precession-search-results.md) | First nonplanar arclength screen showing plane-normal freedom improves curvature alignment but leaves tangential and Jacobian residuals open. |
+| [binary-specific-plane-normal-search-results.md](binary-specific-plane-normal-search-results.md) | Binary-specific normal-mode screen showing loose low-mode nonplanar freedom fails period, tangential, curvature, and Jacobian refinement. |
+| [finite-mode-rank-screen-results.md](finite-mode-rank-screen-results.md) | Finite-difference rank screen showing the common six-variable radial-plus-normal family is locally independent but too small to close the intrinsic residual. |
+| [intrinsic-m2-collocation-rank-results.md](intrinsic-m2-collocation-rank-results.md) | $M=2$ exact-antipodal vector Fourier rank screen showing the larger intrinsic collocation basis has full local rank and useful clipped descent directions. |
+| [intrinsic-m2-nonlinear-solve-results.md](intrinsic-m2-nonlinear-solve-results.md) | First bounded nonlinear $M=2$ exact-antipodal solve: strong training-grid residual descent, but off-grid residual peaks and period/unit rows remain open. |
+| [intrinsic-m2-refined-solve-results.md](intrinsic-m2-refined-solve-results.md) | Denser-grid $M=2$ restart reducing refined tangential and curvature residuals while exposing period-length closure as the next blocker. |
+| [period-closure-and-winding-targets.md](period-closure-and-winding-targets.md) | Equal-length and rational-winding theorem targets needed before force-improving intrinsic curves can be retained as same-level branches. |
+| [equal-period-projection-results.md](equal-period-projection-results.md) | Minimum-norm equal-period projection showing the refined $M=2$ force-improving row can nearly close length spread without losing root floors. |
+| [equal-period-constraint-qualification.md](equal-period-constraint-qualification.md) | Equal-period manifold lemma, restricted dynamics residual, and exact-antipodal $M=2$ dynamics-zero theorem target. |
+| [rational-winding-screen-results.md](rational-winding-screen-results.md) | Low-integer winding screen showing current refined $M=2$ lengths prefer the equal-period class over a nontrivial rational-winding branch. |
+| [unit-speed-chart-reparameterization.md](unit-speed-chart-reparameterization.md) | Arclength reparameterization lemma showing construction-speed spread is a chart row, with solver split between constant-speed Fourier and arclength-inverse shape charts. |
+| [arclength-inverse-rescore-results.md](arclength-inverse-rescore-results.md) | Arclength-inverse rescore of the refined and projected $M=2$ candidates, including $\Gamma_K$ versus $\Gamma_F$ diagnostics and off-grid residual peaks. |
+| [arclength-inverse-restricted-rank-screen.md](arclength-inverse-restricted-rank-screen.md) | First equal-period-restricted arclength-inverse rank screen showing full restricted rank but an oversized linear step. |
+| [arclength-inverse-trust-region-results.md](arclength-inverse-trust-region-results.md) | Nonlinear clipped-step screen showing restricted arclength-inverse descent through $\rho=0.8$, with root-count loss at $\rho=1.2$ and support-band growth. |
+| [antipodal-relaxation-ansatz.md](antipodal-relaxation-ansatz.md) | Pair-midpoint chart for relaxing exact antipodality while preserving center gauge, inventory, root floors, and spin/topology obligations. |
+| [retained-branch-dynamics-protocol.md](retained-branch-dynamics-protocol.md) | Concrete retained-branch search protocol with state variables, root solver, residual objective, continuation, stability diagnostics, and acceptance thresholds. |
+| [intrinsic-curve-solver-protocol.md](intrinsic-curve-solver-protocol.md) | Concrete Fourier/collocation solver protocol for the intrinsic curve equation, including gauges, root solve, barriers, rank checks, and output schema. |
+| [linearized-dynamics-matrix.md](linearized-dynamics-matrix.md) | Finite-mode first-order balance matrix around the rigid octahedral carrier, including root-shift columns and rank/solvability theorem targets. |
+| [minimal-dynamics-closure-theorem.md](minimal-dynamics-closure-theorem.md) | Minimal arclength-clock closure theorem target, residual vanishing conditions, transverse-zero continuation route, and observer/export separation. |
+| [root-jacobian-barrier-lemma.md](root-jacobian-barrier-lemma.md) | Sufficient perturbation and barrier conditions preserving active root labels, Jacobian floor, and finite memory in intrinsic collocation searches. |
+| [gamma-scale-action-row.md](gamma-scale-action-row.md) | Scale/action row deriving the curvature response coefficient $\Gamma_K$ from branch inertia, history action, and event ledgers rather than a fit. |
+| [central-inventory-and-event-ledgers.md](central-inventory-and-event-ledgers.md) | Neutral core and charged fermion integer inventory, central-inventory split, pair-production provenance, reaction ledgers, and heat-channel restrictions. |
+| [observer-export-and-mass-map-targets.md](observer-export-and-mass-map-targets.md) | Moving-branch Lorentz export, photon transition, mass/exposure map, generation, color, strong-field, and cosmology export residuals. |
+
+All packets remain `priority-only` until one retained branch certificate populates their shared rows on the same active causal-root and event-ledger convention.
+
+### 2.2 Noether-Core Inventory
 
 A neutral Noether core remains a six-architrino branch with
 
@@ -47,7 +95,7 @@ $$
 
 The same-level tri-binary change concerns the choreography geometry, not the substrate charge unit.
 
-### 2.2 Fermion Inventory
+### 2.3 Fermion Inventory
 
 A charged twelve-architrino fermion branch must satisfy the integer charge ledger
 
@@ -165,6 +213,17 @@ J_{\min}^{(q)}>\epsilon_J,
 $$
 
 and all event-ledger rows close on the same retained branch.
+
+For deformed support-band curves, the fixed-speed row should be expressed by an arclength clock rather than by setting a construction angle equal to physical time. In that formulation $\mathcal{R}_{\mathrm{speed}}$ is replaced by the period-compatibility row $\mathcal{R}_L$ and the vector dynamics row
+
+$$
+\mathcal{R}_{\mathrm{dyn},i}(t)
+=
+\mathbf{F}_i(t)
+-c_f^2\boldsymbol{\kappa}_i(q_i(t)),
+$$
+
+as developed in [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md). The tangential residual remains a necessary projection of this vector equation.
 
 ### 3.1 Same-Level Carrier Conditions
 

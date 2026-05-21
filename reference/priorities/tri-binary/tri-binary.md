@@ -47,6 +47,45 @@ The sibling files in this directory are same-level tri-binary architecture-devel
 | File | Current role in architecture development |
 | --- | --- |
 | [tri-binary-architecture.md](tri-binary-architecture.md) | Same-level architecture theorem-target draft and branch-certificate plan. |
+| [proof-program-and-decision-gate.md](proof-program-and-decision-gate.md) | Integration map for proof dependencies, retained branch packet rows, and architecture decision-gate status. |
+| [current-dynamics-synthesis.md](current-dynamics-synthesis.md) | Current dynamics conclusion and next intrinsic-curve solve target. |
+| [source-signal-triage.md](source-signal-triage.md) | Triage of the rearchitecture source discussion into converted theorem targets, blockers, priority-only signals, and rejected overclaims. |
+| [same-level-branch-mathematics.md](same-level-branch-mathematics.md) | Branch chart, history space, causal-root ledger, Jacobian floor, finite-memory, regularized DDE, weak-limit, and tangential-closure targets. |
+| [topological-carrier-and-spin-targets.md](topological-carrier-and-spin-targets.md) | Carrier families, phase-lock residuals, noncollision node clearances, framed-wake parity targets, angular-momentum ledgers, and color scaffold. |
+| [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md) | Worked zero-offset octahedral carrier with exact noncollision floor, partner-root calculation, same-source root status, first cross-root/Jacobian screening, and rigid neutral tangential-residual failure. |
+| [rigid-carrier-dynamics-results.md](rigid-carrier-dynamics-results.md) | Phase-offset and radial-support diagnostics showing rigid octahedral rows improve but do not close force balance. |
+| [polarity-phase-rigid-screen-results.md](polarity-phase-rigid-screen-results.md) | Neutral polarity-assignment and rigid phase-offset screen showing polarity reassignment helps slightly but does not retain a rigid branch. |
+| [force-balance-reduction.md](force-balance-reduction.md) | Projection reduction for partner, cross-binary, self/fold-layer, and medium-response terms in tangential and radial/support closure. |
+| [deformed-carrier-dynamics-ansatz.md](deformed-carrier-dynamics-ansatz.md) | Low-order deformation variables, root/force linearization, and ansatz packets for radial breathing, phase modulation, plane-normal precession, antipodal relaxation, and center-gauge motion. |
+| [low-order-deformation-search-results.md](low-order-deformation-search-results.md) | First bounded deformation search showing radial breathing improves tangential residuals but fails speed/radial closure. |
+| [pair-specific-deformation-search-results.md](pair-specific-deformation-search-results.md) | Site-specific radial and speed-coupled phase screen showing better speed/root behavior but persistent tangential and support residuals. |
+| [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md) | Arclength-clock reduction replacing naive angle-clock speed residuals with period, tangent, and curvature closure for deformed curves. |
+| [arclength-deformation-search-results.md](arclength-deformation-search-results.md) | Arclength-clock common-breathing screen: tangential improvement survives, but force-versus-curvature closure still fails. |
+| [intrinsic-curve-dynamics-equation.md](intrinsic-curve-dynamics-equation.md) | Intrinsic delayed curve equation and curve-level residual vector for retained same-level dynamics. |
+| [plane-normal-precession-ansatz.md](plane-normal-precession-ansatz.md) | Intrinsic arclength precession ansatz and residual rows for nonplanar same-level carrier deformation. |
+| [plane-normal-precession-search-results.md](plane-normal-precession-search-results.md) | Common nonplanar arclength screen: curvature alignment improves, but tangential closure and Jacobian margin remain open. |
+| [binary-specific-plane-normal-search-results.md](binary-specific-plane-normal-search-results.md) | Binary-specific normal-mode screen showing non-refining residual valleys without hard period/Jacobian constraints. |
+| [finite-mode-rank-screen-results.md](finite-mode-rank-screen-results.md) | Local rank screen showing the six-variable radial-plus-normal ansatz is independent but insufficient for intrinsic residual closure. |
+| [intrinsic-m2-collocation-rank-results.md](intrinsic-m2-collocation-rank-results.md) | $M=2$ exact-antipodal vector Fourier rank screen with full local rank and useful clipped descent directions. |
+| [intrinsic-m2-nonlinear-solve-results.md](intrinsic-m2-nonlinear-solve-results.md) | First bounded nonlinear $M=2$ solve: strong training-grid descent, but off-grid residual peaks and period/unit rows remain open. |
+| [intrinsic-m2-refined-solve-results.md](intrinsic-m2-refined-solve-results.md) | Denser-grid $M=2$ restart: refined force residuals improve, but period-length closure becomes the blocker. |
+| [period-closure-and-winding-targets.md](period-closure-and-winding-targets.md) | Equal-period and rational-winding rows needed to retain force-improving intrinsic curves. |
+| [equal-period-projection-results.md](equal-period-projection-results.md) | Minimum-norm equal-period projection preserving root floors while keeping the best refined $M=2$ force progress mostly intact. |
+| [equal-period-constraint-qualification.md](equal-period-constraint-qualification.md) | Equal-period constraint-qualification lemma and restricted residual target on $\ker D\mathbf{L}$. |
+| [rational-winding-screen-results.md](rational-winding-screen-results.md) | Low-integer winding screen rejecting nontrivial winding support in the current refined $M=2$ lengths. |
+| [unit-speed-chart-reparameterization.md](unit-speed-chart-reparameterization.md) | Reparameterization lemma separating physical force rows from construction-speed chart rows. |
+| [arclength-inverse-rescore-results.md](arclength-inverse-rescore-results.md) | Arclength-inverse rescore showing equal-period/root stability but persistent force residuals and $\Gamma$-convention sensitivity. |
+| [arclength-inverse-restricted-rank-screen.md](arclength-inverse-restricted-rank-screen.md) | Equal-period-restricted rank screen showing full local arclength-inverse rank and oversized Newton step. |
+| [arclength-inverse-trust-region-results.md](arclength-inverse-trust-region-results.md) | Trust-region screen showing real restricted descent through $\rho=0.8$ but root-count loss at larger radius. |
+| [antipodal-relaxation-ansatz.md](antipodal-relaxation-ansatz.md) | Pair-midpoint chart for relaxing exact antipodality while preserving center gauge, inventory, and branch-certificate obligations. |
+| [retained-branch-dynamics-protocol.md](retained-branch-dynamics-protocol.md) | Concrete retained-branch search protocol with state variables, root solver, residual objective, continuation, stability diagnostics, and acceptance thresholds. |
+| [intrinsic-curve-solver-protocol.md](intrinsic-curve-solver-protocol.md) | Fourier/collocation solver protocol for the intrinsic curve equation with gauges, roots, barriers, and output schema. |
+| [linearized-dynamics-matrix.md](linearized-dynamics-matrix.md) | Finite-mode first-order balance matrix around the rigid octahedral carrier, with rank/solvability theorem targets. |
+| [minimal-dynamics-closure-theorem.md](minimal-dynamics-closure-theorem.md) | Minimal arclength-clock dynamics closure theorem target and residual/transversality conditions. |
+| [root-jacobian-barrier-lemma.md](root-jacobian-barrier-lemma.md) | Perturbation and barrier lemma for preserving active root labels, Jacobian floors, and finite memory in intrinsic solves. |
+| [gamma-scale-action-row.md](gamma-scale-action-row.md) | Scale/action row for deriving $\Gamma_K$ from branch inertia and history action rather than fitting it. |
+| [central-inventory-and-event-ledgers.md](central-inventory-and-event-ledgers.md) | Neutral/charged inventory rows, central-inventory split, pair-production provenance, reaction conservation, recoil, Noether-Sea updates, and heat-channel restrictions. |
+| [observer-export-and-mass-map-targets.md](observer-export-and-mass-map-targets.md) | Lorentz/moving-branch exports, photon transition, mass/exposure map, generation/color rows, and strong-field/cosmology export residuals. |
 | [entourage-tri-binary-rearchitecture.md](entourage-tri-binary-rearchitecture.md) | Deferred source discussion and analysis packet for the architecture switch; mine selectively, do not promote wholesale. |
 
 ## Promotion Decision
