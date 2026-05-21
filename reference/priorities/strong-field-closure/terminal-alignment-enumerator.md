@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This packet records the first executable form of the terminal-alignment transfer-matrix route in [strong-field-closure](strong-field-closure.md) and [Tri-Binary Dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md#terminal-alignment-label-count-target). It is a success marker under the existing horizon entropy proof route, not a new gate.
+This packet records the first executable form of the terminal-alignment transfer-matrix route in [strong-field-closure](strong-field-closure.md) and [Nested Shell Swarm Dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#terminal-alignment-label-count-target). It is a success marker under the existing horizon entropy proof route, not a new gate.
 
 The implemented script is:
 

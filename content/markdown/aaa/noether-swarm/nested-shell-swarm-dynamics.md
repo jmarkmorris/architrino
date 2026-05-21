@@ -1,10 +1,10 @@
-# Tri-Binary Dynamics
+# Nested Shell Swarm Dynamics
 
-This chapter formulates tri-binary dynamics by extending the two-body delayed causal-wake system to a coupled three-binary Noether core. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
+This chapter formulates nested shell swarm dynamics by extending the two-body delayed causal-wake system to a coupled three-binary Noether core. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
 
-It should be read together with [Binary Dynamics](binary-dynamics.md), [Dyadic Resonance Lock](dyadic-resonance-lock.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md), [Noether Core](../noether-swarm/noether-swarm.md), and [Noether Core Geometry](../spacetime/noether-core-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
+It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md), [Dyadic Resonance Lock](../dynamics/dyadic-resonance-lock.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md), [Noether Swarm](noether-swarm.md), and [Noether Core Geometry](../spacetime/noether-core-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
 
-This chapter is the canonical dynamics home for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; coupled stability mechanisms belong here and in [Binary Dynamics](binary-dynamics.md).
+This chapter is the canonical dynamics home for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms inside the nested shell swarm variant. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; coupled stability mechanisms belong here and in [Binary Dynamics](../dynamics/binary-dynamics.md).
 
 ## Relation to Causal Closure
 
@@ -1220,7 +1220,7 @@ $$
 $$
 This completes the local bookkeeping needed for terminal enumeration: a candidate $(m,n)$ must pass scalar root continuation, force-residual cancellation, and the history-aware conservation ledger on the same branch set. What remains unsolved is not another requirement artifact but the derivation of $w_b^{(\eta)}$ and the wake-history increments from a time-translation- and Euclidean-invariant regularized action for the coupled three-layer branch.
 
-The minimal action-level scaffold is the pullback of the exact causal-delay action in [Master Equation](master-equation.md#exact-nonlocal-lagrangian) to the certified terminal branch chart. For branch $b$, set
+The minimal action-level scaffold is the pullback of the exact causal-delay action in [Master Equation](../dynamics/master-equation.md#exact-nonlocal-lagrangian) to the certified terminal branch chart. For branch $b$, set
 $$
 t=\frac{u}{\omega_O},
 \qquad
@@ -1272,7 +1272,7 @@ w_b^{(0)}(u)
 $$
 up to the sign convention fixed by writing the interaction term with a minus sign in the action. In other words, $w_b^{(\eta)}$ is not an independent fitting weight. It is the Euler-Lagrange pullback of the regularized causal kernel on a certified branch chart.
 
-The strongest current action-kernel candidate is not the diagnostic same-support inverse-square adapter. Pull back the delayed-interior characteristic-tail kernel from [Master Equation](master-equation.md#exact-nonlocal-lagrangian) before reducing to a one-period branch density. For the two-time branch, define the local characteristic coordinate
+The strongest current action-kernel candidate is not the diagnostic same-support inverse-square adapter. Pull back the delayed-interior characteristic-tail kernel from [Master Equation](../dynamics/master-equation.md#exact-nonlocal-lagrangian) before reducing to a one-period branch density. For the two-time branch, define the local characteristic coordinate
 $$
 u_b^{\mathrm{c}}(t_1,t_0)
 =
@@ -1523,7 +1523,7 @@ $$
 $$
 with the same endpoint convention used for the wake-history ledger. Such a counterterm is admissible only when derived from the same symmetry-preserving action-level mechanism, not when inserted as a fit to the accepted branch law. This is the smallest correction exposed by the variation: it preserves the direct inverse-square branch law when the stationarity condition holds, and otherwise records exactly the residual force density that the scalar kernel leaves behind.
 
-For the same causal-surface local scalar class, this counterterm route is ruled out. A scalar term $a(r_b,J_b)\delta_\eta(g_b)$ must choose $a=-1/r_b$ to cancel the derivative-of-delta coefficient, but that same choice changes the direct $w_b^{(0)}$ scale contribution. The finite local delta-jet extension has the same obstruction. In the common-center inter-layer chart, the stationarity option is also ruled out by the lemma below. The terminal branch proof should therefore test branch-summed residual closure directly; otherwise the remaining action-level option is the nonlocal characteristic-tail repair target from [Master Equation](./master-equation.md#exact-nonlocal-lagrangian), or a richer velocity/history-dependent invariant mechanism. Neither option is a fitted scalar patch.
+For the same causal-surface local scalar class, this counterterm route is ruled out. A scalar term $a(r_b,J_b)\delta_\eta(g_b)$ must choose $a=-1/r_b$ to cancel the derivative-of-delta coefficient, but that same choice changes the direct $w_b^{(0)}$ scale contribution. The finite local delta-jet extension has the same obstruction. In the common-center inter-layer chart, the stationarity option is also ruled out by the lemma below. The terminal branch proof should therefore test branch-summed residual closure directly; otherwise the remaining action-level option is the nonlocal characteristic-tail repair target from [Master Equation](../dynamics/master-equation.md#exact-nonlocal-lagrangian), or a richer velocity/history-dependent invariant mechanism. Neither option is a fitted scalar patch.
 
 **Lemma (common-center inter-layer stationarity obstruction).** In the symmetric common-center terminal chart, no positive-delay, non-grazing inter-layer branch with nonzero layer radii and nonzero source speed satisfies the per-branch stationarity condition above. Define the dimensionless separation vector
 $$
@@ -1729,7 +1729,7 @@ $$
 $$
 The terminal label is conserved only when the increments of all three totals vanish within the declared branch tolerance, after subtracting the Euler-residual and endpoint-leakage terms. The projected action increment $\Delta I_{\mathrm{ME}}$ and any torque integral remain numerical diagnostics until these three totals close on the same $\mathcal{B}_{\mathrm{term}}(\lambda)$ rows.
 
-This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
+This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Dyadic Resonance Lock](../dynamics/dyadic-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](../dynamics/binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
 
 The local-horizon coefficient requires the area-normalized terminal density
 $$

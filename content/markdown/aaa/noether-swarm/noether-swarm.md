@@ -107,7 +107,7 @@ for **high**, **middle**, and **low** branch role. In the weak-stress nested-she
 
 The recursive binary picture remains valuable inside this sector. Just as an Electrino and a Positrino can form a stable binary, two binary-like slots can orbit a common center to form a larger, second-order structure, and three energy-separated slots can form a nested shell hierarchy. The key to stability is still separation of scale: each surrounding support band must have a larger radius, a lower cadence, and a compatible causal-root ledger than the deeper support band.
 
-In this sector, a candidate stable configuration is the **triply nested binary**. It consists of three binary-like shell slots nested within each other and supplies the assembly scaffold later used in [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md).
+In this sector, a candidate stable configuration is the **triply nested binary**. It consists of three binary-like shell slots nested within each other and supplies the assembly scaffold later used in [Nested Shell Swarm Dynamics](nested-shell-swarm-dynamics.md).
 
 -   **Why Three?** The stability of a triply nested structure is a theorem target tied to the three-dimensional nature of Euclidean space. Each binary-like slot defines an orbital plane or dominant support sheet. The working claim is that three mutually orthogonal support sheets can form a dynamically stable, symmetric, three-dimensional structure that is resistant to perturbation; the proof burden is to derive that role count from the delayed causal dynamics rather than assuming it.
 

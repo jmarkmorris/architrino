@@ -1,6 +1,6 @@
 # Noether Core Geometry
 
-This chapter is the canonical home for the geometric footprint of the Noether core: its dynamic exclusion zone, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether Sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether-Sea density, strain, and delay variables are coarse-grained. The nested-binary scaffold itself belongs in [Noether Swarm](../noether-swarm/noether-swarm.md). The delayed dynamics that stabilize and deform the tri-binary belong in [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md).
+This chapter is the canonical home for the geometric footprint of the Noether core: its dynamic exclusion zone, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether Sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether-Sea density, strain, and delay variables are coarse-grained. The nested-binary scaffold itself belongs in [Noether Swarm](../noether-swarm/noether-swarm.md). The delayed dynamics that stabilize and deform the tri-binary belong in [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md).
 
 The core is not a static object. It is a dynamic system of six architrinos in a triply nested binary configuration. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the Noether core's effective exclusion envelope.
 
@@ -17,7 +17,7 @@ This chapter does not own:
 
 - primitive architrino ontology; see [Architrino](../foundations/architrino.md),
 - the nested-binary scaffold; see [Noether Swarm](../noether-swarm/noether-swarm.md),
-- exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md) and [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md),
+- exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md) and [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md),
 - observer clocks and rulers; see [Proper Time and Time Dilation](proper-time-and-time-dilation.md),
 - or metric reconstruction; see [Emergent Metric](emergent-metric.md).
 
@@ -791,7 +791,7 @@ For local assembly modeling, use this page as the geometric source for:
 - deformation of the outer-binary envelope under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.
 
-For dynamics modeling, use [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
+For dynamics modeling, use [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
 
 For medium modeling, use [Noether Sea](noether-sea.md) and [Spacetime Assemblies](spacetime-assemblies.md), where many Noether cores become a coupled medium rather than isolated assembly envelopes.
 

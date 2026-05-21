@@ -316,5 +316,5 @@ If planar bridge closure fails, those higher-level chapters must become more con
 - [Causal Action Functional](../dynamics/causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
 - [1D Collinear Breather](./collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
 - [Master-Equation Breather Program](./master-equation-breather.md): global roadmap that this chapter now instantiates in the first planar regime.
-- [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
+- [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
 - [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md): downstream interpretation of planar branch selection once the planar bridge is mathematically under control.

@@ -2217,7 +2217,7 @@ This chapter depends on:
 
 - [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md) for the oblate spheroidal exclusion envelope,
 - [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) for the tri-binary scaffold,
-- [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) for the delayed-dynamics regime map,
+- [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
 - and [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) for the photon-channel case where coherent planar-pair modes must recover Bose-Einstein occupation behavior.
 

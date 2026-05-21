@@ -2,7 +2,7 @@
 
 This chapter studies resonance lock for the nested Outer, Middle, and Inner binaries. Its immediate goal is specific: identify the relationship between frequency, scalar tangential speed, and radius in a reduced branch where the middle binary caustic-grazes the field-speed hinge and the three rings form an exact integer phase-locked cycle.
 
-It should be read together with [Binary Dynamics](binary-dynamics.md), [Tri-Binary Dynamics](tri-binary-dynamics.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md), and [Noether Core](../noether-swarm/noether-swarm.md), which provide the assembly geometry and scale-setting context for the lock relations derived here.
+It should be read together with [Binary Dynamics](binary-dynamics.md), [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-tri-binary-alignment.md), and [Noether Core](../noether-swarm/noether-swarm.md), which provide the assembly geometry and scale-setting context for the lock relations derived here.
 
 The level distinctions matter throughout. Ontologically, the Outer, Middle, and Inner binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. Inferentially, an integer lock is selected only after a cancellation score and a stability gap both favor it.
 

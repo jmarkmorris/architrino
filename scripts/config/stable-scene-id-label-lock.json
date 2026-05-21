@@ -53,7 +53,7 @@
         "kinetic_and_potential_energy": "Kinetic and Potential Energy",
         "master_equation_of_motion": "Master Equation of Motion",
         "proof_programs": "Proof Programs",
-        "tri_binary_dynamics": "Tri-Binary Dynamics"
+        "dyadic_resonance_lock": "Dyadic Resonance Lock"
       }
     },
     "content/scenes/foundations/foundations.json": {
@@ -130,8 +130,6 @@
       "objects": {
         "effective_metric": "Effective Metric",
         "medium_exclusion_volume": "Medium Exclusion Volume",
-        "noether_core": "Noether Core",
-        "noether_core_geometry": "Noether Core Geometry",
         "noether_sea": "Noether Sea",
         "physical_observers": "Physical Observers",
         "spacetime_assemblies": "Spacetime Assemblies",

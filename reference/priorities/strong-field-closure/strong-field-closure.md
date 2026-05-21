@@ -30,8 +30,8 @@ Release-channel accounting consumes the shared [residual-routing event-ledger th
 
 | File | Role | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ notes |
 | --- | --- | --- |
-| [hypothesis-bank.md](hypothesis-bank.md) | Watchlist for strong-field and tri-binary hypotheses that should not outrank the derivation spine. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [spacetime-assemblies](../../../content/markdown/aaa/spacetime/spacetime-assemblies.md) |
-| [terminal-alignment-enumerator.md](terminal-alignment-enumerator.md) | Executable reduced terminal-alignment action diagnostic and proof packet for `horizon_entropy_packet`. | [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) |
+| [hypothesis-bank.md](hypothesis-bank.md) | Watchlist for strong-field and tri-binary hypotheses that should not outrank the derivation spine. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [spacetime-assemblies](../../../content/markdown/aaa/spacetime/spacetime-assemblies.md) |
+| [terminal-alignment-enumerator.md](terminal-alignment-enumerator.md) | Executable reduced terminal-alignment action diagnostic and proof packet for `horizon_entropy_packet`. | [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) |
 | [dark-sector-photon-like-mode.md](../dark-sector/dark-sector-photon-like-mode.md) | Detailed watchlist packet for candidate dark-sector photon-like release, redshift, reaction, and visible-channel re-entry. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
 
 ## Promotion Map
@@ -43,7 +43,7 @@ Release-channel accounting consumes the shared [residual-routing event-ledger th
 | `horizon_entropy_packet` | This file and [terminal-alignment-enumerator.md](terminal-alignment-enumerator.md) | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) and [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) | The horizon-interface label ensemble and local block entropy density are defined from admissible $\Lambda_{\text{NC}}$ states and used to state entropy-area and Page-curve recovery targets, including tests of proposed horizon identifications, without importing them as ontology. |
 | `release_channel_selection` | This file and [residual-routing-event-ledger](../tri-binary-causal-closure/residual-routing-event-ledger.md) | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | Jets, diffuse outflow, dark-sector escape, and candidate dark-sector photon-like modes are separated as release channels with event-ledger and information-accounting consequences. |
 | `discriminating_observable` | This file | [gr-phenomenology](../../../content/markdown/aaa/spacetime/gr-phenomenology.md), [gravitational-waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md), and [ppn-parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | At least one strong-field observable is stated in a way that can differ from GR-like behavior. |
-| `hypothesis_bank_review` | [hypothesis-bank.md](hypothesis-bank.md) | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), and [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md) | Preserved hypotheses remain explicitly non-foundational until they acquire a boundary condition, equation, simulation target, or observable. |
+| `hypothesis_bank_review` | [hypothesis-bank.md](hypothesis-bank.md) | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), and [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) | Preserved hypotheses remain explicitly non-foundational until they acquire a boundary condition, equation, simulation target, or observable. |
 
 ## Scope Boundary
 
@@ -55,7 +55,7 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   - [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md);
   - [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md);
   - the aligned cosmology chapters;
-  - and the equivalence-principle rewrite in `tri-binary-dynamics.md`.
+  - and the equivalence-principle rewrite in `nested-shell-swarm-dynamics.md`.
 - The actual priority here is now narrow and quantitative rather than architectural.
 
 ## Quantitative Targets

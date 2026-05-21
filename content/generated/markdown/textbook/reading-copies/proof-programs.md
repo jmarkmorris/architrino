@@ -9676,7 +9676,7 @@ This is the correct point from which to resume work on the broader dynamics stac
 - [master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md)
 - [collinear-breather.md](../../../../markdown/aaa/proof-programs/collinear-breather.md)
 - [binary-dynamics.md](../../../../markdown/aaa/dynamics/binary-dynamics.md)
-- [tri-binary-dynamics.md](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md)
+- [nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
 - [energy.md](../../../../markdown/aaa/dynamics/energy.md)
 
 ## 1D Collinear Binary (Reduced Model)
@@ -22488,5 +22488,5 @@ If planar bridge closure fails, those higher-level chapters must become more con
 - [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
 - [1D Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
 - [Master-Equation Breather Program](../../../../markdown/aaa/proof-programs/master-equation-breather.md): global roadmap that this chapter now instantiates in the first planar regime.
-- [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
+- [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
 - [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md): downstream interpretation of planar branch selection once the planar bridge is mathematically under control.

@@ -165,4 +165,4 @@ The reader-facing spacetime-assemblies chapter should state the provisional medi
 - [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
 - [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)
 - [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md)
-- [tri-binary-dynamics](../../../content/markdown/aaa/dynamics/tri-binary-dynamics.md)
+- [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)

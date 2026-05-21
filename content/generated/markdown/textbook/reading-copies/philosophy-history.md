@@ -12184,7 +12184,7 @@ Use the same overlap/holonomy machinery in the lepton-neutral sector with a diff
 
 This chapter treats the Planck scale as an exploratory alignment-horizon problem for the tri-binary rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed tri-binary framework, then test which parts survive once full closure conditions are imposed.
 
-Its closest companions are [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md), [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
+Its closest companions are [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md), [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 
@@ -12247,7 +12247,7 @@ Thus the Planck scale is not merely a guessed lattice spacing or primitive grain
 - In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are component-speed saturation statements in the terminal alignment regime.
 - The statement "$v_{\text{eff}} > c_f$" refers to a **combined in-plane effective motion** used for Mach-wedge causal geometry, not a claim that either component speed is individually $> c_f$.
 - The local one-way starvation condition begins when a forward component approaches $c_f$; the Mach-wedge condition is the stronger combined-speed condition $v_{\text{eff}}>c_f$.
-- The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [tri-binary-dynamics.md](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md)).
+- The CFT-exterior role label "outer binary $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)).
 
 ---
 
@@ -15539,7 +15539,7 @@ This vocabulary should not be read as branch-choice metaphysics. In quantum comp
 
 ### Primitive Metastability
 
-The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether core](../../../../markdown/aaa/noether-swarm/noether-swarm.md) architecture, every Noether core contains a middle binary at the field-speed hinge $v=c_f$, while [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
+The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether core](../../../../markdown/aaa/noether-swarm/noether-swarm.md) architecture, every Noether core contains a middle binary at the field-speed hinge $v=c_f$, while [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
 
 This does not make every Noether core an agent. A bare Noether core has a threshold-sensitive internal hinge, but it has not yet been shown to set its own threshold, hold a bias, or reuse feedback. The philosophical ladder is:
 

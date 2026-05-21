@@ -36,7 +36,7 @@ and generalizes to strong-field and high-velocity conditions.
 
 Notation convention used in this chapter: $n(\mathbf{x})\equiv \rho_{\text{core}}(\mathbf{x})/\rho_{\text{core},0}$ is the canonical medium-density variable.
 The Noether-Sea delay factor is $\chi_{\text{sea}}(\mathbf{x})\equiv c_f/c_{\text{eff}}(\mathbf{x})$; use it for refractive-delay language so $n$ remains reserved for density.
-The clock-law derivation imports the [transverse causal budget lemma](../dynamics/tri-binary-dynamics.md#transverse-causal-budget-lemma): primitive branch tests may use $c_f$, but observer-level clock comparison uses the declared dressed speed $c_\star$, usually $c_\star=c_{\text{eff}}(\mathbf{x})$ in a local Noether-Sea cell.
+The clock-law derivation imports the [transverse causal budget lemma](../noether-swarm/nested-shell-swarm-dynamics.md#transverse-causal-budget-lemma): primitive branch tests may use $c_f$, but observer-level clock comparison uses the declared dressed speed $c_\star$, usually $c_\star=c_{\text{eff}}(\mathbf{x})$ in a local Noether-Sea cell.
 
 ---
 

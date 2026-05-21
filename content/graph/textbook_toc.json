@@ -8,7 +8,7 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 158,
+      "entries": 157,
       "sections": 1220
     }
   },
@@ -813,50 +813,6 @@
         ]
       },
       {
-        "id": "noether_swarm",
-        "title": "Noether Swarm",
-        "kind": "scene-index",
-        "sceneType": "Scene-Index",
-        "scenePath": "content/scenes/noether-swarm/noether_swarm.json",
-        "children": [
-          {
-            "id": "noether_swarm__neutral_swarm",
-            "title": "Neutral Swarm",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/neutral_swarm.json"
-          },
-          {
-            "id": "noether_swarm__shell_swarm",
-            "title": "Shell Swarm",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/shell_swarm.json"
-          },
-          {
-            "id": "noether_swarm__nested_shell_swarm",
-            "title": "Nested Shell Swarm",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/nested_shell_swarm.json"
-          },
-          {
-            "id": "noether_swarm__swarm_geometry",
-            "title": "Swarm Geometry",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/swarm_geometry.json"
-          },
-          {
-            "id": "noether_swarm__swarm_dynamics",
-            "title": "Swarm Dynamics",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/swarm_dynamics.json"
-          }
-        ]
-      },
-      {
         "id": "dynamics",
         "title": "Dynamics",
         "kind": "scene-index",
@@ -1105,192 +1061,6 @@
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
                 "markdownSection": "Symmetry, Conservation, and Lyapunov Functionals",
                 "sectionKey": "symmetry conservation and lyapunov functionals",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "dynamics__tri_binary_dynamics",
-            "title": "Tri-Binary Dynamics",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/tri_binary_dynamics.json",
-            "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Relation to Causal Closure",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Relation to Causal Closure",
-                "sectionKey": "relation to causal closure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Claim Scope",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Claim Scope",
-                "sectionKey": "claim scope",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Causal-Closure Certificate Target",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Causal-Closure Certificate Target",
-                "sectionKey": "causal closure certificate target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Substrate and Effective Levels",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Substrate and Effective Levels",
-                "sectionKey": "substrate and effective levels",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Speed Hierarchy",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Speed Hierarchy",
-                "sectionKey": "speed hierarchy",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Multi-Scale Layer Locking",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Multi-Scale Layer Locking",
-                "sectionKey": "multi scale layer locking",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Mass Thesis as a Dynamics Target",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Mass Thesis as a Dynamics Target",
-                "sectionKey": "mass thesis as a dynamics target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Spiral-Helical Motion Picture",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Spiral-Helical Motion Picture",
-                "sectionKey": "spiral helical motion picture",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "All-Layer Translating Branch Response",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "All-Layer Translating Branch Response",
-                "sectionKey": "all layer translating branch response",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Cadence-Scale Retuning Closure",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Cadence-Scale Retuning Closure",
-                "sectionKey": "cadence scale retuning closure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observer-Inference Export Boundary",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Observer-Inference Export Boundary",
-                "sectionKey": "observer inference export boundary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Terminal Alignment Label-Count Target",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Terminal Alignment Label-Count Target",
-                "sectionKey": "terminal alignment label count target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dynamics-Side Roadmap",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Dynamics-Side Roadmap",
-                "sectionKey": "dynamics side roadmap",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Working Hypotheses",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Working Hypotheses",
-                "sectionKey": "working hypotheses",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
-                "sectionKey": "regime map for speed statements cft horizon ads",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Geometry Focus",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Geometry Focus",
-                "sectionKey": "geometry focus",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Minimal Models",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Minimal Models",
-                "sectionKey": "minimal models",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observer-Export Diagnostics",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Observer-Export Diagnostics",
-                "sectionKey": "observer export diagnostics",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observables and Diagnostics (Summary)",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Observables and Diagnostics (Summary)",
-                "sectionKey": "observables and diagnostics summary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Revision Triggers (Failure Modes)",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Revision Triggers (Failure Modes)",
-                "sectionKey": "revision triggers failure modes",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Acceleration-Gradient Branch Comparison",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Acceleration-Gradient Branch Comparison",
-                "sectionKey": "acceleration gradient branch comparison",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Routed Extensions",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-                "markdownSection": "Routed Extensions",
-                "sectionKey": "routed extensions",
                 "headingLevel": 2
               }
             ]
@@ -2087,6 +1857,319 @@
         ]
       },
       {
+        "id": "noether_swarm",
+        "title": "Noether Swarm",
+        "kind": "scene-index",
+        "sceneType": "Scene-Index",
+        "scenePath": "content/scenes/noether-swarm/noether_swarm.json",
+        "children": [
+          {
+            "id": "noether_swarm__neutral_swarm",
+            "title": "Neutral Swarm",
+            "kind": "diagram",
+            "sceneType": "Scene-Diagram",
+            "scenePath": "content/scenes/noether-swarm/neutral_swarm.json"
+          },
+          {
+            "id": "noether_swarm__shell_swarm",
+            "title": "Shell Swarm",
+            "kind": "diagram",
+            "sceneType": "Scene-Diagram",
+            "scenePath": "content/scenes/noether-swarm/shell_swarm.json"
+          },
+          {
+            "id": "noether_swarm__nested_shell_swarm",
+            "title": "Nested Shell Swarm",
+            "kind": "diagram",
+            "sceneType": "Scene-Diagram",
+            "scenePath": "content/scenes/noether-swarm/nested_shell_swarm.json"
+          },
+          {
+            "id": "noether_swarm__nested_shell_swarm_dynamics",
+            "title": "Nested Shell Swarm Dynamics",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+            "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Relation to Causal Closure",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Relation to Causal Closure",
+                "sectionKey": "relation to causal closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Claim Scope",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Claim Scope",
+                "sectionKey": "claim scope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Causal-Closure Certificate Target",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Causal-Closure Certificate Target",
+                "sectionKey": "causal closure certificate target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Substrate and Effective Levels",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Substrate and Effective Levels",
+                "sectionKey": "substrate and effective levels",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Speed Hierarchy",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Speed Hierarchy",
+                "sectionKey": "speed hierarchy",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Multi-Scale Layer Locking",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Multi-Scale Layer Locking",
+                "sectionKey": "multi scale layer locking",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mass Thesis as a Dynamics Target",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Mass Thesis as a Dynamics Target",
+                "sectionKey": "mass thesis as a dynamics target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spiral-Helical Motion Picture",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Spiral-Helical Motion Picture",
+                "sectionKey": "spiral helical motion picture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "All-Layer Translating Branch Response",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "All-Layer Translating Branch Response",
+                "sectionKey": "all layer translating branch response",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cadence-Scale Retuning Closure",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Cadence-Scale Retuning Closure",
+                "sectionKey": "cadence scale retuning closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observer-Inference Export Boundary",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Observer-Inference Export Boundary",
+                "sectionKey": "observer inference export boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Terminal Alignment Label-Count Target",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Terminal Alignment Label-Count Target",
+                "sectionKey": "terminal alignment label count target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dynamics-Side Roadmap",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Dynamics-Side Roadmap",
+                "sectionKey": "dynamics side roadmap",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Working Hypotheses",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Working Hypotheses",
+                "sectionKey": "working hypotheses",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
+                "sectionKey": "regime map for speed statements cft horizon ads",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometry Focus",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Geometry Focus",
+                "sectionKey": "geometry focus",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Minimal Models",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Minimal Models",
+                "sectionKey": "minimal models",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observer-Export Diagnostics",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Observer-Export Diagnostics",
+                "sectionKey": "observer export diagnostics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observables and Diagnostics (Summary)",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Observables and Diagnostics (Summary)",
+                "sectionKey": "observables and diagnostics summary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Revision Triggers (Failure Modes)",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Revision Triggers (Failure Modes)",
+                "sectionKey": "revision triggers failure modes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Acceleration-Gradient Branch Comparison",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Acceleration-Gradient Branch Comparison",
+                "sectionKey": "acceleration gradient branch comparison",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Routed Extensions",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+                "markdownSection": "Routed Extensions",
+                "sectionKey": "routed extensions",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_swarm__swarm_geometry",
+            "title": "Swarm Geometry",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-swarm/swarm_geometry.json",
+            "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Ownership Boundary",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Ownership Boundary",
+                "sectionKey": "ownership boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dynamic Exclusion Zone",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Dynamic Exclusion Zone",
+                "sectionKey": "dynamic exclusion zone",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assembly-Noether-Sea Interface Diagnostic",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Assembly-Noether-Sea Interface Diagnostic",
+                "sectionKey": "assembly noether sea interface diagnostic",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Oblate Spheroidal Form",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Oblate Spheroidal Form",
+                "sectionKey": "oblate spheroidal form",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Canonical Geometry Variables",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Canonical Geometry Variables",
+                "sectionKey": "canonical geometry variables",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Lorentz Projection Role",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Lorentz Projection Role",
+                "sectionKey": "lorentz projection role",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Retuning Projection to Envelope Variables",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Retuning Projection to Envelope Variables",
+                "sectionKey": "retuning projection to envelope variables",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Deformability of the Envelope",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Deformability of the Envelope",
+                "sectionKey": "deformability of the envelope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometry Interfaces",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Geometry Interfaces",
+                "sectionKey": "geometry interfaces",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary Commitment",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownSection": "Summary Commitment",
+                "sectionKey": "summary commitment",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_swarm__swarm_dynamics",
+            "title": "Swarm Dynamics",
+            "kind": "diagram",
+            "sceneType": "Scene-Diagram",
+            "scenePath": "content/scenes/noether-swarm/swarm_dynamics.json"
+          }
+        ]
+      },
+      {
         "id": "spacetime",
         "title": "Noether Sea and Effective Spacetime",
         "kind": "scene-index",
@@ -2209,96 +2292,6 @@
                 "kind": "markdown-section",
                 "title": "Summary Commitment",
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                "markdownSection": "Summary Commitment",
-                "sectionKey": "summary commitment",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "spacetime__noether_core_geometry",
-            "title": "Noether Core Geometry",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/spacetime/noether_core_geometry.json",
-            "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Ownership Boundary",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-                "markdownSection": "Ownership Boundary",
-                "sectionKey": "ownership boundary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dynamic Exclusion Zone",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-                "markdownSection": "Dynamic Exclusion Zone",
-                "sectionKey": "dynamic exclusion zone",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Assembly-Noether-Sea Interface Diagnostic",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-                "markdownSection": "Assembly-Noether-Sea Interface Diagnostic",
-                "sectionKey": "assembly noether sea interface diagnostic",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Oblate Spheroidal Form",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-                "markdownSection": "Oblate Spheroidal Form",
-                "sectionKey": "oblate spheroidal form",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Canonical Geometry Variables",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-                "markdownSection": "Canonical Geometry Variables",
-                "sectionKey": "canonical geometry variables",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Lorentz Projection Role",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-                "markdownSection": "Lorentz Projection Role",
-                "sectionKey": "lorentz projection role",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Retuning Projection to Envelope Variables",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-                "markdownSection": "Retuning Projection to Envelope Variables",
-                "sectionKey": "retuning projection to envelope variables",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Deformability of the Envelope",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-                "markdownSection": "Deformability of the Envelope",
-                "sectionKey": "deformability of the envelope",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Geometry Interfaces",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-                "markdownSection": "Geometry Interfaces",
-                "sectionKey": "geometry interfaces",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Summary Commitment",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
                 "markdownSection": "Summary Commitment",
                 "sectionKey": "summary commitment",
                 "headingLevel": 2

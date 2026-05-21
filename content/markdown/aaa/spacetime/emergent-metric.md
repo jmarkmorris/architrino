@@ -78,7 +78,7 @@ Thus ordinary density can be weakly visible to clocks and signal paths when it i
 
 ## ADM/Cartan Reconstruction Surface
 
-The metric bridge should now be expressed through the same ADM/Cartan variables used by [Tri-Binary Dynamics](../dynamics/tri-binary-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
+The metric bridge should now be expressed through the same ADM/Cartan variables used by [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
 
 $$
 ds_{\rm eff}^2

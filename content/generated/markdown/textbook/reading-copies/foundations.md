@@ -383,7 +383,7 @@ The canonical homes are:
 
 - [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) for causal hits, delay roots, Jacobian weights, received acceleration, and branch topology.
 - [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
-- [Tri-Binary Dynamics](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md) for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
+- [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
 - [Noether Core](../../../../markdown/aaa/noether-swarm/noether-swarm.md) for the assembly-level Noether-core architecture built from those dynamics.
 
 ### Determinism and Multistability
@@ -1754,7 +1754,7 @@ $$
 with $\Delta_{\mathcal A}^{\mathrm{PF}}$ projected into the two-way anisotropy and PPN rows below unless a sharper channel-specific bound is declared.
 
 Required emergent limits:
-- Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether-Sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
+- Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether-Sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
 - Homogeneous medium, low velocities:
   $$
   \frac{d\tau_{\mathcal A}}{dt} \approx \sqrt{1 - \|\mathbf{w}\|^2/c_\star^2},

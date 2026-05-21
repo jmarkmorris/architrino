@@ -9674,5 +9674,5 @@ This is the correct point from which to resume work on the broader dynamics stac
 - [master-equation.md](../dynamics/master-equation.md)
 - [collinear-breather.md](./collinear-breather.md)
 - [binary-dynamics.md](../dynamics/binary-dynamics.md)
-- [tri-binary-dynamics.md](../dynamics/tri-binary-dynamics.md)
+- [nested-shell-swarm-dynamics.md](../noether-swarm/nested-shell-swarm-dynamics.md)
 - [energy.md](../dynamics/energy.md)

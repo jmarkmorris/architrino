@@ -4079,7 +4079,7 @@ The Aharonov-Bohm item in Gate C inherits the observer-level benchmark from [Gau
 
 ##### Gate A Theorem Scaffold: Kinematics and Optics
 
-Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar core $L$ and trailing planar core $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf{x})$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../../../markdown/aaa/dynamics/tri-binary-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#42-two-way-signal-speed-criterion).
+Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar core $L$ and trailing planar core $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf{x})$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#42-two-way-signal-speed-criterion).
 
 The axial communication budget is asymmetric:
 $$

@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 502,
-      "edges": 1244,
-      "scenes": 325,
+      "nodes": 501,
+      "edges": 1242,
+      "scenes": 324,
       "markdownIndexes": 0,
       "markdownDocs": 177,
       "runtimeEdges": 476,
@@ -1295,12 +1295,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "dynamics__tri_binary_dynamics",
-      "name": "Tri-Binary Dynamics",
-      "path": "content/scenes/dynamics/tri_binary_dynamics.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "foundations__absolute_time_defense",
       "name": "Absolute Time Defense",
       "path": "content/scenes/foundations/absolute_time_defense.json",
@@ -1883,12 +1877,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "spacetime__noether_core_geometry",
-      "name": "Noether Core Geometry",
-      "path": "content/scenes/spacetime/noether_core_geometry.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "quantum__algorithmic_resonance",
       "name": "Algorithmic Resonance and Shor's Algorithm",
       "path": "content/scenes/quantum/algorithmic_resonance.json",
@@ -2096,6 +2084,12 @@
       "id": "reactions__mode_taxonomy",
       "name": "Mode Taxonomy",
       "path": "content/scenes/reactions/mode_taxonomy.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_swarm__nested_shell_swarm_dynamics",
+      "name": "Nested Shell Swarm Dynamics",
+      "path": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
       "nodeType": "scene"
     },
     {
@@ -2441,12 +2435,6 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-      "name": "Tri-Binary Dynamics",
-      "path": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-      "nodeType": "markdown_doc"
-    },
-    {
       "id": "content/markdown/aaa/foundations/absolute-time-defense.md",
       "name": "Absolute Time Defense",
       "path": "content/markdown/aaa/foundations/absolute-time-defense.md",
@@ -2516,6 +2504,12 @@
       "id": "content/markdown/aaa/interactions/mode-taxonomy.md",
       "name": "Mode Taxonomy",
       "path": "content/markdown/aaa/interactions/mode-taxonomy.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "name": "Nested Shell Swarm Dynamics",
+      "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3766,15 +3760,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/dynamics/tri_binary_dynamics.json",
-      "nodeType": "scene",
-      "id": "dynamics__tri_binary_dynamics",
-      "name": "Tri-Binary Dynamics",
-      "path": "content/scenes/dynamics/tri_binary_dynamics.json",
-      "searchTarget": "content/scenes/dynamics/tri_binary_dynamics.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/elements/ac.json",
       "nodeType": "scene",
       "id": "ac",
@@ -4936,6 +4921,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "nodeType": "scene",
+      "id": "noether_swarm__nested_shell_swarm_dynamics",
+      "name": "Nested Shell Swarm Dynamics",
+      "path": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "searchTarget": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm.json",
       "nodeType": "scene",
       "id": "noether_swarm__nested_shell_swarm",
@@ -5554,15 +5548,6 @@
       "name": "Medium Exclusion Volume",
       "path": "content/scenes/spacetime/medium_exclusion_volume.json",
       "searchTarget": "content/scenes/spacetime/medium_exclusion_volume.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/spacetime/noether_core_geometry.json",
-      "nodeType": "scene",
-      "id": "spacetime__noether_core_geometry",
-      "name": "Noether Core Geometry",
-      "path": "content/scenes/spacetime/noether_core_geometry.json",
-      "searchTarget": "content/scenes/spacetime/noether_core_geometry.json",
       "implicit": false
     },
     {
@@ -6601,15 +6586,6 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-      "name": "Tri-Binary Dynamics",
-      "path": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-      "searchTarget": "content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-      "implicit": false
-    },
-    {
       "nodeId": "markdown_doc:content/markdown/aaa/foundations/absolute-time-defense.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/foundations/absolute-time-defense.md",
@@ -6715,6 +6691,15 @@
       "name": "Mode Taxonomy",
       "path": "content/markdown/aaa/interactions/mode-taxonomy.md",
       "searchTarget": "content/markdown/aaa/interactions/mode-taxonomy.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "name": "Nested Shell Swarm Dynamics",
+      "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "searchTarget": "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
       "implicit": false
     },
     {
@@ -7890,7 +7875,7 @@
       "to": "scene:content/scenes/dynamics/dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -7904,7 +7889,7 @@
       "to": "scene:content/scenes/noether-swarm/noether_swarm.json",
       "edgeType": "subscene",
       "source": "content/scenes/architrino_assembly_architecture.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/architrino_assembly_architecture.json",
@@ -8282,21 +8267,21 @@
       "to": "scene:content/scenes/dynamics/causal_action_functional.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/dyadic_resonance_lock.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/dynamics/effective_lagrangian.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
@@ -8314,17 +8299,10 @@
     },
     {
       "from": "scene:content/scenes/dynamics/dynamics.json",
-      "to": "scene:content/scenes/dynamics/tri_binary_dynamics.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/dynamics/dynamics.json",
       "to": "scene:content/scenes/proof-programs/proof_programs.json",
       "edgeType": "subscene",
       "source": "content/scenes/dynamics/dynamics.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/elements/ac.json",
@@ -10890,6 +10868,13 @@
     },
     {
       "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "to": "scene:content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-swarm/noether_swarm.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
       "to": "scene:content/scenes/noether-swarm/nested_shell_swarm.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-swarm/noether_swarm.json",
@@ -10914,14 +10899,14 @@
       "to": "scene:content/scenes/noether-swarm/swarm_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-swarm/noether_swarm.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
       "to": "scene:content/scenes/noether-swarm/swarm_geometry.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-swarm/noether_swarm.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -11373,28 +11358,14 @@
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/noether-swarm/noether_swarm.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "scene:content/scenes/spacetime/effective_metric.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[6]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/noether_core_geometry.json",
+      "to": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[2]"
@@ -11411,21 +11382,21 @@
       "to": "scene:content/scenes/spacetime/physical_observers.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "scene:content/scenes/spacetime/spacetime_assemblies.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "scene:content/scenes/spacetime/strong_field_regime.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/spacetime/strong_field_regime.json",
@@ -12345,13 +12316,6 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/dynamics/tri_binary_dynamics.json",
-      "to": "markdown_doc:content/markdown/aaa/dynamics/tri-binary-dynamics.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/dynamics/tri_binary_dynamics.json",
-      "field": "scene.source.path"
-    },
-    {
       "from": "scene:content/scenes/foundations/absolute_time_defense.json",
       "to": "markdown_doc:content/markdown/aaa/foundations/absolute-time-defense.md",
       "edgeType": "markdown_doc",
@@ -12412,6 +12376,20 @@
       "to": "markdown_doc:content/markdown/aaa/foundations/ontology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/foundations/foundational_ontology.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/noether-swarm/swarm_geometry.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/noether-core-geometry.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/noether-swarm/swarm_geometry.json",
       "field": "scene.source.path"
     },
     {
@@ -12762,13 +12740,6 @@
       "to": "markdown_doc:content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/medium_exclusion_volume.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/noether_core_geometry.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/noether-core-geometry.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/noether_core_geometry.json",
       "field": "scene.source.path"
     },
     {

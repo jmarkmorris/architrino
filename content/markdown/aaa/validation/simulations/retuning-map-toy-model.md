@@ -1,6 +1,6 @@
 # Retuning-Map Toy Model
 
-This protocol documents the first arithmetic fixture for the cadence-scale retuning map introduced in [Tri-Binary Dynamics](../../dynamics/tri-binary-dynamics.md#cadence-scale-retuning-closure). The fixture is not a delayed-dynamics proof. It replays the constrained branch bookkeeping for an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction and reports whether the resulting increment can be treated as a same-branch retuning.
+This protocol documents the first arithmetic fixture for the cadence-scale retuning map introduced in [Nested Shell Swarm Dynamics](../../noether-swarm/nested-shell-swarm-dynamics.md#cadence-scale-retuning-closure). The fixture is not a delayed-dynamics proof. It replays the constrained branch bookkeeping for an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction and reports whether the resulting increment can be treated as a same-branch retuning.
 
 The purpose is narrow: turn the retuning scaffold into a machine-readable packet that outputs $(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$ and the corresponding first estimate for the cadence-space current $J_\nu$.
 

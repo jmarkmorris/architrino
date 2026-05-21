@@ -145,7 +145,7 @@ $$
 with $\Delta_{\mathcal A}^{\mathrm{PF}}$ projected into the two-way anisotropy and PPN rows below unless a sharper channel-specific bound is declared.
 
 Required emergent limits:
-- Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../dynamics/tri-binary-dynamics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether-Sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
+- Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../noether-swarm/nested-shell-swarm-dynamics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether-Sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
 - Homogeneous medium, low velocities:
   $$
   \frac{d\tau_{\mathcal A}}{dt} \approx \sqrt{1 - \|\mathbf{w}\|^2/c_\star^2},
