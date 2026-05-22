@@ -131,6 +131,21 @@ However, no sampled phase row came close to pointwise tangential closure. The be
 
 Interpretation: phase offsets alone are not enough to retain the rigid orthogonal-carrier branch. The residual can be improved but not closed in the screened class.
 
+The executable sampled scanner for this row is:
+
+```bash
+node scripts/neutral-swarm/octahedral-phase-offset-scan.mjs --out /tmp/neutral-swarm-octahedral-phase-offset-scan.json --pretty
+node scripts/neutral-swarm/octahedral-phase-offset-scan.mjs --validate /tmp/neutral-swarm-octahedral-phase-offset-scan.json --pretty
+```
+
+Its default schema is
+
+$$
+\texttt{neutral-swarm-octahedral-phase-offset-scan/v1}.
+$$
+
+The default quick grid is a screening artifact rather than the full table above. It ranks sampled $\phi_2,\phi_3$ rows, reports root-count and Jacobian floors on the sampled grid, and always returns `not_retained`. A row may lower the sampled RMS residual relative to zero offset, but the pointwise tangential residual remains open and the master first failure remains `support-complete-root-ledger-open`.
+
 ---
 
 ## 4. Force-Balance Implication

@@ -162,6 +162,110 @@ $$
 
 not as a separate theorem. The derivative matrix used in $\mathcal{K}_{\mathrm{cpl}}^{\nu}$ must be the derivative of the whole coupled residual above.
 
+### 2.0 Coupled Residual Object
+
+The residual consumed by a branch search, implicit-function reduction, or Krawczyk certificate is not the row vector alone. The proof object is the coupled residual object
+
+$$
+\boxed{
+\mathfrak{C}_{\mathrm{cpl}}^{\nu}
+=
+\left(
+\mathfrak{Z}_{\nu},
+\mathcal{R}_{\mathrm{cpl}}^{\nu},
+W_{\mathrm{cpl}},
+\mathcal{L}_{\mathrm{live}}^{\nu},
+\mathcal{D}_{\mathrm{cpl}}^{\nu},
+\mathcal{K}_{\mathrm{cpl}}^{\nu},
+\mathcal{S}_{1}
+\right).
+}
+$$
+
+Here $\mathfrak{Z}_{\nu}$ is the full coupled unknown vector from Section 1, $\mathcal{R}_{\mathrm{cpl}}^{\nu}$ is the full row vector above, $W_{\mathrm{cpl}}$ fixes the row weights, $\mathcal{L}_{\mathrm{live}}^{\nu}$ records ledger consistency, $\mathcal{D}_{\mathrm{cpl}}^{\nu}$ records the full derivative or certified Schur derivative, $\mathcal{K}_{\mathrm{cpl}}^{\nu}$ records the Krawczyk budget, and $\mathcal{S}_{1}$ records the fixed-speed slice. A small residual norm without these companion rows is only a diagnostic residual.
+
+The ledger consistency component is the conjunction
+
+$$
+\mathcal{L}_{\mathrm{live}}^{\nu}
+=
+\left(
+\mathcal{L}_{\mathrm{chart}},
+\mathcal{L}_{\mathrm{clock}},
+\mathcal{L}_{\mathrm{root}},
+\mathcal{L}_{\mathrm{force}},
+\mathcal{L}_{\mathrm{support}},
+\mathcal{L}_{\mathrm{action}},
+\mathcal{L}_{\mathrm{event}},
+\mathcal{L}_{\mathrm{der}}
+\right),
+$$
+
+with the following meanings:
+
+| Ledger row | Consistency condition |
+| --- | --- |
+| $\mathcal{L}_{\mathrm{chart}}$ | same branch chart, source-pair policy, same-source policy, period/winding convention, support sector, event convention, and row weights in every residual row |
+| $\mathcal{L}_{\mathrm{clock}}$ | one set of $\nu_i$, $\chi_i$, $\Lambda_i$, $H_i$, winding rows, and clock derivative columns used by dynamics, roots, support, action, and events |
+| $\mathcal{L}_{\mathrm{root}}$ | one retained $\mathcal{A}_{\nu}$ with fixed labels, fixed $\zeta_r$, positive delay and Jacobian floors, inactive gaps, noncollision floors, and a complete tail exclusion or assimilation cover |
+| $\mathcal{L}_{\mathrm{force}}$ | one $F_i^{\nu}$ convention, including active roots, assimilated tail roots, excluded-tail error, self-hit terms, medium response, and support multiplier forces when active |
+| $\mathcal{L}_{\mathrm{support}}$ | one support descriptor, support-band convention, support multipliers or variational inequality, support margins, radial row, and support-work assignment |
+| $\mathcal{L}_{\mathrm{action}}$ | one action scale $\Gamma_B^{\nu}$ or declared fitted-scale status, one history-work row, one speed storage/exchange row, one support-work row, and one Noether-Sea/event exchange convention |
+| $\mathcal{L}_{\mathrm{event}}$ | one set of first-event surfaces, endpoint roots, self-hit windows, root folds, speed-band contacts, support-boundary events, tail resets, and endpoint exchange rows |
+| $\mathcal{L}_{\mathrm{der}}$ | derivative columns for every active curve, speed, clock, inverse-clock, root, Jacobian, force, support, action, scale, monodromy, and event variable, or a certified Schur replacement |
+
+The derivative component $\mathcal{D}_{\mathrm{cpl}}^{\nu}$ may use implicit-function consumption only on a block with positive persistence margins. If $x$ denotes the retained outer variables and $y$ denotes an eliminated root, support, or event block, the eliminated equations must have
+
+$$
+\mathcal{R}_{\mathrm{ift}}^{\nu}(x,y)=0,
+\qquad
+D_y\mathcal{R}_{\mathrm{ift}}^{\nu}
+\text{ is invertible on the proof ball}.
+$$
+
+Every residual row that consumes this elimination must use
+
+$$
+D\widehat{\mathcal{R}}_{\mathrm{out}}^{\nu}
+=
+D_x\mathcal{R}_{\mathrm{out}}^{\nu}
+-
+D_y\mathcal{R}_{\mathrm{out}}^{\nu}
+\left(
+D_y\mathcal{R}_{\mathrm{ift}}^{\nu}
+\right)^{-1}
+D_x\mathcal{R}_{\mathrm{ift}}^{\nu}.
+$$
+
+Thus a Krawczyk calculation may consume either the full derivative $D\mathcal{R}_{\mathrm{cpl}}^{\nu}$ or a reduced derivative with the displayed implicit derivative. It may not consume frozen roots, frozen support multipliers, frozen action scale, fixed-speed clock maps, or frozen event endpoints after the outer variables move.
+
+The fixed-speed slice is the restriction
+
+$$
+\mathcal{S}_{1}:
+\quad
+\iota_1(a,r,\gamma,s,e)=(a,0,r,\gamma,s,e),
+\qquad
+\nu_i\equiv1,
+\qquad
+\chi_i=\Lambda_i=\mathrm{id}.
+$$
+
+The fixed-speed residual is the pulled-back and projected object
+
+$$
+\mathcal{R}_{\mathrm{fix}}
+=
+\Pi_1
+\mathcal{R}_{\mathrm{cpl}}^{\nu}
+\circ
+\iota_1,
+$$
+
+where $\Pi_1$ removes free-speed coefficient rows that become tautologies and keeps their constrained consequences: $H_i=L_i$, the fixed-speed causal-root ledger, $\mathbf{T}_i\cdot F_i^1=0$, $\mathbf{K}_i=\Gamma_B^1P_i^\perp F_i^1$, and the corresponding support, action, event, derivative, cokernel, and Krawczyk rows. A fixed-speed calculation reports `fixed-speed-special-case`; bounded-speed continuation starts only after rebuilding $\mathfrak{C}_{\mathrm{cpl}}^{\nu}$ with active $b$ columns.
+
+If the packet cannot form $\mathfrak{C}_{\mathrm{cpl}}^{\nu}$, the first status is `coupled-residual-object-open`. If the rows exist but use inconsistent ledger conventions, the first status is `ledger-convention-mismatch`. If an implicit or Schur consumer omits the displayed derivative correction, the first status is `implicit-consumer-stale` unless an earlier row has already failed.
+
 ### 2.1 Speed Band
 
 The inequality row is
@@ -684,35 +788,41 @@ The theorem target yields a bounded-speed dynamics/action candidate, not a retai
 
 A coupled packet must report the first failed row in this order:
 
-1. `coupled-unknown-schema-open`
-2. `speed-band-failure`
-3. `clock-period-failure`
-4. `speed-ode-mean-fails`
-5. `speed-primitive-mismatch`
-6. `speed-clock-length-fails`
-7. `normal-equation-open`
-8. `normal-holonomy-open`
-9. `position-closure-open`
-10. `tangent-frame-monodromy-open`
-11. `support-radial-compatibility-open`
-12. `support-margin-failure`
-13. `root-equation-open`
-14. `root-ledger-persistence-failure`
-15. `root-jacobian-floor-failure`
-16. `inactive-root-gap-failure`
-17. `tail-persistence-open`
-18. `action-scale-mismatch`
-19. `support-action-work-open`
-20. `bounded-speed-factor-exchange-open`
-21. `action-curl-open`
-22. `event-matching-open`
-23. `derivative-block-stale`
-24. `bounded-speed-gauge-slice-open`
-25. `bounded-speed-finite-mode-system-open`
-26. `coupled-cokernel-open`
-27. `coupled-krawczyk-open`
-28. `bounded-speed-branch-decision-open`
-29. `bounded-speed-coupled-fixed-point-candidate`
+1. `coupled-residual-object-open`
+2. `coupled-unknown-schema-open`
+3. `ledger-convention-mismatch`
+4. `speed-band-failure`
+5. `clock-period-failure`
+6. `speed-ode-mean-fails`
+7. `speed-primitive-mismatch`
+8. `speed-clock-length-fails`
+9. `normal-equation-open`
+10. `normal-holonomy-open`
+11. `position-closure-open`
+12. `tangent-frame-monodromy-open`
+13. `support-radial-compatibility-open`
+14. `support-margin-failure`
+15. `root-equation-open`
+16. `root-ledger-persistence-failure`
+17. `root-jacobian-floor-failure`
+18. `inactive-root-gap-failure`
+19. `tail-persistence-open`
+20. `bounded-speed-tail-cover-incomplete`
+21. `action-scale-mismatch`
+22. `support-action-work-open`
+23. `bounded-speed-factor-exchange-open`
+24. `speed-el-ode-equivalence-open`
+25. `action-curl-open`
+26. `self-hit-exchange-residual-open`
+27. `event-matching-open`
+28. `implicit-consumer-stale`
+29. `derivative-block-stale`
+30. `bounded-speed-gauge-slice-open`
+31. `bounded-speed-finite-mode-system-open`
+32. `coupled-cokernel-open`
+33. `coupled-krawczyk-open`
+34. `bounded-speed-branch-decision-open`
+35. `bounded-speed-coupled-fixed-point-candidate`
 
 If the calculation deliberately stays in the fixed-speed subspace, the status is `fixed-speed-special-case` rather than a failure. If it leaves the fixed-speed subspace but retains fixed-speed roots, forces, derivatives, action scale, or event rows, the first relevant stale-row status must be reported before any candidate status.
 
@@ -788,6 +898,8 @@ A bounded speed factor coupled fixed-point packet must emit:
 | `solver_space` | `bounded-speed-coupled-fixed-point` or `fixed-speed-special-case` |
 | `unknown_tuple` | $\mathbf{Y}$, $\nu$, root sheets, sign labels, $\Gamma_B^{\nu}$, support variables, action rows, and event variables |
 | `finite_chart` | coefficient vector $z=(a,b,r,\gamma,s,e)$, gauge rows, basis, collocation grid, and row weights |
+| `coupled_residual_object` | $\mathfrak{C}_{\mathrm{cpl}}^{\nu}$, including $\mathfrak{Z}_{\nu}$, $\mathcal{R}_{\mathrm{cpl}}^{\nu}$, $W_{\mathrm{cpl}}$, $\mathcal{L}_{\mathrm{live}}^{\nu}$, $\mathcal{D}_{\mathrm{cpl}}^{\nu}$, $\mathcal{K}_{\mathrm{cpl}}^{\nu}$, and $\mathcal{S}_1$ |
+| `ledger_consistency` | chart, clock, root, force, support, action, event, and derivative consistency rows from $\mathcal{L}_{\mathrm{live}}^{\nu}$ |
 | `branch_search_certificate` | branch class, coefficient box, search residual, margin vector, execution order, trichotomy, and report fields from [bounded-speed-factor-branch-search-certificate.md](bounded-speed-factor-branch-search-certificate.md) |
 | `gauge_reduction` | symmetry generators, gauge slice, neutral projection, bordered matrix, and rank status from [bounded-speed-factor-symmetry-gauge-reduction.md](bounded-speed-factor-symmetry-gauge-reduction.md) |
 | `clock_period` | $\chi_i$, $\Lambda_i$, $H_i$, $H_*$ or $m_iH_i=H_{\mathrm{com}}$, clock derivatives, and period residuals |
@@ -800,6 +912,7 @@ A bounded speed factor coupled fixed-point packet must emit:
 | `variational_noether_rows` | period variation mode, speed-factor EL row, speed-ODE equivalence, exchange residual, support work, and Noether-current envelope |
 | `event_rows` | first-event surfaces, self-hit windows, self-hit exchange rows, root folds, band contacts, support-boundary events, endpoint jumps, and ledger-reset status |
 | `block_structure` | row/variable block order, active Schur eliminations, omitted-column audit, and stale-block status |
+| `implicit_function_consumption` | eliminated root, support, or event blocks, inverse floors, implicit derivative correction, and consumer rows |
 | `derivative_matrix_coupled` | columns in $a$, $b$, $r$, $s$, $\gamma$, and $e$, including clock/root/force/support/action/event derivatives |
 | `krawczyk_budget_coupled` | $Y_{\mathrm{cpl}}$, $Z_{\mathrm{cpl}}$, $\rho$, $\rho_{\mathrm{chart},\mathrm{cpl}}^{\nu}$, range/cokernel split, tail/discretization bounds, and obstruction status |
 | `branch_krawczyk_decision` | inclusion, exclusion, event-reset, certified-rejection, or proof-budget status from [bounded-speed-factor-branch-krawczyk-decision-theorem.md](bounded-speed-factor-branch-krawczyk-decision-theorem.md) |
@@ -812,7 +925,9 @@ A bounded speed factor coupled fixed-point packet must emit:
 
 | Status | Meaning |
 | --- | --- |
+| `coupled-residual-object-open` | the packet does not emit $\mathfrak{C}_{\mathrm{cpl}}^{\nu}$ as a single consumed residual object with unknowns, rows, weights, ledger consistency, derivative data, Krawczyk data, and fixed-speed slice |
 | `coupled-unknown-schema-open` | the packet does not declare the coupled $\mathbf{Y}$, $\nu$, root, scale, support, action, and event unknowns |
+| `ledger-convention-mismatch` | residual rows use different branch charts, clock maps, root ledgers, force conventions, support descriptors, action scales, event conventions, or row weights |
 | `speed-band-failure` | $\nu$ leaves the declared positive speed band |
 | `clock-period-failure` | equal physical period or winding compatibility fails |
 | `speed-ode-mean-fails` | the tangent forcing does not have zero closed-period mean on the live ledger |
@@ -837,6 +952,7 @@ A bounded speed factor coupled fixed-point packet must emit:
 | `self-hit-exchange-residual-open` | a finite self-hit interval lacks speed-energy, potential, work, endpoint, conservation, or provenance exchange closure |
 | `action-curl-open` | history/support/action work one-form is not closed within tolerance |
 | `event-matching-open` | event endpoint, self-hit, fold, band-contact, support-boundary, or exchange matching fails |
+| `implicit-consumer-stale` | an implicit-function or Schur-reduced consumer uses eliminated roots, support variables, action scale, or event variables without the required derivative correction |
 | `derivative-block-stale` | derivative matrix omits active curve, speed, clock, root, force, support, action, scale, or event columns |
 | `bounded-speed-gauge-slice-open` | the symmetry quotient, gauge rows, neutral projection, or bordered rank certificate is missing |
 | `bounded-speed-finite-mode-system-open` | the finite-mode variable blocks, row dimensions, truncation split, or solver artifact schema is incomplete |
