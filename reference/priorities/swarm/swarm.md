@@ -158,8 +158,8 @@ The work items below replace the inherited pre-freeze queue. Older architecture 
 3. `swarm_notation_compatibility_inventory` — Map the symbols used by the three swarm cases. Status: `review-ready`. Depends on: `swarm_triad_definition_table`, `priority_label_freeze_inventory`. Notes: see the notation compatibility inventory above; do not rename symbols until the table is accepted.
 4. `priority_packet_quarantine_audit` — Mark inherited architecture packets whose titles or task names contain disputed labels as priority-only history. Status: `review-ready`. Depends on: `swarm_triad_definition_table`, `priority_label_freeze_inventory`. Notes: see the packet quarantine audit below; preserve paths for git continuity, but do not use those labels as reader-facing taxonomy or as the active workstream queue.
 5. `neutral_swarm_model_restatement` — Restate the broad six-architrino neutral case under the accepted `neutral swarm` wording. Status: `review-ready`. Depends on: `swarm_triad_definition_table`, `swarm_notation_compatibility_inventory`, `priority_packet_quarantine_audit`. Notes: see the neutral swarm model restatement below; it restates the base object without promoting the quarantined generalized packet or renaming formulas.
-6. `shell_swarm_model_restatement` — Restate the controlled radial-support case under `shell swarm`. Status: `open`. Depends on: `neutral_swarm_model_restatement`. Notes: keep support-band, recovery, and near-antipodal rows as mathematical conditions; do not introduce new names for subcases without approval.
-7. `nested_shell_swarm_preservation_map` — Preserve the old three-layer material as `nested shell swarm` source material while separating exact binary assumptions from reader-facing terminology. Status: `open`. Depends on: `shell_swarm_model_restatement`. Notes: compare against the restored NTB causal-closure packet set without treating source labels as current public taxonomy.
+6. `shell_swarm_model_restatement` — Restate the controlled radial-support case under `shell swarm`. Status: `review-ready`. Depends on: `neutral_swarm_model_restatement`. Notes: see the shell swarm model restatement below; keep support-band, recovery, and near-antipodal rows as mathematical conditions; do not introduce new names for subcases without approval.
+7. `nested_shell_swarm_preservation_map` — Preserve the old three-layer material as `nested shell swarm` source material while separating exact binary assumptions from reader-facing terminology. Status: `review-ready`. Depends on: `shell_swarm_model_restatement`. Notes: see the nested shell swarm preservation map below; compare against the restored NTB causal-closure packet set without treating source labels as current public taxonomy.
 8. `certificate_and_gate_repair` — Reconnect proof obligations to the accepted swarm wording after the terminology and notation tables pass review. Status: `deferred`. Depends on: `neutral_swarm_model_restatement`, `shell_swarm_model_restatement`, `nested_shell_swarm_preservation_map`. Notes: update certificate, conservation, observer-export, and migration-gate language only after the terminology pass is accepted.
 9. `user_facing_corpus_merge_gate` — Decide whether and when to edit `content/markdown/aaa`, simulations, scenes, or app copy. Status: `blocked`. Depends on: accepted terminology table, notation inventory, packet quarantine audit, certificate repair, migration batch plan, and operator approval. Notes: this gate blocks broad corpus edits and file/path migration.
 
@@ -234,6 +234,79 @@ A retained neutral swarm branch would need one live certificate closing these ro
 | observer exports | Lorentz, photon, mass, generation, color, and strong-field rows marked `passed`, `failed`, or `not_computed` |
 
 Promotion decision: `priority-only`. The neutral swarm restatement is a definition and certificate target, not a corpus-ready theorem. The blocker is a retained or rigorously rejected neutral swarm branch certificate with the rows above populated on one live ledger.
+
+### Shell Swarm Model Restatement
+
+Status: `review-ready`, `priority-only`. This restatement is the controlled priority-side definition of the common support-band case. It is not a retained-branch proof and does not authorize corpus migration.
+
+A shell swarm is a neutral swarm plus a controlled radial support condition. The shell condition is the support condition; an ideal zero-spread case is a mathematical limit inside the model, not a separate swarm type.
+
+| Data or condition | Meaning | Required for shell swarm |
+| --- | --- | --- |
+| neutral swarm base data | The six-site inventory, curves, speed factors, causal-root ledger, action ledger, event ledger, and inventory ledger from the neutral swarm restatement. | yes |
+| $\mathcal{D}_{\mathrm{supp}}$ | Support descriptor with declared bounds and margins for the common support band. | yes |
+| $R_{\mathrm{in}}$, $R_{\mathrm{out}}$ | Inner and outer support-band bounds when the packet uses annular or hollow support notation. | yes, if that support descriptor is used |
+| $\bar R$ | Optional radius summary functional for a branch or chart. | no; derived row only |
+| $\mathcal{R}_{\mathrm{spread}}$ | Spread row or residual testing whether the six sites remain in the controlled common support band. | yes, when a finite-mode or certificate packet claims support closure |
+| $\mathcal{A}_\nu$ | Active causal-root ledger computed on the same branch convention as the support rows. | yes |
+| $\mathsf{Action}^{\nu}$, $\mathsf{Event}^{\nu}$, $\mathsf{Inventory}$ | Action, event, and inventory ledgers computed on the same branch convention. | yes |
+
+The following data are not part of the shell swarm definition unless a packet explicitly adds them:
+
+| Optional structure | When it becomes available | Restatement rule |
+| --- | --- | --- |
+| $\mathcal{P}=\{P_1,P_2,P_3\}$ | Only after a binary partition is declared. | Then $P_a$ is a binary; do not use `pair` as the replacement term. |
+| exact antipodality | Only after an exact-binary or exact-antipodal row is declared. | Keep as a proof assumption, not a reader-facing swarm type. |
+| three ordered radial support bands | Only when the nested shell swarm condition is claimed. | This is the stronger nested shell swarm condition. |
+| central inventory or external pole bookkeeping | Only after a charge/provenance packet declares it. | Do not build it into the shell swarm base definition. |
+| observer exports | Only after a certificate packet computes them. | Lorentz, photon, mass, generation, color, and strong-field rows are export obligations, not part of the base name. |
+
+A retained shell swarm branch would need one live certificate closing these rows on the same branch convention:
+
+| Certificate row | Required content |
+| --- | --- |
+| neutral swarm rows | all neutral inventory, curve, speed, root, action, event, and inventory rows inherited from the neutral swarm restatement |
+| support-band margins | declared support descriptor, support bounds, spread row, and noncollision margin |
+| causal roots | active roots, root-count stability, positive Jacobian floors, inactive-gap margins, and tail-cover status where needed |
+| dynamics | force, tangent, normal, support, speed, and period rows computed from the same root ledger |
+| action and event ledgers | Noether/action rows, self-hit exchange, boundary rows, and event provenance on the same branch convention |
+| optional reductions | binary partition, exact-antipodal, or nested shell swarm rows only if claimed |
+| observer exports | export rows marked `passed`, `failed`, or `not_computed`; no export follows from the name alone |
+
+Promotion decision: `priority-only`. The shell swarm restatement is a definition and certificate target, not a corpus-ready theorem. The blocker is a retained or rigorously rejected shell swarm branch certificate with support-band, causal-root, dynamics, action, and event rows populated on one live ledger.
+
+### Nested Shell Swarm Preservation Map
+
+Status: `review-ready`, `priority-only`. This map preserves the old three-layer source material without promoting its source labels as current terminology.
+
+A nested shell swarm is a shell swarm plus a binary partition into three binaries and three ordered radial support bands. In this context each shell contains one binary, and the shell may be referred to as that binary when the nested shell context is clear.
+
+| Source structure | Current priority-side meaning | Preservation rule |
+| --- | --- | --- |
+| old three-layer picture | nested shell swarm with three ordered radial support bands | Preserve as source material under `nested shell swarm`. |
+| `nested tri-binary` wording | nested shell swarm when the old three-layer picture is meant | Replace in new prose; keep literal source references and file paths until cleanup. |
+| `exact nested tri-binary` wording | nested shell swarm with exact binary assumptions | Use only when exact binary rows are part of the proof burden. |
+| $\mathcal{P}=\{P_1,P_2,P_3\}$ | binary partition of the six architrinos | Required before binary-index notation or shell-binary language is used. |
+| $P_a$ | the $a$th binary | In a nested shell swarm, $P_a$ is the binary contained in shell $a$. |
+| $i=(a,\sigma)$ | binary-index notation after $\mathcal{P}$ is declared | Allowed only after the partition is explicit. |
+| $R_a$ | derived radius functional for binary $P_a$ or shell $a$ | Preserve formulas; do not turn this into a new swarm type. |
+| $\mathcal{G}_{ab}^R$ | radial ordering or shell-gap row | Use to certify the three ordered radial support bands. |
+| exact antipodality | proof-specific exact-binary assumption | Optional unless the packet claims the exact-binary theorem target. |
+| I/M/O or similar source-layer labels | geometric-order, continuation-history, or weak-stress-role labels only if certified | Do not use as reader-facing taxonomy. |
+| restored NTB causal-closure packets | source and fallback material | Mine for theorem targets, certificate rows, and comparison obligations through this map. |
+
+A retained nested shell swarm branch would need one live certificate closing these rows on the same branch convention:
+
+| Certificate row | Required content |
+| --- | --- |
+| shell swarm rows | all support-band, root, dynamics, action, event, and inventory rows inherited from the shell swarm restatement |
+| binary partition | declared $\mathcal{P}=\{P_1,P_2,P_3\}$ with two architrinos in each $P_a$ |
+| ordered shells | three ordered radial support bands, certified by the relevant $R_a$ and $\mathcal{G}_{ab}^R$ rows or their accepted replacements |
+| binary rows | binary-specific speed, polarity, support, and causal-root rows only where claimed |
+| exact-binary assumptions | exact antipodality, parity, or speed-parity rows only where claimed |
+| comparison and fallback | explicit comparison to the old three-layer source packet, including which rows are retained, weakened, or rejected |
+
+Promotion decision: `priority-only`. The nested shell swarm preservation map is a source-preservation and certificate-target map, not a corpus-ready theorem. The blocker is a retained or rigorously rejected nested shell swarm certificate, or a comparison map showing why the nested shell source material is only a fallback.
 
 ## Architecture Files
 
