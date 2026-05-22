@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 157,
-      "sections": 1232
+      "sections": 1234
     }
   },
   "tocRoot": {
@@ -2313,6 +2313,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
                 "markdownSection": "Composition",
                 "sectionKey": "composition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Local Branches in the Medium",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Local Branches in the Medium",
+                "sectionKey": "local branches in the medium",
                 "headingLevel": 2
               },
               {
@@ -7718,6 +7726,14 @@
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
                 "markdownSection": "Assessment Table",
                 "sectionKey": "assessment table",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "2026-05-22 Assessment Notes",
+                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
+                "markdownSection": "2026-05-22 Assessment Notes",
+                "sectionKey": "2026 05 22 assessment notes",
                 "headingLevel": 2
               },
               {

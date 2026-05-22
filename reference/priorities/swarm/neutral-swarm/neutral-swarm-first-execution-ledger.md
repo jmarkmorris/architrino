@@ -154,6 +154,136 @@ $$
 \texttt{neutral-swarm-octahedral-force-residual/v1}.
 $$
 
+The deterministic fixed-speed no-go witness emits:
+
+$$
+\texttt{neutral-swarm-octahedral-fixed-speed-witness/v1}.
+$$
+
+It closes one narrow hypothesis by rejection:
+
+$$
+\texttt{closed-rejected:rigid-octahedral-fixed-speed-neutral-row}.
+$$
+
+The closure row is the interval witness
+
+$$
+\widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
+\in
+[0.07393815228,0.07393815232],
+$$
+
+so the fixed-speed tangential row cannot vanish for every required receiver and phase. This rejection does not consume or close the broader neutral swarm master certificate; it only removes the rigid zero-offset fixed-speed octahedral seed from the retained-branch candidate set.
+
+The ordinary same-source positive-delay exclusion witness is implemented at:
+
+```bash
+node scripts/neutral-swarm/octahedral-same-source-witness.mjs --out /tmp/neutral-swarm-octahedral-same-source-witness.json --pretty
+node scripts/neutral-swarm/octahedral-same-source-witness.mjs --validate /tmp/neutral-swarm-octahedral-same-source-witness.json --pretty
+```
+
+Its schema is
+
+$$
+\texttt{neutral-swarm-octahedral-same-source-witness/v1}.
+$$
+
+It closes the ordinary fixed-speed same-source rescue hypothesis by rejection:
+
+$$
+\texttt{closed-rejected:ordinary-same-source-positive-delay}.
+$$
+
+The certificate is the strict inequality
+
+$$
+2\left|\sin\frac{y}{2}\right|<y
+\qquad
+(0<y\le2),
+$$
+
+plus the bounded-separation exclusion for $y>2$. This proves that the ordinary same-source row contributes no retained positive-delay force term under the rigid exact-$c_f$ circular convention. Controlled self-hit, bounded-speed, and fold-layer policies remain separate event/action hypotheses.
+
+The inventory-bias closure witness is implemented at:
+
+```bash
+node scripts/neutral-swarm/octahedral-inventory-closure-witness.mjs --out /tmp/neutral-swarm-octahedral-inventory-closure-witness.json --pretty
+node scripts/neutral-swarm/octahedral-inventory-closure-witness.mjs --validate /tmp/neutral-swarm-octahedral-inventory-closure-witness.json --pretty
+```
+
+Its schema is
+
+$$
+\texttt{neutral-swarm-octahedral-inventory-closure-witness/v1}.
+$$
+
+It closes the count-only force-closure overread by rejection:
+
+$$
+\texttt{closed-rejected:inventory-bias-implies-force-closure}.
+$$
+
+The certificate is a direct counterexample: the rigid octahedral all-pairs ledger has $N_{\mathrm{attr}}=3$ and $N_{\mathrm{rep}}=2$ for every receiver, while the same fixed-speed interval witness gives
+
+$$
+\widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
+\in
+[0.07393815228,0.07393815232].
+$$
+
+Thus structural attraction bias remains a required inventory row, but it is not a sufficient proof of fixed-speed force closure.
+
+The resolved-root force-closure overread witness is implemented at:
+
+```bash
+node scripts/neutral-swarm/octahedral-root-force-closure-witness.mjs --out /tmp/neutral-swarm-octahedral-root-force-closure-witness.json --pretty
+node scripts/neutral-swarm/octahedral-root-force-closure-witness.mjs --validate /tmp/neutral-swarm-octahedral-root-force-closure-witness.json --pretty
+```
+
+Its schema is
+
+$$
+\texttt{neutral-swarm-octahedral-root-force-closure-witness/v1}.
+$$
+
+It closes the resolved-root-implies-force-closure overread by rejection:
+
+$$
+\texttt{closed-rejected:resolved-root-rows-imply-fixed-speed-force-closure}.
+$$
+
+The certificate is again a direct counterexample: at the same rigid octahedral witness node all five ordered distinct-source rows have one positive-delay root and positive Jacobian data, while the fixed-speed tangential row still has
+
+$$
+\widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
+\in
+[0.07393815228,0.07393815232].
+$$
+
+Thus resolved root rows are necessary force-ledger inputs, but they do not by themselves make the fixed-speed tangential residual vanish.
+
+The phase-offset retention overread witness is implemented at:
+
+```bash
+node scripts/neutral-swarm/octahedral-phase-offset-retention-witness.mjs --out /tmp/neutral-swarm-phase-offset-retention-witness.json --pretty
+node scripts/neutral-swarm/octahedral-phase-offset-retention-witness.mjs --validate /tmp/neutral-swarm-phase-offset-retention-witness.json --pretty
+```
+
+Its schema is
+
+$$
+\texttt{neutral-swarm-octahedral-phase-offset-retention-witness/v1}.
+$$
+
+It closes the sampled-improvement-implies-retention overread by rejection:
+
+$$
+\texttt{closed-rejected:sampled-phase-offset-improvement-implies-retention}.
+$$
+
+The certificate is the sampled phase-offset scan itself: a phase row may lower RMS relative to the zero-offset row, but the best sampled row remains `not_retained`, keeps a positive maximum tangential residual, and leaves support-complete root certification, action, event, Noether, stability, and convergence rows open. This rejects only the retention overread, not the broader usefulness of phase offsets as search coordinates.
+
 ---
 
 ## 3. Pair And Inventory Audit

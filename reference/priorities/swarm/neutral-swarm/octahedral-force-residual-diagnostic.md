@@ -15,6 +15,19 @@ $$
 \texttt{neutral-swarm-octahedral-force-residual/v1}.
 $$
 
+The single-node closure witness for the rigid fixed-speed no-go is:
+
+```bash
+node scripts/neutral-swarm/octahedral-fixed-speed-witness.mjs --out /tmp/neutral-swarm-octahedral-fixed-speed-witness.json --pretty
+node scripts/neutral-swarm/octahedral-fixed-speed-witness.mjs --validate /tmp/neutral-swarm-octahedral-fixed-speed-witness.json --pretty
+```
+
+Its schema is
+
+$$
+\texttt{neutral-swarm-octahedral-fixed-speed-witness/v1}.
+$$
+
 ---
 
 ## 1. Input Row
@@ -140,6 +153,16 @@ $$
 
 Thus the rigid zero-offset octahedral carrier is useful as a negative seed. It passes sampled all-pairs root counting, but fails the sampled fixed-speed tangential force row by an order-one margin.
 
+The no-go closure is sharpened in [rigid-octahedral-fixed-speed-no-go.md](rigid-octahedral-fixed-speed-no-go.md). At the single required node $(i,\theta)=((1,+),0)$, the witness artifact gives
+
+$$
+\widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
+\in
+[0.07393815228,0.07393815232],
+$$
+
+which excludes zero. Therefore the rigid zero-offset fixed-speed neutral row is `closed-rejected` under this source-pair and same-source policy.
+
 ---
 
 ## 4. Interpretation
@@ -158,4 +181,4 @@ $$
 \texttt{not\_retained}.
 $$
 
-The next concrete mathematical move is to convert either the root dependency or the tangential residual into an interval-certified row. Until then, this artifact is a disciplined rejection screen, not a proof of nonexistence for the neutral swarm, shell swarm, or nested shell swarm cases.
+The next concrete mathematical move is not to retain this rigid fixed-speed row. The surviving closure work is to reuse the root-ledger machinery for bounded-speed factors, deformed support-band carriers, or certified shell/nested shell swarm case reductions. This artifact is a proof of non-retention only for the rigid zero-offset fixed-speed hypothesis, not a proof of nonexistence for the neutral swarm, shell swarm, or nested shell swarm cases.

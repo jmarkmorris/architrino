@@ -43,22 +43,71 @@ Modern physics columns use the same categories for the effective-theory stack (`
 
 The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb{A}$ score minus $\max(\text{Modern Physics Operational},\text{Modern Physics Mechanism})$; negative values mark current $\mathbb{A}\mathbb{A}\mathbb{A}$ deficits against the stronger modern-physics comparator.
 
-| Category | Weight | Description | Modern Physics Operational | Modern Physics Mechanism | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-16 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-19 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-20 | $\Delta$ |
+| Category | Weight | Description | Modern Physics Operational | Modern Physics Mechanism | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-16 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-20 | $\mathbb{A}\mathbb{A}\mathbb{A}$ 2026-05-22 | $\Delta$ |
 | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| Axiom+Notation | 4 | Canonical symbols, definitions, and cross-chapter mathematical language consistency. | 96 | 82 | 92 | 94 | 95 | -1 |
-| Master EOM+Local Dynamics | 10 | Certified closure of the core equations of motion: local field/effective equations in modern physics and delayed path-history dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 96 | 75 | 60 | 67 | 72 | -24 |
-| Potential+Action Closure | 9 | Action, potential, variational, and force/acceleration closure, including whether the central dynamics derive from a stable mathematical principle. | 98 | 86 | 45 | 56 | 61 | -37 |
-| Conservation+Invariant Closure | 7 | Energy, momentum, angular momentum, charge, quantum-number, and symmetry-invariant closure, including no-go consistency. | 98 | 92 | 50 | 58 | 63 | -35 |
-| Formula+Coefficient Recovery | 13 | Explicit recovery of target formulas and coefficients: Lorentz behavior, clock/redshift laws, PPN terms, mass formulas, quantum probabilities, and Standard Model mappings. | 96 | 78 | 28 | 40 | 43 | -53 |
-| Parameter+Scale Closure | 10 | Determination status of constants, couplings, scales, constitutive coefficients, and renormalization or calibration freedom. | 70 | 42 | 25 | 34 | 37 | -33 |
-| Empirical Precision+Benchmark Validation | 14 | Agreement with direct observation, precision tests, benchmark experiments, simulations, and quantitative pass/fail thresholds. | 98 | 78 | 20 | 31 | 34 | -64 |
-| Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 82 | 48 | 42 | 54 | 59 | -23 |
-| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and nested shell swarm/Noether swarm dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 66 | 69 | -13 |
-| UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 70 | 35 | 30 | 38 | 42 | -28 |
-| Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 88 | 80 | 86 | 90 | -8 |
-| Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 99 | 82 | 72 | 84 | 88 | -11 |
-| Theory Architecture+Ontic Logic | 8 | Unified theoretical architecture, explanatory parsimony, substrate logic, and avoidance of ad-hoc patching, scored separately from validated formula recovery. | 58 | 35 | 96 | 98 | 99 | 41 |
-| **TOTAL** | **100** | **Weighted mean across all categories.** | **88** | **67** | **46** | **55** | **59** | **-29** |
+| Axiom+Notation | 4 | Canonical symbols, definitions, and cross-chapter mathematical language consistency. | 96 | 82 | 92 | 95 | 98 | 2 |
+| Master EOM+Local Dynamics | 10 | Certified closure of the core equations of motion: local field/effective equations in modern physics and delayed path-history dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 96 | 75 | 60 | 72 | 74 | -22 |
+| Potential+Action Closure | 9 | Action, potential, variational, and force/acceleration closure, including whether the central dynamics derive from a stable mathematical principle. | 98 | 86 | 45 | 61 | 63 | -35 |
+| Conservation+Invariant Closure | 7 | Energy, momentum, angular momentum, charge, quantum-number, and symmetry-invariant closure, including no-go consistency. | 98 | 92 | 50 | 63 | 65 | -33 |
+| Formula+Coefficient Recovery | 13 | Explicit recovery of target formulas and coefficients: Lorentz behavior, clock/redshift laws, PPN terms, mass formulas, quantum probabilities, and Standard Model mappings. | 96 | 78 | 28 | 43 | 44 | -52 |
+| Parameter+Scale Closure | 10 | Determination status of constants, couplings, scales, constitutive coefficients, and renormalization or calibration freedom. | 70 | 42 | 25 | 37 | 38 | -32 |
+| Empirical Precision+Benchmark Validation | 14 | Agreement with direct observation, precision tests, benchmark experiments, simulations, and quantitative pass/fail thresholds. | 98 | 78 | 20 | 34 | 35 | -63 |
+| Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 82 | 48 | 42 | 59 | 63 | -19 |
+| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and nested shell swarm/Noether swarm dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 69 | 73 | -9 |
+| UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 70 | 35 | 30 | 42 | 43 | -27 |
+| Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 88 | 80 | 90 | 92 | -6 |
+| Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 99 | 82 | 72 | 88 | 91 | -8 |
+| Theory Architecture+Ontic Logic | 8 | Unified theoretical architecture, explanatory parsimony, substrate logic, and avoidance of ad-hoc patching, scored separately from validated formula recovery. | 58 | 35 | 96 | 99 | 99 | 41 |
+| **TOTAL** | **100** | **Weighted mean across all categories.** | **88** | **67** | **46** | **59** | **61** | **-27** |
+
+## 2026-05-22 Assessment Notes
+
+The 2026-05-22 assessment raises the weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score from `59` to `61`. The increase is concentrated in notation, internal constituent dynamics, cross-regime bridge quality, and falsification discipline. It is not a coefficient-recovery jump: the central benchmark rows still lack a retained branch that recovers masses, Lorentz / PPN coefficients, photon-channel coefficients, Born/Bell measures, weak mixing, Standard Model masses, or cosmological residuals from one accepted native record.
+
+The largest corpus-side improvement is the Noether swarm taxonomy. The corpus now separates the broad neutral swarm, shell swarm, and nested shell swarm cases; treats exact binaries as a proof assumption rather than a naming axiom; and routes dynamic exclusion-envelope geometry into a dedicated nested shell swarm geometry chapter. That chapter adds a computable assembly/Noether-Sea interface diagnostic,
+
+$$
+D_{a,X}(\mathbf{x},t)
+=
+\frac{
+\left\lVert\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
+}{
+\left\lVert\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
++
+\left\lVert\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\rVert
+},
+$$
+
+with locked and ambient contributions built from the same causal-root kernel, Jacobian floors, branch records, channel projections, and ledger-derived tolerance scales. This justifies raising Axiom+Notation, Cross-Regime Bridge, Internal Constituent Dynamics, and Coverage+Interface Readiness, while keeping the claim below full closure because the interface diagnostic is still a recovery target rather than a validated medium-response theorem.
+
+The Noether-Sea branch embedding also improves the master-equation bridge. Local assembly branches are now stated as retained branches inside a surrounding Noether-Sea and nearby-assembly record:
+
+$$
+\mathcal{R}_{\mathrm{branch}}
+\left(
+B;\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal{H}_{\partial\Omega}
+\right)=0,
+$$
+
+with the force-ledger split
+
+$$
+F_i
+=
+F_{i,\mathrm{internal}}
++
+F_{i,\mathrm{sea}}
++
+F_{i,\mathrm{asm}}
++
+F_{i,\partial\Omega}.
+$$
+
+This is a concrete mathematical advance because it prevents isolated seed charts from being read as physical branch closure unless Noether-Sea, assembly, and boundary residuals are statused. It supports modest increases in Master EOM+Local Dynamics, Potential+Action Closure, Conservation+Invariant Closure, Parameter+Scale Closure, and UV/IR+Regularization Completion.
+
+Executable neutral-swarm diagnostics add negative evidence and sharper first-failure semantics. The current sampled octahedral root-ledger diagnostic passes the all-pairs sampled root/Jacobian screen, while the rigid zero-offset fixed-speed row is rejected by a nonzero tangential residual witness and an ordinary same-source positive-delay no-go. These artifacts improve falsification readiness and empirical/simulation discipline because they report `not_retained` rather than converting a failed seed into branch evidence. The score increase is deliberately small because sampled diagnostics, no-go witnesses for one rigid seed, and finite-mode search schemas do not yet replace an interval-certified all-pairs root ledger, action/Noether row, event ledger, stability certificate, or observer-export recovery.
+
+The total remains far below modern operational closure for the same reason as May 20. The theory stack has stronger taxonomy, residual surfaces, and fail-closed diagnostics, but not the decisive retained branch. Until a single native record supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN recovery, photon-channel recovery, quantum source measures, Standard Model mapping coefficients, and shared cosmology fits, architecture and auditability must not inflate the validated-closure total.
 
 ## 2026-05-20 Assessment Notes
 

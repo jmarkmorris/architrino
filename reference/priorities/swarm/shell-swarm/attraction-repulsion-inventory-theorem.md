@@ -289,6 +289,14 @@ $$
 \text{retained force closure}.
 $$
 
+The executable counterexample witness closes the overread hypothesis by rejection:
+
+$$
+\texttt{closed-rejected:inventory-bias-implies-force-closure}.
+$$
+
+This rejects only the inference from the $3$-$2$ source-site inventory count to fixed-speed force closure; it does not reject the inventory theorem itself. The witness uses the rigid octahedral all-pairs ledger, where every receiver has $N_{\mathrm{attr}}=3$ and $N_{\mathrm{rep}}=2$, but the fixed-speed tangential residual interval at $((1,+),0)$ excludes zero.
+
 The useful conclusion is narrower but important: any same-level neutral branch certificate should emit the $3$-$2$ inventory row beside the weighted force sums, so a later action or observer-export packet can distinguish structural polarity bias from solved dynamics.
 
 ---
@@ -498,6 +506,8 @@ $$
 \texttt{priority-only},
 \qquad
 \texttt{structural-attraction-bias},
+\qquad
+\texttt{closed-rejected:inventory-bias-implies-force-closure},
 \qquad
 \texttt{force-closure-open}.
 $$

@@ -47,6 +47,7 @@ This file is Cody's living feedback backlog for improving operator/developer wor
 ## Technical Closure
 
 - [ ] End each substantive theory discussion with a capture decision: promote solid advancements into `content/markdown/aaa` or stage provisional ones in `reference/priorities`.
+- [ ] Require scorecard increases to separate hard mathematical closure from auditability, terminology, and priority-queue improvements.
 - [x] Require each major theory push to leave behind at least one mathematical artifact: equation, lemma, invariant, proof route, branch certificate, or simulation target.
 - [ ] Prioritize native derivations, invariants, equations, and testable variables over new gates or ledgers.
 - [ ] For each closure target, name the tested physical constraint or accepted mathematical consistency condition it protects.

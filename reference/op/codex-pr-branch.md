@@ -73,15 +73,25 @@ These are mandatory before commit and before PR publication.
 ```bash
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/build-textbook-md-pdf.mjs --check
 node scripts/smoke-option3.mjs
 ```
 
-If scene-graph drift is reported, regenerate and re-check:
+Textbook regeneration has two generated layers:
+
+- `node scripts/build-scene-graph.mjs --write --strict` regenerates the scene graph, Textbook TOC data, and Textbook TOC markdown.
+- `node scripts/build-textbook-md-pdf.mjs --write` regenerates the textbook reading-copy markdown under `content/generated/markdown/textbook/reading-copies/`.
+
+The local browser PDF made from a reading-copy view is not a committed repo artifact.
+
+If scene-graph or textbook reading-copy drift is reported, regenerate and re-check:
 
 ```bash
 node scripts/build-scene-graph.mjs --write --strict
+node scripts/build-textbook-md-pdf.mjs --write
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/build-textbook-md-pdf.mjs --check
 node scripts/smoke-option3.mjs
 ```
 
@@ -537,6 +547,7 @@ This is the standard sequence for one completed branch rolling into the next:
 git status -sb
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/build-textbook-md-pdf.mjs --check
 git add <paths...>
 git commit -m "Finish current unit of work"
 git push origin codex/hydrogen

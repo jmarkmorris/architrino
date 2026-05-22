@@ -136,6 +136,8 @@ $$
 
 but it does not compress the force sum by that inventory. The signed counts are diagnostics; the source rows remain all $30$ ordered pairs.
 
+A resolved root row is only a force-ledger input. It does not by itself close the fixed-speed force equation. The overread status `closed-rejected:resolved-root-rows-imply-fixed-speed-force-closure` records the rejected implication that resolved causal-root rows with positive Jacobian data alone force $\mathcal{R}_{\mathrm{tan}}=0$.
+
 Same-source roots are outside $\Pi_{\mathrm{all}}$ in this packet. If a later branch uses same-source self-hit rows, it must attach a separate same-source policy and must still keep the $i\ne j$ all-pairs ledger unchanged.
 
 ---
