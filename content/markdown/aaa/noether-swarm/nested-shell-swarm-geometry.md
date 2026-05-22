@@ -780,7 +780,7 @@ This gives the nested shell swarm two distinct geometric roles:
 
 The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](../spacetime/emergent-metric.md), [PPN Parameters](../spacetime/ppn-parameters.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 
-For the special-relativity-facing comparison of this deformation channel, see [the deformable Noether swarm comparison](../philosophy-history/theory-bridges/special-relativity-noether-core.md). For the focused synthesis of the closed-return quantization claim, see [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
+For the special-relativity-facing comparison of this deformation channel, see [the deformable Noether swarm comparison](../philosophy-history/theory-bridges/special-relativity-noether-swarm.md). For the focused synthesis of the closed-return quantization claim, see [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
 
 ## Geometry Interfaces
 

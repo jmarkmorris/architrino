@@ -13,7 +13,7 @@ This packet records the first executable form of the terminal-alignment transfer
 The implemented script is:
 
 ```text
-node scripts/tri-binary/terminal-alignment-enumerator.mjs
+node scripts/nested-shell-swarm/terminal-alignment-enumerator.mjs
 ```
 
 It enumerates reduced circular terminal labels, delayed inter-layer roots, active intra-layer circular-root rows, branch Jacobian transversality, diagnostic branch-action rows, receiver-side and source-recoil ledger residuals, per-branch stationarity residuals, branch-summed action-variation residuals, cycle-residual adapters, observer-quotiented edge-map multisets, area-normalized finite-block coefficients, and the resulting transfer proxies.
@@ -23,7 +23,7 @@ It enumerates reduced circular terminal labels, delayed inter-layer roots, activ
 The first reduced run used:
 
 ```text
-node scripts/tri-binary/terminal-alignment-enumerator.mjs \
+node scripts/nested-shell-swarm/terminal-alignment-enumerator.mjs \
   --max-n 5 \
   --phase-samples 8 \
   --delta-samples 160 \

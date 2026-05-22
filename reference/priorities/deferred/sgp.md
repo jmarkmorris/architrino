@@ -28,11 +28,11 @@ The Zel'dovich pancake mechanism carries over directly. The Noether-Sea complian
 
 No new mechanism is required to produce the SGP: it is a standard gravitational-instability outcome expressed in the language of Noether-Sea energy-density modulation.
 
-### Elliptical dominance as Noether core decoherence
+### Elliptical dominance as Noether swarm decoherence
 
-A spiral galaxy, in the architrino picture, is a state in which the angular momentum vectors of constituent Noether cores and their composite assemblies (stars, gas clouds) are correlated over galactic scales: the tri-binary spacetime medium co-rotates coherently, sustaining a thin disk. This coherence is maintained by steady, quiescent accretion along filaments that delivers angular-momentum-aligned material.
+A spiral galaxy, in the architrino picture, is a state in which the angular momentum vectors of constituent Noether swarms and their composite assemblies (stars, gas clouds) are correlated over galactic scales: the tri-binary spacetime medium co-rotates coherently, sustaining a thin disk. This coherence is maintained by steady, quiescent accretion along filaments that delivers angular-momentum-aligned material.
 
-In the dense cluster environment of the SGP, frequent galaxy–galaxy interactions and major mergers randomize the orientations of Noether cores within the merger product. The coherent co-rotation is destroyed, and the resulting assembly is pressure-supported with roughly isotropic velocity dispersion—an elliptical galaxy. The morphological segregation (ellipticals on the plane, spirals off it) is thus a direct consequence of the local interaction rate, which in turn traces the Noether-Sea density: higher density produces more frequent mergers and faster decoherence of the disk state.
+In the dense cluster environment of the SGP, frequent galaxy–galaxy interactions and major mergers randomize the orientations of Noether swarms within the merger product. The coherent co-rotation is destroyed, and the resulting assembly is pressure-supported with roughly isotropic velocity dispersion—an elliptical galaxy. The morphological segregation (ellipticals on the plane, spirals off it) is thus a direct consequence of the local interaction rate, which in turn traces the Noether-Sea density: higher density produces more frequent mergers and faster decoherence of the disk state.
 
 This mapping adds no free parameters and makes no prediction distinct from the standard environmental-transformation picture; it simply re-expresses it in assembly language. Its value is internal consistency: the same Noether-Sea density field that produces the gravitational sheet also sets the merger rate that determines morphological type.
 
@@ -70,7 +70,7 @@ The Supergalactic Plane maps cleanly onto the architrino framework at three leve
 | Feature | $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism | Status |
 |---|---|---|
 | Planar geometry | Anisotropic gravitational collapse via Noether-Sea density gradients (Zel'dovich pancake) | Direct carry-over from standard structure formation; no new physics required |
-| Elliptical dominance on the plane | Merger-driven decoherence of Noether core angular-momentum alignment | Consistent re-expression of standard environmental transformation |
+| Elliptical dominance on the plane | Merger-driven decoherence of Noether swarm angular-momentum alignment | Consistent re-expression of standard environmental transformation |
 | Sheet–void contrast maintenance | SMBH jet feedback deposits energy into voids, deepening the density gradient | Quantitative prediction; testable against void energetics and jet-power inventories |
 
 The SGP provides no evidence for or against the architrino substrate at the level of cosmic-web topology, which is determined by gravitational instability regardless of whether gravity is fundamental or emergent. The distinctive $\mathbb{A}\mathbb{A}\mathbb{A}$ contribution is the feedback loop connecting SMBH recycling (Planck-alignment core physics) to void evacuation, a mechanism that makes specific predictions about the thermal state of supervoids adjacent to jet-active superclusters.

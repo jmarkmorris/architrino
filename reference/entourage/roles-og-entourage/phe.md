@@ -11,7 +11,7 @@ Demonstrate that **architrino assembly architecture reproduces the Standard Mode
 - Particle/gauge mappings must track `assemblies/fermions/quantum-number-mapping.md`, `theory-bridges/weak-mixing-ckm.md`, and `interactions/gauge-structure-emergence.md`.
 - Microdynamics assumptions should cite `dynamics/master-equation.md`; mass and shielding claims should cite `assemblies/particle-masses.md`, `dynamics/energy.md`, and `validation/parameter-ledger.md`.
 - Phenomenology milestones and failure gates should remain synchronized with `validation/constraint-ledger.md`, `validation/no-go-theorems.md`, and `validation/failure-criteria.md`.
-- Reaction channels must expose provenance: participating architrinos, Noether cores, energy, charge, polarity, and the assembly corridor or wake mechanism that carries the transition.
+- Reaction channels must expose provenance: participating architrinos, Noether swarms, energy, charge, polarity, and the assembly corridor or wake mechanism that carries the transition.
 
 ---
 
@@ -32,7 +32,7 @@ Work is anchored in the specific architecture already defined in this repo:
 - **Scalable and deformable**:
   - Ellipsoidal/spheroidal -> Fermions (Fermi-Dirac statistics).
   - Planar (flattened) -> Bosons (Bose-Einstein statistics).
-- **Noether Sea**: Ambient substrate contents built from neutral Noether-core assemblies; Higgs-like and vacuum-language claims are effective comparison statements until derived.
+- **Noether Sea**: Ambient substrate contents built from neutral Noether swarm assemblies; Higgs-like and vacuum-language claims are effective comparison statements until derived.
 
 ---
 

@@ -1343,9 +1343,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "spacetime__medium_exclusion_volume",
-      "name": "Medium Exclusion Volume",
-      "path": "content/scenes/spacetime/medium_exclusion_volume.json",
+      "id": "spacetime__molecular_exclusion_and_noether_sea_response",
+      "name": "Molecular Exclusion and Noether-Sea Response",
+      "path": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
       "nodeType": "scene"
     },
     {
@@ -1979,9 +1979,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "theory_bridges__special_relativity_noether_core",
-      "name": "Special Relativity and Deformable Noether Cores",
-      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
+      "id": "theory_bridges__special_relativity_noether_swarm",
+      "name": "Special Relativity and Deformable Noether Swarms",
+      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
       "nodeType": "scene"
     },
     {
@@ -2693,9 +2693,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
       "name": "Special Relativity and Deformable Noether Swarms",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2849,9 +2849,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-      "name": "Medium Exclusion Volume",
-      "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "id": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
+      "name": "Molecular Exclusion and Noether-Sea Response",
+      "path": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5272,12 +5272,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
+      "nodeId": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
       "nodeType": "scene",
-      "id": "theory_bridges__special_relativity_noether_core",
-      "name": "Special Relativity and Deformable Noether Cores",
-      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
-      "searchTarget": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
+      "id": "theory_bridges__special_relativity_noether_swarm",
+      "name": "Special Relativity and Deformable Noether Swarms",
+      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+      "searchTarget": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
       "implicit": false
     },
     {
@@ -5542,12 +5542,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
+      "nodeId": "scene:content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
       "nodeType": "scene",
-      "id": "spacetime__medium_exclusion_volume",
-      "name": "Medium Exclusion Volume",
-      "path": "content/scenes/spacetime/medium_exclusion_volume.json",
-      "searchTarget": "content/scenes/spacetime/medium_exclusion_volume.json",
+      "id": "spacetime__molecular_exclusion_and_noether_sea_response",
+      "name": "Molecular Exclusion and Noether-Sea Response",
+      "path": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
+      "searchTarget": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
       "implicit": false
     },
     {
@@ -6973,12 +6973,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "id": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
       "name": "Special Relativity and Deformable Noether Swarms",
-      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "path": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
       "implicit": false
     },
     {
@@ -7207,12 +7207,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-      "name": "Medium Exclusion Volume",
-      "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-      "searchTarget": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "id": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
+      "name": "Molecular Exclusion and Noether-Sea Response",
+      "path": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
+      "searchTarget": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
       "implicit": false
     },
     {
@@ -11197,7 +11197,7 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
-      "to": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
+      "to": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
       "field": "scene.children[6]"
@@ -11365,7 +11365,7 @@
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
+      "to": "scene:content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[2]"
@@ -12568,10 +12568,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+      "from": "scene:content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
+      "source": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
       "field": "scene.source.path"
     },
     {
@@ -12743,10 +12743,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/spacetime/medium_exclusion_volume.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+      "from": "scene:content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/medium_exclusion_volume.json",
+      "source": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
       "field": "scene.source.path"
     },
     {

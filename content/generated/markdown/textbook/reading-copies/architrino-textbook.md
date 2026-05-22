@@ -14,7 +14,7 @@ This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\m
 
 1. **The Substrate** ([absolute time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md), and [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md))
 2. **The Fundamental Entity** ([architrino](../../../../markdown/aaa/foundations/architrino.md): point transceiver of potential-bearing causal wakes)
-3. **The Physical Medium** ([Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether-core assemblies)
+3. **The Physical Medium** ([Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether swarm assemblies)
 4. **The Observer Framework** ([complete-state vs Physical Observer access](../../../../markdown/aaa/spacetime/observer-framework.md))
 5. **Terminology Discipline** ([canonical level-aware terminology](../../../../markdown/aaa/archie/terminology-usage.md))
 6. **Parameter Ledger** ([fundamental postulates vs derived quantities](../../../../markdown/aaa/validation/parameter-ledger.md))
@@ -89,13 +89,13 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\mathbb{A}\mathbb{A}\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.
 
-For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving-law derivation, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence.md) and [Noether Core](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
+For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving-law derivation, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence.md) and [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
 
 ---
 
 #### The Physical Medium (Noether Sea)
 
-[Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether Sea as the emergent physical medium formed by coupled neutral Noether-core assemblies occupying the Euclidean void.
+[Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether Sea as the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void.
 
 This section marks the first step away from primitive ontology. The Noether Sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
 
@@ -198,7 +198,7 @@ This Foundational Ontology defines:
 
 1. **The Substrate**: absolute time and Euclidean void organized as absolute timespace, the fixed non-dynamical product background.
 2. **The Fundamental Entity**: architrino as the fixed-identity primitive point transceiver with polarity and persistent identity.
-3. **The Physical Medium**: Noether Sea as emergent physical content formed by coupled neutral Noether-core assemblies inside the Euclidean void.
+3. **The Physical Medium**: Noether Sea as emergent physical content formed by coupled neutral Noether swarm assemblies inside the Euclidean void.
 4. **The Observer Framework**: complete-state bookkeeping versus Physical Observer access.
 5. **Terminology Discipline**: level-aware wording routed to the Archie canon.
 6. **Validation Routing**: parameters, closure burdens, and open questions routed to validation and branch chapters.
@@ -386,7 +386,7 @@ The canonical homes are:
 - [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) for causal hits, delay roots, Jacobian weights, received acceleration, and branch topology.
 - [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
 - [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
-- [Noether Core](../../../../markdown/aaa/noether-swarm/noether-swarm.md) for the assembly-level Noether-core architecture built from those dynamics.
+- [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) for the assembly-level Noether swarm architecture built from those dynamics.
 
 #### Determinism and Multistability
 
@@ -1044,7 +1044,7 @@ The boundary with the Noether Sea is an ontology boundary. The Euclidean void is
 The distinction is:
 
 1. **Euclidean void:** fixed spatial container $\mathbb{R}^3$ with metric $h_{ij}=\delta_{ij}$.
-2. **Noether Sea:** physical content occupying the void, built from coupled Noether-core assemblies.
+2. **Noether Sea:** physical content occupying the void, built from coupled Noether swarm assemblies.
 3. **Architrino occupancy:** local presence or absence of point entities and assemblies at a given coordinate location.
 4. **Effective spacetime:** observer-level geometry reconstructed from how clocks, rulers, and signals behave in the Noether Sea.
 
@@ -2007,7 +2007,7 @@ The concentricity diagnostic connects directly to the geometry that later appear
 - An architrino at rest ($\mathbf{v}=\mathbf{0}$) emits concentric causal isochrons, but it does not receive a delayed self-hit merely by being stationary. For $t_0<t$, the self-hit root condition would require $\|\mathbf{x}_i(t)-\mathbf{x}_i(t_0)\|=c_f(t-t_0)$; a stationary worldline has the left side equal to zero while the right side is positive.
 - An architrino in ordinary sub-field-speed straight motion emits non-concentric source-tagged isochrons, but that is still not enough by itself to create a self-hit. Self-hit is a source-identity root condition, not a synonym for nonzero absolute velocity.
 - Curved path history and super-field-speed history are the relevant self-hit ingredients. Once the source worldline folds through its own emitted causal isochrons, same-source roots can enter the causal-root ledger and produce non-Markovian feedback.
-- For bound assemblies, the corresponding closure problem is conditional: a translating Noether core must retune its moving-assembly deformation, clock/ruler behavior, two-way signal synchronization, and preferred-frame leakage while its internal causal-root ledgers remain admissible. Failure of that shared closure would appear as phase loss, dissociation, or unacceptable preferred-frame leakage; the disruption claim is a theorem target, not an established consequence of the rest diagnostic alone.
+- For bound assemblies, the corresponding closure problem is conditional: a translating Noether swarm must retune its moving-assembly deformation, clock/ruler behavior, two-way signal synchronization, and preferred-frame leakage while its internal causal-root ledgers remain admissible. Failure of that shared closure would appear as phase loss, dissociation, or unacceptable preferred-frame leakage; the disruption claim is a theorem target, not an established consequence of the rest diagnostic alone.
 - This moving-assembly bias is one input to the medium-dressed inertial response of bound assemblies: acceleration skews the delayed causal ledger, while shielding determines how much of the internal energy is exposed to external probes.
 
 **The upshot:** Absolute velocity is not merely a kinematic label, but the direct rest diagnostic is geometric rather than an immediate self-hit claim. The dynamical burden belongs to the Lorentz-closure ladder: moving assemblies must show stable delayed-root closure, medium-dressed deformation, and bounded preferred-frame leakage before Physical Observers can recover ordinary relativistic behavior.
@@ -2263,7 +2263,7 @@ To perform spatial vector calculus, the coordinate frame needs a second independ
 
 **Architrino Required:** 0 additional (if conventional) **or** 1 additional (if a side marker is used)
 
-Here **handedness** or **parity convention** is the geometric issue: choosing which side of the already-defined plane is positive $\hat{\mathbf{z}}$. This is only a coordinate-basis choice. It should not be identified with fermionic chirality, which is reserved for the dynamical handed precession order of emergent Noether cores.
+Here **handedness** or **parity convention** is the geometric issue: choosing which side of the already-defined plane is positive $\hat{\mathbf{z}}$. This is only a coordinate-basis choice. It should not be identified with fermionic chirality, which is reserved for the dynamical handed precession order of emergent Noether swarms.
 
 ##### Option A: Conventional Handedness (Mathematical Convention)
 
@@ -2314,7 +2314,7 @@ The fourth architrino supplies a complete-state side marker for the chosen plane
 It must be **non-coplanar** with the first three, so that it has a component perpendicular to the $xy$-plane.
 
 **Why This Might Be Preferred:**
-If a later assembly-level model supplies a persistent parity bias or handed precession order, a simulation may choose the coordinate parity convention that reports that marker with a declared positive sign. That alignment is a reporting convention, not a derivation of the marker. It keeps later labels consistently assigned while preserving the distinction between coordinate-basis parity and dynamical chirality in the Noether core.
+If a later assembly-level model supplies a persistent parity bias or handed precession order, a simulation may choose the coordinate parity convention that reports that marker with a declared positive sign. That alignment is a reporting convention, not a derivation of the marker. It keeps later labels consistently assigned while preserving the distinction between coordinate-basis parity and dynamical chirality in the Noether swarm.
 
 #### Coordinate Frames Are Not Ontology
 
@@ -2360,7 +2360,7 @@ The universe does not require a coordinate frame; theory and simulation use one 
 
 **Key Point:**
 - Scalar and component calculations require the origin, primary axis, and plane construction (Steps 1-3); they do not require assigning coordinate parity.
-- Coordinate **handedness** matters when reporting cross-product, pseudovector, pseudoscalar, or parity-sensitive coordinate quantities. Weak-interaction handedness remains a separate dynamical closure target tied to Noether-core chirality, axial-frame exposure, and reaction provenance.
+- Coordinate **handedness** matters when reporting cross-product, pseudovector, pseudoscalar, or parity-sensitive coordinate quantities. Weak-interaction handedness remains a separate dynamical closure target tied to Noether swarm chirality, axial-frame exposure, and reaction provenance.
 
 #### Complete-State and Physical-Observer Access
 
@@ -2511,8 +2511,8 @@ The recursive picture is easiest to read as a bottom-up construction ladder. The
 2. **Primitive transceivers:** individual architrinos are the irreducible emitters/receivers of causal wake structure.
 3. **First bound assembly:** a stable orbiting electrino:positrino binary is the first bound assembly.
 4. **Nested cores:** binaries can capture into larger nested systems, giving isolated-binary, bi-binary, and tri-binary cores with progressively stronger shielding structure.
-5. **Noether core stabilization:** the triply nested binary is the first fully three-dimensional shielded core; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
-6. **Fermions with axial layers:** a Noether core plus a six-site axial layer is the working map for charged-fermion and quark family architecture; changing the core shielding tier is the generation target, while pro/anti orientation tracks handedness within the same core architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md).
+5. **Noether swarm stabilization:** the triply nested binary is the first fully three-dimensional shielded core; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
+6. **Fermions with axial layers:** a Noether swarm plus a six-site axial layer is the working map for charged-fermion and quark family architecture; changing the Noether swarm shielding tier is the generation target, while pro/anti orientation tracks handedness within the same swarm architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 7. **Collective medium:** larger balanced populations of cores organize into the [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), so the Noether Sea is a higher-order collective state of cores rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md).
 8. **Bosonic channels:** propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating pro/anti planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
 9. **Composite matter and reactions:** nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
@@ -2532,9 +2532,9 @@ For example, Lorentz-like behavior is an emergence claim only when the text name
 
 This rule keeps emergence from becoming a placeholder. It is acceptable to use emergence as a programmatic claim, but the surrounding prose must say whether the mechanism is derived, simulated, conjectural, or only a routing target.
 
-Just as important, the ladder should not be read as a single unbranched stack after the Noether core appears. Once stable cores exist, three descriptive branches open at once:
+Just as important, the ladder should not be read as a single unbranched stack after the Noether swarm appears. Once stable cores exist, three descriptive branches open at once:
 
--   **Matter branch:** Noether cores carrying axial layers yield fermions and then larger composites.
+-   **Matter branch:** Noether swarms carrying axial layers yield fermions and then larger composites.
 -   **Medium branch:** dense balanced populations of cores yield the Noether Sea.
 -   **Interaction branch:** phase-locked disturbances and exchange corridors yield effective bosonic behavior.
 
@@ -2545,7 +2545,7 @@ This separation of branches helps keep levels distinct. The theory does not plac
 The most useful observer-level quantities enter only after assemblies have formed. They are not primitive objects sitting underneath the dynamics, and their use always depends on an effective mapping from persistent assembly behavior to a measured descriptor.
 
 -   **Angular momentum:** derivation target. The mechanism is organized binary circulation and ordered orientation data; the mapping is through the return-period phase and angular-momentum ledger; the regime is stable or metastable closed cycles; the breakdown occurs at separator crossings, root-ledger changes, or dissociation.
--   **Chirality:** derivation target. The mechanism is ordered core precession and causal-writhe parity; the mapping is through the Noether-core closure label; the regime is branch-preserving deformation; the breakdown occurs when a causal-root bifurcation or reconnection changes the handed branch.
+-   **Chirality:** derivation target. The mechanism is ordered core precession and causal-writhe parity; the mapping is through the Noether swarm closure label; the regime is branch-preserving deformation; the breakdown occurs when a causal-root bifurcation or reconnection changes the handed branch.
 -   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is trapped internal causal history, shielding, and Noether-Sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether-Sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
 In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
@@ -2567,7 +2567,7 @@ exist under the declared receiver-centered summation prescription, or else use t
 
 This convergence discipline is what allows for the formation of **metastable assemblies** that can maintain their general form for long periods.
 
-The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it; in practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and the shielding or screening supplied by nested Noether cores. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to treat the entire past universe as an undifferentiated force of equal importance.
+The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it; in practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and the shielding or screening supplied by nested Noether swarms. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to treat the entire past universe as an undifferentiated force of equal importance.
 
 Self-hit is not defined by speed alone. It occurs when the same-source causal-root set is nonempty:
 $$
@@ -4540,7 +4540,7 @@ a_{r}^{(\mathrm{part})}+A_r^{|\sin|}(\beta)
 $$
 is again outward for sufficiently large $\beta$. Thus an exact high-speed constant-radius circular orbit is asymptotically excluded in the equal-magnitude bare two-body kernel away from Jacobian-null windows: the tangential residual remains forward, and the radial branch sum does not provide the required inward acceleration $-\omega^2R$. This is not yet a finite-$\beta$ no-go theorem; any surviving finite-speed window still requires a certified branch chart with positive Jacobian floor, inactive gaps, finite memory depth, and signed residual closure.
 
-The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether-core model. The Noether-core model is the six-body tri-binary branch chart containing self, partner, and inter-layer causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
+The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether swarm model. The Noether swarm model is the six-body tri-binary branch chart containing self, partner, and inter-layer causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
 
 ---
 
@@ -6208,7 +6208,7 @@ where $\mathbf{R}_i^{(\eta)}$ is the Euler residual of the same action and $\mat
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with architrinos and the causal wakes they generate. Architrinos carry primitive kinetic energy through motion and supply potential-energy bookkeeping through delayed interactions; the wake itself is not a standalone substance or vacuum reservoir. A **wake** is the source-dependent causal-isochron record of an architrino's emissions: motion changes its geometry, branch timing, and received potential, not the fact that an emission record exists. The term `wake` is the architrino-native description of what appears as a field at the effective level.
 
-This chapter underwrites [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Noether Core](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md), and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+This chapter underwrites [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md), and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
 All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and Jacobian-weighted magnitude, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
 
@@ -6807,7 +6807,7 @@ S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)},
 \right),
 $$
 
-with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{sea}}$, $\Gamma_N$, strain, orientation, cadence, and envelope-scale variables. In this language, saying that neighboring Noether cores absorb the exposed potential means that they retune their branch state. Depending on the accepted branch, that retuning may appear as higher cadence, changed strain, stronger alignment, envelope-scale shift, or altered coupling to nearby cores; it should not be compressed into a generic statement that the cores simply gain energy and expand.
+with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{sea}}$, $\Gamma_N$, strain, orientation, cadence, and envelope-scale variables. In this language, saying that neighboring Noether swarms absorb the exposed potential means that they retune their branch state. Depending on the accepted branch, that retuning may appear as higher cadence, changed strain, stronger alignment, envelope-scale shift, or altered coupling to nearby cores; it should not be compressed into a generic statement that the cores simply gain energy and expand.
 
 This is the same shielding-based logic developed more directly in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md). The matching factor $\alpha_{\mathrm{m}}$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species.
 
@@ -7100,7 +7100,7 @@ Here $\ell_{\lambda}$ is the declared scale over which the reduced Hamiltonian c
 
 This chapter develops two-body architrino dynamics from the appearance of self-hit to candidate stable binaries and their conditional role as measurement standards. It then formalizes the maximum-curvature attractor analysis and closes with the state-space and conservation-law foundations needed for well-posed dynamics. **Status:** (1) self-hit makes the dynamics non-Markovian (path-history dependent), and (2) stability/attractor claims are conjectural unless explicitly established.
 
-It is the foundational precursor to [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), and the assembly-level [Noether Core](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
+It is the foundational precursor to [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), and the assembly-level [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
 
 This chapter is the canonical home for two-body wake regimes, partner-hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis. The primitive-entity ontology in [Architrino](../../../../markdown/aaa/foundations/architrino.md) should point here once the discussion becomes a behavioral regime or assembly-stability mechanism.
 
@@ -7257,7 +7257,7 @@ If realized, the MCB radius $r_{\text{min}}$ is expected to be determined by the
 2. self-hit repulsion (non-Markovian feedback when same-source roots exist; super-field-speed circular history is the relevant branch),
 3. Centripetal requirement for stable circular orbit.
 
-**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the tri-binary ladder and Noether-core claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
+**Dynamical priority (attractor status):** The architecture hypothesizes the MCB is a **robust attractor**, not a finely tuned periodic orbit. Only if the multipliers lie strictly inside the unit circle and the basin is non-trivial do we have the attractor the architecture relies on. If neutrality or instability is found, the tri-binary ladder and Noether swarm claims must be downgraded or the interaction law revised (e.g., additional damping/medium effects).
 
 ##### Setup and Notation (Symmetric Frame)
 
@@ -8089,7 +8089,7 @@ For $K(t)$ to diverge, $\mathcal{W}(t)$ must decrease without bound.
 
 This chapter studies resonance lock for the nested Outer, Middle, and Inner binaries. Its immediate goal is specific: identify the relationship between frequency, scalar tangential speed, and radius in a reduced branch where the middle binary caustic-grazes the field-speed hinge and the three rings form an exact integer phase-locked cycle.
 
-It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), and [Noether Core](../../../../markdown/aaa/noether-swarm/noether-swarm.md), which provide the assembly geometry and scale-setting context for the lock relations derived here.
+It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), and [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md), which provide the assembly geometry and scale-setting context for the lock relations derived here.
 
 The level distinctions matter throughout. Ontologically, the Outer, Middle, and Inner binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. Inferentially, an integer lock is selected only after a cancellation score and a stability gap both favor it.
 
@@ -8151,7 +8151,7 @@ $$
 rather than an infinite-force constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
 
 This is the main regime assumption of the chapter. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
-It is not a claim that every Noether-core regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the caustic-grazing carrier belongs to the reduced exterior/horizon-transition branch.
+It is not a claim that every Noether swarm regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the caustic-grazing carrier belongs to the reduced exterior/horizon-transition branch.
 
 ##### Assumption 2 (Exact Integer Phase Closure)
 
@@ -8176,7 +8176,7 @@ Therefore $f_O:f_M:f_I = 1:m:n$, with $f_M=m f_O$ and $f_I=n f_O$.
 
 Plain language: after one outer revolution, the middle and inner rings have completed whole numbers of revolutions as well, so the three-ring pattern closes exactly.
 
-This is the reduced constant-frequency carrier model. It is a branch-level closure assumption, not a statement that the assembly has only three degrees of freedom. In the full Noether-core closure problem, the simple phases $\theta_k=q_k\Omega t+\phi_k$ are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
+This is the reduced constant-frequency carrier model. It is a branch-level closure assumption, not a statement that the assembly has only three degrees of freedom. In the full Noether swarm closure problem, the simple phases $\theta_k=q_k\Omega t+\phi_k$ are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
 
 ##### Assumption 3 (Fixed Relative Phase Lock)
 
@@ -9335,7 +9335,7 @@ Small $\epsilon_E^{(\eta)}$, $\epsilon_P^{(\eta)}$, and $\epsilon_J^{(\eta)}$ ar
 
 ##### Coarse-Graining: The Effective Continuum Lagrangian
 
-The continuum Lagrangian belongs to the effective level. To describe emergent behavior of the Noether Sea and complex assemblies, the description passes from discrete trajectories to continuum densities. Define a coarse-grained architrino polarity density $\rho_q(\mathbf{x}, t)$ and current density $\mathbf{j}_q(\mathbf{x}, t)$, smoothed over a scale much larger than the tri-binary radius but smaller than macroscopic gradients. This notation is deliberately distinct from Noether-core density variables such as $\rho_{\text{core}}$ and $n$.
+The continuum Lagrangian belongs to the effective level. To describe emergent behavior of the Noether Sea and complex assemblies, the description passes from discrete trajectories to continuum densities. Define a coarse-grained architrino polarity density $\rho_q(\mathbf{x}, t)$ and current density $\mathbf{j}_q(\mathbf{x}, t)$, smoothed over a scale much larger than the tri-binary radius but smaller than macroscopic gradients. This notation is deliberately distinct from Noether swarm density variables such as $\rho_{\text{core}}$ and $n$.
 
 At the level of a branch-collapsed delayed causal action, the exact multi-time interaction double sum suggests the continuum delayed functional
 
@@ -32045,7 +32045,7 @@ If planar bridge closure fails, those higher-level chapters must become more con
 
 ### Nested Shell Swarm Dynamics
 
-This chapter formulates nested shell swarm dynamics by extending the two-body delayed causal-wake system to a coupled three-binary Noether core. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
+This chapter formulates nested shell swarm dynamics by extending the two-body delayed causal-wake system to a coupled three-binary Noether swarm. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
 
 It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md), and [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
 
@@ -32053,7 +32053,7 @@ This chapter is the canonical dynamics home for coupled three-binary speed regim
 
 #### Relation to Causal Closure
 
-This chapter owns the dynamics baseline: the Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local cycle-period diagnostics, and stability tests that define the tri-binary mechanism. It does not try to close the full rest-mass, photon, or observer-inference proof program.
+This chapter owns the dynamics baseline: the Noether swarm roles, speed-regime conventions, delay-envelope geometry, gradient response, local cycle-period diagnostics, and stability tests that define the tri-binary mechanism. It does not try to close the full rest-mass, photon, or observer-inference proof program.
 
 Proper time $\tau$ does not exist at this layer. The EOM is integrated exclusively over absolute substrate time $t$. A tri-binary branch may output absolute periods, causal-root ledgers, deformation tensors, and stability residuals; later observer-inference chapters may translate those outputs into clock, ruler, signal, and effective-geometry language.
 
@@ -32065,7 +32065,7 @@ The claims in this chapter define a canonical dynamics baseline. They do not yet
 
 | Class | Treatment in this chapter |
 | --- | --- |
-| Dynamics baseline | Noether-core roles, speed-regime conventions, delay-envelope geometry, spiral-helical motion, cycle-period diagnostics, and stability tests. |
+| Dynamics baseline | Noether swarm roles, speed-regime conventions, delay-envelope geometry, spiral-helical motion, cycle-period diagnostics, and stability tests. |
 | Reconstruction target | Mass response, photon-channel behavior, observer-inference exports, and weak-field matching inputs as quantities to be derived from the dynamics before downstream interpretation. |
 | Open proof burden | Tri-binary minimality, shielding extraction, momentum-skew derivation, Floquet stability, photon closure, equivalence-principle export bounds, and downstream observer-geometry closure. |
 
@@ -32146,7 +32146,7 @@ Tri-binary dynamics uses four levels of description:
 | Level | Meaning |
 | --- | --- |
 | Substrate ontology | Euclidean void, absolute substrate time $t$, architrinos, causal wakes, and causal-root branch structure. |
-| Assembly dynamics | Noether cores, three coupled binary layers, self-hit multiplicity, shielding, phase closure, and root-ledger transitions. |
+| Assembly dynamics | Noether swarms, three coupled binary layers, self-hit multiplicity, shielding, phase closure, and root-ledger transitions. |
 | Observer-inference exports | Rest mass, photon propagation, reconstructed kinematics, geodesics, and horizon behavior as later reconstructed by assembly-built observers. |
 | Inference and closure status | Mathematical closures that remain to be derived before effective claims can be treated as proved rather than reconstructed. |
 
@@ -32167,7 +32167,7 @@ The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. T
 
 #### Multi-Scale Layer Locking
 
-The baseline Noether core is not a stack of three identical circular binaries. It is a nested causal lock whose layers operate in different speed regimes. Let $s_\ell$ denote the characteristic speed of one member of layer $\ell$ around that layer's center. In the ordinary weak-stress regime, the target ordering is
+The baseline Noether swarm is not a stack of three identical circular binaries. It is a nested causal lock whose layers operate in different speed regimes. Let $s_\ell$ denote the characteristic speed of one member of layer $\ell$ around that layer's center. In the ordinary weak-stress regime, the target ordering is
 
 $$
 s_I > c_f,
@@ -32207,7 +32207,7 @@ where $E_{\text{internal}}(A)$ is the trapped internal causal-history ledger of 
 
 #### Spiral-Helical Motion Picture
 
-A resting Noether core is modeled as a nested, phase-locked tri-binary structure with three coupled binary planes. When the core moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, the rest-state circular or near-circular binary motions are drawn into braided spiral-helical cable patterns through the Euclidean void.
+A resting Noether swarm is modeled as a nested, phase-locked tri-binary structure with three coupled binary planes. When the core moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, the rest-state circular or near-circular binary motions are drawn into braided spiral-helical cable patterns through the Euclidean void.
 
 The spiral-helical picture is not decorative. A causal wake sent between partners, or between the inner, middle, and outer layers, must now reach a receiver that has moved during the wake's travel time. The internal phase geometry must therefore retune its pitch, radius, tilt, and timing to preserve the same closure ledger. In dynamics language, bulk velocity is encoded as internal geometry.
 
@@ -32219,7 +32219,7 @@ This is the common mechanical basis for three later downstream readouts:
 
 #### All-Layer Translating Branch Response
 
-A translating Noether core is not described by one outer radius alone. The hidden state includes all three layer radii, frequencies, characteristic speeds, axes, active causal roots, and wake exchange:
+A translating Noether swarm is not described by one outer radius alone. The hidden state includes all three layer radii, frequencies, characteristic speeds, axes, active causal roots, and wake exchange:
 $$
 B_q(v)
 =
@@ -32519,7 +32519,7 @@ $$
 
 This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection and branch-period stretch come from different retained ledgers, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether-Sea cadence current used in cosmology.
 
-The first reduced validation model for this target is [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md), with runtime script `scripts/tri-binary/retuning-map-toy-model.mjs`. That model solves the linearized constrained compliance problem and reports the induced $J_\nu$ estimate. It is a branch-bookkeeping scaffold, not delayed-dynamics validation.
+The first reduced validation model for this target is [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md), with runtime script `scripts/nested-shell-swarm/retuning-map-toy-model.mjs`. That model solves the linearized constrained compliance problem and reports the induced $J_\nu$ estimate. It is a branch-bookkeeping scaffold, not delayed-dynamics validation.
 
 #### Observer-Inference Export Boundary
 
@@ -32542,7 +32542,7 @@ Every entry is computed in absolute time from the retained causal-root chart. La
 
 #### Terminal Alignment Label-Count Target
 
-The black-hole entropy route requires a dynamics-side label calculation. Once a Noether-core branch is driven to terminal alignment, the dynamics should output the admissible alignment-restricted closure labels and their neighbor-compatibility rules. For a connected block $U$ of horizon-adjacent alignment patches, the object is
+The black-hole entropy route requires a dynamics-side label calculation. Once a Noether swarm branch is driven to terminal alignment, the dynamics should output the admissible alignment-restricted closure labels and their neighbor-compatibility rules. For a connected block $U$ of horizon-adjacent alignment patches, the object is
 $$
 \mathcal{L}_U(\theta)
 =
@@ -33791,7 +33791,7 @@ in the equilibrium weak-field horizon-interface limit. This is the precise missi
 The dynamics chapter contributes the stable pieces needed by the larger theorem program:
 
 1. Define the speed hierarchy and the causal-speed guardrails.
-2. Model the tri-binary Noether core as inner engine, middle fulcrum, and outer shielding/interface layer.
+2. Model the tri-binary Noether swarm as inner engine, middle fulcrum, and outer shielding/interface layer.
 3. Track how motion deforms the rest-state lock into braided spiral-helical geometry.
 4. Derive local cycle-period diagnostics from the absolute cycle-stretch theorem target.
 5. Solve all-layer branch updates for one-$h$ transactions and extract the branch-indexed period-stretch and envelope-oblation records.
@@ -33801,7 +33801,7 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 
 #### Working Hypotheses
 
-1. The formed Noether core has stable invariants ($R_{\text{core}}$, $\omega_{\text{core}}$, fixed phase offsets).
+1. The formed Noether swarm has stable invariants ($R_{\text{core}}$, $\omega_{\text{core}}$, fixed phase offsets).
 2. The outer-binary delay loop yields discrete plateaus and a terminal aligned mode under increasing stress.
 3. High group velocity may produce an oblate causal envelope that drives planar alignment in the terminal rung; this remains a working hypothesis until the swept-volume and branch-stability tests close.
 4. High gravitational gradient modifies phase closure through tidal or differential delay effects, shifting or destabilizing rungs.
@@ -33948,9 +33948,9 @@ Geometrically, $\beta_f$ is the primitive axis-squash control: as $\beta_f \to 1
 
 #### Minimal Models
 
-##### Noether Core Baseline (Inner + Middle Fixed)
+##### Noether Swarm Baseline (Inner + Middle Fixed)
 
-**Focus:** Treat inner + middle as a formed Noether core with fixed (or slowly varying) center of mass. Track convergence of phase relations and extract $R_{\text{core}}$, $\omega_{\text{core}}$, and stable phase offsets. Check repeatability across nearby initial conditions and whether any core element rides $\|\mathbf{v}\| = c_f$ continuously.
+**Focus:** Treat inner + middle as a formed Noether swarm with fixed (or slowly varying) center of mass. Track convergence of phase relations and extract $R_{\text{core}}$, $\omega_{\text{core}}$, and stable phase offsets. Check repeatability across nearby initial conditions and whether any core element rides $\|\mathbf{v}\| = c_f$ continuously.
 
 ##### Outer-Binary Delay Loop Model with Formed Core
 
@@ -34059,7 +34059,7 @@ The following items are retained here only as dynamics-facing boundary condition
 
 ##### Tri-Binary Role Hypotheses
 
-An electrino:positrino binary is the most primitive assembly considered in the current architecture. The $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture posits that three binaries can become coupled into a Noether core, with each binary playing a distinct dynamical role.
+An electrino:positrino binary is the most primitive assembly considered in the current architecture. The $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture posits that three binaries can become coupled into a Noether swarm, with each binary playing a distinct dynamical role.
 
 Tri-binary minimality is a theorem target: the working claim is that three coupled binary layers are the minimal stable closure architecture capable of preserving inner memory, commensurability buffering, and boundary coupling under combined kinematic and gradient stress.
 
@@ -34106,7 +34106,7 @@ The detailed black-hole treatment now lives in [../spacetime/black-holes.md](../
 
 This chapter therefore keeps only the tri-binary regime map and leaves the ontology, recycling logic, and observer-facing strong-field interpretation to the canonical spacetime chapters.
 
-In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. This chapter uses that mechanism to define the local dynamics and diagnostics. The coarse-grained metric, observer-clock, and strong-field ontology belong to the spacetime chapters and the causal-closure proof synthesis.
+In the tri-binary picture, each Noether swarm is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. This chapter uses that mechanism to define the local dynamics and diagnostics. The coarse-grained metric, observer-clock, and strong-field ontology belong to the spacetime chapters and the causal-closure proof synthesis.
 
 For the strong-field continuation of that story, see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
 
@@ -34892,7 +34892,7 @@ This gives the nested shell swarm two distinct geometric roles:
 
 The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
-For the special-relativity-facing comparison of this deformation channel, see [the deformable Noether swarm comparison](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md). For the focused synthesis of the closed-return quantization claim, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
+For the special-relativity-facing comparison of this deformation channel, see [the deformable Noether swarm comparison](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md). For the focused synthesis of the closed-return quantization claim, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
 
 #### Geometry Interfaces
 
@@ -34921,19 +34921,19 @@ For medium modeling, use [Noether Sea](../../../../markdown/aaa/spacetime/noethe
 
 This chapter is the canonical medium-ontology page for the **Noether Sea** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines what the physical medium is, how it differs from the Euclidean void, which state variables describe it, and where detailed assembly, metric, clock, and cosmology work belongs.
 
-The Noether Sea is not the substrate. The substrate is [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). The Noether Sea is physical content inside that background: an emergent, coupled population of neutral Noether-core assemblies whose collective response appears to physical observers as spacetime behavior.
+The Noether Sea is not the substrate. The substrate is [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). The Noether Sea is physical content inside that background: an emergent, coupled population of neutral Noether swarm assemblies whose collective response appears to physical observers as spacetime behavior.
 
-This is why the reader path introduces Noether-core scaffold and geometry before observer-level spacetime. At the roadmap level, the physical Noether-core density can be read as a coarse-grained population field,
+This is why the reader path introduces Noether swarm scaffold and geometry before observer-level spacetime. At the roadmap level, the physical Noether swarm density can be read as a coarse-grained population field,
 $$
 \rho_{\text{core}}(\mathbf{x},t)
 \sim
 \sum_c W_\ell(\mathbf{x}-\mathbf{X}_c(t)),
 $$
-where $W_\ell$ is a smoothing window over core centers $\mathbf{X}_c(t)$. The medium stress, delay factor, and orientation variables then depend on each core's closure label, orientation, and envelope deformation. The Noether Sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether-core geometry, not primitive geometric postulates.
+where $W_\ell$ is a smoothing window over core centers $\mathbf{X}_c(t)$. The medium stress, delay factor, and orientation variables then depend on each core's closure label, orientation, and envelope deformation. The Noether Sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether swarm geometry, not primitive geometric postulates.
 
 #### Core Definition
 
-The **Noether Sea** is the ambient physical medium formed by dense, balanced populations of coupled neutral Noether cores in the Euclidean void.
+The **Noether Sea** is the ambient physical medium formed by dense, balanced populations of coupled neutral Noether swarms in the Euclidean void.
 
 It is:
 
@@ -34987,9 +34987,9 @@ not a primitive frame-free photon scalar. The redshift task is to compute the en
 
 #### Composition
 
-The medium is composed of neutral Noether-core assemblies. Each Noether core is a tri-binary assembly made from three nested electrino:positrino binary pairs. The core itself is not elementary; its stability is a downstream assembly result.
+The medium is composed of neutral Noether swarm assemblies. Each Noether swarm is a tri-binary assembly made from three nested electrino:positrino binary pairs. The core itself is not elementary; its stability is a downstream assembly result.
 
-The large-scale Noether Sea is modeled as a balanced population of complementary Noether-core orientations.
+The large-scale Noether Sea is modeled as a balanced population of complementary Noether swarm orientations.
 
 This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the core level. Their coupled balance is part of the working explanation for how the medium remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
 
@@ -35018,7 +35018,7 @@ $$
 \frac{c_f}{c_{\text{eff}}(\mathbf{x},t)}.
 $$
 
-It plays the role that refractive index plays in ordinary optical analogies, but it is a native Noether-Sea response variable. Do not use $n$ for this delay factor; $n$ is reserved for normalized Noether-core density.
+It plays the role that refractive index plays in ordinary optical analogies, but it is a native Noether-Sea response variable. Do not use $n$ for this delay factor; $n$ is reserved for normalized Noether swarm density.
 
 Clock and spectral comparisons may also extract the Noether-Sea cadence-stretch diagnostic
 
@@ -35071,9 +35071,9 @@ $$
 S_{\rho}
 +r_{\rho}.
 $$
-The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether-core population and the residual decreases under refinement.
+The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether swarm population and the residual decreases under refinement.
 
-The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether Sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether-core population dynamics, causal wakes, and branch ledgers.
+The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether Sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether swarm population dynamics, causal wakes, and branch ledgers.
 
 The kinetic-theory lesson is that hydrodynamic variables are the slow variables associated with conserved quantities. For the Noether Sea, the candidate slow state is
 $$
@@ -35180,9 +35180,9 @@ where $\mathcal H$ is the principal-value Hilbert transform used by the packet. 
 
 #### Equilibrium Transport Hypothesis
 
-A provisional cosmology-facing hypothesis treats the Noether Sea as a dense neighbor-coupled population of Noether cores whose individual action transactions are discrete while the ensemble response can be smooth. Most cores in a weak deep-space region have other Noether cores as their nearest dynamical neighbors. Photons and neutrinos can traverse the population, and gravitational waves can perturb it, but the baseline relaxation law is a core-to-core medium law.
+A provisional cosmology-facing hypothesis treats the Noether Sea as a dense neighbor-coupled population of Noether swarms whose individual action transactions are discrete while the ensemble response can be smooth. Most cores in a weak deep-space region have other Noether swarms as their nearest dynamical neighbors. Photons and neutrinos can traverse the population, and gravitational waves can perturb it, but the baseline relaxation law is a core-to-core medium law.
 
-Let $\nu_N$ denote an ordinary frequency extracted from a representative Noether-core cadence state. The local core energy scale is then
+Let $\nu_N$ denote an ordinary frequency extracted from a representative Noether swarm cadence state. The local core energy scale is then
 
 $$
 E_N=h\nu_N.
@@ -35190,7 +35190,7 @@ $$
 
 The point of this expression is not to add a new quantum postulate at the medium level. It records the same closed-cycle action accounting used elsewhere in the corpus: a cadence state carries energy as action per cycle times cycles per unit absolute time. A single core may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
 
-At the single-core level, each accepted $h$-scale transfer forces a Noether core to retune its cadence-scale closure. The retuning may appear as a cadence shift, layer-radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring cores. In the simplest fixed-speed layer approximation,
+At the single-core level, each accepted $h$-scale transfer forces a Noether swarm to retune its cadence-scale closure. The retuning may appear as a cadence shift, layer-radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring cores. In the simplest fixed-speed layer approximation,
 
 $$
 v_N\sim 2\pi R_N\nu_N,
@@ -35200,7 +35200,7 @@ $$
 
 so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. The full tri-binary can partition the same transaction across its inner, middle, and outer layers, so this relation is a first estimate rather than a complete closure law.
 
-At the ensemble level, let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether-core cadence states. The cadence-space current is the coarse-grained flux of many branchwise retunings:
+At the ensemble level, let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether swarm cadence states. The cadence-space current is the coarse-grained flux of many branchwise retunings:
 
 $$
 J_\nu
@@ -35224,7 +35224,7 @@ r_\sigma(\nu,\mathbf{x},t)\,
 O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right),
 $$
 
-where $r_\sigma$ is the local rate density of accepted $\sigma$ transactions per core and $\Delta\nu_N^{(q,\sigma)}$ is the cadence component extracted from $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$. Deep space can therefore look smooth without making the underlying transactions continuous. Moving from deep space toward a solar-system environment should not be modeled as a scalar temperature increase alone; it is a bias in the local population toward higher cadence, stronger strain, stronger alignment, and larger gradients. Near a proton or other matter assembly, the neighboring Noether cores see a sharper boundary condition and retune more discretely around the assembly.
+where $r_\sigma$ is the local rate density of accepted $\sigma$ transactions per core and $\Delta\nu_N^{(q,\sigma)}$ is the cadence component extracted from $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$. Deep space can therefore look smooth without making the underlying transactions continuous. Moving from deep space toward a solar-system environment should not be modeled as a scalar temperature increase alone; it is a bias in the local population toward higher cadence, stronger strain, stronger alignment, and larger gradients. Near a proton or other matter assembly, the neighboring Noether swarms see a sharper boundary condition and retune more discretely around the assembly.
 
 The same smoothing record supplies the ambient-branch acceptance used at assembly boundaries. For a neutral-core quantity $f_k(t)$ in a coarse window $\Omega_\ell$, define
 
@@ -35240,7 +35240,7 @@ W_\ell(\mathbf{x}-\mathbf{X}_k(t))
 }.
 $$
 
-The branch-level equilibrium test is not that every Noether core has the same cadence. It is that, after all resolved assembly ledgers have been removed, an ambient branch belongs to the local neutral-core population when its cadence lies within the smoothed distribution and the remaining pro/anti orientation balance is small. In symbolic form,
+The branch-level equilibrium test is not that every Noether swarm has the same cadence. It is that, after all resolved assembly ledgers have been removed, an ambient branch belongs to the local neutral-core population when its cadence lies within the smoothed distribution and the remaining pro/anti orientation balance is small. In symbolic form,
 
 $$
 \zeta_{\mathrm{sea}}^{(\ell)}
@@ -35258,7 +35258,7 @@ $$
 \right],
 $$
 
-where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether core can sit inside the same coordinate window as ambient Noether-Sea cores without becoming part of the ambient medium record; ledger complement, not mere spatial proximity, makes the separation.
+where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether swarm can sit inside the same coordinate window as ambient Noether-Sea cores without becoming part of the ambient medium record; ledger complement, not mere spatial proximity, makes the separation.
 
 A candidate equilibrium-transport equation is
 
@@ -35811,8 +35811,8 @@ This page owns:
 
 This page does not own:
 
-- Noether-core internal architecture; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
-- Noether-core exclusion-envelope geometry; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
+- Noether swarm internal architecture; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
+- Noether swarm exclusion-envelope geometry; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
 - Pro/anti coupling hypotheses and cluster motifs; see [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md).
 - Effective metric derivation; see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 - Clock and ruler behavior; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
@@ -35821,22 +35821,22 @@ This page does not own:
 
 #### Summary Commitment
 
-> **Medium Commitment (Noether Sea):** The Noether Sea is the emergent physical medium formed by coupled neutral Noether-core assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether-Sea dynamics and assembly coupling, not from curvature or expansion of the void itself.
+> **Medium Commitment (Noether Sea):** The Noether Sea is the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether-Sea dynamics and assembly coupling, not from curvature or expansion of the void itself.
 
 ### Spacetime Assemblies
 
 This note summarizes a working hypothesis used across the spacetime branch of the model: the Noether Sea is not treated as a passive geometric background, but as an active medium built from persistent assemblies with internal structure and coupling rules. It is the assembly-hypothesis continuation of [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), and [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
 
-For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether-core coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs.
+For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether swarm coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs.
 
-#### Pro/Anti Noether Core Basis
+#### Pro/Anti Noether Swarm Basis
 
-In the current framing, the basic spacetime carrier is a tri-binary assembly with a Noether core state that can appear in two complementary orientations:
+In the current framing, the basic spacetime carrier is a tri-binary assembly with a Noether swarm state that can appear in two complementary orientations:
 
-- pro-core orientation
-- anti-core orientation
+- pro-swarm orientation
+- anti-swarm orientation
 
-In this project framing, pro-Noether cores are associated with pro-particle assemblies, and anti-Noether cores are associated with anti-particle assemblies. The key claim is that stable large-scale medium behavior emerges when both orientations coexist and couple, so the medium remains dynamically balanced rather than drifting into a single-sign ordering.
+In this project framing, pro-Noether swarms are associated with pro-particle assemblies, and anti-Noether swarms are associated with anti-particle assemblies. The key claim is that stable large-scale medium behavior emerges when both orientations coexist and couple, so the medium remains dynamically balanced rather than drifting into a single-sign ordering.
 
 At the assembly level, a useful physical picture is that complementary orientations can also suppress exposed axial circulation by pairing anti-parallel. That gives the medium a second kind of neutrality beyond net charge cancellation: local pole leakage is mutually plugged, so the composite remains comparatively transparent and non-reactive.
 
@@ -35862,7 +35862,7 @@ This decomposition should not be duplicated in the medium ontology page. The [No
 
 #### 2 Pro + 2 Anti Coupling Hypothesis
 
-A recurring speculative motif is a minimal neutral cluster built from two pro-core and two anti-core constituents. Geometrically, this is often pictured as a compact four-body bound state analogous in shape intuition, but not in nuclear force mechanism, to a helium-like $2P + 2N$ nucleus: two of one type plus two of the complementary type in a tightly coupled arrangement.
+A recurring speculative motif is a minimal neutral cluster built from two pro-swarm and two anti-swarm constituents. Geometrically, this is often pictured as a compact four-body bound state analogous in shape intuition, but not in nuclear force mechanism, to a helium-like $2P + 2N$ nucleus: two of one type plus two of the complementary type in a tightly coupled arrangement.
 
 The analogy is structural:
 
@@ -35891,7 +35891,7 @@ This is consistent with the framework's broader assemblies-first stance: equatio
 
 This chapter owns:
 
-- pro-core and anti-core orientation basis,
+- pro-swarm and anti-swarm orientation basis,
 - local density decomposition into $\rho_+$ and $\rho_-$,
 - orientation imbalance $\Delta\rho_{\text{core}}$,
 - coupling-regime stability thresholds,
@@ -35901,16 +35901,16 @@ This chapter owns:
 This chapter does not own:
 
 - the Noether Sea as medium ontology; see [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md),
-- the internal Noether-core architecture; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
+- the internal Noether swarm architecture; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
 - the effective metric map; see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md),
 - clock and ruler extraction; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
 - or cosmological scale-factor translation; see [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md).
 
 #### Claim Scope
 
-This is a hypothesis note, not a closed derivation. The chapter's claim is limited to the organizing possibility that local pro/anti Noether-core motifs may support the effective spacetime medium. A completed version must derive the local coupling law, test whether the $2+2$ pro/anti cluster is an energy minimum or only a design intuition, and extract weak-field, strong-field, or cosmological signatures from the same medium variables used by the effective-metric program.
+This is a hypothesis note, not a closed derivation. The chapter's claim is limited to the organizing possibility that local pro/anti Noether swarm motifs may support the effective spacetime medium. A completed version must derive the local coupling law, test whether the $2+2$ pro/anti cluster is an energy minimum or only a design intuition, and extract weak-field, strong-field, or cosmological signatures from the same medium variables used by the effective-metric program.
 
-### Medium Exclusion Volume
+### Molecular Exclusion and Noether-Sea Response
 
 This chapter analyzes volume exclusion across ordinary matter and medium-level propagation. It complements [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), [Molecular Geometry](../../../../markdown/aaa/nuclear-atomic/molecular-geometry.md), [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md), and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md) by asking how ordinary exclusion boundaries coexist with deeper Noether-Sea response.
 
@@ -36422,7 +36422,7 @@ This chapter does not own:
 
 This chapter is the canonical home for proper time, observer clocks, clock slowing, and the clock map from absolute time $t$ to measured proper time $\tau$. Foundation and ontology pages should point here once the discussion becomes a clock law, frequency extraction, observer-clock comparison, or Lorentz/GR time-dilation recovery.
 
-For the detailed comparison between special-relativistic clock language and the deformable Noether-core implementation story, see [Special Relativity and Deformable Noether Cores](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md).
+For the detailed comparison between special-relativistic clock language and the deformable Noether swarm implementation story, see [Special Relativity and Deformable Noether Swarms](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md).
 
 The primary clock law is phase extraction from a declared assembly channel:
 $$
@@ -36479,7 +36479,7 @@ The fundamental claim is:
 
 A clock is any assembly with a **stable, countable internal cycle**:
 
-- Minimal model: a tri-binary Noether core where one binary, typically the middle layer, supplies the counted cycle.
+- Minimal model: a tri-binary Noether swarm where one binary, typically the middle layer, supplies the counted cycle.
 - Base frequency $\omega_0$ (or period $T_0 = 2\pi/\omega_0$) is defined for:
   - Clock **at rest** in the absolute frame.
   - In a region of homogeneous Noether-Sea density $n=1$ and negligible external gradients.
@@ -36602,7 +36602,7 @@ This equation is not a claim that the Euclidean void is a four-dimensional curve
 
 ###### Gamma-N Geometry Extraction Target
 
-The equations above define the endpoint benchmark, but they do not yet derive the Noether-Sea cadence factor from core geometry. A first-order extraction scaffold should start from the local variables that already appear in the clock and transport programs: normalized Noether-core density $n$, Noether-Sea delay factor $\chi_{\text{sea}}$, envelope scale $\lambda$, envelope shape ratio $\xi$, and a representative Noether-core scale $R_{\text{core}}$. Around the weak homogeneous reference, collect the logarithmic deformation record
+The equations above define the endpoint benchmark, but they do not yet derive the Noether-Sea cadence factor from core geometry. A first-order extraction scaffold should start from the local variables that already appear in the clock and transport programs: normalized Noether swarm density $n$, Noether-Sea delay factor $\chi_{\text{sea}}$, envelope scale $\lambda$, envelope shape ratio $\xi$, and a representative Noether swarm scale $R_{\text{core}}$. Around the weak homogeneous reference, collect the logarithmic deformation record
 
 $$
 \mathbf{g}_N
@@ -37164,7 +37164,7 @@ Massive assemblies polarize and densify the surrounding Noether Sea. A clock dee
  Interaction delays with the medium (and between internal architrinos via the medium) increase. This raises the **Noether-Sea delay factor** $\chi_{\text{sea}}$ for internal processes.
 
 2. **Effective field speed reduction $c_{\text{eff}}(\mathbf{x}) < c_f$:**
- - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether cores).
+ - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether swarms).
  - From the clock’s perspective, every internal force arrives “later” in $t$.
 
 3. **Tidal distortion of tri‑binary geometry:**
@@ -37477,7 +37477,7 @@ This chapter is the focused program statement for deriving operational Lorentz b
 
 The opening abstract states the target; the later sections move through the governing delayed dynamics, the anisotropy mechanism, and the conditions under which assembly-built observers could recover standard Lorentz kinematics.
 
-For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether-core story, see [Special Relativity and Deformable Noether Cores](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
+For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether swarm story, see [Special Relativity and Deformable Noether Swarms](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
 
 ##### Abstract
 
@@ -37715,7 +37715,7 @@ $$
 =
 \frac{1}{\gamma_\star(v)}.
 $$
-This is the direct map from Lorentz kinematics to Noether-core geometry. The oblate spheroidal envelope for an admitted branch $q$ can be written
+This is the direct map from Lorentz kinematics to Noether swarm geometry. The oblate spheroidal envelope for an admitted branch $q$ can be written
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp,q}^2}
 +
@@ -37749,7 +37749,7 @@ q
 \mathcal{L}_{\mathrm{root}}^{(q)}(v)
 \right),
 $$
-with admissibility requiring the same causal-root ledger to close the spheroid geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether-core return-cycle classes only after those branch-admissibility conditions close.
+with admissibility requiring the same causal-root ledger to close the spheroid geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether swarm return-cycle classes only after those branch-admissibility conditions close.
 
 To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
 $$
@@ -38022,11 +38022,11 @@ The immediate task is to identify which subset dominates $\partial \tau_{\text{o
 
 Working assumption:
 
-1. The outer precessing binary of a Noether core defines the effective exclusion volume boundary; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
+1. The outer precessing binary of a Noether swarm defines the effective exclusion volume boundary; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
 2. Each tri-binary layer ($H,M,L$) has its own circulation axis.
 3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
 
-Proposed mechanism chain under applied force (acceleration of a Noether-core-based assembly):
+Proposed mechanism chain under applied force (acceleration of a Noether swarm-based assembly):
 
 1. External forcing increases translational state.
 2. Axis coupling drives partial alignment of $H,M,L$ circulation axes.
@@ -38051,7 +38051,7 @@ with the strongest transduction at $L$.
 
 Interpretive thesis:
 
-Einstein-like spacetime behavior may be recovered as the continuum limit of moving, deforming exclusion volumes of Noether cores under translation and local volume variation, rather than from fundamental geometric curvature at substrate level.
+Einstein-like spacetime behavior may be recovered as the continuum limit of moving, deforming exclusion volumes of Noether swarms under translation and local volume variation, rather than from fundamental geometric curvature at substrate level.
 
 Consistency checks required for this scenario:
 
@@ -38099,7 +38099,7 @@ $$
 $$
 with $\xi\in(0,1]$ as shape and $\lambda$ as scale. The Lorentz-closure target is $\xi(x)\to1/\gamma(x)$ in the homogeneous drift regime.
 
-Terminology guardrail: $\xi$ is the Noether-core envelope shape ratio, inherited from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
+Terminology guardrail: $\xi$ is the Noether swarm envelope shape ratio, inherited from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
 $$
 \frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma},
 $$
@@ -38736,7 +38736,7 @@ The bridge is therefore constitutive rather than ontological. A successful metri
 ##### Ontological Picture
 
 - **Substrate**: A fixed Euclidean 3D void with absolute time $t$. A chosen chart $(x,y,z)$ represents fixed void locations; the labels never move or curve.
-- **Medium**: The [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), a pervasive medium of coupled pro/anti Noether cores (tri-binary assemblies). The bridge term *spacetime medium* is used when translating toward effective spacetime language.
+- **Medium**: The [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), a pervasive medium of coupled pro/anti Noether swarms (tri-binary assemblies). The bridge term *spacetime medium* is used when translating toward effective spacetime language.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: Complete-state bookkeeping on the absolute-time slice, carrying:
   - The full architrino microstate $S(t)$,
   - The instantaneous state of the Noether Sea (density $\rho_{\text{core}}(\mathbf{x},t)$, alignment, stress),
@@ -38744,13 +38744,13 @@ The bridge is therefore constitutive rather than ontological. A successful metri
 
 From this bookkeeping perspective, there is only:
 - Flat Euclidean geometry $h_{ij}=\delta_{ij}$,
-- A dynamic medium (Noether cores) moving and rearranging in that geometry.
+- A dynamic medium (Noether swarms) moving and rearranging in that geometry.
 
 ##### Canonical Symbols (Spacetime)
 
 Use the following symbols consistently across spacetime chapters:
 
-- $n(\mathbf{x},t)$: normalized Noether-core density.
+- $n(\mathbf{x},t)$: normalized Noether swarm density.
 - $\rho_{\text{core}}(\mathbf{x},t)=\rho_{\text{core},0}\,n(\mathbf{x},t)$: physical core density.
 - $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$: Noether-Sea delay factor.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field metric comparisons.
@@ -39061,7 +39061,7 @@ In the shared pullback notation, the stress-side consumer is $\Pi_{\mathrm{matte
 
 ##### Noether-Core Deformation and Metric Language
 
-At the assembly level, an individual Noether core has an oblate, deformable exclusion envelope; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md). This chapter does not identify that single-core envelope with the metric. The metric bridge uses many deforming Noether cores in the Noether Sea as the medium whose coarse variables determine clock, ruler, and signal behavior.
+At the assembly level, an individual Noether swarm has an oblate, deformable exclusion envelope; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md). This chapter does not identify that single-core envelope with the metric. The metric bridge uses many deforming Noether swarms in the Noether Sea as the medium whose coarse variables determine clock, ruler, and signal behavior.
 
 When translating toward General Relativity, Einstein's field equations are treated as the effective continuum relation
 $$
@@ -39087,7 +39087,7 @@ The useful GR analogy is therefore limited but important:
 - perturbative methods can capture small departures from spherical symmetry,
 - and standard predictions such as redshift, Shapiro delay, lensing, orbital precession, frame-dragging, and gravitational-wave emission from deformed sources must be recovered from one reusable constitutive map.
 
-The assembly fact that a Noether core is oblate belongs in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md). The spacetime claim that a population of deformed cores yields an effective metric belongs here and in [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md).
+The assembly fact that a Noether swarm is oblate belongs in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md). The spacetime claim that a population of deformed cores yields an effective metric belongs here and in [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md).
 
 ##### Jacobson-Type Support: Metric as Equation of State
 
@@ -39309,7 +39309,7 @@ Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
   - Primitive causal-wake support is measured by Euclidean distances in $(x,y,z)$,
-  - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(x)$ set by the local Noether-core configuration:
+  - While effective ray paths and clock comparisons depend on an *effective speed* $c_{\text{eff}}(x)$ set by the local Noether swarm configuration:
     $c_{\text{eff}}(x) < c_f \quad \text{in dense regions (near mass)}$
 - From the **physical observer** (built from assemblies):
   - Light and free-falling matter appear to move along curved paths (geodesics) of an effective metric $g^{\text{eff}}_{\mu\nu}$.
@@ -39427,7 +39427,7 @@ u^i_{\text{sea}}=0,
 N=\Omega(n,\lambda)\xi.
 $$
 
-Here $\xi$ is the Noether-core envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$, not a synonym for the clock-rate factor. The stationary ideal clock-rate factor in this metric subclass is $N=\Omega\xi$ only after the geometry-to-clock map is fixed.
+Here $\xi$ is the Noether swarm envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$, not a synonym for the clock-rate factor. The stationary ideal clock-rate factor in this metric subclass is $N=\Omega\xi$ only after the geometry-to-clock map is fixed.
 
 Define the clock-channel potential by the observer-side lapse:
 $$
@@ -39489,7 +39489,7 @@ the spacetime constitutive map.
 
 ##### Canonical Symbols
 
-- $n$: normalized Noether-core density, with $\rho_{\text{core}}=\rho_{\text{core},0}n$.
+- $n$: normalized Noether swarm density, with $\rho_{\text{core}}=\rho_{\text{core},0}n$.
 - $\chi_{\text{sea}}$: Noether-Sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field PPN comparisons.
 - $\Phi_N$: Newtonian benchmark potential.
@@ -39514,7 +39514,7 @@ Here, geodetic precession means the de Sitter precession of a carried gyroscope:
 
 ##### Explicit Weak-Field Noether-Sea Delay Map (PPN $\gamma$)
 
-Adopt a weak-field PPN-normalized Noether-Sea delay-factor ansatz for signal propagation in the Noether-core medium:
+Adopt a weak-field PPN-normalized Noether-Sea delay-factor ansatz for signal propagation in the Noether swarm medium:
 $$
 \bar{\chi}_{\text{sea}}(\mathbf{x})
 \equiv
@@ -40771,7 +40771,7 @@ This is a forecast and comparison gate. It does not license a massive-graviton o
 
 ##### Medium-Transport Perturbation
 
-For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether-Sea state used by redshift and dark-energy modules. In the provisional Noether-core equilibrium packet,
+For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether-Sea state used by redshift and dark-energy modules. In the provisional Noether swarm equilibrium packet,
 
 $$
 \partial_t f_N
@@ -40783,7 +40783,7 @@ S_{\mathrm{BH}}
 -R_{\mathrm{eq}}[f_N],
 $$
 
-the term $S_{\mathrm{GW}}$ records the disturbance of the local Noether-core cadence distribution by the gravitational-wave channel. It is not an additional default polarization mode and not a license for frequency-dependent gravitational-wave propagation in validated bands. It is a possible low-amplitude contribution to the medium state later sampled by photons, clocks, and growth observables.
+the term $S_{\mathrm{GW}}$ records the disturbance of the local Noether swarm cadence distribution by the gravitational-wave channel. It is not an additional default polarization mode and not a license for frequency-dependent gravitational-wave propagation in validated bands. It is a possible low-amplitude contribution to the medium state later sampled by photons, clocks, and growth observables.
 
 The redshift-facing projection should therefore be bounded as a perturbation of the path-rate functional:
 
@@ -41199,7 +41199,7 @@ k_B\log|\mathcal{B}_H|
 \mathcal{R}_{\mathrm{release}}(E;\theta)
 \right].
 $$
-Here $w(E)$ is the comparison weighting for the probe family, $d_{\mathrm{curv}}$ checks that the admitted Noether-core labels are finite maximum-curvature labels, $d_{\mathrm{ent}}$ checks horizon-interface entropy bookkeeping, and $\mathcal{R}_{\mathrm{release}}$ checks the outgoing $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium-update, and remnant rows through the event ledger.
+Here $w(E)$ is the comparison weighting for the probe family, $d_{\mathrm{curv}}$ checks that the admitted Noether swarm labels are finite maximum-curvature labels, $d_{\mathrm{ent}}$ checks horizon-interface entropy bookkeeping, and $\mathcal{R}_{\mathrm{release}}$ checks the outgoing $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium-update, and remnant rows through the event ledger.
 
 The closure condition is $\mathcal{R}_{E\to H}(\theta)\le\epsilon_{E\to H}$ using the same strong-field branch record that recovers exterior compact-object observables. A model fails this gate if it claims arbitrarily short-distance resolution in the active compact-object regime, or if it activates the horizon scale while leaving maximum-curvature labels, entropy capacity, or release-channel accounting undefined.
 
@@ -41270,7 +41270,7 @@ A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\right)
 $$
 The event-horizon reading is justified only in the $\eta_H\to1$ regime. When $\eta_H=0$ or remains bounded away from one, the holographic comparison is still useful as an access-region entropy test, but it is not evidence that the boundary surface is the horizon-interface ontology.
 
-A useful way to state that native task is through a horizon-interface label ensemble. Let $\Lambda_{\text{NC}}$ denote the reduced Noether-core closure label from [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). For an effective exterior black-hole label $(M,\mathbf{J},Q)$, define the schematic ensemble
+A useful way to state that native task is through a horizon-interface label ensemble. Let $\Lambda_{\text{NC}}$ denote the reduced Noether swarm closure label from [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). For an effective exterior black-hole label $(M,\mathbf{J},Q)$, define the schematic ensemble
 $$
 \mathcal{B}_{H}(M,\mathbf{J},Q)
 =
@@ -41286,7 +41286,7 @@ v_O\to c_f,\quad
 \right\}.
 $$
 
-In plain language, $\mathcal{B}_{H}$ is the set of strong-field Noether-core ledger arrangements that look identical to exterior probes once the probe can resolve only effective mass, angular momentum, charge, and allowed interface channels. This gives a precise no-hair reading: exterior no-hair is a coarse-graining over many compatible closure labels, not evidence that the interior has no microstate.
+In plain language, $\mathcal{B}_{H}$ is the set of strong-field Noether swarm ledger arrangements that look identical to exterior probes once the probe can resolve only effective mass, angular momentum, charge, and allowed interface channels. This gives a precise no-hair reading: exterior no-hair is a coarse-graining over many compatible closure labels, not evidence that the interior has no microstate.
 
 The corresponding thermodynamic closure target is
 $$
@@ -41437,7 +41437,7 @@ G_N\circ\cdots\circ G_1(\Lambda_a)=\Lambda_b,\
 G_i\in\mathcal{G}_{\mathrm{loc}}
 \right\},
 $$
-where $\mathcal{G}_{\mathrm{loc}}$ is the permitted set of local Noether-core, path-history, and release-ledger updates inside the horizon-interface model. For a horizon history, write $\mathcal{C}_{H}^{(O)}(t)$ for the minimum such update count between the observer-accessible initial ledger and the compatible ledger class at time $t$.
+where $\mathcal{G}_{\mathrm{loc}}$ is the permitted set of local Noether swarm, path-history, and release-ledger updates inside the horizon-interface model. For a horizon history, write $\mathcal{C}_{H}^{(O)}(t)$ for the minimum such update count between the observer-accessible initial ledger and the compatible ledger class at time $t$.
 
 The comparison burden is then:
 $$
@@ -41757,7 +41757,7 @@ The clean constitutive chain is:
 
 This means black holes are candidate contributors to dark-energy phenomenology, not substitutes for the medium ontology.
 
-The equilibrium-transport version of this claim is more specific. Strong-field recycling may act as a source term for the Noether-core cadence distribution of the surrounding Noether Sea. If $f_N(\nu,\mathbf{x},t)$ records the local distribution of Noether-core cadence states with $E_N=h\nu_N$, then a black-hole contribution appears as $S_{\mathrm{BH}}$ in a medium equation of the form
+The equilibrium-transport version of this claim is more specific. Strong-field recycling may act as a source term for the Noether swarm cadence distribution of the surrounding Noether Sea. If $f_N(\nu,\mathbf{x},t)$ records the local distribution of Noether swarm cadence states with $E_N=h\nu_N$, then a black-hole contribution appears as $S_{\mathrm{BH}}$ in a medium equation of the form
 
 $$
 \partial_t f_N
@@ -41933,7 +41933,7 @@ $$
 \right)
 <\infty,
 $$
-together with the horizon-interface condition $F_H=0$ and a finite Noether-core closure-label ensemble. This is a theorem target, not a definition of success: the strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
+together with the horizon-interface condition $F_H=0$ and a finite Noether swarm closure-label ensemble. This is a theorem target, not a definition of success: the strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
 
 A sharper endpoint criterion is that those same finite data admit a continuation map
 $$
@@ -42000,7 +42000,7 @@ One preserved intuition, to be read only as a heuristic, is that this alignment 
 
 #### Horizon Chirality
 
-This chapter studies one narrow theory question: how the Noether-core `pro/anti` distinction should be understood as a tri-binary approaches the planar horizon state. For this note we set aside bookkeeping questions and focus on geometry, orbit direction, and the reduction from a 3D precessing scaffold to a planar exterior view.
+This chapter studies one narrow theory question: how the Noether swarm `pro/anti` distinction should be understood as a tri-binary approaches the planar horizon state. For this note we set aside bookkeeping questions and focus on geometry, orbit direction, and the reduction from a 3D precessing scaffold to a planar exterior view.
 
 The guiding problem is simple. In ordinary low-stress conditions, the tri-binary is a fully 3D object with ordered binary roles and precession structure. At the event horizon, the same assembly is driven toward coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
 
@@ -42043,7 +42043,7 @@ The horizon state is different. Once the planes collapse into one planar lock an
 
 ##### Broader Pro/Anti Balance in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-This chapter should also be read against a broader guardrail from the project framing: $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** naturally suggest a large universal pro/anti imbalance in the substrate as a whole. The medium picture is instead built around persistent local or mesoscopic balance between complementary Noether-core orientations.
+This chapter should also be read against a broader guardrail from the project framing: $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** naturally suggest a large universal pro/anti imbalance in the substrate as a whole. The medium picture is instead built around persistent local or mesoscopic balance between complementary Noether swarm orientations.
 
 Several standing examples point in that direction.
 
@@ -42053,7 +42053,7 @@ Several standing examples point in that direction.
 
 So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem compresses the core strongly enough that the binary branch structure becomes especially visible.
 
-The matter sector then becomes the special case. In the current intuition, what we call ordinary matter may be the regime where pro-core and anti-core encounters act as a kind of geometric can-opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
+The matter sector then becomes the special case. In the current intuition, what we call ordinary matter may be the regime where pro-swarm and anti-swarm encounters act as a kind of geometric can-opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
 
 That broader matter/reaction thesis belongs with reaction-channel provenance and fermion assembly structure. Inside this chapter, its role is narrower: it reminds us that horizon chirality should be developed inside a theory that is broadly pro/anti balanced, with the dramatic visible asymmetries appearing only in certain reaction channels or assembly sectors.
 
@@ -42063,7 +42063,7 @@ To keep terms from sliding into one another, use the following provisional dicti
 
 | Label | Meaning in this note | Typical regime |
 | --- | --- | --- |
-| `pro/anti` | the deeper 3D Noether-core chirality, currently tracked by ordered tri-binary structure such as `HML` versus `HLM` | pre-planar 3D core |
+| `pro/anti` | the deeper 3D Noether swarm chirality, currently tracked by ordered tri-binary structure such as `HML` versus `HLM` | pre-planar 3D core |
 | `CW/CCW` | the exterior planar angular-momentum sign seen from one chosen viewing side of a planarized core | horizon / planar lock |
 | `left/right` | a possible axial sign relative to translation, for example $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$, if that later proves to control forward exposure of the weak-active structure | high-velocity aligned regime |
 
@@ -42415,7 +42415,7 @@ For this reason the preferred local term is **Horizon interface**: surface degre
 - Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
 - Planck-frequency hierarchy (inner 4x, middle 2x, outer 1x),
 - Information flow constrained to the interface sheet,
-- Ready to bifurcate into volumetric Noether cores as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether-Sea content).
+- Ready to bifurcate into volumetric Noether swarms as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether-Sea content).
 
 That yields a disciplined shorthand: Horizon interface for the Planck-aligned interface layer, bulk for $v<c_f$ volumetric cores, and AdS-like for the $v>c_f$ self-hit interior, all treated as regimes on one constitutive continuum.
 
@@ -42445,7 +42445,7 @@ In standard QFT, the vacuum is represented by quantum fields and their ground-st
 
 In this chapter, the Noether Sea means the dense, permeating medium of coupled, neutral tri-binary assemblies occupying the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md); see [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md). It is not empty space and is not the Euclidean void itself.
 
-- **Occupancy:** Nonzero occupancy of pro/anti Noether-core assemblies.
+- **Occupancy:** Nonzero occupancy of pro/anti Noether swarm assemblies.
 - **Net properties:** Balanced charge and angular-momentum bookkeeping at the medium scale, schematically $\sum q = 0$ and $\sum S = 0$ over neutral coarse windows.
 - **Medium response:** This medium is the working source for the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. These are not fundamental constants of the void but derived measures of Noether-Sea response, including resistance to polarization and density-like occupation.
 
@@ -42635,7 +42635,7 @@ General Relativity predicts that an accelerating observer sees a thermal bath of
 **The $\mathbb{A}\mathbb{A}\mathbb{A}$ resolution:**
 - **Objective existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, assemblies have a definite substrate status. Their existence is not frame-dependent.
 - **Acceleration-conditioned detector response:** The warm bath detected by the accelerating Physical Observer is an effective response of the detector's assembly state to accelerated coupling with the Noether Sea.
-- **Mechanism:** Acceleration through the medium ($\vec{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether cores). The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
+- **Mechanism:** Acceleration through the medium ($\vec{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether swarms). The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
 
 #### Quantization from Stability (Selection Rules)
 
@@ -43509,9 +43509,9 @@ $$
 
 This does not mean dense matter stops responding to pressure. It means the scalar density channel stops carrying that response when packing headroom closes; any remaining response must appear in exposed-source drift, envelope ratios $\lambda$ and $\xi$, trace-free strain, reversible wake/contact stiffness, tensor response, or a threshold/branch event.
 
-##### The Noether Core as a Causal Knot
+##### The Noether Swarm as a Causal Knot
 
-A Noether core can be read as a causal knot: not a material knot in space, but a stable closure of delayed path-history relations. The inner, middle, and outer binaries continually exchange partner-hit, self-hit, and inter-layer wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.
+A Noether swarm can be read as a causal knot: not a material knot in space, but a stable closure of delayed path-history relations. The inner, middle, and outer binaries continually exchange partner-hit, self-hit, and inter-layer wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.
 
 When the core moves or is placed under a gradient, the knot does not remain a static set of circular binaries. The inner, middle, and outer binary planes are drawn into a coupled spiral-helical pattern: pitch, radius, phase, and inter-layer timing retune together so delayed wakes still return to the correct partners and layers. This spiral-helical relocking is the geometric carrier of inertia in the present thesis.
 
@@ -43523,7 +43523,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
 
 ###### Internal Energy Shielding ($\zeta$-Factor)
 - **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested binary rotations. For a tri-binary, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
-- **Shielding:** The pro/anti structure of the [Noether core](../../../../markdown/aaa/noether-swarm/noether-swarm.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
+- **Shielding:** The pro/anti structure of the [Noether swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
 - **Result:** When an external force attempts to accelerate the assembly, the effective far-field response couples only to the exposed, shielded part of the internal ledger:
   $$
   m_{\text{apparent}}c_{\text{eff}}^2 \sim \zeta(A)\,E_{\text{internal}}(A).
@@ -43798,7 +43798,7 @@ That means a Koide-like benchmark, if it is useful at all, belongs first to the 
 
 To advance from qualitative thesis to quantitative mass prediction, the active mass program must close five linked steps.
 
-1. **Stable tri-binary attractor:** derive one robust Noether-core attractor family with radii, frequencies, branch data, and stability diagnostics.
+1. **Stable tri-binary attractor:** derive one robust Noether swarm attractor family with radii, frequencies, branch data, and stability diagnostics.
 2. **Internal energy ledger:** compute the dimensionless internal energy stored in that attractor without assuming the particle mass being derived.
 3. **Shielding extraction:** derive $\zeta(A)$ from far-field wake cancellation and exposed coupling geometry.
 4. **Medium-dressed response:** derive the response tensor that turns shielded internal energy into inertial and gravitational response in the weak-field regime.
@@ -43806,7 +43806,7 @@ To advance from qualitative thesis to quantitative mass prediction, the active m
 
 ##### Reference Attractor Gate
 
-The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral, rest-branch tri-binary Noether core in a weak homogeneous Noether-Sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation.
+The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral, rest-branch tri-binary Noether swarm in a weak homogeneous Noether-Sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation.
 
 This attractor should not be pictured as three independent circular binaries. The inner, middle, and outer binaries occupy different causal-speed regimes: the inner binary is self-hit and super-field-speed on the active branch, the middle binary sits near the $v = c_f$ separator, and the outer binary remains sub-field-speed as the shielding and boundary-coupling interface. Circular or elliptic pictures can still be useful as carrier charts, but only after the coupled root ledger, phase lock, and stability diagnostics are respected.
 
@@ -43816,7 +43816,7 @@ The minimal $A_0$ output contract is:
 
 | Output class | Required content | Why it matters |
 | --- | --- | --- |
-| Geometry and winding | $R_I,R_M,R_O$, binary-plane normals, handedness, phase offsets, layer windings, and inter-layer closure integers | fixes the attractor as an integer-labeled Noether-core state rather than a loose configuration sketch |
+| Geometry and winding | $R_I,R_M,R_O$, binary-plane normals, handedness, phase offsets, layer windings, and inter-layer closure integers | fixes the attractor as an integer-labeled Noether swarm state rather than a loose configuration sketch |
 | Root ledger and stability | partner-hit counts, self-hit counts, inter-layer hit channels, closure residuals, return-map residuals, and the non-symmetry Floquet gap $\Delta_{\mathbf{k}}$ | separates stable closed cycles from integer-looking but dynamically unstable candidates |
 | Internal energy ledger | $E_I,E_M,E_O$, interaction and wake terms, total $E_{\text{internal}}(A_0)$, and action per closed cycle | supplies the unshielded reservoir in the mass-map roadmap formula |
 | Group-velocity anisotropy | declared $\mathbf{V}_{\text{cm}}$, causal speed $c_\star$, $\beta_\star$, envelope ratio, forward/backward delay ratio, and anisotropy tensor $\mathcal{A}_{\mathrm{gv}}^{ij}$ | keeps motion-induced deformation separate from far-field shielding leakage |
@@ -43837,7 +43837,7 @@ The canonical chapter should carry this interface but not the detailed simulatio
 
 ##### Critical Unknowns
 1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
-2. **Is the reference Noether-core density fixed?** Is $\rho_{\text{core},0}$ universal, or does $\rho_{\text{core}}(\mathbf{x},t)$ vary with cosmological epoch, gravitational field strength, or local matter density?
+2. **Is the reference Noether swarm density fixed?** Is $\rho_{\text{core},0}$ universal, or does $\rho_{\text{core}}(\mathbf{x},t)$ vary with cosmological epoch, gravitational field strength, or local matter density?
 3. **Why do neutrinos have mass at all?** If a neutrino is a near-photon pro/anti core pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
 
 ##### Potential Falsifications
@@ -43857,9 +43857,9 @@ This chapter gives the current assembly-level interpretation of color charge and
 
 ##### Ontology, Notation, and Generations
 
-###### Tri‑binary scaffold (the “Noether core”)
+###### Tri‑binary scaffold (the “Noether swarm”)
 
-Each fermion is built on a **tri‑binary scaffold**: three nested electrino:positrino binaries sharing a center. We sometimes call this scaffold a **Noether core** to emphasize that all conserved quantities (electric charge, color, baryon number, etc.) are encoded in its internal symmetries, in the spirit of Noether’s theorem; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
+Each fermion is built on a **tri‑binary scaffold**: three nested electrino:positrino binaries sharing a center. We sometimes call this scaffold a **Noether swarm** to emphasize that all conserved quantities (electric charge, color, baryon number, etc.) are encoded in its internal symmetries, in the spirit of Noether’s theorem; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
 
 We label the three binaries by their dynamical regime:
 
@@ -43883,7 +43883,7 @@ Each binary defines one **axis** with two polar **polar sites**, each occupied b
 - Electrino (−e/6), or
 - Positrino (+e/6).
 
-So each Noether core has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
+So each Noether swarm has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
 
 We distinguish:
 
@@ -43902,7 +43902,7 @@ For a Gen‑I baryon (3 quarks):
 - 18 axial architrinos
 - **36 architrinos** total.
 
-We will use “tri‑binary” for the structure; “Noether core” when we are emphasizing its role as the seat of conserved charges.
+We will use “tri‑binary” for the structure; “Noether swarm” when we are emphasizing its role as the seat of conserved charges.
 
 ###### Generational excitation states
 
@@ -43948,7 +43948,7 @@ for which
 $$
 1+e^{i2\pi/3}+e^{i4\pi/3}=0.
 $$
-This does not derive the full color algebra by itself, but it gives a clean geometric reason why three-way closure is special: three balanced phase channels can hide the leading dipole signal. In that heuristic sense, color-singlet organization is not just algebraic neutrality but a **stealth condition** that helps the Noether core survive without strong radiative leakage.
+This does not derive the full color algebra by itself, but it gives a clean geometric reason why three-way closure is special: three balanced phase channels can hide the leading dipole signal. In that heuristic sense, color-singlet organization is not just algebraic neutrality but a **stealth condition** that helps the Noether swarm survive without strong radiative leakage.
 
 ###### Electron and positron
 
@@ -43966,7 +43966,7 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 ###### Neutrinos: near-photon colorless neutral pairs
 
-Neutrinos are now treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether-core pairing close to the photon channel, but not fully locked into the photon mode.
+Neutrinos are now treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether swarm pairing close to the photon channel, but not fully locked into the photon mode.
 
 This makes the color statement sharper:
 
@@ -43998,7 +43998,7 @@ Let each axis pattern be coarse‑classified as:
 - **P+**: pure positrino $(+\!/+)$
 - **Pm**: mixed $(-\!/+)$ (net neutral, dipolar)
 
-The key structural rule for **admissible, stable quark‑like Noether cores** is:
+The key structural rule for **admissible, stable quark‑like Noether swarms** is:
 
 > Exactly **two axes share the same axial class**, and the third is **different in kind** (P− vs P+ vs Pm).
 
@@ -44237,7 +44237,7 @@ for the standard SU(3) structure constants in this basis.
 
 ###### Eightfold-way recovery residual
 
-The historical Eightfold Way lesson is useful here only as an algebraic recovery target: $SU(3)$ first classified hadrons by triplet, conjugate-triplet, and adjoint/octet representations before supplying the underlying strong-sector dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the axis-exceptionality construction must recover the representation bookkeeping while keeping the Noether core as the ontology.
+The historical Eightfold Way lesson is useful here only as an algebraic recovery target: $SU(3)$ first classified hadrons by triplet, conjugate-triplet, and adjoint/octet representations before supplying the underlying strong-sector dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the axis-exceptionality construction must recover the representation bookkeeping while keeping the Noether swarm as the ontology.
 
 The branch condition is:
 $$
@@ -44282,7 +44282,7 @@ It continuously rotates exceptionality between H and M while leaving L unchanged
 
 A Gen‑I baryon (e.g., proton or neutron) consists of:
 
-- 3 quarks → 3 Noether cores
+- 3 quarks → 3 Noether swarms
 - Each with H, M, L axes
 - Total of **9 axes**: H₁,M₁,L₁; H₂,M₂,L₂; H₃,M₃,L₃.
 - 18 scaffold architrinos + 18 axial architrinos → **36 architrinos**.
@@ -44307,7 +44307,7 @@ At large distances, axis‑dependent multipoles from each regime cancel:
 - H‑exceptionality from one quark is compensated by M and L exceptionality from others in the composite singlet combination.
 - Net color flux into the surrounding Noether Sea is zero; only isotropic monopole fields (charge, baryon number, mass) remain.
 
-This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether cores: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
+This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether swarms: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
 
 ##### Residual Strong Force and Nuclear Binding
 
@@ -44381,7 +44381,7 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../../../markd
 
 ##### Summary and Interfaces
 
-- A **Noether core / tri‑binary** is a three-axis $(H,M,L)$, six-site axial structure: the minimal unit that carries conserved charges via its internal symmetries.
+- A **Noether swarm / tri‑binary** is a three-axis $(H,M,L)$, six-site axial structure: the minimal unit that carries conserved charges via its internal symmetries.
 - **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two P+ axes, one Pm axis.
@@ -44402,7 +44402,7 @@ The electron is treated as a stable charged fermion assembly with net charge $-e
 
 ##### Axial Inventory and Generation Core
 
-The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The $e^-$ branch has a pro-tri-binary Noether core with full inner/middle/outer shielding support and a six-site axial inventory of $6E$. The $e^+$ branch is the charge-conjugate anti-core with axial inventory $6P$. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
+The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The $e^-$ branch has a pro-tri-binary Noether swarm with full inner/middle/outer shielding support and a six-site axial inventory of $6E$. The $e^+$ branch is the charge-conjugate anti-swarm with axial inventory $6P$. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
 
 The generation-core record is therefore not a new charge pattern. It is the shielding-coherence class of the same charged-lepton axial inventory:
 
@@ -44418,7 +44418,7 @@ This framing keeps lepton universality disciplined. The charged-lepton side of u
 
 ##### Assembly and Detection Map
 
-The electron is not treated as a literal cloud of ontic probability. It is a coherent fermion assembly: a Noether core plus axial layer whose internal causal ledger remains localized enough to preserve identity, charge bookkeeping, and spin-statistical behavior. The cloud-like object used in ordinary atomic language is an effective detection map for where that coherent assembly can resolve a record under a declared nuclear, apparatus, and Noether-Sea environment.
+The electron is not treated as a literal cloud of ontic probability. It is a coherent fermion assembly: a Noether swarm plus axial layer whose internal causal ledger remains localized enough to preserve identity, charge bookkeeping, and spin-statistical behavior. The cloud-like object used in ordinary atomic language is an effective detection map for where that coherent assembly can resolve a record under a declared nuclear, apparatus, and Noether-Sea environment.
 
 A compact local target is
 
@@ -44445,7 +44445,7 @@ Atomic orbitals are therefore recovery targets for coherent electron resonance, 
 
 An electron-level calculation should not begin with a fitted orbital probability density. The minimum native variables are:
 
-- the electron internal branch record $\mathcal{B}_e$, including Noether-core geometry and axial-layer state;
+- the electron internal branch record $\mathcal{B}_e$, including Noether swarm geometry and axial-layer state;
 - the nuclear source ledger $\mathcal{A}_{\mathrm{nuc}}$ and its causal-wake envelope;
 - the local Noether-Sea record $\theta_{\mathrm{sea}}^{(\ell)}$, including density, delay, cadence, and medium-response data at the chosen atomic window;
 - the apparatus or environmental projection $\Pi_{\mathrm{det}}$ that turns the branch ensemble into a finite record;
@@ -44453,11 +44453,11 @@ An electron-level calculation should not begin with a fitted orbital probability
 
 ##### Weak-Reaction Provenance
 
-In weak reactions the electron is an outgoing or incoming charged assembly whose axial inventory and Noether-core provenance must be accounted for explicitly. For a beta-family channel such as $d\to u\,e^-\,\bar\nu_e$, the $W^-$ corridor records the charged weak-coupling-triad transaction. It does not by itself identify the full source of the outgoing electron core and $6E$ axial inventory.
+In weak reactions the electron is an outgoing or incoming charged assembly whose axial inventory and Noether swarm provenance must be accounted for explicitly. For a beta-family channel such as $d\to u\,e^-\,\bar\nu_e$, the $W^-$ corridor records the charged weak-coupling-triad transaction. It does not by itself identify the full source of the outgoing electron core and $6E$ axial inventory.
 
 A closed event record must therefore state:
 
-- which incoming assembly, local Noether-Sea content, or recruited neutral core material supplies the electron's Noether-core provenance;
+- which incoming assembly, local Noether-Sea content, or recruited neutral core material supplies the electron's Noether swarm provenance;
 - how the $6E$ axial inventory is routed without violating charge, energy, momentum, angular momentum, or identity bookkeeping;
 - how the associated antineutrino branch inherits the neutral near-photon weak ledger rather than a charged-fermion axial layer;
 - and whether the observer-level beta rate and nuclear form factors are recovered without redefining the weak-coupling-triad exposure domain.
@@ -44505,16 +44505,16 @@ This page now records the electron ontology target needed by the atomic, quantum
 
 #### Neutrinos
 
-This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. A neutrino is modeled as a near-planar pro/anti [Noether-core](../../../../markdown/aaa/noether-swarm/noether-swarm.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to explain why neutrinos are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
+This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. A neutrino is modeled as a near-planar pro/anti [Noether swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to explain why neutrinos are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
 
 The opening section states the working geometry and the plain-language interpretation. The later closure program records how PMNS-style mixing is meant to arise from residual internal-binary exposure in a pro/anti core pair. The exact locked geometry remains open; "near-photon" is the current controlled descriptor, not a finished derivation.
 
 ##### Near-Photon Neutral-Core Pairing
 
-Definition (geometric, working): A neutrino is a near-planar pro/anti Noether-core pairing adjacent to the photon geometry. The photon is the fully locked **coaxial contra-rotating pro/anti planar pair**. A neutrino is nearly snapped into that state, but keeps a residual internal-binary mismatch that prevents it from becoming the photon transport channel.
+Definition (geometric, working): A neutrino is a near-planar pro/anti Noether swarm pairing adjacent to the photon geometry. The photon is the fully locked **coaxial contra-rotating pro/anti planar pair**. A neutrino is nearly snapped into that state, but keeps a residual internal-binary mismatch that prevents it from becoming the photon transport channel.
 
 - Core structure and shielding:
-  - The pro-core and anti-core contributions cancel charge-like exposure, with $q_{\text{net}} = 0$.
+  - The pro-swarm and anti-swarm contributions cancel charge-like exposure, with $q_{\text{net}} = 0$.
   - The assembly does not carry a stable charged-fermion-style six-site axial layer. Balanced $3P,3E$ language is weak-coupling bookkeeping for how the neutral channel is read during interaction, not a bound constituent inventory.
   - Near-planarity hides most of the internal ledger from exterior coupling. The remaining signal is a tiny phase and energy residue from the internal binaries.
 
@@ -44620,14 +44620,14 @@ paired with a suppressed neutrinoless double-beta rate and a sterile or right-ha
 
 #### Quantum Number Mapping
 
-This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. Its purpose is to tell the reader which structural features of the Noether core and axial layer are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
+This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. Its purpose is to tell the reader which structural features of the Noether swarm and axial layer are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
 
 ##### Purpose
 This document establishes the canonical dictionary translating **Tri-Binary Assembly Geometry** into **Standard Model (SM) Quantum Numbers**.
 
-For charged fermions and quarks, it adopts the **Noether Core + Axial Layer** model:
-1.  **The Noether Core:** A neutral, rotating tri-binary structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
-2.  **The Axial Layer:** A layer of 6 axial architrinos occupying polar sites on the Noether core, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
+For charged fermions and quarks, it adopts the **Noether Swarm + Axial Layer** model:
+1.  **The Noether Swarm:** A neutral, rotating tri-binary structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
+2.  **The Axial Layer:** A layer of 6 axial architrinos occupying polar sites on the Noether swarm, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
 
 Neutrinos are the current exception to this inventory model. They are treated as near-photon neutral pro/anti core pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
@@ -44643,44 +44643,44 @@ Note: **Mass is derived**, not a quantum number here; it comes from shielded int
     *   **Positrino ($P$):** positive-polarity architrino, labeled $+1\epsilon$ in electric bookkeeping.
     *   **Electrino ($E$):** negative-polarity architrino, labeled $-1\epsilon$ in electric bookkeeping.
 
-###### The Noether Core
+###### The Noether Swarm
 Every fermion contains a central engine composed of nested binary pairs.
 *   **Composition:** Each binary contains 1 Positrino + 1 Electrino (Neutral).
-*   **Generation-I Noether Core (Tri-Binary):** 3 Nested Binaries (Inner, Middle, Outer). Total 6 architrinos (3P, 3E).
+*   **Generation-I Noether Swarm (Tri-Binary):** 3 Nested Binaries (Inner, Middle, Outer). Total 6 architrinos (3P, 3E).
 *   **Nested-scale picture:** The three binaries should be read as a genuine radial hierarchy, not just as three items in a list. The middle binary sits inside the shielding domain of the outer binary, and the inner binary sits inside the shielding domains of both. In that sense, the higher-generation core may be viewed as what is revealed when the outer shielding tier is removed and the assembly is read further inward.
 *   **Chirality (Matter vs. Antimatter):**
     *   **Pro-Core:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
-    *   **Anti-Core:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
+    *   **Anti-Swarm:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
 *   **Net Charge:** Always $0$.
 
 ###### The Axial Layer
 *   **Sites:** 6 polar sites available for axial occupancy.
 *   **Occupancy:** Stable charged leptons and quarks have all 6 sites filled. Neutrinos do not carry a stable charged-fermion-style axial layer in the current architecture.
 *   **Function:** This layer interacts through external effective-field channels (EM, Weak).
-*   **Association picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials associate with the Noether core scaffold.
+*   **Association picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials associate with the Noether swarm scaffold.
 
 ###### Why Polar Sites Are Plausible Dwell Regions
 
-The current geometric picture needs a reason that the axial layer prefers the poles rather than wandering arbitrarily around the Noether core. The most conservative working hypothesis is that each binary axis creates a **polar calm region**: a local saddle or relative minimum in the rapidly varying superposed potential generated by the surrounding binary circulation.
+The current geometric picture needs a reason that the axial layer prefers the poles rather than wandering arbitrarily around the Noether swarm. The most conservative working hypothesis is that each binary axis creates a **polar calm region**: a local saddle or relative minimum in the rapidly varying superposed potential generated by the surrounding binary circulation.
 
 In plain terms, most of the core volume is a storm of whipping delayed potentials. Near the axis-defined poles, opposing contributions from the rotating binaries can partially cancel in the transverse directions while still preserving axial attachment. That does not mean the poles are force-free. It means they are the places where an axial architrino can remain phase-locked to the core with the least continual lateral correction.
 
 This gives a provisional dwelling mechanism for polar sites:
 
-- the Noether core supplies the neutral rotating scaffold,
+- the Noether swarm supplies the neutral rotating scaffold,
 - the binary axes define candidate attachment directions,
 - and the polar saddle structure selects six metastable docking regions for the axial layer.
 
 This remains a geometric hypothesis rather than a finished derivation. Its value is that it ties the six-site axial architecture to the already-existing delayed superposition picture, instead of treating the polar sites as unexplained labels pasted onto the core.
 
 ###### Total Constituent Count (Charged Gen I)
-*   **Noether core (6) + axial layer (6) = 12 architrinos.**
+*   **Noether swarm (6) + axial layer (6) = 12 architrinos.**
 
 ---
 
 ##### The Fermion Mapping (Generation I)
 
-Charged Generation I leptons and quarks utilize the full **tri-binary Noether core** (3 binaries). The neutrino entry records the active weak-sector mapping while deferring the physical neutral-pair geometry to [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+Charged Generation I leptons and quarks utilize the full **tri-binary Noether swarm** (3 binaries). The neutrino entry records the active weak-sector mapping while deferring the physical neutral-pair geometry to [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
 ###### Leptons
 
@@ -44697,7 +44697,7 @@ Charged Generation I leptons and quarks utilize the full **tri-binary Noether co
 *   **Note:** Antimatter is a geometric inversion of *both* the core braiding and the axial polarity.
 
 **The Electron Neutrino ($\nu_e$)**
-*   **Geometry:** Near-planar pro/anti Noether-core pairing, close to the fully locked coaxial contra-rotating pro/anti planar-pair photon channel but not fully locked into it.
+*   **Geometry:** Near-planar pro/anti Noether swarm pairing, close to the fully locked coaxial contra-rotating pro/anti planar-pair photon channel but not fully locked into it.
 *   **Stable Axial Layer:** None in the charged-fermion sense.
 *   **Weak Bookkeeping:** During charged-current coupling, the exposed neutral ledger can be represented as a balanced $3P,3E$ weak-coupling projection.
 *   **Net Charge:** $0$.
@@ -44845,7 +44845,7 @@ Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 
 ##### Color Charge and Strong Confinement
 
-In the Standard Model, quarks carry one of three color labels, while leptons are color singlets. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping, color is the **axis-exceptionality state** of a Noether core with an axial layer: one axis is distinguished relative to the other two, and the three possible choices span the quark color triplet.
+In the Standard Model, quarks carry one of three color labels, while leptons are color singlets. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping, color is the **axis-exceptionality state** of a Noether swarm with an axial layer: one axis is distinguished relative to the other two, and the three possible choices span the quark color triplet.
 
 ###### The Definition of Color
 Use the ordered core axes $(H,M,L)$.
@@ -44907,7 +44907,7 @@ for every tested baryon-violating channel $\mathcal{C}_{\Delta B\ne0}$, while th
 
 At the representation and charge-bookkeeping layer, the current dictionary recovers the Standard Model labels as:
 
-- **$SU(3)_c$ (color):** axis-exceptionality of the Noether core plus axial layer. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
+- **$SU(3)_c$ (color):** axis-exceptionality of the Noether swarm plus axial layer. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
 - **$SU(2)_L$ (weak isospin):** polarity of the **weak-coupling triad** (three exposed polar sites, or the effective near-photon weak projection for neutrinos). Left-handed fermions are doublets; right-handed fermions are singlets (weak-coupling triad hidden).
 - **$U(1)_Y$ (weak hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus core offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
 - **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving weak-coupling-triad charge/phase; see [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md).
@@ -44925,7 +44925,7 @@ This is not yet a derivation of local gauge dynamics. The remaining closure targ
 
 | Field | SU(3) | SU(2) | $Y$ | $Q = T_3 + Y/2$ | Geometric handle |
 | --- | --- | --- | --- | --- | --- |
-| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | weak-coupling triad P- or E-dominant on quark core; axis exceptionality sets color |
+| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | weak-coupling triad P- or E-dominant on quark Noether swarm; axis exceptionality sets color |
 | $u_R$ | 3 | 1 | +4/3 | +2/3 | weak-coupling triad hidden; asymmetry 5P/1E fixes $Q$ |
 | $d_R$ | 3 | 1 | -2/3 | -1/3 | weak-coupling triad hidden; asymmetry 2P/4E |
 | $\ell_L = (\nu_L, e_L)$ | 1 | 2 | -1 | $(0, -1)$ | neutrino uses effective near-photon weak ledger; electron uses axial-layer weak-coupling triad; both colorless |
@@ -45020,12 +45020,12 @@ For elementary fermions, the clean geometric bookkeeping is:
   $$
   B=0,\qquad L=\pm 1,
   $$
-- the sign is set by core orientation:
+- the sign is set by swarm orientation:
   $$
   s_{\text{core}}=
   \begin{cases}
-  +1,& \text{pro-core},\\
-  -1,& \text{anti-core}.
+  +1,& \text{pro-swarm},\\
+  -1,& \text{anti-swarm}.
   \end{cases}
   $$
 
@@ -45128,11 +45128,11 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 - **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ sterile branch of the near-photon neutral-pair sector; it would couple only via mixing terms (Dirac/Majorana choice left open).
 - **Empirical gate:** Precision bounds on $\sum_i m_i$, the lightest-neutrino mass, direct kinematic mass, and neutrinoless double-beta searches are allowed to revise the neutral sector, not the charged-fermion axial-layer rule. A positive $0\nu\beta\beta$ result would force a lepton-number-violating neutral-pair provenance channel; null results tighten the allowed Majorana-like or sterile mixing channel without canonizing a separate interpretation.
 - **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon pro/anti core pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
-- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by core shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (weak-coupling-triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
+- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by Noether swarm shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (weak-coupling-triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
 
 ##### The Generation Mechanism (Mass Hierarchy)
 
-For charged fermions and quarks, generations are defined by the depletion of coherent shielding support in the nested Noether core. The axial layer remains a six-site gauge-facing record, so generation changes exposed mass response and lifetime without deleting the H/M/L axial frame that carries color and electroweak bookkeeping.
+For charged fermions and quarks, generations are defined by the depletion of coherent shielding support in the nested Noether swarm. The axial layer remains a six-site gauge-facing record, so generation changes exposed mass response and lifetime without deleting the H/M/L axial frame that carries color and electroweak bookkeeping.
 
 Equivalently, the generation ladder can be read as a nested shielding hierarchy:
 
@@ -45317,7 +45317,7 @@ The explicit shared fitting packet lives in [Particle Masses](../../../../markdo
 
 ###### Core Depletion, Axial Vortices, and Lifetime (plain view)
 
-- **What the binaries do:** Each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether core and shares load into the Noether Sea.
+- **What the binaries do:** Each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether swarm and shares load into the Noether Sea.
 - **Gen I (tri-binary):** Three coherent shielding tiers give a stiff 3D support scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
 - **Gen II (bi-binary shielding branch):** The outer support tier is depleted. The H/M/L axial frame persists as a delayed branch record, but small perturbations reach the weakly bound axial layer more easily after causal propagation and relocking cycles. Lifetime drops.
 - **Gen III (uni-binary shielding branch):** Outer and middle support are depleted. The axial layer is metastable around the exposed inner engine, almost no outer screening remains for the deepest core energy, and the reaction corridor opens quickly. Very short-lived.
@@ -45366,16 +45366,16 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the weak-coupling triad.** The net charge state of the 3 exposed polar sites. (+1/2 = P-dominant, -1/2 = E-dominant). |
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any core offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which core axis is exceptional relative to the other two. |
-| **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-core spinor topology.** The tri-binary Noether core is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
+| **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-core spinor topology.** The tri-binary Noether swarm is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The same ordered-core spinor/exposure record exposes the weak-coupling triad to the ambient Noether Sea (interaction allowed).<br>• **Right ($R$):** The same record hides the weak-coupling triad in the particle's wake or shield (interaction blocked). Spin-projection language is observer-level shorthand until the $SU(2)\to SO(3)$ lift and $\Delta_{\mathrm{WCT}}$ row pass. |
-| **Generation** | I, II, III | Mass hierarchy (Flavor). | **Core Shielding Level.**<br>• **Gen I:** Tri-Binary (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (Exposed Core). |
-| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-core vs anti-core orientation. |
+| **Generation** | I, II, III | Mass hierarchy (Flavor). | **Noether Swarm Shielding Level.**<br>• **Gen I:** Tri-Binary (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (exposed Noether swarm). |
+| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + swarm orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-swarm vs anti-swarm orientation. |
 
 For the **Elementary Fermions** (Quarks and Leptons), this table is complete at the quantum-number bookkeeping layer. The neutrino's internal geometry remains delegated to the near-photon closure program.
 
 ###### Spin and the $4\pi$ Rule
 
-This is a closure target, not a completed proof. The tri-binary Noether core has three non-coplanar binary planes with ordered normals. Keeping the conserved angular-momentum ledger fixed, the visible ordered frame projects to $SO(3)$, while the causal-root and phase history may carry an additional sheet label.
+This is a closure target, not a completed proof. The tri-binary Noether swarm has three non-coplanar binary planes with ordered normals. Keeping the conserved angular-momentum ledger fixed, the visible ordered frame projects to $SO(3)$, while the causal-root and phase history may carry an additional sheet label.
 
 The target is that a $2\pi$ spatial rotation returns the visible ordered frame but transports the history-lifted state to the opposite sheet, while a $4\pi$ rotation restores the full state. If this lift exists, it supplies the geometric route to spin-$\tfrac{1}{2}$ behavior through the $SU(2)\to SO(3)$ double cover. If the history lift closes after $2\pi$, the ordered-core route does not derive fermion spinor behavior.
 
@@ -45410,7 +45410,7 @@ Two qualifications remain useful without adding new rows to the taxonomy:
     *   By convention, quarks have parity $P = +1$ and antiquarks have $P = -1$.
     *   **Mapping:** This is covered by the **Baryon/Lepton Number (Core Topology)** row.
         *   Pro-Core (Matter) = $+$.
-        *   Anti-Core (Antimatter) = $-$.
+        *   Anti-Swarm (Antimatter) = $-$.
     *   So, we have this covered implicitly.
 
 **Verdict:**
@@ -45428,7 +45428,7 @@ The weak-sector handoff now uses one shared exposure problem. The weak-coupling 
 
 - the left-channel selection rule must expose the triad for left-handed charged-current coupling and hide it for right-handed charged-current coupling,
 - CKM and PMNS closure must use the same exposed domain when defining weak-basis states,
-- weak-reaction provenance must record how the charged corridor routes the triad payload and whether final-state Noether core provenance is supplied by the corridor or by the local Noether Sea.
+- weak-reaction provenance must record how the charged corridor routes the triad payload and whether final-state Noether swarm provenance is supplied by the corridor or by the local Noether Sea.
 
 The first concrete test case is the $d\to u$ beta-reaction exposure operator in [Weak-Mixing CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). It uses the same weak-coupling-triad domain to gate left-handed docking, apply the $3E\to3P$ active-triad change, attach the $V_{ud}$ overlap factor, and hand the opposite $W^-$ transaction to the reaction ledger.
 
@@ -45473,7 +45473,7 @@ with $Z_e$ fixed by canonical field normalization when mapping to observer-level
 
 ###### Inertial response and magnetic-moment interface
 
-Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from trapped causal history, shielding, Noether-Sea coupling, and the orientation of the Noether core plus axial layer.
+Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from trapped causal history, shielding, Noether-Sea coupling, and the orientation of the Noether swarm plus axial layer.
 
 For a fermion assembly $A$, write the local response maps as
 $$
@@ -45559,7 +45559,7 @@ $$
 
 This chapter collects the current quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. The aim is narrower than a full QCD derivation. It is to state, in a single canonical reference, how the six quark flavors are built from the tri-binary program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state.
 
-At the substrate level, a quark is a Noether-core assembly with an axial layer. The core fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
+At the substrate level, a quark is a Noether swarm assembly with an axial layer. The core fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
 Illustrative diagrams can be added later. For now the chapter uses axis strings and tables so the catalog is explicit without waiting on artwork.
 
@@ -45567,12 +45567,12 @@ Illustrative diagrams can be added later. For now the chapter uses axis strings 
 
 ###### Core and axial split
 
-The quark construction used here follows the same Noether-core-plus-axial split already used in the fermion mapping chapters:
+The quark construction used here follows the same Noether swarm-plus-axial split already used in the fermion mapping chapters:
 
-- The **Noether core** is the neutral binary scaffold.
+- The **Noether swarm** is the neutral binary scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.
 
-For matter quarks, the core is a **pro-core**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
+For matter quarks, the core is a **pro-swarm**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
 
 - **Generation I:** tri-binary shielding branch, 6 coherent scaffold architrinos.
 - **Generation II:** bi-binary shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
@@ -45664,7 +45664,7 @@ Both families satisfy the same structural rule: two axes are in one class and on
 
 ###### Right-handed singlet bookkeeping
 
-The image-level implementation candidate for right-handed pro-core couplings matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
+The image-level implementation candidate for right-handed pro-swarm couplings matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
 
 For right-handed quarks:
 
@@ -45690,7 +45690,7 @@ The same count logic is what makes the right-handed quark sector look naturally 
 
 ###### Left-handed doublet bookkeeping (conjectural implementation candidate)
 
-The corresponding left-handed image suggests a useful implementation candidate for pro-core weak couplings:
+The corresponding left-handed image suggests a useful implementation candidate for pro-swarm weak couplings:
 
 - the left-handed quark states are the exposed-coupling branches of the same six-site axial inventories,
 - the up-type and down-type quarks then sit on the same electroweak doublet arc,
@@ -45727,7 +45727,7 @@ That makes the quark sector look less like a separate lookup table and more like
 
 ###### Anti-core mirror bookkeeping (conjectural reverse-engineered candidate)
 
-The two anti-core images suggest a clean mirror rule that is worth recording explicitly.
+The two anti-swarm images suggest a clean mirror rule that is worth recording explicitly.
 
 Start by charge-conjugating the quark axial inventories:
 
@@ -45742,8 +45742,8 @@ Start by charge-conjugating the quark axial inventories:
 
 The conjectural rule then reads:
 
-- **right-handed anti-core branches** behave as the electroweak mirrors of the pro-core left-handed doublets,
-- **left-handed anti-core branches** behave as the electroweak mirrors of the pro-core right-handed singlets.
+- **right-handed anti-swarm branches** behave as the electroweak mirrors of the pro-swarm left-handed doublets,
+- **left-handed anti-swarm branches** behave as the electroweak mirrors of the pro-swarm right-handed singlets.
 
 This is structurally attractive because it matches the Standard-Model statement already used elsewhere in the repo: charged-current weak interactions act on left-handed quarks and, equivalently, on right-handed antiquarks.
 At a broader bookkeeping level, it also suggests a compact charged-fermion rule: pro-left doublets mirror anti-right doublets, while pro-right singlets mirror anti-left singlets.
@@ -45752,12 +45752,12 @@ At a broader bookkeeping level, it also suggests a compact charged-fermion rule:
 
 In this reverse-engineered candidate:
 
-| State family | Axial count | Electric charge $Q$ | Right-handed anti-core assignment |
+| State family | Axial count | Electric charge $Q$ | Right-handed anti-swarm assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^R,\bar c^R,\bar t^R$ | $1P,5E$ | $-2/3$ | $T_3=-1/2,\ Y=-1/3$ |
 | $\bar d^R,\bar s^R,\bar b^R$ | $4P,2E$ | $+1/3$ | $T_3=+1/2,\ Y=-1/3$ |
 
-These are exactly the charge-conjugate mirrors of the pro-core left-handed quark doublet:
+These are exactly the charge-conjugate mirrors of the pro-swarm left-handed quark doublet:
 $$
 \left(+\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(-\frac{1}{2},-\frac{1}{3}\right),\qquad
 \left(-\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(+\frac{1}{2},-\frac{1}{3}\right).
@@ -45765,20 +45765,20 @@ $$
 
 ###### Left-handed antiquark bookkeeping
 
-For the left-handed anti-core branch, the same mirror logic gives:
+For the left-handed anti-swarm branch, the same mirror logic gives:
 
-| State family | Axial count | Electric charge $Q$ | Left-handed anti-core assignment |
+| State family | Axial count | Electric charge $Q$ | Left-handed anti-swarm assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^L,\bar c^L,\bar t^L$ | $1P,5E$ | $-2/3$ | $T_3=0,\ Y=-4/3$ |
 | $\bar d^L,\bar s^L,\bar b^L$ | $4P,2E$ | $+1/3$ | $T_3=0,\ Y=+2/3$ |
 
-These are the charge-conjugate mirrors of the pro-core right-handed singlets:
+These are the charge-conjugate mirrors of the pro-swarm right-handed singlets:
 $$
 \left(0,+\frac{4}{3}\right)\mapsto \left(0,-\frac{4}{3}\right),\qquad
 \left(0,-\frac{2}{3}\right)\mapsto \left(0,+\frac{2}{3}\right).
 $$
 
-The practical advantage of this rule is that it closes the quark-sector wheel without inventing a separate anti-core lookup system. Once the pro-core sector is specified, the anti-core sector follows by charge conjugation plus the handedness swap in weak exposure.
+The practical advantage of this rule is that it closes the quark-sector wheel without inventing a separate anti-swarm lookup system. Once the pro-swarm sector is specified, the anti-swarm sector follows by charge conjugation plus the handedness swap in weak exposure.
 
 This remains a conjectural bookkeeping layer derived by reverse engineering from the current weak-coupling pictures. It should not yet be treated as a proved weak-sector theorem.
 
@@ -45910,7 +45910,7 @@ $$
 $$
 on the exceptional axis should be treated as two micro-configurations within the same color sector unless a later derivation shows that one of them carries an additional observable phase, helicity bias, or stability difference. At present they are best regarded as implementation-level variants of the same color assignment.
 
-The corresponding antiquark is obtained by charge conjugation of the axial pattern together with anti-core braid orientation, giving the anti-red, anti-green, and anti-blue states.
+The corresponding antiquark is obtained by charge conjugation of the axial pattern together with anti-swarm braid orientation, giving the anti-red, anti-green, and anti-blue states.
 
 ###### Down-type color tables
 
@@ -45939,13 +45939,13 @@ A single quark is never colorless. Color neutrality appears only in composite st
 - **Mesons:** $3 \otimes \bar 3 \supset 1$.
 - **Baryons:** $3 \otimes 3 \otimes 3 \supset 1$.
 
-In the baryon picture used elsewhere in the repo, a color singlet is a closed 9-axis braid in which $H$, $M$, and $L$ exceptionality each appear once across the three quark cores.
+In the baryon picture used elsewhere in the repo, a color singlet is a closed 9-axis braid in which $H$, $M$, and $L$ exceptionality each appear once across the three quark Noether swarms.
 
 ##### Coupling rules to gluons
 
 ###### What a gluon is in this catalog
 
-In this framework, a gluon is not treated as a primitive point particle added on top of the quarks. It is an emergent axis-reconfiguration ribbon or braid segment running along a color flux tube in the Noether Sea. Its job is to transfer color phase and axis exceptionality between quark cores while preserving the quark inventory that defines flavor and electric charge.
+In this framework, a gluon is not treated as a primitive point particle added on top of the quarks. It is an emergent axis-reconfiguration ribbon or braid segment running along a color flux tube in the Noether Sea. Its job is to transfer color phase and axis exceptionality between quark Noether swarms while preserving the quark inventory that defines flavor and electric charge.
 
 The more detailed strong-sector picture remains in [gluons.md](../../../../markdown/aaa/assemblies/bosons/gluons.md) and [color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md). The present chapter only states the coupling rules required by the quark catalog.
 
@@ -45953,7 +45953,7 @@ The more detailed strong-sector picture remains in [gluons.md](../../../../markd
 
 A useful geometric refinement is to treat the gluon not as the flux tube alone but as the full local coupling complex built from:
 
-- the coupled flux-tube segment between quark cores,
+- the coupled flux-tube segment between quark Noether swarms,
 - the energetic source binaries whose motion generates the axial wake vortices,
 - and any captive axial potentials that are temporarily locked into that coupled vortex channel.
 
@@ -46016,7 +46016,7 @@ The following parts of the quark catalog are already fixed strongly enough to be
 
 - up-type axial count $5P,1E$,
 - down-type axial count $2P,4E$,
-- generation as core shielding level,
+- generation as Noether swarm shielding level,
 - architrino counts $12$, $10$, and $8$ for Generations I, II, and III,
 - color as axis exceptionality in the three-state $(H,M,L)$ basis,
 - gluon action as an $SU(3)$ color reconfiguration that preserves flavor inventory.
@@ -46055,7 +46055,7 @@ The Weinberg angle $\theta_W$ is the electroweak mixing angle of the Standard Mo
 
 This note records a constrained geometric hypothesis for fermion assemblies in $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
-- the **Noether core axes remain fixed** as the reference scaffold,
+- the **Noether swarm axes remain fixed** as the reference scaffold,
 - the **axial distribution** is allowed to rotate relative to that scaffold,
 - stable quark-like states may occupy a **discrete set of misalignment angles**,
 - the candidate branch increment for those angles is hypothesized, not derived here, to satisfy the existing six-pole electroweak value
@@ -46077,7 +46077,7 @@ We separate two structures that are often spoken about together but should not b
 
 ###### 1. Core frame
 
-The [Noether core](../../../../markdown/aaa/noether-swarm/noether-swarm.md) is the neutral tri-binary scaffold. It defines:
+The [Noether swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) is the neutral tri-binary scaffold. It defines:
 
 - generation via shielding level,
 - matter/antimatter braid orientation,
@@ -46206,7 +46206,7 @@ The following are allowed to rotate relative to the fixed core frame:
 
 The following are **not** rotating in this note:
 
-- the H/M/L Noether-core scaffold itself,
+- the H/M/L Noether swarm scaffold itself,
 - the binary nesting order that defines generation,
 - the matter/antimatter braid orientation,
 - the topological structure used to motivate spin-$\tfrac{1}{2}$ behavior.
@@ -46271,7 +46271,7 @@ For $2P,4E$:
 
 This suggests that down-type quarks need not minimize the same effective angle as up-type quarks. They may occupy a different branch even when the color azimuth is held fixed.
 
-This gives a possible path for distinguishing quark flavors geometrically without rotating the Noether core itself.
+This gives a possible path for distinguishing quark flavors geometrically without rotating the Noether swarm itself.
 
 ---
 
@@ -46321,7 +46321,7 @@ For the weak-sector closure route, this note owns the first gate: selecting the 
 
 The useful theorem target is:
 
-1. define the admissible axial-layer configuration space for a fixed Noether core,
+1. define the admissible axial-layer configuration space for a fixed Noether swarm,
 2. quotient by color-basis relabeling and pole symmetries,
 3. minimize $E_{\text{eff}}(\alpha,\phi_c)$ on the quotient space,
 4. pass the surviving branches to the weak-coupling-triad exposure calculation.
@@ -46430,7 +46430,7 @@ The fourth point matters. The discrete-angle idea is only worthwhile if it expla
 
 The sharpened hypothesis is:
 
-- the **Noether core stays fixed**,
+- the **Noether swarm stays fixed**,
 - the **axial frame** may rotate relative to that fixed core,
 - the electron sits at the symmetric limit $\alpha=0$,
 - quarks occupy nonzero misalignment branches because their axial layers are both charge-imbalanced and axis-exceptional,
@@ -46463,7 +46463,7 @@ The photon is the canonical electromagnetic transport channel. Unlike Standard M
 
 ##### Geometric Unit: The Coaxial Contra-Rotating Pro/Anti Planar Pair
 At the finest scale, the photon unit is a composite assembly:
-*   **Planar cores:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether-core assemblies.
+*   **Planar cores:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether swarm assemblies.
 *   **The pair:** Two planar cores form a pro/anti pair stacked **coaxially** on the propagation axis $\hat{\mathbf{e}}$.
 *   **Dynamics:** The pair is **contra-rotating** (clockwise / counter-clockwise).
 *   **Canonical description:** A photon is a **coaxial contra-rotating pro/anti planar pair**.
@@ -46486,7 +46486,7 @@ A photon manifests as a **phase-locked planar-pair mode train** of delayed actio
     *   If a photon-side event produces different outgoing assemblies, it is a Gate C reaction or pair channel. That record must separately state which target or Noether-Sea content supplies the identity-routed inventory for the new assemblies.
 
 ##### Environmental Coupling (Ambient Noether Sea)
-*   **Ambient Noether Sea:** The ambient Noether Sea is populated by neutral assemblies (Noether Cores).
+*   **Ambient Noether Sea:** The ambient Noether Sea is populated by neutral assemblies (Noether Swarms).
 *   **Attenuation & Refraction:**
     *   As the photon train passes through regions of varying density (dielectric media or dense Noether Sea), the planar mode **re-couples** transiently with ambient assemblies.
     *   **Refraction:** This transient recoupling and delay response lowers the effective photon-channel speed $c_\gamma$ relative to its weak homogeneous value.
@@ -46502,11 +46502,11 @@ The photon description above is the ontology-level target. The theorem-level pro
 
 | Gate | Closure target | Required recovery |
 | :--- | :--- | :--- |
-| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating pro/anti planar-pair branch from Noether-core and Noether-Sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
+| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating pro/anti planar-pair branch from Noether swarm and Noether-Sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
 | **Gate B: polarization and spin** | Derive the transverse ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
 | **Gate C: vertices and transitions** | Map emission, absorption, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
 
-Gate C treats blackbody behavior as an ensemble theorem target. It should not be read as a property of a single photon, a single excited Noether core, or a local source event by itself; the blackbody route requires repeated emission, capture, scattering, pair-channel exchange, and medium exchange to recover detailed balance for a photon bath.
+Gate C treats blackbody behavior as an ensemble theorem target. It should not be read as a property of a single photon, a single excited Noether swarm, or a local source event by itself; the blackbody route requires repeated emission, capture, scattering, pair-channel exchange, and medium exchange to recover detailed balance for a photon bath.
 
 The Aharonov-Bohm item in Gate C inherits the observer-level benchmark from [Gauge Symmetries](../../../../markdown/aaa/interactions/gauge-symmetries.md#aharonov-bohm-holonomy-benchmark). The photon and effective U(1) ledgers must recover a relative phase proportional to enclosed flux while the local force channel on the interferometer arms vanishes. This is a phase-ledger recovery target, not a claim that the gauge potential is a separate substrate object.
 
@@ -46542,7 +46542,7 @@ $$
 with finite branch constant $\Lambda_\gamma$. This branch keeps $\omega d/(c_f-c_\gamma)=O(1)$ while forcing $d\to0$ as $c_\gamma\to c_f$. A fixed-$d$ branch would generally make the photon channel frequency-dependent and is therefore a failure mode unless a separate cancellation is derived.
 
 Gate A is closed only when this branch proves the following recoveries in the same speed convention:
-- The planar-pair mode has no rest-state volumetric clock and therefore imports no rest proper-time branch from massive Noether-core assemblies.
+- The planar-pair mode has no rest-state volumetric clock and therefore imports no rest proper-time branch from massive Noether swarm assemblies.
 - The kinematic mass shell is null in the photon channel: $E_\gamma^2-\|\mathbf{p}_\gamma\|^2c_\gamma^2=0$, with $E_\gamma=h\nu$ and $p=h/\lambda$ recovered from the phase-cycle ledger.
 - The weak homogeneous branch identifies the measured photon speed with the same low-gradient limit used by clock-and-ruler synchronization, while keeping $c_f$ as the primitive wake speed rather than the directly measured observer speed.
 - The residual leakage terms for dispersion, birefringence, static charge exposure, and preferred-frame anisotropy fall below the empirical bounds before Gate B and Gate C add polarization and interaction vertices.
@@ -46836,13 +46836,13 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
 
 ##### Weak-Corridor Provenance
 
-The weak corridor is an event record, not a permanent container that owns the outgoing fermion inventory. Its provenance rows must identify which architrinos participate, which neutral Noether cores supply the scaffold, which payload moves through the corridor, and where the balancing recoil is stored.
+The weak corridor is an event record, not a permanent container that owns the outgoing fermion inventory. Its provenance rows must identify which architrinos participate, which neutral Noether swarms supply the scaffold, which payload moves through the corridor, and where the balancing recoil is stored.
 
-| Corridor event | Participating architrinos | Neutral Noether-core provenance | Corridor payload | Required ledger closure |
+| Corridor event | Participating architrinos | Neutral Noether swarm provenance | Corridor payload | Required ledger closure |
 | --- | --- | --- | --- | --- |
-| Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3P$ and active $3E$; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral core provenance; the corridor does not manufacture a new Noether core. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3P\to3E$, while emitting $W^-$ balances a source-side $3E\to3P$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether-Sea recoil must close across the source assembly, target assembly or decay products, corridor, and ambient Noether Sea. |
-| Quark charged current, $d_L \leftrightarrow u_L$ within a CKM-weighted weak basis | The active quark weak-coupling triad changes $3E\leftrightarrow3P$ while color axis-exceptionality and generation bookkeeping remain separate ledgers. | Source and product quark Noether cores provide the neutral scaffold and color record; CKM weighting belongs to overlap between weak basis and mass/branch basis, not to a new corridor inventory. | The corridor transports the compensating $\pm 6\epsilon$ payload for the active-triad swap and carries the energy-momentum needed for the branch transition. | Charge/polarity, baryon number, color-singlet embedding, spin/angular momentum, energy, momentum, and Noether-Sea recoil must all be accounted for in the full reaction ledger. |
-| Neutral current, $Z^0$ exchange | The weak-coupling-triad and shielded-triad records are read or rephased without a $3P\leftrightarrow3E$ swap. | The participating assemblies keep their neutral Noether-core provenance; no charged axial inventory is imported from the corridor. | No net charge payload; the corridor carries energy, momentum, phase, and vector angular-momentum transfer. | The event must close energy, momentum, spin/angular momentum, phase, wake, and Noether-Sea recoil while preserving electric charge and axial inventory. |
+| Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3P$ and active $3E$; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral core provenance; the corridor does not manufacture a new Noether swarm. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3P\to3E$, while emitting $W^-$ balances a source-side $3E\to3P$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether-Sea recoil must close across the source assembly, target assembly or decay products, corridor, and ambient Noether Sea. |
+| Quark charged current, $d_L \leftrightarrow u_L$ within a CKM-weighted weak basis | The active quark weak-coupling triad changes $3E\leftrightarrow3P$ while color axis-exceptionality and generation bookkeeping remain separate ledgers. | Source and product quark Noether swarms provide the neutral scaffold and color record; CKM weighting belongs to overlap between weak basis and mass/branch basis, not to a new corridor inventory. | The corridor transports the compensating $\pm 6\epsilon$ payload for the active-triad swap and carries the energy-momentum needed for the branch transition. | Charge/polarity, baryon number, color-singlet embedding, spin/angular momentum, energy, momentum, and Noether-Sea recoil must all be accounted for in the full reaction ledger. |
+| Neutral current, $Z^0$ exchange | The weak-coupling-triad and shielded-triad records are read or rephased without a $3P\leftrightarrow3E$ swap. | The participating assemblies keep their neutral Noether swarm provenance; no charged axial inventory is imported from the corridor. | No net charge payload; the corridor carries energy, momentum, phase, and vector angular-momentum transfer. | The event must close energy, momentum, spin/angular momentum, phase, wake, and Noether-Sea recoil while preserving electric charge and axial inventory. |
 
 ##### Massless Photon Versus Massive Weak Corridor
 
@@ -46938,7 +46938,7 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 #### Pair production (note)
 
 - This note covers photon-triggered conversion, not ordinary atomic or material absorption. Consuming the incoming photon means closing the free planar-pair ledger; it does not automatically mean that the outgoing fermion identities are inherited from the photon constituents.
-- A neutral Noether Pair should be treated as the local source architecture for spontaneous pro-anti fermion pair production. With sufficient energy input, a pair-conversion mode can unpack that neutral pair into a fermion and antifermion while returning the Noether-core bookkeeping to overall neutrality.
+- A neutral Noether Pair should be treated as the local source architecture for spontaneous pro-anti fermion pair production. With sufficient energy input, a pair-conversion mode can unpack that neutral pair into a fermion and antifermion while returning the Noether swarm bookkeeping to overall neutrality.
 - In this framing, the key point is not limited to the electron channel. A Noether Pair can furnish the neutral core content needed for any pro-anti fermion pair, provided the supplied energy and axial-bookkeeping conditions match the target pair.
 - In photon-photon pair production, the photons supply the energy; the Sea contributes the neutral Noether Pair, and the axial excess arranges into the outgoing pro/anti fermion inventories. Electric bookkeeping and architrino counts stay balanced because the Noether-pair source remains neutral after the conversion bookkeeping closes.
 - The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti core pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon decay claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
@@ -46975,13 +46975,13 @@ This chapter should be read together with [Quarks](../../../../markdown/aaa/asse
 
 #### The Geometric Origin of Color Charge
 
-In the Standard Model, color is an abstract $SU(3)$ label. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether core with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md).
+In the Standard Model, color is an abstract $SU(3)$ label. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether swarm with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md).
 
 ##### The Tri-Binary Substrate
 
 The [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) is populated by high-energy, small-scale tri-binaries, often in tightly bound pro/anti groups. These form an ambient Noether Sea of color-singlet cores.
 
-A quark core also has three ordered axes $(H,M,L)$, each carrying two polar sites.
+A quark Noether swarm also has three ordered axes $(H,M,L)$, each carrying two polar sites.
 
 - **Axial layer:** 6 polar sites total, 2 per axis.
 - **Symmetry breaking:** quarks do not keep the three axes equivalent.
@@ -47015,11 +47015,11 @@ The conventional labels Red, Green, and Blue are therefore basis names for the t
 
 #### The Gluon: Emergent Vortex Dynamics
 
-In this model, the gluon is not a fundamental point particle but an emergent meta-assembly: a dynamic link formed by the coupling of potential vortices between quark cores.
+In this model, the gluon is not a fundamental point particle but an emergent meta-assembly: a dynamic link formed by the coupling of potential vortices between quark Noether swarms.
 
 ##### Polar Vortices and Flux Tubes
 
-- **Source:** each circulating binary within the Noether core generates a pair of persistent, high-intensity polar vortices along its rotation axis.
+- **Source:** each circulating binary within the Noether swarm generates a pair of persistent, high-intensity polar vortices along its rotation axis.
 - **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether Sea into a **flux tube**, a coherent bundle of ambient tri-binaries carrying the open color corridor between exceptional-axis sectors.
 - **The glue:** the strong force is the tension of these coupled vortices trying to shorten and restore the surrounding Noether Sea to its isotropic ground state.
 
@@ -47053,7 +47053,7 @@ At the Standard Model level, gluons are spin-1 gauge bosons. Because color is co
 
 - **Vector channel:** the open color corridor selects a spatial axis and transverse twist data. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that geometry is the candidate substrate for the observer-level spin-1 representation; it is not a derivation merely from the fact that a flux tube has a direction.
 - **Helicity limit:** in the massless short-distance gauge-boson limit, the physical gluon polarizations are transverse helicity states. The vortex-bundle twist must reproduce those helicity degrees of freedom where QCD treats gluons as propagating internal degrees of freedom.
-- **Angular-momentum ledger:** during exchange, the rotating vortex link is the candidate carrier of spin and orbital angular momentum between quark cores. The full hadron accounting must still include quark-core spinor structure, color-corridor circulation, and flux-network response, but that accounting remains open until the reusable angular-momentum ledger has been derived.
+- **Angular-momentum ledger:** during exchange, the rotating vortex link is the candidate carrier of spin and orbital angular momentum between quark Noether swarms. The full hadron accounting must still include quark Noether swarm spinor structure, color-corridor circulation, and flux-network response, but that accounting remains open until the reusable angular-momentum ledger has been derived.
 
 ---
 
@@ -47138,12 +47138,12 @@ Key properties of hadrons:
 
 Protons and neutrons are the most familiar hadrons; they make up atomic nuclei. Mesons are typically unstable and mediate strong-force effects in nuclear processes.
 
-While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether cores](../../../../markdown/aaa/noether-swarm/noether-swarm.md) connected by color flux tubes.
+While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether swarms](../../../../markdown/aaa/noether-swarm/noether-swarm.md) connected by color flux tubes.
 
 Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations.
 
 ##### Geometric variational lens
-The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic response** of the Noether Sea to topological defects (quark cores). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are stable minima, while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a dissociation in the medium.
+The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic response** of the Noether Sea to topological defects (quark Noether swarms). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are stable minima, while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a dissociation in the medium.
 * **Stability criterion:** An assembly is stable while its trajectory in configuration space remains inside a basin where the binding action is a **local minimum**. **Dissociation** means the trajectory reaches a region where that action loses its minimum, so gradient flow carries the system toward another basin and into a new assembly pattern.
 
 **Confinement as topological shear (nonlinear elasticity lens)**
@@ -47160,15 +47160,15 @@ Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, that bosonic-statistics statement is a downstream target of [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md) and [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). The pion section may use the observer-level boson label, but it does not independently derive Pauli exclusion or spin-statistics closure.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A pion is a **two‑core (quark + antiquark) assembly**: one Generation‑I quark core (matter chirality) and one Generation‑I antiquark core (antimatter chirality) linked by a shared flux tube.
+A pion is a **two‑core (quark + antiquark) assembly**: one Generation‑I quark Noether swarm (matter chirality) and one Generation‑I antiquark Noether swarm (antimatter chirality) linked by a shared flux tube.
 
 *   **Structure:** $u\bar{d}$ ($\pi^+$), $d\bar{u}$ ($\pi^-$), or a superposition of $u\bar{u}/d\bar{d}$ ($\pi^0$).
-*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the pro-core and anti-core achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether Sea.
+*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the pro-swarm and anti-swarm achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether Sea.
 
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether Sea between them.
 *   **Mechanism:** A proton interacts with the Noether Sea, associating a local tri-binary into a transient $u\bar{d}$ assembly (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the effective pion-like loop spans the neighboring baryon record. The local Noether-Sea configuration relaxes once the loop dissociates or re-associates into the surrounding nuclear assemblies.
-*   **Topology:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger tri-core baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
+*   **Topology:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger nested shell swarm baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 **The Yukawa Mechanism (Assembly Tension):**
 *   **Range vs. mass:** The force range scales as $R \sim \hbar/mc$ because heavier assemblies (higher internal curvature) expose stronger Noether-Sea response and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.
@@ -47237,9 +47237,9 @@ In the current hadron-level shorthand, if the Pion is the ground state of the $q
 These are excited states of the nucleon. At the observer-level Standard Model description, the $\Delta^{++}$ ($uuu$) is particularly famous because it consists of three identical fermions in the same state, which required the **color** quantum number so the total baryon state can satisfy Pauli exclusion. They are spin-$\tfrac{3}{2}$.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Delta baryon is a standard Tri-Core assembly (like a proton) but with the three cores treated in a **parallel spin alignment** (spin-$\tfrac{3}{2}$) rather than the Proton's mixed alignment (spin-$\tfrac{1}{2}$); compare the ground-state nucleon picture in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-core spinor proof.
+A Delta baryon is a standard Nested Shell Swarm assembly (like a proton) but with the three cores treated in a **parallel spin alignment** (spin-$\tfrac{3}{2}$) rather than the Proton's mixed alignment (spin-$\tfrac{1}{2}$); compare the ground-state nucleon picture in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-core spinor proof.
 
-*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To satisfy the observer-level Pauli constraint without geometric collapse, the hadron-level target is that they occupy the three distinct color sectors, so the exceptional-axis labels H, M, and L each appear once across the tri-core. This is a color-singlet mapping target until the spin-statistics proof supplies the exclusion rule.
+*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To satisfy the observer-level Pauli constraint without geometric collapse, the hadron-level target is that they occupy the three distinct color sectors, so the exceptional-axis labels H, M, and L each appear once across the nested shell swarm. This is a color-singlet mapping target until the spin-statistics proof supplies the exclusion rule.
 *   **Dissociation:** The Delta dissociates rapidly ($\sim 10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; once compression/spin lifts it off its local minimum, the assembly follows the gradient to the nucleon basin and sheds a pion.
 
 **Deltas in Dense Matter (EoS)**
@@ -47279,11 +47279,11 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 - **Rho mesons:** Candidate spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
 
 **Reading SM quantum numbers inside $\mathbb{A}\mathbb{A}\mathbb{A}$**
-- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Anti-core flips signs. Meson pairs cancel most axes; tri-core permutations give $p=+1$, $n=0$.
-- **Baryon number $B$:** +1/3 per matter core, −1/3 per anti-core. Mesons sum to 0; baryons sum to 1.
+- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Anti-core flips signs. Meson pairs cancel most axes; nested shell swarm permutations give $p=+1$, $n=0$.
+- **Baryon number $B$:** +1/3 per matter core, −1/3 per anti-swarm. Mesons sum to 0; baryons sum to 1.
 - **Strangeness $S$ (and heavier flavors):** Observer-level flavor tags are assigned after branch selection: a selected strange shielding branch gives $S=-1$, and its anti-branch gives $S=+1$. This does not assert that every down-type axial family is an additional observed species.
 - **Isospin $I_3$:** Swap $u\leftrightarrow d$ within the shared axis ordering; each swap flips $I_3$ by 1/2. The $\pi/\rho$ triplets and $K$ doublet follow directly.
-- **Spin/parity $J^P$:** Provisional bridge from core spin alignment + flux mode. Spin‑0 mesons = anti‑aligned cores (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned cores or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state tri-cores).
+- **Spin/parity $J^P$:** Provisional bridge from core spin alignment + flux mode. Spin‑0 mesons = anti‑aligned cores (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned cores or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state nested shell swarms).
 - **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or over‑twist (ρ, Δ, kaon torsion) dissociate fast; non-inverse pairs that require a weak corridor (π±, $K$) live longer.
 
 ##### SM quantum numbers (cheat sheet for particles discussed)
@@ -47310,7 +47310,7 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 **Notation**
 
-* An overbar on the quark symbol denotes an anti-core.
+* An overbar on the quark symbol denotes an anti-swarm.
 * Constituents are concatenated with $\otimes$ to show distinct cores (baryons chain three cores; mesons pair a quark with an antiquark).
 * Each matrix lists the three tri-binary axes; the ordering is arbitrary, but all constituents in the same row use the **same** ordering.
 * Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ `+` = positrino pair, `-` = electrino pair, `0` = mixed positrino/electrino.
@@ -47325,17 +47325,17 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 **Color/flux neutrality schematics**
 
-*Baryon tri-core (proton-like permutations)*
+*Baryon nested shell swarm (proton-like permutations)*
 $u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d:\left[\begin{smallmatrix}0\\+\\+\end{smallmatrix}\right]\;\;\Rightarrow\;$ axes permuted across cores $\Rightarrow$ net color 0.
 
 *Meson quark–antiquark pairing*
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
 
-**Matrix key:** Each bracketed column is a core’s three binary axes (order shared within the row). `+` = positrino pair, `-` = electrino pair, `0` = mixed pair. An overbar on the quark letter denotes an anti-core.
+**Matrix key:** Each bracketed column is a core’s three binary axes (order shared within the row). `+` = positrino pair, `-` = electrino pair, `0` = mixed pair. An overbar on the quark letter denotes an anti-swarm.
 
 | Particle | PDG symbol | SM class | SM quark content | $\mathbb{A}\mathbb{A}\mathbb{A}$ axis string per constituent | $\mathbb{A}\mathbb{A}\mathbb{A}$ highlight |
 | --- | --- | --- | --- | --- | --- |
-| Proton (p) | $p$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Color-neutral tri-core, ground state. |
+| Proton (p) | $p$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Color-neutral nested shell swarm, ground state. |
 | Neutron (n) | $n$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Tri-core with net charge 0, stable. |
 | Pion + | $\pi^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Non-inverse cores lack the fast inverse-pair radiative route; free dissociation uses a $W^+$ corridor, while in-medium exchange is residual strong. |
 | Pion 0 | $\pi^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Isospin-triplet superposition; inverse matrices open the Gate C two-photon route $\pi^0\to\gamma\gamma$ and a very short lifetime. |
@@ -47343,7 +47343,7 @@ $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\le
 | Kaon + | $K^{+}$ | meson | $u\bar s$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Gen-I↔Gen-II bridge; torsion phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ drives CP/oscillation. |
 | Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Neutral kaon oscillations set by torsion energy. |
 | Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Charge −1 kaon; roles swapped vs $K^+$. |
-| $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; flips core/anti-core. |
+| $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; flips core/anti-swarm. |
 | Rho + | $\rho^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |
 | Rho 0 | $\rho^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Spin-$1$ mapping target for an excited neutral pion superposition; same axes, tighter flux. |
 | Rho - | $\rho^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |
@@ -47376,7 +47376,7 @@ The Noether Sea enters this picture as ambient substrate contents, not as the fi
 
 The Noether-Sea transport picture is useful for separating reversible medium response from dissipative resistance. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
 
-For the underlying assembly carrier of this medium, see [Noether Core](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
+For the underlying assembly carrier of this medium, see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
 
 #### Hydrogen as a Four-Fermion Boundary Test
 
@@ -47390,9 +47390,9 @@ e^-
 \left(uud\right)_{\mathrm{color\ singlet}}.
 $$
 
-Each of those four fermions carries a Noether core plus an axial layer. The proton's three quark cores should not be read as three free objects floating independently in the Noether Sea; they are joined by the color-singlet strong-sector closure of the proton. The electron assembly is external to that proton closure and occupies an atomic resonance envelope determined by the nuclear causal-wake envelope, local Noether-Sea state, and its own assembly ledger.
+Each of those four fermions carries a Noether swarm plus an axial layer. The proton's three quark Noether swarms should not be read as three free objects floating independently in the Noether Sea; they are joined by the color-singlet strong-sector closure of the proton. The electron assembly is external to that proton closure and occupies an atomic resonance envelope determined by the nuclear causal-wake envelope, local Noether-Sea state, and its own assembly ledger.
 
-The local spacetime description is therefore not the four Noether cores themselves. It is the coarse-grained Noether-Sea response around, between, and outside the four matter assemblies. At a chosen resolution $\ell$, write schematically
+The local spacetime description is therefore not the four Noether swarms themselves. It is the coarse-grained Noether-Sea response around, between, and outside the four matter assemblies. At a chosen resolution $\ell$, write schematically
 
 $$
 \theta_{\mathrm{sea}}^{(\ell)}(\mathbf{x},t)
@@ -47421,7 +47421,7 @@ $$
 \delta\theta_{\mathrm{H}}^{(\ell)}(\mathbf{x},t),
 $$
 
-where $\theta_0$ is the weak homogeneous reference state, $\delta\theta_{\odot}^{(\ell)}$ is the gentle solar-system background bias, and $\delta\theta_{\mathrm{H}}^{(\ell)}$ is the localized hydrogen disturbance. This is the sense in which local spacetime is a medium response, not the four matter Noether cores themselves.
+where $\theta_0$ is the weak homogeneous reference state, $\delta\theta_{\odot}^{(\ell)}$ is the gentle solar-system background bias, and $\delta\theta_{\mathrm{H}}^{(\ell)}$ is the localized hydrogen disturbance. This is the sense in which local spacetime is a medium response, not the four matter Noether swarms themselves.
 
 The exact boundary between a fermion and the Noether Sea is a closure-ledger boundary before it is a surface in space. Let $\Lambda_f(t)$ denote the reduced closure label of a fermion assembly and let $\mathcal{A}_f(t)$ denote the architrinos and bound wake-exchange records phase-locked to that label. The exact inventory boundary is
 
@@ -47503,7 +47503,7 @@ D_{\mathrm{penetration}}
 1.
 $$
 
-The clock threshold marks where weak locked-wake tails can bias local rates. The corridor threshold marks where an oriented exchange path can remain coherent. The packing threshold marks where a neighboring Noether core or assembly can remain stably adjacent without persistent phase disruption. The penetration threshold marks where a trajectory enters wake dominance strong enough to destabilize transit through the fermion envelope. These are different cuts through one diagnostic, not four different definitions of a fermion.
+The clock threshold marks where weak locked-wake tails can bias local rates. The corridor threshold marks where an oriented exchange path can remain coherent. The packing threshold marks where a neighboring Noether swarm or assembly can remain stably adjacent without persistent phase disruption. The penetration threshold marks where a trajectory enters wake dominance strong enough to destabilize transit through the fermion envelope. These are different cuts through one diagnostic, not four different definitions of a fermion.
 
 In the hydrogen case, the branch weights are therefore ledger projectors rather than electron-cloud probabilities or fitted radial profiles:
 
@@ -47598,7 +47598,7 @@ $$
 \right],
 $$
 
-where $\Delta_{\mathrm{cad,H}}$ compares the branch cadence $\nu_j(t_0)$ with the smoothed ambient Noether-Sea cadence $\bar\nu_{\mathrm{sea,H}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$ in $\Omega_{\mathrm H}$, and $\Delta_{\mathrm{bal,H}}$ measures the remaining neutral-pairing and orientation-balance residual after the electron, quark, and strong-sector ledgers are removed. A branch locked to the electron, to any of the three quark assemblies, or to the proton's color-singlet corridor is therefore rejected from the ambient denominator even when it lies inside the same spatial coarse window. A neighboring neutral Noether core in the same window is retained when it is not phase-locked to those matter ledgers and matches the local equilibrium record.
+where $\Delta_{\mathrm{cad,H}}$ compares the branch cadence $\nu_j(t_0)$ with the smoothed ambient Noether-Sea cadence $\bar\nu_{\mathrm{sea,H}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$ in $\Omega_{\mathrm H}$, and $\Delta_{\mathrm{bal,H}}$ measures the remaining neutral-pairing and orientation-balance residual after the electron, quark, and strong-sector ledgers are removed. A branch locked to the electron, to any of the three quark assemblies, or to the proton's color-singlet corridor is therefore rejected from the ambient denominator even when it lies inside the same spatial coarse window. A neighboring neutral Noether swarm in the same window is retained when it is not phase-locked to those matter ledgers and matches the local equilibrium record.
 
 The strong-sector ledger $\mathcal{L}_{\mathrm{strong}}^{uud}$ is part of the proton/hydrogen matter record for corridor calculations. It is not counted as ambient Noether Sea merely because it lies between the three quark assemblies. Channel intensity then follows the same sector-exposure rule,
 
@@ -47708,10 +47708,10 @@ This resolves the scale question in layered form:
 
 | Layer | What is being resolved | Boundary meaning |
 | --- | --- | --- |
-| Fermion core | One Noether core plus axial layer | Closure-ledger membership and dynamic exclusion envelope |
+| Fermion core | One Noether swarm plus axial layer | Closure-ledger membership and dynamic exclusion envelope |
 | Proton | Three quark fermion assemblies in color-singlet closure | Shared strong-sector envelope, not three isolated quark surfaces |
 | Hydrogen atom | Proton closure plus electron assembly resonance | Electron orbital envelope around the nuclear causal-wake source |
-| Local spacetime | Coarse-grained Noether-Sea response | Medium variables averaged over ambient Noether cores, with matter assemblies acting as defects and sources |
+| Local spacetime | Coarse-grained Noether-Sea response | Medium variables averaged over ambient Noether swarms, with matter assemblies acting as defects and sources |
 
 The corresponding resolution hierarchy is
 
@@ -47723,7 +47723,7 @@ R_{u,d}\lesssim R_p,
 R_p\ll R_{\mathrm{orb}},
 $$
 
-where $R_{\mathrm{NC},f}$ is the Noether-core envelope scale of fermion $f$, $R_f$ is the fermion's effective exclusion scale including axial-layer exposure, $R_p$ is the proton color-singlet envelope scale, and $R_{\mathrm{orb}}$ is the electron resonance-envelope scale. Atomic medium calculations should use a window satisfying
+where $R_{\mathrm{NC},f}$ is the Noether swarm envelope scale of fermion $f$, $R_f$ is the fermion's effective exclusion scale including axial-layer exposure, $R_p$ is the proton color-singlet envelope scale, and $R_{\mathrm{orb}}$ is the electron resonance-envelope scale. Atomic medium calculations should use a window satisfying
 
 $$
 d_N\ll \ell_{\mathrm{atom}}\ll R_{\mathrm{orb}},
@@ -47782,7 +47782,7 @@ The proof route has four candidate lemmas:
 
 1. **Ledger-complement lemma:** if $\mathcal A_{\mathrm H}(t)$ is the exact hydrogen matter ledger, then $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(t)$ contains no architrino, bound wake-exchange record, or strong-sector corridor record phase-locked to $\mathcal A_{\mathrm H}(t)$.
 2. **Proton-envelope lemma:** the $uud$ color-singlet ledger projects to a stable $\mathcal W_{p,X}^{\mathrm{locked}}$ at atomic resolution, while changes below $\ell_{\mathrm{proton}}$ affect only retained multipole, shielding, or corridor coefficients.
-3. **Electron-envelope lemma:** the electron assembly remains external to the proton closure and contributes through $\mathcal B_e$ and $D_{e,X}$, not by redefining the electron's Noether-core boundary as the orbital envelope.
+3. **Electron-envelope lemma:** the electron assembly remains external to the proton closure and contributes through $\mathcal B_e$ and $D_{e,X}$, not by redefining the electron's Noether swarm boundary as the orbital envelope.
 4. **Response-consistency lemma:** the same $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(t)$ and locked-wake records determine the density, delay, cadence, envelope, and response-tensor entries of $\Theta_{\mathrm H,X}^{(\ell)}$ without separate fitted rules for spectra, clocks, or transport.
 
 The first computable test is therefore a channel-by-channel scan in which $X$ is chosen, $\ell$ is varied inside the admissible window, and the extracted pair
@@ -47795,7 +47795,7 @@ D_{p,X},D_{e,X}
 \Theta_{\mathrm H,X}^{(\ell)}
 $$
 
-remains stable under refinement up to the declared sensitivity of the channel. The theorem target fails if a matter Noether core is counted as ambient medium, if the three proton quark assemblies are treated as free Noether cores, if the electron resonance envelope is treated as the electron's core boundary, if $n$ and $\chi_{\text{sea}}$ are merged, or if different response maps must be fitted independently for the same hydrogen branch.
+remains stable under refinement up to the declared sensitivity of the channel. The theorem target fails if a matter Noether swarm is counted as ambient medium, if the three proton quark assemblies are treated as free Noether swarms, if the electron resonance envelope is treated as the electron's core boundary, if $n$ and $\chi_{\text{sea}}$ are merged, or if different response maps must be fitted independently for the same hydrogen branch.
 
 #### Hydrogen Channel-Scan Proof Target
 
@@ -47971,7 +47971,7 @@ S_{ij},\,
 \right)^{(\ell)}_E,
 $$
 
-where $\Gamma_N$ is the local Noether-Sea cadence-stretch diagnostic, $(\lambda,\xi)$ are the envelope scale and shape records inherited from Noether-core geometry, and $\mathcal M_{\text{sea}}^{ab}$ is the medium-response tensor that later connects inertial and gradient response. Nuclear terms first determine the coarse source envelope $\mathcal W_{\text{nuc}}$; electron-envelope terms then determine resonance, exclusion, and spectral response as in [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md); lattice and pressure terms enter only when a material environment supplies bonding corridors or transport constraints, as in [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md). Ambient density and delay remain separate baseline variables rather than element properties.
+where $\Gamma_N$ is the local Noether-Sea cadence-stretch diagnostic, $(\lambda,\xi)$ are the envelope scale and shape records inherited from Noether swarm geometry, and $\mathcal M_{\text{sea}}^{ab}$ is the medium-response tensor that later connects inertial and gradient response. Nuclear terms first determine the coarse source envelope $\mathcal W_{\text{nuc}}$; electron-envelope terms then determine resonance, exclusion, and spectral response as in [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md); lattice and pressure terms enter only when a material environment supplies bonding corridors or transport constraints, as in [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md). Ambient density and delay remain separate baseline variables rather than element properties.
 
 For directional or pressure-sensitive comparisons, use the tensor version of the same split:
 
@@ -48017,7 +48017,7 @@ n,P,T,\mathcal B_Y
 \right).
 $$
 
-The hypothesis behind dense iron-bearing phases is then not that the element symbol `Fe` directly sources a denser Noether Sea. It is that the realized nuclear inventory, electron branch, metallic bonding branch, and pressure state may make the iron-rich branch more compatible with high normalized Noether-core density than a silicate branch:
+The hypothesis behind dense iron-bearing phases is then not that the element symbol `Fe` directly sources a denser Noether Sea. It is that the realized nuclear inventory, electron branch, metallic bonding branch, and pressure state may make the iron-rich branch more compatible with high normalized Noether swarm density than a silicate branch:
 
 $$
 \frac{\partial}{\partial n}
@@ -48037,9 +48037,9 @@ This map imposes four local failure tests:
 
 #### Angular-Momentum Handoff
 
-The immediate atomic target is to recover observer-level orbital quantum numbers from electron assemblies moving in an external nuclear and Noether-Sea environment. That target is separate from the internal rotational action of the electron's Noether-core assembly. A later atomic-spin pass must show how spin-orbit and hyperfine structure arise when the external resonance envelope couples to the completed internal spin ledger and to the measurement-response model. Until then, this chapter should treat shell filling and exclusion language as effective atomic bookkeeping inherited from the spin-statistics proof program.
+The immediate atomic target is to recover observer-level orbital quantum numbers from electron assemblies moving in an external nuclear and Noether-Sea environment. That target is separate from the internal rotational action of the electron's Noether swarm assembly. A later atomic-spin pass must show how spin-orbit and hyperfine structure arise when the external resonance envelope couples to the completed internal spin ledger and to the measurement-response model. Until then, this chapter should treat shell filling and exclusion language as effective atomic bookkeeping inherited from the spin-statistics proof program.
 
-The foundation-up version begins with the nucleus and its constituent Noether-core ledgers. A proton-electron hydrogen comparison is the cleanest first case, but the same level distinction applies to all atoms: the electron assembly responds to the combined causal-wake envelope of the nucleus, the local Noether Sea, and other electron assemblies. The proof direction is therefore downstream. First derive the integer-closed Noether-core ledgers of the nuclear constituents, then coarse-grain their emitted causal wakes into an effective envelope, and only then recover the observer-level orbital labels $(n,\ell,m)$ as resonance labels of the external electron envelope. Those labels should not be used backward as proof of the electron's internal Noether-core spinor state or of the nuclear core ledger.
+The foundation-up version begins with the nucleus and its constituent Noether swarm ledgers. A proton-electron hydrogen comparison is the cleanest first case, but the same level distinction applies to all atoms: the electron assembly responds to the combined causal-wake envelope of the nucleus, the local Noether Sea, and other electron assemblies. The proof direction is therefore downstream. First derive the integer-closed Noether swarm ledgers of the nuclear constituents, then coarse-grain their emitted causal wakes into an effective envelope, and only then recover the observer-level orbital labels $(n,\ell,m)$ as resonance labels of the external electron envelope. Those labels should not be used backward as proof of the electron's internal Noether swarm spinor state or of the nuclear core ledger.
 
 A schematic handoff is
 
@@ -48053,7 +48053,7 @@ $$
 R_{n\ell}(r)Y_\ell^m(\theta,\phi).
 $$
 
-Here $\bigl(k_I,k_M,k_O,\mathcal R\bigr)_{\text{nuc}}$ abbreviates the integer winding and causal-root bookkeeping of the relevant nuclear Noether-core ledgers, while $\mathcal W_{\text{nuc}}$ denotes the effective nuclear causal-wake envelope after coarse-graining those ledgers. The right-hand side is the standard observer-level recovery form that the electron assembly must reproduce in central-potential limits.
+Here $\bigl(k_I,k_M,k_O,\mathcal R\bigr)_{\text{nuc}}$ abbreviates the integer winding and causal-root bookkeeping of the relevant nuclear Noether swarm ledgers, while $\mathcal W_{\text{nuc}}$ denotes the effective nuclear causal-wake envelope after coarse-graining those ledgers. The right-hand side is the standard observer-level recovery form that the electron assembly must reproduce in central-potential limits.
 
 For central-potential comparisons, the specific orbital recovery gate is ordinary $2\pi$ azimuthal closure and angular regularity:
 
@@ -48065,7 +48065,7 @@ $$
 m\in\{-\ell,\ldots,\ell\}.
 $$
 
-Those labels describe the effective electron-assembly envelope around the nucleus. They should not be read as the internal Noether-core spinor ledger of the electron itself.
+Those labels describe the effective electron-assembly envelope around the nucleus. They should not be read as the internal Noether swarm spinor ledger of the electron itself.
 
 The sharper recovery target is a residual on the declared envelope extractor. For an electron assembly branch $\mathcal B_e$, local Noether-Sea record $\theta_{\mathrm{sea}}^{(\ell)}$, central-potential approximation $V_{\mathrm{eff}}$, and record window $W$, write
 
@@ -48112,7 +48112,7 @@ $$
 }
 $$
 
-tests azimuthal single-valuedness, $\Delta_{\Omega}$ tests the angular operator against $\ell(\ell+1)$ and $m$, $\Delta_{\ell m}$ enforces $\ell\in\mathbb N_0$, $m\in\mathbb Z$, and $|m|\le\ell$, and $\Delta_{\mathrm{int}}$ checks that the observer-level orbital envelope has not been mistaken for the internal Noether-core spin ledger. The orbital row is promotable only when all five residuals pass for the same envelope branch.
+tests azimuthal single-valuedness, $\Delta_{\Omega}$ tests the angular operator against $\ell(\ell+1)$ and $m$, $\Delta_{\ell m}$ enforces $\ell\in\mathbb N_0$, $m\in\mathbb Z$, and $|m|\le\ell$, and $\Delta_{\mathrm{int}}$ checks that the observer-level orbital envelope has not been mistaken for the internal Noether swarm spin ledger. The orbital row is promotable only when all five residuals pass for the same envelope branch.
 
 ### Nucleon Structure
 
@@ -48124,18 +48124,18 @@ This chapter fixes the canonical proton and neutron picture used by the nuclear 
 
 #### Core Claim
 
-A nucleon is a confined three-quark color-singlet assembly built from three Generation-I quark cores linked by shared strong-sector flux structure. In the present architecture:
+A nucleon is a confined three-quark color-singlet assembly built from three Generation-I quark Noether swarms linked by shared strong-sector flux structure. In the present architecture:
 
-- a **proton** is the ground-state `uud` tri-core,
-- a **neutron** is the ground-state `udd` tri-core.
+- a **proton** is the ground-state `uud` nested shell swarm,
+- a **neutron** is the ground-state `udd` nested shell swarm.
 
-Each constituent quark is itself a Noether-core assembly with an axial layer of the kind cataloged in [quarks.md](../../../../markdown/aaa/assemblies/fermions/quarks.md).
+Each constituent quark is itself a Noether swarm assembly with an axial layer of the kind cataloged in [quarks.md](../../../../markdown/aaa/assemblies/fermions/quarks.md).
 
 #### Constituents and Counting
 
 For Generation-I quarks:
 
-- each quark core contributes 6 scaffold architrinos,
+- each quark Noether swarm contributes 6 scaffold architrinos,
 - each quark axial layer contributes 6 axial architrinos,
 - so each Generation-I quark contributes 12 architrinos total.
 
@@ -48143,7 +48143,7 @@ Therefore a nucleon contains
 $$
 3\times 12 = 36
 $$
-architrinos at the quark-core bookkeeping level, before adding any effective mesonic or medium-level dressing.
+architrinos at the quark Noether swarm bookkeeping level, before adding any effective mesonic or medium-level dressing.
 
 The constituent content is:
 $$
@@ -48167,7 +48167,7 @@ $$
 
 #### Color-Singlet Closure
 
-The nucleon is not three independent quarks sitting side by side. It is a color-closed tri-core braid, with the strong-sector closure picture matching the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md).
+The nucleon is not three independent quarks sitting side by side. It is a color-closed nested shell swarm braid, with the strong-sector closure picture matching the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md).
 
 At the bookkeeping level, each constituent quark occupies one of the three color sectors
 $$
@@ -48183,7 +48183,7 @@ $$
 In the present geometric language:
 
 - each quark contributes one exceptional axis,
-- the three exceptional axes occur once each across the tri-core,
+- the three exceptional axes occur once each across the nested shell swarm,
 - the shared flux structure closes the color braid into a singlet.
 
 That color closure is what makes the proton and neutron long-lived hadronic attractors rather than open-color transients.
@@ -48270,7 +48270,7 @@ C_{\ell_{\mathrm{atom}},X}
 \Delta_{p,X}^{\mathrm{env,tol}}.
 $$
 
-This is the nucleon-side handoff used by the hydrogen response map in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md#hydrogen-boundary-theorem-target). It lets the atomic calculation see a proton source envelope with retained charge, multipole, shielding, and corridor coefficients, while preventing the three quark Noether cores from being counted as free atomic sources.
+This is the nucleon-side handoff used by the hydrogen response map in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md#hydrogen-boundary-theorem-target). It lets the atomic calculation see a proton source envelope with retained charge, multipole, shielding, and corridor coefficients, while preventing the three quark Noether swarms from being counted as free atomic sources.
 
 The proton boundary tolerance inherited by hydrogen is therefore an admissible-source condition, not a fitted proton radius. For channel $X$,
 
@@ -48303,11 +48303,11 @@ The source-envelope closure fails if any of the following occurs:
 4. **Projection failure:** proton-sensitive refinements do not converge to one atomic-window envelope after $C_{\ell_{\mathrm{atom}},X}$ is applied.
 5. **Channel-retuning failure:** spectral, clock, packing, or corridor calculations require different proton ledgers instead of different projections of the same color-singlet branch.
 
-#### Proton and Neutron as Ground-State Tri-Cores
+#### Proton and Neutron as Ground-State Nested Shell Swarms
 
 ##### Proton
 
-The proton is the lowest stable tri-core with quark content `uud`.
+The proton is the lowest stable nested shell swarm with quark content `uud`.
 
 Using the current quark templates:
 
@@ -48325,7 +48325,7 @@ $$
 
 ##### Neutron
 
-The neutron is the lowest stable tri-core with quark content `udd`.
+The neutron is the lowest stable nested shell swarm with quark content `udd`.
 
 Its total axial count is
 $$
@@ -48342,7 +48342,7 @@ The neutron is therefore not neutral because it lacks internal charge structure,
 
 The strong-CP comparison problem enters this chapter through the neutron electric dipole moment. The retained observable is a spin-aligned electric first moment of the neutron assembly, not the ontology of any particular Standard-Model repair. This section supplies the nucleon-side scaffold used by [The Strong CP Problem](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md#the-strong-cp-problem).
 
-Let the neutron's axial sites carry polarity signs $\sigma_a\in\{+1,-1\}$ and positions $\mathbf{r}_a$ relative to the tri-core center, with each site carrying polarity magnitude $\epsilon=|e|/6$. The axial contribution to the neutron dipole is
+Let the neutron's axial sites carry polarity signs $\sigma_a\in\{+1,-1\}$ and positions $\mathbf{r}_a$ relative to the nested shell swarm center, with each site carrying polarity magnitude $\epsilon=|e|/6$. The axial contribution to the neutron dipole is
 $$
 \mathbf{d}_{n,\mathrm{ax}}
 =
@@ -48384,7 +48384,7 @@ $$
 \right\rangle_T
 =0
 $$
-up to bounded CP-odd perturbations in the same branch record that recovers the neutron magnetic moment and proton-neutron mass splitting. A proof should use the explicit `udd` color-singlet ledger: one $u$ core, two $d$ cores, one $H$, one $M$, and one $L$ exceptional axis across the tri-core, with the two down-type branches paired by the same strong-sector closure map. If that quotient leaves a nonzero time-averaged spin-aligned first moment above $d_n^{\max}$, the strong-CP assembly repair fails.
+up to bounded CP-odd perturbations in the same branch record that recovers the neutron magnetic moment and proton-neutron mass splitting. A proof should use the explicit `udd` color-singlet ledger: one $u$ core, two $d$ cores, one $H$, one $M$, and one $L$ exceptional axis across the nested shell swarm, with the two down-type branches paired by the same strong-sector closure map. If that quotient leaves a nonzero time-averaged spin-aligned first moment above $d_n^{\max}$, the strong-CP assembly repair fails.
 
 #### Effective Internal Geometry
 
@@ -48394,13 +48394,13 @@ The current nucleon picture has three structural layers.
 
 Each constituent quark carries:
 
-- one Generation-I pro-core,
+- one Generation-I pro-swarm,
 - one six-site axial layer,
 - one color-sector assignment.
 
 ##### 2. Shared strong-sector corridor
 
-The three quarks are joined by a shared strong-sector flux network. At coarse level this can be treated as a Y-junction or closed tri-core braid. The important point is not the exact visual motif. The important point is that the strong-sector energy is stored in the shared closure of the three cores, not in any one quark alone.
+The three quarks are joined by a shared strong-sector flux network. At coarse level this can be treated as a Y-junction or closed nested shell swarm braid. The important point is not the exact visual motif. The important point is that the strong-sector energy is stored in the shared closure of the three cores, not in any one quark alone.
 
 ##### 3. External nucleon envelope
 
@@ -48421,15 +48421,15 @@ The nucleon ground state is taken to have observer-level total spin quantum numb
 $$
 J=\frac{1}{2}
 $$
-for the coupled tri-core configuration. Here $J$ names the total hadronic angular-momentum channel, not the spin of one isolated constituent. A useful standard-physics comparison is the proton-spin decomposition: the measured spin-$\tfrac{1}{2}$ nucleon is not explained by simply adding three valence-quark spin arrows.
+for the coupled nested shell swarm configuration. Here $J$ names the total hadronic angular-momentum channel, not the spin of one isolated constituent. A useful standard-physics comparison is the proton-spin decomposition: the measured spin-$\tfrac{1}{2}$ nucleon is not explained by simply adding three valence-quark spin arrows.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same bookkeeping pressure appears as three coupled contributions:
 
-- **quark-core spinor structure**, the analogue of observer-level constituent spin;
+- **quark Noether swarm spinor structure**, the analogue of observer-level constituent spin;
 - **strong-sector orbital circulation**, the analogue of quark and core orbital angular momentum inside the bound state;
 - **flux-network angular momentum**, the analogue of gluon or strong-field angular momentum in the standard QCD spin budget.
 
-The closure target is therefore not to assign $1/2$ to one piece of the nucleon. The target is to show how the coupled tri-core assembly, its orbital circulation, and its strong-sector flux network combine into one stable spin-$\tfrac{1}{2}$ hadronic channel.
+The closure target is therefore not to assign $1/2$ to one piece of the nucleon. The target is to show how the coupled nested shell swarm assembly, its orbital circulation, and its strong-sector flux network combine into one stable spin-$\tfrac{1}{2}$ hadronic channel.
 
 Until the single-core angular-momentum ledger, ordered-frame spinor closure, and color-corridor vector ledger are derived, the three contributions above should be read as required accounting channels. They should not be treated as a closed proton-spin decomposition.
 
@@ -48440,7 +48440,7 @@ Even before a quantitative derivation, the sign structure is already constrained
 - the proton should have a positive magnetic moment,
 - the neutron should have a nonzero negative magnetic moment.
 
-Those sign expectations follow naturally from the dominance of up-type positive charge circulation in the proton and the residual uncompensated internal charge circulation in the neutron. A future derivation should turn this into a computed tri-core moment rather than a qualitative sign check.
+Those sign expectations follow naturally from the dominance of up-type positive charge circulation in the proton and the residual uncompensated internal charge circulation in the neutron. A future derivation should turn this into a computed nested shell swarm moment rather than a qualitative sign check.
 
 #### Proton-Neutron Mass Difference
 
@@ -48458,7 +48458,7 @@ where:
 
 - $\Delta E_{\text{down-up}}$ is the core/axial-layer energy shift from replacing one up-type branch with one down-type branch,
 - $\Delta E_{\text{Coul}}$ is the electromagnetic self-energy difference,
-- $\Delta E_{\text{flux}}$ is the strong-sector closure difference between the two tri-core assemblies.
+- $\Delta E_{\text{flux}}$ is the strong-sector closure difference between the two nested shell swarm assemblies.
 
 The lattice QCD plus QED neutron-proton benchmark is a downstream acceptance test for this decomposition, not an input to any one term. A promoted comparison must compute the down/up, electromagnetic, and flux rows from the same proton and neutron branch ledgers before comparing their sum with the observed splitting.
 
@@ -48470,7 +48470,7 @@ The nucleon is the object that enters nuclear physics. The residual nuclear forc
 
 - polarization of the surrounding Noether Sea,
 - meson-like exchange channels,
-- and geometric locking between the outer hadronic envelopes of neighboring tri-core assemblies.
+- and geometric locking between the outer hadronic envelopes of neighboring nested shell swarm assemblies.
 
 That is why this chapter feeds directly into [nuclear-binding.md](../../../../markdown/aaa/nuclear-atomic/nuclear-binding.md) and [mesons.md](../../../../markdown/aaa/assemblies/mesons/mesons.md).
 
@@ -48566,7 +48566,7 @@ for separations in the nuclear window, with the attraction strongest where meson
 
 ##### Short-range exclusion
 
-Nucleons are not point masses. Each is a structured tri-core assembly with an exclusion volume and a strong internal stress network. If two nucleons are pushed too close together, the cost rises sharply:
+Nucleons are not point masses. Each is a structured nested shell swarm assembly with an exclusion volume and a strong internal stress network. If two nucleons are pushed too close together, the cost rises sharply:
 $$
 V_{\text{excl}}(r)\to +\infty
 \quad\text{as}\quad
@@ -48722,10 +48722,10 @@ Spin-sensitive spectral structure is downstream of the angular-momentum proof pr
 
 Electron orbitals are treated here as stable resonance patterns of electron assemblies coupled to the local Noether Sea. This is an effective atomic model, not yet a derivation from the constituent master equation.
 
-The foundation-up route treats those resonance patterns as responses to structured causal-wake boundary data. In a completed derivation, the integer-closed Noether-core ledgers of the nuclear constituents should determine an effective causal-wake envelope $\mathcal W_{\text{nuc}}$, and the electron assembly should occupy stable envelope basins labeled by the recovered quantum numbers $(n,\ell,m)$. The route is one-way:
+The foundation-up route treats those resonance patterns as responses to structured causal-wake boundary data. In a completed derivation, the integer-closed Noether swarm ledgers of the nuclear constituents should determine an effective causal-wake envelope $\mathcal W_{\text{nuc}}$, and the electron assembly should occupy stable envelope basins labeled by the recovered quantum numbers $(n,\ell,m)$. The route is one-way:
 
 $$
-\text{integer-closed Noether-core ledgers}
+\text{integer-closed Noether swarm ledgers}
 \longrightarrow
 \text{effective causal-wake envelope}
 \longrightarrow
@@ -48734,7 +48734,7 @@ $$
 \text{observer-level labels }(n,\ell,m).
 $$
 
-The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether-core ledgers have already been derived.
+The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether swarm ledgers have already been derived.
 
 The direct angular consumer is the effective angular-envelope recovery lemma from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma). Once the native extractor supplies a central record-facing envelope whose angular part is a regular single-valued function on $S^2$, the angular step is
 
@@ -48750,7 +48750,7 @@ $$
 
 Atomic spectra then consume $(n,\ell,m)$ as envelope labels for energy gaps and line strengths. The spectral burden remains the native extraction of the electron-envelope basin, its radial energy functional, and the local clock/rate conversion; the angular lemma does not by itself derive the Rydberg constant or spin-sensitive splittings.
 
-The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, the Noether-Sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, and the local clock/rate response encoded by $\Gamma_N(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
+The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether swarm density $\rho_{\text{core}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, the Noether-Sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, and the local clock/rate response encoded by $\Gamma_N(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
 
 Spectral lines should then be recovered as transitions between effective envelope basins:
 
@@ -49035,7 +49035,7 @@ The recoil-free spectral line is the branch with $\Delta N_s(\mathbf k)=0$ for t
 
 #### Spin-Sensitive Spectral Targets
 
-After the base resonance and clock/rate program is stable, the spin-sensitive spectrum should be revisited as a validation surface for the completed angular-momentum ledger. Fine-structure and spin-orbit terms must distinguish observer-level orbital angular momentum from internal Noether-core spinor behavior. Hyperfine terms must add the nuclear spin ledger without treating proton or neutron spin decomposition as already closed. Zeeman and related analyzer-response cases must use the finite-time measurement-response model rather than inserting preassigned spin labels.
+After the base resonance and clock/rate program is stable, the spin-sensitive spectrum should be revisited as a validation surface for the completed angular-momentum ledger. Fine-structure and spin-orbit terms must distinguish observer-level orbital angular momentum from internal Noether swarm spinor behavior. Hyperfine terms must add the nuclear spin ledger without treating proton or neutron spin decomposition as already closed. Zeeman and related analyzer-response cases must use the finite-time measurement-response model rather than inserting preassigned spin labels.
 
 The orbital part of this recovery should match the standard effective labels $\ell$ and $m$, including $L^2\to\ell(\ell+1)\hbar^2$ and chosen-axis projection $L_z\to m\hbar$. The spin-sensitive part is a separate validation target: it must couple that orbital envelope to the completed internal spinor ledger rather than treating atomic orbital quantization as a proof of fermion spin.
 
@@ -49199,12 +49199,12 @@ The points below are collected as a framework-internal research program, not as 
 ##### 7.2 Assumptions
 
 - The $s, p, d, f$ orbitals are treated not as abstract probability clouds, but as emergent volume-exclusion zones of ellipsoidal electron tri-binaries carrying six axial architrinos.
-- Electron tri-binaries are assumed to couple to a central nuclear Noether core through local Noether-Sea density gradients.
+- Electron tri-binaries are assumed to couple to a central nuclear Noether swarm through local Noether-Sea density gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 
 ##### 7.3 Mechanism and Derivation Sketch
 
-- Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether core, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
+- Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether swarm, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
 - Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether-Sea pressure gradient drops enough to stabilize an additional shell of precessing tri-binaries.
 - In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of tri-binary assemblies under these boundary conditions.
 - Volume-exclusion mechanism: each electron tri-binary displaces the local Noether Sea, and overlap of two precessing ellipsoidal exclusion volumes generates a sharply rising displacement-pressure gradient.
@@ -49276,7 +49276,7 @@ https://iupac.org/recommendation/how-to-name-new-chemical-elements/
 
 This chapter states the molecular-geometry closure target within the assembly framework. Its purpose is to identify what molecular shape depends on in this ontology so the eventual detailed derivation has a stable launch point.
 
-It should be connected to [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), and [Medium Exclusion Volume](../../../../markdown/aaa/spacetime/medium-exclusion-volume.md), which together supply the atomic constituents, resonance behavior, medium response, and exclusion geometry that molecular shapes must reconcile.
+It should be connected to [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), and [Molecular Exclusion and Noether-Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md), which together supply the atomic constituents, resonance behavior, medium response, and exclusion geometry that molecular shapes must reconcile.
 
 Spin and Pauli language in this chapter is downstream of [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/quantum-statistics.md). Molecular singlet/triplet labels, bonding selection rules, electron-pair exclusion, and orbital-hybridization language should be treated as validation targets for those lower proofs, not as separate explanations.
 
@@ -49346,7 +49346,7 @@ where $M$ is the observer-level mass-response matrix of the participating nuclei
 
 A completed molecular-geometry derivation should recover, at minimum, the familiar qualitative sequence of linear, trigonal, tetrahedral, and bent arrangements from assembly geometry rather than imposing them as orbital templates. The first practical benchmark should be a small set of molecules whose standard geometries are sharply constrained: $\mathrm{H}_2$, $\mathrm{H}_2\mathrm{O}$, $\mathrm{CO}_2$, $\mathrm{NH}_3$, and $\mathrm{CH}_4$.
 
-The immediate derivation target is therefore a corridor-plus-exclusion functional that predicts equilibrium bond length and angle for those cases while remaining compatible with [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), and [Medium Exclusion Volume](../../../../markdown/aaa/spacetime/medium-exclusion-volume.md).
+The immediate derivation target is therefore a corridor-plus-exclusion functional that predicts equilibrium bond length and angle for those cases while remaining compatible with [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), and [Molecular Exclusion and Noether-Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md).
 
 For spin-sensitive chemistry, the later derivation should recover singlet/triplet distinctions and bonding selection rules only after the atomic angular-momentum ledger and spin-statistics proof are available. Until then, this chapter should keep molecular geometry as a corridor-plus-exclusion closure target, not a foundation for spin or Pauli behavior.
 
@@ -49354,7 +49354,7 @@ For spin-sensitive chemistry, the later derivation should recover singlet/triple
 
 This chapter states the condensed-matter closure target for medium-level behavior in the Noether Sea. Its current focus is Noether-Sea transport: the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of cores.
 
-This note bridges [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md), and [Medium Exclusion Volume](../../../../markdown/aaa/spacetime/medium-exclusion-volume.md), since all four depend on how the background medium stores stress and permits transport.
+This note bridges [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md), and [Molecular Exclusion and Noether-Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md), since all four depend on how the background medium stores stress and permits transport.
 
 At present this is a closure target rather than a finished derivation. The residual and its critical value must still be extracted from stable assembly dynamics, Noether-Sea constitutive response, and the relevant stability diagnostics.
 
@@ -49837,7 +49837,7 @@ $$
 
 where $\theta_{\mathrm{sea}}$ denotes the local Noether-Sea state record, including $\rho_{\text{core}}$, $\chi_{\text{sea}}$, $\mathcal{M}_{\text{sea}}^{ab}$, and strain data. The term $M_{\mathrm{sh}}(A_{\mathrm{Fe}};\theta_{\mathrm{sea}})$ is the medium-dressed exposed mass response of an iron assembly, not a new nuclear species. In this form the reason iron sinks is not that the center creates iron, but that existing iron-bearing assemblies minimize the relevant chemical, gravitational, and medium-response potential in dense planetary interiors.
 
-The sharper equilibrium hypothesis is that the iron-rich metallic branch is compatible with higher normalized Noether-core density than a silicate branch at the same pressure and temperature. Let
+The sharper equilibrium hypothesis is that the iron-rich metallic branch is compatible with higher normalized Noether swarm density than a silicate branch at the same pressure and temperature. Let
 
 $$
 \Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}
@@ -49865,7 +49865,7 @@ $$
 0
 $$
 
-along the planetary-interior branch, with $n=\rho_{\text{core}}/\rho_{\text{core},0}$. This does not say that Noether-Sea density creates iron. It says that, after iron already exists, the metallic iron branch may reduce relative chemical and medium-response cost as ambient Noether-core density increases. In ordinary terms, iron-rich material sinks because it is dense; in the native theory, density must eventually be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether-Sea coupling.
+along the planetary-interior branch, with $n=\rho_{\text{core}}/\rho_{\text{core},0}$. This does not say that Noether-Sea density creates iron. It says that, after iron already exists, the metallic iron branch may reduce relative chemical and medium-response cost as ambient Noether swarm density increases. In ordinary terms, iron-rich material sinks because it is dense; in the native theory, density must eventually be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether-Sea coupling.
 
 A local sufficient condition can be stated by differentiating the packing ceiling rather than treating it as a fixed phase label. For a material branch $X$, let
 
@@ -50153,7 +50153,7 @@ Here $\Delta_A$ is the photon Gate A residual; $\Delta_Q^\gamma$, $\Delta_{\math
 
 7. **Execute provenance-conserving relock**
 Update assembly graph by relocking existing substrate content.
-No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes from local Noether-core availability.
+No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes from local Noether swarm availability.
 
 8. **Enforce local conservation**
 Close event-level budgets:
@@ -50244,7 +50244,7 @@ Observer channel: $\gamma + \gamma \rightarrow e^+ + e^-$.
 Step map:
 1. Two photon modes, each modeled as a coaxial contra-rotating pro/anti planar pair, enter overlap geometry with center-of-momentum invariant $s$.
 2. Threshold gate: channel allowed only for $s \ge 4m_e^2$.
-3. Above threshold, local substrate relock recruits Noether-core content into charged pair assemblies.
+3. Above threshold, local substrate relock recruits Noether swarm content into charged pair assemblies.
 4. Provenance ledger records conversion path from incoming photon modes plus recruited substrate pool.
 5. Projected observer-level rate must match Breit-Wheeler behavior in validated regimes.
 
@@ -50392,7 +50392,7 @@ Terminology in this chapter follows [mode-taxonomy.md](../../../../markdown/aaa/
 - $\mathcal{S}_*$: effective bremsstrahlung proxy for the inherited planar-mode threshold scale.
 - $E_{\gamma,\min}$: hypothesized minimum stable planar-mode energy.
 - $\Gamma_{\mathrm{eff}}$: absolute-time/proper-time conversion factor.
-- $\rho_{\text{core}}(\mathbf{x},t)$: local physical Noether-core density.
+- $\rho_{\text{core}}(\mathbf{x},t)$: local physical Noether swarm density.
 
 #### Physical Mechanism
 
@@ -50831,7 +50831,7 @@ A relativistic electron or positron with Lorentz factor $\gamma$ moving in magne
 
 Cascade development is controlled by competition among radiative cooling, pair production, advection, and escape. In compact high-field zones, this feedback can strongly increase pair loading and opacity.
 
-This is the observer-level mechanism. The $\mathbb{A}\mathbb{A}\mathbb{A}$ layer below does not replace these formulas; it asks which Noether-core velocity deformation, anisotropic Noether-Sea state, and closure residual must be present for the same photon output to occur.
+This is the observer-level mechanism. The $\mathbb{A}\mathbb{A}\mathbb{A}$ layer below does not replace these formulas; it asks which Noether swarm velocity deformation, anisotropic Noether-Sea state, and closure residual must be present for the same photon output to occur.
 
 #### Core Equations
 
@@ -50913,12 +50913,12 @@ This 1% threshold is a modeling convention for cascade tractability, not a funda
 
 #### Radiation Inheritance
 
-Synchrotron emission is the curved charged-assembly transport specialization of the shared radiation program in [Radiation](../../../../markdown/aaa/reactions/radiation.md). The standard phrase "a magnetic field bends a relativistic charge and the charge radiates" remains the observer-level baseline. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ map, the channel-specific claim is narrower: anisotropic Noether-Sea transport and gradient forcing deform the moving Noether core faster than its internal closure ledgers can retune, leaving a residual that may enter the planar-mode basin.
+Synchrotron emission is the curved charged-assembly transport specialization of the shared radiation program in [Radiation](../../../../markdown/aaa/reactions/radiation.md). The standard phrase "a magnetic field bends a relativistic charge and the charge radiates" remains the observer-level baseline. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ map, the channel-specific claim is narrower: anisotropic Noether-Sea transport and gradient forcing deform the moving Noether swarm faster than its internal closure ledgers can retune, leaving a residual that may enter the planar-mode basin.
 
 The inherited skeleton is
 
 $$
-\text{Noether-core velocity deformation in anisotropic Noether-Sea transport}
+\text{Noether swarm velocity deformation in anisotropic Noether-Sea transport}
 \longrightarrow
 \text{synchrotron closure residual}
 \longrightarrow
@@ -50927,7 +50927,7 @@ $$
 \text{planar-mode photon, medium excitation, recoil, residual core energy, or pair-channel handoff}.
 $$
 
-The radiation page writes the retuned transport state as $\mathbf{V}$. In this channel, $\mathbf{V}$ is the Noether-core velocity-deformation state of the charged assembly during curved transport through $\mathcal{V}_{\mathrm{NS}}$. A channel-local closure mismatch can therefore be written as the derivation target
+The radiation page writes the retuned transport state as $\mathbf{V}$. In this channel, $\mathbf{V}$ is the Noether swarm velocity-deformation state of the charged assembly during curved transport through $\mathcal{V}_{\mathrm{NS}}$. A channel-local closure mismatch can therefore be written as the derivation target
 
 $$
 \delta\Theta_a^{\mathrm{syn}}
@@ -50992,7 +50992,7 @@ in weak homogeneous limits, with $B_{\mathrm{eff}}$ the observer-level magnetic 
 
 #### $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel
 
-- **Synchrotron emission channel:** curved charged-assembly transport through an anisotropic Noether-Sea state produces $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ by Noether-core velocity deformation and gradient forcing. If the inherited planar-mode threshold is crossed, the event nucleates [photon assemblies](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) from interaction energy / wake stress while conserving charged-assembly identity. The photon-side target is the canonical **coaxial contra-rotating pro/anti planar pair** description.
+- **Synchrotron emission channel:** curved charged-assembly transport through an anisotropic Noether-Sea state produces $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ by Noether swarm velocity deformation and gradient forcing. If the inherited planar-mode threshold is crossed, the event nucleates [photon assemblies](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) from interaction energy / wake stress while conserving charged-assembly identity. The photon-side target is the canonical **coaxial contra-rotating pro/anti planar pair** description.
 - **Pair channel:** two-photon overlap, with each photon treated as a coaxial contra-rotating pro/anti planar pair, associates local substrate content into a charged $e^+e^-$ assembly pair; this association must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether-Sea cores $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
 - **Cascade loop:** repeated emission-pair-emission cycles are modeled as repeated mode-lock events under the same observer-level thresholds.
 
@@ -51001,7 +51001,7 @@ in weak homogeneous limits, with $B_{\mathrm{eff}}$ the observer-level magnetic 
 Use the same photon-channel event record here as in [Radiation](../../../../markdown/aaa/reactions/radiation.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md). A synchrotron planar-mode event should record:
 
 - charged assembly identity, energy, momentum, pitch geometry, and path-history provenance before and after the curved transport segment;
-- Noether-core velocity-deformation state, effective magnetic-state map $\mathcal{V}_{\mathrm{NS}}$, gradient forcing $G_{\text{grad}}$, and local Noether-Sea variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and causal-branch Jacobian data;
+- Noether swarm velocity-deformation state, effective magnetic-state map $\mathcal{V}_{\mathrm{NS}}$, gradient forcing $G_{\text{grad}}$, and local Noether-Sea variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and causal-branch Jacobian data;
 - closure residual $\mathcal{R}_{\Theta}^{\mathrm{syn}}$, wake-strain eigenvalue or threshold status, and photon-channel drive $\mathcal{S}_{\gamma}^{\mathrm{syn}}$ that permits or forbids planar-mode nucleation;
 - photon output $E_\gamma$, direction, polarization basis, transverse angular-momentum ledger, and local photon-channel speed $c_\gamma$;
 - photon Gate B event residual, including source depletion, recoil, causal-wake, accepted/rejected handoff, helicity, and balance rows;
@@ -51143,7 +51143,7 @@ Status convention used below:
 
 This file uses the following provisional mapping targets.
 
-- **Synchrotron emission (provisional):** a charged tri-binary assembly in curved transport through $\mathcal{V}_{\mathrm{NS}}$ develops a Noether-core velocity deformation. Gradient forcing $G_{\text{grad}}$ and causal-branch Jacobian bunching can leave $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ after ordinary adiabatic retuning fails; when the associated wake-strain state crosses the inherited planar-mode threshold, a photon assembly nucleates and carries the photon-row share of the source-depletion ledger. Recoil, medium, wake, handoff, and remnant rows close the rest. This nucleation threshold must be derivable from wake-strain eigenvalue conditions in simulations; hand-tuning the threshold to match observed $P_{\mathrm{syn}}(\gamma,B)$ or $\nu_c\propto\gamma^2B$ constitutes a fit, not a derivation. The mapping succeeds only if the threshold emerges naturally from the architrino master equation applied to curved charged-assembly trajectories in anisotropic Noether-Sea states.
+- **Synchrotron emission (provisional):** a charged tri-binary assembly in curved transport through $\mathcal{V}_{\mathrm{NS}}$ develops a Noether swarm velocity deformation. Gradient forcing $G_{\text{grad}}$ and causal-branch Jacobian bunching can leave $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ after ordinary adiabatic retuning fails; when the associated wake-strain state crosses the inherited planar-mode threshold, a photon assembly nucleates and carries the photon-row share of the source-depletion ledger. Recoil, medium, wake, handoff, and remnant rows close the rest. This nucleation threshold must be derivable from wake-strain eigenvalue conditions in simulations; hand-tuning the threshold to match observed $P_{\mathrm{syn}}(\gamma,B)$ or $\nu_c\propto\gamma^2B$ constitutes a fit, not a derivation. The mapping succeeds only if the threshold emerges naturally from the architrino master equation applied to curved charged-assembly trajectories in anisotropic Noether-Sea states.
 - **Magnetic field ontology (provisional Option B):** observer-level $B$ is currently treated as the effective coarse-grained directional (vector/tensor) vorticity-anisotropy state of the Noether Sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$, rather than as a separate fundamental void field (Option A). This is a mapping option, not settled ontology. Charged-assembly curvature is therefore interpreted provisionally as transport through an anisotropic Noether-Sea state with explicit directionality. In validated limits, this mapping must: (i) derive the effective Lorentz-force law $\mathbf{F}_{\mathrm{eff}} = q(\mathbf{v}/c) \times \mathbf{B}_{\mathrm{eff}}$ from anisotropic Noether-Sea transport together with the Jacobian-weighted geometry of delayed causal flux, rather than by postulating a primitive cross-product force term; (specifically, show that vorticity-tensor gradients $\partial_i \mathcal{V}^j_{\mathrm{NS}}$ produce perpendicular deflection under boost); (ii) reproduce Maxwell-level electromagnetic-wave propagation (dispersion relation $\omega = ck$ for photon modes in uniform $\mathcal{V}_{\mathrm{NS}}$); (iii) recover synchrotron polarization geometry ($\mathbf{E}_\gamma \perp \mathbf{B}_{\mathrm{eff}}$, $\mathbf{E}_\gamma \perp \mathbf{v}$ in observer frame) from directional emission rules in the Noether-Sea anisotropy basis, while inheriting photon helicity and analyzer statistics from Gate B rather than deriving them locally. **Falsification criterion:** if simulations with anisotropic Noether-Sea states fail to produce the factor-of-$\gamma^2$ frequency scaling in $\nu_c$ (tested via swept $B$-field and $\gamma$ at fixed pitch angle), or if polarization vectors misalign with standard geometry by $>15^\circ$ systematically, Option B is ruled out and the theory must revert to treating $\mathbf{B}$ as a separate substrate field (Option A) or propose a new mapping.
 - **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by overlap of two coaxial contra-rotating pro/anti planar-pair photon assemblies above threshold, not ex nihilo creation. The incoming photon assemblies supply energy, momentum, and trigger geometry, not new architrino identities; the recruited Noether-Sea content must supply the identity-routed inventory. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling. Operational constraint: pair-channel cross-section $\sigma_{\gamma\gamma}(s)$ computed from this nucleation picture must reproduce
 $$
@@ -51159,7 +51159,7 @@ In this chapter, "curved transport" means Euclidean-space trajectory curvature o
 
 Operationally: compute emissivity and spectra with standard observer-frame equations; interpret underlying trajectory control through the Noether-Sea anisotropy map when using $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
 
-The channel-local curvature object is therefore the Noether-core velocity deformation along the charged assembly's Euclidean trajectory, together with gradient forcing from $G_{\text{grad}}$ and anisotropy from $\mathcal{V}_{\mathrm{NS}}$. Effective geodesic language may still be used for observer-frame propagation and timing, but it is not the event-level cause of planar-mode nucleation in this chapter. Both descriptions must produce identical observer-frame synchrotron emissivity in weak-gravity zones; distinguishing experiments would require near-horizon synchrotron mapping or laboratory strong-field tests.
+The channel-local curvature object is therefore the Noether swarm velocity deformation along the charged assembly's Euclidean trajectory, together with gradient forcing from $G_{\text{grad}}$ and anisotropy from $\mathcal{V}_{\mathrm{NS}}$. Effective geodesic language may still be used for observer-frame propagation and timing, but it is not the event-level cause of planar-mode nucleation in this chapter. Both descriptions must produce identical observer-frame synchrotron emissivity in weak-gravity zones; distinguishing experiments would require near-horizon synchrotron mapping or laboratory strong-field tests.
 
 ##### Conservation Note for Pair Production
 
@@ -51270,7 +51270,7 @@ Propagation and timing conventions must remain explicit in cosmology-facing use.
 #### Anticipated Mapping Targets
 
 - Recover observed cascade-like spectral slopes and break structures in limits where synchrotron cooling dominates.
-- Derive the synchrotron wake-strain threshold and $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ from Noether-core velocity deformation, $G_{\text{grad}}$, causal-branch Jacobians, and $\mathcal{V}_{\mathrm{NS}}$.
+- Derive the synchrotron wake-strain threshold and $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ from Noether swarm velocity deformation, $G_{\text{grad}}$, causal-branch Jacobians, and $\mathcal{V}_{\mathrm{NS}}$.
 - Map pair-loading predictions to assembly-density and outflow-structure variables without changing QED/QED-like reaction channels.
 - Quantify joint regimes where synchrotron cascades and bremsstrahlung together set the photon bath relevant to nucleation-era mapping.
 - Bound acceptable parameter freedom in provisional mapping variables so parsimony does not degrade relative to standard transport models.
@@ -51312,7 +51312,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 - [collapse-problem.md](../../../../markdown/aaa/philosophy-history/theory-bridges/collapse-problem.md): finite-time separatrix-crossing replacement for collapse.
 - [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md): wavefunction as effective basin-weight bookkeeping.
 - [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md): metastability, separatrices, and branch selection.
-- [quantum-statistics.md](../../../../markdown/aaa/quantum/quantum-statistics.md): Fermi-Dirac and Bose-Einstein statistics as a Noether-core geometry transition.
+- [quantum-statistics.md](../../../../markdown/aaa/quantum/quantum-statistics.md): Fermi-Dirac and Bose-Einstein statistics as a Noether swarm geometry transition.
 
 #### Correlation and No-Go Interfaces
 
@@ -51760,7 +51760,7 @@ The decision language in this chapter is not an additional ontology. It is a fut
 
 The controlled distinction is:
 
-- a bare Noether core may supply threshold-sensitive material;
+- a bare Noether swarm may supply threshold-sensitive material;
 - a Switch must show a measurable basin-weight shift under fixed boundary context;
 - a Decider must also show feedback, hold time, and a nonzero work or dissipation ledger.
 
@@ -52024,7 +52024,7 @@ Assemblies such as tri-binaries possess internal slow variables that dictate the
 
 Once the accumulated path-history forces push the assembly's action across the $h$-scale separatrix, the system falls into a new, distinct basin of attraction (e.g., transitioning from an excited orbital resonance to a ground state, or locking into a specific spatial trajectory).
 
-For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full Noether-core spin ledger rather than to a preassigned spin label.
+For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full Noether swarm spin ledger rather than to a preassigned spin label.
 
 *   **Before the transition:** For the declared apparatus kernel and coarse-graining, the wavefunction models the probability amplitudes of the system navigating the metastable region.
 *   **During the transition:** The discrete state changes sharply, breaking the linear approximation of the Schrödinger equation.
@@ -52956,9 +52956,9 @@ In this language, "spin up" and "spin down" are not tiny literal arrows hidden i
 
 For fermion spin-$\tfrac{1}{2}$, the standard Stern-Gerlach recovery target is a two-channel apparatus record with angular-momentum projections $+\hbar/2$ and $-\hbar/2$ along the apparatus axis. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that two-channel split must come from finite-time basin resolution of the target assembly plus apparatus, not from a primitive spin variable attached to an architrino.
 
-The spin operator is therefore a compact generator of the recovered record statistics and basis rotations, not a new substrate degree of freedom. Its eigenlabels are licensed only when the apparatus kernel maps the Noether-core spin ledger into stable basin records with the standard half-angle probabilities.
+The spin operator is therefore a compact generator of the recovered record statistics and basis rotations, not a new substrate degree of freedom. Its eigenlabels are licensed only when the apparatus kernel maps the Noether swarm spin ledger into stable basin records with the standard half-angle probabilities.
 
-The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full Noether-core spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure supply the comparison target for spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is now explicit: the angular impulse is the core-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
+The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full Noether swarm spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure supply the comparison target for spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is now explicit: the angular impulse is the core-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
 
 For an apparatus axis $\hat{\mathbf m}$, let $Z_0\in\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}$ be the incoming target-plus-apparatus state, let $\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}$ be the finite interaction map, let $G_{\mathrm{rec}}$ be the successful-record gate, and let $\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}$ be the signed separatrix functional. The lifted plus basin is
 
@@ -53351,7 +53351,7 @@ with the additional requirement that the correction operation closes its energy,
 
 This chapter states the $\mathbb{A}\mathbb{A}\mathbb{A}$ proof target for Fermi-Dirac and Bose-Einstein statistics. Its purpose is not to replace the standard counting rules at the observer level. Its purpose is to identify the assembly-level geometry that should determine which counting rule an effective excitation obeys once spin-statistics closure is derived.
 
-The working hypothesis is direct: the transition between Fermi-Dirac and Bose-Einstein behavior is controlled by the oblation of Noether-core orbits. A fully three-dimensional Noether-core envelope supplies the candidate basis for exclusion-like packing. A strongly oblated, effectively two-dimensional orbital support opens the candidate coherent shared-state regime associated with Bose-Einstein behavior.
+The working hypothesis is direct: the transition between Fermi-Dirac and Bose-Einstein behavior is controlled by the oblation of Noether swarm orbits. A fully three-dimensional Noether swarm envelope supplies the candidate basis for exclusion-like packing. A strongly oblated, effectively two-dimensional orbital support opens the candidate coherent shared-state regime associated with Bose-Einstein behavior.
 
 This hypothesis is downstream of the ordered-frame spinor program in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). Volume exclusion can explain why same-state packing becomes costly, but it does not by itself derive the fermionic exchange sign or the spin-statistics connection.
 
@@ -53367,7 +53367,7 @@ The answer must not erase substrate identity. Individual architrinos remain prov
 
 #### Noether-Core Geometry Basis
 
-The relevant object is the Noether core, the triply nested binary assembly described in [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its geometric footprint is the dynamic exclusion envelope described in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
+The relevant object is the Noether swarm, the triply nested binary assembly described in [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its geometric footprint is the dynamic exclusion envelope described in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
 
 In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
@@ -53375,7 +53375,7 @@ This is already a flattened object, but it remains genuinely three-dimensional. 
 
 #### Fermi-Dirac Regime: 3D Exclusion
 
-Fermi-Dirac behavior corresponds to Noether-core assemblies whose nested orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
+Fermi-Dirac behavior corresponds to Noether swarm assemblies whose nested orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
 
 The exclusion is not a hard material wall. It is a path-history and wake-geometry obstruction:
 
@@ -53384,7 +53384,7 @@ The exclusion is not a hard material wall. It is a path-history and wake-geometr
 - the inner and middle binaries maintain internal stabilizing density,
 - and nearby cores cannot share the same local state without disrupting those orbit closures.
 
-At the effective quantum level, that obstruction must appear as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the candidate inability of two volumetric Noether-core envelopes to occupy the same state without losing stable nested-binary identity. The exchange sign still has to come from the ordered-frame spinor proof, not from volume exclusion alone.
+At the effective quantum level, that obstruction must appear as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the candidate inability of two volumetric Noether swarm envelopes to occupy the same state without losing stable nested-binary identity. The exchange sign still has to come from the ordered-frame spinor proof, not from volume exclusion alone.
 
 The blocker can be stated directly. Fermionic exchange-sign recovery cannot be credited to the 3D exclusion envelope until the same ordered-core program supplies a retained non-gauge row $r_\star$ with
 
@@ -53402,7 +53402,7 @@ In the pullback notation of [Angular Momentum and Spin](../../../../markdown/aaa
 
 #### Bose-Einstein Regime: 2D Coherence
 
-Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that the Noether-core envelope is somewhat flattened. Ordinary Noether cores are already oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.
+Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that the Noether swarm envelope is somewhat flattened. Ordinary Noether swarms are already oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.
 
 In that limit, the dominant motion is organized by a shared plane, phase channel, or coaxial sheet-like support. The assembly no longer presents the same volumetric exclusion envelope to nearby same-channel excitations. Multiple excitations can then occupy one coherent effective state because their assembly-level support is phase-compatible rather than volume-exclusive.
 
@@ -53412,11 +53412,11 @@ This is the proposed substrate basis for Bose-Einstein statistics:
 - exclusion-envelope overlap is replaced by phase-compatible shared support,
 - and many same-channel excitations can lock into a common mode without demanding separate volumetric envelopes.
 
-Photon-like channel behavior is the cleanest target for this mechanism. A bosonic mode is therefore not "less real" than a fermionic assembly. It is a different geometric regime: coherent 2D-supported channel behavior rather than 3D Noether-core exclusion behavior.
+Photon-like channel behavior is the cleanest target for this mechanism. A bosonic mode is therefore not "less real" than a fermionic assembly. It is a different geometric regime: coherent 2D-supported channel behavior rather than 3D Noether swarm exclusion behavior.
 
 #### The 3D-to-2D Transition
 
-The transition can be summarized by the canonical Noether-core shape ratio from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
+The transition can be summarized by the canonical Noether swarm shape ratio from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
 
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}.
@@ -53424,7 +53424,7 @@ $$
 
 The Fermi-Dirac regime has $\xi$ bounded away from zero. The envelope is oblate but still volumetric. The Bose-Einstein regime is approached as $\xi\to 0$, where the active support becomes effectively two-dimensional.
 
-This ratio is not yet a final derivation of spin-statistics. It is a geometric control variable for the proof program. A complete closure must show how stable 3D Noether-core configurations inherit the ordered-frame spinor proof and produce the fermionic exchange sign, and how the 2D coherent channel limit produces symmetric occupation at the observer level.
+This ratio is not yet a final derivation of spin-statistics. It is a geometric control variable for the proof program. A complete closure must show how stable 3D Noether swarm configurations inherit the ordered-frame spinor proof and produce the fermionic exchange sign, and how the 2D coherent channel limit produces symmetric occupation at the observer level.
 
 #### Effective Exchange-State Contract
 
@@ -53497,7 +53497,7 @@ $$
 $$
 This does not replace the ordered-frame spinor proof. It prevents a purely geometric exclusion story from missing the experimentally important exchange-energy splitting that appears before full many-electron Hartree-Fock closure.
 
-The geometry hypothesis in this chapter can now be stated as a recovery residual. Let $\mathcal{E}_{N,\theta}$ be the effective $N$-assembly state extraction map, let $\mu_{\mathrm{3D}}$ be a retained ensemble of volumetric Noether-core configurations with $\xi\ge\xi_F$, and let $\mu_{\mathrm{2D}}$ be a retained ensemble of coherent planar-channel configurations with $\xi\le\xi_B$. The exchange closure target is
+The geometry hypothesis in this chapter can now be stated as a recovery residual. Let $\mathcal{E}_{N,\theta}$ be the effective $N$-assembly state extraction map, let $\mu_{\mathrm{3D}}$ be a retained ensemble of volumetric Noether swarm configurations with $\xi\ge\xi_F$, and let $\mu_{\mathrm{2D}}$ be a retained ensemble of coherent planar-channel configurations with $\xi\le\xi_B$. The exchange closure target is
 $$
 \mathcal{R}_{\mathrm{ex}}(\theta)
 =
@@ -53528,13 +53528,13 @@ It also sets targets for [Quantum Operator Mapping](../../../../markdown/aaa/phi
 
 The next proof steps are:
 
-1. Extract $\xi$ from simulated or analytic Noether-core orbit data.
+1. Extract $\xi$ from simulated or analytic Noether swarm orbit data.
 2. Identify the stability threshold separating volumetric exclusion from coherent 2D support.
-3. Derive how exchange of two 3D Noether-core assemblies produces fermionic antisymmetry at the effective level, using the same retained non-gauge ordered-core row that passes the $2\pi/4\pi$ spinor, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual).
+3. Derive how exchange of two 3D Noether swarm assemblies produces fermionic antisymmetry at the effective level, using the same retained non-gauge ordered-core row that passes the $2\pi/4\pi$ spinor, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual).
 4. Derive how phase-compatible 2D-supported channel excitations produce bosonic symmetric occupation.
 5. Check that mixed regimes do not create forbidden intermediate statistics for ordinary low-energy matter.
 
-Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether-core exclusion plus the ordered-frame spinor exchange phase on the same retained row; Bose-Einstein statistics are expected to arise when Noether-core orbital support is oblated into an effectively 2D coherent channel.
+Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether swarm exclusion plus the ordered-frame spinor exchange phase on the same retained row; Bose-Einstein statistics are expected to arise when Noether swarm orbital support is oblated into an effectively 2D coherent channel.
 
 ## Cosmology
 
@@ -54013,7 +54013,7 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
 $$
 
-The factor $\Gamma_N$ is not a new time variable. It records how strongly the local Noether-Sea core cadence is stretched relative to the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving-core deformation factor; outside that limit it remains a medium-state diagnostic to be derived from Noether-core geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the moving-core limit fixes the coefficient of $-\ln\xi$ and the weak-field endpoint limit fixes one isotropic Noether-Sea response combination.
+The factor $\Gamma_N$ is not a new time variable. It records how strongly the local Noether-Sea core cadence is stretched relative to the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving-core deformation factor; outside that limit it remains a medium-state diagnostic to be derived from Noether swarm geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the moving-core limit fixes the coefficient of $-\ln\xi$ and the weak-field endpoint limit fixes one isotropic Noether-Sea response combination.
 
 For a spectral transition family $X$, the working redshift factorization is
 
@@ -54239,9 +54239,9 @@ If the endpoint, launch, and propagation terms can be made to fit only by changi
 
 ##### Equilibrium-Transport Candidate for Path History
 
-The current candidate for the gentle deep-space term is a Noether-core equilibrium transport law. In this reading, a weak-field path does not accumulate redshift because the photon loses energy as it scatters. It accumulates a phase-cadence path-history term because the photon packet traverses a Noether-Sea population whose core-cadence distribution evolves in absolute time.
+The current candidate for the gentle deep-space term is a Noether swarm equilibrium transport law. In this reading, a weak-field path does not accumulate redshift because the photon loses energy as it scatters. It accumulates a phase-cadence path-history term because the photon packet traverses a Noether-Sea population whose core-cadence distribution evolves in absolute time.
 
-Let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether-core cadence states, with representative core energy $E_N=h\nu_N$. At the discrete level, each accepted $h$-scale transaction retunes a core's cadence-scale closure rather than sliding a continuous single-core frequency. The continuum current should therefore be read as the ensemble flux
+Let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether swarm cadence states, with representative core energy $E_N=h\nu_N$. At the discrete level, each accepted $h$-scale transaction retunes a core's cadence-scale closure rather than sliding a continuous single-core frequency. The continuum current should therefore be read as the ensemble flux
 
 $$
 J_\nu
@@ -54485,7 +54485,7 @@ a_\chi^X\,\frac{1}{c_\gamma}\,\partial_t\ln\chi_\gamma
 +\mathcal{R}_{\mathrm{prop},X}.
 $$
 
-Here all quantities are evaluated at the path point crossed by the photon packet. The photon-channel speed is $c_\gamma$, and $\chi_\gamma(\mathbf{x},t)\equiv c_0/c_\gamma(\mathbf{x},t)$ is used only when the photon channel is the explicit transport subject. The symbols $n(\mathbf{x},t)$ and $R_{\text{core}}(\mathbf{x},t)$ denote normalized Noether-core density and a representative local Noether-core scale. The vector $\mathbf{u}_{\text{sea}}$ is an effective Noether-Sea flow velocity, and
+Here all quantities are evaluated at the path point crossed by the photon packet. The photon-channel speed is $c_\gamma$, and $\chi_\gamma(\mathbf{x},t)\equiv c_0/c_\gamma(\mathbf{x},t)$ is used only when the photon channel is the explicit transport subject. The symbols $n(\mathbf{x},t)$ and $R_{\text{core}}(\mathbf{x},t)$ denote normalized Noether swarm density and a representative local Noether swarm scale. The vector $\mathbf{u}_{\text{sea}}$ is an effective Noether-Sea flow velocity, and
 
 $$
 S_{ij}
@@ -55712,7 +55712,7 @@ Standard BBN effectively behaves like a calibrated standard reactor: one paramet
 
 - **Variance consideration:** SMBHs span mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion-state diversity. If $T(t)$ and $\rho(t)$ inherit this variance directly, predicted yields, especially $Y_p$, should broaden.
 - **Observable target:** Keep consistency with tight helium clustering near $Y_p\approx0.245\pm0.003$.
-- **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether-core saturation), with universal ceilings $T_{\max}$ and $\rho_{\max}$ and mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
+- **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether swarm saturation), with universal ceilings $T_{\max}$ and $\rho_{\max}$ and mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
 - **Observable implication:** If this saturation holds, $^4$He yield is intrinsic to medium-state convergence and remains weakly dependent on SMBH mass class.
 
 ##### 2. Freeze-Out Timing Goal: Weak-Rate vs Outflow Timescale
@@ -55893,7 +55893,7 @@ This statistic is a validation target, not a permission to import an external co
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Spacetime is in a quantum-gravity regime; ordinary field theory breaks down. The Planck scale sets the limiting energy density and length scale for known physics.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Planck Epoch: Peak Density of Energetic Architrinos):** The Noether Sea reaches peak effective density in a local recycling event. Architrinos dominate the dynamics, and the tri-binary network is maximally compressed. At the event-horizon limit, the only stable assemblies are neutral Noether cores: high-energy, stealthy pairs or quad clusters that couple with a strong-like force. The photon-channel assemblies are modeled as coaxial contra-rotating pro/anti planar pairs moving at the local effective photon speed. Noether-core assemblies populate the Noether Sea, so the effective gravity channel is active while the Euclidean void remains fixed. Noether cores are neutral, so there is no emergent electric force yet beyond internal binding. Axial architrinos are absent, so no weak force. A strong-like binding exists inside Noether-core couplings, but it is not externally observable until quark assemblies appear. This is the regime where self-hit effects are strongest and where the universal maximum-curvature binary (MCB) cap is approached.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Planck Epoch: Peak Density of Energetic Architrinos):** The Noether Sea reaches peak effective density in a local recycling event. Architrinos dominate the dynamics, and the tri-binary network is maximally compressed. At the event-horizon limit, the only stable assemblies are neutral Noether swarms: high-energy, stealthy pairs or quad clusters that couple with a strong-like force. The photon-channel assemblies are modeled as coaxial contra-rotating pro/anti planar pairs moving at the local effective photon speed. Noether swarm assemblies populate the Noether Sea, so the effective gravity channel is active while the Euclidean void remains fixed. Noether swarms are neutral, so there is no emergent electric force yet beyond internal binding. Axial architrinos are absent, so no weak force. A strong-like binding exists inside Noether swarm couplings, but it is not externally observable until quark assemblies appear. This is the regime where self-hit effects are strongest and where the universal maximum-curvature binary (MCB) cap is approached.
 
 #### Grand Unification Epoch ($\sim 10^{-43}$ to $10^{-36}$ s)
 - Time window: $\sim 10^{-43}$ to $10^{-36}$ s.
@@ -55911,7 +55911,7 @@ This statistic is a validation target, not a permission to import an external co
 
 **$\Lambda\mathrm{CDM}$ interpretation:** A scalar field drives exponential expansion, smoothing curvature and seeding primordial perturbations.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Inflationary Epoch: Noether-Core Transition):** $\mathbb{A}\mathbb{A}\mathbb{A}$ treats inflation-like behavior as sourced in SMBH-core interior dynamics. The self-hit regime of inner assemblies drives rapid effective expansion/relaxation of the surrounding Noether Sea. Near the Planck-alignment boundary, terminal lock and release behavior organizes the transition from maximal-curvature dynamics into a broader, more uniform ambient state. In the mapped chronology, Noether-core tri-binary behavior enters a coherent regime that later supports emergent metric summaries without invoking literal expansion of the void.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Inflationary Epoch: Noether-Core Transition):** $\mathbb{A}\mathbb{A}\mathbb{A}$ treats inflation-like behavior as sourced in SMBH-core interior dynamics. The self-hit regime of inner assemblies drives rapid effective expansion/relaxation of the surrounding Noether Sea. Near the Planck-alignment boundary, terminal lock and release behavior organizes the transition from maximal-curvature dynamics into a broader, more uniform ambient state. In the mapped chronology, Noether swarm tri-binary behavior enters a coherent regime that later supports emergent metric summaries without invoking literal expansion of the void.
 
 #### Electroweak Epoch ($\sim 10^{-12}$ s)
 - Time window: $\sim 10^{-12}$ s.
@@ -55920,7 +55920,7 @@ This statistic is a validation target, not a permission to import an external co
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Electroweak symmetry breaks; particle masses emerge via the Higgs mechanism.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Electroweak Epoch: Axial Architrinos Associate with Noether Cores):** Axial architrinos associate with Noether cores, setting the effective inertial response and distinguishing stable interaction channels. This is the point where electromagnetic and weak interactions become externally observable: charged assemblies appear and weak-scale coupling becomes meaningful through axial topology. This association process defines the emergent analog of particle masses and electroweak differentiation; compare [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Electroweak Epoch: Axial Architrinos Associate with Noether Swarms):** Axial architrinos associate with Noether swarms, setting the effective inertial response and distinguishing stable interaction channels. This is the point where electromagnetic and weak interactions become externally observable: charged assemblies appear and weak-scale coupling becomes meaningful through axial topology. This association process defines the emergent analog of particle masses and electroweak differentiation; compare [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md).
 
 #### Quark Epoch ($\sim 10^{-12}$ to $10^{-6}$ s)
 - Time window: $\sim 10^{-12}$ to $10^{-6}$ s.
@@ -55949,8 +55949,8 @@ This statistic is a validation target, not a permission to import an external co
 **$\Lambda\mathrm{CDM}$ interpretation:** Electron-positron pairs are abundant; annihilation and cooling reshape the radiation bath.
 **$\Lambda\mathrm{CDM}$ (neutrino decoupling):** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether Cores with 6*|e/6| Axial Architrinos Form):** Stable lepton analogs form from Noether cores carrying six bound axial architrinos (net $|e|$ from six $|e/6|$ units). Lepton-like assemblies populate the Noether Sea and mediate charge-neutralization channels.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether Cores with Neutral Axial Layers):** Nearly neutral tri-binary assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language; compare [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether Swarms with 6*|e/6| Axial Architrinos Form):** Stable lepton analogs form from Noether swarms carrying six bound axial architrinos (net $|e|$ from six $|e/6|$ units). Lepton-like assemblies populate the Noether Sea and mediate charge-neutralization channels.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether Swarms with Neutral Axial Layers):** Nearly neutral tri-binary assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language; compare [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
 #### Photon Epoch ($\sim 10$ s to $\sim 3.8\times10^5$ years)
 - Time window: $\sim 10$ s to $\sim 3.8\times10^5$ years.
@@ -56030,7 +56030,7 @@ Isotropy in this branch is attributed to long-time averaging over many source po
 
 ##### Effective Thermal Spectrum of the Noether Sea
 
-The framework does not yet identify an ontological root definition of temperature, so it should not simply equate the enormous internal energy of individual Noether cores with an ordinary thermodynamic temperature. A more disciplined distinction is required between three quantities: the internal energy scale of the cores, the local effective emissive temperature of the Noether Sea if it behaves as a blackbody source, and the observer-side temperature inferred from the photon bath after emission, transport, thermalization, and redshift. On that reading, the observed $2.7255\,\mathrm{K}$ background is the temperature of the ambient microwave radiation field measured by present observers, not automatically the intrinsic temperature of the Noether Sea as an emitter. The stronger claim to test is that sufficiently homogeneous regions of the Sea can generate and maintain a near-blackbody photon population whose measured spectrum tracks that emissive state after medium transport. Departures from the baseline blackbody should then encode local medium state: increasing core density, anisotropy, or internal excitation near dense matter would tend to distort the spectrum away from the homogeneous limit, while the strongest deviations should arise near black-hole recycling zones, where alignment, compression, and release-channel mixing can harden, bias, or only partially re-thermalize the emitted radiation before subsequent relaxation in the surrounding Noether Sea.
+The framework does not yet identify an ontological root definition of temperature, so it should not simply equate the enormous internal energy of individual Noether swarms with an ordinary thermodynamic temperature. A more disciplined distinction is required between three quantities: the internal energy scale of the cores, the local effective emissive temperature of the Noether Sea if it behaves as a blackbody source, and the observer-side temperature inferred from the photon bath after emission, transport, thermalization, and redshift. On that reading, the observed $2.7255\,\mathrm{K}$ background is the temperature of the ambient microwave radiation field measured by present observers, not automatically the intrinsic temperature of the Noether Sea as an emitter. The stronger claim to test is that sufficiently homogeneous regions of the Sea can generate and maintain a near-blackbody photon population whose measured spectrum tracks that emissive state after medium transport. Departures from the baseline blackbody should then encode local medium state: increasing core density, anisotropy, or internal excitation near dense matter would tend to distort the spectrum away from the homogeneous limit, while the strongest deviations should arise near black-hole recycling zones, where alignment, compression, and release-channel mixing can harden, bias, or only partially re-thermalize the emitted radiation before subsequent relaxation in the surrounding Noether Sea.
 
 ##### Discovery-Scale Thermal Record
 
@@ -56443,7 +56443,7 @@ The dark-matter density entry is an observationally constrained bookkeeping requ
 
 ##### The Noether Sea as Gravitational Medium
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether Sea is a dense coupled population of neutral tri-binary assemblies occupying the fixed Euclidean void. Each tri-binary consists of three nested electrino–positrino binaries (inner, middle, outer), with net charge zero and internal dynamics spanning the three field-speed regimes ($v > c_f$, $v = c_f$, $v < c_f$). Gravity is not a fundamental force but an emergent medium-response effect: local variations in Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$ alter the Noether-Sea delay factor $\chi_{\text{sea}}$ and the transmission of delayed causal flux, producing observer-level geodesic deviation and an effective metric $g_{\mu\nu}^{\text{eff}}$ experienced by assemblies.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether Sea is a dense coupled population of neutral tri-binary assemblies occupying the fixed Euclidean void. Each tri-binary consists of three nested electrino–positrino binaries (inner, middle, outer), with net charge zero and internal dynamics spanning the three field-speed regimes ($v > c_f$, $v = c_f$, $v < c_f$). Gravity is not a fundamental force but an emergent medium-response effect: local variations in Noether swarm density $\rho_{\text{core}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$ alter the Noether-Sea delay factor $\chi_{\text{sea}}$ and the transmission of delayed causal flux, producing observer-level geodesic deviation and an effective metric $g_{\mu\nu}^{\text{eff}}$ experienced by assemblies.
 
 Massive composite assemblies (protons, atoms, stars) are tri-binary configurations with axial layers; they locally compress the Noether Sea, increasing $\rho_{\text{core}}$ and changing $\chi_{\text{sea}}$ for effective signal propagation. This compression is the substrate-level origin of the Newtonian potential $\Phi_N$ in the weak-field limit. The effective gravitational constant $G$ is related to the medium compliance—how readily the Sea density responds to stress from embedded matter (see [spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md)).
 
@@ -56551,7 +56551,7 @@ CMB lensing supplies a different but equally important dark-sector constraint. I
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the conservative requirement is therefore two-stage:
 
 1. recover the CMB-lensing observable $C_L^{\phi\phi}$ from the same CMB history used for TT/TE/EE, damping, and blackbody preservation;
-2. project that lensing record into the same neutral-assembly density $\rho_A$, Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, and medium-response variables used by the structure-formation module.
+2. project that lensing record into the same neutral-assembly density $\rho_A$, Noether swarm density $\rho_{\text{core}}(\mathbf{x},t)$, and medium-response variables used by the structure-formation module.
 
 A dark-matter interpretation fails if it treats CMB lensing as direct proof of one substrate while using a different medium state to fit galaxy clustering, weak lensing, or cluster offsets.
 
@@ -56618,7 +56618,7 @@ Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dar
 
 - **Heavier neutral assemblies (hypothetical):** Tri-binary cores carrying axial patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these would be assemblies whose axial layers cancel in both net charge and oscillating dipole moment, analogous to the neutrino's balanced axial layer but realized on a heavier core (e.g., a bi-binary or uni-binary core with an appropriately locked axial layer, or a multi-core composite). The mass scale is set by the core's internal binding energy, shielding, and medium-dressed response to the Noether Sea.
 
-- **Primordial Noether-core defects:** Dense, self-gravitating clusters of maximally contracted tri-binaries produced in the high-energy epoch—analogous to primordial black holes in standard cosmology but with internal Planck-core structure replacing singular interiors. Their mass spectrum depends on formation-epoch dynamics. The analogy is a benchmark, not an identification: a native defect branch would have to inherit the compact-object mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result checks without importing primordial-black-hole ontology.
+- **Primordial Noether swarm defects:** Dense, self-gravitating clusters of maximally contracted tri-binaries produced in the high-energy epoch—analogous to primordial black holes in standard cosmology but with internal Planck-core structure replacing singular interiors. Their mass spectrum depends on formation-epoch dynamics. The analogy is a benchmark, not an identification: a native defect branch would have to inherit the compact-object mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result checks without importing primordial-black-hole ontology.
 
 **Behavior.** These assemblies are pressureless at late times (kinetic energy $\ll$ rest energy), cluster gravitationally, and are collisionless on galactic scales because their interaction cross-section with baryonic and electromagnetic assemblies is negligible (no exposed charge → no long-range dipole coupling). They therefore reproduce the canonical CDM clustering phenomenology: hierarchical structure formation, flat rotation curves from halo profiles, and the correct matter-loading signature in the CMB.
 
@@ -56729,7 +56729,7 @@ These difficulties motivate retaining Candidate A as the primary dark-matter sub
 | Pure medium-response | Captures MOND-like galaxy-scale behavior naturally | Struggles with Bullet-Cluster offsets and full CMB matter-loading closure |
 | Hybrid baseline | Combines cosmology-scale closure with galaxy-scale flexibility | Requires constitutive calibration discipline to avoid over-parameterized tuning |
 
-**Coupled equations (schematic).** Let $\rho_A(\mathbf{x},t)$ denote the neutral-assembly density and $\rho_{\text{core}}(\mathbf{x},t)$ the Noether-core density. In the Newtonian limit, the effective Poisson equation becomes:
+**Coupled equations (schematic).** Let $\rho_A(\mathbf{x},t)$ denote the neutral-assembly density and $\rho_{\text{core}}(\mathbf{x},t)$ the Noether swarm density. In the Newtonian limit, the effective Poisson equation becomes:
 
 $$
 \nabla^2 \Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}(\nabla\Phi,\rho_{\text{core}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{core}}^{(\mathrm{pert})}\bigr),
@@ -57049,7 +57049,7 @@ Failure of any row keeps the branch external to the working dark-matter ontology
 
 ##### Source-Limited WIMP/Neutralino Comparison Benchmark
 
-A WIMP or neutralino comparison is useful here only as detector-facing benchmark language. The Jungman--Kamionkowski--Griest arXiv record used for this comparison exposes the abstract, metadata, table of contents, and source note, but not the full review text; it therefore supplies constraint categories rather than detailed supersymmetric model claims. In this chapter, a neutralino-like benchmark does not identify a native assembly with a superpartner and does not make supersymmetry part of Noether-core ontology.
+A WIMP or neutralino comparison is useful here only as detector-facing benchmark language. The Jungman--Kamionkowski--Griest arXiv record used for this comparison exposes the abstract, metadata, table of contents, and source note, but not the full review text; it therefore supplies constraint categories rather than detailed supersymmetric model claims. In this chapter, a neutralino-like benchmark does not identify a native assembly with a superpartner and does not make supersymmetry part of Noether swarm ontology.
 
 For any neutral-assembly branch $A$, record the comparison vector
 
@@ -57189,7 +57189,7 @@ The Euclidean void $\mathbb{R}^3$ with metric $h_{ij} = \delta_{ij}$ is static, 
 
 ##### The Noether Sea Carries the Dynamics
 
-The Noether Sea is the constitutive medium from which effective spacetime behavior is reconstructed: a dense coupled population of neutral pro/anti tri-binary pairs. Each tri-binary has internal energy stored across three nested binaries operating in distinct field-speed regimes. The collective state of this medium—its local Noether-core density $\rho_{\text{core}}(\mathbf{x},t)$, normalized density $n(\mathbf{x},t)$, internal energy spectrum, delay response $\chi_{\text{sea}}$, and anisotropy—defines the effective metric experienced by all embedded assemblies.
+The Noether Sea is the constitutive medium from which effective spacetime behavior is reconstructed: a dense coupled population of neutral pro/anti tri-binary pairs. Each tri-binary has internal energy stored across three nested binaries operating in distinct field-speed regimes. The collective state of this medium—its local Noether swarm density $\rho_{\text{core}}(\mathbf{x},t)$, normalized density $n(\mathbf{x},t)$, internal energy spectrum, delay response $\chi_{\text{sea}}$, and anisotropy—defines the effective metric experienced by all embedded assemblies.
 
 Late-time cosmological acceleration, in this picture, is a statement about how the aggregate properties of the Noether Sea evolve on Hubble timescales, not about the container expanding.
 
@@ -57209,7 +57209,7 @@ $$
 \rho_{\mathrm{sea}} = \rho_{\text{core}}\,\langle E_{\mathrm{core}} \rangle,
 $$
 
-where $\rho_{\text{core}}$ is the canonical Noether-core density field and $\langle E_{\mathrm{core}} \rangle$ is the mean energy per core. This quantity sets the scale of the effective dark-energy density:
+where $\rho_{\text{core}}$ is the canonical Noether swarm density field and $\langle E_{\mathrm{core}} \rangle$ is the mean energy per core. This quantity sets the scale of the effective dark-energy density:
 
 $$
 \rho_{\mathrm{DE,eff}} \sim \rho_{\mathrm{sea}}\,f(\text{outer-binary state}),
@@ -57763,13 +57763,13 @@ The coefficient packet has four immediate checks:
 
 ##### Equilibrium Current and Effective Expansion
 
-The equilibrium version of the dark-energy hypothesis refines what the source terms mean. A Noether core with cadence $\nu_N$ carries the local energy scale
+The equilibrium version of the dark-energy hypothesis refines what the source terms mean. A Noether swarm with cadence $\nu_N$ carries the local energy scale
 
 $$
 E_N=h\nu_N.
 $$
 
-Individual Noether cores may change branch through $h$-scale ledger steps. Each accepted step forces a branchwise retuning of cadence and scale variables, not a simple rise in thermodynamic temperature, but a large population can still coarse-grain into a smooth medium response. For the dark-energy module, the relevant object is not a single transition. It is a distribution $f_N(\nu,\mathbf{x},t)$ and its cadence-space current:
+Individual Noether swarms may change branch through $h$-scale ledger steps. Each accepted step forces a branchwise retuning of cadence and scale variables, not a simple rise in thermodynamic temperature, but a large population can still coarse-grain into a smooth medium response. For the dark-energy module, the relevant object is not a single transition. It is a distribution $f_N(\nu,\mathbf{x},t)$ and its cadence-space current:
 
 $$
 \partial_t f_N
@@ -57959,9 +57959,9 @@ No metric expansion of space occurs. The Euclidean void is static. What changes 
 
 Define a spatially averaged medium state at absolute time $t$:
 
-- $\rho_{\text{sea}}(t)$: mean energy density of the Noether Sea, distinct from the Noether-core number/mass-density proxy $\rho_{\text{core}}(\mathbf{x},t)$,
+- $\rho_{\text{sea}}(t)$: mean energy density of the Noether Sea, distinct from the Noether swarm number/mass-density proxy $\rho_{\text{core}}(\mathbf{x},t)$,
 - $\rho_m(t)$: mean energy density of matter assemblies (baryonic + neutral/dark),
-- $\bar{\rho}_{\text{core}}(t)$: mean Noether-core density in physical units,
+- $\bar{\rho}_{\text{core}}(t)$: mean Noether swarm density in physical units,
 - $\bar{R}_{\text{core}}(t)$: mean outer-binary radius of Noether-Sea assemblies.
 
 An effective Hubble-like parameter $H(t)$ is defined operationally through the rate of change of the medium's bulk properties. Specifically, if one defines an effective scale variable $a(t)$ via the photon redshift relation (the ratio of photon assembly frequencies at emission and reception), then $H = \dot{a}/a$ summarizes how inter-assembly separations evolve as the medium relaxes and dissipates energy. This $H$ is not the expansion rate of space but a bookkeeping variable for the medium's thermodynamic and mechanical evolution.
@@ -57979,7 +57979,7 @@ Each symbol carries a specific medium-level meaning:
 - **$H(t)$**: the effective damping term arising from the medium's bulk evolution. As Noether-Sea assemblies relax energetically (outer binaries expanding, frequencies decreasing), inter-assembly separations grow, diluting the gravitational source density. This acts as a friction-like term on the growth of perturbations, matching the role of the Hubble-like damping term in standard cosmology without identifying ordinary dissipative drag as the mass mechanism.
 
 - **$G_{\text{eff}}(t, k)$**: the effective gravitational coupling, set by how efficiently a local matter overdensity perturbs the surrounding Noether Sea and how that perturbation propagates to attract more matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $G_{\text{eff}}$ depends on:
-  - the local Noether-core density $\bar{\rho}_{\text{core}}(t)$, which sets the medium stiffness,
+  - the local Noether swarm density $\bar{\rho}_{\text{core}}(t)$, which sets the medium stiffness,
   - the outer-binary radius $\bar{R}_{\text{core}}(t)$, which controls the compliance of Noether-Sea assemblies to deformation,
   - potentially the wavenumber $k$, if the medium response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes.
   The weak-field constitutive map behind this is the same one organized in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
@@ -58631,7 +58631,7 @@ The note is therefore a gatekeeping document. It should tell the reader what has
 ##### Null Tests for Absolute-Frame Drift
 * **Simulation Protocol:** Run a simulated Michelson-Morley experiment through a declared Noether-Sea state.
 * **Success Criterion:** The observer-level interference pattern must remain invariant, within the declared leakage bound, as the assembly is rotated relative to the Euclidean-void rest frame.
-* **Mechanism to Verify:** Check that the tri-binary "Noether core" naturally contracts by $\gamma^{-1}$ due to its internal architrino trajectories being compressed by motion through the Noether-Sea state.
+* **Mechanism to Verify:** Check that the tri-binary "Noether swarm" naturally contracts by $\gamma^{-1}$ due to its internal architrino trajectories being compressed by motion through the Noether-Sea state.
 
 ##### Precision Atomic Comparison
 * **Protocol:** Compare the predicted shift in the 1S-2S Hydrogen transition for a system moving relative to the Euclidean-void rest frame vs. one at rest.
@@ -58722,7 +58722,7 @@ In this framework, the candidate substrate-level quantities are:
 ##### Category C: Assembly Geometry (Emergent but Calculable)
 - **Tri-binary radius ratios** (inner/middle/outer scales)
 - **Maximum curvature binary radius** $r_{\text{max-curv}}$ (where $v \gg c_f$)
-- **Reference Noether-core density** $\rho_{\text{core},0}$ (the normalization scale for $n(\mathbf{x},t)$)
+- **Reference Noether swarm density** $\rho_{\text{core},0}$ (the normalization scale for $n(\mathbf{x},t)$)
 
 **Everything else** (masses, coupling constants, cosmological parameters) should be **derivable** from these via:
 - Self-hit dynamics (non-Markovian evolution)
@@ -59203,9 +59203,9 @@ These quantities belong to tri-binary architecture, shielding, branch structure,
 
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch tri-binary Noether-core reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md) |
+| G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch tri-binary Noether swarm reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md) |
 | G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open; compact finite-coordinate no-go recorded, branch-chart revision required before Tier 1 continuation | certificate packet tying the finite closure graph $\mathcal{G}_{A_0}$, active root ledger, quotient Floquet gap $\Delta_{\mathbf{k}}$, shielding extraction, and $\mathcal{M}_{\text{sea}}^{ab}$ response probe into one promotion sequence | [simulations/a0-branch-certificate-protocol.md](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
-| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether core | [../noether-swarm/noether-swarm.md](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [../noether-swarm/nested-shell-swarm-geometry.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) |
+| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether swarm | [../noether-swarm/noether-swarm.md](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [../noether-swarm/nested-shell-swarm-geometry.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) |
 | G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [../noether-swarm/nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
 | G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md) |
 | G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md) |
@@ -59219,8 +59219,8 @@ These symbols control the handoff from the Euclidean substrate plus Noether Sea 
 
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| C1 | $\rho_{\text{core},0}$ | Constitutive closure target | Open | reference Noether-core density used to normalize the medium | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
-| C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether-core density, $n=\rho_{\text{core}}/\rho_{\text{core},0}$ | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
+| C1 | $\rho_{\text{core},0}$ | Constitutive closure target | Open | reference Noether swarm density used to normalize the medium | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
+| C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether swarm density, $n=\rho_{\text{core}}/\rho_{\text{core},0}$ | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
 | C3 | $\Omega(\mathbf{x}),\xi(\mathbf{x})$ | Constitutive closure target | Open | clock-channel and ruler-channel response functions in the effective metric subclass | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) |
 | C4 | $\Phi_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
 | C5 | $c_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | Noether-Sea dressed assembly-channel propagation speed used for clock/ruler closure and effective-metric comparisons, with $c_{\text{eff}}\to c_f$ in weak homogeneous conditions; separate from photon-channel speed $c_\gamma$ unless Gate A closes that identification | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
@@ -59293,7 +59293,7 @@ $$
 c_f^2\ln\!\big(\Omega(\mathbf{x})\xi(\mathbf{x})\big).
 $$
 
-Here $\xi$ is the Noether-core envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed.
+Here $\xi$ is the Noether swarm envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed.
 
 This is the cleanest current statement of the medium-to-metric handoff:
 $$
@@ -59411,7 +59411,7 @@ The current corpus supports the following conservative closure assessment.
 - $c_f$ is treated consistently as the substrate propagation speed, even when chapters temporarily write $v=1$.
 - $\epsilon$ is treated consistently as the potential polarity-unit magnitude.
 - $\rho_{\text{core},0}$ is the reference density symbol for the spacetime medium.
-- $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether-core shape ratio.
+- $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether swarm shape ratio.
 
 ##### Still genuinely open
 
@@ -59464,7 +59464,7 @@ where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive se
 
 ### Reaction Ledger
 
-This ledger records how reaction channels should account for constituent architrinos, Noether cores, axial layers, energy, momentum, charge, polarity, and path-history provenance. Its purpose is not to replace Standard Model reaction notation. Its purpose is to state what an $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must conserve before a reaction map can be treated as more than a provisional diagram.
+This ledger records how reaction channels should account for constituent architrinos, Noether swarms, axial layers, energy, momentum, charge, polarity, and path-history provenance. Its purpose is not to replace Standard Model reaction notation. Its purpose is to state what an $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must conserve before a reaction map can be treated as more than a provisional diagram.
 
 For radiative channels, use this ledger together with [Radiation](../../../../markdown/aaa/reactions/radiation.md#radiation-event-record-schema). For cosmology-facing radiation and thermalization channels, use it together with [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
@@ -59487,7 +59487,7 @@ Each reaction record should state:
 
 1. **Observer channel:** the standard reaction label, including historical labels such as `beta decay` only when immediately translated into native reaction language.
 2. **Active assemblies:** which incoming assemblies actually reconfigure, and which are spectators.
-3. **Noether-Sea participation:** whether local Noether cores, neutral binaries, axial layers, or medium excitations are consumed, split, reconfigured, or returned.
+3. **Noether-Sea participation:** whether local Noether swarms, neutral binaries, axial layers, or medium excitations are consumed, split, reconfigured, or returned.
 4. **Constituent inventory:** total $E$ and $P$ counts before and after, separated into core and axial-layer contributions where the distinction matters.
 5. **Polarity and charge accounting:** how observer-level charge bookkeeping emerges from the $E/P$ routing.
 6. **Energy-momentum and angular-momentum accounting:** where kinetic energy, internal binding energy, photon assemblies, recoil, medium excitation, spin/vector ledger terms, and wake-carried angular momentum enter and exit.
@@ -59520,7 +59520,7 @@ $$
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}.
 $$
 
-Here $\mathcal{R}$ is the replayable residual computed from the local assembly state, path-history ledger, Noether-core density, Noether-Sea delay factor, and any named sector variables. The set $\{B_i\}$ is the finite list of admissible output channels, such as retuning, bound excitation, radiation, recoil, medium heating, weak or nuclear reaction, record formation, release channel, or branch transition. The event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the balance object that must close after all selected outputs are named.
+Here $\mathcal{R}$ is the replayable residual computed from the local assembly state, path-history ledger, Noether swarm density, Noether-Sea delay factor, and any named sector variables. The set $\{B_i\}$ is the finite list of admissible output channels, such as retuning, bound excitation, radiation, recoil, medium heating, weak or nuclear reaction, record formation, release channel, or branch transition. The event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the balance object that must close after all selected outputs are named.
 
 For a reaction attempt, the input state should be recorded as:
 
@@ -59806,10 +59806,10 @@ This is a promotion criterion, not a completed theorem. Worked sector cases rema
 
 Weak reactions now require an explicit corridor-provenance stance. The current corpus supports two live possibilities:
 
-1. **Transaction-payload corridor:** $W^\pm$ carries the charged triad payload and phase relation, while final-state pro/anti Noether core material is supplied by the local Noether Sea or by explicitly identified incoming assemblies.
-2. **Provenance-carrying corridor:** $W^\pm$ carries not only the charged transaction payload but also enough pro/anti Noether core provenance to seed some final-state lepton or antilepton core content.
+1. **Transaction-payload corridor:** $W^\pm$ carries the charged triad payload and phase relation, while final-state pro/anti Noether swarm material is supplied by the local Noether Sea or by explicitly identified incoming assemblies.
+2. **Provenance-carrying corridor:** $W^\pm$ carries not only the charged transaction payload but also enough pro/anti Noether swarm provenance to seed some final-state lepton or antilepton core content.
 
-The ledger should not choose between these silently. For each serious weak record, add a row or note that states which stance is being used, which Noether core material enters and exits, and what would falsify the accounting. This gate is coupled to the weak-coupling-triad exposure problem: the same geometry that permits left-handed charged-current docking must also determine which corridor payload can be transferred and where the outgoing lepton cores come from.
+The ledger should not choose between these silently. For each serious weak record, add a row or note that states which stance is being used, which Noether swarm material enters and exits, and what would falsify the accounting. This gate is coupled to the weak-coupling-triad exposure problem: the same geometry that permits left-handed charged-current docking must also determine which corridor payload can be transferred and where the outgoing lepton cores come from.
 
 Minimum weak-channel records should therefore include:
 
@@ -59842,12 +59842,12 @@ The lepton products cannot be asserted as creation from nothing. Their core and 
 | Component | Ledger requirement | Status |
 | --- | --- | --- |
 | Top-to-bottom axial exchange | Route the $+3E,-3P$ change through a weak-channel coupling event | Provisional |
-| Positron assembly | Identify the Noether-core and axial material used to form the charged lepton output | Provisional |
+| Positron assembly | Identify the Noether swarm and axial material used to form the charged lepton output | Provisional |
 | Electron-neutrino assembly | Identify neutral core and axial-layer routing, including chirality/orientation | Provisional |
 | Energy-momentum | Account for quark mass difference, lepton energies, recoil, and medium excitation | Derivation target |
 | Weak geometry | Derive the left-handed selection rule and allowed coupling operator | Derivation target |
 
-This channel should not be presented as a completed architrino derivation until the inventory table balances $E/P$ counts, core orientation, axial-layer routing, and energy-momentum in one consistent record.
+This channel should not be presented as a completed architrino derivation until the inventory table balances $E/P$ counts, swarm orientation, axial-layer routing, and energy-momentum in one consistent record.
 
 #### Free Neutron Beta Reaction
 
@@ -59901,7 +59901,7 @@ The conservative ledger is:
 | --- | --- | --- |
 | Active $d \to u$ assembly | Route $3E$ out of the active axial layer and route $3P$ into it | Provisional map |
 | Electron assembly | Combine the ejected $3E$ contribution with additional local Noether-Sea material and a suitable core | Provisional map |
-| Antineutrino assembly | Identify neutral core orientation, axial-layer routing, and weak-channel phase relation | Open derivation target |
+| Antineutrino assembly | Identify neutral swarm orientation, axial-layer routing, and weak-channel phase relation | Open derivation target |
 | Noether Sea | Record every neutral core, axial layer, or medium excitation consumed or returned | Required |
 | Energy and angular momentum | Track mass difference, recoil, electron kinetic energy, antineutrino energy, and medium response | Required |
 
@@ -59913,7 +59913,7 @@ The reaction ledger needs at least four tables for each serious channel:
 
 1. **Constituent inventory table:** core and axial-layer $E/P$ counts for every input, output, Noether-Sea contribution, and returned medium product.
 2. **Energy-momentum table:** internal energy changes, kinetic output, recoil, photon assemblies, neutrino channel, and medium excitation.
-3. **Geometry table:** axial frame, core orientation, chirality, polarity routing, and allowed coupling/docking geometry.
+3. **Geometry table:** axial frame, swarm orientation, chirality, polarity routing, and allowed coupling/docking geometry.
 4. **Path-history table:** causal-root branches, source identities, emission times, and local Noether-Sea state variables needed for deterministic replay.
 
 Radiative or photon-coupled channels also need the shared radiation event-record table. The polarization handoff in that table remains inherited from Gate B; this ledger records the required transverse and capture/rejection fields but does not derive photon spin locally.
@@ -60029,10 +60029,10 @@ This constraint explains how apparent metric deviations (Shapiro delay and light
 
 ##### Gravitational Time Dilation
 
-We require that the proposed mechanical slowing induced by Noether-core density aligns quantitatively with geodetic and redshift observations such as GPS offsets and the Pound–Rebka experiment, offering a concrete mapping between the new microphysics and the classical time-dilation effects.
+We require that the proposed mechanical slowing induced by Noether swarm density aligns quantitatively with geodetic and redshift observations such as GPS offsets and the Pound–Rebka experiment, offering a concrete mapping between the new microphysics and the classical time-dilation effects.
 
 * **Constraint** – reproduce GPS clock offsets (38 μs/day), the Pound–Rebka redshift, and height-resolved optical-clock redshift with $\Delta\nu/\nu\approx gL/c_0^2$; this includes the approximate scales $1.1\times10^{-19}$ across $1\,\mathrm{mm}$ and $3.6\times10^{-17}$ across $33\,\mathrm{cm}$ near Earth's surface.
-* **Mechanism** – mechanical slowing of tri-binary orbital frequencies couples to the local Noether-core density and Noether-Sea delay factor, generating the observed dilation without changing the constitutive map used for other weak-field observables.
+* **Mechanism** – mechanical slowing of tri-binary orbital frequencies couples to the local Noether swarm density and Noether-Sea delay factor, generating the observed dilation without changing the constitutive map used for other weak-field observables.
 
 ##### Massive-Superposition Gravitational Distinguishability
 
@@ -60318,7 +60318,7 @@ The current benchmark scale is already severe: PDG 2024 summaries give $\tau/B(p
 | $\mathcal{C}_{\mathrm{weak}}$ | One weak-coupling-triad exposure record $\mathcal{E}_{\mathrm{weak}}(A)=Q_{\mathrm{weak}}[\Pi_{\mathrm{weak}}\mathcal{L}_A]$ supplies `V-A`, CKM/PMNS overlap, and weak-corridor provenance without redefining $\Pi_{\mathrm{weak}}$, $Q_{\mathrm{weak}}$, or the exposed domain. | $\mathcal{B}_{\mathrm{weak}}(\theta)$ lies in the observed charged-current handedness, mixing, and provenance region within $\epsilon_{\mathrm{weak}}$. | Right-handed charged-current coupling is not strongly suppressed in the validated regime, or the weak exposure domain changes between chirality, mixing, and provenance. |
 | $\mathcal{C}_{\mathrm{quantum}}$ | A transfer operator or return map $\mathcal{T}_{\Delta t}$, basin partition $\{B_i\}$, invariant or metastable measure $\mu_*$, and detector kernel produce $p_i=\mu_*(B_i)$ from $\Gamma$ and $\mathcal{H}$ without assigning probabilities as an external rule. | $\mathcal{B}_{\mathrm{quantum}}(\theta)$ lies in the Born-rule, Bell/CHSH/Tsirelson/GHZ/Hardy, Leggett-Garg temporal-correlation, detector-record, and no-signaling benchmark region within $\epsilon_{\mathrm{quantum}}$. | The validated regime gives non-Born weights, a classical-axis linear-correlation failure, untracked temporal-measurement disturbance, superluminal signal transfer, or a detector kernel not derived from the recorded causal state. |
 | $\mathcal{C}_{\mathrm{gravity}}$ | One Noether-Sea response map $\mathcal{M}_{\mathrm{sea}}^{ab}$ supplies clock, ruler, effective signal-speed, weak-field metric, and PPN channels without changing coefficients per observable. | $\mathcal{B}_{\mathrm{gravity}}(\theta)$ lies in the redshift, Shapiro-delay, lensing, orbital, gravitational-wave-speed, PPN, and preferred-frame bound region within $\epsilon_{\mathrm{gravity}}$. | Clock, ruler, signal, or metric coefficients must be tuned independently, ordinary dissipative drag appears in stable motion, or preferred-frame leakage exceeds the recorded bounds. |
-| $\mathcal{C}_{\mathrm{hadronic}}$ | An accepted branch family $A$, exposure quotient, color/topology ledger, residual strong channel set, and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ close confinement, quark mass, baryon-stability, and nuclear-binding rows. | $\mathcal{B}_{\mathrm{hadronic}}(\theta)$ lies in the confinement, quark-hierarchy, proton-stability, deuteron, saturation, and alpha-like benchmark region within $\epsilon_{\mathrm{hadronic}}$. | The sector predicts generic fast proton decay, unphysical nuclear binding signs, missing color/topology closure, or an unbalanced architrino / Noether-core inventory. |
+| $\mathcal{C}_{\mathrm{hadronic}}$ | An accepted branch family $A$, exposure quotient, color/topology ledger, residual strong channel set, and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ close confinement, quark mass, baryon-stability, and nuclear-binding rows. | $\mathcal{B}_{\mathrm{hadronic}}(\theta)$ lies in the confinement, quark-hierarchy, proton-stability, deuteron, saturation, and alpha-like benchmark region within $\epsilon_{\mathrm{hadronic}}$. | The sector predicts generic fast proton decay, unphysical nuclear binding signs, missing color/topology closure, or an unbalanced architrino / Noether swarm inventory. |
 | $\mathcal{C}_{\mathrm{radiation}}$ | A radiation residual $\mathcal{R}_{\Theta}$ selects admissible channels from $\{B_i\}$ and closes $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ with photon output, recoil, medium update, non-radiative remnant, or reaction rows explicitly recorded. | $\mathcal{B}_{\mathrm{radiation}}(\theta)$ lies in the Larmor/Lienard, bremsstrahlung, synchrotron, pair-threshold, Compton-like, and blackbody benchmark region within $\epsilon_{\mathrm{radiation}}$. | Any benchmark requires per-observable retuning, untracked energy loss, a missing recoil/provenance row, a free longitudinal photon mode, or a blackbody fit not tied to the event ledger. |
 | $\mathcal{C}_{\mathrm{cosmology}}$ | One source, transport, thermalization, and clock-rate record uses the same $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, and reaction provenance ledger across local source channels and observer-level cosmology. | $\mathcal{B}_{\mathrm{cosmology}}(\theta)$ lies in the BBN, CMB blackbody, damping, anisotropy, polarization handoff, redshift, $H(z)$, BAO, and growth benchmark region within $\epsilon_{\mathrm{cosmology}}$. | BBN photon loading, CMB thermalization, redshift handoff, or structure growth requires unbalanced substrate creation, per-source retuning, or Noether-Sea variables incompatible with local reaction / radiation ledgers. |
 
@@ -60467,7 +60467,7 @@ The class is `direct` when the theorem's assumptions are accepted or effective i
 | Frauchiger-Renner / Wigner-friend observed-observer consistency | `replacement constraint` | The standard no-go setup assumes that quantum state descriptions can be applied to other theory-users, that one observer may import another observer's certified certainty, and that one declared record channel cannot certify mutually exclusive outcomes. $\mathbb{A}\mathbb{A}\mathbb{A}$ rejects an external classical-observer cut, but it also rejects importing another observer's conclusion without a physical record channel, access region, apparatus kernel, and boundary-data model. | A measurement closure that includes observed Physical Observers must derive every imported statement from the same substrate flow, record-autonomy test, and finite communication channel used for ordinary apparatus records. Failure occurs if a model needs a hidden external observer, lets a Physical Observer import certainty without a durable record, treats an unbuildable reference/readout setup as a completed experiment, or allows two mutually exclusive outcomes to be certified inside one declared record channel. If the reference or readout channel cannot satisfy the physical record criteria, the thought experiment is blocked by realizability rather than promoted into ontology. |
 | Groenewold-van Hove / global quantization map | `replacement constraint` | A global quantization map from all classical observables $C^\infty(M)$ to Hilbert-space operators, preserving every Poisson bracket as a commutator, is not a substrate assumption. The protected benchmark is narrower: in validated quantum regimes, the selected observer-level observables must recover the tested commutator algebra on the calibrated record domain. | Derive an admissible observable set from the same coarse-graining, apparatus kernel, retained path-history data, and record window used for the effective operator model, then bound the quantization-domain residual in [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#admissible-quantization-domain-guardrail). Failure occurs if a closure claims bracket-to-commutator recovery for all smooth classical functions, uses a choice of polarization or representation as hidden ontology, or changes the observable domain per benchmark without recording the physical apparatus and coarse-graining that justify the restriction. |
 | Lorentz invariance and preferred-frame tests | `direct` | Observer-level clock, ruler, two-way signal, PPN, and spectral bounds apply directly to any candidate effective metric or transport map. | Bound $\epsilon_{\mathrm{LV}}$, $\Delta_{\mathrm{tw}}(\beta)$, PPN parameters, spectra, and gravitational-wave-speed differences within recorded limits. Failure occurs when absolute motion is detectable above the accepted thresholds. |
-| Spin-statistics / exchange | `replacement constraint` | Local Lorentz-QFT axioms are not fundamental substrate assumptions, but matter stability and exchange classes are validated effective constraints. | Derive the ordered-frame lift, $4\pi$ spinor behavior, and bosonic/fermionic exchange classes from Noether-core topology and angular-momentum ledger. Failure occurs if the lift cannot separate fermionic and bosonic closure classes. |
+| Spin-statistics / exchange | `replacement constraint` | Local Lorentz-QFT axioms are not fundamental substrate assumptions, but matter stability and exchange classes are validated effective constraints. | Derive the ordered-frame lift, $4\pi$ spinor behavior, and bosonic/fermionic exchange classes from Noether swarm topology and angular-momentum ledger. Failure occurs if the lift cannot separate fermionic and bosonic closure classes. |
 | CPT theorem / local relativistic QFT assumptions | `replacement constraint` | Local relativistic QFT assumptions are not substrate assumptions for absolute time, Euclidean void, and delayed causal wakes. This includes local field operators, microcausal commutation structure, fundamental Poincare symmetry, and a Lorentz-invariant vacuum as primitive assumptions. The protected benchmarks remain observer-level particle/antiparticle mass degeneracy, charge-conjugate reaction bookkeeping, neutral-meson and lepton-sector CPT bounds, Lorentz-leakage bounds, and the absence of unobserved baryon/lepton channels. | Recover the tested CPT-facing benchmarks from architrino polarity, pro/anti assembly mapping, delayed dynamics, effective Lorentz closure, and the existing null-result ledger. A candidate record should publish a residual vector such as $\mathcal{R}_{\mathrm{CPT}}(\theta)=(\Delta m_{p\bar p},\Delta q_{p\bar p},\Delta\Gamma_{\mathrm{conj}},\epsilon_{\mathrm{LV}},\mathcal{R}_{\mathrm{null}})$ and show that each component stays within the declared experimental or closure bound. Failure occurs if the record hides rejected local-QFT assumptions inside the proof, predicts CPT-violating mass or reaction asymmetries above bounds, or restores the symmetry only by adding untracked channels outside $\mathcal{R}_{\mathrm{null}}$. |
 | Exact global architrino flips or permutations | `assumption mismatch` with replacement constraint when effective indistinguishability is claimed | Substrate architrinos are provenance-bearing entities with path-history and causal-wake records. A global flip, polarity reassignment, or label permutation is not exact unless it preserves those records and all causal-root relations, not merely the instantaneous exposed properties. | State whether the symmetry is a kernel/background symmetry, a full-history symmetry on a special state, or an effective coarse-grained equivalence. Effective exchange, gauge, flavor, or charge bookkeeping may be used only after the suppressed provenance data and replacement recovery target are named. Failure occurs if a closure treats provenance-suppressed interchangeability as substrate identity, or if an effective symmetry claim cannot recover the validated observer-level degeneracies, conservation laws, and exchange classes. |
 | Coleman-Mandula / gauge unification constraints | `assumption mismatch` with replacement constraint when effective scattering is claimed | Exact Lorentz-invariant analytic S-matrix assumptions are not substrate assumptions for delayed absolute-time dynamics. Compact internal symmetry, unitarity, positive-energy particle states, and effective gauge-sector factorization become benchmarks when Standard-Model-facing scattering or mixing is claimed. A pre-effective symmetry container may evade the theorem's literal hypotheses only before observer-level spacetime, scattering states, and gauge factors have been recovered; after that recovery, the same record must reproduce the validated factorization and may not use mixed spacetime/internal generators to create observed-sector shortcuts. | State which assumptions are effective, recover compact internal gauge behavior in the tested regime, and derive gauge-like symmetries without contradicting observed factorization. Failure occurs if a claimed unification predicts forbidden effective-sector mixing, hides added channels outside $\mathcal{R}_{\mathrm{null}}$, uses gauge covariance as an unexplained fit, or suppresses non-baseline sectors with a record different from the positive recovery record. |
@@ -60609,7 +60609,7 @@ This page is not a dumping ground for vague uncertainty. Each tension should ide
 | 2 | Low-energy quantum-gravity EFT recovery | Quantized metric methods are not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, but their long-distance effective predictions are fixed by known low-energy degrees of freedom. | [gr-phenomenology.md](../../../../markdown/aaa/spacetime/gr-phenomenology.md) and [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) state the classical weak-field map; they need an explicit observer-level GR-EFT recovery gate. | Recover the standard long-distance quantum correction to the Newtonian potential using the same weak-field constitutive record that supports PPN, redshift, Shapiro delay, lensing, and gravitational-wave speed. | If the calculable low-energy quantum correction requires an independent coefficient set, spacetime closure is incomplete even if the classical observables are matched. |
 | 2 | Parameter non-closure | Too many symbols remain geometric promises rather than fixed quantities. | [parameter-ledger.md](../../../../markdown/aaa/validation/parameter-ledger.md) now organizes them, but most are still open. | Close $\kappa$, the mass prefactor, the metric constitutive coefficients, and the weak-mixing datum without per-observable retuning. | If the same symbol has to be re-fit independently across chapters, the closure claim weakens sharply. |
 | 2 | Null-result closure for added channels | A unification claim can fail even while matching known positive benchmarks if it predicts extra channels that experiments have not seen. | [failure-criteria.md](../../../../markdown/aaa/validation/failure-criteria.md) now defines $\mathcal{R}_{\mathrm{null}}(\theta)$ for predicted non-baseline channels, but the main sector ledgers have not all routed their null-result bounds through that residual. The concrete comparison cases are mirror matter, superpartners, proton-instability channels, extra gauge bosons, hidden transport modes, sterile or neutral partner branches, and preferred-frame leakage channels. | For every added partner family, unstable baryon channel, extra gauge or transport mode, preferred-frame leakage channel, or other non-baseline output, compute $O_e(\theta)$ and show $O_e(\theta)\le O_e^{\max}$ from the same shared closure record used for the positive benchmarks. A symmetry container that includes the Standard Model as a subcase passes only when the added channels are proven absent, exactly redundant, or below bounds by the same branch record that recovers the observed sector. | If unobserved channels are hidden only by sector-specific masses, thresholds, compactification-like assumptions, or disconnected suppression factors, the framework has reproduced the failure pattern of overextended unification rather than closing it. |
-| 2 | Thermodynamic-gravity closure | If the metric is an emergent equation of state, the repo needs more than constitutive rhetoric. | [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) now states the medium-first picture, defines a local-horizon residual $\mathcal{R}_{\mathrm{thermo}}(\theta)$, and links the proof scaffold to [Thermodynamic Residual Protocol](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md); [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md) frames horizon entropy as a block-density count over horizon-compatible reduced Noether-core closure labels. No run has yet driven the residual small from a simulated Noether-Sea record. | Show that the Noether Sea admits an area-scaling entropy channel $S_H=k_B\log\lvert\mathcal{B}_H\rvert$ whose local coefficient is recovered as a block entropy density, a local Rindler/Unruh recovery in the appropriate limit, a Jacobson-style $dQ=T_UdS$ residual for boundary-wake data, Page-curve-compatible information release through horizon-interface channels, and a controlled nonequilibrium regime where distinctive departures are predicted. | If GR-like recovery requires thermodynamic language but the medium cannot supply area scaling, local horizon temperature, a shared stress/entropy/temperature record, Page-curve-compatible information accounting, or a coherent nonequilibrium boundary, the present gravity interpretation loses depth and may be mislocated. |
+| 2 | Thermodynamic-gravity closure | If the metric is an emergent equation of state, the repo needs more than constitutive rhetoric. | [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md) now states the medium-first picture, defines a local-horizon residual $\mathcal{R}_{\mathrm{thermo}}(\theta)$, and links the proof scaffold to [Thermodynamic Residual Protocol](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md); [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md) frames horizon entropy as a block-density count over horizon-compatible reduced Noether swarm closure labels. No run has yet driven the residual small from a simulated Noether-Sea record. | Show that the Noether Sea admits an area-scaling entropy channel $S_H=k_B\log\lvert\mathcal{B}_H\rvert$ whose local coefficient is recovered as a block entropy density, a local Rindler/Unruh recovery in the appropriate limit, a Jacobson-style $dQ=T_UdS$ residual for boundary-wake data, Page-curve-compatible information release through horizon-interface channels, and a controlled nonequilibrium regime where distinctive departures are predicted. | If GR-like recovery requires thermodynamic language but the medium cannot supply area scaling, local horizon temperature, a shared stress/entropy/temperature record, Page-curve-compatible information accounting, or a coherent nonequilibrium boundary, the present gravity interpretation loses depth and may be mislocated. |
 | 2 | Reaction-cosmology provenance closure | The local-reaction story and the cosmology-source story now meet at photon loading, pair production, and thermalization. | [reaction-cosmology-provenance-ledger.md](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) defines the shared ledger, but no full source-to-background path has been closed. | Produce one conserved provenance path from a radiation or pair channel through thermalization to a BBN or CMB observable, using the same Noether-Sea state variables throughout. | If BBN photon loading or CMB blackbody recovery requires unbalanced substrate creation, per-source retuning, or incompatible thermalization assumptions, the local-recycling cosmology branch fails. |
 | 2 | Shared cosmology state closure | Dark-energy, $H_0$, $S_8$, CMB, BBN, BAO, weak-lensing, and pre-BBN comparison claims all consume overlapping medium-state variables. | [cosmology-ontology.md](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md), and [hubble-s8-tensions.md](../../../../markdown/aaa/cosmology/hubble-s8-tensions.md) now state the shared-state requirement; [inflation-model.md](../../../../markdown/aaa/cosmology/inflation-model.md#pre-bbn-comparison-gate), [BBN-constraints.md](../../../../markdown/aaa/cosmology/BBN-constraints.md#pre-bbn-handoff-gate), [structure-formation.md](../../../../markdown/aaa/cosmology/structure-formation.md#cmb-lensing-and-acoustic-peaks), and [gravitational-waves.md](../../../../markdown/aaa/spacetime/gravitational-waves.md#early-universe-stochastic-background-gate) now route pre-BBN branch projections through the same record; [simulations/cosmology-shared-residual-fit.md](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md) supplies the first mock residual-packet scaffold; and [dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md) now gives a thermodynamic $\Lambda_{\mathrm{eff}}$ conjugacy target, but no empirical joint residual fit exists. | Produce one $\theta_{\mathrm{sea}}$ and projection family that keeps SN, BAO, CMB, WL, RSD, BBN, $H_0$, $S_8$, pre-BBN branch projections, and stochastic-background bounds inside tolerance without per-pipeline retuning; if $\Lambda_{\mathrm{eff}}$ is treated thermodynamically, derive it as a conjugate to an effective observer-level four-volume functional of the same $\theta_{\mathrm{sea}}$. | If distance, growth, early-universe, calibration, pre-BBN branch, stochastic-background, or thermodynamic-$\Lambda_{\mathrm{eff}}$ observables require incompatible medium-state records, the cosmology branch has hidden the tension rather than closed it. |
 | 2 | Radiation Gate C benchmark closure | Radiation must recover standard electromagnetic and QED-like benchmarks before Noether-Sea-dependent deviations or cosmology source claims are credible. | [radiation.md](../../../../markdown/aaa/reactions/radiation.md) now carries a classified closure-target ledger, with channel scaffolds in [bremsstrahlung.md](../../../../markdown/aaa/reactions/bremsstrahlung.md), [synchrotron.md](../../../../markdown/aaa/reactions/synchrotron.md), and [reaction-cosmology-provenance-ledger.md](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md), but no unified Gate C derivation is complete. | Close Larmor/Lienard recovery, free-free emissivity, synchrotron $\gamma^2B$ and power scaling, pair thresholds, Compton-like scattering, and blackbody detailed balance through one event record, while treating free photon polarization as a Gate B handoff only. | If any benchmark requires per-observable retuning, violates validated limits, or derives free photon polarization outside Gate B, radiation Gate C does not close. |
@@ -60649,7 +60649,7 @@ Several tensions are linked and should not be treated as isolated tasks.
 
 ##### Weak sector cluster
 
-The weak-selection problem, right-handed neutrino stance, CKM/PMNS closure, weak-corridor provenance, and the quark misalignment parameter $\alpha$ all belong to the same electroweak geometry stack. The current synthesis is that these are readouts of one weak-coupling-triad exposure problem: axial-frame branch selection determines what can be exposed, the `V-A` operator determines which handedness can dock, the overlap integrals determine mixing weights, and the reaction ledger determines where the corridor payload and outgoing Noether core provenance enter and exit. A clean derivation of one should now constrain the others rather than leaving them as independent stories.
+The weak-selection problem, right-handed neutrino stance, CKM/PMNS closure, weak-corridor provenance, and the quark misalignment parameter $\alpha$ all belong to the same electroweak geometry stack. The current synthesis is that these are readouts of one weak-coupling-triad exposure problem: axial-frame branch selection determines what can be exposed, the `V-A` operator determines which handedness can dock, the overlap integrals determine mixing weights, and the reaction ledger determines where the corridor payload and outgoing Noether swarm provenance enter and exit. A clean derivation of one should now constrain the others rather than leaving them as independent stories.
 
 The neutrino branch of this cluster has four empirical decision handles: the lightest-neutrino mass, the mass sum $\sum_i m_i$, neutrinoless double-beta limits or detection, and any evidence for a sterile or right-handed singlet. These data products should decide between the current minimal near-photon neutral-pair stance, a sterile $\nu_R$ branch, or a lepton-number-violating provenance channel. They should not be used to rewrite the charged-fermion axial-layer rule or to import a sterile dark-matter interpretation before the PMNS, reaction, BBN, CMB, and structure-formation gates are simultaneously satisfied.
 
@@ -60691,7 +60691,7 @@ Radiation Gate C closure is validated only if the same event record passes the f
 | Larmor/Lienard recovery | derivation target | Recover $P\propto\lVert\mathbf{a}\rVert^2$ in the weak nonrelativistic limit and the Larmor/Lienard observer-level power/angular behavior after clock conversion. | Low-speed power is not quadratic in acceleration, or relativistic recovery needs a separate fit. |
 | Bremsstrahlung emissivity | derivation target | Recover $d\sigma/dk$, screening/form-factor corrections, $\epsilon_{\nu}^{\mathrm{ff}}\propto Z^2 n_e n_i T^{-1/2}e^{-h\nu/(k_B T)}g_{\mathrm{ff}}$, and $\epsilon_{\mathrm{ff}}\propto Z^2 n_e n_i T^{1/2}$ in LTE. | Cross-section and emissivity require incompatible Noether-Sea variables or plasma-specific hidden fits. |
 | Synchrotron $\gamma^2B$ scaling | derivation target | Recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, and cooling breaks from one effective magnetic-state map. | The $\gamma^2$ frequency scaling is absent, or the $B$ map changes between curvature and emission. |
-| Pair thresholds | derivation target | Recover $s\ge4m_e^2c^4$ and the angle-dependent photon-photon threshold while preserving architrino inventory and pair provenance. | Pair channels imply creation from nothing, wrong thresholds, or unbalanced Noether-core recruitment. |
+| Pair thresholds | derivation target | Recover $s\ge4m_e^2c^4$ and the angle-dependent photon-photon threshold while preserving architrino inventory and pair provenance. | Pair channels imply creation from nothing, wrong thresholds, or unbalanced Noether swarm recruitment. |
 | Compton-like scattering | derivation target | Recover the Compton shift, Thomson limit, Klein-Nishina correction, recoil, and outgoing photon provenance in one Gate C vertex. | The channel becomes phenomenological frequency loss without a closed recoil and photon ledger. |
 | Aharonov-Bohm phase | derivation target | Recover a relative phase proportional to enclosed magnetic flux while the local force channel on the interferometer arms vanishes, using the same effective U(1) connection and photon/action ledger as the rest of Gate C. | The phase requires a local force on the arms, an independent phase fit, or a literal gauge-potential ontology rather than a derived effective connection. |
 | Blackbody recovery | derivation target | Recover Planck occupation, zero effective photon chemical potential, thermalization depth, damping, anisotropy, polarization handoff, and redshift handoff without retuning the Noether-Sea map. | The CMB or thermal branch needs unbalanced photon loading, per-observable retuning, or incompatible transport assumptions. |
@@ -61123,7 +61123,7 @@ Legend: [+] passes, [~] depends (energy/frequency/geometry), [x] mostly blocked/
 | L4: Bulk molecular wake surface (solids/liquids; many-body opacity) | [~] material window; optical opaque, IR/UV/X/$\gamma$ vary | [+] nearly transparent | [x] bind/deflect; do not traverse as free particles | [+] very weak coupling |
 | L3: Atomic electron cloud (bound electrons) | [~] photoelectric/Compton; X/$\gamma$ penetrate better | [+] | [x] Coulomb-coupled; captured/scattered | [+] |
 | L2: Nuclear layer (nucleons; femtoscopic scale) | [~] $\gamma$ can interact; strong attenuation in bulk | [+] weak interaction; mostly pass | [x] excluded as free traversers | [+] |
-| L1: Noether Core shielding (triply nested binaries; shielded) | [x] far-field cancels; no corridor capture | [~] tiny axial coupling only | [x] self/partner couplings dominate; no transit | [+] by hypothesis: minimal coupling |
+| L1: Noether Swarm shielding (triply nested binaries; shielded) | [x] far-field cancels; no corridor capture | [~] tiny axial coupling only | [x] self/partner couplings dominate; no transit | [+] by hypothesis: minimal coupling |
 | L0: Axial corridors / flux-tube loci (coherent geometry) | [+] guided along corridor | [~] weak corridor coupling; alignment matters | [x] no cross-product forces; not a transit channel | [~] minimal, geometry-dependent |
 
 Notes (interpretation):
@@ -62098,10 +62098,10 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 ---
 
-##### Assembly grammar → Noether Core and flux tubes
+##### Assembly grammar → Noether Swarm and flux tubes
 
 - What we assume:
-  - Binary orbits are the base motif; binaries can nest with wide scale separation; a triply nested configuration (Noether Core) is dynamically robust.
+  - Binary orbits are the base motif; binaries can nest with wide scale separation; a triply nested configuration (Noether Swarm) is dynamically robust.
   - Polar regions of fast binaries host persistent axial structures (vortex-like loci in the delayed wake geometry), which couple between assemblies.
 
 - Why it matters:
@@ -62460,7 +62460,7 @@ No major physical claim is accepted without:
 
 ###### $\mathbb{U}_{\text{now}}$ universe-state perspective Implementation & Grid Protocols
 
-1. **Grid Initialization**: All simulations run on a rigid Cartesian grid chosen as the coordinate scaffold for the **Euclidean void**. The grid is pre-loaded with a lattice of coupled Noether cores to instantiate the Noether Sea.
+1. **Grid Initialization**: All simulations run on a rigid Cartesian grid chosen as the coordinate scaffold for the **Euclidean void**. The grid is pre-loaded with a lattice of coupled Noether swarms to instantiate the Noether Sea.
 2. **Fiducial Sensor Array**: Instantiate a grid of virtual sensors at fixed chart locations $(x,y,z)$. Each records $\Phi$ and $\nabla\Phi$.
 3. **Causal Time Lookup**: When a causal isochron intersects a sensor, the simulator uses the grid history to "look back" to the emitter's position at $t_{history}$.
 4. **Logging Standard**: All runs must log $\mathbb{U}_{\text{now}}$ channels ($\Phi$, $\nabla\Phi$, provenance tables) to allow cross-run convergence auditing.
@@ -62468,7 +62468,7 @@ No major physical claim is accepted without:
 ###### $\mathbb{U}_{\text{now}}$ universe-state perspective Grid
 
 * **Grid:** Initialize rigid Cartesian `Grid[x][y][z]` as the chosen chart for the Euclidean void.
-* **Sea Initialization:** Pre-load the grid with coupled Noether cores for low-excitation Noether-Sea runs.
+* **Sea Initialization:** Pre-load the grid with coupled Noether swarms for low-excitation Noether-Sea runs.
 * **Logging:** Record $\Phi$ and $\nabla\Phi$ at fixed nodes ($\mathbb{U}_{\text{now}}$ universe-state sensors).
 * **Time:** Global step $\Delta t$ (absolute time).
 
@@ -62495,7 +62495,7 @@ An auditable $A_0$ branch certificate should preserve one top-level packet shape
 | `branch_label` | layer windings, inter-layer closure integers, handedness, carrier ellipticity, and active root-branch summary | identifies the branch being certified |
 | `z_lambda` | quotient-coordinate row $z_\Lambda$: $\varepsilon_{IM}$, $\varepsilon_{MO}$, $T_I/T_M$, $T_M/T_O$, $\delta_M$, layer ellipticities, $G_{\ell m}$, $\chi_N$, $H_I,H_M,H_O$, $\Phi_{\text{rel}}$, removed gauges $SO(3)$, $S^1_{\mathbf{k}}$, $\Gamma_\Lambda$, branch class $[\Lambda]$, and quotient-degeneracy status | records the reduced moduli coordinate rather than an unquotiented carrier representative |
 | `branch_chart_revision` | conditional pre-rerun record for any revised reduced branch coordinate, including source fields, equality map, equation and coefficient counts, held-out residual rule, phase-origin rule when a phase split is used, symmetry or quotient behavior, locked-key exclusion, benchmark exclusion, and `accepted_history_boundary: false` | prevents residual-selected coordinates or post-fit added columns from masquerading as branch geometry |
-| `state_vector` | six architrino labels, polarities, reduced geometry, frequencies, phase offsets, carrier chart, history segment, and center gauge | gives the reduced Noether-core state vector |
+| `state_vector` | six architrino labels, polarities, reduced geometry, frequencies, phase offsets, carrier chart, history segment, and center gauge | gives the reduced Noether swarm state vector |
 | `closure_system` | active variables, causal-root equations, layer phase closure, inter-layer closure, center-gauge closure, speed-ordering inequalities, and tolerances | ties closure labels to equations rather than only to names |
 | `root_ledger` | active and raw partner, self, and inter-layer root classes with delays, branch Jacobians, separator flags, parity events, and excluded near-zero self roots separated | verifies finite causal-root bookkeeping |
 | `term_classification` | terms assigned to averaging, locking, and leakage channels, with measured or derived residual size | prevents internal corrections from being hidden before promotion |
@@ -62553,7 +62553,7 @@ Q^{ij}_{A_0}
 =
 Q^{ij}_{A_0}-\frac{1}{3}h^{ij}.
 $$
-This tensor measures motion-induced or probe-induced Noether-core deformation. It is not the same object as the far-field leakage residue $\mathcal{L}_{\text{aniso}}$, which is extracted from cycle-averaged wake coefficients in Tier 2.
+This tensor measures motion-induced or probe-induced Noether swarm deformation. It is not the same object as the far-field leakage residue $\mathcal{L}_{\text{aniso}}$, which is extracted from cycle-averaged wake coefficients in Tier 2.
 
 ##### Tier 0: Algebraic Branch Search
 
@@ -62966,7 +62966,7 @@ The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb
 | Parameter+Scale Closure | 10 | Determination status of constants, couplings, scales, constitutive coefficients, and renormalization or calibration freedom. | 70 | 42 | 25 | 34 | 37 | -33 |
 | Empirical Precision+Benchmark Validation | 14 | Agreement with direct observation, precision tests, benchmark experiments, simulations, and quantitative pass/fail thresholds. | 98 | 78 | 20 | 31 | 34 | -64 |
 | Cross-Regime Bridge | 8 | Mathematical consistency across regimes: micro to macro, quantum to classical, particle to cosmology, weak to strong gravity, and thermodynamics. | 82 | 48 | 42 | 54 | 59 | -23 |
-| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and tri-binary/Noether-core dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 66 | 69 | -13 |
+| Internal Constituent Dynamics | 5 | Detailed closure of internal constituent regimes: bound-state/composite dynamics in modern physics and tri-binary/Noether swarm dynamics in $\mathbb{A}\mathbb{A}\mathbb{A}$. | 82 | 50 | 55 | 66 | 69 | -13 |
 | UV/IR+Regularization Completion | 6 | Ultraviolet and infrared completion quality, including cutoff dependence, singular behavior, regularization limits, horizon/singularity issues, and asymptotics. | 70 | 35 | 30 | 38 | 42 | -28 |
 | Falsification Gates | 4 | Explicitness and enforceability of falsification thresholds, stop conditions, validation gates, and failure criteria. | 98 | 88 | 80 | 86 | 90 | -8 |
 | Coverage+Interface Readiness | 2 | Coverage completeness across mathematics/geometry-relevant domains, including interface consistency and minimally developed sections. | 99 | 82 | 72 | 84 | 88 | -11 |
@@ -64083,7 +64083,7 @@ S_{\mathrm{out}}^{(O)}(t)
 \right),
 $$
 
-where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{core}}(\mathbf{x},t)$ is physical Noether-core density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether-Sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a medium-state map
+where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{core}}(\mathbf{x},t)$ is physical Noether swarm density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether-Sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a medium-state map
 
 $$
 \mathcal{F}_{\mathrm{sea}}\!\left[\mathcal{Q}_{\mathrm{dS}}^{(O)}(t)\right]
@@ -64530,7 +64530,7 @@ This chapter is a multi-level split: `##` thematic buckets and `###` issue entri
 
 The methodological lesson is narrower than many historical repairs made it sound. Naturalness is an inference pressure, not an independent law: the absence of expected low-energy stabilizing sectors in tested regimes weakens the move from aesthetic simplicity to ontology, while leaving the Higgs-stability question as a real closure target.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** From the view of the Architrino Assembly Architecture, the Hierarchy Problem is an artifact of assuming point-like particles interacting in a continuous manifold down to the Planck scale ($10^{-35}$ m). In $\mathbb{A}\mathbb{A}\mathbb{A}$, SM point particles do not exist; all SM particles are based upon tri-binary assemblies (possibly fragmented), so the "loop integrals" of QFT correspond to physical summing of potentials and interactions with the background and are truncated at the Maximal Curvature Radius (inner binary radius, $r_{inner}$). The Higgs mass is therefore "natural" at the scale of the tri-binary assembly architecture because geometry screens interactions at that scale. Likewise, "virtual particles" in loops are transient couplings with the spacetime assembly medium (Noether Sea), which has finite Noether-core density $\rho_{\text{core}}$, so corrections cannot exceed the local energy density and the integral saturates naturally. In short, the Standard Model expectation $\delta m_H^2 \propto \Lambda^2$ is replaced by an Architrino-model cutoff $\delta m_H^2 \propto \int_{R_{min}}^{\infty} ...$ that is finite and fixed by geometry. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** From the view of the Architrino Assembly Architecture, the Hierarchy Problem is an artifact of assuming point-like particles interacting in a continuous manifold down to the Planck scale ($10^{-35}$ m). In $\mathbb{A}\mathbb{A}\mathbb{A}$, SM point particles do not exist; all SM particles are based upon tri-binary assemblies (possibly fragmented), so the "loop integrals" of QFT correspond to physical summing of potentials and interactions with the background and are truncated at the Maximal Curvature Radius (inner binary radius, $r_{inner}$). The Higgs mass is therefore "natural" at the scale of the tri-binary assembly architecture because geometry screens interactions at that scale. Likewise, "virtual particles" in loops are transient couplings with the spacetime assembly medium (Noether Sea), which has finite Noether swarm density $\rho_{\text{core}}$, so corrections cannot exceed the local energy density and the integral saturates naturally. In short, the Standard Model expectation $\delta m_H^2 \propto \Lambda^2$ is replaced by an Architrino-model cutoff $\delta m_H^2 \propto \int_{R_{min}}^{\infty} ...$ that is finite and fixed by geometry. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
 
 **What Would Count As Resolution:** Resolution would require either direct evidence for a protection mechanism or a deeper derivation showing why the Higgs scale is finite and stable without the symmetry-based rescue structures that naturalness originally predicted.
 
@@ -64590,7 +64590,7 @@ The methodological lesson is narrower than many historical repairs made it sound
 
 **Standard Repairs:** Standard repairs include Dirac masses with tiny Yukawas, Majorana masses with seesaw structure, radiative mass models, and sterile-neutrino extensions. These organize the parameter space, but none has decisive experimental confirmation.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, neutrinos are currently treated as near-photon neutral pro/anti Noether-core pairings, not as ordinary charged-fermion axial-layer assemblies. Their small observer-facing mass is the residual exposed response of an almost locked neutral pair. Oscillation is reinterpreted as changing weak-channel exposure of internal phase and energy modes, not as a stable six-site axial inventory flipping among charged-fermion configurations. The current architecture therefore keeps the Dirac/Majorana question open at the empirical gate: a confirmed neutrinoless double-beta signal would require a lepton-number-violating neutral-pair provenance channel, while null results tighten that channel without proving the current Dirac-like geometry. A sterile or right-handed branch remains optional rather than part of the minimal architecture. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, neutrinos are currently treated as near-photon neutral pro/anti Noether swarm pairings, not as ordinary charged-fermion axial-layer assemblies. Their small observer-facing mass is the residual exposed response of an almost locked neutral pair. Oscillation is reinterpreted as changing weak-channel exposure of internal phase and energy modes, not as a stable six-site axial inventory flipping among charged-fermion configurations. The current architecture therefore keeps the Dirac/Majorana question open at the empirical gate: a confirmed neutrinoless double-beta signal would require a lepton-number-violating neutral-pair provenance channel, while null results tighten that channel without proving the current Dirac-like geometry. A sterile or right-handed branch remains optional rather than part of the minimal architecture. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
 
 **What Would Count As Resolution:** Resolution would require a consistent account of the mass scale and ordering together with decisive evidence about the Majorana or Dirac nature, most likely through neutrinoless double-beta decay, precision cosmology, or direct kinematic mass measurements. The same resolution should state how $\sum_i m_i$, the lightest-neutrino mass, and any sterile-branch evidence enter the near-photon Hamiltonian without separate flavor-specific fitting.
 
@@ -64946,13 +64946,13 @@ Template conformance test protocol for each theory entry:
 
 ---
 
-##### Core Assembly Layer (Noether Core / Tri-Binary)
+##### Core Assembly Layer (Noether Swarm / Tri-Binary)
 
 These are particle-physics level theories that map most directly to assemblies, decorations, and interaction rules. In the architrino view, they are effective summaries of assembly microdynamics rather than fundamental entities.
 
 ###### Standard Model (SM)
 
-**Theory Name:** Standard Model (SM). **Short Name:** SM. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
+**Theory Name:** Standard Model (SM). **Short Name:** SM. **Layer Bucket:** Core Assembly Layer (Noether Swarm / Tri-Binary).
 
 **Summary:** The unified framework describing all known particles and forces
 except gravity.
@@ -64978,7 +64978,7 @@ match $\mathrm{SU(3)}\times\mathrm{SU(2)}\times\mathrm{U(1)}$.
 ---
 ###### Quantum Field Theory (QFT)
 
-**Theory Name:** Quantum Field Theory (QFT). **Short Name:** QFT. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
+**Theory Name:** Quantum Field Theory (QFT). **Short Name:** QFT. **Layer Bucket:** Core Assembly Layer (Noether Swarm / Tri-Binary).
 
 **Summary:** Particles are excitations of underlying fields; interactions are
 field couplings.
@@ -65003,7 +65003,7 @@ $$
 
 ###### Relativistic Scalar Fields / Klein-Gordon Equation
 
-**Theory Name:** Relativistic Scalar Fields / Klein-Gordon Equation. **Short Name:** Klein-Gordon. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
+**Theory Name:** Relativistic Scalar Fields / Klein-Gordon Equation. **Short Name:** Klein-Gordon. **Layer Bucket:** Core Assembly Layer (Noether Swarm / Tri-Binary).
 
 **Summary:** The Klein-Gordon equation is the canonical relativistic wave equation for a spin-0 scalar degree of freedom. It is not a complete particle-physics theory by itself, but it is the simplest bridge between scalar fields in quantum theory, curved-spacetime field theory, and cosmological scalar-field models.
 
@@ -65033,7 +65033,7 @@ $$
 
 ###### Quantum Chromodynamics (QCD)
 
-**Theory Name:** Quantum Chromodynamics (QCD). **Short Name:** QCD. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
+**Theory Name:** Quantum Chromodynamics (QCD). **Short Name:** QCD. **Layer Bucket:** Core Assembly Layer (Noether Swarm / Tri-Binary).
 
 **Summary:** The theory of quarks and gluons; it explains the strong force and
 confinement.
@@ -65061,7 +65061,7 @@ $$
 ---
 ###### Quantum Electrodynamics (QED)
 
-**Theory Name:** Quantum Electrodynamics (QED). **Short Name:** QED. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
+**Theory Name:** Quantum Electrodynamics (QED). **Short Name:** QED. **Layer Bucket:** Core Assembly Layer (Noether Swarm / Tri-Binary).
 
 **Summary:** The quantum field theory of electrons, positrons, and photons.
 
@@ -65089,7 +65089,7 @@ Historically, the Liénard-Wiechert moving-source potentials already pointed in 
 ---
 ###### Electroweak Theory (EW)
 
-**Theory Name:** Electroweak Theory (EW). **Short Name:** EW. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
+**Theory Name:** Electroweak Theory (EW). **Short Name:** EW. **Layer Bucket:** Core Assembly Layer (Noether Swarm / Tri-Binary).
 
 **Summary:** Unifies electromagnetic and weak interactions via symmetry breaking.
 
@@ -65115,7 +65115,7 @@ $$
 ---
 ###### Neutrino Oscillations (PMNS Framework)
 
-**Theory Name:** Neutrino Oscillations (PMNS Framework). **Short Name:** PMNS. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
+**Theory Name:** Neutrino Oscillations (PMNS Framework). **Short Name:** PMNS. **Layer Bucket:** Core Assembly Layer (Noether Swarm / Tri-Binary).
 
 **Summary:** Neutrinos change flavor as they propagate.
 
@@ -65137,7 +65137,7 @@ $$
 
 ###### Axion Theory (Peccei-Quinn)
 
-**Theory Name:** Axion Theory (Peccei-Quinn). **Short Name:** Peccei-Quinn. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
+**Theory Name:** Axion Theory (Peccei-Quinn). **Short Name:** Peccei-Quinn. **Layer Bucket:** Core Assembly Layer (Noether Swarm / Tri-Binary).
 
 **Summary:** A new field solves the strong CP problem and predicts axions.
 
@@ -65159,7 +65159,7 @@ $$
 
 ###### Supersymmetry (SUSY)
 
-**Theory Name:** Supersymmetry (SUSY). **Short Name:** SUSY. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
+**Theory Name:** Supersymmetry (SUSY). **Short Name:** SUSY. **Layer Bucket:** Core Assembly Layer (Noether Swarm / Tri-Binary).
 
 **Summary:** Each particle has a superpartner with different spin.
 
@@ -65181,7 +65181,7 @@ $$
 
 ###### Technicolor / Composite Higgs
 
-**Theory Name:** Technicolor / Composite Higgs. **Short Name:** Technicolor Composite Higgs. **Layer Bucket:** Core Assembly Layer (Noether Core / Tri-Binary).
+**Theory Name:** Technicolor / Composite Higgs. **Short Name:** Technicolor Composite Higgs. **Layer Bucket:** Core Assembly Layer (Noether Swarm / Tri-Binary).
 
 **Summary:** The Higgs is not elementary; it is a bound state of new dynamics.
 
@@ -65248,7 +65248,7 @@ $$
 E^2 = (pc)^2 + (mc^2)^2.
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” are theorem targets for assemblies moving through an approximately homogeneous and isotropic Noether Sea. Proper time corresponds to internal cycle count relative to absolute time, while time dilation and length contraction must be derived from moving-assembly deformation, clock-law retuning, two-way signal synchronization, and bounded preferred-frame leakage. The middle-binary $v=c_f$ regime supplies a candidate signal-scale mechanism, not a completed proof by itself.
-For the assembly-level closure used in this program, see [Effective Energy-Momentum Closure](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure). For a detailed side-by-side bridge between SR language and the deformable Noether-core implementation story, see [Special Relativity and Deformable Noether Cores](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md).
+For the assembly-level closure used in this program, see [Effective Energy-Momentum Closure](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure). For a detailed side-by-side bridge between SR language and the deformable Noether swarm implementation story, see [Special Relativity and Deformable Noether Swarms](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md).
 
 **What Still Works:** Special Relativity (SR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
@@ -65382,7 +65382,7 @@ For this reason the preferred local term is **Horizon interface**: surface degre
 - Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
 - Planck-frequency hierarchy (inner 4x, middle 2x, outer 1x),
 - Information flow constrained to the interface sheet,
-- Ready to bifurcate into volumetric Noether cores as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether-Sea content).
+- Ready to bifurcate into volumetric Noether swarms as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether-Sea content).
 
 That yields a disciplined shorthand: Horizon interface for the Planck-aligned interface layer, bulk for $v<c_f$ volumetric cores, and AdS-like for the $v>c_f$ self-hit interior, all treated as regimes on one constitutive continuum.
 
@@ -68680,7 +68680,7 @@ The clearest limiting tension for Primordial Black Hole Dark Matter is that its 
 
 ###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the retained compact-object observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. If a primordial-Noether-core-defect or other neutral-assembly branch is proposed as the native analogue, it must recover the same mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result rows from one shared closure record. That closure target is what turns comparison into actual reduction rather than a verbal promise.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the retained compact-object observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. If a primordial-Noether swarm-defect or other neutral-assembly branch is proposed as the native analogue, it must recover the same mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result rows from one shared closure record. That closure target is what turns comparison into actual reduction rather than a verbal promise.
 
 ---
 
@@ -71432,7 +71432,7 @@ Decoherence is the continuous loss of path-history coherence due to unresolved f
 * **QFT Locality Residual:** In any regime claimed to recover local QFT, the normalized commutator residual $\Delta_{\mathrm{loc}}(A,B;I)$ must remain below $\epsilon_{\mathrm{loc}}$ for calibrated record regions outside the recovered effective causal cone. Passing this test is an effective-algebra result, not a promotion of continuum-field ontology.
 * **Quantization-Domain Residual:** In any regime claimed to recover quantum operators from a classical or coarse-grained chart, the admissible observable set $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ and residual $\Delta_{\mathrm{qmap}}$ must be reported. A global bracket-to-commutator claim over all smooth functions is rejected by the no-go ledger rather than treated as an open $\mathbb{A}\mathbb{A}\mathbb{A}$ obligation.
 * **Observable-Domain Residual:** When two effective descriptions are claimed to be equivalent, the declared observable set and residual $\Delta_{\mathrm{obs}}$ must be reported. A small value licenses only record-channel equivalence on that apparatus window, not a substrate claim about auxiliary dimensions or continuum field objects.
-* **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with local Noether-core density, represented by $\rho_{\text{core}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
+* **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with local Noether swarm density, represented by $\rho_{\text{core}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ###### Statistical Measure and the Born Rule Emergence
 While the trajectory of a single tri-binary under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether Sea.
@@ -72568,7 +72568,7 @@ The philosophy-facing framing of this problem lives in [Crisis in Physics](../..
 
 This document presents the standard derivation and physical content of Bell's theorem, then states how the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) should approach the experimentally observed violations of Bell inequalities. It is a bridge document, not the final mechanism. The final account must be rebuilt from the architrino-level angular-momentum and spin ledger developed in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
-The phrase "hidden variable" is inherited from the Bell literature. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the relevant variables are not hidden from nature. They are unresolved by the observer-level quantum abstraction. The task is therefore not to defend a vague hidden-variable category, but to identify the exact architrino, Noether-core, causal-wake, and measurement-apparatus variables whose coarse description becomes quantum spin statistics.
+The phrase "hidden variable" is inherited from the Bell literature. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the relevant variables are not hidden from nature. They are unresolved by the observer-level quantum abstraction. The task is therefore not to defend a vague hidden-variable category, but to identify the exact architrino, Noether swarm, causal-wake, and measurement-apparatus variables whose coarse description becomes quantum spin statistics.
 
 ---
 
@@ -72749,7 +72749,7 @@ The major responses in the literature are:
 
 ###### What The Bell Abstraction Can And Cannot Decide
 
-At the Bell-abstraction level, any $\mathbb{A}\mathbb{A}\mathbb{A}$ completion that reproduces the experiments cannot reduce to a local factorizable response model with measurement-independent variables. That is the hard constraint. It does not decide what angular momentum is, what spin is, or how a Noether core responds to a detector. Those questions belong one level lower, in the architrino and causal-wake dynamics.
+At the Bell-abstraction level, any $\mathbb{A}\mathbb{A}\mathbb{A}$ completion that reproduces the experiments cannot reduce to a local factorizable response model with measurement-independent variables. That is the hard constraint. It does not decide what angular momentum is, what spin is, or how a Noether swarm responds to a detector. Those questions belong one level lower, in the architrino and causal-wake dynamics.
 
 The current placement is therefore:
 
@@ -72946,7 +72946,7 @@ Thus record reconstruction is the output surface of the Bell program, not a subs
 
 ###### Why Angular Momentum Must Come First
 
-The non-separability of $\lambda$ requires a precise physical account. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the first object is not an abstract spin label. It is the full angular-momentum ledger of a pair-creation event: architrino positions and velocities, binary frequencies, Noether-core orientations, active causal-root branches, self-action terms, and causal-wake history.
+The non-separability of $\lambda$ requires a precise physical account. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the first object is not an abstract spin label. It is the full angular-momentum ledger of a pair-creation event: architrino positions and velocities, binary frequencies, Noether swarm orientations, active causal-root branches, self-action terms, and causal-wake history.
 
 **Creation event.** When a parent assembly fragments into daughters $A$ and $B$ at absolute time $t_0$, the Master Equation and conservation laws jointly constrain the daughter microstates $\Gamma_A(t_0)$ and $\Gamma_B(t_0)$. For a spin-singlet-like event, the observer-level summary is
 
@@ -72954,7 +72954,7 @@ $$
 \mathbf{J}_A+\mathbf{J}_B=\mathbf{0}.
 $$
 
-That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter Noether cores redistribute action across inner, middle, and outer binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
+That summary is necessary, but it is not the mechanism. The substrate question is how the total angular-momentum functional is conserved while the daughter Noether swarms redistribute action across inner, middle, and outer binaries, including self-action and causal-wake terms. The statement $\mathbf{J}_A=-\mathbf{J}_B$ is only the coarse ledger result of that deeper process.
 
 A source-level pair-provenance record should therefore replace the generic $\lambda$ placeholder before any Bell calculation is called physical. For a singlet-like source, write
 
@@ -73138,7 +73138,7 @@ $$
 
 in this residual normalization. Driving the product-screening residual to zero and driving the singlet residual to zero are mutually incompatible closure targets.
 
-The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ route lies in the finite-time measurement interaction of a full Noether-core ledger rather than in a preassigned spin label. The ingredients to derive are:
+The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ route lies in the finite-time measurement interaction of a full Noether swarm ledger rather than in a preassigned spin label. The ingredients to derive are:
 
 1. **Angular-momentum ledger geometry**: the internal spin ledger includes ordered binary-plane geometry, binary frequencies, causal-root branches, and causal-wake angular momentum.
 
@@ -73221,7 +73221,7 @@ $$
 
 follow as consequences. The local Stern-Gerlach kernels are deterministic basin indicators derived from the architrino-level angular-momentum and measurement-response dynamics, not ready-made spin-projection rules. The remaining Bell-level task is to derive the preparation and pair-provenance measures that make those local kernels reproduce the joint law while preserving no-signaling and measurement independence and while failing the product-screened local reconstruction above.
 
-**Status:** This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency Noether core, use the Master-Equation apparatus impulse and record-cycle invariant measure to realize $K_{\pm}^{\text{SG}}$, and then derive the pair-provenance measure for correlated cores. The single-core half-angle basin arithmetic and the external apparatus-term origins are now available in the reduced Stern-Gerlach chart, but this is not yet a Bell-pair correlation proof.
+**Status:** This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency Noether swarm, use the Master-Equation apparatus impulse and record-cycle invariant measure to realize $K_{\pm}^{\text{SG}}$, and then derive the pair-provenance measure for correlated cores. The single-core half-angle basin arithmetic and the external apparatus-term origins are now available in the reduced Stern-Gerlach chart, but this is not yet a Bell-pair correlation proof.
 
 ---
 
@@ -73281,7 +73281,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - Conservation constraints at creation establish a joint pair ledger, but the detailed angular-momentum distribution must be derived.
 - Measurement is local threshold resolution (no distant causal input at measurement time).
 - Measurement independence holds (no superdeterminism, no retrocausation).
-- The measurement-response kernel of a Noether-core assembly interacting with an apparatus is a deterministic basin indicator, not a primitive $\cos^2(\alpha/2)$ rule. The single-core half-angle law is now computed in the reduced Stern-Gerlach chart; the Master-Equation burden is to derive the effective spinor coordinate and verify that the branch-sum apparatus impulse and record-cycle invariant measure realize that chart.
+- The measurement-response kernel of a Noether swarm assembly interacting with an apparatus is a deterministic basin indicator, not a primitive $\cos^2(\alpha/2)$ rule. The single-core half-angle law is now computed in the reduced Stern-Gerlach chart; the Master-Equation burden is to derive the effective spinor coordinate and verify that the branch-sum apparatus impulse and record-cycle invariant measure realize that chart.
 
 **Required recoveries:**
 - All standard Bell-CHSH violations are reproduced: $|S| = 2\sqrt{2}$ for singlet pairs with optimal settings.
@@ -73303,30 +73303,30 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 
 The Bell claim therefore stops at the closure target and failure conditions. A completed account requires lower-level angular-momentum, Stern-Gerlach response, source-measure, and pair-provenance derivations before this chapter can report success or failure.
 
-##### Special Relativity and Deformable Noether Cores
+##### Special Relativity and Deformable Noether Swarms
 
-This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether-core assemblies. It is a mapping document: the canonical Noether-core geometry remains in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), the canonical mass thesis remains in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
+This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether swarm assemblies. It is a mapping document: the canonical Noether swarm geometry remains in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), the canonical mass thesis remains in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
 
 ###### Bridge Thesis
 
-Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether-core account proposes the underlying implementation layer: a moving tri-binary assembly must preserve finite-speed causal wake closure while translating through the Noether Sea. That requirement deforms the core's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
+Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether swarm account proposes the underlying implementation layer: a moving tri-binary assembly must preserve finite-speed causal wake closure while translating through the Noether Sea. That requirement deforms the core's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
 
 The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether-Sea dynamics.
 
-The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether-core assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether core realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three binary layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
+The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether swarm assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether swarm realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three binary layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
 
 ###### Ownership Boundary
 
 This chapter owns:
 
-- the side-by-side dictionary between special-relativistic language and Noether-core implementation language,
+- the side-by-side dictionary between special-relativistic language and Noether swarm implementation language,
 - the qualitative mechanism connecting deformation, clock slowing, and inertial response,
 - the first mathematical handoff from Lorentz kinematics to assembly closure variables,
 - and the list of closure targets needed to turn the mapping into a derivation.
 
 This chapter does not own:
 
-- the definition of a Noether core; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
+- the definition of a Noether swarm; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
 - the geometry of the dynamic exclusion envelope; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md),
 - the proper-time map; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
 - the energy ledger; see [Energy](../../../../markdown/aaa/dynamics/energy.md),
@@ -73334,11 +73334,11 @@ This chapter does not own:
 
 ###### The Two Stories
 
-| Special relativity story | Deformable Noether-core story |
+| Special relativity story | Deformable Noether swarm story |
 | --- | --- |
-| Physical clocks measure proper time $\tau$, and moving clocks satisfy $d\tau/dt = 1/\gamma$. | A physical clock is an assembly with a countable internal cycle. When a Noether-core clock moves through the Noether Sea, delayed wake paths must still close across the inner, middle, and outer binaries, so fewer stable internal cycles occur per unit absolute time $t$. |
+| Physical clocks measure proper time $\tau$, and moving clocks satisfy $d\tau/dt = 1/\gamma$. | A physical clock is an assembly with a countable internal cycle. When a Noether swarm clock moves through the Noether Sea, delayed wake paths must still close across the inner, middle, and outer binaries, so fewer stable internal cycles occur per unit absolute time $t$. |
 | Length contraction follows from Lorentz geometry: $L_{\parallel}=L_0/\gamma$. | The core's effective exclusion envelope deforms along the direction of translation. Stable delayed closure requires a longitudinal/transverse retuning of orbital paths, with the Lorentz-compatible target $R_{\parallel}=R_{\perp}/\gamma$ in the weak-field homogeneous limit. |
-| Rest energy is $E_0=m_0c^2$. | Rest energy is the observer-facing value of shielded internal causal history: the part of the trapped Noether-core energy ledger exposed through far-field coupling and Noether-Sea response. |
+| Rest energy is $E_0=m_0c^2$. | Rest energy is the observer-facing value of shielded internal causal history: the part of the trapped Noether swarm energy ledger exposed through far-field coupling and Noether-Sea response. |
 | Momentum is $p=\gamma m_0v$. | Momentum is the medium-dressed response of a moving causal knot: the internal path-history ledger must relock under translation, and the Noether Sea supplies the effective response tensor that Physical Observers summarize as relativistic momentum. |
 | Energy and momentum obey $E^2=p^2c^2+m_0^2c^4$. | In the weak-field observer limit, center-of-mass energy and momentum should satisfy the same effective mass-shell relation with $c_{\text{eff}}$, while the substrate calculation resolves the internal ledger, shielding coefficient, and medium-response tensor. |
 | The invariant speed $c$ is a postulate of the observer-level theory. | The observed signal speed is the effective propagation speed $c_{\text{eff}}$ of photon-like and clock-synchronization channels in the local Noether Sea, approaching $c_f$ in the homogeneous weak-field limit. |
@@ -73354,7 +73354,7 @@ $$
 $$
 The equation is an observer-level statement: it tells Physical Observers how many proper-time units a moving clock records relative to an inertial coordinate description.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $t$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether-core-based clock, a natural clock channel is the middle binary or a transition built from the coupled tri-binary ledger. The proper-time map is therefore an extracted frequency ratio:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $t$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether swarm-based clock, a natural clock channel is the middle binary or a transition built from the coupled tri-binary ledger. The proper-time map is therefore an extracted frequency ratio:
 $$
 \frac{d\tau}{dt}
 =
@@ -73367,7 +73367,7 @@ $$
 \sqrt{1-\frac{v^2}{c_{\text{eff}}^2}}.
 $$
 
-The Noether-core mechanism behind that target is finite-speed causal closure. As the center of mass translates, each internal wake return must close across a slanted path-history geometry. The assembly can remain stable only if orbital phase, path length, envelope geometry, and inter-layer timing retune together. Clock slowing is then the observer-facing readout of a deeper assembly fact: the moving core has fewer available stable closure cycles per unit absolute time.
+The Noether swarm mechanism behind that target is finite-speed causal closure. As the center of mass translates, each internal wake return must close across a slanted path-history geometry. The assembly can remain stable only if orbital phase, path length, envelope geometry, and inter-layer timing retune together. Clock slowing is then the observer-facing readout of a deeper assembly fact: the moving core has fewer available stable closure cycles per unit absolute time.
 
 ###### Ruler Channel
 
@@ -73379,7 +73379,7 @@ L_{\perp}(v)=L_{\perp,0}.
 $$
 The standard equation is kinematic. It does not say what a ruler is made of.
 
-In the Noether-core implementation story, rods are made from bound assemblies whose equilibrium spacings are maintained by finite-speed wake exchange. A moving rod is not merely re-described by a new coordinate system. Its constituent assemblies must preserve stable closure while their center-of-mass state changes relative to the Noether Sea. The local geometric carrier is the deformable exclusion envelope:
+In the Noether swarm implementation story, rods are made from bound assemblies whose equilibrium spacings are maintained by finite-speed wake exchange. A moving rod is not merely re-described by a new coordinate system. Its constituent assemblies must preserve stable closure while their center-of-mass state changes relative to the Noether Sea. The local geometric carrier is the deformable exclusion envelope:
 $$
 \mathcal{E}_{\text{excl}}
 =
@@ -73396,7 +73396,7 @@ $$
 
 The important point is that the contraction is not a primitive command imposed on matter. It is a closure condition on matter. If delayed wake exchange sets stable separations, and if those wake exchanges propagate through a medium with effective speed $c_{\text{eff}}$, then the equilibrium geometry of a moving bound system must change in the direction that preserves return timing and phase lock.
 
-In the geometry canon, this contraction is recorded first as the Noether-core envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$. The special-relativistic limit requires a derived map $\xi\to1/\gamma_{\text{eff}}$ together with a matching clock readout $\omega_{\text{clk}}/\omega_0\to1/\gamma_{\text{eff}}$; neither equality is the definition of $\xi$.
+In the geometry canon, this contraction is recorded first as the Noether swarm envelope shape ratio $\xi=R_{\parallel}/R_{\perp}$. The special-relativistic limit requires a derived map $\xi\to1/\gamma_{\text{eff}}$ together with a matching clock readout $\omega_{\text{clk}}/\omega_0\to1/\gamma_{\text{eff}}$; neither equality is the definition of $\xi$.
 
 ###### Closed Return Cycle And Spheroid Map
 
@@ -73453,7 +73453,7 @@ $$
 \frac{1}{\gamma_{\text{eff}}(v)}.
 $$
 
-The moving Noether-core envelope is then the oblate spheroid
+The moving Noether swarm envelope is then the oblate spheroid
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp}^2}
 +
@@ -73474,7 +73474,7 @@ Thus $\gamma_{\text{eff}}$ maps to the shape channel $\xi$, while $\lambda$ rema
 
 This is the bridge insight. The one-way legs reveal the substrate anisotropy; the closed return cycle determines the geometry that hides it from Physical Observers. The Lorentz factor is therefore not painted onto the ellipsoid. It is the return-cycle closure condition expressed as an axis ratio.
 
-This is also the precise meaning of quantizing the Lorentz response. The smooth equation for $\gamma_{\text{eff}}(v)$ remains the effective observer law, but a Noether-core assembly realizes any admitted value only through a discrete stable branch class $q$ with a definite causal-root ledger, return-cycle period, and envelope projection. The continuous Lorentz curve is therefore treated as the common observer envelope of branch-indexed Noether-core closure states, not as an independent kinematic rule imposed on matter.
+This is also the precise meaning of quantizing the Lorentz response. The smooth equation for $\gamma_{\text{eff}}(v)$ remains the effective observer law, but a Noether swarm assembly realizes any admitted value only through a discrete stable branch class $q$ with a definite causal-root ledger, return-cycle period, and envelope projection. The continuous Lorentz curve is therefore treated as the common observer envelope of branch-indexed Noether swarm closure states, not as an independent kinematic rule imposed on matter.
 
 ###### Branch-Quantized Lorentz Response
 
@@ -73482,9 +73482,9 @@ The Lorentz factor is usually written as a smooth function,
 $$
 \gamma_{\text{eff}}(v)=\frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}.
 $$
-In the observer-level theory this is the correct continuous kinematic envelope. The Noether-core implementation adds a deeper condition: the core can realize this envelope only by moving through admissible branch classes of the tri-binary causal-root ledger.
+In the observer-level theory this is the correct continuous kinematic envelope. The Noether swarm implementation adds a deeper condition: the core can realize this envelope only by moving through admissible branch classes of the tri-binary causal-root ledger.
 
-For a stable Noether-core branch $q$, define the layer state
+For a stable Noether swarm branch $q$, define the layer state
 $$
 B_q(v)
 =
@@ -73552,7 +73552,7 @@ $$
 $$
 for every branch class admitted as a stable clock/ruler material. This is the sense in which the Lorentz response is branch-quantized: the substrate realizes a continuous observer law through discrete admissible ledger classes, and any residual deviation should carry the signature of a branch transition, separator approach, inter-layer resonance, or incomplete wake ledger.
 
-This target also clarifies which part of the Noether core should be modeled. The full branch solve must include inner, middle, and outer binaries because clock rate, action storage, separator sensitivity, and conservation all live in the coupled tri-binary ledger. The outer binary then supplies the leading geometric projection:
+This target also clarifies which part of the Noether swarm should be modeled. The full branch solve must include inner, middle, and outer binaries because clock rate, action storage, separator sensitivity, and conservation all live in the coupled tri-binary ledger. The outer binary then supplies the leading geometric projection:
 $$
 \xi_q(v)
 \equiv
@@ -73570,7 +73570,7 @@ E_0=m_0c^2.
 $$
 That equation is extremely successful as observer-level bookkeeping. The bridge question is what implements $m_0$.
 
-The Noether-core mass thesis is that observed mass is not a primitive property of individual architrinos. It is the externally exposed response of trapped internal causal history. A compact scalar roadmap formula is
+The Noether swarm mass thesis is that observed mass is not a primitive property of individual architrinos. It is the externally exposed response of trapped internal causal history. A compact scalar roadmap formula is
 $$
 m_{\text{inertial}}(A)
 \approx
@@ -73578,13 +73578,13 @@ m_{\text{inertial}}(A)
 $$
 Here $A$ is the assembly, $E_{\text{internal}}(A)$ is the internal energy ledger, $\zeta(A)$ is the shielding/exposure factor, and $\alpha_{\mathrm{m}}$ is the weak-field matching normalization once a reference assembly is fixed.
 
-The SR-side phrase "mass is energy divided by $c^2$" becomes, in the Noether-core bridge:
+The SR-side phrase "mass is energy divided by $c^2$" becomes, in the Noether swarm bridge:
 $$
 \text{observed rest mass}
 \quad\leftrightarrow\quad
 \text{shielded internal ledger exposed through Noether-Sea response}.
 $$
-This keeps the force of $E_0=m_0c^2$ while relocating its ontology. The equation remains the observer-level conversion law; the deeper task is to derive the internal ledger, shielding coefficient, and response tensor from Noether-core dynamics.
+This keeps the force of $E_0=m_0c^2$ while relocating its ontology. The equation remains the observer-level conversion law; the deeper task is to derive the internal ledger, shielding coefficient, and response tensor from Noether swarm dynamics.
 
 The first mass-side gate is the $A_0$ reference attractor defined in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md#reference-attractor-gate). That gate must produce a calibration-free internal-energy ledger, shielding coefficient, and medium-response baseline before $m_0$ is treated as a particle-specific prediction rather than a roadmap output.
 
@@ -73655,7 +73655,7 @@ Outside that regime, $\mathbb{A}\mathbb{A}\mathbb{A}$ should not merely repeat s
 
 To promote this bridge from mapping to derivation, the following targets must close:
 
-1. Derive a translating Noether-core attractor family from the delayed master equation.
+1. Derive a translating Noether swarm attractor family from the delayed master equation.
 2. Extract the velocity-dependent clock frequency $\omega_{\text{clk}}(v)$ and prove the weak-field limit $\omega_{\text{clk}}/\omega_0\to 1/\gamma_{\text{eff}}$.
 3. Derive the velocity-dependent exclusion-envelope axis ratio $R_{\parallel}/R_{\perp}\to 1/\gamma_{\text{eff}}$.
 4. Compute the internal energy ledger $E_{\text{internal}}(A)$ without assuming the mass being derived.
@@ -73668,13 +73668,13 @@ To promote this bridge from mapping to derivation, the following targets must cl
 
 ###### Summary Commitment
 
-> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether cores preserve finite-speed causal wake closure by retuning internal phase, all three binary layers, outer-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.
+> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether swarms preserve finite-speed causal wake closure by retuning internal phase, all three binary layers, outer-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.
 
 ##### Return-Cycle Lorentz Quantization
 
-This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether-core chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether-core causal-root ledger.
+This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether swarm chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether swarm causal-root ledger.
 
-The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Cores](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md).
+The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Swarms](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md).
 
 ###### Naming And Scope
 
@@ -73708,7 +73708,7 @@ The bridge separates four levels:
 | Level | Role |
 | --- | --- |
 | Substrate ontology | Architrinos evolve in the Euclidean void under absolute time and delayed causal wakes. |
-| Assembly dynamics | A Noether core must close inner, middle, and outer binary return cycles through a causal-root ledger. |
+| Assembly dynamics | A Noether swarm must close inner, middle, and outer binary return cycles through a causal-root ledger. |
 | Geometry projection | The outer-binary exclusion envelope exposes an oblate spheroid with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
 | Observer law | Physical Observers infer Lorentz contraction, clock dilation, and two-way signal invariance after branch averaging and Noether-Sea dressing. |
 
@@ -73800,7 +73800,7 @@ This is the direct Lorentz-to-geometry map.
 
 ###### Spheroid Projection
 
-The moving Noether-core envelope is represented by an oblate spheroid,
+The moving Noether swarm envelope is represented by an oblate spheroid,
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_{\perp}^2}
 +
@@ -73878,7 +73878,7 @@ O(\epsilon_{\mathrm{LV}})
 $$
 for every branch class admitted as stable clock/ruler material.
 
-This is the precise sense in which the Lorentz equation is quantized. The smooth curve remains the observer-level envelope. The Noether-core implementation is discrete because each accepted material realization must be a closed causal-root ledger class.
+This is the precise sense in which the Lorentz equation is quantized. The smooth curve remains the observer-level envelope. The Noether swarm implementation is discrete because each accepted material realization must be a closed causal-root ledger class.
 
 ###### All-Layer Closure Burden
 
@@ -73967,7 +73967,7 @@ then the bridge fails. The theory must not tune the ruler, clock, momentum, and 
 
 Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The current corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
 
-If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether-core geometry.
+If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether swarm geometry.
 
 ##### Spacetime Models and the Noether Sea
 
@@ -73986,7 +73986,7 @@ The native stack is:
 | fixed spatial container | Euclidean void | The 3D spatial arena does not curve or expand. |
 | global temporal parameter | absolute time | The primitive ordering parameter for substrate dynamics. |
 | formal background | absolute timespace | The product $\mathbb{R}\times\mathbb{R}^3$. |
-| substrate contents | Noether Sea | The ambient population of coupled Noether cores. |
+| substrate contents | Noether Sea | The ambient population of coupled Noether swarms. |
 | bridge language | spacetime medium | Reader-facing translation toward effective spacetime language. |
 | observer-level geometry | effective spacetime or effective metric | The metric reconstructed by Physical Observers from clocks, rulers, and signal behavior. |
 
@@ -74024,7 +74024,7 @@ The bridge should cover the major mathematical families rather than only modern 
 | --- | --- | --- | --- |
 | Euclidean 3D space plus universal time | A flat spatial metric $h_{ij}$ on $\mathbb{R}^3$ with a universal parameter $t$. | The earliest clean 3D + T background picture. | This is closest to absolute timespace: $\mathbb{R}\times\mathbb{R}^3$ with absolute time and Euclidean void. |
 | Newtonian absolute space and action-at-a-distance gravity | Euclidean geometry, inertial frames, absolute time, and an inverse-square potential. | Weak-field potential language and low-speed limiting behavior. | Keep the background, but replace instantaneous action with delayed causal wakes plus Noether-Sea response. |
-| Plenum and vortex-mechanical programs | Continuum motion, pressure, circulation, and vortex organization. | The intuition that geometry and matter behavior may arise from structured motion in a pervasive substrate. | Useful only as a warning and comparison: the Noether Sea is not a featureless plenum, and circulation claims need explicit Noether-core dynamics. |
+| Plenum and vortex-mechanical programs | Continuum motion, pressure, circulation, and vortex organization. | The intuition that geometry and matter behavior may arise from structured motion in a pervasive substrate. | Useful only as a warning and comparison: the Noether Sea is not a featureless plenum, and circulation claims need explicit Noether swarm dynamics. |
 | Wave and elastic-aether theories | Wave equations, elastic moduli, transverse waves, boundary conditions, and medium stress. | Stress, stiffness, wave-speed, and polarization burdens. | Translate only into explicit Noether-Sea compliance, delay, alignment, and response variables. |
 | Maxwellian electromagnetic aether | Field equations plus mechanical medium imagery for electromagnetic propagation. | The success belongs to field equations and wave propagation, not to the mechanical imagery. | Effective electromagnetic fields must be recovered from assembly and wake behavior; the aether analogy cannot become ontology. |
 | Lorentz aether theory | A preferred rest frame hidden by Lorentz contraction, clock slowing, and electromagnetic dynamics. | A preferred substrate frame can be operationally hidden if clocks, rulers, and signals co-transform. | This is a close bridge for absolute time plus Euclidean void, but the closure burden is emergent Lorentz behavior with bounded preferred-frame leakage. |
@@ -74043,13 +74043,13 @@ The bridge should cover the major mathematical families rather than only modern 
 | Einstein-aether and vector-tensor preferred-frame theories | Metric plus unit timelike vector field and preferred-frame coefficients. | A modern mathematical way to parameterize Lorentz violation and preferred-frame observables. | Useful for bounding leakage, but the preferred frame is absolute time plus Euclidean void, not an added vector field ontology. |
 | Horava-Lifshitz-type anisotropic scaling | Preferred foliation and different UV scaling for time and space. | The idea that a preferred foliation can coexist with effective relativistic behavior. | Comparison only; $\mathbb{A}\mathbb{A}\mathbb{A}$ already has absolute time, so the question is empirical leakage and low-energy recovery. |
 | Causal-set and discrete-spacetime programs | Partial order, discreteness, and causal reconstruction. | Useful contrast for causal ordering and continuum emergence. | $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps continuous Euclidean void and absolute time; discreteness, if any, belongs to assemblies or ledgers, not the void. |
-| Loop, spin-network, and other quantum-geometry programs | Quantized geometric operators and graph-like states. | A comparison for area, volume, horizon, and spin-network claims. | Comparison framework unless a Noether-core graph or horizon ledger imports a specific validated constraint. |
+| Loop, spin-network, and other quantum-geometry programs | Quantized geometric operators and graph-like states. | A comparison for area, volume, horizon, and spin-network claims. | Comparison framework unless a Noether swarm graph or horizon ledger imports a specific validated constraint. |
 | String, brane, holographic, and AdS/CFT programs | Extended objects, extra dimensions, dual boundary descriptions, and holographic entropy relations. | High-value consistency checks when entropy, unitarity, or horizon accounting becomes unavoidable. AdS/CFT is especially valuable as a controlled anti-de Sitter laboratory, not as direct evidence that our late-time de Sitter-like universe has the same boundary structure. | Comparison framework; do not promote to closure target unless a specific tested benchmark is imported. |
 | de Sitter quantum-gravity and dS/CFT attempts | Positive-curvature late-time comparison geometry, observer horizons, finite-access entropy, and proposed future-boundary or statistical descriptions. | A sharp reminder that the observed universe is not anti-de Sitter and that horizon-limited access must be handled without pretending there is an AdS-style spatial boundary. | Comparison framework only; the native target is a Noether-Sea observer-horizon ledger, not a literal boundary CFT. |
 
 Causal-set programs are strongest here as a discipline on what causal ordering can and cannot buy. Their useful mathematical lesson is that causal relations can carry much of the effective spacetime structure, while local scale still has to be supplied by a separate volume, clock, or ruler channel. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the corresponding recovery burden is not to make spacetime atomic. It is to show that Physical Observers reconstruct the same effective causal order, local clock scale, and bounded preferred-frame leakage from Noether-Sea signal, density, delay, and ruler-response variables.
 
-A second comparison lesson is the distinction between a continuum approximation and a continuum limit. For this bridge, the correct project phrase is **continuum approximation**: effective fields, metrics, and volumes become valid when many Noether-core degrees of freedom are coarse-grained, but the Euclidean void is not being replaced by an actual continuum-limit geometry and the Noether-Sea assembly inventory is not erased by taking a regulator to zero.
+A second comparison lesson is the distinction between a continuum approximation and a continuum limit. For this bridge, the correct project phrase is **continuum approximation**: effective fields, metrics, and volumes become valid when many Noether swarm degrees of freedom are coarse-grained, but the Euclidean void is not being replaced by an actual continuum-limit geometry and the Noether-Sea assembly inventory is not erased by taking a regulator to zero.
 
 ###### Comparison Matrix
 
@@ -74060,7 +74060,7 @@ A second comparison lesson is the distinction between a continuum approximation 
 | Lorentz aether | Hidden preferred frame plus Lorentz-contracted matter and slowed clocks. | Absolute time and Euclidean void supply the preferred substrate frame; assemblies and signal channels must hide it operationally. | The Noether Sea is a mechanical luminiferous aether. | Derive shared clock/ruler/signal retuning with $\epsilon_{\text{LV}}$ and PPN preferred-frame coefficients below bounds. |
 | Special-relativistic Minkowski spacetime | Lorentz kinematics, invariant signal speed, mass-shell bookkeeping, and relativity of simultaneity for Physical Observers. | Homogeneous weak-field limit of deformable assemblies, synchronized signal channels, and Noether-Sea-dressed clocks and rulers. | Lorentz symmetry is primitive substrate geometry. | Show that stable assembly closure drives the same $\gamma_{\text{eff}}$ factor in clock, ruler, signal, energy, and momentum channels while preferred-frame leakage remains below bounds. |
 | General-relativistic metric spacetime | Proper time, geodesic motion, redshift, Shapiro delay, lensing, frame dragging, gravitational waves, and PPN observables. | Effective metric $g^{\text{eff}}_{\mu\nu}$ reconstructed from Noether-Sea clock, ruler, signal, drift, and compliance channels. | The Euclidean void itself curves. | Derive one constitutive map from Noether-Sea state to ADM/Cartan fields that recovers GR in tested regimes. |
-| Elastic or continuum-medium spacetime | Stress, strain, compliance, wave propagation, and equation-of-state language. | Coarse Noether-Sea variables such as density, delay factor, stress, drift, alignment, and spatial compliance. | The medium is a featureless continuum with no assembly microstructure. | Derive continuum stress and compliance tensors from Noether-core population dynamics and identify their valid averaging scale. |
+| Elastic or continuum-medium spacetime | Stress, strain, compliance, wave propagation, and equation-of-state language. | Coarse Noether-Sea variables such as density, delay factor, stress, drift, alignment, and spatial compliance. | The medium is a featureless continuum with no assembly microstructure. | Derive continuum stress and compliance tensors from Noether swarm population dynamics and identify their valid averaging scale. |
 | Analog-gravity or acoustic-metric models | Effective metrics can emerge from signal propagation through a medium. | Signal cones and clock/ruler maps emerge from Noether-Sea delay and assembly response. | The analogy proves gravity or fixes the metric by signal speed alone. | Extend scalar speed maps to the full ADM/Cartan handoff $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
 | Superfluid and condensate vacuum models | Coherence, order parameters, critical thresholds, quantized circulation, collective excitations, and low-dissipation transport. | Possible comparison class for coherent Noether-Sea phases only when the local document supplies a defined order parameter, excitation spectrum, critical threshold, or circulation analogue. | The Noether Sea is superfluid merely because it is coherent or low-dissipation. | Derive a concrete constitutive model: order parameter, transport equation, critical-velocity criterion, two-fluid analogue, quantized-vorticity analogue, or explicit reason the analogy fails. |
 | Berezhiani-Khoury-style superfluid dark matter | Phase-dependent behavior: cold-dark-matter-like cosmology and cluster behavior, plus phonon-mediated MOND-like galactic behavior in a superfluid phase. | Comparison for environment-dependent Noether-Sea phase behavior, excitation channels, two-component response, and galactic-scale effective-force recovery. | Noether-Sea ontology is dark matter superfluidity, or MOND behavior follows without a native phonon/order-parameter derivation. | Define the Noether-Sea analogue of condensate fraction, phonon mode, critical temperature/velocity, normal fraction, and baryon-coupling channel, then test whether it recovers or rejects MOND-like scaling. |
@@ -74325,7 +74325,7 @@ $$
 \text{coarse-grained scalar amplitude of assembly or Noether-Sea response}.
 $$
 
-The bridge target is to derive when a collective mode of Noether-core clusters or Noether-Sea state variables obeys a Klein-Gordon-like equation, and when delayed path-history effects force corrections.
+The bridge target is to derive when a collective mode of Noether swarm clusters or Noether-Sea state variables obeys a Klein-Gordon-like equation, and when delayed path-history effects force corrections.
 
 ###### Scalar Field Meaning
 
@@ -74359,13 +74359,13 @@ $$
 \hat{\phi}(x)=\sum_k\left(a_k u_k(x)+a_k^\dagger u_k^*(x)\right).
 $$
 
-Under $\mathbb{A}\mathbb{A}\mathbb{A}$, this should be read as effective bookkeeping for stable mode contributions from Noether-core clusters, not as literal creation or destruction of substrate entities.
+Under $\mathbb{A}\mathbb{A}\mathbb{A}$, this should be read as effective bookkeeping for stable mode contributions from Noether swarm clusters, not as literal creation or destruction of substrate entities.
 
 | QFT language | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
 | --- | --- |
 | Vacuum state | Reference Noether-Sea background |
 | Scalar field $\phi$ | Coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response |
-| Mode $u_k$ | Normal-mode pattern supported by a Noether-core cluster or medium region |
+| Mode $u_k$ | Normal-mode pattern supported by a Noether swarm cluster or medium region |
 | Creation operator $a_k^\dagger$ | Coherent addition, nucleation, or release of a cluster contribution into mode $k$ |
 | Annihilation operator $a_k$ | Absorption, damping, or reconfiguration of that contribution back into the surrounding Noether Sea |
 | Number operator $N_k=a_k^\dagger a_k$ | Effective occupation count of stable mode contributions |
@@ -74517,7 +74517,7 @@ Long-term relevance is as a benchmark continuum limit: the mature stack should d
 To promote this bridge from mapping to derivation, the following targets must close:
 
 1. Derive a coarse-grained scalar amplitude $\phi$ from Noether-Sea density, compression, or radial breathing modes.
-2. Derive normal coordinates $Q_k(t)$ for Noether-core cluster modes so that $\phi(\mathbf{x},t)\approx\sum_k Q_k(t)u_k(\mathbf{x})$ in the continuum limit.
+2. Derive normal coordinates $Q_k(t)$ for Noether swarm cluster modes so that $\phi(\mathbf{x},t)\approx\sum_k Q_k(t)u_k(\mathbf{x})$ in the continuum limit.
 3. Show how stable discrete increments of $Q_k$ produce the effective occupation-count behavior encoded by $a_k^\dagger$, $a_k$, and $N_k$.
 4. Show when linearization around a homogeneous Noether-Sea background yields $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$.
 5. Relate the effective mass parameter $m$ to assembly stiffness, confinement energy, or radial restoring dynamics rather than treating it as primitive.
@@ -74650,13 +74650,13 @@ This is stronger than a loose analogy among chapters, but it is still a derivati
 - identify which polar sites are exposed to a charged corridor for a moving assembly,
 - suppress right-handed charged-current docking in the same geometry that allows left-handed docking,
 - define the weak-basis states whose overlap with shielding eigenstates yields $V_{\mathrm{CKM}}$ and $U_{\mathrm{PMNS}}$,
-- and specify whether the $W^\pm$ corridor carries only the charged transaction payload or also pro/anti Noether core provenance for the outgoing lepton assemblies.
+- and specify whether the $W^\pm$ corridor carries only the charged transaction payload or also pro/anti Noether swarm provenance for the outgoing lepton assemblies.
 
 The minimal mathematical object is therefore not only a mixing matrix. It is a coupled tuple:
 $$
 \bigl(R_{\mathrm{rel}},\alpha,c;\ \Sigma_{\mathrm{WCT}};\ \mathcal{W}_{\pm};\ \mathcal{P}_{ij}\bigr),
 $$
-where $R_{\mathrm{rel}}$ records axial-frame orientation relative to the fixed Noether-core frame, $(\alpha,c)$ record the branch and color-sector data, $\Sigma_{\mathrm{WCT}}$ is the weak-coupling-triad domain, $\mathcal{W}_{\pm}$ is the charged-corridor action on that domain, and $\mathcal{P}_{ij}$ is the admissible provenance-path set used in the overlap sum. The first proof step is to define these objects for one controlled channel, such as $d\to u$ in free-neutron beta reaction, before trying to claim the full CKM or PMNS hierarchy.
+where $R_{\mathrm{rel}}$ records axial-frame orientation relative to the fixed Noether swarm frame, $(\alpha,c)$ record the branch and color-sector data, $\Sigma_{\mathrm{WCT}}$ is the weak-coupling-triad domain, $\mathcal{W}_{\pm}$ is the charged-corridor action on that domain, and $\mathcal{P}_{ij}$ is the admissible provenance-path set used in the overlap sum. The first proof step is to define these objects for one controlled channel, such as $d\to u$ in free-neutron beta reaction, before trying to claim the full CKM or PMNS hierarchy.
 
 ###### First beta exposure operator: $d\to u$
 
@@ -74668,7 +74668,7 @@ Let the six polar sites of the active quark be
 $$
 S=\{H_+,H_-,M_+,M_-,L_+,L_-\},
 $$
-with axial inventory $A_a\in\{E,P\}$ at each site $a\in S$. Let $\hat{\mathbf n}_a(R_{\mathrm{rel}})$ be the outward polar-site direction after the axial frame is placed relative to the fixed Noether-core frame, and let $\hat{\mathbf v}$ be the quark drift direction through the local Noether Sea.
+with axial inventory $A_a\in\{E,P\}$ at each site $a\in S$. Let $\hat{\mathbf n}_a(R_{\mathrm{rel}})$ be the outward polar-site direction after the axial frame is placed relative to the fixed Noether swarm frame, and let $\hat{\mathbf v}$ be the quark drift direction through the local Noether Sea.
 
 The finite-state exposure score for handedness $h\in\{L,R\}$ is
 $$
@@ -74732,7 +74732,7 @@ $$
 \lvert u_L;c,\alpha\rangle
 =\lvert C_{\mathrm{IMO}};\ A_{\mathrm{sh}}=(1E,2P),\ A_{\Sigma}=3P;\ c,\alpha\rangle.
 $$
-Here $C_{\mathrm{IMO}}$ is the generation-I tri-binary Noether core, $A_{\mathrm{sh}}$ is the shielded axial inventory outside the exposed triad, and $(c,\alpha)$ records the color-sector branch and axial-frame offset inherited from the weak-mixing-angle program.
+Here $C_{\mathrm{IMO}}$ is the generation-I tri-binary Noether swarm, $A_{\mathrm{sh}}$ is the shielded axial inventory outside the exposed triad, and $(c,\alpha)$ records the color-sector branch and axial-frame offset inherited from the weak-mixing-angle program.
 
 The first beta exposure operator is
 $$
@@ -74778,7 +74778,7 @@ $$
 
 ###### Charged $W$ corridor (architrino budget, descriptive)
 
-Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether cores (3P/3E each)** plus a **six-charge excess** that carries net charge $\pm e$:
+Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether swarms (3P/3E each)** plus a **six-charge excess** that carries net charge $\pm e$:
 - $W^+$ payload: 9 positrinos + 3 electrinos (net $+6(e/6)=+e$) on the outer sites of the two cores.
 - $W^-$ payload: 3 positrinos + 9 electrinos (net $-6(e/6)=-e$).
 
@@ -75090,11 +75090,11 @@ _Status: accepted closure route, not a completed derivation. The chapter now tre
 
 The conjectural weak-provenance material below is an illustration of what a future $\mathbb{A}\mathbb{A}\mathbb{A}$ reaction ledger should be able to record. It is not a claim that the listed rows are correct. Several rows may be replaced once weak-coupling-triad exposure, corridor sourcing, spin/helicity closure, and event-level residual routing are derived from the same substrate record.
 
-- **Goal:** build a ledger to track weak transmutation events, ensuring charge, shielding, corridor payload, Noether core sourcing, and architrino counts close. Mark allowed vs. unseen channels and why.
+- **Goal:** build a ledger to track weak transmutation events, ensuring charge, shielding, corridor payload, Noether swarm sourcing, and architrino counts close. Mark allowed vs. unseen channels and why.
 - **Forward axial sites:** weak-coupling triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
 - **Environmental partners:**
   - Photon: a coaxial contra-rotating pro/anti planar pair.
-  - Noether Sea: hypothesized as paired pro/anti Noether cores; a local interaction could draw neutral core content to participate while preserving recorded provenance.
+  - Noether Sea: hypothesized as paired pro/anti Noether swarms; a local interaction could draw neutral core content to participate while preserving recorded provenance.
 - **Architrino budget example:** reacting with a Noether-Sea super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
 - **Capability target:** a mature reaction ledger would state the corridor provenance stance, participating cores/architrinos, candidate products, and forbidden outcomes with reasons such as shielding mismatch, insufficient flux-tube closure, or unmet charge quantization.
 
@@ -75123,7 +75123,7 @@ Notes:
 ###### Provenance
 
 - We ultimately want **provenance**, not just bookkeeping: track every architrino’s path through a reaction, so simulations can reproduce PDG observables from first principles.
-- Beyond individual architrinos, track **sub-assembly provenance**: entire Noether cores may transfer intact, detach outer binaries, dissociate, reassociate, or relock into different groupings while their architrino identities persist. Knowing which cores move as units vs fragment gives insight into allowed channels and lifetimes.
+- Beyond individual architrinos, track **sub-assembly provenance**: entire Noether swarms may transfer intact, detach outer binaries, dissociate, reassociate, or relock into different groupings while their architrino identities persist. Knowing which cores move as units vs fragment gives insight into allowed channels and lifetimes.
 - Conservation: electrinos IN = electrinos OUT. Same for positrinos. Transmutation: reactants → products; true understanding is to map (simulate) each architrino's path.
 - Point to ponder: What becomes of a spare electrino and positrino from a reaction? Do they couple and spiral inward to max curvature? Do they become highly reactive at some point?
 
@@ -75135,12 +75135,12 @@ Charge Conservation Enforcement (speculative, to simulate):
   - **Immediate neutral relock:** paired with opposite-polarity architrinos drawn from the Sea, routing energy into short coaxial contra-rotating pro/anti planar-pair photon modes while all participating identities remain in the ledger.
 - Practical rule for simulations: treat a true long-range "escape" channel as forbidden unless a dedicated high-resolution run demonstrates otherwise.
 
-Decision cues to log in sims: initial separation, relative phase, local Noether-core density; pick dominant channel based on these and record energy/charge routing.
+Decision cues to log in sims: initial separation, relative phase, local Noether swarm density; pick dominant channel based on these and record energy/charge routing.
 
 Provenance TODOs:
 - Validate the explicit overlap functional in this document by reconstructing $(\kappa_{12},\kappa_{23},\sigma)$ from simulated transport trajectories.
 - Build per-architrino tracking in simulations to recover CKM magnitudes and CP phase from first principles.
-- Add sub-assembly tracking: which Noether cores move intact vs. fragment in each channel; ensure charge/polarity balances close at both architrino and core levels.
+- Add sub-assembly tracking: which Noether swarms move intact vs. fragment in each channel; ensure charge/polarity balances close at both architrino and core levels.
 
 ###### Closure Integration: CKM-Holonomy and Lepton Handoff
 
@@ -75656,7 +75656,7 @@ The third distinction is between the void and what occupies it. The [Euclidean v
 
 This means the void is not a physical medium. It is not the Noether Sea, not a quantum vacuum substance, and not a dynamical spacetime. Its role is to supply spatial identity, distance, direction, and the arena in which architrinos and their assemblies move.
 
-The [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) is different. It is physical content inside the Euclidean void: an emergent population of neutral Noether-core assemblies whose collective state produces effective metric, inertia, clock, ruler, signal-delay, and cosmological behavior. The Noether Sea can carry density, stress, flow, orientation, and energy response. The void itself cannot.
+The [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) is different. It is physical content inside the Euclidean void: an emergent population of neutral Noether swarm assemblies whose collective state produces effective metric, inertia, clock, ruler, signal-delay, and cosmological behavior. The Noether Sea can carry density, stress, flow, orientation, and energy response. The void itself cannot.
 
 This split is one of the core ontological safeguards of the framework. If the void and the Noether Sea are fused, then geometry, occupancy, medium response, and observer-level spacetime become one ambiguous object. If they remain separated, the theory can say exactly which layer does which explanatory work.
 
@@ -76328,7 +76328,7 @@ The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
 - **Self-hit regime**: Entirely novel dynamics when sources exceed field propagation speed.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and polarity of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This perspective knows where and when each causal wake surface was emitted as it passes any point.
-- **Noether Sea / spacetime-medium bridge**: What GR calls the "vacuum" is not empty void but the **Noether Sea**: ambient substrate contents made from coupled pro/anti Noether cores, with `spacetime medium` reserved as bridge language for the effective metric context.
+- **Noether Sea / spacetime-medium bridge**: What GR calls the "vacuum" is not empty void but the **Noether Sea**: ambient substrate contents made from coupled pro/anti Noether swarms, with `spacetime medium` reserved as bridge language for the effective metric context.
 
 **Terminology note:** In this document, **"branching"** refers to **deterministic multistability** (microstate-sensitive attractor selection), not Many-Worlds splitting or fundamental randomness.
 
@@ -76799,7 +76799,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Special relativity treats Lorentz symmetry and relativity of simultaneity as foundational kinematics, while general relativity treats gravity as dynamical spacetime curvature with coordinate-gauge structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from Noether-core deformation, clock-law retuning, and Noether-Sea response, with GR curvature as effective assembly-network behavior on Euclidean space with absolute time. In this reading, $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from Noether swarm deformation, clock-law retuning, and Noether-Sea response, with GR curvature as effective assembly-network behavior on Euclidean space with absolute time. In this reading, $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
 
 **Legacy Shift**: Relativity remains indispensable as a high-accuracy effective theory stack, while its primitive geometric ontology is replaced by substrate-first mechanistic emergence.
 
@@ -78544,13 +78544,13 @@ This vocabulary should not be read as branch-choice metaphysics. In quantum comp
 
 #### Primitive Metastability
 
-The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether core](../../../../markdown/aaa/noether-swarm/noether-swarm.md) architecture, every Noether core contains a middle binary at the field-speed hinge $v=c_f$, while [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
+The deeper point is that metastability is not an accidental feature of complicated organisms. In the current [Noether swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) architecture, every Noether swarm contains a middle binary at the field-speed hinge $v=c_f$, while [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) treats that middle layer as the separator-sensitive fulcrum between the inner self-hit engine and the outer coupling layer. Metastability is therefore built into ordinary assembly structure.
 
-This does not make every Noether core an agent. A bare Noether core has a threshold-sensitive internal hinge, but it has not yet been shown to set its own threshold, hold a bias, or reuse feedback. The philosophical ladder is:
+This does not make every Noether swarm an agent. A bare Noether swarm has a threshold-sensitive internal hinge, but it has not yet been shown to set its own threshold, hold a bias, or reuse feedback. The philosophical ladder is:
 
 | Level | Philosophical reading |
 | --- | --- |
-| Bare Noether core | Metastability exists as a physical threshold resource. |
+| Bare Noether swarm | Metastability exists as a physical threshold resource. |
 | Switch | Bias-to-state behavior exists when one preparation moves a metastable unit nearer to or farther from a transition boundary. |
 | Decider | Functional decision exists when an assembly can set, hold, update, and reuse bias states that change later basin weights. |
 | Mature agent | Compatibilist agency exists when many such controlled thresholds are integrated with memory, feedback, and record-making action. |
@@ -78592,7 +78592,7 @@ where $D$ is a declared distance on outcome distributions and $\epsilon_I$ is th
 
 In this framework, `will` is a compatibilist and functional term for organized threshold setting across a networked assembly. It is not a primitive force and not an exception to causality.
 
-Because metastability is already present in Noether-core architecture, the philosophical burden shifts. The question is not how uncaused freedom enters matter. The question is how matter with built-in metastable hinges becomes organized enough to prepare its own boundary conditions. On this reading, will is the assembly-level governance of sensitivity: which thresholds are softened, which are damped, which records are allowed to form, and which incoming causal-wake patterns are ignored.
+Because metastability is already present in Noether swarm architecture, the philosophical burden shifts. The question is not how uncaused freedom enters matter. The question is how matter with built-in metastable hinges becomes organized enough to prepare its own boundary conditions. On this reading, will is the assembly-level governance of sensitivity: which thresholds are softened, which are damped, which records are allowed to form, and which incoming causal-wake patterns are ignored.
 
 When a Decider amplifies a signal, the proposed sequence is:
 
@@ -78620,7 +78620,7 @@ The He-Rb-He example supplies a minimal worked foothold for threshold tuning. It
 | **Libertarian Free Will** | Excluded as uncaused or law-violating initiation |
 | **Compatibilist Agency** | Allowed when complex assemblies navigate deterministic dynamics through internal state and feedback |
 | **Mechanism of "Decision"** | Threshold tuning + feedback + memory in networked assemblies |
-| **Metastability Substrate** | Field-speed middle binary in the Noether core supplies a primitive threshold resource, but not agency by itself |
+| **Metastability Substrate** | Field-speed middle binary in the Noether swarm supplies a primitive threshold resource, but not agency by itself |
 | **Validation Target** | Fixed boundary context plus different internal preparations must produce a measurable basin-weight shift with work, dissipation, and hold time recorded |
 | **Switch** | Bias-to-state mechanism; computed example currently uses He-Rb-He |
 | **Decider** | Candidate bias-setting architecture built from controlled thresholds, feedback, and memory |

@@ -27,7 +27,7 @@ The value is live because it protects contact with tested Bell-family data and p
 
 The reader-facing Bell chapter should stop at the closure target, obstruction, and failure conditions. The operational Bell work queue is retained here:
 
-1. Derive the total angular-momentum functional for a Noether core with changing inner, middle, and outer binary frequencies, including self-action and causal-wake terms.
+1. Derive the total angular-momentum functional for a Noether swarm with changing inner, middle, and outer binary frequencies, including self-action and causal-wake terms.
 2. Evaluate the Master-Equation branch-sum apparatus impulse, separatrix normal, and record-cycle invariant measure for a tri-binary assembly driven by a Stern-Gerlach-like apparatus potential gradient.
 3. Simulate a minimal fragmentation event and extract the joint pair ledger, not merely a pair of opposite classical axes.
 4. Compute $E(\theta_{AB})$ from the derived response kernel and source measure; compare against $-\cos\theta_{AB}$ and evaluate $|S|$.
@@ -403,7 +403,7 @@ The current repo does not yet contain a real accepted-history Stern-Gerlach appa
 
 ```text
 node scripts/mass-map/a0-tier1-continuation-source-prototype.mjs \
-  --tier0 scripts/tri-binary/fixtures/a0-tier0-branch-search-minimal.json \
+  --tier0 scripts/nested-shell-swarm/fixtures/a0-tier0-branch-search-minimal.json \
   --pretty \
   --out /tmp/a0-tier1-continuation-source-prototype.json
 
@@ -413,7 +413,7 @@ node scripts/mass-map/a0-tier1-one-period-continuation-prototype.mjs \
   --out /tmp/a0-tier1-one-period-continuation-prototype.json
 
 node scripts/mass-map/a0-tier1-accepted-history-writer.mjs \
-  --tier0 scripts/tri-binary/fixtures/a0-tier0-branch-search-minimal.json \
+  --tier0 scripts/nested-shell-swarm/fixtures/a0-tier0-branch-search-minimal.json \
   --continuation /tmp/a0-tier1-continuation-source-prototype.json \
   --pretty \
   --out /tmp/a0-tier1-accepted-history-from-continuation-source.json
@@ -423,7 +423,7 @@ now reconstructs finite carrier-chart samples and the carrier root ledger from t
 
 ```text
 node scripts/mass-map/a0-tier1-continuation-source-prototype.mjs \
-  --tier0 scripts/tri-binary/fixtures/a0-tier0-branch-search-minimal.json \
+  --tier0 scripts/nested-shell-swarm/fixtures/a0-tier0-branch-search-minimal.json \
   --direct-probe-steps 64 \
   --direct-step-fraction-ladder 0.0009765625 \
   --pretty \
@@ -777,7 +777,7 @@ This theorem target fails in any of the following cases:
 
 ## Remaining Blockers
 
-- The delayed total-angular-momentum functional still needs a source-event evaluation for a changing-frequency Noether core.
+- The delayed total-angular-momentum functional still needs a source-event evaluation for a changing-frequency Noether swarm.
 - The effective spinor coordinate and the conditions under which the record-cycle measure flattens to the ideal chart remain lower-level proof obligations.
 - The current product-screened generated axis model is a correct failure control, not a partial success.
 - The generated joint-basin target is now a failure-boundary fixture and simulation target, not a positive Bell closure candidate. Its table-level success is blocked by $\Delta_{\mathrm{par}}=1/\sqrt{2}$ until a local-response replay target locates the obstruction before the completed local record boundary without setting-dependent source weights or signaling.

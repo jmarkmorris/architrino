@@ -64,7 +64,7 @@ def make_core_to_residue_request(request_id="core_to_residue"):
             "sourceDocumentId": f"developer:{request_id}",
         },
         "reactants": [
-            {"id": "reactant_core_1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+            {"id": "reactant_core_1", "assemblyId": "pro_noether_swarm_I", "title": "Pro Noether Swarm"},
         ],
         "products": [
             {
@@ -93,10 +93,10 @@ def make_muon_decay_mode_1_request(request_id="mu_minus_s004_1"):
         },
         "reactants": [
             {"id": "reactant_muon_1", "assemblyId": "pro_muon_II", "title": "Muon"},
-            {"id": "reactant_noether_pair_1.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
-            {"id": "reactant_noether_pair_1.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
-            {"id": "reactant_noether_pair_2.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
-            {"id": "reactant_noether_pair_2.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_noether_pair_1.row.1", "assemblyId": "pro_noether_swarm_I", "title": "Pro Noether Swarm"},
+            {"id": "reactant_noether_pair_1.row.2", "assemblyId": "anti_noether_swarm_I", "title": "Anti Noether Swarm"},
+            {"id": "reactant_noether_pair_2.row.1", "assemblyId": "pro_noether_swarm_I", "title": "Pro Noether Swarm"},
+            {"id": "reactant_noether_pair_2.row.2", "assemblyId": "anti_noether_swarm_I", "title": "Anti Noether Swarm"},
         ],
         "products": [
             {"id": "product_electron_1", "assemblyId": "pro_electron_I", "title": "Electron"},
@@ -167,10 +167,10 @@ def make_dual_charge_direct_core_request(request_id="dual_charge_direct_core"):
             "sourceDocumentId": f"developer:{request_id}",
         },
         "reactants": [
-            {"id": "reactant_core_1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
-            {"id": "reactant_core_2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
-            {"id": "reactant_core_3", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
-            {"id": "reactant_core_4", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_core_1", "assemblyId": "pro_noether_swarm_I", "title": "Pro Noether Swarm"},
+            {"id": "reactant_core_2", "assemblyId": "anti_noether_swarm_I", "title": "Anti Noether Swarm"},
+            {"id": "reactant_core_3", "assemblyId": "pro_noether_swarm_I", "title": "Pro Noether Swarm"},
+            {"id": "reactant_core_4", "assemblyId": "anti_noether_swarm_I", "title": "Anti Noether Swarm"},
         ],
         "products": [
             {"id": "product_anti_tau_1", "assemblyId": "anti_tau_III", "title": "Anti Tau"},
@@ -204,12 +204,12 @@ def make_double_uni_binary_direct_core_request(request_id="double_uni_binary_dir
             "sourceDocumentId": f"developer:{request_id}",
         },
         "reactants": [
-            {"id": "reactant_core_1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
-            {"id": "reactant_core_2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
-            {"id": "reactant_core_3", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
-            {"id": "reactant_core_4", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
-            {"id": "reactant_core_5", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
-            {"id": "reactant_core_6", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_core_1", "assemblyId": "pro_noether_swarm_I", "title": "Pro Noether Swarm"},
+            {"id": "reactant_core_2", "assemblyId": "anti_noether_swarm_I", "title": "Anti Noether Swarm"},
+            {"id": "reactant_core_3", "assemblyId": "pro_noether_swarm_I", "title": "Pro Noether Swarm"},
+            {"id": "reactant_core_4", "assemblyId": "anti_noether_swarm_I", "title": "Anti Noether Swarm"},
+            {"id": "reactant_core_5", "assemblyId": "pro_noether_swarm_I", "title": "Pro Noether Swarm"},
+            {"id": "reactant_core_6", "assemblyId": "anti_noether_swarm_I", "title": "Anti Noether Swarm"},
         ],
         "products": [
             {"id": "product_anti_tau_1", "assemblyId": "anti_tau_III", "title": "Anti Tau"},
@@ -245,10 +245,10 @@ def make_middle_supply_priority_request(request_id="middle_supply_priority"):
         "reactants": [
             {"id": "reactant_charm_1", "assemblyId": "pro_charm_quark_II", "title": "Charm Quark"},
             {"id": "reactant_anti_down_2", "assemblyId": "anti_down_quark_I", "title": "Anti Down Quark"},
-            {"id": "reactant_support_1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
-            {"id": "reactant_support_2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
-            {"id": "reactant_support_3", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
-            {"id": "reactant_support_4", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+            {"id": "reactant_support_1", "assemblyId": "pro_noether_swarm_I", "title": "Pro Noether Swarm"},
+            {"id": "reactant_support_2", "assemblyId": "anti_noether_swarm_I", "title": "Anti Noether Swarm"},
+            {"id": "reactant_support_3", "assemblyId": "pro_noether_swarm_I", "title": "Pro Noether Swarm"},
+            {"id": "reactant_support_4", "assemblyId": "anti_noether_swarm_I", "title": "Anti Noether Swarm"},
         ],
         "products": [
             {"id": "product_up_1", "assemblyId": "pro_up_quark_I", "title": "Up Quark"},
@@ -506,7 +506,7 @@ class PdgsolveCliTests(unittest.TestCase):
         self.assertEqual(len(family["reactantSideOperators"]), 1)
         self.assertEqual(
             [choice["lawId"] for choice in family["reactantSideOperators"]],
-            ["dissociate.pro_noether_core_I.to_residue"],
+            ["dissociate.pro_noether_swarm_I.to_residue"],
         )
         self.assertTrue(family["publicationReady"])
 
@@ -519,7 +519,7 @@ class PdgsolveCliTests(unittest.TestCase):
         family = result["optionFamilies"][0]
         self.assertTrue(family["publicationReady"])
         self.assertIn(
-            "dissociate.pro_up_quark_I.to.pro_noether_core_III",
+            "dissociate.pro_up_quark_I.to.pro_noether_swarm_III",
             [choice["lawId"] for choice in family["reactantSideOperators"]],
         )
 
@@ -531,8 +531,8 @@ class PdgsolveCliTests(unittest.TestCase):
         family = result["optionFamilies"][0]
         self.assertTrue(family["publicationReady"])
         law_ids = [choice["lawId"] for choice in family["reactantSideOperators"]]
-        self.assertIn("dissociate.pro_noether_core_I.to.pro_noether_core_III", law_ids)
-        self.assertIn("dissociate.anti_noether_core_I.to.anti_noether_core_III", law_ids)
+        self.assertIn("dissociate.pro_noether_swarm_I.to.pro_noether_swarm_III", law_ids)
+        self.assertIn("dissociate.anti_noether_swarm_I.to.anti_noether_swarm_III", law_ids)
 
     def test_solve_request_can_emit_multiple_direct_uni_binary_dissociations_from_generation_i_support(self):
         request = make_double_uni_binary_direct_core_request()
@@ -542,7 +542,7 @@ class PdgsolveCliTests(unittest.TestCase):
         family = result["optionFamilies"][0]
         self.assertTrue(family["publicationReady"])
         law_counts = Counter(choice["lawId"] for choice in family["reactantSideOperators"])
-        self.assertEqual(law_counts["dissociate.anti_noether_core_I.to.anti_noether_core_III"], 2)
+        self.assertEqual(law_counts["dissociate.anti_noether_swarm_I.to.anti_noether_swarm_III"], 2)
 
     def test_solve_request_prioritizes_non_core_middle_supply_before_spending_support_core_i(self):
         request = make_middle_supply_priority_request()
@@ -553,7 +553,7 @@ class PdgsolveCliTests(unittest.TestCase):
         self.assertTrue(family["publicationReady"])
         law_ids = [choice["lawId"] for choice in family["reactantSideOperators"]]
         self.assertIn("dissociate.pro_charm_quark_II", law_ids)
-        self.assertNotIn("dissociate.pro_noether_core_I.to.pro_noether_core_II", law_ids)
+        self.assertNotIn("dissociate.pro_noether_swarm_I.to.pro_noether_swarm_II", law_ids)
 
     def test_publication_graph_is_layout_neutral_for_pass_thru(self):
         request = make_pass_thru_request("pass_thru_graph")
@@ -697,9 +697,9 @@ class PdgsolveCliTests(unittest.TestCase):
                 "sourceDocumentId": "developer:review_order_groups",
             },
             "reactants": [
-                {"id": "reactant_noether_pair_1.row.1", "assemblyId": "pro_noether_core_I", "title": "Pro Noether Core"},
+                {"id": "reactant_noether_pair_1.row.1", "assemblyId": "pro_noether_swarm_I", "title": "Pro Noether Swarm"},
                 {"id": "reactant_particle_1", "assemblyId": "pro_up_quark_I", "title": "Up Quark"},
-                {"id": "reactant_noether_pair_1.row.2", "assemblyId": "anti_noether_core_I", "title": "Anti Noether Core"},
+                {"id": "reactant_noether_pair_1.row.2", "assemblyId": "anti_noether_swarm_I", "title": "Anti Noether Swarm"},
             ],
             "products": [
                 {
@@ -751,9 +751,9 @@ class PdgsolveCliTests(unittest.TestCase):
                     "id": "graph_reactant_aaa_1",
                     "kind": "assembly",
                     "stage": "reactantAssemblies",
-                    "recipeId": "pro_noether_core_I",
+                    "recipeId": "pro_noether_swarm_I",
                     "occurrenceKey": "reactant_noether_pair_1.row.1",
-                    "title": "Pro Noether Core",
+                    "title": "Pro Noether Swarm",
                     "electrinoCount": 3,
                     "positrinoCount": 3,
                 },
@@ -801,7 +801,7 @@ class PdgsolveCliTests(unittest.TestCase):
             ],
             [
                 ("graph_reactant_pdg_1", "Up Quark", 0, "pdg"),
-                ("graph_reactant_aaa_1", "Pro Noether Core", 1, "aaa"),
+                ("graph_reactant_aaa_1", "Pro Noether Swarm", 1, "aaa"),
             ],
         )
         self.assertEqual(

@@ -24,17 +24,17 @@ test("pdgedit tile review lines tolerate missing sample counts for ordinary asse
   );
 });
 
-test("nested Noether-core glyph tiles normalize as binary glyph bands", () => {
+test("nested Noether swarm glyph tiles normalize as binary glyph bands", () => {
   const catalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
-  const proNoetherCoreGlyphTile = catalog.tiles.find((tile) => tile.key === "pro-noether-core-glyph");
+  const proNoetherSwarmGlyphTile = catalog.tiles.find((tile) => tile.key === "pro-noether-swarm-glyph");
 
-  assert.ok(proNoetherCoreGlyphTile, "missing pro-noether-core-glyph tile");
-  assert.equal(proNoetherCoreGlyphTile.type, "binary-glyph");
-  assert.equal(Array.isArray(proNoetherCoreGlyphTile.binaryGlyph.bands), true);
-  assert.equal(proNoetherCoreGlyphTile.binaryGlyph.bands.length, 3);
-  assert.equal(proNoetherCoreGlyphTile.binaryGlyph.centerGlow?.r || 0, 0);
+  assert.ok(proNoetherSwarmGlyphTile, "missing pro-noether-swarm-glyph tile");
+  assert.equal(proNoetherSwarmGlyphTile.type, "binary-glyph");
+  assert.equal(Array.isArray(proNoetherSwarmGlyphTile.binaryGlyph.bands), true);
+  assert.equal(proNoetherSwarmGlyphTile.binaryGlyph.bands.length, 3);
+  assert.equal(proNoetherSwarmGlyphTile.binaryGlyph.centerGlow?.r || 0, 0);
   assert.equal(
-    proNoetherCoreGlyphTile.binaryGlyph.bands.every(
+    proNoetherSwarmGlyphTile.binaryGlyph.bands.every(
       (band) => Array.isArray(band.circles) && band.circles.length === 2 && band.showAxis === false
     ),
     true

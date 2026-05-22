@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_INPUT_PATH = path.resolve(
   SCRIPT_DIR,
-  "../tri-binary/fixtures/action-increment-source-contract-blocked.json"
+  "../nested-shell-swarm/fixtures/action-increment-source-contract-blocked.json"
 );
 const EPS = 1e-9;
 const TWO_PI = 2 * Math.PI;
@@ -124,7 +124,7 @@ function printHelp() {
 
 Options:
   --input PATH       Read explicit Master-Equation apparatus-window response JSON.
-                     Defaults to scripts/tri-binary/fixtures/action-increment-source-contract-blocked.json
+                     Defaults to scripts/nested-shell-swarm/fixtures/action-increment-source-contract-blocked.json
   --print-contract  Print the explicit apparatus-window input contract.
   --out PATH         Write JSON output to a file instead of stdout.
   --pretty          Pretty-print JSON output.

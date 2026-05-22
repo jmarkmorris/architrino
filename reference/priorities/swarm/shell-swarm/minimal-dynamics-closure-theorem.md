@@ -18,7 +18,7 @@ a\in\{1,2,3\},
 \sigma\in\{+,-\}.
 $$
 
-The polarity row for the neutral Noether-core search is
+The polarity row for the neutral Noether swarm search is
 
 $$
 q_{a,+}=+\epsilon,

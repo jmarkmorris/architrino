@@ -16,7 +16,7 @@ where $n$ is the refractive index of the material and $v$ is the medium velocity
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-This case is a guardrail against loose medium analogies. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether Sea is not a simple mechanically dragged medium, and $n(\mathbf{x},t)$ is reserved for normalized Noether-core density, not optical refractive index. The mapping must distinguish material-channel delay, Noether-Sea delay $\chi_{\text{sea}}$, and observer-level velocity addition.
+This case is a guardrail against loose medium analogies. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether Sea is not a simple mechanically dragged medium, and $n(\mathbf{x},t)$ is reserved for normalized Noether swarm density, not optical refractive index. The mapping must distinguish material-channel delay, Noether-Sea delay $\chi_{\text{sea}}$, and observer-level velocity addition.
 
 ## Task Queue
 
@@ -42,6 +42,6 @@ This case is a guardrail against loose medium analogies. In $\mathbb{A}\mathbb{A
 ## Failure Modes
 
 - `fizeau.drag_medium_leak`: Noether Sea is treated as a simple mechanically dragged medium.
-- `fizeau.notation_collision`: optical refractive index is confused with normalized Noether-core density $n(\mathbf{x},t)$.
+- `fizeau.notation_collision`: optical refractive index is confused with normalized Noether swarm density $n(\mathbf{x},t)$.
 - `fizeau.coefficient_split`: moving-medium propagation requires a different velocity-addition rule from Lorentz closure.
 - `fizeau.material_no_ledger`: material recoil, heating, dispersion, and boundary handoff are not recorded.

@@ -25,7 +25,7 @@ During the current core geometrical theory push, do not treat chapter coverage a
 
 - For scorecard purposes, this is the main Coverage bucket.
 - Under the validated-closure scorecard, Coverage+Interface Readiness has weight `2`, so this queue improves reader and corpus completeness without substituting for certified equations, coefficients, parameters, or benchmark validation.
-- If the goal is the fastest validated-closure score increase, pair this workstream with [residual-routing-event-ledger](../tri-binary-causal-closure/residual-routing-event-ledger.md), [exposure-quotient-theorem](../mass-map/exposure-quotient-theorem.md), and [mass-map](../mass-map/mass-map.md) rather than treating prose coverage as the main lift.
+- If the goal is the fastest validated-closure score increase, pair this workstream with [residual-routing-event-ledger](../nested-shell-swarm-causal-closure/residual-routing-event-ledger.md), [exposure-quotient-theorem](../mass-map/exposure-quotient-theorem.md), and [mass-map](../mass-map/mass-map.md) rather than treating prose coverage as the main lift.
 - Rule of thumb to retain: a `+10` point gain in Coverage+Interface Readiness adds about `+0.2` to the weighted total; high-weight categories such as Empirical Precision+Benchmark Validation, Formula+Coefficient Recovery, Master EOM+Local Dynamics, Parameter+Scale Closure, and Potential+Action Closure move the total more.
 
 ## Source Mining Feeds

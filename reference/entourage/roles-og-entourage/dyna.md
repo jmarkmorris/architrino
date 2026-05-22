@@ -20,7 +20,7 @@ Outputs stay **simulation-ready** and **constraint-ready**. Anchor formal equati
 - Treat `dynamics/master-equation.md` as canonical for the delayed, radial, Jacobian-weighted per-hit law and causal wake geometry.
 - Use `dynamics/causal-action-functional.md` for variational/topological stability programs.
 - Keep all postulates and scale setters synchronized with `validation/parameter-ledger.md`.
-- Ensure continuum/emergent reductions remain consistent with `spacetime/*`, `quantum/*`, `validation/no-go-theorems.md`, and the active closure burdens in `reference/priorities/tri-binary-causal-closure/tri-binary-dependency-map.md`.
+- Ensure continuum/emergent reductions remain consistent with `spacetime/*`, `quantum/*`, `validation/no-go-theorems.md`, and the active closure burdens in `reference/priorities/nested-shell-swarm-causal-closure/nested-shell-swarm-dependency-map.md`.
 
 ---
 
@@ -191,7 +191,7 @@ Deliverable: Explicit **coarse-graining map** and resulting field equations (Ch.
 
 - Build a **metric functional**:
   $g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{core}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), u^\alpha_{\text{sea}}(x), \hat n_i(x), \text{tri-binary scales}\big)$
-  where $\rho_{\text{core}}$ is physical Noether-core density, $n$ is normalized Noether-core density, $\chi_{\text{sea}}$ is the Noether-Sea delay factor, $u^\alpha_{\text{sea}}$ is an effective medium-flow label, and $\hat n_i$ are neutral-axis orientations.
+  where $\rho_{\text{core}}$ is physical Noether swarm density, $n$ is normalized Noether swarm density, $\chi_{\text{sea}}$ is the Noether-Sea delay factor, $u^\alpha_{\text{sea}}$ is an effective medium-flow label, and $\hat n_i$ are neutral-axis orientations.
 - Show:
   - Geodesics in this effective metric correspond to coarse-grained architrino/assembly paths.
   - In appropriate limits, recover Newtonian potential, Schwarzschild, FRW, etc.
@@ -203,7 +203,7 @@ Deliverable: Mathematical backbone for Ch. 31-32 and 34 (metric emergence and si
 ### Absolute Time and Proper Time Map
 
 - Derive the mapping $d\tau/dt = f(v, \rho_{\text{core}}, \chi_{\text{sea}}, \Phi_{\text{eff}})$ from:
-  - Delay/interaction structure at the tri-binary level (Noether core oscillation rate vs absolute time).
+  - Delay/interaction structure at the tri-binary level (Noether swarm oscillation rate vs absolute time).
   - Noether-Sea coupling.
 - Show how:
   - SR-like kinetic time dilation,

@@ -1,14 +1,14 @@
 # Ideal Core App Design Brief
 
-This is the design brief for a controllable web app that presents a Noether core as a dynamic system of architrino paths and uses those paths to inspect emitted potential fields.
+This is the design brief for a controllable web app that presents a Noether swarm as a dynamic system of architrino paths and uses those paths to inspect emitted potential fields.
 
 ## Design Thesis
 
-The app is a technical instrument, not a decorative animation. Its first job is to make the relative path behavior of the Noether core legible from one screen while leaving enough room for controls, graphs, tables, and model-state readouts.
+The app is a technical instrument, not a decorative animation. Its first job is to make the relative path behavior of the Noether swarm legible from one screen while leaving enough room for controls, graphs, tables, and model-state readouts.
 
 The visual center is one reserved central spherical area. The camera does not orbit the scene. There is only one camera view, and it is straight on. When the user changes orientation, the sphere contents rotate inside that fixed view.
 
-The Noether core should read as moving architrino paths rather than as a solid body, fixed envelope, or enclosing volume. The same central spherical area also supports spherical test-surface field inspection so path behavior and field behavior remain visually connected.
+The Noether swarm should read as moving architrino paths rather than as a solid body, fixed envelope, or enclosing volume. The same central spherical area also supports spherical test-surface field inspection so path behavior and field behavior remain visually connected.
 
 ## First-Pass Scope
 
@@ -28,7 +28,7 @@ Deferred topics are listed in `Future Considerations And Open Questions`.
 
 ## UI Elements
 
-The first-pass UI is organized around one central spherical area and four surrounding corner zones. The central area owns the live Noether core and spherical test-surface field view. The corners own controls, graphs, the binary table, and the reserved equation zone so the center remains open.
+The first-pass UI is organized around one central spherical area and four surrounding corner zones. The central area owns the live Noether swarm and spherical test-surface field view. The corners own controls, graphs, the binary table, and the reserved equation zone so the center remains open.
 
 ### Central Spherical Area
 

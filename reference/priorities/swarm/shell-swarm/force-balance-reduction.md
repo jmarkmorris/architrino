@@ -1,6 +1,6 @@
 # Force-Balance Reduction
 
-Promotion status: `priority-only`. This packet derives necessary force-balance equations for a same-level tri-binary carrier. It does not prove existence, stability, energy/action closure, observer export, or migration readiness. Its role is to make the tangential and radial/support-band residuals from [same-level-branch-mathematics.md](same-level-branch-mathematics.md) analytically checkable on the same active-root convention used by [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md).
+Promotion status: `priority-only`. This packet derives necessary force-balance equations for a same-level tri-binary carrier. It does not prove existence, stability, energy/action closure, observer export, or migration readiness. Its role is to make the tangential and radial/support-band residuals from [shell-swarm-branch-mathematics.md](shell-swarm-branch-mathematics.md) analytically checkable on the same active-root convention used by [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md).
 
 ---
 

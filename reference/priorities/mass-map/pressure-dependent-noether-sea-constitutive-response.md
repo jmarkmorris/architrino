@@ -5,13 +5,13 @@ This priority packet is a report and derivation scaffold, not reader-facing cano
 ## Claim Level
 
 - **Status:** candidate constitutive law with two-material replay scaffold.
-- **Main claim:** local atomic and lattice pressure should retune the surrounding Noether Sea through one shared record for normalized Noether-core density $n(\mathbf{x},t)$, delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, effective speed $c_{\text{eff}}(\mathbf{x},t)$, Noether-Sea cadence factor $\Gamma_N(\mathbf{x},t)$, and assembly strain.
-- **Open burden:** coefficients must be derived from an accepted Noether-core branch, pressure-sensitive packing geometry, and the medium-response tensor probe. The first density-side modulus target is staged in [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md). Until then this packet supplies a falsifiable ansatz, not a promoted theorem.
+- **Main claim:** local atomic and lattice pressure should retune the surrounding Noether Sea through one shared record for normalized Noether swarm density $n(\mathbf{x},t)$, delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, effective speed $c_{\text{eff}}(\mathbf{x},t)$, Noether-Sea cadence factor $\Gamma_N(\mathbf{x},t)$, and assembly strain.
+- **Open burden:** coefficients must be derived from an accepted Noether swarm branch, pressure-sensitive packing geometry, and the medium-response tensor probe. The first density-side modulus target is staged in [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md). Until then this packet supplies a falsifiable ansatz, not a promoted theorem.
 - **Promotion targets:** [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [Nested Shell Swarm Geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Parameter Ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) after branch and validation support exists.
 
 ## Source Signals
 
-- [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md) already fixes $n(\mathbf{x},t)=\rho_{\text{core}}(\mathbf{x},t)/\rho_{\text{core},0}$, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$, and the Noether-core cadence distribution $f_N(\nu,\mathbf{x},t)$.
+- [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md) already fixes $n(\mathbf{x},t)=\rho_{\text{core}}(\mathbf{x},t)/\rho_{\text{core},0}$, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$, and the Noether swarm cadence distribution $f_N(\nu,\mathbf{x},t)$.
 - [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) already gives the geometry extraction target
   $$
   \ln\Gamma_N
@@ -24,14 +24,14 @@ This priority packet is a report and derivation scaffold, not reader-facing cano
   $$
 - [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) already requires atomic calculations to distinguish resolved matter assemblies from the complementary local Noether-Sea record inside the same atomic window.
 - [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) and [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) already separate reversible medium-dressed inertial response from dissipative resistance through $\mathcal{R}_{\text{tr}}$, and carry the Earth-core iron guardrail that ordinary planetary differentiation has no iron-nucleus source term.
-- [Noether-Core Scaling and Packing Scaffold](../dyadic-lock/noether-core-scaling-and-packing.md) supplies the current priority-side packing estimate, including packing-limited center density and oblate-envelope support-function contact conditions.
+- [Noether Swarm Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) supplies the current priority-side packing estimate, including packing-limited center density and oblate-envelope support-function contact conditions.
 
 ## External Source-Mining Constraints
 
 The Tier 2 condensed-matter and analogue-gravity sources do not add a new pressure ontology. They constrain how the candidate law may be written.
 
 1. Analogue-gravity reviews and Visser's acoustic-metric derivation show that an effective metric for perturbations can be a constitutive object built algebraically from medium density, flow, and signal speed. The pressure packet should mirror this discipline: $n$, $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, $S_{ij}$, and $\mathcal{M}_{\text{sea}}^{ab}$ must come from one local pressure-state record, not from observable-local coefficient rows.
-2. Volovik-style $^3$He-A examples are useful only because they carry explicit gap nodes, quasiparticle spectra, and order-parameter textures. The Noether-Sea pressure law may use emergent-medium comparison language only when the Noether-core branch record and stability gaps are declared.
+2. Volovik-style $^3$He-A examples are useful only because they carry explicit gap nodes, quasiparticle spectra, and order-parameter textures. The Noether-Sea pressure law may use emergent-medium comparison language only when the Noether swarm branch record and stability gaps are declared.
 3. Topological-defect and vortex-unbinding sources convert pressure-induced structural changes into a threshold statement: a winding, defect, dislocation, edge, or branch invariant can change only when the effective order-parameter map is declared and the branch passes through a gap-closing or transport-threshold event.
 
 The last point adds a guardrail to the pressure law. Let $\mathcal{I}_{\mathrm{def}}$ denote any retained effective defect or topological branch label extracted from a declared projection of $\theta_{\mathrm{sea}}$ or $\mathcal{B}_{\mathrm{lat}}$. A smooth branch-preserving pressure replay must keep
@@ -100,7 +100,7 @@ This pressure-loading variable is not a new substance. It is a compact way to fe
 
 ### 1. Packing-Limited Density Response
 
-Let $n_{\max}^{\mathrm{obl}}(\lambda,\xi,\mathcal{O})$ be the normalized local packing ceiling for oblate Noether-core envelopes, with $\mathcal{O}$ recording the orientation distribution. A useful first law is
+Let $n_{\max}^{\mathrm{obl}}(\lambda,\xi,\mathcal{O})$ be the normalized local packing ceiling for oblate Noether swarm envelopes, with $\mathcal{O}$ recording the orientation distribution. A useful first law is
 
 $$
 \frac{\partial \ln n}{\partial \Pi_\ell}
@@ -132,7 +132,7 @@ n_{\max}^{\mathrm{obl}}
 },
 $$
 
-where $\phi_{\mathrm{obl}}$ is the packing fraction for the declared envelope shapes and orientations. This ties the local pressure response to Noether-core geometry rather than to an unconstrained scalar density increase.
+where $\phi_{\mathrm{obl}}$ is the packing fraction for the declared envelope shapes and orientations. This ties the local pressure response to Noether swarm geometry rather than to an unconstrained scalar density increase.
 
 ### 2. Strain, Delay, and Effective Speed
 

@@ -2,7 +2,7 @@
 
 This chapter states the condensed-matter closure target for medium-level behavior in the Noether Sea. Its current focus is Noether-Sea transport: the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of cores.
 
-This note bridges [Atomic Structure](atomic-structure.md), [Particle Masses](../assemblies/particle-masses.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Medium Exclusion Volume](../spacetime/medium-exclusion-volume.md), since all four depend on how the Noether Sea stores stress and permits transport.
+This note bridges [Atomic Structure](atomic-structure.md), [Particle Masses](../assemblies/particle-masses.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Molecular Exclusion and Noether-Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md), since all four depend on how the Noether Sea stores stress and permits transport.
 
 At present this is a closure target rather than a finished derivation. The residual and its critical value must still be extracted from stable assembly dynamics, Noether-Sea constitutive response, and the relevant stability diagnostics.
 

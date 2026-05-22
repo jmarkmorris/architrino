@@ -27,7 +27,7 @@ Therefore a nucleon contains
 $$
 3\times 12 = 36
 $$
-architrinos at the Noether-swarm bookkeeping level, before adding any effective mesonic or medium-level dressing.
+architrinos at the Noether swarm bookkeeping level, before adding any effective mesonic or medium-level dressing.
 
 The constituent content is:
 $$
@@ -309,7 +309,7 @@ for the coupled nested shell swarm configuration. Here $J$ names the total hadro
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same bookkeeping pressure appears as three coupled contributions:
 
-- **Noether-swarm spinor structure**, the analogue of observer-level constituent spin;
+- **Noether swarm spinor structure**, the analogue of observer-level constituent spin;
 - **strong-sector orbital circulation**, the analogue of quark and core orbital angular momentum inside the bound state;
 - **flux-network angular momentum**, the analogue of gluon or strong-field angular momentum in the standard QCD spin budget.
 

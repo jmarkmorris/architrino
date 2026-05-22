@@ -2,7 +2,7 @@
 
 ## Motivation
 
-In the architrino assembly architecture, every Noether core (tri-binary) occupies a physical exclusion volume that deforms continuously from nearly spherical (low energy, weak gravity, slow translation) through oblate spheroid (moderate stress) to a planar disk (Planck alignment, event horizon, photon-like states). Crucially, the assembly does not merely change shape - it also changes size, with the transverse radius $R_\perp$ shrinking as energy increases. These two channels of deformation, shape and scale, together define the local state of the spacetime medium, from which the effective metric experienced by propagating signals and assembly-based observers must be extracted.
+In the architrino assembly architecture, every Noether swarm (tri-binary) occupies a physical exclusion volume that deforms continuously from nearly spherical (low energy, weak gravity, slow translation) through oblate spheroid (moderate stress) to a planar disk (Planck alignment, event horizon, photon-like states). Crucially, the assembly does not merely change shape - it also changes size, with the transverse radius $R_\perp$ shrinking as energy increases. These two channels of deformation, shape and scale, together define the local state of the spacetime medium, from which the effective metric experienced by propagating signals and assembly-based observers must be extracted.
 
 This section surveys the standard GR constructions where ellipsoidal geometry plays a structural role, identifies what is absent from GR that the architrino framework supplies, and develops the two-parameter effective metric mapping in detail.
 
@@ -44,7 +44,7 @@ $$
 \tilde{g}^{\mu\nu} = g^{\mu\nu} + \left(1 - \frac{1}{\chi_{\text{sea}}^2}\right) u^\mu u^\nu.
 $$
 
-If the medium has an oblate density profile - say, an ellipsoidal distribution of Noether cores - the optical metric inherits that oblateness. Light rays follow geodesics of $\tilde{g}_{\mu\nu}$, so the shape of the medium directly encodes the effective geometry experienced by signals. This is the closest standard-physics analogue to the architrino picture of gravity as propagation through a structured medium.
+If the medium has an oblate density profile - say, an ellipsoidal distribution of Noether swarms - the optical metric inherits that oblateness. Light rays follow geodesics of $\tilde{g}_{\mu\nu}$, so the shape of the medium directly encodes the effective geometry experienced by signals. This is the closest standard-physics analogue to the architrino picture of gravity as propagation through a structured medium.
 
 ### Petrov Classification
 
@@ -102,7 +102,7 @@ At a black hole horizon or for a photon, $\xi \to 0$ (planar) and $\lambda \to \
 
 ### Cosmological Expansion
 
-As the universe cools and spacetime assemblies lose energy, $R_\perp$ grows (cores expand) and $\xi \to 1$ (cores become more spherical). The expansion of individual cores contributes to the effective expansion of the medium, and the increasing sphericity reduces anisotropy. This is the microscopic picture behind cosmological expansion: relaxation of the Noether core medium toward lower-energy, larger, more spherical configurations. The effective scale factor $a(t)$ tracks the average $R_\perp(t)$ and $\xi(t)$ of the assembly population.
+As the universe cools and spacetime assemblies lose energy, $R_\perp$ grows (cores expand) and $\xi \to 1$ (cores become more spherical). The expansion of individual cores contributes to the effective expansion of the medium, and the increasing sphericity reduces anisotropy. This is the microscopic picture behind cosmological expansion: relaxation of the Noether swarm medium toward lower-energy, larger, more spherical configurations. The effective scale factor $a(t)$ tracks the average $R_\perp(t)$ and $\xi(t)$ of the assembly population.
 
 ---
 
@@ -150,7 +150,7 @@ The combined shape-plus-scale deformation is the structural feature that disting
 
 The reader-facing spacetime-assemblies chapter should state the provisional medium motif and its ownership boundaries. The working checks remain here:
 
-1. Define an explicit local coupling law for pro/anti Noether-core exchange and bounded imbalance relaxation. The law should state the variables controlling $\rho_+$, $\rho_-$, and $\Delta\rho_{\text{core}}$, and should identify the return or damping term that prevents unlimited orientation drift.
+1. Define an explicit local coupling law for pro/anti Noether swarm exchange and bounded imbalance relaxation. The law should state the variables controlling $\rho_+$, $\rho_-$, and $\Delta\rho_{\text{core}}$, and should identify the return or damping term that prevents unlimited orientation drift.
 2. Test whether the $2+2$ pro/anti cluster is an energy minimum, a metastable packing motif, or only a useful design intuition. The test should compare candidate cluster energies under the same local Noether-Sea state, not by visual symmetry alone.
 3. Derive coarse-grained signatures that distinguish a spacetime-assembly medium from a purely metric-first baseline in weak-field, strong-field, and cosmological regimes. The signatures should be expressed through effective-metric variables already used by this workstream: $\xi$, $\lambda$, $n$, $\chi_{\text{sea}}$, and the local orientation distribution.
 

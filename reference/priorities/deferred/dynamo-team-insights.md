@@ -161,7 +161,7 @@ For bookkeeping:
    E(t) = \sum_i K_i(t) + U(t).
    $$
 
-At higher levels, $U(t)$ coarse-grains into a local Noether-core volume gradient and then into an effective refractive or metric field. The ontological shift is that potential energy is fundamentally geometry of causal history, with the familiar potential emerging by coarse-graining.
+At higher levels, $U(t)$ coarse-grains into a local Noether swarm volume gradient and then into an effective refractive or metric field. The ontological shift is that potential energy is fundamentally geometry of causal history, with the familiar potential emerging by coarse-graining.
 
 ### Path-History Energy Functional
 

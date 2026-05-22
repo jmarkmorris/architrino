@@ -54,41 +54,41 @@ function createMockParentElement() {
 test("reaction title compacts repeated AAA bracket groups", () => {
   assert.equal(
     compactPdgeditReactionTitle(
-      "+ [Pro Noether Core+Anti Noether Core+Pro Noether Core+Anti Noether Core]AAA"
+      "+ [Pro Noether Swarm+Anti Noether Swarm+Pro Noether Swarm+Anti Noether Swarm]AAA"
     ),
-    "+ 2x[Pro Noether Core+Anti Noether Core]AAA"
+    "+ 2x[Pro Noether Swarm+Anti Noether Swarm]AAA"
   );
 });
 
 test("reaction participant compaction collapses repeated sequences for summary rendering", () => {
   assert.deepEqual(
     compactPdgeditReactionParticipants([
-      { text: "Anti Noether Core" },
-      { text: "Pro Noether Core" },
-      { text: "Anti Noether Core" },
-      { text: "Pro Noether Core" },
+      { text: "Anti Noether Swarm" },
+      { text: "Pro Noether Swarm" },
+      { text: "Anti Noether Swarm" },
+      { text: "Pro Noether Swarm" },
     ]),
     {
       repeatCount: 2,
-      participants: ["Anti Noether Core", "Pro Noether Core"],
+      participants: ["Anti Noether Swarm", "Pro Noether Swarm"],
     }
   );
 });
 
 test("reaction title leaves non-repeated AAA groups unchanged", () => {
   assert.equal(
-    compactPdgeditReactionTitle("+ [Pro Noether Core+Anti Noether Core+Pro Up Quark]AAA"),
-    "+ [Pro Noether Core+Anti Noether Core+Pro Up Quark]AAA"
+    compactPdgeditReactionTitle("+ [Pro Noether Swarm+Anti Noether Swarm+Pro Up Quark]AAA"),
+    "+ [Pro Noether Swarm+Anti Noether Swarm+Pro Up Quark]AAA"
   );
 });
 
 test("reaction title compacts each repeated AAA group independently", () => {
   assert.equal(
     compactPdgeditReactionTitle(
-      "[Pro Noether Core + Anti Noether Core + Pro Noether Core + Anti Noether Core]AAA -> " +
+      "[Pro Noether Swarm + Anti Noether Swarm + Pro Noether Swarm + Anti Noether Swarm]AAA -> " +
         "[Pro Electron+Pro Electron]AAA"
     ),
-    "2x[Pro Noether Core+Anti Noether Core]AAA -> 2x[Pro Electron]AAA"
+    "2x[Pro Noether Swarm+Anti Noether Swarm]AAA -> 2x[Pro Electron]AAA"
   );
 });
 

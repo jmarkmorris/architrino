@@ -1,6 +1,6 @@
 import {
   deriveStructureClassification,
-  getNoetherCoreBinaryPresenceKey,
+  getNoetherSwarmBinaryPresenceKey,
 } from "./StructureClassification.js";
 import {
   getStructureAssemblyDisplayLabel,
@@ -9,13 +9,13 @@ import {
 } from "./StructureAssemblyCatalog.js";
 import { getStructureTrait, STRUCTURE_KINDS } from "./StructureSchema.js";
 
-const noetherCoreDisplayLabelsByBinaryPresenceKey = Object.freeze({
+const noetherSwarmDisplayLabelsByBinaryPresenceKey = Object.freeze({
   inner: "Uni Binary",
   inner_middle: "Bi Binary",
 });
 
 const displayLabelsBySpecies = Object.freeze({
-  noether_core: "Noether Core",
+  noether_swarm: "Noether Swarm",
   noether_pair: "Noether Pair",
   noether_quad: "Noether Quad",
   photon: "Photon",
@@ -51,7 +51,7 @@ const displayLabelsBySpecies = Object.freeze({
 });
 
 const polarityQualifiedSpecies = new Set([
-  "noether_core",
+  "noether_swarm",
   "electron",
   "muon",
   "tau",
@@ -83,9 +83,9 @@ function humanizeStructureId(value = "") {
     .join(" ");
 }
 
-function formatNoetherCoreDisplayLabel(structureRoot = null) {
+function formatNoetherSwarmDisplayLabel(structureRoot = null) {
   const polarity = String(structureRoot?.traits?.polarity ?? "").trim().toLowerCase();
-  return polarity === "anti" ? "Anti Noether Core" : "Pro Noether Core";
+  return polarity === "anti" ? "Anti Noether Swarm" : "Pro Noether Swarm";
 }
 
 function formatPolarityQualifiedLabel(baseLabel = "", polarity = "") {
@@ -98,14 +98,14 @@ export function resolveStructureDisplayLabel(structureRoot = null) {
     return "";
   }
 
-  if (structureRoot.kind === STRUCTURE_KINDS.NOETHER_CORE) {
-    const binaryPresenceKey = getNoetherCoreBinaryPresenceKey(structureRoot);
+  if (structureRoot.kind === STRUCTURE_KINDS.NOETHER_SWARM) {
+    const binaryPresenceKey = getNoetherSwarmBinaryPresenceKey(structureRoot);
     if (binaryPresenceKey === "inner_middle_outer") {
-      return formatNoetherCoreDisplayLabel(structureRoot);
+      return formatNoetherSwarmDisplayLabel(structureRoot);
     }
-    if (noetherCoreDisplayLabelsByBinaryPresenceKey[binaryPresenceKey]) {
+    if (noetherSwarmDisplayLabelsByBinaryPresenceKey[binaryPresenceKey]) {
       return formatPolarityQualifiedLabel(
-        noetherCoreDisplayLabelsByBinaryPresenceKey[binaryPresenceKey],
+        noetherSwarmDisplayLabelsByBinaryPresenceKey[binaryPresenceKey],
         structureRoot?.traits?.polarity
       );
     }

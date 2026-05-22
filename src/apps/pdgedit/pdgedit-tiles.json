@@ -896,8 +896,8 @@
       ]
     },
     {
-      "key": "pro-noether-core",
-      "title": "Pro Noether Core",
+      "key": "pro-noether-swarm",
+      "title": "Pro Noether Swarm",
       "borderColor": "purple",
       "lines": [
         {
@@ -918,8 +918,8 @@
       ]
     },
     {
-      "key": "anti-noether-core",
-      "title": "Anti Noether Core",
+      "key": "anti-noether-swarm",
+      "title": "Anti Noether Swarm",
       "borderColor": "purple",
       "lines": [
         {
@@ -940,8 +940,8 @@
       ]
     },
     {
-      "key": "pro-noether-core-glyph",
-      "title": "Pro Noether Core Glyph",
+      "key": "pro-noether-swarm-glyph",
+      "title": "Pro Noether Swarm Glyph",
       "type": "binary-glyph",
       "borderColor": "purple",
       "binaryGlyph": {
@@ -1053,8 +1053,8 @@
       }
     },
     {
-      "key": "anti-noether-core-glyph",
-      "title": "Anti Noether Core Glyph",
+      "key": "anti-noether-swarm-glyph",
+      "title": "Anti Noether Swarm Glyph",
       "type": "binary-glyph",
       "borderColor": "purple",
       "binaryGlyph": {

@@ -119,7 +119,7 @@
         "pilot_wave_character": "Pilot-Wave Character",
         "planck_scale_nested_shell_swarm_alignment": "Planck Scale Nested Shell Swarm Alignment",
         "quantum_operator_mapping": "Quantum Operator Mapping",
-        "special_relativity_noether_core": "Special Relativity and Deformable Noether Cores",
+        "special_relativity_noether_swarm": "Special Relativity and Deformable Noether Swarms",
         "superposition_mechanism": "Superposition Mechanism",
         "weak_mixing_ckm": "Weak Mixing CKM"
       }
@@ -129,7 +129,7 @@
       "sceneName": "Noether Sea and Effective Spacetime",
       "objects": {
         "effective_metric": "Effective Metric",
-        "medium_exclusion_volume": "Medium Exclusion Volume",
+        "molecular_exclusion_and_noether_sea_response": "Molecular Exclusion and Noether-Sea Response",
         "noether_sea": "Noether Sea",
         "physical_observers": "Physical Observers",
         "spacetime_assemblies": "Spacetime Assemblies",

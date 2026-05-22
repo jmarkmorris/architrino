@@ -27,7 +27,7 @@ High-priority autonomous method: when no more specific lane is supplied, inspect
 
 ## Current Core Geometrical Theory Bias
 
-The default target for corpus advancement is now hard mathematical progress on the core geometry-dynamics stack. When no narrower lane is supplied, prefer source signals tied to master-equation closure, potential/action proof programs, certified branch geometry, simulations that discipline the equations, $A_0$ continuation, mass-map derivation, tri-binary causal closure, Lorentz/effective-metric recovery, photon closure, or Noether-Sea constitutive response.
+The default target for corpus advancement is now hard mathematical progress on the core geometry-dynamics stack. When no narrower lane is supplied, prefer source signals tied to master-equation closure, potential/action proof programs, certified branch geometry, simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell swarm causal closure, Lorentz/effective-metric recovery, photon closure, or Noether-Sea constitutive response.
 
 Do not spend a self-running pass mainly on prose polish, broad coverage, linking, app surfaces, or new infrastructure unless the operator explicitly requested that mode or the work directly unblocks a core mathematical artifact.
 
@@ -157,12 +157,12 @@ High-leverage review targets:
 
 Standing advancement programs to watch for when relevant:
 - Noether Sea / Noether-Sea usage: use `Noether Sea` as the standalone noun and `Noether-Sea` only as a compound modifier.
-- Density and delay notation: use `\rho_{\text{core}}(\mathbf{x},t)` for physical Noether-core density, reserve `n(\mathbf{x},t)` for normalized Noether-core density, and use `\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)` only for the Noether-Sea delay factor.
+- Density and delay notation: use `\rho_{\text{core}}(\mathbf{x},t)` for physical Noether swarm density, reserve `n(\mathbf{x},t)` for normalized Noether swarm density, and use `\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)` only for the Noether-Sea delay factor.
 - Photon ontology: use the canonical description `coaxial contra-rotating pro/anti planar pair`; avoid weaker variants such as `photon planar-pair`, `photon planar pair`, or `photon-like planar pair` unless quoted as a stale phrase to fix.
 - Mass and inertia: mass is the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. Ordinary dissipative drag is a failure channel or transport effect, not the mass mechanism.
 - Lorentz behavior: Lorentz symmetry, time dilation, length contraction, and invariant signal speed are theorem/closure targets. The closure ladder should name moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage.
 - Tri-binary minimality: treat as a theorem target unless a local derivation is present.
-- Reaction provenance: weak reactions, pair production, bremsstrahlung, synchrotron, and CKM mappings should expose where participating architrinos, Noether cores, energy, charge, and polarity enter and exit.
+- Reaction provenance: weak reactions, pair production, bremsstrahlung, synchrotron, and CKM mappings should expose where participating architrinos, Noether swarms, energy, charge, and polarity enter and exit.
 - Cosmology ontology: the Euclidean void does not expand. `a(t)`, `H(t)`, redshift, temperature, and CMB summaries are effective observer variables for Noether-Sea evolution, transport, and clock-rate comparison.
 
 Required method:
@@ -361,7 +361,7 @@ If Op does not specify a lane, shard, or posture, choose one or two of these pos
 - **Canon/drift sweeper:** secondary hygiene posture; compare local prose against Archie canon and identify patterns suitable for automated validation when drift materially affects theory clarity.
 - **Reader-completeness pass:** identify places where a reader needs a local definition, example, derivation step, or distinction to make the document self-contained.
 - **Cross-link gardener:** low-priority support posture; use only when Op asks for linking or when a link directly supports a concrete mathematical claim, proof path, or reader-critical comparison.
-- **Reaction-provenance tracer:** follow energy, charge, polarity, architrino, and Noether-core provenance through reactions and identify missing ledgers.
+- **Reaction-provenance tracer:** follow energy, charge, polarity, architrino, and Noether swarm provenance through reactions and identify missing ledgers.
 - **Validation/infrastructure scout:** secondary support posture; propose scripts, checks, claim-card improvements, closure-target ledgers, or repeatable search patterns only when they address a specific recurring failure.
 
 Choose 2-4 exploration lanes per run:

@@ -42,7 +42,7 @@
   "objects": [
     {
       "id": "quark_core",
-      "label": "Uni-binary Noether core",
+      "label": "Uni-binary Noether swarm",
       "scaleExponent": -20,
       "hideScaleLabel": true,
       "radius": 1.08,
@@ -56,7 +56,7 @@
         "inner"
       ],
       "renderStyle": "binarySphere",
-      "labelTitle": "Uni-binary Noether core"
+      "labelTitle": "Uni-binary Noether swarm"
     },
     {
       "id": "positrino_1",

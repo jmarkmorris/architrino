@@ -60,14 +60,14 @@ export function removeStructureNodeById(root, nodeId) {
   }));
 }
 
-export function clearNoetherCoreSlotOccupant(root, noetherCoreId, slotName) {
-  const targetCoreId = String(noetherCoreId ?? "").trim();
+export function clearNoetherSwarmSlotOccupant(root, noetherSwarmId, slotName) {
+  const targetCoreId = String(noetherSwarmId ?? "").trim();
   const targetSlotName = String(slotName ?? "").trim();
   if (!root || !targetCoreId || !targetSlotName) {
     return cloneStructureNode(root);
   }
   const nextRoot = updateStructureNodeById(root, targetCoreId, (node) => {
-    if (node?.kind !== STRUCTURE_KINDS.NOETHER_CORE) {
+    if (node?.kind !== STRUCTURE_KINDS.NOETHER_SWARM) {
       return node;
     }
     return {
@@ -123,7 +123,7 @@ export function applyStructurePolarity(root, nextPolarity) {
         updates.label = nextLabel;
       }
     }
-    if (context.parent == null || node.kind === STRUCTURE_KINDS.NOETHER_CORE) {
+    if (context.parent == null || node.kind === STRUCTURE_KINDS.NOETHER_SWARM) {
       updates.traits = {
         ...(updates.traits ?? node.traits ?? {}),
         polarity: resolvedPolarity,

@@ -50,7 +50,7 @@
   "objects": [
     {
       "id": "fermion_core",
-      "label": "Tri-binary Noether core",
+      "label": "Tri-binary Noether swarm",
       "scaleExponent": -20,
       "hideScaleLabel": true,
       "radius": 2.4,
@@ -70,7 +70,7 @@
         "type": "translate",
         "groupVelocity": 0
       },
-      "labelTitle": "Tri-binary Noether core"
+      "labelTitle": "Tri-binary Noether swarm"
     },
     {
       "id": "electrino_1",

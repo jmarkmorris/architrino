@@ -211,7 +211,7 @@ test("the JS pdgedit tile renderer stays aligned with representative committed r
     "pro-up-quark",
     "unbound-electrinos",
     "binary-full-br-rr",
-    "pro-noether-core-glyph",
+    "pro-noether-swarm-glyph",
   ];
 
   sampleTileKeys.forEach((tileKey) => {

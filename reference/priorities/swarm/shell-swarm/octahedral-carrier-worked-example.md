@@ -193,7 +193,7 @@ The screening suggests the rigid octahedral carrier is not immediately rejected 
 
 ## 6. Neutral Force-Residual Screening
 
-Assign the neutral Noether-core polarity pattern
+Assign the neutral Noether swarm polarity pattern
 
 $$
 q_{a,+}=+\epsilon,

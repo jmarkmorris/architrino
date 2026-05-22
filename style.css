@@ -2604,7 +2604,7 @@ body {
   justify-self: center;
 }
 
-.animator-reaction-canvas-participant.has-noether-core-grid {
+.animator-reaction-canvas-participant.has-noether-swarm-grid {
   align-items: start;
 }
 
@@ -2941,7 +2941,7 @@ body {
   padding-inline-start: calc(var(--reaction-canvas-depth, 0) * 4ch);
 }
 
-.animator-reaction-canvas-tree-content.is-noether-core-grid {
+.animator-reaction-canvas-tree-content.is-noether-swarm-grid {
   align-items: flex-start;
   padding-inline-start: 0;
 }
@@ -2975,7 +2975,7 @@ body {
   min-height: 0;
 }
 
-.animator-reaction-canvas-tree-row.is-noether-core-grid {
+.animator-reaction-canvas-tree-row.is-noether-swarm-grid {
   align-items: flex-start;
   min-height: 0;
 }
@@ -2985,14 +2985,14 @@ body {
   min-height: 0;
 }
 
-.animator-reaction-canvas-noether-core-grid {
+.animator-reaction-canvas-noether-swarm-grid {
   display: grid;
   min-width: 0;
   gap: var(--reaction-canvas-small-gap, 7px);
   width: fit-content;
 }
 
-.animator-reaction-canvas-noether-core-grid-track {
+.animator-reaction-canvas-noether-swarm-grid-track {
   display: grid;
   grid-template-columns: repeat(3, var(--binary-choice-size, 72px));
   gap: var(--reaction-canvas-tile-gap);
@@ -3000,7 +3000,7 @@ body {
 }
 
 .animator-reaction-canvas-inline-track-body,
-.animator-reaction-canvas-noether-core-grid-body,
+.animator-reaction-canvas-noether-swarm-grid-body,
 .animator-reaction-canvas-binary-selector-grid-body,
 .animator-reaction-canvas-composite-row-track-body {
   display: inline-flex;
@@ -3429,7 +3429,7 @@ body {
   filter: none;
 }
 
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-core-grid-tile {
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile {
   position: relative;
   display: block;
   width: var(--binary-choice-size, 72px);
@@ -3449,23 +3449,23 @@ body {
     0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-core-grid-tile:hover,
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-core-grid-tile:focus-visible {
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile:hover,
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile:focus-visible {
   border-color: color-mix(in srgb, var(--binary-choice-accent) 86%, rgba(255, 255, 255, 0.22));
   background: rgba(12, 16, 30, 0.96);
 }
 
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-core-grid-tile.is-pending {
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile.is-pending {
   border-color: rgba(255, 216, 126, 0.94);
   background: color-mix(in srgb, rgba(116, 82, 24, 0.92) 32%, rgba(12, 16, 30, 0.94));
 }
 
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-core-grid-tile.is-mapped {
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile.is-mapped {
   border-color: color-mix(in srgb, var(--binary-choice-accent) 68%, rgba(176, 255, 219, 0.2));
   background: color-mix(in srgb, rgba(24, 92, 64, 0.32) 18%, rgba(12, 16, 30, 0.94));
 }
 
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-core-grid-tile:disabled {
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile:disabled {
   opacity: 1;
   border-color: color-mix(in srgb, var(--binary-choice-accent) 62%, rgba(255, 255, 255, 0.14));
   background: rgba(12, 16, 30, 0.9);
@@ -3474,7 +3474,7 @@ body {
     0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
-.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-core-grid-tile.is-mapped:disabled {
+.animator-reaction-canvas-anchor.animator-reaction-canvas-noether-swarm-grid-tile.is-mapped:disabled {
   border-color: color-mix(in srgb, var(--binary-choice-accent) 68%, rgba(176, 255, 219, 0.2));
   background: color-mix(in srgb, rgba(24, 92, 64, 0.32) 18%, rgba(12, 16, 30, 0.94));
 }

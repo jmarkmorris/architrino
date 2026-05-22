@@ -140,7 +140,7 @@
     },
     {
       "name": "equilibrium_transport_smooth_h_step",
-      "description": "A smooth coarse-grained path where Noether-core h-step relaxation terms supply the propagation coefficient.",
+      "description": "A smooth coarse-grained path where Noether swarm h-step relaxation terms supply the propagation coefficient.",
       "line_family": "H21",
       "comparison_line_family": "clean_optical",
       "distance_mpc": 120,

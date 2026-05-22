@@ -192,7 +192,7 @@ D_{f,X}(\mathbf{x},t)=D_X
 \right\}.
 $$
 
-Here $\mathcal{A}_{\mathrm{H}}$ is the exact hydrogen matter-assembly ledger, $S_{\mathrm{sea}}^{\Omega_{\mathrm{H}}}$ is the local Noether-Sea complement, and $\partial\Omega_f(D_X,t)$ is the effective spatial interface extracted from locked-assembly wake dominance in channel $X$. The closure target is to derive $D_{f,X}$ from the same Noether-core geometry and causal-wake ledgers used for mass, confinement, and atomic orbital recovery.
+Here $\mathcal{A}_{\mathrm{H}}$ is the exact hydrogen matter-assembly ledger, $S_{\mathrm{sea}}^{\Omega_{\mathrm{H}}}$ is the local Noether-Sea complement, and $\partial\Omega_f(D_X,t)$ is the effective spatial interface extracted from locked-assembly wake dominance in channel $X$. The closure target is to derive $D_{f,X}$ from the same Noether swarm geometry and causal-wake ledgers used for mass, confinement, and atomic orbital recovery.
 
 The current kernel scaffold now derives the two wake terms from the Master-Equation causal-root flux. In a declared channel $X$, the locked numerator keeps the simple-root branch weight
 
@@ -467,9 +467,9 @@ The next proof burden is to compute the tolerance scales and retained branch ent
 Failure modes:
 
 - `hydrogen.ledger_surface_blend`: exact assembly membership is mistaken for a literal hard spatial surface.
-- `hydrogen.orbital_body_blend`: the electron resonance envelope is treated as the electron's Noether-core boundary.
-- `hydrogen.sea_core_count_blend`: the four matter Noether cores are counted as the local spacetime medium rather than as assemblies embedded in the ambient Noether Sea.
-- `hydrogen.proton_quark_split`: the three quark assemblies are treated as free Noether cores rather than as a color-singlet proton closure.
+- `hydrogen.orbital_body_blend`: the electron resonance envelope is treated as the electron's Noether swarm boundary.
+- `hydrogen.sea_core_count_blend`: the four matter Noether swarms are counted as the local spacetime medium rather than as assemblies embedded in the ambient Noether Sea.
+- `hydrogen.proton_quark_split`: the three quark assemblies are treated as free Noether swarms rather than as a color-singlet proton closure.
 - `hydrogen.kernel_split`: the locked numerator and ambient denominator are computed with different wake kernels, windows, or causal-width rules.
 - `hydrogen.threshold_fit`: $D_X$ is tuned separately per observable instead of being tied to the declared stability criterion.
 

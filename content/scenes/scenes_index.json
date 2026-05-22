@@ -996,9 +996,9 @@
       "path": "content/scenes/nuclear/condensed_matter.json"
     },
     {
-      "id": "spacetime__medium_exclusion_volume",
-      "name": "Medium Exclusion Volume",
-      "path": "content/scenes/spacetime/medium_exclusion_volume.json"
+      "id": "spacetime__molecular_exclusion_and_noether_sea_response",
+      "name": "Molecular Exclusion and Noether-Sea Response",
+      "path": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json"
     },
     {
       "id": "nuclear_atomic__molecular_geometry",
@@ -1526,9 +1526,9 @@
       "path": "content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json"
     },
     {
-      "id": "theory_bridges__special_relativity_noether_core",
-      "name": "Special Relativity and Deformable Noether Cores",
-      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json"
+      "id": "theory_bridges__special_relativity_noether_swarm",
+      "name": "Special Relativity and Deformable Noether Swarms",
+      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json"
     },
     {
       "id": "theory_bridges__superposition_mechanism",

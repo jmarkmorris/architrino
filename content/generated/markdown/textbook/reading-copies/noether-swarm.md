@@ -8,7 +8,7 @@
 
 ## Nested Shell Swarm Dynamics
 
-This chapter formulates nested shell swarm dynamics by extending the two-body delayed causal-wake system to a coupled three-binary Noether core. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
+This chapter formulates nested shell swarm dynamics by extending the two-body delayed causal-wake system to a coupled three-binary Noether swarm. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
 
 It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md), and [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
 
@@ -16,7 +16,7 @@ This chapter is the canonical dynamics home for coupled three-binary speed regim
 
 ### Relation to Causal Closure
 
-This chapter owns the dynamics baseline: the Noether-core roles, speed-regime conventions, delay-envelope geometry, gradient response, local cycle-period diagnostics, and stability tests that define the tri-binary mechanism. It does not try to close the full rest-mass, photon, or observer-inference proof program.
+This chapter owns the dynamics baseline: the Noether swarm roles, speed-regime conventions, delay-envelope geometry, gradient response, local cycle-period diagnostics, and stability tests that define the tri-binary mechanism. It does not try to close the full rest-mass, photon, or observer-inference proof program.
 
 Proper time $\tau$ does not exist at this layer. The EOM is integrated exclusively over absolute substrate time $t$. A tri-binary branch may output absolute periods, causal-root ledgers, deformation tensors, and stability residuals; later observer-inference chapters may translate those outputs into clock, ruler, signal, and effective-geometry language.
 
@@ -28,7 +28,7 @@ The claims in this chapter define a canonical dynamics baseline. They do not yet
 
 | Class | Treatment in this chapter |
 | --- | --- |
-| Dynamics baseline | Noether-core roles, speed-regime conventions, delay-envelope geometry, spiral-helical motion, cycle-period diagnostics, and stability tests. |
+| Dynamics baseline | Noether swarm roles, speed-regime conventions, delay-envelope geometry, spiral-helical motion, cycle-period diagnostics, and stability tests. |
 | Reconstruction target | Mass response, photon-channel behavior, observer-inference exports, and weak-field matching inputs as quantities to be derived from the dynamics before downstream interpretation. |
 | Open proof burden | Tri-binary minimality, shielding extraction, momentum-skew derivation, Floquet stability, photon closure, equivalence-principle export bounds, and downstream observer-geometry closure. |
 
@@ -109,7 +109,7 @@ Tri-binary dynamics uses four levels of description:
 | Level | Meaning |
 | --- | --- |
 | Substrate ontology | Euclidean void, absolute substrate time $t$, architrinos, causal wakes, and causal-root branch structure. |
-| Assembly dynamics | Noether cores, three coupled binary layers, self-hit multiplicity, shielding, phase closure, and root-ledger transitions. |
+| Assembly dynamics | Noether swarms, three coupled binary layers, self-hit multiplicity, shielding, phase closure, and root-ledger transitions. |
 | Observer-inference exports | Rest mass, photon propagation, reconstructed kinematics, geodesics, and horizon behavior as later reconstructed by assembly-built observers. |
 | Inference and closure status | Mathematical closures that remain to be derived before effective claims can be treated as proved rather than reconstructed. |
 
@@ -130,7 +130,7 @@ The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. T
 
 ### Multi-Scale Layer Locking
 
-The baseline Noether core is not a stack of three identical circular binaries. It is a nested causal lock whose layers operate in different speed regimes. Let $s_\ell$ denote the characteristic speed of one member of layer $\ell$ around that layer's center. In the ordinary weak-stress regime, the target ordering is
+The baseline Noether swarm is not a stack of three identical circular binaries. It is a nested causal lock whose layers operate in different speed regimes. Let $s_\ell$ denote the characteristic speed of one member of layer $\ell$ around that layer's center. In the ordinary weak-stress regime, the target ordering is
 
 $$
 s_I > c_f,
@@ -170,7 +170,7 @@ where $E_{\text{internal}}(A)$ is the trapped internal causal-history ledger of 
 
 ### Spiral-Helical Motion Picture
 
-A resting Noether core is modeled as a nested, phase-locked tri-binary structure with three coupled binary planes. When the core moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, the rest-state circular or near-circular binary motions are drawn into braided spiral-helical cable patterns through the Euclidean void.
+A resting Noether swarm is modeled as a nested, phase-locked tri-binary structure with three coupled binary planes. When the core moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, the rest-state circular or near-circular binary motions are drawn into braided spiral-helical cable patterns through the Euclidean void.
 
 The spiral-helical picture is not decorative. A causal wake sent between partners, or between the inner, middle, and outer layers, must now reach a receiver that has moved during the wake's travel time. The internal phase geometry must therefore retune its pitch, radius, tilt, and timing to preserve the same closure ledger. In dynamics language, bulk velocity is encoded as internal geometry.
 
@@ -182,7 +182,7 @@ This is the common mechanical basis for three later downstream readouts:
 
 ### All-Layer Translating Branch Response
 
-A translating Noether core is not described by one outer radius alone. The hidden state includes all three layer radii, frequencies, characteristic speeds, axes, active causal roots, and wake exchange:
+A translating Noether swarm is not described by one outer radius alone. The hidden state includes all three layer radii, frequencies, characteristic speeds, axes, active causal roots, and wake exchange:
 $$
 B_q(v)
 =
@@ -482,7 +482,7 @@ $$
 
 This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection and branch-period stretch come from different retained ledgers, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether-Sea cadence current used in cosmology.
 
-The first reduced validation model for this target is [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md), with runtime script `scripts/tri-binary/retuning-map-toy-model.mjs`. That model solves the linearized constrained compliance problem and reports the induced $J_\nu$ estimate. It is a branch-bookkeeping scaffold, not delayed-dynamics validation.
+The first reduced validation model for this target is [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md), with runtime script `scripts/nested-shell-swarm/retuning-map-toy-model.mjs`. That model solves the linearized constrained compliance problem and reports the induced $J_\nu$ estimate. It is a branch-bookkeeping scaffold, not delayed-dynamics validation.
 
 ### Observer-Inference Export Boundary
 
@@ -505,7 +505,7 @@ Every entry is computed in absolute time from the retained causal-root chart. La
 
 ### Terminal Alignment Label-Count Target
 
-The black-hole entropy route requires a dynamics-side label calculation. Once a Noether-core branch is driven to terminal alignment, the dynamics should output the admissible alignment-restricted closure labels and their neighbor-compatibility rules. For a connected block $U$ of horizon-adjacent alignment patches, the object is
+The black-hole entropy route requires a dynamics-side label calculation. Once a Noether swarm branch is driven to terminal alignment, the dynamics should output the admissible alignment-restricted closure labels and their neighbor-compatibility rules. For a connected block $U$ of horizon-adjacent alignment patches, the object is
 $$
 \mathcal{L}_U(\theta)
 =
@@ -1754,7 +1754,7 @@ in the equilibrium weak-field horizon-interface limit. This is the precise missi
 The dynamics chapter contributes the stable pieces needed by the larger theorem program:
 
 1. Define the speed hierarchy and the causal-speed guardrails.
-2. Model the tri-binary Noether core as inner engine, middle fulcrum, and outer shielding/interface layer.
+2. Model the tri-binary Noether swarm as inner engine, middle fulcrum, and outer shielding/interface layer.
 3. Track how motion deforms the rest-state lock into braided spiral-helical geometry.
 4. Derive local cycle-period diagnostics from the absolute cycle-stretch theorem target.
 5. Solve all-layer branch updates for one-$h$ transactions and extract the branch-indexed period-stretch and envelope-oblation records.
@@ -1764,7 +1764,7 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 
 ### Working Hypotheses
 
-1. The formed Noether core has stable invariants ($R_{\text{core}}$, $\omega_{\text{core}}$, fixed phase offsets).
+1. The formed Noether swarm has stable invariants ($R_{\text{core}}$, $\omega_{\text{core}}$, fixed phase offsets).
 2. The outer-binary delay loop yields discrete plateaus and a terminal aligned mode under increasing stress.
 3. High group velocity may produce an oblate causal envelope that drives planar alignment in the terminal rung; this remains a working hypothesis until the swept-volume and branch-stability tests close.
 4. High gravitational gradient modifies phase closure through tidal or differential delay effects, shifting or destabilizing rungs.
@@ -1911,9 +1911,9 @@ Geometrically, $\beta_f$ is the primitive axis-squash control: as $\beta_f \to 1
 
 ### Minimal Models
 
-#### Noether Core Baseline (Inner + Middle Fixed)
+#### Noether Swarm Baseline (Inner + Middle Fixed)
 
-**Focus:** Treat inner + middle as a formed Noether core with fixed (or slowly varying) center of mass. Track convergence of phase relations and extract $R_{\text{core}}$, $\omega_{\text{core}}$, and stable phase offsets. Check repeatability across nearby initial conditions and whether any core element rides $\|\mathbf{v}\| = c_f$ continuously.
+**Focus:** Treat inner + middle as a formed Noether swarm with fixed (or slowly varying) center of mass. Track convergence of phase relations and extract $R_{\text{core}}$, $\omega_{\text{core}}$, and stable phase offsets. Check repeatability across nearby initial conditions and whether any core element rides $\|\mathbf{v}\| = c_f$ continuously.
 
 #### Outer-Binary Delay Loop Model with Formed Core
 
@@ -2022,7 +2022,7 @@ The following items are retained here only as dynamics-facing boundary condition
 
 #### Tri-Binary Role Hypotheses
 
-An electrino:positrino binary is the most primitive assembly considered in the current architecture. The $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture posits that three binaries can become coupled into a Noether core, with each binary playing a distinct dynamical role.
+An electrino:positrino binary is the most primitive assembly considered in the current architecture. The $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture posits that three binaries can become coupled into a Noether swarm, with each binary playing a distinct dynamical role.
 
 Tri-binary minimality is a theorem target: the working claim is that three coupled binary layers are the minimal stable closure architecture capable of preserving inner memory, commensurability buffering, and boundary coupling under combined kinematic and gradient stress.
 
@@ -2069,7 +2069,7 @@ The detailed black-hole treatment now lives in [../spacetime/black-holes.md](../
 
 This chapter therefore keeps only the tri-binary regime map and leaves the ontology, recycling logic, and observer-facing strong-field interpretation to the canonical spacetime chapters.
 
-In the tri-binary picture, each Noether core is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. This chapter uses that mechanism to define the local dynamics and diagnostics. The coarse-grained metric, observer-clock, and strong-field ontology belong to the spacetime chapters and the causal-closure proof synthesis.
+In the tri-binary picture, each Noether swarm is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. This chapter uses that mechanism to define the local dynamics and diagnostics. The coarse-grained metric, observer-clock, and strong-field ontology belong to the spacetime chapters and the causal-closure proof synthesis.
 
 For the strong-field continuation of that story, see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
 
@@ -2855,7 +2855,7 @@ This gives the nested shell swarm two distinct geometric roles:
 
 The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
-For the special-relativity-facing comparison of this deformation channel, see [the deformable Noether swarm comparison](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md). For the focused synthesis of the closed-return quantization claim, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
+For the special-relativity-facing comparison of this deformation channel, see [the deformable Noether swarm comparison](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md). For the focused synthesis of the closed-return quantization claim, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
 
 ### Geometry Interfaces
 

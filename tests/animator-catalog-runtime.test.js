@@ -3,9 +3,9 @@ import assert from "node:assert/strict";
 
 import { animatorAssemblyTemplateMenuRows } from "../src/runtime/AnimatorCatalogRuntime.js";
 
-test("animator assembly catalog exposes Noether Pair and Noether Quad alongside Noether Core", () => {
+test("animator assembly catalog exposes Noether Pair and Noether Quad alongside Noether Swarm", () => {
   assert.deepEqual(animatorAssemblyTemplateMenuRows[0], [
-    { template: "noether_core", label: "Pro Noether Core" },
+    { template: "noether_swarm", label: "Pro Noether Swarm" },
     { template: "noether_pair", label: "Noether Pair" },
     { template: "noether_quad", label: "Noether Quad" },
   ]);

@@ -37,7 +37,7 @@ Full promotion from a search candidate to a retained same-level branch candidate
 
 ## 2. State Variables And Parameterization
 
-The state vector uses the branch chart from [same-level-branch-mathematics.md](same-level-branch-mathematics.md):
+The state vector uses the branch chart from [shell-swarm-branch-mathematics.md](shell-swarm-branch-mathematics.md):
 
 $$
 X(t)=
@@ -51,7 +51,7 @@ R(t),\delta(t),
 \right).
 $$
 
-For the neutral Noether-core search, take $N=6$ and index sites by $(a,\sigma)$ with $a\in\{1,2,3\}$ and $\sigma\in\{+,-\}$. The default polarity row is
+For the neutral Noether swarm search, take $N=6$ and index sites by $(a,\sigma)$ with $a\in\{1,2,3\}$ and $\sigma\in\{+,-\}$. The default polarity row is
 
 $$
 q_{a,+}=+\epsilon,

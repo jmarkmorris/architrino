@@ -90,7 +90,7 @@ This residual is not a dynamics equation. It is a declaration of how far the bra
 
 ## 3. Inventory And Center Gauge
 
-For the neutral six-site Noether-core search, the polarity ledger remains
+For the neutral six-site Noether swarm search, the polarity ledger remains
 
 $$
 q_{a,+}=+\epsilon,

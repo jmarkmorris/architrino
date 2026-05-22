@@ -21,18 +21,18 @@
       "rows": [
         [
           "noether",
-          "pro-noether-core-glyph",
-          "anti-noether-core-glyph",
+          "pro-noether-swarm-glyph",
+          "anti-noether-swarm-glyph",
           "sea"
         ]
       ]
     },
     {
-      "key": "pro-noether-core",
-      "title": "Pro Noether Core",
+      "key": "pro-noether-swarm",
+      "title": "Pro Noether Swarm",
       "rows": [
         [
-          "pro-noether-core",
+          "pro-noether-swarm",
           "binary-bare-br-none",
           "binary-bare-br-none",
           "binary-bare-br-none"
@@ -40,11 +40,11 @@
       ]
     },
     {
-      "key": "anti-noether-core",
-      "title": "Anti Noether Core",
+      "key": "anti-noether-swarm",
+      "title": "Anti Noether Swarm",
       "rows": [
         [
-          "anti-noether-core",
+          "anti-noether-swarm",
           "binary-bare-rb-none",
           "binary-bare-rb-none",
           "binary-bare-rb-none"
@@ -468,13 +468,13 @@
       "title": "Photon",
       "rows": [
         [
-          "pro-noether-core",
+          "pro-noether-swarm",
           "binary-bare-br-none",
           "binary-bare-br-none",
           "binary-bare-br-none"
         ],
         [
-          "anti-noether-core",
+          "anti-noether-swarm",
           "binary-bare-rb-none",
           "binary-bare-rb-none",
           "binary-bare-rb-none"
@@ -486,13 +486,13 @@
       "title": "Noether Pair",
       "rows": [
         [
-          "pro-noether-core",
+          "pro-noether-swarm",
           "binary-bare-br-none",
           "binary-bare-br-none",
           "binary-bare-br-none"
         ],
         [
-          "anti-noether-core",
+          "anti-noether-swarm",
           "binary-bare-rb-none",
           "binary-bare-rb-none",
           "binary-bare-rb-none"
@@ -504,25 +504,25 @@
       "title": "Noether Quad",
       "rows": [
         [
-          "pro-noether-core",
+          "pro-noether-swarm",
           "binary-bare-br-none",
           "binary-bare-br-none",
           "binary-bare-br-none"
         ],
         [
-          "anti-noether-core",
+          "anti-noether-swarm",
           "binary-bare-rb-none",
           "binary-bare-rb-none",
           "binary-bare-rb-none"
         ],
         [
-          "pro-noether-core",
+          "pro-noether-swarm",
           "binary-bare-br-none",
           "binary-bare-br-none",
           "binary-bare-br-none"
         ],
         [
-          "anti-noether-core",
+          "anti-noether-swarm",
           "binary-bare-rb-none",
           "binary-bare-rb-none",
           "binary-bare-rb-none"

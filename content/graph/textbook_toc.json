@@ -2448,17 +2448,17 @@
             ]
           },
           {
-            "id": "spacetime__medium_exclusion_volume",
-            "title": "Medium Exclusion Volume",
+            "id": "spacetime__molecular_exclusion_and_noether_sea_response",
+            "title": "Molecular Exclusion and Noether-Sea Response",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json",
-            "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+            "scenePath": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
+            "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Molecular Occupancy Baseline",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
                 "markdownSection": "Molecular Occupancy Baseline",
                 "sectionKey": "molecular occupancy baseline",
                 "headingLevel": 2
@@ -2466,7 +2466,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Levels of Excluded Volume",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
                 "markdownSection": "Levels of Excluded Volume",
                 "sectionKey": "levels of excluded volume",
                 "headingLevel": 2
@@ -2474,7 +2474,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Propagation Across Excluded Regions",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
                 "markdownSection": "Propagation Across Excluded Regions",
                 "sectionKey": "propagation across excluded regions",
                 "headingLevel": 2
@@ -2482,7 +2482,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Background Timespace vs. Implemented Medium",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
                 "markdownSection": "Background Timespace vs. Implemented Medium",
                 "sectionKey": "background timespace vs implemented medium",
                 "headingLevel": 2
@@ -2490,7 +2490,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Big Picture",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
                 "markdownSection": "Big Picture",
                 "sectionKey": "big picture",
                 "headingLevel": 2
@@ -9894,17 +9894,17 @@
                     ]
                   },
                   {
-                    "id": "theory_bridges__special_relativity_noether_core",
-                    "title": "Special Relativity and Deformable Noether Cores",
+                    "id": "theory_bridges__special_relativity_noether_swarm",
+                    "title": "Special Relativity and Deformable Noether Swarms",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                    "scenePath": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Bridge Thesis",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Bridge Thesis",
                         "sectionKey": "bridge thesis",
                         "headingLevel": 2
@@ -9912,7 +9912,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Ownership Boundary",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Ownership Boundary",
                         "sectionKey": "ownership boundary",
                         "headingLevel": 2
@@ -9920,7 +9920,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "The Two Stories",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "The Two Stories",
                         "sectionKey": "the two stories",
                         "headingLevel": 2
@@ -9928,7 +9928,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Clock Channel",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Clock Channel",
                         "sectionKey": "clock channel",
                         "headingLevel": 2
@@ -9936,7 +9936,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Ruler Channel",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Ruler Channel",
                         "sectionKey": "ruler channel",
                         "headingLevel": 2
@@ -9944,7 +9944,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Branch-Quantized Lorentz Response",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Branch-Quantized Lorentz Response",
                         "sectionKey": "branch quantized lorentz response",
                         "headingLevel": 2
@@ -9952,7 +9952,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Mass-Energy Channel",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Mass-Energy Channel",
                         "sectionKey": "mass energy channel",
                         "headingLevel": 2
@@ -9960,7 +9960,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Energy-Momentum Channel",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Energy-Momentum Channel",
                         "sectionKey": "energy momentum channel",
                         "headingLevel": 2
@@ -9968,7 +9968,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Why The Same Factor Appears",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Why The Same Factor Appears",
                         "sectionKey": "why the same factor appears",
                         "headingLevel": 2
@@ -9976,7 +9976,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Domain Of Validity",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Domain Of Validity",
                         "sectionKey": "domain of validity",
                         "headingLevel": 2
@@ -9984,7 +9984,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Closure Targets",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Closure Targets",
                         "sectionKey": "closure targets",
                         "headingLevel": 2
@@ -9992,7 +9992,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Summary Commitment",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Summary Commitment",
                         "sectionKey": "summary commitment",
                         "headingLevel": 2

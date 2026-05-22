@@ -100,7 +100,7 @@ test("standard fermion review rows use generation-trimmed polar tiles", () => {
     .filter(
       (group) =>
         group.key !== "noether-sea" &&
-        !group.key.includes("noether-core") &&
+        !group.key.includes("noether-swarm") &&
         !group.key.includes("bi-binary") &&
         !group.key.includes("uni-binary")
     )
@@ -109,18 +109,18 @@ test("standard fermion review rows use generation-trimmed polar tiles", () => {
   });
 });
 
-test("Noether core review rows show the tri/bi/uni-binary ladder explicitly", () => {
+test("Noether swarm review rows show the tri/bi/uni-binary ladder explicitly", () => {
   const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
   const groupByKey = new Map(reviewGroups.singleRowGroups.map((group) => [group.key, group]));
 
-  assert.deepEqual(groupByKey.get("pro-noether-core")?.rows[0], [
-    "pro-noether-core",
+  assert.deepEqual(groupByKey.get("pro-noether-swarm")?.rows[0], [
+    "pro-noether-swarm",
     "binary-bare-br-none",
     "binary-bare-br-none",
     "binary-bare-br-none",
   ]);
-  assert.deepEqual(groupByKey.get("anti-noether-core")?.rows[0], [
-    "anti-noether-core",
+  assert.deepEqual(groupByKey.get("anti-noether-swarm")?.rows[0], [
+    "anti-noether-swarm",
     "binary-bare-rb-none",
     "binary-bare-rb-none",
     "binary-bare-rb-none",
@@ -181,14 +181,14 @@ test("quark color example groups use the standard quark title tiles and expected
   );
 });
 
-test("photon composite group starts with a pro Noether core row", () => {
+test("photon composite group starts with a pro Noether swarm row", () => {
   const tileCatalog = normalizePdgeditTileCatalog(readJson("src/apps/pdgedit/pdgedit-tiles.json"));
   const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
   const groupByKey = new Map(reviewGroups.compositeGroups.map((group) => [group.key, group]));
   const tileByKey = new Map(tileCatalog.tiles.map((tile) => [tile.key, tile]));
 
-  assert.equal(groupByKey.get("photon")?.rows[0]?.[0], "pro-noether-core");
-  assert.equal(groupByKey.get("photon")?.rows[1]?.[0], "anti-noether-core");
+  assert.equal(groupByKey.get("photon")?.rows[0]?.[0], "pro-noether-swarm");
+  assert.equal(groupByKey.get("photon")?.rows[1]?.[0], "anti-noether-swarm");
   assert.equal(groupByKey.get("photon")?.rows.flat().includes("photon"), false);
   assert.equal(tileByKey.get("photon")?.type, "composite-label");
 });
