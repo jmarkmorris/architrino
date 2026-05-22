@@ -157,7 +157,7 @@ The work items below replace the inherited pre-freeze queue. Older architecture 
 2. `priority_label_freeze_inventory` — Name the priority-only labels that stay frozen until cleanup. Status: `active`. Depends on: `swarm_triad_definition_table`. Notes: keep file paths, task identifiers, literal source references, and local proof-packet text unchanged while preventing those labels from becoming reader-facing taxonomy.
 3. `swarm_notation_compatibility_inventory` — Map the symbols used by the three swarm cases. Status: `review-ready`. Depends on: `swarm_triad_definition_table`, `priority_label_freeze_inventory`. Notes: see the notation compatibility inventory above; do not rename symbols until the table is accepted.
 4. `priority_packet_quarantine_audit` — Mark inherited architecture packets whose titles or task names contain disputed labels as priority-only history. Status: `review-ready`. Depends on: `swarm_triad_definition_table`, `priority_label_freeze_inventory`. Notes: see the packet quarantine audit below; preserve paths for git continuity, but do not use those labels as reader-facing taxonomy or as the active workstream queue.
-5. `neutral_swarm_model_restatement` — Restate the broad six-architrino neutral case under the accepted `neutral swarm` wording. Status: `open`. Depends on: `swarm_triad_definition_table`, `swarm_notation_compatibility_inventory`, `priority_packet_quarantine_audit`. Notes: start from the mathematical content in the inherited generalized packet, but replace disputed wording only after the operator accepts the translation table.
+5. `neutral_swarm_model_restatement` — Restate the broad six-architrino neutral case under the accepted `neutral swarm` wording. Status: `review-ready`. Depends on: `swarm_triad_definition_table`, `swarm_notation_compatibility_inventory`, `priority_packet_quarantine_audit`. Notes: see the neutral swarm model restatement below; it restates the base object without promoting the quarantined generalized packet or renaming formulas.
 6. `shell_swarm_model_restatement` — Restate the controlled radial-support case under `shell swarm`. Status: `open`. Depends on: `neutral_swarm_model_restatement`. Notes: keep support-band, recovery, and near-antipodal rows as mathematical conditions; do not introduce new names for subcases without approval.
 7. `nested_shell_swarm_preservation_map` — Preserve the old three-layer material as `nested shell swarm` source material while separating exact binary assumptions from reader-facing terminology. Status: `open`. Depends on: `shell_swarm_model_restatement`. Notes: compare against the restored NTB causal-closure packet set without treating source labels as current public taxonomy.
 8. `certificate_and_gate_repair` — Reconnect proof obligations to the accepted swarm wording after the terminology and notation tables pass review. Status: `deferred`. Depends on: `neutral_swarm_model_restatement`, `shell_swarm_model_restatement`, `nested_shell_swarm_preservation_map`. Notes: update certificate, conservation, observer-export, and migration-gate language only after the terminology pass is accepted.
@@ -180,6 +180,60 @@ This audit controls how inherited packets are used while the swarm triad is bein
 | Allowed mathematical non-taxonomy uses | `ordered source pair`, `all-pairs root ledger`, `pair production`, `reciprocal multiplier pairing`, `color sector`, and true argument/coordinate `slot` usage | Not quarantine triggers by themselves. These are mathematical or physics uses, not swarm taxonomy. | Leave in place unless the passage also uses the word as a reader-facing swarm type or replacement label. |
 
 Quarantine consequence: every packet in this directory remains `priority-only` unless a later promotion pass explicitly restates the needed theorem target, assumption, proof burden, and blocker inside `content/markdown/aaa`. No source packet here is currently promotion-ready by itself, because the retained branch certificate and user-facing corpus merge gate remain open.
+
+### Neutral Swarm Model Restatement
+
+Status: `review-ready`, `priority-only`. This restatement is the controlled priority-side definition of the broad neutral case. It is not a retained-branch proof and does not authorize corpus migration.
+
+A neutral swarm branch is the six-architrino base case before any required binary partition, radial ordering, or common support band is assumed. Its base data are:
+
+| Data | Meaning | Required at base level |
+| --- | --- | --- |
+| $I=\{1,\ldots,6\}$ | Six architrino site labels. | yes |
+| $\sigma_i\in\{+1,-1\}$ | Polarity sign at site $i$, with exactly three positive and three negative sites. | yes |
+| $Q_{\mathrm{core}}=\epsilon\sum_{i\in I}\sigma_i=0$ | Legacy neutral-inventory formula symbol. | yes; preserve notation until the notation/file-path pass |
+| $\mathbf{Y}_i$ | Closed arclength curve for site $i$. | yes |
+| $\nu_i$ | Bounded speed factor for site $i$. | yes, unless a fixed-speed special case explicitly sets $\nu_i\equiv1$ |
+| $\mathcal{D}_{\mathrm{supp}}$ | Support descriptor, such as a hollow or annular support band with declared margins. | yes |
+| $\mathcal{A}_\nu$ | Active causal-root ledger for all retained source/receiver site interactions. | yes |
+| $\mathsf{Action}^{\nu}$, $\mathsf{Event}^{\nu}$, $\mathsf{Inventory}$ | Action, event, and inventory ledgers computed on the same branch convention. | yes |
+
+The neutral inventory condition is
+
+$$
+\#\{i:\sigma_i=+1\}=3,
+\qquad
+\#\{i:\sigma_i=-1\}=3,
+\qquad
+Q_{\mathrm{core}}=0.
+$$
+
+The following data are not part of the base neutral swarm definition:
+
+| Optional structure | When it becomes available | Restatement rule |
+| --- | --- | --- |
+| $\mathcal{P}=\{P_1,P_2,P_3\}$ | Only after a packet declares a binary partition. | Then $P_a$ is a binary; in a nested shell swarm each shell contains one such binary. |
+| $i=(a,\sigma)$ | Only after $\mathcal{P}$ is declared. | Use as binary-index notation, not as base neutral swarm notation. |
+| $R_a$ | Only after $\mathcal{P}$ and a radius functional are declared. | Treat as a derived partition-indexed radius, not a primitive radius type. |
+| exact antipodality | Only after an exact-binary or exact-antipodal row is declared. | Keep as a mathematical assumption, not a reader-facing swarm type. |
+| common support band | Only when the shell swarm sector is claimed. | This is a sector condition added to the neutral swarm base. |
+| three ordered radial support bands | Only when the nested shell swarm sector is claimed. | This is a stronger sector condition added after the shell swarm condition. |
+| occupancy measure or support distribution | Only when a coarse support-distribution claim is made. | Use the mathematical object; do not revive `cloud` as taxonomy. |
+
+A retained neutral swarm branch would need one live certificate closing these rows on the same branch convention:
+
+| Certificate row | Required content |
+| --- | --- |
+| neutral inventory | three positive and three negative sites, neutral total, source-site inventory |
+| curves and speeds | closed curves, bounded speed factors or fixed-speed special row, period or winding closure |
+| support | support descriptor, support margins, noncollision, and any hollow-center exclusion claimed |
+| causal roots | finite active roots, positive Jacobian floors, inactive-gap margins, and same-source policy |
+| dynamics | force, tangent, normal, support, and speed rows computed from the same root ledger |
+| action and event ledgers | energy, momentum, angular momentum, charge, source provenance, self-hit, boundary, and exchange rows |
+| optional reductions | binary partition, exact-antipodal, shell swarm, or nested shell swarm rows only if claimed |
+| observer exports | Lorentz, photon, mass, generation, color, and strong-field rows marked `passed`, `failed`, or `not_computed` |
+
+Promotion decision: `priority-only`. The neutral swarm restatement is a definition and certificate target, not a corpus-ready theorem. The blocker is a retained or rigorously rejected neutral swarm branch certificate with the rows above populated on one live ledger.
 
 ## Architecture Files
 
