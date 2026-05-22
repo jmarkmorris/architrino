@@ -112,9 +112,9 @@ where absolute time $t$ indexes definite architrino positions, velocities, assem
 
 The central distinction is that nothing happens to absolute time itself. What changes are local cycle rates, launch geometry, and path-history phase cadence inside the Noether Sea. A strong-field redshift near a compact object is the high-gradient endpoint limit of this record. A deep-space redshift is the gentle-gradient, long-path limit, if the path-history propagation term survives the required image-sharpness, coherence, and time-dilation tests.
 
-### Noether-Sea Core Factorization Target
+### Noether-Sea Swarm Factorization Target
 
-A sharper closure target rewrites the endpoint clock-rate comparison in terms of the local Noether-Sea core cadence itself. Let $\Omega_N(\mathbf{x},t)$ denote a representative local Noether-Sea core cadence and $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$ its cycle period. Relative to a weak homogeneous reference core, define
+A sharper closure target rewrites the endpoint clock-rate comparison in terms of the local Noether-Sea swarm cadence itself. Let $\Omega_N(\mathbf{x},t)$ denote a representative local Noether-Sea swarm cadence and $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$ its cycle period. Relative to a weak homogeneous reference core, define
 
 $$
 \Gamma_N(\mathbf{x},t)
@@ -124,7 +124,7 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
 $$
 
-The factor $\Gamma_N$ is not a new time variable. It records how strongly the local Noether-Sea core cadence is stretched relative to the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving-core deformation factor; outside that limit it remains a medium-state diagnostic to be derived from Noether-core geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the moving-core limit fixes the coefficient of $-\ln\xi$ and the weak-field endpoint limit fixes one isotropic Noether-Sea response combination.
+The factor $\Gamma_N$ is not a new time variable. It records how strongly the local Noether-Sea swarm cadence is stretched relative to the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving Noether swarm deformation factor; outside that limit it remains a medium-state diagnostic to be derived from Noether swarm geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the moving Noether swarm limit fixes the coefficient of $-\ln\xi$ and the weak-field endpoint limit fixes one isotropic Noether-Sea response combination.
 
 For a spectral transition family $X$, the working redshift factorization is
 
@@ -136,7 +136,7 @@ $$
 {B_X(E)\,\mathcal{L}_{E\to R}(\hat{\mathbf{k}})}.
 $$
 
-Here $\Gamma_{N,E}/\Gamma_{N,R}$ is the emitter-to-receiver Noether-Sea core cadence ratio, $\mathcal{P}_{E\to R}$ is the path-history propagation factor through the intervening Noether Sea, $B_X(E)$ records any real source-branch shift in the emitting transition, and $\mathcal{L}_{E\to R}(\hat{\mathbf{k}})$ records directional launch geometry from relative motion. The clean reference case has $B_X(E)=1$ and negligible path accumulation. Strong local-gradient redshift is dominated by $\Gamma_{N,E}/\Gamma_{N,R}$; gentle deep-space redshift may instead accumulate mainly through $\mathcal{P}_{E\to R}$.
+Here $\Gamma_{N,E}/\Gamma_{N,R}$ is the emitter-to-receiver Noether-Sea swarm cadence ratio, $\mathcal{P}_{E\to R}$ is the path-history propagation factor through the intervening Noether Sea, $B_X(E)$ records any real source-branch shift in the emitting transition, and $\mathcal{L}_{E\to R}(\hat{\mathbf{k}})$ records directional launch geometry from relative motion. The clean reference case has $B_X(E)=1$ and negligible path accumulation. Strong local-gradient redshift is dominated by $\Gamma_{N,E}/\Gamma_{N,R}$; gentle deep-space redshift may instead accumulate mainly through $\mathcal{P}_{E\to R}$.
 
 The logarithmic budget makes the scale hierarchy explicit:
 
@@ -269,7 +269,7 @@ $$
 
 Each term has a separate extraction rule.
 
-Endpoint cadence is read from the local Noether-Sea core cadence:
+Endpoint cadence is read from the local Noether-Sea swarm cadence:
 
 $$
 \Gamma_{N,A}
@@ -280,7 +280,7 @@ $$
 A\in\{E,R\},
 $$
 
-where $\Pi_N S(t_A)$ is the local Noether-Sea core record near endpoint $A$. Source-branch shift is read before propagation:
+where $\Pi_N S(t_A)$ is the local Noether-Sea swarm record near endpoint $A$. Source-branch shift is read before propagation:
 
 $$
 B_X(E)
@@ -350,9 +350,9 @@ If the endpoint, launch, and propagation terms can be made to fit only by changi
 
 ### Equilibrium-Transport Candidate for Path History
 
-The current candidate for the gentle deep-space term is a Noether-core equilibrium transport law. In this reading, a weak-field path does not accumulate redshift because the photon loses energy as it scatters. It accumulates a phase-cadence path-history term because the photon packet traverses a Noether-Sea population whose core-cadence distribution evolves in absolute time.
+The current candidate for the gentle deep-space term is a Noether swarm equilibrium transport law. In this reading, a weak-field path does not accumulate redshift because the photon loses energy as it scatters. It accumulates a phase-cadence path-history term because the photon packet traverses a Noether-Sea population whose swarm-cadence distribution evolves in absolute time.
 
-Let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether-core cadence states, with representative core energy $E_N=h\nu_N$. At the discrete level, each accepted $h$-scale transaction retunes a core's cadence-scale closure rather than sliding a continuous single-core frequency. The continuum current should therefore be read as the ensemble flux
+Let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether swarm cadence states, with representative swarm energy $E_N=h\nu_N$. At the discrete level, each accepted $h$-scale transaction retunes a swarm's cadence-scale closure rather than sliding a continuous single-swarm frequency. The continuum current should therefore be read as the ensemble flux
 
 $$
 J_\nu
@@ -507,7 +507,7 @@ This table also explains why factors disappear in ordinary use. They disappear b
 
 The factorization must recover familiar redshift regimes by controlled limits. The purpose is not to treat those inherited regimes as final ontology, but to show which Noether-Sea term carries each observational effect.
 
-For weak-field gravitational redshift, take $B_X(E)=1$, $\mathcal{L}_{E\to R}=1$, and $\mathcal{P}_{E\to R}=1$. If the endpoint Noether-Sea core cadence satisfies
+For weak-field gravitational redshift, take $B_X(E)=1$, $\mathcal{L}_{E\to R}=1$, and $\mathcal{P}_{E\to R}=1$. If the endpoint Noether-Sea swarm cadence satisfies
 
 $$
 \frac{\Omega_N}{\Omega_{N0}}
@@ -596,7 +596,7 @@ a_\chi^X\,\frac{1}{c_\gamma}\,\partial_t\ln\chi_\gamma
 +\mathcal{R}_{\mathrm{prop},X}.
 $$
 
-Here all quantities are evaluated at the path point crossed by the photon packet. The photon-channel speed is $c_\gamma$, and $\chi_\gamma(\mathbf{x},t)\equiv c_0/c_\gamma(\mathbf{x},t)$ is used only when the photon channel is the explicit transport subject. The symbols $n(\mathbf{x},t)$ and $R_{\text{core}}(\mathbf{x},t)$ denote normalized Noether-core density and a representative local Noether-core scale. The vector $\mathbf{u}_{\text{sea}}$ is an effective Noether-Sea flow velocity, and
+Here all quantities are evaluated at the path point crossed by the photon packet. The photon-channel speed is $c_\gamma$, and $\chi_\gamma(\mathbf{x},t)\equiv c_0/c_\gamma(\mathbf{x},t)$ is used only when the photon channel is the explicit transport subject. The symbols $n(\mathbf{x},t)$ and $R_{\text{core}}(\mathbf{x},t)$ denote normalized Noether swarm density and a representative local Noether swarm scale. The vector $\mathbf{u}_{\text{sea}}$ is an effective Noether-Sea flow velocity, and
 
 $$
 S_{ij}

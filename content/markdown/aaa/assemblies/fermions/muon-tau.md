@@ -14,7 +14,7 @@ Muon and tau branches do not introduce new charged-lepton axial inventories. The
 
 | Branch | Shielding-coherence class | Core readout | Charged axial inventory | Claim status |
 | --- | --- | --- | --- | --- |
-| $e^-$ | $(1,1,1)$ | tri-binary shielding branch | $6E$ | reference charged-lepton branch |
+| $e^-$ | $(1,1,1)$ | nested shell swarm shielding branch | $6E$ | reference charged-lepton branch |
 | $\mu^-$ | $(1,1,0)$ | bi-binary shielding branch | $6E$ | Generation-II charged-lepton target |
 | $\tau^-$ | $(1,0,0)$ | uni-binary shielding branch | $6E$ | Generation-III charged-lepton target |
 

@@ -45,7 +45,7 @@ Each mature bridge should include:
 - [Mapping the Planck Scale to the Nested Shell Swarm Geometry](./planck-scale-nested-shell-swarm-alignment.md)
 - [Quantum Operator Mapping](./quantum-operator-mapping.md)
 - [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md)
-- [Special Relativity and Deformable Noether Cores](./special-relativity-noether-core.md)
+- [Special Relativity and Deformable Noether Swarms](./special-relativity-noether-core.md)
 - [Spacetime Models and the Noether Sea](./spacetime-models-and-noether-sea.md)
 - [Superposition Mechanism](./superposition-mechanism.md)
 - [Weak Mixing and CKM](./weak-mixing-ckm.md)

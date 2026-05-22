@@ -242,7 +242,7 @@ The runtime packet should preserve this shape even when a later empirical packet
 | `gates` | pass/fail records for coverage, residual total, projection penalty, projection overlap, and total shared residual | turns the comparison into an auditable decision surface |
 | `failure_code` | null on pass, otherwise the first failed gate | gives follow-up work a stable repair target |
 
-The current mock packet uses normalized comparison coordinates such as `H_norm`, `w_eff`, `n`, `chi_sea`, `G_growth`, `Y_BBN`, `Delta_N_eff`, `lambda_fs`, and `Omega_GW`. These are not new ontology. They are dimensionless placeholders for observer-level expansion, equation-of-state, normalized Noether-core density, Noether-Sea delay, growth-response, BBN-yield, relativistic-species, free-streaming, and stochastic-gravitational-wave comparison channels.
+The current mock packet uses normalized comparison coordinates such as `H_norm`, `w_eff`, `n`, `chi_sea`, `G_growth`, `Y_BBN`, `Delta_N_eff`, `lambda_fs`, and `Omega_GW`. These are not new ontology. They are dimensionless placeholders for observer-level expansion, equation-of-state, normalized Noether swarm density, Noether-Sea delay, growth-response, BBN-yield, relativistic-species, free-streaming, and stochastic-gravitational-wave comparison channels.
 
 ## Pre-BBN Branch Packet
 

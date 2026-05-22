@@ -5,11 +5,11 @@ This chapter should be read together with [Quarks](../fermions/quarks.md), [Colo
 
 ## The Geometric Origin of Color Charge
 
-In the Standard Model, color is an abstract $SU(3)$ label. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether core with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../fermions/color-charge-su3.md).
+In the Standard Model, color is an abstract $SU(3)$ label. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether swarm with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../fermions/color-charge-su3.md).
 
-### The Tri-Binary Substrate
+### The Nested Shell Swarm Substrate
 
-The [Euclidean void](../../foundations/euclidean-void.md) is populated by high-energy, small-scale tri-binaries, often in tightly bound pro/anti groups. These form an ambient Noether Sea of color-singlet cores.
+The [Euclidean void](../../foundations/euclidean-void.md) is populated by high-energy, small-scale nested shell swarms, often in tightly bound pro/anti groups. These form an ambient Noether Sea of color-singlet cores.
 
 A quark core also has three ordered axes $(H,M,L)$, each carrying two polar sites.
 
@@ -49,8 +49,8 @@ In this model, the gluon is not a fundamental point particle but an emergent met
 
 ### Polar Vortices and Flux Tubes
 
-- **Source:** each circulating binary within the Noether core generates a pair of persistent, high-intensity polar vortices along its rotation axis.
-- **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether Sea into a **flux tube**, a coherent bundle of ambient tri-binaries carrying the open color corridor between exceptional-axis sectors.
+- **Source:** each circulating binary within the Noether swarm generates a pair of persistent, high-intensity polar vortices along its rotation axis.
+- **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether Sea into a **flux tube**, a coherent bundle of ambient nested shell swarms carrying the open color corridor between exceptional-axis sectors.
 - **The glue:** the strong force is the tension of these coupled vortices trying to shorten and restore the surrounding Noether Sea to its isotropic ground state.
 
 This can also be read as the strong-force version of the pole problem. Rotational averaging can blur equatorial structure, but it does not fully hide axial leakage. Colored cores therefore remain open at their poles unless another core accepts the flux. A gluon tube is the medium's way of routing that exposed axial traffic into a partner assembly rather than letting it radiate away incoherently.
@@ -79,7 +79,7 @@ Why are there 8 gluons?
 
 ### Gluon Spin (Vector Nature)
 
-At the Standard Model level, gluons are spin-1 gauge bosons. Because color is confined, an isolated gluon is not an observed asymptotic particle in ordinary hadron measurements; the mapping target is the perturbative gluon channel and the angular-momentum ledger carried by the color corridor. This section is downstream of [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md): the color-corridor geometry is a vector-channel target that must inherit the single-core ledger and vector-mode proof rather than deriving spin-1 by itself.
+At the Standard Model level, gluons are spin-1 gauge bosons. Because color is confined, an isolated gluon is not an observed asymptotic particle in ordinary hadron measurements; the mapping target is the perturbative gluon channel and the angular-momentum ledger carried by the color corridor. This section is downstream of [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md): the color-corridor geometry is a vector-channel target that must inherit the single-assembly ledger and vector-mode proof rather than deriving spin-1 by itself.
 
 - **Vector channel:** the open color corridor selects a spatial axis and transverse twist data. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that geometry is the candidate substrate for the observer-level spin-1 representation; it is not a derivation merely from the fact that a flux tube has a direction.
 - **Helicity limit:** in the massless short-distance gauge-boson limit, the physical gluon polarizations are transverse helicity states. The vortex-bundle twist must reproduce those helicity degrees of freedom where QCD treats gluons as propagating internal degrees of freedom.
@@ -94,7 +94,7 @@ Quarks are confined because an open color corridor stores energy in the surround
 ### Energy Density Calculation
 
 - **Noether-Sea coherence scale:** the confinement scaffold uses a candidate coherence length $L_{\mathrm{coh}}$, provisionally of order $1\;\mathrm{fm}$, rather than a discretization scale of the Euclidean void.
-- **Cost of coherent ordering:** forcing a line of ambient Noether-Sea cores to align with an open color corridor costs an energy $E_{\mathrm{coh}}$ per coherence length.
+- **Cost of coherent ordering:** forcing a line of ambient Noether-Sea swarms to align with an open color corridor costs an energy $E_{\mathrm{coh}}$ per coherence length.
 - **String tension ($\sigma$):**
   $$
   \sigma \sim \frac{E_{\mathrm{coh}}}{L_{\mathrm{coh}}}.

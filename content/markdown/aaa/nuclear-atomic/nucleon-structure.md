@@ -13,7 +13,7 @@ A nucleon is a confined three-quark color-singlet assembly built from three Gene
 - a **proton** is the ground-state `uud` tri-core,
 - a **neutron** is the ground-state `udd` tri-core.
 
-Each constituent quark is itself a Noether-core assembly with an axial layer of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md).
+Each constituent quark is itself a Noether swarm assembly with an axial layer of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md).
 
 ## Constituents and Counting
 
@@ -154,7 +154,7 @@ C_{\ell_{\mathrm{atom}},X}
 \Delta_{p,X}^{\mathrm{env,tol}}.
 $$
 
-This is the nucleon-side handoff used by the hydrogen response map in [Atomic Structure](atomic-structure.md#hydrogen-boundary-theorem-target). It lets the atomic calculation see a proton source envelope with retained charge, multipole, shielding, and corridor coefficients, while preventing the three quark Noether cores from being counted as free atomic sources.
+This is the nucleon-side handoff used by the hydrogen response map in [Atomic Structure](atomic-structure.md#hydrogen-boundary-theorem-target). It lets the atomic calculation see a proton source envelope with retained charge, multipole, shielding, and corridor coefficients, while preventing the three quark Noether swarms from being counted as free atomic sources.
 
 The proton boundary tolerance inherited by hydrogen is therefore an admissible-source condition, not a fitted proton radius. For channel $X$,
 
@@ -315,7 +315,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same bookkeeping pressure appears
 
 The closure target is therefore not to assign $1/2$ to one piece of the nucleon. The target is to show how the coupled tri-core assembly, its orbital circulation, and its strong-sector flux network combine into one stable spin-$\tfrac{1}{2}$ hadronic channel.
 
-Until the single-core angular-momentum ledger, ordered-frame spinor closure, and color-corridor vector ledger are derived, the three contributions above should be read as required accounting channels. They should not be treated as a closed proton-spin decomposition.
+Until the single-assembly angular-momentum ledger, ordered-frame spinor closure, and color-corridor vector ledger are derived, the three contributions above should be read as required accounting channels. They should not be treated as a closed proton-spin decomposition.
 
 ### Magnetic moments
 
@@ -370,7 +370,7 @@ That is why this chapter feeds directly into [nuclear-binding.md](./nuclear-bind
 This chapter is in good enough shape to serve as the canonical nucleon reference, but several derivations remain open:
 
 1. quantitative proton and neutron magnetic moments,
-2. proton spin decomposition from the completed single-core angular-momentum ledger and hadron-level color-corridor ledger,
+2. proton spin decomposition from the completed single-assembly angular-momentum ledger and hadron-level color-corridor ledger,
 3. explicit Y-junction or equivalent flux-energy functional,
 4. quantitative proton-neutron mass splitting,
 5. CP-odd neutron electric-dipole cancellation through the same `udd` color-singlet ledger.

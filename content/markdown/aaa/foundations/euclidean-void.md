@@ -304,7 +304,7 @@ The boundary with the Noether Sea is an ontology boundary. The Euclidean void is
 The distinction is:
 
 1. **Euclidean void:** fixed spatial container $\mathbb{R}^3$ with metric $h_{ij}=\delta_{ij}$.
-2. **Noether Sea:** physical content occupying the void, built from coupled Noether-core assemblies.
+2. **Noether Sea:** physical content occupying the void, built from coupled neutral swarms.
 3. **Architrino occupancy:** local presence or absence of point entities and assemblies at a given coordinate location.
 4. **Effective spacetime:** observer-level geometry reconstructed from how clocks, rulers, and signals behave in the Noether Sea.
 

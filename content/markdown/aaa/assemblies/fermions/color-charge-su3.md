@@ -1,14 +1,14 @@
 # Color Charge and SU(3)
 
-This chapter gives the current assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and tri-binary scaffold geometry are meant to fit together before the full topological confinement derivation is closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../bosons/gluons.md) and [Quarks](./quarks.md).
+This chapter gives the current assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and nested shell swarm scaffold geometry are meant to fit together before the full topological confinement derivation is closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../bosons/gluons.md) and [Quarks](./quarks.md).
 
 ---
 
 ## Ontology, Notation, and Generations
 
-### Tri‑binary scaffold (the “Noether core”)
+### Nested Shell Swarm Scaffold
 
-Each fermion is built on a **tri‑binary scaffold**: three nested electrino:positrino binaries sharing a center. We sometimes call this scaffold a **Noether core** to emphasize that all conserved quantities (electric charge, color, baryon number, etc.) are encoded in its internal symmetries, in the spirit of Noether’s theorem; see [Noether Swarm](../../noether-swarm/noether-swarm.md).
+Each fermion is built on a **nested shell swarm scaffold**: three nested electrino:positrino binaries sharing a center. We use **Noether swarm** for the broader class of conserved-quantity-bearing swarms; see [Noether Swarm](../../noether-swarm/noether-swarm.md).
 
 We label the three binaries by their dynamical regime:
 
@@ -32,7 +32,7 @@ Each binary defines one **axis** with two polar **polar sites**, each occupied b
 - Electrino (−e/6), or  
 - Positrino (+e/6).
 
-So each Noether core has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
+So each Noether swarm has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
 
 We distinguish:
 
@@ -51,13 +51,13 @@ For a Gen‑I baryon (3 quarks):
 - 18 axial architrinos  
 - **36 architrinos** total.
 
-We will use “tri‑binary” for the structure; “Noether core” when we are emphasizing its role as the seat of conserved charges.
+We use “nested shell swarm” for the three-binary structure and “Noether swarm” when emphasizing the broader conserved-quantity-bearing class.
 
 
 
 ### Generational excitation states
 
-Standard Model “generations” are interpreted as **excitation states** of the same tri‑binary topology:
+Standard Model “generations” are interpreted as **excitation states** of the same nested shell swarm topology:
 
 - **Gen‑I (ground‑state assembly)**  
   - All three binaries assembled: [H, M, L].  
@@ -91,7 +91,7 @@ This **braid chirality** will underpin our distinction between particles and ant
 ## Colorless Fermions: Axis Uniformity
 
 **Core rule:**  
-Color charge appears only when the tri‑binary axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
+Color charge appears only when the nested shell swarm axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
 
 ### Stealth and color neutrality
 
@@ -103,7 +103,7 @@ for which
 $$
 1+e^{i2\pi/3}+e^{i4\pi/3}=0.
 $$
-This does not derive the full color algebra by itself, but it gives a clean geometric reason why three-way closure is special: three balanced phase channels can hide the leading dipole signal. In that heuristic sense, color-singlet organization is not just algebraic neutrality but a **stealth condition** that helps the Noether core survive without strong radiative leakage.
+This does not derive the full color algebra by itself, but it gives a clean geometric reason why three-way closure is special: three balanced phase channels can hide the leading dipole signal. In that heuristic sense, color-singlet organization is not just algebraic neutrality but a **stealth condition** that helps the Noether swarm survive without strong radiative leakage.
 
 ### Electron and positron
 
@@ -121,7 +121,7 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 ### Neutrinos: near-photon colorless neutral pairs
 
-Neutrinos are now treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether-core pairing close to the photon channel, but not fully locked into the photon mode.
+Neutrinos are now treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether swarm pairing close to the photon channel, but not fully locked into the photon mode.
 
 This makes the color statement sharper:
 
@@ -155,7 +155,7 @@ Let each axis pattern be coarse‑classified as:
 - **P+**: pure positrino $(+\!/+)$  
 - **Pm**: mixed $(-\!/+)$ (net neutral, dipolar)
 
-The key structural rule for **admissible, stable quark‑like Noether cores** is:
+The key structural rule for **admissible, stable quark‑like Noether swarms** is:
 
 > Exactly **two axes share the same axial class**, and the third is **different in kind** (P− vs P+ vs Pm).  
 
@@ -200,7 +200,7 @@ $\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_H\rangle,|u_M\rangle,|u_L\rang
 
 Pole assignment inside the exceptional axis (which pole hosts the electrino) changes local dipole structure but not which axis is exceptional; at the level of color it’s a **gauge‑like internal redundancy**.
 
-Anti‑up quarks use an anti‑tri‑binary with 5 electrinos, 1 positrino (and reversed braid), forming the conjugate triplet **3̄** with basis $|\bar u_H\rangle,|\bar u_M\rangle,|\bar u_L\rangle$.
+Anti-up quarks use an anti-nested shell swarm with 5 electrinos, 1 positrino (and reversed braid), forming the conjugate triplet **3̄** with basis $|\bar u_H\rangle,|\bar u_M\rangle,|\bar u_L\rangle$.
 
 
 
@@ -400,7 +400,7 @@ for the standard SU(3) structure constants in this basis.
 
 ### Eightfold-way recovery residual
 
-The historical Eightfold Way lesson is useful here only as an algebraic recovery target: $SU(3)$ first classified hadrons by triplet, conjugate-triplet, and adjoint/octet representations before supplying the underlying strong-sector dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the axis-exceptionality construction must recover the representation bookkeeping while keeping the Noether core as the ontology.
+The historical Eightfold Way lesson is useful here only as an algebraic recovery target: $SU(3)$ first classified hadrons by triplet, conjugate-triplet, and adjoint/octet representations before supplying the underlying strong-sector dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the axis-exceptionality construction must recover the representation bookkeeping while keeping the Noether swarm as the ontology.
 
 The branch condition is:
 $$
@@ -447,7 +447,7 @@ It continuously rotates exceptionality between H and M while leaving L unchanged
 
 A Gen‑I baryon (e.g., proton or neutron) consists of:
 
-- 3 quarks → 3 Noether cores  
+- 3 quarks → 3 Noether swarms
 - Each with H, M, L axes  
 - Total of **9 axes**: H₁,M₁,L₁; H₂,M₂,L₂; H₃,M₃,L₃.  
 - 18 scaffold architrinos + 18 axial architrinos → **36 architrinos**.
@@ -458,7 +458,7 @@ In SU(3):
 
 - Baryon color state: $3 \otimes 3 \otimes 3 \supset 1$ (fully antisymmetric singlet).
 
-In tri‑binary geometry:
+In nested shell swarm geometry:
 
 - A color singlet baryon is a configuration where each of H, M, L is exceptional **once** across the three quarks, and the 9 axes form a **closed coupling network** (a closed braid).
 - Example proton (uud, schematic):
@@ -472,7 +472,7 @@ At large distances, axis‑dependent multipoles from each regime cancel:
 - H‑exceptionality from one quark is compensated by M and L exceptionality from others in the composite singlet combination.  
 - Net color flux into the surrounding Noether Sea is zero; only isotropic monopole fields (charge, baryon number, mass) remain.
 
-This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether cores: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
+This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether swarms: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
 
 
 ## Residual Strong Force and Nuclear Binding
@@ -483,7 +483,7 @@ Even for color‑singlet nucleons:
 
 Heuristic:
 
-- At inter‑nucleon separations ~ a few fm, outer L‑axes (and to some degree M‑axes) from neighboring nucleons begin to overlap and couple via the Noether-Sea tri‑binary medium.  
+- At inter-nucleon separations ~ a few fm, outer L-axes (and to some degree M-axes) from neighboring nucleons begin to overlap and couple via the Noether-Sea nested shell swarm medium.
 - These residual couplings act like **meson exchange** in standard nuclear physics, producing an attractive Yukawa‑like force with a hard‑core repulsion scale tied to H/M structure.
 
 We will exploit:
@@ -547,7 +547,7 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/ca
 
 ## Summary and Interfaces
 
-- A **Noether core / tri‑binary** is a three-axis $(H,M,L)$, six-site axial structure: the minimal unit that carries conserved charges via its internal symmetries.
+- A **nested shell swarm** is a three-axis $(H,M,L)$, six-site axial structure: the minimal unit that carries conserved charges via its internal symmetries.
 - **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two P+ axes, one Pm axis.  

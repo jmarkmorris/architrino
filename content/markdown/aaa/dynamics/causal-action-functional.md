@@ -455,7 +455,7 @@ Two downstream theorem targets can be stated on top of the existing causal-locus
 
 ### (T5.1) Spinor lift target
 
-Construct a framed configuration bundle for tri-binary ordered axes and prove that the relevant internal-orientation transport lifts through
+Construct a framed configuration bundle for nested shell swarm ordered axes and prove that the relevant internal-orientation transport lifts through
 $$
 \widetilde{R}:SU(2)\simeq\mathrm{Spin}(3)\to SO(3),
 $$

@@ -10,7 +10,7 @@ This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\m
 
 1. **The Substrate** ([absolute time](./absolute-time.md), [Euclidean void](./euclidean-void.md), and [absolute timespace](./absolute-timespace.md))
 2. **The Fundamental Entity** ([architrino](./architrino.md): point transceiver of potential-bearing causal wakes)
-3. **The Physical Medium** ([Noether Sea](../spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether-core assemblies)
+3. **The Physical Medium** ([Noether Sea](../spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether swarm assemblies)
 4. **The Observer Framework** ([complete-state vs Physical Observer access](../spacetime/observer-framework.md))
 5. **Terminology Discipline** ([canonical level-aware terminology](../archie/terminology-usage.md))
 6. **Parameter Ledger** ([fundamental postulates vs derived quantities](../validation/parameter-ledger.md))
@@ -85,13 +85,13 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\mathbb{A}\mathbb{A}\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.
 
-For the full primitive-entity page, see [Architrino](./architrino.md). For the receiving-law derivation, see [Master Equation](../dynamics/master-equation.md). For assembly emergence, see [Emergence](./emergence.md) and [Noether Core](../noether-swarm/noether-swarm.md).
+For the full primitive-entity page, see [Architrino](./architrino.md). For the receiving-law derivation, see [Master Equation](../dynamics/master-equation.md). For assembly emergence, see [Emergence](./emergence.md) and [Noether Swarm](../noether-swarm/noether-swarm.md).
 
 ---
 
 ## The Physical Medium (Noether Sea)
 
-[Noether Sea](../spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether Sea as the emergent physical medium formed by coupled neutral Noether-core assemblies occupying the Euclidean void.
+[Noether Sea](../spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether Sea as the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void.
 
 This section marks the first step away from primitive ontology. The Noether Sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
 
@@ -194,7 +194,7 @@ This Foundational Ontology defines:
 
 1. **The Substrate**: absolute time and Euclidean void organized as absolute timespace, the fixed non-dynamical product background.
 2. **The Fundamental Entity**: architrino as the fixed-identity primitive point transceiver with polarity and persistent identity.
-3. **The Physical Medium**: Noether Sea as emergent physical content formed by coupled neutral Noether-core assemblies inside the Euclidean void.
+3. **The Physical Medium**: Noether Sea as emergent physical content formed by coupled neutral Noether swarm assemblies inside the Euclidean void.
 4. **The Observer Framework**: complete-state bookkeeping versus Physical Observer access.
 5. **Terminology Discipline**: level-aware wording routed to the Archie canon.
 6. **Validation Routing**: parameters, closure burdens, and open questions routed to validation and branch chapters.

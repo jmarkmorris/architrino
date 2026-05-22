@@ -4,7 +4,7 @@ This chapter records the current $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretati
 
 ## Core Idea
 
-The early rapid-expansion phase is modeled as an emergent high-curvature regime of tri-binary dynamics, not as a fundamental standalone inflaton ontology.
+The early rapid-expansion phase is modeled as an emergent high-curvature regime of nested shell swarm dynamics, not as a fundamental standalone inflaton ontology.
 
 ## Local-Process Commitment
 
@@ -215,7 +215,7 @@ As a toy kinematic decomposition, one can also track the expansion-rate profile 
 $$
 \dot{R}(t) = v_I(t) + c_f + v_O(t).
 $$
-Here the inner contribution $v_I(t)$ plays the role of a decaying high-curvature release term, the constant $c_f$ marks the transport/horizon channel, and the outer contribution $v_O(t)$ captures slower volumetric rebound. This is not a closed cosmological derivation, but it is a compact way to encode the intuition that inflation-like release, horizon-scale transport, and late-time expansion can all be read as different branches of the same tri-binary process.
+Here the inner contribution $v_I(t)$ plays the role of a decaying high-curvature release term, the constant $c_f$ marks the transport/horizon channel, and the outer contribution $v_O(t)$ captures slower volumetric rebound. This is not a closed cosmological derivation, but it is a compact way to encode the intuition that inflation-like release, horizon-scale transport, and late-time expansion can all be read as different branches of the same nested shell swarm process.
 
 ## Expansion-Module Interface
 

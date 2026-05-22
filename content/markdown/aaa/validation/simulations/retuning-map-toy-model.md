@@ -67,7 +67,7 @@ $$
 \ell\in\{I,M,O\}.
 $$
 
-The script applies the ordinary tri-binary speed gates:
+The script applies the ordinary nested shell swarm speed gates:
 
 $$
 s_I'>c_f,
@@ -77,7 +77,7 @@ s_I'>c_f,
 s_O'<c_f.
 $$
 
-The representative Noether-core cadence increment is
+The representative Noether swarm cadence increment is
 
 $$
 \Delta\ln\nu_N
@@ -91,7 +91,7 @@ w_O\Delta\ln\nu_O,
 w_I+w_M+w_O=1.
 $$
 
-For a local rate density $r_\sigma$ of accepted $\sigma$ transactions per core, the first current estimate is
+For a local rate density $r_\sigma$ of accepted $\sigma$ transactions per swarm, the first current estimate is
 
 $$
 J_\nu
@@ -113,7 +113,7 @@ Each scenario supplies:
 | `compliance_diagonal` | diagonal version of $\mathbf{K}^{\mathrm{ret}}_q$ |
 | `action_gradient_h_per_log` | linearized $D A_{\mathrm{cyc},q}$ row in $h$ units per log variable |
 | `constraints` | linearized branch constraints, each with coefficients and target |
-| `f_N` | local Noether-core cadence-state distribution value |
+| `f_N` | local Noether swarm cadence-state distribution value |
 | `partial_nu_f_N` | local slope used only to estimate the higher-order current remainder |
 | `transactions` | accepted or control $\sigma$ transactions with wake action increment and local rate density |
 
@@ -143,7 +143,7 @@ The default mock packet has two rows.
 | `same_branch_plus_minus_balance` | Plus and minus one-$h$ retunings both pass the speed gates. Unequal local rates leave a small signed current, `net_J_nu.value` near `0.0017019`. |
 | `middle_hinge_violation_control` | The linear action constraint solves, but the middle layer leaves the declared hinge tolerance. The row fails with `middle-hinge-violation`. |
 
-These numbers are fixture expectations only. They validate arithmetic, packet shape, branch-gate reporting, and the current estimate. They do not validate a physical Noether-core branch.
+These numbers are fixture expectations only. They validate arithmetic, packet shape, branch-gate reporting, and the current estimate. They do not validate a physical Noether swarm branch.
 
 ## Failure Reading
 

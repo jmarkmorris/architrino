@@ -2,7 +2,7 @@
 
 This chapter analyzes volume exclusion across ordinary matter and medium-level propagation. It complements [Condensed Matter](../nuclear-atomic/condensed-matter.md), [Molecular Geometry](../nuclear-atomic/molecular-geometry.md), [Spacetime Assemblies](./spacetime-assemblies.md), and [Gravitational Waves](./gravitational-waves.md) by asking how ordinary exclusion boundaries coexist with deeper Noether-Sea response.
 
-When chemists use the **van der Waals (VdW) volume** of a molecule, they mean the space excluded by its electron cloud: the effective hard-core volume a molecule presents to its neighbors. This is estimated from atomic van der Waals radii (Bondi, 1964) and corrected for bond overlaps. For example:
+When chemists use the **van der Waals (VdW) volume** of a molecule, they mean the space excluded by its electron distribution: the effective hard-core volume a molecule presents to its neighbors. This is estimated from atomic van der Waals radii (Bondi, 1964) and corrected for bond overlaps. For example:
 
 | Molecule    | Formula | VdW Volume (Å³) |
 | ----------- | ------- | --------------- |
@@ -108,7 +108,7 @@ A low $\phi_{\mathrm{VdW}}$ or high $\mathrm{Kn}_m$ may explain molecular sparsi
 4. **Temperature & Pressure Effects**
 
    * Raising T: molecules vibrate more, structures loosen, apparent excluded volume rises.
-   * Raising P: electron clouds compress slightly, effective excluded volume shrinks.
+   * Raising P: electron distributions compress slightly, effective excluded volume shrinks.
 
 ---
 

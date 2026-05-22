@@ -5,7 +5,7 @@ the spacetime constitutive map.
 
 ## Canonical Symbols
 
-- $n$: normalized Noether-core density, with $\rho_{\text{core}}=\rho_{\text{core},0}n$.
+- $n$: normalized Noether swarm density, with $\rho_{\text{core}}=\rho_{\text{core},0}n$.
 - $\chi_{\text{sea}}$: Noether-Sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field PPN comparisons.
 - $\Phi_N$: Newtonian benchmark potential.
@@ -16,7 +16,7 @@ the spacetime constitutive map.
 ## Mapping to PPN Constraints
 
 1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the $\mathbb{A}\mathbb{A}\mathbb{A}$ time-delay (slower $c_{\text{eff}}$ in a dense medium).
-2. **Light Bending**: Calculate the refraction of tri-binary signals through the Noether-Sea density gradient around the Sun.
+2. **Light Bending**: Calculate the refraction of nested shell swarm signals through the Noether-Sea density gradient around the Sun.
 3. **Geodetic Precession**: Match the transport of an assembly's spin-orientation frame through the same weak-field effective metric used for clock, signal, and orbital tests.
 
 Here, geodetic precession means the de Sitter precession of a carried gyroscope: after the gyroscope moves through a weak gravitational field, its spin axis is rotated relative to a distant reference frame. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this should not be introduced as a separate torque law between angular momentum and a potential gradient. It is a closure target for the effective metric: the Noether-Sea-induced clock, ruler, and signal-response map must make transported assembly orientations precess by the same amount that GR predicts in the validated weak-field regime. Frame dragging from a rotating source is a separate test channel.
@@ -31,7 +31,7 @@ Here, geodetic precession means the de Sitter precession of a carried gyroscope:
 
 ## Explicit Weak-Field Noether-Sea Delay Map (PPN $\gamma$)
 
-Adopt a weak-field PPN-normalized Noether-Sea delay-factor ansatz for signal propagation in the Noether-core medium:
+Adopt a weak-field PPN-normalized Noether-Sea delay-factor ansatz for signal propagation in the Noether swarm medium:
 $$
 \bar{\chi}_{\text{sea}}(\mathbf{x})
 \equiv
@@ -806,4 +806,4 @@ $$
 \nabla_{\boldsymbol{\Xi}}\dot e,\qquad
 \nabla_{\boldsymbol{\Xi}}\dot P
 $$
-from tri-binary continuum simulations before final numerical acceptance testing.
+from nested shell swarm continuum simulations before final numerical acceptance testing.

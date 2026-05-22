@@ -81,13 +81,13 @@ In this framework, the candidate substrate-level quantities are:
 - **Causal wake interaction kernel** (inverse-square line-of-action weighting over causal wake surfaces, with regularized coincidence handling)
 
 ### Category C: Assembly Geometry (Emergent but Calculable)
-- **Tri-binary radius ratios** (inner/middle/outer scales)
+- **Nested shell swarm radius ratios** (inner/middle/outer scales)
 - **Maximum curvature binary radius** $r_{\text{max-curv}}$ (where $v \gg c_f$)
-- **Reference Noether-core density** $\rho_{\text{core},0}$ (the normalization scale for $n(\mathbf{x},t)$)
+- **Reference Noether swarm density** $\rho_{\text{core},0}$ (the normalization scale for $n(\mathbf{x},t)$)
 
 **Everything else** (masses, coupling constants, cosmological parameters) should be **derivable** from these via:
 - Self-hit dynamics (non-Markovian evolution)
-- Tri-binary stability conditions (quantization)
+- Nested shell swarm stability conditions (quantization)
 - Noether-Sea coupling (emergent metric, inertia)
 
 ### Primitive-to-Derived Measure Ladder
@@ -114,14 +114,14 @@ $$
 **Architrino Interpretation:**
 
 The hyperfine transition is caused by:
-- Interaction between the **outer electron's tri-binary** (magnetic moment from its Middle Binary orbital motion at $v \approx c_f$)
+- Interaction between the **outer electron's nested shell swarm** (magnetic moment from its Middle Binary orbital motion at $v \approx c_f$)
 - The **nuclear spin** (magnetic moment from proton/neutron Middle Binary configurations)
 
 This is an atomic-clock validation target, not a closed spin derivation. The electron magnetic moment, nuclear spin ledger, and hyperfine coupling must inherit [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Atomic Structure](../nuclear-atomic/atomic-structure.md), and [Atomic Spectra](../nuclear-atomic/atomic-spectra.md) before $\Delta \nu_{\text{Cs}}$ can be claimed from first principles.
 
 **What we must derive:**
 $$
-\Delta \nu_{\text{Cs}} = f(\text{tri-binary geometry, } c_f, \epsilon, \text{ Noether-Sea coupling})
+\Delta \nu_{\text{Cs}} = f(\text{nested shell swarm geometry, } c_f, \epsilon, \text{ Noether-Sea coupling})
 $$
 
 **Challenge:** The frequency is determined by:
@@ -184,7 +184,7 @@ via the Kibble balance (relating mechanical power to electromagnetic power).
 
 **Architrino Interpretation:**
 
-The Planck constant $h$ is the observer-level benchmark for a quantum of **closed-cycle action**. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation target is to recover this scale from tri-binary geometry and the lower recordable basin-measure scale, not to assume it as a primitive input. In the target reduction, $h$ is related to the radian-normalized **outer-binary rotational action** by $\hbar=h/(2\pi)$:
+The Planck constant $h$ is the observer-level benchmark for a quantum of **closed-cycle action**. The $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation target is to recover this scale from nested shell swarm geometry and the lower recordable basin-measure scale, not to assume it as a primitive input. In the target reduction, $h$ is related to the radian-normalized **outer-binary rotational action** by $\hbar=h/(2\pi)$:
 $$
 L_{\text{outer}} = n \hbar = n \frac{h}{2\pi}
 $$
@@ -195,16 +195,16 @@ $$
 \qquad
 h = 2\pi\hbar
 $$
-where $r_{\text{outer}}$ is the characteristic radius of the outer binary in the hydrogen ground-state assembly. This is an internal tri-binary action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state.
+where $r_{\text{outer}}$ is the characteristic radius of the outer binary in the hydrogen ground-state assembly. This is an internal nested shell swarm action variable, not the observer-level electron orbital angular momentum quantum number $\ell$ of the hydrogen $1s$ state.
 
 **Derivation pathway:**
 1. Calculate the outer-binary radius for the hydrogen ground-state assembly (energy minimization + self-hit constraints).
 2. Show that closed-cycle action quantization ($\oint p\,dq = n h$) and the equivalent radian-normalized relation ($I=n\hbar$) arise from geometric quantization of the internal binary orbit.
-3. Relate $h$ and $\hbar$ to $\epsilon$, $c_f$, and tri-binary geometry.
+3. Relate $h$ and $\hbar$ to $\epsilon$, $c_f$, and nested shell swarm geometry.
 
 **Target relation:**
 $$
-h \propto \epsilon \cdot c_f \cdot (\text{geometric factor from tri-binary})
+h \propto \epsilon \cdot c_f \cdot (\text{geometric factor from nested shell swarm})
 $$
 
 
@@ -227,7 +227,7 @@ $$
 **What we must explain:**
 - Why only integer multiples of $\epsilon$ appear in stable observer-level electric-charge inventories (charge quantization)
 - Why we observe $0, \pm |e|/3, \pm 2|e|/3, \pm |e|$ in nature, never an isolated $\pm\epsilon$ polarity unit
-- Candidate answer: **confinement or dynamical suppression**. The $\epsilon$ polarity units are bound in tri-binaries (quarks) or assemblies (leptons). Isolated $\pm\epsilon$ polarity units are not observed as stable observer-level particles, so the suppression mechanism remains a closure target rather than a completed infinite-energy theorem.
+- Candidate answer: **confinement or dynamical suppression**. The $\epsilon$ polarity units are bound in nested shell swarms (quarks) or assemblies (leptons). Isolated $\pm\epsilon$ polarity units are not observed as stable observer-level particles, so the suppression mechanism remains a closure target rather than a completed infinite-energy theorem.
 
 
 ---
@@ -249,7 +249,7 @@ $$
 \langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T
 $$
 
-For a Noether-Sea assembly (neutral 2:2 core):
+For a Noether-Sea assembly (neutral 2:2 swarm):
 - 6 degrees of freedom (3 translational + 3 rotational)
 - Mean energy: $\langle E \rangle = 3 k_B T$
 
@@ -259,7 +259,7 @@ k_B = f(\text{Noether-Sea assembly mass, } c_f, \text{ thermal equilibrium distr
 $$
 
 **Pathway:**
-1. Calculate the **effective mass** of a Noether-Sea assembly (from tri-binary dynamics)
+1. Calculate the **effective mass** of a Noether-Sea assembly (from nested shell swarm dynamics)
 2. Assume **thermal equilibrium** (Maxwell-Boltzmann distribution in the Noether Sea)
 3. Relate the width of the velocity distribution to $k_B T$
 
@@ -288,7 +288,7 @@ N_A = \frac{1 \text{ g}}{1 \text{ amu}} = \frac{1 \text{ g}}{m_{\text{proton}}/1
 $$
 
 **What we must derive:**
-- The proton mass $m_p$ from tri-binary geometry (3 quarks = 3 tri-binaries + gluon wake structure + Noether-Sea coupling)
+- The proton mass $m_p$ from nested shell swarm geometry (3 quarks = 3 nested shell swarms + gluon wake structure + Noether-Sea coupling)
 
 
 ---
@@ -337,7 +337,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 ### Candidate Substrate Inputs (Architrino SI)
 1. **Architrino polarity-unit magnitude** $\epsilon=|e|/6$ (with observer charge benchmark $|e|=6\epsilon$)
 2. **Field speed** $c_f$ (replaces $c$)
-3. **Tri-binary geometry parameter** (e.g., outer radius $r_{\text{outer}}$ or max-curvature radius) (replaces $h$)
+3. **Nested shell swarm geometry parameter** (e.g., outer radius $r_{\text{outer}}$ or max-curvature radius) (replaces $h$)
 4. **Noether-Sea assembly mass** $m_{\text{NS}}$ (replaces $k_B$ when combined with $c_f$)
 
 **Everything else is intended to be derived after closure:**
@@ -346,7 +346,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 - $h \stackrel{\text{target}}{=} 2\pi \epsilon \cdot c_f \cdot r_{\text{outer}}$ after the action-closure derivation, not by definition
 - $k_B = f(m_{\text{NS}}, c_f)$
 - $N_A = f(m_p / m_{\text{NS}})$
-- $\Delta \nu_{\text{Cs}} = f(\text{Cs tri-binary geometry})$
+- $\Delta \nu_{\text{Cs}} = f(\text{Cs nested shell swarm geometry})$
 
 **Result target:** If the closure program succeeds, the seven SI constants reduce to **3-4 fundamental parameters**, with the rest emergent.
 
@@ -354,7 +354,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 
 
 ### Tier 1 (Must Answer)
-1. **Derive $h$ from tri-binary geometry**
+1. **Derive $h$ from nested shell swarm geometry**
    - Show that Outer Binary quantization yields $L = n\hbar$
    - Calculate $r_{\text{outer}}$ for hydrogen 1s
    - Predict $h$ and compare to SI value
@@ -370,7 +370,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 
 ### Tier 2 (High Priority)
 4. **Calculate $\Delta \nu_{\text{Cs}}$ from first principles**
-   - Map Cs atomic structure to tri-binary assemblies
+   - Map Cs atomic structure to nested shell swarm assemblies
    - Derive hyperfine coupling strength
    - Compare to 9,192,631,770 Hz
 
@@ -380,7 +380,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
    - Predict $k_B$ value
 
 ### Tier 3 (Refinement)
-6. **Map all SM particles to tri-binary recipes**
+6. **Map all SM particles to nested shell swarm recipes**
    - Create "particle cookbook" (analogous to chemical formulas)
    - Show charge, spin, statistics all emerge from geometry
 

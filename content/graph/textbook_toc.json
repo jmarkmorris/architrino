@@ -959,10 +959,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Energy and Self-Hit in the Tri-Binary Sea",
+                "title": "Energy and Self-Hit in the Nested Shell Swarm Sea",
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Energy and Self-Hit in the Tri-Binary Sea",
-                "sectionKey": "energy and self hit in the tri binary sea",
+                "markdownSection": "Energy and Self-Hit in the Nested Shell Swarm Sea",
+                "sectionKey": "energy and self hit in the nested shell swarm sea",
                 "headingLevel": 2
               },
               {
@@ -2407,10 +2407,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Pro/Anti Noether Core Basis",
+                "title": "Pro/Anti Noether Swarm Basis",
                 "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-                "markdownSection": "Pro/Anti Noether Core Basis",
-                "sectionKey": "pro anti noether core basis",
+                "markdownSection": "Pro/Anti Noether Swarm Basis",
+                "sectionKey": "pro anti noether swarm basis",
                 "headingLevel": 2
               },
               {
@@ -2801,10 +2801,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Noether-Core Deformation and Metric Language",
+                    "title": "Noether Swarm Deformation and Metric Language",
                     "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
-                    "markdownSection": "Noether-Core Deformation and Metric Language",
-                    "sectionKey": "noether core deformation and metric language",
+                    "markdownSection": "Noether Swarm Deformation and Metric Language",
+                    "sectionKey": "noether swarm deformation and metric language",
                     "headingLevel": 2
                   },
                   {
@@ -7380,10 +7380,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Assembly grammar → Noether Core and flux tubes",
+                    "title": "Assembly grammar -> nested shell swarm and flux tubes",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Assembly grammar → Noether Core and flux tubes",
-                    "sectionKey": "assembly grammar noether core and flux tubes",
+                    "markdownSection": "Assembly grammar -> nested shell swarm and flux tubes",
+                    "sectionKey": "assembly grammar nested shell swarm and flux tubes",
                     "headingLevel": 2
                   },
                   {
@@ -8250,10 +8250,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Core Assembly Layer (Noether Core / Tri-Binary)",
+                    "title": "Assembly Layer (Nested Shell Swarm)",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-                    "markdownSection": "Core Assembly Layer (Noether Core / Tri-Binary)",
-                    "sectionKey": "core assembly layer noether core tri binary",
+                    "markdownSection": "Assembly Layer (Nested Shell Swarm)",
+                    "sectionKey": "assembly layer nested shell swarm",
                     "headingLevel": 2,
                     "children": [
                       {

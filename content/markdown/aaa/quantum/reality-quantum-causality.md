@@ -106,7 +106,7 @@ So causality is **unbroken** at the substrate, but **opaque** and sometimes misl
 
 ### Metastability and Threshold Crossings
 
-At the assembly level (tri-binaries, atoms, etc.):
+At the assembly level (nested shell swarms, atoms, etc.):
 
 - There exist **metastable configurations** in phase space: regions where small perturbations determine whether the system:
   - Remains in its current attractor (no transition), or
