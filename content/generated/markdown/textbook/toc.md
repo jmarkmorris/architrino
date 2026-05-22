@@ -681,7 +681,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Falsifiability and Scaling Limits](../../../markdown/aaa/quantum/algorithmic-resonance.md?section=Falsifiability+and+Scaling+Limits)
   - [Fermi-Dirac & Bose-Einstein Statistics](../../../scenes/quantum/quantum_statistics.json)
     - [Standard Observer-Level Roles](../../../markdown/aaa/quantum/quantum-statistics.md?section=Standard+Observer-Level+Roles)
-    - [Noether-Core Geometry Basis](../../../markdown/aaa/quantum/quantum-statistics.md?section=Noether-Core+Geometry+Basis)
+    - [Nested Shell Swarm Geometry Basis](../../../markdown/aaa/quantum/quantum-statistics.md?section=Nested+Shell+Swarm+Geometry+Basis)
     - [Fermi-Dirac Regime: 3D Exclusion](../../../markdown/aaa/quantum/quantum-statistics.md?section=Fermi-Dirac+Regime%3A+3D+Exclusion)
     - [Bose-Einstein Regime: 2D Coherence](../../../markdown/aaa/quantum/quantum-statistics.md?section=Bose-Einstein+Regime%3A+2D+Coherence)
     - [The 3D-to-2D Transition](../../../markdown/aaa/quantum/quantum-statistics.md?section=The+3D-to-2D+Transition)
