@@ -150,7 +150,7 @@ The combined shape-plus-scale deformation is the structural feature that disting
 
 The reader-facing spacetime-assemblies chapter should state the provisional medium motif and its ownership boundaries. The working checks remain here:
 
-1. Define an explicit local coupling law for pro/anti Noether swarm exchange and bounded imbalance relaxation. The law should state the variables controlling $\rho_+$, $\rho_-$, and $\Delta\rho_{\text{core}}$, and should identify the return or damping term that prevents unlimited orientation drift.
+1. Define an explicit local coupling law for pro/anti Noether swarm exchange and bounded imbalance relaxation. The law should state the variables controlling $\rho_+$, $\rho_-$, and $\Delta\rho_{\text{NS}}$, and should identify the return or damping term that prevents unlimited orientation drift.
 2. Test whether the $2+2$ pro/anti cluster is an energy minimum, a metastable packing motif, or only a useful design intuition. The test should compare candidate cluster energies under the same local Noether-Sea state, not by visual symmetry alone.
 3. Derive coarse-grained signatures that distinguish a spacetime-assembly medium from a purely metric-first baseline in weak-field, strong-field, and cosmological regimes. The signatures should be expressed through effective-metric variables already used by this workstream: $\xi$, $\lambda$, $n$, $\chi_{\text{sea}}$, and the local orientation distribution.
 

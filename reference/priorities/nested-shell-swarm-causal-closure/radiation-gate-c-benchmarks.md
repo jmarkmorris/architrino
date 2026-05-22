@@ -13,7 +13,7 @@ $$
 \Gamma(t),
 \mathcal{C}_{o'j}(t),
 J_{o'j},
-\rho_{\text{core}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t),
 \chi_{\text{sea}}(\mathbf{x},t)
 \right).
 $$
@@ -202,7 +202,7 @@ alongside component routing for scattering, photoelectric absorption, pair or tr
 The radiation pages already suggest a planar-mode nucleation gate. Promote that into a theorem target:
 
 $$
-\mathcal{S}_{\gamma}(\Gamma,\rho_{\text{core}},\chi_{\text{sea}},J_{\text{loc}})
+\mathcal{S}_{\gamma}(\Gamma,\rho_{\text{NS}},\chi_{\text{sea}},J_{\text{loc}})
 \ge
 \mathcal{S}_{\gamma,*},
 \qquad

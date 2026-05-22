@@ -277,7 +277,7 @@ $$
 \Delta E_{\mathrm{sea}},
 \Delta\mathbf{p}_{\mathrm{sea}},
 \Delta\mathbf{J}_{\mathrm{sea}},
-\Delta\rho_{\text{core}},
+\Delta\rho_{\text{NS}},
 \Delta\chi_{\text{sea}}
 \right).
 $$

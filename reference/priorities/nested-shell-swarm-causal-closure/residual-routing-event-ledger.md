@@ -7,7 +7,7 @@ This detailed priority file supports [nested shell swarm causal closure](nested-
 The common pattern is:
 
 $$
-\mathcal{R}(\Gamma,\mathcal{H},\rho_{\text{core}},\chi_{\text{sea}},\dots)
+\mathcal{R}(\Gamma,\mathcal{H},\rho_{\text{NS}},\chi_{\text{sea}},\dots)
 \longrightarrow
 \{B_i\}
 \longrightarrow
@@ -28,7 +28,7 @@ X
 \left(
 \Gamma,
 \mathcal{H},
-\rho_{\text{core}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t),
 \chi_{\text{sea}}(\mathbf{x},t),
 Z_S
 \right),
@@ -210,7 +210,7 @@ The five factors have fixed meanings:
 
 | Predicate factor | Required test |
 | --- | --- |
-| $\operatorname{Replay}_S$ | The same recorded $(\Gamma,\mathcal{H},\rho_{\text{core}},\chi_{\text{sea}},Z_S)$ determines the same $\mathcal{R}(X)$ and the same channel-boundary values. |
+| $\operatorname{Replay}_S$ | The same recorded $(\Gamma,\mathcal{H},\rho_{\text{NS}},\chi_{\text{sea}},Z_S)$ determines the same $\mathcal{R}(X)$ and the same channel-boundary values. |
 | $\operatorname{Route}_S$ | Every selected channel $i\in I_{\mathsf e}$ satisfies its stated $g_i(X,\mathcal{R})\ge0$, and every sector-required excluded channel either fails its boundary test or is excluded by a named compatibility rule. |
 | $\operatorname{Compat}_S$ | The selected channels share one output assignment $Y_{\mathsf e}$ without duplicate inventory use, incompatible remnant states, incompatible Noether-Sea updates, or contradictory provenance records. |
 | $\operatorname{Ledger}_S$ | Every $r\in\mathfrak{R}_S$ satisfies $\Delta_r(\mathsf e)=0$. |
@@ -232,7 +232,7 @@ that preserves $(X,\mathcal{R},I_{\mathsf e},Y_{\mathsf e})$, every ledger row $
 
 Fix a sector $S$ with acceptance set $\mathcal{C}_S$, and let $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ denote the cross-sector acceptance intersection from [Validation Gates](../validation-gates/validation-gates.md). A candidate event $\mathsf e=(X,I_{\mathsf e},Y_{\mathsf e})$ is promotable as a sector event if the following five conditions hold:
 
-1. **Replayable residual:** $\mathcal{R}(X)$ is computed from $\Gamma$, $\mathcal{H}$, $\rho_{\text{core}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and explicitly named sector variables, with no hidden sector-specific residual term.
+1. **Replayable residual:** $\mathcal{R}(X)$ is computed from $\Gamma$, $\mathcal{H}$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and explicitly named sector variables, with no hidden sector-specific residual term.
 2. **Boundary selection:** each selected $B_i$ has a stated $g_i(X,\mathcal{R})\ge0$, and every excluded channel required by the sector either has $g_k(X,\mathcal{R})<0$ or is explicitly ruled out by a compatibility condition.
 3. **Admissible output:** $Y_{\mathsf e}$ names all outgoing assemblies, recoil targets, medium updates, remnant states, and provenance records required by the selected channel set.
 4. **Ledger closure:** $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}$ after adding sector-required charge, polarity, architrino-inventory, path-history, Noether-Sea, and remnant rows.
@@ -257,7 +257,7 @@ Each consumer packet should instantiate the same predicate factors instead of ad
 
 | Consumer event class | Residual input | Typical selected channels | Required local rows beyond the shared ledger | Promotion diagnostic |
 | --- | --- | --- | --- | --- |
-| Radiation | $\mathcal{R}_{\Theta}$ from driven assembly, causal-root data, local angular-momentum data, $\rho_{\text{core}}(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$ | Retuning, photon output, recoil, medium update, non-radiative remnant, reaction | Planar-mode gate data, photon provenance, polarization / angular-momentum handoff, $\operatorname{GateC}_{\gamma}$, benchmark radiation limit | Fail if photon output, recoil, remnant, or medium update is used as untracked loss. |
+| Radiation | $\mathcal{R}_{\Theta}$ from driven assembly, causal-root data, local angular-momentum data, $\rho_{\text{NS}}(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$ | Retuning, photon output, recoil, medium update, non-radiative remnant, reaction | Planar-mode gate data, photon provenance, polarization / angular-momentum handoff, $\operatorname{GateC}_{\gamma}$, benchmark radiation limit | Fail if photon output, recoil, remnant, or medium update is used as untracked loss. |
 | Transport excitation | $\mathcal{R}_{\text{tr}}$ from medium response, reversible inertia, causal-wake strain, and local material state | Reversible retuning, bound excitation, dissipative heating, radiation, branch transition | Material state update, transport threshold, medium-carried momentum, retained excitation | Fail if ordinary dissipative drag is substituted for the mass or inertia mechanism. |
 | Reaction | Sector reaction residual from assembly inventory, weak or nuclear corridor data, and causal-wake provenance | Product assemblies, recoil, radiation, medium update, remnant, bound-state change | Charge / polarity rows, architrino inventory, Noether swarm provenance, weak-corridor or nuclear-configuration rows | Fail if products appear without source inventory, path-history, or recoil accounting. |
 | Measurement record | Basin residual after transfer-operator or return-map evolution and apparatus coupling | Apparatus record, recoil, medium update, remnant branch, branch transition | Record stability, apparatus state, detector kernel provenance, no-signaling benchmark rows | Fail if an outcome label is assigned without a stable physical record and ledger closure. |
@@ -275,7 +275,7 @@ $$
 \Gamma(t),
 \mathcal{C}_{o'j}(t),
 J_{o'j},
-\rho_{\text{core}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t),
 \chi_{\text{sea}}(\mathbf{x},t)
 \right),
 $$
@@ -409,13 +409,13 @@ The shared packet may appear in [reaction-ledger](../../../content/markdown/aaa/
 
 | Failure code | Trigger | Predicate blocked |
 | --- | --- | --- |
-| `residual.replay_failure` | Two records with the same $(\Gamma,\mathcal{H},\rho_{\text{core}},\chi_{\text{sea}},Z_S)$ produce different $\mathcal{R}$ values or different selected channel sets without an additional recorded state variable. | $\operatorname{Replay}_S$ |
+| `residual.replay_failure` | Two records with the same $(\Gamma,\mathcal{H},\rho_{\text{NS}},\chi_{\text{sea}},Z_S)$ produce different $\mathcal{R}$ values or different selected channel sets without an additional recorded state variable. | $\operatorname{Replay}_S$ |
 | `route.boundary_failure` | A resolved event occurs while every required $g_i(X,\mathcal{R})<0$, or two mutually exclusive channels both require $g_i(X,\mathcal{R})\ge0$ with incompatible $Y_i$. | $\operatorname{Route}_S$ |
 | `route.channel_incompatibility` | Selected channels demand incompatible remnant states, incompatible Noether-Sea updates, contradictory provenance records, or duplicate use of the same constituent inventory. | $\operatorname{Compat}_S$ |
 | `event.ledger_residual` | After all sector-required rows are included, $\Delta_E\ne0$, $\Delta_{\mathbf{p}}\ne\mathbf{0}$, or $\Delta_{\mathbf{J}}\ne\mathbf{0}$. | $\operatorname{Ledger}_S$ |
 | `event.inventory_provenance_failure` | $\Delta_{\mathrm{pol}}\ne0$, $\Delta_{\mathrm{arch}}\ne0$, or $\Delta_{\mathrm{path}}\ne0$ after the claimed Noether-Sea, corridor, source-identity, emission-time, causal-root, and branch-Jacobian records are included. | $\operatorname{Ledger}_S$ |
 | `event.medium_remnant_failure` | $\Delta_{\mathrm{med}}\ne0$ or $\Delta_{\mathrm{rem}}\ne0$, meaning the route used medium heating, recoil, retained excitation, or remnant deformation as an implicit loss term. | $\operatorname{Ledger}_S$ |
-| `residual.hidden_retuning` | The same benchmark family can be recovered only by changing the residual definition, the channel boundary $g_i$, or the Noether-Sea variables $\rho_{\text{core}}(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$ between sector cases. | $\operatorname{Replay}_S$ and $\operatorname{Accept}_S$ |
+| `residual.hidden_retuning` | The same benchmark family can be recovered only by changing the residual definition, the channel boundary $g_i$, or the Noether-Sea variables $\rho_{\text{NS}}(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$ between sector cases. | $\operatorname{Replay}_S$ and $\operatorname{Accept}_S$ |
 | `acceptance.empty_intersection` | $\mathsf e\notin\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, so the local routing succeeds only by violating another required weak, quantum, gravity, hadronic, radiation, cosmology, conservation-law, or direct-observation acceptance gate. | $\operatorname{Accept}_S$ |
 
 ## Related Priorities

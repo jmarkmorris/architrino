@@ -202,7 +202,7 @@ $$
 \mathcal{B}_{H}(M,\mathbf{J},Q)
 =
 \left\{
-\{\Lambda_{\text{NC},i}\}_{i=1}^{N}
+\{\Lambda_{\text{NS},i}\}_{i=1}^{N}
 :
 \sum_i E_i = M c_{\text{eff}}^2,\quad
 \sum_i \mathbf{J}_i = \mathbf{J},\quad
@@ -266,7 +266,7 @@ The proof burden is to derive $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native hori
 | --- | --- | --- |
 | `windowed_entropy_functional` | [theory-differentials](../../../content/markdown/aaa/philosophy-history/theory-differentials.md), [observer-framework](../../../content/markdown/aaa/spacetime/observer-framework.md), and [failure-criteria](../../../content/markdown/aaa/validation/failure-criteria.md) | A finite coarse-graining, access window, state measure, and boundary-flux rule are defined without treating entropy as primitive ontology. |
 | `record_locking_entropy` | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) and [quantum-closure](../quantum-closure/quantum-closure.md) | The entropy-locking diagnostic is tied to a detector-response kernel and persistence window. |
-| `horizon_label_entropy` | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), and [strong-field-closure](../strong-field-closure/strong-field-closure.md) | The horizon-interface label ensemble and local block coefficient are derived from admissible $\Lambda_{\text{NC}}$ states and can be compared to area scaling and Page-curve behavior. |
+| `horizon_label_entropy` | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), and [strong-field-closure](../strong-field-closure/strong-field-closure.md) | The horizon-interface label ensemble and local block coefficient are derived from admissible $\Lambda_{\text{NS}}$ states and can be compared to area scaling and Page-curve behavior. |
 | `cosmology_entropy_balance` | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [dark-energy](../../../content/markdown/aaa/cosmology/dark-energy.md), and [reaction-cosmology-provenance-ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Entropy production, thermalization depth, redshift handoff, and observer temperature use one shared Noether-Sea state record. |
 
 ## Failure Modes

@@ -239,7 +239,7 @@ The local cadence-scale retuning map is therefore the closure target
 $$
 \mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}
 :
-(\Lambda_{\text{NC}},\theta_{\mathrm{env}})
+(\Lambda_{\text{NS}},\theta_{\mathrm{env}})
 \longmapsto
 \left(
 \Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi
@@ -402,7 +402,7 @@ $$
 and the densest ordinary equal-sphere center density is
 
 $$
-\rho_{\mathrm{core},\max}^{\#}
+\rho_{\mathrm{NS},\max}^{\#}
 =
 \frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}.
 $$
@@ -410,12 +410,12 @@ $$
 The legacy density symbol is retained as packing notation for this chart. It names the maximum center density of the relevant Noether swarm exclusion envelopes, not a separate swarm type. Therefore the packing curve inherits the radius closure:
 
 $$
-\rho_{\mathrm{core},\max}^{\#}(N)
+\rho_{\mathrm{NS},\max}^{\#}(N)
 \propto
 R_O(N)^{-3}.
 $$
 
-For example, the fixed-speed branch gives $\rho_{\mathrm{core},\max}^{\#}\propto N^{-3}$, while the bare inverse-square branch with approximately constant $\mathcal{B}_O$ gives $\rho_{\mathrm{core},\max}^{\#}\propto N^{-6}$. These are branch diagnostics, not competing definitions of a Noether swarm.
+For example, the fixed-speed branch gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-3}$, while the bare inverse-square branch with approximately constant $\mathcal{B}_O$ gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-6}$. These are branch diagnostics, not competing definitions of a Noether swarm.
 
 This packing formula is only the spherical leading estimate. At high relative velocity, high Noether-Sea delay, or high gravitational strain, the branch data cannot be kept constant:
 
@@ -429,10 +429,10 @@ The scaling curve is therefore piecewise by branch. Once the branch supplies $\x
 
 ## Reduced Nested Shell Swarm Closure Label
 
-For proof work, the integer phase-closure state should be packaged with the branch data that made the closure admissible. The reduced nested shell swarm closure label is a branch label, not a new ontological ingredient. The symbol $\Lambda_{\text{NC}}$ is retained here as legacy notation:
+For proof work, the integer phase-closure state should be packaged with the branch data that made the closure admissible. The reduced nested shell swarm closure label is a branch label, not a new ontological ingredient. The symbol $\Lambda_{\text{NS}}$ is retained here as legacy notation:
 
 $$
-\Lambda_{\text{NC}}
+\Lambda_{\text{NS}}
 =
 \left(
 k_I,k_M,k_O;\
@@ -444,16 +444,16 @@ $$
 
 Here $k_I,k_M,k_O$ are the layer winding counts over the chosen return period. The layer ledgers $\mathcal{G}_I,\mathcal{G}_M,\mathcal{G}_O$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The inter-layer ledgers $\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO}$ record delayed exchange roots and phase-lock constraints between binary layers. The branch label $\chi_c$ records ordered swarm chirality; the current candidate data are the `HML/HLM` ordered-swarm distinction together with $Wr_c$ or a multi-component causal-writhe parity.
 
-This label is reduced because it omits the full architrino trajectories and retains only the closure data needed for branch comparison. It is useful only under a theorem-target burden: smooth branch-preserving deformations should keep $\Lambda_{\text{NC}}$ fixed, while a change of label should be tied to a causal-root bifurcation, separator crossing, or causal-locus reconnection. The chirality entry $\chi_c$ is not yet proved by this definition; it names the entry that the later causal-writhe or ordered-frame proof must fill.
+This label is reduced because it omits the full architrino trajectories and retains only the closure data needed for branch comparison. It is useful only under a theorem-target burden: smooth branch-preserving deformations should keep $\Lambda_{\text{NS}}$ fixed, while a change of label should be tied to a causal-root bifurcation, separator crossing, or causal-locus reconnection. The chirality entry $\chi_c$ is not yet proved by this definition; it names the entry that the later causal-writhe or ordered-frame proof must fill.
 
 The quantum-number generalization begins at this level. Generation, spin, chirality, and later observer-level orbital labels should be read as downstream coarse-grainings or measurement labels derived from admissible nested shell swarm closure labels and their emitted causal-wake envelopes. They should not be imposed as primitive particle labels before the closure, wake-envelope, and apparatus-coupling maps have been derived.
 
 For the horizon-interface entropy calculation, the counted labels must be restrictions of this same reduced closure label, not a second black-hole bookkeeping system. The alignment-restricted label is the theorem-target restriction
 $$
-\Lambda_{\text{NC}}^{\mathrm{align}}
+\Lambda_{\text{NS}}^{\mathrm{align}}
 =
 \left.
-\Lambda_{\text{NC}}
+\Lambda_{\text{NS}}
 \right|_{\substack{
 v_M=c_f,\;v_O\to c_f\\
 \text{coplanar/co-linear binary layers}\\
@@ -465,7 +465,7 @@ $$
 \mathcal{L}_U(\theta)
 =
 \left\{
-\left(\Lambda_{\text{NC},a}^{\mathrm{align}}\right)_{a\in U}
+\left(\Lambda_{\text{NS},a}^{\mathrm{align}}\right)_{a\in U}
 :
 \mathcal{G}_{\partial U},\,
 \mathcal{B}_{\partial\Omega}^{(O)}(\theta;W),\,

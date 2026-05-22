@@ -91,7 +91,7 @@ c_\xi
 \left.
 \frac{\partial\ln V_{\mathrm{cell}}^{\mathrm{sf}}}
 {\partial\ln\xi}
-\right|_{\Lambda_{\mathrm{NC}}},
+\right|_{\Lambda_{\mathrm{NS}}},
 \qquad
 0\le c_\xi\le1
 $$
@@ -430,7 +430,7 @@ $$
 \boxed{
 K_{\mathrm{env}}
 =
-\rho_{\text{core},0}n\,k_{\mathrm{env}}^{(V)}.
+\rho_{\text{NS},0}n\,k_{\mathrm{env}}^{(V)}.
 }
 $$
 
@@ -478,7 +478,7 @@ The induced envelope response can be fed into the pressure coefficient closure t
 
 1. **Negative Hessian branch:** a replay needs $K_{\mathrm{pack}}>0$ while the retained Hessian has $\Delta_H\le0$ after symmetry modes are removed.
 2. **Hidden shape response:** isotropic pressure data require $\delta\ln\xi=0$ but the declared Hessian has $k_Rc_\xi\ne k_{R\xi}c_R$ and no large shape-locking stiffness.
-3. **Modulus mismatch:** $K_{\mathrm{pack}}$ inferred from residual channels disagrees with $\rho_{\text{core},0}n\,k_{\mathrm{env}}^{(V)}+K_{\mathrm{contact}}+K_{\mathrm{wake}}^{\mathrm{rev}}$ for the same branch state.
+3. **Modulus mismatch:** $K_{\mathrm{pack}}$ inferred from residual channels disagrees with $\rho_{\text{NS},0}n\,k_{\mathrm{env}}^{(V)}+K_{\mathrm{contact}}+K_{\mathrm{wake}}^{\mathrm{rev}}$ for the same branch state.
 4. **Null-sector violation:** the Hessian-induced $\delta\ln\xi$ drives birefringence, dispersion, preferred-frame, clock/signal, or tensor anisotropy above the retained bounds.
 5. **Coefficient split:** the replay fits $\lambda$ and $\xi$ responses with coefficients inconsistent with the Hessian deformation vector $\boldsymbol{\theta}_{\min}$.
 

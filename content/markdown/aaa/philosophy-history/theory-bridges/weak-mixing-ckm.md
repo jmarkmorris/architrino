@@ -622,7 +622,7 @@ $$
 \kappa_{ab}=
 \int_{\Gamma_{ab}}
 \mathcal{L}_{\mathrm{trans}}
-\bigl(\rho_{\text{core}}(\mathbf{x},t),\nabla\rho_{\text{core}}(\mathbf{x},t),\text{shielding},\text{wake exposure}\bigr)\,ds,
+\bigl(\rho_{\text{NS}}(\mathbf{x},t),\nabla\rho_{\text{NS}}(\mathbf{x},t),\text{shielding},\text{wake exposure}\bigr)\,ds,
 $$
 rather than fitting them from CKM inputs.
 

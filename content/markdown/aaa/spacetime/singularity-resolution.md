@@ -15,10 +15,10 @@ with middle/outer binaries becoming coplanar and co-linear with the inner binary
 This condition is a constitutive boundary condition on Noether-Sea state, not an isolated metric ansatz imported from an asymptotically flat solution. In schematic form, the horizon-interface closure problem is
 $$
 F_H\!\left[
-\rho_{\text{core}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t),
 \Sigma_{\text{medium}}(\mathbf{x},t),
 \mathbf{u}_{\text{medium}}(\mathbf{x},t),
-\{\Lambda_{\text{NC}}\};
+\{\Lambda_{\text{NS}}\};
 \partial\Omega
 \right]
 =0,
@@ -88,7 +88,7 @@ $$
 =
 \sup_{\Omega}
 \left(
-|\rho_{\text{core}}(\mathbf{x},t)|
+|\rho_{\text{NS}}(\mathbf{x},t)|
 +
 \|\Sigma_{\text{medium}}(\mathbf{x},t)\|
 +

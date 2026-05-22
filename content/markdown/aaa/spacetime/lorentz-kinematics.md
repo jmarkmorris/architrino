@@ -632,7 +632,7 @@ $$
 $$
 so clock slowing is a derived readout of the geometry-to-clock map.
 
-Together with local assembly density $n(x)$ (with $\rho_{\text{core}}(x)=\rho_{\text{core},0}n(x)$) and preferred-frame flow/orientation $\hat{u}(x)$, these define a minimal handoff tuple
+Together with local assembly density $n(x)$ (with $\rho_{\text{NS}}(x)=\rho_{\text{NS},0}n(x)$) and preferred-frame flow/orientation $\hat{u}(x)$, these define a minimal handoff tuple
 $$
 (\xi,\lambda,n,\hat{u})_x
 $$

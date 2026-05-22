@@ -684,7 +684,7 @@ The reference constants are not independent material knobs when the cell volume 
 $$
 \widetilde V_{\mathrm{cell},X}^{\mathrm{sf}}
 =
-\rho_{\text{core},0}V_{\mathrm{cell},X}^{\mathrm{sf}},
+\rho_{\text{NS},0}V_{\mathrm{cell},X}^{\mathrm{sf}},
 \qquad
 \nu_{\mathrm{pack},0}=1,
 $$
@@ -1045,7 +1045,7 @@ or an equivalent layer-energy projection before using one energy variable in bot
 
 For a branch-chart calculation:
 
-1. Choose a reduced Noether swarm branch label $\Lambda_{\mathrm{NC}}$ and outer sublabel $\Lambda_O$.
+1. Choose a reduced Noether swarm branch label $\Lambda_{\mathrm{NS}}$ and outer sublabel $\Lambda_O$.
 2. Declare whether $h$ means closed-cycle action $h_{\mathrm{act}}$ and reserve $h_{\mathrm{mem}}$ for memory depth.
 3. Extract or choose provisional values for
    $$

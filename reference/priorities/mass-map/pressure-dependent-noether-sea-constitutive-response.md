@@ -11,7 +11,7 @@ This priority packet is a report and derivation scaffold, not reader-facing cano
 
 ## Source Signals
 
-- [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md) already fixes $n(\mathbf{x},t)=\rho_{\text{core}}(\mathbf{x},t)/\rho_{\text{core},0}$, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$, and the Noether swarm cadence distribution $f_N(\nu,\mathbf{x},t)$.
+- [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md) already fixes $n(\mathbf{x},t)=\rho_{\text{NS}}(\mathbf{x},t)/\rho_{\text{NS},0}$, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$, and the Noether swarm cadence distribution $f_N(\nu,\mathbf{x},t)$.
 - [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) already gives the geometry extraction target
   $$
   \ln\Gamma_N
@@ -127,7 +127,7 @@ n_{\max}^{\mathrm{obl}}
 \frac{
 \phi_{\mathrm{obl}}(\xi,\mathcal{O})
 }{
-\rho_{\text{core},0}\,
+\rho_{\text{NS},0}\,
 \frac{4\pi}{3}\xi R_{\perp,0}^3\lambda^3
 },
 $$
@@ -322,7 +322,7 @@ $$
 \theta_{\mathrm{sea}}
 =
 \left(
-\rho_{\text{core}},
+\rho_{\text{NS}},
 n,
 \chi_{\text{sea}},
 \Gamma_N,

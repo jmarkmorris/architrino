@@ -90,7 +90,7 @@ Matter correction enters through the Noether-Sea state:
 $$
 H_{\mathrm{eff}}=H_{\mathrm{geo}}+V_{\mathrm{sea}}(n(\mathbf{x},t)),
 \qquad
-n(\mathbf{x},t)\equiv\frac{\rho_{\text{core}}(\mathbf{x},t)}{\rho_{\text{core},0}}.
+n(\mathbf{x},t)\equiv\frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}}.
 $$
 The matter term must be normalized to the same mass-squared-response units as $H_{\mathrm{geo}}$ before the $\Delta\lambda L/(4E)$ phase formula is used.
 

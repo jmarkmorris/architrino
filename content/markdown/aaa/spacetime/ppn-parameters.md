@@ -5,7 +5,7 @@ the spacetime constitutive map.
 
 ## Canonical Symbols
 
-- $n$: normalized Noether swarm density, with $\rho_{\text{core}}=\rho_{\text{core},0}n$.
+- $n$: normalized Noether swarm density, with $\rho_{\text{NS}}=\rho_{\text{NS},0}n$.
 - $\chi_{\text{sea}}$: Noether-Sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field PPN comparisons.
 - $\Phi_N$: Newtonian benchmark potential.

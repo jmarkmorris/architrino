@@ -81,7 +81,7 @@ $$
 \Theta_{\mathrm{NS}}(r)
 =
 \left(
-\rho_{\text{core}}(r),
+\rho_{\text{NS}}(r),
 n(r),
 \chi_{\text{sea}}(r),
 \Gamma_N(r),
@@ -230,7 +230,7 @@ $$
 +
 \left(1-\frac{v_O}{c_f}\right)^2
 +
-d_{\mathrm{curv}}\!\left(\{\Lambda_{\text{NC}}\},\mathcal{B}_H\right)
+d_{\mathrm{curv}}\!\left(\{\Lambda_{\text{NS}}\},\mathcal{B}_H\right)
 +
 d_{\mathrm{ent}}\!\left(
 S_H,
@@ -311,12 +311,12 @@ A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\right)
 $$
 The event-horizon reading is justified only in the $\eta_H\to1$ regime. When $\eta_H=0$ or remains bounded away from one, the holographic comparison is still useful as an access-region entropy test, but it is not evidence that the boundary surface is the horizon-interface ontology.
 
-A useful way to state that native task is through a horizon-interface label ensemble. Let $\Lambda_{\text{NC}}$ denote the reduced Noether swarm closure label from [Noether Swarm](../noether-swarm/noether-swarm.md). For an effective exterior black-hole label $(M,\mathbf{J},Q)$, define the schematic ensemble
+A useful way to state that native task is through a horizon-interface label ensemble. Let $\Lambda_{\text{NS}}$ denote the reduced Noether swarm closure label from [Noether Swarm](../noether-swarm/noether-swarm.md). For an effective exterior black-hole label $(M,\mathbf{J},Q)$, define the schematic ensemble
 $$
 \mathcal{B}_{H}(M,\mathbf{J},Q)
 =
 \left\{
-\{\Lambda_{\text{NC},i}\}_{i=1}^{N}
+\{\Lambda_{\text{NS},i}\}_{i=1}^{N}
 :
 \sum_i E_i = M c_{\text{eff}}^2,\quad
 \sum_i \mathbf{J}_i = \mathbf{J},\quad
@@ -534,10 +534,10 @@ This point sharpens the role of the horizon interface. The interface is not just
 The strong-field closure should therefore be posed as a Noether-Sea boundary-condition problem, not as the direct importation of an isolated Schwarzschild or Kerr metric. A schematic horizon-interface condition has the form
 $$
 F_H\!\left[
-\rho_{\text{core}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t),
 \Sigma_{\text{medium}}(\mathbf{x},t),
 \mathbf{u}_{\text{medium}}(\mathbf{x},t),
-\{\Lambda_{\text{NC}}\};
+\{\Lambda_{\text{NS}}\};
 \partial\Omega
 \right]
 =0,
@@ -547,7 +547,7 @@ $$
 
 Here $\partial\Omega$ denotes the boundary data supplied by the surrounding Noether Sea and the effective exterior comparison region. The equation is a closure target, not a completed model: the task is to show that the same Noether-Sea variables that recover weak-field gravity can also admit a regular terminal-alignment interface under non-isolated embedding conditions. Compact, topologically identified, or otherwise non-asymptotically-flat comparison settings are useful stress tests for this requirement, but they do not add extra dimensions to the substrate ontology.
 
-The finite-boundary-data version of this requirement is inherited from [singularity-resolution.md](./singularity-resolution.md#finite-boundary-data-regularity). For every compact strong-field comparison region $\Omega$, the native variables $\rho_{\text{core}}(\mathbf{x},t)$, $\Sigma_{\text{medium}}(\mathbf{x},t)$, and $\mathbf{u}_{\text{medium}}(\mathbf{x},t)$ must remain finite while the horizon-interface condition is imposed. This is the local substitute for treating a classical metric singularity as an endpoint: the weak-field variables may fail, but the Noether-Sea ledger and maximum-curvature closure must not become arbitrary.
+The finite-boundary-data version of this requirement is inherited from [singularity-resolution.md](./singularity-resolution.md#finite-boundary-data-regularity). For every compact strong-field comparison region $\Omega$, the native variables $\rho_{\text{NS}}(\mathbf{x},t)$, $\Sigma_{\text{medium}}(\mathbf{x},t)$, and $\mathbf{u}_{\text{medium}}(\mathbf{x},t)$ must remain finite while the horizon-interface condition is imposed. This is the local substitute for treating a classical metric singularity as an endpoint: the weak-field variables may fail, but the Noether-Sea ledger and maximum-curvature closure must not become arbitrary.
 
 ## Interior Dynamics and Recycling
 

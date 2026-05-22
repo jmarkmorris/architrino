@@ -85,12 +85,12 @@ $$
 \mathcal{N}_{\mathrm{sea}}
 =
 \left(
-\rho_{\text{core}},
+\rho_{\text{NS}},
 n,
 u^i_{\text{sea}},
 Q_{ij},
 \sigma_{ij},
-\nabla\rho_{\text{core}},
+\nabla\rho_{\text{NS}},
 \ldots
 \right).
 $$

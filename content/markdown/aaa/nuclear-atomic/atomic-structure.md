@@ -16,7 +16,7 @@ Atomic structure sits on three coupled layers:
 2. **Residual nuclear layer:** The strong-sector interaction that matters for atoms is the short-range residual coupling between nucleons, including meson-like corridors and over-compression costs near the self-hit threshold.
 3. **Electronic resonance layer:** Atomic orbitals are standing resonance patterns of electron assemblies in the combined nuclear, Noether Sea, and exclusion-volume environment.
 
-The Noether Sea enters this picture as ambient substrate contents, not as the fixed spatial container. Binding and spectral calculations should therefore use the canonical local density $\rho_{\text{core}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)=\rho_{\text{core}}(\mathbf{x},t)/\rho_{\text{core},0}$ on $\Sigma_t$, evaluated against the $\mathbb{U}_{\text{now}}$ state record.
+The Noether Sea enters this picture as ambient substrate contents, not as the fixed spatial container. Binding and spectral calculations should therefore use the canonical local density $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)=\rho_{\text{NS}}(\mathbf{x},t)/\rho_{\text{NS},0}$ on $\Sigma_t$, evaluated against the $\mathbb{U}_{\text{now}}$ state record.
 
 The Noether-Sea transport picture is useful for separating reversible medium response from dissipative resistance. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
 
@@ -43,7 +43,7 @@ $$
 =
 W_\ell *
 \left(
-\rho_{\text{core}},\,
+\rho_{\text{NS}},\,
 n,\,
 \chi_{\text{sea}},\,
 \mathbf{u}_{\text{sea}},\,
@@ -603,7 +603,7 @@ $$
 \Theta_E^{(\ell)}(\mathbf{x},t)
 =
 \left(
-\rho_{\text{core}},\,
+\rho_{\text{NS}},\,
 n,\,
 \chi_{\text{sea}},\,
 \Gamma_N,\,

@@ -1399,7 +1399,7 @@ The reduced closure-label version of the same target keeps only the data needed 
 For a closed ordered frame, use the reduced branch label
 
 $$
-\Lambda_{\text{NC}}
+\Lambda_{\text{NS}}
 =
 \left(
 k_H,k_M,k_L;\
@@ -1786,7 +1786,7 @@ $$
 \mathfrak{f}_A
 =
 \left(
-\Lambda_{\text{NC}},
+\Lambda_{\text{NS}},
 \mathcal{A}_{\mathrm{ax}},
 q_{\mathrm{eff}},
 \mathbf{p}_{\mathrm{eff}},
@@ -1796,7 +1796,7 @@ h_{\mathrm{eff}},
 \mathcal{P}
 \right),
 $$
-where $\Lambda_{\text{NC}}$ is the legacy closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. The effective maps must first close as comparison operations:
+where $\Lambda_{\text{NS}}$ is the legacy closure label, $\mathcal{A}_{\mathrm{ax}}$ is the axial inventory and axial-frame record, $h_{\mathrm{eff}}$ is the observer-level helicity when a propagation direction is present, and $\mathcal{P}$ is the provenance ledger needed to compare branches. The effective maps must first close as comparison operations:
 $$
 C_{\mathrm{eff}}^2
 =
@@ -1832,7 +1832,7 @@ The component action table makes the proof obligation explicit:
 
 | Record component | $C_{\mathrm{eff}}$ | $P_{\mathrm{eff}}$ | $T_{\mathrm{eff}}$ | Combined benchmark |
 | --- | --- | --- | --- | --- |
-| $\Lambda_{\text{NC}}$ | map to the pro/anti-conjugate closure label | reverse the observer-facing orientation chart | reverse phase-flow order in the comparison chart | return an admissible closure label |
+| $\Lambda_{\text{NS}}$ | map to the pro/anti-conjugate closure label | reverse the observer-facing orientation chart | reverse phase-flow order in the comparison chart | return an admissible closure label |
 | $\mathcal{A}_{\mathrm{ax}}$ | swap effective polarity inventory while preserving axial-site admissibility | reflect the axial frame relative to the observer chart | reverse cycle orientation and phase ordering | preserve the allowed axial inventory class |
 | $q_{\mathrm{eff}}$ | $q_{\mathrm{eff}}\mapsto-q_{\mathrm{eff}}$ | unchanged | unchanged | match the antiparticle charge record |
 | $\mathbf{p}_{\mathrm{eff}}$ | unchanged as a charge-conjugation datum | $\mathbf{p}_{\mathrm{eff}}\mapsto-\mathbf{p}_{\mathrm{eff}}$ | $\mathbf{p}_{\mathrm{eff}}\mapsto-\mathbf{p}_{\mathrm{eff}}$ | recover the same mass-shell comparison branch |
@@ -1842,7 +1842,7 @@ The component action table makes the proof obligation explicit:
 | $\mathsf{s}_{\mathrm{sh}}$ | preserve generation shielding class unless the reaction ledger changes it | preserve generation shielding class | preserve generation shielding class | commute with $T_{\mathrm{gen}}$ up to the generation residual |
 | $\mathcal{P}$ | conjugate source and product provenance rows | reverse the observer chart, not the substrate history | compare the reversed effective process with the admissible history record | keep energy, $\mathbf{p}$, $\mathbf{J}$, polarity, and remnant rows balanced |
 
-The local proof target is therefore not just a $4\pi$ lift. It is a lifted nested shell swarm state whose coarse spinor chart admits effective $C_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $T_{\mathrm{eff}}$ operations compatible with weak chirality, charge conjugation, and the generation/mixing ledgers. If no such effective operations can be derived from $\Lambda_{\text{NC}}$, then the ordered-frame route may reproduce a rotation double cover while still failing the fermion symmetry benchmark.
+The local proof target is therefore not just a $4\pi$ lift. It is a lifted nested shell swarm state whose coarse spinor chart admits effective $C_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $T_{\mathrm{eff}}$ operations compatible with weak chirality, charge conjugation, and the generation/mixing ledgers. If no such effective operations can be derived from $\Lambda_{\text{NS}}$, then the ordered-frame route may reproduce a rotation double cover while still failing the fermion symmetry benchmark.
 
 ### Spinor-to-Metric Compatibility Residual
 
@@ -2032,7 +2032,7 @@ $$
 
 subject to the energy, angular-momentum, phase-closure, and root-admissibility equations above. This is the foundation-up version of the quantization question: energy levels are not added as external quantum labels; they are the stable return classes of the delayed nested shell swarm geometry.
 
-When the only question is energy-level closure, the schematic integer-and-root ledger above is enough. When the question is spin, ordered-frame chirality, weak chirality, or any broader quantum-number recovery, the branch must instead be tracked by the reduced legacy label $\Lambda_{\text{NC}}$. That label keeps the integer windings, causal-root ledgers, inter-layer phase-lock data, and candidate chirality branch in one proof object. It does not prove the holonomy or chirality claim by definition; it prevents later quantum-number language from floating free of the swarm closure data that would have to derive it.
+When the only question is energy-level closure, the schematic integer-and-root ledger above is enough. When the question is spin, ordered-frame chirality, weak chirality, or any broader quantum-number recovery, the branch must instead be tracked by the reduced legacy label $\Lambda_{\text{NS}}$. That label keeps the integer windings, causal-root ledgers, inter-layer phase-lock data, and candidate chirality branch in one proof object. It does not prove the holonomy or chirality claim by definition; it prevents later quantum-number language from floating free of the swarm closure data that would have to derive it.
 
 The candidate nested shell swarm closure labels are therefore:
 

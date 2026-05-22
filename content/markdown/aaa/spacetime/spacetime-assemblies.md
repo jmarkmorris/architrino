@@ -16,22 +16,22 @@ In this project framing, pro-Noether swarms are associated with pro-particle ass
 At the assembly level, a useful physical picture is that complementary orientations can also suppress exposed axial circulation by pairing anti-parallel. That gives the Noether Sea a second kind of neutrality beyond net charge cancellation: local pole leakage is mutually plugged, so the composite remains comparatively transparent and non-reactive.
 
 At the continuum-medium level, represent local Noether swarm density with canonical symbols
-$(\rho_{\text{core}}, n)$ as two coupled components:
+$(\rho_{\text{NS}}, n)$ as two coupled components:
 
 $$
-\rho_{\text{core}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) + \rho_{-}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) + \rho_{-}(\mathbf{x},t),
 $$
 $$
-n(\mathbf{x},t)\equiv \frac{\rho_{\text{core}}(\mathbf{x},t)}{\rho_{\text{core},0}},
+n(\mathbf{x},t)\equiv \frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}},
 $$
 
 with a bounded imbalance
 
 $$
-\Delta\rho_{\text{core}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) - \rho_{-}(\mathbf{x},t),
+\Delta\rho_{\text{NS}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) - \rho_{-}(\mathbf{x},t),
 $$
 
-where long-lived spacetime regions require $|\Delta\rho_{\text{core}}|$ to remain below a stability threshold set by the local coupling regime.
+where long-lived spacetime regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime.
 
 This decomposition should not be duplicated in the Noether-Sea ontology page. The [Noether Sea](noether-sea.md) page names the Noether Sea and its total state variables; this chapter owns the pro/anti split and the hypotheses about how those subcomponents couple.
 
@@ -68,7 +68,7 @@ This chapter owns:
 
 - pro-Noether swarm and anti-Noether swarm orientation basis,
 - local density decomposition into $\rho_+$ and $\rho_-$,
-- orientation imbalance $\Delta\rho_{\text{core}}$,
+- orientation imbalance $\Delta\rho_{\text{NS}}$,
 - coupling-regime stability thresholds,
 - the $2+2$ pro/anti cluster hypothesis,
 - and medium-level assembly motifs that could support effective spacetime behavior.

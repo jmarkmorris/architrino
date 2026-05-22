@@ -728,7 +728,7 @@ The provisional branch-row field is `weak_retained_amplitude_handoff`:
 | `status` | `not-computed`, `candidate`, `weak-emitter-ready`, or `failed`; Tier 0 may emit `not-computed` or `candidate`, while `weak-emitter-ready` requires the refinement limit above |
 | `tier_selector` | one of $\mathrm{IMO}$, $\mathrm{IM-}$, or $\mathrm{I--}$ with the corresponding active layer set $\mathcal{I}_{\Lambda_{\mathrm{tier}}}$ |
 | `source_row` | the row's `branch_label`, `z_lambda`, `root_ledger`, `residual_values`, `Delta_k`, `certificate_gates`, and `promotion_boundary` |
-| `weak_inputs` | $R_{\text{rel}}$, $c$, $\sigma_{\text{ax}}$, $\eta_a^{(h)}$, $A_a(\mathbf{x};R_{\text{rel}})$, and the local $\rho_{\text{core}}(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t)$ state used by the weak measure |
+| `weak_inputs` | $R_{\text{rel}}$, $c$, $\sigma_{\text{ax}}$, $\eta_a^{(h)}$, $A_a(\mathbf{x};R_{\text{rel}})$, and the local $\rho_{\text{NS}}(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t)$ state used by the weak measure |
 | `weak_exposure_map` | the explicit $\Pi_{\mathrm{weak}}$, $Q_{\mathrm{weak}}$, retained labels, discarded labels, and weak-exposure leakage diagnostics used for this row |
 | `layer_channels` | one entry per $\ell\in\mathcal{I}_{\Lambda_{\mathrm{tier}}}$ giving $\mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu}(a,\mathbf{x};\Lambda_{\mathrm{br}})$ or a `not-computed` marker with the reason |
 | `phase_handoff` | branch-fixed phase data sufficient to determine $\arg\mathcal{L}_{\ell}^{W,\Lambda}(a,\mathbf{x})$ after quotienting the common phase origin |

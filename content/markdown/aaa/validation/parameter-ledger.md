@@ -48,7 +48,7 @@ as the canonical symbol for the physical field speed, while $v=1$ or $c_f=1$ den
 The following should **not** be treated as free global constants:
 
 - $n(\mathbf{x},t)$,
-- $\rho_{\text{core}}(\mathbf{x},t)$,
+- $\rho_{\text{NS}}(\mathbf{x},t)$,
 - $\Phi_{\text{eff}}(\mathbf{x},t)$,
 - $c_{\text{eff}}(\mathbf{x})$,
 - $\chi_{\text{sea}}(\mathbf{x},t)$,
@@ -135,7 +135,7 @@ Current status:
 
 - $\epsilon=|e|/6$ is treated as a discrete polarity-unit input and an explanatory target, not as a continuous fit.
 - $\kappa$ remains to be assessed because its primitive, derived, or normalization-sensitive status is still open.
-- $\rho_{\text{core},0}$ and related medium-density normalizations remain naturalness risks until energy shielding and cosmological closure are quantified.
+- $\rho_{\text{NS},0}$ and related medium-density normalizations remain naturalness risks until energy shielding and cosmological closure are quantified.
 
 ### Regulator versus physical pulse
 
@@ -175,8 +175,8 @@ These symbols control the handoff from the Euclidean substrate plus Noether Sea 
 
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| C1 | $\rho_{\text{core},0}$ | Constitutive closure target | Open | reference Noether swarm density used to normalize the Noether Sea | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
-| C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether swarm density, $n=\rho_{\text{core}}/\rho_{\text{core},0}$ | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
+| C1 | $\rho_{\text{NS},0}$ | Constitutive closure target | Open | reference Noether swarm density used to normalize the Noether Sea | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
+| C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether swarm density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
 | C3 | $\Omega(\mathbf{x}),\xi(\mathbf{x})$ | Constitutive closure target | Open | clock-channel and ruler-channel response functions in the effective metric subclass | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../spacetime/lorentz-kinematics.md) |
 | C4 | $\Phi_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
 | C5 | $c_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | Noether-Sea dressed assembly-channel propagation speed used for clock/ruler closure and effective-metric comparisons, with $c_{\text{eff}}\to c_f$ in weak homogeneous conditions; separate from photon-channel speed $c_\gamma$ unless Gate A closes that identification | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
@@ -240,7 +240,7 @@ This equation is a normalization-sensitive substrate-to-observer reconstruction,
 
 The constitutive spacetime layer uses
 $$
-\rho_{\text{core}}(\mathbf{x},t)=\rho_{\text{core},0}\,n(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t)=\rho_{\text{NS},0}\,n(\mathbf{x},t),
 $$
 and
 $$
@@ -366,7 +366,7 @@ The current corpus supports the following conservative closure assessment.
 
 - $c_f$ is treated consistently as the substrate propagation speed, even when chapters temporarily write $v=1$.
 - $\epsilon$ is treated consistently as the potential polarity-unit magnitude.
-- $\rho_{\text{core},0}$ is the reference density symbol for the spacetime medium.
+- $\rho_{\text{NS},0}$ is the reference density symbol for the spacetime medium.
 - $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether swarm shape ratio.
 
 ### Still genuinely open

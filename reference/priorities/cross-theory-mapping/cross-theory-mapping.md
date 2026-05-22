@@ -57,7 +57,7 @@ $$
 J_{o'j},
 \mathcal{L}_{E\mathbf{p}\mathbf{J}},
 \mathcal{M}_{\mathrm{sea}}^{ab},
-\rho_{\text{core}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t),
 \chi_{\text{sea}}(\mathbf{x},t),
 \mathcal{D}_{\mathrm{det}},
 \{B_i\},
@@ -65,7 +65,7 @@ J_{o'j},
 \right).
 $$
 
-Here $\Gamma$ is the assembly state, $\mathcal{H}$ is the path-history and causal-wake ledger, $\mathcal{C}_{o'j}$ and $J_{o'j}$ are causal-root and Jacobian records, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger, $\mathcal{M}_{\mathrm{sea}}^{ab}$ is the Noether-Sea response object, $\rho_{\text{core}}(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$ are medium variables, $\mathcal{D}_{\mathrm{det}}$ is the detector-response and reconstruction record when an experimental case depends on reconstructed objects, and $\{B_i\},\mu_*$ are basin and measure objects when quantum or statistical outcomes enter.
+Here $\Gamma$ is the assembly state, $\mathcal{H}$ is the path-history and causal-wake ledger, $\mathcal{C}_{o'j}$ and $J_{o'j}$ are causal-root and Jacobian records, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger, $\mathcal{M}_{\mathrm{sea}}^{ab}$ is the Noether-Sea response object, $\rho_{\text{NS}}(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$ are medium variables, $\mathcal{D}_{\mathrm{det}}$ is the detector-response and reconstruction record when an experimental case depends on reconstructed objects, and $\{B_i\},\mu_*$ are basin and measure objects when quantum or statistical outcomes enter.
 
 For collider cases, the minimum detector-response projection is
 

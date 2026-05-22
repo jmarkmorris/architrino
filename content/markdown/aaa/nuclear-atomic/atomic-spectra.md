@@ -40,16 +40,16 @@ $$
 
 Atomic spectra then consume $(n,\ell,m)$ as envelope labels for energy gaps and line strengths. The spectral burden remains the native extraction of the electron-envelope basin, its radial energy functional, and the local clock/rate conversion; the angular lemma does not by itself derive the Rydberg constant or spin-sensitive splittings.
 
-The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether swarm density $\rho_{\text{core}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, the Noether-Sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, and the local clock/rate response encoded by $\Gamma_N(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
+The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether swarm density $\rho_{\text{NS}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, the Noether-Sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, and the local clock/rate response encoded by $\Gamma_N(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
 
 Spectral lines should then be recovered as transitions between effective envelope basins:
 
 $$
 h\nu_{a\to b}
 =
-E_{\text{env}}(a;\mathcal W_{\text{nuc}},\rho_{\text{core}},n,\chi_{\text{sea}})
+E_{\text{env}}(a;\mathcal W_{\text{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}})
 -
-E_{\text{env}}(b;\mathcal W_{\text{nuc}},\rho_{\text{core}},n,\chi_{\text{sea}}),
+E_{\text{env}}(b;\mathcal W_{\text{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}}),
 $$
 
 with the local clock/rate conversion applied before comparing to observer frequencies. This keeps the atomic spectrum tied to geometry and causal-wake closure without claiming that the standard orbital postulate has already been derived.
@@ -80,7 +80,7 @@ E_{\text{env}}^{(\ell)}(b),
 \right),
 $$
 
-with $E_{\text{env}}^{(\ell)}$ still depending on $\mathcal W_{\text{nuc}}$, $\rho_{\text{core}}$, $n$, and $\chi_{\text{sea}}$ in the same declared window. A schematic observer-frequency comparison can then be written as
+with $E_{\text{env}}^{(\ell)}$ still depending on $\mathcal W_{\text{nuc}}$, $\rho_{\text{NS}}$, $n$, and $\chi_{\text{sea}}$ in the same declared window. A schematic observer-frequency comparison can then be written as
 
 $$
 \nu_{a\to b}^{\mathrm{obs},(\ell)}
@@ -245,7 +245,7 @@ E_{\mathrm{env}}
 \!\left(
 \mathcal B_e+\delta\mathcal B_e;
 \mathcal W_{\text{nuc}},
-\rho_{\text{core}},
+\rho_{\text{NS}},
 n,
 \chi_{\text{sea}}
 \right)
@@ -254,7 +254,7 @@ E_{\mathrm{env}}
 \!\left(
 \mathcal B_e;
 \mathcal W_{\text{nuc}},
-\rho_{\text{core}},
+\rho_{\text{NS}},
 n,
 \chi_{\text{sea}}
 \right)

@@ -83,7 +83,7 @@ In this framework, the candidate substrate-level quantities are:
 ### Category C: Assembly Geometry (Emergent but Calculable)
 - **Nested shell swarm radius ratios** (inner/middle/outer scales)
 - **Maximum curvature binary radius** $r_{\text{max-curv}}$ (where $v \gg c_f$)
-- **Reference Noether swarm density** $\rho_{\text{core},0}$ (the normalization scale for $n(\mathbf{x},t)$)
+- **Reference Noether swarm density** $\rho_{\text{NS},0}$ (the normalization scale for $n(\mathbf{x},t)$)
 
 **Everything else** (masses, coupling constants, cosmological parameters) should be **derivable** from these via:
 - Self-hit dynamics (non-Markovian evolution)
@@ -154,7 +154,7 @@ The speed of light $c$ is **not fundamental**. It is the low-gradient operationa
 $$
 c_\gamma(\mathbf{x},t)=\frac{c_f}{\chi_\gamma(\mathbf{x},t)},
 \qquad
-\chi_\gamma(\mathbf{x},t)=f_\gamma\!\left(\rho_{\text{core}}(\mathbf{x},t),n(\mathbf{x},t),\text{Noether-Sea state}\right)
+\chi_\gamma(\mathbf{x},t)=f_\gamma\!\left(\rho_{\text{NS}}(\mathbf{x},t),n(\mathbf{x},t),\text{Noether-Sea state}\right)
 $$
 
 In the low-energy limit (flat spacetime, weak Noether-Sea gradients):

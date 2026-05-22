@@ -13,13 +13,13 @@ Atomic spectra describe effective electron-assembly envelope basins around a nuc
 $$
 \Delta E_{a\to b}^{\mathrm{env}}
 =
-E_{\mathrm{env}}\!\left(a;\mathcal W_{\mathrm{nuc}},\rho_{\text{core}},n,\chi_{\text{sea}}\right)
+E_{\mathrm{env}}\!\left(a;\mathcal W_{\mathrm{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}}\right)
 -
-E_{\mathrm{env}}\!\left(b;\mathcal W_{\mathrm{nuc}},\rho_{\text{core}},n,\chi_{\text{sea}}\right)
+E_{\mathrm{env}}\!\left(b;\mathcal W_{\mathrm{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}}\right)
 >0.
 $$
 
-Here $\mathcal W_{\mathrm{nuc}}$ is the effective nuclear causal-wake envelope, $\rho_{\text{core}}(\mathbf{x},t)$ is the physical Noether swarm density, $n(\mathbf{x},t)$ is the normalized Noether swarm density, and $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether-Sea delay factor. The gap is an effective atomic quantity, not a proof that the underlying Noether swarm ledgers of the nucleus or electron have already been derived.
+Here $\mathcal W_{\mathrm{nuc}}$ is the effective nuclear causal-wake envelope, $\rho_{\text{NS}}(\mathbf{x},t)$ is the physical Noether swarm density, $n(\mathbf{x},t)$ is the normalized Noether swarm density, and $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether-Sea delay factor. The gap is an effective atomic quantity, not a proof that the underlying Noether swarm ledgers of the nucleus or electron have already been derived.
 
 The observer-level line frequency is recovered only after local clock/rate conversion:
 
@@ -113,7 +113,7 @@ $$
 \mathcal S_{\gamma}^{\mathrm{at}}
 \!\left(
 \Gamma_a,\Gamma_b,\mathcal W_{\mathrm{nuc}},
-\rho_{\text{core}},n,\chi_{\text{sea}},J_{\mathrm{loc}}
+\rho_{\text{NS}},n,\chi_{\text{sea}},J_{\mathrm{loc}}
 \right)
 \ge
 \mathcal S_{\gamma,*},
@@ -191,7 +191,7 @@ The minimum event record is:
 | Field | Required content |
 | --- | --- |
 | Atomic state | Pre/post atomic envelope basins $a,b$, nuclear causal-wake envelope $\mathcal W_{\mathrm{nuc}}$, and closure status of the orbital labels used |
-| Local Noether-Sea state | $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy if relevant, and local causal-root/Jacobian data |
+| Local Noether-Sea state | $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy if relevant, and local causal-root/Jacobian data |
 | Transition gap | $\Delta E_{a\to b}^{\mathrm{env}}$ and the clock/rate conversion used for observer comparison |
 | Channel decision | Planar-mode gate status, non-radiative alternatives, and whether $E_{\gamma,\min}$ is active in the chosen model |
 | Photon output or capture | $E_\gamma$, $\mathbf p_\gamma$, direction, phase frequency, local photon-channel speed $c_\gamma$, and Gate A null-branch status |

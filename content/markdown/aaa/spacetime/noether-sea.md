@@ -6,7 +6,7 @@ The Noether Sea is not the substrate. The substrate is [absolute timespace](../f
 
 This is why the reader path introduces Noether swarm scaffold and geometry before observer-level spacetime. At the roadmap level, the physical Noether swarm density can be read as a coarse-grained population field,
 $$
-\rho_{\text{core}}(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf{x},t)
 \sim
 \sum_c W_\ell(\mathbf{x}-\mathbf{X}_c(t)),
 $$
@@ -42,7 +42,7 @@ The void does not curve, expand, contract, or carry energy. The Noether Sea, as 
 
 At a fixed coordinate point $\mathbf{x}$ and absolute time $t$, the Noether-Sea state may change:
 $$
-\rho_{\text{core}}(\mathbf{x},t),\quad
+\rho_{\text{NS}}(\mathbf{x},t),\quad
 \Sigma_{\text{medium}}(\mathbf{x},t),\quad
 \mathbf{u}_{\text{medium}}(\mathbf{x},t),
 $$
@@ -81,14 +81,14 @@ The detailed pro/anti basis, density split, imbalance stability, local coupling 
 The spacetime branch uses the following canonical total-density symbols:
 
 $$
-\rho_{\text{core}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t),
 $$
 
 with normalized density
 
 $$
 n(\mathbf{x},t)
-=\frac{\rho_{\text{core}}(\mathbf{x},t)}{\rho_{\text{core},0}}.
+=\frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}}.
 $$
 
 The Noether-Sea delay factor is written
@@ -115,7 +115,7 @@ Here $\Omega_N$ is a representative local Noether-Sea swarm cadence and $C_N$ is
 
 When a calculation needs pro/anti subcomponents, orientation imbalance, or coupling-regime stability thresholds, use [Spacetime Assemblies](spacetime-assemblies.md).
 
-Older parameter-ledger language may denote the baseline ambient Noether-Sea density by $\rho_{vac}$. In spacetime chapters, the preferred medium-density notation is $\rho_{\text{core},0}$ for the reference density and $\rho_{\text{core}}(\mathbf{x},t)$ for the local density. When both notations appear, read $\rho_{vac}$ as the baseline ambient density parameter, not as a separate kind of substance.
+Older parameter-ledger language may denote the baseline ambient Noether-Sea density by $\rho_{vac}$. In spacetime chapters, the preferred medium-density notation is $\rho_{\text{NS},0}$ for the reference density and $\rho_{\text{NS}}(\mathbf{x},t)$ for the local density. When both notations appear, read $\rho_{vac}$ as the baseline ambient density parameter, not as a separate kind of substance.
 
 ## Medium Properties
 
@@ -123,8 +123,8 @@ The Noether Sea is characterized by collective variables, not by a new point-par
 
 Important medium properties include:
 
-- **Core density:** $\rho_{\text{core}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$.
-- **Energy density:** approximately $\rho_{\text{core}}E_{\text{core}}$ at the coarse level, with corrections from stress, excitation, and coupling.
+- **Core density:** $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$.
+- **Energy density:** approximately $\rho_{\text{NS}}E_{\text{core}}$ at the coarse level, with corrections from stress, excitation, and coupling.
 - **Orientation and strain:** local ordering of core axes and deformation away from equilibrium.
 - **Flow or drift:** collective motion of the Noether Sea relative to the absolute frame.
 - **Compliance:** how strongly the Noether Sea responds to compression, shear, polarization, and alignment loading.
@@ -136,9 +136,9 @@ These are medium variables. They are not properties of the Euclidean void.
 
 The first continuum obligation for the Noether Sea is local bookkeeping of conserved or slowly relaxing coarse variables. For a material region $V\subset\Sigma_t$, a density variable is mature only when its integral changes by boundary flux, declared source, and residual:
 $$
-\frac{d}{dt}\int_V \rho_{\text{core}}\,dV
+\frac{d}{dt}\int_V \rho_{\text{NS}}\,dV
 +
-\int_{\partial V}\rho_{\text{core}}\mathbf{u}_{\mathrm{sea}}\cdot\hat{\mathbf n}\,dA
+\int_{\partial V}\rho_{\text{NS}}\mathbf{u}_{\mathrm{sea}}\cdot\hat{\mathbf n}\,dA
 =
 \int_V S_{\rho}\,dV
 +
@@ -146,8 +146,8 @@ R_{\rho,V}.
 $$
 Equivalently, on resolved windows,
 $$
-\partial_t\rho_{\text{core}}
-+\nabla\cdot(\rho_{\text{core}}\mathbf{u}_{\mathrm{sea}})
+\partial_t\rho_{\text{NS}}
++\nabla\cdot(\rho_{\text{NS}}\mathbf{u}_{\mathrm{sea}})
 =
 S_{\rho}
 +r_{\rho}.
@@ -161,7 +161,7 @@ $$
 \mathcal{N}_{\mathrm{sea}}
 =
 \left(
-\rho_{\text{core}},
+\rho_{\text{NS}},
 \mathbf{u}_{\mathrm{sea}},
 e_{\mathrm{sea}},
 \boldsymbol\theta_{\mathrm{sea}},

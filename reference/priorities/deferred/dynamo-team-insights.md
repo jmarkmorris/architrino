@@ -105,7 +105,7 @@ The fixed Euclidean void plus dynamical Noether Sea enables a clean separation:
 
 One construction is to define a moving-frame field $e^a{}_\mu(x)$ whose orientation and norm are functionals of explicitly defined, measurable assembly fields:
 
-- tri-binary density $\rho_{\text{core}}(\mathbf{x},t)$
+- tri-binary density $\rho_{\text{NS}}(\mathbf{x},t)$
 - flow velocity $u^\alpha_{\text{core}}$
 - orientation fields
 - internal tri-binary state (radii, frequencies)
@@ -122,14 +122,14 @@ $$
 e^0{}_0(\mathbf{x}) \approx 1 + \alpha\,\Phi_{\text{core}}(\mathbf{x}),\qquad
 e^i{}_j(\mathbf{x}) \approx \delta^i{}_j + \beta\,\Psi^i{}_j(\mathbf{x}),
 $$
-where $\Phi_{\text{core}}$ is a scalar functional of $\rho_{\text{core}}$ and $\Psi^i{}_j$ encodes anisotropic orientation of neutral axes. Even with provisional $\alpha,\beta$, this gives a concrete metric to test against the Newtonian limit and the sign and order of light bending.
+where $\Phi_{\text{core}}$ is a scalar functional of $\rho_{\text{NS}}$ and $\Psi^i{}_j$ encodes anisotropic orientation of neutral axes. Even with provisional $\alpha,\beta$, this gives a concrete metric to test against the Newtonian limit and the sign and order of light bending.
 
 The emergent curvature here is the curvature of the frame bundle, not of the void. Operational observers measure geodesics of $g_{\mu\nu}^{\text{eff}}$, not geodesics of the substrate itself.
 
 One useful scale-separation criterion is
 
-- define $\epsilon_{\text{geo}} \sim \ell_{\text{core}} / L_{\text{curv}}$, comparing core scale to curvature radius inferred from $\rho_{\text{core}}$,
-- for $\epsilon_{\text{geo}} \ll 1$ and weak time dependence of $\rho_{\text{core}}$, the effective connection from $e^a{}_\mu[\rho_{\text{core}}, u_{\text{core}}]$ should approximate a GR connection to $O(\epsilon_{\text{geo}}^2)$,
+- define $\epsilon_{\text{geo}} \sim \ell_{\text{core}} / L_{\text{curv}}$, comparing core scale to curvature radius inferred from $\rho_{\text{NS}}$,
+- for $\epsilon_{\text{geo}} \ll 1$ and weak time dependence of $\rho_{\text{NS}}$, the effective connection from $e^a{}_\mu[\rho_{\text{NS}}, u_{\text{core}}]$ should approximate a GR connection to $O(\epsilon_{\text{geo}}^2)$,
 - for $\epsilon_{\text{geo}} \sim 1$, especially near black-hole cores, sharp gradients, or Planck-alignment layers, refractive or anisotropic deviations should be expected.
 
 This is a refractive-gravity picture: geodesics are Fermat paths in an inhomogeneous medium.

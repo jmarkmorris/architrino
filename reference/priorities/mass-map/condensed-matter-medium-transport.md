@@ -14,7 +14,7 @@ $$
 \mathcal{R}_{\text{tr}}\!\left(
 \mathbf{V}_{\text{cm}},
 \mathbf{a}_{\text{cm}},
-\rho_{\text{core}},
+\rho_{\text{NS}},
 \chi_{\text{sea}},
 \mathcal{M}_{\text{sea}}^{ab},
 \Delta_{\mathbf{k}}

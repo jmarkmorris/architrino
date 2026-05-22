@@ -1044,10 +1044,10 @@ Let us formalize your five points into a rigorous geometric framework. I will co
 If the assembly is at absolute rest ($v_d = 0$) in deep, unperturbed space, you postulate that the exclusion zone is spherical and the architrino paths form a highly symmetric, non-planar "scramble" where antipodal symmetry is strictly maintained:
 $$\mathbf{x}_{a,-}(t) = -\mathbf{x}_{a,+}(t) \quad \forall a \in \{1,2,3\}$$
 
-To prevent direct collisions without restricting the motion to great circles, the trajectories must lie on a 3-torus $T^3$ embedded in the 3-sphere $S^3$, or execute a spherical Lissajous-like flow. Let the time-averaged spatial density distribution of the 6 architrinos be $\langle \rho_{\text{core}}(\mathbf{x}) \rangle$.
+To prevent direct collisions without restricting the motion to great circles, the trajectories must lie on a 3-torus $T^3$ embedded in the 3-sphere $S^3$, or execute a spherical Lissajous-like flow. Let the time-averaged spatial density distribution of the 6 architrinos be $\langle \rho_{\text{NS}}(\mathbf{x}) \rangle$.
 
 Under perfect spherical symmetry, the quadrupole and higher multipole moments of the assembly vanish under time-averaging:
-$$\langle Q_{ij} \rangle = \int \langle \rho_{\text{core}}(\mathbf{x}) \rangle \left(3x_i x_j - r^2 \delta_{ij}\right) d^3x = 0$$
+$$\langle Q_{ij} \rangle = \int \langle \rho_{\text{NS}}(\mathbf{x}) \rangle \left(3x_i x_j - r^2 \delta_{ij}\right) d^3x = 0$$
 
 For an observer composed of these assemblies, the emergent spatial metric $g_{ij}^{\text{eff}}$ is derived from the refractive slowing of the potential propagation through this medium. Because the time-averaged distribution is perfectly isotropic, the vielbein $e^a_i$ is diagonal and isotropic:
 $$e^a_i(\mathbf{x}) = \chi_{\text{sea}}(\mathbf{x}) \delta^a_i$$

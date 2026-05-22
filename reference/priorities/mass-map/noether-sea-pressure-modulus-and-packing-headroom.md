@@ -87,7 +87,7 @@ $$
 n_{\max,X}^{\mathrm{sf}}
 =
 \frac{\nu_{\mathrm{pack},0}}
-{\rho_{\text{core},0}V_{\mathrm{cell},X}^{\mathrm{sf}}}
+{\rho_{\text{NS},0}V_{\mathrm{cell},X}^{\mathrm{sf}}}
 $$
 
 when the replay treats the support-function lattice cell as the working equality model. If the support-function result is used only as an upper bound, then the same equation gives an upper-bound ceiling and the corresponding $s_n$ is an upper-bound headroom.
@@ -100,7 +100,7 @@ s_{n,X}^{\mathrm{sf}}
 =
 1-\frac{n_X}{n_{\max,X}^{\mathrm{sf}}}
 =
-1-\frac{\rho_{\text{core},X}V_{\mathrm{cell},X}^{\mathrm{sf}}}
+1-\frac{\rho_{\text{NS},X}V_{\mathrm{cell},X}^{\mathrm{sf}}}
 {\nu_{\mathrm{pack},0}}.
 }
 $$
@@ -285,7 +285,7 @@ $$
 \boxed{
 K_{\mathrm{env},X}
 =
-\rho_{\text{core},0}n_X\,k_{\mathrm{env},X}^{(V)}.
+\rho_{\text{NS},0}n_X\,k_{\mathrm{env},X}^{(V)}.
 }
 $$
 
@@ -502,7 +502,7 @@ k_R
 \left.
 \frac{\partial^2E_{\mathrm{env}}}
 {\partial(\ln R_{\mathrm{excl}})^2}
-\right|_{\Lambda_{\mathrm{NC}}}.
+\right|_{\Lambda_{\mathrm{NS}}}.
 $$
 
 Since $\delta\ln n=-3\delta\ln R_{\mathrm{excl}}$ in the spherical fixed-packing approximation,
@@ -511,7 +511,7 @@ $$
 \boxed{
 K_{\mathrm{pack}}
 \approx
-\frac{\rho_{\text{core},0}n}{9}k_R
+\frac{\rho_{\text{NS},0}n}{9}k_R
 +K_{\mathrm{contact}}
 +K_{\mathrm{wake}}^{\mathrm{rev}}.
 }
@@ -523,7 +523,7 @@ $$
 \boxed{
 K_{\mathrm{pack}}
 \sim
-\frac{\eta_R}{9}\rho_{\text{core},0}nE_O
+\frac{\eta_R}{9}\rho_{\text{NS},0}nE_O
 }
 $$
 
@@ -554,9 +554,9 @@ For each material-pressure row, add or derive the following branch-side quantiti
 | Quantity | Formula or source | Replay meaning |
 | --- | --- | --- |
 | $V_{\mathrm{cell},X}^{\mathrm{sf}}$ | support-function lattice-cell record | computes the declared packing ceiling |
-| $n_{\max,X}^{\mathrm{sf}}$ | $\nu_{\mathrm{pack},0}/(\rho_{\text{core},0}V_{\mathrm{cell},X}^{\mathrm{sf}})$ | normalized maximum density under the equality model |
-| $s_{n,X}^{\mathrm{sf}}$ | $1-\rho_{\text{core},X}V_{\mathrm{cell},X}^{\mathrm{sf}}/\nu_{\mathrm{pack},0}$ | density-channel headroom |
-| $K_{\mathrm{env},X}$ | $\rho_{\text{core},0}n_X(\mathbf{c}_X^TH_{\mathrm{env},X}^{-1}\mathbf{c}_X)^{-1}$ | branch envelope stiffness |
+| $n_{\max,X}^{\mathrm{sf}}$ | $\nu_{\mathrm{pack},0}/(\rho_{\text{NS},0}V_{\mathrm{cell},X}^{\mathrm{sf}})$ | normalized maximum density under the equality model |
+| $s_{n,X}^{\mathrm{sf}}$ | $1-\rho_{\text{NS},X}V_{\mathrm{cell},X}^{\mathrm{sf}}/\nu_{\mathrm{pack},0}$ | density-channel headroom |
+| $K_{\mathrm{env},X}$ | $\rho_{\text{NS},0}n_X(\mathbf{c}_X^TH_{\mathrm{env},X}^{-1}\mathbf{c}_X)^{-1}$ | branch envelope stiffness |
 | $K_{\mathrm{contact},X}$ | contact-network stiffness sum | reversible dense-contact stiffness |
 | $K_{\mathrm{pack},X}^{\mathrm{sf}}$ | $K_{\mathrm{env},X}+K_{\mathrm{contact},X}+K_{\mathrm{wake},X}^{\mathrm{rev}}$ | density modulus entering pressure response |
 | $K_{\text{sea},X}$ | $\kappa_{n,X}K_{\mathrm{pack},X}^{\mathrm{sf}}$ | pressure packet scale after $\kappa_n$ is fixed |

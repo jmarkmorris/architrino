@@ -16,7 +16,7 @@ The bridge is therefore constitutive rather than ontological. A successful metri
 - **Noether Sea**: The [Noether Sea](noether-sea.md), a pervasive population of coupled pro/anti Noether swarms. The bridge term *spacetime medium* is used when translating toward effective spacetime language.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: Complete-state bookkeeping on the absolute-time slice, carrying:
   - The full architrino microstate $S(t)$,
-  - The instantaneous state of the Noether Sea (density $\rho_{\text{core}}(\mathbf{x},t)$, alignment, stress),
+  - The instantaneous state of the Noether Sea (density $\rho_{\text{NS}}(\mathbf{x},t)$, alignment, stress),
   - The effective potential field $\Phi_{\text{eff}}(\mathbf{x},t)$ and its gradients.
 
 From this bookkeeping perspective, there is only:
@@ -28,7 +28,7 @@ From this bookkeeping perspective, there is only:
 Use the following symbols consistently across spacetime chapters:
 
 - $n(\mathbf{x},t)$: normalized Noether swarm density.
-- $\rho_{\text{core}}(\mathbf{x},t)=\rho_{\text{core},0}\,n(\mathbf{x},t)$: physical Noether swarm density.
+- $\rho_{\text{NS}}(\mathbf{x},t)=\rho_{\text{NS},0}\,n(\mathbf{x},t)$: physical Noether swarm density.
 - $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$: Noether-Sea delay factor.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field metric comparisons.
 - $\Phi_{\text{eff}}(\mathbf{x},t)$: constitutive potential inferred from the clock channel.
@@ -597,7 +597,7 @@ A flat-space refraction analogy is therefore useful only when it is kept at the 
 The core task of this document will be to:
 
 1. Specify the functional dependence of $g^{\text{eff}}_{\mu\nu}(x)$ on:
-   - $n(x)$ (equivalently $\rho_{\text{core}}(x)$),
+   - $n(x)$ (equivalently $\rho_{\text{NS}}(x)$),
    - Stress/strain of the Noether Sea,
    - Potential $\Phi_{\text{eff}}(x)$ from matter assemblies.
 2. Show that in the weak-field regime this reproduces the standard GR metric (e.g. Schwarzschild) to PPN accuracy:

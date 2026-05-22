@@ -206,7 +206,7 @@ $$
 =
 \left(
 h_{ij},
-\rho_{\text{core}},
+\rho_{\text{NS}},
 n,
 \chi_{\text{sea}},
 \sigma^{ab}_{\text{sea}},

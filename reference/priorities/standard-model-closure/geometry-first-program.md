@@ -180,12 +180,12 @@ $$
 \int_{\Sigma_t}
 f(a,\mathbf{x})\,
 \eta_a^{(h)}
-\rho_{\text{core}}(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf{x},t)
 \chi_{\text{sea}}(\mathbf{x},t)
 A_a(\mathbf{x};R_{\text{rel}})
 \,dV.
 $$
-Here $\eta_a^{(h)}$ is the finite-state weak-exposure score already used by the weak-sector packet, $\rho_{\text{core}}$ weights available Noether swarm density, $\chi_{\text{sea}}$ weights Noether-Sea delay, and $A_a$ is a provisional polar-site aperture profile localized around the polar-site direction $\hat{\mathbf n}_a(R_{\text{rel}})$. The normalizer $Z_h$ is fixed by $\int 1\,d\mu_W^{(h)}=1$ on the selected branch.
+Here $\eta_a^{(h)}$ is the finite-state weak-exposure score already used by the weak-sector packet, $\rho_{\text{NS}}$ weights available Noether swarm density, $\chi_{\text{sea}}$ weights Noether-Sea delay, and $A_a$ is a provisional polar-site aperture profile localized around the polar-site direction $\hat{\mathbf n}_a(R_{\text{rel}})$. The normalizer $Z_h$ is fixed by $\int 1\,d\mu_W^{(h)}=1$ on the selected branch.
 
 This measure is the first chirality selector. The weak `V-A` gate is not a separate rule if
 $$
@@ -318,7 +318,7 @@ $$
 =
 \sum_{e\subset\Gamma}\int_e
 \left[
-\sigma_{\mathrm{eff}}(Q_e;\rho_{\text{core}},\chi_{\text{sea}})
+\sigma_{\mathrm{eff}}(Q_e;\rho_{\text{NS}},\chi_{\text{sea}})
 +\frac{B}{2}\|\nabla_s\hat{\mathbf t}\|^2
 +\frac{K_s}{2}\|D_s\Theta\|_F^2
 \right]ds
@@ -335,7 +335,7 @@ $$
 \int_{D_a}
 \left[
 \frac{K_\perp}{2}\|\nabla_\perp\Theta_Q\|_F^2
-+V_{\mathrm{exc}}(\Theta_Q;Q,\rho_{\text{core}},\chi_{\text{sea}})
++V_{\mathrm{exc}}(\Theta_Q;Q,\rho_{\text{NS}},\chi_{\text{sea}})
 \right]d^2y.
 $$
 The first calculation is the one-tube ansatz
@@ -385,7 +385,7 @@ A_{uj}^{(h)}
 \sum_{a\in S}
 \int_{\Sigma_t}
 \eta_a^{(h)}
-\rho_{\text{core}}(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf{x},t)
 \chi_{\text{sea}}(\mathbf{x},t)
 A_a(\mathbf{x};R_{\text{rel}})
 B_{\Lambda_j}^*(\mathbf{x})B_u^W(\mathbf{x})
@@ -412,7 +412,7 @@ K_{u\Lambda}^{(h)}(a)
 \equiv
 \int_{\Sigma_t}
 \eta_a^{(h)}
-\rho_{\text{core}}(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf{x},t)
 \chi_{\text{sea}}(\mathbf{x},t)
 A_a(\mathbf{x};R_{\text{rel}})
 B_{\Lambda}^*(\mathbf{x})B_u^W(\mathbf{x})
@@ -526,7 +526,7 @@ d\nu_W^{(L)}(\mathbf{x})
 \frac{1}{Z_L}
 \sum_{a\in S}
 \eta_a^{(L)}
-\rho_{\text{core}}(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf{x},t)
 \chi_{\text{sea}}(\mathbf{x},t)
 A_a(\mathbf{x};R_{\text{rel}})
 \,dV.

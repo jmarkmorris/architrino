@@ -79,7 +79,7 @@ $$
 }
 $$
 
-This condition says that the iron-rich metallic branch becomes relatively cheaper as normalized Noether swarm density $n=\rho_{\text{core}}/\rho_{\text{core},0}$ rises. It does not say that $n$ creates iron.
+This condition says that the iron-rich metallic branch becomes relatively cheaper as normalized Noether swarm density $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ rises. It does not say that $n$ creates iron.
 
 ## Sufficient Sign Condition
 
@@ -300,7 +300,7 @@ In branch-normalized units the reference constants are fixed by the same-level p
 $$
 \widetilde V_{\mathrm{cell},X}^{\mathrm{sf}}
 =
-\rho_{\text{core},0}V_{\mathrm{cell},X}^{\mathrm{sf}},
+\rho_{\text{NS},0}V_{\mathrm{cell},X}^{\mathrm{sf}},
 \qquad
 \nu_{\mathrm{pack},0}=1,
 \qquad

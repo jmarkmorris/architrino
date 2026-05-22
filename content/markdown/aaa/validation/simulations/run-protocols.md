@@ -105,7 +105,7 @@ All simulations integrate dynamics in the absolute Euclidean frame:
 Every run must instantiate $\mathbb{U}_{\text{now}}$ sensors:
 - $\mathbb{U}_{\text{now}}$ grid definition: chart points/worldlines, spacing, bounds, boundary conditions
 - Logged channels (minimum): $\Phi$, $\nabla\Phi$
-- Optional: Noether-Sea state variables (for example, $\rho_{\text{core}}$ and alignment metrics)
+- Optional: Noether-Sea state variables (for example, $\rho_{\text{NS}}$ and alignment metrics)
 - Provenance tables: `receiver_id`, $t$, `emitter_id`, $t_{\text{emit}}$, `contribution_strength` when feasible
 
 ### Causal wake surface bookkeeping requirement
