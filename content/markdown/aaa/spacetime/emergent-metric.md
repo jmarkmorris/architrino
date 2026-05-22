@@ -28,7 +28,7 @@ From this bookkeeping perspective, there is only:
 Use the following symbols consistently across spacetime chapters:
 
 - $n(\mathbf{x},t)$: normalized Noether swarm density.
-- $\rho_{\text{core}}(\mathbf{x},t)=\rho_{\text{core},0}\,n(\mathbf{x},t)$: physical core density.
+- $\rho_{\text{core}}(\mathbf{x},t)=\rho_{\text{core},0}\,n(\mathbf{x},t)$: physical Noether swarm density.
 - $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$: Noether-Sea delay factor.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field metric comparisons.
 - $\Phi_{\text{eff}}(\mathbf{x},t)$: constitutive potential inferred from the clock channel.

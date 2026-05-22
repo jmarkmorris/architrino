@@ -50,10 +50,10 @@ Define a provisional weak-exposure functional
 $$
 \mathcal{E}_W
 =
-\mathcal{E}_W(R_{\text{rel}},c,\sigma_{\text{ax}},\Lambda_{\text{core}},\rho_{\text{core}},\chi_{\text{sea}}),
+\mathcal{E}_W(R_{\text{rel}},c,\sigma_{\text{ax}},\Lambda_{\text{NC}},\rho_{\text{core}},\chi_{\text{sea}}),
 $$
 
-where $c\in\{H,M,L\}$ labels the exceptional-axis sector, $\sigma_{\text{ax}}$ records the axial inventory, and $\Lambda_{\text{core}}$ records the Noether swarm branch label. The weak `V-A` gate passes only if $\mathcal{E}_W$ exposes the charged-current coupling domain for left-handed channels while suppressing right-handed charged-current coupling in the validated regime.
+where $c\in\{H,M,L\}$ labels the exceptional-axis sector, $\sigma_{\text{ax}}$ records the axial inventory, and $\Lambda_{\text{NC}}$ records the reduced nested shell swarm closure label. The weak `V-A` gate passes only if $\mathcal{E}_W$ exposes the charged-current coupling domain for left-handed channels while suppressing right-handed charged-current coupling in the validated regime.
 
 ## Gauge Compatibility Gate
 

@@ -1975,7 +1975,7 @@ The spacetime and observer-inference chapters may convert this packet into lapse
 
 ## Observables and Diagnostics (Summary)
 
-- Legacy core-symbol invariants: $R_{\text{core}}$, $\omega_{\text{core}}$, phase offsets.
+- Compatibility scale invariants: $R_{\text{core}}$, $\omega_{\text{core}}$, phase offsets.
 - Ladder records: $R_{\text{out}}(t)$, $\omega_{\text{out}}(t)$, plateau stability.
 - Geometry records: anisotropy ratio $A = R_\parallel/R_\perp$, forward vs backward delay ratio.
 - Orientation records: inter-plane angles, precession cone angle.
