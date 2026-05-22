@@ -1,6 +1,6 @@
 # Bounded Speed Factor Finite-Mode Branch System
 
-Promotion status: `priority-only`. This packet refines the finite-mode solver row of [bounded-speed-factor-executable-solver-protocol.md](bounded-speed-factor-executable-solver-protocol.md) into a single algebraic branch system for the bounded speed factor same-level tri-binary model. It is the executable finite-mode version of the coupled live ledger in [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), with root-sheet derivatives from [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md), second sheet envelopes from [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md), support-radius rows from [hybrid-support-radius-functional.md](../nested-shell-swarm/hybrid-support-radius-functional.md), variational rows from [bounded-speed-factor-variational-noether-closure.md](bounded-speed-factor-variational-noether-closure.md), self-hit exchange rows from [bounded-speed-factor-self-hit-exchange-closure.md](bounded-speed-factor-self-hit-exchange-closure.md), branch-search reporting from [bounded-speed-factor-branch-search-certificate.md](bounded-speed-factor-branch-search-certificate.md), gauge reduction from [bounded-speed-factor-symmetry-gauge-reduction.md](bounded-speed-factor-symmetry-gauge-reduction.md), Krawczyk decisions from [bounded-speed-factor-branch-krawczyk-decision-theorem.md](bounded-speed-factor-branch-krawczyk-decision-theorem.md), and retention status from [bounded-speed-factor-master-retention-theorem.md](bounded-speed-factor-master-retention-theorem.md).
+Promotion status: `priority-only`. This packet refines the finite-mode solver row of [bounded-speed-factor-executable-solver-protocol.md](bounded-speed-factor-executable-solver-protocol.md) into a single algebraic branch system for the bounded speed factor same-level tri-binary model. It is the executable finite-mode version of the coupled live ledger in [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), with root-sheet derivatives from [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md), second sheet envelopes from [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md), radial support rows from [nested-shell-swarm-radial-support-functional.md](../nested-shell-swarm/nested-shell-swarm-radial-support-functional.md), variational rows from [bounded-speed-factor-variational-noether-closure.md](bounded-speed-factor-variational-noether-closure.md), self-hit exchange rows from [bounded-speed-factor-self-hit-exchange-closure.md](bounded-speed-factor-self-hit-exchange-closure.md), branch-search reporting from [bounded-speed-factor-branch-search-certificate.md](bounded-speed-factor-branch-search-certificate.md), gauge reduction from [bounded-speed-factor-symmetry-gauge-reduction.md](bounded-speed-factor-symmetry-gauge-reduction.md), Krawczyk decisions from [bounded-speed-factor-branch-krawczyk-decision-theorem.md](bounded-speed-factor-branch-krawczyk-decision-theorem.md), and retention status from [bounded-speed-factor-master-retention-theorem.md](bounded-speed-factor-master-retention-theorem.md).
 
 It does not retain a branch. It states the finite-mode unknown vector, residual rows, dimension count, gauge handling, tail split, solver artifact schema, and first-failure statuses required before any numerical bounded speed factor run can be read as a branch candidate rather than as a diagnostic descent.
 
@@ -8,7 +8,7 @@ It does not retain a branch. It states the finite-mode unknown vector, residual 
 
 ## 1. Finite Chart And Unknown Vector
 
-Fix one branch class, one source-pair policy, one same-source policy, one support-radius convention, one period or winding convention, one event endpoint convention, one polarity/inventory ledger, one residual weighting, and one finite-mode truncation
+Fix one branch class, one source-pair policy, one same-source policy, one radial-support convention, one period or winding convention, one event endpoint convention, one polarity/inventory ledger, one residual weighting, and one finite-mode truncation
 
 $$
 M=(M_Y,M_\nu,K,\mathcal{A}_{\nu}^{\mathrm{act}},Q_{\mathrm{tail}}).
@@ -58,13 +58,13 @@ The entries are:
 | --- | ---: | --- |
 | $a$ | $N_Y$ | curve coefficients for $\mathbf{Y}_i(\lambda)$ in the chosen arclength Fourier, arclength-inverse, or free-support basis |
 | $\ell$ | $N_L$ | curve lengths $L_i$ or independent length/winding variables not fixed by the chart |
-| $c$ | $3$ | branch center $\mathbf{C}$ for support-radius and center gauge rows |
+| $c$ | $3$ | branch center $\mathbf{C}$ for radial support and center gauge rows |
 | $\theta$ | $N_\theta$ | phase offsets, period cuts, winding phases, or branch-continuation phase variables |
 | $b$ | $N_\nu$ | bounded speed factor coefficients for $\nu_i(\lambda)$ |
 | $\kappa$ | $N_H$ | common period variables such as $H_*$ or $H_{\mathrm{com}}$ |
 | $r$ | $N_r$ | active causal root sheet values $\eta_{r,n}$ or local root corrector variables |
 | $j$ | $N_j$ | fixed Jacobian-sign slots $\zeta_r$ and numerical Jacobian floor witnesses $J_{r,n}^{\nu}$ when the augmented chart stores them |
-| $s$ | $N_s$ | support variables: support bands, slot radii $R_a$, radius-spread variables, transition margins, and radius-functional slack variables |
+| $s$ | $N_s$ | support variables: support bands, partition-indexed radii $R_a$, radius-spread variables, transition margins, and radial-support slack variables |
 | $\mu$ | $N_\mu$ | support multipliers or variational-inequality complementarity variables |
 | $h$ | $N_h$ | self-hit windows, endpoint times, endpoint speeds, potential parameters, and event-reset variables |
 | $e$ | $N_e$ | event ledgers for root folds, speed-band contacts, support-boundary contacts, tail assimilation, endpoint jumps, and Noether-Sea exchange |
@@ -519,7 +519,7 @@ The old fixed-speed tangent row $\mathbf{T}_i\cdot F_i=0$ is recovered only in t
 
 ### 2.5 Support-Radius Rows
 
-The support row contains free-support or sector-specific boundary residuals:
+The support row contains free-support or case-specific boundary residuals:
 
 $$
 R_{\mathrm{support}}^\nu
@@ -559,7 +559,7 @@ R_{\mathrm{supp\text{-}rad},i,n}^\nu
 \mathcal{M}_{i,n}^{\mathrm{supp}}.
 $$
 
-The slot-radius block is
+The radial support block is
 
 $$
 R_{\mathrm{slotR}}^\nu
@@ -589,7 +589,7 @@ R_a
 d\lambda.
 $$
 
-The same-level spread row is
+The shell swarm spread row is
 
 $$
 R_{R\mathrm{spread}}
@@ -602,7 +602,7 @@ R_{R\mathrm{spread}}
 \bar R=\frac13\sum_aR_a.
 $$
 
-Nested or transition-sector runs replace this by the corresponding gap and transversality rows. A finite-mode solve may not treat $R_a$ as primitive unless $R_{R\mathrm{def}}=0$ and $R_{R\mathrm{der}}$ supplies first and second derivatives.
+Nested shell or transition runs replace this by the corresponding gap and transversality rows. A finite-mode solve may not treat $R_a$ as primitive unless $R_{R\mathrm{def}}=0$ and $R_{R\mathrm{der}}$ supplies first and second derivatives.
 
 ### 2.6 Attraction, Repulsion, Polarity, And Live Ledger Rows
 
@@ -1037,7 +1037,7 @@ $$
 \sup_u\|R_T^\nu(M_k,u)\|+\|R_N^\nu(M_k,u)\|\to0,
 $$
 
-with stable root labels, support-radius convention, action scale, and event ledger.
+with stable root labels, radial-support convention, action scale, and event ledger.
 
 ---
 
@@ -1048,7 +1048,7 @@ A finite-mode bounded speed factor solver artifact must emit:
 | Field | Required payload |
 | --- | --- |
 | `solver_space` | `bounded-speed-factor-finite-mode` or `fixed-speed-special-case` |
-| `branch_scope` | branch class, source-pair policy, same-source policy, support-radius convention, period/winding convention, endpoint convention, row weights, and truncation $M$ |
+| `branch_scope` | branch class, source-pair policy, same-source policy, radial-support convention, period/winding convention, endpoint convention, row weights, and truncation $M$ |
 | `unknown_vector` | block vector $z_M=(a,\ell,c,\theta,b,\kappa,r,j,s,\mu,h,e,\gamma,\Theta,p,q,g)$ with dimensions |
 | `curve_coefficients` | basis, coefficients, arclength rows, length variables, phase variables, center $\mathbf{C}$, and gauge slice |
 | `speed_coefficients` | speed basis, $b$, $\nu_-$, $\nu_+$, speed derivative bounds, speed-band margins, and fixed-speed-special-case flag |
@@ -1057,7 +1057,7 @@ A finite-mode bounded speed factor solver artifact must emit:
 | `tail_split` | active roots, assimilated tail roots, excluded tail cells, ownership map, terminal predicates, overlap consistency, persistence radius, and $\epsilon_{\mathrm{tail}}^\nu$ |
 | `force_rows` | total force convention, partner/cross force, self-hit force, support force, Noether-Sea force, force projections, and force derivative envelopes |
 | `dynamics_rows` | $R_T^\nu$, $R_{\mathrm{speedODE}}^\nu$, $R_N^\nu$, normal reconstruction status, and force-balance norms |
-| `support_radius_rows` | support descriptor, support multipliers or variational inequality, slot radii $R_a$, spread/gap rows, derivative rows, and mixing residual |
+| `radial_support_rows` | support descriptor, support multipliers or variational inequality, partition-indexed radii $R_a$, spread/gap rows, derivative rows, and mixing residual |
 | `inventory_rows` | polarity count, $3$ attractive / $2$ repulsive source-site row for each architrino, weighted attraction/repulsion force-moment split, and live ledger status |
 | `event_rows` | speed-band events, period events, root folds, support-boundary events, tail events, endpoint jumps, conservation ledgers, and source provenance |
 | `self_hit_exchange` | absent status or $W=[u_-,u_+]$, return row, overspeed row, energy/potential/work split, endpoint status, conservation rows, and post-hit ledger |
@@ -1099,9 +1099,9 @@ First-failure ordering:
 19. `speed-clock-length-fails`
 20. `tangential-speed-row-open`
 21. `normal-equation-open`
-22. `support-radius-convention-open`
-23. `slot-radius-definition-mismatch`
-24. `slot-radius-derivatives-open`
+22. `radial-support-convention-open`
+23. `partition-radius-definition-mismatch`
+24. `partition-radius-derivatives-open`
 25. `support-radial-compatibility-open`
 26. `support-action-work-open`
 27. `polarity-inventory-open`
@@ -1158,19 +1158,19 @@ P_{\mathrm{cok}}\mathcal{B}_M^\nu
 \tau_M.
 $$
 
-Rejection as a model obstruction requires more than a failed finite run. The solver may report `bounded-speed-finite-mode-obstruction` only if higher-mode columns, chart changes, tail assimilation, support-radius convention changes, and antipodal relaxation columns have certified range/cokernel tests showing that the failed row is not a truncation artifact. Otherwise the status remains the first failed row above.
+Rejection as a model obstruction requires more than a failed finite run. The solver may report `bounded-speed-finite-mode-obstruction` only if higher-mode columns, chart changes, tail assimilation, radial-support convention changes, and antipodal relaxation columns have certified range/cokernel tests showing that the failed row is not a truncation artifact. Otherwise the status remains the first failed row above.
 
 ---
 
 ## 7. Theorem Target
 
-**Theorem target: bounded speed factor finite-mode branch system.** Fix one bounded-speed same-level tri-binary branch class, one finite-mode chart $M$, one support-radius convention, one source-pair policy, one same-source policy, one period/winding convention, one action/event convention, one polarity/live ledger, and one row-weight convention. Suppose:
+**Theorem target: bounded speed factor finite-mode branch system.** Fix one bounded-speed shell swarm branch class, one finite-mode chart $M$, one radial-support convention, one source-pair policy, one same-source policy, one period/winding convention, one action/event convention, one polarity/live ledger, and one row-weight convention. Suppose:
 
 1. $z_M$ declares every active curve, bounded speed factor, root, support, phase, period, polarity, event, action, Noether, and gauge variable used by the residual;
 2. the gauge matrix is transverse to the neutral symmetry directions and all finite chart floors persist on a coefficient box;
 3. active and assimilated causal root sheets satisfy $G^\nu=0$, positive delay floors, fixed Jacobian-sign floors, first derivative rows, and second derivative envelopes;
 4. excluded tail cells form a complete owned finite cover or the assimilated tail sheets are included in the same force and derivative rows;
-5. the speed ODE, normal force-balance, support-radius, attraction/repulsion inventory, event/self-hit exchange, and variational Noether rows use the same total force convention;
+5. the speed ODE, normal force-balance, radial support, attraction/repulsion inventory, event/self-hit exchange, and variational Noether rows use the same total force convention;
 6. the derivative matrix includes all active curve, speed, clock, root, force, support, event, action, scale, polarity, and gauge columns, or includes certified Schur complements for eliminated variables;
 7. the finite Krawczyk and cokernel inequalities pass on the gauge-reduced chart.
 
@@ -1185,7 +1185,7 @@ Proof route:
 3. first and second root variations propagate finite coefficient changes into force, action, Noether, and Krawczyk derivative envelopes;
 4. the tangential row stores admissible tangent work in bounded speed factor evolution instead of forcing pointwise tangent force to vanish;
 5. the normal row gives curvature force balance with the $\nu_i^2$ factor required by center-time dynamics;
-6. support-radius rows convert visual same-level or transition-sector claims into differentiable residuals;
+6. radial support rows convert visual shell swarm or transition claims into differentiable residuals;
 7. inventory rows separate the structural $3$ attractive / $2$ repulsive source-site count from weighted force closure;
 8. self-hit and event rows prevent speed, source provenance, charge, momentum, angular momentum, or Noether-Sea exchange from being hidden in the force residual;
 9. the variational Noether rows decide whether the speed ODE and support work are action-derived rather than fitted diagnostics;

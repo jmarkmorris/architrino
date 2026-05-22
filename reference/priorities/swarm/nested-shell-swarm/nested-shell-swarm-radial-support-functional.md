@@ -1,12 +1,12 @@
-# Hybrid Support Radius Functional
+# Nested Shell Swarm Radial Support Functional
 
-Promotion status: `priority-only`. This packet closes the local definition gap in [hybrid-variable-radius-model-card.md](hybrid-variable-radius-model-card.md): the shorthand slot radius $R_a(t)$ is not a primitive object of the base branch. It must be extracted from the free-support descriptor and the closed arclength curves of [free-support-bounded-speed-dynamics.md](../shell-swarm/free-support-bounded-speed-dynamics.md).
+Promotion status: `priority-only`. This packet closes the local definition gap in [nested-shell-swarm-model-card.md](nested-shell-swarm-model-card.md): the shorthand shell radius $R_a(t)$ is not a primitive object of the base branch. It must be extracted from the free-support descriptor and the closed arclength curves of [free-support-bounded-speed-dynamics.md](../shell-swarm/free-support-bounded-speed-dynamics.md).
 
-It does not retain a branch, choose a final slot-label policy, or authorize corpus migration. Its purpose is to make radius-spread, nested-sector, same-level-sector, and transition-sector rows differentiable proof objects rather than visual labels.
+It does not retain a branch, choose a final binary-partition notation policy, or authorize corpus migration. Its purpose is to make radius-spread, nested shell, shell swarm, and transition rows differentiable proof objects rather than visual labels.
 
 ---
 
-## 1. Support Descriptor And Slot Radius Map
+## 1. Support Descriptor And Shell Radius Map
 
 Let the branch sites be $(a,\sigma)$ with $a\in\{1,2,3\}$ and $\sigma\in\{+,-\}$. The base variables are closed arclength curves
 
@@ -38,7 +38,7 @@ r_{a,\sigma}(\lambda)
 \|\mathbf{Y}_{a,\sigma}(\lambda)-\mathbf{C}\|.
 $$
 
-A hybrid packet must declare one slot-radius functional
+A nested shell swarm packet must declare one radial support functional
 
 $$
 \boxed{
@@ -48,7 +48,7 @@ R_a
 }
 $$
 
-before using $R_a$ in nested, same-level, transition, or radius-spread rows. The admissible default is the arclength mean
+before using $R_a$ in nested shell, shell swarm, transition, or radius-spread rows. The admissible default is the arclength mean
 
 $$
 R_a^{\mathrm{mean}}
@@ -80,7 +80,7 @@ $$
 R_a^-\le R_a\le R_a^+
 $$
 
-and uses interval inequalities in every sector row.
+and uses interval inequalities in every case row.
 
 No packet may mix these conventions inside one branch certificate.
 
@@ -117,7 +117,7 @@ $$
 
 The term $\mathcal{B}_{a}^{L}[v]$ records endpoint or length-gauge contributions. It vanishes in a fixed arclength-domain chart with fixed $L_{a,\sigma}$; otherwise it must be emitted explicitly.
 
-The mean radius is independent of $\delta\nu$ except through the chart convention. If a packet reports time-weighted slot radii, it must declare instead
+The mean radius is independent of $\delta\nu$ except through the chart convention. If a packet reports time-weighted shell radii, it must declare instead
 
 $$
 R_a^{u}
@@ -131,7 +131,7 @@ $$
 
 and include the clock variations $D_v\Lambda_{a,\sigma}$ and $D_vH_{a,\sigma}$. The arclength and causal-time conventions are different rows.
 
-For the slot-radius gaps
+For the shell-radius gaps
 
 $$
 G_{ab}^{R}=R_b-R_a,
@@ -143,7 +143,7 @@ $$
 D_vG_{ab}^{R}=D_vR_b-D_vR_a.
 $$
 
-For the mean slot radius
+For the mean shell radius
 
 $$
 \bar R=\frac13\sum_aR_a,
@@ -167,7 +167,7 @@ $$
 
 ---
 
-## 3. Second Variations And Sector Margins
+## 3. Second Variations And Shell Margins
 
 For arclength-mean radii, the second variation in directions $v,w$ is
 
@@ -203,7 +203,7 @@ $$
 r_{a,\sigma}(\lambda)\ge r_0>0.
 $$
 
-The sector margins are:
+The shell margins are:
 
 $$
 \mathcal{M}_{\mathrm{same}}
@@ -215,7 +215,7 @@ $$
 \frac{|R_a-\bar R|}{\bar R},
 $$
 
-and, for an ordered nested sector,
+and, for an ordered nested shell swarm,
 
 $$
 \mathcal{M}_{ab}^{R}
@@ -226,7 +226,7 @@ $$
 \epsilon_R.
 $$
 
-A transition-sector event is a zero of one of these margins with a declared transversality row:
+A transition event is a zero of one of these margins with a declared transversality row:
 
 $$
 D_\tau\mathcal{M}_{\mathrm{same}}\ne0
@@ -238,12 +238,12 @@ for the branch-continuation tangent $\tau$.
 
 ---
 
-## 4. Hybrid Residual Rows
+## 4. Radial Support Residual Rows
 
-The support-to-slot-radius functional emits the residual block
+The radial support functional emits the residual block
 
 $$
-\mathcal{R}_{\mathrm{slotR}}
+\mathcal{R}_{\mathrm{shellR}}
 =
 \left(
 \mathcal{R}_{\mathrm{conv}},
@@ -261,12 +261,12 @@ The entries mean:
 | --- | --- |
 | $\mathcal{R}_{\mathrm{conv}}$ | declares arclength-mean, causal-time-mean, support-band midpoint, or interval-center convention |
 | $\mathcal{R}_{R\mathrm{def}}$ | verifies every emitted $R_a$ equals $\mathcal{S}_a[\mathbf{Y},\nu,\mathcal{D}_{\mathrm{supp}}]$ |
-| $\mathcal{R}_{R\mathrm{gap}}$ | nested-sector gap rows $R_b-R_a$ with margins |
-| $\mathcal{R}_{R\mathrm{spread}}$ | same-level spread row using the declared radius convention |
+| $\mathcal{R}_{R\mathrm{gap}}$ | nested shell gap rows $R_b-R_a$ with margins |
+| $\mathcal{R}_{R\mathrm{spread}}$ | shell swarm spread row using the declared radius convention |
 | $\mathcal{R}_{R\mathrm{der}}$ | first and second derivative rows used by Newton, Krawczyk, event, and stability packets |
-| $\mathcal{R}_{R\mathrm{mix}}$ | all terms introduced when a simplified sector equation drops radius-functional derivatives |
+| $\mathcal{R}_{R\mathrm{mix}}$ | all terms introduced when a simplified shell equation drops radius-functional derivatives |
 
-The hybrid dynamics shorthand
+The nested shell swarm dynamics shorthand
 
 $$
 \mathbf{x}_{a,\sigma}
@@ -274,63 +274,63 @@ $$
 \mathbf{C}+R_a\mathbf{U}_{a,\sigma}
 $$
 
-is allowed only as a sector parametrization if $\mathcal{R}_{R\mathrm{def}}=0$ and the omitted terms in $\mathcal{R}_{R\mathrm{mix}}$ are bounded below tolerance. Otherwise the branch must use the direct curve acceleration row from the free-support packet.
+is allowed only as a local parametrization if $\mathcal{R}_{R\mathrm{def}}=0$ and the omitted terms in $\mathcal{R}_{R\mathrm{mix}}$ are bounded below tolerance. Otherwise the branch must use the direct curve acceleration row from the free-support packet.
 
 ---
 
 ## 5. Theorem Target
 
-**Theorem target: hybrid support radius functional.** Fix one hybrid branch chart, one support descriptor, one slot-radius convention, one sector-label policy, and one coefficient box. Suppose:
+**Theorem target: nested shell swarm radial support functional.** Fix one nested shell swarm branch chart, one support descriptor, one shell-radius convention, one binary-partition notation policy, and one coefficient box. Suppose:
 
 1. every site radius satisfies $r_{a,\sigma}\ge r_0>0$;
-2. the slot-radius functional $\mathcal{S}_a$ is declared and used consistently for all $a$;
+2. the radial support functional $\mathcal{S}_a$ is declared and used consistently for all $a$;
 3. first and second variation formulas for $R_a$, $\bar R$, $G_{ab}^{R}$, and $S_a$ are emitted on the coefficient box;
-4. nested, same-level, or transition-sector rows use the emitted margins rather than visual labels;
-5. any simplified sector dynamics row either includes the induced radius-functional derivatives or places their omission in $\mathcal{R}_{R\mathrm{mix}}$ with a certified bound.
+4. nested shell, shell swarm, or transition rows use the emitted margins rather than visual labels;
+5. any simplified shell dynamics row either includes the induced radius-functional derivatives or places their omission in $\mathcal{R}_{R\mathrm{mix}}$ with a certified bound.
 
-Then the hybrid radius sector is a differentiable residual subblock of the bounded-speed branch certificate. The branch may be classified as nested, same-level, or transition on that coefficient box without treating slot radii as primitive ontology.
+Then the radial support functional is a differentiable residual subblock of the bounded-speed branch certificate. The branch may be classified as nested shell swarm, shell swarm, or transition on that coefficient box without treating shell radii as primitive ontology.
 
 Proof route:
 
 1. the lower radius floor makes $r_{a,\sigma}$ smooth in curve and center variables;
 2. differentiating the declared functional gives $D_vR_a$ and $D^2_{v,w}R_a$;
 3. gap and spread rows are algebraic functions of $R_a$ and inherit differentiability;
-4. positive sector margins persist on a small coefficient box by the derivative bounds;
+4. positive shell margins persist on a small coefficient box by the derivative bounds;
 5. transition events are exactly margin-zero events with a transversality row;
-6. the residual $\mathcal{R}_{R\mathrm{mix}}$ prevents a simplified sector parametrization from hiding support-radius dynamics.
+6. the residual $\mathcal{R}_{R\mathrm{mix}}$ prevents a simplified parametrization from hiding radial support dynamics.
 
 ---
 
 ## 6. Output Schema
 
-A hybrid branch packet using slot radii must emit:
+A nested shell swarm branch packet using shell radii must emit:
 
 | Field | Required payload |
 | --- | --- |
-| `support_radius_convention` | arclength mean, causal-time mean, support-band midpoint, or interval center |
-| `support_descriptor` | $\mathbf{C}$, support bands, sector labels, and radius floors |
-| `slot_radius_values` | $R_a$, $\bar R$, $G_{ab}^{R}$, $S_a$, and interval bounds if used |
-| `slot_radius_derivatives` | $D_vR_a$, $D^2_{v,w}R_a$, derivative bounds, and length/clock correction status |
-| `sector_margins` | same-level spread margin, nested gap margins, transition event surfaces, and transversality rows |
+| `shell_radius_convention` | arclength mean, causal-time mean, support-band midpoint, or interval center |
+| `support_descriptor` | $\mathbf{C}$, support bands, binary-partition labels, and radius floors |
+| `shell_radius_values` | $R_a$, $\bar R$, $G_{ab}^{R}$, $S_a$, and interval bounds if used |
+| `shell_radius_derivatives` | $D_vR_a$, $D^2_{v,w}R_a$, derivative bounds, and length/clock correction status |
+| `shell_margins` | shell swarm spread margin, nested shell gap margins, transition event surfaces, and transversality rows |
 | `mixing_residual` | $\mathcal{R}_{R\mathrm{mix}}$ and every dropped radius-functional derivative term |
-| `status` | first failed status or `hybrid-support-radius-functional-certified` |
+| `status` | first failed status or `nested-shell-swarm-radial-support-certified` |
 
 Status ordering:
 
-1. `support-radius-convention-open`
-2. `support-radius-floor-failure`
-3. `slot-radius-definition-mismatch`
-4. `slot-radius-derivatives-open`
+1. `shell-radius-convention-open`
+2. `shell-radius-floor-failure`
+3. `shell-radius-definition-mismatch`
+4. `shell-radius-derivatives-open`
 5. `radius-spread-row-open`
 6. `radius-gap-row-open`
 7. `radius-transition-transversality-open`
 8. `radius-mix-residual-open`
-9. `hybrid-support-radius-functional-certified`
+9. `nested-shell-swarm-radial-support-certified`
 
 Current status:
 
 $$
-\texttt{support-radius-functional-open},
+\texttt{radial-support-functional-open},
 \qquad
 \texttt{not-retained}.
 $$

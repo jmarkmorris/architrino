@@ -4,9 +4,9 @@ Terminology status: `quarantined-priority-history`. This gate map is inherited a
 
 Promotion status: `priority-only`. This document coordinates the shell swarm mathematics developed in this directory. It does not authorize migration into `content/markdown/aaa` until a retained branch packet satisfies the decision gate in [swarm-architecture.md](swarm-architecture.md).
 
-The merge decision now runs through [neutral-knot-cloud-branch-model.md](../neutral-swarm/neutral-knot-cloud-branch-model.md) and [hybrid-variable-radius-model-card.md](../nested-shell-swarm/hybrid-variable-radius-model-card.md). Shell swarm geometry is therefore one mathematical sector of a broader neutral swarm branch family, while the nested shell swarm packet set remains comparison and fallback source material until the user-facing corpus merge gate passes.
+The merge decision now runs through [neutral-swarm-model.md](../neutral-swarm/neutral-swarm-model.md) and [nested-shell-swarm-model-card.md](../nested-shell-swarm/nested-shell-swarm-model-card.md). Shell swarm geometry is therefore one mathematical case of a broader neutral swarm branch family, while the nested shell swarm packet set remains comparison and fallback source material until the user-facing corpus merge gate passes.
 
-In the shell swarm sector, the model trades persistent radial nesting for a certified common support band, phase-locked choreography, central inventory accounting, and branch-certificate data. In the broader neutral swarm base case, the model also drops mandatory binary grouping: the neutral swarm is six labeled sites with exactly three positive and three negative architrinos, an all-pairs causal-root ledger, and a support band when that sector is claimed. The proof burden is therefore not a single visual construction. It is a coupled certificate showing that one retained branch simultaneously closes its causal-root ledger, dynamics residuals, noncollision gates, energy/action ledger, inventory ledger, exposure map, and observer-export rows.
+In the shell swarm case, the model trades persistent radial nesting for a certified common support band, phase-locked choreography, central inventory accounting, and branch-certificate data. In the broader neutral swarm base case, the model also drops mandatory binary grouping: the neutral swarm is six labeled sites with exactly three positive and three negative architrinos, an all-pairs causal-root ledger, and a support band when that case is claimed. The proof burden is therefore not a single visual construction. It is a coupled certificate showing that one retained branch simultaneously closes its causal-root ledger, dynamics residuals, noncollision gates, energy/action ledger, inventory ledger, exposure map, and observer-export rows.
 
 For deformed support-band rows, the preferred dynamics chart is now the arclength chart: fixed speed is encoded by the curve clock, and the remaining carrier equation is force-versus-curvature closure. Thus a fixed-speed deformed retained branch must close $\mathcal{R}_{L}$, $\mathcal{R}_{T}$, $\mathcal{R}_{\mathrm{tan}}$, and $\mathcal{R}_{\mathrm{curv}}$ on the same active-root ledger, not only an angle-clock speed residual. A bounded-speed branch replaces the tangent row with $\mathcal{R}_{\mathrm{speedODE}}^\nu$ and closes $\mathcal{R}_{N\mathrm{rec}}^\nu$, $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, support, and action/event exchange rows on the bounded-speed ledger. Because those rows change the same roots, Jacobians, force weights, support multipliers, and event surfaces, bounded-speed promotion also needs the coupled live-ledger residual $\mathcal{R}_{\mathrm{cpl}}^\nu$.
 
@@ -22,7 +22,7 @@ The architecture must keep the following levels separate.
 | --- | --- | --- | --- |
 | Architrinos move in absolute time through the Euclidean void and interact through causal wakes. | ontology | inherited from the canonical dynamics | no new swarm proof needed |
 | A neutral swarm may be a six-architrino branch without mandatory binary grouping. | derivation/closure target | staged in neutral swarm source packet | all-pairs root ledger, support-band rows, bounded-speed dynamics, action/event ledgers, optional sector reduction status, and retained branch certificate |
-| Nested shell swarm and shell swarm geometries may be sectors of one branch family. | derivation/closure target | staged in hybrid model card | radius functional, radius residuals, label-use decision, and retained hybrid branch certificate |
+| Nested shell swarm and shell swarm geometries may be cases of one branch family. | derivation/closure target | staged in nested shell swarm model card | radial support functional, radial residuals, label-use decision, and retained nested shell swarm branch certificate |
 | A shell swarm branch can remain noncolliding in one support band. | derivation/closure target | open | retained carrier row with $d_{\min}>\epsilon_x$ and finite active causal roots |
 | A twelve-architrino charged fermion can be represented by a central-inventory ledger plus neutral shell swarm choreography. | derivation/closure target | open | integer inventory row plus noncollision/regularization representative |
 | The choreography can recover spinor $2\pi/4\pi$ behavior. | derivation/closure target | open | framed-wake parity row and angular-momentum residuals |
@@ -36,7 +36,7 @@ The architecture must keep the following levels separate.
 
 The minimal proof stack is:
 
-1. **Branch definition.** Define the site set, polarity ledger, support descriptor, state history, optional sector labels, topology data, and active causal-root ledger on one time window $W$. In the neutral swarm branch this starts with $I=\{1,\ldots,6\}$ and no mandatory binary grouping.
+1. **Branch definition.** Define the site set, polarity ledger, support descriptor, state history, optional case labels, topology data, and active causal-root ledger on one time window $W$. In the neutral swarm branch this starts with $I=\{1,\ldots,6\}$ and no mandatory binary grouping.
 2. **Root regularity.** Prove every retained causal root is isolated, finite in number, and has $|J_{ij}|>\epsilon_J$.
 3. **Carrier closure.** Prove the support descriptor, speed specialization, clock/period row, phase-lock, winding data, and noncollision residuals stay below tolerance, with fixed-speed and bounded-speed subcases declared explicitly. In the bounded-speed subcase, close the coupled curve-speed-root-support-action-event residual rather than only separate projected rows.
 4. **Event and action closure.** Prove $Q$, $E$, $\mathbf{p}$, $\mathbf{J}$, source provenance, recoil, and medium-update rows close on the same retained branch.
@@ -208,7 +208,7 @@ The current shell swarm architecture may improve Lorentz isotropy because an iso
 
 | Gate from architecture draft | Priority-side proof object | Current state |
 | --- | --- | --- |
-| Swarm merge gate | nested shell swarm model card, nested shell swarm / shell swarm sector comparisons, label-use decision, and merge batch plan | open |
+| Swarm merge gate | nested shell swarm model card, nested shell swarm / shell swarm case comparisons, label-use decision, and merge batch plan | open |
 | Branch existence | Theorem targets A, fixed-speed B or bounded-speed B$\nu$, C, plus explicit root ledger | open |
 | Inventory replacement | central-inventory ledger and event-ledger rows | open |
 | Energy and exposure | theorem target D plus exposure/medium extraction | open |
