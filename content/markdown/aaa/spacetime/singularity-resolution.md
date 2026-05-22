@@ -1,6 +1,6 @@
 # Singularity Resolution
 
-This chapter frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the nested shell swarm architecture. It is the canonical strong-field bridge for [Noether Swarm](../noether-swarm/noether-swarm.md), [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md), and [Black Holes](./black-holes.md).
+This chapter frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the Noether swarm architecture. It is the canonical strong-field bridge for [Noether Swarm](../noether-swarm/noether-swarm.md), [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md), and [Black Holes](./black-holes.md).
 
 ## Canonical Strong-Field Alignment Condition
 

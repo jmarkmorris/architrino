@@ -17,7 +17,7 @@ The quark construction used here follows the same Noether swarm-plus-axial split
 - The **Noether swarm** is the neutral binary scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.
 
-For matter quarks, the core is a **pro-core**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
+For matter quarks, the core is a **pro-swarm**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
 
 - **Generation I:** nested shell swarm shielding branch, 6 coherent scaffold architrinos.
 - **Generation II:** bi-binary shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
@@ -109,7 +109,7 @@ Both families satisfy the same structural rule: two axes are in one class and on
 
 ### Right-handed singlet bookkeeping
 
-The image-level implementation candidate for right-handed pro-core couplings matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
+The image-level implementation candidate for right-handed pro-swarm couplings matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
 
 For right-handed quarks:
 
@@ -135,7 +135,7 @@ The same count logic is what makes the right-handed quark sector look naturally 
 
 ### Left-handed doublet bookkeeping (conjectural implementation candidate)
 
-The corresponding left-handed image suggests a useful implementation candidate for pro-core weak couplings:
+The corresponding left-handed image suggests a useful implementation candidate for pro-swarm weak couplings:
 
 - the left-handed quark states are the exposed-coupling branches of the same six-site axial inventories,
 - the up-type and down-type quarks then sit on the same electroweak doublet arc,
@@ -170,9 +170,9 @@ The value of this conjecture is that it places the quark doublet in the same six
 
 That makes the quark sector look less like a separate lookup table and more like a continuous family of exposed coupling postures on the same axial-inventory wheel. At present this should be treated as a unifying implementation candidate, not a closed proof of weak-sector geometry.
 
-### Anti-core mirror bookkeeping (conjectural reverse-engineered candidate)
+### Anti-swarm mirror bookkeeping (conjectural reverse-engineered candidate)
 
-The two anti-core images suggest a clean mirror rule that is worth recording explicitly.
+The two anti-swarm images suggest a clean mirror rule that is worth recording explicitly.
 
 Start by charge-conjugating the quark axial inventories:
 
@@ -187,8 +187,8 @@ Start by charge-conjugating the quark axial inventories:
 
 The conjectural rule then reads:
 
-- **right-handed anti-core branches** behave as the electroweak mirrors of the pro-core left-handed doublets,
-- **left-handed anti-core branches** behave as the electroweak mirrors of the pro-core right-handed singlets.
+- **right-handed anti-swarm branches** behave as the electroweak mirrors of the pro-swarm left-handed doublets,
+- **left-handed anti-swarm branches** behave as the electroweak mirrors of the pro-swarm right-handed singlets.
 
 This is structurally attractive because it matches the Standard-Model statement already used elsewhere in the repo: charged-current weak interactions act on left-handed quarks and, equivalently, on right-handed antiquarks.
 At a broader bookkeeping level, it also suggests a compact charged-fermion rule: pro-left doublets mirror anti-right doublets, while pro-right singlets mirror anti-left singlets.
@@ -197,12 +197,12 @@ At a broader bookkeeping level, it also suggests a compact charged-fermion rule:
 
 In this reverse-engineered candidate:
 
-| State family | Axial count | Electric charge $Q$ | Right-handed anti-core assignment |
+| State family | Axial count | Electric charge $Q$ | Right-handed anti-swarm assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^R,\bar c^R,\bar t^R$ | $1P,5E$ | $-2/3$ | $T_3=-1/2,\ Y=-1/3$ |
 | $\bar d^R,\bar s^R,\bar b^R$ | $4P,2E$ | $+1/3$ | $T_3=+1/2,\ Y=-1/3$ |
 
-These are exactly the charge-conjugate mirrors of the pro-core left-handed quark doublet:
+These are exactly the charge-conjugate mirrors of the pro-swarm left-handed quark doublet:
 $$
 \left(+\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(-\frac{1}{2},-\frac{1}{3}\right),\qquad
 \left(-\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(+\frac{1}{2},-\frac{1}{3}\right).
@@ -210,20 +210,20 @@ $$
 
 #### Left-handed antiquark bookkeeping
 
-For the left-handed anti-core branch, the same mirror logic gives:
+For the left-handed anti-swarm branch, the same mirror logic gives:
 
-| State family | Axial count | Electric charge $Q$ | Left-handed anti-core assignment |
+| State family | Axial count | Electric charge $Q$ | Left-handed anti-swarm assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^L,\bar c^L,\bar t^L$ | $1P,5E$ | $-2/3$ | $T_3=0,\ Y=-4/3$ |
 | $\bar d^L,\bar s^L,\bar b^L$ | $4P,2E$ | $+1/3$ | $T_3=0,\ Y=+2/3$ |
 
-These are the charge-conjugate mirrors of the pro-core right-handed singlets:
+These are the charge-conjugate mirrors of the pro-swarm right-handed singlets:
 $$
 \left(0,+\frac{4}{3}\right)\mapsto \left(0,-\frac{4}{3}\right),\qquad
 \left(0,-\frac{2}{3}\right)\mapsto \left(0,+\frac{2}{3}\right).
 $$
 
-The practical advantage of this rule is that it closes the quark-sector wheel without inventing a separate anti-core lookup system. Once the pro-core sector is specified, the anti-core sector follows by charge conjugation plus the handedness swap in weak exposure.
+The practical advantage of this rule is that it closes the quark-sector wheel without inventing a separate anti-swarm lookup system. Once the pro-swarm sector is specified, the anti-swarm sector follows by charge conjugation plus the handedness swap in weak exposure.
 
 This remains a conjectural bookkeeping layer derived by reverse engineering from the current weak-coupling pictures. It should not yet be treated as a proved weak-sector theorem.
 
@@ -355,7 +355,7 @@ $$
 $$
 on the exceptional axis should be treated as two micro-configurations within the same color sector unless a later derivation shows that one of them carries an additional observable phase, helicity bias, or stability difference. At present they are best regarded as implementation-level variants of the same color assignment.
 
-The corresponding antiquark is obtained by charge conjugation of the axial pattern together with anti-core braid orientation, giving the anti-red, anti-green, and anti-blue states.
+The corresponding antiquark is obtained by charge conjugation of the axial pattern together with anti-swarm braid orientation, giving the anti-red, anti-green, and anti-blue states.
 
 ### Down-type color tables
 
@@ -384,13 +384,13 @@ A single quark is never colorless. Color neutrality appears only in composite st
 - **Mesons:** $3 \otimes \bar 3 \supset 1$.
 - **Baryons:** $3 \otimes 3 \otimes 3 \supset 1$.
 
-In the baryon picture used elsewhere in the repo, a color singlet is a closed 9-axis braid in which $H$, $M$, and $L$ exceptionality each appear once across the three quark cores.
+In the baryon picture used elsewhere in the repo, a color singlet is a closed 9-axis braid in which $H$, $M$, and $L$ exceptionality each appear once across the three Noether swarms.
 
 ## Coupling rules to gluons
 
 ### What a gluon is in this catalog
 
-In this framework, a gluon is not treated as a primitive point particle added on top of the quarks. It is an emergent axis-reconfiguration ribbon or braid segment running along a color flux tube in the Noether Sea. Its job is to transfer color phase and axis exceptionality between quark cores while preserving the quark inventory that defines flavor and electric charge.
+In this framework, a gluon is not treated as a primitive point particle added on top of the quarks. It is an emergent axis-reconfiguration ribbon or braid segment running along a color flux tube in the Noether Sea. Its job is to transfer color phase and axis exceptionality between Noether swarms while preserving the quark inventory that defines flavor and electric charge.
 
 The more detailed strong-sector picture remains in [gluons.md](../bosons/gluons.md) and [color-charge-su3.md](./color-charge-su3.md). The present chapter only states the coupling rules required by the quark catalog.
 
@@ -398,7 +398,7 @@ The more detailed strong-sector picture remains in [gluons.md](../bosons/gluons.
 
 A useful geometric refinement is to treat the gluon not as the flux tube alone but as the full local coupling complex built from:
 
-- the coupled flux-tube segment between quark cores,
+- the coupled flux-tube segment between Noether swarms,
 - the energetic source binaries whose motion generates the axial wake vortices,
 - and any captive axial potentials that are temporarily locked into that coupled vortex channel.
 
@@ -461,7 +461,7 @@ The following parts of the quark catalog are already fixed strongly enough to be
 
 - up-type axial count $5P,1E$,
 - down-type axial count $2P,4E$,
-- generation as core shielding level,
+- generation as Noether swarm shielding level,
 - architrino counts $12$, $10$, and $8$ for Generations I, II, and III,
 - color as axis exceptionality in the three-state $(H,M,L)$ basis,
 - gluon action as an $SU(3)$ color reconfiguration that preserves flavor inventory.

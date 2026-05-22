@@ -43,11 +43,11 @@ The horizon state is different. Once the planes collapse into one planar lock an
 
 ## Broader Pro/Anti Balance in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-This chapter should also be read against a broader guardrail from the project framing: $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** naturally suggest a large universal pro/anti imbalance in the substrate as a whole. The medium picture is instead built around persistent local or mesoscopic balance between complementary Noether swarm orientations.
+This chapter should also be read against a broader guardrail from the project framing: $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** naturally suggest a large universal pro/anti imbalance in the substrate as a whole. The Noether-Sea picture is instead built around persistent local or mesoscopic balance between complementary Noether swarm orientations.
 
 Several standing examples point in that direction.
 
-- **Noether Sea / spacetime medium:** the ambient medium is already framed as a coupled pro/anti population rather than a single-sign sea.
+- **Noether Sea / spacetime medium:** the ambient Noether Sea is already framed as a coupled pro/anti population rather than a single-sign sea.
 - **Photon channel:** the photon assembly is naturally read as a coaxial contra-rotating pro/anti planar pair, or equivalently one `CW` and one `CCW` planar branch in the flat state as an absolute-frame observer compares the two sides of the propagating pair.
 - **Higgs-like cluster:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti Noether swarms in a three-dimensional coupled state rather than a single-sign configuration.
 

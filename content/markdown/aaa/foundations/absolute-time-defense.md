@@ -50,7 +50,7 @@ This is a claim about the exact substrate flow, not about practical prediction. 
 
 **Proper time $\tau$ for physical observers**
 
-Physical clocks are nested shell swarm assemblies; ticks correspond to internal limit-cycle phase evolution. The primary definition is therefore phase extraction, not an arbitrary scalar fit:
+Physical clocks are Noether swarm assemblies; ticks correspond to internal limit-cycle phase evolution. The primary definition is therefore phase extraction, not an arbitrary scalar fit:
 $$
 d\tau_{\mathcal A}
 =
@@ -104,7 +104,7 @@ $$
 \tau(t_1)-\tau(t_0)=\int_{t_0}^{t_1}\frac{\omega_{\text{clk}}(s)}{\omega_0}\,ds,
 $$
 
-where $\omega_{\text{clk}}(s)$ is the phase rate extracted from the declared nested shell swarm clock channel and $\omega_0$ is its rest-branch reference frequency. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether-Sea state variables used by the clock/ruler metric handoff.
+where $\omega_{\text{clk}}(s)$ is the phase rate extracted from the declared Noether swarm clock channel and $\omega_0$ is its rest-branch reference frequency. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether-Sea state variables used by the clock/ruler metric handoff.
 
 The low-energy Lorentz-closure target for a declared clock branch has the form
 $$

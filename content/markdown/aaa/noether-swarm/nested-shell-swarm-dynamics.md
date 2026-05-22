@@ -2004,7 +2004,7 @@ $$
 $$
 with the comparison made from phase-closure residuals, anisotropy ratios, branch-period records, stability thresholds, and cycle-averaged causal-work or phase-slip variance.
 
-The ambient medium must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether-Sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported packets recover the usual local equivalence behavior. This chapter only asks whether the substrate packets match before that translation.
+The ambient Noether Sea must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether-Sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported packets recover the usual local equivalence behavior. This chapter only asks whether the substrate packets match before that translation.
 
 ---
 

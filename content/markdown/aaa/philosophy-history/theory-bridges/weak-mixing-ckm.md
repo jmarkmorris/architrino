@@ -70,7 +70,7 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these thr
 - Big overlaps (similar shielding) give big CKM entries; mismatched shielding gives tiny entries.
 
 - In this $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, a $W^\pm$ is not created ex nihilo and is not treated as a preexisting free field quantum; it is a transient “corridor” that associates during a weak interaction:
-  - Assembly mechanism: localized polarization of the Noether Sea provides two neutral cores, while the interacting weak-coupling triad transfers a six-charge excess ($\pm e$ net) into the corridor.
+  - Assembly mechanism: localized polarization of the Noether Sea provides two neutral swarms, while the interacting weak-coupling triad transfers a six-charge excess ($\pm e$ net) into the corridor.
   - Geometrically it’s a short-lived, high-tension bundle (see [assemblies/bosons/electroweak-bosons.md](../../assemblies/bosons/electroweak-bosons.md)) that ferries charge/phase between source and sink.
   - It dissociates quickly (lifetime set by corridor instability), matching the short-lived SM W.
   - So: it is a transient, bound excitation of the Noether-Sea medium from reconfiguration of participants’ wakes and axial structure, not from a standing background field.
@@ -78,7 +78,7 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these thr
 ## Minimal premises
 - **Generations = shielding level:** Gen I nested shell swarm (u,d), Gen II bi-binary (c,s), Gen III uni-binary (t,b).
 - **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../assemblies/fermions/weak-mixing-angle.md).
-- **Mass basis = shielding eigenstates:** Core shielding, trapped internal causal history, and Noether-Sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether Sea](../../assemblies/particle-masses.md).
+- **Mass basis = shielding eigenstates:** Noether swarm shielding, trapped internal causal history, and Noether-Sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether Sea](../../assemblies/particle-masses.md).
 
 Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
 Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether Sea ahead of the translating quark group, where cores are unshadowed and available to couple.
@@ -201,7 +201,7 @@ $$
 \lvert u_L;c,\alpha\rangle
 =\lvert C_{\mathrm{IMO}};\ A_{\mathrm{sh}}=(1E,2P),\ A_{\Sigma}=3P;\ c,\alpha\rangle.
 $$
-Here $C_{\mathrm{IMO}}$ is the generation-I nested shell swarm Noether swarm, $A_{\mathrm{sh}}$ is the shielded axial inventory outside the exposed triad, and $(c,\alpha)$ records the color-sector branch and axial-frame offset inherited from the weak-mixing-angle program.
+Here $C_{\mathrm{IMO}}$ is the generation-I Noether swarm, $A_{\mathrm{sh}}$ is the shielded axial inventory outside the exposed triad, and $(c,\alpha)$ records the color-sector branch and axial-frame offset inherited from the weak-mixing-angle program.
 
 The first beta exposure operator is
 $$
@@ -217,7 +217,7 @@ $$
 \Delta Q_{W^-}=3(q_E-q_P)=-6\epsilon=-e.
 $$
 
-In the neutron, this operator acts on one active down-like quark while the spectator $u$ and $d$ assemblies pass through by identity. The conservative provenance stance is the transaction-payload corridor: the $W^-$ carries the charged triad transaction and phase relation, while the electron and antineutrino core material must still be identified from local Noether-Sea or incoming-assembly provenance in the reaction ledger.
+In the neutron, this operator acts on one active down-like quark while the spectator $u$ and $d$ assemblies pass through by identity. The conservative provenance stance is the transaction-payload corridor: the $W^-$ carries the charged triad transaction and phase relation, while the electron and antineutrino swarm material must still be identified from local Noether-Sea or incoming-assembly provenance in the reaction ledger.
 
 This operator gives the first closure test for the unified route. It must fail if the same $\Sigma_{\mathrm{WCT}}$ cannot serve the left-handed gate, the $V_{ud}$ overlap, and the beta-reaction provenance record; if it changes the spectator quarks; or if a right-handed $d$ docks to the charged corridor without strong suppression.
 
@@ -553,7 +553,7 @@ so once $(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert)$ are cali
 - weak-coupling triad & shielding definitions: [assemblies/fermions/quantum-number-mapping.md](../../assemblies/fermions/quantum-number-mapping.md) (Sections on weak isospin, generation hierarchy).
 - Gauge-boson couplings: [assemblies/bosons/electroweak-bosons.md](../../assemblies/bosons/electroweak-bosons.md) (W/Z corridors acting on the weak-coupling triad).
 
-_Status: accepted closure route, not a completed derivation. The chapter now treats exposure, overlap, and holonomy as one weak-sector proof target. Provenance language below is illustrative only until a reaction ledger supplies the participating cores, architrino inventory, corridor payload, and event residuals._
+_Status: accepted closure route, not a completed derivation. The chapter now treats exposure, overlap, and holonomy as one weak-sector proof target. Provenance language below is illustrative only until a reaction ledger supplies the participating swarms, architrino inventory, corridor payload, and event residuals._
 
 ## Future Capability Illustration: Weak-Reaction Provenance
 
@@ -563,13 +563,13 @@ The conjectural weak-provenance material below is an illustration of what a futu
 - **Forward axial sites:** weak-coupling triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
 - **Environmental partners:**
   - Photon: a coaxial contra-rotating pro/anti planar pair.
-  - Noether Sea: hypothesized as paired pro/anti Noether swarms; a local interaction could draw neutral core content to participate while preserving recorded provenance.
+  - Noether Sea: hypothesized as paired pro/anti Noether swarms; a local interaction could draw neutral swarm content to participate while preserving recorded provenance.
 - **Architrino budget example:** reacting with a Noether-Sea super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
-- **Capability target:** a mature reaction ledger would state the corridor provenance stance, participating cores/architrinos, candidate products, and forbidden outcomes with reasons such as shielding mismatch, insufficient flux-tube closure, or unmet charge quantization.
+- **Capability target:** a mature reaction ledger would state the corridor provenance stance, participating swarms/architrinos, candidate products, and forbidden outcomes with reasons such as shielding mismatch, insufficient flux-tube closure, or unmet charge quantization.
 
 ### Illustrative future ledger rows (speculative; not a correctness claim)
 
-| Reactant set | Core shielding (IMO/HML) | weak-coupling-triad polarity | Sea cores tapped? | Candidate products | Corridor(s) | Illustrative status | Reason/constraint |
+| Reactant set | Noether swarm shielding (IMO/HML) | weak-coupling-triad polarity | Sea swarms tapped? | Candidate products | Corridor(s) | Illustrative status | Reason/constraint |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | $d$ (IMO) → $u$ (IMO) + $W^-$ | tri → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | likely | Matches $V_{ud}$; charge quantized |
 | $s$ (IM-) → $u$ (IMO) + $W^-$ | bi → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{us}\rvert$ |
@@ -578,7 +578,7 @@ The conjectural weak-provenance material below is an illustration of what a futu
 | $d$ (IMO) + Sea (4 cores) → $u$ (IMO) + $W^-$ | tri + sea | E→P swap | 4 | $u + W^-$ | $W^-$ | speculative | Sea supplies corridor, check energy budget |
 | $q$ + Sea → $q$ (same) + $Z$ | any | none | 4 | $Z$ | $Z$ | speculative | Neutral corridor, no flavor change |
 | $d$ (IMO) → $u$ (IMO) without $W$ | tri → tri | E→P | 0 | forbidden | — | no | Need $W$ to carry charge/spin |
-| $t$ (I--; weak-active sites 1/5) → $b$ (I--; weak-active 4/2) + $W^+$ → $b + e^+ + \nu_e$ | uni → uni | P→E swap | 0–4 (corridor draw) | $b + e^+ + \nu_e$ | $W^+$ forward corridor | allowed (dominant) | CKM $\lvert V_{tb}\rvert\approx1$; forward Sea cores assemble $W^+$; lepton leg is weak singlet (0/6) |
+| $t$ (I--; weak-active sites 1/5) → $b$ (I--; weak-active 4/2) + $W^+$ → $b + e^+ + \nu_e$ | uni → uni | P→E swap | 0–4 (corridor draw) | $b + e^+ + \nu_e$ | $W^+$ forward corridor | allowed (dominant) | CKM $\lvert V_{tb}\rvert\approx1$; forward Sea swarms assemble $W^+$; lepton leg is weak singlet (0/6) |
 | $t$ (I--; 1/5) → $b$ (I--; 4/2) + $W^+$ → $b + q\bar q$ (e.g., $u\bar d$ or $c\bar s$) | uni → uni | P→E swap | 0–4 | $b + q\bar q$ | $W^+$ forward corridor | allowed (dominant; SM $W\to q\bar q$ branching $\sim67\%$) | CKM $\lvert V_{tb}\rvert\approx1$; $q\bar q$ from $W^+$ (anti-down weak-active 2/4, up 1/5); charge hand-off via corridor. Branching fraction note is an SM reference point, not an $\mathbb{A}\mathbb{A}\mathbb{A}$-derived output. |
 | $e^- (6/0)$ + $e^+ (0/6)$ → $Z$ → $\nu_\mu + \bar\nu_\mu$ | leptons | WK: e 6/0, e+ 0/6 | 0–4 | $\nu_\mu + \bar\nu_\mu$ | neutral corridor ($Z$) | allowed (NC) | $Z$ neutral; couples to L/R leptons; final $\nu,\bar\nu$ weak-active 3/0, 0/3 |
 | $\mu^- (Gen\ II, 6E)$ → $e^- (Gen\ I, 6E) + \bar\nu_e + \nu_\mu$ | bi → tri | E→P swap on weak-coupling triad; shed outer binary | 0–4 | $e^- + \bar\nu_e + \nu_\mu$ | $W^-$ corridor | allowed (leptonic) | Shielding drop (Gen II→I); forward $W^-$ transfers charge; stripped core re-emerges as $\nu_\mu$, Sea/anti-Sea absorbs balance ($\bar\nu_e$) |
@@ -586,13 +586,13 @@ The conjectural weak-provenance material below is an illustration of what a futu
 | $W$ corridor budget (generic) | — | — | 2 neutral cores + 6 excess decorations | returns neutral cores to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 cores + (9P,3E) → +e; $W^-$: 2 cores + (3P,9E) → –e; cores end neutral |
 
 Notes:
-- “Sea cores tapped” = how many Noether-Sea cores are pulled transiently (if any). Default 0 unless we posit corridor assembly needs external cores.
+- “Sea swarms tapped” = how many Noether-Sea swarms are pulled transiently (if any). Default 0 unless we posit corridor assembly needs external cores.
 - Populate further rows for $c\leftrightarrow s$, $b\to u$, rare loop-induced $b\to s$, and anti-quark channels (same CKM but right-handed anti-doublets).
 
 ### Provenance
 
 - We ultimately want **provenance**, not just bookkeeping: track every architrino’s path through a reaction, so simulations can reproduce PDG observables from first principles.
-- Beyond individual architrinos, track **sub-assembly provenance**: entire Noether swarms may transfer intact, detach outer binaries, dissociate, reassociate, or relock into different groupings while their architrino identities persist. Knowing which cores move as units vs fragment gives insight into allowed channels and lifetimes.
+- Beyond individual architrinos, track **sub-assembly provenance**: entire Noether swarms may transfer intact, detach outer binaries, dissociate, reassociate, or relock into different groupings while their architrino identities persist. Knowing which Noether swarms move as units vs fragment gives insight into allowed channels and lifetimes.
 - Conservation: electrinos IN = electrinos OUT. Same for positrinos. Transmutation: reactants → products; true understanding is to map (simulate) each architrino's path.
 - Point to ponder: What becomes of a spare electrino and positrino from a reaction? Do they couple and spiral inward to max curvature? Do they become highly reactive at some point?
 

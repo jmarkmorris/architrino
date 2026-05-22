@@ -64,7 +64,7 @@ for separations in the nuclear window, with the attraction strongest where meson
 
 ### Short-range exclusion
 
-Nucleons are not point masses. Each is a structured tri-core assembly with an exclusion volume and a strong internal stress network. If two nucleons are pushed too close together, the cost rises sharply:
+Nucleons are not point masses. Each is a structured Noether swarm assembly with an exclusion volume and a strong internal stress network. If two nucleons are pushed too close together, the cost rises sharply:
 $$
 V_{\text{excl}}(r)\to +\infty
 \quad\text{as}\quad
@@ -83,7 +83,7 @@ at effective level. Nuclear binding must therefore come from the residual strong
 
 ### Sea polarization
 
-Neighboring nucleons polarize the local Noether Sea. This lowers the total energy when the surrounding medium can support a shared hadronic corridor more cheaply than two isolated hadronic envelopes. That is the current $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement for saying that the ambient medium participates in nuclear binding.
+Neighboring nucleons polarize the local Noether Sea. This lowers the total energy when the surrounding Noether Sea can support a shared hadronic corridor more cheaply than two isolated hadronic envelopes. That is the current $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement for saying that the ambient Noether Sea participates in nuclear binding.
 
 ## Shape of the Effective Potential
 
@@ -173,7 +173,7 @@ So a realistic nuclear theory here must eventually combine:
 - the nuclear effective potential,
 - the proton-neutron mass difference,
 - the electron and neutrino emission channels,
-- and the local medium contribution to the total energy balance.
+- and the local Noether-Sea contribution to the total energy balance.
 
 ## Minimal Falsification Gates
 

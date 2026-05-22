@@ -1,6 +1,6 @@
 # Hubble and $S_8$ Tensions
 
-This note frames the $H_0$ and $S_8$ problems as coupled symptoms inside one cosmological medium story rather than as unrelated anomalies. Its purpose is to give the reader a single conceptual entry point before the detailed growth and expansion modules are considered separately.
+This note frames the $H_0$ and $S_8$ problems as coupled symptoms inside one Noether-Sea cosmology story rather than as unrelated anomalies. Its purpose is to give the reader a single conceptual entry point before the detailed growth and expansion modules are considered separately.
 
 It is best read together with [Cosmology Ontology](cosmology-ontology.md), [Expansion Mechanism](expansion-mechanism.md), [Structure Formation](structure-formation.md), [CMB](CMB.md), [Dark Matter](dark-matter.md), and [Dark Energy](dark-energy.md).
 
@@ -52,7 +52,7 @@ Both tensions are treated as different projections of one process: non-uniform r
 
 For $H_0$:
 
-- early-universe inference samples a comparatively rigid, less-relaxed medium state,
+- early-universe inference samples a comparatively rigid, less-relaxed Noether-Sea state,
 - local ladders sample more relaxed pockets with different clock-rate environments.
 
 For $S_8$:
@@ -60,15 +60,15 @@ For $S_8$:
 - baryonic and neutral-assembly sectors do not need to co-evolve identically at late times,
 - mild dark-sector drag and partial coupling can suppress growth amplitude without changing the same degree of early-time background history.
 
-So background and growth are connected through shared medium-state evolution rather than separate ad hoc corrections.
+So background and growth are connected through shared Noether-Sea state evolution rather than separate ad hoc corrections.
 
 ## Coupled Interpretation Channels
 
 For $H_0$:
 
-- local medium-state inhomogeneity (including void-like environments) can bias local-ladder inference relative to early-time inference,
+- local Noether-Sea state inhomogeneity (including void-like environments) can bias local-ladder inference relative to early-time inference,
 - late-time medium transition channels can shift low-$z$ inference without reintroducing ontology splits.
-- a non-zero environment-conditioned scatter in local $H$ inference is expected if medium-state gradients are physically relevant.
+- a non-zero environment-conditioned scatter in local $H$ inference is expected if Noether-Sea state gradients are physically relevant.
 - a diagnostic expectation is correlation between local inferred-$H$ scatter and bulk-flow/environment anisotropy indicators along the same sightlines.
 - the CMB-frame correction used in local-ladder and supernova pipelines must be tested against matter-dipole and bulk-flow residuals rather than assumed to erase all direction dependence.
 - the quadratic term in the local redshift-transfer curve should be fitted or bounded before a local distance-ladder slope is promoted to a universal coefficient.
@@ -93,9 +93,9 @@ $$
 \mathcal{C}_{\mathrm{growth}}
 \neq \varnothing
 $$
-without assigning separate medium states to each inference pipeline. If the preferred $w(a)$ trend requires one state for distance data and another for growth, the cosmology branch has only hidden the tension.
+without assigning separate Noether-Sea states to each inference pipeline. If the preferred $w(a)$ trend requires one state for distance data and another for growth, the cosmology branch has only hidden the tension.
 
-This is the local form of the shared calibration gate in [Dark Energy](dark-energy.md#inference-dependency-and-calibration-gates). The sets $\mathcal{C}_{H_0}$, $\mathcal{C}_{S_8}$, $\mathcal{C}_{\mathrm{BAO/SN/CMB}}$, and $\mathcal{C}_{\mathrm{growth}}$ should be read as constraints on projections of one $\theta_{\mathrm{sea}}$, not as independent fit islands. A low distance residual paired with an incompatible growth projection is therefore not a win for the medium-relaxation interpretation; it is evidence that the interpretation has not yet closed.
+This is the local form of the shared calibration gate in [Dark Energy](dark-energy.md#inference-dependency-and-calibration-gates). The sets $\mathcal{C}_{H_0}$, $\mathcal{C}_{S_8}$, $\mathcal{C}_{\mathrm{BAO/SN/CMB}}$, and $\mathcal{C}_{\mathrm{growth}}$ should be read as constraints on projections of one $\theta_{\mathrm{sea}}$, not as independent fit islands. A low distance residual paired with an incompatible growth projection is therefore not a win for the Noether-Sea relaxation interpretation; it is evidence that the interpretation has not yet closed.
 
 The current benchmark family can be summarized as a residual-contract table:
 
@@ -133,7 +133,7 @@ Here $\mathbf b_{\mathrm{BAO}}(z_i)$ contains the reported subset of $D_M/r_d$, 
 
 ## Dipole and Bulk-Flow Diagnostic
 
-The same medium-relaxation model that shifts local $H$ inference should also predict where directional residuals appear. A compact test is to compare the line-of-sight Hubble residual with the matter-dipole residual from source catalogues:
+The same Noether-Sea relaxation model that shifts local $H$ inference should also predict where directional residuals appear. A compact test is to compare the line-of-sight Hubble residual with the matter-dipole residual from source catalogues:
 
 $$
 \mathcal{R}_{H,D}(z)
@@ -157,7 +157,7 @@ c_0
 \right),
 $$
 
-after source, endpoint, and launch factors have been removed. The expected sign and scale of $\mathcal{R}_{H,D}$ must come from the same Noether-Sea density, delay, and flow variables used by the expansion and growth modules. If the correlation is absent after known survey systematics are controlled, the local-environment explanation for $H_0$ loses support. If the correlation exists but requires a different medium state from the one used for CMB, BAO, or growth, the cosmology branch has split its ontology and fails the shared-closure requirement.
+after source, endpoint, and launch factors have been removed. The expected sign and scale of $\mathcal{R}_{H,D}$ must come from the same Noether-Sea density, delay, and flow variables used by the expansion and growth modules. If the correlation is absent after known survey systematics are controlled, the local-environment explanation for $H_0$ loses support. If the correlation exists but requires a different Noether-Sea state from the one used for CMB, BAO, or growth, the cosmology branch has split its ontology and fails the shared-closure requirement.
 
 The operational version of this diagnostic is the frame-split packet in [Cosmology Shared Residual Fit Protocol](../validation/simulations/cosmology-shared-residual-fit.md#frame-split-measurement-recipe), where local $H_0$ scatter is tested beside CMB, matter-dipole, supernova, and BAO directional rows.
 
@@ -199,7 +199,7 @@ A distance improvement that raises the shared-state penalty or worsens $f\sigma_
 
 MOND-like comparison models often expose a numerical proximity between a galaxy acceleration scale and an effective Hubble scale. In this ontology that proximity is not a derivation. It becomes useful only when it is tested as a shared Noether-Sea projection connecting distance transfer, growth, and nonlinear dark-sector response.
 
-Let $a_\star(E)$ denote the observer-level acceleration transition extracted from environment class $E$, such as disc galaxies or clusters. Let $H_{\mathrm{eff}}^\theta(t)$ be the corrected redshift-transfer coefficient from the same medium-state record. A minimal coupling diagnostic is
+Let $a_\star(E)$ denote the observer-level acceleration transition extracted from environment class $E$, such as disc galaxies or clusters. Let $H_{\mathrm{eff}}^\theta(t)$ be the corrected redshift-transfer coefficient from the same Noether-Sea state record. A minimal coupling diagnostic is
 
 $$
 \mathcal{R}_{aH}(\theta_{\mathrm{sea}})
@@ -219,7 +219,7 @@ a_\star(E)
 \lambda_{\mathrm{cl}}\mathcal{R}_{\mathrm{cl/gal}}(\theta_{\mathrm{sea}}),
 $$
 
-where $\alpha_E$ is a declared comparison coefficient rather than a fitted afterthought. The cluster-versus-galaxy term $\mathcal{R}_{\mathrm{cl/gal}}$ records whether the same Noether-Sea state explains any required difference between galaxy-scale and cluster-scale acceleration thresholds. A branch that fits galaxy rotation curves with one $a_\star$, cluster gas with another, and the $H_0/S_8$ pair with a third effective history has not linked the tensions; it has split the medium record.
+where $\alpha_E$ is a declared comparison coefficient rather than a fitted afterthought. The cluster-versus-galaxy term $\mathcal{R}_{\mathrm{cl/gal}}$ records whether the same Noether-Sea state explains any required difference between galaxy-scale and cluster-scale acceleration thresholds. A branch that fits galaxy rotation curves with one $a_\star$, cluster gas with another, and the $H_0/S_8$ pair with a third effective history has not linked the tensions; it has split the Noether-Sea record.
 
 ## Cross-Module Interface
 
@@ -227,8 +227,8 @@ In the modular cosmology map, this document is the coupling layer between:
 
 - expansion-module outputs ([expansion-mechanism.md](./expansion-mechanism.md)) that shape inferred $H_0$,
 - growth-module outputs ([structure-formation.md](./structure-formation.md)) that shape inferred $S_8$,
-- shared medium-state variables that keep both readouts in one ontology,
-- dipole, bulk-flow, and calibration residuals that test whether the same medium state explains local and early-inferred cosmology.
+- shared Noether-Sea state variables that keep both readouts in one ontology,
+- dipole, bulk-flow, and calibration residuals that test whether the same Noether-Sea state explains local and early-inferred cosmology.
 
 ## Coherent Reading
 

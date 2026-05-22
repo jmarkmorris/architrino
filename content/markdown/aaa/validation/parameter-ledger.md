@@ -2,7 +2,7 @@
 
 This chapter is the canonical bookkeeping page for the symbols that control closure across the current $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus. Its purpose is not to re-derive every quantity. Its purpose is to keep the roles of primitive postulates, geometric closure targets, constitutive coefficients, state variables, and observer-level benchmarks from collapsing into one another.
 
-The central bookkeeping rule is simple: not every symbol that appears in an equation is a free parameter. Some symbols are fixed substrate inputs, some are assembly-dependent outputs, some are constitutive functions of the medium, and some are measured benchmarks that the theory is supposed to recover.
+The central bookkeeping rule is simple: not every symbol that appears in an equation is a free parameter. Some symbols are fixed substrate inputs, some are assembly-dependent outputs, some are constitutive functions of the Noether Sea, and some are measured benchmarks that the theory is supposed to recover.
 
 ## Purpose
 
@@ -155,11 +155,11 @@ These symbols belong to the delayed microscopic law itself.
 
 ## Layer II: Assembly-Geometry Closure Targets
 
-These quantities belong to nested shell swarm architecture, shielding, branch structure, and assembly response.
+These quantities belong to Noether swarm architecture, shielding, branch structure, and assembly response.
 
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch nested shell swarm Noether swarm reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [../assemblies/particle-masses.md](../assemblies/particle-masses.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../noether-swarm/nested-shell-swarm-dynamics.md), [../dynamics/energy.md](../dynamics/energy.md) |
+| G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch Noether swarm reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [../assemblies/particle-masses.md](../assemblies/particle-masses.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../noether-swarm/nested-shell-swarm-dynamics.md), [../dynamics/energy.md](../dynamics/energy.md) |
 | G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open; compact finite-coordinate no-go recorded, branch-chart revision required before Tier 1 continuation | certificate packet tying the finite closure graph $\mathcal{G}_{A_0}$, active root ledger, quotient Floquet gap $\Delta_{\mathbf{k}}$, shielding extraction, and $\mathcal{M}_{\text{sea}}^{ab}$ response probe into one promotion sequence | [simulations/a0-branch-certificate-protocol.md](./simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](./simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 | G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether swarm | [../noether-swarm/noether-swarm.md](../noether-swarm/noether-swarm.md), [../noether-swarm/nested-shell-swarm-geometry.md](../noether-swarm/nested-shell-swarm-geometry.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../noether-swarm/nested-shell-swarm-dynamics.md) |
 | G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [../noether-swarm/nested-shell-swarm-dynamics.md](../noether-swarm/nested-shell-swarm-dynamics.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
@@ -175,7 +175,7 @@ These symbols control the handoff from the Euclidean substrate plus Noether Sea 
 
 | ID | Symbol | Class | Current status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
-| C1 | $\rho_{\text{core},0}$ | Constitutive closure target | Open | reference Noether swarm density used to normalize the medium | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
+| C1 | $\rho_{\text{core},0}$ | Constitutive closure target | Open | reference Noether swarm density used to normalize the Noether Sea | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
 | C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether swarm density, $n=\rho_{\text{core}}/\rho_{\text{core},0}$ | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
 | C3 | $\Omega(\mathbf{x}),\xi(\mathbf{x})$ | Constitutive closure target | Open | clock-channel and ruler-channel response functions in the effective metric subclass | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../spacetime/lorentz-kinematics.md) |
 | C4 | $\Phi_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
@@ -251,7 +251,7 @@ $$
 
 Here $\xi$ is the Noether swarm envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed.
 
-This is the cleanest current statement of the medium-to-metric handoff:
+This is the cleanest current statement of the Noether-Sea-to-metric handoff:
 $$
 (\delta_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})
 \mapsto

@@ -459,7 +459,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Electromagnetic phenomena are governed by a medium-relative dynamics in which observed Lorentz symmetry can emerge despite a preferred rest structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the medium as Noether-Sea assembly-network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the relevant substrate as Noether-Sea assembly-network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
 
 **Legacy Shift**: Lorentz moves from discarded alternative to core interpretive ancestor, with his ontology formalized by explicit causal delayed substrate mechanics.
 

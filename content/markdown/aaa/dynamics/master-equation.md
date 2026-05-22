@@ -1942,7 +1942,7 @@ a_{r}^{(\mathrm{part})}+A_r^{|\sin|}(\beta)
 $$
 is again outward for sufficiently large $\beta$. Thus an exact high-speed constant-radius circular orbit is asymptotically excluded in the equal-magnitude bare two-body kernel away from Jacobian-null windows: the tangential residual remains forward, and the radial branch sum does not provide the required inward acceleration $-\omega^2R$. This is not yet a finite-$\beta$ no-go theorem; any surviving finite-speed window still requires a certified branch chart with positive Jacobian floor, inactive gaps, finite memory depth, and signed residual closure.
 
-The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether swarm model. The Noether swarm model is the six-body nested shell swarm branch chart containing self, partner, and inter-layer causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
+The circular self-hit and partner-hit formulas are kernel benchmarks. They are not the Noether swarm model. The Noether swarm model is the six-body branch chart containing self, partner, and inter-layer causal roots, with hierarchy averaging only where justified by separated scales and certified branch data.
 
 ---
 
@@ -2008,7 +2008,7 @@ is an unstable mode.
 > $$
 > space until the net signed tangential balance and transverse eigenvalues are certified.
 
-This is the intended dynamical interpretation. Stable particles in the present architecture are nested shell swarm assemblies; a bare MCB, if it exists, is a high-curvature component or limiting scaffold whose instability explains why additional locking structure is needed.
+This is the intended dynamical interpretation. Stable particles in the present architecture are Noether swarm assemblies; a bare MCB, if it exists, is a high-curvature component or limiting scaffold whose instability explains why additional locking structure is needed.
 
 This would be an “analytic scaffold + numerical check” situation, not full closed forms.
 

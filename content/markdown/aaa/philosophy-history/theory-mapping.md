@@ -74,10 +74,10 @@ except gravity.
 $$
 G_{\mathrm{SM}} = \mathrm{SU(3)}_C \times \mathrm{SU(2)}_L \times \mathrm{U(1)}_Y.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $G_{\mathrm{SM}}$ is an *effective symmetry* of nested shell swarm assemblies and their axial patterns. Color, weak isospin, and hypercharge correspond to discrete topological/phase labels on nested shell swarm assemblies and to symmetries of their internal motion. The SM is the continuum, field-theoretic summary of discrete architrino assemblies and their interaction graph, not a fundamental layer.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $G_{\mathrm{SM}}$ is an *effective symmetry* of Noether swarm assemblies and their axial patterns. Color, weak isospin, and hypercharge correspond to discrete topological/phase labels on Noether swarm assemblies and to symmetries of their internal motion. The SM is the continuum, field-theoretic summary of discrete architrino assemblies and their interaction graph, not a fundamental layer.
 
 **What Still Works:** Standard Model (SM) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of nested shell swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
@@ -127,7 +127,7 @@ $$
 \Box = -\frac{1}{c^2}\frac{\partial^2}{\partial t^2}+\nabla^2
 $$
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi$ should be treated as a coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response, not as a fundamental continuous substance. The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the medium; particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. For the detailed bridge, including mode operators, curved-spacetime coupling, source terms, and closure targets, see [Relativistic Scalar Fields and the Klein-Gordon Equation](theory-bridges/klein-gordon-scalar-fields.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi$ should be treated as a coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response, not as a fundamental continuous substance. The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether Sea; particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. For the detailed bridge, including mode operators, curved-spacetime coupling, source terms, and closure targets, see [Relativistic Scalar Fields and the Klein-Gordon Equation](theory-bridges/klein-gordon-scalar-fields.md).
 
 **What Still Works:** Relativistic scalar-field equations remain indispensable for spin-0 sectors, scalar perturbations, effective field theory, cosmology, and curved-spacetime comparison work. They provide a compact target for any substrate theory that claims to recover continuum field behavior.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the scalar field, mass parameter, potential $V(\phi)$, and curvature coupling $\xi R\phi^2$ are reclassified as effective descriptors of collective assembly response, medium stiffness, nonlinear relaxation, and emergent-metric feedback.
@@ -158,10 +158,10 @@ $$
 -\frac{1}{4}G^a_{\mu\nu}G^{a\mu\nu}, \quad
 \text{where } D_\mu = \partial_\mu + ig_s T^a A^a_\mu.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Quarks are specific charged nested shell swarm assemblies; color labels are discrete topological/phase states on subsets of their polar sites. Gluons are vortices between binaries that shuttle these labels between nested shell swarm assemblies. Confinement reflects the energetics and topology of architrino flux routing: isolated color charges are dynamically unstable, so only color-neutral composite assemblies are long-lived. The main repo interfaces for this are [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Quarks are specific charged Noether swarm assemblies; color labels are discrete topological/phase states on subsets of their polar sites. Gluons are vortices between binaries that shuttle these labels between Noether swarm assemblies. Confinement reflects the energetics and topology of architrino flux routing: isolated color charges are dynamically unstable, so only color-neutral composite assemblies are long-lived. The main repo interfaces for this are [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
 
 **What Still Works:** Quantum Chromodynamics (QCD) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of nested shell swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
@@ -189,7 +189,7 @@ $$
 Historically, the Liénard-Wiechert moving-source potentials already pointed in this direction by showing that electromagnetic potentials depend on source motion and causal delay. In the present program they matter as an early effective hint that $A_\mu$ should be read as a compressed summary of source-history transport rather than as a primitive object detached from the moving charges that generate it.
 
 **What Still Works:** Quantum Electrodynamics (QED) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of nested shell swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
@@ -212,10 +212,10 @@ $$
 \mathrm{SU(2)}_L \times \mathrm{U(1)}_Y \xrightarrow{\langle H\rangle\neq 0}
 \mathrm{U(1)}_{\mathrm{EM}}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform nested shell swarm configuration in the Noether Sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in this medium, which distinguishes the massless photon channel, described canonically as a coaxial contra-rotating pro/anti planar pair, from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](theory-bridges/weak-mixing-ckm.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform nested shell swarm configuration in the Noether Sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in the Noether Sea, which distinguishes the massless photon channel, described canonically as a coaxial contra-rotating pro/anti planar pair, from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](theory-bridges/weak-mixing-ckm.md).
 
 **What Still Works:** Electroweak Theory (EW) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of nested shell swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
@@ -237,10 +237,10 @@ interference and oscillatory transition probabilities.
 $$
 |\nu_\alpha\rangle = \sum_i U_{\alpha i} |\nu_i\rangle.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Neutrinos are nearly neutral nested shell swarm assemblies with weakly exposed axial layers and several long-lived internal vibration modes. Mass eigenstates are different internal mode patterns; flavor labels reflect how those modes couple to other assemblies, for example in `beta reaction` (SM label: `beta decay`). The PMNS matrix is the change of basis between interaction-defined modes and the natural normal modes of the underlying nested shell swarm geometry. The current repo-side bridge is [Neutrinos](../assemblies/fermions/neutrinos.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Neutrinos are nearly neutral Noether swarm assemblies with weakly exposed axial layers and several long-lived internal vibration modes. Mass eigenstates are different internal mode patterns; flavor labels reflect how those modes couple to other assemblies, for example in `beta reaction` (SM label: `beta decay`). The PMNS matrix is the change of basis between interaction-defined modes and the natural normal modes of the underlying nested shell swarm geometry. The current repo-side bridge is [Neutrinos](../assemblies/fermions/neutrinos.md).
 
 **What Still Works:** Neutrino Oscillations (PMNS Framework) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of nested shell swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
@@ -259,10 +259,10 @@ to a dynamical field that relaxes to zero. Axions and axion-like particles are u
 $$
 \mathcal{L} \supset \frac{a}{f_a} G\tilde G.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An axion-like field can be modeled as a long-wavelength phase or handedness-sensitive mode of a particular architrino/nested shell swarm sub-sector (a quasi-Goldstone of an approximate assembly symmetry). Whether a strong-CP problem exists at the $\mathbb{A}\mathbb{A}\mathbb{A}$ level depends on how QCD emerges from the underlying assembly symmetries; PQ-like dynamics may be an effective stand-in for deeper alignment mechanisms in the Noether Sea.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An axion-like field can be modeled as a long-wavelength phase or handedness-sensitive mode of a particular architrino/Noether swarm sub-sector (a quasi-Goldstone of an approximate assembly symmetry). Whether a strong-CP problem exists at the $\mathbb{A}\mathbb{A}\mathbb{A}$ level depends on how QCD emerges from the underlying assembly symmetries; PQ-like dynamics may be an effective stand-in for deeper alignment mechanisms in the Noether Sea.
 
 **What Still Works:** Axion Theory (Peccei-Quinn) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of nested shell swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
@@ -284,7 +284,7 @@ $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally relates fermionic (3D ellipsoidal) and bosonic (2D planar) nested shell swarm configurations of similar topological content. A full SUSY algebra would correspond to an approximate symmetry exchanging these geometric realizations of assemblies. Whether exact SUSY emerges depends on additional symmetry structure in the architrino dynamics; $\mathbb{A}\mathbb{A}\mathbb{A}$ does not require it but can mimic SUSY-like pairings as approximate assembly symmetries.
 
 **What Still Works:** Supersymmetry (SUSY) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of nested shell swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 
@@ -306,7 +306,7 @@ $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** This is natural in $\mathbb{A}\mathbb{A}\mathbb{A}$: the Higgs is interpreted as a composite pattern in the Noether Sea, not a fundamental scalar. “New strong sector” corresponds to dense, self-coupled architrino assemblies whose collective behavior generates the effective Higgs condensate and associated symmetry breaking.
 
 **What Still Works:** Technicolor / Composite Higgs remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of nested shell swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 ## Spacetime / Gravity (Emergent Metric)
@@ -337,7 +337,7 @@ $$
 
 **Geometric proof targets:**
 - Derive an effective metric from assembly density/oscillation fields.
-- Show geodesic motion emerges from straight-line motion in the medium with variable signal speed.
+- Show geodesic motion emerges from straight-line motion in the Noether Sea with variable signal speed.
 
 ---
 ### Special Relativity (SR)
@@ -384,7 +384,7 @@ acts instantaneously through a potential.
 $$
 \mathbf{F} = m\mathbf{a}, \quad F = G\frac{m_1 m_2}{r^2}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Newtonian mechanics is the low-speed, weak-field limit of architrino/assembly dynamics in Euclidean 3D with absolute time. The effective $1/r^2$ gravitational potential arises from long-range patterns in the Noether Sea’s density and its influence on the causal wake geometry; “gravitational force” is an emergent shorthand for small deviations from straight-line motion within that medium.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Newtonian mechanics is the low-speed, weak-field limit of architrino/assembly dynamics in Euclidean 3D with absolute time. The effective $1/r^2$ gravitational potential arises from long-range patterns in the Noether Sea’s density and its influence on the causal wake geometry; “gravitational force” is an emergent shorthand for small deviations from straight-line motion within the Noether Sea.
 
 **What Still Works:** Newtonian Mechanics and Gravity remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
@@ -409,7 +409,7 @@ the force law below a threshold $a_0$.
 $$
 \mu\left(\frac{a}{a_0}\right) a = a_N.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** MOND-like behavior can, in principle, emerge if the Noether Sea exhibits new phases or non-linear response below a characteristic acceleration or curvature scale set by its internal self-hit dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this would be a property of the medium’s constitutive relation (how assembly density responds to stress/curvature), not a modification of fundamental laws in the Euclidean void.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** MOND-like behavior can, in principle, emerge if the Noether Sea exhibits new phases or non-linear response below a characteristic acceleration or curvature scale set by its internal self-hit dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this would be a property of the Noether Sea's constitutive relation (how assembly density responds to stress/curvature), not a modification of fundamental laws in the Euclidean void.
 
 **What Still Works:** Modified Gravity (MOND / TeVeS) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
@@ -730,7 +730,7 @@ beginning.
 $$
 G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G (T_{\mu\nu} + T^{(C)}_{\mu\nu}).
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** A truly steady large-scale state would require ongoing generation of new nested shell swarm assemblies from architrino-level processes to offset dilution. Any effective $T^{(C)}_{\mu\nu}$ would summarize net creation of assemblies from underlying architrino dynamics, possibly tied to self-hit-driven instabilities in high-curvature regions.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** A truly steady large-scale state would require ongoing generation of new Noether swarm assemblies from architrino-level processes to offset dilution. Any effective $T^{(C)}_{\mu\nu}$ would summarize net creation of assemblies from underlying architrino dynamics, possibly tied to self-hit-driven instabilities in high-curvature regions.
 
 **What Still Works:** Steady-State / Quasi-Steady-State (Hoyle--Narlikar--Burbidge) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -774,7 +774,7 @@ reverse collapse into expansion.
 $$
 H = 0,\quad \dot H > 0.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally replaces singularities with maximum-curvature nested shell swarm cores. A cosmological bounce would correspond to the point where further contraction of the spacetime assembly medium becomes dynamically forbidden (due to self-hit limits or assembly instability), triggering a re-expansion phase; $H=0$, $\dot H>0$ is the effective description of this medium-level transition.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally replaces singularities with maximum-curvature nested shell swarm cores. A cosmological bounce would correspond to the point where further contraction of the Noether-Sea assembly network becomes dynamically forbidden (due to self-hit limits or assembly instability), triggering a re-expansion phase; $H=0$, $\dot H>0$ is the effective description of this Noether-Sea-level transition.
 
 **What Still Works:** Bounce Cosmologies (Generic) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -819,7 +819,7 @@ universe.
 
 **Key Equation:** Often formalized via measures over vacuum states or branches,
 not a single canonical equation.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Multiple “universes” would correspond to distinct large-scale attractors or disjoint regions of the architrino/nested shell swarm state space with different effective parameter values (assembly densities, coupling patterns, symmetry phases). $\mathbb{A}\mathbb{A}\mathbb{A}$ itself stays as a single underlying substrate; multiverse stories describe diversity of emergent macroscopic solutions, not multiple fundamental containers.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Multiple “universes” would correspond to distinct large-scale attractors or disjoint regions of the architrino/Noether swarm state space with different effective parameter values (assembly densities, coupling patterns, symmetry phases). $\mathbb{A}\mathbb{A}\mathbb{A}$ itself stays as a single underlying substrate; multiverse stories describe diversity of emergent macroscopic solutions, not multiple fundamental containers.
 
 **What Still Works:** Multiverse (Generic) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. A multiverse ensemble without a controlled measure is therefore a comparison language, not an explanation of the observed parameter values.
@@ -852,7 +852,7 @@ sit in narrow ranges that permit chemistry, long-lived stars, and complex
 structures. The anthropic move is not a mechanism but a filter: among many
 possible parameter sets, only a small subset yields observers, so apparent
 fine-tuning reflects conditional selection rather than design.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Within $\mathbb{A}\mathbb{A}\mathbb{A}$, apparent fine-tuning reflects which regions of the architrino/nested shell swarm configuration space support long-lived, complex assemblies (including observer-like ones). Anthropic reasoning becomes a way of conditioning on those assembly sectors; it does not replace a dynamical explanation of why particular effective parameters arise from the underlying architrino rules. The native target is therefore a measure over admissible assembly histories, not an appeal to observer existence after the parameters are already known.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Within $\mathbb{A}\mathbb{A}\mathbb{A}$, apparent fine-tuning reflects which regions of the architrino/Noether swarm configuration space support long-lived, complex assemblies (including observer-like ones). Anthropic reasoning becomes a way of conditioning on those assembly sectors; it does not replace a dynamical explanation of why particular effective parameters arise from the underlying architrino rules. The native target is therefore a measure over admissible assembly histories, not an appeal to observer existence after the parameters are already known.
 
 **What Still Works:** Anthropic Principle remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -1005,7 +1005,7 @@ The inverse map from spin value to familiar particle sectors is:
 | $1/2$ | Electron, muon, tau; quarks; neutrinos | Matter fermions; Pauli and Dirac sectors |
 | $1$ | Photon; gluons; W and Z bosons | Gauge or vector bosons; Maxwell, Yang-Mills, and Proca-like sectors |
 
-The examples are not all elementary in the same sense. The Higgs excitation is elementary in the Standard Model, while pions are composite QCD modes. Gluons are massless spin-$1$ fields but belong to non-abelian Yang-Mills theory rather than ordinary Maxwell theory; in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, they are closer to axial coupling behavior between binaries in nearby cores than to independent assemblies. The W and Z bosons are massive spin-$1$ electroweak bosons whose low-energy massive-vector behavior is Proca-like after electroweak symmetry breaking.
+The examples are not all elementary in the same sense. The Higgs excitation is elementary in the Standard Model, while pions are composite QCD modes. Gluons are massless spin-$1$ fields but belong to non-abelian Yang-Mills theory rather than ordinary Maxwell theory; in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, they are closer to axial coupling behavior between binaries in nearby Noether swarms than to independent assemblies. The W and Z bosons are massive spin-$1$ electroweak bosons whose low-energy massive-vector behavior is Proca-like after electroweak symmetry breaking.
 
 Symbol guide: $\psi$, $\phi$, and $A^\nu$ are the wavefunctions or fields being acted on; $m$ is mass; $\partial_\mu$ and $\nabla^2$ are spacetime and spatial derivative operators; $\gamma^\mu$ are Dirac matrices for relativistic spin-$1/2$ fields; $F^{\mu\nu}$ is the electromagnetic field tensor; and $\vec{\sigma}$ are the Pauli matrices used for non-relativistic spin-$1/2$ behavior. In Maxwell theory, the displayed source-free equation is paired with the homogeneous Maxwell identity, usually written in tensor form as $\partial_{[\alpha}F_{\beta\gamma]}=0$.
 
@@ -1015,7 +1015,7 @@ H_{\mathrm{spin}}=-\frac{q}{2m}\vec{\sigma}\cdot\vec{B}.
 $$
 This term shows how non-relativistic spin-$1/2$ behavior enters ordinary Schrödinger dynamics through a two-component spinor and magnetic coupling.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Spin labels should be treated as effective symmetry and transformation classes of stable assembly behavior, not as primitive miniature rotation. The table is therefore a mapping target: $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover why scalar modes behave as spin $0$, why spin-$1/2$ maps to the precessing-axis structure of fermionic assemblies, and why spin-$1$ maps to axial-lock behavior at field speed in photon, W, and Z sectors. Gluons remain spin-$1$ in the inherited classification, but in $\mathbb{A}\mathbb{A}\mathbb{A}$ they are better read as axial coupling between binaries in nearby cores: an assembly behavior rather than a standalone assembly of the same kind. The Pauli and Dirac equations mark especially important bridges because they expose how spin, magnetic response, and relativistic structure enter after the spinless Schrödinger envelope has been exceeded.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Spin labels should be treated as effective symmetry and transformation classes of stable assembly behavior, not as primitive miniature rotation. The table is therefore a mapping target: $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover why scalar modes behave as spin $0$, why spin-$1/2$ maps to the precessing-axis structure of fermionic assemblies, and why spin-$1$ maps to axial-lock behavior at field speed in photon, W, and Z sectors. Gluons remain spin-$1$ in the inherited classification, but in $\mathbb{A}\mathbb{A}\mathbb{A}$ they are better read as axial coupling between binaries in nearby Noether swarms: an assembly behavior rather than a standalone assembly of the same kind. The Pauli and Dirac equations mark especially important bridges because they expose how spin, magnetic response, and relativistic structure enter after the spinless Schrödinger envelope has been exceeded.
 
 **What Still Works:** The spin-classified equation ladder remains indispensable for organizing atomic spectra, magnetic response, fermion behavior, relativistic particle dynamics, and gauge-boson phenomenology.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, spin is reclassified as an effective transformation signature of assembly geometry, phase structure, and stable mode topology rather than a fundamental independent ingredient.

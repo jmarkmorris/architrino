@@ -31,7 +31,7 @@ This keeps conceptual overlap with cyclical-universe intuitions while preserving
 In the broader recycling picture, SMBH-core dynamics provide the persistent source architecture:
 
 - high-curvature interior dynamics load energy into middle-layer/horizon channels,
-- outbound disturbances seed expansion-like phases in the surrounding medium,
+- outbound disturbances seed expansion-like phases in the surrounding Noether Sea,
 - inflation-like behavior is therefore a regime of core-driven release and relaxation, not a separate scalar field ontology.
 
 ## Effective Inflaton Reinterpretation

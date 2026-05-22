@@ -8,7 +8,7 @@ All such dynamics unfold on a fixed ontological background: absolute time plus t
 
 The chapter keeps four levels separate. At the substrate level, kinetic and potential terms are architrino and causal-wake records on absolute time and the Euclidean void. At the dynamical level, energy changes through Jacobian-weighted causal hits and radial power. At the effective level, assemblies acquire inertia, apparent energy, and effective metric response through Noether-Sea coupling. At the inference level, scalar masses, thermodynamic records, and cosmological inventories are accepted only after a window, boundary record, and residual are declared.
 
-Spacetime in this framework belongs to the effective level, not the ontological one. The ambient Noether Sea is a **dense sea of scalable high-energy nested shell swarm assemblies** occupying the Euclidean void. These nested shell swarms are extremely small compared to ordinary Standard Model particles and constitute the medium through which all other assemblies move and interact. The energetic state and configuration of this nested shell swarm sea control how energy, inertia, and effective geometry appear at larger scales.
+Spacetime in this framework belongs to the effective level, not the ontological one. The ambient Noether Sea is a **dense sea of scalable high-energy Noether swarm assemblies** occupying the Euclidean void. These Noether swarms are extremely small compared to ordinary Standard Model particles and constitute the Noether Sea through which all other assemblies move and interact. The energetic state and configuration of this Noether swarm sea control how energy, inertia, and effective geometry appear at larger scales.
 
 ---
 
@@ -22,7 +22,7 @@ An architrino in motion possesses kinetic energy and momentum.
   
   $$E_{k,a}(t) = K\big(\|\mathbf{v}_a(t)\|\big),$$
   
-  where $s$ denotes the speed argument and $K$ is a strictly convex, monotonically increasing function with $K(0)=0$. If an effective saturation proxy is being used, $K'(s)\to\infty$ at the saturation scale; in the primitive limit, $K$ grows unboundedly. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether-Sea nested shell swarms. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf{v}_a\|\to\infty$.
+  where $s$ denotes the speed argument and $K$ is a strictly convex, monotonically increasing function with $K(0)=0$. If an effective saturation proxy is being used, $K'(s)\to\infty$ at the saturation scale; in the primitive limit, $K$ grows unboundedly. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether swarms in the Noether Sea. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf{v}_a\|\to\infty$.
 
 - **Momentum $\mathbf{p}_a$**
   
@@ -47,7 +47,7 @@ In this model, there is no **particle-specific substrate mass** assigned to indi
 - Kinetic energy and momentum are **primitive kinematic quantities** of architrinos.
 - The substrate law is written in **acceleration-first** form.
 - If force-like or quadratic-kinetic bookkeeping is needed, one may introduce a single universal conversion constant $\mu_{\text{arch}}$, but this is not a particle-specific inertial mass.
-- "Mass" in the usual observer sense appears **only at the assembly level** as a derived property of how a large internal energy distribution responds to external forcing in the nested shell swarm sea.
+- "Mass" in the usual observer sense appears **only at the assembly level** as a derived property of how a large internal energy distribution responds to external forcing in the Noether Sea.
 
 ---
 
@@ -194,7 +194,7 @@ $$E_{\text{total}} = \sum_a E_{k,a} + U_{\text{int}} + E_{\text{wake}},$$
 and is constant in time for exact isolated solutions of the causal action. In mollified working models, this same bookkeeping should be treated as exact only when the mollified kernel inherits that action-level time-translation symmetry; otherwise it remains the natural candidate history functional to monitor, but not yet an established exact invariant.
 
 - $U_{\text{int}}$ is an optional effective decomposition of near-field interaction energy.
-- $E_{\text{wake}}$ accounts for the exact nonlocal interaction content carried by wake structures and any radiation-like transport through the nested shell swarm sea.
+- $E_{\text{wake}}$ accounts for the exact nonlocal interaction content carried by wake structures and any radiation-like transport through the Noether Sea.
 
 Consistency rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ pairwise term is retained as an effective decomposition inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
 
@@ -408,9 +408,9 @@ Here $\mathcal F_T$ is the packet's chosen fluctuation-dissipation map, and $\ch
 
 ## Noether Sea, Effective Spacetime, and Energy Storage
 
-At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy nested shell swarm assemblies**:
+At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy Noether swarm assemblies**:
 
-- These nested shell swarms are extremely small compared to ordinary particles (electrons, protons, etc.).
+- These Noether swarms are extremely small compared to ordinary particles (electrons, protons, etc.).
 - Each nested shell swarm is itself a tightly bound architrino assembly with very high internal kinetic and potential energy.
 - As a sea, they form a **dense population of coupled assemblies** occupying the Euclidean void. This ambient Noether-Sea content carries non-zero assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, and medium-dressed inertial response) that deform the primitive architrino dynamics into effective relativistic kinematics, providing the bridge-level spacetime medium for:
   - Emergent inertia and mass,
@@ -421,13 +421,13 @@ Energy in this picture is distributed across:
 
 1. **Unbound Architrinos** (rare at low energies),
 2. **Standard Model assemblies** (electrons, nucleons, etc.),
-3. The **nested shell swarm sea** that constitutes the Noether Sea and, in bridge prose, the spacetime medium.
+3. The **Noether Sea** and, in bridge prose, the spacetime medium.
 
 ---
 
 ## Assemblies: Internal vs Apparent Energy
 
-For composite systems such as Standard Model particles, nuclei, and composite bound states formed from architrinos and embedded in the nested shell swarm sea, we distinguish:
+For composite systems such as Standard Model particles, nuclei, and composite bound states formed from architrinos and embedded in the Noether Sea, we distinguish:
 
 - **Total internal energy**: energy retained by the assembly and by its immediate nested shell swarm environment,
 - **Apparent energy**: what leaks out as a long-range wake signature and governs how the assembly interacts with the outside world.
@@ -442,16 +442,16 @@ where:
 
 - $E_{k,i}$ is the kinetic energy of architrino $i$,
 - $U_{ij}$ is mutual potential energy of pair $(i,j)$,
-- $E_{\text{coupling to sea}}$ accounts for how the assembly deforms and polarizes the surrounding nested shell swarm sea, that is, the local Noether-Sea environment (or in bridge prose, the local spacetime medium).
+- $E_{\text{coupling to sea}}$ accounts for how the assembly deforms and polarizes the surrounding Noether Sea, that is, the local Noether-Sea environment (or in bridge prose, the local spacetime medium).
 
 This internal energy can be **very large**: accepted high-energy branches may retain Planck-scale or higher internal energy, even when the assembly appears externally as a low-mass effective particle.
 
 ### Apparent Energy and Shielding
 
-The surrounding nested shell swarm sea, and the arrangement of positive- and negative-polarity architrinos inside an assembly, can **shield** internal energy from the external world through:
+The surrounding Noether Sea, and the arrangement of positive- and negative-polarity architrinos inside an assembly, can **shield** internal energy from the external world through:
 
-- **Polarity cancellation**: positive- and negative-polarity architrinos within the assembly (and in surrounding nested shell swarms) emit wakes that interfere destructively at larger distances.
-- **Phase-structured far-field cancellation**: the geometry of internal orbits and nested shell swarm polarization patterns generates cancellation of most multipoles at scales $r \gg$ assembly size.
+- **Polarity cancellation**: positive- and negative-polarity architrinos within the assembly (and in surrounding Noether swarms) emit wakes that interfere destructively at larger distances.
+- **Phase-structured far-field cancellation**: the geometry of internal orbits and Noether swarm polarization patterns generates cancellation of most multipoles at scales $r \gg$ assembly size.
 - **Nested shielding**: in multi-binary fermion cores, outer binaries partially screen the deeper binaries from the surrounding sea. Generation shifts can therefore be read as loss of shielding tiers, not only as loss of constituent count.
 
 At the reference-attractor level, define the **shielding (leakage) factor** as the leading isotropic projection of a larger far-field wake ledger:
@@ -467,7 +467,7 @@ $$
 \mathcal{L}_{\text{wake}}(A_0)-\Pi_0\mathcal{L}_{\text{wake}}(A_0),
 $$
 
-evaluated in a regime where the assembly appears as an effective point source. Here $\Pi_0$ extracts the monopole/isotropic component of the far-field wake ledger and $\mathcal{L}_{\text{aniso}}$ retains anisotropic leakage instead of hiding it inside a scalar error term. For a strongly shielded, neutral nested shell swarm in the nested shell swarm sea, we expect $\zeta\ll 1$.
+evaluated in a regime where the assembly appears as an effective point source. Here $\Pi_0$ extracts the monopole/isotropic component of the far-field wake ledger and $\mathcal{L}_{\text{aniso}}$ retains anisotropic leakage instead of hiding it inside a scalar error term. For a strongly shielded, neutral Noether swarm in the Noether Sea, we expect $\zeta\ll 1$.
 Operationally, extract $\zeta(A)$ from a far-field fit of $\Phi_{\text{net}}$ (or hit amplitude) at $r \gg \text{size}(A)$: $\zeta \equiv A_{\text{measured}}/A_{\text{naive}}$, the ratio of the leading $1/r^2$ (or multipole) coefficient to the naive constituent sum, with anisotropic residuals reported separately.
 The scalar shielding summary is admissible only when anisotropic leakage is small enough for the comparison being made, for example
 $$
@@ -528,7 +528,7 @@ $$
 h_{ab}\mathcal{Z}_{\mathrm{tf}}^{ab}(A)=0,
 $$
 
-and split the local medium response as
+and split the local Noether-Sea response as
 
 $$
 \mathcal{M}_{\text{sea}}^{ab}
@@ -601,7 +601,7 @@ S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)},
 \right),
 $$
 
-with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{sea}}$, $\Gamma_N$, strain, orientation, cadence, and envelope-scale variables. In this language, saying that neighboring Noether swarms absorb the exposed potential means that they retune their branch state. Depending on the accepted branch, that retuning may appear as higher cadence, changed strain, stronger alignment, envelope-scale shift, or altered coupling to nearby cores; it should not be compressed into a generic statement that the cores simply gain energy and expand.
+with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{sea}}$, $\Gamma_N$, strain, orientation, cadence, and envelope-scale variables. In this language, saying that neighboring Noether swarms absorb the exposed potential means that they retune their branch state. Depending on the accepted branch, that retuning may appear as higher cadence, changed strain, stronger alignment, envelope-scale shift, or altered coupling to nearby Noether swarms; it should not be compressed into a generic statement that the cores simply gain energy and expand.
 
 This is the same shielding-based logic developed more directly in [Particle Masses](../assemblies/particle-masses.md). The matching factor $\alpha_{\mathrm{m}}$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species.
 
@@ -623,10 +623,10 @@ The nested shell swarm Noether Sea adds an additional layer:
 Thus:
 
 - At low center-of-mass speeds $v_{\text{CM}}\ll c_{\text{eff}}$, the effective readout recovers $E_k \approx \frac{1}{2}m_{\text{inertial}} v_{\text{CM}}^2$ for assemblies.
-- At high center-of-mass speeds approaching $c_{\text{eff}}$, internal coupling to the nested shell swarm sea and self-hit effects yield a relativistic-like $E_k \sim m_{\text{inertial}}c_{\text{eff}}^2(\gamma_{\text{eff}}-1)$, with $\gamma_{\text{eff}} = 1/\sqrt{1-v_{\text{CM}}^2/c_{\text{eff}}^2}$, as an **effective law**.
+- At high center-of-mass speeds approaching $c_{\text{eff}}$, internal coupling to the Noether Sea and self-hit effects yield a relativistic-like $E_k \sim m_{\text{inertial}}c_{\text{eff}}^2(\gamma_{\text{eff}}-1)$, with $\gamma_{\text{eff}} = 1/\sqrt{1-v_{\text{CM}}^2/c_{\text{eff}}^2}$, as an **effective law**.
 - Near $c_{\text{eff}}$, axial architrino stripping and oblation are failure channels or branch-transition hypotheses to test, not assumed parts of the mass mechanism.
 
-The details of this emergent relativistic law arise from the combined dynamics of the assembly and the nested shell swarm sea; they are not postulated but must be confirmed by coefficient extraction, simulation, and matching to known particle kinematics. Ordinary dissipative drag is a failure channel for this program, not the mass mechanism. The mass-side integration and quantitative derivation path are tracked in [Particle Masses](../assemblies/particle-masses.md).
+The details of this emergent relativistic law arise from the combined dynamics of the assembly and the Noether Sea; they are not postulated but must be confirmed by coefficient extraction, simulation, and matching to known particle kinematics. Ordinary dissipative drag is a failure channel for this program, not the mass mechanism. The mass-side integration and quantitative derivation path is tracked in [Particle Masses](../assemblies/particle-masses.md).
 
 ---
 
@@ -658,9 +658,9 @@ Cross-links:
 
 ---
 
-## Energy and Self-Hit in the Nested Shell Swarm Sea
+## Energy and Self-Hit in the Noether Sea
 
-In the **super-field-speed** regime ($\|\mathbf{v}_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the nested shell swarm sea:
+In the **super-field-speed** regime ($\|\mathbf{v}_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether Sea:
 
 - Self-hit repulsion acts as an internal **stiffening mechanism** for nested shell swarms and more complex assemblies, contributing to their stability.
 - Energy represented in an architrino's causal wake and local Noether-Sea response can be partially routed back through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local nested shell swarm configuration.
@@ -673,7 +673,7 @@ At the exact causal-action level, global energy is conserved: self-hit just rout
 
 Inside an assembly, large internal causal-history energy can circulate through many branch channels. Outside the assembly, distant probes couple only to the portion of that ledger that survives phase cancellation, shielding, and Noether-Sea response.
 
-Architrinos and their assemblies are where the energy bookkeeping lives. The Noether Sea is a dense population of high-energy nested shell swarm assemblies whose net long-range wake response is usually quiet because incoherent contributions cancel and shielded internal layers leak only weakly. In nested fermion cores, outer binaries screen deeper layers from the ambient medium. The small residual exposure is what observer-level mass and gravitational response measure.
+Architrinos and their assemblies are where the energy bookkeeping lives. The Noether Sea is a dense population of high-energy Noether swarm assemblies whose net long-range wake response is usually quiet because incoherent contributions cancel and shielded internal layers leak only weakly. In nested fermion cores, outer binaries screen deeper layers from the ambient Noether Sea. The small residual exposure is what observer-level mass and gravitational response measure.
 
 ## Summary and Role in the Larger Theory
 
@@ -684,7 +684,7 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
 
 - **At the assembly level:**
   
-  Large internal energies, plus coupling to the nested shell swarm sea, generate:
+  Large internal energies, plus coupling to the Noether Sea, generate:
   - Effective inertia (mass),
   - Shielded external wake signatures (tiny apparent energy compared to internal),
   - Generation dependence through how many outer screening layers still surround the deepest core,
@@ -693,12 +693,12 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
 
 - **For spacetime and gravity:**
   
-  The sea of small, high-energy nested shell swarms forms the Noether Sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both Noether-Sea nested shell swarms and "matter" assemblies contribute to:
+  The sea of small, high-energy Noether swarms forms the Noether Sea and, at coarse-grained level, the effective spacetime medium whose energy density and stress give rise to an emergent metric. The shielding factors and internal energies of both Noether swarms in the Noether Sea and "matter" assemblies contribute to:
   - The effective Newton constant $G$,
   - The cosmological Noether-Sea energy density,
   - How strongly observer-level effective metric response is reconstructed from different kinds of energy.
   
-  Density-driven oblation is a candidate contribution to the effective gravitational-coupling closure: as the nested shell swarm sea encounters denser matter, local nested shell swarms may scale down and oblate, creating a compliance gradient that must be mapped through the Noether-Sea response tensor before it can be read as part of $G$.
+  Density-driven oblation is a candidate contribution to the effective gravitational-coupling closure: as the Noether Sea encounters denser matter, local Noether swarms may scale down and oblate, creating a compliance gradient that must be mapped through the Noether-Sea response tensor before it can be read as part of $G$.
 
 ---
 

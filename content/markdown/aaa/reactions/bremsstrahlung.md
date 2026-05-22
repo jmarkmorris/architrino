@@ -107,7 +107,7 @@ Only when both conditions are met is photon output allowed. If the closure resid
 
 ### Wake Shock Definition (Channel Specialization)
 
-In this document, a **wake shock** is the bremsstrahlung name for the inherited radiation closure residual when it is produced by strong target-induced deceleration of the electron nested shell swarm assembly. It is not merely a descriptive label for radiation. Operationally, it is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in the middle binary (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether Sea.
+In this document, a **wake shock** is the bremsstrahlung name for the inherited radiation closure residual when it is produced by strong target-induced deceleration of the electron Noether swarm assembly. It is not merely a descriptive label for radiation. Operationally, it is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in the middle binary (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether Sea.
 
 A minimal trigger condition is written as
 
@@ -173,7 +173,7 @@ $$
 P_{\mathrm{nuc}}(E_\gamma) = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{E_{\text{exc}}^{\mathrm{br}}}{E_{\gamma,\min}}\right)\right],
 $$
 
-with $(x)_+ \equiv \max(x,0)$. Here $A_{\mathrm{tb}},\alpha,\beta,\mathcal{S}_*$ are effective nested shell swarm medium parameters. This is explicitly a mapping goal, not yet a closed derivation.
+with $(x)_+ \equiv \max(x,0)$. Here $A_{\mathrm{tb}},\alpha,\beta,\mathcal{S}_*$ are effective Noether-Sea medium parameters. This is explicitly a mapping goal, not yet a closed derivation.
 
 Interpretation of coefficients in the current draft:
 
@@ -283,13 +283,13 @@ Standard soft-photon emission produces infrared-divergent exclusive rates, handl
 This implies a channel bifurcation:
 
 - **If $E_{\text{exc}}^{\mathrm{br}} > E_{\gamma,\min}$ with the planar-mode drive above threshold:** wake shock locks into a planar mode and emits a photon.
-- **If $E_{\text{exc}}^{\mathrm{br}} < E_{\gamma,\min}$ or the planar-mode drive remains below threshold:** no stable planar mode forms, and energy dissipates as non-radiative heating/turbulence in the local medium.
+- **If $E_{\text{exc}}^{\mathrm{br}} < E_{\gamma,\min}$ or the planar-mode drive remains below threshold:** no stable planar mode forms, and energy dissipates as non-radiative heating/turbulence in the local Noether Sea.
 
 This gives a physical low-energy floor for discrete photon output while preserving the inclusive-observable interpretation.
 
 Interpretation split used in this draft:
 
-- **Epistemic reinterpretation (default-safe):** sub-threshold energy loss is attributed to local medium heating rather than resolved soft-photon quanta, while inclusive observables remain QED-standard in tested regimes.
+- **Epistemic reinterpretation (default-safe):** sub-threshold energy loss is attributed to local Noether-Sea heating rather than resolved soft-photon quanta, while inclusive observables remain QED-standard in tested regimes.
 - **Ontic prediction (conditional):** if $E_{\gamma,\min}$ is above current soft-photon sensitivity, the model predicts a measurable low-frequency turnover at $\nu_{\min}=E_{\gamma,\min}/h$.
 
 Current status: this chapter treats the claim as epistemic by default and promotes ontic turnover as a conditional extension.
@@ -388,9 +388,9 @@ $$
 
 with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$ and $\mathcal{T}$ the transfer factor (absorption/scattering in plasma and any Noether-Sea-specific opacity).
 
-## Thermal Equilibrium Assumptions in Evolving Medium
+## Thermal Equilibrium Assumptions in Evolving Noether-Sea States
 
-The free-free forms above assume local thermodynamic equilibrium (LTE). In evolving medium states, define
+The free-free forms above assume local thermodynamic equilibrium (LTE). In evolving Noether-Sea states, define
 
 $$
 \mathcal{R}_{\mathrm{LTE}} \equiv \frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}.

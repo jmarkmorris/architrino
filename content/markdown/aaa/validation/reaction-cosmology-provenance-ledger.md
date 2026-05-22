@@ -175,7 +175,7 @@ with $\tau_{\mathrm{th}}^{-1}$ decomposed into the specific event-recorded chann
 4. **Matter-asymmetry closure:** derive $\eta_B^{\mathrm{ledger}}$ from event-level reaction provenance without hidden baryon inventory, charge, or energy sources.
 5. **Detailed-balance closure:** derive the rate symmetry and ensemble weight relation that make emission, absorption, and stimulated terms recover Planck occupation with zero effective photon chemical potential.
 6. **Blackbody closure:** show that distributed source channels plus Noether-Sea transport can generate and preserve the CMB blackbody spectrum within observational limits.
-7. **Clock/redshift closure:** use one medium-state map for photon propagation, endpoint clock comparison, and redshift-distance inference.
+7. **Clock/redshift closure:** use one Noether-Sea state map for photon propagation, endpoint clock comparison, and redshift-distance inference.
 
 ## Failure Modes
 
@@ -185,7 +185,7 @@ The provenance program fails for a channel if a source story cannot survive the 
 | --- | --- | --- |
 | Single Noether swarm temperature mistake | A single excited Noether swarm is treated as thermodynamically hot rather than internally excited, closure-mismatched, or metastable | Temperature is being used before an ensemble distribution or entropy-energy relation has been established |
 | Inventory gap | Architrino inventory, Noether swarm recruitment, recoil, or returned medium content cannot be balanced without unrecorded substrate creation | Pair and radiation channels cannot be promoted beyond provisional maps |
-| Per-observable refit | The same Noether-Sea state variables must be re-fit independently for photon loading, blackbody recovery, damping, redshift, or growth observables | The cosmology interpretation loses its shared medium-state map |
+| Per-observable refit | The same Noether-Sea state variables must be re-fit independently for photon loading, blackbody recovery, damping, redshift, or growth observables | The cosmology interpretation loses its shared Noether-Sea state map |
 | Standard-limit violation | Pair, Compton-like, bremsstrahlung, synchrotron, or photon propagation channels violate validated limits in regimes where those limits are already measured | The proposed substrate route fails before it can claim new deviations |
 | Insufficient thermalization depth | $\mathcal{D}_{\mathrm{th}}$ is too small, or its channel decomposition is not tied to event records | Source photons need not relax to a Planck bath, and a nonzero effective photon chemical potential or spectral distortion remains |
 | Matter-asymmetry ledger failure | $\eta_B^{\mathrm{ledger}}$ cannot match the observed baryon-to-photon ratio without unrecorded baryon inventory, charge imbalance, or energy imbalance | A baryogenesis-like source story cannot be promoted into cosmology provenance |

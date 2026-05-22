@@ -189,7 +189,7 @@ In this causal-wake framing:
 ### Field-Speed Regimes in the Causal-Wake View
 
 - **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic (ahead starves, behind dominates). Phase-locking becomes delicate; alignment effects intensify.  
-- **At $v > c_f$:** It outruns newly emitted causal-wake propagation. The only gradients it can receive are from delayed emissions and the medium behind or sideways, which leads to self-hit dynamics. This creates a strong inward or centripetal feedback candidate that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
+- **At $v > c_f$:** It outruns newly emitted causal-wake propagation. The only gradients it can receive are from delayed emissions and the Noether Sea behind or sideways, which leads to self-hit dynamics. This creates a strong inward or centripetal feedback candidate that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
 
 ---
 
@@ -356,10 +356,10 @@ Our program is to compute $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text
 
 ### $G$ as Noether Sea Compliance
 
-Qualitatively, gravitational coupling strength reflects the **elastic response of the spacetime medium**:
+Qualitatively, gravitational coupling strength reflects the **elastic response of the Noether Sea**:
 
 > **Heuristic View:**  
-> $G$ is inversely related to the **stiffness** of nested shell swarm assemblies in the spacetime medium against being driven toward the alignment phase. High energy density in aligned swarms deforms the surrounding Noether-Sea medium, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
+> $G$ is inversely related to the **stiffness** of nested shell swarm assemblies in the Noether Sea against being driven toward the alignment phase. High energy density in aligned swarms deforms the surrounding Noether Sea, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
 
 A full derivation of $G$ from medium compliance is still to be done; the formula above gives a target relationship.
 

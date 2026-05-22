@@ -9,7 +9,7 @@ The opening establishes the three-layer distinction between observables, constit
 This chapter centralizes the black-hole story within $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to distinguish three levels that are often conflated in black-hole discussion:
 
 - the **effective observational layer**, where black holes are compact objects constrained by lensing, dynamics, accretion phenomenology, horizon-scale imaging, and gravitational-wave data;
-- the **strong-field constitutive layer**, where nested shell swarm assemblies enter alignment, compression, and recycling regimes not encountered in ordinary weak-field gravity;
+- the **strong-field constitutive layer**, where Noether swarm assemblies enter alignment, compression, and recycling regimes not encountered in ordinary weak-field gravity;
 - the **substrate ontology**, where the Euclidean void remains fixed and the Noether Sea carries all dynamical structure.
 
 The chapter does not replace weak-field or observer-level black-hole phenomenology. What survives from standard practice remains indispensable: compact-object mass inference, horizon-scale imaging, ringdown analysis, accretion and jet modeling, and the requirement that exterior predictions recover the tested general-relativistic limit to observational accuracy. The reinterpretation begins only when one asks what a black hole is made of, what replaces singularity language, and how strong-field interiors connect to cosmology.
@@ -55,9 +55,9 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading keeps this reaction as a required o
 
 | Collapse stage | Electrons | Nucleons and nuclei | Noether Sea |
 | :--- | :--- | :--- | :--- |
-| Iron core near instability | Electrons form a dense pressure reservoir rather than atomic orbital distributions. | Iron-group nuclei remain identifiable but no longer release useful fusion support. | The medium sees a compact but still non-horizon matter source through exposed shielded response. |
+| Iron core near instability | Electrons form a dense pressure reservoir rather than atomic orbital distributions. | Iron-group nuclei remain identifiable but no longer release useful fusion support. | The Noether Sea sees a compact but still non-horizon matter source through exposed shielded response. |
 | Electron-capture onset | Electron number falls as electrons are consumed by proton channels. | Protons convert toward neutrons, and the composition becomes more neutron-rich. | Atomic-scale electron resonance is no longer the right response picture; the active ledger shifts toward nuclear reaction provenance. |
-| Photodisintegration and breakup | Electron pressure keeps weakening as collapse accelerates. | Heavy nuclei break into smaller nuclei, alpha-like fragments, and free nucleons, consuming energy. | The old iron-nucleus closure loses authority; source terms into the medium become fragmented, anisotropic, and rapidly changing. |
+| Photodisintegration and breakup | Electron pressure keeps weakening as collapse accelerates. | Heavy nuclei break into smaller nuclei, alpha-like fragments, and free nucleons, consuming energy. | The old iron-nucleus closure loses authority; source terms into the Noether Sea become fragmented, anisotropic, and rapidly changing. |
 | Neutrino-trapping regime | Lepton accounting must include trapped and escaping neutrino channels. | Matter approaches nuclear density, and free nucleons dominate the local inventory. | Transport is no longer globally transparent: neutrino, stress, heat, and medium-update ledgers must be tracked together. |
 | Bounce or continued collapse | Electrons become secondary to nuclear and neutrino pressure channels. | Nuclear-density stiffening can halt the inner core, or support can fail. | A neutron-star branch remains an extreme non-horizon Noether-Sea response; continued collapse routes the same record toward the horizon-interface condition. |
 
@@ -286,7 +286,7 @@ The falsifier is not merely failure to choose a numerical Planck scale. The fals
 
 ## Horizon Interface
 
-The horizon interface is the most important black-hole concept in the local dialect. It names the layer in which nested shell swarm assemblies are flattened into an alignment-locked sheet.
+The horizon interface is the most important black-hole concept in the local dialect. It names the layer in which Noether swarm assemblies are flattened into an alignment-locked sheet.
 
 At this interface:
 
@@ -527,9 +527,9 @@ This is not yet a derived strong-field theorem. It is a compact way of expressin
 
 A viable black-hole account in $\mathbb{A}\mathbb{A}\mathbb{A}$ must work at two scales simultaneously. It must reproduce the compact-object phenomenology of the local exterior, and it must remain coherent when the object is embedded in the evolving large-scale medium. This requirement matters because many intuitive pictures of black holes tacitly treat them as if they lived in asymptotically isolated settings, whereas the cosmological sector requires a compact object to sit inside a time-dependent background.
 
-For that reason, the framework treats horizon regularity under cosmological embedding as a non-negotiable structural requirement. If a proposed strong-field description becomes pathological precisely when one asks how the local object couples to the surrounding medium, then it is not yet a closed black-hole model. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the regularity requirement is met not by postulating a passive background but by letting the local strong-field geometry and the ambient Noether-Sea state backreact on one another through the same constitutive variables.
+For that reason, the framework treats horizon regularity under cosmological embedding as a non-negotiable structural requirement. If a proposed strong-field description becomes pathological precisely when one asks how the local object couples to the surrounding Noether Sea, then it is not yet a closed black-hole model. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the regularity requirement is met not by postulating a passive background but by letting the local strong-field geometry and the ambient Noether-Sea state backreact on one another through the same constitutive variables.
 
-This point sharpens the role of the horizon interface. The interface is not just the place where local assembly geometry reaches terminal alignment. It is also the layer through which the compact object remains connected to the surrounding medium without forcing a curvature blowup at the very location where the constitutive transition is most intense. In that sense, horizon regularity is not cosmetic. It is a closure test for whether the black-hole regime can genuinely communicate with cosmology.
+This point sharpens the role of the horizon interface. The interface is not just the place where local assembly geometry reaches terminal alignment. It is also the layer through which the compact object remains connected to the surrounding Noether Sea without forcing a curvature blowup at the very location where the constitutive transition is most intense. In that sense, horizon regularity is not cosmetic. It is a closure test for whether the black-hole regime can genuinely communicate with cosmology.
 
 The strong-field closure should therefore be posed as a Noether-Sea boundary-condition problem, not as the direct importation of an isolated Schwarzschild or Kerr metric. A schematic horizon-interface condition has the form
 $$
@@ -545,7 +545,7 @@ F_H\!\left[
 v_M=c_f,\quad v_O\to c_f.
 $$
 
-Here $\partial\Omega$ denotes the boundary data supplied by the surrounding Noether Sea and the effective exterior comparison region. The equation is a closure target, not a completed model: the task is to show that the same medium variables that recover weak-field gravity can also admit a regular terminal-alignment interface under non-isolated embedding conditions. Compact, topologically identified, or otherwise non-asymptotically-flat comparison settings are useful stress tests for this requirement, but they do not add extra dimensions to the substrate ontology.
+Here $\partial\Omega$ denotes the boundary data supplied by the surrounding Noether Sea and the effective exterior comparison region. The equation is a closure target, not a completed model: the task is to show that the same Noether-Sea variables that recover weak-field gravity can also admit a regular terminal-alignment interface under non-isolated embedding conditions. Compact, topologically identified, or otherwise non-asymptotically-flat comparison settings are useful stress tests for this requirement, but they do not add extra dimensions to the substrate ontology.
 
 The finite-boundary-data version of this requirement is inherited from [singularity-resolution.md](./singularity-resolution.md#finite-boundary-data-regularity). For every compact strong-field comparison region $\Omega$, the native variables $\rho_{\text{core}}(\mathbf{x},t)$, $\Sigma_{\text{medium}}(\mathbf{x},t)$, and $\mathbf{u}_{\text{medium}}(\mathbf{x},t)$ must remain finite while the horizon-interface condition is imposed. This is the local substitute for treating a classical metric singularity as an endpoint: the weak-field variables may fail, but the Noether-Sea ledger and maximum-curvature closure must not become arbitrary.
 
@@ -562,7 +562,7 @@ The working picture has four parts:
 
 This is the sense in which black holes are treated as recycling furnaces in the cosmology chapters. The claim is not that every specific ejecta channel has already been derived. The claim is that the interior is an energy-partition and reprocessing regime, not a terminal ontic sink.
 
-The same picture implies that the effective mass of a black hole need not be interpreted as a purely isolated bookkeeping variable. If the horizon interface and interior remain constitutively coupled to the ambient Noether Sea, then part of what observers infer as compact-object mass can depend on how the surrounding medium loads, unloads, or stores energy around the recycling site. This does not license arbitrary mass drift. It means that the distinction between "local compact-object state" and "embedding medium state" is dynamical rather than absolute.
+The same picture implies that the effective mass of a black hole need not be interpreted as a purely isolated bookkeeping variable. If the horizon interface and interior remain constitutively coupled to the ambient Noether Sea, then part of what observers infer as compact-object mass can depend on how the surrounding Noether Sea loads, unloads, or stores energy around the recycling site. This does not license arbitrary mass drift. It means that the distinction between "local compact-object state" and "embedding Noether-Sea state" is dynamical rather than absolute.
 
 ## Mass-Scale Traversal
 
@@ -622,11 +622,11 @@ r_{\mathrm{dam}}
 $$
 If the object is horizon-like in the observer comparison, $R_X$ is bounded by the effective horizon scale $R_H(M_X;\theta)$; if it is a native maximum-curvature defect, $R_X$ is instead supplied by the core-interface branch. Either way, the material claim must pass through the same energy-deposition, acoustic, thermal, and defect-survival record before it is used as evidence for a compact dark-sector branch.
 
-The scale map is a classification aid, not a new gate. It says which existing black-hole burdens become sharp as $M$ changes: small black holes emphasize endpoint and release accounting, medium black holes emphasize collapse continuity, and supermassive black holes emphasize embedded recycling and medium-state source terms.
+The scale map is a classification aid, not a new gate. It says which existing black-hole burdens become sharp as $M$ changes: small black holes emphasize endpoint and release accounting, intermediate-mass black holes emphasize collapse continuity, and supermassive black holes emphasize embedded recycling and Noether-Sea state source terms.
 
 ## Jets and Other Release Channels
 
-Jets should remain in the black-hole story, but they should be placed at the correct level. In $\mathbb{A}\mathbb{A}\mathbb{A}$, jets are not the definition of recycling. They are one candidate macroscopic manifestation of release from a recycling site. The deeper claim is that strong-field interiors can return some portion of their processed content to the surrounding medium; the jet question is how much of that return becomes collimated, how much remains diffuse, and how much leaves in channels that are initially dark to ordinary electromagnetic observation.
+Jets should remain in the black-hole story, but they should be placed at the correct level. In $\mathbb{A}\mathbb{A}\mathbb{A}$, jets are not the definition of recycling. They are one candidate macroscopic manifestation of release from a recycling site. The deeper claim is that strong-field interiors can return some portion of their processed content to the surrounding Noether Sea; the jet question is how much of that return becomes collimated, how much remains diffuse, and how much leaves in channels that are initially dark to ordinary electromagnetic observation.
 
 For that reason, the framework uses a release-channel hierarchy:
 
@@ -642,7 +642,7 @@ The same distinction can be phrased as a sequence.
 2. The horizon interface selects which modes remain trapped and which can move outward.
 3. The released content then appears as one or more observer-level channels: jets, broader winds, radiative outflow, or initially dark-sector escape.
 
-This ordering preserves your original intuition that jets may inject recycled matter or energy into the surrounding medium while keeping the framework open to the possibility that some released content leaves the horizon interface in forms that are not immediately visible.
+This ordering preserves your original intuition that jets may inject recycled matter or energy into the surrounding Noether Sea while keeping the framework open to the possibility that some released content leaves the horizon interface in forms that are not immediately visible.
 
 ### Dark-Sector Escape and Re-Entry
 
@@ -679,7 +679,7 @@ v_{\mathrm{esc}}(R_{\mathrm{launch}})
 \left(\frac{2G_{\mathrm{eff}}M}{R_{\mathrm{launch}}}\right)^{1/2}.
 $$
 
-This is an effective launch benchmark, not a claim that Newtonian escape speed is substrate ontology. It says that the same strong-field or disk-interface record that powers release must also set the observed launch speed scale. Third, collimation must survive propagation through the ambient medium. A minimal release-channel packet should therefore record
+This is an effective launch benchmark, not a claim that Newtonian escape speed is substrate ontology. It says that the same strong-field or disk-interface record that powers release must also set the observed launch speed scale. Third, collimation must survive propagation through the ambient Noether Sea. A minimal release-channel packet should therefore record
 
 $$
 \mathcal{Q}_{\mathrm{jet}}
@@ -794,9 +794,9 @@ The clean constitutive chain is:
 1. strong-field compression drives assemblies into horizon and interior recycling regimes;
 2. recycling redistributes energy between locked internal modes and outward-propagating medium excitations;
 3. those excitations can, in principle, alter the large-scale Noether-Sea state;
-4. the cosmology module then reads that altered medium state as part of $\rho_{\mathrm{DE,eff}}(z)$ or its source term.
+4. the cosmology module then reads that altered Noether-Sea state as part of $\rho_{\mathrm{DE,eff}}(z)$ or its source term.
 
-This means black holes are candidate contributors to dark-energy phenomenology, not substitutes for the medium ontology.
+This means black holes are candidate contributors to dark-energy phenomenology, not substitutes for the Noether-Sea ontology.
 
 The equilibrium-transport version of this claim is more specific. Strong-field recycling may act as a source term for the Noether swarm cadence distribution of the surrounding Noether Sea. If $f_N(\nu,\mathbf{x},t)$ records the local distribution of Noether swarm cadence states with $E_N=h\nu_N$, then a black-hole contribution appears as $S_{\mathrm{BH}}$ in a medium equation of the form
 
@@ -810,7 +810,7 @@ S_{\mathrm{BH}}
 -R_{\mathrm{eq}}[f_N].
 $$
 
-This is the controlled sense of a bulk recycling movement: processed content from high-gradient recycling regions can load the medium and then relax toward lower-energy Noether-Sea cadence states. The statement remains conditional because $S_{\mathrm{BH}}$ must be energy-accounted, population-history dependent, and small enough not to spoil weak-field gravity, photon coherence, CMB blackbody quality, or gravitational-wave propagation. If the resulting current $J_\nu$ has no signed large-scale component, the recycling channel may still heat or perturb local environments without becoming an effective expansion-history source.
+This is the controlled sense of a bulk recycling movement: processed content from high-gradient recycling regions can load the Noether Sea and then relax toward lower-energy Noether-Sea cadence states. The statement remains conditional because $S_{\mathrm{BH}}$ must be energy-accounted, population-history dependent, and small enough not to spoil weak-field gravity, photon coherence, CMB blackbody quality, or gravitational-wave propagation. If the resulting current $J_\nu$ has no signed large-scale component, the recycling channel may still heat or perturb local environments without becoming an effective expansion-history source.
 
 ## Cosmological Coupling Hypothesis
 
@@ -822,7 +822,7 @@ $$
 
 with $K$ measuring the effective coupling strength.
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$, such a signal would be interpreted constitutively rather than mystically. A nonzero $K$ would suggest that black holes are not isolated bookkeeping devices embedded in a passive background. It would suggest that strong-field recycling zones remain coupled to the evolving Noether Sea strongly enough for the population to retain memory of the large-scale medium state.
+Within $\mathbb{A}\mathbb{A}\mathbb{A}$, such a signal would be interpreted constitutively rather than mystically. A nonzero $K$ would suggest that black holes are not isolated bookkeeping devices embedded in a passive background. It would suggest that strong-field recycling zones remain coupled to the evolving Noether Sea strongly enough for the population to retain memory of the large-scale Noether-Sea state.
 
 That interpretation remains conditional. The observational correlation must first survive ordinary astrophysical alternatives such as hidden accretion, merger incompleteness, host selection, and mass-calibration drift. Even if the correlation survives, the theory still must show how interior recycling feeds a cosmological source term without spoiling other closure targets.
 
@@ -836,9 +836,9 @@ This matters because a population-level dark-energy contribution cannot be infer
 
 - the formation history of compact strong-field sites;
 - the inflow history of matter and radiation into those sites;
-- the release history of outward channels that load the surrounding medium.
+- the release history of outward channels that load the surrounding Noether Sea.
 
-This is one reason the black-hole contribution in $\mathbb{A}\mathbb{A}\mathbb{A}$ should remain subordinate to the medium ontology. The Noether Sea is still the quantity that carries the cosmological state. Black holes matter because they may be concentrated engines for changing that state, not because they replace the state itself.
+This is one reason the black-hole contribution in $\mathbb{A}\mathbb{A}\mathbb{A}$ should remain subordinate to the Noether-Sea ontology. The Noether Sea is still the quantity that carries the cosmological state. Black holes matter because they may be concentrated engines for changing that state, not because they replace the state itself.
 
 ## Observable Targets and Falsifiers
 
@@ -874,4 +874,4 @@ This chapter centralizes the black-hole ontology and hands specific tasks to adj
 
 ## Summary
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, black holes are strong-field Noether-Sea regimes rather than ontic singularities or void defects. Their horizon is a terminal alignment interface, their interior is a maximum-curvature recycling medium, and their cosmological importance depends on whether that recycling measurably feeds the late-time medium state. What remains strongest from standard black-hole theory is the observer-level phenomenology. What is reclassified is the underlying ontology: geometry becomes an effective summary of constitutive medium behavior, and singularity language becomes a marker of failed extrapolation rather than the final story.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, black holes are strong-field Noether-Sea regimes rather than ontic singularities or void defects. Their horizon is a terminal alignment interface, their interior is a maximum-curvature recycling regime, and their cosmological importance depends on whether that recycling measurably feeds the late-time Noether-Sea state. What remains strongest from standard black-hole theory is the observer-level phenomenology. What is reclassified is the underlying ontology: geometry becomes an effective summary of constitutive Noether-Sea behavior, and singularity language becomes a marker of failed extrapolation rather than the final story.

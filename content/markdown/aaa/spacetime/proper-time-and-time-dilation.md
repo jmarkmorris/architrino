@@ -1,6 +1,6 @@
 # Proper Time and Time Dilation
 
-**Goal:** Define the theorem targets relating **absolute time** $t$ (used by the $\mathbb{U}_{\text{now}}$ universe-state perspective in the Euclidean void) to the **proper time** $\tau$ measured by physical clocks built from nested shell swarm assemblies, and state how GR-like time dilation and gravitational redshift must arise as effective behavior if the clock map closes.
+**Goal:** Define the theorem targets relating **absolute time** $t$ (used by the $\mathbb{U}_{\text{now}}$ universe-state perspective in the Euclidean void) to the **proper time** $\tau$ measured by physical clocks built from Noether swarm assemblies, and state how GR-like time dilation and gravitational redshift must arise as effective behavior if the clock map closes.
 
 This chapter is the canonical home for proper time, observer clocks, clock slowing, and the clock map from absolute time $t$ to measured proper time $\tau$. Foundation and ontology pages should point here once the discussion becomes a clock law, frequency extraction, observer-clock comparison, or Lorentz/GR time-dilation recovery.
 
@@ -50,7 +50,7 @@ The clock-law derivation imports the [transverse causal budget lemma](../noether
   - All worldlines are parametrized directly by $t$.
 
 - **Proper time $\tau$**
-  - Time read by a **physical clock**: a bound nested shell swarm assembly, such as an atomic transition or binary oscillation, interacting with the Noether Sea.
+  - Time read by a **physical clock**: a bound Noether swarm assembly, such as an atomic transition or binary oscillation, interacting with the Noether Sea.
   - Encodes how many internal oscillation cycles occur per unit $dt$.
 
 The fundamental claim is:
@@ -125,7 +125,7 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
 $$
 
-The quantity $\Gamma_N$ records local cadence stretching of the Noether Sea itself. It is therefore a substrate-facing clock diagnostic: $\Gamma_N=1$ marks the weak homogeneous reference, while $\Gamma_N>1$ marks a locally slowed or stretched Noether-Sea cadence. In the homogeneous moving Noether swarm branch, the Lorentz-closure target is to derive the appropriate limit $\Gamma_N\to\gamma$ or, equivalently, $\Omega_N/\Omega_{N0}\to1/\gamma$ for the declared clock channel. In a gravitational or cosmological medium-state comparison, $\Gamma_N$ must instead be extracted from $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, and clock geometry.
+The quantity $\Gamma_N$ records local cadence stretching of the Noether Sea itself. It is therefore a substrate-facing clock diagnostic: $\Gamma_N=1$ marks the weak homogeneous reference, while $\Gamma_N>1$ marks a locally slowed or stretched Noether-Sea cadence. In the homogeneous moving Noether swarm branch, the Lorentz-closure target is to derive the appropriate limit $\Gamma_N\to\gamma$ or, equivalently, $\Omega_N/\Omega_{N0}\to1/\gamma$ for the declared clock channel. In a gravitational or cosmological Noether-Sea state comparison, $\Gamma_N$ must instead be extracted from $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, and clock geometry.
 
 This diagnostic does not replace $d\tau/dt$. It supplies a more primitive Noether-Sea cadence factor from which clock-rate comparisons, gravitational redshift, and the redshift factorization in [Expansion Mechanism](../cosmology/expansion-mechanism.md#noether-sea-swarm-factorization-target) can be built. The ordinary local clock-rate factor is the inverse:
 
@@ -743,7 +743,7 @@ in the regime where the clock's motion does not significantly disturb the local 
 Massive assemblies polarize and densify the surrounding Noether Sea. A clock deeper in this polarized region experiences:
 
 1. **Higher local Noether density $n(\mathbf{x})$ (equivalently higher $\rho_{\text{core}}$):** 
- Interaction delays with the medium (and between internal architrinos via the medium) increase. This raises the **Noether-Sea delay factor** $\chi_{\text{sea}}$ for internal processes.
+ Interaction delays with the Noether Sea (and between internal architrinos through the Noether Sea) increase. This raises the **Noether-Sea delay factor** $\chi_{\text{sea}}$ for internal processes.
 
 2. **Effective field speed reduction $c_{\text{eff}}(\mathbf{x}) < c_f$:**
  - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether swarms).
@@ -793,7 +793,7 @@ $$
 = \frac{\omega(v,\Phi_N,n)}{\omega_0}
 \approx \sqrt{1 + \frac{2\Phi_N}{c_0^2} - \frac{v^2}{c_0^2}}
 $$
-in the weak-field, low-velocity observer limit, with higher-order corrections ($v^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed nested shell swarm response. Primitive simulations may still use $c_f$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
+in the weak-field, low-velocity observer limit, with higher-order corrections ($v^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed Noether swarm response. Primitive simulations may still use $c_f$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
 
 Outside that limit, $F$ will in general deviate from the GR expression and define the theory’s distinctive strong‑field / high‑velocity predictions.
 

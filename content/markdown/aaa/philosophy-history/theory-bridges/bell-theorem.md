@@ -715,7 +715,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - Conservation constraints at creation establish a joint pair ledger, but the detailed angular-momentum distribution must be derived.
 - Measurement is local threshold resolution (no distant causal input at measurement time).
 - Measurement independence holds (no superdeterminism, no retrocausation).
-- The measurement-response kernel of a nested shell swarm assembly interacting with an apparatus is a deterministic basin indicator, not a primitive $\cos^2(\alpha/2)$ rule. The single-assembly half-angle law is now computed in the reduced Stern-Gerlach chart; the Master-Equation burden is to derive the effective spinor coordinate and verify that the branch-sum apparatus impulse and record-cycle invariant measure realize that chart.
+- The measurement-response kernel of a Noether swarm assembly interacting with an apparatus is a deterministic basin indicator, not a primitive $\cos^2(\alpha/2)$ rule. The single-assembly half-angle law is now computed in the reduced Stern-Gerlach chart; the Master-Equation burden is to derive the effective spinor coordinate and verify that the branch-sum apparatus impulse and record-cycle invariant measure realize that chart.
 
 **Required recoveries:**
 - All standard Bell-CHSH violations are reproduced: $|S| = 2\sqrt{2}$ for singlet pairs with optimal settings.
@@ -728,7 +728,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - Decoherence rates for entangled pairs depend on local Noether-Sea density, providing an environmental sensitivity absent in bare QM (shared prediction with [Entanglement and Nonlocality](./entanglement-nonlocality.md)).
 
 **Failure Modes:**
-- If the Master Equation dynamics for a nested shell swarm measurement interaction yield a response function that is **not** $\cos^2(\alpha/2)$—for instance, a linear or piecewise-linear function—the resulting $E(\theta_{AB})$ will disagree with the quantum prediction and with experiment. This is a falsification of the specific mechanism, requiring revision of the measurement model or the assembly-apparatus coupling.
+- If the Master Equation dynamics for a Noether swarm measurement interaction yield a response function that is **not** $\cos^2(\alpha/2)$—for instance, a linear or piecewise-linear function—the resulting $E(\theta_{AB})$ will disagree with the quantum prediction and with experiment. This is a falsification of the specific mechanism, requiring revision of the measurement model or the assembly-apparatus coupling.
 - If simulations of correlated pair creation under the Master Equation produce a hidden-variable distribution $\rho(\lambda)$ that is **separable** (factorizes into independent local distributions), the theory reduces to a local hidden-variable model and cannot violate the CHSH bound. This would be a fundamental failure requiring revision of the creation-event dynamics or the conservation-law implementation.
 - If the retained pair-provenance ledger and apparatus kernels reduce to the product-screened form $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$, then the model has explicit common-past data but still remains Bell-local. This is a failure even when no-signaling and measurement independence pass.
 - If $\Delta_{\mathrm{MI}}$ is nonzero in a way that is necessary for the correlation fit, the model has abandoned the stated $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route and must be reclassified before any corpus claim is promoted.

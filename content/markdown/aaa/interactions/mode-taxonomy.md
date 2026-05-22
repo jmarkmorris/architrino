@@ -47,10 +47,10 @@ Declare the required observer-level closures before ontology mapping:
 
 3. **Initialize assembly state**
 Represent each incoming participant as an assembly state tuple:
-`(identity, provenance path, charge sector, momentum, local medium state)`.
+`(identity, provenance path, charge sector, momentum, local Noether-Sea state)`.
 Path history is part of identity bookkeeping in absolute time.
 
-4. **Characterize local medium state**
+4. **Characterize local Noether-Sea state**
 Specify Noether-Sea state variables used by mapping, with arguments suppressed only when the local context is clear:
 $(\rho_{\text{core}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{core}}, \Phi_{\text{eff}}, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
 These variables are mapping handles, not replacement observables.
@@ -334,7 +334,7 @@ Each reaction chapter should include three short blocks:
 ## Core Terms
 
 - **Mode-lock event:** generic lock-in transition where transport energy is reorganized into a stable propagating or bound assembly mode.
-- **Wake-strain threshold:** local trigger condition where trajectory forcing and medium state exceed stability boundary for a mode-lock event.
+- **Wake-strain threshold:** local trigger condition where trajectory forcing and Noether-Sea state exceed stability boundary for a mode-lock event.
 - **Nucleation:** formation of a stable assembly mode from local substrate reconfiguration, with conservation/provenance bookkeeping.
 
 ## Channel-Specific Terms

@@ -14,7 +14,7 @@ $$
 \{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{WL},\mathrm{RSD},\mathrm{BBN},\mathrm{PREBBN}\}.
 $$
 
-For each family $X\in\mathcal{X}_{\mathrm{cos}}$, the packet records a residual vector $r_X$, a covariance object $C_X$, nuisance/calibration context $\nu_X$, and a projection $\Pi_X\theta_{\mathrm{sea}}$ of the shared medium-state record into that family. The scaffold computes
+For each family $X\in\mathcal{X}_{\mathrm{cos}}$, the packet records a residual vector $r_X$, a covariance object $C_X$, nuisance/calibration context $\nu_X$, and a projection $\Pi_X\theta_{\mathrm{sea}}$ of the shared Noether-Sea state record into that family. The scaffold computes
 
 $$
 \mathcal{R}_X
@@ -80,7 +80,7 @@ r_{\mathrm{growth}}
 \frac{P^\theta(k,z)-P^{\mathrm{obs}}(k,z)}{\sigma_P}
 \right),
 $$
-and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any medium-state interpretation is promoted.
+and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any Noether-Sea state interpretation is promoted.
 
 The source-mined empirical packet should retain the following benchmark families without turning them into separate gates:
 
@@ -209,7 +209,7 @@ r_{\mathrm{cl}}
 \right).
 $$
 
-This row is a success marker under the existing shared-state gate, not a new standalone gate. It records whether the same medium-state packet can recover cluster gas temperature, SZ pressure, lensing potential, dynamical potential, and Bullet-like lensing/galaxy/gas peak separation without changing the acceleration law between observables.
+This row is a success marker under the existing shared-state gate, not a new standalone gate. It records whether the same Noether-Sea state packet can recover cluster gas temperature, SZ pressure, lensing potential, dynamical potential, and Bullet-like lensing/galaxy/gas peak separation without changing the acceleration law between observables.
 
 Merger-facing rows may be attached to the same cluster or dark-sector observable family when the packet claims regime-dependent behavior:
 
@@ -234,7 +234,7 @@ The runtime packet should preserve this shape even when a later empirical packet
 | --- | --- | --- |
 | `metadata` | run identifier, source commit when available, input provenance, fit family, and declared comparison level | makes the packet reproducible |
 | `required_families` | required observable families, defaulting to `SN`, `BAO`, `CMB`, `WL`, `RSD`, `BBN`, and `PRE_BBN` | prevents cherry-picking a subset of cosmology constraints |
-| `theta_sea` | shared dimensionless state record used by all projections | names the single medium-state candidate under test |
+| `theta_sea` | shared dimensionless state record used by all projections | names the single Noether-Sea state candidate under test |
 | `observables` | one row per family with residual vector, covariance, nuisance/calibration note when available, and projection coordinates | supplies $\mathcal{R}_X$ and $\Pi_X\theta_{\mathrm{sea}}$ |
 | `projection_weights` | dimensionless weights $w_a$ for common projection coordinates | makes the split penalty explicit rather than rhetorical |
 | `lambda` | nonnegative coefficient multiplying the projection penalty | controls how strongly shared-state incompatibility is penalized |
@@ -400,4 +400,4 @@ A real shared-state packet becomes promotable only if:
 6. any included `frame_split` packet passes coverage, residual, projection, angle, and shared-score gates;
 7. the same $\theta_{\mathrm{sea}}$ also remains compatible with the cosmology sector predicate in [Failure Criteria](../failure-criteria.md#sector-acceptance-sets).
 
-Failure is informative. If the ordinary residual passes but the projection penalty fails, the candidate has fit the data products while splitting the medium-state record. If the projection penalty passes but an observable residual fails, the shared state is coherent but not yet accurate. If coverage fails, the packet is not a cosmology closure artifact.
+Failure is informative. If the ordinary residual passes but the projection penalty fails, the candidate has fit the data products while splitting the Noether-Sea state record. If the projection penalty passes but an observable residual fails, the shared state is coherent but not yet accurate. If coverage fails, the packet is not a cosmology closure artifact.

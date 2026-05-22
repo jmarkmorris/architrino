@@ -20,7 +20,7 @@ The Noether Sea enters this picture as ambient substrate contents, not as the fi
 
 The Noether-Sea transport picture is useful for separating reversible medium response from dissipative resistance. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
 
-For the underlying assembly carrier of this medium, see [Noether Swarm](../noether-swarm/noether-swarm.md).
+For the underlying assembly carrier of the Noether Sea, see [Noether Swarm](../noether-swarm/noether-swarm.md).
 
 ## Hydrogen as a Four-Fermion Boundary Test
 
@@ -34,7 +34,7 @@ e^-
 \left(uud\right)_{\mathrm{color\ singlet}}.
 $$
 
-Each of those four fermions carries a Noether swarm plus an axial layer. The proton's three quark cores should not be read as three free objects floating independently in the Noether Sea; they are joined by the color-singlet strong-sector closure of the proton. The electron assembly is external to that proton closure and occupies an atomic resonance envelope determined by the nuclear causal-wake envelope, local Noether-Sea state, and its own assembly ledger.
+Each of those four fermions carries a Noether swarm plus an axial layer. The proton's three Noether swarms should not be read as three free objects floating independently in the Noether Sea; they are joined by the color-singlet strong-sector closure of the proton. The electron assembly is external to that proton closure and occupies an atomic resonance envelope determined by the nuclear causal-wake envelope, local Noether-Sea state, and its own assembly ledger.
 
 The local spacetime description is therefore not the four Noether swarms themselves. It is the coarse-grained Noether-Sea response around, between, and outside the four matter assemblies. At a chosen resolution $\ell$, write schematically
 
@@ -129,7 +129,7 @@ D_{f,X}(\mathbf{x},t)=D_X
 \right\},
 $$
 
-with $0<D_X<1$ fixed by the stability criterion being tested. This is not a hard material wall. It is a stability interface between a bound assembly ledger and the surrounding medium response.
+with $0<D_X<1$ fixed by the stability criterion being tested. This is not a hard material wall. It is a stability interface between a bound assembly ledger and the surrounding Noether-Sea response.
 
 Hydrogen therefore has no single all-purpose fermion radius. Clock-coupling, reaction corridors, packing, and penetration sample the same locked-versus-ambient wake ledger at different strength levels:
 
@@ -439,7 +439,7 @@ D_{p,X},D_{e,X}
 \Theta_{\mathrm H,X}^{(\ell)}
 $$
 
-remains stable under refinement up to the declared sensitivity of the channel. The theorem target fails if a matter Noether swarm is counted as ambient medium, if the three proton quark assemblies are treated as free Noether swarms, if the electron resonance envelope is treated as the electron's core boundary, if $n$ and $\chi_{\text{sea}}$ are merged, or if different response maps must be fitted independently for the same hydrogen branch.
+remains stable under refinement up to the declared sensitivity of the channel. The theorem target fails if a matter Noether swarm is counted as ambient Noether Sea, if the three proton quark assemblies are treated as free Noether swarms, if the electron resonance envelope is treated as the electron's core boundary, if $n$ and $\chi_{\text{sea}}$ are merged, or if different response maps must be fitted independently for the same hydrogen branch.
 
 ## Hydrogen Channel-Scan Proof Target
 
@@ -677,7 +677,7 @@ This map imposes four local failure tests:
 1. **Boundary blend:** if $\mathcal A_{\mathrm{nuc}}^{Z,N}$, $\mathcal A_{\mathrm{e-env}}^{\mathcal B_e}$, and $S_{\mathrm{sea}}^{\Omega_E}$ collapse into one literal surface, the assembly/medium distinction has failed.
 2. **Density-delay blend:** if $n(\mathbf{x},t)$ is used as a delay factor or $\chi_{\text{sea}}(\mathbf{x},t)$ is used as density, the constitutive variables have been mixed.
 3. **Element-label overreach:** if an element symbol, group, or block label is treated as a direct source of $\Theta_E^{(\ell)}$ before isotope, ionization, branch, and material state are specified, the observer-level summary has been promoted beyond its derivation.
-4. **Hidden transport loss:** if pressure, lattice motion, or transport changes the response while no recoil, medium excitation, heating, radiation, or branch-transition channel is logged, the local energy and medium-update ledger is incomplete.
+4. **Hidden transport loss:** if pressure, lattice motion, or transport changes the response while no recoil, medium excitation, heating, radiation, or branch-transition channel is logged, the local energy and Noether-Sea update ledger is incomplete.
 
 ## Angular-Momentum Handoff
 

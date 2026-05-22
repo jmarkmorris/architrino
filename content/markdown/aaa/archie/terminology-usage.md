@@ -221,7 +221,7 @@ This is not a mere relabeling of the old paradox. The explanatory burden is bein
 
 ## Core and Assembly Usage
 
-Use `Noether swarm` for the central nested shell swarm scaffold. Use `particle` mainly at the effective or comparative level.
+Use `Noether swarm` for the central swarm scaffold. Use `particle` mainly at the effective or comparative level.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |

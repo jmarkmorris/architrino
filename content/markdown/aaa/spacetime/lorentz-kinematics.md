@@ -612,7 +612,7 @@ V(\beta_\star,E)=\frac{4\pi}{3}R_\perp(E)^2R_\parallel(E,\beta_\star)
 =\frac{4\pi}{3}R_\perp(E)^3\sqrt{1-\beta_\star^2}.
 $$
 
-This gives a direct state-space channel from energy and translation into local medium geometry:
+This gives a direct state-space channel from energy and translation into local Noether-Sea geometry:
 $$
 (\beta_\star,E)\longmapsto (R_\parallel,R_\perp,V).
 $$
@@ -636,7 +636,7 @@ Together with local assembly density $n(x)$ (with $\rho_{\text{core}}(x)=\rho_{\
 $$
 (\xi,\lambda,n,\hat{u})_x
 $$
-for constructing effective kinematic and metric responses. The kinematic closure requirement is that observer-built rods/clocks from this medium recover Lorentz-consistent operational laws to bounded leakage.
+for constructing effective kinematic and metric responses. The kinematic closure requirement is that observer-built rods/clocks from this Noether Sea recover Lorentz-consistent operational laws to bounded leakage.
 
 ### 3.9.1 Algebraic effective metric map from the handoff tuple
 
@@ -666,7 +666,7 @@ g_{\text{eff}}^{\mu\nu}(x)=
 $$
 Hence microscopic shape closure, when it yields $\xi\to1/\gamma$, is injected directly into $g_{\mu\nu}^{\text{eff}}$.
 
-In the local medium-rest frame ($\hat{u}^\mu=(1,0,0,0)$), with observer-sector coordinate $x^0=c_0 t$:
+In the local Noether-Sea rest frame ($\hat{u}^\mu=(1,0,0,0)$), with observer-sector coordinate $x^0=c_0 t$:
 $$
 ds_{\text{eff}}^2=g_{\mu\nu}^{\text{eff}}dx^\mu dx^\nu
 =\Omega^{2}\left[-\xi^{2}(dx^0)^2+d\mathbf{x}^2\right].
@@ -802,7 +802,7 @@ $$
 \frac{dx^\mu}{d\tau}\frac{dx^\nu}{d\tau}=0.
 $$
 
-For weak drift, slowly varying medium flow, and quasi-static fields in a local medium-rest frame, define
+For weak drift, slowly varying Noether-Sea flow, and quasi-static fields in a local Noether-Sea rest frame, define
 $$
 \Phi_{\text{eff}}(x)\equiv c_0^2\ln\!\big(\Omega(n,\lambda)\,\xi\big).
 $$

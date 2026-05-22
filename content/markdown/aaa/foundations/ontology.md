@@ -43,7 +43,7 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.
 
-This is a container claim, not a denial that observers can reconstruct curved effective geometry. The Noether Sea is physical content within the void, not the void itself. For the medium branch, see [Noether Sea](../spacetime/noether-sea.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Emergent Metric](../spacetime/emergent-metric.md).
+This is a container claim, not a denial that observers can reconstruct curved effective geometry. The Noether Sea is physical content within the void, not the void itself. For the Noether-Sea branch, see [Noether Sea](../spacetime/noether-sea.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Emergent Metric](../spacetime/emergent-metric.md).
 
 ### Absolute Timespace (The Product Structure)
 

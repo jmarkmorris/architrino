@@ -441,7 +441,7 @@ This is not a new substrate interaction. It is the low-energy observer limit of 
 
 ## The Higgs Boson ($H$): Scalar Noether-Sea Benchmark
 
-The Higgs comparison is modeled here as a candidate resonance of the Noether-Sea structure rather than as a propagating assembly *through* the ambient medium. That identification remains a closure target until the same branch record predicts the observed scalar mass, channel rates, and coupling pattern.
+The Higgs comparison is modeled here as a candidate resonance of the Noether-Sea structure rather than as a propagating assembly *through* the ambient Noether Sea. That identification remains a closure target until the same branch record predicts the observed scalar mass, channel rates, and coupling pattern.
 
 ### Geometric Structure
 *   **The Substrate:** The Noether Sea is a coupled population of neutral nested shell swarm units ($1P, 1E$).
@@ -495,9 +495,9 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 
 - This note covers photon-triggered conversion, not ordinary atomic or material absorption. Consuming the incoming photon means closing the free planar-pair ledger; it does not automatically mean that the outgoing fermion identities are inherited from the photon constituents.
 - A neutral Noether Pair should be treated as the local source architecture for spontaneous pro-anti fermion pair production. With sufficient energy input, a pair-conversion mode can unpack that neutral pair into a fermion and antifermion while returning the Noether swarm bookkeeping to overall neutrality.
-- In this framing, the key point is not limited to the electron channel. A Noether Pair can furnish the neutral core content needed for any pro-anti fermion pair, provided the supplied energy and axial-bookkeeping conditions match the target pair.
+- In this framing, the key point is not limited to the electron channel. A Noether Pair can furnish the neutral swarm content needed for any pro-anti fermion pair, provided the supplied energy and axial-bookkeeping conditions match the target pair.
 - In photon-photon pair production, the photons supply the energy; the Sea contributes the neutral Noether Pair, and the axial excess arranges into the outgoing pro/anti fermion inventories. Electric bookkeeping and architrino counts stay balanced because the Noether-pair source remains neutral after the conversion bookkeeping closes.
-- The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti core pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon decay claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
+- The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti swarm pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon decay claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
 - Sketch model: energy in -> pair-conversion mode forms using a neutral Noether Pair plus the required axial split -> fermion + antifermion -> the neutral Noether-pair bookkeeping relaxes back into the Sea.
 
 ## Closure Interface: Corridor Operators for Mixing

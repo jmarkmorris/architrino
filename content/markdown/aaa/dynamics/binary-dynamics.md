@@ -124,7 +124,7 @@ and the architrino is the source of the causal wake surface emitted at $t_\text{
 - On any interval with strict sub-field-speed motion, self-hit is absent by the triangle-inequality root test, unless older path-history emissions from a prior super-field-speed interval remain active.
 - As velocities exceed $c_f$ on curved histories, emission isochrons can catch up with the emitter's future positions, generating candidate nonlocal feedback and effective restoring or destabilizing forces depending on configuration.
 - In generic trajectories, once an architrino has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions (see **Status** at top for the non-Markovian/path-history caveat).
-- For binary and nested shell swarm assemblies, repeated self-hit events are the proposed mechanism that can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
+- For binary and Noether swarm assemblies, repeated self-hit events are the proposed mechanism that can prevent collapse, lock in stable radii and frequencies, and create new limit cycles and attractors.
 
 For the circular-geometry details (principal angles, winding numbers, discrete self-hit branches), see **Setup and Notation (Symmetric Frame)** in **Maximum-Curvature Binary — Circular**.
 

@@ -415,7 +415,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 - If the pair-provenance ledger plus local apparatus-response maps fail to reproduce the full spin-singlet joint law from the hidden-variable geometry, the specific Bell-closure mechanism is falsified, though the general ontological framework may admit repair.
 
 **Bell Closure Gate:**
-- Simulate a minimal correlated-pair source event (e.g., a parent assembly fragmenting into two daughter nested shell swarms) under the Master Equation and extract the joint outcome statistics as a function of relative measurement angle.
+- Simulate a minimal correlated-pair source event (e.g., a parent assembly fragmenting into two daughter Noether swarms) under the Master Equation and extract the joint outcome statistics as a function of relative measurement angle.
 - Derive the source-provenance distribution for a spin-singlet-like source event from the conservation constraints and verify the full joint law
   $$
   P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)

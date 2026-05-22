@@ -15,7 +15,7 @@ This chapter states how big-bang nucleosynthesis constraints are to be read insi
 
 - **When:** No universal "beginning"; nucleosynthesis occurs locally and repeatedly in absolute time $t$ within the eternal Euclidean void.
 - **Where:** In high-density, high-temperature zones surrounding supermassive black hole (SMBH) cores and their release channels; see [Black Holes](../spacetime/black-holes.md).
-- **Why:** Noether-Sea nested shell swarm assemblies near SMBHs reach densities and temperatures sufficient for nuclear reactions; subsequent outward transport and cooling mimics expansion-driven freeze-out, using the same fixed-void expansion interface developed in [Expansion Mechanism](./expansion-mechanism.md).
+- **Why:** Noether swarms near SMBHs reach densities and temperatures sufficient for nuclear reactions; subsequent outward transport and cooling mimics expansion-driven freeze-out, using the same fixed-void expansion interface developed in [Expansion Mechanism](./expansion-mechanism.md).
 - **Background:** Eternal void; no singularity; "BBN" is a recurring local process, not a singular cosmic event.
 
 ### What Remains Unchanged
@@ -52,7 +52,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, what standard cosmology calls "the first mi
 
 1. **Assembly Compression Zone (SMBH Interior/Near-Horizon):**
 
-Noether-Sea nested shell swarm assemblies compress toward maximum-curvature states.
+Noether swarms compress toward maximum-curvature states.
 Proton/neutron assemblies (nucleon nested shell swarms; see [Nucleon Structure](../nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether-Sea density gradients.
 Local "temperature" (kinetic energy distribution) and density mimic BBN conditions ($T \sim 10^9\,\mathrm{K},\ \rho \sim 10^{-3}\,\mathrm{g/cm^3}$).
 Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether-Sea saturation rather than scaling linearly with SMBH mass.
@@ -184,9 +184,9 @@ where $\xi_{\nu_e}^\theta$ is retained only when the branch declares a neutrino-
 The BBN story is one continuous mechanism:
 
 1. The Noether Sea evolves in absolute time $t$ within a fixed Euclidean container.
-2. This medium evolution defines an effective expansion/cooling history and therefore an emergent $H(t)$ at observer level, matching the bookkeeping used in [Expansion Mechanism](./expansion-mechanism.md).
+2. This Noether-Sea evolution defines an effective expansion/cooling history and therefore an emergent $H(t)$ at observer level, matching the bookkeeping used in [Expansion Mechanism](./expansion-mechanism.md).
 3. The resulting thermal history sets reaction-rate competition and freeze-out ordering in the standard network.
-4. The coupled light-element yields (H, D, He, trace Li) are outputs of this same medium-and-assembly dynamics and must remain compatible with the observer-level chronology in [CMB](./CMB.md).
+4. The coupled light-element yields (H, D, He, trace Li) are outputs of this same Noether Sea and assembly dynamics and must remain compatible with the observer-level chronology in [CMB](./CMB.md).
 
 ## Lithium Within the Full Light-Element Story
 
@@ -299,7 +299,7 @@ Standard BBN effectively behaves like a calibrated standard reactor: one paramet
 - **Variance consideration:** SMBHs span mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion-state diversity. If $T(t)$ and $\rho(t)$ inherit this variance directly, predicted yields, especially $Y_p$, should broaden.
 - **Observable target:** Keep consistency with tight helium clustering near $Y_p\approx0.245\pm0.003$.
 - **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether swarm saturation), with universal ceilings $T_{\max}$ and $\rho_{\max}$ and mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
-- **Observable implication:** If this saturation holds, $^4$He yield is intrinsic to medium-state convergence and remains weakly dependent on SMBH mass class.
+- **Observable implication:** If this saturation holds, $^4$He yield is intrinsic to Noether-Sea state convergence and remains weakly dependent on SMBH mass class.
 
 ### 2. Freeze-Out Timing Goal: Weak-Rate vs Outflow Timescale
 

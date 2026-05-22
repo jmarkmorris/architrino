@@ -10,7 +10,7 @@ The CMB timeline is presented as an effective observer-level chronology map that
 
 - The Euclidean void is fixed; cosmological language describes Noether-Sea evolution within that fixed container.
 - Redshift language is consistent with Noether-Sea evolution plus clock-rate comparison across environments.
-- Background and growth claims are kept in one shared Noether-Sea-and-assembly ontology.
+- Background and growth claims are kept in one shared Noether Sea and assembly ontology.
 - Epoch times below are an effective observer-level chronology map, not a claim of one literal global launch event in absolute-time ontology.
 - The CMB rest-frame correction is an observational procedure, not an ontological axiom. It must be checked against matter catalogues, supernova residuals, and BAO directionality before it is allowed to fix the whole cosmology stack.
 
@@ -46,7 +46,7 @@ $$
 
 where $\mathbf{D}_{\mathrm{kin}}$ is ordinary observer motion, $\mathbf{D}_{\mathrm{sea}}$ is the contribution from Noether-Sea flow, density, delay, and clock-rate gradients, and $\mathbf{D}_{\mathrm{mask/source}}$ records survey selection and source-population effects. Closure requires the same Noether-Sea term to remain compatible with CMB anisotropy, quasar and radio-source dipoles, supernova directionality, BAO measurements, and local $H$ scatter.
 
-This gate does not replace the TT/TE/EE or blackbody requirements. It adds a frame-consistency test: the effective CMB frame used for background inference must be the same frame, or a derived projection of the same medium state, used by the matter and distance-ladder modules.
+This gate does not replace the TT/TE/EE or blackbody requirements. It adds a frame-consistency test: the effective CMB frame used for background inference must be the same frame, or a derived projection of the same Noether-Sea state, used by the matter and distance-ladder modules.
 
 The concrete packet shape for this subgate is defined in [Cosmology Shared Residual Fit Protocol](../validation/simulations/cosmology-shared-residual-fit.md#frame-split-measurement-recipe).
 
@@ -94,7 +94,7 @@ This statistic is a validation target, not a permission to import an external co
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Spacetime is in a quantum-gravity regime; ordinary field theory breaks down. The Planck scale sets the limiting energy density and length scale for known physics.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Planck Epoch: Peak Density of Energetic Architrinos):** The Noether Sea reaches peak effective density in a local recycling event. Architrinos dominate the dynamics, and the nested shell swarm network is maximally compressed. At the event-horizon limit, the only stable assemblies are neutral Noether swarms: high-energy, stealthy pairs or quad clusters that couple with a strong-like force. The photon-channel assemblies are modeled as coaxial contra-rotating pro/anti planar pairs moving at the local effective photon speed. Noether swarm assemblies populate the Noether Sea, so the effective gravity channel is active while the Euclidean void remains fixed. Noether swarms are neutral, so there is no emergent electric force yet beyond internal binding. Axial architrinos are absent, so no weak force. A strong-like binding exists inside Noether swarm couplings, but it is not externally observable until quark assemblies appear. This is the regime where self-hit effects are strongest and where the universal maximum-curvature binary (MCB) cap is approached.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Planck Epoch: Peak Density of Energetic Architrinos):** The Noether Sea reaches peak effective density in a local recycling event. Architrinos dominate the dynamics, and the Noether swarm network is maximally compressed. At the event-horizon limit, the only stable assemblies are neutral Noether swarms: high-energy, stealthy pairs or quad clusters that couple with a strong-like force. The photon-channel assemblies are modeled as coaxial contra-rotating pro/anti planar pairs moving at the local effective photon speed. Noether swarm assemblies populate the Noether Sea, so the effective gravity channel is active while the Euclidean void remains fixed. Noether swarms are neutral, so there is no emergent electric force yet beyond internal binding. Axial architrinos are absent, so no weak force. A strong-like binding exists inside Noether swarm couplings, but it is not externally observable until quark assemblies appear. This is the regime where self-hit effects are strongest and where the universal maximum-curvature binary (MCB) cap is approached.
 
 ## Grand Unification Epoch ($\sim 10^{-43}$ to $10^{-36}$ s)
 - Time window: $\sim 10^{-43}$ to $10^{-36}$ s.
@@ -107,7 +107,7 @@ This statistic is a validation target, not a permission to import an external co
 
 ## Inflationary Epoch ($\sim 10^{-36}$ to $10^{-32}$ s)
 - Time window: $\sim 10^{-36}$ to $10^{-32}$ s.
-- Regime: rapid effective expansion/relaxation smooths the large-scale medium state and its effective geometry.
+- Regime: rapid effective expansion/relaxation smooths the large-scale Noether-Sea state and its effective geometry.
 - Perturbations: primordial fluctuations are seeded for later structure.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** A scalar field drives exponential expansion, smoothing curvature and seeding primordial perturbations.
@@ -151,7 +151,7 @@ This statistic is a validation target, not a permission to import an external co
 **$\Lambda\mathrm{CDM}$ (neutrino decoupling):** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether swarms with 6*|e/6| Axial Architrinos Form):** Stable lepton analogs form from Noether swarms carrying six bound axial architrinos (net $|e|$ from six $|e/6|$ units). Lepton-like assemblies populate the Noether Sea and mediate charge-neutralization channels.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether swarms with Neutral Axial Layers):** Nearly neutral nested shell swarm assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language; compare [Neutrinos](../assemblies/fermions/neutrinos.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether swarms with Neutral Axial Layers):** Nearly neutral Noether swarm assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language; compare [Neutrinos](../assemblies/fermions/neutrinos.md).
 
 ## Photon Epoch ($\sim 10$ s to $\sim 3.8\times10^5$ years)
 - Time window: $\sim 10$ s to $\sim 3.8\times10^5$ years.
@@ -212,7 +212,7 @@ This statistic is a validation target, not a permission to import an external co
 | Axis | QSSC-like families | $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation |
 |---|---|---|
 | Similarity | Distributed/recycling source logic over long history | Distributed/recycling source logic over long history |
-| Core difference | Phenomenological source and transport descriptions | Nested shell swarm medium microphysics with explicit module interfaces |
+| Core difference | Phenomenological source and transport descriptions | Noether-Sea medium microphysics with explicit module interfaces |
 | Closure standard | General background consistency goals | Hard closure targets: blackbody precision, $\Delta T/T$, and TT/TE/EE/damping coherence |
 
 ## Distributed-Emission Channels
@@ -231,7 +231,7 @@ Isotropy in this branch is attributed to long-time averaging over many source po
 
 ### Effective Thermal Spectrum of the Noether Sea
 
-The framework does not yet identify an ontological root definition of temperature, so it should not simply equate the enormous internal energy of individual Noether swarms with an ordinary thermodynamic temperature. A more disciplined distinction is required between three quantities: the internal energy scale of the swarms, the local effective emissive temperature of the Noether Sea if it behaves as a blackbody source, and the observer-side temperature inferred from the photon bath after emission, transport, thermalization, and redshift. On that reading, the observed $2.7255\,\mathrm{K}$ background is the temperature of the ambient microwave radiation field measured by present observers, not automatically the intrinsic temperature of the Noether Sea as an emitter. The stronger claim to test is that sufficiently homogeneous regions of the Sea can generate and maintain a near-blackbody photon population whose measured spectrum tracks that emissive state after medium transport. Departures from the baseline blackbody should then encode local medium state: increasing Noether swarm density, anisotropy, or internal excitation near dense matter would tend to distort the spectrum away from the homogeneous limit, while the strongest deviations should arise near black-hole recycling zones, where alignment, compression, and release-channel mixing can harden, bias, or only partially re-thermalize the emitted radiation before subsequent relaxation in the surrounding Noether Sea.
+The framework does not yet identify an ontological root definition of temperature, so it should not simply equate the enormous internal energy of individual Noether swarms with an ordinary thermodynamic temperature. A more disciplined distinction is required between three quantities: the internal energy scale of the swarms, the local effective emissive temperature of the Noether Sea if it behaves as a blackbody source, and the observer-side temperature inferred from the photon bath after emission, transport, thermalization, and redshift. On that reading, the observed $2.7255\,\mathrm{K}$ background is the temperature of the ambient microwave radiation field measured by present observers, not automatically the intrinsic temperature of the Noether Sea as an emitter. The stronger claim to test is that sufficiently homogeneous regions of the Sea can generate and maintain a near-blackbody photon population whose measured spectrum tracks that emissive state after medium transport. Departures from the baseline blackbody should then encode local Noether-Sea state: increasing Noether swarm density, anisotropy, or internal excitation near dense matter would tend to distort the spectrum away from the homogeneous limit, while the strongest deviations should arise near black-hole recycling zones, where alignment, compression, and release-channel mixing can harden, bias, or only partially re-thermalize the emitted radiation before subsequent relaxation in the surrounding Noether Sea.
 
 ### Discovery-Scale Thermal Record
 
@@ -547,7 +547,7 @@ $$
 \sigma_{L,\phi}^2
 }.
 $$
-This is a data-product constraint, not a dark-sector ontology by itself. The same Noether-Sea-and-assembly history that fits the primary TT/TE/EE spectra must also project to the lensing potential consumed by the growth and dark-matter modules.
+This is a data-product constraint, not a dark-sector ontology by itself. The same Noether Sea and assembly history that fits the primary TT/TE/EE spectra must also project to the lensing potential consumed by the growth and dark-matter modules.
 
 The same gate should include the smoothness pressure usually hidden inside origin-story language. Conformal-cosmology comparisons are useful here only because they isolate a real burden: the effective early record must have a very small free gravitational-mode contribution compared with the complicated strong-field behavior expected near generic collapse. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not import conformal continuation as ontology. It preserves the observable requirement by asking the CMB-producing Noether-Sea history to suppress effective Weyl-like curvature in the decoupling comparison layer.
 
@@ -583,19 +583,19 @@ $$
 \le
 \varepsilon_{\mathrm{CMB}},
 $$
-with $\lambda_{T,\mathrm{eq,grow}}$, $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{range}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same medium-and-assembly history recovers TT/TE/EE, blackbody behavior, radiation-temperature/equality/growth consistency, scalar/tensor bounds, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
+with $\lambda_{T,\mathrm{eq,grow}}$, $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{range}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same Noether Sea and assembly history recovers TT/TE/EE, blackbody behavior, radiation-temperature/equality/growth consistency, scalar/tensor bounds, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
 
 ### Forward Prediction Map
 
 Use one continuous causal map:
 
-medium state evolution $\rightarrow$ pre-decoupling coupled modes $\rightarrow$ decoupling transfer history $\rightarrow$ observed TT/TE/EE structure.
+Noether-Sea state evolution $\rightarrow$ pre-decoupling coupled modes $\rightarrow$ decoupling transfer history $\rightarrow$ observed TT/TE/EE structure.
 
 Interpretation and microphysical origin are re-grounded in assembly dynamics while retaining the same observer-level prediction objects.
 
 ### Conceptual Mapping
 
-- Peak spacing reflects effective horizon/coupling scales of the medium.
+- Peak spacing reflects effective horizon/coupling scales of the Noether Sea.
 - Odd/even contrast reflects baryon-like loading relative to photon assemblies.
 - High-$\ell$ damping reflects decoupling-era diffusion/opacity analogs.
 - Polarization structure reflects phase relations in coupled oscillations.

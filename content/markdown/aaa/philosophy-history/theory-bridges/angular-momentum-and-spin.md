@@ -1396,7 +1396,7 @@ $$
 
 The reduced closure-label version of the same target keeps only the data needed to compare closed nested shell swarm branches. The dynamics sections use $\ell\in\{I,M,O\}$ for inner, middle, and outer. The ordered-frame and chirality literature also uses $\{H,M,L\}$, where $H$ is high / inner, $M$ is middle, and $L$ is low / outer. These are aliases for the same three binary roles, not two different triads.
 
-For a closed ordered core, use the reduced branch label
+For a closed ordered frame, use the reduced branch label
 
 $$
 \Lambda_{\text{NC}}
@@ -1588,7 +1588,7 @@ $$
 \eta_B^{\mathrm{table}}(\gamma_{2\pi}^{\mathrm{rig}})=0.
 $$
 
-This is ordinary $SO(3)$ closure, not spinor support. The proof is just the parity sum: when every retained non-gauge row returns identically, the visible normal-triad loop has no history-sheet change to pull back into the ordered core. Therefore a proposed spinor proof that assigns nontrivial $2\pi$ lift to this rigid table has imported the $SU(2)\to SO(3)$ comparison rather than deriving the lift from delayed causal-root transport.
+This is ordinary $SO(3)$ closure, not spinor support. The proof is just the parity sum: when every retained non-gauge row returns identically, the visible normal-triad loop has no history-sheet change to pull back into the ordered frame. Therefore a proposed spinor proof that assigns nontrivial $2\pi$ lift to this rigid table has imported the $SU(2)\to SO(3)$ comparison rather than deriving the lift from delayed causal-root transport.
 
 The first non-null support condition is consequently narrow:
 

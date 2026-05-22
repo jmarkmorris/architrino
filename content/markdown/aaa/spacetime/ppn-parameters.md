@@ -15,8 +15,8 @@ the spacetime constitutive map.
 
 ## Mapping to PPN Constraints
 
-1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the $\mathbb{A}\mathbb{A}\mathbb{A}$ time-delay (slower $c_{\text{eff}}$ in a dense medium).
-2. **Light Bending**: Calculate the refraction of nested shell swarm signals through the Noether-Sea density gradient around the Sun.
+1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the $\mathbb{A}\mathbb{A}\mathbb{A}$ time-delay (slower $c_{\text{eff}}$ in the Noether Sea).
+2. **Light Bending**: Calculate Noether-Sea signal propagation through the density gradient around the Sun.
 3. **Geodetic Precession**: Match the transport of an assembly's spin-orientation frame through the same weak-field effective metric used for clock, signal, and orbital tests.
 
 Here, geodetic precession means the de Sitter precession of a carried gyroscope: after the gyroscope moves through a weak gravitational field, its spin axis is rotated relative to a distant reference frame. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this should not be introduced as a separate torque law between angular momentum and a potential gradient. It is a closure target for the effective metric: the Noether-Sea-induced clock, ruler, and signal-response map must make transported assembly orientations precess by the same amount that GR predicts in the validated weak-field regime. Frame dragging from a rotating source is a separate test channel.
@@ -191,7 +191,7 @@ When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2)$, one has $U_{\Phi}=U+O(U^2/c_0
 
 ### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
 * **Crucial test:** In the effective relativistic limit these must vanish (no measurable preferred-frame leakage).
-* **Constitutive leakage ansatz:** Let $\mathbf{w}$ be the medium drift velocity relative to the barycentric frame. Write the lowest-order drift terms as
+* **Constitutive leakage ansatz:** Let $\mathbf{w}$ be the Noether-Sea drift velocity relative to the barycentric frame. Write the lowest-order drift terms as
 $$
 g_{0i}^{\text{leak}}
 =
@@ -241,7 +241,7 @@ The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakag
 
 ## Preferred-Motion Null-Test Bundle
 
-Historical clock, interferometer, Zeeman-splitting, and gravimeter tests show how many different apparatus types can search for the same preferred-frame leakage without sharing the same dominant nuisance. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a bundle test on the same drift coefficients, not a set of independent knobs. For an apparatus channel $A$ with orientation $\hat{\mathbf{n}}_A(t)$ and laboratory velocity $\mathbf{w}(t)$ relative to the medium-rest comparison frame, write the leading fractional readout as
+Historical clock, interferometer, Zeeman-splitting, and gravimeter tests show how many different apparatus types can search for the same preferred-frame leakage without sharing the same dominant nuisance. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a bundle test on the same drift coefficients, not a set of independent knobs. For an apparatus channel $A$ with orientation $\hat{\mathbf{n}}_A(t)$ and laboratory velocity $\mathbf{w}(t)$ relative to the Noether-Sea rest comparison frame, write the leading fractional readout as
 $$
 y_A(t)
 =
@@ -391,7 +391,7 @@ g_{0i}^{\mathrm{eff}}
 g_{ij}^{\mathrm{eff}}=\gamma_{ij}.
 $$
 
-In the local medium-rest weak-field row, write
+In the local Noether-Sea rest weak-field row, write
 $$
 N
 =
@@ -806,4 +806,4 @@ $$
 \nabla_{\boldsymbol{\Xi}}\dot e,\qquad
 \nabla_{\boldsymbol{\Xi}}\dot P
 $$
-from nested shell swarm continuum simulations before final numerical acceptance testing.
+from Noether-Sea continuum simulations before final numerical acceptance testing.

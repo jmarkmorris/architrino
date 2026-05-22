@@ -203,7 +203,7 @@ Branching accounts also face a representation discipline that is easy to underst
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**, though not yet fully solved. The project's proposed move is to treat measurement not as a primitive discontinuity but as finite-time threshold resolution in a deterministic, path-history-dependent substrate. On that picture, the measured system and the apparatus are assemblies governed by the same underlying microdynamics. What standard quantum language calls collapse is reinterpreted as the crossing of a metastable separatrix into one attractor basin under structured causal interaction, with macroscopic irreversibility arising from dissipation into the surrounding medium.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**, though not yet fully solved. The project's proposed move is to treat measurement not as a primitive discontinuity but as finite-time threshold resolution in a deterministic, path-history-dependent substrate. On that picture, the measured system and the apparatus are assemblies governed by the same underlying microdynamics. What standard quantum language calls collapse is reinterpreted as the crossing of a metastable separatrix into one attractor basin under structured causal interaction, with macroscopic irreversibility arising from dissipation into the surrounding Noether Sea.
 
 This makes transition relevance extremely high. If a substrate account can derive effective quantum statistics while explaining outcome fixation as a causal process, eliminate the Heisenberg cut as a fundamental division, and show how apparent collapse emerges from one continuous dynamics, it would address one of the central foundational crises.
 
@@ -367,7 +367,7 @@ S_{\mathrm{out}}^{(O)}(t)
 \right),
 $$
 
-where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{core}}(\mathbf{x},t)$ is physical Noether swarm density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether-Sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a medium-state map
+where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{core}}(\mathbf{x},t)$ is physical Noether swarm density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether-Sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether-Sea state map
 
 $$
 \mathcal{F}_{\mathrm{sea}}\!\left[\mathcal{Q}_{\mathrm{dS}}^{(O)}(t)\right]
@@ -467,7 +467,7 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The t
 
 ### What Would Count As Resolution
 
-Resolution would require a concrete derivation showing how vacuum-like behavior, effective metric phenomena, and at least some dark-sector-like residuals arise from a shared substrate rather than from an unexplained emptiness. It would also need to distinguish clearly between geometric void, medium organization, and matter assembly, and to specify when observed anomalies should be attributed to additional occupants versus constitutive response of the medium itself. The long-term relevance is likely as a signpost to correct ontological language. Once clarified, "empty space" would survive only as an effective description of a particular regime, not as literal absence.
+Resolution would require a concrete derivation showing how vacuum-like behavior, effective metric phenomena, and at least some dark-sector-like residuals arise from a shared substrate rather than from an unexplained emptiness. It would also need to distinguish clearly between geometric void, Noether-Sea organization, and matter assembly, and to specify when observed anomalies should be attributed to additional occupants versus constitutive response of the Noether Sea itself. The long-term relevance is likely as a signpost to correct ontological language. Once clarified, "empty space" would survive only as an effective description of a particular regime, not as literal absence.
 
 ---
 

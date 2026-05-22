@@ -106,7 +106,7 @@ This gives fixed spatial identity:
 
 - The point $(x_0,y_0,z_0)$ is the same spatial location at every absolute time $t$.
 - The events $(t_1,x_0,y_0,z_0)$ and $(t_2,x_0,y_0,z_0)$ occur at the same spatial location at two different instants.
-- Local medium density, architrino occupancy, and assembly configuration may change there without changing the identity of the underlying void point.
+- Local Noether-Sea density, architrino occupancy, and assembly configuration may change there without changing the identity of the underlying void point.
 
 This fixed identity is important for self-hit diagnostics, path-history bookkeeping, and simulations that must track where a wake was emitted and where it is later received.
 
@@ -329,7 +329,7 @@ Nevertheless, a coordinate location in the full universe should not be treated a
 
 In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether Sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population.
 
-Noether-Sea density and response variables belong to the medium layer, not the spatial substrate. For the medium ontology, see [Noether Sea](../spacetime/noether-sea.md). For medium assembly hypotheses, see [Spacetime Assemblies](../spacetime/spacetime-assemblies.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
+Noether-Sea density and response variables belong to the Noether-Sea layer, not the spatial substrate. For the Noether-Sea ontology, see [Noether Sea](../spacetime/noether-sea.md). For Noether-Sea assembly hypotheses, see [Spacetime Assemblies](../spacetime/spacetime-assemblies.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
 
 ## Distinction From Curved Space
 

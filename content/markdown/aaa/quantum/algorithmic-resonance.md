@@ -4,7 +4,7 @@
 
 This note treats quantum algorithmic speedup as a demanding coherence problem for many coupled assemblies. The immediate aim is not to rederive Shor's algorithm from the master equation. It is to identify which physical constraints a future derivation must satisfy if an effective quantum register is to remain coherent across many controlled operations.
 
-- **Ensemble phase-locking:** The closure problem is to maintain non-Markovian path-history coherence across a macroscopic array of nested shell swarm assemblies.
+- **Ensemble phase-locking:** The closure problem is to maintain non-Markovian path-history coherence across a macroscopic array of Noether swarm assemblies.
 - **Noether-Sea context:** The local Noether Sea supplies the causal-wake background in which register-scale interference must remain stable. Any cavity analogy should be read as an effective description of bounded wake superposition, not as a new substrate ontology.
 - **Carrier and apparatus declaration:** An effective qubit is a calibrated two-record channel, not a substrate object by itself. A candidate hardware map must name the carrier assembly, the physical basis being controlled, the apparatus kernel $\mathcal{K}$, the retained access region $W$, and the record window $T$ before circuit notation is translated into dynamics. Photon path, polarization, photon-number, and spin encodings are useful comparison cases only after this carrier and record-channel declaration is fixed.
 

@@ -151,7 +151,7 @@ The points below are collected as a framework-internal research program, not as 
 
 ### 7.1 Central Claim
 
-- The 1976 Hyde periodic chart abandons the rigid Cartesian block structure of the Mendeleev-style table in favor of a continuous spiral topology, and this topology is proposed to map directly to geometric packing constraints of nested shell swarm assemblies.
+- The 1976 Hyde periodic chart abandons the rigid Cartesian block structure of the Mendeleev-style table in favor of a continuous spiral topology, and this topology is proposed to map directly to geometric packing constraints of Noether swarm assemblies.
 
 ### 7.2 Assumptions
 
@@ -163,7 +163,7 @@ The points below are collected as a framework-internal research program, not as 
 
 - Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether swarm, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
 - Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether-Sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell swarms.
-- In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of nested shell swarm assemblies under these boundary conditions.
+- In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of Noether swarm assemblies under these boundary conditions.
 - Volume-exclusion mechanism: each electron nested shell swarm displaces the local Noether Sea, and overlap of two precessing ellipsoidal exclusion volumes generates a sharply rising displacement-pressure gradient.
 - Dynamical resolution rule: when exclusion volumes intersect, assemblies must either separate into orthogonal precession phases or move to a larger-radius tier.
 - Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by Noether-Sea displacement pressure rather than only an abstract occupancy postulate.
@@ -185,7 +185,7 @@ The points below are collected as a framework-internal research program, not as 
 
 ### 7.6 Geometric-Periodicity Closure Program
 
-The Hyde hypothesis becomes useful only if it can be converted into a closure program with explicit geometric tests. The first step is to translate Hyde's 2D spiral ordering into a 3D close-packing algorithm for ellipsoidal electron nested shell swarm assemblies.
+The Hyde hypothesis becomes useful only if it can be converted into a closure program with explicit geometric tests. The first step is to translate Hyde's 2D spiral ordering into a 3D close-packing algorithm for ellipsoidal electron Noether swarm assemblies.
 
 The first constrained benchmark should be the Neon core ($Z=10$), with explicit boundary conditions:
 

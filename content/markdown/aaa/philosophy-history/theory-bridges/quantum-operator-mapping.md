@@ -467,7 +467,7 @@ The continuous loss of path-history coherence must be formalized as a transport 
 
 * **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether Sea, the nested shell swarm orientation evolves according to an effective Fokker-Planck equation.
 * **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor. 
-* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether-Sea state and the spatial density variables $\rho_{\text{core}}(\mathbf{x},t)$ or $n(\mathbf{x},t)$. It is not an intrinsic property of the nested shell swarm, but a measure of the local medium's entropy production rate during the operation.
+* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether-Sea state and the spatial density variables $\rho_{\text{core}}(\mathbf{x},t)$ or $n(\mathbf{x},t)$. It is not an intrinsic property of the nested shell swarm, but a measure of the local Noether-Sea entropy production rate during the operation.
 
 ## Statistical Falsifiability and Observables
 * **Finite-Time Born Rule Deviations:** If the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires the local invariant-measure approximation to settle over the apparatus record window, ultra-fast sequential measurements approaching the local path-history delay timescale $d/c_f$ become the natural place to search for deviations from standard $|\psi|^2$ statistics.

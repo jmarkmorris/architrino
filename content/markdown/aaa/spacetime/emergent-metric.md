@@ -13,7 +13,7 @@ The bridge is therefore constitutive rather than ontological. A successful metri
 ## Ontological Picture
 
 - **Substrate**: A fixed Euclidean 3D void with absolute time $t$. A chosen chart $(x,y,z)$ represents fixed void locations; the labels never move or curve.
-- **Medium**: The [Noether Sea](noether-sea.md), a pervasive medium of coupled pro/anti Noether swarms (nested shell swarm assemblies). The bridge term *spacetime medium* is used when translating toward effective spacetime language.
+- **Noether Sea**: The [Noether Sea](noether-sea.md), a pervasive population of coupled pro/anti Noether swarms. The bridge term *spacetime medium* is used when translating toward effective spacetime language.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: Complete-state bookkeeping on the absolute-time slice, carrying:
   - The full architrino microstate $S(t)$,
   - The instantaneous state of the Noether Sea (density $\rho_{\text{core}}(\mathbf{x},t)$, alignment, stress),
@@ -48,7 +48,7 @@ Use the following symbols consistently across spacetime chapters:
 
 We define $g^{\text{eff}}_{\mu\nu}$ operationally:
 
-> At each point $x$, choose an idealized physical observer (nested shell swarm clock + ruler), and infer a local metric from their measured time intervals and spatial separations.
+> At each point $x$, choose an idealized physical observer (Noether swarm clock + ruler), and infer a local metric from their measured time intervals and spatial separations.
 
 The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps substrate and medium data into observer-level ADM/Cartan fields:
 
@@ -105,7 +105,7 @@ B_{ij}(\mathcal{N}_{\mathrm{sea}})
 \left(dx^i-u^i_{\text{sea}}dt\right)
 \left(dx^j-u^j_{\text{sea}}dt\right),
 $$
-with $A$, $B_{ij}$, and $u^i_{\text{sea}}$ read from the same retained Noether-Sea and Physical Observer record. In the local medium-rest frame, the photon-channel null condition $d\tau^2=0$ gives
+with $A$, $B_{ij}$, and $u^i_{\text{sea}}$ read from the same retained Noether-Sea and Physical Observer record. In the local Noether-Sea rest frame, the photon-channel null condition $d\tau^2=0$ gives
 $$
 c_\gamma(\hat{\mathbf{k}},\mathcal{N}_{\mathrm{sea}})
 =
@@ -166,7 +166,7 @@ B^i{}_j w^j\frac{U}{c_0^2}
 \qquad
 \gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j.
 $$
-Here $w^i$ is the medium drift relative to the comparison frame and $U$ is the positive PPN potential. These are not new substrate fields. They are coefficient rows for the observer-level reconstruction. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must read from these rows as one shared constitutive record.
+Here $w^i$ is the Noether-Sea drift relative to the comparison frame and $U$ is the positive PPN potential. These are not new substrate fields. They are coefficient rows for the observer-level reconstruction. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must read from these rows as one shared constitutive record.
 
 A practical consistency check is that those channels must be projections of one shared record of the Noether Sea and the Physical Observer, not independently tuned descriptions. For an observation window $W$, let $\theta$ collect the retained Noether-Sea state, source assemblies, observer clock/ruler state, signal-channel record, apparatus calibration, and boundary wake data. Let
 $$
@@ -199,7 +199,7 @@ $$
 \qquad
 \mathcal{S}_{\mathrm{retune}}(\theta)=0.
 $$
-The point is not to add a new spacetime ontology. It is to require the effective metric to behave as one constitutive summary of the same medium and observer record across clocks, rulers, signal propagation, and weak-field gravitational tests.
+The point is not to add a new spacetime ontology. It is to require the effective metric to behave as one constitutive summary of the same Noether-Sea and observer record across clocks, rulers, signal propagation, and weak-field gravitational tests.
 
 ### Geodesic and Lensing Recovery Benchmarks
 
@@ -338,7 +338,7 @@ In the shared pullback notation, the stress-side consumer is $\Pi_{\mathrm{matte
 
 ## Noether Swarm Deformation and Metric Language
 
-At the assembly level, an individual Noether swarm has an oblate, deformable exclusion envelope; see [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md). This chapter does not identify that individual Noether swarm envelope with the metric. The metric bridge uses many deforming Noether swarms in the Noether Sea as the medium whose coarse variables determine clock, ruler, and signal behavior.
+At the assembly level, an individual Noether swarm has an oblate, deformable exclusion envelope; see [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md). This chapter does not identify that individual Noether swarm envelope with the metric. The metric bridge uses many deforming Noether swarms in the Noether Sea, whose coarse variables determine clock, ruler, and signal behavior.
 
 When translating toward General Relativity, Einstein's field equations are treated as the effective continuum relation
 $$
@@ -368,7 +368,7 @@ The assembly fact that a Noether swarm is oblate belongs in [Nested Shell Swarm 
 
 ## Jacobson-Type Support: Metric as Equation of State
 
-This medium-first picture is strengthened by the general Jacobson-style lesson: Einstein equations are plausibly an **equation of state** for an underlying microscopic system rather than substrate-level laws of the void itself.
+This Noether-Sea-first picture is strengthened by the general Jacobson-style lesson: Einstein equations are plausibly an **equation of state** for an underlying microscopic system rather than substrate-level laws of the void itself.
 
 That comparative point fits $\mathbb{A}\mathbb{A}\mathbb{A}$ cleanly:
 
@@ -403,7 +403,7 @@ This residual is not a new gate; it states the existing constitutive burden in a
 
 This does not license dismissing low-energy quantized-metric calculations. In the long-distance regime, the effective-field-theory treatment of GR separates unknown high-energy local terms from calculable infrared corrections. $\mathbb{A}\mathbb{A}\mathbb{A}$ should preserve that result as an observer-level recovery benchmark: the microscopic account may differ, but the weak-field constitutive record must reproduce the same long-distance quantum correction when its variables are coarse-grained into the effective metric description.
 
-This support is useful but limited. A Jacobson-style argument would explain why GR-like behavior is a natural equilibrium limit of many possible media, not why $\mathbb{A}\mathbb{A}\mathbb{A}$ is uniquely correct. The distinguishing burden therefore shifts to the departures from equilibrium, where the detailed nested shell swarm architecture should matter.
+This support is useful but limited. A Jacobson-style argument would explain why GR-like behavior is a natural equilibrium limit of many possible media, not why $\mathbb{A}\mathbb{A}\mathbb{A}$ is uniquely correct. The distinguishing burden therefore shifts to the departures from equilibrium, where the detailed Noether swarm architecture should matter.
 
 It also does not derive inertia by itself. A successful equation-of-state route can recover an effective Einstein equation while leaving open how a particular assembly acquires its inertial response, why accelerated and gradient-driven local records agree to equivalence-principle accuracy, and how the same Noether-Sea record fixes the mass-side response tensor. Those burdens remain with the mass, energy, Lorentz-closure, and nested shell swarm dynamics programs.
 
@@ -598,14 +598,14 @@ The core task of this document will be to:
 
 1. Specify the functional dependence of $g^{\text{eff}}_{\mu\nu}(x)$ on:
    - $n(x)$ (equivalently $\rho_{\text{core}}(x)$),
-   - Stress/strain of the medium,
+   - Stress/strain of the Noether Sea,
    - Potential $\Phi_{\text{eff}}(x)$ from matter assemblies.
 2. Show that in the weak-field regime this reproduces the standard GR metric (e.g. Schwarzschild) to PPN accuracy:
    $g^{\text{eff}}_{00} \approx -\left(1 + \frac{2\Phi_N}{c_0^2}\right), \quad g^{\text{eff}}_{ij} \approx h_{ij}\left(1 - \frac{2\Phi_N}{c_0^2}\right).$
 
 ## Minimal Weak-Field Constitutive Map (for PPN Matching)
 
-To make the mapping functional explicit at first post-Newtonian order, start in the local medium-rest gauge
+To make the mapping functional explicit at first post-Newtonian order, start in the local Noether-Sea rest gauge
 $$
 u^i_{\text{sea}}=0,
 $$
@@ -695,7 +695,7 @@ A proposed recovery that supplies only $c_{\text{eff}}(\mathbf{x})$ or $\chi_{\t
 
 ## Weak-Field Geodesic Handoff (ADM Constitutive Subclass)
 
-The older scalar/disformal bridge is now a subclass of the ADM/Cartan surface. In the local medium-rest gauge, set
+The older scalar/disformal bridge is now a subclass of the ADM/Cartan surface. In the local Noether-Sea rest gauge, set
 $$
 u^i_{\text{sea}}=0,
 \qquad
@@ -715,7 +715,7 @@ c_0^2\ln\!\big(\Omega(x)\xi(x)\big),
 N(x)=e^{\Phi_{\text{eff}}(x)/c_0^2}.
 $$
 
-With $x^0=c_0t$, the medium-rest metric components are
+With $x^0=c_0t$, the Noether-Sea rest-frame metric components are
 $$
 g^{\text{eff}}_{00}=-N^2,
 \qquad

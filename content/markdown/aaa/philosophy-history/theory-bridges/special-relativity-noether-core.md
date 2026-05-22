@@ -4,7 +4,7 @@ This bridge compares the observer-level story of special relativity with the pro
 
 ## Bridge Thesis
 
-Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether swarm account proposes the underlying implementation layer: a moving nested shell swarm assembly must preserve finite-speed causal wake closure while translating through the Noether Sea. That requirement deforms the swarm's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
+Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether swarm account proposes the underlying implementation layer: a moving Noether swarm assembly must preserve finite-speed causal wake closure while translating through the Noether Sea. That requirement deforms the swarm's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
 
 The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether-Sea dynamics.
 

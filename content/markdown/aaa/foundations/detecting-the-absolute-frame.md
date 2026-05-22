@@ -175,7 +175,7 @@ This places the theory in the tradition of **Lorentz Ether Theory**:
 - A preferred frame exists but must be operationally hidden at low energies by the moving-assembly closure ladder
 
 **Key distinctions from classical LET:**
-- The medium is not a continuous classical ether; it is the Noether Sea, an assembly medium rather than a coordinate grid
+- The Noether Sea is not a continuous classical ether; it is an assembly network rather than a coordinate grid
 - The preferred frame is hidden by emergent effective geometry
 - The framework states explicit closure targets and failure criteria for where symmetry-breaking signatures would appear
 

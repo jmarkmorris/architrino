@@ -370,7 +370,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 
 ### Tier 2 (High Priority)
 4. **Calculate $\Delta \nu_{\text{Cs}}$ from first principles**
-   - Map Cs atomic structure to nested shell swarm assemblies
+   - Map Cs atomic structure to Noether swarm assemblies
    - Derive hyperfine coupling strength
    - Compare to 9,192,631,770 Hz
 

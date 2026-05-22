@@ -10,7 +10,7 @@ $$
 \sim
 \sum_c W_\ell(\mathbf{x}-\mathbf{X}_c(t)),
 $$
-where $W_\ell$ is a smoothing window over legacy core-center variables $\mathbf{X}_c(t)$. The medium stress, delay factor, and orientation variables then depend on each swarm's closure label, orientation, and envelope deformation. The Noether Sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether swarm geometry, not primitive geometric postulates.
+where $W_\ell$ is a smoothing window over legacy core-center variables $\mathbf{X}_c(t)$. The Noether-Sea stress, delay factor, and orientation variables then depend on each swarm's closure label, orientation, and envelope deformation. The Noether Sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether swarm geometry, not primitive geometric postulates.
 
 ## Core Definition
 
@@ -40,7 +40,7 @@ The Euclidean void and the Noether Sea must remain distinct.
 
 The void does not curve, expand, contract, or carry energy. The Noether Sea, as physical content, can carry energy and stress, flow, strain, compress, relax, and change its response variables. Effective curvature and effective expansion are therefore derived descriptions of Noether-Sea response, not curvature or expansion of the void itself.
 
-At a fixed coordinate point $\mathbf{x}$ and absolute time $t$, the medium state may change:
+At a fixed coordinate point $\mathbf{x}$ and absolute time $t$, the Noether-Sea state may change:
 $$
 \rho_{\text{core}}(\mathbf{x},t),\quad
 \Sigma_{\text{medium}}(\mathbf{x},t),\quad
@@ -68,13 +68,13 @@ not a primitive frame-free photon scalar. The redshift task is to compute the en
 
 ## Composition
 
-The medium is composed of neutral Noether swarm assemblies. Each Noether swarm is a nested shell swarm assembly made from three nested electrino:positrino binaries. The Noether swarm itself is not elementary; its stability is a downstream assembly result.
+The Noether Sea is composed of neutral Noether swarm assemblies. In the present corpus the best-developed Noether swarm case is the nested shell swarm, made from three nested electrino:positrino binaries. A Noether swarm itself is not elementary; its stability is a downstream assembly result.
 
 The large-scale Noether Sea is modeled as a balanced population of complementary Noether swarm orientations.
 
-This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the core level. Their coupled balance is part of the working explanation for how the medium remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
+This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the core level. Their coupled balance is part of the working explanation for how the Noether Sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
 
-The detailed pro/anti basis, density split, imbalance stability, local coupling law, and candidate cluster motifs belong in [Spacetime Assemblies](spacetime-assemblies.md). This page only fixes the medium ontology those assembly hypotheses serve.
+The detailed pro/anti basis, density split, imbalance stability, local coupling law, and candidate cluster motifs belong in [Spacetime Assemblies](spacetime-assemblies.md). This page only fixes the Noether-Sea ontology those assembly hypotheses serve.
 
 ## State Variables
 
@@ -126,9 +126,9 @@ Important medium properties include:
 - **Core density:** $\rho_{\text{core}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$.
 - **Energy density:** approximately $\rho_{\text{core}}E_{\text{core}}$ at the coarse level, with corrections from stress, excitation, and coupling.
 - **Orientation and strain:** local ordering of core axes and deformation away from equilibrium.
-- **Flow or drift:** collective motion of the medium relative to the absolute frame.
-- **Compliance:** how strongly the medium responds to compression, shear, polarization, and alignment loading.
-- **Delay-factor response:** how $\chi_{\text{sea}}$, signal propagation, clock behavior, and effective light speed depend on local medium state.
+- **Flow or drift:** collective motion of the Noether Sea relative to the absolute frame.
+- **Compliance:** how strongly the Noether Sea responds to compression, shear, polarization, and alignment loading.
+- **Delay-factor response:** how $\chi_{\text{sea}}$, signal propagation, clock behavior, and effective light speed depend on local Noether-Sea state.
 
 These are medium variables. They are not properties of the Euclidean void.
 
@@ -269,7 +269,7 @@ $$
 E_N=h\nu_N.
 $$
 
-The point of this expression is not to add a new quantum postulate at the medium level. It records the same closed-cycle action accounting used elsewhere in the corpus: a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether swarm may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
+The point of this expression is not to add a new quantum postulate at the Noether-Sea level. It records the same closed-cycle action accounting used elsewhere in the corpus: a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether swarm may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
 
 At the single Noether swarm level, each accepted $h$-scale transfer forces the swarm to retune its cadence-scale closure. The retuning may appear as a cadence shift, shell-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring swarms. In the simplest fixed-speed shell-binary approximation,
 
@@ -339,7 +339,7 @@ $$
 \right],
 $$
 
-where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether swarm can sit inside the same coordinate window as ambient Noether-Sea swarms without becoming part of the ambient medium record; ledger complement, not mere spatial proximity, makes the separation.
+where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether swarm can sit inside the same coordinate window as ambient Noether-Sea swarms without becoming part of the ambient Noether-Sea record; ledger complement, not mere spatial proximity, makes the separation.
 
 A candidate equilibrium-transport equation is
 
@@ -848,9 +848,9 @@ Their observed inertia and mass are expected to depend on:
 - shielding depth,
 - exposure of inner binary structure,
 - medium-dressed compliance and inertial response,
-- and how the assembly closes its causal ledger relative to the surrounding medium.
+- and how the assembly closes its causal ledger relative to the surrounding Noether Sea.
 
-The canonical mass-side treatment is [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md). This page only states that the Noether Sea is the ambient medium against which those assembly responses are defined.
+The canonical mass-side treatment is [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md). This page only states that the Noether Sea is the ambient Noether Sea against which those assembly responses are defined.
 
 ## Cosmological Role
 
@@ -879,7 +879,7 @@ Use these terms consistently:
 | **Spacetime medium** | Bridge term for the Noether Sea when translating toward effective spacetime language |
 | **Effective spacetime** | Observer-level metric reconstruction from clocks, rulers, and signals |
 
-Avoid using **vacuum** alone. It is ambiguous between empty substrate, QFT vacuum language, and the actual physical medium. If the intended meaning is the medium, use **Noether Sea**.
+Avoid using **vacuum** alone. It is ambiguous between empty substrate, QFT vacuum language, and the actual Noether Sea. If the intended meaning is the physical substrate contents, use **Noether Sea**.
 
 ## Ownership Boundary
 
@@ -887,7 +887,7 @@ This page owns:
 
 - the Noether Sea as canonical medium ontology,
 - the distinction between void, medium, and effective spacetime,
-- the main medium state variables,
+- the main Noether-Sea state variables,
 - and the routing map for downstream spacetime work.
 
 This page does not own:

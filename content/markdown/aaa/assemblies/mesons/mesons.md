@@ -20,7 +20,7 @@ While the standard model chart displays the fundamental fermions (quarks, lepton
 Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations.
 
 ### Geometric variational lens
-The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic response** of the Noether Sea to topological defects (quark cores). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are stable minima, while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a dissociation in the medium.
+The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic response** of the Noether Sea to topological defects (fermions). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are stable minima, while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a dissociation in the Noether Sea.
 * **Stability criterion:** An assembly is stable while its trajectory in configuration space remains inside a basin where the binding action is a **local minimum**. **Dissociation** means the trajectory reaches a region where that action loses its minimum, so gradient flow carries the system toward another basin and into a new assembly pattern.
 
 **Confinement as topological shear (nonlinear elasticity lens)**
@@ -37,22 +37,22 @@ Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, that bosonic-statistics statement is a downstream target of [Fermi-Dirac and Bose-Einstein Statistics](../../quantum/quantum-statistics.md) and [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md). The pion section may use the observer-level boson label, but it does not independently derive Pauli exclusion or spin-statistics closure.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A pion is a **two‑core (quark + antiquark) assembly**: one Generation‑I quark core (matter chirality) and one Generation‑I antiquark core (antimatter chirality) linked by a shared flux tube.
+A pion is a **two-swarm (quark + antiquark) assembly**: one Generation‑I Noether swarm (matter chirality) and one Generation‑I antiquark Noether swarm (antimatter chirality) linked by a shared flux tube.
 
 *   **Structure:** $u\bar{d}$ ($\pi^+$), $d\bar{u}$ ($\pi^-$), or a superposition of $u\bar{u}/d\bar{d}$ ($\pi^0$).
-*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the pro-core and anti-core achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether Sea.
+*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the pro-swarm and anti-swarm achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether Sea.
 
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether Sea between them.
 *   **Mechanism:** A proton interacts with the Noether Sea, associating a local nested shell swarm into a transient $u\bar{d}$ assembly (a $\pi^+$), sustained by the binding-energy deficit of the nucleus. The proton effectively "hands off" its charge state to this transient assembly, becoming a neutron, while the effective pion-like loop spans the neighboring baryon record. The local Noether-Sea configuration relaxes once the loop dissociates or re-associates into the surrounding nuclear assemblies.
-*   **Topology:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger tri-core baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
+*   **Topology:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger nested shell swarm baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 **The Yukawa Mechanism (Assembly Tension):**
 *   **Range vs. mass:** The force range scales as $R \sim \hbar/mc$ because heavier assemblies (higher internal curvature) expose stronger Noether-Sea response and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.
 *   **Binding energy:** Nuclear mass defect (e.g., 28.3 MeV in ${}^4$He) is the energy stored in shared pion flux loops; the coupled, pion-sharing configuration sits at lower energy than isolated nucleons.
 *   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared axial layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops makes the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
-*   **Geometric bound:** A pion flux tube that stretches beyond a critical length $L_c$ pays more tension energy than the medium needs to rupture by dissociation. Its unusually low curvature keeps $L_c$ large, explaining the long nuclear-range reach.
-*   **Mass suppression as alignment:** The $q$ and $\bar q$ axes are phase-locked so their externally exposed Noether-Sea response nearly cancels - geometrically the assembly follows an almost null-like path through the medium, keeping its effective mass small.
+*   **Geometric bound:** A pion flux tube that stretches beyond a critical length $L_c$ pays more tension energy than the Noether Sea needs to rupture by dissociation. Its unusually low curvature keeps $L_c$ large, explaining the long nuclear-range reach.
+*   **Mass suppression as alignment:** The $q$ and $\bar q$ axes are phase-locked so their externally exposed Noether-Sea response nearly cancels - geometrically the assembly follows an almost null-like path through the Noether Sea, keeping its effective mass small.
 
 **Free vs. in-medium pion records:**
 - **Free charged pions:** The measured $\pi^\pm$ lifetime belongs to weak-reaction provenance. A free $\pi^-$ primarily routes through a weak corridor such as $\pi^-\to\mu^-+\bar\nu_\mu$; the charge-conjugate channel applies to $\pi^+$. This lifetime is not the timescale of residual strong exchange inside a nucleus.
@@ -114,13 +114,13 @@ In the current hadron-level shorthand, if the Pion is the ground state of the $q
 These are excited states of the nucleon. At the observer-level Standard Model description, the $\Delta^{++}$ ($uuu$) is particularly famous because it consists of three identical fermions in the same state, which required the **color** quantum number so the total baryon state can satisfy Pauli exclusion. They are spin-$\tfrac{3}{2}$.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A Delta baryon is a standard Tri-Core assembly (like a proton) but with the three cores treated in a **parallel spin alignment** (spin-$\tfrac{3}{2}$) rather than the Proton's mixed alignment (spin-$\tfrac{1}{2}$); compare the ground-state nucleon picture in [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-frame spinor proof.
+A Delta baryon is a standard Noether swarm assembly (like a proton) but with the three cores treated in a **parallel spin alignment** (spin-$\tfrac{3}{2}$) rather than the Proton's mixed alignment (spin-$\tfrac{1}{2}$); compare the ground-state nucleon picture in [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md). This is a downstream hadron-spin shorthand, not a substitute for the ordered-frame spinor proof.
 
-*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To satisfy the observer-level Pauli constraint without geometric collapse, the hadron-level target is that they occupy the three distinct color sectors, so the exceptional-axis labels H, M, and L each appear once across the tri-core. This is a color-singlet mapping target until the spin-statistics proof supplies the exclusion rule.
+*   **Decorations / Pauli:** In the $\Delta^{++}$, three identical $u$-cores occupy the same location. To satisfy the observer-level Pauli constraint without geometric collapse, the hadron-level target is that they occupy the three distinct color sectors, so the exceptional-axis labels H, M, and L each appear once across the nested shell swarm. This is a color-singlet mapping target until the spin-statistics proof supplies the exclusion rule.
 *   **Dissociation:** The Delta dissociates rapidly ($\sim 10^{-24}$ s) via the strong force into a nucleon ($\pi N$). This corresponds to the spin alignment being mechanically unstable; once compression/spin lifts it off its local minimum, the assembly follows the gradient to the nucleon basin and sheds a pion.
 
 **Deltas in Dense Matter (EoS)**
-*   **Geometric compression:** In neutron-star cores, the nucleon Fermi energy can exceed the $N\!-\!\Delta$ gap ($\sim 300$ MeV). Nested shell swarm assemblies are forced so close that mixed-spin nucleons become less favorable than parallel-spin Deltas or superpositions.
+*   **Geometric compression:** In neutron-star cores, the nucleon Fermi energy can exceed the $N\!-\!\Delta$ gap ($\sim 300$ MeV). Noether swarm assemblies are forced so close that mixed-spin nucleons become less favorable than parallel-spin Deltas or superpositions.
 *   **Packing topology phase transition:** Overlapping exclusion volumes of spin-mixed nucleons create the candidate jamming pressure. Parallel-spin Deltas, though higher in internal energy, may admit a crystalline packing symmetry inaccessible to nucleons. The $N\!\to\!\Delta$ conversion at high density is therefore a dense-matter validation target for the later spin and Pauli proof: gravitational work would be diverted into internal rotational energy instead of degeneracy pressure, effectively softening the EoS and lowering the maximum neutron-star mass by enthalpy minimization (energy + pressure × volume).
 
 ---
@@ -133,7 +133,7 @@ Rows that mention spin alignment are shorthand targets for the downstream angula
 | SM family | Ground $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry | First excited $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry | Geometric change vs. SM mass gap |
 | --- | --- | --- | --- |
 | $\pi \rightarrow \rho$ | $q\bar q$ with anti-aligned spins / relaxed flux | $q\bar q$ with aligned spins / twisted or tighter flux | Spin alignment + higher flux mode → $m_\rho \sim 770$ MeV |
-| $N(p,n) \rightarrow \Delta$ | Tri-core with mixed spins; axis permutations for color | Tri-core with parallel spins; same axis permutations | All spins parallel raises rotational energy → $m_\Delta \sim 1232$ MeV |
+| $N(p,n) \rightarrow \Delta$ | Nested shell swarm with mixed spins; axis permutations for color | Nested shell swarm with parallel spins; same axis permutations | All spins parallel raises rotational energy → $m_\Delta \sim 1232$ MeV |
 
 ---
 
@@ -156,11 +156,11 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 - **Rho mesons:** Candidate spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
 
 **Reading SM quantum numbers inside $\mathbb{A}\mathbb{A}\mathbb{A}$**
-- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Anti-core flips signs. Meson pairs cancel most axes; tri-core permutations give $p=+1$, $n=0$.
-- **Baryon number $B$:** +1/3 per matter core, −1/3 per anti-core. Mesons sum to 0; baryons sum to 1.
+- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Anti-swarm flips signs. Meson pairs cancel most axes; nested shell swarm permutations give $p=+1$, $n=0$.
+- **Baryon number $B$:** +1/3 per matter core, −1/3 per anti-swarm. Mesons sum to 0; baryons sum to 1.
 - **Strangeness $S$ (and heavier flavors):** Observer-level flavor tags are assigned after branch selection: a selected strange shielding branch gives $S=-1$, and its anti-branch gives $S=+1$. This does not assert that every down-type axial family is an additional observed species.
 - **Isospin $I_3$:** Swap $u\leftrightarrow d$ within the shared axis ordering; each swap flips $I_3$ by 1/2. The $\pi/\rho$ triplets and $K$ doublet follow directly.
-- **Spin/parity $J^P$:** Provisional bridge from core spin alignment + flux mode. Spin‑0 mesons = anti‑aligned cores (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned cores or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state tri-cores).
+- **Spin/parity $J^P$:** Provisional bridge from core spin alignment + flux mode. Spin‑0 mesons = anti‑aligned cores (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned cores or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state nested shell swarms).
 - **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or over‑twist (ρ, Δ, kaon torsion) dissociate fast; non-inverse pairs that require a weak corridor (π±, $K$) live longer.
 
 ### SM quantum numbers (cheat sheet for particles discussed)
@@ -187,7 +187,7 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 **Notation**
 
-* An overbar on the quark symbol denotes an anti-core.
+* An overbar on the quark symbol denotes an anti-swarm.
 * Constituents are concatenated with $\otimes$ to show distinct cores (baryons chain three cores; mesons pair a quark with an antiquark).
 * Each matrix lists the three nested shell swarm axes; the ordering is arbitrary, but all constituents in the same row use the **same** ordering.
 * Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ `+` = positrino pair, `-` = electrino pair, `0` = mixed positrino/electrino.
@@ -202,25 +202,25 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 **Color/flux neutrality schematics**
 
-*Baryon tri-core (proton-like permutations)*  
+*Baryon nested shell swarm (proton-like permutations)*
 $u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d:\left[\begin{smallmatrix}0\\+\\+\end{smallmatrix}\right]\;\;\Rightarrow\;$ axes permuted across cores $\Rightarrow$ net color 0.
 
 *Meson quark–antiquark pairing*  
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
 
-**Matrix key:** Each bracketed column is a core’s three binary axes (order shared within the row). `+` = positrino pair, `-` = electrino pair, `0` = mixed pair. An overbar on the quark letter denotes an anti-core.
+**Matrix key:** Each bracketed column is a core’s three binary axes (order shared within the row). `+` = positrino pair, `-` = electrino pair, `0` = mixed pair. An overbar on the quark letter denotes an anti-swarm.
 
 | Particle | PDG symbol | SM class | SM quark content | $\mathbb{A}\mathbb{A}\mathbb{A}$ axis string per constituent | $\mathbb{A}\mathbb{A}\mathbb{A}$ highlight |
 | --- | --- | --- | --- | --- | --- |
-| Proton (p) | $p$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Color-neutral tri-core, ground state. |
-| Neutron (n) | $n$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Tri-core with net charge 0, stable. |
+| Proton (p) | $p$ | baryon | $uud$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Color-neutral nested shell swarm, ground state. |
+| Neutron (n) | $n$ | baryon | $udd$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Nested shell swarm with net charge 0, stable. |
 | Pion + | $\pi^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Non-inverse cores lack the fast inverse-pair radiative route; free dissociation uses a $W^+$ corridor, while in-medium exchange is residual strong. |
 | Pion 0 | $\pi^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Isospin-triplet superposition; inverse matrices open the Gate C two-photon route $\pi^0\to\gamma\gamma$ and a very short lifetime. |
 | Pion - | $\pi^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Mirror of $\pi^+$: non-inverse cores, weak $W^-$ dissociation corridor. |
 | Kaon + | $K^{+}$ | meson | $u\bar s$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Gen-I↔Gen-II bridge; torsion phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ drives CP/oscillation. |
 | Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Neutral kaon oscillations set by torsion energy. |
 | Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Charge −1 kaon; roles swapped vs $K^+$. |
-| $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; flips core/anti-core. |
+| $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; flips core/anti-swarm. |
 | Rho + | $\rho^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |
 | Rho 0 | $\rho^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Spin-$1$ mapping target for an excited neutral pion superposition; same axes, tighter flux. |
 | Rho - | $\rho^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |

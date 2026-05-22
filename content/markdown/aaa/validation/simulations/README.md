@@ -30,7 +30,7 @@ All simulation tiers are implemented in the absolute frame:
 From the code’s perspective, we are always the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
 
 - We know $S(t)$ (all architrinos, all assemblies) at each time step.
-- We can compute fields and medium state anywhere in the domain.
+- We can compute fields and Noether-Sea state anywhere in the domain.
 
 To connect to experiment:
 

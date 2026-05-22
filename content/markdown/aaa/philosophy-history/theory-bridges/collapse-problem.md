@@ -15,7 +15,7 @@ Traditional interpretations typically resolve this by either treating the wavefu
 
 ### Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) Mechanism
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework rejects the projection postulate as a fundamental physical process. Instead, the universe evolves continuously in absolute time within a Euclidean void, governed strictly by the deterministic Master Equation. There is no ontological distinction between a "measured system" and a "measurement apparatus"—both are interacting nested shell swarm assemblies immersed in the Noether Sea.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework rejects the projection postulate as a fundamental physical process. Instead, the universe evolves continuously in absolute time within a Euclidean void, governed strictly by the deterministic Master Equation. There is no ontological distinction between a "measured system" and a "measurement apparatus"—both are interacting Noether swarm assemblies immersed in the Noether Sea.
 
 What standard quantum mechanics describes as "wavefunction collapse" maps directly to **threshold resolution** in a multistable dynamical system. 
 
@@ -27,8 +27,8 @@ This interaction breaks the metastability. The incoming causal wakes drive the a
 
 The correspondence between the quantum mechanical measurement formalism and architrino threshold dynamics is defined as follows:
 
-*   **The Measured System**: A nested shell swarm assembly in a metastable configuration, delicately balanced between multiple stable geometric phases or orbital resonance bands.
-*   **The Apparatus**: A massive complex of nested shell swarm assemblies that injects a structured potential perturbation (action) sufficient to overwhelm the target's metastability.
+*   **The Measured System**: A Noether swarm assembly in a metastable configuration, delicately balanced between multiple stable geometric phases or orbital resonance bands.
+*   **The Apparatus**: A massive complex of Noether swarm assemblies that injects a structured potential perturbation (action) sufficient to overwhelm the target's metastability.
 *   **The Measurement Interaction**: The deterministic exchange of causal wake surfaces between the apparatus and the target assembly. 
 *   **Wavefunction Collapse**: The continuous, finite-time physical transit of the target assembly across a phase-space separatrix, settling into a new stable attractor. 
 *   **Irreversibility / Record Creation**: The excess energy and phase information from the transition are dissipated into the surrounding Noether Sea and the macroscopic apparatus. This thermalization makes the transition operationally irreversible, cementing the macroscopic record.

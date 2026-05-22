@@ -7,7 +7,7 @@
 ## The Mass Hypothesis: Inertia as Medium Interaction
 
 ### Core Thesis
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, **mass is not a fundamental property** of individual architrinos. There is no intrinsic particle-specific "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass, especially **inertial resistance to acceleration**, is treated as an emergent response of stable assemblies embedded in the surrounding [Noether Sea](../spacetime/noether-sea.md), the physical medium composed of neutral nested shell swarm assemblies.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, **mass is not a fundamental property** of individual architrinos. There is no intrinsic particle-specific "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass, especially **inertial resistance to acceleration**, is treated as an emergent response of stable assemblies embedded in the surrounding [Noether Sea](../spacetime/noether-sea.md), the physical medium composed of neutral Noether swarm assemblies.
 
 The conservative thesis is:
 
@@ -349,7 +349,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
 - **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because outer or middle shielding tiers are depleted on the branch lifetime window. With fewer coherent support layers, more of the inner high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement, not a deletion of the H/M/L axial frame that carries color and electroweak bookkeeping.
 
 #### Medium-Dressed Inertial Response
-- **The Medium:** The Noether Sea is not empty space; it is a dynamic population of neutral nested shell swarm assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to this medium.
+- **The Medium:** The Noether Sea is not empty space; it is a dynamic population of neutral Noether swarm assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to the Noether Sea.
 - **The Response:** The assembly resists acceleration because its internal path-history exchange must relock under a biased causal geometry. This should be modeled as a medium-dressed response tensor, not as ordinary dissipative friction.
 - **Velocity Dependence:** In the homogeneous weak-field limit, the same closure geometry should recover the effective relativistic response:
   $$
@@ -363,7 +363,7 @@ A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g.
 **Resolution Hypothesis:**
 - Stable configurations are phase-locked causal ledgers whose perturbations remain in an attracting basin.
 - The relevant diagnostic is not a phenomenological friction coefficient but a stability test: nearby phase errors should decay under the return map or Floquet analysis of the closed assembly cycle.
-- The medium can still shape inertia, but a stable bound state must not leak energy through a dissipative drag channel.
+- The Noether Sea can still shape inertia, but a stable bound state must not leak energy through a dissipative drag channel.
 
 The condensed-matter cross-check is the Noether-Sea transport residual in [Condensed Matter](../nuclear-atomic/condensed-matter.md). Stable inertial response belongs to $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$, where the response is reversible retuning rather than ordinary drag. Crossing $\mathcal{R}_{\text{tr},*}$ is a transition or failure condition that must route into excitation, radiation-like transport, medium heating, action shedding, or branch transition; it is not the origin of mass itself.
 
@@ -656,7 +656,7 @@ The canonical chapter should carry this interface but not the detailed simulatio
 ### Critical Unknowns
 1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
 2. **Is the reference Noether swarm density fixed?** Is $\rho_{\text{core},0}$ universal, or does $\rho_{\text{core}}(\mathbf{x},t)$ vary with cosmological epoch, gravitational field strength, or local matter density?
-3. **Why do neutrinos have mass at all?** If a neutrino is a near-photon pro/anti core pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
+3. **Why do neutrinos have mass at all?** If a neutrino is a near-photon pro/anti swarm pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
 
 ### Potential Falsifications
 - **If $\zeta(A)E_{\text{internal}}(A)$ cannot reproduce $m(A)c_{\text{eff}}^2$ after the response tensor is fixed:** The shielding-based mass map is wrong.

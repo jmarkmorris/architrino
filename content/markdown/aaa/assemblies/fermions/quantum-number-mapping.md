@@ -9,7 +9,7 @@ For charged fermions and quarks, it adopts the **Noether swarm + axial layer** m
 1.  **The Noether swarm:** A neutral, rotating nested shell swarm structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
 2.  **The Axial Layer:** A layer of 6 axial architrinos occupying polar sites on the Noether swarm, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
 
-Neutrinos are the current exception to this inventory model. They are treated as near-photon neutral pro/anti core pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](./neutrinos.md).
+Neutrinos are the current exception to this inventory model. They are treated as near-photon neutral pro/anti swarm pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](./neutrinos.md).
 
 Note: **Mass is derived**, not a quantum number here; it comes from shielded internal causal history and medium-dressed Noether-Sea response. See [Particle Masses](../particle-masses.md) for the mass thesis and [Emergent Metric](../../spacetime/emergent-metric.md) for metric-level translation.
 
@@ -29,8 +29,8 @@ Every fermion contains a central engine composed of nested binary pairs.
 *   **Generation-I Noether swarm (nested shell swarm):** 3 nested binaries (inner, middle, outer). Total 6 architrinos (3P, 3E).
 *   **Nested-scale picture:** The three binaries should be read as a genuine radial hierarchy, not just as three items in a list. The middle binary sits inside the shielding domain of the outer binary, and the inner binary sits inside the shielding domains of both. In that sense, the higher-generation core may be viewed as what is revealed when the outer shielding tier is removed and the assembly is read further inward.
 *   **Chirality (Matter vs. Antimatter):**
-    *   **Pro-Core:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
-    *   **Anti-Core:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
+    *   **Pro-Swarm:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
+    *   **Anti-Swarm:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
 *   **Net Charge:** Always $0$.
 
 ### The Axial Layer
@@ -101,7 +101,7 @@ Charged Generation I leptons and quarks utilize the full **nested shell swarm** 
 | :--- | :--- | :--- | :--- | :--- |
 | **Electron** ($e^-$) | Pro-Nested Shell Swarm | 6E | -1 | 12 |
 | **Positron** ($e^+$) | Anti-Nested Shell Swarm | 6P | +1 | 12 |
-| **Neutrino** ($\nu_e$) | Near-planar pro/anti core pair | no stable axial layer; effective $3P,3E$ weak ledger | 0 | geometry-dependent |
+| **Neutrino** ($\nu_e$) | Near-planar pro/anti swarm pair | no stable axial layer; effective $3P,3E$ weak ledger | 0 | geometry-dependent |
 | **Up Quark** ($u$) | Pro-Nested Shell Swarm | 5P, 1E | +2/3 | 12 |
 | **Down Quark** ($d$) | Pro-Nested Shell Swarm | 2P, 4E | -1/3 | 12 |
 
@@ -116,7 +116,7 @@ For charged leptons and quarks, every charged-fermion axial layer consists of 6 
 1.  **The Shielded Triad (3 sites):** Geometrically locked or obscured by the binary precession. These axial occupancies *cannot* be swapped without destroying the particle.
 2.  **The weak-coupling triad (3 sites):** Exposed to the Noether Sea. These are the "switchable bits."
 
-For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon pro/anti core pair, not as a literal inventory of six bound axial sites.
+For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon pro/anti swarm pair, not as a literal inventory of six bound axial sites.
 
 **Weak-coupling exposure diagnostic (hypothesis)**
 For an assembly $A$ with propagation direction $\hat{\mathbf p}$, the exposed triad should be selected by an operator rather than by a raw verbal claim. Let $\mathcal{S}_{\mathrm{ax}}(A)$ be the six polar sites and let $w_a(A,\hat{\mathbf p})$ be the local $W$-corridor docking weight of site $a$. Define
@@ -228,7 +228,7 @@ Why can't a Right-Handed Electron ($e^-_R$) turn into a Neutrino?
 In the Standard Model, quarks carry one of three color labels, while leptons are color singlets. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ bookkeeping, color is the **axis-exceptionality state** of a Noether swarm with an axial layer: one axis is distinguished relative to the other two, and the three possible choices span the quark color triplet.
 
 ### The Definition of Color
-Use the ordered core axes $(H,M,L)$.
+Use the ordered-frame axes $(H,M,L)$.
 
 - **Charged leptons:** the three axes remain equivalent, so there is no distinguished axis and no color degree of freedom. Neutrinos are also colorless, but by the near-photon neutral-pair route rather than by a stable charged-fermion axial layer.
 - **Up-type quarks:** the six-site axial count $5P,1E$ forces one mixed axis $P^{m}$ against two $P^+$ axes, so color is the choice of which axis carries the mixed pattern.
@@ -305,7 +305,7 @@ This is not yet a derivation of local gauge dynamics. The remaining closure targ
 
 | Field | SU(3) | SU(2) | $Y$ | $Q = T_3 + Y/2$ | Geometric handle |
 | --- | --- | --- | --- | --- | --- |
-| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | weak-coupling triad P- or E-dominant on quark core; axis exceptionality sets color |
+| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | weak-coupling triad P- or E-dominant on Noether swarm; axis exceptionality sets color |
 | $u_R$ | 3 | 1 | +4/3 | +2/3 | weak-coupling triad hidden; asymmetry 5P/1E fixes $Q$ |
 | $d_R$ | 3 | 1 | -2/3 | -1/3 | weak-coupling triad hidden; asymmetry 2P/4E |
 | $\ell_L = (\nu_L, e_L)$ | 1 | 2 | -1 | $(0, -1)$ | neutrino uses effective near-photon weak ledger; electron uses axial-layer weak-coupling triad; both colorless |
@@ -376,7 +376,7 @@ The geometrical interpretation is:
 - charge conjugation mirrors the pattern across the same bookkeeping plane,
 - handedness selects whether the weak-coupling triad is exposed or hidden.
 
-The neutral sector is now separated from the charged-fermion inventory rule. The left-handed neutrino branch fits the electroweak doublet as an effective weak ledger, but its physical assembly is a near-photon pro/anti core pair rather than an ordinary charged-fermion axial layer. The fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
+The neutral sector is now separated from the charged-fermion inventory rule. The left-handed neutrino branch fits the electroweak doublet as an effective weak ledger, but its physical assembly is a near-photon pro/anti swarm pair rather than an ordinary charged-fermion axial layer. The fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
 
 - no right-handed neutrino in the minimal architecture,
 - a sterile singlet branch,
@@ -404,8 +404,8 @@ For elementary fermions, the clean geometric bookkeeping is:
   $$
   s_{\text{core}}=
   \begin{cases}
-  +1,& \text{pro-core},\\
-  -1,& \text{anti-core}.
+  +1,& \text{pro-swarm},\\
+  -1,& \text{anti-swarm}.
   \end{cases}
   $$
 
@@ -416,7 +416,7 @@ B = s_{\text{core}}\frac{\chi_q}{3},
 L = s_{\text{core}}(1-\chi_q).
 $$
 
-This keeps matter/antimatter distinct from baryon/lepton labels: the pro/anti core sets the sign, while the quark-vs-lepton sector sets whether the unit is $1/3$ or $1$.
+This keeps matter/antimatter distinct from baryon/lepton labels: the pro/anti swarm sets the sign, while the quark-vs-lepton sector sets whether the unit is $1/3$ or $1$.
 
 Using the left-chiral one-generation SM content
 $$
@@ -507,8 +507,8 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 - **Current stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
 - **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ sterile branch of the near-photon neutral-pair sector; it would couple only via mixing terms (Dirac/Majorana choice left open).
 - **Empirical gate:** Precision bounds on $\sum_i m_i$, the lightest-neutrino mass, direct kinematic mass, and neutrinoless double-beta searches are allowed to revise the neutral sector, not the charged-fermion axial-layer rule. A positive $0\nu\beta\beta$ result would force a lepton-number-violating neutral-pair provenance channel; null results tighten the allowed Majorana-like or sterile mixing channel without canonizing a separate interpretation.
-- **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon pro/anti core pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
-- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by core shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (weak-coupling-triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
+- **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon pro/anti swarm pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
+- **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by Noether swarm shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (weak-coupling-triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
 
 ## The Generation Mechanism (Mass Hierarchy)
 
@@ -714,7 +714,7 @@ Because the **Axial Layer** (which dictates charge bookkeeping and isospin for c
 Baryons are bound states of 3 quarks held together by shared flux/gluon planar assemblies.
 
 *   **Proton ($uud$):**
-    *   3 Pro-Cores (Gen I).
+    *   3 Pro-Swarms (Gen I).
     *   Axial layers: $(5P,1E) + (5P,1E) + (2P,4E)$.
     *   Total axial P: $5+5+2 = 12$.
     *   Total axial E: $1+1+4 = 6$.
@@ -722,7 +722,7 @@ Baryons are bound states of 3 quarks held together by shared flux/gluon planar a
     *   Total Architrinos: $3 \times 6 \text{ (Cores)} + 18 \text{ (Axial)} = 36$.
 
 *   **Neutron ($udd$):**
-    *   3 Pro-Cores (Gen I).
+    *   3 Pro-Swarms (Gen I).
     *   Axial layers: $(5P,1E) + (2P,4E) + (2P,4E)$.
     *   Total axial P: $5+2+2 = 9$.
     *   Total axial E: $1+4+4 = 9$.
@@ -748,8 +748,8 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which core axis is exceptional relative to the other two. |
 | **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-frame spinor topology.** The nested shell swarm is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The same ordered-frame spinor/exposure record exposes the weak-coupling triad to the ambient Noether Sea (interaction allowed).<br>• **Right ($R$):** The same record hides the weak-coupling triad in the particle's wake or shield (interaction blocked). Spin-projection language is observer-level shorthand until the $SU(2)\to SO(3)$ lift and $\Delta_{\mathrm{WCT}}$ row pass. |
-| **Generation** | I, II, III | Mass hierarchy (Flavor). | **Core Shielding Level.**<br>• **Gen I:** Nested Shell Swarm (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (Exposed Core). |
-| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-core vs anti-core orientation. |
+| **Generation** | I, II, III | Mass hierarchy (Flavor). | **Noether Swarm Shielding Level.**<br>• **Gen I:** Nested Shell Swarm (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (Exposed Core). |
+| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-swarm vs anti-swarm orientation. |
 
 For the **Elementary Fermions** (Quarks and Leptons), this table is complete at the quantum-number bookkeeping layer. The neutrino's internal geometry remains delegated to the near-photon closure program.
 
@@ -789,8 +789,8 @@ Two qualifications remain useful without adding new rows to the taxonomy:
 2.  **Intrinsic Parity ($P$):**
     *   By convention, quarks have parity $P = +1$ and antiquarks have $P = -1$.
     *   **Mapping:** This is covered by the **Baryon/Lepton Number (Core Topology)** row.
-        *   Pro-Core (Matter) = $+$.
-        *   Anti-Core (Antimatter) = $-$.
+        *   Pro-Swarm (Matter) = $+$.
+        *   Anti-Swarm (Antimatter) = $-$.
     *   So, we have this covered implicitly.
 
 **Verdict:**
@@ -801,7 +801,7 @@ The table is sufficient. It connects the geometry to every parameter needed to c
 This chapter is a dictionary layer; the primary derivations live elsewhere. The closure interfaces are:
 
 - **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in [theory-bridges/weak-mixing-ckm.md](../../philosophy-history/theory-bridges/weak-mixing-ckm.md).
-- **Lepton mixing (PMNS):** near-photon pro/anti core-pair phase operator and oscillation map in [assemblies/fermions/neutrinos.md](./neutrinos.md).
+- **Lepton mixing (PMNS):** near-photon pro/anti swarm-pair phase operator and oscillation map in [assemblies/fermions/neutrinos.md](./neutrinos.md).
 - **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in [dynamics/causal-action-functional.md](../../dynamics/causal-action-functional.md) and [assemblies/fermions/color-charge-su3.md](./color-charge-su3.md).
 
 The weak-sector handoff now uses one shared exposure problem. The weak-coupling triad is not only the bookkeeping source of $T_3$; it is also the domain on which three later closure tasks must agree:

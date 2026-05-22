@@ -483,7 +483,7 @@ Even for color‑singlet nucleons:
 
 Heuristic:
 
-- At inter-nucleon separations ~ a few fm, outer L-axes (and to some degree M-axes) from neighboring nucleons begin to overlap and couple via the Noether-Sea nested shell swarm medium.
+- At inter-nucleon separations ~ a few fm, outer L-axes (and to some degree M-axes) from neighboring nucleons begin to overlap and couple via the Noether-Sea medium.
 - These residual couplings act like **meson exchange** in standard nuclear physics, producing an attractive Yukawa‑like force with a hard‑core repulsion scale tied to H/M structure.
 
 We will exploit:

@@ -41,7 +41,7 @@ Each reaction record should state:
 | Conserved inventory | $E/P$ totals and charge/polarity balance |
 | Energy-momentum and angular-momentum ledger | Internal energy, recoil, emitted assemblies, spin/vector ledger terms, wake-carried angular momentum, and medium excitation |
 | Radiation event record, when applicable | Source assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, photon Gate B event residual when $E_\gamma\ne0$, and closure status |
-| Provenance data | Source identity, emission time, causal-root branch, and local medium state |
+| Provenance data | Source identity, emission time, causal-root branch, and local Noether-Sea state |
 | Closure status | What is established, what is assumed, and what remains to derive |
 
 ## Residual-Routing Event-Ledger Contract

@@ -98,8 +98,8 @@ The propagation speed of gravitational-wave disturbances in the Noether Sea must
 This constraint explains how apparent metric deviations (Shapiro delay and light bending) emerge from a Euclidean signalling framework endowed with a varying Noether-Sea delay factor $\chi_{\text{sea}}$, which allows us to compare the emergent delay with the standard GR potential.
 
 * **Constraint** – Shapiro delay and light bending must match GR to within PPN bounds ($|\gamma - 1| < 10^{-5}$).
-* **Architrino Interpretation** – signals traverse straight Euclidean lines; the perceived delay or curvature arises from the Noether-Sea delay factor $\chi_{\text{sea}}$ responding to spatial variations in $\rho_{\text{core}}$ and related medium state variables.
-* **Validation Target** – map $g_{00} \approx 1 + 2\Phi/c^2$ onto the refractive slowing experienced by nested shell swarm signals moving through the Euclidean void with Noether-Sea delay.
+* **Architrino Interpretation** – signals traverse straight Euclidean lines; the perceived delay or curvature arises from the Noether-Sea delay factor $\chi_{\text{sea}}$ responding to spatial variations in $\rho_{\text{core}}$ and related Noether-Sea state variables.
+* **Validation Target** – map $g_{00} \approx 1 + 2\Phi/c^2$ onto the refractive slowing experienced by Noether-Sea signals moving through the Euclidean void with Noether-Sea delay.
 
 ### Gravitational Time Dilation
 
@@ -131,7 +131,7 @@ Massive-interference experiments and precision gravity readouts jointly test whe
 
 The cosmology branch must recover the CMB scalar and tensor observables as data products before any source interpretation is promoted.
 
-* **Constraint** – one medium-and-assembly record must recover TT/TE/EE spectra, damping, CMB-lensing reconstruction, blackbody preservation, scalar amplitude $A_s$, scalar tilt $n_s$, acoustic phase coherence, vector-mode suppression, and the tensor bound $r\le r_{\max}$ without changing Noether-Sea state variables between the CMB, BBN, expansion, and growth modules.
+* **Constraint** – one Noether Sea and assembly record must recover TT/TE/EE spectra, damping, CMB-lensing reconstruction, blackbody preservation, scalar amplitude $A_s$, scalar tilt $n_s$, acoustic phase coherence, vector-mode suppression, and the tensor bound $r\le r_{\max}$ without changing Noether-Sea state variables between the CMB, BBN, expansion, and growth modules.
 * **Observable** – the CMB comparison residual $\mathcal{R}_{\mathrm{CMB}}(\theta)$ defined in [CMB](../cosmology/CMB.md) must remain within the declared tolerance for the data release being used, and the added $\mathcal{R}_{\mathrm{phase}}(\theta)$, $\mathcal{R}_{V}(\theta)$, and $\mathcal{R}_{\mathrm{lens}}(\theta)$ gates must not require a separate medium history.
 * **Smoothness Check** – the same record must also bound the effective smoothness residual $\mathcal{R}_{\mathrm{smooth}}(\theta)$, so early-universe smoothness is tested as low observer-level gravitational free-mode content rather than assumed from an imported origin story.
 * **Failure Condition** – if the framework can fit the source story only by retuning scalar power, acoustic phase, vector-mode content, CMB-lensing reconstruction, tensor contribution, blackbody recovery, or TT/TE/EE transfer independently, the cosmology closure fails at the observational layer.

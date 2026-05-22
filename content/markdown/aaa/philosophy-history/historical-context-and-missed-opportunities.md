@@ -85,7 +85,7 @@ Another recurring pattern is failure to revisit earlier assumption sets after la
 | 1860s-1890s (Maxwell + finite propagation) | Field propagation speed, wave structure of electromagnetism | Physical medium interpretation with finite-speed causal transport | Field formalism was treated as sufficient; ontology of the carrier was deprioritized |
 | 1887-1904 (Michelson-Morley + Lorentz) | Null aether-wind result, dynamical contraction/time slowdown models | Emergent Lorentz symmetry from matter-medium interaction | "Undetectable medium = dispensable medium" became the decisive simplification |
 | 1905 (Special Relativity) | Full Lorentz covariance of inertial laws | Could have been read as effective symmetry of assemblies in one substrate | Principle-theory victory reclassified kinematic effects as fundamental spacetime structure |
-| 1915-1920 (General Relativity) | Metric dynamics with exceptional predictive power | Metric as coarse-grained constitutive field of deeper medium state | Geometrization succeeded so strongly that "geometry is fundamental" became default |
+| 1915-1920 (General Relativity) | Metric dynamics with exceptional predictive power | Metric as coarse-grained constitutive field of deeper Noether-Sea state | Geometrization succeeded so strongly that "geometry is fundamental" became default |
 | 1917 (Einstein World) | Boundary-condition pressure at spatial infinity, Machian relativity-of-inertia aims, and the first relativistic global cosmology | Global geometry could have been held as a closure hypothesis requiring observation, stability, and source/boundary residual tests | Logical consistency and aesthetic closedness could outrun empirical comparison and perturbative stability analysis |
 | 1924-1930 (de Broglie, pilot-wave, early quantum debates) | Deterministic alternatives existed, wave-particle dual structure observed | Deterministic microstate + contextual readout + basin selection | Copenhagen operationalism treated ontology as unnecessary overhead |
 | 1930s-1950s (QFT vacuum, renormalization) | Vacuum structure, divergence control, effective computational rules | Divergences as signs of missing microstructure and finite substrate scales | Renormalization success normalized continuum ontology plus parameter absorption |
@@ -428,7 +428,7 @@ What was occluded was a disciplined source-provenance analysis. A cosmological c
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether Sea may carry medium-state dynamics that project into $a_{\mathrm{eff}}(t)$, $H_{\mathrm{eff}}(t)$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(t)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether Sea may carry Noether-Sea state dynamics that project into $a_{\mathrm{eff}}(t)$, $H_{\mathrm{eff}}(t)$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(t)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
 
 ### Recovery Target
 

@@ -6,13 +6,13 @@ This chapter is a working emergence map from Noether-Sea and assembly language t
 
 In standard QFT, the vacuum is represented by quantum fields and their ground-state structure. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that language is retained only as an observer-level comparison. The physical medium is the Noether Sea, while the fixed container remains the Euclidean void.
 
-In this chapter, the Noether Sea means the dense, permeating medium of coupled, neutral nested shell swarm assemblies occupying the [Euclidean void](../foundations/euclidean-void.md); see [Spacetime Assemblies](../spacetime/spacetime-assemblies.md). It is not empty space and is not the Euclidean void itself.
+In this chapter, the Noether Sea means the dense, permeating medium of coupled, neutral Noether swarms occupying the [Euclidean void](../foundations/euclidean-void.md); see [Spacetime Assemblies](../spacetime/spacetime-assemblies.md). It is not empty space and is not the Euclidean void itself.
 
 - **Occupancy:** Nonzero occupancy of pro/anti Noether swarm assemblies.
 - **Net properties:** Balanced charge and angular-momentum bookkeeping at the medium scale, schematically $\sum q = 0$ and $\sum S = 0$ over neutral coarse windows.
-- **Medium response:** This medium is the working source for the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. These are not fundamental constants of the void but derived measures of Noether-Sea response, including resistance to polarization and density-like occupation.
+- **Medium response:** The Noether Sea is the working source for the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. These are not fundamental constants of the void but derived measures of Noether-Sea response, including resistance to polarization and density-like occupation.
 
-One useful assembly-level picture is that long-lived Noether-Sea units arise when complementary pro/anti cores pair in anti-parallel fashion so that exposed axial circulation is mutually plugged rather than left open. In that reading, Noether-Sea transparency is not emptiness but a successful cancellation strategy: the medium remains quiet because its local pole leakage is internally routed and its large-scale moments stay near zero.
+One useful assembly-level picture is that long-lived Noether-Sea units arise when complementary pro/anti swarms pair in anti-parallel fashion so that exposed axial circulation is mutually plugged rather than left open. In that reading, Noether-Sea transparency is not emptiness but a successful cancellation strategy: the Noether Sea remains quiet because its local pole leakage is internally routed and its large-scale moments stay near zero.
 
 ## Field Language as Effective Bookkeeping
 
@@ -27,7 +27,7 @@ The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state
 
 ## Symmetry Groups as Geometric Deformations
 
-We map the abstract gauge groups of the Standard Model to physical deformations of the Noether Sea and its nested shell swarm assemblies:
+We map the abstract gauge groups of the Standard Model to physical deformations of the Noether Sea and its Noether swarms:
 
 1.  **U(1) (Electromagnetism):**
     *   *SM View:* Phase rotation of the complex field.
@@ -35,7 +35,7 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
 
 2.  **SU(2) (Weak Interaction):**
     *   *SM View:* Non-Abelian rotation in isospin space.
-    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A **chiral twist** or structural strain in the nested shell swarm assemblies. Because the assemblies have internal handedness, deformations can be order-dependent, mirroring the non-Abelian nature of $SU(2)$ at the effective level.
+    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A **chiral twist** or structural strain in Noether swarm assemblies. Because the assemblies have internal handedness, deformations can be order-dependent, mirroring the non-Abelian nature of $SU(2)$ at the effective level.
 
 The emergence claim in this chapter is therefore a mapping target with four required parts. The mechanism is delayed causal-wake coupling through Noether-Sea and axial-layer deformation. The mapping is from closure labels, axial inventories, exposed weak-coupling triads, and medium-response variables to the observer-level symbols $U(1)_Y$, $SU(2)_L$, $g_1$, $g_2$, $\theta_W$, and the charge table. The regime is the low-energy observer sector where stable assemblies, weak gradients, and resolved apparatus records make the coarse variables meaningful. The breakdown occurs at root-ledger changes, unstable axial inventories, unresolved Noether-Sea updates, or any branch that predicts extra low-energy partners or transport modes.
 
@@ -187,7 +187,7 @@ The popular particle-centered Higgs narrative is replaced by a Noether-Sea mediu
 
 - **VEV (vacuum expectation value):** The VEV is interpreted as an equilibrium density or order-parameter proxy for the Noether Sea. It is nonzero because medium contents occupy the void, not because the void has its own density; the exact order parameter and conversion to observer-level electroweak normalization remain closure targets.
 - **Symmetry breaking:** Electroweak phase transition language is treated as a phase-change closure target. The high-energy plasma record must relax into the stable, coupled Noether Sea inferred today, but the order parameter and transition dynamics still have to be derived.
-- **Mass as medium-dressed response:** A fermion assembly moving or accelerating through the Noether Sea must relock its internal causal ledger against the surrounding medium.
+- **Mass as medium-dressed response:** A fermion assembly moving or accelerating through the Noether Sea must relock its internal causal ledger against the surrounding Noether Sea.
   - Photon channels propagate as coherent planar-mode transport through the sea rather than as massive bodies.
   - Massive assemblies expose more shielded internal causal history to external probes. The measured inertial response is not ordinary dissipative drag; see [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).
 
@@ -198,7 +198,7 @@ General Relativity predicts that an accelerating observer sees a thermal bath of
 **The $\mathbb{A}\mathbb{A}\mathbb{A}$ resolution:**
 - **Objective existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, assemblies have a definite substrate status. Their existence is not frame-dependent.
 - **Acceleration-conditioned detector response:** The warm bath detected by the accelerating Physical Observer is an effective response of the detector's assembly state to accelerated coupling with the Noether Sea.
-- **Mechanism:** Acceleration through the medium ($\vec{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether swarms). The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
+- **Mechanism:** Acceleration through the Noether Sea ($\vec{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether swarms). The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
 
 ## Quantization from Stability (Selection Rules)
 
