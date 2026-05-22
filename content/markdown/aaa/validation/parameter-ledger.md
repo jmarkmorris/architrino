@@ -366,7 +366,7 @@ The current corpus supports the following conservative closure assessment.
 
 - $c_f$ is treated consistently as the substrate propagation speed, even when chapters temporarily write $v=1$.
 - $\epsilon$ is treated consistently as the potential polarity-unit magnitude.
-- $\rho_{\text{NS},0}$ is the reference density symbol for the spacetime medium.
+- $\rho_{\text{NS},0}$ is the reference density symbol for the Noether Sea.
 - $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether swarm shape ratio.
 
 ### Still genuinely open

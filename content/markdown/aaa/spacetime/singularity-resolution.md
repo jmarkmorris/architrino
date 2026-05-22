@@ -16,8 +16,8 @@ This condition is a constitutive boundary condition on Noether-Sea state, not an
 $$
 F_H\!\left[
 \rho_{\text{NS}}(\mathbf{x},t),
-\Sigma_{\text{medium}}(\mathbf{x},t),
-\mathbf{u}_{\text{medium}}(\mathbf{x},t),
+\Sigma_{\text{sea}}(\mathbf{x},t),
+\mathbf{u}_{\text{sea}}(\mathbf{x},t),
 \{\Lambda_{\text{NS}}\};
 \partial\Omega
 \right]
@@ -90,9 +90,9 @@ $$
 \left(
 |\rho_{\text{NS}}(\mathbf{x},t)|
 +
-\|\Sigma_{\text{medium}}(\mathbf{x},t)\|
+\|\Sigma_{\text{sea}}(\mathbf{x},t)\|
 +
-\|\mathbf{u}_{\text{medium}}(\mathbf{x},t)\|
+\|\mathbf{u}_{\text{sea}}(\mathbf{x},t)\|
 \right)
 <\infty,
 $$

@@ -8,9 +8,9 @@ This is why the reader path introduces Noether swarm scaffold and geometry befor
 $$
 \rho_{\text{NS}}(\mathbf{x},t)
 \sim
-\sum_c W_\ell(\mathbf{x}-\mathbf{X}_c(t)),
+\sum_s W_\ell(\mathbf{x}-\mathbf{X}_s(t)),
 $$
-where $W_\ell$ is a smoothing window over legacy core-center variables $\mathbf{X}_c(t)$. The Noether-Sea stress, delay factor, and orientation variables then depend on each swarm's closure label, orientation, and envelope deformation. The Noether Sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether swarm geometry, not primitive geometric postulates.
+where $W_\ell$ is a smoothing window over Noether swarm center variables $\mathbf{X}_s(t)$. The Noether-Sea stress, delay factor, and orientation variables then depend on each swarm's closure label, orientation, and envelope deformation. The Noether Sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether swarm geometry, not primitive geometric postulates.
 
 ## Core Definition
 
@@ -43,8 +43,8 @@ The void does not curve, expand, contract, or carry energy. The Noether Sea, as 
 At a fixed coordinate point $\mathbf{x}$ and absolute time $t$, the Noether-Sea state may change:
 $$
 \rho_{\text{NS}}(\mathbf{x},t),\quad
-\Sigma_{\text{medium}}(\mathbf{x},t),\quad
-\mathbf{u}_{\text{medium}}(\mathbf{x},t),
+\Sigma_{\text{sea}}(\mathbf{x},t),\quad
+\mathbf{u}_{\text{sea}}(\mathbf{x},t),
 $$
 without changing the identity of the underlying void point.
 
@@ -111,7 +111,7 @@ $$
 C_N(\mathbf{x},t)=\Gamma_N^{-1}(\mathbf{x},t).
 $$
 
-Here $\Omega_N$ is a representative local Noether-Sea swarm cadence and $C_N$ is the corresponding clock-rate factor. This pair is not a new density or delay factor: $n$ tracks normalized core density, $\chi_{\text{sea}}$ tracks effective causal delay, and $\Gamma_N$ tracks cadence stretch. The clock extraction and hydrogen spectral use of this diagnostic belong in [Proper Time and Time Dilation](proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
+Here $\Omega_N$ is a representative local Noether-Sea swarm cadence and $C_N$ is the corresponding clock-rate factor. This pair is not a new density or delay factor: $n$ tracks normalized Noether swarm density, $\chi_{\text{sea}}$ tracks effective causal delay, and $\Gamma_N$ tracks cadence stretch. The clock extraction and hydrogen spectral use of this diagnostic belong in [Proper Time and Time Dilation](proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
 
 When a calculation needs pro/anti subcomponents, orientation imbalance, or coupling-regime stability thresholds, use [Spacetime Assemblies](spacetime-assemblies.md).
 
@@ -123,9 +123,9 @@ The Noether Sea is characterized by collective variables, not by a new point-par
 
 Important medium properties include:
 
-- **Core density:** $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$.
-- **Energy density:** approximately $\rho_{\text{NS}}E_{\text{core}}$ at the coarse level, with corrections from stress, excitation, and coupling.
-- **Orientation and strain:** local ordering of core axes and deformation away from equilibrium.
+- **Noether swarm density:** $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$.
+- **Energy density:** approximately $\rho_{\text{NS}}E_{\text{swarm}}$ at the coarse level, with corrections from stress, excitation, and coupling.
+- **Orientation and strain:** local ordering of swarm axes and deformation away from equilibrium.
 - **Flow or drift:** collective motion of the Noether Sea relative to the absolute frame.
 - **Compliance:** how strongly the Noether Sea responds to compression, shear, polarization, and alignment loading.
 - **Delay-factor response:** how $\chi_{\text{sea}}$, signal propagation, clock behavior, and effective light speed depend on local Noether-Sea state.

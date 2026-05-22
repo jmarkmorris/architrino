@@ -122,7 +122,7 @@ $$
 \longrightarrow
 \text{wake-strain threshold}
 \longrightarrow
-\text{planar-mode photon, medium excitation, recoil, residual core energy, or pair-channel handoff}.
+\text{planar-mode photon, medium excitation, recoil, residual internal energy, or pair-channel handoff}.
 $$
 
 The radiation page writes the retuned transport state as $\mathbf{V}$. In this channel, $\mathbf{V}$ is the Noether swarm velocity-deformation state of the charged assembly during curved transport through $\mathcal{V}_{\mathrm{NS}}$. A channel-local closure mismatch can therefore be written as the derivation target
@@ -176,7 +176,7 @@ J_{\text{loc}}
 E_{\text{exc}}^{\mathrm{syn}}\ge E_{\gamma,\min}.
 $$
 
-The wake-strain threshold is therefore the channel's local expression of the planar-mode basin boundary. If the residual is sub-threshold, the event must route energy into medium excitation, recoil, or residual core energy rather than silently declaring a missing photon. If the threshold is crossed, the emitted photon must still satisfy the standard synchrotron scaling target
+The wake-strain threshold is therefore the channel's local expression of the planar-mode basin boundary. If the residual is sub-threshold, the event must route energy into medium excitation, recoil, or residual internal energy rather than silently declaring a missing photon. If the threshold is crossed, the emitted photon must still satisfy the standard synchrotron scaling target
 
 $$
 \nu_{\gamma}^{\mathrm{out}}
@@ -203,7 +203,7 @@ Use the same photon-channel event record here as in [Radiation](radiation.md), [
 - closure residual $\mathcal{R}_{\Theta}^{\mathrm{syn}}$, wake-strain eigenvalue or threshold status, and photon-channel drive $\mathcal{S}_{\gamma}^{\mathrm{syn}}$ that permits or forbids planar-mode nucleation;
 - photon output $E_\gamma$, direction, polarization basis, transverse angular-momentum ledger, and local photon-channel speed $c_\gamma$;
 - photon Gate B event residual, including source depletion, recoil, causal-wake, accepted/rejected handoff, helicity, and balance rows;
-- recoil, medium excitation, residual core energy, and pair-channel handoff terms when the emitted photon enters a cascade loop.
+- recoil, medium excitation, residual internal energy, and pair-channel handoff terms when the emitted photon enters a cascade loop.
 
 For the emitting charged assembly, the source-depletion identity is
 

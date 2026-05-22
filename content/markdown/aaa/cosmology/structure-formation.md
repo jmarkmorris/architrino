@@ -304,7 +304,7 @@ where $\mu(a, k)$ is a dimensionless modification function.
 
 ### Linear Constitutive Derivation of $\mu(a,k)$
 
-To make the map explicit, linearize the Noether-Sea medium around a homogeneous background with displacement field $\mathbf{u}$ and scalar compression mode
+To make the map explicit, linearize the Noether-Sea response around a homogeneous background with displacement field $\mathbf{u}$ and scalar compression mode
 $$
 \theta \equiv \nabla\cdot\mathbf{u}.
 $$

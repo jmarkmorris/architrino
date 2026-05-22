@@ -322,7 +322,7 @@ $$
 +\bar\Psi\,i\gamma^\mu D_\mu\Psi
 +\cdots
 $$
-where omitted terms are higher-order constitutive corrections from the Noether-Sea medium.
+where omitted terms are higher-order constitutive corrections from the Noether Sea.
 
 This is an emergent effective description, not a claim that gauge fields are ontologically fundamental.
 

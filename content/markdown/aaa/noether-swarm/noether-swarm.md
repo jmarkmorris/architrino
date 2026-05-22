@@ -385,7 +385,7 @@ $$
 
 This form is the safest way to use any external energy-level equation: insert the branch energy projection $E_O(N)$, then derive the corresponding outer radius and speed.
 
-The same chart also gives a packing readout for the Noether-Sea medium. In a nearly spherical exclusion-envelope approximation, let
+The same chart also gives a packing readout for the Noether Sea. In a nearly spherical exclusion-envelope approximation, let
 
 $$
 R_{\mathrm{excl}}

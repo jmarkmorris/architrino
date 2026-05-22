@@ -27,7 +27,7 @@ We label the three binaries by their dynamical regime:
   - Velocity $v_L < c_f$
   - Lowest curvature; outer envelope, expansion/contraction behavior
 
-Each binary defines one **axis** with two polar **polar sites**, each occupied by either:
+Each binary defines one **axis** with two **polar sites**, each occupied by either:
 
 - Electrino (−e/6), or  
 - Positrino (+e/6).
@@ -81,8 +81,8 @@ In this section, color is defined on the ordered axial frame $\{D_H,D_M,D_L\}$, 
 
 Beyond which binaries are present, their **precession order** defines a braid orientation:
 
-- **Matter** tri‑binaries: precession order $H \to M \to L$ in time (one chirality).  
-- **Antimatter** tri‑binaries: precession order $H \to L \to M$ (opposite chirality).
+- **Matter** nested shell swarm branch: precession order $H \to M \to L$ in time (one chirality).
+- **Antimatter** nested shell swarm branch: precession order $H \to L \to M$ (opposite chirality).
 
 This **braid chirality** will underpin our distinction between particles and antiparticles across all sectors and will later feed into CP‑related questions. Here, we keep **color** as a vector‑like degree of freedom: it does **not** depend on braid chirality.
 
@@ -159,7 +159,7 @@ The key structural rule for **admissible, stable quark‑like Noether swarms** i
 
 > Exactly **two axes share the same axial class**, and the third is **different in kind** (P− vs P+ vs Pm).  
 
-We **forbid** stable states with all three axes in different classes (e.g. H: P+, M: P−, L: Pm). Those “three-different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the Noether-Sea medium and quickly relax or disintegrate.
+We **forbid** stable states with all three axes in different classes (e.g. H: P+, M: P−, L: Pm). Those “three-different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the Noether Sea and quickly relax or disintegrate.
 
 Therefore:
 
@@ -483,7 +483,7 @@ Even for color‑singlet nucleons:
 
 Heuristic:
 
-- At inter-nucleon separations ~ a few fm, outer L-axes (and to some degree M-axes) from neighboring nucleons begin to overlap and couple via the Noether-Sea medium.
+- At inter-nucleon separations ~ a few fm, outer L-axes (and to some degree M-axes) from neighboring nucleons begin to overlap and couple through the Noether Sea.
 - These residual couplings act like **meson exchange** in standard nuclear physics, producing an attractive Yukawa‑like force with a hard‑core repulsion scale tied to H/M structure.
 
 We will exploit:

@@ -117,7 +117,7 @@ Here $K_{\mathrm{mech}}$ is the mechanical kinetic energy of the retained archit
 
 Assemblies enter the chapter as recursive dynamical organizations rather than as new primitives. The recursive description is useful only when each level preserves closure, shielding, and provenance from the level below.
 
--   **Base case:** The most basic bound assembly is the **orbiting binary**, formed by an electrino:positrino pair. This is the first stable assembly motif from which more complex structures can be built.
+-   **Base case:** The most basic bound-assembly candidate is the **orbiting binary**, formed by an electrino:positrino pair once the two-body branch stability certificate is supplied. This is the first assembly motif from which more complex structures can be built.
 -   **Recursive step:** More complex assemblies are described in terms of constituent sub-assemblies, nested shielding hierarchy, separated radii and frequencies, and the causal-root ledgers that keep the combined motion closed.
 
 This recursive structure implies that many stable forms can be deconstructed into simpler binary and nested-binary components, provided the branch supplies the required closure, shielding, and provenance records.
@@ -128,9 +128,9 @@ The recursive picture is easiest to read as a bottom-up construction ladder. The
 
 1. **Ontological background:** absolute time and the Euclidean void provide the fixed arena.
 2. **Primitive transceivers:** individual architrinos are the irreducible emitters/receivers of causal wake structure.
-3. **First bound assembly:** a stable orbiting electrino:positrino binary is the first bound assembly.
+3. **First bound assembly candidate:** a stable orbiting electrino:positrino binary is the first bound assembly once its branch stability certificate is supplied.
 4. **Nested shell swarms:** binaries can capture into larger nested systems, giving isolated binaries, shell swarms, and nested shell swarms with progressively stronger shielding structure.
-5. **Noether swarm stabilization:** the triply nested binary is the first fully three-dimensional shielded core; see [Noether Swarm](../noether-swarm/noether-swarm.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
+5. **Noether swarm stabilization:** the nested shell swarm is the first fully three-dimensional shielded Noether swarm scaffold; see [Noether Swarm](../noether-swarm/noether-swarm.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
 6. **Fermions with axial layers:** a nested shell swarm plus a six-site axial layer is the working map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same swarm architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).
 7. **Collective medium:** larger balanced populations of neutral swarms organize into the [Noether Sea](../spacetime/noether-sea.md), so the Noether Sea is a higher-order collective state of neutral swarms rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Spacetime Assemblies](../spacetime/spacetime-assemblies.md).
 8. **Bosonic channels:** propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating pro/anti planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../interactions/gauge-structure-emergence.md).

@@ -32,7 +32,7 @@ h\nu_{a\to b}^{\mathrm{loc}}
 -
 \Delta E_{\mathrm{med}}
 -
-\Delta E_{\mathrm{core remnant}}.
+\Delta E_{\mathrm{rem}}.
 $$
 
 In the ideal isolated line limit, the non-photon terms are negligible and $E_\gamma\simeq h\nu_{a\to b}^{\mathrm{loc}}$. In dense media, strong gradients, or unresolved recoil regimes, those terms must remain in the ledger rather than being silently absorbed into the line frequency.
@@ -50,10 +50,10 @@ E_\gamma
 +
 \Delta E_{\mathrm{med}}
 +
-\Delta E_{\mathrm{core remnant}},
+\Delta E_{\mathrm{rem}},
 $$
 
-with $\Delta E_{\mathrm{med}}$ and $\Delta E_{\mathrm{core remnant}}$ bounded by the declared isolated-line tolerance rather than hidden in the fitted line frequency. A compact event residual is
+with $\Delta E_{\mathrm{med}}$ and $\Delta E_{\mathrm{rem}}$ bounded by the declared isolated-line tolerance rather than hidden in the fitted line frequency. A compact event residual is
 
 $$
 \mathcal E_{ab}^{\mathrm{evt}}
@@ -68,7 +68,7 @@ E_\gamma
 -
 \Delta E_{\mathrm{med}}
 -
-\Delta E_{\mathrm{core remnant}}
+\Delta E_{\mathrm{rem}}
 \right|
 }{
 \left|
@@ -147,7 +147,7 @@ E_\gamma
 +
 \Delta E_{\mathrm{med}}
 +
-\Delta E_{\mathrm{core remnant}}.
+\Delta E_{\mathrm{rem}}.
 $$
 
 The corresponding momentum ledger is

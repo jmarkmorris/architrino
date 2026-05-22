@@ -167,7 +167,7 @@ $$
 - Their propagation through the Noether Sea is **not instantaneous** but limited by $c_f$
 - The effective speed $c$ measured by operational observers (made of assemblies) matches $c_f$ within experimental precision (~$10^{-17}$ for Lorentz tests)
 
-**Prediction:**
+**Candidate deviation channels:**
 - In strong gravitational fields (dense Noether Sea): $c_\gamma < c_f$ in the photon channel (gravitational lensing, Shapiro delay)
 - At Planck scales (Noether-Sea microstructure resolves): $c_\gamma \neq c_f$ in the photon channel (Lorentz violation signatures)
 
@@ -263,7 +263,7 @@ $$
 2. Assume **thermal equilibrium** (Maxwell-Boltzmann distribution in the Noether Sea)
 3. Relate the width of the velocity distribution to $k_B T$
 
-**Prediction:**
+**Derivation target:**
 $$
 k_B \propto m_{\text{NS}} \cdot c_f^2 / (\text{typical thermal velocity})^2
 $$
@@ -320,11 +320,11 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 
 | SI Constant | Status in $\mathbb{A}\mathbb{A}\mathbb{A}$ | Derivation Pathway |
 |-------------|-------------------------------|-------------------|
-| $\Delta \nu_{\text{Cs}}$ | **Derivable** | Hyperfine splitting from Middle Binary magnetic moments |
+| $\Delta \nu_{\text{Cs}}$ | **Derivation target (open)** | Hyperfine splitting from middle-binary magnetic moments |
 | $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_\gamma$ |
 | $h$ | **Derivation target (open)** | Closed-cycle action quantization; equivalent outer-binary rotational-action increments in units of $\hbar$; lower recordable basin-measure scale after quantum closure |
 | $e$ | **Recovered observer benchmark** | $|e|=6\epsilon$ after choosing the observer-level electric bookkeeping normalization |
-| $k_B$ | **Derivable** | Noether-Sea thermal equilibrium + assembly mass |
+| $k_B$ | **Derivation target (open)** | Noether-Sea thermal equilibrium + assembly mass |
 | $N_A$ | **Emergent** | Follows from proton mass derivation |
 | $K_{\text{cd}}$ | **Anthropic** | Human biology; not fundamental physics |
 
