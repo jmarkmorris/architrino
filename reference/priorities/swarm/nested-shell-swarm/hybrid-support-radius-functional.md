@@ -1,6 +1,6 @@
 # Hybrid Support Radius Functional
 
-Promotion status: `priority-only`. This packet closes the local definition gap in [hybrid-variable-radius-model-card.md](hybrid-variable-radius-model-card.md): the shorthand slot radius $R_a(t)$ is not a primitive object of the base branch. It must be extracted from the free-support descriptor and the closed arclength curves of [free-support-bounded-speed-dynamics.md](free-support-bounded-speed-dynamics.md).
+Promotion status: `priority-only`. This packet closes the local definition gap in [hybrid-variable-radius-model-card.md](hybrid-variable-radius-model-card.md): the shorthand slot radius $R_a(t)$ is not a primitive object of the base branch. It must be extracted from the free-support descriptor and the closed arclength curves of [free-support-bounded-speed-dynamics.md](../shell-swarm/free-support-bounded-speed-dynamics.md).
 
 It does not retain a branch, choose a final slot-label policy, or authorize corpus migration. Its purpose is to make radius-spread, nested-sector, same-level-sector, and transition-sector rows differentiable proof objects rather than visual labels.
 
