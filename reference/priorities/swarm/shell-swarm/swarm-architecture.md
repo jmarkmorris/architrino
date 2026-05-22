@@ -44,14 +44,22 @@ The shell swarm architecture now has the following priority-side companion packe
 | Packet | Role |
 | --- | --- |
 | [neutral-swarm-model.md](../neutral-swarm/neutral-swarm-model.md) | General neutral swarm branch model with no required binary grouping, support-band distribution rows, topology ledger, all-pairs roots, and optional case reductions. |
+| [neutral-swarm-base-certificate.md](../neutral-swarm/neutral-swarm-base-certificate.md) | Irreducible six-site neutral swarm certificate tuple before binary partition, shell support, nested radial ordering, retention, or observer export. |
+| [all-pairs-root-ledger.md](../neutral-swarm/all-pairs-root-ledger.md) | Ordered $30$ cross-site causal-root and Jacobian ledger that every paired, partitioned, shell, or nested reduction must explicitly reduce from. |
+| [neutral-swarm-finite-mode-search.md](../neutral-swarm/neutral-swarm-finite-mode-search.md) | First executable finite-mode search specification for free-support neutral swarms with hollow support, bounded speed factors, all-pairs roots, residual rows, and first-failure statuses. |
 | [nested-shell-swarm-model-card.md](../nested-shell-swarm/nested-shell-swarm-model-card.md) | Merge card treating nested shell swarm, shell swarm, and transition geometries as cases of one bounded-speed Noether swarm branch family. |
 | [nested-shell-swarm-radial-support-functional.md](../nested-shell-swarm/nested-shell-swarm-radial-support-functional.md) | Radial support functional extracting $R_a$ from the free-support descriptor and emitting spread, gap, transition, and derivative rows for shell cases. |
+| [shell-swarm-reduction-row.md](shell-swarm-reduction-row.md) | Case-reduction row treating shell swarm as the common support-band case of a neutral swarm branch, with support work and occupancy statuses but no retained-branch claim. |
+| [nested-shell-swarm-reduction-row.md](../nested-shell-swarm/nested-shell-swarm-reduction-row.md) | Stricter case-reduction row requiring binary partition, radial functional, ordered support bands, label-use ledger, and transition status before nested-shell conclusions. |
 | [proof-program-and-decision-gate.md](proof-program-and-decision-gate.md) | Integration map for retained branch packets, proof dependencies, and the architecture decision gate. |
+| [promotion-policy-into-corpus.md](../promotion-policy-into-corpus.md) | Priority-side promotion policy allowing scoped theorem-target promotion while keeping retained-branch and observer-export claims blocked until live-ledger rows close. |
+| [assembly-swarm-fallback-investigation.md](../assembly-swarm-fallback-investigation.md) | Low-priority fallback investigation for one enlarged $N>6$ Noether swarm ledger only after six-site, shell, nested, or central-inventory routes reach a documented hard obstruction. |
 | [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md) | Composite promotion theorem stating the full certificate tuple required before a shell swarm branch can leave priority-only status. |
 | [current-dynamics-synthesis.md](current-dynamics-synthesis.md) | Current dynamics conclusion: rigid carrier is a root seed, arclength curve dynamics is the closure problem, and no branch is retained yet. |
 | [source-signal-triage.md](../source-signal-triage.md) | Source-mining triage separating converted theorem targets from overclaims in the rearchitecture discussion. |
 | [shell-swarm-branch-mathematics.md](shell-swarm-branch-mathematics.md) | Shell swarm branch chart, admissible history space, causal-root ledger, Jacobian floor, finite-memory, regularized DDE, weak-limit, and tangential-residual theorem targets. |
 | [topological-carrier-and-spin-targets.md](topological-carrier-and-spin-targets.md) | Candidate carrier families, phase-lock rows, noncollision node clearances, framed-wake parity targets, angular-momentum ledgers, and color-slot scaffold. |
+| [topology-and-framed-wake-rows.md](topology-and-framed-wake-rows.md) | Topology classifier and framed-wake parity statuses attached to one live ledger; topology data alone does not close dynamics, action, spinor, or observer-export rows. |
 | [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md) | Worked zero-offset octahedral carrier row with exact Euclidean noncollision floor, antipodal partner root, same-source root status, first cross-root/Jacobian screening, and neutral tangential-residual failure in the rigid row. |
 | [rigid-carrier-dynamics-results.md](rigid-carrier-dynamics-results.md) | Phase-offset and radial-support diagnostics showing rigid octahedral rows improve but do not close force balance. |
 | [polarity-phase-rigid-screen-results.md](polarity-phase-rigid-screen-results.md) | Neutral polarity-assignment and rigid phase-offset screen showing polarity reassignment slightly improves but does not close tangential force balance. |
@@ -167,8 +175,11 @@ The shell swarm architecture now has the following priority-side companion packe
 | [history-force-variationality-condition.md](history-force-variationality-condition.md) | Virtual-work one-form exactness criterion and finite-mode curl test required before a delayed-force ledger can be treated as action-derived. |
 | [gamma-fit-action-identifiability-lemma.md](gamma-fit-action-identifiability-lemma.md) | Projection identity and tolerance bounds deciding whether fitted $\Gamma_K$ is compatible with an action-derived branch scale. |
 | [noether-action-conservation-closure-theorem.md](noether-action-conservation-closure-theorem.md) | Noether theorem target deriving energy, momentum, angular momentum, charge, and source-provenance conservation from one action/event ledger. |
+| [action-and-noether-closure-row.md](action-and-noether-closure-row.md) | Shared-ledger action, support-work, variationality, Noether-current, event, and scale rows needed before force residual descent can become a retained-branch candidate. |
 | [central-inventory-and-event-ledgers.md](central-inventory-and-event-ledgers.md) | Neutral core and charged fermion integer inventory, central-inventory split, pair-production provenance, reaction ledgers, and heat-channel restrictions. |
+| [central-inventory-hollow-support.md](../neutral-swarm/central-inventory-hollow-support.md) | Hollow support and central-inventory representative statuses for charged-branch bookkeeping without unresolved point-charge placement or hidden force channels. |
 | [observer-export-and-mass-map-targets.md](observer-export-and-mass-map-targets.md) | Moving-branch Lorentz export, photon transition, mass/exposure map, generation, color, strong-field, and cosmology export residuals. |
+| [observer-export-status-row.md](observer-export-status-row.md) | Common observer-export status vocabulary for Lorentz, photon, mass-map, color, strong-field, and cosmology rows; exports remain downstream statuses, not branch-existence evidence. |
 
 All packets remain `priority-only` until one retained branch certificate populates their shared rows on the same active causal-root and event-ledger convention.
 
@@ -732,12 +743,15 @@ The shell swarm architecture becomes migration-ready only if a review packet can
 
 | Gate | Required object |
 | --- | --- |
+| Neutral base certificate | six-site neutral base certificate, all-pairs root ledger, finite-mode search status, and explicit shell or nested reduction rows before any case-specific architecture claim |
 | Branch existence | at least one retained shell swarm branch packet with finite active roots, positive Jacobian floors, finite memory depth, no unresolved near-zero self roots, and either fixed-speed tangent/curvature closure or bounded-speed speed-band, speed-ODE, support descriptor, coupled fixed-point, action, and event closure |
 | Inventory replacement | integer central-inventory ledger for charged and neutral branches, including provenance rows for reactions and pair production |
-| Energy and exposure | one history-dressed energy/action row and one exposure / medium-response extraction row computed on the same retained branch |
-| Observer exports | Lorentz, photon, mass, color, and strong-field rows explicitly marked `passed`, `failed`, or `not_computed`, with no theorem target promoted by implication |
-| Nested shell swarm comparison | explicit comparison against the restored nested shell swarm causal-closure packet set, naming which assumptions are replaced, preserved, or left as fallback source material |
-| Migration batch plan | reviewable sequence for corpus, simulation, and asset migration after the architecture decision, with rollback route preserved through git history and the restored nested shell swarm source bucket |
+| Energy and exposure | one history-dressed energy/action row, one action-and-Noether closure row, and one exposure / medium-response extraction row computed on the same retained branch |
+| Topology and framed wake | link, braid, framed-wake, parity, and angular-momentum rows explicitly marked `passed`, `failed`, `not_computed`, or blocked by the first missing live-ledger row before any spinor or topology export |
+| Observer exports | Lorentz, photon, mass, color, strong-field, and cosmology rows explicitly marked `passed`, `failed`, `not_computed`, or `blocked:<row>`, with no theorem target promoted by implication |
+| Nested shell swarm comparison | explicit comparison against the restored nested shell swarm causal-closure packet set and the nested reduction row, naming which assumptions are replaced, preserved, rejected, or left as fallback source material |
+| Migration batch plan | reviewable sequence for corpus, simulation, and asset migration after the architecture decision, promotion-policy compliance, and rollback route through git history and the restored nested shell swarm source bucket |
+| Assembly fallback | low-priority $N>6$ fallback remains closed unless six-site, shell, nested, or central-inventory programs reach a documented hard obstruction that the enlarged ledger can state and test without fitting observer data |
 
 Until this table is populated, the architecture is an active development candidate rather than the canonical replacement model.
 

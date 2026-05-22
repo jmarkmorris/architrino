@@ -76,6 +76,51 @@ This pro/anti distinction is geometric and topological, not a net electric-charg
 
 The detailed pro/anti basis, density split, imbalance stability, local coupling law, and candidate cluster motifs belong in [Spacetime Assemblies](spacetime-assemblies.md). This page only fixes the Noether-Sea ontology those assembly hypotheses serve.
 
+## Local Branches in the Medium
+
+The Noether Sea changes how isolated assembly calculations should be read. A truly isolated Noether swarm or matter assembly is a limiting seed chart, not the generic physical situation. The physical target is a local branch retained inside the surrounding Noether-Sea and nearby-assembly record.
+
+For a candidate local branch $B$, the stronger closure form is not
+
+$$
+\mathcal{R}_{\mathrm{branch}}(B)=0
+$$
+
+in empty surroundings. It is
+
+$$
+\mathcal{R}_{\mathrm{branch}}
+\left(
+B;\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal{H}_{\partial\Omega}
+\right)=0,
+$$
+
+where $\Theta_{\mathrm{sea}}$ records the local Noether-Sea density, cadence, orientation, strain, and delay-response state; $\Theta_{\mathrm{asm}}$ records nearby resolved assemblies, including assemblies that later map to Standard Model particle language; and $\mathcal{H}_{\partial\Omega}$ records the causal-wake and event data entering the local region through its boundary. These are not extra fit knobs. They are the retained part of the same absolute record $S(t)$ needed to decide whether the local branch persists.
+
+At the force-ledger level this means that a local architrino row should be understood schematically as
+
+$$
+F_i
+=
+F_{i,\mathrm{internal}}
++
+F_{i,\mathrm{sea}}
++
+F_{i,\mathrm{asm}}
++
+F_{i,\partial\Omega},
+$$
+
+with every non-internal contribution either computed from the surrounding Noether-Sea and assembly record or explicitly assigned a residual. The isolated equation is recovered only when $F_{i,\mathrm{sea}}$, $F_{i,\mathrm{asm}}$, and $F_{i,\partial\Omega}$ vanish, are homogeneous enough to collapse into fixed boundary data, or are below the declared tolerance.
+
+This does not require solving the entire universe before studying one assembly. It does require a controlled embedding record. The useful analytic hierarchy is:
+
+1. solve or approximate a homogeneous Noether-Sea record;
+2. solve the candidate branch against that local medium and nearby-assembly record;
+3. check the branch's back-reaction on $\rho_{\text{NS}}$, $f_N$, $\chi_{\text{sea}}$, cadence, orientation, and event ledgers.
+
+Assembly emergence is therefore not emergence from empty isolation. It is local retention inside an already populated Noether Sea, with isolated analytical branches serving as seed charts, symmetry limits, or comparison cases.
+
 ## State Variables
 
 The spacetime branch uses the following canonical total-density symbols:
@@ -902,4 +947,4 @@ This page does not own:
 
 ## Summary Commitment
 
-> **Medium Commitment (Noether Sea):** The Noether Sea is the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether-Sea dynamics and assembly coupling, not from curvature or expansion of the void itself.
+> **Medium Commitment (Noether Sea):** The Noether Sea is the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether-Sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether swarm branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether-Sea and nearby-assembly boundary residuals are statused.

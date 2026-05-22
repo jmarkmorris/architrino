@@ -16,7 +16,7 @@ This taxonomy records which channel family a reaction uses; it does not derive t
 
 At assembly level, these terms refer to substrate dynamics in absolute time:
 
-- **Mode-lock event:** a discrete stability transition where a driven tri-binary/wake configuration settles into an allowed propagating or bound mode.
+- **Mode-lock event:** a discrete stability transition where a driven nested shell swarm/wake configuration settles into an allowed propagating or bound mode.
 - **Wake-strain threshold:** the local instability boundary in Noether-Sea-coupled transport; below threshold, energy disperses into medium excitations, above threshold, stable mode formation is allowed.
 - **Nucleation:** relocking/reorganization of existing substrate content (with provenance-preserving architrino bookkeeping), not creation ex nihilo.
 - **Planar-mode nucleation (photon channels):** lock-in to a stable coaxial contra-rotating pro/anti planar-pair mode carrying Gate A energy-momentum data and Gate B transverse-ledger data.
@@ -49,12 +49,12 @@ Declare the required observer-level closures before ontology mapping:
 
 3. **Initialize assembly state**
 Represent each incoming participant as an assembly state tuple:
-`(identity, provenance path, charge sector, momentum, local medium state)`.
+`(identity, provenance path, charge sector, momentum, local Noether-Sea state)`.
 Path history is part of identity bookkeeping in absolute time.
 
-4. **Characterize local medium state**
+4. **Characterize local Noether-Sea state**
 Specify Noether-Sea state variables used by mapping, with arguments suppressed only when the local context is clear:
-$(\rho_{\text{core}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{core}}, \Phi_{\text{eff}}, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
+$(\rho_{\text{NS}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
 These variables are mapping handles, not replacement observables.
 
 Magnetic-like observer language belongs at this mapping layer. It is not a substrate force law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether-Sea anisotropy/vorticity dressing.
@@ -336,7 +336,7 @@ Each reaction chapter should include three short blocks:
 ### Core Terms
 
 - **Mode-lock event:** generic lock-in transition where transport energy is reorganized into a stable propagating or bound assembly mode.
-- **Wake-strain threshold:** local trigger condition where trajectory forcing and medium state exceed stability boundary for a mode-lock event.
+- **Wake-strain threshold:** local trigger condition where trajectory forcing and Noether-Sea state exceed stability boundary for a mode-lock event.
 - **Nucleation:** formation of a stable assembly mode from local substrate reconfiguration, with conservation/provenance bookkeeping.
 
 ### Channel-Specific Terms
@@ -399,7 +399,7 @@ Terminology in this chapter follows [mode-taxonomy.md](../../../../markdown/aaa/
 - $\mathcal{S}_*$: effective bremsstrahlung proxy for the inherited planar-mode threshold scale.
 - $E_{\gamma,\min}$: hypothesized minimum stable planar-mode energy.
 - $\Gamma_{\mathrm{eff}}$: absolute-time/proper-time conversion factor.
-- $\rho_{\text{core}}(\mathbf{x},t)$: local physical Noether swarm density.
+- $\rho_{\text{NS}}(\mathbf{x},t)$: local physical Noether swarm density.
 
 ### Physical Mechanism
 
@@ -409,7 +409,7 @@ At low photon energies, multiple small-angle encounters contribute strongly and 
 
 ### Prerequisites (Minimal)
 
-- Photon assembly ontology (planar-mode tri-binary language at micro level).
+- Photon assembly ontology (planar-mode nested shell swarm language at micro level).
 - Shared radiation routing in [Radiation](../../../../markdown/aaa/reactions/radiation.md).
 - Master Equation state-transition framework (emissive vs non-emissive microstates).
 - Emergent metric/geodesic transport framework (observer-level propagation and lensing).
@@ -435,7 +435,7 @@ $$
 \longrightarrow
 \text{bremsstrahlung excitation basin}
 \longrightarrow
-\text{planar-mode photon, recoil, medium excitation, or residual core energy}.
+\text{planar-mode photon, recoil, medium excitation, or residual internal energy}.
 $$
 
 For this channel, the radiation residual can be specialized as the derivation target
@@ -447,7 +447,7 @@ $$
 \Gamma_e(t),
 \mathcal{C}_{o'j}(t),
 J_{o'j},
-\rho_{\text{core}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t),
 \chi_{\text{sea}}(\mathbf{x},t);
 Z,b,\left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert
 \right).
@@ -475,16 +475,16 @@ $$
 E_{\text{exc}}^{\mathrm{br}}\ge E_{\gamma,\min}.
 $$
 
-Only when both conditions are met is photon output allowed. If the closure residual remains below the planar-mode basin, or if $E_{\text{exc}}^{\mathrm{br}}$ is sub-threshold, the event must route energy into medium excitation, recoil, or residual core energy instead of treating the missing photon as a silent loss.
+Only when both conditions are met is photon output allowed. If the closure residual remains below the planar-mode basin, or if $E_{\text{exc}}^{\mathrm{br}}$ is sub-threshold, the event must route energy into medium excitation, recoil, or residual internal energy instead of treating the missing photon as a silent loss.
 
 #### Wake Shock Definition (Channel Specialization)
 
-In this document, a **wake shock** is the bremsstrahlung name for the inherited radiation closure residual when it is produced by strong target-induced deceleration of the electron tri-binary assembly. It is not merely a descriptive label for radiation. Operationally, it is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in the middle binary (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether Sea.
+In this document, a **wake shock** is the bremsstrahlung name for the inherited radiation closure residual when it is produced by strong target-induced deceleration of the electron Noether swarm assembly. It is not merely a descriptive label for radiation. Operationally, it is the threshold crossing where the electron assembly's internal curvature mode is driven across the field-speed symmetry point in the middle binary (near $v \approx c_f$), creating a transient high-curvature state that can shed energy into the surrounding Noether Sea.
 
 A minimal trigger condition is written as
 
 $$
-\mathcal{I}_e\!\left(\rho_{\text{core}}(\mathbf{x},t),\left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert,\Xi_e\right) \ge \mathcal{I}_{\mathrm{crit}},
+\mathcal{I}_e\!\left(\rho_{\text{NS}}(\mathbf{x},t),\left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert,\Xi_e\right) \ge \mathcal{I}_{\mathrm{crit}},
 $$
 
 where $\Xi_e$ denotes electron-assembly internal state variables. In Master Equation language, wake shock onset corresponds to entry into the emission-capable region of state space, with transition kernel weight from non-emissive to emissive microstates increased above baseline.
@@ -524,10 +524,10 @@ E_{\gamma}
 +
 \Delta E_{\mathrm{med}}
 +
-\Delta E_{\text{core remnant}},
+\Delta E_{\text{rem}},
 $$
 
-where $E_{\gamma}$ is emitted photon energy, $\Delta E_{\mathrm{recoil}}$ is target recoil energy, $\Delta E_{\mathrm{med}}$ is genuine medium excitation (for example plasmons/phonons in dense environments), and $\Delta E_{\text{core remnant}}$ is residual internal excitation left in the source assembly. The projectile energy loss $\Delta E_e$ supplies this ledger at event level, with the common approximation $\Delta E_e\approx E_{\text{exc}}^{\mathrm{br}}$ used only when untracked stopping, recoil preparation, and remnant channels are negligible. In the lone heavy-target limit, $\Delta E_{\mathrm{recoil}} \approx 0$ energetically but still carries momentum closure. Mapping work focuses on identifying when wake-shock energy crosses the photon-composite stability threshold so discrete photon output is recovered from continuous transport.
+where $E_{\gamma}$ is emitted photon energy, $\Delta E_{\mathrm{recoil}}$ is target recoil energy, $\Delta E_{\mathrm{med}}$ is genuine medium excitation (for example plasmons/phonons in dense environments), and $\Delta E_{\text{rem}}$ is residual internal excitation left in the source assembly. The projectile energy loss $\Delta E_e$ supplies this ledger at event level, with the common approximation $\Delta E_e\approx E_{\text{exc}}^{\mathrm{br}}$ used only when untracked stopping, recoil preparation, and remnant channels are negligible. In the lone heavy-target limit, $\Delta E_{\mathrm{recoil}} \approx 0$ energetically but still carries momentum closure. Mapping work focuses on identifying when wake-shock energy crosses the photon-composite stability threshold so discrete photon output is recovered from continuous transport.
 
 Interpretive takeaway: this section defines event-level state transition and bookkeeping, not a replacement of validated QED cross-sections.
 
@@ -536,16 +536,16 @@ Interpretive takeaway: this section defines event-level state transition and boo
 To make the wake language calculable, the current $\mathbb{A}\mathbb{A}\mathbb{A}$ program uses a provisional mapping ansatz. The variable $\mathcal{S}_{\mathrm{wake}}$ is an effective proxy for the inherited photon-channel drive $\mathcal{S}_{\gamma}^{\mathrm{br}}$, not a separate radiation ontology. This is a working effective form pending derivation from the Master Equation, not a claimed first-principles closure:
 
 $$
-\mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \bigl[\rho_{\text{core}}(\mathbf{x},t)\bigr]^{\alpha} \left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert^{\beta},
+\mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \bigl[\rho_{\text{NS}}(\mathbf{x},t)\bigr]^{\alpha} \left\lVert\frac{d\mathbf{v}_e}{dt}\right\rVert^{\beta},
 $$
 
-Conceptual nucleation picture for this ansatz: a coaxial contra-rotating pro/anti planar-pair photon mode is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents the effective bremsstrahlung proxy for $\mathcal{S}_{\gamma,*}$ and is interpreted as an effective function of Noether Sea stiffness plus local tri-binary geometry. The coupling through $E_{\text{exc}}^{\mathrm{br}}/E_{\gamma,\min}$ represents available shed energy relative to minimum stable planar-mode cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
+Conceptual nucleation picture for this ansatz: a coaxial contra-rotating pro/anti planar-pair photon mode is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents the effective bremsstrahlung proxy for $\mathcal{S}_{\gamma,*}$ and is interpreted as an effective function of Noether Sea stiffness plus local nested shell swarm geometry. The coupling through $E_{\text{exc}}^{\mathrm{br}}/E_{\gamma,\min}$ represents available shed energy relative to minimum stable planar-mode cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
 
 $$
 P_{\mathrm{nuc}}(E_\gamma) = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{E_{\text{exc}}^{\mathrm{br}}}{E_{\gamma,\min}}\right)\right],
 $$
 
-with $(x)_+ \equiv \max(x,0)$. Here $A_{\mathrm{tb}},\alpha,\beta,\mathcal{S}_*$ are effective tri-binary medium parameters. This is explicitly a mapping goal, not yet a closed derivation.
+with $(x)_+ \equiv \max(x,0)$. Here $A_{\mathrm{tb}},\alpha,\beta,\mathcal{S}_*$ are effective Noether-Sea response parameters. This is explicitly a mapping goal, not yet a closed derivation.
 
 Interpretation of coefficients in the current draft:
 
@@ -563,7 +563,7 @@ Status and handling:
 For gravity integration, the same source terms can be expressed through the emergent metric fields that govern local geodesics:
 
 $$
-\mathcal{S}_{\mathrm{wake}} = \mathcal{S}_{\mathrm{wake}}\!\left(g_{\mu\nu},\nabla g_{\mu\nu},u_e^\mu,\rho_{\text{core}}(\mathbf{x},t)\right).
+\mathcal{S}_{\mathrm{wake}} = \mathcal{S}_{\mathrm{wake}}\!\left(g_{\mu\nu},\nabla g_{\mu\nu},u_e^\mu,\rho_{\text{NS}}(\mathbf{x},t)\right).
 $$
 
 #### Emergence of Radiation from Assembly Dynamics
@@ -639,7 +639,7 @@ Use the same photon-channel event record here as in [Synchrotron Cascades](../..
 
 - incoming and outgoing charged assembly identity, momentum, and path-history provenance;
 - target assembly identity, recoil term, and coherent or resolved geometry regime;
-- local Noether-Sea state variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and relevant causal-branch Jacobian data;
+- local Noether-Sea state variables $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and relevant causal-branch Jacobian data;
 - closure residual $\mathcal{R}_{\Theta}^{\mathrm{br}}$, excitation energy $E_{\text{exc}}^{\mathrm{br}}$, and wake-strain or shock-intensity status relative to the planar-mode threshold;
 - photon output $E_\gamma$, direction, polarization basis, transverse angular-momentum ledger, and local photon-channel speed $c_\gamma$;
 - photon Gate B event residual, including source depletion, recoil, causal-wake, accepted/rejected handoff, helicity, and balance rows;
@@ -655,13 +655,13 @@ Standard soft-photon emission produces infrared-divergent exclusive rates, handl
 This implies a channel bifurcation:
 
 - **If $E_{\text{exc}}^{\mathrm{br}} > E_{\gamma,\min}$ with the planar-mode drive above threshold:** wake shock locks into a planar mode and emits a photon.
-- **If $E_{\text{exc}}^{\mathrm{br}} < E_{\gamma,\min}$ or the planar-mode drive remains below threshold:** no stable planar mode forms, and energy dissipates as non-radiative heating/turbulence in the local medium.
+- **If $E_{\text{exc}}^{\mathrm{br}} < E_{\gamma,\min}$ or the planar-mode drive remains below threshold:** no stable planar mode forms, and energy dissipates as non-radiative heating/turbulence in the local Noether Sea.
 
 This gives a physical low-energy floor for discrete photon output while preserving the inclusive-observable interpretation.
 
 Interpretation split used in this draft:
 
-- **Epistemic reinterpretation (default-safe):** sub-threshold energy loss is attributed to local medium heating rather than resolved soft-photon quanta, while inclusive observables remain QED-standard in tested regimes.
+- **Epistemic reinterpretation (default-safe):** sub-threshold energy loss is attributed to local Noether-Sea heating rather than resolved soft-photon quanta, while inclusive observables remain QED-standard in tested regimes.
 - **Ontic prediction (conditional):** if $E_{\gamma,\min}$ is above current soft-photon sensitivity, the model predicts a measurable low-frequency turnover at $\nu_{\min}=E_{\gamma,\min}/h$.
 
 Current status: this chapter treats the claim as epistemic by default and promotes ontic turnover as a conditional extension.
@@ -675,7 +675,7 @@ The leading $Z^2$ behavior follows coherent target-charge action at large impact
 - **Coherent regime ($b \gg R_{\mathrm{nuc}}$):** interaction with aggregate nuclear charge; power tracks $\propto Z^2$.
 - **Incoherent-resolution regime ($b \lesssim R_{\mathrm{nuc}}$):** interaction resolves constituent proton assemblies; scaling moves toward $\propto Z$ with suppression encoded by nuclear form factor $F(q^2)$.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping, finite geometry is explicitly the spatial distribution of proton tri-binaries in the nucleus. Deviation from pure $Z^2$ is therefore the observable transition from coherent whole-assembly wake coupling to resolved sub-assembly coupling, with additional screening from the atomic electron cloud.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping, finite geometry is explicitly the spatial distribution of proton nested shell swarms in the nucleus. Deviation from pure $Z^2$ is therefore the observable transition from coherent whole-assembly wake coupling to resolved sub-assembly coupling, with additional screening from the atomic electron envelope.
 
 A gravity-coupled extension can be written as
 
@@ -737,13 +737,13 @@ Rate equations in this file are observer-level unless noted. For substrate-level
 $$
 \frac{dE_e}{d\tau_e} = \frac{dE_e}{dt}\,\frac{dt}{d\tau_e},
 \qquad
-\frac{dt}{d\tau_e} = \Gamma_{\mathrm{eff}}(v_e,\rho_{\text{core}}(\mathbf{x},t),\Phi).
+\frac{dt}{d\tau_e} = \Gamma_{\mathrm{eff}}(v_e,\rho_{\text{NS}}(\mathbf{x},t),\Phi).
 $$
 
 For operational closure in this chapter, use the provisional split
 
 $$
-\Gamma_{\mathrm{eff}} \approx \gamma(v_e)\,\left[1+\delta_{\rho}(\rho_{\text{core}}(\mathbf{x},t))+\delta_{\Phi}(\Phi)\right],
+\Gamma_{\mathrm{eff}} \approx \gamma(v_e)\,\left[1+\delta_{\rho}(\rho_{\text{NS}}(\mathbf{x},t))+\delta_{\Phi}(\Phi)\right],
 $$
 
 with $\gamma(v_e)=1/\sqrt{1-v_e^2/c^2}$ and $|\delta_{\rho}|,|\delta_{\Phi}|\ll 1$ in laboratory and weak-field astrophysical regimes where standard relativistic timing is already validated. The full derivation and regime-dependent corrections are delegated to the metric/time foundations chapter; this file uses the above form as a controlled working map.
@@ -760,9 +760,9 @@ $$
 
 with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$ and $\mathcal{T}$ the transfer factor (absorption/scattering in plasma and any Noether-Sea-specific opacity).
 
-### Thermal Equilibrium Assumptions in Evolving Medium
+### Thermal Equilibrium Assumptions in Evolving Noether-Sea States
 
-The free-free forms above assume local thermodynamic equilibrium (LTE). In evolving medium states, define
+The free-free forms above assume local thermodynamic equilibrium (LTE). In evolving Noether-Sea states, define
 
 $$
 \mathcal{R}_{\mathrm{LTE}} \equiv \frac{\tau_{\mathrm{couple}}}{\tau_{\mathrm{cool}}}.
@@ -931,7 +931,7 @@ $$
 \longrightarrow
 \text{wake-strain threshold}
 \longrightarrow
-\text{planar-mode photon, medium excitation, recoil, residual core energy, or pair-channel handoff}.
+\text{planar-mode photon, medium excitation, recoil, residual internal energy, or pair-channel handoff}.
 $$
 
 The radiation page writes the retuned transport state as $\mathbf{V}$. In this channel, $\mathbf{V}$ is the Noether swarm velocity-deformation state of the charged assembly during curved transport through $\mathcal{V}_{\mathrm{NS}}$. A channel-local closure mismatch can therefore be written as the derivation target
@@ -957,7 +957,7 @@ $$
 \Gamma_{e^\pm}(t),
 \mathcal{C}_{o'j}(t),
 J_{o'j},
-\rho_{\text{core}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t),
 \chi_{\text{sea}}(\mathbf{x},t);
 \mathcal{V}_{\mathrm{NS}},
 G_{\text{grad}},
@@ -985,7 +985,7 @@ J_{\text{loc}}
 E_{\text{exc}}^{\mathrm{syn}}\ge E_{\gamma,\min}.
 $$
 
-The wake-strain threshold is therefore the channel's local expression of the planar-mode basin boundary. If the residual is sub-threshold, the event must route energy into medium excitation, recoil, or residual core energy rather than silently declaring a missing photon. If the threshold is crossed, the emitted photon must still satisfy the standard synchrotron scaling target
+The wake-strain threshold is therefore the channel's local expression of the planar-mode basin boundary. If the residual is sub-threshold, the event must route energy into medium excitation, recoil, or residual internal energy rather than silently declaring a missing photon. If the threshold is crossed, the emitted photon must still satisfy the standard synchrotron scaling target
 
 $$
 \nu_{\gamma}^{\mathrm{out}}
@@ -1000,7 +1000,7 @@ in weak homogeneous limits, with $B_{\mathrm{eff}}$ the observer-level magnetic 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel
 
 - **Synchrotron emission channel:** curved charged-assembly transport through an anisotropic Noether-Sea state produces $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ by Noether swarm velocity deformation and gradient forcing. If the inherited planar-mode threshold is crossed, the event nucleates [photon assemblies](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) from interaction energy / wake stress while conserving charged-assembly identity. The photon-side target is the canonical **coaxial contra-rotating pro/anti planar pair** description.
-- **Pair channel:** two-photon overlap, with each photon treated as a coaxial contra-rotating pro/anti planar pair, associates local substrate content into a charged $e^+e^-$ assembly pair; this association must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether-Sea cores $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
+- **Pair channel:** two-photon overlap, with each photon treated as a coaxial contra-rotating pro/anti planar pair, associates local substrate content into a charged $e^+e^-$ assembly pair; this association must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether-Sea swarms $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
 - **Cascade loop:** repeated emission-pair-emission cycles are modeled as repeated mode-lock events under the same observer-level thresholds.
 
 ### Shared Photon Event Record
@@ -1008,11 +1008,11 @@ in weak homogeneous limits, with $B_{\mathrm{eff}}$ the observer-level magnetic 
 Use the same photon-channel event record here as in [Radiation](../../../../markdown/aaa/reactions/radiation.md), [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md), and [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md). A synchrotron planar-mode event should record:
 
 - charged assembly identity, energy, momentum, pitch geometry, and path-history provenance before and after the curved transport segment;
-- Noether swarm velocity-deformation state, effective magnetic-state map $\mathcal{V}_{\mathrm{NS}}$, gradient forcing $G_{\text{grad}}$, and local Noether-Sea variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and causal-branch Jacobian data;
+- Noether swarm velocity-deformation state, effective magnetic-state map $\mathcal{V}_{\mathrm{NS}}$, gradient forcing $G_{\text{grad}}$, and local Noether-Sea variables $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, excitation state, and causal-branch Jacobian data;
 - closure residual $\mathcal{R}_{\Theta}^{\mathrm{syn}}$, wake-strain eigenvalue or threshold status, and photon-channel drive $\mathcal{S}_{\gamma}^{\mathrm{syn}}$ that permits or forbids planar-mode nucleation;
 - photon output $E_\gamma$, direction, polarization basis, transverse angular-momentum ledger, and local photon-channel speed $c_\gamma$;
 - photon Gate B event residual, including source depletion, recoil, causal-wake, accepted/rejected handoff, helicity, and balance rows;
-- recoil, medium excitation, residual core energy, and pair-channel handoff terms when the emitted photon enters a cascade loop.
+- recoil, medium excitation, residual internal energy, and pair-channel handoff terms when the emitted photon enters a cascade loop.
 
 For the emitting charged assembly, the source-depletion identity is
 
@@ -1150,7 +1150,7 @@ Status convention used below:
 
 This file uses the following provisional mapping targets.
 
-- **Synchrotron emission (provisional):** a charged tri-binary assembly in curved transport through $\mathcal{V}_{\mathrm{NS}}$ develops a Noether swarm velocity deformation. Gradient forcing $G_{\text{grad}}$ and causal-branch Jacobian bunching can leave $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ after ordinary adiabatic retuning fails; when the associated wake-strain state crosses the inherited planar-mode threshold, a photon assembly nucleates and carries the photon-row share of the source-depletion ledger. Recoil, medium, wake, handoff, and remnant rows close the rest. This nucleation threshold must be derivable from wake-strain eigenvalue conditions in simulations; hand-tuning the threshold to match observed $P_{\mathrm{syn}}(\gamma,B)$ or $\nu_c\propto\gamma^2B$ constitutes a fit, not a derivation. The mapping succeeds only if the threshold emerges naturally from the architrino master equation applied to curved charged-assembly trajectories in anisotropic Noether-Sea states.
+- **Synchrotron emission (provisional):** a charged Noether swarm assembly in curved transport through $\mathcal{V}_{\mathrm{NS}}$ develops a Noether swarm velocity deformation. Gradient forcing $G_{\text{grad}}$ and causal-branch Jacobian bunching can leave $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ after ordinary adiabatic retuning fails; when the associated wake-strain state crosses the inherited planar-mode threshold, a photon assembly nucleates and carries the photon-row share of the source-depletion ledger. Recoil, medium, wake, handoff, and remnant rows close the rest. This nucleation threshold must be derivable from wake-strain eigenvalue conditions in simulations; hand-tuning the threshold to match observed $P_{\mathrm{syn}}(\gamma,B)$ or $\nu_c\propto\gamma^2B$ constitutes a fit, not a derivation. The mapping succeeds only if the threshold emerges naturally from the architrino master equation applied to curved charged-assembly trajectories in anisotropic Noether-Sea states.
 - **Magnetic field ontology (provisional Option B):** observer-level $B$ is currently treated as the effective coarse-grained directional (vector/tensor) vorticity-anisotropy state of the Noether Sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$, rather than as a separate fundamental void field (Option A). This is a mapping option, not settled ontology. Charged-assembly curvature is therefore interpreted provisionally as transport through an anisotropic Noether-Sea state with explicit directionality. In validated limits, this mapping must: (i) derive the effective Lorentz-force law $\mathbf{F}_{\mathrm{eff}} = q(\mathbf{v}/c) \times \mathbf{B}_{\mathrm{eff}}$ from anisotropic Noether-Sea transport together with the Jacobian-weighted geometry of delayed causal flux, rather than by postulating a primitive cross-product force term; (specifically, show that vorticity-tensor gradients $\partial_i \mathcal{V}^j_{\mathrm{NS}}$ produce perpendicular deflection under boost); (ii) reproduce Maxwell-level electromagnetic-wave propagation (dispersion relation $\omega = ck$ for photon modes in uniform $\mathcal{V}_{\mathrm{NS}}$); (iii) recover synchrotron polarization geometry ($\mathbf{E}_\gamma \perp \mathbf{B}_{\mathrm{eff}}$, $\mathbf{E}_\gamma \perp \mathbf{v}$ in observer frame) from directional emission rules in the Noether-Sea anisotropy basis, while inheriting photon helicity and analyzer statistics from Gate B rather than deriving them locally. **Falsification criterion:** if simulations with anisotropic Noether-Sea states fail to produce the factor-of-$\gamma^2$ frequency scaling in $\nu_c$ (tested via swept $B$-field and $\gamma$ at fixed pitch angle), or if polarization vectors misalign with standard geometry by $>15^\circ$ systematically, Option B is ruled out and the theory must revert to treating $\mathbf{B}$ as a separate substrate field (Option A) or propose a new mapping.
 - **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether-Sea energy-density concentration triggered by overlap of two coaxial contra-rotating pro/anti planar-pair photon assemblies above threshold, not ex nihilo creation. The incoming photon assemblies supply energy, momentum, and trigger geometry, not new architrino identities; the recruited Noether-Sea content must supply the identity-routed inventory. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling. Operational constraint: pair-channel cross-section $\sigma_{\gamma\gamma}(s)$ computed from this nucleation picture must reproduce
 $$
@@ -1174,7 +1174,7 @@ This chapter uses the nucleation interpretation (not creation from nothing): pai
 
 Thus, when this channel says the incoming photons are consumed, it means their free planar-pair ledgers terminate at the vertex and their energy-momentum and Gate B handoffs enter the event record. It does not mean the outgoing $e^+e^-$ worldlines are simply the photon constituents under new labels. The charged-pair inventories must be supplied by identity-routed local substrate content.
 
-Operationally, pair production is modeled as association of neutral local substrate content (Noether-Sea cores)[^architrino-count] into a charged $e^+e^-$ assembly pair when incident photon energy and geometry satisfy the pair threshold window. The incoming photon energy supplies the separation and association work required for charged-state lock-in.
+Operationally, pair production is modeled as association of neutral local substrate content (Noether-Sea swarms)[^architrino-count] into a charged $e^+e^-$ assembly pair when incident photon energy and geometry satisfy the pair threshold window. The incoming photon energy supplies the separation and association work required for charged-state lock-in.
 
 The bookkeeping requirement is therefore threefold: identity-routed global architrino conservation, path-history-consistent provenance through reaction channels, and local energy-momentum conservation at the interaction zone.
 
@@ -1251,7 +1251,7 @@ $$
 For ontology-level bookkeeping, use the conversion
 
 $$
-dt = \Gamma_{\mathrm{eff}}(v,\rho_{\text{core}},n,\Phi)\,d\tau_{\mathrm{asm}},
+dt = \Gamma_{\mathrm{eff}}(v,\rho_{\text{NS}},n,\Phi)\,d\tau_{\mathrm{asm}},
 $$
 
 where $t$ is substrate absolute time and $\tau_{\mathrm{asm}}$ is assembly proper time. Then
@@ -1270,7 +1270,7 @@ $$
 \tau_{\mathrm{syn}}^{\mathrm{asm}}\approx \frac{\tau_{\mathrm{syn}}^{\mathrm{obs}}}{\Gamma_{\mathrm{eff}}}\approx 7.7\,\mathrm{s}.
 $$
 
-Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is a placeholder SR-limit surrogate for dimensional illustration only, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ relation. In all validated astrophysical regimes (AGN jets, pulsar wind nebulae, GRB afterglows), $\Gamma_{\mathrm{eff}}$ must reproduce the standard Lorentz factor $\gamma_{\mathrm{SR}}$ to within observational uncertainties on cooling breaks ($\lesssim 10\%$ for well-sampled SEDs). Any deviation is confined to untested extreme environments (for example, within $r \lesssim 3r_g$ of supermassive black holes, or $\rho_{\text{core}} \gg \rho_{\mathrm{nuclear}}$) and requires explicit simulation bounds showing no conflict with validated-regime data.
+Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is a placeholder SR-limit surrogate for dimensional illustration only, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ relation. In all validated astrophysical regimes (AGN jets, pulsar wind nebulae, GRB afterglows), $\Gamma_{\mathrm{eff}}$ must reproduce the standard Lorentz factor $\gamma_{\mathrm{SR}}$ to within observational uncertainties on cooling breaks ($\lesssim 10\%$ for well-sampled SEDs). Any deviation is confined to untested extreme environments (for example, within $r \lesssim 3r_g$ of supermassive black holes, or $\rho_{\text{NS}} \gg \rho_{\mathrm{nuclear}}$) and requires explicit simulation bounds showing no conflict with validated-regime data.
 
 Propagation and timing conventions must remain explicit in cosmology-facing use.
 
@@ -1288,7 +1288,7 @@ This mapping aims at mechanistic compression across channels:
 
 - One substrate language for synchrotron, pair production, and bremsstrahlung as wake/assembly transport outcomes.
 - A single timing-conversion layer for rate equations (`observer` vs `assembly` clocks) used consistently in simulation bookkeeping.
-- A testable mapping hypothesis that pair-loading boundaries depend on local Noether-Sea state variables ($\rho_{\text{core}}$, $n$, anisotropy) in addition to standard observer-level compactness controls.
+- A testable mapping hypothesis that pair-loading boundaries depend on local Noether-Sea state variables ($\rho_{\text{NS}}$, $n$, anisotropy) in addition to standard observer-level compactness controls.
 
 If future derivations show no measurable deviations in tested regimes, the remaining claim is ontological unification rather than new phenomenology.
 
@@ -1304,4 +1304,4 @@ Cosmology-facing provenance across synchrotron, pair production, bremsstrahlung,
 
 If derivations show (i) no measurable deviations in any tested regime, (ii) no reduction in parameter count relative to standard plasma/QED models, and (iii) no new consistency constraints that eliminate existing fine-tuning, then the $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation provides only ontological vocabulary change without explanatory gain. In that case, standard transport remains the preferred description for cascade phenomenology, and the $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping is demoted to an optional interpretive layer rather than a foundational claim.
 
-[^architrino-count]: Architrino-count conservation: each recruited Noether-Sea core contributes $(N_{\mathrm{arch}})_{\mathrm{core}}$ architrinos; named core content must exactly balance final $e^+ + e^-$ architrino count, and the event record must route the participating identities rather than assigning them to the photon channel. Explicit provenance tracking through pair events is a simulation deliverable, not an assertion in this chapter.
+[^architrino-count]: Architrino-count conservation: each recruited Noether-Sea swarm contributes $(N_{\mathrm{arch}})_{\mathrm{core}}$ architrinos; named swarm content must exactly balance final $e^+ + e^-$ architrino count, and the event record must route the participating identities rather than assigning them to the photon channel. Explicit provenance tracking through pair events is a simulation deliverable, not an assertion in this chapter.

@@ -63,6 +63,16 @@ The zero-offset row has:
 
 Interpretation: the rigid zero-offset carrier passes the first geometry/root screen but fails the fixed-speed force screen with failure code `tangential-residual-open`.
 
+The zero-offset fixed-speed row is now closed by rejection in [../neutral-swarm/rigid-octahedral-fixed-speed-no-go.md](../neutral-swarm/rigid-octahedral-fixed-speed-no-go.md). The deterministic witness at $(i,\theta)=((1,+),0)$ gives
+
+$$
+\widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
+\in
+[0.07393815228,0.07393815232],
+$$
+
+so the fixed-speed tangential row cannot vanish at every required receiver and phase under the declared source-pair and same-source policies. This is a no-go only for the rigid zero-offset fixed-speed hypothesis.
+
 The same zero-offset row also gives a dimensionless radial force projection
 
 $$
@@ -131,6 +141,23 @@ However, no sampled phase row came close to pointwise tangential closure. The be
 
 Interpretation: phase offsets alone are not enough to retain the rigid orthogonal-carrier branch. The residual can be improved but not closed in the screened class.
 
+The executable sampled scanner for this row is:
+
+```bash
+node scripts/neutral-swarm/octahedral-phase-offset-scan.mjs --out /tmp/neutral-swarm-octahedral-phase-offset-scan.json --pretty
+node scripts/neutral-swarm/octahedral-phase-offset-scan.mjs --validate /tmp/neutral-swarm-octahedral-phase-offset-scan.json --pretty
+```
+
+Its default schema is
+
+$$
+\texttt{neutral-swarm-octahedral-phase-offset-scan/v1}.
+$$
+
+The default quick grid is a screening artifact rather than the full table above. It ranks sampled $\phi_2,\phi_3$ rows, reports root-count and Jacobian floors on the sampled grid, and always returns `not_retained`. A row may lower the sampled RMS residual relative to zero offset, but the pointwise tangential residual remains open and the master first failure remains `support-complete-root-ledger-open`.
+
+The retention overread is now closed in [../neutral-swarm/phase-offset-improvement-not-retention.md](../neutral-swarm/phase-offset-improvement-not-retention.md). The executable witness `scripts/neutral-swarm/octahedral-phase-offset-retention-witness.mjs` records `closed-rejected:sampled-phase-offset-improvement-implies-retention`: sampled RMS improvement is a useful search signal, but it is not a retained fixed-speed neutral swarm branch.
+
 ---
 
 ## 4. Force-Balance Implication
@@ -157,6 +184,8 @@ $$
 The phase screen above only attacked the first equation. Therefore even a hypothetical phase row with small tangential residual would still need a radial/support-band row and a scale/coupling row.
 
 This matters because the zero-offset carrier has no retained positive-delay same-source root. Without a self/fold-layer or medium-response term, the branch has only partner and cross-binary forces available to supply both tangential closure and centripetal support. That is a strong constraint.
+
+The ordinary same-source exclusion is now closed by [../neutral-swarm/ordinary-same-source-fixed-speed-no-go.md](../neutral-swarm/ordinary-same-source-fixed-speed-no-go.md). The executable witness `scripts/neutral-swarm/octahedral-same-source-witness.mjs` records `closed-rejected:ordinary-same-source-positive-delay` for the rigid exact-$c_f$ circular convention. This does not close or reject controlled self-hit, bounded-speed, or fold-layer event policies.
 
 ---
 

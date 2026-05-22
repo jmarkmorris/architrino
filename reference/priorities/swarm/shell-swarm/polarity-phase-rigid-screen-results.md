@@ -144,6 +144,14 @@ The best polarity-phase row improves the zero-offset opposite-pair row but does 
 
 The polarity-phase screen therefore does not identify a retained rigid branch.
 
+This closes only the retention overread
+
+$$
+\texttt{closed-rejected:polarity-phase-improvement-implies-retention}.
+$$
+
+The rejected implication is that neutral polarity reassignment plus rigid phase-offset RMS improvement implies a retained branch. The screen still has pointwise tangential leakage, with best maximum residual about $1.7874$, and it does not close support-complete roots, action, Noether, event, stability, or convergence rows. The proof packet is [../neutral-swarm/polarity-phase-improvement-not-retention.md](../neutral-swarm/polarity-phase-improvement-not-retention.md), and the executable witness is `scripts/neutral-swarm/octahedral-polarity-phase-retention-witness.mjs`.
+
 ---
 
 ## 5. Dynamics Inference
