@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 157,
-      "sections": 1234
+      "sections": 1239
     }
   },
   "tocRoot": {
@@ -1836,10 +1836,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Why This Is the Best Next Closure Target",
+                    "title": "Why This Is the Best Queued Planar Target",
                     "markdownPath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
-                    "markdownSection": "Why This Is the Best Next Closure Target",
-                    "sectionKey": "why this is the best next closure target",
+                    "markdownSection": "Why This Is the Best Queued Planar Target",
+                    "sectionKey": "why this is the best queued planar target",
                     "headingLevel": 2
                   },
                   {
@@ -1877,6 +1877,14 @@
                 "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
                 "markdownSection": "Neutral Swarm",
                 "sectionKey": "neutral swarm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Retained-Branch Certificate Target",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Retained-Branch Certificate Target",
+                "sectionKey": "retained branch certificate target",
                 "headingLevel": 2
               },
               {
@@ -7306,7 +7314,17 @@
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/well_posedness_regularization.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md"
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Formal $\\eta > 0$ Continuation Package",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+                        "markdownSection": "Formal $\\eta > 0$ Continuation Package",
+                        "sectionKey": "formal eta 0 continuation package",
+                        "headingLevel": 2
+                      }
+                    ]
                   }
                 ]
               },
@@ -7544,6 +7562,30 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Simulation Campaign Object",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
+                    "markdownSection": "Simulation Campaign Object",
+                    "sectionKey": "simulation campaign object",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Executable Diagnostic Contract",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
+                    "markdownSection": "Executable Diagnostic Contract",
+                    "sectionKey": "executable diagnostic contract",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Proof-Certificate Handoff",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
+                    "markdownSection": "Proof-Certificate Handoff",
+                    "sectionKey": "proof certificate handoff",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "$A_0$ Branch-Certificate Protocol",
                     "markdownPath": "content/markdown/aaa/validation/simulations/run-protocols.md",
                     "markdownSection": "$A_0$ Branch-Certificate Protocol",
@@ -7618,9 +7660,9 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Tier 1: $\\eta>0$ Continuation",
+                    "title": "Tier 1: $\\eta > 0$ Continuation",
                     "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
-                    "markdownSection": "Tier 1: $\\eta>0$ Continuation",
+                    "markdownSection": "Tier 1: $\\eta > 0$ Continuation",
                     "sectionKey": "tier 1 eta 0 continuation",
                     "headingLevel": 2
                   },

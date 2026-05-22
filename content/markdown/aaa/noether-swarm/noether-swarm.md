@@ -10,6 +10,8 @@ This chapter uses three swarm types:
 | **shell swarm** | A neutral swarm whose six architrino paths remain in a controlled radial support band. | Radial support control, with near-antipodality only as an optional constraint. |
 | **nested shell swarm** | A shell swarm with three ordered radial support bands. | The old three-layer picture; exact binaries are an additional proof assumption, not a separate swarm type. |
 
+These definitions name case structure, not retained-branch existence. A neutral swarm requires six-body polarity balance and causal-return bookkeeping; a shell swarm adds radial support and recovery residuals; a nested shell swarm adds ordered support bands. Exact binary nesting, stable all-pairs roots, and observer-export behavior are theorem targets that must be certified by the branch ledger rather than read back into the definition.
+
 Older chapters in the corpus use **Noether swarm**, **nested shell swarm**, and **nested binary** for material that usually belongs to the nested shell swarm case. This chapter treats that structure as a special case of the broader Noether swarm class. The downstream corpus still mostly describes the nested shell swarm and has not yet been generalized; the older terms should therefore be read as nested shell swarm terminology unless a later page explicitly promotes the more general swarm case. The swarm's dynamic envelope geometry is developed separately in [the nested shell swarm geometry chapter](nested-shell-swarm-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
 
 ## Neutral Swarm
@@ -48,6 +50,97 @@ X_i(t)=Y_i(\lambda_i(t)),
 $$
 
 The bounded speed factor $\nu_i(t)$ is the place where speed-lapse behavior enters the architecture. A branch may temporarily push an architrino over a local hinge into a self-hit mode, but an admissible neutral swarm must still return to a closed causal ledger within the branch's recovery tolerance. The neutral swarm therefore allows changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to three exact binaries.
+
+## Retained-Branch Certificate Target
+
+The present neutral swarm claim is a theorem target, not a retained-branch result. A candidate branch $B$ over a test window $W$ is retained only if the required rows close on one ledger identity. The master certificate can be summarized as
+
+$$
+\mathsf{R}_{\mathrm{NS}}(B,W)
+=
+\left(
+\mathsf{Inventory},
+\mathsf{Curves}^{\nu},
+\mathsf{Support},
+\mathsf{Root}^{\nu},
+\mathsf{Tail}^{\nu},
+\mathsf{Dynamics}^{\nu},
+\mathsf{Action}_{\Gamma}^{\nu},
+\mathsf{Noether}^{\nu},
+\mathsf{Event}^{\nu},
+\mathsf{Stability}^{\nu},
+\mathsf{Convergence},
+\mathsf{Status}
+\right).
+$$
+
+The corresponding retention predicate is
+
+$$
+\mathrm{Retain}_{\mathrm{NS}}(B,W)
+\Longleftrightarrow
+P_{\mathrm{inventory}}
+\wedge
+P_{\mathrm{curves}}
+\wedge
+P_{\mathrm{support}}
+\wedge
+P_{\mathrm{root}}
+\wedge
+P_{\mathrm{tail}}
+\wedge
+P_{\mathrm{dyn}}
+\wedge
+P_{\Gamma}
+\wedge
+P_{\mathrm{Noether}}
+\wedge
+P_{\mathrm{event}}
+\wedge
+P_{\mathrm{stab}}
+\wedge
+P_{\mathrm{conv}}.
+$$
+
+Every predicate in this conjunction must use the same source-pair policy, same-source policy, memory depth, support descriptor, action convention, event interval, and inventory ledger. If any row changes those conventions, the status is a ledger mismatch rather than a retention result.
+
+The root row begins with all ordered distinct source pairs,
+
+$$
+\Pi_{\mathrm{all}}
+=
+\{(i,j)\in I\times I:i\ne j\},
+\qquad
+|\Pi_{\mathrm{all}}|=30.
+$$
+
+The $3$ attractive and $2$ repellent source-site counts for each receiver are inventory facts, not a compressed force law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, and line-of-action vectors for these ordered pairs. A shell swarm or nested shell swarm can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
+
+The certificate should report the first blocking row as
+
+$$
+\mathsf{F}_{\mathrm{NS}}(B,W)
+=
+\left(
+\mathrm{first\_failed\_row},
+\mathrm{ledger\_id},
+\mathrm{margin},
+\mathrm{blocking\_packet},
+\mathrm{repair\_or\_rejection}
+\right).
+$$
+
+Rows through convergence block branch retention. Case-reduction and observer-export rows classify downstream structure only after the required neutral rows close. Therefore a favorable Lorentz, photon, topology, mass-map, or shell-geometry diagnostic cannot rescue an open root, tail, dynamics, action, event, stability, or convergence row.
+
+Current fixed-speed octahedral diagnostics have produced scoped negative results. The rigid zero-offset fixed-speed neutral row has a certified nonzero tangential residual at the receiver node $((1,+),0)$,
+
+$$
+\widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
+\in
+[0.07393815228,0.07393815232],
+$$
+
+so that narrow branch chart is rejected. The diagnostic family also rejects several overreads: the ordinary same-source positive-delay rescue is absent under the rigid exact-$c_f$ circular convention, inventory attraction bias does not imply force closure, resolved positive-delay root rows do not imply force closure, and sampled phase or polarity-phase improvements do not imply retention. These are negative results for rigid fixed-speed octahedral hypotheses, not rejections of the broader neutral swarm, shell swarm, nested shell swarm, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
 
 ## Shell Swarm
 

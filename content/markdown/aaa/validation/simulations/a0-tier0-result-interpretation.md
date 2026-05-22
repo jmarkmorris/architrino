@@ -2,7 +2,7 @@
 
 This note explains how to read the first reduced $A_0$ branch-search artifact. It is a companion to the [$A_0$ Branch Certificate Protocol](a0-branch-certificate-protocol.md), the general [Simulation Run Protocols](run-protocols.md), and the convergence standards in [Convergence Tests](convergence-tests.md).
 
-The Tier 0 artifact is not an attractor proof. It is a certificate-facing filter that decides whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta>0$ continuation. Its output should be read together with the mass thesis in [Particle Masses](../../assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../dynamics/energy.md), the dynamics baseline in [Nested Shell Swarm Dynamics](../../noether-swarm/nested-shell-swarm-dynamics.md), and the closure bookkeeping in [Parameter Ledger](../parameter-ledger.md).
+The Tier 0 artifact is not an attractor proof. It is a certificate-facing filter that decides whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Its output should be read together with the mass thesis in [Particle Masses](../../assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../dynamics/energy.md), the dynamics baseline in [Nested Shell Swarm Dynamics](../../noether-swarm/nested-shell-swarm-dynamics.md), and the closure bookkeeping in [Parameter Ledger](../parameter-ledger.md).
 
 ## Output Status
 
@@ -48,7 +48,7 @@ The Tier 0 scanner distinguishes raw self-root sightings from active self-hit br
 
 This policy follows the canonical convention $H(0)=0$: an instantaneous self-kick is not an active causal hit. The exclusion is conservative. It does not prove that no nearby regularized fold-layer branch exists; it says only that the diagnostic carrier has not yet supplied a positive-delay self-root branch that can be promoted.
 
-If later work introduces a regularized fold-layer model that accepts such roots, that model must name its branch condition, tolerance, and promotion rule. Until then, near-zero self roots block Tier 0 promotion rather than counting as self-hit closure.
+The current fold-layer diagnostic can preserve locked self-root keys as a transition candidate, but it does not by itself accept self-hit closure. A fold-layer row promotes only after a corrected one-period branch-equation attempt passes the declared residual surface; until then, $\Delta_{\mathbf{k}}$ and $\eta$-ladder persistence remain downstream obligations.
 
 ## Residual Semantics
 

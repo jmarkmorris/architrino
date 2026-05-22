@@ -12,7 +12,7 @@ The present chapter sits between four existing layers:
 
 1. the exact delayed equations in [Master Equation of Motion](../dynamics/master-equation.md),
 2. the topological branch formalism in [Causal Action Functional](../dynamics/causal-action-functional.md),
-3. the reduced return-map success in [1D Collinear Breather](./collinear-breather.md),
+3. the reduced return-map architecture in [1D Collinear Breather](./collinear-breather.md),
 4. the higher-dimensional program statement in [Master-Equation Breather Program](./master-equation-breather.md).
 
 The role of this chapter is narrower than the full breather program. It does not attempt immediate many-body closure. It focuses on the first planar binary regime in which line-order arguments fail, tangential escape becomes real, and branch topology must be controlled in tandem with radial recapture rather than in a separate later chapter.
@@ -300,9 +300,9 @@ The next sequence should be short and disciplined.
 
 That order matters. Without a transverse seed packet, the return map is not well-defined. Without local cone control, the branch atlas is not stable enough to transport. Without bounded fold transit, the self-hit mechanism is not mathematically usable. Without a radial-turnaround inequality, no planar breather can exist.
 
-## Why This Is the Best Next Closure Target
+## Why This Is the Best Queued Planar Target
 
-This chapter is the top bottleneck because it is upstream of several attractive but softer narratives.
+After the collinear certificate either passes or produces a precise obstruction that planar geometry is meant to resolve, this chapter is the top higher-dimensional bottleneck because it is upstream of several attractive but softer narratives.
 
 - It is upstream of the terminal aligned-mode story in [Mapping the Planck Scale to the Nested Shell Swarm Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md).
 - It is upstream of the planar-lock and branch-selection story in [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md).

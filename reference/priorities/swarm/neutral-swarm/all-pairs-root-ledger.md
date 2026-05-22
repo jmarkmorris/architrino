@@ -1,8 +1,8 @@
 # All-Pairs Root Ledger
 
-Promotion status: `priority-only`. This packet supplies the causal-root and Jacobian-floor ledger for a general six-site neutral swarm. It is the first hard blocker for the downstream dynamics, action, event, support, and observer-export rows: those rows may not claim closure from a partitioned, paired, or symmetry-compressed root list unless this all-pairs ledger has first emitted an explicit reduction row.
+Promotion status: `partially-promoted`. The all-pairs source-pair policy, the $|\Pi_{\mathrm{all}}|=30$ count, and the rule that $3$ attractive / $2$ repellent source-site inventory does not compress the force ledger were promoted into [Noether Swarm](../../../../content/markdown/aaa/noether-swarm/noether-swarm.md) as theorem-target language. This packet still supplies the priority-side causal-root and Jacobian-floor ledger for a general six-site neutral swarm. It is the first hard blocker for the downstream dynamics, action, event, support, and observer-export rows: those rows may not claim closure from a partitioned, paired, or symmetry-compressed root list unless this all-pairs ledger has first emitted an explicit reduction row.
 
-This packet refines [neutral-swarm-model.md](neutral-swarm-model.md), [swarm.md](../swarm.md), and [bounded-speed-factor-root-sheet-certificate.md](../shell-swarm/bounded-speed-factor-root-sheet-certificate.md). It does not retain a branch and does not authorize corpus migration.
+This packet refines [neutral-swarm-model.md](neutral-swarm-model.md), [swarm.md](../swarm.md), and [bounded-speed-factor-root-sheet-certificate.md](../shell-swarm/bounded-speed-factor-root-sheet-certificate.md). Promoted claim level: `theorem-target`. Remaining blocker: `all-pairs-root-ledger-open` until active, inactive, and tail cells are interval-certified or assimilated on one ledger.
 
 ---
 

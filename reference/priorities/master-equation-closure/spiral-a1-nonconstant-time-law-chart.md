@@ -195,9 +195,12 @@ the old roots or move to a branch ledger with the wrong radial sign. A more
 flexible retained-memory polynomial profile does satisfy the turn-center
 moment, endpoint, radial, and tangential equations; see
 [spiral-a1-retained-memory-profile](spiral-a1-retained-memory-profile.md).
-The next mathematical search is therefore not a new requirement row; it is to
-transport that retained-memory witness away from $\theta=0$ or prove that such
-transport fails for a controlled function class.
+[spiral-a1-retained-memory-transport-lemma](spiral-a1-retained-memory-transport-lemma.md)
+then proves that the retained endpoint constraints cancel the first off-center
+memory derivative at the turn center. The next mathematical search is
+therefore not a new requirement row; it is to solve or constrain the finite
+$\theta$-collar inverse-rate transport and test radial balance on the same
+retained branch chart.
 
 ## Promotion Decision
 

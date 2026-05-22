@@ -28,7 +28,7 @@ The chapter should therefore be read as the stable dynamics layer beneath the ca
 
 ## Causal-Closure Certificate Target
 
-The rest-mass, moving-deformation, photon, observer-export, and event-ledger rows should be populated by one retained branch record, not by separately tuned fits. For a retained nested shell swarm branch class $q$ over a test window $W$, the shared certificate target is
+The rest-mass, moving-deformation, photon, observer-export, and event-ledger rows should be populated by one retained branch record, not by separately tuned fits. Retention is the conclusion of the certificate, not an assumption made before the rows are checked. For a candidate nested shell swarm chart $q$ over a test window $W$, the shared certificate target is
 
 $$
 \mathcal{C}_{\mathrm{tri}}^{(q)}(W)
@@ -75,7 +75,7 @@ d_{\mathcal{A}}
 \right).
 $$
 
-The certificate can support promotion only if the branch floors and stability gap stay positive and the normalized closure residual
+The candidate chart may be promoted to a retained branch class $q$ only if the same ledger supplies a positive Jacobian floor, inactive-root gap, finite memory depth, positive stability gap, closed event ledger, and the normalized closure residual
 
 $$
 \mathcal{U}_{\mathrm{tri}}^{(q)}(W)
@@ -92,7 +92,7 @@ $$
 \le1.
 $$
 
-This is a certificate target, not an additional force law. It prevents a moving-deformation ratio, a mass-response average, a photon row, or an observer-export residual from being promoted unless the same causal-root branch supplies the period, envelope, signal, observer-export, mass, sector, and event-ledger data.
+This is a certificate target, not an additional force law. It prevents a moving-deformation ratio, a mass-response average, a photon row, or an observer-export residual from being promoted unless the same causal-root branch supplies the period, envelope, signal, observer-export, mass, sector, and event-ledger data. If a row fails on $q$, the verdict is a rejected chart or continuation target under its declared hypotheses, not evidence against the broader neutral swarm or shell swarm class.
 
 ## Substrate and Effective Levels
 

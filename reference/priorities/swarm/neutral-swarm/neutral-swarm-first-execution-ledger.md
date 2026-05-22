@@ -1,8 +1,8 @@
 # Neutral Swarm First Execution Ledger
 
-Promotion status: `priority-only`. This packet defines the first executable ledger that should be emitted after the neutral swarm finite-mode search spec is implemented. It refines [neutral-swarm-finite-mode-search.md](neutral-swarm-finite-mode-search.md), [all-pairs-root-ledger.md](all-pairs-root-ledger.md), and [neutral-swarm-master-retention-theorem.md](neutral-swarm-master-retention-theorem.md).
+Promotion status: `partially-promoted`. The fixed-speed octahedral diagnostic boundary and narrow overread rejections were promoted into [Noether Swarm](../../../../content/markdown/aaa/noether-swarm/noether-swarm.md) as scoped negative-result language. This packet still defines the first executable ledger that should be emitted after the neutral swarm finite-mode search spec is implemented. It refines [neutral-swarm-finite-mode-search.md](neutral-swarm-finite-mode-search.md), [all-pairs-root-ledger.md](all-pairs-root-ledger.md), and [neutral-swarm-master-retention-theorem.md](neutral-swarm-master-retention-theorem.md).
 
-It does not define a solver and does not retain a branch. Its purpose is to make the first run produce a useful mathematical verdict rather than another unstructured diagnostic.
+Promoted claim level: `theorem-target` plus scoped negative result. Remaining blocker: `support-complete-root-ledger-open` for the sampled rigid octahedral root diagnostic and `not-retained` for every current first-execution row. It does not define a solver and does not retain a branch. Its purpose is to make the first run produce a useful mathematical verdict rather than another unstructured diagnostic.
 
 The first audit-emitter surface is implemented at:
 
