@@ -7,7 +7,7 @@
 - Value: `28.34`
 - Cost: `5.4`
 - ROI: `5.25`
-- Status: `terminology-freeze`
+- Status: `priority-side-migration`
 
 ## Terminology Freeze
 
@@ -21,19 +21,18 @@ Git diagnosis: commit `5f830d3f` created the Noether swarm hub and the six scene
 | `shell swarm` | A neutral swarm whose six architrino paths remain in a controlled radial support band. | Accepted-for-now reader-facing term. |
 | `nested shell swarm` | A shell swarm with three ordered radial support bands. | Accepted-for-now reader-facing term. |
 
-Priority-only labels introduced during the architecture generalization are cleanup-controlled. They may remain in existing file names, task identifiers, literal source references, and local proof-packet text until a scoped cleanup pass edits them, but they must not be promoted as reader-facing taxonomy or treated as accepted replacement terminology. The approved transitions below should be used in new priority prose. `Slot` and `sector` are allowed only in standard mathematical usage, not as reader-facing swarm taxonomy. Broad migration phrases such as `tri-binary-to-swarm-sector` still need explicit source/target wording.
+Priority-only labels introduced during the architecture generalization are cleanup-controlled. They may remain in existing file names, task identifiers, literal source references, and local proof-packet text until a scoped cleanup pass edits them, but they must not be promoted as reader-facing taxonomy or treated as accepted replacement terminology. The approved transitions below should be used in new priority prose. `Slot` and `sector` are allowed only in standard mathematical usage, not as reader-facing swarm taxonomy. Broad migration phrases should use explicit source/target wording.
 
 `Noether swarm` is approved for prose. Use `Noether Swarm` only in titles, headings, scene titles, and other title-case labels. Prose cleanup may replace `Noether core` with `Noether swarm`; formula symbols, file paths, task identifiers, and notation such as $\rho_{\text{core}}$ and $\Lambda_{\text{NC}}$ still require the separate notation/file-path pass.
 
 ## Task Queue
 
-1. `reader_facing_swarm_triad_freeze` — Keep `neutral swarm`, `shell swarm`, and `nested shell swarm` as the only accepted reader-facing swarm taxonomy until the terminology cleanup pass. Status: `active`. Depends on: none. Notes: do not promote priority-only labels from architecture packets into corpus prose, simulations, scenes, or app copy.
-2. `priority_label_freeze_inventory` — Inventory the priority-only labels and apply the approved transition table in this file before broader edits. Status: `active`. Depends on: `reader_facing_swarm_triad_freeze`. Notes: approved prose transitions include `Noether core` to `Noether swarm`, `neutral knot-cloud` / `knot-cloud` to `neutral swarm`, `nested tri-binary` to `nested shell swarm`, `same-level tri-binary` to `shell swarm`, public-taxonomy `branch` to mathematical-use-only, `triply` to descriptive wording, `cloud` to the actual mathematical object, `exact nested tri-binary` to proof-specific exact-binary wording, `neutral Noether-core branch` to neutral-swarm wording plus mathematical `branch` only if needed, `pair` / `pairing` to `binary` or explicit partition language, and `slot` / `sector` as mathematical-use-only terms; broad compound migration labels still need explicit source/target wording.
-3. `swarm_notation_compatibility_inventory` — Inventory notation that must survive the terminology freeze. Status: `review-ready`. Depends on: `reader_facing_swarm_triad_freeze`. Notes: the notation compatibility inventory below maps $I=\{1,\ldots,6\}$, $\sigma_i$, $\mathbf{Y}_i$, $\nu_i$, $\mathcal{P}$, $P_a$, $i=(a,\sigma)$, $R_a$, support-band rows, and legacy Noether core notation symbols such as $\rho_{\text{core}}$ and $\Lambda_{\text{NC}}$; preserve legacy symbols until a compatibility note or rename is explicitly accepted.
-4. `swarm_terminology_cleanup_pass` — Prepare the reviewable cleanup that reconciles the priority architecture packets with the reader-facing triad. Status: `open`. Depends on: `reader_facing_swarm_triad_freeze`, `priority_label_freeze_inventory`, `swarm_notation_compatibility_inventory`. Notes: no global replacement; propose replacements one term family at a time with samples and proof-scope consequences.
-5. `user_facing_corpus_merge_gate` — Decide when to start the broad merge in the user-facing corpus. Status: `staged`. Depends on: accepted cleanup pass, notation compatibility inventory, retained certificate plan, NTB comparison, comparison against the common-support architecture material, migration batch plan, and operator approval. Notes: this is the main decision gate for broad `content/markdown/aaa`, simulation, scene-asset, and app-copy migration. It does not block scoped promotion of accepted terminology, notation compatibility notes, or detailed validation-method documents that satisfy the scoped promotion policy below.
-6. `swarm_model_migration` — Execute the approved user-facing corpus, priority-ledger, validation-surface, simulation, and web/app merge batches. Status: `deferred`. Depends on: `user_facing_corpus_merge_gate`. Notes: migration must use the accepted reader-facing triad or later approved replacements, not frozen priority-only labels.
-7. `assembly_swarm_fallback_investigation` — If closure stalls after the triad migration, study whether assembly swarms are needed. Status: `low-priority`. Depends on: stalled closure after the triad migration. Notes: an assembly swarm would let all architrinos in an assembly participate in one swarm rather than being added externally as poles or kept separately in a nucleus.
+1. `certificate_and_gate_repair` — Reconnect proof obligations, certificate rows, and migration-gate language to the accepted swarm triad. Status: `active`. Depends on: completed triad freeze, approved transition table, notation compatibility inventory, and packet quarantine audit. Notes: start with priority files only; no corpus migration, formula-symbol rewrite, simulation edit, scene edit, or app-copy edit.
+2. `priority_label_cleanup_samples` — Apply the approved transition table in reviewable priority-side samples when a packet is touched. Status: `active`. Depends on: `certificate_and_gate_repair`. Notes: completed first sample batch renamed the neutral swarm and nested shell swarm source packets; continue with bounded proof/gate packets only when directly touched.
+3. `scoped_validation_method_promotion_plan` — Identify validation-method material that may later move into `content/markdown/aaa` before a retained branch. Status: `open`. Depends on: `certificate_and_gate_repair`. Notes: candidate material must be a certificate schema, residual definition, solver-test protocol, ledger requirement, negative-result interpretation, or reproducibility criterion that does not claim branch retention.
+4. `user_facing_corpus_merge_gate` — Decide when to start the broad merge in the user-facing corpus. Status: `staged`. Depends on: accepted cleanup pass, notation compatibility inventory, retained certificate plan, NTB comparison, comparison against the common-support architecture material, migration batch plan, and operator approval. Notes: this is the main decision gate for broad `content/markdown/aaa`, simulation, scene-asset, and app-copy migration. It does not block scoped promotion of accepted terminology, notation compatibility notes, or detailed validation-method documents that satisfy the scoped promotion policy below.
+5. `swarm_model_migration` — Execute the approved user-facing corpus, priority-ledger, validation-surface, simulation, and web/app merge batches. Status: `deferred`. Depends on: `user_facing_corpus_merge_gate`. Notes: migration must use the accepted reader-facing triad or later approved replacements, not frozen priority-only labels.
+6. `assembly_swarm_fallback_investigation` — If closure stalls after the triad migration, study whether assembly swarms are needed. Status: `low-priority`. Depends on: stalled closure after the triad migration. Notes: an assembly swarm would let all architrinos in an assembly participate in one swarm rather than being added externally as poles or kept separately in a nucleus.
 
 ## First Reviewable Work Packets
 
@@ -44,6 +43,8 @@ The immediate start should be terminology and notation, not corpus migration and
 | 1 | `reader_facing_swarm_triad_freeze` | A compact table fixing `neutral swarm`, `shell swarm`, and `nested shell swarm` as the only reader-facing swarm taxonomy for now. | Low: terminology guardrail only. |
 | 2 | `priority_label_freeze_inventory` | An approved-transition table plus a pending-label table for terms that still need decisions. | Low: prevents accidental corpus migration. |
 | 3 | `swarm_notation_compatibility_inventory` | A symbol map separating base notation from optional local-case notation and legacy compatibility symbols. | Low: no formula rewrites outside the priority bucket. |
+
+Status update: the first reviewable packets are complete enough for priority-side migration. The active migration step is now `certificate_and_gate_repair`, with the notation/file-path pass still held back.
 
 ### Approved Transition Table
 
@@ -69,6 +70,7 @@ These rows are approved for controlled priority-side cleanup and later sampled c
 | `sector` | mathematical-use-only `sector` | Use only in standard mathematical usage, such as a subset, invariant subspace, or solution region cut out by stated constraints. | Do not use as a reader-facing swarm type or loose workstream label. |
 | `variable radius` / `variable-radius` | `nested shell swarm` or `shell swarm`, by context | Do not use as a swarm type. Shells already allow radii to vary. | If the passage means the old ordered-shell picture, use `nested shell swarm`; if it means one common support band, use `shell swarm`. |
 | `fixed radius` / `fixed-radius` | idealized zero-variation case inside the relevant shell model | Do not use as a swarm type. | State the mathematical condition directly when needed: the relevant variation row is set to zero or below tolerance. |
+| `tri-binary-to-swarm-sector` and similar broad migration labels | explicit source/target migration wording | Use a phrase such as `nested shell source to swarm triad migration` or a specific task name such as `nested_shell_source_to_swarm_triad_migration`. | Do not use `sector` as a loose migration label. Preserve literal source references until sampled cleanup. |
 
 ### Notation Compatibility Inventory
 
@@ -79,26 +81,22 @@ This table is review-ready for priority-side cleanup. It preserves formula symbo
 | $I=\{1,\ldots,6\}$ | base notation | The six architrino sites in a neutral swarm, shell swarm, or nested shell swarm branch. | Preserve. Do not replace with binary-index notation unless a partition is declared. |
 | $i,j\in I$ | base notation | Site/source/receiver labels for the six architrinos. Source sums over $j\ne i$ remain all-site sums in the neutral swarm case. | Preserve. `Ordered source pair` and `all-pairs root ledger` are standard mathematical uses of pair and do not create swarm taxonomy. |
 | $\sigma_i$ | base notation | Polarity sign at site $i$. | Preserve. Do not reinterpret as the second coordinate in $i=(a,\sigma)$ unless $\mathcal{P}$ is declared. |
-| $\mathbf{Y}_i$ | base notation | Closed arclength curve or path for site $i$. | Preserve as the neutral-swarm notation. Partition-indexed path notation is a sector shorthand only. |
-| $\nu_i$ | base notation | Bounded speed factor for site $i$. | Preserve. In partition-indexed sectors, $\nu_{a,\sigma}$ is the same speed factor written after $i=(a,\sigma)$ is available. |
-| $\mathcal{P}=\{P_1,P_2,P_3\}$ | optional sector notation | Binary partition of the six architrinos into three two-site binaries. It is not part of the base neutral swarm definition. | Use only after the packet declares the optional binary partition. |
-| $P_a$ | optional sector notation | The $a$th binary in the declared binary partition. In a nested shell swarm, each shell contains one binary, so the shell may also be referred to as that binary when the nested shell context is clear. | Preserve. Do not call this a `pair` or `slot` in replacement prose. |
-| $i=(a,\sigma)$ | optional sector notation | Binary-index notation available only after $\mathcal{P}$ is declared: $a$ indexes one of the three binaries and $\sigma$ selects the two architrinos in that binary. | Use only in shell swarm, nested shell swarm, or exact-binary sector rows where the partition is explicit. |
-| $\mathbf{x}_{a,\sigma}$ | optional sector shorthand | Partition-indexed path notation for the two architrinos in binary $a$. | Treat as shorthand for the underlying $\mathbf{Y}_i$ after $\mathcal{P}$ is declared. |
-| $R_a$ | derived sector notation | Partition-indexed radius functional derived from the support descriptor and $\mathcal{P}$; it is not a primitive radius type. | Preserve formulas. In a nested shell swarm, ordered $R_a$ rows describe the three ordered shell binaries; in a shell swarm, spread rows test a common support band. |
-| $\bar R$, $\mathcal{R}_{\mathrm{spread}}$, $\mathcal{G}_{ab}^R$ | derived sector rows | Radius summary, spread residual, and shell-gap residuals used to distinguish shell swarm, nested shell swarm, and transition sectors. | Preserve row symbols. Do not introduce `variable radius`, `fixed radius`, or `support radius` as swarm types. |
-| $\mathcal{D}_{\mathrm{supp}}$, $R_{\mathrm{in}}$, $R_{\mathrm{out}}$ | base/support notation | Support descriptor and support-band bounds for neutral swarm and shell-sector rows. | Preserve. Use `support band` or the exact mathematical object rather than `cloud` as taxonomy. |
-| $\mathcal{R}_{\mathrm{slot}}$, $\mathsf{OptionalSlot}$ | legacy residual/status notation | Existing residual and certificate labels for optional partition or sector reductions. These names are compatibility symbols, not terminology approval. | Preserve until the notation/file-path pass. In prose, say `optional binary-partition reduction row` or `optional reduction row`. |
+| $\mathbf{Y}_i$ | base notation | Closed arclength curve or path for site $i$. | Preserve as the neutral-swarm notation. Partition-indexed path notation is available only after a binary partition is declared. |
+| $\nu_i$ | base notation | Bounded speed factor for site $i$. | Preserve. In partition-indexed cases, $\nu_{a,\sigma}$ is the same speed factor written after $i=(a,\sigma)$ is available. |
+| $\mathcal{P}=\{P_1,P_2,P_3\}$ | optional binary-partition notation | Binary partition of the six architrinos into three two-site binaries. It is not part of the base neutral swarm definition. | Use only after the packet declares the optional binary partition. |
+| $P_a$ | optional binary-partition notation | The $a$th binary in the declared binary partition. In a nested shell swarm, each shell contains one binary, so the shell may also be referred to as that binary when the nested shell context is clear. | Preserve. Do not call this a `pair` or `slot` in replacement prose. |
+| $i=(a,\sigma)$ | optional binary-index notation | Binary-index notation available only after $\mathcal{P}$ is declared: $a$ indexes one of the three binaries and $\sigma$ selects the two architrinos in that binary. | Use only in shell swarm, nested shell swarm, or exact-binary rows where the partition is explicit. |
+| $\mathbf{x}_{a,\sigma}$ | optional binary-index shorthand | Partition-indexed path notation for the two architrinos in binary $a$. | Treat as shorthand for the underlying $\mathbf{Y}_i$ after $\mathcal{P}$ is declared. |
+| $R_a$ | derived radial notation | Partition-indexed radius functional derived from the support descriptor and $\mathcal{P}$; it is not a primitive radius type. | Preserve formulas. In a nested shell swarm, ordered $R_a$ rows describe the three ordered shell binaries; in a shell swarm, spread rows test a common support band. |
+| $\bar R$, $\mathcal{R}_{\mathrm{spread}}$, $\mathcal{G}_{ab}^R$ | derived radial rows | Radius summary, spread residual, and shell-gap residuals used to distinguish shell swarm, nested shell swarm, and transition cases. | Preserve row symbols. Do not introduce `variable radius`, `fixed radius`, or `support radius` as swarm types. |
+| $\mathcal{D}_{\mathrm{supp}}$, $R_{\mathrm{in}}$, $R_{\mathrm{out}}$ | base/support notation | Support descriptor and support-band bounds for neutral swarm and shell-case rows. | Preserve. Use `support band` or the exact mathematical object rather than `cloud` as taxonomy. |
+| $\mathcal{R}_{\mathrm{slot}}$, $\mathsf{OptionalSlot}$ | legacy residual/status notation | Existing residual and certificate labels for optional partition or local reductions. These names are compatibility symbols, not terminology approval. | Preserve until the notation/file-path pass. In prose, say `optional binary-partition reduction row` or `optional reduction row`. |
 | $\mathcal{R}_{\nu\mathrm{pair}}$ | legacy formula symbol | Existing speed-parity residual for exact-antipodal binary behavior. | Preserve as a formula symbol until the notation/file-path pass. In prose, say `binary residual`, `speed parity row`, or `exact-antipodal binary row`. |
 | $Q_{\mathrm{core}}$, $\rho_{\text{core}}$, $\Lambda_{\text{NC}}$ | legacy Noether-core notation | Established legacy notation still used in priority/corpus formulas. | Preserve until a separate compatibility note or notation rename is accepted. Prose may say `Noether swarm`; formula symbols are not renamed in this pass. |
 
 ### Pending Transition Decisions
 
-These rows remain unresolved and should be handled one term family at a time with samples.
-
-| Source wording | Current handling | Candidate direction | Notes |
-| --- | --- | --- | --- |
-| broad migration phrases such as `tri-binary-to-swarm-sector` | Cleanup-controlled priority label. | Likely replace with a specific migration task or explicit source/target wording. | Needs review after `slot` and `sector` are decided. |
+No pending transition rows remain in this control file. New terminology or notation changes still require operator approval before they become policy.
 
 ## Next Team-Agent Prompt
 
@@ -153,15 +151,33 @@ The first priority is not broad migration. The first priority is a reviewable te
 
 The work items below replace the inherited pre-freeze queue. Older architecture packets remain in the directory for audit and recovery, but their disputed terminology is not active workstream vocabulary.
 
-1. `swarm_triad_definition_table` — Write a compact priority-side table for `neutral swarm`, `shell swarm`, and `nested shell swarm`. Status: `active`. Depends on: `reader_facing_swarm_triad_freeze`. Notes: this is the first operator-reviewable task because it is small, terminology-only, and does not rewrite corpus content.
-2. `priority_label_freeze_inventory` — Name the priority-only labels that stay frozen until cleanup. Status: `active`. Depends on: `swarm_triad_definition_table`. Notes: keep file paths, task identifiers, literal source references, and local proof-packet text unchanged while preventing those labels from becoming reader-facing taxonomy.
+1. `swarm_triad_definition_table` — Write a compact priority-side table for `neutral swarm`, `shell swarm`, and `nested shell swarm`. Status: `review-ready`. Depends on: `reader_facing_swarm_triad_freeze`. Notes: this is the first operator-reviewable task because it is small, terminology-only, and does not rewrite corpus content.
+2. `priority_label_freeze_inventory` — Name the priority-only labels that stay frozen until cleanup. Status: `review-ready`. Depends on: `swarm_triad_definition_table`. Notes: keep file paths, task identifiers, literal source references, and local proof-packet text unchanged while preventing those labels from becoming reader-facing taxonomy.
 3. `swarm_notation_compatibility_inventory` — Map the symbols used by the three swarm cases. Status: `review-ready`. Depends on: `swarm_triad_definition_table`, `priority_label_freeze_inventory`. Notes: see the notation compatibility inventory above; do not rename symbols until the table is accepted.
 4. `priority_packet_quarantine_audit` — Mark inherited architecture packets whose titles or task names contain disputed labels as priority-only history. Status: `review-ready`. Depends on: `swarm_triad_definition_table`, `priority_label_freeze_inventory`. Notes: see the packet quarantine audit below; preserve paths for git continuity, but do not use those labels as reader-facing taxonomy or as the active workstream queue.
 5. `neutral_swarm_model_restatement` — Restate the broad six-architrino neutral case under the accepted `neutral swarm` wording. Status: `review-ready`. Depends on: `swarm_triad_definition_table`, `swarm_notation_compatibility_inventory`, `priority_packet_quarantine_audit`. Notes: see the neutral swarm model restatement below; it restates the base object without promoting the quarantined generalized packet or renaming formulas.
 6. `shell_swarm_model_restatement` — Restate the controlled radial-support case under `shell swarm`. Status: `review-ready`. Depends on: `neutral_swarm_model_restatement`. Notes: see the shell swarm model restatement below; keep support-band, recovery, and near-antipodal rows as mathematical conditions; do not introduce new names for subcases without approval.
 7. `nested_shell_swarm_preservation_map` — Preserve the old three-layer material as `nested shell swarm` source material while separating exact binary assumptions from reader-facing terminology. Status: `review-ready`. Depends on: `shell_swarm_model_restatement`. Notes: see the nested shell swarm preservation map below; compare against the restored NTB causal-closure packet set without treating source labels as current public taxonomy.
-8. `certificate_and_gate_repair` — Reconnect proof obligations to the accepted swarm wording after the terminology and notation tables pass review. Status: `deferred`. Depends on: `neutral_swarm_model_restatement`, `shell_swarm_model_restatement`, `nested_shell_swarm_preservation_map`. Notes: update certificate, conservation, observer-export, and migration-gate language only after the terminology pass is accepted.
+8. `certificate_and_gate_repair` — Reconnect proof obligations to the accepted swarm wording after the terminology and notation tables pass review. Status: `active`. Depends on: `neutral_swarm_model_restatement`, `shell_swarm_model_restatement`, `nested_shell_swarm_preservation_map`. Notes: update certificate, conservation, observer-export, and migration-gate language in priority files first; do not start broad corpus migration.
 9. `user_facing_corpus_merge_gate` — Decide whether and when to perform broad edits to `content/markdown/aaa`, simulations, scenes, or app copy. Status: `staged`. Depends on: accepted terminology table, notation inventory, packet quarantine audit, certificate repair, migration batch plan, and operator approval. Notes: this gate blocks broad model migration and file/path migration, but not scoped promotion of accepted terminology, notation compatibility notes, or detailed validation-method documents under the policy below.
+
+### Active Migration Batch
+
+Batch: `certificate_and_gate_repair_1`.
+
+Scope: `reference/priorities/swarm/` only. The batch may update control, architecture, gate, synthesis, and bounded-speed certificate packets when the edit reconnects existing proof obligations to the accepted triad. It may not edit `content/markdown/aaa`, simulations, scene assets, app code, formula symbols, file paths, or task identifiers.
+
+Migration rule: preserve the mathematics and residual symbols while replacing loose taxonomy with the accepted triad or with explicit mathematical objects. Use `case` for informal comparisons unless the passage is using `sector` in the standard mathematical sense of a subset, invariant subspace, or solution region cut out by stated constraints.
+
+Acceptance criteria:
+
+| Check | Required result |
+| --- | --- |
+| terminology scan | no active `knot-cloud`, `hybrid`, `variable-radius`, `slot-radius`, or loose `same-level` taxonomy in the touched batch, except in explicit quarantine/history rows |
+| notation preservation | no formula-symbol renames for $\rho_{\text{core}}$, $\Lambda_{\text{NC}}$, $\mathcal{R}_{\mathrm{slot}}$, $\mathsf{OptionalSlot}$, or $\mathcal{R}_{\nu\mathrm{pair}}$ |
+| proof-level separation | each gate distinguishes ontology, derivation/closure target, effective summary, and speculation where those levels are mixed |
+| retained-branch discipline | no branch is called retained unless root, dynamics, support, action, event, stability, inventory, and observer-export rows close on one live ledger |
+| promotion decision | each touched packet remains `priority-only`, `defer with blocker`, or `promote candidate` with the blocker named |
 
 ### Priority Packet Quarantine Audit
 
@@ -230,8 +246,8 @@ The following data are not part of the base neutral swarm definition:
 | $i=(a,\sigma)$ | Only after $\mathcal{P}$ is declared. | Use as binary-index notation, not as base neutral swarm notation. |
 | $R_a$ | Only after $\mathcal{P}$ and a radius functional are declared. | Treat as a derived partition-indexed radius, not a primitive radius type. |
 | exact antipodality | Only after an exact-binary or exact-antipodal row is declared. | Keep as a mathematical assumption, not a reader-facing swarm type. |
-| common support band | Only when the shell swarm sector is claimed. | This is a sector condition added to the neutral swarm base. |
-| three ordered radial support bands | Only when the nested shell swarm sector is claimed. | This is a stronger sector condition added after the shell swarm condition. |
+| common support band | Only when the shell swarm case is claimed. | This is a case condition added to the neutral swarm base. |
+| three ordered radial support bands | Only when the nested shell swarm case is claimed. | This is a stronger case condition added after the shell swarm condition. |
 | occupancy measure or support distribution | Only when a coarse support-distribution claim is made. | Use the mathematical object; do not revive `cloud` as taxonomy. |
 
 A retained neutral swarm branch would need one live certificate closing these rows on the same branch convention:
