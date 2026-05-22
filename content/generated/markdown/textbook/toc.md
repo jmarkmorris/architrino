@@ -1165,7 +1165,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
         - [Probability](../../../markdown/aaa/philosophy-history/theory-differentials.md?section=Probability)
     - [Theory Bridges](../../../scenes/philosophy_history/theory_bridges/theory_bridges.json)
       - [Quantum Operator Mapping](../../../scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json)
-        - [The Tri-Binary Qubit and Phase Space](../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md?section=The+Tri-Binary+Qubit+and+Phase+Space)
+        - [The Nested Shell Swarm Qubit and Phase Space](../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md?section=The+Nested+Shell+Swarm+Qubit+and+Phase+Space)
         - [Functional Bounds and Well-Posedness](../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md?section=Functional+Bounds+and+Well-Posedness)
         - [QFT Locality Residual](../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md?section=QFT+Locality+Residual)
         - [Scattering-Amplitude Factorization Guardrail](../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md?section=Scattering-Amplitude+Factorization+Guardrail)

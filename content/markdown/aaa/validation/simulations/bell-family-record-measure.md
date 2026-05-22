@@ -245,7 +245,7 @@ B_{\mathbf{r}}^{\mathbf{s}}
 \right),
 $$
 
-where $B_{\mathbf{r}}^{\mathbf{s}}$ is the record-basin subset for the declared preparation, pair or multiplet provenance, local apparatus kernels, coarse-graining, and record window. This is the same measurement discipline used in [Measurement Ontology](../../quantum/measurement-ontology.md#born-rule-interface), but lifted from single-core basin weights to a Bell-family joint record measure.
+where $B_{\mathbf{r}}^{\mathbf{s}}$ is the record-basin subset for the declared preparation, pair or multiplet provenance, local apparatus kernels, coarse-graining, and record window. This is the same measurement discipline used in [Measurement Ontology](../../quantum/measurement-ontology.md#born-rule-interface), but lifted from single-assembly basin weights to a Bell-family joint record measure.
 
 The native proof packet must supply:
 
@@ -255,7 +255,7 @@ The native proof packet must supply:
 4. a compression audit showing why the completed record law does not reduce to Bell-local product screening;
 5. no-signaling and measurement-independence residuals evaluated on the same packet.
 
-The single-core Stern-Gerlach response in [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) is a prerequisite, not the Bell proof itself. Bell-family closure starts only after the pair-provenance measure and the joint record basins are explicit.
+The single-assembly Stern-Gerlach response in [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) is a prerequisite, not the Bell proof itself. Bell-family closure starts only after the pair-provenance measure and the joint record basins are explicit.
 
 ## Acceptance Boundary
 

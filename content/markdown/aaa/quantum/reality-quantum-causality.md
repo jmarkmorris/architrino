@@ -42,7 +42,7 @@ At the absolute level, any local neighborhood is crowded:
 
 At the emergent level:
 
-- Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **tri-binary assembly** plus its coupling to the surrounding Noether-Sea wake background.
+- Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **nested shell swarm assembly** plus its coupling to the surrounding Noether-Sea wake background.
 - Most of the time, the assembly’s internal state is robust against small variations in the net potential.
 - Occasionally, when the assembly’s configuration is **metastable** (near a threshold boundary; see 3.1.1), a particular combination of incoming wakes pushes it across a threshold:
   - Electron “jumps” orbital
@@ -429,7 +429,7 @@ The decision language in this chapter is not an additional ontology. It is a fut
 
 The controlled distinction is:
 
-- a bare Noether core may supply threshold-sensitive material;
+- a bare nested shell swarm may supply threshold-sensitive material;
 - a Switch must show a measurable basin-weight shift under fixed boundary context;
 - a Decider must also show feedback, hold time, and a nonzero work or dissipation ledger.
 

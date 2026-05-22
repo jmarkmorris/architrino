@@ -19,7 +19,7 @@ The universe at the ontic level, as represented by the $\mathbb{U}_{\text{now}}$
 The wavefunction encodes:
 *   **The superposed potential landscape:** A coarse-grained representation of the ambient causal wake intersections.
 *   **Informational ambiguity:** The integrated ignorance of exact source identities, distances, and path-history emission times.
-*   **Assembly resonance modes:** The allowed stable configuration limits of the tri-binary assemblies.
+*   **Assembly resonance modes:** The allowed stable configuration limits of nested shell swarm assemblies.
 
 When standard non-relativistic, fixed-particle-number quantum mechanics uses a unitary evolution equation (the Schrödinger equation), it is tracking the linear, idealized propagation of these coarse-grained potential distributions across the Noether Sea.
 
@@ -239,7 +239,7 @@ Assemblies such as tri-binaries possess internal slow variables that dictate the
 
 Once the accumulated path-history forces push the assembly's action across the $h$-scale separatrix, the system falls into a new, distinct basin of attraction (e.g., transitioning from an excited orbital resonance to a ground state, or locking into a specific spatial trajectory). 
 
-For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full Noether-core spin ledger rather than to a preassigned spin label.
+For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full nested shell swarm spin ledger rather than to a preassigned spin label.
 
 *   **Before the transition:** For the declared apparatus kernel and coarse-graining, the wavefunction models the probability amplitudes of the system navigating the metastable region.
 *   **During the transition:** The discrete state changes sharply, breaking the linear approximation of the Schrödinger equation.
