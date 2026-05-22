@@ -1591,11 +1591,6 @@
       "path": "content/scenes/noether-swarm/shell_swarm.json"
     },
     {
-      "id": "noether_swarm__swarm_dynamics",
-      "name": "Swarm Dynamics",
-      "path": "content/scenes/noether-swarm/swarm_dynamics.json"
-    },
-    {
       "id": "noether_swarm__swarm_geometry",
       "name": "Swarm Geometry",
       "path": "content/scenes/noether-swarm/swarm_geometry.json"

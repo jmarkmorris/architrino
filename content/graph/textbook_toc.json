@@ -8,7 +8,7 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 157,
+      "entries": 156,
       "sections": 1220
     }
   },
@@ -2159,13 +2159,6 @@
                 "headingLevel": 2
               }
             ]
-          },
-          {
-            "id": "noether_swarm__swarm_dynamics",
-            "title": "Swarm Dynamics",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/swarm_dynamics.json"
           }
         ]
       },

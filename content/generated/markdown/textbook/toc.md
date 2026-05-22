@@ -266,7 +266,6 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Deformability of the Envelope](../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md?section=Deformability+of+the+Envelope)
     - [Geometry Interfaces](../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md?section=Geometry+Interfaces)
     - [Summary Commitment](../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md?section=Summary+Commitment)
-  - [Swarm Dynamics](../../../scenes/noether-swarm/swarm_dynamics.json) _(diagram)_
 - [Noether Sea and Effective Spacetime](../../../scenes/spacetime/spacetime.json)
   - [Noether Sea](../../../scenes/spacetime/noether_sea.json)
     - [Core Definition](../../../markdown/aaa/spacetime/noether-sea.md?section=Core+Definition)

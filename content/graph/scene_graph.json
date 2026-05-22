@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 501,
-      "edges": 1242,
-      "scenes": 324,
+      "nodes": 500,
+      "edges": 1241,
+      "scenes": 323,
       "markdownIndexes": 0,
       "markdownDocs": 177,
       "runtimeEdges": 476,
@@ -2054,12 +2054,6 @@
       "id": "noether_swarm__shell_swarm",
       "name": "Shell Swarm",
       "path": "content/scenes/noether-swarm/shell_swarm.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "noether_swarm__swarm_dynamics",
-      "name": "Swarm Dynamics",
-      "path": "content/scenes/noether-swarm/swarm_dynamics.json",
       "nodeType": "scene"
     },
     {
@@ -4963,15 +4957,6 @@
       "name": "Shell Swarm",
       "path": "content/scenes/noether-swarm/shell_swarm.json",
       "searchTarget": "content/scenes/noether-swarm/shell_swarm.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/noether-swarm/swarm_dynamics.json",
-      "nodeType": "scene",
-      "id": "noether_swarm__swarm_dynamics",
-      "name": "Swarm Dynamics",
-      "path": "content/scenes/noether-swarm/swarm_dynamics.json",
-      "searchTarget": "content/scenes/noether-swarm/swarm_dynamics.json",
       "implicit": false
     },
     {
@@ -10893,13 +10878,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/noether-swarm/noether_swarm.json",
       "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
-      "to": "scene:content/scenes/noether-swarm/swarm_dynamics.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-swarm/noether_swarm.json",
-      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
