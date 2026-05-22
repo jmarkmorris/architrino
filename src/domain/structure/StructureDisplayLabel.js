@@ -10,12 +10,12 @@ import {
 import { getStructureTrait, STRUCTURE_KINDS } from "./StructureSchema.js";
 
 const noetherSwarmDisplayLabelsByBinaryPresenceKey = Object.freeze({
-  inner: "Uni Binary",
-  inner_middle: "Bi Binary",
+  inner: "Shell Swarm",
+  inner_middle: "Nested Shell Swarm",
 });
 
 const displayLabelsBySpecies = Object.freeze({
-  noether_swarm: "Noether Swarm",
+  noether_swarm: "Noether swarm",
   noether_pair: "Noether Pair",
   noether_quad: "Noether Quad",
   photon: "Photon",
@@ -85,7 +85,7 @@ function humanizeStructureId(value = "") {
 
 function formatNoetherSwarmDisplayLabel(structureRoot = null) {
   const polarity = String(structureRoot?.traits?.polarity ?? "").trim().toLowerCase();
-  return polarity === "anti" ? "Anti Noether Swarm" : "Pro Noether Swarm";
+  return polarity === "anti" ? "Anti Noether swarm" : "Pro Noether swarm";
 }
 
 function formatPolarityQualifiedLabel(baseLabel = "", polarity = "") {

@@ -50,7 +50,7 @@
   "objects": [
     {
       "id": "fermion_core",
-      "label": "Bi-binary Noether swarm",
+      "label": "Nested shell swarm",
       "scaleExponent": -20,
       "hideScaleLabel": true,
       "radius": 1.68,
@@ -65,7 +65,7 @@
         "inner"
       ],
       "renderStyle": "binarySphere",
-      "labelTitle": "Bi-binary Noether swarm"
+      "labelTitle": "Nested shell swarm"
     },
     {
       "id": "electrino_1",

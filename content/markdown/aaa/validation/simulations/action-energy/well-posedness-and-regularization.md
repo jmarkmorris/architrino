@@ -86,7 +86,7 @@ Detailed explanation (impulses vs smooth pushes):
     \mathcal{E}_{\mathrm{trans},*}
     \big),
     $$
-    where $\mathsf{status}_{\eta,*}$ is the retained branch status, chosen from the existing simple-root, fold-layer, inactive-gap, or rejected statuses, $\mathsf{regularization}_{\eta,*}$ names the finite-$\eta$ route used through the window, $\mathsf{window\_scale}_{\eta,*}$ records the declared transition scaling, and $\mathcal{Y}_{\eta,*}$ is the set of observables promoted through that window.
+    where $\mathsf{status}_{\eta,*}$ is the candidate branch status, chosen from the existing simple-root, fold-layer, inactive-gap, or rejected statuses, $\mathsf{regularization}_{\eta,*}$ names the finite-$\eta$ route used through the window, $\mathsf{window\_scale}_{\eta,*}$ records the declared transition scaling, and $\mathcal{Y}_{\eta,*}$ is the set of observables promoted through that window.
   - For each promoted observable $Y\in\mathcal{Y}_{\eta,*}$, define
     $$
     E_{\mathrm{trans}}(Y;\eta,\eta/2;I_*)

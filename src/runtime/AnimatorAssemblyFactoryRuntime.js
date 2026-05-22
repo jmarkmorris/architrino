@@ -183,7 +183,7 @@ export function createBuiltInAnimatorAssemblyDraftRuntime(templateId, position =
       const id = getNextAssemblyId("noether_swarm");
       return buildDraft({
         id,
-        name: "Pro Noether Swarm",
+        name: "Pro Noether swarm",
         role: "assembly",
         sceneRole,
         position: normalizedPosition,

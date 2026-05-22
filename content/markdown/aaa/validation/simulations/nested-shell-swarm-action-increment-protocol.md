@@ -2,7 +2,7 @@
 
 This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](run-protocols.md) and [Convergence Tests](convergence-tests.md) to the question left open by [Nested Shell Swarm Dynamics](../../noether-swarm/nested-shell-swarm-dynamics.md), [Dyadic Resonance Lock](../../dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md).
 
-The target is narrow. The run must compute the smallest accepted Master-Equation projected action increment from stable nested shell swarm branch transitions. It may compare the resulting scale to the observer-level `$h,\hbar$` benchmark after the computation. It may not insert $\hbar$ as an input step size.
+The target is narrow. The run must compute the smallest accepted Master-Equation projected action increment from candidate nested shell swarm branch transitions whose stability rows pass. It may compare the resulting scale to the observer-level `$h,\hbar$` benchmark after the computation. It may not insert $\hbar$ as an input step size.
 
 ## Closure Question
 
@@ -12,7 +12,7 @@ $$
 \quad\Longrightarrow\quad
 \Delta\Gamma_{\text{cell}}=h^n
 $$
-for $n$ record-facing action-angle channels. This protocol tests the missing premise. It asks whether stable nested shell swarm dynamics select a positive increment $\Delta I_*$ such that
+for $n$ record-facing action-angle channels. This protocol tests the missing premise. It asks whether accepted nested shell swarm dynamics select a positive increment $\Delta I_*$ such that
 $$
 h_{\mathrm{AAA}}=2\pi\Delta I_*
 $$
@@ -22,7 +22,7 @@ Passing this protocol would not complete quantum theory. It would only promote t
 
 ## Accepted Transition Class
 
-Let $B_q$ and $B_{q'}$ denote stable nested shell swarm branch states with layer radii, frequencies, speeds, plane normals, active causal-root ledger, and wake ledger. A candidate accepted transition belongs to
+Let $B_q$ and $B_{q'}$ denote candidate nested shell swarm branch states with passed stability rows, layer radii, frequencies, speeds, plane normals, active causal-root ledger, and wake ledger. A candidate accepted transition belongs to
 $$
 \mathcal{T}_{\mathrm{acc}}
 =
@@ -59,7 +59,7 @@ Here $\mathbf T_\ell$ is the layer torque reconstructed from causal-wake forces 
 
 ## Branch-Chart Conservation Pullback
 
-The projected action increment is a diagnostic until the exact nonlocal Noether charges close on the same retained branch chart. For each accepted transition, pull the normalized delayed-interior characteristic-tail increments from [Master Equation](../../dynamics/master-equation.md#exact-nonlocal-lagrangian) back to the retained branch rows and report
+The projected action increment is a diagnostic until the exact nonlocal Noether charges close on the same live-ledger branch chart. For each accepted transition, pull the normalized delayed-interior characteristic-tail increments from [Master Equation](../../dynamics/master-equation.md#exact-nonlocal-lagrangian) back to the candidate branch rows and report
 $$
 \mathcal{E}_{\mathrm{tot}}^{(\eta)}
 =
@@ -98,7 +98,7 @@ $$
 
 ## Cluster and Stability Residuals
 
-Because a single transition can be a numerical accident, the packet must scan a family of stable branch transitions. For a selected class $\mathcal{C}\subset\mathcal{T}_{\mathrm{acc}}$, report
+Because a single transition can be a numerical accident, the packet must scan a family of branch transitions with passed stability rows. For a selected class $\mathcal{C}\subset\mathcal{T}_{\mathrm{acc}}$, report
 $$
 \delta_I(\mathcal{C})
 =

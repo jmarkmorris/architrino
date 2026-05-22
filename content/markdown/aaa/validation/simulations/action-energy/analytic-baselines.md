@@ -13,7 +13,7 @@ Models:
 
 Methodological priority:
 - Treat the two-point-potential problem as the canonical first laboratory for the delayed theory.
-- Any proposed energy, momentum, virial-like, or kinetic/potential closure claim should be checked here before being generalized to assemblies or medium-level arguments.
+- Any proposed energy, momentum, virial-like, or kinetic/potential closure claim should be checked here before being generalized to assemblies or Noether-Sea response arguments.
 - In practice this means: solve the fixed-center and symmetric two-body cases first, then ask which familiar ODE identities survive, which acquire delay corrections, and which fail outright.
 
 Symmetric two-body on a line (exact DDE; challenges):

@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet develops the scale/action row needed to turn a diagnostic fitted $\Gamma$ from intrinsic-curve screens into a derived branch quantity. It uses [intrinsic-curve-dynamics-equation.md](intrinsic-curve-dynamics-equation.md), [minimal-dynamics-closure-theorem.md](minimal-dynamics-closure-theorem.md), [central-inventory-and-event-ledgers.md](central-inventory-and-event-ledgers.md), [observer-export-and-mass-map-targets.md](observer-export-and-mass-map-targets.md), and [current-dynamics-synthesis.md](current-dynamics-synthesis.md).
 
-This is a theorem-target packet. It does not claim a retained same-level branch.
+This is a theorem-target packet. It does not claim a retained shell swarm branch.
 
 ---
 
@@ -638,9 +638,9 @@ A solver packet that wants to promote a fitted scale into a derived quantity sho
 | `Gamma_F_action` | reciprocal coefficient |
 | `Gamma_fit` | diagnostic least-squares value with convention |
 | `R_gamma` | convention, scale, inertia, action, mass-map, and refinement residuals |
-| `status` | `diagnostic`, `dynamics-only`, or `retained-branch-candidate` |
+| `status` | `diagnostic`, `dynamics-only`, or `retained-shell-swarm-branch-candidate` |
 
-The status `retained-branch-candidate` is allowed only when the same packet also passes the intrinsic dynamics residual, the hard root and noncollision floors, the energy/action row, and the event ledger rows required by the minimal dynamics closure theorem.
+The status `retained-shell-swarm-branch-candidate` is allowed only when the same packet also passes the intrinsic dynamics residual, the hard root and noncollision floors, the energy/action row, the inventory row, the stability row, and the event ledger rows required by the minimal dynamics closure theorem on one live ledger.
 
 Until then the scale row remains:
 

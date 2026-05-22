@@ -552,7 +552,7 @@ The failure-code vocabulary must match the architecture draft exactly:
 | `color-connection-missing` | $\mathcal{S}_3$ color slots are promoted without a continuous connection target |
 | `strong-field-continuation-open` | finite-boundary continuation is not supplied for strong-field claims |
 
-These codes are certificate stops, not prose warnings. A retained same-level branch packet must either pass the associated residual row, mark the row `not_computed` without promotion, or reject the branch.
+These codes are certificate stops, not prose warnings. A retained shell swarm branch packet must either pass the associated residual row, mark the row `not_computed` without promotion, or reject the branch.
 
 ---
 

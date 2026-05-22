@@ -1,4 +1,4 @@
-# Simulations, Regularization, and Shell Numerics
+# Simulations, Regularization, and Noether Swarm Numerics
 
 ## Workstream Metadata
 
@@ -14,7 +14,7 @@
 1. `tier0_tier1_runs` — The $A_0$ self-root fold/splitting diagnostic now classifies all ready rows as `fold-layer`; the step-fraction controller, event-local fold-layer lock, and macro-stride packet brought the compact fixture under the $10^6$ attempt cap with `963815` retained steps. The May 18, 2026 direct fold-layer-locked one-period runner executed that plan without trajectory abort, preserved the two locked self-root keys in $\mathcal{R}_{\text{lock}}$, and failed closed on state return, root closure, phase closure, speed ordering, center drift, and energy-like speed closure. The new residual-balance ledger shows scalar branch-native relation weights over $B_{\text{self}}$, $B_{\text{partner}}$, and $B_{\text{inter}}$ leave relative acceleration residual about `0.755` against tolerance `0.02`. The remaining simulation task is a corrected one-period branch-equation attempt driven by a non-circular carrier correction $\mathbf{d}_\ell(t)$ or richer branch-native interaction basis; $\Delta_k$ and eta-ladder persistence remain downstream until corrected one-period residuals pass. Status: `active`. Depends on: none.
 2. `convergence_and_provenance` — Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs. Status: `pending`. Depends on: `tier0_tier1_runs`.
 3. `eta_positive_package` — Consolidate the formal $\eta > 0$ existence and continuation package. Status: `pending`. Depends on: `tier0_tier1_runs`.
-4. `hydrogen_gamma_n_record_extraction` — The hydrogen $\Gamma_N$ spectral coefficient-row scan now derives $\Lambda_{ab}$, observer frequency, and replay envelope gap entries from recovered principal labels, `frequency_scale`, and `line_inferred_ln_Gamma_N`; the remaining proof/simulation burden is to derive or bound $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ from the same hydrogen spectral channel ledger, replace the scaffolded static response vector only with a constitutive response row for the same Noether-Sea cell, and replace the shared line-inferred cadence stretch only with electron-envelope gaps from the hydrogen branch. Residual recoil, hyperfine structure, photon-channel propagation, and source-branch effects must remain outside $\Gamma_N$ unless a declared residual budget carries them. Status: `pending`. Depends on: `hydrogen_fermion_sea_boundary` and medium-response rows from `mass-map`.
+4. `hydrogen_gamma_n_record_extraction` — The hydrogen $\Gamma_N$ spectral coefficient-row scan now derives $\Lambda_{ab}$, observer frequency, and replay envelope gap entries from recovered principal labels, `frequency_scale`, and `line_inferred_ln_Gamma_N`; the remaining proof/simulation burden is to derive or bound $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ from the same hydrogen spectral channel ledger, replace the scaffolded static response vector only with a constitutive response row for the same Noether-Sea cell, and replace the shared line-inferred cadence stretch only with electron-envelope gaps from the hydrogen branch. Residual recoil, hyperfine structure, photon-channel propagation, and source-branch effects must remain outside $\Gamma_N$ unless a declared residual budget carries them. Status: `pending`. Depends on: `hydrogen_fermion_sea_boundary` and Noether-Sea response rows from `mass-map`.
 5. `gw_public_waveform_packet` — Build a public-data gravitational-wave benchmark packet from GWOSC/LVK event records. The packet must replay GW150914-class short binary-black-hole strain, GW170817-class long binary-neutron-star inspiral and photon-channel speed timing, and current GWTC-4.0 catalog provenance with versioned strain files, detector masks, PE samples, waveform family, calibration notes, artifact hashes, and predeclared waveform/energy/speed residuals. Status: `pending`. Depends on: gravitational-wave effective-metric and event-ledger closure rows.
 
 ## Scope
@@ -433,7 +433,7 @@ $$
 \sup_{t,i,j}B_{ij}^{\mathrm{active}}(t)\le B_0<\infty.
 $$
 
-Tier 0 accepts a speed-ordered tri-binary row only if the row declares the ordering inequalities used by the branch label and verifies them as strict inequalities, for example
+Tier 0 accepts a speed-ordered nested shell swarm row only if the row declares the ordering inequalities used by the branch label and verifies them as strict inequalities, for example
 $$
 s_I>c_f,\qquad |s_M-c_f|\le \tau_{\mathrm{speed},0},\qquad s_O<c_f.
 $$
@@ -772,7 +772,7 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 
 - Use the collinear-breather finite certificate as the smallest solver benchmark for candidate-cycle input, root enumeration, $\eta > 0$ continuation, monodromy, returned-history residuals, and topology reporting, with every failed row assigned one element of $\mathcal{F}$ and the exact failed inequality.
 - Implement tier-0 and tier-1 simulations by instantiating $\mathcal{C}_{\mathrm{sim}}$ and satisfying the tier acceptance criteria above before any result is used in [run-protocols](../../../content/markdown/aaa/validation/simulations/run-protocols.md) or the `validation/simulations/action-energy/*` material.
-- Lock the maximum-curvature orbit, history resolution, and binary / tri-binary stability numerically only when the branch-root ledger is stable under $\Delta t$, $\Delta h$, and $\eta$ refinement.
+- Lock the maximum-curvature orbit, history resolution, and binary / nested shell swarm stability numerically only when the branch-root ledger is stable under $\Delta t$, $\Delta h$, and $\eta$ refinement.
 - Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs only as promotion artifacts paired with `convergence_table.csv`, `u_now_provenance.*`, `failure_report.md`, and `promotion_lemma_check.md`.
 - Consolidate the formal $\eta > 0$ package by verifying $\mathsf{WP}_\eta$, $\mathsf{NR}_\eta$, $\mathsf{Cont}_\eta$, and $\partial\mathcal{A}_\eta$ for each promoted run family.
 - Tie the Planck mapping back to the master equation only through simulation-supported priority claims whose variables are present in $\mathcal{C}_{\mathrm{sim}}$ and whose regulator-dependence row passes.

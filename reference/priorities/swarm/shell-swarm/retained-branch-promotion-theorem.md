@@ -1,14 +1,14 @@
 # Retained Branch Promotion Theorem
 
-Promotion status: `priority-only`. This packet composes the same-level tri-binary proof stack into one promotion theorem. It states the exact mathematical certificate required before a same-level tri-binary branch can be treated as retained rather than as a dynamics screen, ansatz, or priority-only candidate.
+Promotion status: `priority-only`. This packet composes the shell swarm proof stack into one promotion theorem. It states the exact mathematical certificate required before a shell swarm branch can be treated as a retained priority-side candidate rather than as a dynamics screen, ansatz, or priority-only candidate. It does not itself claim retention.
 
-The theorem is intentionally strict: every row must use the same curve family, active root ledger, memory convention, source-pair policy, support convention, action convention, event interval, inventory ledger, and endpoint convention.
+The theorem is intentionally strict: every row must use the same curve family, active root ledger, memory convention, source policy, support convention, action convention, event interval, inventory ledger, and endpoint convention. A retained-branch claim remains blocked until those live-ledger certificate rows close on one convention.
 
 ---
 
 ## 1. Promotion Certificate
 
-A retained same-level branch packet is a tuple
+A retained shell swarm branch certificate target is a tuple
 
 $$
 \mathsf{R}_{\mathrm{tri}}(B)
@@ -283,7 +283,7 @@ If an action-side stability claim is made, [second-variation-action-stability-th
 
 ## 6. Promotion Theorem Target
 
-**Theorem target: retained same-level tri-binary branch promotion.** Suppose a branch packet $B$ supplies:
+**Theorem target: retained shell swarm branch promotion.** Suppose a branch packet $B$ supplies:
 
 1. a closed geometry certificate with equal period, support, gauge, and noncollision floors;
 2. a support-complete root certificate with positive delay, Jacobian, bracket, gap, memory, and tail rows;
@@ -294,7 +294,7 @@ If an action-side stability claim is made, [second-variation-action-stability-th
 7. root-dependent Floquet/NHIM stability, with second-variation action stability when an action-norm stability claim is used, on the same root, memory, and action convention;
 8. central inventory, source provenance, and endpoint ledgers matching the dynamics/action row.
 
-Then $B$ is a retained same-level tri-binary branch candidate. It may be promoted from priority-only status into reader-facing corpus prose with its claim level, assumptions, and unresolved observer-export rows stated.
+Then $B$ is a retained priority-side shell swarm branch candidate. It is still not a reader-facing model-closure claim by itself: corpus prose may cite it only after the live-ledger certificate rows are emitted, their statuses are recorded, and any downstream observer-export rows used by the prose are marked `passed`, `failed`, or `not_computed`.
 
 If any of rows 1 through 8 fail, $B$ remains a priority-only screen or theorem target. In particular:
 
@@ -359,13 +359,13 @@ $$
 \mathsf{C}_{\mathrm{event}}
 \right)
 \Longrightarrow
-\texttt{retained-same-level-branch-candidate}.
+\texttt{retained-shell-swarm-branch-candidate}.
 $$
 
 Observer exports are downstream:
 
 $$
-\texttt{retained-same-level-branch-candidate}
+\texttt{retained-shell-swarm-branch-candidate}
 \longrightarrow
 \mathsf{C}_{\mathrm{export}}.
 $$

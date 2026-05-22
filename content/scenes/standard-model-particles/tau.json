@@ -50,7 +50,7 @@
   "objects": [
     {
       "id": "fermion_core",
-      "label": "Uni-binary Noether swarm",
+      "label": "Shell swarm",
       "scaleExponent": -20,
       "hideScaleLabel": true,
       "radius": 1.08,
@@ -64,7 +64,7 @@
         "inner"
       ],
       "renderStyle": "binarySphere",
-      "labelTitle": "Uni-binary Noether swarm"
+      "labelTitle": "Shell swarm"
     },
     {
       "id": "electrino_1",

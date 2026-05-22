@@ -54,41 +54,41 @@ function createMockParentElement() {
 test("reaction title compacts repeated AAA bracket groups", () => {
   assert.equal(
     compactPdgeditReactionTitle(
-      "+ [Pro Noether Swarm+Anti Noether Swarm+Pro Noether Swarm+Anti Noether Swarm]AAA"
+      "+ [Pro Noether swarm+Anti Noether swarm+Pro Noether swarm+Anti Noether swarm]AAA"
     ),
-    "+ 2x[Pro Noether Swarm+Anti Noether Swarm]AAA"
+    "+ 2x[Pro Noether swarm+Anti Noether swarm]AAA"
   );
 });
 
 test("reaction participant compaction collapses repeated sequences for summary rendering", () => {
   assert.deepEqual(
     compactPdgeditReactionParticipants([
-      { text: "Anti Noether Swarm" },
-      { text: "Pro Noether Swarm" },
-      { text: "Anti Noether Swarm" },
-      { text: "Pro Noether Swarm" },
+      { text: "Anti Noether swarm" },
+      { text: "Pro Noether swarm" },
+      { text: "Anti Noether swarm" },
+      { text: "Pro Noether swarm" },
     ]),
     {
       repeatCount: 2,
-      participants: ["Anti Noether Swarm", "Pro Noether Swarm"],
+      participants: ["Anti Noether swarm", "Pro Noether swarm"],
     }
   );
 });
 
 test("reaction title leaves non-repeated AAA groups unchanged", () => {
   assert.equal(
-    compactPdgeditReactionTitle("+ [Pro Noether Swarm+Anti Noether Swarm+Pro Up Quark]AAA"),
-    "+ [Pro Noether Swarm+Anti Noether Swarm+Pro Up Quark]AAA"
+    compactPdgeditReactionTitle("+ [Pro Noether swarm+Anti Noether swarm+Pro Up Quark]AAA"),
+    "+ [Pro Noether swarm+Anti Noether swarm+Pro Up Quark]AAA"
   );
 });
 
 test("reaction title compacts each repeated AAA group independently", () => {
   assert.equal(
     compactPdgeditReactionTitle(
-      "[Pro Noether Swarm + Anti Noether Swarm + Pro Noether Swarm + Anti Noether Swarm]AAA -> " +
+      "[Pro Noether swarm + Anti Noether swarm + Pro Noether swarm + Anti Noether swarm]AAA -> " +
         "[Pro Electron+Pro Electron]AAA"
     ),
-    "2x[Pro Noether Swarm+Anti Noether Swarm]AAA -> 2x[Pro Electron]AAA"
+    "2x[Pro Noether swarm+Anti Noether swarm]AAA -> 2x[Pro Electron]AAA"
   );
 });
 

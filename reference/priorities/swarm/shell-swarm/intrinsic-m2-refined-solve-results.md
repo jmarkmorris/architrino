@@ -163,7 +163,7 @@ $$
 \mathcal{R}_L\ne0.
 $$
 
-The solver is using unequal curve lengths to improve force closure. A retained same-level branch cannot do that unless it declares rational winding data or solves a common-period constraint.
+The solver is using unequal curve lengths to improve force closure. A retained shell swarm branch candidate cannot do that unless it declares rational winding data or solves a common-period constraint.
 
 ---
 

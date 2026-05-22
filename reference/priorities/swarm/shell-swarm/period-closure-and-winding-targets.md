@@ -1,6 +1,6 @@
 # Period Closure And Winding Targets
 
-Promotion status: `priority-only`. This packet isolates the period-length blocker exposed by [intrinsic-m2-refined-solve-results.md](intrinsic-m2-refined-solve-results.md). The intrinsic solver can now reduce the force residuals in an exact-antipodal $M=2$ vector Fourier basis, but it does so by allowing unequal curve lengths. A retained same-level branch must either close the equal-period row or declare rational winding data as part of a distinct branch family.
+Promotion status: `priority-only`. This packet isolates the period-length blocker exposed by [intrinsic-m2-refined-solve-results.md](intrinsic-m2-refined-solve-results.md). The intrinsic solver can now reduce the force residuals in an exact-antipodal $M=2$ vector Fourier basis, but it does so by allowing unequal curve lengths. A retained shell swarm branch candidate must either close the equal-period row or declare rational winding data as part of a distinct branch family.
 
 This packet states the theorem target and solver rows. It does not retain a branch.
 
@@ -318,6 +318,6 @@ $$
 \mathcal{R}_{T}=0,
 $$
 
-and its event/action ledger closes over the same common period, then the period row is compatible with a retained same-level dynamics branch.
+and its event/action ledger closes over the same common period, then the period row is compatible with a retained shell swarm dynamics candidate.
 
 If the force rows close only while $\mathcal{R}_L$ or $\mathcal{R}_{\mathrm{wind}}$ remains open, the candidate is a useful search direction but not a retained branch.

@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet supplies a concrete theorem-target lemma for root and Jacobian barriers in the intrinsic collocation solver. It builds on [intrinsic-curve-solver-protocol.md](intrinsic-curve-solver-protocol.md), [shell-swarm-branch-mathematics.md](shell-swarm-branch-mathematics.md), [finite-mode-rank-screen-results.md](finite-mode-rank-screen-results.md), and [intrinsic-m2-collocation-rank-results.md](intrinsic-m2-collocation-rank-results.md).
 
-Claim level: solver guard and proof route. This packet does not claim a retained same-level branch, does not certify a nonlinear solution, and does not authorize migration into `content/markdown/aaa`.
+Claim level: solver guard and proof route. This packet does not claim a retained shell swarm branch, does not certify a nonlinear solution, and does not authorize migration into `content/markdown/aaa`.
 
 ---
 

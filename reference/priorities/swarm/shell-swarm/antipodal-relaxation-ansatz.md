@@ -785,4 +785,4 @@ $$
 \text{antipodal relaxation is a necessary candidate column for the pair-even dynamics residual.}
 $$
 
-It is not evidence of a retained same-level branch until a concrete relaxed curve family closes the full intrinsic dynamics, root, inventory, action, event, stability, and framed-wake rows together.
+It is not evidence of a retained shell swarm branch until a concrete relaxed curve family closes the full intrinsic dynamics, root, inventory, action, event, stability, and framed-wake rows together on one live ledger.

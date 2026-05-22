@@ -2,7 +2,7 @@
 
 Terminology status: `quarantined-priority-history`. This gate map is inherited architecture source, not terminology authority. Its disputed labels may remain here for git history and mathematical source mining, but they are not accepted reader-facing taxonomy. Route any reuse through [swarm.md](../swarm.md), whose active reader-facing triad is `neutral swarm`, `shell swarm`, and `nested shell swarm`.
 
-Promotion status: `priority-only`. This document coordinates the shell swarm mathematics developed in this directory. It does not authorize migration into `content/markdown/aaa` until a retained branch packet satisfies the decision gate in [swarm-architecture.md](swarm-architecture.md).
+Promotion status: `priority-only`. This document coordinates the shell swarm mathematics developed in this directory. It does not authorize migration into `content/markdown/aaa`. Retained-branch and architecture claims remain blocked until a live ledger and the required certificate rows close on one convention through the decision gate in [swarm-architecture.md](swarm-architecture.md).
 
 The merge decision now runs through [neutral-swarm-model.md](../neutral-swarm/neutral-swarm-model.md) and [nested-shell-swarm-model-card.md](../nested-shell-swarm/nested-shell-swarm-model-card.md). Shell swarm geometry is therefore one mathematical case of a broader neutral swarm branch family, while the nested shell swarm packet set remains comparison and fallback source material until the user-facing corpus merge gate passes.
 
@@ -10,7 +10,7 @@ In the shell swarm case, the model trades persistent radial nesting for a certif
 
 For deformed support-band rows, the preferred dynamics chart is now the arclength chart: fixed speed is encoded by the curve clock, and the remaining carrier equation is force-versus-curvature closure. Thus a fixed-speed deformed retained branch must close $\mathcal{R}_{L}$, $\mathcal{R}_{T}$, $\mathcal{R}_{\mathrm{tan}}$, and $\mathcal{R}_{\mathrm{curv}}$ on the same active-root ledger, not only an angle-clock speed residual. A bounded-speed branch replaces the tangent row with $\mathcal{R}_{\mathrm{speedODE}}^\nu$ and closes $\mathcal{R}_{N\mathrm{rec}}^\nu$, $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, support, and action/event exchange rows on the bounded-speed ledger. Because those rows change the same roots, Jacobians, force weights, support multipliers, and event surfaces, bounded-speed promotion also needs the coupled live-ledger residual $\mathcal{R}_{\mathrm{cpl}}^\nu$.
 
-The composite promotion decision is stated in [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md). That theorem is the guardrail for any future migration: a shell swarm packet remains priority-only until geometry, roots, dynamics, convergence, action, conservation, stability, inventory, and event rows all close on one ledger convention.
+The composite promotion decision is stated in [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md). That theorem is the guardrail for any future migration: a shell swarm packet remains priority-only until geometry, roots, dynamics, convergence, action, conservation, stability, inventory, and event rows all close on one live-ledger convention. Observer-export rows must be reported as statuses before any downstream Lorentz, photon, mass, color, strong-field, or cosmology claim is promoted.
 
 ---
 
@@ -66,7 +66,7 @@ $$
 \right).
 $$
 
-The packet is retained only if each row is attached to the same state history $\mathcal{H}_q$ and the same active causal-root ledger $\mathcal{A}_q$.
+The packet becomes a retained priority-side candidate only if each row is attached to the same state history $\mathcal{H}_q$ and the same active causal-root ledger $\mathcal{A}_q$. Until those certificate rows are present, every retained-branch statement in this directory is a proof target or search status, not a branch-retention claim.
 
 | Row | Required payload | Reject if |
 | --- | --- | --- |
@@ -343,4 +343,4 @@ The first proof-packet layer is now staged:
 | Observer exports/mass map | residuals stated; no moving-branch export computed yet |
 | Source triage | converted targets and overclaims classified |
 
-The next mathematical closure object is one retained branch packet using a single active causal-root convention. Until that object exists, shell swarm architecture remains an architecture-development candidate rather than the accepted replacement for nested shell swarm material.
+The next mathematical closure object is one live-ledger retained-branch certificate packet using a single active causal-root convention. Until that object exists and its certificate rows close, shell swarm architecture remains an architecture-development candidate rather than the accepted replacement for nested shell swarm material.

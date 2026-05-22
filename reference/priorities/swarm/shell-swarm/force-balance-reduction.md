@@ -607,7 +607,7 @@ Thus force balance is a root-ledger theorem target. Symmetry may reduce the numb
 
 ## 6. Certificate Use
 
-A retained same-level branch packet must supply, for every receiver $i$ and every retained time $t$:
+A retained shell swarm branch packet must supply, for every receiver $i$ and every retained time $t$:
 
 1. The active-root partition $\mathcal{P}_i(t)$, $\mathcal{X}_i(t)$, and $\mathcal{S}_i(t)$, including the self/fold-layer status.
 2. The scalar data $y_{ij}^{\alpha}$, $J_{ij}^{\alpha}$, $T_{ij}^{\alpha}$, and $N_{ij}^{\alpha}$ for every retained root.

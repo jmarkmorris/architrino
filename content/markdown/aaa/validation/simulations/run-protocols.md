@@ -20,7 +20,7 @@ The first mass-map target has a specialized protocol in [$A_0$ Branch Certificat
 1. Tier 0 algebraic branch search for finite root-ledger candidates.
 2. Tier 1 $\eta>0$ delayed-dynamics continuation and Floquet diagnostics.
 3. Tier 2 internal-energy and shielding extraction.
-4. Tier 3 medium-response tensor probes.
+4. Tier 3 Noether-Sea response tensor probes.
 
 A rerun after a finite-coordinate no-go must include the predeclared branch-chart revision record; residual-selected coordinates, locked keys promoted into branch geometry, or benchmark-derived inputs invalidate the packet as hidden fitting.
 
@@ -97,9 +97,9 @@ All simulations integrate dynamics in the absolute Euclidean frame:
 - Global absolute time $t$ with step $\Delta t$
 - No relativistic time dilation applied to the integration clock (proper time is derived only in post-processing)
 
-### Void vs medium terminology (simulation-facing)
+### Void and Noether-Sea Terminology (Simulation-Facing)
 - "Euclidean void" = the fixed spatial container represented by the chosen coordinate chart / grid indices
-- "Noether Sea" = coupled pro/anti swarms instantiated as objects or fields in the void
+- "Noether Sea" = coupled pro/anti swarms instantiated as objects or response variables in the void
 
 ### Mandatory $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) grid
 Every run must instantiate $\mathbb{U}_{\text{now}}$ sensors:

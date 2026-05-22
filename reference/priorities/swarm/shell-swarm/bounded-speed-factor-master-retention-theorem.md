@@ -1,8 +1,8 @@
 # Bounded Speed Factor Master Retention Theorem
 
-Promotion status: `priority-only`. This packet is the bounded-speed successor to the fixed-speed master theorem in [support-complete-m3-master-retention-theorem.md](support-complete-m3-master-retention-theorem.md). It defines what it would mean to retain a same-level tri-binary branch when each architrino carries a bounded speed factor $\nu_i$ rather than the fixed-speed constraint $\nu_i\equiv1$.
+Promotion status: `priority-only`. This packet is the bounded-speed successor to the fixed-speed master theorem in [support-complete-m3-master-retention-theorem.md](support-complete-m3-master-retention-theorem.md). It defines what it would mean to retain a shell swarm branch when each architrino carries a bounded speed factor $\nu_i$ rather than the fixed-speed constraint $\nu_i\equiv1$.
 
-It does not claim retention. It states the rows that must be recomputed before the bounded-speed model can replace the current exact-antipodal $M=3$ fixed-speed screens.
+It does not claim retention. It states the rows that must be recomputed on one live ledger before the bounded-speed model can replace the current exact-antipodal $M=3$ fixed-speed screens.
 
 ---
 
@@ -532,7 +532,7 @@ $$
 10. the inventory ledger matches the same root/action/event ledger, including the $3$-$2$ attraction/repulsion source-site row from [attraction-repulsion-inventory-theorem.md](attraction-repulsion-inventory-theorem.md) and the weighted force-moment diagnostics from [attraction-repulsion-force-moment-decomposition.md](attraction-repulsion-force-moment-decomposition.md) when the branch is a neutral six-site same-level row;
 11. the normalized master error satisfies $\mathfrak{E}_{\nu}(B)\le1$.
 
-Then $B$ is a retained bounded-speed same-level tri-binary branch candidate.
+Then $B$ is a retained bounded-speed shell swarm branch candidate on the declared live ledger. That status remains priority-side until the emitted certificate rows and any downstream observer-export statuses needed by a reader-facing claim are recorded.
 
 Proof route:
 

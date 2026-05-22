@@ -156,7 +156,7 @@ Its diagnostics were:
 
 This common phase-modulation row is worse than the best rigid phase row and worse than the breathing-only tangential fit. It improves speed relative to the breathing-only candidate, but it gives back the tangential improvement and worsens radial support.
 
-Interpretation: a single shared phase modulation is not the right correction. If phase modulation is useful, it must likely be pair-specific or site-specific and solved simultaneously with radial support rather than imposed as one common waveform.
+Interpretation: a single shared phase modulation is not the right correction. If phase modulation is useful, it must likely be binary-specific and solved simultaneously with radial support rather than imposed as one common waveform.
 
 ---
 
@@ -167,7 +167,7 @@ The common radial breathing mode has the right qualitative effect on tangential 
 This supports three conclusions:
 
 1. Deformation is not optional. Rigid phase offsets alone do not close the dynamics.
-2. A retained same-level branch must solve the coupled system
+2. A retained shell swarm branch must solve the coupled system
    $$
    \mathcal{R}_{\mathrm{tan}}=0,
    \qquad
@@ -232,4 +232,4 @@ The next bounded search should use the ansatz from [deformed-carrier-dynamics-an
 4. radial/support residual in the primary objective, not as a diagnostic after the fact;
 5. optional self/fold-layer terms only if their event/action ledger contribution is explicitly tracked.
 
-This is the first evidence that same-level dynamics may need a genuinely deformable support-band attractor rather than a lightly tuned octahedral loop.
+This is the first evidence that shell swarm dynamics may need a genuinely deformable support-band attractor rather than a lightly tuned octahedral loop.

@@ -897,7 +897,7 @@
     },
     {
       "key": "pro-noether-swarm",
-      "title": "Pro Noether Swarm",
+      "title": "Pro Noether swarm",
       "borderColor": "purple",
       "lines": [
         {
@@ -912,14 +912,14 @@
         },
         {
           "type": "literal",
-          "text": "Core",
+          "text": "Swarm",
           "color": "white"
         }
       ]
     },
     {
       "key": "anti-noether-swarm",
-      "title": "Anti Noether Swarm",
+      "title": "Anti Noether swarm",
       "borderColor": "purple",
       "lines": [
         {
@@ -934,14 +934,14 @@
         },
         {
           "type": "literal",
-          "text": "Core",
+          "text": "Swarm",
           "color": "white"
         }
       ]
     },
     {
       "key": "pro-noether-swarm-glyph",
-      "title": "Pro Noether Swarm Glyph",
+      "title": "Pro Noether swarm glyph",
       "type": "binary-glyph",
       "borderColor": "purple",
       "binaryGlyph": {
@@ -1054,7 +1054,7 @@
     },
     {
       "key": "anti-noether-swarm-glyph",
-      "title": "Anti Noether Swarm Glyph",
+      "title": "Anti Noether swarm glyph",
       "type": "binary-glyph",
       "borderColor": "purple",
       "binaryGlyph": {
@@ -1167,7 +1167,7 @@
     },
     {
       "key": "pro-uni-binary",
-      "title": "Pro Uni Binary",
+      "title": "Pro Shell Swarm",
       "borderColor": "purple",
       "lines": [
         {
@@ -1177,19 +1177,19 @@
         },
         {
           "type": "literal",
-          "text": "Uni",
+          "text": "Shell",
           "color": "white"
         },
         {
           "type": "literal",
-          "text": "Binary",
+          "text": "Swarm",
           "color": "white"
         }
       ]
     },
     {
       "key": "anti-uni-binary",
-      "title": "Anti Uni Binary",
+      "title": "Anti Shell Swarm",
       "borderColor": "purple",
       "lines": [
         {
@@ -1199,19 +1199,19 @@
         },
         {
           "type": "literal",
-          "text": "Uni",
+          "text": "Shell",
           "color": "white"
         },
         {
           "type": "literal",
-          "text": "Binary",
+          "text": "Swarm",
           "color": "white"
         }
       ]
     },
     {
       "key": "pro-bi-binary",
-      "title": "Pro Bi Binary",
+      "title": "Pro Nested Shell Swarm",
       "borderColor": "purple",
       "lines": [
         {
@@ -1221,19 +1221,19 @@
         },
         {
           "type": "literal",
-          "text": "Bi",
+          "text": "Nested",
           "color": "white"
         },
         {
           "type": "literal",
-          "text": "Binary",
+          "text": "Shell Swarm",
           "color": "white"
         }
       ]
     },
     {
       "key": "anti-bi-binary",
-      "title": "Anti Bi Binary",
+      "title": "Anti Nested Shell Swarm",
       "borderColor": "purple",
       "lines": [
         {
@@ -1243,12 +1243,12 @@
         },
         {
           "type": "literal",
-          "text": "Bi",
+          "text": "Nested",
           "color": "white"
         },
         {
           "type": "literal",
-          "text": "Binary",
+          "text": "Shell Swarm",
           "color": "white"
         }
       ]

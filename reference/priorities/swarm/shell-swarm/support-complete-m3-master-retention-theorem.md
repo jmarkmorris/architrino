@@ -1,8 +1,8 @@
 # Support-Complete $M=3$ Master Retention Theorem
 
-Promotion status: `priority-only`. This packet states the master certificate that would make the exact-antipodal $M=3$ same-level tri-binary branch mathematically retained. It integrates the tail, root-sheet, dynamics/action, Krawczyk, finite-mode convergence, Noether/event, and stability handoffs into one theorem target.
+Promotion status: `priority-only`. This packet states the master certificate that would make the exact-antipodal $M=3$ shell swarm branch a retained priority-side candidate. It integrates the tail, root-sheet, dynamics/action, Krawczyk, finite-mode convergence, Noether/event, and stability handoffs into one theorem target.
 
-It does not claim that the branch is retained. It defines the exact row-level meaning of a retained exact-antipodal $M=3$ branch and the first-failure precedence for the present solve route.
+It does not claim that the branch is retained. It defines the exact row-level meaning of a retained exact-antipodal $M=3$ branch candidate and the first-failure precedence for the present solve route. Retained-branch claims remain blocked until every required row closes on the same live ledger.
 
 ---
 
@@ -50,7 +50,7 @@ The rows mean:
 | $\mathsf{Ledger}$ | one shared root, memory, source-pair, endpoint, action, event, and weighting convention |
 | $\mathsf{Status}$ | one primary decision status |
 
-The certificate is retained only if all rows use the same ledger. Any row computed on a different ledger exits with
+The certificate can pass only if all rows use the same live ledger. Any row computed on a different ledger exits with
 
 $$
 \texttt{ledger-convention-mismatch}.
@@ -193,7 +193,7 @@ $$
 
 where $\epsilon_r^{\mathrm{cert}}$ includes the certified tail, root, sheet, mesh, projector, aliasing, action, endpoint, Noether-Sea, and nonlinear-recovery error terms relevant to row $r$.
 
-The exact-antipodal $M=3$ branch is a retained same-level branch candidate only if
+The exact-antipodal $M=3$ branch is a retained shell swarm branch candidate only if
 
 $$
 \mathfrak{E}_{M3}(B)\le1
@@ -330,7 +330,7 @@ The meanings are:
 
 | Status | Mathematical meaning |
 | --- | --- |
-| `retained-exact-antipodal-m3-branch-candidate` | all master rows pass; branch may be promoted with stated assumptions and unresolved observer exports |
+| `retained-exact-antipodal-m3-branch-candidate` | all master rows pass on one live ledger; branch becomes eligible for promotion review with stated assumptions, recorded certificate statuses, and explicit observer-export statuses |
 | `support-complete-exact-antipodal-dynamics-action-candidate` | finite support-complete dynamics/action rows pass, but convergence, Noether/event, stability, or inventory rows remain open |
 | `support-complete-exact-antipodal-obstruction` | exact-antipodal $M=3$ local zero is excluded inside the certified ball after higher exact-antipodal refinement fails |
 | `active-window-only` | support-complete memory has not been certified; current rows are dynamics evidence only |
@@ -352,7 +352,7 @@ Midpoint relaxation is not terminal. It is a new chart opened only after the obs
 7. the central inventory and event ledgers match the dynamics/action ledger;
 8. the normalized master error satisfies $\mathfrak{E}_{M3}(B)\le1$.
 
-Then $B$ is a retained exact-antipodal $M=3$ same-level tri-binary branch candidate. Observer exports remain downstream claims and do not define retention.
+Then $B$ is a retained exact-antipodal $M=3$ shell swarm branch candidate on the declared live ledger. Observer exports remain downstream claims and do not define retention, but any downstream claim that uses them remains blocked until the corresponding export row is explicitly statused.
 
 Conversely, if rows 1 and 2 pass but the support-complete adjoint/cokernel obstruction inequality passes after exact-antipodal mode refinement fails, then the exact-antipodal $M=3$ chart is locally obstructed on the declared ledger. Midpoint relaxation may be opened only if its projected columns span the obstructing block.
 

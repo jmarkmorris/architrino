@@ -339,7 +339,7 @@ $$
 \text{for all }i,t.
 $$
 
-If the event/action and exposure ledgers also close on the same active-root convention, then $\alpha_*$ is a retained same-level tri-binary dynamics branch.
+If the event/action, inventory, and stability certificate rows also close on the same live ledger, then $\alpha_*$ is a retained shell swarm dynamics candidate. Downstream observer claims remain blocked until their export rows are explicitly statused.
 
 For continuation, require the finite-dimensional collocation map
 

@@ -135,7 +135,7 @@ Interpretation: phase offsets alone are not enough to retain the rigid orthogona
 
 ## 4. Force-Balance Implication
 
-[force-balance-reduction.md](force-balance-reduction.md) shows that a retained same-level carrier must close both:
+[force-balance-reduction.md](force-balance-reduction.md) shows that a retained shell swarm carrier must close both:
 
 $$
 \mathcal{R}_{\mathrm{tan},i}

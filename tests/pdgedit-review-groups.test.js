@@ -109,7 +109,7 @@ test("standard fermion review rows use generation-trimmed polar tiles", () => {
   });
 });
 
-test("Noether swarm review rows show the tri/bi/uni-binary ladder explicitly", () => {
+test("Noether swarm review rows show the shell and nested shell rows explicitly", () => {
   const reviewGroups = normalizePdgeditReviewGroupCatalog(readJson("src/apps/pdgedit/pdgedit-review-groups.json"));
   const groupByKey = new Map(reviewGroups.singleRowGroups.map((group) => [group.key, group]));
 

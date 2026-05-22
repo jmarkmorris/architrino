@@ -4,7 +4,7 @@ export const animatorSceneRoleOptions = [
 
 export const animatorAssemblyTemplateMenuRows = [
   [
-    { template: "noether_swarm", label: "Pro Noether Swarm" },
+    { template: "noether_swarm", label: "Pro Noether swarm" },
     { template: "noether_pair", label: "Noether Pair" },
     { template: "noether_quad", label: "Noether Quad" },
   ],

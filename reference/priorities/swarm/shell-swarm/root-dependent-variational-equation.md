@@ -1,6 +1,6 @@
 # Root-Dependent Variational Equation
 
-Promotion status: `priority-only`. This packet refines [root-ledger-floquet-stability-certificate.md](root-ledger-floquet-stability-certificate.md) by writing the actual variational equation for perturbations of a retained same-level branch whose delayed roots move with the perturbation. A stability multiplier computed with frozen roots is not a retained-branch stability certificate.
+Promotion status: `priority-only`. This packet refines [root-ledger-floquet-stability-certificate.md](root-ledger-floquet-stability-certificate.md) by writing the actual variational equation for perturbations of a retained shell swarm branch candidate whose delayed roots move with the perturbation. A stability multiplier computed with frozen roots is not a retained-branch stability certificate.
 
 The equation is local to one support-complete dynamics/action branch, one root ledger, one source-pair policy, one memory convention, one action-derived scale row, and one return section.
 

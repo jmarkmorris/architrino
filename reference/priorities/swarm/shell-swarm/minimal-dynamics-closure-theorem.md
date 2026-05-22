@@ -1,6 +1,6 @@
 # Minimal Dynamics Closure Theorem Target
 
-Promotion status: `priority-only`. This packet states the strongest currently defensible theorem-style closure target for same-level tri-binary dynamics after the arclength correction in [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md). It does not claim that a retained same-level branch exists. It states what would be sufficient to retain one, what first-order and nonlinear transversality checks would imply, and which observer/export consequences remain separate obligations.
+Promotion status: `priority-only`. This packet states the strongest currently defensible theorem-style closure target for shell swarm dynamics after the arclength correction in [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md). It does not claim that a retained shell swarm branch exists. It states what would be sufficient to retain one, what first-order and nonlinear transversality checks would imply, and which observer/export consequences remain separate obligations.
 
 The current numerical evidence is useful but negative. The rigid zero-offset octahedral carrier has a good noncollision/root seed but fails tangential closure with dimensionless RMS about $1.1009590702$ and maximum about $2.0636859695$. Phase offsets reduce the RMS to about $0.8798$ but leave an $O(1)$ maximum residual. Common radial breathing improves tangential leakage further; under arclength timing the best screened common-breathing row reaches tangential RMS about $0.4658704026$, but the full force-versus-curvature residual remains $O(1)$, with vector dynamics RMS about $1.4628229490$ and a marginal Jacobian floor near $0.2487273439$. Therefore the theorem target below treats tangential improvement as motivation only. The retained object is a zero of the full dynamics residual on one active causal-root ledger.
 
@@ -235,7 +235,7 @@ where each term is computed from the same root ledger. The medium-response term 
 
 ## 3. Hard Floor Hypotheses
 
-The theorem target separates hard floor hypotheses from residual equations. For a retained same-level dynamics branch, the following inequalities must hold on the same window $W$.
+The theorem target separates hard floor hypotheses from residual equations. For a retained shell swarm dynamics candidate, the following inequalities must hold on the same window $W$.
 
 ### H1. Curve Regularity And Arclength Nondegeneracy
 
@@ -417,7 +417,7 @@ The components mean:
 | $\mathcal{R}_{\mathrm{return}}$ | the return-section gap vanishes after quotienting gauge directions |
 | $\mathcal{R}_{\mathrm{stab}}$ | the declared stability class is supported by the return-map or Lyapunov row |
 
-For a purely dynamics-only theorem, $\mathcal{R}_{E}$ and $\mathcal{R}_{\mathrm{event}}$ may be omitted from the residual map, but the result must then be named `dynamics-only` and cannot be called a retained physical branch. A retained same-level tri-binary branch requires the full residual vector above, with observer/export rows still handled separately in Section 8.
+For a purely dynamics-only theorem, $\mathcal{R}_{E}$ and $\mathcal{R}_{\mathrm{event}}$ may be omitted from the residual map, but the result must then be named `dynamics-only` and cannot be called a retained physical branch. A retained shell swarm branch candidate requires the full residual vector above, plus inventory and stability certificate rows on the same live ledger, with observer/export rows still handled separately in Section 8.
 
 ---
 
@@ -435,9 +435,9 @@ $$
 \mathcal{F}_{\mathrm{dyn}}(\alpha_*)=\mathbf{0}
 $$
 
-in the declared residual norms, with strict noncollision, arclength, support-band, and Jacobian floors. Then $\alpha_*$ is a retained same-level tri-binary dynamics branch on $W$.
+in the declared residual norms, with strict noncollision, arclength, support-band, and Jacobian floors. Then $\alpha_*$ is a retained shell swarm dynamics candidate on $W$.
 
-If the event/action rows are included and vanish on the same active root ledger, the branch is a retained priority-side physical branch candidate. If the event/action rows are omitted or marked `not_computed`, the result is only a retained dynamics candidate and cannot support mass, Lorentz, photon, color, strong-field, or corpus-migration claims.
+If the event/action, inventory, and stability certificate rows are included and vanish on the same live ledger, the branch is a retained priority-side physical branch candidate. If those rows are omitted or marked `not_computed`, the result is only a retained dynamics candidate and cannot support mass, Lorentz, photon, color, strong-field, or corpus-migration claims.
 
 This theorem target is conditional. It does not assert that such an $\alpha_*$ exists. The current screens show that rigid and common-breathing rows do not satisfy the hypotheses.
 
@@ -545,7 +545,7 @@ If the return map is not computed, the branch may still be an algebraic dynamics
 
 ## 8. Observer And Export Rows Remain Separate
 
-The minimal dynamics theorem does not produce observer-level recovery by implication. The following rows are separate obligations even after a retained same-level dynamics branch exists.
+The minimal dynamics theorem does not produce observer-level recovery by implication. The following rows are separate obligations even after a retained shell swarm dynamics candidate exists.
 
 | Export family | Separate object still required |
 | --- | --- |
@@ -618,7 +618,7 @@ The theorem target has the following proof structure.
 6. **Continuation.** Surjectivity of the gauge-reduced derivative gives local persistence of zeros by the implicit function theorem; floor strictness keeps the continuation inside the same branch stratum.
 7. **Stability.** Return-map and Lyapunov rows supply the stability class. Without those rows, the theorem has no asymptotic-stability conclusion.
 
-This is the minimal defensible closure theorem because it removes the nonphysical speed residual introduced by angle-clock deformations and replaces it with the stronger curvature equation. It also blocks the main overclaim: a better tangential residual is evidence for a deformation direction, not evidence for a retained same-level branch.
+This is the minimal defensible closure theorem because it removes the nonphysical speed residual introduced by angle-clock deformations and replaces it with the stronger curvature equation. It also blocks the main overclaim: a better tangential residual is evidence for a deformation direction, not evidence for a retained shell swarm branch.
 
 ---
 

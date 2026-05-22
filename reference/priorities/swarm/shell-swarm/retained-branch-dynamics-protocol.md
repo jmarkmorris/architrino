@@ -31,7 +31,7 @@ $$
 
 The packet is retained as a search candidate only if the required residuals pass the thresholds in Section 9. Rows that are not computed must be marked `not_computed` and cannot support downstream claims.
 
-Full promotion from a search candidate to a retained same-level branch candidate is governed by [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md). Search retention is therefore only an intermediate status unless the promotion theorem's geometry, root, dynamics, convergence, action, conservation, stability, inventory, and event rows all close on one ledger convention.
+Full promotion from a search candidate to a retained shell swarm branch candidate is governed by [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md). Search retention is therefore only an intermediate status unless the promotion theorem's geometry, root, dynamics, convergence, action, conservation, stability, inventory, and event rows all close on one live-ledger convention.
 
 ---
 
@@ -679,7 +679,7 @@ A candidate may be retained for priority-side analysis only if all rows below pa
 
 ### 10.2 Architecture Decision Candidate
 
-A retained search candidate may be forwarded to the architecture decision gate only after the packet also reports:
+A retained search candidate may be forwarded to the architecture decision gate only after the live-ledger certificate packet also reports:
 
 | Gate | Required status |
 | --- | --- |

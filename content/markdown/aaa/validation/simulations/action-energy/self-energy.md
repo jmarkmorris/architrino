@@ -34,7 +34,7 @@ Net effect: the canonical ontology (moving surface measures, H(0)=0, mollificati
 
 ## Sign-resolved bookkeeping
 
-An additional numerical caution is worth stating explicitly: a medium or assembly may carry a large internal action budget even when its coarse far field appears weak.
+An additional numerical caution is worth stating explicitly: a Noether-Sea region or assembly may carry a large internal action budget even when its coarse far field appears weak.
 
 - Positive and negative sectors can superpose so that the net far-field potential is small.
 - That cancellation does **not** imply the underlying kinetic work or stored interaction content is individually small in each sector.

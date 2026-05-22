@@ -29,7 +29,7 @@
     },
     {
       "key": "pro-noether-swarm",
-      "title": "Pro Noether Swarm",
+      "title": "Pro Noether swarm",
       "rows": [
         [
           "pro-noether-swarm",
@@ -41,7 +41,7 @@
     },
     {
       "key": "anti-noether-swarm",
-      "title": "Anti Noether Swarm",
+      "title": "Anti Noether swarm",
       "rows": [
         [
           "anti-noether-swarm",
@@ -53,7 +53,7 @@
     },
     {
       "key": "pro-bi-binary",
-      "title": "Pro Bi-Binary",
+      "title": "Pro Nested Shell Swarm",
       "rows": [
         [
           "pro-bi-binary",
@@ -65,7 +65,7 @@
     },
     {
       "key": "anti-bi-binary",
-      "title": "Anti Bi-Binary",
+      "title": "Anti Nested Shell Swarm",
       "rows": [
         [
           "anti-bi-binary",
@@ -77,7 +77,7 @@
     },
     {
       "key": "pro-uni-binary",
-      "title": "Pro Uni-Binary",
+      "title": "Pro Shell Swarm",
       "rows": [
         [
           "pro-uni-binary",
@@ -89,7 +89,7 @@
     },
     {
       "key": "anti-uni-binary",
-      "title": "Anti Uni-Binary",
+      "title": "Anti Shell Swarm",
       "rows": [
         [
           "anti-uni-binary",

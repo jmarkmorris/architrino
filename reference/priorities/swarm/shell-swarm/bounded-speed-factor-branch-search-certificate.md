@@ -412,7 +412,7 @@ $$
 \texttt{bounded-speed-retained-branch-candidate}.
 $$
 
-This is still a priority-side retained candidate until observer exports and corpus-facing comparison rows are computed.
+This is still a priority-side retained candidate until the live-ledger certificate is recorded and observer exports and corpus-facing comparison rows are explicitly statused.
 
 ### 6.2 Event Reset
 

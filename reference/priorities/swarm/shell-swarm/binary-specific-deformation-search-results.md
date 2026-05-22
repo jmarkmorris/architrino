@@ -1,6 +1,6 @@
-# Pair-Specific Deformation Search Results
+# Binary-Specific Deformation Search Results
 
-Promotion status: `priority-only`. This packet records a bounded numerical dynamics screen for a pair/site-specific support-band deformation after the common radial and common phase rows in [low-order-deformation-search-results.md](low-order-deformation-search-results.md). It does not retain a same-level branch. Its purpose is to determine whether independent low-order radial modes by binary/sign can reduce the coupled tangential, speed, and radial/support residuals without losing the active-root convention.
+Promotion status: `priority-only`. This packet records a bounded numerical dynamics screen for a binary-specific support-band deformation after the common radial and common phase rows in [low-order-deformation-search-results.md](low-order-deformation-search-results.md). It does not retain a shell swarm branch. Its purpose is to determine whether independent low-order radial modes by binary/sign can reduce the coupled tangential, speed, and radial/support residuals without losing the active-root convention.
 
 ---
 
@@ -16,7 +16,7 @@ $$
 \end{aligned}
 $$
 
-and used the neutral opposite-pair polarity row
+and used the neutral opposite-binary polarity row
 
 $$
 q_{a,+}=+\epsilon,
@@ -42,7 +42,7 @@ A_{a,\sigma}\cos 2\eta_a
 B_{a,\sigma}\sin 2\eta_a.
 $$
 
-The support radius and phase were coupled by
+The radial support and phase were coupled by
 
 $$
 \rho_{a,\sigma}(\theta)
@@ -263,7 +263,7 @@ The same row rescored on $18$ phase samples gave tangential RMS $0.8405918472$, 
 | Common phase modulation | $1.0771124944$ | $0.0668680185$ | $0.6373831980$ | stable but worse tangential row |
 | Pair/site-specific row here | $0.8208937789$ | $0.0688569367$ | $0.4951385934$ | stable roots, $J_{\min}\approx0.3663$ |
 
-The pair/site-specific deformation improves the speed residual and root conditioning relative to the common radial breathing row, but it gives back the main tangential gain. It is better interpreted as a stability-preserving deformation direction than as a force-balance solution.
+The binary-specific deformation improves the speed residual and root conditioning relative to the common radial breathing row, but it gives back the main tangential gain. It is better interpreted as a stability-preserving deformation direction than as a force-balance solution.
 
 ---
 
@@ -305,6 +305,6 @@ The screen sharpens the current dynamics picture:
 1. Site-specific radial freedom does not automatically close the tangential force-balance row. The optimizer can preserve roots and improve speed, but the line-of-action projections still leave a large pointwise tangential residual.
 2. The leading-order speed-coupled phase row works as intended: speed RMS drops from the common radial row's $0.2344$ to about $0.0689$. This confirms that radial breathing and phase modulation must be solved together.
 3. The common radial row's stronger tangential improvement appears to use deformation in a way that is dynamically expensive: it damages speed closure and pushes the Jacobian floor toward the screening boundary.
-4. A retained same-level branch probably requires at least one additional force-balance degree of freedom beyond site-specific radial breathing with speed-coupled phase modulation. The next mathematical candidate is a controlled plane-normal precession or antipodal-relaxation row, because those can rotate line-of-action projections without relying only on support-radius changes.
+4. A retained shell swarm branch probably requires at least one additional force-balance degree of freedom beyond binary-specific radial breathing with speed-coupled phase modulation. The next mathematical candidate is a controlled plane-normal precession or antipodal-relaxation row, because those can rotate line-of-action projections without relying only on radial-support changes.
 
 This packet should remain priority-only until a single candidate row closes $\widetilde{\mathcal{R}}_{\mathrm{tan}}$, $\mathcal{R}_{\mathrm{speed}}$, $\widetilde{\mathcal{R}}_{\mathrm{rad}}$, noncollision, active-root floors, and event/action ledgers on the same branch convention.
