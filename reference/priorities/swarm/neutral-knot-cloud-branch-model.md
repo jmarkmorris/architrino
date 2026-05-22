@@ -1,6 +1,6 @@
 # Neutral Knot-Cloud Branch Model
 
-Terminology status: `quarantined-priority-history`. This packet was introduced before the clean Noether Swarm scene triad was repaired into the priority control file. Its disputed labels may remain here for git history and mathematical source mining, but they are not accepted taxonomy. Route any reuse through [swarm.md](swarm.md), whose active reader-facing triad is `neutral swarm`, `shell swarm`, and `nested shell swarm`.
+Terminology status: `quarantined-priority-history`. This packet was introduced before the clean Noether swarm scene triad was repaired into the priority control file. Its disputed labels may remain here for git history and mathematical source mining, but they are not accepted taxonomy. Route any reuse through [swarm.md](swarm.md), whose active reader-facing triad is `neutral swarm`, `shell swarm`, and `nested shell swarm`.
 
 Promotion status: `priority-only`. This packet generalizes the tri-binary architecture from three assumed binary slots to a neutral six-architrino free-support branch. The old binary-slot, exact-antipodal, same-level, nested, and hybrid variable-radius packets become sector charts of this broader branch family rather than mandatory ontology.
 

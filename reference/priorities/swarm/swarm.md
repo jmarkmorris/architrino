@@ -13,7 +13,7 @@
 
 The remembered reader-facing swarm triad is frozen here until a dedicated terminology cleanup pass replaces or confirms it:
 
-Git diagnosis: commit `5f830d3f` created the Noether Swarm hub and the six scene names using the clean `Noether Swarm`, `Neutral Swarm`, `Shell Swarm`, `Nested Shell Swarm`, `Swarm Geometry`, and `Swarm Dynamics` vocabulary. Commit `73d34ddd` had earlier introduced a separate generalized priority packet with disputed working labels. This control file now treats those disputed labels as quarantined priority history, not as accepted terminology.
+Git diagnosis: commit `5f830d3f` created the Noether swarm hub and the six scene names using the clean `Noether Swarm`, `Neutral Swarm`, `Shell Swarm`, `Nested Shell Swarm`, `Swarm Geometry`, and `Swarm Dynamics` vocabulary. Commit `73d34ddd` had earlier introduced a separate generalized priority packet with disputed working labels. This control file now treats those disputed labels as quarantined priority history, not as accepted terminology.
 
 | Reader-facing term | Working meaning for now | Status |
 | --- | --- | --- |
@@ -21,18 +21,19 @@ Git diagnosis: commit `5f830d3f` created the Noether Swarm hub and the six scene
 | `shell swarm` | A neutral swarm whose six architrino paths remain in a controlled radial support band. | Accepted-for-now reader-facing term. |
 | `nested shell swarm` | A shell swarm with three ordered radial support bands. | Accepted-for-now reader-facing term. |
 
-All priority-only labels introduced during the architecture generalization are frozen. They may remain in existing file names, task identifiers, literal source references, and local proof-packet text until a cleanup pass reviews them, but they must not be promoted as reader-facing taxonomy or treated as accepted replacement terminology. Frozen labels include `neutral knot-cloud`, `knot-cloud`, `cloud`, `same-level`, `slot`, `sector`, `branch` when used as a public taxonomy label rather than a mathematical solution-family term, `triply`, and broad migration phrases such as `tri-binary-to-swarm-sector`.
+Priority-only labels introduced during the architecture generalization are cleanup-controlled. They may remain in existing file names, task identifiers, literal source references, and local proof-packet text until a scoped cleanup pass edits them, but they must not be promoted as reader-facing taxonomy or treated as accepted replacement terminology. The approved transitions below should be used in new priority prose. `Slot` and `sector` are allowed only in standard mathematical usage, not as reader-facing swarm taxonomy. Broad migration phrases such as `tri-binary-to-swarm-sector` still need explicit source/target wording.
 
-`Noether Swarm` remains the current chapter/workstream umbrella. Do not globally replace `Noether core` with `Noether swarm` in corpus prose, formulas, file paths, or notation until the cleanup pass decides how legacy Noether-core usage maps into the triad.
+`Noether swarm` is approved for prose. Use `Noether Swarm` only in titles, headings, scene titles, and other title-case labels. Prose cleanup may replace `Noether core` with `Noether swarm`; formula symbols, file paths, task identifiers, and notation such as $\rho_{\text{core}}$ and $\Lambda_{\text{NC}}$ still require the separate notation/file-path pass.
 
 ## Task Queue
 
 1. `reader_facing_swarm_triad_freeze` — Keep `neutral swarm`, `shell swarm`, and `nested shell swarm` as the only accepted reader-facing swarm taxonomy until the terminology cleanup pass. Status: `active`. Depends on: none. Notes: do not promote priority-only labels from architecture packets into corpus prose, simulations, scenes, or app copy.
-2. `priority_label_freeze_inventory` — Inventory the priority-only labels that must not be promoted without review. Status: `active`. Depends on: `reader_facing_swarm_triad_freeze`. Notes: freeze `neutral knot-cloud`, `knot-cloud`, `cloud`, `same-level`, `slot`, `sector`, `triply`, and public-taxonomy uses of `branch`; keep literal file paths, task identifiers, and source labels unchanged until a cleanup plan is accepted.
+2. `priority_label_freeze_inventory` — Inventory the priority-only labels and apply the approved transition table in this file before broader edits. Status: `active`. Depends on: `reader_facing_swarm_triad_freeze`. Notes: approved prose transitions include `Noether core` to `Noether swarm`, `neutral knot-cloud` / `knot-cloud` to `neutral swarm`, `nested tri-binary` to `nested shell swarm`, `same-level tri-binary` to `shell swarm`, public-taxonomy `branch` to mathematical-use-only, `triply` to descriptive wording, `cloud` to the actual mathematical object, `exact nested tri-binary` to proof-specific exact-binary wording, `neutral Noether-core branch` to neutral-swarm wording plus mathematical `branch` only if needed, and `slot` / `sector` as mathematical-use-only terms; broad compound migration labels still need explicit source/target wording.
 3. `swarm_notation_compatibility_inventory` — Inventory notation that must survive the terminology freeze. Status: `active`. Depends on: `reader_facing_swarm_triad_freeze`. Notes: map $I=\{1,\ldots,6\}$, $\sigma_i$, $\mathbf{Y}_i$, $\nu_i$, $\mathcal{P}$, $P_a$, $i=(a,\sigma)$, $R_a$, support-band rows, and legacy Noether core notation symbols such as $\rho_{\text{core}}$ and $\Lambda_{\text{NC}}$; preserve legacy symbols until a compatibility note or rename is explicitly accepted.
 4. `swarm_terminology_cleanup_pass` — Prepare the reviewable cleanup that reconciles the priority architecture packets with the reader-facing triad. Status: `open`. Depends on: `reader_facing_swarm_triad_freeze`, `priority_label_freeze_inventory`, `swarm_notation_compatibility_inventory`. Notes: no global replacement; propose replacements one term family at a time with samples and proof-scope consequences.
 5. `user_facing_corpus_merge_gate` — Decide when to start the merge in the user-facing corpus. Status: `blocked-by-terminology-freeze`. Depends on: accepted cleanup pass, notation compatibility inventory, retained certificate plan, NTB comparison, comparison against the common-support architecture material, migration batch plan, and operator approval. Notes: this is the main decision gate for `content/markdown/aaa`, simulations, scene assets, and app copy; do not start user-facing merge edits until the terminology cleanup pass and the gate both pass.
 6. `swarm_model_migration` — Execute the approved user-facing corpus, priority-ledger, validation-surface, simulation, and web/app merge batches. Status: `deferred`. Depends on: `user_facing_corpus_merge_gate`. Notes: migration must use the accepted reader-facing triad or later approved replacements, not frozen priority-only labels.
+7. `assembly_swarm_fallback_investigation` — If closure stalls after the triad migration, study whether assembly swarms are needed. Status: `low-priority`. Depends on: stalled closure after the triad migration. Notes: an assembly swarm would let all architrinos in an assembly participate in one swarm rather than being added externally as poles or kept separately in a nucleus.
 
 ## First Reviewable Work Packets
 
@@ -41,20 +42,38 @@ The immediate start should be terminology and notation, not corpus migration and
 | Order | Work packet | Deliverable | Review risk |
 | --- | --- | --- | --- |
 | 1 | `reader_facing_swarm_triad_freeze` | A compact table fixing `neutral swarm`, `shell swarm`, and `nested shell swarm` as the only reader-facing swarm taxonomy for now. | Low: terminology guardrail only. |
-| 2 | `priority_label_freeze_inventory` | A frozen-label table naming terms that may remain in priority files but may not be promoted into reader-facing taxonomy. | Low: prevents accidental corpus migration. |
+| 2 | `priority_label_freeze_inventory` | An approved-transition table plus a pending-label table for terms that still need decisions. | Low: prevents accidental corpus migration. |
 | 3 | `swarm_notation_compatibility_inventory` | A symbol map separating base notation from optional local-case notation and legacy compatibility symbols. | Low: no formula rewrites outside the priority bucket. |
 
-### Current Label Decisions
+### Approved Transition Table
 
-These rows replace the earlier partial translation table. They deliberately avoid approving broad replacements.
+These rows are approved for controlled priority-side cleanup and later sampled corpus migration. They do not authorize formula-symbol, file-path, or task-id rewrites unless the row explicitly says so.
 
-| Wording | Current status | Use now | Hold back for later |
+| Source wording | Approved wording | Use rule | Hold back for later |
 | --- | --- | --- | --- |
-| `neutral swarm`, `shell swarm`, `nested shell swarm` | Accepted-for-now reader-facing triad. | Use these as the only reader-facing taxonomy while cleanup is pending. | A later cleanup pass may refine definitions or replace one term with operator approval. |
-| `Noether Swarm` | Umbrella chapter/workstream name. | Use for the page or workstream that contains the triad. | Do not globally replace `Noether core` until legacy usage and notation are mapped. |
-| `Noether core` | Legacy corpus term still in force where it appears. | Preserve in existing corpus prose, notation, file paths, and formulas unless a specific cleanup sample is accepted. | Decide whether each occurrence maps to `neutral swarm`, `shell swarm`, `nested shell swarm`, or remains a legacy Noether-core term. |
-| `nested tri-binary` | Legacy/source wording. | Treat as source terminology or as a candidate mapping to `nested shell swarm` only in explicitly reviewed samples. | Do not global-replace exact proof-packet language until the cleanup pass separates exact binary assumptions from reader-facing swarm taxonomy. |
-| `neutral knot-cloud`, `knot-cloud`, `cloud`, `same-level`, `slot`, `sector`, `triply`, public-taxonomy `branch` | Frozen priority-only labels. | Leave in file paths, task identifiers, literal source references, and local proof-packet text until reviewed. | Replace, retain, or demote one term family at a time in the cleanup pass. |
+| `Noether core` | `Noether swarm` | Approved prose transition. Use lowercase `swarm` in running text. | Preserve formula symbols, file paths, task identifiers, and notation such as $\rho_{\text{core}}$ and $\Lambda_{\text{NC}}$ until the notation/file-path pass. |
+| `Noether Swarm` in running text | `Noether swarm` | Keep `Noether` capitalized and lowercase `swarm` in prose. | Keep `Noether Swarm` in titles, headings, scene titles, and title-case labels. |
+| `neutral swarm` | `neutral swarm` | Reader-facing swarm type: broad six-architrino neutral case before required pairing or radial organization. | A later cleanup pass may refine the definition with operator approval. |
+| `shell swarm` | `shell swarm` | Reader-facing swarm type: neutral swarm with controlled radial support. | A later cleanup pass may refine the definition with operator approval. |
+| `nested shell swarm` | `nested shell swarm` | Reader-facing swarm type: shell swarm with three ordered radial support bands. | A later cleanup pass may refine the definition with operator approval. |
+| `neutral knot-cloud` / `knot-cloud` | `neutral swarm` | Use when the passage means the broad six-architrino case. | Keep literal file paths, task identifiers, and source references unchanged until a file/path cleanup is approved. |
+| `nested tri-binary` | `nested shell swarm` | Use when the passage means the old three-layer picture. | Do not use this transition when a proof specifically requires exact binary assumptions. |
+| `exact nested tri-binary` | `nested shell swarm with exact binary assumptions` | Use only when the passage names a proof-specific exact binary condition. | Do not promote as a reader-facing swarm type. |
+| `same-level tri-binary` | `shell swarm` | Use `shell swarm` when the passage means the shared-support-band case. | Avoid `same-level` as reader-facing terminology. |
+| `branch` | mathematical-use-only `branch` | Keep only for solver, continuation, or solution-family mathematics. | Do not use `branch` as a reader-facing swarm type. |
+| `triply` | `three ordered radial support bands` | Use descriptive wording instead of a new label. | Keep exact source quotations or identifiers unchanged until sampled cleanup. |
+| `cloud` | actual mathematical object | Avoid as taxonomy; replace with the actual object when needed, such as support distribution or occupancy measure. | Sample uses before replacing because some packets may use `cloud` only as literal source history. |
+| `neutral Noether-core branch` | `neutral swarm` plus mathematical `branch` only if needed | Use `neutral swarm` when the wording is reader-facing taxonomy. Keep `branch` only when a solver, continuation, or solution-family object is meant. | Preserve notation and file paths until the notation/file-path pass. |
+| `slot` / `binary slot` | mathematical-use-only `slot` | Use only in standard mathematical usage, such as an argument position, coordinate position, or explicitly defined chart coordinate. | Do not use as reader-facing taxonomy; prefer `partition`, `pair`, or explicit notation $\mathcal{P}$ when describing optional grouping. |
+| `sector` | mathematical-use-only `sector` | Use only in standard mathematical usage, such as a subset, invariant subspace, or solution region cut out by stated constraints. | Do not use as a reader-facing swarm type or loose workstream label. |
+
+### Pending Transition Decisions
+
+These rows remain unresolved and should be handled one term family at a time with samples.
+
+| Source wording | Current handling | Candidate direction | Notes |
+| --- | --- | --- | --- |
+| broad migration phrases such as `tri-binary-to-swarm-sector` | Cleanup-controlled priority label. | Likely replace with a specific migration task or explicit source/target wording. | Needs review after `slot` and `sector` are decided. |
 
 ## Next Team-Agent Prompt
 
