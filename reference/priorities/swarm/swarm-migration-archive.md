@@ -6,8 +6,11 @@
 | `Noether Swarm` in running text | `Noether swarm` |
 | `neutral knot-cloud` / `knot-cloud` | `neutral swarm` |
 | `nested tri-binary` | `nested shell swarm` |
+| `NTB` | `nested shell swarm` |
 | `exact nested tri-binary` | `nested shell swarm with exact binary assumptions` |
 | `same-level tri-binary` | `shell swarm` |
+| `interleaved tri-binary` | `shell swarm` |
+| `ITB` | `shell swarm` |
 | `branch` as swarm taxonomy | mathematical-use-only `branch` |
 | `triply` | `three ordered radial support bands` |
 | `cloud` as swarm taxonomy | the actual mathematical object, such as support distribution or occupancy measure |
