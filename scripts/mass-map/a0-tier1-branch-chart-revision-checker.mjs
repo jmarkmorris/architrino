@@ -10,6 +10,16 @@ const CONTRACT_SCHEMA = "a0-branch-chart-revision-contract/v1";
 const BASELINE_LEDGER = "refined_i_receiver_phase_bin_residual_balance";
 const REVISION_TYPE = "non_root_key_z_lambda_mode";
 const REVISION_MODE = "i_layer_harmonic_deformation_coordinate";
+const ROOT_TRANSPORT_SOURCE_SCHEMA = "a0-root-transport-source-record/v1";
+const ROOT_TRANSPORT_IDENTITY_SCHEMA = "a0-root-transport-identity/v1";
+const ROOT_TRANSPORT_PHASE_COVARIANCE_SCHEMA = "a0-root-transport-phase-origin-covariance/v1";
+const ROOT_TRANSPORT_FIT_FAILURE = "root-transport-coordinate-fit-not-implemented";
+const DEFAULT_ROOT_TRANSPORT_QUOTIENT = "source_layer_shear";
+const ROOT_TRANSPORT_QUOTIENTS = new Set([
+  DEFAULT_ROOT_TRANSPORT_QUOTIENT,
+  "source_layer_signed_polarity_shear",
+  "m_jacobian_signed_polarity_shear",
+]);
 const PRIMARY_MODES = [4, 5, 7];
 const GUARD_MODES = [6];
 const NYQUIST_WARNING_MODE = 8;
@@ -21,6 +31,7 @@ const SOURCE_DECLARATIONS = new Set([
   "active_roots",
   "root_times",
   "corrected_carrier_state",
+  "root_transport_source_record",
 ]);
 
 function parseArgs(argv) {
@@ -30,6 +41,7 @@ function parseArgs(argv) {
     tolerance: DEFAULT_TOLERANCE,
     ridge: DEFAULT_RIDGE,
     coordinateSource: "residual_surface_audit",
+    rootTransportQuotient: "source_layer_shear",
     primaryModes: PRIMARY_MODES,
     guardModes: GUARD_MODES,
     nyquistGuardMode: NYQUIST_WARNING_MODE,
@@ -52,6 +64,8 @@ function parseArgs(argv) {
       args.ridge = parseNonnegativeNumber(argv[++i], "--ridge");
     } else if (arg === "--coordinate-source") {
       args.coordinateSource = parseSourceDeclaration(argv[++i]);
+    } else if (arg === "--root-transport-quotient") {
+      args.rootTransportQuotient = parseRootTransportQuotient(argv[++i]);
     } else if (arg === "--primary-modes") {
       args.primaryModes = parseModeList(argv[++i], "--primary-modes");
     } else if (arg === "--guard-modes") {
@@ -77,8 +91,11 @@ function printHelp() {
 Options:
   --intake PATH             JSON artifact from a0-tier1-fold-layer-locked-one-period-attempt.mjs.
   --rows VALUE              "all" or a comma-separated row list. Defaults to "all".
-  --coordinate-source VALUE residual_surface_audit, prefit_branch_chart, active_roots, root_times, or corrected_carrier_state.
+  --coordinate-source VALUE residual_surface_audit, prefit_branch_chart, active_roots, root_times, corrected_carrier_state, or root_transport_source_record.
                             Defaults to residual_surface_audit, which fails closed as a hidden-fit source.
+  --root-transport-quotient VALUE
+                            source_layer_shear, source_layer_signed_polarity_shear, or m_jacobian_signed_polarity_shear.
+                            Defaults to source_layer_shear and only applies with root_transport_source_record.
   --primary-modes VALUE     Comma-separated harmonic modes. Defaults to ${PRIMARY_MODES.join(",")}.
   --guard-modes VALUE       Comma-separated guard harmonic modes. Defaults to ${GUARD_MODES.join(",")}.
   --nyquist-guard-mode N    Mode treated as a Nyquist warning. Defaults to ${NYQUIST_WARNING_MODE}.
@@ -133,6 +150,13 @@ function parseSourceDeclaration(value) {
     return value;
   }
   throw new Error(`Unsupported --coordinate-source value: ${value}`);
+}
+
+function parseRootTransportQuotient(value) {
+  if (ROOT_TRANSPORT_QUOTIENTS.has(value)) {
+    return value;
+  }
+  throw new Error(`Unsupported --root-transport-quotient value: ${value}`);
 }
 
 function requireIntakePath(args) {
@@ -226,43 +250,281 @@ function baselineLedger(row) {
   return row?.residual_ledgers?.[BASELINE_LEDGER] ?? null;
 }
 
-function sourceCheck(args) {
+function finiteNumber(value) {
+  return Number.isFinite(value);
+}
+
+function rootTransportRecord(row) {
+  return row?.branch_chart_source_records?.root_transport_source_record ?? null;
+}
+
+function rootTransportDeclaredQuotients(record) {
+  if (Array.isArray(record?.declared_root_transport_quotients)) {
+    return record.declared_root_transport_quotients.filter((quotient) => ROOT_TRANSPORT_QUOTIENTS.has(quotient));
+  }
+  if (record?.schema === ROOT_TRANSPORT_SOURCE_SCHEMA) {
+    return [DEFAULT_ROOT_TRANSPORT_QUOTIENT];
+  }
+  return [];
+}
+
+function rootTransportIdentityStatus(record) {
+  const roots = Array.isArray(record?.roots) ? record.roots : [];
+  const rawRootKeyTransportIdCount = roots.filter((root) => String(root?.transport_id ?? "").includes("|phase_bucket:")).length;
+  return {
+    identity_schema: record?.transport_identity_schema ?? null,
+    identity_schema_expected: ROOT_TRANSPORT_IDENTITY_SCHEMA,
+    identity_scope: record?.transport_identity_scope ?? null,
+    identity_rule: record?.transport_identity_rule ?? null,
+    identity_refinement_stable: record?.transport_identity_refinement_stable === true,
+    raw_root_key_phase_bucket_transport_id_count: rawRootKeyTransportIdCount,
+    local_slot_transport_id_count: roots.filter((root) =>
+      String(root?.transport_id ?? "").startsWith("single_artifact_root_transport:")
+    ).length,
+  };
+}
+
+function rootTransportPhaseOriginStatus(record) {
+  return {
+    phase_origin_covariance_schema: record?.phase_origin_covariance_schema ?? null,
+    phase_origin_covariance_schema_expected: ROOT_TRANSPORT_PHASE_COVARIANCE_SCHEMA,
+    phase_origin_covariance_status: record?.phase_origin_covariance_status ?? null,
+    phase_origin_covariance_certified: record?.phase_origin_covariance_certified === true,
+    phase_origin_tested_offsets: Array.isArray(record?.phase_origin_tested_offsets)
+      ? record.phase_origin_tested_offsets
+      : [],
+    phase_origin_covariance_rule: record?.phase_origin_covariance_rule ?? null,
+  };
+}
+
+function rootTransportQuotientSourceDeclared(record, quotient) {
+  return rootTransportDeclaredQuotients(record).includes(quotient);
+}
+
+function rootTransportSourceMissingFields(row, args) {
+  const missing = [];
+  const record = rootTransportRecord(row);
+  if (record?.schema !== ROOT_TRANSPORT_SOURCE_SCHEMA) {
+    missing.push(`rows[].branch_chart_source_records.root_transport_source_record.schema=${ROOT_TRANSPORT_SOURCE_SCHEMA}`);
+  }
+  if (!Array.isArray(record?.roots) || record.roots.length < 2) {
+    missing.push("rows[].branch_chart_source_records.root_transport_source_record.roots[2+]");
+    return missing;
+  }
+  for (const [index, root] of record.roots.entries()) {
+    if (typeof root?.root_key !== "string" || root.root_key.length === 0) {
+      missing.push(`root_transport_source_record.roots[${index}].root_key`);
+    }
+    if (!finiteNumber(root?.t)) {
+      missing.push(`root_transport_source_record.roots[${index}].t`);
+    }
+    if (!finiteNumber(root?.theta)) {
+      missing.push(`root_transport_source_record.roots[${index}].theta`);
+    }
+    if (!finiteNumber(root?.D_tau)) {
+      missing.push(`root_transport_source_record.roots[${index}].D_tau`);
+    }
+    if (!finiteNumber(root?.D_J)) {
+      missing.push(`root_transport_source_record.roots[${index}].D_J`);
+    }
+    if (!finiteNumber(root?.G_r)) {
+      missing.push(`root_transport_source_record.roots[${index}].G_r`);
+    }
+    if (typeof root?.transport_id !== "string" || root.transport_id.length === 0) {
+      missing.push(`root_transport_source_record.roots[${index}].transport_id`);
+    }
+    if (typeof root?.transport_identity_status !== "string" || root.transport_identity_status.length === 0) {
+      missing.push(`root_transport_source_record.roots[${index}].transport_identity_status`);
+    }
+    if (typeof root?.transport_identity_components?.root_key !== "string") {
+      missing.push(`root_transport_source_record.roots[${index}].transport_identity_components.root_key`);
+    }
+    if (!Number.isInteger(root?.transport_identity_components?.cyclic_slot)) {
+      missing.push(`root_transport_source_record.roots[${index}].transport_identity_components.cyclic_slot`);
+    }
+    if (!Number.isInteger(root?.transport_identity_components?.same_key_root_count)) {
+      missing.push(`root_transport_source_record.roots[${index}].transport_identity_components.same_key_root_count`);
+    }
+  }
+  if (record?.transport_identity_schema !== ROOT_TRANSPORT_IDENTITY_SCHEMA) {
+    missing.push(`root_transport_source_record.transport_identity_schema=${ROOT_TRANSPORT_IDENTITY_SCHEMA}`);
+  }
+  if (typeof record?.transport_identity_scope !== "string" || record.transport_identity_scope.length === 0) {
+    missing.push("root_transport_source_record.transport_identity_scope");
+  }
+  if (typeof record?.transport_identity_rule !== "string" || record.transport_identity_rule.length === 0) {
+    missing.push("root_transport_source_record.transport_identity_rule");
+  }
+  if (typeof record?.transport_identity_refinement_stable !== "boolean") {
+    missing.push("root_transport_source_record.transport_identity_refinement_stable");
+  }
+  if (record?.phase_origin_covariance_schema !== ROOT_TRANSPORT_PHASE_COVARIANCE_SCHEMA) {
+    missing.push(`root_transport_source_record.phase_origin_covariance_schema=${ROOT_TRANSPORT_PHASE_COVARIANCE_SCHEMA}`);
+  }
+  if (
+    typeof record?.phase_origin_covariance_status !== "string" ||
+    record.phase_origin_covariance_status.length === 0
+  ) {
+    missing.push("root_transport_source_record.phase_origin_covariance_status");
+  }
+  if (typeof record?.phase_origin_covariance_certified !== "boolean") {
+    missing.push("root_transport_source_record.phase_origin_covariance_certified");
+  }
+  if (!Array.isArray(record?.phase_origin_tested_offsets)) {
+    missing.push("root_transport_source_record.phase_origin_tested_offsets[]");
+  }
+  if (record?.locked_fold_layer_keys_excluded !== true) {
+    missing.push("root_transport_source_record.locked_fold_layer_keys_excluded=true");
+  }
+  if (record?.benchmark_inputs_excluded !== true) {
+    missing.push("root_transport_source_record.benchmark_inputs_excluded=true");
+  }
+  if (typeof record?.phase_origin_rule !== "string" || record.phase_origin_rule.length === 0) {
+    missing.push("root_transport_source_record.phase_origin_rule");
+  }
+  if (typeof record?.equality_group_key !== "string" || record.equality_group_key.length === 0) {
+    missing.push("root_transport_source_record.equality_group_key");
+  }
+  if (!rootTransportQuotientSourceDeclared(record, args.rootTransportQuotient)) {
+    missing.push(`root_transport_source_record.declared_root_transport_quotients includes ${args.rootTransportQuotient}`);
+  }
+  return missing;
+}
+
+function sourceCheck(args, row) {
+  if (args.coordinateSource === "root_transport_source_record") {
+    const record = rootTransportRecord(row);
+    const missingFields = rootTransportSourceMissingFields(row, args);
+    const quotientSourceDeclared = rootTransportQuotientSourceDeclared(record, args.rootTransportQuotient);
+    const rootTransportRecordPresent =
+      record?.schema === ROOT_TRANSPORT_SOURCE_SCHEMA && Array.isArray(record?.roots) && record.roots.length >= 2;
+    const passed = missingFields.length === 0;
+    return {
+      residual: "R_src",
+      status: passed ? "passed" : "failed",
+      failure_code: passed
+        ? null
+        : rootTransportRecordPresent && !quotientSourceDeclared
+          ? "root-transport-quotient-not-source-declared"
+          : rootTransportRecordPresent
+            ? "root-transport-source-record-missing-identity-metadata"
+          : "missing-root-transport-source-record",
+      coordinate_source: args.coordinateSource,
+      root_transport_quotient: args.rootTransportQuotient,
+      declared_root_transport_quotients: rootTransportDeclaredQuotients(record),
+      quotient_source_declared: quotientSourceDeclared,
+      allowed_sources: [
+        "prefit_branch_chart",
+        "active_roots",
+        "root_times",
+        "corrected_carrier_state",
+        "root_transport_source_record",
+      ],
+      missing_fields: missingFields,
+      note: passed
+        ? "The coordinate source declaration supplies a root-transport source record with root phase, root-time transport, Jacobian transport, gap, and single-artifact identity metadata."
+        : rootTransportRecordPresent && !quotientSourceDeclared
+          ? "The requested root-transport quotient was evaluated diagnostically, but it was not declared by the source record and cannot authorize a rerun."
+        : rootTransportRecordPresent
+          ? "The requested root-transport source record is present, but it is missing the identity or phase-origin covariance metadata required by the current source contract."
+        : "The requested root-transport coordinate cannot be checked until the artifact emits the required source record.",
+    };
+  }
   const passed = args.coordinateSource !== "residual_surface_audit";
   return {
     residual: "R_src",
     status: passed ? "passed" : "failed",
     failure_code: passed ? null : "rejected_hidden_fit_split",
     coordinate_source: args.coordinateSource,
-    allowed_sources: ["prefit_branch_chart", "active_roots", "root_times", "corrected_carrier_state"],
+    allowed_sources: [
+      "prefit_branch_chart",
+      "active_roots",
+      "root_times",
+      "corrected_carrier_state",
+      "root_transport_source_record",
+    ],
     note: passed
       ? "The coordinate source declaration is pre-fit or branch-state facing; this checker still requires held-out residual evidence."
       : "The available coordinate signal is only a residual-surface audit. It may diagnose a candidate mode, but it cannot authorize a branch coordinate.",
   };
 }
 
-function noveltyCheck(ledger) {
-  const passed = ledger?.basis_resolution?.basis_mode === "i_receiver_root_key_phase_bin";
+function coordinateFitCheck(args, coordinatePacket) {
+  if (args.coordinateSource !== "root_transport_source_record") {
+    return {
+      residual: "R_coord",
+      status: "passed",
+      coordinate_fit: "i_layer_harmonic_deformation_audit",
+      note: "The checker can evaluate the declared harmonic audit with the sampled I-layer residual forcing ledger.",
+    };
+  }
+  if (coordinatePacket?.status === "computed") {
+    return {
+      residual: "R_coord",
+      status: "passed",
+      coordinate_fit: "i_receiver_inter_layer_j_delay_shear",
+      feature_names: coordinatePacket.feature_names,
+      sample_count: coordinatePacket.sample_count,
+      selected_root_count: coordinatePacket.selected_root_count,
+      selected_locked_root_count: coordinatePacket.selected_locked_root_count,
+      excluded_locked_root_count: coordinatePacket.excluded_locked_root_count,
+      selected_transport_slot_count: coordinatePacket.selected_transport_slot_count,
+      note:
+        "The checker evaluated the predeclared root-ledger shear coordinate from root_transport_source_record rather than from harmonic residual-feature search.",
+    };
+  }
   return {
+    residual: "R_coord",
+    status: "failed",
+    failure_code: coordinatePacket?.failure_code ?? ROOT_TRANSPORT_FIT_FAILURE,
+    coordinate_fit: "i_receiver_inter_layer_j_delay_shear",
+    feature_names: rootTransportFeatureNames(args.rootTransportQuotient),
+    missing_fields: coordinatePacket?.missing_fields ?? [],
+    note:
+      coordinatePacket?.note ??
+      "The root-transport source guard is implemented, but certification still needs a root-ledger design matrix and held-out residual check derived from D_tau, D_J, G_r, and transport_id rather than from the harmonic residual audit.",
+  };
+}
+
+function noveltyCheck(ledger, args) {
+  const passed = ledger?.basis_resolution?.basis_mode === "i_receiver_root_key_phase_bin";
+  const rootTransport = args.coordinateSource === "root_transport_source_record";
+  const check = {
     residual: "D_new",
     status: passed ? "passed" : "failed",
     failure_code: passed ? null : "missing_failed_phase_bin_baseline",
     baseline_basis_mode: ledger?.basis_resolution?.basis_mode ?? null,
-    declared_revision_type: REVISION_TYPE,
-    declared_non_root_key_mode: true,
+    declared_revision_type: revisionTypeFor(args),
+    declared_non_root_key_mode: !rootTransport,
+    declared_finer_root_branch_coordinate: rootTransport,
   };
+  if (rootTransport) {
+    check.note =
+      "The root-transport quotient is tested as a finer root-branch coordinate beyond receiver|source|relation|status and the two-bin I observation-phase baseline.";
+  }
+  return check;
 }
 
-function symmetryCheck(primaryModes, guardModes) {
+function symmetryCheck(args) {
+  if (args.coordinateSource === "root_transport_source_record") {
+    return {
+      residual: "R_sym",
+      status: "passed",
+      basis: "root-transport S^1_k phase gauge with fixed cos(theta)/sin(theta) shear features",
+      root_transport_quotient: args.rootTransportQuotient,
+      feature_names: rootTransportFeatureNames(args.rootTransportQuotient),
+    };
+  }
   return {
     residual: "R_sym",
     status: "passed",
     basis: "cos/sin harmonic pair under common S^1_k phase gauge",
-    primary_modes: primaryModes,
-    guard_modes: guardModes,
+    primary_modes: args.primaryModes,
+    guard_modes: args.guardModes,
   };
 }
 
-function equalityCheck(ledger) {
+function equalityCheck(ledger, args) {
   const constraints = ledger?.equality_constraints ?? {};
   const passed =
     constraints.root_key_resolved_mu_test === true &&
@@ -273,8 +535,7 @@ function equalityCheck(ledger) {
     status: passed ? "passed" : "failed",
     failure_code: passed ? null : "baseline_equality_map_missing",
     baseline_equality_group_key: ledger?.basis_resolution?.equality_group_key ?? null,
-    revision_equality_group_key:
-      "relation + receiver_layer + source_layer + polarity_pair + root_key + harmonic_mode + harmonic_quadrature + projection",
+    revision_equality_group_key: equalityGroupKeyFor(args),
   };
 }
 
@@ -301,8 +562,48 @@ function benchmarkCheck(row, ledger) {
   };
 }
 
-function transportCheck(row) {
-  const passed = row?.validation?.root_ledger_stable_under_refinement === true;
+function transportCheck(row, args) {
+  const validationStable = row?.validation?.root_ledger_stable_under_refinement === true;
+  if (args.coordinateSource === "root_transport_source_record") {
+    const record = rootTransportRecord(row);
+    const identity = rootTransportIdentityStatus(record);
+    const phaseOrigin = rootTransportPhaseOriginStatus(record);
+    const recordPresent =
+      record?.schema === ROOT_TRANSPORT_SOURCE_SCHEMA && Array.isArray(record?.roots) && record.roots.length >= 2;
+    const passed =
+      validationStable &&
+      record?.root_transport_certified === true &&
+      identity.identity_refinement_stable === true &&
+      identity.raw_root_key_phase_bucket_transport_id_count === 0 &&
+      phaseOrigin.phase_origin_covariance_certified === true;
+    let failureCode = null;
+    if (!passed) {
+      if (!recordPresent) {
+        failureCode = "missing-root-transport-source-record";
+      } else if (identity.raw_root_key_phase_bucket_transport_id_count > 0) {
+        failureCode = "root-transport-identity-uses-raw-root-key-phase-bucket";
+      } else if (identity.identity_refinement_stable !== true) {
+        failureCode = "root-transport-identity-not-refinement-stable";
+      } else if (phaseOrigin.phase_origin_covariance_certified !== true) {
+        failureCode = "root-transport-phase-origin-covariance-not-certified";
+      } else {
+        failureCode = "branch_transport_not_yet_certified";
+      }
+    }
+    return {
+      residual: "R_transport",
+      status: passed ? "passed" : "pending",
+      failure_code: failureCode,
+      root_ledger_stable_under_refinement: row?.validation?.root_ledger_stable_under_refinement ?? null,
+      root_transport_certified: record?.root_transport_certified === true,
+      transport_certification_status: record?.transport_certification_status ?? null,
+      ...identity,
+      ...phaseOrigin,
+      note:
+        "Root-transport coordinates require refinement-stable transport identity and phase-origin covariance before they can authorize a corrected rerun.",
+    };
+  }
+  const passed = validationStable;
   return {
     residual: "R_transport",
     status: passed ? "passed" : "pending",
@@ -345,6 +646,18 @@ function nyquistCheck(sampleCount, primaryModes, guardModes, nyquistGuardMode, e
 function designRow(t, period, modes) {
   const phi = (2 * Math.PI * t) / period;
   return modes.flatMap((mode) => [Math.cos(mode * phi), Math.sin(mode * phi)]);
+}
+
+function modulo(value, modulus) {
+  if (!Number.isFinite(modulus) || modulus <= 0) {
+    return value;
+  }
+  return ((value % modulus) + modulus) % modulus;
+}
+
+function circularDistance(left, right, period) {
+  const raw = Math.abs(modulo(left, period) - modulo(right, period));
+  return Math.min(raw, Math.abs(period - raw));
 }
 
 function normalFor(matrix, ridge) {
@@ -394,6 +707,43 @@ function solveLinearSystem(matrix, rhs, epsilon = 1e-14) {
     }
   }
   return augmented.map((row) => row[n]);
+}
+
+function matrixRank(matrix, epsilon = 1e-10) {
+  if (!Array.isArray(matrix) || matrix.length === 0) {
+    return 0;
+  }
+  const rows = matrix.map((row) => [...row]);
+  const rowCount = rows.length;
+  const columnCount = rows[0]?.length ?? 0;
+  let rank = 0;
+  for (let column = 0; column < columnCount && rank < rowCount; column += 1) {
+    let pivotRow = rank;
+    for (let row = rank + 1; row < rowCount; row += 1) {
+      if (Math.abs(rows[row][column]) > Math.abs(rows[pivotRow][column])) {
+        pivotRow = row;
+      }
+    }
+    if (Math.abs(rows[pivotRow][column]) <= epsilon) {
+      continue;
+    }
+    [rows[rank], rows[pivotRow]] = [rows[pivotRow], rows[rank]];
+    const pivot = rows[rank][column];
+    for (let col = column; col < columnCount; col += 1) {
+      rows[rank][col] /= pivot;
+    }
+    for (let row = 0; row < rowCount; row += 1) {
+      if (row === rank) {
+        continue;
+      }
+      const factor = rows[row][column];
+      for (let col = column; col < columnCount; col += 1) {
+        rows[row][col] -= factor * rows[rank][col];
+      }
+    }
+    rank += 1;
+  }
+  return rank;
 }
 
 function dot(left, right) {
@@ -454,6 +804,49 @@ function splitFit(samples, modes, period, ridge, fitSelector, testSelector) {
   };
 }
 
+function splitFitWithFeatures(samples, ridge, fitSelector, testSelector) {
+  const fitSamples = samples.filter(fitSelector);
+  const testSamples = samples.filter(testSelector);
+  if (fitSamples.length === 0 || testSamples.length === 0) {
+    return {
+      status: "blocked",
+      failure_code: "empty_fit_or_holdout_split",
+      fit_sample_count: fitSamples.length,
+      holdout_sample_count: testSamples.length,
+    };
+  }
+  const fitRows = fitSamples.map((sample) => sample.features);
+  const testRows = testSamples.map((sample) => sample.features);
+  let residualNormSquared = 0;
+  let targetNormSquared = 0;
+  for (let component = 0; component < 3; component += 1) {
+    const fitTargets = fitSamples.map((sample) => sample.residual[component]);
+    const coefficients = componentFit(fitRows, fitTargets, ridge);
+    if (!coefficients) {
+      return {
+        status: "blocked",
+        failure_code: "holdout_normal_equation_singular",
+        fit_sample_count: fitSamples.length,
+        holdout_sample_count: testSamples.length,
+      };
+    }
+    for (let index = 0; index < testSamples.length; index += 1) {
+      const target = testSamples[index].residual[component];
+      const residual = target - dot(testRows[index], coefficients);
+      residualNormSquared += residual * residual;
+      targetNormSquared += target * target;
+    }
+  }
+  return {
+    status: "computed",
+    fit_sample_count: fitSamples.length,
+    holdout_sample_count: testSamples.length,
+    residual_norm: Math.sqrt(residualNormSquared),
+    target_norm: Math.sqrt(targetNormSquared),
+    relative_residual: Math.sqrt(residualNormSquared / Math.max(targetNormSquared, Number.EPSILON)),
+  };
+}
+
 function leverageDiagnostics(samples, modes, period, ridge) {
   const matrix = samples.map((sample) => designRow(sample.t, period, modes));
   const normal = normalFor(matrix, ridge);
@@ -475,8 +868,53 @@ function leverageDiagnostics(samples, modes, period, ridge) {
   };
 }
 
+function leverageDiagnosticsWithFeatures(samples, ridge) {
+  const matrix = samples.map((sample) => sample.features);
+  const normal = normalFor(matrix, ridge);
+  const leverages = matrix.map((row) => {
+    const solved = solveLinearSystem(normal, row);
+    return solved ? dot(row, solved) : Number.POSITIVE_INFINITY;
+  });
+  const featureCount = matrix[0]?.length ?? 0;
+  const equationCount = samples.length * 3;
+  const coefficientCount = featureCount * 3;
+  const perFeatureActiveBucketCounts = new Array(featureCount).fill(0);
+  for (const row of matrix) {
+    for (let column = 0; column < featureCount; column += 1) {
+      if (Number.isFinite(row[column]) && Math.abs(row[column]) > 1e-14) {
+        perFeatureActiveBucketCounts[column] += 1;
+      }
+    }
+  }
+  const featureRank = matrixRank(matrix);
+  return {
+    equation_count: equationCount,
+    coefficient_count: coefficientCount,
+    overdetermined: equationCount > coefficientCount,
+    trace_h_over_equations: coefficientCount / Math.max(equationCount, 1),
+    max_leverage: Math.max(...leverages),
+    minimum_observation_buckets_per_basis_group:
+      featureCount > 0 ? Math.min(...perFeatureActiveBucketCounts) : 0,
+    per_feature_active_bucket_counts: perFeatureActiveBucketCounts,
+    feature_rank: featureRank,
+    full_column_rank: featureRank === featureCount,
+    feature_count: featureCount,
+  };
+}
+
 function fullFitResidual(samples, modes, period, ridge) {
   const computed = splitFit(samples, modes, period, ridge, () => true, () => true);
+  return {
+    status: computed.status,
+    failure_code: computed.failure_code ?? null,
+    residual_norm: computed.residual_norm ?? null,
+    target_norm: computed.target_norm ?? null,
+    relative_residual: computed.relative_residual ?? null,
+  };
+}
+
+function fullFitResidualWithFeatures(samples, ridge) {
+  const computed = splitFitWithFeatures(samples, ridge, () => true, () => true);
   return {
     status: computed.status,
     failure_code: computed.failure_code ?? null,
@@ -540,8 +978,69 @@ function heldOutResidual(samples, modes, period, ridge, tolerance) {
   };
 }
 
+function heldOutResidualWithFeatures(samples, ridge, tolerance) {
+  const evenToOdd = splitFitWithFeatures(
+    samples,
+    ridge,
+    (_sample, index) => index % 2 === 0,
+    (_sample, index) => index % 2 === 1
+  );
+  const oddToEven = splitFitWithFeatures(
+    samples,
+    ridge,
+    (_sample, index) => index % 2 === 1,
+    (_sample, index) => index % 2 === 0
+  );
+  const blockHalf = Math.floor(samples.length / 2);
+  const firstToSecond = splitFitWithFeatures(
+    samples,
+    ridge,
+    (_sample, index) => index < blockHalf,
+    (_sample, index) => index >= blockHalf
+  );
+  const secondToFirst = splitFitWithFeatures(
+    samples,
+    ridge,
+    (_sample, index) => index >= blockHalf,
+    (_sample, index) => index < blockHalf
+  );
+  const splits = { even_to_odd: evenToOdd, odd_to_even: oddToEven, first_half_to_second_half: firstToSecond, second_half_to_first_half: secondToFirst };
+  const computed = Object.values(splits).filter((split) => split.status === "computed");
+  const maxRelativeResidual = computed.length
+    ? Math.max(...computed.map((split) => split.relative_residual))
+    : Number.POSITIVE_INFINITY;
+  const passed =
+    computed.length === Object.values(splits).length &&
+    Number.isFinite(maxRelativeResidual) &&
+    maxRelativeResidual <= tolerance;
+  return {
+    residual: "R_xval",
+    status: passed ? "passed" : "failed",
+    failure_code: passed ? null : "overfit_holdout_fail",
+    tolerance,
+    held_out_bucket_scheme: "even_odd_and_blocked_bucket_holdout",
+    max_held_out_relative_residual: Number.isFinite(maxRelativeResidual) ? maxRelativeResidual : null,
+    splits,
+  };
+}
+
 function dfGuard(samples, modes, period, ridge) {
   const diagnostics = leverageDiagnostics(samples, modes, period, ridge);
+  const passed =
+    diagnostics.trace_h_over_equations <= 0.5 &&
+    diagnostics.max_leverage <= 0.5 &&
+    diagnostics.minimum_observation_buckets_per_basis_group >= 2 &&
+    diagnostics.overdetermined;
+  return {
+    residual: "R_df",
+    status: passed ? "passed" : "failed",
+    failure_code: passed ? null : "df_guard_fail",
+    ...diagnostics,
+  };
+}
+
+function dfGuardWithFeatures(samples, ridge) {
+  const diagnostics = leverageDiagnosticsWithFeatures(samples, ridge);
   const passed =
     diagnostics.trace_h_over_equations <= 0.5 &&
     diagnostics.max_leverage <= 0.5 &&
@@ -562,9 +1061,173 @@ function samplesFromLedger(ledger) {
   }));
 }
 
-function finalStatus(checks) {
+function parseRootKey(root) {
+  const parts = String(root.root_key ?? "").split("|");
+  return {
+    receiver: root.receiver ?? parts[0] ?? null,
+    source: root.source ?? parts[1] ?? null,
+    relation: root.relation ?? parts[2] ?? null,
+    status: root.status ?? parts[3] ?? null,
+  };
+}
+
+function bodyLayer(bodyId) {
+  return typeof bodyId === "string" ? bodyId.slice(0, 1) : null;
+}
+
+function bodyPolarity(bodyId) {
+  return typeof bodyId === "string" ? bodyId.slice(1, 2) : null;
+}
+
+function polaritySign(receiver, source) {
+  return bodyPolarity(receiver) === bodyPolarity(source) ? 1 : -1;
+}
+
+function rootTransportFeatureNames(quotient) {
+  if (quotient === "m_jacobian_signed_polarity_shear") {
+    return ["M:D_J", "M:signed:D_J", "M:D_tau", "O:D_J", "O:D_tau"];
+  }
+  if (quotient === "source_layer_signed_polarity_shear") {
+    return ["M:signed:D_J", "M:signed:D_tau", "O:signed:D_J", "O:signed:D_tau"];
+  }
+  return ["M:D_J", "M:D_tau", "O:D_J", "O:D_tau"];
+}
+
+function rootTransportRootsAtSample(roots, sample, period) {
+  if (!Array.isArray(roots) || roots.length === 0) {
+    return [];
+  }
+  let bestDistance = Number.POSITIVE_INFINITY;
+  for (const root of roots) {
+    const distance = circularDistance(root.t, sample.t, period);
+    if (distance < bestDistance) {
+      bestDistance = distance;
+    }
+  }
+  const tolerance = Math.max(Math.abs(period) * 1e-10, 1e-12);
+  return roots.filter((root) => circularDistance(root.t, sample.t, period) <= bestDistance + tolerance);
+}
+
+function rootTransportFeaturesForSample(roots, sample, period, quotient) {
+  const featureNames = rootTransportFeatureNames(quotient);
+  const features = new Array(featureNames.length).fill(0);
+  let selectedRootCount = 0;
+  let excludedLockedRootCount = 0;
+  const addFeature = (name, value) => {
+    const index = featureNames.indexOf(name);
+    if (index >= 0 && Number.isFinite(value)) {
+      features[index] += value;
+    }
+  };
+  for (const root of rootTransportRootsAtSample(roots, sample, period)) {
+    const key = parseRootKey(root);
+    if (bodyLayer(key.receiver) !== "I" || key.relation !== "inter_layer") {
+      continue;
+    }
+    const sourceLayer = bodyLayer(key.source);
+    if (sourceLayer !== "M" && sourceLayer !== "O") {
+      continue;
+    }
+    if (root.locked_fold_layer_key === true) {
+      excludedLockedRootCount += 1;
+      continue;
+    }
+    const jShear =
+      Number.isFinite(root.D_J) && Number.isFinite(root.theta) && Number.isFinite(root.G_r)
+        ? root.G_r * root.D_J * Math.cos(root.theta)
+        : null;
+    const tauShear =
+      Number.isFinite(root.D_tau) && Number.isFinite(root.theta) && Number.isFinite(root.G_r)
+        ? root.G_r * root.D_tau * Math.sin(root.theta)
+        : null;
+    const sign = quotient === "source_layer_signed_polarity_shear" ? polaritySign(key.receiver, key.source) : 1;
+    if (quotient === "source_layer_signed_polarity_shear") {
+      addFeature(`${sourceLayer}:signed:D_J`, sign * jShear);
+      addFeature(`${sourceLayer}:signed:D_tau`, sign * tauShear);
+    } else if (quotient === "m_jacobian_signed_polarity_shear") {
+      addFeature(`${sourceLayer}:D_J`, jShear);
+      addFeature(`${sourceLayer}:D_tau`, tauShear);
+      if (sourceLayer === "M") {
+        addFeature("M:signed:D_J", polaritySign(key.receiver, key.source) * jShear);
+      }
+    } else {
+      addFeature(`${sourceLayer}:D_J`, jShear);
+      addFeature(`${sourceLayer}:D_tau`, tauShear);
+    }
+    selectedRootCount += 1;
+  }
+  return { features, selectedRootCount, excludedLockedRootCount };
+}
+
+function rootTransportCoordinateSamples(row, samples, period, quotient) {
+  const record = row?.branch_chart_source_records?.root_transport_source_record;
+  if (record?.schema !== ROOT_TRANSPORT_SOURCE_SCHEMA) {
+    return {
+      status: "blocked",
+      failure_code: "missing-root-transport-source-record",
+      missing_fields: [`rows[].branch_chart_source_records.root_transport_source_record.schema=${ROOT_TRANSPORT_SOURCE_SCHEMA}`],
+      note: "The root-transport coordinate fit requires a source record emitted before checker fitting.",
+    };
+  }
+  if (!Array.isArray(record.roots) || record.roots.length < 2) {
+    return {
+      status: "blocked",
+      failure_code: "missing-root-transport-source-record",
+      missing_fields: ["rows[].branch_chart_source_records.root_transport_source_record.roots[2+]"],
+      note: "The root-transport coordinate fit requires root source rows.",
+    };
+  }
+  const coordinateSamples = [];
+  let selectedRootCount = 0;
+  let excludedLockedRootCount = 0;
+  const selectedTransportSlots = new Set();
+  const featureNames = rootTransportFeatureNames(quotient);
+  for (const sample of samples) {
+    const featurePacket = rootTransportFeaturesForSample(record.roots, sample, period, quotient);
+    selectedRootCount += featurePacket.selectedRootCount;
+    excludedLockedRootCount += featurePacket.excludedLockedRootCount;
+    if (!featurePacket.features.some((value) => Number.isFinite(value) && Math.abs(value) > 0)) {
+      return {
+        status: "blocked",
+        failure_code: "root-transport-coordinate-empty-bucket",
+        missing_fields: [`root_transport_source_record.roots at t=${sample.t}`],
+        note: "At least one sampled forcing bucket has no nonzero I-receiver inter-layer root-transport features.",
+      };
+    }
+    coordinateSamples.push({
+      t: sample.t,
+      residual: sample.residual,
+      features: featurePacket.features,
+    });
+  }
+  for (const root of record.roots) {
+    const key = parseRootKey(root);
+    if (bodyLayer(key.receiver) === "I" && key.relation === "inter_layer" && root.locked_fold_layer_key !== true) {
+      selectedTransportSlots.add(root.transport_id);
+    }
+  }
+  return {
+    status: "computed",
+    root_transport_quotient: quotient,
+    feature_names: featureNames,
+    sample_count: coordinateSamples.length,
+    selected_root_count: selectedRootCount,
+    selected_locked_root_count: 0,
+    excluded_locked_root_count: excludedLockedRootCount,
+    selected_transport_slot_count: selectedTransportSlots.size,
+    source_record_root_count: record.roots.length,
+    samples: coordinateSamples,
+  };
+}
+
+function finalStatus(checks, args) {
+  if (checks.R_src?.status === "failed") {
+    return checks.R_src.failure_code ?? "rejected_hidden_fit_split";
+  }
   const failureOrder = [
-    ["R_src", "rejected_hidden_fit_split"],
+    ["R_coord", ROOT_TRANSPORT_FIT_FAILURE],
+    ["R_sym", "symmetry_guard_fail"],
+    ["R_eq", "equality_guard_fail"],
     ["D_new", "rejected_already_covered_coordinate"],
     ["nyquist", "nyquist_mode_requires_higher_sample_count"],
     ["R_lock", "locked_fold_layer_keys_not_excluded"],
@@ -575,16 +1238,62 @@ function finalStatus(checks) {
   for (const [key, status] of failureOrder) {
     const check = checks[key];
     if (check?.status === "failed") {
-      return status;
+      return check.failure_code ?? status;
     }
   }
   if (checks.R_transport?.status !== "passed") {
-    return "revision_candidate_only";
+    return args.coordinateSource === "root_transport_source_record"
+      ? (checks.R_transport?.failure_code ?? "root-transport-not-certified")
+      : "revision_candidate_only";
   }
   if (checks.R_1p?.status !== "passed") {
     return "revision_candidate_only";
   }
   return "revision_candidate_only";
+}
+
+function revisionTypeFor(args) {
+  return args.coordinateSource === "root_transport_source_record" ? "finer_root_branch_coordinate" : REVISION_TYPE;
+}
+
+function revisionModeFor(args) {
+  return args.coordinateSource === "root_transport_source_record"
+    ? "root_transport_source_coordinate"
+    : REVISION_MODE;
+}
+
+function coordinateNameFor(args) {
+  return args.coordinateSource === "root_transport_source_record" ? "mu_root_transport" : "H_I";
+}
+
+function zLambdaExtensionFor(args) {
+  if (args.coordinateSource === "root_transport_source_record") {
+    return {
+      root_transport_source_schema: ROOT_TRANSPORT_SOURCE_SCHEMA,
+      coordinate_family: "I_receiver_inter_layer_J_delay_shear",
+      root_transport_quotient: args.rootTransportQuotient,
+      required_root_fields: ["root_key", "t", "theta", "D_tau", "D_J", "G_r", "transport_id"],
+      required_certification_fields: [
+        "transport_identity_refinement_stable",
+        "phase_origin_covariance_certified",
+      ],
+      locked_self_roots_excluded: true,
+    };
+  }
+  return {
+    primary_inner_harmonic_modes: args.primaryModes,
+    guard_inner_harmonic_modes: args.guardModes,
+  };
+}
+
+function equalityGroupKeyFor(args) {
+  if (args.coordinateSource === "root_transport_source_record") {
+    if (args.rootTransportQuotient === "m_jacobian_signed_polarity_shear") {
+      return "receiver + source + relation + status + source_layer + transport_channel + M:D_J relative_receiver_source_polarity + phase_origin + single_artifact_transport_slot";
+    }
+    return "receiver + source + relation + status + shear_signs + phase_origin + single_artifact_transport_slot";
+  }
+  return "relation + receiver_layer + source_layer + polarity_pair + root_key + harmonic_mode + harmonic_quadrature + projection";
 }
 
 function solveRow(row, args, intakePath) {
@@ -602,6 +1311,14 @@ function solveRow(row, args, intakePath) {
   const ledger = baselineLedger(row);
   const samples = samplesFromLedger(ledger);
   const period = ledger.sampled_forcing.period;
+  const rootTransportCoordinate =
+    args.coordinateSource === "root_transport_source_record"
+      ? rootTransportCoordinateSamples(row, samples, period, args.rootTransportQuotient)
+      : null;
+  const fitSamples =
+    args.coordinateSource === "root_transport_source_record" && rootTransportCoordinate?.status === "computed"
+      ? rootTransportCoordinate.samples
+      : samples;
   const nyquist = nyquistCheck(
     samples.length,
     args.primaryModes,
@@ -609,22 +1326,40 @@ function solveRow(row, args, intakePath) {
     args.nyquistGuardMode,
     args.bucketCount
   );
-  const fullFit = fullFitResidual(samples, args.primaryModes, period, args.ridge);
-  const guardFit = fullFitResidual(samples, [...args.primaryModes, ...args.guardModes], period, args.ridge);
+  const fullFit =
+    args.coordinateSource === "root_transport_source_record" && rootTransportCoordinate?.status === "computed"
+      ? fullFitResidualWithFeatures(fitSamples, args.ridge)
+      : fullFitResidual(samples, args.primaryModes, period, args.ridge);
+  const guardFit =
+    args.coordinateSource === "root_transport_source_record"
+      ? {
+          status: "not_applicable",
+          failure_code: null,
+          relative_residual: null,
+          note: "The root-transport coordinate uses fixed source-layer J/delay shear features rather than harmonic guard modes.",
+        }
+      : fullFitResidual(samples, [...args.primaryModes, ...args.guardModes], period, args.ridge);
   const checks = {
-    R_src: sourceCheck(args),
-    D_new: noveltyCheck(ledger),
-    R_sym: symmetryCheck(args.primaryModes, args.guardModes),
-    R_eq: equalityCheck(ledger),
+    R_src: sourceCheck(args, row),
+    R_coord: coordinateFitCheck(args, rootTransportCoordinate),
+    D_new: noveltyCheck(ledger, args),
+    R_sym: symmetryCheck(args),
+    R_eq: equalityCheck(ledger, args),
     R_lock: lockCheck(ledger),
-    R_transport: transportCheck(row),
-    R_df: dfGuard(samples, args.primaryModes, period, args.ridge),
-    R_xval: heldOutResidual(samples, args.primaryModes, period, args.ridge, args.tolerance),
+    R_transport: transportCheck(row, args),
+    R_df:
+      args.coordinateSource === "root_transport_source_record" && rootTransportCoordinate?.status === "computed"
+        ? dfGuardWithFeatures(fitSamples, args.ridge)
+        : dfGuard(samples, args.primaryModes, period, args.ridge),
+    R_xval:
+      args.coordinateSource === "root_transport_source_record" && rootTransportCoordinate?.status === "computed"
+        ? heldOutResidualWithFeatures(fitSamples, args.ridge, args.tolerance)
+        : heldOutResidual(samples, args.primaryModes, period, args.ridge, args.tolerance),
     R_1p: onePeriodCheck(row),
     R_bench: benchmarkCheck(row, ledger),
     nyquist,
   };
-  const status = finalStatus(checks);
+  const status = finalStatus(checks, args);
   return {
     schema: OUTPUT_ROW_SCHEMA,
     row: row.row,
@@ -635,22 +1370,18 @@ function solveRow(row, args, intakePath) {
     branch_chart_revision: {
       schema: CONTRACT_SCHEMA,
       source_artifact: intakePath,
-      revision_type: REVISION_TYPE,
-      mode: REVISION_MODE,
-      coordinate_name: "H_I",
+      revision_type: revisionTypeFor(args),
+      mode: revisionModeFor(args),
+      coordinate_name: coordinateNameFor(args),
       receiver_layer: "I",
-      z_lambda_extension: {
-        primary_inner_harmonic_modes: args.primaryModes,
-        guard_inner_harmonic_modes: args.guardModes,
-      },
+      z_lambda_extension: zLambdaExtensionFor(args),
       nyquist_guard: {
         mode_8_requires_higher_sample_count: args.nyquistGuardMode === 8,
         nyquist_guard_mode: args.nyquistGuardMode,
         max_mode_must_be_below_sample_count_over_2: true,
       },
       coordinate_source_fields: args.coordinateSource,
-      equality_group_key:
-        "relation + receiver_layer + source_layer + polarity_pair + root_key + harmonic_mode + harmonic_quadrature + projection",
+      equality_group_key: equalityGroupKeyFor(args),
       held_out_residual_rule: "even_odd_and_blocked_bucket_holdout",
       locked_fold_layer_keys_excluded: checks.R_lock.status === "passed",
       benchmark_inputs_excluded: checks.R_bench.status === "passed",
@@ -670,9 +1401,27 @@ function solveRow(row, args, intakePath) {
       guard_modes: args.guardModes,
       full_fit_primary: fullFit,
       full_fit_primary_plus_guard: guardFit,
-      diagnostic_fit_basis: "cartesian residual-forcing surrogate; declared coordinate count remains radial/tangential",
+      diagnostic_fit_basis:
+        args.coordinateSource === "root_transport_source_record"
+          ? "root_transport_source_record fixed I-receiver inter-layer source-layer J/delay shear features"
+          : "cartesian residual-forcing surrogate; declared coordinate count remains radial/tangential",
+      root_transport_coordinate:
+        rootTransportCoordinate && rootTransportCoordinate.status === "computed"
+          ? {
+              feature_names: rootTransportCoordinate.feature_names,
+              root_transport_quotient: rootTransportCoordinate.root_transport_quotient,
+              sample_count: rootTransportCoordinate.sample_count,
+              selected_root_count: rootTransportCoordinate.selected_root_count,
+              selected_locked_root_count: rootTransportCoordinate.selected_locked_root_count,
+              excluded_locked_root_count: rootTransportCoordinate.excluded_locked_root_count,
+              selected_transport_slot_count: rootTransportCoordinate.selected_transport_slot_count,
+              source_record_root_count: rootTransportCoordinate.source_record_root_count,
+            }
+          : rootTransportCoordinate,
       note:
-        "The harmonic audit is diagnostic only. A low in-sample residual is not a branch-chart coordinate unless the source and held-out residual checks pass.",
+        args.coordinateSource === "root_transport_source_record"
+          ? "The root-transport coordinate audit is fixed before fitting by the source-record schema. It still cannot authorize a rerun unless held-out residual, transport, one-period, lock, and benchmark checks pass."
+          : "The harmonic audit is diagnostic only. A low in-sample residual is not a branch-chart coordinate unless the source and held-out residual checks pass.",
     },
     anti_overfit_residual: checks,
     accepted_history_boundary: false,
@@ -706,6 +1455,7 @@ function buildOutput(artifact, args, intakePath) {
       tolerance: args.tolerance,
       ridge: args.ridge,
       coordinate_source: args.coordinateSource,
+      root_transport_quotient: args.rootTransportQuotient,
       primary_modes: args.primaryModes,
       guard_modes: args.guardModes,
       nyquist_guard_mode: args.nyquistGuardMode,

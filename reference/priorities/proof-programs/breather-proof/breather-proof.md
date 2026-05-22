@@ -11,8 +11,8 @@
 
 ## Task Queue
 
-1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `fresh-same-packet-seed-contract-ready-generator-needed`; first finite velocity-class template exists and is rejected at the parent-complement gate, the successor solver surface is specified, the gap-opening feasibility scanner exists as a proof aid, and the phase-shifted fold-shear seed contract now gives the next solver a concrete inbound-section initial history, but no live fresh candidate generator exists yet. Depends on: none.
-2. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `current-cosine-packet-rejected-parent-complement-gate`; the refined diagnostic has six strict simple-root subrows, twenty-four accepted diagonal-exclusion empty rows, and accepted fixed-parameter full-interval fold constants, but all attempted parent-complement closure routes fail and the live pre-ledger remains rejected. Depends on: `candidate_cycle_packet`.
+1. `candidate_cycle_packet` — Produce `certificate/phi_cyc.json` and `certificate/mesh.json` for one candidate center history, preferably using the fold-adapted fractional basis near field-speed separators or an interval-collocation replacement with the same residual targets. Status: `fresh-successor-artifacts-created`; the rejected cosine template is historical, and `scripts/proof-programs/fresh-fold-shear-candidate-packet.mjs` now emits the fresh phase-shifted fold-shear `phi_cyc`, shifted mesh, diagnostic pre-ledger input screen, and packet report under `fresh-same-packet-fold-shear-seed-v0`. Depends on: none.
+2. `null_coordinate_preledger` — Produce `certificate/causal_ledger.json` and `certificate/causal_preledger_interval_report.md`, proving the named `Null-Coordinate Causal Pre-Ledger` theorem target or rejecting the candidate/itinerary before branch-chart certification. Status: `fresh-successor-preledger-rejected-fail-closed`; the fresh binary64 outward-padded range-empty attempt accepted 116 range-empty rows and 12 monotone diagonal exclusions, left 34 rows `split_required`, and authorized no branch chart. Proof-interval-v1 certifies 70 exact-rational coarse range-empty rows; proof-interval-v2 now certifies 116 exact-rational row-specific trigonometric range-empty rows and leaves 46 rows unresolved. Monotone diagonal, simple-root, endpoint/seam, and fold-layer work is still required before any full pre-ledger pass. Depends on: `candidate_cycle_packet`.
 3. `branch_chart_certificate` — Produce `certificate/branch_chart.json` and `certificate/seed_chart_interval_report.md`, including active branches, inactive complements, Jacobian floors, memory-depth ranges, and envelope constants. Status: `blocked`; depends on a passed `null_coordinate_preledger`, including finite fold impulse ceilings and resolved fold-adjacent parent-row boundary leftovers. Depends on: `null_coordinate_preledger`.
 4. `coupled_corridor_certificate` — Produce `certificate/corridor_nonemptiness_report.md`, `certificate/parameters.json`, and the coupled-corridor interval report for one strict parameter tuple. Status: `pending`. Depends on: `branch_chart_certificate`.
 5. `monodromy_diagnostic` — Produce the section-anchored monodromy spectrum and route returned-sample preservation to sensitivities or boundary trapping. Status: `pending`. Depends on: `branch_chart_certificate`, `coupled_corridor_certificate`.
@@ -45,12 +45,17 @@
 - `sub_field_speed_action_test_case` produced `certificate/sub_field_speed_action_test_case.md`, promoting an action-generated sub-field-speed analytic baseline: the held-source segment has an exact field-speed criterion and explicit regular handoff map, the exterior delayed-partner branch has a Lambert-$W$ phase solution, and exact same-side self roots are excluded under a strict sub-field speed cap.
 - `held_release_handoff_map` produced `certificate/held_release_handoff_map.md`, proving that the stationary-partner ODE segment admits a unique scalar handoff equation, a separate field-speed-before-handoff criterion, and a simple-root opening with $J_p=1$ and no acceleration jump. In the normalized $x_0=1.25$, $g=1$, $c_f=1$ fixture, the handoff occurs at $x_\ast\approx0.8707972823389274$ with $\dot x_\ast\approx-0.37820836925058077$, so the moving-partner delayed chart is entered from a strict sub-field-speed state rather than the rejected exact field-speed self-continuum.
 - `next_candidate_solver_target` produced `certificate/next_candidate_solver_target.md`, defining the next executable target as a fresh fold-adapted collocation candidate whose null-coordinate pre-ledger must pass before any branch chart is built, and now upgrading $H_{\mathrm{pc}}$ into a tangent-space gap-opening criterion.
-- `fresh_fold_collocation_solver_surface` produced `certificate/fresh_fold_collocation_solver_surface.md`, recording that no runnable breather-specific fresh-candidate solver or pre-ledger generator exists yet and specifying the minimum lawful successor artifact set plus the finite gap-opening linearization.
+- `fresh_fold_collocation_solver_surface` produced `certificate/fresh_fold_collocation_solver_surface.md`, recording the minimum lawful successor artifact set plus the finite gap-opening linearization. It now notes that the first sidecar generator exists, that the binary64 fail-closed range-empty preledger attempt rejects the sidecar before branch-chart authorization, and that proof-interval-v1 exists as an exact-rational coarse range-empty sidecar but not yet as a row-specific trigonometric interval preledger.
 - `null_coordinate_separation_direction_lemma` produced `certificate/null_coordinate_separation_direction_lemma.md`, converting parent-complement repair into a finite separation-direction problem on the fresh collocation candidate.
 - `gap_opening_feasibility_scanner` produced `scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs`, `certificate/gap_opening_feasibility_input.seed_cosine_diagnostic_demo.v0.json`, `certificate/gap_opening_feasibility_result.seed_cosine_diagnostic_demo.v0.json`, and `certificate/gap_opening_feasibility_report.seed_cosine_diagnostic_demo.v0.md`. It emits a strict tangent witness for a declared diagnostic endpoint-shear matrix while keeping `preledger_pass=false`, `updates_live_ledger=false`, and `branch_chart_authorized=false`.
 - `live_fold_shear_gap_opening` produced `scripts/proof-programs/fold-shear-gap-matrix-builder.mjs`, `certificate/gap_opening_live_fold_shear_input.seed_cosine_residuals.v0.json`, `certificate/gap_opening_live_fold_shear_result.seed_cosine_residuals.v0.json`, and `certificate/gap_opening_live_fold_shear_report.seed_cosine_residuals.v0.md`. It replaces the independent diagnostic columns with actual $C^1$ first-half arc bumps extended by half-period antisymmetry and emits a strict finite witness for the residual source-above-receiver gaps.
 - `finite_fold_shear_candidate_seed` produced `scripts/proof-programs/fold-shear-finite-deformation.mjs`, `certificate/fold_shear_deformed_candidate.seed_cosine_residuals.v0.json`, and `certificate/fold_shear_deformed_candidate_report.seed_cosine_residuals.v0.md`. It converts the strict live tangent witness into an explicit finite fixed-period deformation with threshold $\varepsilon_{\min}=0.0515044597755009$, chosen $\varepsilon=0.0625$, and minimum declared residual surplus `0.00106743573978125`, while keeping `preledger_pass=false` and `branch_chart_authorized=false`.
 - `phase_shifted_same_packet_seed_contract` produced `scripts/proof-programs/fold-shear-phase-shift-audit.mjs`, `certificate/fold_shear_phase_shift_audit.seed_cosine_residuals.v0.json`, `certificate/fresh_same_packet_fold_shear_seed.v0.json`, and `certificate/fresh_same_packet_fold_shear_seed_contract.md`. It shifts the finite fold-shear seed by $\delta=0.02$ to an inbound section with $X_\delta(0)=1.2447644729563$ and $\dot x_\delta(0)=-0.0876176690331297$, preserves the finite residual-collar surplus under shifted source/receiver intervals, and defines the next same-packet seed contract without claiming a pre-ledger pass.
+- `fresh_same_packet_successor_candidate_packet` produced `scripts/proof-programs/fresh-fold-shear-candidate-packet.mjs`, `certificate/phi_cyc.fresh-same-packet-fold-shear-seed-v0.json`, `certificate/mesh.fresh-same-packet-fold-shear-seed-v0.json`, `certificate/causal_preledger_input_screen.fresh-same-packet-fold-shear-seed-v0.json`, and `certificate/candidate_cycle_packet_report.fresh-same-packet-fold-shear-seed-v0.md`. It instantiates the phase-shifted fold-shear seed as fresh finite candidate input with $X_\delta(0)=1.2447644729563$ and $\dot x_\delta(0)=-0.0876176690331297$; the input screen has 162 rows, with 116 sampled disjoint rows and 46 sampled overlap-or-touch rows, but it is diagnostic only and does not pass the null-coordinate pre-ledger.
+- `fresh_same_packet_range_empty_preledger_attempt` produced `scripts/proof-programs/fresh-null-coordinate-preledger.mjs`, `certificate/causal_ledger.fresh-same-packet-fold-shear-seed-v0.json`, `certificate/causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.md`, and `certificate/preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.json`. It is a binary64 outward-padded fail-closed attempt, not an MPFR/Arb formal interval certificate: it accepts 116 range-empty rows and 12 monotone diagonal exclusions, leaves 34 rows `split_required` (16 fold-layer rows, 16 range-overlap split rows, and 2 diagonal contacts), and records `branch_chart_authorized=false`.
+- `fresh_proof_interval_xbound_preledger_v1` produced `scripts/proof-programs/fresh-proof-interval-preledger-v1.mjs`, `certificate/preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`, `certificate/causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`, `certificate/causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.md`, and `certificate/preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`. It uses lossless JSON numeric-token intake and `BigInt` rational interval arithmetic to certify 70 coarse range-empty rows under $|X_\delta| \le 1.374365144724375 < 11/8$, leaves 92 rows `split_required`, accepts no diagonal/simple-root/fold rows, and records `branch_chart_authorized=false`.
+- `fresh_proof_interval_trig_preledger_v2` produced `scripts/proof-programs/fresh-proof-interval-preledger-v2.mjs`, `certificate/preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`, `certificate/causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`, `certificate/causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.md`, and `certificate/preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`. It adds row-specific certified trigonometric $X_\delta$ ranges using exact-rational endpoint arithmetic, a rational $\pi$ bracket, Taylor tail bounds, support-aware bump ranges, and 32 subintervals per mesh interval. It certifies 116 range-empty rows, leaves 46 rows `split_required`, accepts no diagonal/simple-root/fold rows, and records `branch_chart_authorized=false`.
+- `fresh_preledger_blocker_anatomy` produced `scripts/proof-programs/fresh-preledger-blocker-anatomy.mjs`, `certificate/fresh_preledger_blocker_anatomy.fresh-same-packet-fold-shear-seed-v0.json`, `certificate/fresh_preledger_blocker_anatomy_report.fresh-same-packet-fold-shear-seed-v0.md`, `certificate/fold_layer_burden.fresh-same-packet-fold-shear-seed-v0.json`, and `certificate/fold_layer_burden_report.fresh-same-packet-fold-shear-seed-v0.md`. It classifies the 34 unresolved fresh rows into 16 same-packet fold-layer certificate rows, 6 regular parent root-candidate overlaps, 10 structural endpoint/seam or inactive-fold-neighborhood contacts, and 2 nonmonotone diagonal contacts; it consumes no rows and keeps `branch_chart_authorized=false`.
 - `aaa_corpus_recommendation_handoff` produced `certificate/aaa_corpus_recommendation_handoff.md`, recording the scoped AAA edits that promoted the null-coordinate pre-ledger as a candidate-falsification gate, kept rejected-packet operational detail priority-only, and deferred any enlarged regular-boundary theorem pending Op discussion.
 - `regular_boundary_user_facing_recommendation` produced `certificate/regular_boundary_user_facing_recommendation.md`, recording that current AAA prose should not name regular-boundary coverage as accepted doctrine; the existing generic same-packet complement predicate is the safe public surface until a finite inclusion/domination theorem exists.
 - `field_speed_head_on_inflight_wake_test_case` produced `scripts/proof-programs/field-speed-head-on-root-audit.mjs`, `certificate/field_speed_head_on_inflight_wake_input.v0.json`, `certificate/field_speed_head_on_inflight_wake_result.v0.json`, `certificate/field_speed_head_on_inflight_wake_test_case.md`, and `certificate/field_speed_head_on_inflight_wake_report.v0.md`. It records the operator-proposed $x_L=-1$, $x_R=+1$, $|v|=c_f$ head-on seed as a fail-closed caustic/root-degeneracy test: partner wake is still in flight at $t=0$, same-source roots form a continuum with $J=0$, and no candidate or branch chart is authorized before a dual-mollified finite-history run.
@@ -130,6 +135,11 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 - Use `certificate/fresh_fold_collocation_solver_surface.md` as the implementation contract for the missing fresh-candidate solver or manual artifact instantiation.
 - Use `certificate/null_coordinate_separation_direction_lemma.md` as the constructive proof route for opening parent-complement gaps by changing the candidate history.
 - Use `scripts/proof-programs/null-coordinate-gap-opening-scanner.mjs`, `scripts/proof-programs/fold-shear-gap-matrix-builder.mjs`, `scripts/proof-programs/fold-shear-finite-deformation.mjs`, `scripts/proof-programs/fold-shear-phase-shift-audit.mjs`, `certificate/gap_opening_live_fold_shear_result.seed_cosine_residuals.v0.json`, `certificate/fold_shear_deformed_candidate.seed_cosine_residuals.v0.json`, `certificate/fold_shear_phase_shift_audit.seed_cosine_residuals.v0.json`, and `certificate/fresh_same_packet_fold_shear_seed_contract.md` as the current proof aid for the tangent-space condition $B\xi=0$, $A\xi\ge\kappa\mathbf{1}$ and its phase-shifted finite inbound-section seed. The live local fold-shear matrix is a constructive seed direction, the finite deformation opens the listed residual collars, and the phase-shifted contract makes it an initial history for the next same-packet solve; a full fresh-candidate Jacobian and interval pre-ledger are still required before making any candidate claim.
+- Use `scripts/proof-programs/fresh-fold-shear-candidate-packet.mjs`, `certificate/phi_cyc.fresh-same-packet-fold-shear-seed-v0.json`, `certificate/mesh.fresh-same-packet-fold-shear-seed-v0.json`, `certificate/causal_preledger_input_screen.fresh-same-packet-fold-shear-seed-v0.json`, and `certificate/candidate_cycle_packet_report.fresh-same-packet-fold-shear-seed-v0.md` as the first instantiated fresh same-packet sidecar. It is no longer merely input-ready: its first binary64 outward-padded preledger attempt exists and rejects/fail-closes before branch-chart authorization.
+- Use `scripts/proof-programs/fresh-null-coordinate-preledger.mjs`, `certificate/causal_ledger.fresh-same-packet-fold-shear-seed-v0.json`, `certificate/causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.md`, and `certificate/preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.json` as the binary64 sidecar preledger attempt. It accepted 128 empty rows under a fail-closed binary64 engine and left 34 `split_required` rows.
+- Use `scripts/proof-programs/fresh-proof-interval-preledger-v1.mjs`, `certificate/preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`, `certificate/causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`, `certificate/causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.md`, and `certificate/preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json` as the exact-rational coarse range-empty sidecar. It certifies 70 rows by strict $c_fT_{\mathrm{cyc}}\theta\pm X_{\max}$ separation, leaves 92 rows `split_required`, and turns the next proof action into trig-enabled proof-interval row consumption, not branch-chart construction.
+- Use `scripts/proof-programs/fresh-proof-interval-preledger-v2.mjs`, `certificate/preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`, `certificate/causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`, `certificate/causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.md`, and `certificate/preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json` as the exact-rational row-specific trigonometric range sidecar. It certifies 116 range-empty rows, leaves 46 rows `split_required`, and turns the next proof action into monotone diagonal, simple-root, endpoint/seam, and fold-layer certification, not branch-chart construction.
+- Use `scripts/proof-programs/fresh-preledger-blocker-anatomy.mjs`, `certificate/fresh_preledger_blocker_anatomy.fresh-same-packet-fold-shear-seed-v0.json`, and `certificate/fold_layer_burden.fresh-same-packet-fold-shear-seed-v0.json` as the current row-level proof-burden map for the fresh sidecar. The six regular parent root-candidate overlaps are the simple-root extraction targets; the ten endpoint/seam or inactive-fold-neighborhood contacts require endpoint ownership or structural repair; the sixteen fold rows require same-packet fold-layer fields and may not be rewritten as `simple_root`.
 - Use `certificate/aaa_corpus_recommendation_handoff.md` as the audit trail for the scoped AAA edit batch that has now been applied.
 - Use `certificate/regular_boundary_user_facing_recommendation.md` as the current documentation decision for the regular-boundary question: no named AAA theorem now, with only a possible future same-packet wording micro-edit in `collinear-breather.md`.
 - Use `certificate/field_speed_head_on_inflight_wake_test_case.md` and `certificate/field_speed_head_on_inflight_wake_result.v0.json` as the current boundary-case audit for exact field-speed head-on history. It is a useful separator-caustic test, not a candidate cycle. Any continuation must run the dual-mollified finite-history integral before using the case for force, recapture, or branch-chart claims.
@@ -191,11 +201,11 @@ The current scaffold is no longer blocked by abstract Schauder theory. It is blo
 $$
 \phi_{\mathrm{cyc}}.
 $$
-It is not blocked by the absence of an elementary closed-form orbit. The dual-mollified absolute-time integral law is sufficient as the evolution law; branch-sum formulas are simple-root reductions used on certified charts. A first instantiated velocity-class template now exists as
+It is not blocked by the absence of an elementary closed-form orbit. The dual-mollified absolute-time integral law is sufficient as the evolution law; branch-sum formulas are simple-root reductions used on certified charts. A historical velocity-class template and a fresh phase-shifted fold-shear sidecar input now exist as
 $$
 \phi_{\mathrm{cyc}},
 $$
-with a sample mesh and coefficient table in the repository. What is still absent is a dynamics-solved or interval-certified candidate: the current template has not passed the null-coordinate pre-ledger, branch-chart certification, EOM residual evaluation, returned-sample preservation, or topology row. Therefore the proof cannot honestly be marked complete until that finite audit is run on the same packet identity and passes with strict margins.
+with sample meshes and coefficient data in the repository. What is still absent is a dynamics-solved or interval-certified candidate: the fresh sidecar has now fail-closed at its binary64 outward-padded null-coordinate preledger attempt, has not passed branch-chart certification, and has not passed EOM residual evaluation, returned-sample preservation, or topology. Therefore the proof cannot honestly be marked complete until that finite audit is run on the same packet identity and passes with strict margins.
 
 The refined pre-ledger diagnostic is now sharper than candidate absence. It
 isolates the four separator layers, certifies 116 range-empty base rows, accepts
@@ -213,9 +223,28 @@ partition still rejects, no complete parent row can be consumed, and the live
 `causal_ledger.json` has not been rewritten.
 
 The fresh-candidate lane has now advanced beyond a solver-surface conclusion.
-No breather-specific generator exists yet, but the parent-complement obstruction
-has a concrete finite-dimensional repair route and an executable proof aid. The
-fixed-history strict-collar lemma proves that mesh-only refinement cannot remove
+A first breather-specific sidecar generator now instantiates the phase-shifted
+fold-shear seed as fresh finite candidate input, and a binary64 outward-padded
+range-empty preledger attempt now fail-closes that sidecar before branch-chart
+authorization. The pass accepts 116 range-empty rows and 12 monotone diagonal
+exclusions, but leaves 34 rows `split_required`. The blocker anatomy now
+separates those rows into 16 same-packet fold-layer certificate rows, 6 regular
+parent root-candidate overlaps, 10 structural endpoint/seam or
+inactive-fold-neighborhood contacts, and 2 diagonal contacts without a monotone
+exclusion certificate. Proof-interval-v1 now adds a stricter exact-rational
+sidecar: it certifies 70 coarse range-empty rows using lossless decimal intake,
+`BigInt` rational endpoints, and the envelope
+$$
+|X_\delta| \le 1.374365144724375 < 11/8,
+$$
+but leaves 92 rows `split_required` and accepts no diagonal, simple-root, or
+fold-layer row. Proof-interval-v2 then certifies row-specific trigonometric
+$X_\delta$ ranges and reaches 116 exact-rational range-empty rows, leaving 46
+rows `split_required` because it still accepts no diagonal, simple-root, or
+fold-layer row. The binary64 accepted diagonal rows remain diagnostic until a
+proof-interval monotonicity layer exists; no branch chart is authorized. The
+fixed-history strict-collar lemma proves
+that mesh-only refinement cannot remove
 positive-width equality cores under strict simple-root coverage. The
 null-coordinate separation-direction lemma gives the constructive replacement:
 find a tangent direction on the structural collocation manifold that increases
@@ -274,11 +303,12 @@ $$
 $$
 This is the first finite candidate-history seed for the fresh solver, not a
 pre-ledger pass or a repaired cosine packet.
-The minimum lawful next attempt is therefore a new same-packet artifact set,
-generated or manually instantiated under one fresh identity, whose first
-acceptance row is again the null-coordinate pre-ledger and whose search surface
-carries this live shear into the true fresh-candidate structural Jacobian and
-signed gap derivatives before branch-chart work.
+The same-packet sidecar packet now exists under
+`fresh-same-packet-fold-shear-seed-v0` with fresh `phi_cyc`, shifted mesh, a
+diagnostic pre-ledger input screen, and a fail-closed sidecar preledger report.
+Its first acceptance row did not pass. The structural Jacobian, dynamic
+residuals, fold integrals, row-specific proof-interval trig enclosures, and
+signed gap derivatives remain required before branch-chart work.
 
 The sub-field-speed comparison lane now has a concrete action-generated
 baseline rather than a prescribed-path ansatz. The held-source release segment
@@ -309,7 +339,10 @@ generic same-packet complement-predicate wording is therefore the right public
 surface; a later low-risk wording cleanup may align `collinear-breather.md` with
 the ansatz document by adding `same-packet` to its accepted-complement phrase.
 
-The current packet is now summarized in `certificate/pass_fail_ledger.md`. The fold-ceiling calculation has an accepted fixed-parameter fallback in `certificate/fold_full_interval_constants_certificate.json`, recording
+`certificate/pass_fail_ledger.md` now separates the historical rejected cosine
+packet from the fresh fail-closed fold-shear sidecar. The fold-ceiling
+calculation for the historical packet has an accepted fixed-parameter fallback
+in `certificate/fold_full_interval_constants_certificate.json`, recording
 $$
 C_\Sigma,
 \qquad
@@ -317,7 +350,12 @@ A_{\Sigma,\eta,\epsilon_c},
 \qquad
 I^{\mathrm{fold}}_{\eta,\epsilon_c,\Sigma}
 $$
-for $\Sigma_1,\ldots,\Sigma_4$. Pure endpoint exclusion, finer threshold subdivision, and current-contract regular-boundary coverage have all been attempted and rejected as complete parent-row closure routes. This cosine packet is therefore rejected before branch-chart certification.
+for $\Sigma_1,\ldots,\Sigma_4$. Pure endpoint exclusion, finer threshold
+subdivision, and current-contract regular-boundary coverage have all been
+attempted and rejected as complete parent-row closure routes for the cosine
+packet. The fresh sidecar packet has now been judged by its first fail-closed
+range-empty null-coordinate preledger attempt, which rejects the sidecar before
+any branch-chart work.
 
 The fold-ceiling diagnostic pass now proves the conditional finite form
 $$
@@ -334,7 +372,7 @@ Its executable artifacts are:
 - `certificate/itinerary.json`: velocity-class itinerary, arc labels, separator events, proposed fold events, and expected root-count jumps.
 - `certificate/itinerary_parity_report.md`: algebraic check that every separator event satisfies the even-jump law and signed-degree conservation, and that the closed-cycle branch ledger returns to itself.
 
-The current gate remains the null-coordinate pre-ledger. This is now a named theorem target in [closed-form-collinear-breather-ansatz.md](../../../../content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md): before the current template or any later candidate can claim an active branch chart, the ordered arc-pair blocks must be reduced to certified empty blocks, simple-root blocks, and fold-layer blocks using
+The current gate remains the null-coordinate pre-ledger. This is now a named theorem target in [closed-form-collinear-breather-ansatz.md](../../../../content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md): before the fresh sidecar or any later candidate can claim an active branch chart, the ordered arc-pair blocks must be reduced to certified empty blocks, simple-root blocks, and fold-layer blocks using
 $$
 u=c_f t-x,
 \qquad

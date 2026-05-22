@@ -15,6 +15,19 @@ Source artifacts:
 - `fold_shear_deformed_candidate.seed_cosine_residuals.v0.json`
 - `fold_shear_phase_shift_audit.seed_cosine_residuals.v0.json`
 - `fresh_same_packet_fold_shear_seed.v0.json`
+- `causal_ledger.fresh-same-packet-fold-shear-seed-v0.json`
+- `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.md`
+- `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.json`
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`
+- `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`
+- `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.md`
+- `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`
+- `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`
+- `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.md`
+- `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`
+- `fresh_preledger_blocker_anatomy.fresh-same-packet-fold-shear-seed-v0.json`
+- `fold_layer_burden.fresh-same-packet-fold-shear-seed-v0.json`
 
 ## Verdict
 
@@ -175,14 +188,65 @@ identity:
 | successor `causal_preledger_interval_report.md` | A pass/fail interval report proving or rejecting every row as `empty`, `simple_root`, or `fold_layer`. |
 | structural-Jacobian packet | The same-packet matrices $B=DC(\mathbf a_0)$ and $A=D\delta(\mathbf a_0)$, plus dynamic residual, fold-integral, and returned-sample targets. |
 
+Fulfillment note, 2026-05-22: the first successor sidecar packet has now been
+instantiated under `fresh-same-packet-fold-shear-seed-v0` by
+`scripts/proof-programs/fresh-fold-shear-candidate-packet.mjs`. It emits
+`phi_cyc.fresh-same-packet-fold-shear-seed-v0.json`,
+`mesh.fresh-same-packet-fold-shear-seed-v0.json`,
+`causal_preledger_input_screen.fresh-same-packet-fold-shear-seed-v0.json`, and
+`candidate_cycle_packet_report.fresh-same-packet-fold-shear-seed-v0.md`.
+These are fresh candidate and input-screen artifacts, not a live
+`causal_ledger.json` rewrite and not a null-coordinate pre-ledger pass.
+
+Fulfillment note, 2026-05-22: `scripts/proof-programs/fresh-null-coordinate-preledger.mjs`
+now emits a sidecar preledger attempt for the same fresh packet:
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.json`,
+`causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.md`, and
+`preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.json`. The
+attempt is binary64 outward-padded and fail-closed, not an MPFR/Arb formal
+interval certificate. It accepts 116 range-empty rows and 12 monotone diagonal
+exclusions, leaves 34 rows `split_required`, and records
+`branch_chart_authorized=false`.
+
+Fulfillment note, 2026-05-22: `scripts/proof-programs/fresh-proof-interval-preledger-v1.mjs`
+now emits a proof-interval-v1 sidecar for the same fresh packet:
+`preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`,
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`,
+`causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.md`,
+and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`.
+This sidecar uses lossless JSON numeric-token intake and exact `BigInt`
+rational intervals to certify 70 coarse range-empty rows under
+$|X_\delta| \le 1.374365144724375 < 11/8$. It leaves 92 rows `split_required`,
+accepts no diagonal, simple-root, or fold-layer row, and records
+`branch_chart_authorized=false`.
+
+Fulfillment note, 2026-05-22: `scripts/proof-programs/fresh-proof-interval-preledger-v2.mjs`
+now emits a proof-interval-v2 sidecar for the same fresh packet:
+`preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`,
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`,
+`causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.md`,
+and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`.
+This sidecar uses exact-rational row-specific trigonometric $X_\delta$ range
+enclosures to certify 116 range-empty rows. It leaves 46 rows
+`split_required`, accepts no diagonal, simple-root, or fold-layer row, and
+records `branch_chart_authorized=false`.
+
 The stop rule remains unchanged: no branch chart is authorized unless the fresh
 null-coordinate pre-ledger has no `split_required` rows and every parent
 complement is consumed by an accepted same-packet alternative.
+The fresh sidecar fails this stop rule in the current attempt. The blocker
+anatomy records the remaining burden as 16 same-packet fold-layer certificate
+rows, 6 regular parent root-candidate overlaps, 10 endpoint/seam or
+inactive-fold-neighborhood contacts, and 2 nonmonotone diagonal contacts.
 
 ## Capture Decision
 
-Priority-only as a concrete proof-program advance. The finite seed and
-phase-shift audit should not be promoted into `content/markdown/aaa` until a
-fresh same-packet candidate carries them through the structural Jacobian,
-dynamic residuals, fold integrals, and outward-rounded null-coordinate
-pre-ledger.
+Priority-only as a concrete proof-program advance. The finite seed,
+phase-shift audit, first instantiated successor sidecar packet, fail-closed
+preledger attempts, proof-interval partial certificates, and blocker-anatomy
+sidecars should not be promoted into `content/markdown/aaa` until a fresh
+same-packet candidate carries them through the structural Jacobian, dynamic
+residuals, fold integrals, and a full proof-grade null-coordinate preledger with
+no `split_required` rows. The stop rule is still unmet. The sidecar packet
+consumes this contract as fresh finite input material; live proof status remains
+routed through `pass_fail_ledger.md`.

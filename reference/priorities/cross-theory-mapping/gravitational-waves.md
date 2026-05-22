@@ -185,6 +185,8 @@ and compare the allowed interval for $R_{c_g}$ with the LVK photon-channel speed
 | `GW170817` + `GRB 170817A` | LVK/Fermi/INTEGRAL report a GRB delay of $(+1.74\pm0.05)\,\mathrm{s}$ after the gravitational-wave merger time and a fractional speed-difference interval from about $-3\times10^{-15}$ to $+7\times10^{-16}$. | The photon/gravity channel comparison must share the Lorentz/effective-metric closure map. A separate gravity-channel speed is allowed only as a falsifiable residual, not as a free sector parameter. |
 | `GWTC-4.0` O4a catalog | The current GWOSC catalog API exposes `129` GWTC-4.0 O4a events, strain files, event versions, detectors, PE records, data-quality and injection masks, and release notes. The documentation records 4096-second calibrated strain products at `16384 Hz`, down-sampled `4096 Hz` products, channel names, PE posterior-sample releases, and reweighted PE lifecycle rows. | Use as the scalable `waveform_provenance_contract`: benchmark packets must preserve event version and PE lifecycle, not collapse all catalog rows into one best-fit waveform table. |
 
+Doc manifest status: the three first benchmark rows are currently document-level packet manifests, not executable GWOSC/LVK artifact packets. They fix the required event version, detector set, strain provenance, waveform/PE provenance, detector-quality rows, event-ledger fields, residual vector, and failure routing. They do not yet include downloaded public artifacts, hashes, posterior-sample files, or replayed strain/phase/speed residuals.
+
 ## Promotion Map
 
 | Source draft | Promotion target | Gate |

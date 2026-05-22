@@ -284,6 +284,58 @@ branch_chart_revision.benchmark_inputs_excluded = true
 branch_chart_revision.accepted_history_boundary = false
 ```
 
+## Next Coordinate Design Target
+
+The next coordinate cannot be another source label for the same $\mathcal{H}_I$ harmonic fit. It must be computed from a branch-source packet that is independent of the residual surface. The smallest acceptable packet is a root-transport source record
+$$
+\mathcal{Q}_{\mathrm{root}}^\star
+=
+\left\{
+\left(
+k_r,
+\vartheta_r,
+D_\tau r,
+D_J r,
+G_r,
+\mathsf{transport}_r
+\right)
+\right\}_{r\in\mathcal{L}_{\mathrm{active}}},
+$$
+where $k_r$ is the current root key `receiver|source|relation|status`,
+$$
+\vartheta_r(t)=2\pi\,\frac{t-\tau_r(t)}{T_{\mathbf{k}}}\pmod{2\pi},
+$$
+$D_\tau r=d\log \tau_r/d\phi$ is the dimensionless delay transport, $D_J r=d\log |J_r|/d\phi$ is the dimensionless Jacobian transport, $G_r$ is the nearest inactive or neighboring-root gap normalized by $\max(\Delta t,\eta/c_f,\varepsilon_0)$, and $\mathsf{transport}_r$ is the matched root identity under temporal, history-window, and regulator refinement. A candidate coordinate $\mu^\star$ may bin or quotient this record only after the bin thresholds, phase origin, equality map, and locked-key exclusions are declared.
+
+The first finite candidate inside this target is an `I`-receiver inter-layer $J$ / delay shear coordinate. For each active root key $r$ and cyclic observation phase
+$$
+\phi_i=2\pi\,\frac{t_i}{T_{\mathbf{k}}},
+$$
+define
+$$
+g_J(r,\phi_i)
+=
+\frac{\log |J_r(\phi_{i+1})|-\log |J_r(\phi_{i-1})|}
+{\phi_{i+1}-\phi_{i-1}},
+\qquad
+g_\tau(r,\phi_i)
+=
+\frac{\log \tau_r(\phi_{i+1})-\log \tau_r(\phi_{i-1})}
+{\phi_{i+1}-\phi_{i-1}}.
+$$
+The finite coordinate candidate is
+$$
+\mu^\star(r,\phi_i)
+=
+\left(
+r,\operatorname{sgn}_\epsilon g_J(r,\phi_i),
+\operatorname{sgn}_\epsilon g_\tau(r,\phi_i)
+\right),
+$$
+first restricted to `receiver_layer:I` and `relation:inter_layer`, with locked self roots excluded. In the current artifact, the `I`-receiver inter-layer roots have visible source-side shear: the `M`-source keys reach maximum $|d\log J/d\phi|$ about `0.1089` and maximum $|d\log \tau/d\phi|$ about `0.0986`; the `O`-source keys reach about `0.0439` and `0.0554`.
+
+The May 22, 2026 regenerated corrected artifact now instantiates the source-record part of this design target. It emits `branch_chart_source_records.root_transport_source_record` with `512` root rows, `16` observation buckets, finite $\vartheta_r$, finite $D_\tau r$, finite $D_J r$, finite neighboring-root gap entries $G_r$, and `128` retained `I`-receiver inter-layer transport slots for the first shear fit. The source record remains a single-artifact packet: `transport_id` is scoped as a non-semantic local slot, `transport_identity_refinement_stable=false`, and `phase_origin_covariance_certified=false`. Therefore it can be checked as a predeclared coordinate source, but it does not by itself authorize another corrected rerun.
+
 ## Executable Checker Status
 
 The contract now has a fail-closed executable checker:
@@ -294,12 +346,26 @@ node scripts/mass-map/a0-tier1-branch-chart-revision-checker.mjs --intake /tmp/a
 
 The default source declaration is `residual_surface_audit`, so the current artifact rejects before rerun authorization:
 
-| Source declaration | Row status | Deciding residual | Value |
+| Source declaration / quotient | Row status | Deciding residual | Value |
 | --- | --- | --- | ---: |
 | `residual_surface_audit` | `rejected_hidden_fit_split` | $R_{\mathrm{src}}$ | not pre-fit |
 | `prefit_branch_chart` | `overfit_holdout_fail` | $R_{\mathrm{xval}}$ | `2.4537879974811028 > 0.02` |
+| `active_roots` | `overfit_holdout_fail` | $R_{\mathrm{xval}}$ | `2.4537879974811028 > 0.02` |
+| `root_times` | `overfit_holdout_fail` | $R_{\mathrm{xval}}$ | `2.4537879974811028 > 0.02` |
+| `corrected_carrier_state` | `overfit_holdout_fail` | $R_{\mathrm{xval}}$ | `2.4537879974811028 > 0.02` |
+| `root_transport_source_record` / `source_layer_shear` | `overfit_holdout_fail` | $R_{\mathrm{xval}}$ | `1.712369148202459 > 0.02` |
+| `root_transport_source_record` / `source_layer_signed_polarity_shear` | `root-transport-quotient-not-source-declared` | $R_{\mathrm{src}}$ | diagnostic $R_{\mathrm{xval}}$ `1.6156063295193552 > 0.02` |
+| `root_transport_source_record` / `m_jacobian_signed_polarity_shear` | `root-transport-quotient-not-source-declared` | $R_{\mathrm{src}}$ | diagnostic $R_{\mathrm{xval}}$ `1.944813346261963 > 0.02` |
 
-The permissive `prefit_branch_chart` check passes the novelty, symmetry, equality, locked-key, degrees-of-freedom, benchmark, and Nyquist guards, but it still fails the held-out residual test. With primary modes $\{4,5,7\}$ the full-bucket diagnostic residual is about `0.6719928530663271`; adding guard mode `6` gives about `0.49474919046145294`. These are diagnostic harmonic fits only. They do not authorize a corrected one-period rerun, accepted history, or a physical branch-coordinate claim.
+The branch-state-facing source declarations pass the source, novelty, symmetry, equality, locked-key, degrees-of-freedom, benchmark, and Nyquist guards, but they still fail the held-out residual test. With primary modes $\{4,5,7\}$ the full-bucket diagnostic residual is about `0.6719928530663271`; adding guard mode `6` gives about `0.49474919046145294`. The source label therefore does not change the no-go: the current $\mathcal{H}_I$ harmonic proposal is a diagnostic fit only. It does not authorize a corrected one-period rerun, accepted history, or a physical branch-coordinate claim.
+
+A low-degree harmonic scan over all one-, two-, and three-mode subsets of modes `1..7` also stays fail-closed. The best simple scan row is mode `6`, with $R_{\mathrm{xval}}\approx1.0938059103174171$, still far above `0.02`. The scan is diagnostic rather than admissible coordinate selection because it is post-artifact model search; its value is negative: it rules out another low-degree $\mathcal{H}_I$ harmonic tweak as the next safe branch-coordinate move.
+
+The root-transport source record now passes $R_{\mathrm{src}}$, the coordinate-construction guard, and the degrees-of-freedom guard only for the source-declared default quotient. Its coordinate-specific design matrix uses the fixed source-layer entries `M:D_J`, `M:D_tau`, `O:D_J`, and `O:D_tau`, each assembled from $G_rD_J\cos\vartheta_r$ or $G_rD_\tau\sin\vartheta_r$ over the predeclared `I`-receiver inter-layer roots. The signed-polarity quotient uses `M:signed:D_J`, `M:signed:D_tau`, `O:signed:D_J`, and `O:signed:D_tau`, multiplying each contribution by `+1` when receiver/source polarities match and `-1` when they differ. It improves the diagnostic held-out residual from `1.712369148202459` to `1.6156063295193552`, but it was not declared by the source record and still fails by about `80.8` times the `0.02` tolerance. The mixed `m_jacobian_signed_polarity_shear` quotient adds only `M:signed:D_J` to the source-layer basis; it passes the strengthened degree/rank/leverage guard with five features, but worsens diagnostic holdout to `1.944813346261963`. The result is therefore a sharper executable no-go for the source-declared quotient and two failed diagnostic quotient probes, not a corrected-rerun authorization.
+
+The checker now also records the root-transport certification blocker separately from the numerical holdout. Premetadata root-transport artifacts fail the source contract as `root-transport-source-record-missing-identity-metadata`; metadata-bearing artifacts that still use `transport_id = root_key|phase_bucket` fail as raw single-artifact identity leakage. The current identity-form record uses `single_artifact_root_transport:<n>` slots and carries `transport_identity_schema = a0-root-transport-identity/v1`, but $R_{\mathrm{transport}}$ remains pending as `root-transport-identity-not-refinement-stable`; phase-origin covariance is also metadata-only with `phase_origin_covariance_status = single-artifact-phase-origin-not-certified`. Thus even a future root-transport quotient that passed $R_{\mathrm{xval}}$ would still need an independent refinement and phase-origin covariance certificate before becoming rerun-admissible.
+
+The first executable certificate for that blocker is now `scripts/mass-map/a0-root-transport-refinement-certificate.mjs`. It consumes two `a0-tier1-fold-layer-locked-one-period-attempt/v1` artifacts, extracts their `root_transport_source_record` rows, matches roots by `root_key` and cyclic order rather than by `transport_id`, and compares the declared quotient-feature bucket vectors after cyclic reindexing. A passing certificate requires a declared `--phase-shift-buckets` value; auto-detected shifts are diagnostic-only because they fit the alignment from the compared records. A passing certificate sets `transport_identity_refinement_stable=true` and `phase_origin_covariance_certified=true` only for the compared source records; it still emits `rerun_authority = certificate_only_not_corrected_rerun_authority`. Current production artifacts do not yet provide an independent paired refinement or phase-origin variant, so the certificate is executable infrastructure plus a blocker discriminator, not a passed branch certificate.
 
 ## Allowed Next Rerun
 

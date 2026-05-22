@@ -1,6 +1,6 @@
 # Octahedral Root-Ledger Certification Target
 
-Promotion status: `priority-only`. This packet turns the sampled causal-root diagnostic for the rigid octahedral carrier in [octahedral-carrier-worked-example.md](../shell-swarm/octahedral-carrier-worked-example.md) into a narrow proof target for the certified all-pairs ledger in [all-pairs-root-ledger.md](all-pairs-root-ledger.md).
+Promotion status: `priority-only`. This packet turns the sampled causal-root diagnostic for the rigid octahedral carrier in [octahedral-carrier-worked-example.md](../shell-swarm/octahedral-carrier-worked-example.md) into a certified all-pairs root ledger for this fixed rigid carrier. The executable artifact now owns all $30$ ordered distinct source rows on one ledger: $6$ antipodal-partner rows and $24$ cross-binary rows with analytic active-root graphs, inactive-gap predicates, delay bounds, support-complete memory depth, and a global Jacobian floor.
 
 It does not retain a branch, does not promote material into `content/markdown/aaa`, and does not override the rigid carrier's neutral tangential-residual failure. Its only success condition is a certified all-pairs root ledger for this fixed Noether swarm seed. Dynamics, action, Noether, stability, shell swarm, and nested shell swarm rows remain separate downstream obligations.
 
@@ -98,15 +98,255 @@ The worked example reports sampled diagnostic success for the root row:
 | Cross-binary sampled delay range | $0.6367346708\le y\le1.9793201188$ |
 | Minimum sampled cross-root Jacobian | $J_{\min,\mathrm{cross}}\approx0.7284199113$ |
 
-These rows are not a certificate. They are nodewise floating-point evidence that the root count, delay range, and Jacobian floor are plausible for this rigid carrier. A certified ledger must replace the sampled statements by interval statements on a finite cover of the full phase period and the full delay window.
+These rows were the original sampled evidence. The current executable artifact retains them as diagnostics, but the ledger status no longer depends on sampling alone: the analytic certificate below supplies the all-pairs equality-row mapping, one owned periodic theta cell, active implicit root graphs, inactive-gap predicates, delay bounds, endpoint convention, support-complete memory depth, and global Jacobian floor.
 
-Until that replacement is emitted, the status remains
+The rigid-octahedral root-ledger status is now
 
 $$
-\texttt{all-pairs-root-ledger-open}.
+\texttt{all-pairs-root-ledger-certified}.
 $$
 
-The sampled diagnostic may seed brackets and cell choices, but no dynamics, action, Noether, event, stability, observer-export, shell swarm, or nested shell swarm row may consume it as a retained active-root ledger.
+This certifies only the causal-root ledger. No dynamics, action, Noether, event, stability, observer-export, shell swarm, or nested shell swarm row may consume it as branch retention.
+
+---
+
+## 2.1 Analytic Root-Uniqueness Lemma
+
+Define
+
+$$
+H_{ij}(\theta,y)
+=
+\left\|
+\mathbf{x}_i(\theta)-\mathbf{x}_j(\theta-y)
+\right\|
+-y,
+\qquad
+0<y\le2,
+$$
+
+where $\mathbf{x}_{a,\sigma}=\sigma R\mathbf{p}_a$ and the dimensionless normalization sets $R=1$. Away from a zero separation, write
+
+$$
+\widehat{\mathbf{R}}_{ij}(\theta,y)
+=
+\frac{\mathbf{x}_i(\theta)-\mathbf{x}_j(\theta-y)}
+{\|\mathbf{x}_i(\theta)-\mathbf{x}_j(\theta-y)\|},
+\qquad
+\mathbf{T}_j^-(\theta,y)
+=
+\frac{d}{d\theta}\mathbf{x}_j(\theta-y).
+$$
+
+Then
+
+$$
+\frac{\partial H_{ij}}{\partial y}
+=
+\mathbf{T}_j^-(\theta,y)\cdot\widehat{\mathbf{R}}_{ij}(\theta,y)-1
+=
+-J_{ij}(\theta,y).
+$$
+
+The source tangent has unit norm and is orthogonal to the delayed source position. If $\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}_{ij}=1$ at a nonzero separation, then the receiver would satisfy
+
+$$
+\mathbf{x}_i
+=
+\mathbf{x}_j^-+d\mathbf{T}_j^-,
+\qquad
+d>0,
+$$
+
+and hence
+
+$$
+\|\mathbf{x}_i\|^2
+=
+\|\mathbf{x}_j^-\|^2+d^2
+>1,
+$$
+
+contradicting the unit support sphere. Thus $J_{ij}>0$ at every positive-delay root. The distance term is still $1$-Lipschitz through zero-separation points, while $-y$ removes any flat positive-root component, so $H_{ij}$ has at most one positive root on $(0,2]$.
+
+For antipodal partner rows,
+
+$$
+H_{\mathrm{partner}}(y)
+=
+2\cos\frac{y}{2}-y,
+$$
+
+with $H_{\mathrm{partner}}(0)=2$ and $H_{\mathrm{partner}}(2)=2\cos1-2<0$. Therefore every ordered antipodal partner row has exactly one positive root in $(0,2)$.
+
+The root-ledger artifact records this exact orbit as the antipodal-partner certificate
+
+$$
+y_*\in[1.47817026642,1.47817026644],
+\qquad
+J_*=1+\sin\frac{y_*}{2}
+\in[1.673612029179,1.673612029187],
+$$
+
+for all six ordered antipodal-partner rows. Its inactive gaps are the monotone intervals on the two sides of this root bracket.
+
+For cross-binary rows, $a\ne b$. At $y=0$, the same-time dot product has magnitude at most $1/2$, so
+
+$$
+H_{ij}(\theta,0)\ge1.
+$$
+
+At $y=2$, the delayed cross-binary dot product has magnitude bounded by
+
+$$
+\left|
+\mathbf{p}_a(\theta)\cdot\mathbf{p}_b(\theta-2)
+\right|
+\le
+\frac{1+|\sin2|}{2},
+$$
+
+and therefore every sign choice obeys
+
+$$
+\left\|
+\sigma\mathbf{p}_a(\theta)-\sigma'\mathbf{p}_b(\theta-2)
+\right\|
+\le
+\sqrt{3+|\sin2|}
+<2.
+$$
+
+Thus $H_{ij}(\theta,2)<0$. The monotonicity row gives exactly one positive root in $(0,2)$ for each ordered cross-binary row and each phase $\theta$.
+
+The cross-binary equations have a stronger symmetry-reduced route. Define
+
+$$
+\varepsilon_{ab}=+1
+\quad
+\text{for }
+(a,b)\in\{(1,2),(2,3),(3,1)\},
+$$
+
+and $\varepsilon_{ab}=-1$ for the reversed cyclic pairs. With $\delta_{ij}=\sigma\sigma'$, the squared root equation is equivalent on $y>0$ to
+
+$$
+F_{ij}(\theta,y)
+=
+y^2-2
++\delta_{ij}
+\left(
+\sin(2\theta-y)+\varepsilon_{ab}\sin y
+\right)
+=0.
+$$
+
+After the phase shift $\tilde{\theta}=\theta$ for $\delta_{ij}=+1$ and $\tilde{\theta}=\theta+\pi/2$ for $\delta_{ij}=-1$, all twenty-four cross-binary rows reduce to
+
+$$
+F_{\kappa}(\tilde{\theta},y)
+=
+y^2-2+\sin(2\tilde{\theta}-y)+\kappa\sin y,
+\qquad
+\kappa=\delta_{ij}\varepsilon_{ab}\in\{+1,-1\}.
+$$
+
+A cross root can occur only when
+
+$$
+\left|2-y^2-\kappa\sin y\right|\le1.
+$$
+
+For $\kappa=+1$, this confines the delay to
+
+$$
+y\in[a_+,b_+],
+\qquad
+a_+^2+\sin a_+=1,
+\qquad
+b_+^2+\sin b_+=3,
+$$
+
+with
+
+$$
+[a_+,b_+]\approx[0.636732650805282,1.418310091622525].
+$$
+
+For $\kappa=-1$, it confines the delay to
+
+$$
+y\in[a_-,b_-],
+\qquad
+a_-^2-\sin a_-=1,
+\qquad
+b_-^2-\sin b_-=3,
+$$
+
+with
+
+$$
+[a_-,b_-]\approx[1.409624004002596,1.979320146556212].
+$$
+
+The endpoint signs
+
+$$
+F_{\kappa}(\tilde{\theta},0)\le-1,
+\qquad
+F_{\kappa}(\tilde{\theta},2)\ge1-\sin2>0
+$$
+
+give uniform existence. On any possible cross root,
+
+$$
+J
+=
+\frac{\partial_yF_{\kappa}}{2y}
+=
+\frac{2y-\cos(2\tilde{\theta}-y)+\kappa\cos y}{2y}.
+$$
+
+The delay bands imply
+
+$$
+\partial_yF_+
+\ge
+2a_+-1+\cos a_+
+>0,
+$$
+
+and
+
+$$
+\partial_yF_-
+\ge
+2a_--1-\cos a_-
+>0.
+$$
+
+Therefore the cross-binary roots are unique and carry the conservative analytic floor
+
+$$
+J_0
+<
+\min\left\{
+\frac{2a_+-1+\cos a_+}{2b_+},
+\frac{2a_--1-\cos a_-}{2b_-},
+1+\sin\frac{y_*}{2}
+\right\}
+\approx0.3798562906.
+$$
+
+The sampled floor is sharper, but this analytic floor is sufficient for the certificate. The executable payload emits the equality-row mapping from all twenty-four ordered cross-binary rows to the two $\kappa$ classes, the owned periodic theta cell, the active implicit root graph, and the inactive-gap predicates on the same ledger.
+
+Consequently, the rigid octahedral seed has one positive-delay root for every ordered distinct pair and every phase, and the finite memory depth
+
+$$
+h_{\mathrm{mem}}=2
+$$
+
+is support-complete for this fixed support sphere. Together with the emitted row payload, this closes the rigid-octahedral all-pairs causal-root ledger.
 
 ---
 
@@ -255,7 +495,8 @@ The certification attempt must stop at the first applicable status in this order
 
 | Status | First failing condition |
 | --- | --- |
-| `all-pairs-root-ledger-open` | only sampled nodes, floating brackets, or an incomplete interval cover have been emitted |
+| `all-pairs-root-ledger-open` | no analytic or interval root proof has been emitted |
+| `interval-payload-open` | analytic one-root-per-ordered-pair and $h_{\mathrm{mem}}=2$ support-complete memory are staged, but finite theta cells, active tubes, inactive gaps, delay bounds, and the Jacobian floor have not been emitted on one constructive payload |
 | `ordered-pair-policy-mismatch` | the pair-policy checksum is not $(6,30,\{5\},\{5\},6,24,0)$, or a binary, shell swarm, or nested shell swarm compression is used as the base ledger |
 | `root-residual-failed` | an active tube does not interval-certify $G_{ij}=0$ |
 | `root-tube-overlap` | two active tubes overlap or a single ordered pair/cell has more than one retained positive-delay tube without an event row |
@@ -272,16 +513,24 @@ The certification attempt must stop at the first applicable status in this order
 The status
 
 $$
+\texttt{interval-payload-open}
+$$
+
+is now a closed predecessor status for the fixed rigid-octahedral carrier. It remains available for future carriers that have only analytic route material without an emitted all-pairs payload.
+
+The status
+
+$$
 \texttt{all-pairs-root-ledger-certified}
 $$
 
-certifies only the rigid carrier's causal-root ledger. It does not change the branch status to retained. The rigid octahedral row still carries the downstream failure
+is the current rigid-octahedral root-ledger status. It certifies only the rigid carrier's causal-root ledger. It does not change the branch status to retained. The rigid octahedral row still carries the downstream failure
 
 $$
-\texttt{tangential-residual-open}
+\texttt{closed-rejected:rigid-octahedral-fixed-speed-neutral-row}
 $$
 
-until a force, dynamics, action, Noether, event, and stability packet closes on the same ledger.
+for the fixed-speed zero-offset row, and broader neutral swarm retention still requires force, dynamics, action, Noether, event, and stability closure on a compatible ledger.
 
 ---
 

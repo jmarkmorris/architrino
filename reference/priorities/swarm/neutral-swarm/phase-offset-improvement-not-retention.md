@@ -83,7 +83,7 @@ The scan artifact states:
 | `result.retained_branch` | `false` |
 | `result.retention` | `not_retained` |
 | `result.first_failure_status` | `sampled-tangential-residual-open` |
-| `result.master_first_failure_status` | `support-complete-root-ledger-open` |
+| `result.master_first_failure_status` | `interval-payload-open` |
 
 The artifact therefore already blocks the promotion from sampled improvement to retention.
 

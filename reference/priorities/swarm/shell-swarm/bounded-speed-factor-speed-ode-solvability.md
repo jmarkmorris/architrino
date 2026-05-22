@@ -4,6 +4,8 @@ Promotion status: `priority-only`. This packet isolates the scalar solvability r
 
 It does not retain a branch. It states the closed-period compatibility and speed-band feasibility tests that must accompany any claim that tangential force leakage has been absorbed into a bounded speed factor.
 
+The live-ledger correction target after a frozen zero-mean failure is staged in [bounded-speed-factor-speed-ode-zero-mean-correction-target.md](bounded-speed-factor-speed-ode-zero-mean-correction-target.md).
+
 ---
 
 ## 1. Center-Time Speed ODE
@@ -381,6 +383,69 @@ If a solver reports a smaller tangential residual but does not emit the primitiv
 $$
 \texttt{speed-ode-solvability-not-certified}.
 $$
+
+### 4.1 Frozen Octahedral Ledger Diagnostic
+
+The rigid octahedral all-pairs source ledger now has a frozen-ledger speed-ODE diagnostic in [../neutral-swarm/octahedral-speed-ode-diagnostic.md](../neutral-swarm/octahedral-speed-ode-diagnostic.md). It deliberately stays on the fixed-speed source ledger and therefore reports
+
+$$
+\texttt{bounded-speed-ledger-handoff-open}.
+$$
+
+On that frozen ledger, the sampled tangent forcing has the same nonzero period mean for every receiver site:
+
+$$
+\frac{1}{2\pi}
+\int_0^{2\pi}
+T_i(\theta)\cdot F_i^1(\theta)\,d\theta
+\approx
+0.18420699635,
+$$
+
+so
+
+$$
+\int_0^{2\pi}
+T_i(\theta)\cdot F_i^1(\theta)\,d\theta
+\approx
+1.15740669293.
+$$
+
+The mean-split certificate row identifies
+
+$$
+\langle f_{i,\mathrm{partner}}^1\rangle
+\approx0.18420699635,
+\qquad
+\langle f_{i,\mathrm{cross}}^1\rangle
+\approx0.
+$$
+
+The partner contribution is positive by the analytic formula
+
+$$
+\left\langle f_{i,\mathrm{partner}}^1\right\rangle
+=
+\frac{\sin y_*}{y_*^3\left(1+\sin(y_*/2)\right)}
+$$
+
+on the certified constant partner root $2\cos(y_*/2)-y_*=0$. The cross-binary aggregate is currently emitted as sampled pair-cancellation rows, with the exact anti-periodicity proof route staged in the diagnostic packet. Thus the frozen rigid ledger fails the zero-mean row before speed-band or clock/length rescue can retain it:
+
+$$
+\texttt{sampled-speed-ode-zero-mean-failed}.
+$$
+
+This is a diagnostic rejection of the frozen fixed-ledger primitive, not a rejection of bounded-speed continuation. Once $\nu$ becomes an active variable, the clocks, roots, Jacobians, force weights, derivative columns, tail cover, action rows, and event rows must be recomputed on the same live ledger.
+
+The direct successor is the zero-mean correction target in [bounded-speed-factor-speed-ode-zero-mean-correction-target.md](bounded-speed-factor-speed-ode-zero-mean-correction-target.md). It packages the frozen obstruction as a live mean functional
+
+$$
+\mathcal{M}_i^\nu(z)
+=
+\int_0^{H_*}T_i(u;z)\cdot F_i^\nu(u;z)\,du
+$$
+
+and requires derivative columns $D_v\mathcal{M}_i^\nu$ through clock, root, Jacobian, force, support, action, and event terms before a correction direction can be consumed by a bounded-speed solver.
 
 ---
 

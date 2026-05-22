@@ -1,0 +1,31 @@
+{
+  "schema": "breather-preledger-interval-engine-audit-v1",
+  "packet_id": "fresh-same-packet-fold-shear-seed-v0",
+  "refinement_id": "fresh-same-packet-fold-shear-seed-v0-range-empty-preledger-v1",
+  "status": "binary64_outward_padded_fail_closed_not_mpfr_interval_certificate",
+  "theorem_target": "Null-Coordinate Causal Pre-Ledger",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "engine": {
+    "language": "JavaScript",
+    "numeric_type": "binary64 Number",
+    "range_method": "midpoint subdivision plus analytic global Lipschitz radius plus outward binary64 padding",
+    "range_subdivisions": 4096,
+    "derivative_subdivisions": 1024,
+    "global_lipschitz_bound": 16.5776352192589
+  },
+  "accepted_scope": {
+    "range_empty_rows": 116,
+    "monotone_diagonal_empty_rows": 12,
+    "simple_root_rows": 0,
+    "fold_layer_rows": 0
+  },
+  "limitations": [
+    "This engine is deterministic and fail-closed for this priority-side pass, but it is not an MPFR, Arb, or exact-rational interval backend.",
+    "It does not parse JSON decimal lexemes as exact rationals.",
+    "It does not provide certified elementary-function enclosures for Math.sin or Math.cos beyond the added Lipschitz and binary64 padding.",
+    "Rows left as split_required block branch-chart authorization.",
+    "A later proof-grade preledger should replace this engine with exact decimal intake and certified trig interval enclosures before promoting row acceptances as formal interval-certificate results."
+  ]
+}

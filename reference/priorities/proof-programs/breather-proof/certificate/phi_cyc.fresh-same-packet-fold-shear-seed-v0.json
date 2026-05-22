@@ -1,0 +1,492 @@
+{
+  "schema": "breather-phi-cyc-v1",
+  "packet_id": "fresh-same-packet-fold-shear-seed-v0",
+  "source_seed_contract": "fresh_same_packet_fold_shear_seed.v0.json",
+  "status": "fresh_phi_candidate_not_preledger",
+  "status_notes": [
+    "Finite phase-shifted fold-shear initial history only.",
+    "Not an EOM-solved cycle.",
+    "Not a null-coordinate pre-ledger, branch chart, returned-sample, topology, or Schauder certificate."
+  ],
+  "claim_level": "phase-shifted finite fold-shear initial-history candidate input for a fresh same-packet fold-collocation and pre-ledger attempt, not an EOM-solved returned sample and not a pre-ledger pass",
+  "source_claim_level": "finite same-packet initial-history seed for the fresh fold-collocation solve, not a pre-ledger pass",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "source_artifacts": {
+    "finite_seed": "fold_shear_deformed_candidate.seed_cosine_residuals.v0.json",
+    "phase_shift_audit": "fold_shear_phase_shift_audit.seed_cosine_residuals.v0.json",
+    "live_matrix_input": "gap_opening_live_fold_shear_input.seed_cosine_residuals.v0.json",
+    "live_matrix_result": "gap_opening_live_fold_shear_result.seed_cosine_residuals.v0.json"
+  },
+  "itinerary_id": "doubled_four_arc_generic",
+  "packet_identity": {
+    "K": "doubled_four_arc_generic",
+    "T_cyc": 6.28318530718,
+    "S": "section x(0)=1.2447644729563, xdot(0)=-0.0876176690331297",
+    "P": {
+      "c_f": 1,
+      "eta": 0.02,
+      "epsilon_c": 0.05,
+      "g": 1,
+      "epsilon_shear": 0.0625
+    },
+    "B_rep": "phase-shifted half-period-antisymmetric C1 fold-shear seed",
+    "Theta": "mesh.fresh-same-packet-fold-shear-seed-v0.json:nodes"
+  },
+  "common_identity": {
+    "packet_id": "fresh-same-packet-fold-shear-seed-v0",
+    "source_seed_contract": "fresh_same_packet_fold_shear_seed.v0.json",
+    "itinerary_id": "doubled_four_arc_generic",
+    "T_cyc": 6.28318530718,
+    "parameters": {
+      "c_f": 1,
+      "eta": 0.02,
+      "epsilon_c": 0.05,
+      "g": 1,
+      "epsilon_shear": 0.0625,
+      "memory_horizon_h": 6.28318530718
+    },
+    "section": {
+      "phase_shift_delta": 0.02,
+      "x_section": 1.2447644729563,
+      "xdot_section": -0.0876176690331297,
+      "inbound_speed": 0.0876176690331297
+    }
+  },
+  "period": {
+    "T_cyc": 6.28318530718,
+    "phase_interval": [
+      0,
+      1
+    ],
+    "section_anchor": {
+      "theta": 0,
+      "x": 1.2447644729563,
+      "xdot": -0.0876176690331297,
+      "inbound_speed": 0.0876176690331297
+    }
+  },
+  "symmetry": {
+    "periodic_identification": "X_delta(theta+1)=X_delta(theta)",
+    "half_period_antisymmetry": "X_delta(theta+1/2)=-X_delta(theta)",
+    "separator_events": [
+      {
+        "event_id": "Sigma_1",
+        "theta": 0.12758361765,
+        "transition": "sub_to_super",
+        "source_key": "sigma_1"
+      },
+      {
+        "event_id": "Sigma_2",
+        "theta": 0.33241638235,
+        "transition": "super_to_sub",
+        "source_key": "sigma_2"
+      },
+      {
+        "event_id": "Sigma_3",
+        "theta": 0.62758361765,
+        "transition": "sub_to_super",
+        "source_key": "sigma_3"
+      },
+      {
+        "event_id": "Sigma_4",
+        "theta": 0.83241638235,
+        "transition": "super_to_sub",
+        "source_key": "sigma_4"
+      }
+    ],
+    "origin_layer_events": [
+      {
+        "event_id": "C_1",
+        "theta": 0.23
+      },
+      {
+        "event_id": "C_2",
+        "theta": 0.73
+      }
+    ]
+  },
+  "basis": {
+    "type": "phase_shifted_half_period_antisymmetric_c1_fold_shear_seed",
+    "formula": "X_delta(theta)=1.25*cos(2*pi*(theta+delta))+epsilon*H(theta+delta)",
+    "H_formula": "H(theta)=h_A0*psi_A0(theta)+h_A1*psi_A1(theta)+h_A2*psi_A2(theta), H(theta+1/2)=-H(theta)",
+    "coefficients": {
+      "A": 1.25,
+      "T_cyc": 6.28318530718,
+      "delta": 0.02,
+      "epsilon": 0.0625,
+      "h_A0": 0.433491813815,
+      "h_A1": -0.556350501775,
+      "h_A2": -1
+    },
+    "first_half_arcs": [
+      {
+        "id": "A0",
+        "theta_range": [
+          0,
+          0.14758361765
+        ],
+        "basis": "h_A0"
+      },
+      {
+        "id": "A1",
+        "theta_range": [
+          0.14758361765,
+          0.35241638235
+        ],
+        "basis": "h_A1"
+      },
+      {
+        "id": "A2",
+        "theta_range": [
+          0.35241638235,
+          0.5
+        ],
+        "basis": "h_A2"
+      }
+    ],
+    "fold_layer_policy": "Field-speed separators are marked for fold-layer treatment; no branch-sum residual is evaluated on separator layers."
+  },
+  "seed_history": {
+    "formula": "X_delta(theta)=1.25*cos(2*pi*(theta+delta))+epsilon*H(theta+delta)",
+    "delta": 0.02,
+    "epsilon": 0.0625,
+    "H_formula": "H(theta)=h_A0*psi_A0(theta)+h_A1*psi_A1(theta)+h_A2*psi_A2(theta), H(theta+1/2)=-H(theta)",
+    "witness": {
+      "h_A0": 0.433491813815,
+      "h_A1": -0.556350501775,
+      "h_A2": -1
+    },
+    "first_half_arcs": [
+      {
+        "id": "A0",
+        "theta_range": [
+          0,
+          0.14758361765
+        ],
+        "basis": "h_A0"
+      },
+      {
+        "id": "A1",
+        "theta_range": [
+          0.14758361765,
+          0.35241638235
+        ],
+        "basis": "h_A1"
+      },
+      {
+        "id": "A2",
+        "theta_range": [
+          0.35241638235,
+          0.5
+        ],
+        "basis": "h_A2"
+      }
+    ]
+  },
+  "shifted_separator_coordinates": {
+    "Sigma_1": 0.12758361765,
+    "Sigma_2": 0.33241638235,
+    "Sigma_3": 0.62758361765,
+    "Sigma_4": 0.83241638235
+  },
+  "arcs": [
+    {
+      "arc": "I0",
+      "theta_range": [
+        0,
+        0.12758361765
+      ],
+      "velocity_class": "sub",
+      "t_range": [
+        0,
+        0.801631511855351
+      ]
+    },
+    {
+      "arc": "I1",
+      "theta_range": [
+        0.12758361765,
+        0.33241638235
+      ],
+      "velocity_class": "super",
+      "t_range": [
+        0.801631511855351,
+        2.08863372944745
+      ]
+    },
+    {
+      "arc": "I2",
+      "theta_range": [
+        0.33241638235,
+        0.62758361765
+      ],
+      "velocity_class": "sub",
+      "t_range": [
+        2.08863372944745,
+        3.94322416544535
+      ]
+    },
+    {
+      "arc": "I3",
+      "theta_range": [
+        0.62758361765,
+        0.83241638235
+      ],
+      "velocity_class": "super",
+      "t_range": [
+        3.94322416544535,
+        5.23022638303745
+      ]
+    },
+    {
+      "arc": "I4",
+      "theta_range": [
+        0.83241638235,
+        1
+      ],
+      "velocity_class": "sub",
+      "t_range": [
+        5.23022638303745,
+        6.28318530718
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "node_id": "theta_000000",
+      "node_type": "section_endpoint",
+      "theta": 0,
+      "source_theta": 0.02,
+      "t": 0,
+      "x": 1.2447644729563,
+      "xdot": -0.0876176690331297,
+      "xddot_diagnostic": -0.830357144107396,
+      "speed": 0.0876176690331297,
+      "u": -1.2447644729563,
+      "w": 1.2447644729563
+    },
+    {
+      "node_id": "theta_053792",
+      "node_type": "ordinary",
+      "theta": 0.053791808825,
+      "source_theta": 0.073791808825,
+      "t": 0.337983902855875,
+      "x": 1.14512722711409,
+      "xdot": -0.559016994373389,
+      "xddot_diagnostic": -1.73998276641301,
+      "speed": 0.559016994373389,
+      "u": -0.807143324258218,
+      "w": 1.48311112996997
+    },
+    {
+      "node_id": "Sigma_1",
+      "node_type": "separator",
+      "theta": 0.12758361765,
+      "source_theta": 0.14758361765,
+      "t": 0.801631511855351,
+      "x": 0.750000000002722,
+      "xdot": -0.999999999997892,
+      "xddot_diagnostic": -0.542432048585095,
+      "speed": 0.999999999997892,
+      "u": 0.0516315118526286,
+      "w": 1.55163151185807
+    },
+    {
+      "node_id": "theta_178792",
+      "node_type": "ordinary",
+      "theta": 0.178791808825,
+      "source_theta": 0.198791808825,
+      "t": 1.12338206625338,
+      "x": 0.377898754342193,
+      "xdot": -1.27073289284096,
+      "xddot_diagnostic": -0.39528470752261,
+      "speed": 1.27073289284096,
+      "u": 0.745483311911183,
+      "w": 1.50128082059557
+    },
+    {
+      "node_id": "C_1",
+      "node_type": "origin_layer",
+      "theta": 0.23,
+      "source_theta": 0.25,
+      "t": 1.4451326206514,
+      "x": -0.0347719063609374,
+      "xdot": -1.24999999999992,
+      "xddot_diagnostic": 0.414380826244969,
+      "speed": 1.24999999999992,
+      "u": 1.47990452701234,
+      "w": 1.41036071429046
+    },
+    {
+      "node_id": "theta_281208",
+      "node_type": "ordinary",
+      "theta": 0.281208191175,
+      "source_theta": 0.301208191175,
+      "t": 1.76688317504942,
+      "x": -0.41267066070313,
+      "xdot": -1.10097535228409,
+      "xddot_diagnostic": 0.39528470752261,
+      "speed": 1.10097535228409,
+      "u": 2.17955383575255,
+      "w": 1.35421251434629
+    },
+    {
+      "node_id": "Sigma_2",
+      "node_type": "separator",
+      "theta": 0.33241638235,
+      "source_theta": 0.35241638235,
+      "t": 2.08863372944745,
+      "x": -0.750000000002722,
+      "xdot": -0.999999999997893,
+      "xddot_diagnostic": -1.09912251649241,
+      "speed": 0.999999999997893,
+      "u": 2.83863372945017,
+      "w": 1.33863372944473
+    },
+    {
+      "node_id": "theta_480000",
+      "node_type": "ordinary",
+      "theta": 0.48,
+      "source_theta": 0.5,
+      "t": 3.0159289474464,
+      "x": -1.25,
+      "xdot": 0,
+      "xddot_diagnostic": 0.628051222337338,
+      "speed": 0,
+      "u": 4.2659289474464,
+      "w": 1.7659289474464
+    },
+    {
+      "node_id": "Sigma_3",
+      "node_type": "separator",
+      "theta": 0.62758361765,
+      "source_theta": 0.64758361765,
+      "t": 3.94322416544535,
+      "x": -0.750000000002722,
+      "xdot": 0.999999999997892,
+      "xddot_diagnostic": 0.542432048585095,
+      "speed": 0.999999999997892,
+      "u": 4.69322416544807,
+      "w": 3.19322416544263
+    },
+    {
+      "node_id": "theta_678792",
+      "node_type": "ordinary",
+      "theta": 0.678791808825,
+      "source_theta": 0.698791808825,
+      "t": 4.26497471984338,
+      "x": -0.377898754342192,
+      "xdot": 1.27073289284096,
+      "xddot_diagnostic": 0.395284707522609,
+      "speed": 1.27073289284096,
+      "u": 4.64287347418557,
+      "w": 3.88707596550118
+    },
+    {
+      "node_id": "C_2",
+      "node_type": "origin_layer",
+      "theta": 0.73,
+      "source_theta": 0.75,
+      "t": 4.5867252742414,
+      "x": 0.0347719063609373,
+      "xdot": 1.24999999999992,
+      "xddot_diagnostic": -0.414380826244969,
+      "speed": 1.24999999999992,
+      "u": 4.55195336788046,
+      "w": 4.62149718060234
+    },
+    {
+      "node_id": "theta_781208",
+      "node_type": "ordinary",
+      "theta": 0.781208191175,
+      "source_theta": 0.801208191175,
+      "t": 4.90847582863942,
+      "x": 0.412670660703129,
+      "xdot": 1.10097535228409,
+      "xddot_diagnostic": -0.395284707522609,
+      "speed": 1.10097535228409,
+      "u": 4.49580516793629,
+      "w": 5.32114648934255
+    },
+    {
+      "node_id": "Sigma_4",
+      "node_type": "separator",
+      "theta": 0.83241638235,
+      "source_theta": 0.85241638235,
+      "t": 5.23022638303745,
+      "x": 0.750000000002722,
+      "xdot": 0.999999999997892,
+      "xddot_diagnostic": 1.09912251649241,
+      "speed": 0.999999999997892,
+      "u": 4.48022638303473,
+      "w": 5.98022638304017
+    },
+    {
+      "node_id": "theta_906208",
+      "node_type": "ordinary",
+      "theta": 0.906208191175,
+      "source_theta": 0.926208191175,
+      "t": 5.69387399203692,
+      "x": 1.18053398875066,
+      "xdot": 0.55901699437339,
+      "xddot_diagnostic": -2.55277567900057,
+      "speed": 0.55901699437339,
+      "u": 4.51334000328627,
+      "w": 6.87440798078758
+    },
+    {
+      "node_id": "theta_980000",
+      "node_type": "section_endpoint",
+      "theta": 0.98,
+      "source_theta": 0,
+      "t": 6.1575216010364,
+      "x": 1.25,
+      "xdot": 0,
+      "xddot_diagnostic": -0.628051222337338,
+      "speed": 0,
+      "u": 4.9075216010364,
+      "w": 7.4075216010364
+    },
+    {
+      "node_id": "theta_1000000",
+      "node_type": "periodic_endpoint",
+      "theta": 1,
+      "source_theta": 0.02,
+      "t": 6.28318530718,
+      "x": 1.2447644729563,
+      "xdot": -0.0876176690331297,
+      "xddot_diagnostic": -0.830357144107396,
+      "speed": 0.0876176690331297,
+      "u": -1.2447644729563,
+      "w": 1.2447644729563
+    }
+  ],
+  "residual_targets": {
+    "E_j": {
+      "status": "not_evaluated"
+    },
+    "fold_integral_targets": {
+      "status": "not_evaluated",
+      "fold_rows": [
+        "Sigma_1",
+        "Sigma_2",
+        "Sigma_3",
+        "Sigma_4"
+      ]
+    },
+    "R_j_x": {
+      "status": "not_evaluated"
+    },
+    "R_j_v": {
+      "status": "not_evaluated"
+    }
+  },
+  "limitations": [
+    "The phase-shifted finite seed is not an EOM-solved returned sample.",
+    "The shifted residual collar rows are finite calculations, not outward-rounded interval pre-ledger rows.",
+    "The full structural Jacobian, dynamic residuals, fold integrals, and live pre-ledger are not evaluated here.",
+    "No live ledger, fold atlas, or branch chart is updated."
+  ]
+}

@@ -2,7 +2,7 @@
 
 Promotion status: `partially-promoted`. The fixed-speed octahedral diagnostic boundary and narrow overread rejections were promoted into [Noether Swarm](../../../../content/markdown/aaa/noether-swarm/noether-swarm.md) as scoped negative-result language. This packet still defines the first executable ledger that should be emitted after the neutral swarm finite-mode search spec is implemented. It refines [neutral-swarm-finite-mode-search.md](neutral-swarm-finite-mode-search.md), [all-pairs-root-ledger.md](all-pairs-root-ledger.md), and [neutral-swarm-master-retention-theorem.md](neutral-swarm-master-retention-theorem.md).
 
-Promoted claim level: `theorem-target` plus scoped negative result. Remaining blocker: `support-complete-root-ledger-open` for the sampled rigid octahedral root diagnostic and `not-retained` for every current first-execution row. It does not define a solver and does not retain a branch. Its purpose is to make the first run produce a useful mathematical verdict rather than another unstructured diagnostic.
+Promoted claim level: `theorem-target` plus scoped negative result. The rigid octahedral root diagnostic now reaches `all-pairs-root-ledger-certified`; the fixed-speed zero-offset row remains `not-retained` because the tangential residual witness closes it by rejection. It does not define a general neutral swarm solver and does not retain a branch. Its purpose is to make the first run produce a useful mathematical verdict rather than another unstructured diagnostic.
 
 The first audit-emitter surface is implemented at:
 
@@ -13,32 +13,32 @@ node scripts/neutral-swarm/finite-mode-artifact.mjs --validate /tmp/neutral-swar
 
 This executable artifact verifies the neutral six-site inventory, emits all 30 ordered distinct source pairs, records hollow-support and root-ledger placeholders, and returns `search_open` / `not_retained`. It is an audit surface, not a dynamics solve.
 
-The first sampled octahedral root-ledger diagnostic is implemented at:
+The first octahedral root-ledger certificate is implemented at:
 
 ```bash
 node scripts/neutral-swarm/octahedral-root-ledger.mjs --out /tmp/neutral-swarm-octahedral-root-ledger.json --pretty
 node scripts/neutral-swarm/octahedral-root-ledger.mjs --validate /tmp/neutral-swarm-octahedral-root-ledger.json --pretty
 ```
 
-This second artifact instantiates the rigid octahedral carrier from [../shell-swarm/octahedral-carrier-worked-example.md](../shell-swarm/octahedral-carrier-worked-example.md), samples every ordered distinct source pair on the declared phase mesh, and reports one positive-delay root with positive Jacobian in every sampled pair/node. Its useful verdict is still:
+This second artifact instantiates the rigid octahedral carrier from [../shell-swarm/octahedral-carrier-worked-example.md](../shell-swarm/octahedral-carrier-worked-example.md), samples every ordered distinct source pair on the declared phase mesh, and emits the analytic all-pairs root certificate for the six antipodal-partner rows and twenty-four cross-binary rows. Its useful verdict is:
 
 $$
 \mathrm{root\_ledger\_diagnostic}
 =
-\texttt{sampled\_passed},
+\texttt{certified\_passed},
 \qquad
 \mathrm{retention}
 =
 \texttt{not\_retained}.
 $$
 
-The first failure remains
+The root-ledger status is now
 
 $$
-\texttt{support-complete-root-ledger-open},
+\texttt{all-pairs-root-ledger-certified},
 $$
 
-because sampled roots do not replace an interval-certified all-pairs root ledger, inactive-gap proof, tail assimilation or exclusion row, or force/action/event closure.
+because the analytic monotonicity and symmetry-reduction rows in [octahedral-root-ledger-certification-target.md](octahedral-root-ledger-certification-target.md) prove one positive root per ordered distinct pair, support-complete memory depth $h_{\mathrm{mem}}=2$, inactive-gap ownership, quantitative delay bounds, and a global Jacobian floor on one ledger. The artifact still does not close force/action/event rows or retain a branch.
 
 The first sampled octahedral force-residual diagnostic is implemented at:
 
@@ -47,7 +47,7 @@ node scripts/neutral-swarm/octahedral-force-residual.mjs --out /tmp/neutral-swar
 node scripts/neutral-swarm/octahedral-force-residual.mjs --validate /tmp/neutral-swarm-octahedral-force-residual.json --pretty
 ```
 
-This third artifact provisionally consumes the sampled octahedral roots to evaluate the fixed-speed tangential force row. It returns
+This third artifact consumes the certified octahedral root ledger to evaluate the fixed-speed tangential force row. It returns
 
 $$
 \mathrm{force\_residual\_diagnostic}
@@ -69,7 +69,49 @@ $$
 \approx2.0637.
 $$
 
-This is a useful negative result for the rigid zero-offset seed, not a general neutral swarm rejection. The master first failure remains `support-complete-root-ledger-open` because the sampled root dependency is not yet a certified all-pairs ledger.
+This is a useful negative result for the rigid zero-offset seed, not a general neutral swarm rejection. After root-ledger certification, the master first failure for this fixed-speed zero-offset row is `closed-rejected:rigid-octahedral-fixed-speed-neutral-row`.
+
+The frozen fixed-ledger speed-ODE diagnostic is implemented at:
+
+```bash
+node scripts/neutral-swarm/octahedral-speed-ode-diagnostic.mjs --out /tmp/neutral-swarm-octahedral-speed-ode.json --pretty
+node scripts/neutral-swarm/octahedral-speed-ode-diagnostic.mjs --validate /tmp/neutral-swarm-octahedral-speed-ode.json --pretty
+```
+
+This fourth artifact consumes the same certified octahedral root ledger and fixed force convention, but interprets the scalar tangent row as the bounded-speed forcing $f_i^1(\theta)=\mathbf{T}_i(\theta)\cdot\widetilde{\mathbf{F}}_i(\theta)$ on a frozen ledger. It returns
+
+$$
+\mathrm{speed\_ode\_diagnostic}
+=
+\texttt{sampled\_failed},
+\qquad
+\mathrm{frozen\_ledger\_status}
+=
+\texttt{rejected\_by\_sampled\_zero\_mean\_row},
+$$
+
+with
+
+$$
+\int_0^{2\pi}f_i^1(\theta)\,d\theta
+\approx
+1.15740669293
+$$
+
+for every receiver site. The `mean_split_certificate` row identifies
+
+$$
+\left\langle f_{i,\mathrm{partner}}^1\right\rangle
+\approx
+0.18420699635,
+\qquad
+\left\langle f_{i,\mathrm{cross}}^1\right\rangle
+\approx0.
+$$
+
+The antipodal-partner positive mean is analytic on the certified constant partner root; the cross-binary aggregate is sampled as pairwise mean cancellation with an exact anti-periodicity proof route still staged. Thus the frozen cross-binary mean cancels in the current diagnostic row while the antipodal-partner mean leaves a positive drift. This rejects only the frozen fixed-ledger speed primitive. The bounded-speed live-ledger handoff remains `bounded-speed-ledger-handoff-open`.
+
+The successor priority target is [../shell-swarm/bounded-speed-factor-speed-ode-zero-mean-correction-target.md](../shell-swarm/bounded-speed-factor-speed-ode-zero-mean-correction-target.md). It does not add another neutral first-execution artifact yet; it states the live shell-swarm equation that would have to turn the frozen mean obstruction into $\mathcal{M}_i^\nu(z)=0$ with bounded-speed clock, root, Jacobian, force, support, action, and event derivative columns on one ledger.
 
 ---
 
@@ -152,6 +194,12 @@ The sampled octahedral fixed-speed force diagnostic emits:
 
 $$
 \texttt{neutral-swarm-octahedral-force-residual/v1}.
+$$
+
+The sampled octahedral frozen-ledger speed-ODE diagnostic emits:
+
+$$
+\texttt{neutral-swarm-octahedral-speed-ode-diagnostic/v1}.
 $$
 
 The deterministic fixed-speed no-go witness emits:
@@ -373,16 +421,16 @@ $$
 \texttt{all-pairs-root-ledger-open}.
 $$
 
-For the rigid octahedral carrier, the sampled diagnostic upgrades the placeholder to a sampled row:
+For the rigid octahedral carrier, the root-ledger artifact upgrades the placeholder to a certified row:
 
 $$
-\texttt{sampled-root-ledger-diagnostic-passed}.
+\texttt{all-pairs-root-ledger-certified}.
 $$
 
-This is not certification. It only lowers the next blocker to the support-complete root-ledger proof:
+This is root-ledger certification only. It lowers the next blocker to the fixed-speed force/action/event stack:
 
 $$
-\texttt{support-complete-root-ledger-open}.
+\texttt{force-action-event-not-computed}.
 $$
 
 ---

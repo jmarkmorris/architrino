@@ -22,7 +22,7 @@ test("octahedral force residual rejects the rigid zero-offset fixed-speed row", 
   assert.equal(artifact.promotion_status, "priority-only");
   assert.equal(artifact.site_inventory.sites.length, 6);
   assert.equal(artifact.branch_scope.pair_policy.cardinality, 30);
-  assert.equal(artifact.sampled_root_dependency.status, "sampled-root-ledger-diagnostic-passed");
+  assert.equal(artifact.sampled_root_dependency.status, "certified-root-ledger-dependency-passed");
   assert.equal(artifact.sampled_root_dependency.failed_root_node_count, 0);
   assert.equal(artifact.force_residual.status, "sampled-tangential-residual-failed");
   assert.ok(artifact.force_residual.sampled_summary.max_abs_tangential_residual > 2);
@@ -31,7 +31,7 @@ test("octahedral force residual rejects the rigid zero-offset fixed-speed row", 
   assert.equal(artifact.result.rigid_carrier_status, "rejected_by_sampled_tangential_residual");
   assert.equal(artifact.result.retention, "not_retained");
   assert.equal(artifact.result.retained_branch, false);
-  assert.equal(artifact.result.master_first_failure_status, "support-complete-root-ledger-open");
+  assert.equal(artifact.result.master_first_failure_status, "closed-rejected:rigid-octahedral-fixed-speed-neutral-row");
 });
 
 test("octahedral force-residual CLI emits and validates JSON artifacts", () => {

@@ -1,0 +1,382 @@
+{
+  "schema": "breather-fresh-fold-layer-burden-v1",
+  "packet_id": "fresh-same-packet-fold-shear-seed-v0",
+  "source_anatomy": "fresh_preledger_blocker_anatomy.fresh-same-packet-fold-shear-seed-v0.json",
+  "source_ledger": "causal_ledger.fresh-same-packet-fold-shear-seed-v0.json",
+  "status": "fresh_fold_layer_burden_recorded_no_row_consumption",
+  "theorem_target": "Null-Coordinate Causal Pre-Ledger",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "claim_level": "priority-side same-packet fold-layer burden report; records missing fields for the 16 fresh fold rows but consumes no rows",
+  "summary": {
+    "fold_layer_rows": 16,
+    "separator_count": 4,
+    "rows_by_separator": {
+      "Sigma_1": [
+        "R_w_F1_A0",
+        "R_w_F1_F1",
+        "R_w_A1_F1",
+        "R_w_A2_F1"
+      ],
+      "Sigma_2": [
+        "R_w_F2_A0",
+        "R_w_F2_A1",
+        "R_w_F2_F2",
+        "R_w_A2_F2"
+      ],
+      "Sigma_3": [
+        "R_u_F3_A2",
+        "R_u_F3_F3",
+        "R_u_A3_F3",
+        "R_u_A4_F3"
+      ],
+      "Sigma_4": [
+        "R_u_F4_A2",
+        "R_u_F4_A3",
+        "R_u_F4_F4",
+        "R_u_A4_F4"
+      ]
+    }
+  },
+  "required_same_packet_fields": [
+    "fresh packet identity check with refs to phi_cyc, mesh, input screen, causal ledger, and seed contract",
+    "fresh atlas_id, separator_event, interval_id, ledger, theta_center, t_center, theta_range, t_range, and layer radii",
+    "alpha_floor > 0 and exit_floor > 0 for each separator layer",
+    "parity fields delta_root_count, delta_signed_degree = 0, local_even_jump, and parity_status",
+    "mollifier proof or direct quadrature route under the fresh packet identity",
+    "Gamma/g coupling certification",
+    "per-row E_B, S_B(t), L_r_B, L_s_B, support coverage, and finite I_fold_B or finite A_B_eta_epsilon_c route",
+    "fresh separator aggregates C_Sigma, A_Sigma_eta_epsilon_c, and I_fold_eta_epsilon_c_Sigma, unless a direct-row impulse route replaces the aggregate route"
+  ],
+  "template_only_refs": [
+    "fold_layer_atlas.json",
+    "fold_impulse_constants.json",
+    "fold_interval_constants_attempt.json",
+    "fold_full_interval_constants_certificate.json",
+    "fold_full_interval_fallback_legality.md"
+  ],
+  "consumption_rule": "A fresh fold row may become fold_layer only after the same-packet fields above are accepted. It must not be rewritten as simple_root and must not emit branch-sum residuals through the separator.",
+  "rows": [
+    {
+      "row_id": "R_w_F1_A0",
+      "separator_event": "Sigma_1",
+      "ledger": "w",
+      "receiver_interval": "F1",
+      "source_interval": "A0",
+      "receiver_type": "fold_layer_candidate",
+      "source_type": "regular",
+      "diagnostic_overlap_width": 0.00692899875917008,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_w_F1_F1",
+      "separator_event": "Sigma_1",
+      "ledger": "w",
+      "receiver_interval": "F1",
+      "source_interval": "F1",
+      "receiver_type": "fold_layer_candidate",
+      "source_type": "fold_layer_candidate",
+      "diagnostic_overlap_width": 0.00745102360868999,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_w_A1_F1",
+      "separator_event": "Sigma_1",
+      "ledger": "w",
+      "receiver_interval": "A1",
+      "source_interval": "F1",
+      "receiver_type": "regular",
+      "source_type": "fold_layer_candidate",
+      "diagnostic_overlap_width": 0.00390055196395989,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_w_F2_A0",
+      "separator_event": "Sigma_2",
+      "ledger": "w",
+      "receiver_interval": "F2",
+      "source_interval": "A0",
+      "receiver_type": "fold_layer_candidate",
+      "source_type": "regular",
+      "diagnostic_overlap_width": 0.00686862500427998,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_w_F2_A1",
+      "separator_event": "Sigma_2",
+      "ledger": "w",
+      "receiver_interval": "F2",
+      "source_interval": "A1",
+      "receiver_type": "fold_layer_candidate",
+      "source_type": "regular",
+      "diagnostic_overlap_width": 0.00399766290998005,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_w_F2_F2",
+      "separator_event": "Sigma_2",
+      "ledger": "w",
+      "receiver_interval": "F2",
+      "source_interval": "F2",
+      "receiver_type": "fold_layer_candidate",
+      "source_type": "fold_layer_candidate",
+      "diagnostic_overlap_width": 0.00686862500427998,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_w_A2_F1",
+      "separator_event": "Sigma_1",
+      "ledger": "w",
+      "receiver_interval": "A2",
+      "source_interval": "F1",
+      "receiver_type": "regular",
+      "source_type": "fold_layer_candidate",
+      "diagnostic_overlap_width": 0.00745102360868999,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_w_A2_F2",
+      "separator_event": "Sigma_2",
+      "ledger": "w",
+      "receiver_interval": "A2",
+      "source_interval": "F2",
+      "receiver_type": "regular",
+      "source_type": "fold_layer_candidate",
+      "diagnostic_overlap_width": 0.00686862500427998,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_u_F3_A2",
+      "separator_event": "Sigma_3",
+      "ledger": "u",
+      "receiver_interval": "F3",
+      "source_interval": "A2",
+      "receiver_type": "fold_layer_candidate",
+      "source_type": "regular",
+      "diagnostic_overlap_width": 0.00693091276859015,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_u_F3_F3",
+      "separator_event": "Sigma_3",
+      "ledger": "u",
+      "receiver_interval": "F3",
+      "source_interval": "F3",
+      "receiver_type": "fold_layer_candidate",
+      "source_type": "fold_layer_candidate",
+      "diagnostic_overlap_width": 0.00745102360887007,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_u_A3_F3",
+      "separator_event": "Sigma_3",
+      "ledger": "u",
+      "receiver_interval": "A3",
+      "source_interval": "F3",
+      "receiver_type": "regular",
+      "source_type": "fold_layer_candidate",
+      "diagnostic_overlap_width": 0.00390055196413996,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_u_F4_A2",
+      "separator_event": "Sigma_4",
+      "ledger": "u",
+      "receiver_interval": "F4",
+      "source_interval": "A2",
+      "receiver_type": "fold_layer_candidate",
+      "source_type": "regular",
+      "diagnostic_overlap_width": 0.0068686250044605,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_u_F4_A3",
+      "separator_event": "Sigma_4",
+      "ledger": "u",
+      "receiver_interval": "F4",
+      "source_interval": "A3",
+      "receiver_type": "fold_layer_candidate",
+      "source_type": "regular",
+      "diagnostic_overlap_width": 0.00399766291016057,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_u_F4_F4",
+      "separator_event": "Sigma_4",
+      "ledger": "u",
+      "receiver_interval": "F4",
+      "source_interval": "F4",
+      "receiver_type": "fold_layer_candidate",
+      "source_type": "fold_layer_candidate",
+      "diagnostic_overlap_width": 0.0068686250044605,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_u_A4_F3",
+      "separator_event": "Sigma_3",
+      "ledger": "u",
+      "receiver_interval": "A4",
+      "source_interval": "F3",
+      "receiver_type": "regular",
+      "source_type": "fold_layer_candidate",
+      "diagnostic_overlap_width": 0.00745102360887007,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    },
+    {
+      "row_id": "R_u_A4_F4",
+      "separator_event": "Sigma_4",
+      "ledger": "u",
+      "receiver_interval": "A4",
+      "source_interval": "F4",
+      "receiver_type": "regular",
+      "source_type": "fold_layer_candidate",
+      "diagnostic_overlap_width": 0.0068686250044605,
+      "missing_fields": [
+        "fresh_fold_layer_atlas_ref",
+        "alpha_floor",
+        "exit_floor",
+        "I_fold_B_or_I_fold_eta_epsilon_c_Sigma",
+        "fresh_parent_complement_consumption_ref"
+      ],
+      "row_may_become": "fold_layer",
+      "row_must_not_become": "simple_root",
+      "branch_chart_authorized": false
+    }
+  ]
+}

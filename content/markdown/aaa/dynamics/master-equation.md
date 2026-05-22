@@ -2334,6 +2334,31 @@ F_{\alpha,Q}(\theta,\Delta)
 $$
 At each retained endpoint, $K_Q(0,\Delta_\alpha)=\Delta_\alpha$ and $\partial_\theta K_Q(0,\Delta_\alpha)=0$, so the first memory drift begins at second order in $\theta$. The branch-chart certificate must bound that drift while satisfying the tangential transport equation for $Q$ and the radial residual on the same active root ledger.
 
+A local convergence diagnostic can sharpen this finite-collar target, but it
+does not by itself fix the full continuation class. After the tangential row is
+imposed on the retained ledger, the transported radial row should be tested
+through the leading one-sided jet of $\mathcal R_R^{\mathrm{tr}}(\theta)$ near
+$\theta=0$. For a specified tangential-transport profile, the jet coefficient is
+$$
+\left(\mathcal R_R^{\mathrm{tr}}\right)'_+(0)
+=
+B'_+(0)-(3a-2)T_0.
+$$
+The retained endpoint and moment constraints do not yet fix all source-side
+endpoint-slope data entering $B'_+(0)$. A nonzero sampled coefficient is
+therefore a local obstruction candidate for that profile, not a theorem that
+every positive $C^2$ variable-rate continuation fails.
+
+A sampled endpoint-slope construction sharpens the same caution. By perturbing
+the retained past inverse-rate profile while preserving the retained endpoint
+values, moment rows, compact $C^2$ tail, and center slope, one can cancel the
+leading affine radial jet at sampled level and still keep a positive retained
+past profile with the expected $3+1$ active-root ledger after tangential
+transport. This does not certify A1 closure. It moves the theorem-grade burden
+to finite-collar control after endpoint-slope cancellation: positivity,
+inactive gaps, Jacobian floors, finite memory, tangential transport, and the
+full radial residual must all be bounded on the same branch chart.
+
 ---
 
 ### Effective Continuum Limits
@@ -2375,7 +2400,7 @@ Several formerly open checks are now footholds rather than blank targets:
 
 1. **Partner-only circular orbit with causal delay ($v<c_f$)** now has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
 2. **Uniform circular self-hit ($v>c_f$)** now has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, and large-$\beta$ self-hit estimates.
-3. **Variable-pitch spiral retained-chart benchmarks** now expose both branch-chart rows and prescribed-history compatibility rows. The fixed A1 constant-$\Omega$ history has certified active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows; its exact radial kinematics fix $\Gamma$ in the accepted normalization and pass the minimum-turn inequality, while the exact turn-center tangential residual excludes zero. A1 is therefore a replayable constant-$\Omega$ kinematic-balance no-go for that prescribed isolated two-body history, not a closure result and not a global no-go for non-circular histories. The same calculation turns the failure into a local continuation equation: a variable-angular-rate A1 turn would need $\ddot\theta(0)/\dot\theta(0)^2\in[-1.0072833846320208,\ -1.007249363114164]$ before the delayed-root chart is recomputed for the new time law. The recomputation is now sharpened as a finite-memory problem: the root equation uses $H(\Delta)=\omega_\ast\int_{-\Delta}^{0}d\phi/\dot\theta(\phi)$, so any viable nonconstant A1 history must match branch-memory averages as well as the local turn slope. A retained-root inverse-rate profile can satisfy those turn-center memory equations, and its endpoint constraints also cancel the first off-center derivative of $H/b$ at $\theta=0$, so the remaining burden is finite-interval transport of that profile into a certified branch chart rather than a pointwise or first-order algebraic obstruction.
+3. **Variable-pitch spiral retained-chart benchmarks** now expose both branch-chart rows and prescribed-history compatibility rows. The fixed A1 constant-$\Omega$ history has certified active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows; its exact radial kinematics fix $\Gamma$ in the accepted normalization and pass the minimum-turn inequality, while the exact turn-center tangential residual excludes zero. A1 is therefore a replayable constant-$\Omega$ kinematic-balance no-go for that prescribed isolated two-body history, not a closure result and not a global no-go for non-circular histories. The same calculation turns the failure into a local continuation equation: a variable-angular-rate A1 turn would need $\ddot\theta(0)/\dot\theta(0)^2\in[-1.0072833846320208,\ -1.007249363114164]$ before the delayed-root chart is recomputed for the new time law. The recomputation is now sharpened as a finite-memory problem: the root equation uses $H(\Delta)=\omega_\ast\int_{-\Delta}^{0}d\phi/\dot\theta(\phi)$, so any viable nonconstant A1 history must match branch-memory averages as well as the local turn slope. A retained-root inverse-rate profile can satisfy those turn-center memory equations, its endpoint constraints cancel the first off-center derivative of $H/b$ at $\theta=0$, and sampled endpoint-slope freedom can cancel the leading transported radial jet. The remaining burden is finite-interval transport and radial control of that profile class inside a certified branch chart rather than a pointwise or first-order algebraic obstruction.
 
 The remaining analytic targets are sharper:
 

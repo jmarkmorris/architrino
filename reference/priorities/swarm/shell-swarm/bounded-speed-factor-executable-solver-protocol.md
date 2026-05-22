@@ -1,8 +1,8 @@
 # Bounded Speed Factor Executable Solver Protocol
 
-Promotion status: `priority-only`. This packet turns the bounded speed factor equations into an executable finite-mode solve target. It specializes [intrinsic-curve-solver-protocol.md](intrinsic-curve-solver-protocol.md), [bounded-speed-factor-center-time-dynamics.md](bounded-speed-factor-center-time-dynamics.md), [bounded-speed-factor-speed-ode-solvability.md](bounded-speed-factor-speed-ode-solvability.md), [bounded-speed-factor-proof-stack-impact-map.md](bounded-speed-factor-proof-stack-impact-map.md), [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md), [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), [bounded-speed-factor-tail-cover-completeness-lemma.md](bounded-speed-factor-tail-cover-completeness-lemma.md), [bounded-speed-factor-variational-noether-closure.md](bounded-speed-factor-variational-noether-closure.md), [bounded-speed-factor-self-hit-exchange-closure.md](bounded-speed-factor-self-hit-exchange-closure.md), [attraction-repulsion-force-moment-decomposition.md](attraction-repulsion-force-moment-decomposition.md), [bounded-speed-factor-branch-search-certificate.md](bounded-speed-factor-branch-search-certificate.md), and [bounded-speed-factor-master-retention-theorem.md](bounded-speed-factor-master-retention-theorem.md).
+Promotion status: `priority-only`. This packet turns the bounded speed factor equations into an executable finite-mode solve target. It specializes [intrinsic-curve-solver-protocol.md](intrinsic-curve-solver-protocol.md), [bounded-speed-factor-center-time-dynamics.md](bounded-speed-factor-center-time-dynamics.md), [bounded-speed-factor-speed-ode-solvability.md](bounded-speed-factor-speed-ode-solvability.md), [bounded-speed-factor-speed-ode-zero-mean-correction-target.md](bounded-speed-factor-speed-ode-zero-mean-correction-target.md), [bounded-speed-factor-proof-stack-impact-map.md](bounded-speed-factor-proof-stack-impact-map.md), [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md), [bounded-speed-factor-all-pairs-ledger-handoff-contract.md](bounded-speed-factor-all-pairs-ledger-handoff-contract.md), [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), [bounded-speed-factor-tail-cover-completeness-lemma.md](bounded-speed-factor-tail-cover-completeness-lemma.md), [bounded-speed-factor-variational-noether-closure.md](bounded-speed-factor-variational-noether-closure.md), [bounded-speed-factor-self-hit-exchange-closure.md](bounded-speed-factor-self-hit-exchange-closure.md), [attraction-repulsion-force-moment-decomposition.md](attraction-repulsion-force-moment-decomposition.md), [bounded-speed-factor-branch-search-certificate.md](bounded-speed-factor-branch-search-certificate.md), and [bounded-speed-factor-master-retention-theorem.md](bounded-speed-factor-master-retention-theorem.md).
 
-It does not retain a branch. It defines the minimal numerical object that can test whether the old fixed-speed exact-antipodal $M=3$ row opens into a nearby bounded speed factor dynamics/action candidate. The branch-search decision layer is now stated in [bounded-speed-factor-branch-search-certificate.md](bounded-speed-factor-branch-search-certificate.md), with finite-mode details, gauge reduction, and interval decisions assigned to [bounded-speed-factor-finite-mode-branch-system.md](bounded-speed-factor-finite-mode-branch-system.md), [bounded-speed-factor-symmetry-gauge-reduction.md](bounded-speed-factor-symmetry-gauge-reduction.md), and [bounded-speed-factor-branch-krawczyk-decision-theorem.md](bounded-speed-factor-branch-krawczyk-decision-theorem.md).
+It does not retain a branch. It defines the minimal numerical object that can test whether the old fixed-speed exact-antipodal $M=3$ row opens into a nearby bounded speed factor dynamics/action candidate. The fixed-speed all-pairs root-ledger certificate is now a staged intake object through [bounded-speed-factor-all-pairs-ledger-handoff-contract.md](bounded-speed-factor-all-pairs-ledger-handoff-contract.md), not an executable bounded-speed schema by itself. The branch-search decision layer is now stated in [bounded-speed-factor-branch-search-certificate.md](bounded-speed-factor-branch-search-certificate.md), with finite-mode details, gauge reduction, and interval decisions assigned to [bounded-speed-factor-finite-mode-branch-system.md](bounded-speed-factor-finite-mode-branch-system.md), [bounded-speed-factor-symmetry-gauge-reduction.md](bounded-speed-factor-symmetry-gauge-reduction.md), and [bounded-speed-factor-branch-krawczyk-decision-theorem.md](bounded-speed-factor-branch-krawczyk-decision-theorem.md).
 
 ---
 
@@ -119,6 +119,25 @@ A_i(u)=\Gamma\int_0^uT_i(s)\cdot F_i^\nu(s)\,ds,
 $$
 
 the zero-mean row $\int_0^{H_*}T_i\cdot F_i^\nu\,du=0$, the initial-speed interval $[\nu_- - A_{i,\min},\nu_+ - A_{i,\max}]$, and the clock/length value $\nu_{i,0}=(L_i-\int A_i\,du)/H_*$. These are the executable fields required by [bounded-speed-factor-speed-ode-solvability.md](bounded-speed-factor-speed-ode-solvability.md).
+
+After a frozen source ledger reports a nonzero mean, the solver must also emit a `zero_mean_correction_target` row from [bounded-speed-factor-speed-ode-zero-mean-correction-target.md](bounded-speed-factor-speed-ode-zero-mean-correction-target.md): the source mean vector, the `source_mean_split_certificate` provenance from the frozen diagnostic when available, the live variables allowed to move, and either the nonlinear target
+
+$$
+\mathcal{M}_i^\nu(z)
+=
+\int_0^{H_*}T_i(u;z)\cdot F_i^\nu(u;z)\,du
+=0
+$$
+
+or the first-order correction target
+
+$$
+D_z\mathcal{M}_i^\nu(z_0)\delta z
+=
+-\mathcal{M}_i^\nu(z_0).
+$$
+
+This row is diagnostic until it consumes the same live roots, Jacobians, force checksum, support convention, action/event convention, and Schur-complemented derivative columns as the bounded-speed ledger handoff.
 
 The derivative rows consumed by Newton and Krawczyk are
 
@@ -420,6 +439,7 @@ A bounded speed factor executable solve must emit:
 | Field | Payload |
 | --- | --- |
 | `solver_space` | `bounded-speed-factor` or `fixed-speed-special-case` |
+| `all_pairs_ledger_handoff` | fixed-speed source-ledger reference, bounded-speed clock lift, root-label handoff, derivative columns, force checksum, and consumer checksum from [bounded-speed-factor-all-pairs-ledger-handoff-contract.md](bounded-speed-factor-all-pairs-ledger-handoff-contract.md) |
 | `geometry_coefficients` | curve coefficients $a$, arclength floors, support descriptor, gauge rows |
 | `finite_mode_branch_system` | full finite-mode vector $z_M$, truncation $M$, residual $\mathcal{B}_M^\nu$, dimension table, neutral-mode quotient, and full-stack embedding from [bounded-speed-factor-finite-mode-branch-system.md](bounded-speed-factor-finite-mode-branch-system.md) |
 | `gauge_reduction` | declared symmetry group, gauge slice, generator matrix, neutral projection, bordered Jacobian rank, block leakage, and first failed gauge status from [bounded-speed-factor-symmetry-gauge-reduction.md](bounded-speed-factor-symmetry-gauge-reduction.md) |
@@ -427,6 +447,7 @@ A bounded speed factor executable solve must emit:
 | `support_rows_nu` | support-radial and support-band residuals from [free-support-bounded-speed-dynamics.md](free-support-bounded-speed-dynamics.md), including total-force or variational-inequality convention |
 | `speed_coefficients` | speed coefficients $b$, $\nu_-$, $\nu_+$, $\nu_i'$, band margins |
 | `speed_ode_solvability` | tangent forcing $T_i\cdot F_i^\nu$, zero-mean row, primitive excursion $A_i$, initial-speed interval, clock/length speed, and feasibility status |
+| `zero_mean_correction_target` | frozen source mean, source mean-split certificate, active live variables, $\mathcal{M}_i^\nu(z)=0$ or $D_z\mathcal{M}_i^\nu(z_0)\delta z=-\mathcal{M}_i^\nu(z_0)$, derivative-column audit, rank or range status, and first failed correction status |
 | `normal_reconstruction` | normal equation, tangent holonomy, position closure, support-radial compatibility, and Krawczyk status from [bounded-speed-factor-normal-reconstruction-theorem.md](bounded-speed-factor-normal-reconstruction-theorem.md) |
 | `coupled_fixed_point` | $\mathcal{R}_{\mathrm{cpl}}^\nu$, variable blocks $(a,b,r,\gamma,s,e)$, Schur eliminations, omitted-column audit, coupled Krawczyk status, and fixed-speed-special-case status |
 | `force_moment_decomposition` | attraction/repulsion force split, tangent-power split, normal-drive split, support-radial moment split, and count-to-bias status from [attraction-repulsion-force-moment-decomposition.md](attraction-repulsion-force-moment-decomposition.md) |
@@ -455,6 +476,8 @@ Immediate successor statuses before an executable artifact are:
 
 $$
 \texttt{finite-mode-branch-schema-open},
+\qquad
+\texttt{bounded-speed-ledger-handoff-contract-staged},
 \qquad
 \texttt{bounded-speed-symmetry-gauge-reduction-open},
 \qquad

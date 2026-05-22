@@ -29,7 +29,7 @@ test("octahedral phase-offset scan emits a ranked sampled rigid-phase family", (
   assert.equal(artifact.result.rigid_phase_family_status, "not_retained");
   assert.equal(artifact.result.retention, "not_retained");
   assert.equal(artifact.result.retained_branch, false);
-  assert.equal(artifact.result.master_first_failure_status, "support-complete-root-ledger-open");
+  assert.equal(artifact.result.master_first_failure_status, "interval-payload-open");
 });
 
 test("octahedral phase-offset scan CLI emits and validates JSON artifacts", () => {

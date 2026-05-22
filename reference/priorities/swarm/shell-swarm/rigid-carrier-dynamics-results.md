@@ -154,7 +154,7 @@ $$
 \texttt{neutral-swarm-octahedral-phase-offset-scan/v1}.
 $$
 
-The default quick grid is a screening artifact rather than the full table above. It ranks sampled $\phi_2,\phi_3$ rows, reports root-count and Jacobian floors on the sampled grid, and always returns `not_retained`. A row may lower the sampled RMS residual relative to zero offset, but the pointwise tangential residual remains open and the master first failure remains `support-complete-root-ledger-open`.
+The default quick grid is a screening artifact rather than the full table above. It ranks sampled $\phi_2,\phi_3$ rows, reports root-count and Jacobian floors on the sampled grid, and always returns `not_retained`. A row may lower the sampled RMS residual relative to zero offset, but the pointwise tangential residual remains open and the phase-offset family still has only a sampled root dependency, so its master first failure remains `interval-payload-open`.
 
 The retention overread is now closed in [../neutral-swarm/phase-offset-improvement-not-retention.md](../neutral-swarm/phase-offset-improvement-not-retention.md). The executable witness `scripts/neutral-swarm/octahedral-phase-offset-retention-witness.mjs` records `closed-rejected:sampled-phase-offset-improvement-implies-retention`: sampled RMS improvement is a useful search signal, but it is not a retained fixed-speed neutral swarm branch.
 

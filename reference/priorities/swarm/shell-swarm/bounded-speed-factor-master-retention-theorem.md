@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet is the bounded-speed successor to the fixed-speed master theorem in [support-complete-m3-master-retention-theorem.md](support-complete-m3-master-retention-theorem.md). It defines what it would mean to retain a shell swarm branch when each architrino carries a bounded speed factor $\nu_i$ rather than the fixed-speed constraint $\nu_i\equiv1$.
 
-It does not claim retention. It states the rows that must be recomputed on one live ledger before the bounded-speed model can replace the current exact-antipodal $M=3$ fixed-speed screens.
+It does not claim retention. It states the rows that must be recomputed on one live ledger before the bounded-speed model can replace the current exact-antipodal $M=3$ fixed-speed screens. The fixed-speed all-pairs root ledger can enter this stack only through [bounded-speed-factor-all-pairs-ledger-handoff-contract.md](bounded-speed-factor-all-pairs-ledger-handoff-contract.md), which records the bounded-speed clock, root, Jacobian, derivative, tail, force, and consumer-checksum rows that must be rebuilt before the coupled fixed-point row consumes the source ledger.
 
 ---
 
@@ -52,7 +52,7 @@ The new rows are:
 | $\mathsf{Clock}$ | equal physical period or declared winding relation using $H_i=\int_0^{L_i}d\lambda/\nu_i$ |
 | $\mathsf{Center}^{\nu}$ | common center-time and event-time equations for $\chi_i$, $\Lambda_i$, velocity, acceleration, roots, and force projections from [bounded-speed-factor-center-time-dynamics.md](bounded-speed-factor-center-time-dynamics.md) |
 | $\mathsf{Tail}^{\nu}$ | tail exclusion or assimilation for causal-time roots $G_{ij}(u,\eta)$ using [bounded-speed-factor-tail-krawczyk-certificate.md](bounded-speed-factor-tail-krawczyk-certificate.md) plus finite-cover completeness from [bounded-speed-factor-tail-cover-completeness-lemma.md](bounded-speed-factor-tail-cover-completeness-lemma.md) |
-| $\mathsf{Root}^{\nu}$ | root ledger using $J_{ij}^{\nu}=1-\nu_j^-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$ |
+| $\mathsf{Root}^{\nu}$ | root ledger using $J_{ij}^{\nu}=1-\nu_j^-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$, with fixed-speed source ledgers admitted only through [bounded-speed-factor-all-pairs-ledger-handoff-contract.md](bounded-speed-factor-all-pairs-ledger-handoff-contract.md) |
 | $\mathsf{Sheet}^{\nu}$ | sheet slopes, coefficient variations, and force derivatives from [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md) |
 | $\mathsf{Sheet2}^{\nu}$ | second root variations, second Jacobian variations, force-weight Hessians, and sheet Lipschitz constants from [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md) |
 | $\mathsf{Dyn}^{\nu}$ | tangential speed evolution and normal curvature rows |
@@ -565,6 +565,8 @@ Current bounded-speed statuses:
 
 $$
 \texttt{finite-mode-branch-schema-open},
+\qquad
+\texttt{bounded-speed-ledger-handoff-contract-staged},
 \qquad
 \texttt{bounded-speed-symmetry-gauge-reduction-open},
 \qquad

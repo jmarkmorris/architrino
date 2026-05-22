@@ -8,7 +8,20 @@ It is priority-only. It does not instantiate a new candidate, does not edit `phi
 
 ## Finding
 
-No runnable breather-specific solver or null-coordinate pre-ledger generator is currently present in `scripts/`.
+Update, 2026-05-22: a first runnable breather-specific sidecar generator is now
+present as `scripts/proof-programs/fresh-fold-shear-candidate-packet.mjs`. It
+instantiates the phase-shifted fold-shear seed as fresh candidate input and a
+diagnostic pre-ledger input screen. A binary64 outward-padded fail-closed
+range-empty preledger attempt is also present as
+`scripts/proof-programs/fresh-null-coordinate-preledger.mjs`, and it rejects the
+fresh packet before branch-chart authorization. A proof-interval-v1 sidecar is
+also present as `scripts/proof-programs/fresh-proof-interval-preledger-v1.mjs`;
+it gives exact JSON numeric-token intake and `BigInt` rational interval
+classification for 70 coarse range-empty rows, but it is not yet a row-specific
+trigonometric interval preledger. A proof-interval-v2 sidecar is now present as
+`scripts/proof-programs/fresh-proof-interval-preledger-v2.mjs`; it adds
+row-specific certified trigonometric $X_\delta$ ranges and certifies 116
+range-empty rows, while still rejecting before branch-chart authorization.
 
 The available surface is contractual and diagnostic:
 
@@ -16,8 +29,41 @@ The available surface is contractual and diagnostic:
 - `next_candidate_solver_target.md` defines the fresh fold-adapted collocation target.
 - `phi_cyc.json`, `mesh.json`, and `causal_ledger.json` belong to the rejected cosine packet `seed-doubled-four-arc-cosine-template-v0`.
 - `fixed_cosine_refinement_rescue_test.md` rejects mesh-only rescue of that same cosine packet.
+- `phi_cyc.fresh-same-packet-fold-shear-seed-v0.json`,
+  `mesh.fresh-same-packet-fold-shear-seed-v0.json`, and
+  `causal_preledger_input_screen.fresh-same-packet-fold-shear-seed-v0.json`
+  instantiate the first fresh sidecar inputs without claiming a pre-ledger pass.
+- `causal_ledger.fresh-same-packet-fold-shear-seed-v0.json`,
+  `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.md`,
+  and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.json`
+  record the fail-closed binary64 preledger attempt: 128 empty rows are accepted
+  by this pass, 34 rows remain `split_required`, and no branch chart is
+  authorized.
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`,
+  `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`,
+  `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.md`,
+  and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`
+  record the proof-interval-v1 exact-rational coarse range-empty sidecar: 70
+  rows are accepted by strict $c_fT_{\mathrm{cyc}}\theta\pm X_{\max}$ separation,
+  92 rows remain `split_required`, and no branch chart is authorized.
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`,
+  `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`,
+  `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.md`,
+  and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`
+  record the proof-interval-v2 exact-rational trigonometric range sidecar: 116
+  rows are accepted as range-empty, 46 rows remain `split_required`, and no
+  branch chart is authorized.
+- `fresh_preledger_blocker_anatomy.fresh-same-packet-fold-shear-seed-v0.json`
+  and `fold_layer_burden.fresh-same-packet-fold-shear-seed-v0.json` classify
+  those blockers into row-level proof burdens: 16 same-packet fold-layer rows, 6
+  regular parent root-candidate overlaps, 10 endpoint/contact rows, and 2
+  nonmonotone diagonal contacts.
 
-The next proof advance therefore requires either a new solver implementation or a manually instantiated same-packet artifact set. It cannot be obtained by relabeling the rejected cosine artifacts.
+The next proof advance therefore requires adding monotone diagonal exclusions,
+simple-root extraction, endpoint/seam ownership, and fold-layer certification on
+top of proof-interval-v2, followed later by the full structural Jacobian and
+dynamic residual checks. It cannot be obtained by relabeling the rejected
+cosine artifacts or by treating sampled screen rows as accepted rows.
 
 ## Minimum Lawful Successor Packet
 
@@ -140,9 +186,10 @@ $$
 0.00106743573978125.
 $$
 This is the first finite candidate-history seed for the successor solve, not an
-accepted candidate packet. The fresh generator should use it as an initial
-history or continuation direction, then enforce the full same-packet structural
-constraints and interval pre-ledger.
+accepted candidate packet. The first sidecar generator has now used it as fresh
+candidate input under `fresh-same-packet-fold-shear-seed-v0`; the remaining
+work is to enforce the full same-packet structural constraints and
+outward-rounded interval pre-ledger.
 
 ## Pre-Ledger Stop Condition
 
@@ -193,6 +240,24 @@ Every parent-complement strip left after accepted simple-root and fold-layer sub
 4. same-packet regular-boundary theorem fields: inclusion, domination, ownership, and non-core strict gap.
 
 If any fold-adjacent parent complement retains a positive-width overlap, residual equality core, or uncertified endpoint-scale gap, the successor packet is rejected before branch-chart certification.
+
+The fresh sidecar currently fails this stop condition. The sidecar ledger
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.json` records
+`preledger_pass=false`, `branch_chart_authorized=false`, 128 empty rows accepted
+by the fail-closed binary64 pass, and 34 `split_required` rows. The blocker
+anatomy splits those rows into 16 same-packet fold-layer certificate rows, 6
+regular parent root-candidate overlaps, 10 endpoint/seam or inactive-fold
+contacts, and 2 diagonal contacts without a monotone exclusion certificate.
+The proof-interval-v1 ledger
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v1.json`
+also records `preledger_pass=false` and `branch_chart_authorized=false`; it
+certifies only 70 exact-rational coarse range-empty rows and leaves 92 rows
+`split_required`.
+The proof-interval-v2 ledger
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`
+also records `preledger_pass=false` and `branch_chart_authorized=false`; it
+certifies 116 exact-rational row-specific trigonometric range-empty rows and
+leaves 46 rows `split_required`.
 
 ## Capture Decision
 
