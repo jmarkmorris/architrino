@@ -1,19 +1,19 @@
 # Noether-Sea Pressure Modulus and Packing Headroom
 
-This priority packet derives a branch-conditional pressure modulus and packing-headroom law for the pressure-dependent Noether-Sea response. It is report material, not reader-facing canon. Its role is to replace the purely named scale $K_{\text{sea}}$ with a computable branch target tied to the Noether-core exclusion envelope, support-function packing cell, and envelope stiffness.
+This priority packet derives a branch-conditional pressure modulus and packing-headroom law for the pressure-dependent Noether-Sea response. It is report material, not reader-facing canon. Its role is to replace the purely named scale $K_{\text{sea}}$ with a computable branch target tied to the Noether swarm exclusion envelope, support-function packing cell, and envelope stiffness.
 
 ## Claim Level
 
 - **Status:** candidate modulus derivation and scaling law.
 - **Main claim:** the pressure-density response does not determine $K_{\text{sea}}$ alone. It determines the density modulus $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, while the support-function packing record determines the headroom factor $s_n=1-n/n_{\max}^{\mathrm{obl}}$.
-- **Open burden:** compute the envelope stiffness Hessian, contact-network stiffness, and branch deformation vector from an accepted Noether-core branch or a certified dense-medium simulation.
-- **Promotion target:** none until $K_{\mathrm{pack}}$, $s_n$, and the branch residuals are extracted from a declared Noether-core branch and survive replay null bounds.
+- **Open burden:** compute the envelope stiffness Hessian, contact-network stiffness, and branch deformation vector from an accepted Noether swarm branch or a certified dense-medium simulation.
+- **Promotion target:** none until $K_{\mathrm{pack}}$, $s_n$, and the branch residuals are extracted from a declared Noether swarm branch and survive replay null bounds.
 
 ## Source Anchors
 
 - [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) defines $\Pi_\ell=P_\ell/K_{\text{sea}}$ and the packing-limited density law.
 - [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) shows that pressure tests constrain coefficient combinations, not observable-local rows.
-- [Noether-Core Scaling and Packing Scaffold](../dyadic-lock/noether-core-scaling-and-packing.md) supplies $R_{\mathrm{excl}}$, $V_{\mathrm{cell}}^{\mathrm{sf}}$, $n_{\max}^{\mathrm{obl}}$, the support-function contact condition, and the packing-compliance diagnostic.
+- [Noether Swarm Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) supplies $R_{\mathrm{excl}}$, $V_{\mathrm{cell}}^{\mathrm{sf}}$, $n_{\max}^{\mathrm{obl}}$, the support-function contact condition, and the packing-compliance diagnostic.
 - [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) supplies the homogeneous tensor target that the modulus must not contradict.
 
 ## Modulus Gauge
@@ -87,7 +87,7 @@ $$
 n_{\max,X}^{\mathrm{sf}}
 =
 \frac{\nu_{\mathrm{pack},0}}
-{\rho_{\text{core},0}V_{\mathrm{cell},X}^{\mathrm{sf}}}
+{\rho_{\text{NS},0}V_{\mathrm{cell},X}^{\mathrm{sf}}}
 $$
 
 when the replay treats the support-function lattice cell as the working equality model. If the support-function result is used only as an upper bound, then the same equation gives an upper-bound ceiling and the corresponding $s_n$ is an upper-bound headroom.
@@ -100,7 +100,7 @@ s_{n,X}^{\mathrm{sf}}
 =
 1-\frac{n_X}{n_{\max,X}^{\mathrm{sf}}}
 =
-1-\frac{\rho_{\text{core},X}V_{\mathrm{cell},X}^{\mathrm{sf}}}
+1-\frac{\rho_{\text{NS},X}V_{\mathrm{cell},X}^{\mathrm{sf}}}
 {\nu_{\mathrm{pack},0}}.
 }
 $$
@@ -285,7 +285,7 @@ $$
 \boxed{
 K_{\mathrm{env},X}
 =
-\rho_{\text{core},0}n_X\,k_{\mathrm{env},X}^{(V)}.
+\rho_{\text{NS},0}n_X\,k_{\mathrm{env},X}^{(V)}.
 }
 $$
 
@@ -369,7 +369,7 @@ $$
 
 The positive scalar $\kappa_{n,X}$ sets the magnitude while the branch Hessian and readout fix the direction. A replay that improves by choosing $\kappa_n^P$, $\kappa_\lambda^P$, and $\kappa_R^P$ outside this branch-derived form has introduced independent fit knobs. Such a fit is acceptable only as a failure diagnostic: the branch must split, change readout, or supply a different finite Hessian before the pressure row can be interpreted as a Noether-Sea response.
 
-The finite-branch source-status boundary in [Noether-Core Envelope Hessian Toy Branch](noether-core-envelope-hessian-toy-branch.md) also applies here: branch-derived pressure slopes remain blocked when the only upstream artifact is an $A_0$ scanner, Fourier carrier-correction packet, or waveform replay rather than accepted finite-branch Hessian output.
+The finite-branch source-status boundary in [Noether Swarm Envelope Hessian Toy Branch](noether-swarm-envelope-hessian-toy-branch.md) also applies here: branch-derived pressure slopes remain blocked when the only upstream artifact is an $A_0$ scanner, Fourier carrier-correction packet, or waveform replay rather than accepted finite-branch Hessian output.
 
 ## Contact-Network Contribution
 
@@ -502,7 +502,7 @@ k_R
 \left.
 \frac{\partial^2E_{\mathrm{env}}}
 {\partial(\ln R_{\mathrm{excl}})^2}
-\right|_{\Lambda_{\mathrm{NC}}}.
+\right|_{\Lambda_{\mathrm{NS}}}.
 $$
 
 Since $\delta\ln n=-3\delta\ln R_{\mathrm{excl}}$ in the spherical fixed-packing approximation,
@@ -511,7 +511,7 @@ $$
 \boxed{
 K_{\mathrm{pack}}
 \approx
-\frac{\rho_{\text{core},0}n}{9}k_R
+\frac{\rho_{\text{NS},0}n}{9}k_R
 +K_{\mathrm{contact}}
 +K_{\mathrm{wake}}^{\mathrm{rev}}.
 }
@@ -523,7 +523,7 @@ $$
 \boxed{
 K_{\mathrm{pack}}
 \sim
-\frac{\eta_R}{9}\rho_{\text{core},0}nE_O
+\frac{\eta_R}{9}\rho_{\text{NS},0}nE_O
 }
 $$
 
@@ -554,9 +554,9 @@ For each material-pressure row, add or derive the following branch-side quantiti
 | Quantity | Formula or source | Replay meaning |
 | --- | --- | --- |
 | $V_{\mathrm{cell},X}^{\mathrm{sf}}$ | support-function lattice-cell record | computes the declared packing ceiling |
-| $n_{\max,X}^{\mathrm{sf}}$ | $\nu_{\mathrm{pack},0}/(\rho_{\text{core},0}V_{\mathrm{cell},X}^{\mathrm{sf}})$ | normalized maximum density under the equality model |
-| $s_{n,X}^{\mathrm{sf}}$ | $1-\rho_{\text{core},X}V_{\mathrm{cell},X}^{\mathrm{sf}}/\nu_{\mathrm{pack},0}$ | density-channel headroom |
-| $K_{\mathrm{env},X}$ | $\rho_{\text{core},0}n_X(\mathbf{c}_X^TH_{\mathrm{env},X}^{-1}\mathbf{c}_X)^{-1}$ | branch envelope stiffness |
+| $n_{\max,X}^{\mathrm{sf}}$ | $\nu_{\mathrm{pack},0}/(\rho_{\text{NS},0}V_{\mathrm{cell},X}^{\mathrm{sf}})$ | normalized maximum density under the equality model |
+| $s_{n,X}^{\mathrm{sf}}$ | $1-\rho_{\text{NS},X}V_{\mathrm{cell},X}^{\mathrm{sf}}/\nu_{\mathrm{pack},0}$ | density-channel headroom |
+| $K_{\mathrm{env},X}$ | $\rho_{\text{NS},0}n_X(\mathbf{c}_X^TH_{\mathrm{env},X}^{-1}\mathbf{c}_X)^{-1}$ | branch envelope stiffness |
 | $K_{\mathrm{contact},X}$ | contact-network stiffness sum | reversible dense-contact stiffness |
 | $K_{\mathrm{pack},X}^{\mathrm{sf}}$ | $K_{\mathrm{env},X}+K_{\mathrm{contact},X}+K_{\mathrm{wake},X}^{\mathrm{rev}}$ | density modulus entering pressure response |
 | $K_{\text{sea},X}$ | $\kappa_{n,X}K_{\mathrm{pack},X}^{\mathrm{sf}}$ | pressure packet scale after $\kappa_n$ is fixed |
@@ -588,4 +588,4 @@ for the density channel, and should reserve $\Delta\ln n_{\max,X}^{\mathrm{obl}}
 
 ## Next Closure Target
 
-[Noether-Core Envelope Hessian Toy Branch](noether-core-envelope-hessian-toy-branch.md) supplies the reduced $2\times2$ Hessian calculation for $(\ln R_\perp,\ln\xi)$, including the projected stiffness $k_{\mathrm{env}}^{(V)}$, stability classifier, induced shape response, and executable scanner handoff. The next unresolved step is finite-branch intake: replace the toy Hessian entries with accepted branch output and require the resulting pressure slopes to keep the branch-derived form above while passing density-sign, scalar-feasibility, and null-sector bounds.
+[Noether Swarm Envelope Hessian Toy Branch](noether-swarm-envelope-hessian-toy-branch.md) supplies the reduced $2\times2$ Hessian calculation for $(\ln R_\perp,\ln\xi)$, including the projected stiffness $k_{\mathrm{env}}^{(V)}$, stability classifier, induced shape response, and executable scanner handoff. The next unresolved step is finite-branch intake: replace the toy Hessian entries with accepted branch output and require the resulting pressure slopes to keep the branch-derived form above while passing density-sign, scalar-feasibility, and null-sector bounds.

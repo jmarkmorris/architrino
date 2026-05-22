@@ -42,7 +42,7 @@
   "objects": [
     {
       "id": "fermion_core",
-      "label": "Uni-binary Noether core",
+      "label": "Shell swarm",
       "scaleExponent": -20,
       "hideScaleLabel": true,
       "radius": 1.08,
@@ -56,7 +56,7 @@
         "inner"
       ],
       "renderStyle": "binarySphere",
-      "labelTitle": "Uni-binary Noether core"
+      "labelTitle": "Shell swarm"
     },
     {
       "id": "positrino_1",

@@ -55,7 +55,7 @@ These are Tier-1/2 constraints: if we systematically can't approach them, we doc
 
 ### Noether-Sea State and Metric Emergence (Ch. 31-32)
 
-**Claim:** There is no empty physical vacuum in the substrate ontology. The fixed background is absolute time plus Euclidean void, while the ambient contents are Noether-core assemblies in the Noether Sea. The density, deformation, coupling, and orientation of those assemblies define the **effective metric** seen by assembly-based observers.
+**Claim:** There is no empty physical vacuum in the substrate ontology. The fixed background is absolute time plus Euclidean void, while the ambient contents are Noether swarm assemblies in the Noether Sea. The density, deformation, coupling, and orientation of those assemblies define the **effective metric** seen by assembly-based observers.
 
 There are three vastly different energy levels in a tri-binary.
 - **High energy binary**: inertia + local gravitational charge carrier (max curvature/self-hit regime).
@@ -71,8 +71,8 @@ There are three vastly different energy levels in a tri-binary.
 **Tasks/Deliverables:**
 
 - Define a **Noether-Sea state variable set**:
-  - $\rho_{\text{core}}(\mathbf{x},t)$ (physical Noether-core density),
-  - $n(\mathbf{x},t)$ (normalized Noether-core density),
+  - $\rho_{\text{core}}(\mathbf{x},t)$ (physical Noether swarm density),
+  - $n(\mathbf{x},t)$ (normalized Noether swarm density),
   - $u^\mu_{\text{sea}}(x)$ (effective medium-flow label),
   - orientation fields (neutral-axis directions $\hat n_i(x)$).
 - Propose and refine a mapping: $g_{\mu\nu}(x) = \mathcal{F}(\rho_{\text{core}}, n, \chi_{\text{sea}}, u^\mu_{\text{sea}}, \hat n_i, \text{tri-binary scales})$ and show how Minkowski + small perturbations arise in the homogeneous/weak-gradient limit.
@@ -80,11 +80,11 @@ There are three vastly different energy levels in a tri-binary.
 
 ### Proper Time and Clock Physics (Ch. 32, 41)
 
-**Claim:** Proper time for an assembly is related to the ellipsoidal deformation of its Noether core volume. These can be influenced by:
+**Claim:** Proper time for an assembly is related to the ellipsoidal deformation of its Noether swarm volume. These can be influenced by:
 
 - finite field-speed interactions relative to the local Noether-Sea cell,
-- local Noether-core density, Noether-Sea delay factor, and effective potential.
-- closure of the ellipsoid-to-planar response as a derivation target: increasing kinetic or gradient stress may drive Noether cores toward oblate or planar branches, but photon boundary, horizon, and $v=c_f$ statements require the Lorentz/photon closure gates before deployment as settled claims.
+- local Noether swarm density, Noether-Sea delay factor, and effective potential.
+- closure of the ellipsoid-to-planar response as a derivation target: increasing kinetic or gradient stress may drive Noether swarms toward oblate or planar branches, but photon boundary, horizon, and $v=c_f$ statements require the Lorentz/photon closure gates before deployment as settled claims.
 
 **Tasks/Deliverables:**
 
@@ -218,7 +218,7 @@ For each:
 
 - **With Adversary / Red Team (Ch. 16, 44, 53-54):**
   - Provide a clear list of:
-    - postulated gravitational parameters (e.g. fundamental $c_f$, baseline Noether-core density),
+    - postulated gravitational parameters (e.g. fundamental $c_f$, baseline Noether swarm density),
     - derived ones (G, $\Lambda_{\rm eff}$, inflation parameters),
     - any fitted ones (and justify).
   - Invite explicit attempts to kill:

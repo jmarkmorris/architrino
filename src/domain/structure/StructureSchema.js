@@ -1,7 +1,7 @@
 export const STRUCTURE_KINDS = Object.freeze({
   PARTICLE: "particle",
   COMPOSITE: "composite",
-  NOETHER_CORE: "noether_core",
+  NOETHER_SWARM: "noether_swarm",
   SLOT: "slot",
   PERSONALITY_DRESSED_BINARY: "personality_dressed_binary",
   BINARY: "binary",

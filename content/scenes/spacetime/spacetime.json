@@ -20,8 +20,8 @@
         "scenePath": "content/scenes/spacetime/spacetime_assemblies.json"
       },
       {
-        "nodeId": "medium_exclusion_volume",
-        "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json"
+        "nodeId": "molecular_exclusion_and_noether_sea_response",
+        "scenePath": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json"
       },
       {
         "nodeId": "physical_observers",
@@ -73,8 +73,8 @@
       "fixedPosition": true
     },
     {
-      "id": "medium_exclusion_volume",
-      "title": "Medium Exclusion Volume",
+      "id": "molecular_exclusion_and_noether_sea_response",
+      "title": "Molecular Exclusion and Noether-Sea Response",
       "radius": 2.05,
       "color": "#3f6a5a",
       "position": [
@@ -85,7 +85,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Medium Exclusion Volume",
+      "labelTitle": "Molecular Exclusion and Noether-Sea Response",
       "labelBadge": "doc",
       "fixedPosition": true
     },

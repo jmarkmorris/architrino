@@ -76,13 +76,13 @@ The Tier 0 residual surface deliberately includes entries that are not computed 
 | Residual | Emitter key | Tier 0 interpretation |
 | --- | --- | --- |
 | $\mathcal{R}_{\text{state}}$ | `state` | Carrier-chart return mismatch over one declared period |
-| $\mathcal{R}_{\text{root}}$ | `root` | Active root defect on retained causal-root branches |
+| $\mathcal{R}_{\text{root}}$ | `root` | Active root defect on candidate causal-root branches |
 | $\mathcal{R}_{\text{phase}}$ | `phase` | Integer layer-winding mismatch |
 | $\mathcal{R}_{E}$ | `energy` | Not computed at Tier 0; Tier 1 or Tier 2 must supply a regularized energy/history functional |
 | $\mathcal{R}_{\text{drift}}$ | `drift` | Centering check for the diagnostic chart; Tier 1 must retest under direct delayed dynamics |
 | $\mathcal{R}_{\text{speed}}$ | `speed` | Sign-aware violation of the intended $s_I > c_f$, $s_M \approx c_f$, $s_O < c_f$ ordering |
 | $\mathcal{R}_{\text{avg}}$ | `avg` | Diagnostic size of terms claimed to average out |
-| $\mathcal{R}_{\text{lock}}$ | `lock` | Diagnostic fraction or defect of retained locking terms |
+| $\mathcal{R}_{\text{lock}}$ | `lock` | Diagnostic fraction or defect of selected locking terms |
 | $\mathcal{R}_{\text{leak}}$ | `leak` | Far-field leakage placeholder, not a shielding extraction |
 | $\mathcal{R}_{\text{Floquet}}$ | `Floquet` | Not computed at Tier 0; Tier 1 must construct the monodromy diagnostic |
 
@@ -125,7 +125,7 @@ The row-level `failure_code` enum preserves the existing Tier 0 codes and reserv
 | `carrier-residual-open` | carrier return or drift residuals fail |
 | `root-residual-open` | active causal-root residuals fail |
 | `averaging-residual-open` | terms claimed to average out exceed their declared tolerance |
-| `locking-residual-open` | retained locking terms exceed their declared tolerance |
+| `locking-residual-open` | selected locking terms exceed their declared tolerance |
 | `separator-singularity-unresolved` | active near-separator roots lack an accepted handling rule |
 | `near-zero-self-root-excluded` | excluded instantaneous self roots block Tier 0 promotion |
 | `root-ledger-instability` | the active root ledger is empty or lacks partner, self, or inter-layer classes |

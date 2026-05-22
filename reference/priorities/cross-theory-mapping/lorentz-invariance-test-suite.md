@@ -35,7 +35,7 @@ This is the useful lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$: Michelson-Morley
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-Lorentz symmetry is already a theorem target, not substrate ontology. The corpus signals name moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage. The Noether-Sea response object and tri-binary causal closure should make absolute-frame dynamics operationally hidden in the tested regime.
+Lorentz symmetry is already a theorem target, not substrate ontology. The corpus signals name moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage. The Noether-Sea response object and nested shell swarm causal closure should make absolute-frame dynamics operationally hidden in the tested regime.
 
 ## Task Queue
 

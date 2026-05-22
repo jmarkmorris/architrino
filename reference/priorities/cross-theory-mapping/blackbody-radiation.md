@@ -83,7 +83,7 @@ The UV-failure test is therefore two-sided: the mapping fails if it leaves the R
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [tri-binary-causal-closure/radiation-gate-c-benchmarks](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md) | Make blackbody recovery a Gate C benchmark. |
+| This file | [nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks](../nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks.md) | Make blackbody recovery a Gate C benchmark. |
 | This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Use thermal occupation as a basin-measure proof target. |
 | This file | [cosmology-closure](../cosmology-closure/cosmology-closure.md) | Require CMB blackbody claims to share local radiation ledger variables. |
 

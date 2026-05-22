@@ -1,6 +1,6 @@
 # Tri-Binary Source Signal Triage
 
-Promotion status: `priority-only`. This document mines [swarm-rearchitecture-source.md](swarm-rearchitecture-source.md) for same-level tri-binary source signals and classifies each signal as a safe mathematical target, a deferred theorem target, a speculative comparison, or an overclaim to reject until a retained branch packet exists.
+Promotion status: `priority-only`. This document mines [swarm-rearchitecture-source.md](swarm-rearchitecture-source.md) for inherited source signals and classifies each signal as a safe mathematical target, a deferred theorem target, a speculative comparison, or an overclaim to reject until a retained-branch certificate closes on one live ledger.
 
 The source discussion is intentionally treated as analysis material, not canon. Its strongest value is not its confident conclusions. Its strongest value is the list of proof burdens it exposes: causal-root regularity, fixed-speed tangential closure, noncollision clearance, history-dressed conservation, isotropic Lorentz export, spinor holonomy, continuous color connection, and central inventory replacement.
 
@@ -15,7 +15,7 @@ Each source signal receives one of four outcomes.
 | `converted` | The signal has been converted into a concrete definition, residual, lemma target, proof route, or simulation observable in this directory. |
 | `deferred-with-blocker` | The signal is valuable, but cannot be stated as even a theorem target until another row is supplied. |
 | `priority-only` | The signal remains useful as workstream source material, but is too operational, broad, or speculative for corpus promotion. |
-| `rejected-as-overclaim` | The signal asserts completed closure, exact recovery, or migration readiness without the retained branch packet required by [swarm-architecture.md](swarm-architecture.md). |
+| `rejected-as-overclaim` | The signal asserts completed closure, exact recovery, or migration readiness without the retained-branch certificate required by [swarm-architecture.md](shell-swarm/swarm-architecture.md). |
 
 ---
 
@@ -239,8 +239,8 @@ The following source-level claims are not accepted by the architecture packet.
 The safe mathematical capture is:
 
 1. Convert the source discussion into proof-packet documents inside this directory.
-2. Keep all claims `priority-only` until one retained branch packet exists.
+2. Keep all retained-branch and downstream architecture claims `priority-only` until one retained-branch certificate closes on a live ledger.
 3. Treat the same-level architecture as a serious replacement candidate, but not as migration authority.
-4. Use [proof-program-and-decision-gate.md](proof-program-and-decision-gate.md) as the coordination map for the proof packet.
+4. Use [proof-program-and-decision-gate.md](shell-swarm/proof-program-and-decision-gate.md) as the coordination map for the proof packet.
 
 No material from this source packet is ready for direct promotion into `content/markdown/aaa` today.

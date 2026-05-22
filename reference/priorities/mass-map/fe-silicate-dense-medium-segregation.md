@@ -5,7 +5,7 @@ This priority packet is a proof and replay scaffold, not reader-facing canon. It
 ## Claim Level
 
 - **Status:** candidate sign condition with two-phase replay scaffold.
-- **Main claim:** existing iron-rich metallic assemblies may have lower relative chemical and medium-response cost than silicate assemblies as normalized Noether-core density increases, after ordinary pressure, temperature, phase, and gravity terms are separated.
+- **Main claim:** existing iron-rich metallic assemblies may have lower relative chemical and medium-response cost than silicate assemblies as normalized Noether swarm density increases, after ordinary pressure, temperature, phase, and gravity terms are separated.
 - **Open burden:** the sign must be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether-Sea coupling. Until that is done, the condition is a derivation target, not a theorem.
 - **Promotion targets:** [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) and [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) after a successful proof or replay; [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) supplies the shared pressure-response scaffold.
 
@@ -13,8 +13,8 @@ This priority packet is a proof and replay scaffold, not reader-facing canon. It
 
 - [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) separates Earth-core iron concentration from iron-nucleus creation and states the no-new-iron guardrail $S_{\mathrm{Fe}}^{\mathrm{nuc}}=0$ for ordinary planetary differentiation.
 - [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) frames dense material phases through the local response record $\Theta_E^{(\ell)}$, not through a bare element label.
-- [Medium Exclusion Volume](../../../content/markdown/aaa/spacetime/medium-exclusion-volume.md) distinguishes ordinary molecular or atomic exclusion from deeper Noether-Sea implementation layers.
-- [Noether-Core Scaling and Packing Scaffold](../dyadic-lock/noether-core-scaling-and-packing.md) supplies the current priority-side model for packing-limited center density and oblate-envelope support-function contact.
+- [Molecular Exclusion and Noether-Sea Response](../../../content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md) distinguishes ordinary molecular or atomic exclusion from deeper Noether-Sea implementation layers.
+- [Noether Swarm Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) supplies the current priority-side model for packing-limited center density and oblate-envelope support-function contact.
 - [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) supplies the shared variables $n$, $\chi_{\text{sea}}$, $\Gamma_N$, $S_{ij}$, and $\mathcal{M}_{\text{sea}}^{ab}$ for pressure-sensitive matter environments.
 
 ## Claim Map
@@ -24,7 +24,7 @@ This priority packet is a proof and replay scaffold, not reader-facing canon. It
 | Ontology | Iron and silicate phases are matter assemblies embedded in the Noether Sea; the Euclidean void is not compressed and iron nuclei are not created by the core environment. |
 | Derivation/closure target | The sign of $\partial_n\Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}$ should be computed from one assembly and Noether-Sea response record. |
 | Effective summary | In standard language, dense iron-rich metal segregates inward during planetary differentiation because it is denser and energetically favored in the core. |
-| Speculation | Metallic iron may be especially compatible with high normalized Noether-core density because its packing, bonding, and exposed mass response lower relative medium cost compared with silicate phases. |
+| Speculation | Metallic iron may be especially compatible with high normalized Noether swarm density because its packing, bonding, and exposed mass response lower relative medium cost compared with silicate phases. |
 
 ## No-New-Iron Guardrail
 
@@ -79,7 +79,7 @@ $$
 }
 $$
 
-This condition says that the iron-rich metallic branch becomes relatively cheaper as normalized Noether-core density $n=\rho_{\text{core}}/\rho_{\text{core},0}$ rises. It does not say that $n$ creates iron.
+This condition says that the iron-rich metallic branch becomes relatively cheaper as normalized Noether swarm density $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ rises. It does not say that $n$ creates iron.
 
 ## Sufficient Sign Condition
 
@@ -107,7 +107,7 @@ Here:
 | Symbol | Meaning |
 | --- | --- |
 | $A_X$ | strength of exclusion or compression penalty for phase $X$ |
-| $\Psi$ | convex penalty as local Noether-core density approaches the phase-specific packing ceiling |
+| $\Psi$ | convex penalty as local Noether swarm density approaches the phase-specific packing ceiling |
 | $n_{\max,X}^{\mathrm{obl}}(n)$ | oblate-envelope packing ceiling for the local phase and orientation record, derived from support-function packing rather than ordinary density alone |
 | $G_X$ | coherent medium-coupling benefit for phase $X$ |
 | $C_X^{\chi}$ | delay-factor coupling coefficient |
@@ -214,13 +214,13 @@ n\frac{\partial}{\partial n}
 \ln n_{\max,X}^{\mathrm{obl}}(n),
 $$
 
-which is the packing-headroom correction. If a branch raises its oblate-envelope packing ceiling as ambient normalized Noether-core density increases, its marginal exclusion penalty is reduced. If the ceiling rises too slowly, the convex packing penalty grows. The metallic Fe preference is therefore sharpened to a strict margin claim: Fe wins only when the branch-derived metallic coordination and Noether-Sea coupling benefit exceed the Fe-minus-silicate marginal packing, delay, strain, pressure, and coefficient-drift costs.
+which is the packing-headroom correction. If a branch raises its oblate-envelope packing ceiling as ambient normalized Noether swarm density increases, its marginal exclusion penalty is reduced. If the ceiling rises too slowly, the convex packing penalty grows. The metallic Fe preference is therefore sharpened to a strict margin claim: Fe wins only when the branch-derived metallic coordination and Noether-Sea coupling benefit exceed the Fe-minus-silicate marginal packing, delay, strain, pressure, and coefficient-drift costs.
 
 This is the first proof target. The left side must come from assembly coupling and metallic coordination; the right side must come from support-function packing, exclusion-volume response, delay, strain, pressure response, and coefficient-drift bounds. If either side is inserted as a free phase label, the argument has not been derived.
 
 ## Support-Function Packing Reduction
 
-The packing side should now be treated as a support-function lattice-cell calculation, not as two scalar declarations. For phase $X$, start with an oblate Noether-core envelope
+The packing side should now be treated as a support-function lattice-cell calculation, not as two scalar declarations. For phase $X$, start with an oblate Noether swarm envelope
 
 $$
 R_{\parallel,X}=\xi_XR_{\perp,X},
@@ -300,7 +300,7 @@ In branch-normalized units the reference constants are fixed by the same-level p
 $$
 \widetilde V_{\mathrm{cell},X}^{\mathrm{sf}}
 =
-\rho_{\text{core},0}V_{\mathrm{cell},X}^{\mathrm{sf}},
+\rho_{\text{NS},0}V_{\mathrm{cell},X}^{\mathrm{sf}},
 \qquad
 \nu_{\mathrm{pack},0}=1,
 \qquad
@@ -559,7 +559,7 @@ e_{\mathrm{Fe}}^{\mathrm{sf}}\approx0.833,
 e_{\mathrm{sil}}^{\mathrm{sf}}\approx1.181.
 $$
 
-These numbers remain finite-$\eta$ branch assumptions, not empirical geophysics and not certified Noether-core branch constants. The advancement is that changing $F_X$, $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, or $\phi_X^{\mathrm{target}}$ now changes both the packing ceiling and the exclusion/compression coefficient through the same support-function formulas. The remaining deformation proof obligation is to replace $\beta_{\mathrm{Fe}}=2/3$ and $\beta_{\mathrm{sil}}=1/2$ with branch-certified speeds or intervals and to carry the residual bound
+These numbers remain finite-$\eta$ branch assumptions, not empirical geophysics and not certified Noether swarm branch constants. The advancement is that changing $F_X$, $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, or $\phi_X^{\mathrm{target}}$ now changes both the packing ceiling and the exclusion/compression coefficient through the same support-function formulas. The remaining deformation proof obligation is to replace $\beta_{\mathrm{Fe}}=2/3$ and $\beta_{\mathrm{sil}}=1/2$ with branch-certified speeds or intervals and to carry the residual bound
 
 $$
 \left|
@@ -889,7 +889,7 @@ The first margin says the metallic Fe branch wins the dense-medium chemical-pote
 | `material_id` | `Fe_metal`, `silicate`, or a declared phase label |
 | `phase_label` | crystal/melt phase, pressure range, temperature range, oxidation state, and magnetic state when relevant |
 | `inventory_guardrail` | fixed $Z$, $A$, and $S_{\mathrm{Fe}}^{\mathrm{nuc}}=0$ for ordinary differentiation |
-| `n_steps` | normalized Noether-core density values or increments |
+| `n_steps` | normalized Noether swarm density values or increments |
 | `packing_record` | oblate-envelope `deformation_branch`, deformation singular values, or constrained $\xi$, plus $\mathcal{O}$, support-function contact network, and lattice-cell assumptions used to derive $n_{\max}^{\mathrm{obl}}$ |
 | `standard_corrections` | ordinary phase, pressure, temperature, electronic, elastic, magnetic, and gravity corrections |
 | `sea_residual` | retained $\mu_X^{\mathrm{sea}}$ or residual proxy after corrections |
@@ -943,7 +943,7 @@ The current finite-$\eta$ branch-assumption packet is promotion-ready only as a 
 
 This thread leaves four priority items for the next theory-advancement pass:
 
-1. **Branch-speed certification.** Replace the finite-$\eta$ branch assumptions $\beta_{\mathrm{Fe}}=2/3$ and $\beta_{\mathrm{sil}}=1/2$ with a Noether-core return-map derivation or with certified intervals. If only intervals are available, propagate
+1. **Branch-speed certification.** Replace the finite-$\eta$ branch assumptions $\beta_{\mathrm{Fe}}=2/3$ and $\beta_{\mathrm{sil}}=1/2$ with a Noether swarm return-map derivation or with certified intervals. If only intervals are available, propagate
 
    $$
    \left|

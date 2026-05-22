@@ -16,7 +16,7 @@ At the substrate level:
 - time remains absolute,
 - and the [Noether Sea](noether-sea.md) is the dynamical medium.
 
-At the observer level, the same medium must generate the effective metric behavior usually attributed to curved spacetime. Therefore the phenomenology requirement is:
+At the observer level, the same Noether Sea must generate the effective metric behavior usually attributed to curved spacetime. Therefore the phenomenology requirement is:
 
 $$
 \text{medium response}
@@ -288,11 +288,11 @@ That means the effective PPN drift parameters
 $$
 \alpha_1,\alpha_2,\alpha_3
 $$
-must be observationally negligible in validated regimes. This is not optional. If the medium leaves a measurable preferred-frame residue in the solar-system and pulsar regimes, the spacetime branch fails regardless of its conceptual elegance.
+must be observationally negligible in validated regimes. This is not optional. If the Noether Sea leaves a measurable preferred-frame residue in the solar-system and pulsar regimes, the spacetime branch fails regardless of its conceptual elegance.
 
 ## Gravitational-Wave Channel
 
-The medium picture must recover the observed near-luminal propagation of gravitational disturbances:
+The Noether-Sea picture must recover the observed near-luminal propagation of gravitational disturbances:
 $$
 \left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right| \ll 1.
 $$

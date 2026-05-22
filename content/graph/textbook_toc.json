@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 157,
-      "sections": 1220
+      "sections": 1232
     }
   },
   "tocRoot": {
@@ -959,10 +959,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Energy and Self-Hit in the Tri-Binary Sea",
+                "title": "Energy and Self-Hit in the Noether Sea",
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Energy and Self-Hit in the Tri-Binary Sea",
-                "sectionKey": "energy and self hit in the tri binary sea",
+                "markdownSection": "Energy and Self-Hit in the Noether Sea",
+                "sectionKey": "energy and self hit in the noether sea",
                 "headingLevel": 2
               },
               {
@@ -1864,6 +1864,112 @@
         "scenePath": "content/scenes/noether-swarm/noether_swarm.json",
         "children": [
           {
+            "id": "noether_swarm__overview",
+            "title": "Noether Swarm",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-swarm/noether_swarm_overview.json",
+            "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Neutral Swarm",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Neutral Swarm",
+                "sectionKey": "neutral swarm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Shell Swarm",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Shell Swarm",
+                "sectionKey": "shell swarm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Nested Shell Swarm",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Nested Shell Swarm",
+                "sectionKey": "nested shell swarm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Properties of the Nested Shell Swarm",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Properties of the Nested Shell Swarm",
+                "sectionKey": "properties of the nested shell swarm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Integer Phase-Closure States",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Integer Phase-Closure States",
+                "sectionKey": "integer phase closure states",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cadence-Scale Retuning Hypothesis",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Cadence-Scale Retuning Hypothesis",
+                "sectionKey": "cadence scale retuning hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Rest-Level Scaling Curve",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Rest-Level Scaling Curve",
+                "sectionKey": "rest level scaling curve",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reduced Nested Shell Swarm Closure Label",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Reduced Nested Shell Swarm Closure Label",
+                "sectionKey": "reduced nested shell swarm closure label",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometry and Exclusion Envelope",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Geometry and Exclusion Envelope",
+                "sectionKey": "geometry and exclusion envelope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Nested Shell Swarm Hierarchy and Fermion Generations",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "The Nested Shell Swarm Hierarchy and Fermion Generations",
+                "sectionKey": "the nested shell swarm hierarchy and fermion generations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Nested Shell Swarm Alignment and Planck-Scale Framing",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Nested Shell Swarm Alignment and Planck-Scale Framing",
+                "sectionKey": "nested shell swarm alignment and planck scale framing",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Foundation for Fermions",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "The Foundation for Fermions",
+                "sectionKey": "the foundation for fermions",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "noether_swarm__neutral_swarm",
             "title": "Neutral Swarm",
             "kind": "diagram",
@@ -2071,33 +2177,33 @@
             ]
           },
           {
-            "id": "noether_swarm__swarm_geometry",
-            "title": "Swarm Geometry",
+            "id": "noether_swarm__nested_shell_swarm_geometry",
+            "title": "Nested Shell Swarm Geometry",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-swarm/swarm_geometry.json",
-            "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+            "scenePath": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+            "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Ownership Boundary",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Ownership Boundary",
                 "sectionKey": "ownership boundary",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Dynamic Exclusion Zone",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-                "markdownSection": "Dynamic Exclusion Zone",
-                "sectionKey": "dynamic exclusion zone",
+                "title": "Dynamic Exclusion Envelope",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+                "markdownSection": "Dynamic Exclusion Envelope",
+                "sectionKey": "dynamic exclusion envelope",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "Assembly-Noether-Sea Interface Diagnostic",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Assembly-Noether-Sea Interface Diagnostic",
                 "sectionKey": "assembly noether sea interface diagnostic",
                 "headingLevel": 2
@@ -2105,7 +2211,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Oblate Spheroidal Form",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Oblate Spheroidal Form",
                 "sectionKey": "oblate spheroidal form",
                 "headingLevel": 2
@@ -2113,7 +2219,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Canonical Geometry Variables",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Canonical Geometry Variables",
                 "sectionKey": "canonical geometry variables",
                 "headingLevel": 2
@@ -2121,7 +2227,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Lorentz Projection Role",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Lorentz Projection Role",
                 "sectionKey": "lorentz projection role",
                 "headingLevel": 2
@@ -2129,7 +2235,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Retuning Projection to Envelope Variables",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Retuning Projection to Envelope Variables",
                 "sectionKey": "retuning projection to envelope variables",
                 "headingLevel": 2
@@ -2137,7 +2243,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Deformability of the Envelope",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Deformability of the Envelope",
                 "sectionKey": "deformability of the envelope",
                 "headingLevel": 2
@@ -2145,7 +2251,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Geometry Interfaces",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Geometry Interfaces",
                 "sectionKey": "geometry interfaces",
                 "headingLevel": 2
@@ -2153,19 +2259,12 @@
               {
                 "kind": "markdown-section",
                 "title": "Summary Commitment",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Summary Commitment",
                 "sectionKey": "summary commitment",
                 "headingLevel": 2
               }
             ]
-          },
-          {
-            "id": "noether_swarm__swarm_dynamics",
-            "title": "Swarm Dynamics",
-            "kind": "diagram",
-            "sceneType": "Scene-Diagram",
-            "scenePath": "content/scenes/noether-swarm/swarm_dynamics.json"
           }
         ]
       },
@@ -2308,10 +2407,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Pro/Anti Noether Core Basis",
+                "title": "Pro/Anti Noether Swarm Basis",
                 "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-                "markdownSection": "Pro/Anti Noether Core Basis",
-                "sectionKey": "pro anti noether core basis",
+                "markdownSection": "Pro/Anti Noether Swarm Basis",
+                "sectionKey": "pro anti noether swarm basis",
                 "headingLevel": 2
               },
               {
@@ -2349,17 +2448,17 @@
             ]
           },
           {
-            "id": "spacetime__medium_exclusion_volume",
-            "title": "Medium Exclusion Volume",
+            "id": "spacetime__molecular_exclusion_and_noether_sea_response",
+            "title": "Molecular Exclusion and Noether-Sea Response",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/spacetime/medium_exclusion_volume.json",
-            "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+            "scenePath": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
+            "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Molecular Occupancy Baseline",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
                 "markdownSection": "Molecular Occupancy Baseline",
                 "sectionKey": "molecular occupancy baseline",
                 "headingLevel": 2
@@ -2367,7 +2466,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Levels of Excluded Volume",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
                 "markdownSection": "Levels of Excluded Volume",
                 "sectionKey": "levels of excluded volume",
                 "headingLevel": 2
@@ -2375,7 +2474,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Propagation Across Excluded Regions",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
                 "markdownSection": "Propagation Across Excluded Regions",
                 "sectionKey": "propagation across excluded regions",
                 "headingLevel": 2
@@ -2383,7 +2482,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Background Timespace vs. Implemented Medium",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
                 "markdownSection": "Background Timespace vs. Implemented Medium",
                 "sectionKey": "background timespace vs implemented medium",
                 "headingLevel": 2
@@ -2391,7 +2490,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Big Picture",
-                "markdownPath": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
+                "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
                 "markdownSection": "Big Picture",
                 "sectionKey": "big picture",
                 "headingLevel": 2
@@ -2702,10 +2801,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Noether-Core Deformation and Metric Language",
+                    "title": "Noether Swarm Deformation and Metric Language",
                     "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
-                    "markdownSection": "Noether-Core Deformation and Metric Language",
-                    "sectionKey": "noether core deformation and metric language",
+                    "markdownSection": "Noether Swarm Deformation and Metric Language",
+                    "sectionKey": "noether swarm deformation and metric language",
                     "headingLevel": 2
                   },
                   {
@@ -4353,10 +4452,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Proton and Neutron as Ground-State Tri-Cores",
+                "title": "Proton and Neutron as Ground-State Nested Shell Swarms",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Proton and Neutron as Ground-State Tri-Cores",
-                "sectionKey": "proton and neutron as ground state tri cores",
+                "markdownSection": "Proton and Neutron as Ground-State Nested Shell Swarms",
+                "sectionKey": "proton and neutron as ground state nested shell swarms",
                 "headingLevel": 2
               },
               {
@@ -4892,10 +4991,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Thermal Equilibrium Assumptions in Evolving Medium",
+                "title": "Thermal Equilibrium Assumptions in Evolving Noether-Sea States",
                 "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
-                "markdownSection": "Thermal Equilibrium Assumptions in Evolving Medium",
-                "sectionKey": "thermal equilibrium assumptions in evolving medium",
+                "markdownSection": "Thermal Equilibrium Assumptions in Evolving Noether-Sea States",
+                "sectionKey": "thermal equilibrium assumptions in evolving noether sea states",
                 "headingLevel": 2
               },
               {
@@ -5467,10 +5566,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Noether-Core Geometry Basis",
+                "title": "Nested Shell Swarm Geometry Basis",
                 "markdownPath": "content/markdown/aaa/quantum/quantum-statistics.md",
-                "markdownSection": "Noether-Core Geometry Basis",
-                "sectionKey": "noether core geometry basis",
+                "markdownSection": "Nested Shell Swarm Geometry Basis",
+                "sectionKey": "nested shell swarm geometry basis",
                 "headingLevel": 2
               },
               {
@@ -6250,10 +6349,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Medium-State Interpretation of Accelerated Expansion",
+                "title": "Noether-Sea State Interpretation of Accelerated Expansion",
                 "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Medium-State Interpretation of Accelerated Expansion",
-                "sectionKey": "medium state interpretation of accelerated expansion",
+                "markdownSection": "Noether-Sea State Interpretation of Accelerated Expansion",
+                "sectionKey": "noether sea state interpretation of accelerated expansion",
                 "headingLevel": 2
               },
               {
@@ -7281,10 +7380,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Assembly grammar → Noether Core and flux tubes",
+                    "title": "Assembly grammar -> nested shell swarm and flux tubes",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Assembly grammar → Noether Core and flux tubes",
-                    "sectionKey": "assembly grammar noether core and flux tubes",
+                    "markdownSection": "Assembly grammar -> nested shell swarm and flux tubes",
+                    "sectionKey": "assembly grammar nested shell swarm and flux tubes",
                     "headingLevel": 2
                   },
                   {
@@ -8151,10 +8250,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Core Assembly Layer (Noether Core / Tri-Binary)",
+                    "title": "Assembly Layer (Nested Shell Swarm)",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-                    "markdownSection": "Core Assembly Layer (Noether Core / Tri-Binary)",
-                    "sectionKey": "core assembly layer noether core tri binary",
+                    "markdownSection": "Assembly Layer (Nested Shell Swarm)",
+                    "sectionKey": "assembly layer nested shell swarm",
                     "headingLevel": 2,
                     "children": [
                       {
@@ -9444,10 +9543,10 @@
                     "sections": [
                       {
                         "kind": "markdown-section",
-                        "title": "The Tri-Binary Qubit and Phase Space",
+                        "title": "The Nested Shell Swarm Qubit and Phase Space",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
-                        "markdownSection": "The Tri-Binary Qubit and Phase Space",
-                        "sectionKey": "the tri binary qubit and phase space",
+                        "markdownSection": "The Nested Shell Swarm Qubit and Phase Space",
+                        "sectionKey": "the nested shell swarm qubit and phase space",
                         "headingLevel": 2
                       },
                       {
@@ -9795,17 +9894,17 @@
                     ]
                   },
                   {
-                    "id": "theory_bridges__special_relativity_noether_core",
-                    "title": "Special Relativity and Deformable Noether Cores",
+                    "id": "theory_bridges__special_relativity_noether_swarm",
+                    "title": "Special Relativity and Deformable Noether Swarms",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                    "scenePath": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Bridge Thesis",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Bridge Thesis",
                         "sectionKey": "bridge thesis",
                         "headingLevel": 2
@@ -9813,7 +9912,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Ownership Boundary",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Ownership Boundary",
                         "sectionKey": "ownership boundary",
                         "headingLevel": 2
@@ -9821,7 +9920,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "The Two Stories",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "The Two Stories",
                         "sectionKey": "the two stories",
                         "headingLevel": 2
@@ -9829,7 +9928,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Clock Channel",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Clock Channel",
                         "sectionKey": "clock channel",
                         "headingLevel": 2
@@ -9837,7 +9936,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Ruler Channel",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Ruler Channel",
                         "sectionKey": "ruler channel",
                         "headingLevel": 2
@@ -9845,7 +9944,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Branch-Quantized Lorentz Response",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Branch-Quantized Lorentz Response",
                         "sectionKey": "branch quantized lorentz response",
                         "headingLevel": 2
@@ -9853,7 +9952,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Mass-Energy Channel",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Mass-Energy Channel",
                         "sectionKey": "mass energy channel",
                         "headingLevel": 2
@@ -9861,7 +9960,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Energy-Momentum Channel",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Energy-Momentum Channel",
                         "sectionKey": "energy momentum channel",
                         "headingLevel": 2
@@ -9869,7 +9968,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Why The Same Factor Appears",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Why The Same Factor Appears",
                         "sectionKey": "why the same factor appears",
                         "headingLevel": 2
@@ -9877,7 +9976,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Domain Of Validity",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Domain Of Validity",
                         "sectionKey": "domain of validity",
                         "headingLevel": 2
@@ -9885,7 +9984,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Closure Targets",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Closure Targets",
                         "sectionKey": "closure targets",
                         "headingLevel": 2
@@ -9893,7 +9992,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Summary Commitment",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md",
                         "markdownSection": "Summary Commitment",
                         "sectionKey": "summary commitment",
                         "headingLevel": 2

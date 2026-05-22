@@ -2,7 +2,7 @@
 
 This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 
-The guiding idea is narrow: if delayed self-interaction can contribute to any bounded recapture mechanism at all, it should first be visible in a reflection-symmetric one-dimensional opposite-charge binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, tri-binary locking, and assembly-level closure lose their cleanest analytic foothold.
+The guiding idea is narrow: if delayed self-interaction can contribute to any bounded recapture mechanism at all, it should first be visible in a reflection-symmetric one-dimensional opposite-charge binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, nested shell swarm locking, and assembly-level closure lose their cleanest analytic foothold.
 
 ## Overview
 
@@ -77,7 +77,7 @@ The full dynamics stack currently mixes several hard problems at once:
 - Jacobian amplification,
 - self-hit branch birth,
 - tangential drift in 2D and 3D,
-- and multi-scale coupling in tri-binaries.
+- and multi-scale coupling in nested shell swarms.
 
 This chapter strips away everything except the minimum ingredients needed to test a bounded delayed orbit:
 
@@ -1728,7 +1728,7 @@ on $(0,\tau_1]$. This proves the lemma. On a fixed admissible crossing subclass 
 Use the local tube bounds to obtain a crude self-drive estimate on the full post-crossing window, and then use (H2)-(H4) together with Lemma 1 to show that on a delayed subwindow every active self root lies strictly before $t_{\mathrm{zero}}$ and hence stays away from the caustic hinge.
 
 Working form:
-fix $t\in(0,\tau_1]$ and suppose a self-emission time $t_s<t$ lies in the support of the shell mollifier on the left-moving post-crossing branch. If the shell mollifier has support radius $\eta$, then
+fix $t\in(0,\tau_1]$ and suppose a self-emission time $t_s<t$ lies in the support of the shell mollifier on the left-moving post-crossing branch. If the shell mollifier has support band $\eta$, then
 $$
 \left|x(t)-x(t_s)+c_f(t-t_s)\right|\le \eta,
 $$
@@ -10638,11 +10638,11 @@ The stability version is stronger:
 > **Further Target (Stable Breather).**
 > The Fréchet derivative $DP_\eta(\phi^\ast_\eta)$ has spectral radius $<1$ on the section modulo time-shift symmetry, so the fixed point attracts nearby admissible histories.
 
-This is the first clean theorem target for a self-hit-assisted bounded-recapture mechanism. It avoids the 2D circular tangential obstruction and does not require the full tri-binary architecture.
+This is the first clean theorem target for a self-hit-assisted bounded-recapture mechanism. It avoids the 2D circular tangential obstruction and does not require the full nested shell swarm architecture.
 
 ## Why This Reduced Problem Comes First
 
-This model should be attacked before the full circular MCB or full tri-binary for three reasons.
+This model should be attacked before the full circular MCB or full nested shell swarm for three reasons.
 
 ### 1. No tangential obstruction
 

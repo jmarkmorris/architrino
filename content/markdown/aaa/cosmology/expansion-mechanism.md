@@ -28,7 +28,7 @@ a(t)\ \leftrightarrow\ \langle R_{\text{core}}(t)\rangle
 a(t)\propto \rho_{\text{sea}}(t)^{-1/3}.
 $$
 
-These are effective parameterizations of medium state, not independent geometric claims.
+These are effective parameterizations of Noether-Sea state, not independent geometric claims.
 
 Quasi-steady and cyclical comparison families may use an oscillatory effective scale history such as
 $$
@@ -41,7 +41,7 @@ e^{t/P}
 \qquad
 P\gg Q.
 $$
-In this framework that expression is only a projection of medium-state recurrence, source recycling, and clock or transport response. It does not describe expansion of the Euclidean void. Such a branch is admissible only if the same Noether-Sea state record supplies the source term, redshift-transfer map, CMB thermal record, and BBN yield record.
+In this framework that expression is only a projection of Noether-Sea state recurrence, source recycling, and clock or transport response. It does not describe expansion of the Euclidean void. Such a branch is admissible only if the same Noether-Sea state record supplies the source term, redshift-transfer map, CMB thermal record, and BBN yield record.
 
 ### Exponential Scale History as a Comparison Limit
 
@@ -70,10 +70,10 @@ Cosmological redshift is treated as cumulative propagation through a changing me
 Use the proper-time map from [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md):
 
 $$
-\frac{d\tau}{dt}=F\!\left(\mathbf{v},\rho_{\text{core}}(\mathbf{x},t),n(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t),\Phi_{\text{eff}},\text{clock geometry}\right).
+\frac{d\tau}{dt}=F\!\left(\mathbf{v},\rho_{\text{NS}}(\mathbf{x},t),n(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t),\Phi_{\text{eff}},\text{clock geometry}\right).
 $$
 
-A photon that traverses regions with different $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\Phi_{\text{eff}}$ is read by clocks with different local rates. The observed $z$ is then an emergent comparison of those rates along the path-history record.
+A photon that traverses regions with different $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\Phi_{\text{eff}}$ is read by clocks with different local rates. The observed $z$ is then an emergent comparison of those rates along the path-history record.
 
 Operationally:
 
@@ -88,7 +88,7 @@ For modeling and diagnostics, separate at least three effective channels:
 
 - endpoint clock-rate comparison,
 - source/observer relative-motion (Doppler-like) contribution,
-- propagation contribution from traversed medium state and gradients.
+- propagation contribution from traversed Noether-Sea state and gradients.
 
 ### Absolute Record Interpretation
 
@@ -104,7 +104,7 @@ where absolute time $t$ indexes definite architrino positions, velocities, assem
 | --- | --- |
 | Euclidean void | The container does not expand or curve; spatial points keep their identity. |
 | Absolute time | $t$ does not dilate; it orders the emission, propagation, and reception events. |
-| Noether Sea | The medium deforms, flows, polarizes, relaxes, and changes cadence. |
+| Noether Sea | The Noether Sea deforms, flows, polarizes, relaxes, and changes cadence. |
 | Emitter | A local assembly changes branch and releases a photon-channel packet. |
 | Photon packet | The packet carries a definite path-history record through the Noether Sea. |
 | Receiver | A local assembly samples or captures the packet using its own local cadence. |
@@ -112,9 +112,9 @@ where absolute time $t$ indexes definite architrino positions, velocities, assem
 
 The central distinction is that nothing happens to absolute time itself. What changes are local cycle rates, launch geometry, and path-history phase cadence inside the Noether Sea. A strong-field redshift near a compact object is the high-gradient endpoint limit of this record. A deep-space redshift is the gentle-gradient, long-path limit, if the path-history propagation term survives the required image-sharpness, coherence, and time-dilation tests.
 
-### Noether-Sea Core Factorization Target
+### Noether-Sea Swarm Factorization Target
 
-A sharper closure target rewrites the endpoint clock-rate comparison in terms of the local Noether-Sea core cadence itself. Let $\Omega_N(\mathbf{x},t)$ denote a representative local Noether-Sea core cadence and $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$ its cycle period. Relative to a weak homogeneous reference core, define
+A sharper closure target rewrites the endpoint clock-rate comparison in terms of the local Noether-Sea swarm cadence itself. Let $\Omega_N(\mathbf{x},t)$ denote a representative local Noether-Sea swarm cadence and $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$ its cycle period. Relative to a weak homogeneous reference core, define
 
 $$
 \Gamma_N(\mathbf{x},t)
@@ -124,7 +124,7 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
 $$
 
-The factor $\Gamma_N$ is not a new time variable. It records how strongly the local Noether-Sea core cadence is stretched relative to the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving-core deformation factor; outside that limit it remains a medium-state diagnostic to be derived from Noether-core geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the moving-core limit fixes the coefficient of $-\ln\xi$ and the weak-field endpoint limit fixes one isotropic Noether-Sea response combination.
+The factor $\Gamma_N$ is not a new time variable. It records how strongly the local Noether-Sea swarm cadence is stretched relative to the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving Noether swarm deformation factor; outside that limit it remains a Noether-Sea state diagnostic to be derived from Noether swarm geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the moving Noether swarm limit fixes the coefficient of $-\ln\xi$ and the weak-field endpoint limit fixes one isotropic Noether-Sea response combination.
 
 For a spectral transition family $X$, the working redshift factorization is
 
@@ -136,7 +136,7 @@ $$
 {B_X(E)\,\mathcal{L}_{E\to R}(\hat{\mathbf{k}})}.
 $$
 
-Here $\Gamma_{N,E}/\Gamma_{N,R}$ is the emitter-to-receiver Noether-Sea core cadence ratio, $\mathcal{P}_{E\to R}$ is the path-history propagation factor through the intervening Noether Sea, $B_X(E)$ records any real source-branch shift in the emitting transition, and $\mathcal{L}_{E\to R}(\hat{\mathbf{k}})$ records directional launch geometry from relative motion. The clean reference case has $B_X(E)=1$ and negligible path accumulation. Strong local-gradient redshift is dominated by $\Gamma_{N,E}/\Gamma_{N,R}$; gentle deep-space redshift may instead accumulate mainly through $\mathcal{P}_{E\to R}$.
+Here $\Gamma_{N,E}/\Gamma_{N,R}$ is the emitter-to-receiver Noether-Sea swarm cadence ratio, $\mathcal{P}_{E\to R}$ is the path-history propagation factor through the intervening Noether Sea, $B_X(E)$ records any real source-branch shift in the emitting transition, and $\mathcal{L}_{E\to R}(\hat{\mathbf{k}})$ records directional launch geometry from relative motion. The clean reference case has $B_X(E)=1$ and negligible path accumulation. Strong local-gradient redshift is dominated by $\Gamma_{N,E}/\Gamma_{N,R}$; gentle deep-space redshift may instead accumulate mainly through $\mathcal{P}_{E\to R}$.
 
 The logarithmic budget makes the scale hierarchy explicit:
 
@@ -269,7 +269,7 @@ $$
 
 Each term has a separate extraction rule.
 
-Endpoint cadence is read from the local Noether-Sea core cadence:
+Endpoint cadence is read from the local Noether-Sea swarm cadence:
 
 $$
 \Gamma_{N,A}
@@ -280,7 +280,7 @@ $$
 A\in\{E,R\},
 $$
 
-where $\Pi_N S(t_A)$ is the local Noether-Sea core record near endpoint $A$. Source-branch shift is read before propagation:
+where $\Pi_N S(t_A)$ is the local Noether-Sea swarm record near endpoint $A$. Source-branch shift is read before propagation:
 
 $$
 B_X(E)
@@ -350,9 +350,9 @@ If the endpoint, launch, and propagation terms can be made to fit only by changi
 
 ### Equilibrium-Transport Candidate for Path History
 
-The current candidate for the gentle deep-space term is a Noether-core equilibrium transport law. In this reading, a weak-field path does not accumulate redshift because the photon loses energy as it scatters. It accumulates a phase-cadence path-history term because the photon packet traverses a Noether-Sea population whose core-cadence distribution evolves in absolute time.
+The current candidate for the gentle deep-space term is a Noether swarm equilibrium transport law. In this reading, a weak-field path does not accumulate redshift because the photon loses energy as it scatters. It accumulates a phase-cadence path-history term because the photon packet traverses a Noether-Sea population whose swarm-cadence distribution evolves in absolute time.
 
-Let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether-core cadence states, with representative core energy $E_N=h\nu_N$. At the discrete level, each accepted $h$-scale transaction retunes a core's cadence-scale closure rather than sliding a continuous single-core frequency. The continuum current should therefore be read as the ensemble flux
+Let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether swarm cadence states, with representative swarm energy $E_N=h\nu_N$. At the discrete level, each accepted $h$-scale transaction retunes a swarm's cadence-scale closure rather than sliding a continuous single-swarm frequency. The continuum current should therefore be read as the ensemble flux
 
 $$
 J_\nu
@@ -507,7 +507,7 @@ This table also explains why factors disappear in ordinary use. They disappear b
 
 The factorization must recover familiar redshift regimes by controlled limits. The purpose is not to treat those inherited regimes as final ontology, but to show which Noether-Sea term carries each observational effect.
 
-For weak-field gravitational redshift, take $B_X(E)=1$, $\mathcal{L}_{E\to R}=1$, and $\mathcal{P}_{E\to R}=1$. If the endpoint Noether-Sea core cadence satisfies
+For weak-field gravitational redshift, take $B_X(E)=1$, $\mathcal{L}_{E\to R}=1$, and $\mathcal{P}_{E\to R}=1$. If the endpoint Noether-Sea swarm cadence satisfies
 
 $$
 \frac{\Omega_N}{\Omega_{N0}}
@@ -566,7 +566,7 @@ $$
 =
 \int_{\gamma_{E\to R}}
 \alpha_{\mathrm{prop}}\!\left(
-\rho_{\text{core}},n,\chi_{\text{sea}},\Phi_{\text{eff}},
+\rho_{\text{NS}},n,\chi_{\text{sea}},\Phi_{\text{eff}},
 \hat{\mathbf{k}},X
 \right)\,d\ell,
 $$
@@ -596,7 +596,7 @@ a_\chi^X\,\frac{1}{c_\gamma}\,\partial_t\ln\chi_\gamma
 +\mathcal{R}_{\mathrm{prop},X}.
 $$
 
-Here all quantities are evaluated at the path point crossed by the photon packet. The photon-channel speed is $c_\gamma$, and $\chi_\gamma(\mathbf{x},t)\equiv c_0/c_\gamma(\mathbf{x},t)$ is used only when the photon channel is the explicit transport subject. The symbols $n(\mathbf{x},t)$ and $R_{\text{core}}(\mathbf{x},t)$ denote normalized Noether-core density and a representative local Noether-core scale. The vector $\mathbf{u}_{\text{sea}}$ is an effective Noether-Sea flow velocity, and
+Here all quantities are evaluated at the path point crossed by the photon packet. The photon-channel speed is $c_\gamma$, and $\chi_\gamma(\mathbf{x},t)\equiv c_0/c_\gamma(\mathbf{x},t)$ is used only when the photon channel is the explicit transport subject. The symbols $n(\mathbf{x},t)$ and $R_{\text{core}}(\mathbf{x},t)$ denote normalized Noether swarm density and a representative local Noether swarm scale. The vector $\mathbf{u}_{\text{sea}}$ is an effective Noether-Sea flow velocity, and
 
 $$
 S_{ij}
@@ -1048,7 +1048,7 @@ $$
 
 The ordinary constant-$H_0$ approximation is the special case in which $\alpha_{R,X}$ is independent of direction, line family, environment, and observation time, while $\mathcal{K}_{X}$ and higher derivatives remain negligible over the fitted distance range. In the general $\mathbb{A}\mathbb{A}\mathbb{A}$ case, $\alpha_{R,X}$ and $\mathcal{K}_{X}$ are observables of the local Noether-Sea state, not universal constants.
 
-For environment-resolved modeling, a catalogue should first separate sources by the medium path they sample. For an environment family $\mathcal{E}$, define
+For environment-resolved modeling, a catalogue should first separate sources by the Noether-Sea path they sample. For an environment family $\mathcal{E}$, define
 
 $$
 \alpha_{\mathcal{E},X}(t,\hat{\mathbf{k}})
@@ -1217,7 +1217,7 @@ The Friedmann-like bridge below is usable only after these directional residuals
 
 Beyond endpoint clock comparison, the same transport picture can include path-dependent phase-cadence evolution during medium transit. This is not untracked photon energy loss; it is the path-history part of how an emitted packet's cadence is later sampled by a receiver.
 
-In this reading, effective redshift accumulation may depend on photon energy, traversed medium state, and path environment, so redshift is modeled as a transport kernel rather than a single universal linear rule.
+In this reading, effective redshift accumulation may depend on photon energy, traversed Noether-Sea state, and path environment, so redshift is modeled as a transport kernel rather than a single universal linear rule.
 
 Line-of-sight medium flow and local contraction/expansion regions can, in principle, contribute signed shifts, so local blueward and redward biases should be treated within one transport kernel rather than as disconnected exceptions.
 
@@ -1225,7 +1225,7 @@ Propagation channels must preserve image sharpness and $(1+z)$ time-dilation con
 
 ## Dissipation and Rescaling Picture
 
-Apparent expansion is interpreted as relaxation of medium state:
+Apparent expansion is interpreted as relaxation of Noether-Sea state:
 
 - high-curvature source regions inject energy into outbound assembly flows,
 - lower-density regions evolve toward larger characteristic assembly scales and lower effective temperatures,
@@ -1243,24 +1243,24 @@ remains useful as an effective descriptor, but its physical content is medium st
 
 ## Hubble-Tension Link
 
-Early-inferred and local-inferred expansion rates probe different medium states:
+Early-inferred and local-inferred expansion rates probe different Noether-Sea states:
 
 - Early probes sample a more uniform, less-relaxed sea history.
 - Local probes sample pockets that are further along relaxation and dissipation trajectories.
 
 So the $H_0$ split is interpreted as state-dependent inference from one ontology, not two incompatible universes.
 
-In this framing, $H_0$ is not expected to be strictly universal at all environments; local scatter is read as part of medium-state dependence.
+In this framing, $H_0$ is not expected to be strictly universal at all environments; local scatter is read as part of Noether-Sea state dependence.
 
 Quasar redshift distributions are interpreted in the same transport-and-source framework, separating source-population evolution from path-history accumulation within one model.
 
 ## Timescape-Style Bridge, $\mathbb{A}\mathbb{A}\mathbb{A}$ Mechanism
 
-Conceptually, this layer is adjacent to inhomogeneous/clock-calibration cosmologies, but the implementation here remains one explicit medium-state model:
+Conceptually, this layer is adjacent to inhomogeneous/clock-calibration cosmologies, but the implementation here remains one explicit Noether-Sea state model:
 
 - clock-rate mapping is computed from shared Noether-Sea state variables,
 - expansion-like inference shifts are environment-conditioned readouts, not ontology splits,
-- local-ladder versus early-time differences are modeled as distinct sampling of one evolving medium.
+- local-ladder versus early-time differences are modeled as distinct sampling of one evolving Noether Sea.
 
 ## Effective Friedmann Bridge (Comparison Layer)
 
@@ -1274,7 +1274,7 @@ H_{\mathrm{eff}}^2
 -\frac{k_{\text{eff}}c_0^2}{a_{\mathrm{eff}}^2},
 $$
 
-with $a_{\mathrm{eff}}(t)$ interpreted as a medium-state parameter and $G_{\text{eff}},k_{\text{eff}}$ as effective summaries of assembly-medium response. If a pressure variable is used in the same projection, it must satisfy the comparison continuity row
+with $a_{\mathrm{eff}}(t)$ interpreted as a Noether-Sea state parameter and $G_{\text{eff}},k_{\text{eff}}$ as effective summaries of assembly-Noether-Sea response. If a pressure variable is used in the same projection, it must satisfy the comparison continuity row
 $$
 \dot\rho_{\mathrm{eff}}
 +3H_{\mathrm{eff}}(\rho_{\mathrm{eff}}+P_{\mathrm{eff}})
@@ -1282,7 +1282,7 @@ $$
 $$
 or declare the residual source term supplied by Noether-Sea transport.
 
-This equation is a comparison layer for the homogeneous and isotropic limit. It does not by itself justify the assumption that supernovae, BAO, CMB distances, and local-ladder calibrations all share one isotropic background. That shared background must be recovered as a limit of the medium-state model or replaced by an explicitly directional effective map.
+This equation is a comparison layer for the homogeneous and isotropic limit. It does not by itself justify the assumption that supernovae, BAO, CMB distances, and local-ladder calibrations all share one isotropic background. That shared background must be recovered as a limit of the Noether-Sea state model or replaced by an explicitly directional effective map.
 
 ## Expansion-Module Interface
 

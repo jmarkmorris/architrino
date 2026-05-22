@@ -22,7 +22,7 @@ The Ryu--Takayanagi, ATLAS, and Maldacena sources were mined from arXiv PDFs. Th
 | Ryu--Takayanagi | Entanglement entropy is represented by a minimal bulk surface anchored on the boundary of the chosen region; in thermal black-hole states, large-region surfaces can wrap horizon area and reproduce thermal entropy. | Use as a comparison target for label-ensemble entropy, horizon interface counting, and Page-style information accounting. | Do not state that every holographic boundary is literally an event horizon. |
 | ATLAS Higgs | A new neutral boson is observed at $126.0\pm0.4\text{ (stat)}\pm0.4\text{ (sys)}\,\mathrm{GeV}$ with local significance $5.9\sigma$ and signal strength $\hat{\mu}=1.4\pm0.3$ near $126\,\mathrm{GeV}$. | Use as a hard Standard Model closure benchmark for scalar mass, neutral channel structure, spin compatibility, branching channels, and absence of broad extra scalar signals. | Do not identify the Higgs with a specific native mode until the mass map and channel ledger predict the observed rates. |
 | Maldacena | Large-$N$ gauge theory sectors can be compared with string/supergravity on near-horizon AdS geometries; AdS radial position behaves like an energy-scale coordinate; finite-temperature states map to black brane or BTZ horizons. | Use as finite-boundary-data and scale-coordinate discipline for strong-field and spacetime bridge work. | Do not import AdS/CFT as an ontology or assume the CFT boundary is the native substrate. |
-| Jungman et al. | The exposed arXiv material frames neutralino/WIMP dark matter through relic abundance, direct detection, and indirect annihilation products. | Use as a WIMP benchmark vector for dark-sector and detector-facing closure tests. | Do not canonize supersymmetry as the middle/inner Noether-core binary relation without a ledger-preserving transformation theorem. |
+| Jungman et al. | The exposed arXiv material frames neutralino/WIMP dark matter through relic abundance, direct detection, and indirect annihilation products. | Use as a WIMP benchmark vector for dark-sector and detector-facing closure tests. | Do not canonize supersymmetry as the middle/inner Noether swarm binary relation without a ledger-preserving transformation theorem. |
 
 ## Closure Objects
 
@@ -152,9 +152,9 @@ $$
 
 This vector keeps relic abundance, direct detection, and indirect annihilation channels tied to one candidate assembly record. A native candidate should state which terms it predicts, which it only bounds, and which observed null results it must pass.
 
-### Supersymmetry And The Noether Core
+### Supersymmetry And The Noether Swarm
 
-The operator hunch that supersymmetry is related to the middle and inner binaries of the Noether core should be staged as a transformation theorem target:
+The operator hunch that supersymmetry is related to the middle and inner binaries of the Noether swarm should be staged as a transformation theorem target:
 
 $$
 \Pi_{\mathrm{gauge}}(A')=\Pi_{\mathrm{gauge}}(A),
@@ -180,5 +180,5 @@ The candidate transformation may act first on inner and middle ledger variables,
 ## Deferred Or Rejected Moves
 
 - Do not write "`holographic boundary = event horizon`" as a canon statement. Use the graded $\eta_H$ horizon-wrapping test.
-- Do not state that $\mathbb{A}\mathbb{A}\mathbb{A}$ derives supersymmetry from the Noether core. Use the transformation theorem target above.
+- Do not state that $\mathbb{A}\mathbb{A}\mathbb{A}$ derives supersymmetry from the Noether swarm. Use the transformation theorem target above.
 - Do not add new validation infrastructure merely because these sources name many constraints. Promote only the residuals and benchmark vectors that have a concrete consumer in the current proof stack.

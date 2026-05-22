@@ -32,6 +32,7 @@ This file is Cody's living feedback backlog for improving operator/developer wor
 - [ ] Flag non-negotiable constraints before asking for implementation.
 - [ ] Separate hard guardrails from preferences that Cody may trade off.
 - [ ] Define success in terms of observable behavior, passing check, equation recovered, or text promoted.
+- [ ] Before broad terminology migrations, ask Cody to scan git history and current usage, then name accepted terms and frozen labels before editing.
 
 ## Multi-Agent Use
 

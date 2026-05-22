@@ -2,42 +2,42 @@
 
 This note summarizes a working hypothesis used across the spacetime branch of the model: the Noether Sea is not treated as a passive geometric background, but as an active medium built from persistent assemblies with internal structure and coupling rules. It is the assembly-hypothesis continuation of [Noether Sea](noether-sea.md), [Euclidean Void](../foundations/euclidean-void.md), and [Noether Swarm](../noether-swarm/noether-swarm.md).
 
-For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether Sea](noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether-core coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs.
+For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether Sea](noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether swarm coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs.
 
-## Pro/Anti Noether Core Basis
+## Pro/Anti Noether Swarm Basis
 
-In the current framing, the basic spacetime carrier is a tri-binary assembly with a Noether core state that can appear in two complementary orientations:
+In the current framing, the basic spacetime carrier is a Noether swarm with a state that can appear in two complementary orientations:
 
-- pro-core orientation
-- anti-core orientation
+- pro-Noether swarm orientation
+- anti-Noether swarm orientation
 
-In this project framing, pro-Noether cores are associated with pro-particle assemblies, and anti-Noether cores are associated with anti-particle assemblies. The key claim is that stable large-scale medium behavior emerges when both orientations coexist and couple, so the medium remains dynamically balanced rather than drifting into a single-sign ordering.
+In this project framing, pro-Noether swarms are associated with pro-particle assemblies, and anti-Noether swarms are associated with anti-particle assemblies. The key claim is that stable large-scale Noether-Sea behavior emerges when both orientations coexist and couple, so the Noether Sea remains dynamically balanced rather than drifting into a single-sign ordering.
 
-At the assembly level, a useful physical picture is that complementary orientations can also suppress exposed axial circulation by pairing anti-parallel. That gives the medium a second kind of neutrality beyond net charge cancellation: local pole leakage is mutually plugged, so the composite remains comparatively transparent and non-reactive.
+At the assembly level, a useful physical picture is that complementary orientations can also suppress exposed axial circulation by pairing anti-parallel. That gives the Noether Sea a second kind of neutrality beyond net charge cancellation: local pole leakage is mutually plugged, so the composite remains comparatively transparent and non-reactive.
 
-At the continuum-medium level, represent local core density with canonical symbols
-$(\rho_{\text{core}}, n)$ as two coupled components:
+At the continuum-medium level, represent local Noether swarm density with canonical symbols
+$(\rho_{\text{NS}}, n)$ as two coupled components:
 
 $$
-\rho_{\text{core}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) + \rho_{-}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) + \rho_{-}(\mathbf{x},t),
 $$
 $$
-n(\mathbf{x},t)\equiv \frac{\rho_{\text{core}}(\mathbf{x},t)}{\rho_{\text{core},0}},
+n(\mathbf{x},t)\equiv \frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}},
 $$
 
 with a bounded imbalance
 
 $$
-\Delta\rho_{\text{core}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) - \rho_{-}(\mathbf{x},t),
+\Delta\rho_{\text{NS}}(\mathbf{x},t) = \rho_{+}(\mathbf{x},t) - \rho_{-}(\mathbf{x},t),
 $$
 
-where long-lived spacetime regions require $|\Delta\rho_{\text{core}}|$ to remain below a stability threshold set by the local coupling regime.
+where long-lived spacetime regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime.
 
-This decomposition should not be duplicated in the medium ontology page. The [Noether Sea](noether-sea.md) page names the medium and its total state variables; this chapter owns the pro/anti split and the hypotheses about how those subcomponents couple.
+This decomposition should not be duplicated in the Noether-Sea ontology page. The [Noether Sea](noether-sea.md) page names the Noether Sea and its total state variables; this chapter owns the pro/anti split and the hypotheses about how those subcomponents couple.
 
 ## 2 Pro + 2 Anti Coupling Hypothesis
 
-A recurring speculative motif is a minimal neutral cluster built from two pro-core and two anti-core constituents. Geometrically, this is often pictured as a compact four-body bound state analogous in shape intuition, but not in nuclear force mechanism, to a helium-like $2P + 2N$ nucleus: two of one type plus two of the complementary type in a tightly coupled arrangement.
+A recurring speculative motif is a minimal neutral cluster built from two pro-Noether swarm and two anti-Noether swarm constituents. Geometrically, this is often pictured as a compact four-body bound state analogous in shape intuition, but not in nuclear force mechanism, to a helium-like $2P + 2N$ nucleus: two of one type plus two of the complementary type in a tightly coupled arrangement.
 
 The analogy is structural:
 
@@ -54,7 +54,7 @@ Instead, the model uses the helium-like picture as a design intuition for why a 
 
 ## Why This Matters for Spacetime Phenomenology
 
-If the local medium is assembled from balanced pro/anti core populations, then curvature-like behavior can be interpreted as collective reconfiguration of assembly states rather than purely geometric deformation of an otherwise structureless manifold. In that interpretation:
+If the local Noether Sea is assembled from balanced pro/anti Noether swarm populations, then curvature-like behavior can be interpreted as collective reconfiguration of assembly states rather than purely geometric deformation of an otherwise structureless manifold. In that interpretation:
 
 - weak-field behavior tracks smooth perturbations in normalized density $n$ as used in [Emergent Metric](./emergent-metric.md),
 - strong-field behavior tracks approach to alignment and saturation limits,
@@ -66,9 +66,9 @@ This is consistent with the framework's broader assemblies-first stance: equatio
 
 This chapter owns:
 
-- pro-core and anti-core orientation basis,
+- pro-Noether swarm and anti-Noether swarm orientation basis,
 - local density decomposition into $\rho_+$ and $\rho_-$,
-- orientation imbalance $\Delta\rho_{\text{core}}$,
+- orientation imbalance $\Delta\rho_{\text{NS}}$,
 - coupling-regime stability thresholds,
 - the $2+2$ pro/anti cluster hypothesis,
 - and medium-level assembly motifs that could support effective spacetime behavior.
@@ -76,11 +76,11 @@ This chapter owns:
 This chapter does not own:
 
 - the Noether Sea as medium ontology; see [Noether Sea](noether-sea.md),
-- the internal Noether-core architecture; see [Noether Swarm](../noether-swarm/noether-swarm.md),
+- the internal Noether swarm architecture; see [Noether Swarm](../noether-swarm/noether-swarm.md),
 - the effective metric map; see [Emergent Metric](emergent-metric.md),
 - clock and ruler extraction; see [Proper Time and Time Dilation](proper-time-and-time-dilation.md),
 - or cosmological scale-factor translation; see [Expansion Mechanism](../cosmology/expansion-mechanism.md).
 
 ## Claim Scope
 
-This is a hypothesis note, not a closed derivation. The chapter's claim is limited to the organizing possibility that local pro/anti Noether-core motifs may support the effective spacetime medium. A completed version must derive the local coupling law, test whether the $2+2$ pro/anti cluster is an energy minimum or only a design intuition, and extract weak-field, strong-field, or cosmological signatures from the same medium variables used by the effective-metric program.
+This is a hypothesis note, not a closed derivation. The chapter's claim is limited to the organizing possibility that local pro/anti Noether swarm motifs may support the effective spacetime medium. A completed version must derive the local coupling law, test whether the $2+2$ pro/anti cluster is an energy minimum or only a design intuition, and extract weak-field, strong-field, or cosmological signatures from the same Noether-Sea variables used by the effective-metric program.

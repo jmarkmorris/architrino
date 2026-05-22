@@ -25,7 +25,7 @@ During the current core geometrical theory push, do not treat chapter coverage a
 
 - For scorecard purposes, this is the main Coverage bucket.
 - Under the validated-closure scorecard, Coverage+Interface Readiness has weight `2`, so this queue improves reader and corpus completeness without substituting for certified equations, coefficients, parameters, or benchmark validation.
-- If the goal is the fastest validated-closure score increase, pair this workstream with [residual-routing-event-ledger](../tri-binary-causal-closure/residual-routing-event-ledger.md), [exposure-quotient-theorem](../mass-map/exposure-quotient-theorem.md), and [mass-map](../mass-map/mass-map.md) rather than treating prose coverage as the main lift.
+- If the goal is the fastest validated-closure score increase, pair this workstream with [residual-routing-event-ledger](../nested-shell-swarm-causal-closure/residual-routing-event-ledger.md), [exposure-quotient-theorem](../mass-map/exposure-quotient-theorem.md), and [mass-map](../mass-map/mass-map.md) rather than treating prose coverage as the main lift.
 - Rule of thumb to retain: a `+10` point gain in Coverage+Interface Readiness adds about `+0.2` to the weighted total; high-weight categories such as Empirical Precision+Benchmark Validation, Formula+Coefficient Recovery, Master EOM+Local Dynamics, Parameter+Scale Closure, and Potential+Action Closure move the total more.
 
 ## Source Mining Feeds
@@ -209,14 +209,14 @@ Use this backlog as a triage surface, not as a requirement factory. A source ear
 | V. N. Gribov, [Quantization of non-Abelian gauge theories](https://doi.org/10.1016/0550-3213(78)90175-X) | May 19, 2026 |
 | Peter J. Olver, [Applications of Lie Groups to Differential Equations](https://doi.org/10.1007/978-1-4612-4350-2) | May 19, 2026 |
 | Henrique Gomes and Aldo Riello, [The quasilocal degrees of freedom of Yang-Mills theory](https://arxiv.org/abs/1910.04222) | May 19, 2026 |
-| Tri-binary review row: Richard P. Feynman, Space-Time Approach to Quantum Electrodynamics | May 19, 2026 |
-| Tri-binary review row: Freeman Dyson, The Radiation Theories of Tomonaga, Schwinger, and Feynman | May 19, 2026 |
-| Tri-binary review row: J. C. Ward, An Identity in Quantum Electrodynamics | May 19, 2026 |
-| Tri-binary review row: Y. Takahashi, On the Generalized Ward Identity | May 19, 2026 |
-| Tri-binary review row: Photon cross sections and attenuation coefficients | May 19, 2026 |
-| Tri-binary review row: Torbjörn Sjöstrand et al., An Introduction to PYTHIA 8.2 | May 19, 2026 |
-| Tri-binary review row: J. Allison et al., Recent developments in Geant4 | May 19, 2026 |
-| Tri-binary review row: Planck Collaboration, Planck 2018 CMB results | May 19, 2026 |
+| Nested shell swarm review row: Richard P. Feynman, Space-Time Approach to Quantum Electrodynamics | May 19, 2026 |
+| Nested shell swarm review row: Freeman Dyson, The Radiation Theories of Tomonaga, Schwinger, and Feynman | May 19, 2026 |
+| Nested shell swarm review row: J. C. Ward, An Identity in Quantum Electrodynamics | May 19, 2026 |
+| Nested shell swarm review row: Y. Takahashi, On the Generalized Ward Identity | May 19, 2026 |
+| Nested shell swarm review row: Photon cross sections and attenuation coefficients | May 19, 2026 |
+| Nested shell swarm review row: Torbjörn Sjöstrand et al., An Introduction to PYTHIA 8.2 | May 19, 2026 |
+| Nested shell swarm review row: J. Allison et al., Recent developments in Geant4 | May 19, 2026 |
+| Nested shell swarm review row: Planck Collaboration, Planck 2018 CMB results | May 19, 2026 |
 | Residual-routing review row: R. E. Cutkosky, Singularities and Discontinuities of Feynman Amplitudes | May 19, 2026 |
 | Residual-routing review row: Christian Bierlich et al., A comprehensive guide to the physics and usage of PYTHIA 8.3 | May 19, 2026 |
 | Residual-routing review row: T. Gleisberg et al., Event generation with SHERPA 1.1 | May 19, 2026 |

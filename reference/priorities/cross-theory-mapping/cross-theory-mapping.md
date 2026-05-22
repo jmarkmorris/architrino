@@ -57,7 +57,7 @@ $$
 J_{o'j},
 \mathcal{L}_{E\mathbf{p}\mathbf{J}},
 \mathcal{M}_{\mathrm{sea}}^{ab},
-\rho_{\text{core}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf{x},t),
 \chi_{\text{sea}}(\mathbf{x},t),
 \mathcal{D}_{\mathrm{det}},
 \{B_i\},
@@ -65,7 +65,7 @@ J_{o'j},
 \right).
 $$
 
-Here $\Gamma$ is the assembly state, $\mathcal{H}$ is the path-history and causal-wake ledger, $\mathcal{C}_{o'j}$ and $J_{o'j}$ are causal-root and Jacobian records, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger, $\mathcal{M}_{\mathrm{sea}}^{ab}$ is the Noether-Sea response object, $\rho_{\text{core}}(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$ are medium variables, $\mathcal{D}_{\mathrm{det}}$ is the detector-response and reconstruction record when an experimental case depends on reconstructed objects, and $\{B_i\},\mu_*$ are basin and measure objects when quantum or statistical outcomes enter.
+Here $\Gamma$ is the assembly state, $\mathcal{H}$ is the path-history and causal-wake ledger, $\mathcal{C}_{o'j}$ and $J_{o'j}$ are causal-root and Jacobian records, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger, $\mathcal{M}_{\mathrm{sea}}^{ab}$ is the Noether-Sea response object, $\rho_{\text{NS}}(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$ are medium variables, $\mathcal{D}_{\mathrm{det}}$ is the detector-response and reconstruction record when an experimental case depends on reconstructed objects, and $\{B_i\},\mu_*$ are basin and measure objects when quantum or statistical outcomes enter.
 
 For collider cases, the minimum detector-response projection is
 
@@ -101,7 +101,7 @@ This projection is a provenance channel from detector signals to benchmark varia
 | Redshift and cosmology | [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md) | Redshift, clock, CMB, supernova, BAO, and $H(z)$ records consume the same Noether-Sea variables without tired-light image or time-dilation failure. |
 | Lorentz, Sagnac, and Fizeau | [swarm](../swarm/swarm.md), [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Two-way light speed, time dilation, length contraction, rotation, and moving-medium transport recover observer-level formulas while bounding preferred-frame leakage. |
 | Weak-field metric | [validation-gates](../validation-gates/validation-gates.md), [mass-map](../mass-map/mass-map.md) | One $\mathcal{M}_{\mathrm{sea}}^{ab}$ maps to redshift, Shapiro delay, lensing, precession, and PPN coefficients. |
-| Radiation and gravitational waves | [tri-binary-causal-closure/radiation-gate-c-benchmarks](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md), [strong-field-closure](../strong-field-closure/strong-field-closure.md) | Energy, momentum, angular momentum, recoil, medium updates, and waveform phase close in one event-ledger grammar. |
+| Radiation and gravitational waves | [nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks](../nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks.md), [strong-field-closure](../strong-field-closure/strong-field-closure.md) | Energy, momentum, angular momentum, recoil, medium updates, and waveform phase close in one event-ledger grammar. |
 | Quantum phase, spin, and Bell | [quantum-closure](../quantum-closure/quantum-closure.md), [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md) | Phase, spin, photon-analyzer response, detector basins, Born weights, no-signaling, and Bell correlations derive from path history and measure closure rather than postulated probabilities. |
 | Topological and statistical emergence | [validation-gates](../validation-gates/validation-gates.md), [mass-map](../mass-map/mass-map.md) | Robust integer/fractional invariants and fluctuation-dissipation limits emerge from stable basins and transport maps. |
 | Collider reconstruction provenance | [standard-model-closure](../standard-model-closure/standard-model-closure.md), [angular-momentum-spin](../angular-momentum-spin/angular-momentum-spin.md), [validation-gates](../validation-gates/validation-gates.md) | Reconstructed objects, missing transverse momentum, heavy-flavor tags, boosted substructure, fiducial cross sections, and upper limits are compared as observer-level projections of one event-ledger and detector-response record. |

@@ -1,6 +1,6 @@
 # Exposure-Quotient Theorem Packet
 
-This detailed priority file supports [Noether-Core Stability and First Mass Map](mass-map.md). It generalizes shielding extraction into a sector exposure/quotient theorem: what part of internal Noether-core geometry becomes externally visible to a sector.
+This detailed priority file supports [Noether-Core Stability and First Mass Map](mass-map.md). It generalizes shielding extraction into a sector exposure/quotient theorem: what part of internal Noether swarm geometry becomes externally visible to a sector.
 
 ## Core Theorem Target
 
@@ -14,7 +14,7 @@ Q_S\!\left[
 \right].
 $$
 
-For an accepted Noether-core assembly or branch family $A$, choose a declared ledger space
+For an accepted Noether swarm assembly or branch family $A$, choose a declared ledger space
 
 $$
 \mathfrak{L}_A
@@ -64,7 +64,7 @@ Q_S\!\left[
 \mathfrak{V}_S/\!\sim_S.
 $$
 
-The mass-map scalar $\zeta(A)$ is the isotropic scalar specialization of $\mathcal{E}_S(A)$, not the whole theorem. Mass shielding, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility must each instantiate the same projection/quotient grammar before their internal Noether-core geometry is treated as externally visible.
+The mass-map scalar $\zeta(A)$ is the isotropic scalar specialization of $\mathcal{E}_S(A)$, not the whole theorem. Mass shielding, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility must each instantiate the same projection/quotient grammar before their internal Noether swarm geometry is treated as externally visible.
 
 Exposure is distinct from residual routing: exposure decides which part of an already emitted or retained ledger is visible to a sector, while residual routing decides where unresolved action goes and how the event ledger closes.
 
@@ -251,7 +251,7 @@ $$
 
 ## Exposure Promotion Lemma
 
-Let $A$ be an accepted Noether-core assembly or branch family, let $\mathcal{L}_A\in\mathfrak{L}_A$ satisfy branch-ledger provenance, and let $(\Pi_S,Q_S,\mathcal{B}_S)$ satisfy projection idempotence, quotient compatibility, gauge/relabeling invariance, and leakage bounds with tolerances $\epsilon_{S,\mathrm{leak}}$, $\epsilon_{S,Q}$, $\epsilon_{S,\mathrm{gauge}}$, and $\epsilon_{S,\mathrm{rec}}$. Then
+Let $A$ be an accepted Noether swarm assembly or branch family, let $\mathcal{L}_A\in\mathfrak{L}_A$ satisfy branch-ledger provenance, and let $(\Pi_S,Q_S,\mathcal{B}_S)$ satisfy projection idempotence, quotient compatibility, gauge/relabeling invariance, and leakage bounds with tolerances $\epsilon_{S,\mathrm{leak}}$, $\epsilon_{S,Q}$, $\epsilon_{S,\mathrm{gauge}}$, and $\epsilon_{S,\mathrm{rec}}$. Then
 
 $$
 \mathcal{E}_S(A)
@@ -332,7 +332,7 @@ Proof route: the scalar quotient class $Q_0\Pi_0\mathcal{L}_A[d]$ is the only ob
 | [weak-sector-gauge-closure.md](../standard-model-closure/weak-sector-gauge-closure.md) | Weak `V-A`, CKM/PMNS overlap, weak-corridor provenance, and gauge-covariance compatibility. | Uses the exposure quotient to keep weak chirality, flavor overlap, and corridor provenance in one weak-visible domain. |
 | [geometry-first-program.md](../standard-model-closure/geometry-first-program.md) | Quark masses, flavor mixing, color exceptionality, confinement, and weak provenance routing. | Uses the exposure quotient to separate color/topological exceptionality from externally visible weak or mass-facing response. |
 | [photon-measurement-bell-gates.md](../angular-momentum-spin/photon-measurement-bell-gates.md) | Photon transverse projector, no longitudinal free mode, analyzer visibility, and polarization ledger. | Uses the exposure quotient to derive rank-two transverse photon visibility from a hidden planar-pair ledger. |
-| [radiation-gate-c-benchmarks.md](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md) | Radiation channel visibility, emission/absorption handoff, and benchmark recovery. | Uses the exposure quotient to decide which residual channel becomes a visible photon, material update, or non-radiative route. |
+| [radiation-gate-c-benchmarks.md](../nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks.md) | Radiation channel visibility, emission/absorption handoff, and benchmark recovery. | Uses the exposure quotient to decide which residual channel becomes a visible photon, material update, or non-radiative route. |
 
 ## Worked $A_0$ Scalar Shielding Case
 

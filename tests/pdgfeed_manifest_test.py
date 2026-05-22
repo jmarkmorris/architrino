@@ -60,10 +60,10 @@ class PdgfeedContractTests(unittest.TestCase):
             [entry["assemblyId"] for entry in request["reactants"]],
             [
                 "pro_muon_II",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
             ],
         )
         self.assertEqual(
@@ -95,18 +95,18 @@ class PdgfeedContractTests(unittest.TestCase):
                 "pro_up_quark_I",
                 "pro_up_quark_I",
                 "pro_down_quark_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
             ],
         )
         self.assertEqual(
             [entry["assemblyId"] for entry in request["products"]],
             [
                 "anti_electron_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
                 "unbound_architrinos_residue",
             ],
         )
@@ -140,14 +140,14 @@ class PdgfeedContractTests(unittest.TestCase):
                 "anti_up_quark_I",
                 "anti_down_quark_I",
                 "anti_down_quark_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
             ],
         )
         self.assertTrue(all("core_balance" not in entry["id"] for entry in request["reactants"]))
@@ -194,8 +194,8 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertEqual(
             [entry["assemblyId"] for entry in request["products"]],
             [
-                "pro_noether_core_I",
-                "anti_noether_core_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
                 "unbound_architrinos_residue",
             ],
         )
@@ -335,12 +335,12 @@ class PdgfeedContractTests(unittest.TestCase):
             [entry["assemblyId"] for entry in muon_request["reactants"]],
             [
                 "pro_muon_II",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
             ],
         )
         self.assertEqual(
@@ -349,8 +349,8 @@ class PdgfeedContractTests(unittest.TestCase):
                 "pro_electron_I",
                 "anti_electron_neutrino_I",
                 "pro_muon_neutrino_II",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
             ],
         )
         self.assertEqual(
@@ -434,8 +434,8 @@ class PdgfeedContractTests(unittest.TestCase):
         self.assertEqual(
             [entry["assemblyId"] for entry in transformed["products"]],
             [
-                "pro_noether_core_I",
-                "anti_noether_core_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
                 "unbound_architrinos_residue",
             ],
         )

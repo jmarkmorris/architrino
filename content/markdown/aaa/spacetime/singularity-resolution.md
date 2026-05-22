@@ -1,6 +1,6 @@
 # Singularity Resolution
 
-This chapter frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the tri-binary architecture. It is the canonical strong-field bridge for [Noether Swarm](../noether-swarm/noether-swarm.md), [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md), and [Black Holes](./black-holes.md).
+This chapter frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the Noether swarm architecture. It is the canonical strong-field bridge for [Noether Swarm](../noether-swarm/noether-swarm.md), [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md), and [Black Holes](./black-holes.md).
 
 ## Canonical Strong-Field Alignment Condition
 
@@ -15,10 +15,10 @@ with middle/outer binaries becoming coplanar and co-linear with the inner binary
 This condition is a constitutive boundary condition on Noether-Sea state, not an isolated metric ansatz imported from an asymptotically flat solution. In schematic form, the horizon-interface closure problem is
 $$
 F_H\!\left[
-\rho_{\text{core}}(\mathbf{x},t),
-\Sigma_{\text{medium}}(\mathbf{x},t),
-\mathbf{u}_{\text{medium}}(\mathbf{x},t),
-\{\Lambda_{\text{NC}}\};
+\rho_{\text{NS}}(\mathbf{x},t),
+\Sigma_{\text{sea}}(\mathbf{x},t),
+\mathbf{u}_{\text{sea}}(\mathbf{x},t),
+\{\Lambda_{\text{NS}}\};
 \partial\Omega
 \right]
 =0,
@@ -88,15 +88,15 @@ $$
 =
 \sup_{\Omega}
 \left(
-|\rho_{\text{core}}(\mathbf{x},t)|
+|\rho_{\text{NS}}(\mathbf{x},t)|
 +
-\|\Sigma_{\text{medium}}(\mathbf{x},t)\|
+\|\Sigma_{\text{sea}}(\mathbf{x},t)\|
 +
-\|\mathbf{u}_{\text{medium}}(\mathbf{x},t)\|
+\|\mathbf{u}_{\text{sea}}(\mathbf{x},t)\|
 \right)
 <\infty,
 $$
-together with the horizon-interface condition $F_H=0$ and a finite Noether-core closure-label ensemble. This is a theorem target, not a definition of success: the strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
+together with the horizon-interface condition $F_H=0$ and a finite Noether swarm closure-label ensemble. This is a theorem target, not a definition of success: the strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
 
 A sharper endpoint criterion is that those same finite data admit a continuation map
 $$
@@ -153,10 +153,10 @@ with the same finite boundary data driving the transition across the whole inter
 
 ## Maximal Curvature vs Planck Scale
 
-The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), with **variable radius and frequency**; it serves as the **energy-storage fulcrum** for transfers across the tri-binary.
+The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), with **scale and cadence retuning**; it serves as the **energy-storage fulcrum** for transfers across the nested shell swarm.
 
 In strong-field conditions (e.g., near an event horizon), the **outer binary frequency increases** and its **velocity approaches field speed**, while the **middle binary** remains at $v=c_f$ as its radius/frequency shift. At the horizon, the **middle and outer binaries reach $v=c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
 
-One preserved intuition, to be read only as a heuristic, is that this alignment limit may correspond to a temporary **planar horizon state** rather than to the final interior shape. In that picture, the horizon is the point of strongest flattening, while deeper interior self-hit pressure can reopen the suppressed polar degree of freedom so the core returns to a finite 3D configuration instead of terminating in a zero-volume endpoint. This is compatible with the maximum-curvature replacement logic, but it is not yet a derived mechanism; compare [Horizon Chirality and Planar Spin](./horizon-chirality.md).
+One preserved intuition, to be read only as a heuristic, is that this alignment limit may correspond to a temporary **planar horizon state** rather than to the final interior shape. In that picture, the horizon is the point of strongest flattening, while deeper interior self-hit pressure can reopen the suppressed polar degree of freedom so the nested shell swarm returns to a finite 3D configuration instead of terminating in a zero-volume endpoint. This is compatible with the maximum-curvature replacement logic, but it is not yet a derived mechanism; compare [Horizon Chirality and Planar Spin](./horizon-chirality.md).
 
-**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (tri-binary coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.
+**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (nested shell swarm coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale.

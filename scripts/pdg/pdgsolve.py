@@ -52,7 +52,7 @@ PDGEDIT_COMPOSITE_LABEL_SEQUENCE_SPECS = (
     {
         "type": "noether-quad-composite",
         "text": "Noether Quad",
-        "recipeSequence": ("pro_noether_core", "anti_noether_core", "pro_noether_core", "anti_noether_core"),
+        "recipeSequence": ("pro_noether_swarm", "anti_noether_swarm", "pro_noether_swarm", "anti_noether_swarm"),
     },
     {
         "type": "pro-proton-composite",
@@ -141,13 +141,13 @@ PDGEDIT_COMPOSITE_LABEL_OCCURRENCE_SPECS = (
         "canonicalId": "photon",
         "type": "photon-composite",
         "text": "Photon",
-        "recipeSequence": ("pro_noether_core", "anti_noether_core"),
+        "recipeSequence": ("pro_noether_swarm", "anti_noether_swarm"),
     },
     {
         "canonicalId": "noether_pair",
         "type": "noether-pair-composite",
         "text": "Noether Pair",
-        "recipeSequence": ("pro_noether_core", "anti_noether_core"),
+        "recipeSequence": ("pro_noether_swarm", "anti_noether_swarm"),
     },
     {
         "canonicalId": "proton",
@@ -245,11 +245,11 @@ PDGEDIT_COMPOSITE_LABEL_OCCURRENCE_ROLE_BY_SIDE = {
 }
 
 ASSEMBLY_DISPLAY = {
-    "pro_noether_core_I": {
-        "title": "Pro Noether Core",
-        "pdgeditType": "pro-noether-core-assembly",
+    "pro_noether_swarm_I": {
+        "title": "Pro Noether Swarm",
+        "pdgeditType": "pro-noether-swarm-assembly",
         "tiles": [
-            "pro-noether-core",
+            "pro-noether-swarm",
             "binary-bare-br-none",
             "binary-bare-br-none",
             "binary-bare-br-none",
@@ -257,11 +257,11 @@ ASSEMBLY_DISPLAY = {
         "electrinoCount": 3,
         "positrinoCount": 3,
     },
-    "anti_noether_core_I": {
-        "title": "Anti Noether Core",
-        "pdgeditType": "anti-noether-core-assembly",
+    "anti_noether_swarm_I": {
+        "title": "Anti Noether Swarm",
+        "pdgeditType": "anti-noether-swarm-assembly",
         "tiles": [
-            "anti-noether-core",
+            "anti-noether-swarm",
             "binary-bare-rb-none",
             "binary-bare-rb-none",
             "binary-bare-rb-none",
@@ -269,7 +269,7 @@ ASSEMBLY_DISPLAY = {
         "electrinoCount": 3,
         "positrinoCount": 3,
     },
-    "pro_noether_core_II": {
+    "pro_noether_swarm_II": {
         "title": "Pro Bi-Binary",
         "pdgeditType": "pro-bi-binary-assembly",
         "tiles": [
@@ -281,7 +281,7 @@ ASSEMBLY_DISPLAY = {
         "electrinoCount": 2,
         "positrinoCount": 2,
     },
-    "anti_noether_core_II": {
+    "anti_noether_swarm_II": {
         "title": "Anti Bi-Binary",
         "pdgeditType": "anti-bi-binary-assembly",
         "tiles": [
@@ -293,7 +293,7 @@ ASSEMBLY_DISPLAY = {
         "electrinoCount": 2,
         "positrinoCount": 2,
     },
-    "pro_noether_core_III": {
+    "pro_noether_swarm_III": {
         "title": "Pro Uni-Binary",
         "pdgeditType": "pro-uni-binary-assembly",
         "tiles": [
@@ -305,7 +305,7 @@ ASSEMBLY_DISPLAY = {
         "electrinoCount": 1,
         "positrinoCount": 1,
     },
-    "anti_noether_core_III": {
+    "anti_noether_swarm_III": {
         "title": "Anti Uni-Binary",
         "pdgeditType": "anti-uni-binary-assembly",
         "tiles": [
@@ -667,13 +667,13 @@ FERMION_RESIDUE_COUNTS = {
     "anti_top_quark_III": {"electrinoCount": 5, "positrinoCount": 1},
 }
 
-NOETHER_CORE_SUCCESSOR = {
-    "pro_noether_core_I": "pro_noether_core_II",
-    "anti_noether_core_I": "anti_noether_core_II",
-    "pro_noether_core_II": "pro_noether_core_III",
-    "anti_noether_core_II": "anti_noether_core_III",
-    "pro_noether_core_III": None,
-    "anti_noether_core_III": None,
+NOETHER_SWARM_SUCCESSOR = {
+    "pro_noether_swarm_I": "pro_noether_swarm_II",
+    "anti_noether_swarm_I": "anti_noether_swarm_II",
+    "pro_noether_swarm_II": "pro_noether_swarm_III",
+    "anti_noether_swarm_II": "anti_noether_swarm_III",
+    "pro_noether_swarm_III": None,
+    "anti_noether_swarm_III": None,
 }
 
 
@@ -1050,24 +1050,24 @@ def get_generation_suffix(assembly_id: str) -> str:
     return assembly_id.rsplit("_", 1)[-1] if "_" in assembly_id else ""
 
 
-def get_noether_core_for_assembly(assembly_id: str) -> str | None:
+def get_noether_swarm_for_assembly(assembly_id: str) -> str | None:
     generation = get_generation_suffix(assembly_id)
     if assembly_id.startswith("pro_"):
-        return f"pro_noether_core_{generation}"
+        return f"pro_noether_swarm_{generation}"
     if assembly_id.startswith("anti_"):
-        return f"anti_noether_core_{generation}"
+        return f"anti_noether_swarm_{generation}"
     return None
 
 
-def get_reachable_noether_core_ids_for_assembly(assembly_id: str) -> tuple[str, ...]:
-    direct_core_assembly_id = get_noether_core_for_assembly(assembly_id)
+def get_reachable_noether_swarm_ids_for_assembly(assembly_id: str) -> tuple[str, ...]:
+    direct_core_assembly_id = get_noether_swarm_for_assembly(assembly_id)
     if not direct_core_assembly_id:
         return ()
     reachable_core_ids: list[str] = []
     current_core_assembly_id = direct_core_assembly_id
     while current_core_assembly_id:
         reachable_core_ids.append(current_core_assembly_id)
-        current_core_assembly_id = normalize_text(NOETHER_CORE_SUCCESSOR.get(current_core_assembly_id))
+        current_core_assembly_id = normalize_text(NOETHER_SWARM_SUCCESSOR.get(current_core_assembly_id))
     return tuple(reachable_core_ids)
 
 
@@ -1075,7 +1075,7 @@ def build_targeted_dissociation_residue_counts(
     assembly_id: str,
     target_core_assembly_id: str,
 ) -> dict[str, int] | None:
-    if target_core_assembly_id not in get_reachable_noether_core_ids_for_assembly(assembly_id):
+    if target_core_assembly_id not in get_reachable_noether_swarm_ids_for_assembly(assembly_id):
         return None
     assembly_metadata = ASSEMBLY_DISPLAY.get(assembly_id)
     target_core_metadata = ASSEMBLY_DISPLAY.get(target_core_assembly_id)
@@ -1094,7 +1094,7 @@ def select_dissociation_target_core_assembly(
     assembly_id: str,
     remaining_core_demand: dict[str, int],
 ) -> str | None:
-    reachable_core_ids = get_reachable_noether_core_ids_for_assembly(assembly_id)
+    reachable_core_ids = get_reachable_noether_swarm_ids_for_assembly(assembly_id)
     for target_core_assembly_id in reversed(reachable_core_ids):
         if int(remaining_core_demand.get(target_core_assembly_id, 0) or 0) > 0:
             return target_core_assembly_id
@@ -1106,10 +1106,10 @@ def plan_middle_supply_counts(
     reactant_core_counts: dict[str, int],
     product_core_counts: dict[str, int],
 ) -> dict[str, int]:
-    middle_supply_counts = {assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR}
+    middle_supply_counts = {assembly_id: 0 for assembly_id in NOETHER_SWARM_SUCCESSOR}
     remaining_core_demand = {
         assembly_id: max(0, product_core_counts[assembly_id] - reactant_core_counts[assembly_id])
-        for assembly_id in NOETHER_CORE_SUCCESSOR
+        for assembly_id in NOETHER_SWARM_SUCCESSOR
     }
     for reactant in non_core_reactants:
         target_core_assembly_id = select_dissociation_target_core_assembly(
@@ -1134,7 +1134,7 @@ def build_standard_model_law_inventory() -> dict[str, Any]:
     association: dict[str, dict[str, Any]] = {}
 
     for assembly_id, residue_counts in FERMION_RESIDUE_COUNTS.items():
-        core_assembly_id = get_noether_core_for_assembly(assembly_id)
+        core_assembly_id = get_noether_swarm_for_assembly(assembly_id)
         if core_assembly_id is None:
             continue
         dissociation[assembly_id] = {
@@ -1154,7 +1154,7 @@ def build_standard_model_law_inventory() -> dict[str, Any]:
             ),
         }
 
-    for assembly_id, successor_assembly_id in NOETHER_CORE_SUCCESSOR.items():
+    for assembly_id, successor_assembly_id in NOETHER_SWARM_SUCCESSOR.items():
         output_assembly_ids = [successor_assembly_id] if successor_assembly_id is not None else []
         dissociation[assembly_id] = {
             "lawId": f"dissociate.{assembly_id}",
@@ -1265,14 +1265,14 @@ def family_score_sort_key(score: dict[str, Any]) -> tuple[Any, ...]:
     )
 
 
-def is_noether_core_assembly(assembly_id: str) -> bool:
-    return normalize_text(assembly_id) in NOETHER_CORE_SUCCESSOR
+def is_noether_swarm_assembly(assembly_id: str) -> bool:
+    return normalize_text(assembly_id) in NOETHER_SWARM_SUCCESSOR
 
 
 def build_core_support_occurrence(charge: str, generation: str, index: int) -> dict[str, Any]:
-    assembly_id = f"{charge}_noether_core_{generation}"
+    assembly_id = f"{charge}_noether_swarm_{generation}"
     return {
-        "id": f"support.{charge}_noether_core_{generation}.{index}",
+        "id": f"support.{charge}_noether_swarm_{generation}.{index}",
         "assemblyId": assembly_id,
         "title": ASSEMBLY_DISPLAY[assembly_id]["title"],
     }
@@ -1351,7 +1351,7 @@ def pair_catalyst_occurrences(
 
 
 def count_core_occurrences(occurrences: list[dict[str, Any]]) -> dict[str, int]:
-    counts = {assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR}
+    counts = {assembly_id: 0 for assembly_id in NOETHER_SWARM_SUCCESSOR}
     for occurrence in occurrences:
         assembly_id = normalize_text(occurrence.get("assemblyId"))
         if assembly_id in counts:
@@ -1368,15 +1368,15 @@ def compute_added_tri_binary_support_pair_count(
 
     for charge in ("pro", "anti"):
         remaining_required = {
-            generation: int(product_core_counts[f"{charge}_noether_core_{generation}"] or 0)
+            generation: int(product_core_counts[f"{charge}_noether_swarm_{generation}"] or 0)
             for generation in ("I", "II", "III")
         }
         available_direct = {
-            generation: int(reactant_core_counts[f"{charge}_noether_core_{generation}"] or 0)
+            generation: int(reactant_core_counts[f"{charge}_noether_swarm_{generation}"] or 0)
             for generation in ("I", "II", "III")
         }
         available_middle = {
-            generation: int(middle_supply_counts[f"{charge}_noether_core_{generation}"] or 0)
+            generation: int(middle_supply_counts[f"{charge}_noether_swarm_{generation}"] or 0)
             for generation in ("I", "II", "III")
         }
 
@@ -1409,13 +1409,13 @@ def build_direct_core_supply_from_reactant_cores(
     intermediate_occurrences: list[dict[str, Any]],
 ) -> dict[str, list[dict[str, Any]]] | None:
     available_core_pool: dict[str, list[dict[str, Any]]] = {
-        assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR
+        assembly_id: [] for assembly_id in NOETHER_SWARM_SUCCESSOR
     }
     for occurrence in remaining_reactant_cores:
         available_core_pool[normalize_text(occurrence.get("assemblyId"))].append(clone_json(occurrence))
 
     direct_core_pool: dict[str, list[dict[str, Any]]] = {
-        assembly_id: [] for assembly_id in NOETHER_CORE_SUCCESSOR
+        assembly_id: [] for assembly_id in NOETHER_SWARM_SUCCESSOR
     }
 
     def materialize_direct_core(
@@ -1448,21 +1448,21 @@ def build_direct_core_supply_from_reactant_cores(
 
     for charge in ("pro", "anti"):
         source_to_targets = (
-            (f"{charge}_noether_core_III", (f"{charge}_noether_core_III",)),
-            (f"{charge}_noether_core_II", (f"{charge}_noether_core_III", f"{charge}_noether_core_II")),
+            (f"{charge}_noether_swarm_III", (f"{charge}_noether_swarm_III",)),
+            (f"{charge}_noether_swarm_II", (f"{charge}_noether_swarm_III", f"{charge}_noether_swarm_II")),
             (
-                f"{charge}_noether_core_I",
+                f"{charge}_noether_swarm_I",
                 (
-                    f"{charge}_noether_core_III",
-                    f"{charge}_noether_core_II",
-                    f"{charge}_noether_core_I",
+                    f"{charge}_noether_swarm_III",
+                    f"{charge}_noether_swarm_II",
+                    f"{charge}_noether_swarm_I",
                 ),
             ),
         )
         for target_assembly_id in (
-            f"{charge}_noether_core_III",
-            f"{charge}_noether_core_II",
-            f"{charge}_noether_core_I",
+            f"{charge}_noether_swarm_III",
+            f"{charge}_noether_swarm_II",
+            f"{charge}_noether_swarm_I",
         ):
             remaining_demand = (
                 product_core_counts[target_assembly_id]
@@ -1510,7 +1510,7 @@ def build_product_task(product: dict[str, Any]) -> dict[str, Any] | None:
             "operatorType": "pass-thru",
             "lawId": get_pass_thru_law(assembly_id)["lawId"],
         }
-    if is_noether_core_assembly(assembly_id):
+    if is_noether_swarm_assembly(assembly_id):
         return {
             "product": clone_json(product),
             "coreAssemblyId": assembly_id,
@@ -1518,7 +1518,7 @@ def build_product_task(product: dict[str, Any]) -> dict[str, Any] | None:
             "operatorType": "associate",
             "lawId": f"associate.{assembly_id}",
         }
-    core_assembly_id = get_noether_core_for_assembly(assembly_id)
+    core_assembly_id = get_noether_swarm_for_assembly(assembly_id)
     if core_assembly_id is None:
         return None
     association_law = get_association_law(assembly_id)
@@ -1594,7 +1594,7 @@ def add_single_dissociation(
     target_core_assembly_id: str | None = None,
 ) -> dict[str, Any] | None:
     assembly_id = normalize_text(source_occurrence.get("assemblyId"))
-    core_assembly_id = normalize_text(target_core_assembly_id) or get_noether_core_for_assembly(assembly_id)
+    core_assembly_id = normalize_text(target_core_assembly_id) or get_noether_swarm_for_assembly(assembly_id)
     if core_assembly_id is None:
         return None
     residue_counts = build_targeted_dissociation_residue_counts(assembly_id, core_assembly_id)
@@ -1615,7 +1615,7 @@ def add_single_dissociation(
             "dissociate",
             law_id=(
                 get_dissociation_law(assembly_id)["lawId"]
-                if core_assembly_id == get_noether_core_for_assembly(assembly_id) and get_dissociation_law(assembly_id) is not None
+                if core_assembly_id == get_noether_swarm_for_assembly(assembly_id) and get_dissociation_law(assembly_id) is not None
                 else f"dissociate.{assembly_id}.to.{core_assembly_id}"
             ),
             input_occurrence_keys=[normalize_text(source_occurrence.get("id"))],
@@ -1681,12 +1681,12 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
     remaining_reactant_cores = [
         clone_json(occurrence)
         for occurrence in remaining_reactants
-        if is_noether_core_assembly(normalize_text(occurrence.get("assemblyId")))
+        if is_noether_swarm_assembly(normalize_text(occurrence.get("assemblyId")))
     ]
     remaining_non_core_reactants = [
         clone_json(occurrence)
         for occurrence in remaining_reactants
-        if not is_noether_core_assembly(normalize_text(occurrence.get("assemblyId")))
+        if not is_noether_swarm_assembly(normalize_text(occurrence.get("assemblyId")))
     ]
     core_product_tasks = [
         clone_json(task)
@@ -1701,7 +1701,7 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
 
     reactant_core_counts = count_core_occurrences(remaining_reactant_cores)
     product_core_counts = {
-        assembly_id: 0 for assembly_id in NOETHER_CORE_SUCCESSOR
+        assembly_id: 0 for assembly_id in NOETHER_SWARM_SUCCESSOR
     }
     for task in core_product_tasks:
         product_core_counts[normalize_text(task["coreAssemblyId"])] += 1
@@ -1722,8 +1722,8 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
         reactant_occurrences.extend([clone_json(pro_support), clone_json(anti_support)])
         added_support_occurrences.extend([clone_json(pro_support), clone_json(anti_support)])
         remaining_reactant_cores.extend([clone_json(pro_support), clone_json(anti_support)])
-        reactant_core_counts["pro_noether_core_I"] += 1
-        reactant_core_counts["anti_noether_core_I"] += 1
+        reactant_core_counts["pro_noether_swarm_I"] += 1
+        reactant_core_counts["anti_noether_swarm_I"] += 1
 
     direct_core_pool = build_direct_core_supply_from_reactant_cores(
         remaining_reactant_cores,
@@ -1736,7 +1736,7 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
         return None
     middle_core_pool: dict[str, list[dict[str, Any]]] = {
         assembly_id: []
-        for assembly_id in NOETHER_CORE_SUCCESSOR
+        for assembly_id in NOETHER_SWARM_SUCCESSOR
     }
     remaining_middle_demand = {
         assembly_id: max(
@@ -1745,7 +1745,7 @@ def build_exact_family(problem: dict[str, Any]) -> dict[str, Any] | None:
             - len(direct_core_pool[assembly_id])
             - len(middle_core_pool[assembly_id]),
         )
-        for assembly_id in NOETHER_CORE_SUCCESSOR
+        for assembly_id in NOETHER_SWARM_SUCCESSOR
     }
     for reactant_index, reactant in enumerate(remaining_non_core_reactants, start=1):
         target_core_assembly_id = select_dissociation_target_core_assembly(

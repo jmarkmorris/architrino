@@ -117,7 +117,7 @@ Here $K_{\mathrm{mech}}$ is the mechanical kinetic energy of the retained archit
 
 Assemblies enter the chapter as recursive dynamical organizations rather than as new primitives. The recursive description is useful only when each level preserves closure, shielding, and provenance from the level below.
 
--   **Base case:** The most basic bound assembly is the **orbiting binary**, formed by an electrino:positrino pair. This is the first stable assembly motif from which more complex structures can be built.
+-   **Base case:** The most basic bound-assembly candidate is the **orbiting binary**, formed by an electrino:positrino pair once the two-body branch stability certificate is supplied. This is the first assembly motif from which more complex structures can be built.
 -   **Recursive step:** More complex assemblies are described in terms of constituent sub-assemblies, nested shielding hierarchy, separated radii and frequencies, and the causal-root ledgers that keep the combined motion closed.
 
 This recursive structure implies that many stable forms can be deconstructed into simpler binary and nested-binary components, provided the branch supplies the required closure, shielding, and provenance records.
@@ -128,11 +128,11 @@ The recursive picture is easiest to read as a bottom-up construction ladder. The
 
 1. **Ontological background:** absolute time and the Euclidean void provide the fixed arena.
 2. **Primitive transceivers:** individual architrinos are the irreducible emitters/receivers of causal wake structure.
-3. **First bound assembly:** a stable orbiting electrino:positrino binary is the first bound assembly.
-4. **Nested cores:** binaries can capture into larger nested systems, giving isolated-binary, bi-binary, and tri-binary cores with progressively stronger shielding structure.
-5. **Noether core stabilization:** the triply nested binary is the first fully three-dimensional shielded core; see [Noether Swarm](../noether-swarm/noether-swarm.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
-6. **Fermions with axial layers:** a Noether core plus a six-site axial layer is the working map for charged-fermion and quark family architecture; changing the core shielding tier is the generation target, while pro/anti orientation tracks handedness within the same core architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).
-7. **Collective medium:** larger balanced populations of cores organize into the [Noether Sea](../spacetime/noether-sea.md), so the Noether Sea is a higher-order collective state of cores rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Spacetime Assemblies](../spacetime/spacetime-assemblies.md).
+3. **First bound assembly candidate:** a stable orbiting electrino:positrino binary is the first bound assembly once its branch stability certificate is supplied.
+4. **Nested shell swarms:** binaries can capture into larger nested systems, giving isolated binaries, shell swarms, and nested shell swarms with progressively stronger shielding structure.
+5. **Noether swarm stabilization:** the nested shell swarm is the first fully three-dimensional shielded Noether swarm scaffold; see [Noether Swarm](../noether-swarm/noether-swarm.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
+6. **Fermions with axial layers:** a nested shell swarm plus a six-site axial layer is the working map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same swarm architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).
+7. **Collective medium:** larger balanced populations of neutral swarms organize into the [Noether Sea](../spacetime/noether-sea.md), so the Noether Sea is a higher-order collective state of neutral swarms rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Spacetime Assemblies](../spacetime/spacetime-assemblies.md).
 8. **Bosonic channels:** propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating pro/anti planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../interactions/gauge-structure-emergence.md).
 9. **Composite matter and reactions:** nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
 
@@ -151,10 +151,10 @@ For example, Lorentz-like behavior is an emergence claim only when the text name
 
 This rule keeps emergence from becoming a placeholder. It is acceptable to use emergence as a programmatic claim, but the surrounding prose must say whether the mechanism is derived, simulated, conjectural, or only a routing target.
 
-Just as important, the ladder should not be read as a single unbranched stack after the Noether core appears. Once stable cores exist, three descriptive branches open at once:
+Just as important, the ladder should not be read as a single unbranched stack after the Noether swarm appears. Once stable swarms exist, three descriptive branches open at once:
 
--   **Matter branch:** Noether cores carrying axial layers yield fermions and then larger composites.
--   **Medium branch:** dense balanced populations of cores yield the Noether Sea.
+-   **Matter branch:** Noether swarms carrying axial layers yield fermions and then larger composites.
+-   **Medium branch:** dense balanced populations of neutral swarms yield the Noether Sea.
 -   **Interaction branch:** phase-locked disturbances and exchange corridors yield effective bosonic behavior.
 
 This separation of branches helps keep levels distinct. The theory does not place a photon, a fermion axial layer, and the Noether Sea on the same explanatory rung; they are different organizations of the same underlying ingredients.
@@ -164,7 +164,7 @@ This separation of branches helps keep levels distinct. The theory does not plac
 The most useful observer-level quantities enter only after assemblies have formed. They are not primitive objects sitting underneath the dynamics, and their use always depends on an effective mapping from persistent assembly behavior to a measured descriptor.
 
 -   **Angular momentum:** derivation target. The mechanism is organized binary circulation and ordered orientation data; the mapping is through the return-period phase and angular-momentum ledger; the regime is stable or metastable closed cycles; the breakdown occurs at separator crossings, root-ledger changes, or dissociation.
--   **Chirality:** derivation target. The mechanism is ordered core precession and causal-writhe parity; the mapping is through the Noether-core closure label; the regime is branch-preserving deformation; the breakdown occurs when a causal-root bifurcation or reconnection changes the handed branch.
+-   **Chirality:** derivation target. The mechanism is ordered-frame precession and causal-writhe parity; the mapping is through the Noether swarm closure label; the regime is branch-preserving deformation; the breakdown occurs when a causal-root bifurcation or reconnection changes the handed branch.
 -   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is trapped internal causal history, shielding, and Noether-Sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether-Sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
 In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
@@ -186,7 +186,7 @@ exist under the declared receiver-centered summation prescription, or else use t
 
 This convergence discipline is what allows for the formation of **metastable assemblies** that can maintain their general form for long periods.
 
-The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it; in practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and the shielding or screening supplied by nested Noether cores. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to treat the entire past universe as an undifferentiated force of equal importance.
+The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it; in practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and the shielding or screening supplied by nested Noether swarms. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to treat the entire past universe as an undifferentiated force of equal importance.
 
 Self-hit is not defined by speed alone. It occurs when the same-source causal-root set is nonempty:
 $$

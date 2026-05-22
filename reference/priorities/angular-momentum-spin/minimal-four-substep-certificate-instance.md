@@ -774,4 +774,4 @@ Therefore the solved minimal branch is conditionally certified as an algebraic f
 2. $\omega_{\text{tx}}=\omega_\ast$ within tolerance, or the mismatch is routed into a declared non-clean channel;
 3. the retained root chart, phase lock, normalized tail-wake pullback, torque consistency, and section-stability rows are supplied by branch-chart data.
 
-The branch is not yet a theorem-grade conserved Noether-core branch. It is a concrete certificate instance whose populated rows identify exactly what remains to certify.
+The branch is not yet a theorem-grade conserved Noether swarm branch. It is a concrete certificate instance whose populated rows identify exactly what remains to certify.

@@ -36,8 +36,8 @@
         "scenePath": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json"
       },
       {
-        "nodeId": "special_relativity_noether_core",
-        "scenePath": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_core.json"
+        "nodeId": "special_relativity_noether_swarm",
+        "scenePath": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_swarm.json"
       },
       {
         "nodeId": "return_cycle_lorentz_quantization",
@@ -165,8 +165,8 @@
       "fixedPosition": true
     },
     {
-      "id": "special_relativity_noether_core",
-      "title": "Special Relativity and Deformable Noether Cores",
+      "id": "special_relativity_noether_swarm",
+      "title": "Special Relativity and Deformable Noether Swarms",
       "radius": 2.688,
       "color": "#4f5d75",
       "position": [
@@ -177,7 +177,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Special Relativity and Deformable Noether Cores",
+      "labelTitle": "Special Relativity and Deformable Noether Swarms",
       "labelBadge": "doc",
       "fixedPosition": true
     },

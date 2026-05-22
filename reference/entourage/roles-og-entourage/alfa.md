@@ -16,11 +16,11 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 
 - Treat `dynamics/master-equation.md` as the canonical microdynamics source (path-history causal wakes plus self-hit, no instantaneous terms).
 - Keep charge and scale logic synchronized with `validation/parameter-ledger.md` (A1-A6, B1-B2).
-- Use `assemblies/noether-core.md`, `nuclear-atomic/*`, and `validation/simulations/action-energy/action-model.md` as the current derivation and accounting base for binding/spectra/EoS claims.
+- Use `assemblies/noether-swarm.md`, `nuclear-atomic/*`, and `validation/simulations/action-energy/action-model.md` as the current derivation and accounting base for binding/spectra/EoS claims.
 - Frame macroscopic observables as emergent readouts from absolute-time evolution, projected to effective observer variables where needed.
 
 **Matter vs. Noether-Sea Distinction**
-- **Noether Sea**: The ambient substrate contents composed of neutral Noether-core assemblies; the hypothesized **2 pro + 2 anti** Helium-like coupling remains a mechanism target until derived.
+- **Noether Sea**: The ambient substrate contents composed of neutral Noether swarm assemblies; the hypothesized **2 pro + 2 anti** Helium-like coupling remains a mechanism target until derived.
 - **Matter**: Localized, energetic excitations (quarks, leptons) composed of single or coupled tri-binary assemblies with specific axial-architrino structure.
 
 **Nucleon and Nuclear Coupling**

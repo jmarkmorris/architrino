@@ -181,10 +181,10 @@ class PdgfeedCliTests(unittest.TestCase):
         self.assertEqual(
             [entry["assemblyId"] for entry in request["products"]],
             [
-                "pro_noether_core_I",
-                "anti_noether_core_I",
-                "pro_noether_core_I",
-                "anti_noether_core_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
+                "pro_noether_swarm_I",
+                "anti_noether_swarm_I",
                 "unbound_architrinos_residue",
             ],
         )

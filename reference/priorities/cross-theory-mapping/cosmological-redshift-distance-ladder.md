@@ -28,7 +28,7 @@ $$
 \frac{(d\tau/dt)_o}{(d\tau/dt)_e},
 $$
 
-with the clock map depending on $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, velocity, and clock geometry. For modeling and diagnostics, the redshift map must keep at least three effective channels distinct:
+with the clock map depending on $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, velocity, and clock geometry. For modeling and diagnostics, the redshift map must keep at least three effective channels distinct:
 
 - endpoint clock-rate comparison,
 - source/observer relative-motion contribution,
@@ -46,7 +46,7 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
 $$
 
-Here $\Gamma_N=1$ marks the reference weak-sea cadence, while $\Gamma_N>1$ marks a locally slowed or stretched Noether-Sea core cadence. In a homogeneous Lorentz-closure branch, this factor should reduce to the appropriate moving-core deformation factor only after the Noether-core geometry and clock extraction have been derived; schematically one expects $\Gamma_N\to(1-\beta_N^2)^{-1/2}$ in the validated limit.
+Here $\Gamma_N=1$ marks the reference weak-sea cadence, while $\Gamma_N>1$ marks a locally slowed or stretched Noether-Sea core cadence. In a homogeneous Lorentz-closure branch, this factor should reduce to the appropriate moving-core deformation factor only after the Noether swarm geometry and clock extraction have been derived; schematically one expects $\Gamma_N\to(1-\beta_N^2)^{-1/2}$ in the validated limit.
 
 For a spectral transition family $X$, introduce three dimensionless factors:
 
@@ -212,7 +212,7 @@ This law is falsified if $\mathbf b_N$, $\mathbf p_X$, $D_v$, or $\mathcal R_{\m
 
 ### Noether-Core Equilibrium Transport Hypothesis
 
-A sharper candidate for the deep-space term is an equilibrium transport law over Noether-core cadence states. The hypothesis is that most Noether-Sea cores interact primarily with neighboring Noether cores, while photons, neutrinos, and stronger disturbances provide sparse probe or perturbation channels. If a representative core cadence is written as $\nu_N$, the local core energy scale is
+A sharper candidate for the deep-space term is an equilibrium transport law over Noether swarm cadence states. The hypothesis is that most Noether-Sea cores interact primarily with neighboring Noether swarms, while photons, neutrinos, and stronger disturbances provide sparse probe or perturbation channels. If a representative core cadence is written as $\nu_N$, the local core energy scale is
 
 $$
 E_N=h\nu_N.
@@ -220,7 +220,7 @@ $$
 
 Individual transitions may occur as $h$-scale ledger steps, while a large asynchronous population can still produce a smooth coarse-grained cadence drift. The single-core mechanism is cadence-scale retuning: an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction changes the closure ledger and is resolved by shifts in cadence, layer radii, envelope scale, envelope ratio, orientation, strain, or neighbor coupling. In the simplest fixed-speed estimate, $R_N\nu_N\approx\text{constant}$, so higher cadence implies a smaller representative scale and lower cadence implies a larger one.
 
-Let $f_N(\nu,\mathbf{x},t)$ denote the local distribution of Noether-core cadence states. The cadence-space current should be interpreted as the ensemble flux
+Let $f_N(\nu,\mathbf{x},t)$ denote the local distribution of Noether swarm cadence states. The cadence-space current should be interpreted as the ensemble flux
 
 $$
 J_\nu
@@ -397,8 +397,8 @@ The allowed difference between rows is the data-product context $\nu_i$, not a n
 6. `propagation_slope_record` — Define the endpoint-subtracted propagation residual $Z_{\mathrm{prop},X}$, derive or bound the path-rate functional $\alpha_{\mathrm{prop},X}$, and recover $H_{0,\mathbb{A}\mathbb{A}\mathbb{A}}=c_0\,\partial Z_{\mathrm{prop},X}/\partial D$ in the clean low-redshift limit. Status: `draft`.
 7. `absolute_transport_law_continuation` — Consume the promoted absolute-record constraints and derive or falsify the single map from $S(t)$ to $\Gamma_N$, $D_v$, and $\mathcal{P}_{E\to R}$ across gravitational, relative-motion, and deep-space redshift without changing coefficients or explanatory class per case. Status: `proof-continuation`; corpus scaffold: [noether-sea](../../../content/markdown/aaa/spacetime/noether-sea.md#equilibrium-transport-hypothesis); runtime extractor: `scripts/cosmology/redshift-budget-toy-model.mjs`.
 8. `gamma_n_compensated_family` — Consume the promoted minimal static packet for $\Gamma_N$ and decide whether any nonzero density, scale, or core-radius response survives the inverse clock-rate, row-inverse, shared-delay, pressure-response, and hydrogen spectral-row checks. Status: `compensated-family-open`; fixed corpus result: $C_N=\Gamma_N^{-1}$, $\Gamma_N=(\Omega_{\mathrm{clk}}\xi)^{-1}$ in the metric subclass, $b_\xi=1$, and the minimal shared-delay static packet has $(a_n,a_\chi,a_\lambda,a_R)=(0,1+\gamma_{\text{eff}},0,0)$ with $(b_n,b_\chi,b_\lambda,b_R)=(0,(1+\gamma_{\text{eff}})^{-1},0,0)$. Remaining weak-field family: $a_\chi=1+\gamma_{\text{eff}}$ and $b_\chi=(1-b_n a_n-b_\lambda a_\lambda-b_R a_R)/(1+\gamma_{\text{eff}})$ when nonzero density, scale, or core-radius response is admitted. Corpus scaffold: [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target); runtime fixture: `scripts/spacetime/static-response-vector-toy-model.mjs`.
-9. `cadence_scale_retuning_map` — Derive or falsify the single-core map from an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction to $(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$ and show how its coarse-grained average becomes $J_\nu$. Status: `fixture-seeded`; proof scaffold: `content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#cadence-scale-retuning-closure`; runtime fixture: `scripts/tri-binary/retuning-map-toy-model.mjs`.
-10. `noether_core_equilibrium_transport` — Derive or falsify the candidate $f_N$ transport law, including $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, and $R_{\mathrm{eq}}[f_N]$, and test whether it supplies a signed contribution to $\alpha_{\mathrm{prop},X}$ without violating photon coherence gates. Status: `continuity-packet-seeded`.
+9. `cadence_scale_retuning_map` — Derive or falsify the single-core map from an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction to $(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$ and show how its coarse-grained average becomes $J_\nu$. Status: `fixture-seeded`; proof scaffold: `content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#cadence-scale-retuning-closure`; runtime fixture: `scripts/nested-shell-swarm/retuning-map-toy-model.mjs`.
+10. `noether_swarm_equilibrium_transport` — Derive or falsify the candidate $f_N$ transport law, including $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, and $R_{\mathrm{eq}}[f_N]$, and test whether it supplies a signed contribution to $\alpha_{\mathrm{prop},X}$ without violating photon coherence gates. Status: `continuity-packet-seeded`.
 
 ## Closure Objects
 
@@ -419,10 +419,10 @@ The allowed difference between rows is the data-product context $\nu_i$, not a n
 - Effective Hubble slope: $H_{0,\mathbb{A}\mathbb{A}\mathbb{A}}(\hat{\mathbf{k}},X)=c_0\,\partial Z_{\mathrm{prop},X}/\partial D$ in the corrected nearby limit.
 - Absolute-record transport map: $\mathfrak{T}_X[\mathcal{S}_{X,E\to R}]=(\Gamma_{N,E},\Gamma_{N,R},B_X(E),D_v,Y_{X,E\to R})$ from one restricted $S(t)$ record containing the source branch, receiver branch, Noether-Sea cadence, medium flow, causal wakes, and photon path-history ledger relevant to the measured line; the path-rate row must use the same continuity-disciplined $\mathcal C_N[f_N]$ term in gravitational, relative-motion, and deep-space cases.
 - Cadence-scale retuning map: an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction maps one core closure label into another through $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}=(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$, with the ensemble average supplying the candidate current $J_\nu\sim f_N\langle\dot{\nu}_N\rangle_{\Delta A_{\mathrm{cyc}}=\pm h}$ and first estimate $J_\nu=\sum_\sigma f_N r_\sigma\Delta\nu_N^{(q,\sigma)}+O((\Delta\nu_N)^2\partial_\nu f_N)$.
-- Retuning-map toy fixture: `scripts/tri-binary/retuning-map-toy-model.mjs` with documentation in `content/markdown/aaa/validation/simulations/retuning-map-toy-model.md`; this fixture solves the linearized constrained compliance problem and reports branch speed gates plus net $J_\nu$.
-- Noether-core equilibrium transport packet: $f_N(\nu,\mathbf{x},t)$, $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, $R_{\mathrm{eq}}[f_N]$, and the projection from that packet into $\alpha_{\mathrm{prop},X}$ through the fixed row $\Theta_X=(\mathbf b_N,\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$.
+- Retuning-map toy fixture: `scripts/nested-shell-swarm/retuning-map-toy-model.mjs` with documentation in `content/markdown/aaa/validation/simulations/retuning-map-toy-model.md`; this fixture solves the linearized constrained compliance problem and reports branch speed gates plus net $J_\nu$.
+- Noether swarm equilibrium transport packet: $f_N(\nu,\mathbf{x},t)$, $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, $R_{\mathrm{eq}}[f_N]$, and the projection from that packet into $\alpha_{\mathrm{prop},X}$ through the fixed row $\Theta_X=(\mathbf b_N,\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$.
 - Cosmology acceptance vector: $(z,D_L,D_A,H(z),T_{\mathrm{CMB}},P(k),f\sigma_8)$.
-- Shared medium variables: $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\mathcal{M}_{\mathrm{sea}}^{ab}$.
+- Shared medium variables: $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\mathcal{M}_{\mathrm{sea}}^{ab}$.
 - Frame-consistency record for CMB, matter dipoles, supernova directionality, BAO anisotropy, and local $H_0$ scatter.
 - Shared-state residual gate: one $\theta_{\mathrm{sea}}$ must project into SN, BAO, CMB, weak-lensing, redshift-space-distortion, and BBN comparison packets without per-family replacement.
 
@@ -468,7 +468,7 @@ Uncertain claims staged for the next proof packet:
 | --- | --- | --- |
 | This file | [cosmology-closure](../cosmology-closure/cosmology-closure.md) | Convert narrative cosmology into a component transfer-function queue. |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Add cosmology failure witnesses for frame split, image blur, and incompatible transport limits. |
-| This file | [tri-binary-causal-closure/radiation-gate-c-benchmarks](../tri-binary-causal-closure/radiation-gate-c-benchmarks.md) | Keep CMB photon loading tied to local radiation event ledgers. |
+| This file | [nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks](../nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks.md) | Keep CMB photon loading tied to local radiation event ledgers. |
 
 ## Failure Modes
 
@@ -482,7 +482,7 @@ Uncertain claims staged for the next proof packet:
 - `cosmology.clock_signal_delay_split`: the same branch uses different first-order $\chi_{\text{sea}}$ responses for Shapiro delay and clock redshift without carrying $\Delta_\chi^{\mathrm{clk\text{-}sig}}$ as an explicit residual.
 - `cosmology.static_response_vector_underclosure`: candidate $(a_n,a_\chi,a_\lambda,a_R)$ vectors close one weak-field row while failing the endpoint, inverse clock-rate, row-inverse, or shared-delay constraints.
 - `cosmology.dark_energy_coefficient_split`: the dark-energy coefficient row fits a redshift slope but fails chromaticity, cadence, image-sharpness, or shared-state projection checks.
-- `cosmology.equilibrium_current_null`: the proposed Noether-core equilibrium law relaxes to zero signed $J_\nu$ or cancels source terms, so it cannot supply an expansion-like path-rate contribution.
+- `cosmology.equilibrium_current_null`: the proposed Noether swarm equilibrium law relaxes to zero signed $J_\nu$ or cancels source terms, so it cannot supply an expansion-like path-rate contribution.
 - `cosmology.retuning_continuum_leak`: a model treats discrete one-core $h$-scale retunings as smooth single-core frequency drift and loses the branch ledger needed to define $J_\nu$.
 - `cosmology.no_admissible_retuning`: the constrained retuning problem has no branch-admissible solution for $\Delta A_{\mathrm{cyc}}=\pm h$, so the proposed current must be treated as a branch transition, rejection event, or failed closure rather than a smooth equilibrium contribution.
 - `cosmology.gw_transport_overload`: gravitational-wave perturbation terms produce path-rate noise, dispersion, or beam variance above image-sharpness, timing, or gravitational-wave-speed tolerances.

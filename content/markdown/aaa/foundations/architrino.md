@@ -59,7 +59,7 @@ The two polarity names are:
 
 Like polarities repel; unlike polarities attract in the universal interaction law. At the assembly level, electric charge is the coarse bookkeeping summary of the signed architrino inventory. For example, quark and lepton electric charges are built from integer counts of $\epsilon$ units in stable assembly patterns rather than from a separate primitive charge substance.
 
-The value $\epsilon=|e|/6$ is currently an input parameter and a high-priority explanatory target. The working hypothesis is that six-site tri-binary organization supplies the deeper reason for the observed electric-charge fractionation, but that explanation belongs to assembly closure rather than to the primitive definition of an architrino.
+The value $\epsilon=|e|/6$ is currently an input parameter and a high-priority explanatory target. The working hypothesis is that six-site nested shell swarm organization supplies the deeper reason for the observed electric-charge fractionation, but that explanation belongs to assembly closure rather than to the primitive definition of an architrino.
 
 ## Provenance and Persistence
 
@@ -172,14 +172,14 @@ It does not define the force kernel, causal emission-time set, Jacobian weightin
 
 ## Dynamics and Regime Boundary
 
-This page does not own wake regimes, self-hit activation, maximum-curvature binaries, or tri-binary stability mechanisms. Those are behavioral and assembly-level dynamics, not primitive-entity definitions. The chapter therefore names those topics only to keep the reader from importing them back into the definition of a single architrino.
+This page does not own wake regimes, self-hit activation, maximum-curvature binaries, or nested shell swarm stability mechanisms. Those are behavioral and assembly-level dynamics, not primitive-entity definitions. The chapter therefore names those topics only to keep the reader from importing them back into the definition of a single architrino.
 
 The canonical homes are:
 
 - [Master Equation](../dynamics/master-equation.md) for causal hits, delay roots, Jacobian weights, received acceleration, and branch topology.
 - [Binary Dynamics](../dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
 - [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md) for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
-- [Noether Core](../noether-swarm/noether-swarm.md) for the assembly-level Noether-core architecture built from those dynamics.
+- [Noether Swarm](../noether-swarm/noether-swarm.md) for the assembly-level Noether swarm architecture built from those dynamics.
 
 ## Determinism and Multistability
 

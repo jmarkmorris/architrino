@@ -65,7 +65,7 @@ D_{\max}
 D_{\max}\!\left(
 \tau_{\text{coh}},
 c_f,
-\rho_{\text{core}},
+\rho_{\text{NS}},
 \chi_{\text{sea}},
 \eta,
 \Delta_{\mathbf{k}},

@@ -369,9 +369,9 @@ The current composite review groups are:
 
 | Composite Label | Row Recipe |
 | --------------- | ---------- |
-| `Photon` | `Pro Noether Core`; `Anti Noether Core` |
-| `Noether Pair` | `Pro Noether Core`; `Anti Noether Core` |
-| `Noether Quad` | `Pro Noether Core`; `Anti Noether Core`; `Pro Noether Core`; `Anti Noether Core` |
+| `Photon` | `Pro Noether Swarm`; `Anti Noether Swarm` |
+| `Noether Pair` | `Pro Noether Swarm`; `Anti Noether Swarm` |
+| `Noether Quad` | `Pro Noether Swarm`; `Anti Noether Swarm`; `Pro Noether Swarm`; `Anti Noether Swarm` |
 | `Pro Proton` | `Pro Up Quark`; `Pro Down Quark`; `Pro Up Quark` |
 | `Anti Proton` | `Anti Up Quark`; `Anti Down Quark`; `Anti Up Quark` |
 | `Pro Neutron` | `Pro Down Quark`; `Pro Up Quark`; `Pro Down Quark` |
@@ -389,7 +389,7 @@ The current composite review groups are:
 | `Neutral B Meson (d anti-b)` | `Pro Down Quark`; `Anti Bottom Quark` |
 | `Neutral B Meson (b anti-d)` | `Pro Bottom Quark`; `Anti Down Quark` |
 
-The standard row-level tile set may include row-level constituent tiles that appear inside these recipes. It should not include a standalone four-tile `Photon` row: `Photon` is only the composite label over the Pro/Anti Noether Core pair.
+The standard row-level tile set may include row-level constituent tiles that appear inside these recipes. It should not include a standalone four-tile `Photon` row: `Photon` is only the composite label over the Pro/Anti Noether Swarm pair.
 
 The shared review catalog may carry composite label tiles such as `Photon` as `type: "composite-label"` reference artwork. Those label tiles are span-label primitives, not valid row-level assembly payloads.
 
@@ -1385,8 +1385,8 @@ For assembly records, the exact allowed `type` values for `pdgedit/v1` are now f
 - `up-quark-color-variations-assembly`
 - `down-quark-color-variations-family-i-assembly`
 - `down-quark-color-variations-family-ii-assembly`
-- `pro-noether-core-assembly`
-- `anti-noether-core-assembly`
+- `pro-noether-swarm-assembly`
+- `anti-noether-swarm-assembly`
 
 For assemblies, `type` is semantic only.
 

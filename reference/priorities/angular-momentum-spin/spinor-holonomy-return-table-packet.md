@@ -1,12 +1,12 @@
 # Spinor Holonomy Return Table Packet
 
-This proof packet supports [Angular Momentum and Spin Closure](angular-momentum-spin.md), especially the `spinor_closure` and `component_resolved_causal_writhe_bridge` tasks. It does not edit or canonize AAA prose. Its purpose is to make the first ordered-frame holonomy test executable on one stable separated-scale Noether-core branch.
+This proof packet supports [Angular Momentum and Spin Closure](angular-momentum-spin.md), especially the `spinor_closure` and `component_resolved_causal_writhe_bridge` tasks. It does not edit or canonize AAA prose. Its purpose is to make the first ordered-frame holonomy test executable on one stable separated-scale Noether swarm branch.
 
 Claim level: provisional proof packet. A passing table would establish a first branch-local holonomy gate only. It would not by itself prove spin-$\tfrac{1}{2}$ behavior for every fermion-sector branch, recover measurement statistics, or close spin-statistics.
 
 ## Branch and Rotation Data
 
-Use a stable separated-scale Noether-core branch $B_{\mathrm{sep}}$ with ordered layer aliases
+Use a stable separated-scale Noether swarm branch $B_{\mathrm{sep}}$ with ordered layer aliases
 $$
 H\equiv I,\qquad M\equiv M,\qquad L\equiv O,
 $$

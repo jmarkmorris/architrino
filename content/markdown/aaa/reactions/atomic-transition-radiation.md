@@ -13,13 +13,13 @@ Atomic spectra describe effective electron-assembly envelope basins around a nuc
 $$
 \Delta E_{a\to b}^{\mathrm{env}}
 =
-E_{\mathrm{env}}\!\left(a;\mathcal W_{\mathrm{nuc}},\rho_{\text{core}},n,\chi_{\text{sea}}\right)
+E_{\mathrm{env}}\!\left(a;\mathcal W_{\mathrm{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}}\right)
 -
-E_{\mathrm{env}}\!\left(b;\mathcal W_{\mathrm{nuc}},\rho_{\text{core}},n,\chi_{\text{sea}}\right)
+E_{\mathrm{env}}\!\left(b;\mathcal W_{\mathrm{nuc}},\rho_{\text{NS}},n,\chi_{\text{sea}}\right)
 >0.
 $$
 
-Here $\mathcal W_{\mathrm{nuc}}$ is the effective nuclear causal-wake envelope, $\rho_{\text{core}}(\mathbf{x},t)$ is the physical Noether-core density, $n(\mathbf{x},t)$ is the normalized Noether-core density, and $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether-Sea delay factor. The gap is an effective atomic quantity, not a proof that the underlying Noether-core ledgers of the nucleus or electron have already been derived.
+Here $\mathcal W_{\mathrm{nuc}}$ is the effective nuclear causal-wake envelope, $\rho_{\text{NS}}(\mathbf{x},t)$ is the physical Noether swarm density, $n(\mathbf{x},t)$ is the normalized Noether swarm density, and $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether-Sea delay factor. The gap is an effective atomic quantity, not a proof that the underlying Noether swarm ledgers of the nucleus or electron have already been derived.
 
 The observer-level line frequency is recovered only after local clock/rate conversion:
 
@@ -32,7 +32,7 @@ h\nu_{a\to b}^{\mathrm{loc}}
 -
 \Delta E_{\mathrm{med}}
 -
-\Delta E_{\mathrm{core remnant}}.
+\Delta E_{\mathrm{rem}}.
 $$
 
 In the ideal isolated line limit, the non-photon terms are negligible and $E_\gamma\simeq h\nu_{a\to b}^{\mathrm{loc}}$. In dense media, strong gradients, or unresolved recoil regimes, those terms must remain in the ledger rather than being silently absorbed into the line frequency.
@@ -50,10 +50,10 @@ E_\gamma
 +
 \Delta E_{\mathrm{med}}
 +
-\Delta E_{\mathrm{core remnant}},
+\Delta E_{\mathrm{rem}},
 $$
 
-with $\Delta E_{\mathrm{med}}$ and $\Delta E_{\mathrm{core remnant}}$ bounded by the declared isolated-line tolerance rather than hidden in the fitted line frequency. A compact event residual is
+with $\Delta E_{\mathrm{med}}$ and $\Delta E_{\mathrm{rem}}$ bounded by the declared isolated-line tolerance rather than hidden in the fitted line frequency. A compact event residual is
 
 $$
 \mathcal E_{ab}^{\mathrm{evt}}
@@ -68,7 +68,7 @@ E_\gamma
 -
 \Delta E_{\mathrm{med}}
 -
-\Delta E_{\mathrm{core remnant}}
+\Delta E_{\mathrm{rem}}
 \right|
 }{
 \left|
@@ -113,7 +113,7 @@ $$
 \mathcal S_{\gamma}^{\mathrm{at}}
 \!\left(
 \Gamma_a,\Gamma_b,\mathcal W_{\mathrm{nuc}},
-\rho_{\text{core}},n,\chi_{\text{sea}},J_{\mathrm{loc}}
+\rho_{\text{NS}},n,\chi_{\text{sea}},J_{\mathrm{loc}}
 \right)
 \ge
 \mathcal S_{\gamma,*},
@@ -147,7 +147,7 @@ E_\gamma
 +
 \Delta E_{\mathrm{med}}
 +
-\Delta E_{\mathrm{core remnant}}.
+\Delta E_{\mathrm{rem}}.
 $$
 
 The corresponding momentum ledger is
@@ -191,7 +191,7 @@ The minimum event record is:
 | Field | Required content |
 | --- | --- |
 | Atomic state | Pre/post atomic envelope basins $a,b$, nuclear causal-wake envelope $\mathcal W_{\mathrm{nuc}}$, and closure status of the orbital labels used |
-| Local Noether-Sea state | $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy if relevant, and local causal-root/Jacobian data |
+| Local Noether-Sea state | $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy if relevant, and local causal-root/Jacobian data |
 | Transition gap | $\Delta E_{a\to b}^{\mathrm{env}}$ and the clock/rate conversion used for observer comparison |
 | Channel decision | Planar-mode gate status, non-radiative alternatives, and whether $E_{\gamma,\min}$ is active in the chosen model |
 | Photon output or capture | $E_\gamma$, $\mathbf p_\gamma$, direction, phase frequency, local photon-channel speed $c_\gamma$, and Gate A null-branch status |
@@ -286,7 +286,7 @@ $$
 $$
 after unit conventions are fixed. The important closure is not the symbol $\mathcal{M}$ itself; it is that the same event window, source basin, accepted photon branch, recoil row, and residual row generate both the discrete line rate and the continuum final-state density used by the comparison formula.
 
-Selection rules should be carried as Gate C closure targets. In this framing, an allowed line corresponds to a nonzero basin measure for the accepted photon channel after energy, momentum, transverse angular momentum, parity-like geometry, and local medium constraints are applied. A forbidden or suppressed line corresponds to zero or small basin measure in the leading channel, with possible recovery through higher-order routing, medium coupling, or multi-photon channels only when the event ledger closes.
+Selection rules should be carried as Gate C closure targets. In this framing, an allowed line corresponds to a nonzero basin measure for the accepted photon channel after energy, momentum, transverse angular momentum, parity-like geometry, and local Noether-Sea constraints are applied. A forbidden or suppressed line corresponds to zero or small basin measure in the leading channel, with possible recovery through higher-order routing, medium coupling, or multi-photon channels only when the event ledger closes.
 
 ## Observer-Level Recovery
 

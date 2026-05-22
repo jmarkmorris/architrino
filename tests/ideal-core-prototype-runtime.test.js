@@ -12,7 +12,7 @@ import {
   solveFlightTime,
 } from "../src/apps/ideal-core/IdealCorePrototypeRuntime.js";
 
-test("ideal core model reuses three animator circular binaries", () => {
+test("nested shell swarm prototype model reuses three animator circular binaries", () => {
   const model = createIdealCoreModel({ THREE });
 
   assert.equal(model.binaries.length, 3);

@@ -10,11 +10,11 @@
         "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md"
       ],
       "g_N_H_components": {
-        "ln_n": "Normalized Noether-core density response from the hydrogen spectral channel ledger.",
+        "ln_n": "Normalized Noether swarm density response from the hydrogen spectral channel ledger.",
         "ln_chi_sea": "Noether-Sea delay factor from the same hydrogen spectral channel ledger.",
         "ln_lambda": "Envelope transverse scale response retained by the spectral channel.",
         "minus_ln_xi": "Negative envelope shape-ratio response; the Lorentz-branch coefficient is fixed by b_xi=1.",
-        "ln_R_core_ratio": "Representative Noether-core scale response retained by the static endpoint row."
+        "ln_R_core_ratio": "Representative Noether swarm scale response retained by the static endpoint row."
       },
       "envelope_gap_over_h": "Use the electron-envelope calculation for each recovered hydrogen transition label; this scaffold derives envelope_gap_over_h as frequency_scale times Lambda_ab times exp(line_inferred_ln_Gamma_N).",
       "observed_frequency": "Use the observer-level hydrogen line frequency after the local clock-rate conversion is declared; this scaffold derives observed_frequency as frequency_scale times Lambda_ab.",

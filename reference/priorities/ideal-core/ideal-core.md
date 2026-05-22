@@ -4,7 +4,7 @@
 
 - Keep `Task Queue` ordered as the current Ideal Core app work queue, with the most important active item first.
 - Keep this priority file app-facing: runtime access, visualization requirements, lesson flow, controls, charts, and acceptance gates. Its task queue is app-local and is not part of the global theory priority score table unless the operator/developer explicitly selects Ideal Core work.
-- Use [../ellipsoid/ideal-core.md](../ellipsoid/ideal-core.md) as the earlier design brief for the Noether-core instrument and central spherical viewing model.
+- Use [../ellipsoid/ideal-core.md](../ellipsoid/ideal-core.md) as the earlier design brief for the Noether swarm instrument and central spherical viewing model.
 - Use [../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) as the current theory bridge for Lorentz-factor quantization, return-cycle closure, and Lorentz spheroid geometry.
 - Do not treat the app as proof by itself; use it to make the candidate geometry, equations, and closure defects visible.
 
@@ -27,9 +27,9 @@
 
 ## Purpose
 
-Ideal Core is the interactive Noether-core visualization app.
+Ideal Core is the interactive Noether swarm visualization app.
 
-Its near-term role is to make the Lorentz response of a Noether core visually and quantitatively legible: the user should be able to change the relative speed $v$, see the Lorentz factor $\gamma$ update, watch the core geometry become a Lorentz-flattened oblate spheroid, and read the corresponding time-dilation and length-contraction symbols directly on the chart.
+Its near-term role is to make the Lorentz response of a Noether swarm visually and quantitatively legible: the user should be able to change the relative speed $v$, see the Lorentz factor $\gamma$ update, watch the core geometry become a Lorentz-flattened oblate spheroid, and read the corresponding time-dilation and length-contraction symbols directly on the chart.
 
 The target reader experience is lesson-like rather than decorative. The app should let a reader see that the same speed ratio $\beta=v/c$ controls:
 
@@ -37,7 +37,7 @@ The target reader experience is lesson-like rather than decorative. The app shou
 - the contracted axis ratio $\xi=R_\parallel/R_\perp=1/\gamma$;
 - the time-dilation relation $\Delta t=\gamma\Delta\tau$;
 - the length-contraction relation $L_\parallel=L_0/\gamma$;
-- and the candidate Noether-core spheroid geometry implied by closed return-cycle closure.
+- and the candidate Noether swarm spheroid geometry implied by closed return-cycle closure.
 
 ## Current State
 
@@ -50,7 +50,7 @@ The target reader experience is lesson-like rather than decorative. The app shou
 
 ## Task Queue
 
-1. `lorentz_core_lesson` — Build the Lorentz-conforming Noether-core lesson view. Status: `active`. Depends on: none.
+1. `lorentz_core_lesson` — Build the Lorentz-conforming Noether swarm lesson view. Status: `active`. Depends on: none.
 2. `symbol_chart_overlay` — Add chart labels and equation callouts that keep the symbols visible while the speed state changes. Status: `next`. Depends on: `lorentz_core_lesson`.
 3. `spheroid_axis_mapping` — Map the core envelope, binary path radii, and velocity direction onto a stable Lorentz spheroid visual grammar. Status: `pending`. Depends on: `lorentz_core_lesson`.
 4. `return_cycle_closure_readout` — Add a closure-defect readout comparing longitudinal and transverse return-cycle timing. Status: `pending`. Depends on: `spheroid_axis_mapping`.
@@ -59,11 +59,11 @@ The target reader experience is lesson-like rather than decorative. The app shou
 
 ### Objective
 
-Create a first lesson mode where the user can vary $\beta=v/c$ and immediately see how Lorentz kinematics maps onto the Noether-core geometry.
+Create a first lesson mode where the user can vary $\beta=v/c$ and immediately see how Lorentz kinematics maps onto the Noether swarm geometry.
 
 The lesson should answer one visual question:
 
-> If a Noether core conforms to Lorentz response, what geometric, timing, and symbolic changes must appear as $v$ increases?
+> If a Noether swarm conforms to Lorentz response, what geometric, timing, and symbolic changes must appear as $v$ increases?
 
 ### Core Equations
 
@@ -184,7 +184,7 @@ $$
 \Delta A_\ell=n_\ell h
 $$
 
-up to leakage and branch-resolution terms. The full Noether-core branch should be shown as a coupled closure requirement:
+up to leakage and branch-resolution terms. The full Noether swarm branch should be shown as a coupled closure requirement:
 
 $$
 (\Delta\phi_I,\Delta\phi_M,\Delta\phi_O)
@@ -207,7 +207,7 @@ inner binary return cycle
 middle binary return cycle
 outer binary return cycle
         ↓
-coupled Noether-core branch closure
+coupled Noether swarm branch closure
         ↓
 outer-binary Lorentz envelope
         ↓
@@ -287,9 +287,9 @@ The lesson mode should have a compact staged flow:
 1. `rest_core` — show $\beta=0$, $\gamma=1$, $R_\parallel=R_\perp$, $\Delta t=\Delta\tau$, and $L_\parallel=L_0$.
 2. `moving_core` — increase $\beta$ and show $\gamma>1$, $R_\parallel<R_\perp$, $\Delta t>\Delta\tau$, and $L_\parallel<L_0$.
 3. `return_cycle` — draw longitudinal and transverse return paths and show how equal closure time requires $\xi=1/\gamma$.
-4. `binary_ledgers` — show that inner, middle, and outer binary return cycles must close together for a stable Noether-core branch.
+4. `binary_ledgers` — show that inner, middle, and outer binary return cycles must close together for a stable Noether swarm branch.
 5. `outer_envelope` — label the visible spheroid as the Outer-Binary Lorentz Envelope and show $V_{\mathrm{env}}(v)/V_{\mathrm{env}}(0)$.
-6. `aaa_candidate` — mark the open theory claim: realized Noether-core branches may admit only closure-compatible Lorentz states rather than an arbitrary continuous deformation.
+6. `aaa_candidate` — mark the open theory claim: realized Noether swarm branches may admit only closure-compatible Lorentz states rather than an arbitrary continuous deformation.
 
 ### Chart Requirements
 
@@ -319,12 +319,12 @@ This priority is done when:
 - the teaching view distinguishes one-way legs from return cycles and groups $t_+$ and $t_-$ into $T_\parallel$;
 - the teaching view reserves or displays inner, middle, and outer binary ledger rows so the outer envelope is not mistaken for the whole closure burden;
 - the lower-left equation zone explains $\beta$, $\gamma$, $\xi$, $\Delta t$, $\Delta\tau$, $L_0$, and $L_\parallel$ in a lesson sequence;
-- and the app clearly distinguishes established Lorentz kinematics from the $\mathbb{A}\mathbb{A}\mathbb{A}$ candidate claim about Noether-core branch realization.
+- and the app clearly distinguishes established Lorentz kinematics from the $\mathbb{A}\mathbb{A}\mathbb{A}$ candidate claim about Noether swarm branch realization.
 
 ## Related Files
 
 - [../ellipsoid/ideal-core.md](../ellipsoid/ideal-core.md)
 - [../../../content/markdown/aaa/spacetime/lorentz-kinematics.md](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
-- [../../../content/markdown/aaa/spacetime/noether-core-geometry.md](../../../content/markdown/aaa/spacetime/noether-core-geometry.md)
+- [../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md)
 - [../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
-- [../../../content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md)
+- [../../../content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md)

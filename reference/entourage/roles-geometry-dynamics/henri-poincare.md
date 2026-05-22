@@ -32,7 +32,7 @@ Shape the **qualitative dynamical skeleton** of the architrino system--especiall
    - Formulate self-hit as the appearance of **history-dependent forces** in the equations of motion (non-Markovian memory).
    - Classify:
      - **Bifurcations** associated with the onset of self-hit (Hopf, saddle-node, period-doubling, etc.) and the resulting **meta-stable branching** among coexisting attractors.
-     - Threshold-style transitions in **Noether-core energy transfer** where outcomes are deterministic but microstate-sensitive.
+     - Threshold-style transitions in **Noether swarm energy transfer** where outcomes are deterministic but microstate-sensitive.
      - Parameter regions where self-hit yields:
        - New limit cycles (candidate particle-like attractors),
        - Chaotic dynamics (effective stochasticity without fundamental randomness),

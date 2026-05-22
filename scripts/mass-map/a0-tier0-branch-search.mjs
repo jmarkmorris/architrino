@@ -925,7 +925,7 @@ const WEAK_TIER_SELECTOR = {
   label: "IMO",
   active_layers: ["I", "M", "O"],
   note:
-    "The Tier 0 A0 branch-search row carries the full tri-binary layer set; reduced shielding selectors IM- and I-- require later branch-family projection rows.",
+    "The Tier 0 A0 branch-search row carries the full nested shell swarm layer set; reduced shielding selectors IM- and I-- require later branch-family projection rows.",
 };
 
 const WEAK_REQUIRED_RETAINED_LABELS = [

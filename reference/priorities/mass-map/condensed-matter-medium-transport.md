@@ -14,7 +14,7 @@ $$
 \mathcal{R}_{\text{tr}}\!\left(
 \mathbf{V}_{\text{cm}},
 \mathbf{a}_{\text{cm}},
-\rho_{\text{core}},
+\rho_{\text{NS}},
 \chi_{\text{sea}},
 \mathcal{M}_{\text{sea}}^{ab},
 \Delta_{\mathbf{k}}
@@ -32,7 +32,7 @@ $$
 
 Above threshold, some transported energy must enter excitation, radiation, medium heating, or branch transition channels.
 
-When the threshold is crossed, this packet consumes the shared [residual-routing event-ledger theorem](../tri-binary-causal-closure/residual-routing-event-ledger.md). It owns $\mathcal{R}_{\text{tr}}$, the transport thresholds, and condensed-matter benchmark failures; the shared packet owns the general channel-routing and ledger contract.
+When the threshold is crossed, this packet consumes the shared [residual-routing event-ledger theorem](../nested-shell-swarm-causal-closure/residual-routing-event-ledger.md). It owns $\mathcal{R}_{\text{tr}}$, the transport thresholds, and condensed-matter benchmark failures; the shared packet owns the general channel-routing and ledger contract.
 
 ## Critical Transport Surface
 
@@ -168,7 +168,7 @@ The condensed-matter, analogue-gravity, and topological-defect source family sha
 | Source signal | Extracted structure | Use in this packet |
 | --- | --- | --- |
 | Analogue gravity in flowing media: [Barcelo/Liberati/Visser](https://arxiv.org/abs/gr-qc/0505065) and [Visser acoustic black holes](https://arxiv.org/abs/gr-qc/9712010) | Linear perturbations see an effective metric algebraically determined by density, flow velocity, and signal speed, while the underlying medium obeys its own non-Einstein dynamics. | Treat $g_{\mu\nu}^{\text{eff}}$ and $\mathcal{M}_{\text{sea}}^{ab}$ as constitutive readouts of one Noether-Sea state record, not as independent metric or drag laws. |
-| Volovik-style emergent-medium examples: [Induced Gravity in Superfluid $^3$He](https://arxiv.org/abs/cond-mat/9806010) and [field theory in $^3$He](https://arxiv.org/abs/cond-mat/9812381) | Gap nodes, order-parameter textures, and quasiparticle spectra can generate effective gauge/metric behavior only after the condensed-matter order parameter is specified. | Use emergent-medium language only when the Noether-core branch record, orientation record, and stability gap are explicit. Do not import unsupported `superfluid` language into the Noether Sea. |
+| Volovik-style emergent-medium examples: [Induced Gravity in Superfluid $^3$He](https://arxiv.org/abs/cond-mat/9806010) and [field theory in $^3$He](https://arxiv.org/abs/cond-mat/9812381) | Gap nodes, order-parameter textures, and quasiparticle spectra can generate effective gauge/metric behavior only after the condensed-matter order parameter is specified. | Use emergent-medium language only when the Noether swarm branch record, orientation record, and stability gap are explicit. Do not import unsupported `superfluid` language into the Noether Sea. |
 | Topological defects and vortices: [Mermin](https://doi.org/10.1103/RevModPhys.51.591), [Kosterlitz-Thouless](https://doi.org/10.1088/0022-3719/6/7/010), and superconducting vortex-pair tests such as [Beasley/Mooij/Orlando](https://doi.org/10.1103/PhysRevLett.42.1165) | Defect stability is controlled by an order-parameter target space, winding or homotopy class, stiffness, and a critical unbinding or branch-opening threshold. | Admit a topological or vortex-like transport claim only as a branch-transition or effective-material recovery target, never as a generic Noether-Sea drag term. |
 
 The safe topological-defect test is therefore not a new medium ontology. It is an admissibility condition for any claimed defect channel. A source-level order-parameter comparison must exhibit a projection from the retained branch record to an effective target space,

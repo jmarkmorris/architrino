@@ -15,7 +15,7 @@ Provide a **high-level structural language** (categories, functors, moduli space
      - Objects: stable or metastable architrino configurations (binaries, tri-binaries, spacetime assemblies, composite particles).
      - Morphisms: physically allowed processes (continuous deformations, association, dissociation, reconfiguration, scattering).
    - Introduce **subcategories** for:
-     - Noether-core / Noether-Sea assemblies,
+     - Noether swarm / Noether-Sea assemblies,
      - Fermionic-like tri-binaries,
      - Bosonic-like planar assemblies.
 

@@ -120,13 +120,13 @@ The strongest particle, strong-force, vacuum-pairing, black-hole-core, and toy-c
 
 ---
 
-The next subsection frames the tri-binary Noether core assembly as a candidate universal nucleus, emphasizing a proposed micro-macro correspondence between particles and black holes.
+The next subsection frames the tri-binary Noether swarm assembly as a candidate universal nucleus, emphasizing a proposed micro-macro correspondence between particles and black holes.
 
 ---
 
 **Geometric Analysis of the Universal Generator: The Fractal Identity**
 
-Within this framework, the Noether Core is treated as a candidate **fundamental solution** (Green's-function-like generator) for physical structure.
+Within this framework, the Noether Swarm is treated as a candidate **fundamental solution** (Green's-function-like generator) for physical structure.
 
 In geometric analysis, when a single structural definition (the tri-binary) appears at the microscopic scale (particles), the macroscopic scale (black holes), and the background scale (the Noether Sea), we call this **Conformal Invariance** or **Self-Similarity**.
 

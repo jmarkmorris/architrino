@@ -1,6 +1,6 @@
 # Swarm Partition and Spinor Closure
 
-This detailed priority file supports [Angular Momentum and Spin Closure](angular-momentum-spin.md). It preserves the tri-binary partition theorem target, solved minimal transition, ordered Noether-core frame, spinor proof obligations, and component-resolved causal-writhe hypothesis.
+This detailed priority file supports [Angular Momentum and Spin Closure](angular-momentum-spin.md). It preserves the tri-binary partition theorem target, solved minimal transition, ordered Noether swarm frame, spinor proof obligations, and component-resolved causal-writhe hypothesis.
 
 ## Result 2026-05-12: Tri-Binary Partition Theorem Target
 
@@ -502,7 +502,7 @@ $$
 \det\!\big[\hat{\mathbf n}_H,\hat{\mathbf n}_M,\hat{\mathbf n}_L\big]\ne0.
 $$
 
-The candidate ordered Noether-core frame is the history-lifted object
+The candidate ordered Noether swarm frame is the history-lifted object
 
 $$
 F_{\text{NC}}(t)=
@@ -576,9 +576,9 @@ the ordered 3D frame leaves the spinor-test domain and should reduce to the $SO(
 
 ## Result 2026-05-14: Provisional Ordered-History Holonomy Model
 
-This pass adds a geometry-first candidate for the spinor closure mechanism. It is not a completed spin proof and does not import spin-$\tfrac{1}{2}$ behavior from quantum mechanics. The candidate claim is narrower: a non-coplanar ordered Noether-core frame can require $4\pi$ restoration only if the delayed causal-wake history detects the noncontractible $2\pi$ loop of the visible orientation frame and records that detection as a branch-preserving two-sheet history lift.
+This pass adds a geometry-first candidate for the spinor closure mechanism. It is not a completed spin proof and does not import spin-$\tfrac{1}{2}$ behavior from quantum mechanics. The candidate claim is narrower: a non-coplanar ordered Noether swarm frame can require $4\pi$ restoration only if the delayed causal-wake history detects the noncontractible $2\pi$ loop of the visible orientation frame and records that detection as a branch-preserving two-sheet history lift.
 
-The geometric reason is the same kind of obstruction as a tethered-frame or belt-holonomy obstruction, but here the tether is not an external analogy. It is the active causal-root and causal-wake history of the Noether core. The present ordered normal triad may return after a $2\pi$ rotation, while the delayed roots still remember how the three oriented binary planes, pro/anti branch data, transaction axis, and component-resolved causal-writhe data were transported through the loop.
+The geometric reason is the same kind of obstruction as a tethered-frame or belt-holonomy obstruction, but here the tether is not an external analogy. It is the active causal-root and causal-wake history of the Noether swarm. The present ordered normal triad may return after a $2\pi$ rotation, while the delayed roots still remember how the three oriented binary planes, pro/anti branch data, transaction axis, and component-resolved causal-writhe data were transported through the loop.
 
 **Definition (provisional ordered-history sheet).** Fix a stable branch chart $B$ with non-coplanar ordered normals and conserved $\mathcal J_B(\mathfrak H_B)$. Let $\mathcal Q_B^{\text{ord}}$ be the branch-preserving configuration cell whose gauge quotient removes center-of-mass translation, time-origin choice, and smooth phase reparameterization inside the same root-ledger cell, but does not remove ordered layer identity, oriented-normal reversal, causal-root relabeling, or chirality-branch change.
 
@@ -650,7 +650,7 @@ The second equation is the $4\pi$ restoration condition.
 
 **Lemma (provisional belt-holonomy obstruction).** Suppose a stable ordered-core branch $B$ admits the map $\eta_B$ above, and suppose $\epsilon_{\text{wake}}$ is not removed by $G_{\text{gauge}}$. Then a $2\pi$ physical rotation of the visible ordered frame transports $\tilde q_B$ to the opposite history sheet, while the doubled $4\pi$ path restores the full lifted state.
 
-*Proof route.* The ordered normal triad gives an $SO(3)$ orientation projection. A $2\pi$ physical rotation is the nontrivial element of $\pi_1(SO(3))\cong\mathbb Z_2$, so the spinor-like condition gives $\eta_B=1$ on that loop. The lifted transport therefore changes $\epsilon_{\text{wake}}$. Because $\epsilon_{\text{wake}}\notin G_{\text{gauge}}$, this changed sheet is a physical branch-history difference, not a removable coordinate choice. Concatenating the same loop with itself gives the trivial element of $\mathbb Z_2$, so the second transport has $\eta_B=0$ and restores the lifted history. The proof becomes an actual Noether-core proof only after $\epsilon_{\text{wake}}$ is computed from causal-root continuation and component-resolved causal writhe on a stable branch certificate.
+*Proof route.* The ordered normal triad gives an $SO(3)$ orientation projection. A $2\pi$ physical rotation is the nontrivial element of $\pi_1(SO(3))\cong\mathbb Z_2$, so the spinor-like condition gives $\eta_B=1$ on that loop. The lifted transport therefore changes $\epsilon_{\text{wake}}$. Because $\epsilon_{\text{wake}}\notin G_{\text{gauge}}$, this changed sheet is a physical branch-history difference, not a removable coordinate choice. Concatenating the same loop with itself gives the trivial element of $\mathbb Z_2$, so the second transport has $\eta_B=0$ and restores the lifted history. The proof becomes an actual Noether swarm proof only after $\epsilon_{\text{wake}}$ is computed from causal-root continuation and component-resolved causal writhe on a stable branch certificate.
 
 **Counterexample / falsifier.** If the causal-root ledgers and $\mathcal{W}_{c}^{\text{core}}$ are invariant under the generator loop, or if the quotient treats $\epsilon_{\text{wake}}$ as gauge, then $\eta_B([\gamma_{2\pi}])=0$ and the ordered core closes as an ordinary $SO(3)$ object after $2\pi$. Likewise, if the ordered normals become coplanar so that
 
@@ -664,7 +664,7 @@ the branch leaves the non-coplanar spinor-test domain and the candidate two-shee
 
 ### Next Proof Obligations For Spinor Closure
 
-1. **Branch-certificate extraction:** for one stable separated-scale Noether-core branch, extract $P_a$, $\hat{\mathbf n}_a$, $\mathcal{G}_a$, $\mathcal{G}_{ab}$, $\chi_c$, phase offsets, and the total angular-momentum ledger over a common closure period.
+1. **Branch-certificate extraction:** for one stable separated-scale Noether swarm branch, extract $P_a$, $\hat{\mathbf n}_a$, $\mathcal{G}_a$, $\mathcal{G}_{ab}$, $\chi_c$, phase offsets, and the total angular-momentum ledger over a common closure period.
 2. **Quotient lemma:** prove that the branch-preserving quotient above has an $SO(3)$ frame projection while retaining any nontrivial history sheet; state exactly which deformations are gauge and which are physical branch changes.
 3. **Holonomy calculation:** transport $F_{\text{NC}}$ around a controlled $2\pi$ rotation path and compute the induced action on causal-root ledgers, causal-writhe parity, and phase-closure residuals. The result must come from delayed root transport, not from the usual spinor analogy.
 4. **$4\pi$ restoration test:** show that the same transport over $4\pi$ restores the full history-lifted state, not only the visible normal triad. Failure to restore falsifies the proposed lift; restoration after $2\pi$ collapses the target back to ordinary $SO(3)$ behavior.
@@ -731,7 +731,7 @@ The labels may collapse only under additional proved conditions: axialization dr
 
 Missing evidence:
 
-1. Evaluate $Wr_c^a$ and $Wr_c^{ab}$ on controlled pro-core and anti-core tri-binary trajectories to see whether the ordered `HML/HLM` distinction survives smooth deformation and flips only through causal-locus reconnection.
+1. Evaluate $Wr_c^a$ and $Wr_c^{ab}$ on controlled pro-swarm and anti-swarm nested shell swarm trajectories to see whether the ordered `HML/HLM` distinction survives smooth deformation and flips only through causal-locus reconnection.
 2. Test whether scalar $Wr_c[\gamma]$ aliases distinct ordered cores or balanced pro/anti pairings; if it aliases, require the component-resolved data set before using causal writhe as a spin bridge.
 3. In horizon-adjacent simulations, track $\{s_a^{\text{plane}}\}$, $\mathbf{J}_{\text{net}}\cdot\hat{\mathbf V}$, mixed-row lifetimes, and branch persistence after re-expansion.
 4. In weak-sector exposure tests, verify whether the same $\Sigma_{\mathrm{WCT}}$ that gates left-handed docking also supplies the CKM overlap domain and reaction-provenance payload.

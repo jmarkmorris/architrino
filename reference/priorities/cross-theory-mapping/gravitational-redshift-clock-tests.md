@@ -25,7 +25,7 @@ The canon source for this branch is [Proper Time and Time Dilation](../../../con
 $$
 \frac{d\tau}{dt}
 =
-F\!\left(\mathbf{v},\rho_{\text{core}}(\mathbf{x},t),n(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t),\Phi_{\text{eff}},\text{clock geometry}\right).
+F\!\left(\mathbf{v},\rho_{\text{NS}}(\mathbf{x},t),n(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t),\Phi_{\text{eff}},\text{clock geometry}\right).
 $$
 
 In the weak-field, low-velocity observer limit, the benchmark is
@@ -50,7 +50,7 @@ Thus gravitational redshift is a clock-rate comparison produced by Noether-Sea r
 ## Closure Objects
 
 - Clock observable: $\omega_{\text{clk}}/\omega_0=d\tau_{\text{eff}}/dt$.
-- Medium response: $\mathcal{M}_{\mathrm{sea}}^{ab}$ with density and delay variables $\rho_{\text{core}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$.
+- Medium response: $\mathcal{M}_{\mathrm{sea}}^{ab}$ with density and delay variables $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$.
 - Effective potential: $\Phi_{\text{eff}}=c_f^2\ln(\Omega\xi)$ where the relevant constitutive subclass supports that map.
 - Observer-speed convention: $c_0=c_{\text{eff}}(\infty)$ for precision weak-field clock comparisons; $c_f$ remains the primitive wake speed inside causal-root dynamics.
 - Benchmark distance: $d_{\text{clk}}=|\Delta\nu/\nu-\Delta\Phi_N/c_0^2|$ in the weak-field limit.

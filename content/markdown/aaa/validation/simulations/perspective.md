@@ -62,10 +62,10 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 ---
 
-## Assembly grammar → Noether Core and flux tubes
+## Assembly grammar -> nested shell swarm and flux tubes
 
 - What we assume:
-  - Binary orbits are the base motif; binaries can nest with wide scale separation; a triply nested configuration (Noether Core) is dynamically robust.
+  - Binary orbits are the base motif; binaries can nest with wide scale separation; a nested shell swarm is dynamically robust.
   - Polar regions of fast binaries host persistent axial structures (vortex-like loci in the delayed wake geometry), which couple between assemblies.
 
 - Why it matters:

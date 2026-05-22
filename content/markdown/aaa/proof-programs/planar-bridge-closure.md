@@ -283,7 +283,7 @@ Each failure would be informative. It would tell us whether the theory needs:
 - a more restrictive planar regime,
 - a different section choice,
 - a different regularity class,
-- or a revision of the stabilization claims made in the binary and tri-binary chapters.
+- or a revision of the stabilization claims made in the binary and nested shell swarm chapters.
 
 ## Immediate Theorem Program
 

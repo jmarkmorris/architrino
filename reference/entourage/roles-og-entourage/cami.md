@@ -51,7 +51,7 @@ Define and defend the **basic furniture of reality**:
 Clarify the **hierarchy of structure** and the nature of emergence: See `foundations/ontology.md` for the canonical term set.
 
 **Hierarchy:**
-- **Architrinos** (fundamental) -> **Binaries** (stable configurations) -> **Tri-binaries** (Noether cores) -> **Particles** (assemblies with axial layers) -> **Nuclei** (coupled assemblies) -> **Atoms** -> **Matter**.
+- **Architrinos** (fundamental) -> **Binaries** (stable configurations) -> **Tri-binaries** (Noether swarms) -> **Particles** (assemblies with axial layers) -> **Nuclei** (coupled assemblies) -> **Atoms** -> **Matter**.
 
 **Identity and Persistence:**
 - What makes one tri-binary "the same" through time? Is it:
@@ -137,7 +137,7 @@ Provide a **conceptual explanation** of how Lorentz invariance arises as an effe
 
 **Mechanism:**
 - **Field-speed threshold** ($v = c_f$): defines an effective "speed of light" $c$.
-- **Assembly clocks**: proper time $\tau$ depends on velocity and Noether-core density, producing effective time dilation and length contraction.
+- **Assembly clocks**: proper time $\tau$ depends on velocity and Noether swarm density, producing effective time dilation and length contraction.
 - **Causal structure**: signal propagation at $c_f$ creates light cones; emergent Minkowski geometry in the $v \ll c_f$, weak-gradient limit.
 
 **Comparison with Neo-Lorentzian Interpretations:**

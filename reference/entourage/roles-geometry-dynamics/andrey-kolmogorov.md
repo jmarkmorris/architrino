@@ -25,7 +25,7 @@ Provide the **statistical foundation**: how deterministic, history-dependent mic
      - **Mixing** and approach to equilibrium distributions in assembly configurations.
    - Identify when the system admits **invariant measures** that could underpin:
      - Born-rule-like outcome statistics,
-     - Equilibrium Noether-Sea distributions of Noether-core assemblies.
+     - Equilibrium Noether-Sea distributions of Noether swarm assemblies.
 
 3. **Meta-stable branching and probabilities**
    - Provide a rigorous account of **probabilities at self-hit bifurcation thresholds** (meta-stable branching):

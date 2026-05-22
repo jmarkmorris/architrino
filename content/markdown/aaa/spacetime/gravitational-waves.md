@@ -15,7 +15,7 @@ g_{\mu\nu}^{\text{eff}}=\eta_{\mu\nu}+h_{\mu\nu},
 \qquad
 |h_{\mu\nu}|\ll1,
 $$
-with background medium state homogeneous/isotropic at leading order.
+with background Noether-Sea state homogeneous and isotropic at leading order.
 
 Define trace-reversed perturbation
 $$
@@ -96,7 +96,7 @@ This is a forecast and comparison gate. It does not license a massive-graviton o
 
 ## Medium-Transport Perturbation
 
-For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether-Sea state used by redshift and dark-energy modules. In the provisional Noether-core equilibrium packet,
+For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether-Sea state used by redshift and dark-energy modules. In the provisional Noether swarm equilibrium packet,
 
 $$
 \partial_t f_N
@@ -108,7 +108,7 @@ S_{\mathrm{BH}}
 -R_{\mathrm{eq}}[f_N],
 $$
 
-the term $S_{\mathrm{GW}}$ records the disturbance of the local Noether-core cadence distribution by the gravitational-wave channel. It is not an additional default polarization mode and not a license for frequency-dependent gravitational-wave propagation in validated bands. It is a possible low-amplitude contribution to the medium state later sampled by photons, clocks, and growth observables.
+the term $S_{\mathrm{GW}}$ records the disturbance of the local Noether swarm cadence distribution by the gravitational-wave channel. It is not an additional default polarization mode and not a license for frequency-dependent gravitational-wave propagation in validated bands. It is a possible low-amplitude contribution to the Noether-Sea state later sampled by photons, clocks, and growth observables.
 
 The redshift-facing projection should therefore be bounded as a perturbation of the path-rate functional:
 
