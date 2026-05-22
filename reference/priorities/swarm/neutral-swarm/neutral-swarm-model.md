@@ -113,7 +113,7 @@ $$
 A general neutral swarm support descriptor is an annular or hollow support band
 
 $$
-\mathcal{D}_{\mathrm{supp}}^{\mathrm{knot}}
+\mathcal{D}_{\mathrm{supp}}^{\mathrm{neutral}}
 =
 \left(
 \mathbf{C},
@@ -122,7 +122,7 @@ R_{\mathrm{out}},
 B_i^-,
 B_i^+,
 \mathcal{H}_{\mathrm{cent}},
-\mathcal{S}_{\mathrm{sector}}
+\mathcal{S}_{\mathrm{case}}
 \right),
 $$
 
@@ -174,7 +174,7 @@ $$
 \frac{R_{\mathrm{out}}}{R_{\mathrm{in}}}.
 $$
 
-A shell swarm sector has $\beta_{\mathrm{band}}\approx1$ after radius normalization. A general neutral swarm branch may have $\beta_{\mathrm{band}}\gg1$ while still remaining bounded and noncolliding.
+A shell swarm case has $\beta_{\mathrm{band}}\approx1$ after radius normalization. A general neutral swarm branch may have $\beta_{\mathrm{band}}\gg1$ while still remaining bounded and noncolliding.
 
 ---
 
@@ -296,7 +296,7 @@ $$
 \sum_{i\in P_a}\sigma_i=0.
 $$
 
-In a nested shell swarm sector, each block $P_a$ is the binary contained in one shell. Thus $a$ indexes that binary, and the same index names the shell when the nested shell context is clear.
+In a nested shell swarm case, each block $P_a$ is the binary contained in one shell. Thus $a$ indexes that binary, and the same index names the shell when the nested shell context is clear.
 
 Once $\mathcal{P}$ is declared, the binary-index notation $i=(a,\sigma)$ becomes available. The partition-indexed radii are then derived from [nested-shell-swarm-radial-support-functional.md](../nested-shell-swarm/nested-shell-swarm-radial-support-functional.md), not assumed:
 
@@ -340,10 +340,10 @@ d_{\min}
 >2\epsilon_{\mathrm{tube}}.
 $$
 
-Then the branch may attach a labeled link or knot invariant
+Then the branch may attach a labeled link, braid, or framing invariant
 
 $$
-\mathcal{K}_{\mathrm{knot}}
+\mathcal{T}_{\mathrm{top}}
 =
 \left(
 \operatorname{Link}_{ij},
@@ -514,7 +514,7 @@ Thus a neutral swarm can provide a hollow support band around a central inventor
 A general neutral swarm certificate is
 
 $$
-\mathfrak{R}_{\mathrm{knot}}^\nu(B)
+\mathfrak{R}_{\mathrm{neutral}}^\nu(B)
 =
 \left(
 \mathsf{NeutralInventory},
@@ -542,8 +542,8 @@ The required rows are:
 | $\mathsf{NeutralInventory}$ | exactly three positive and three negative architrinos, total $Q_{\mathrm{core}}=0$, source-site $3$-$2$ inventory |
 | $\mathsf{Curves}^{\nu}$ | six closed arclength curves, bounded speed factors, physical-period or winding rows |
 | $\mathsf{HollowSupport}$ | $R_{\mathrm{in}}$, $R_{\mathrm{out}}$, support-band margins, central-hollow exclusion, support viability |
-| $\mathsf{CloudOccupancy}$ | optional occupancy density, signed-balance, and coverage rows when support-distribution containment is claimed |
-| $\mathsf{Topology}$ | optional knot/link/framing data with a tubular noncollision floor |
+| $\mathsf{SupportOccupancy}$ | optional occupancy density, signed-balance, and coverage rows when support-distribution containment is claimed |
+| $\mathsf{Topology}$ | optional link/framing data with a tubular noncollision floor |
 | $\mathsf{Root}^{\nu}$ | all active causal roots for ordered pairs $i\ne j$, Jacobian floors, inactive gaps, same-source policy |
 | $\mathsf{Tail}^{\nu}$ | finite owned tail cover, exclusion or assimilation, coefficient-box persistence |
 | $\mathsf{Dynamics}^{\nu}$ | tangential speed ODE, primitive speed band, normal force-curvature balance |
@@ -551,23 +551,23 @@ The required rows are:
 | $\mathsf{Action}^{\nu}$ | action scale, history-work curl, speed storage/exchange, variational rows |
 | $\mathsf{Noether}^{\nu}$ | energy, momentum, angular momentum, charge, source provenance, Noether-Sea exchange |
 | $\mathsf{Event}^{\nu}$ | self-hit, root-fold, support-boundary, central-hollow, topology-change, endpoint exchange |
-| $\mathsf{OptionalSlot}$ | binary partition, antipodal, nested shell swarm, or shell swarm sector reduction rows if claimed |
+| $\mathsf{OptionalSlot}$ | binary partition, antipodal, nested shell swarm, or shell swarm reduction rows if claimed |
 | $\mathsf{ObserverExport}$ | Lorentz, photon, mass, generation, color, and strong-field rows as computed or `not_computed` |
 
 The general branch is retained only if the required rows close on one live ledger. The optional reduction row may fail without rejecting the general branch.
 
 ---
 
-## 9. Sector Reductions
+## 9. Optional Reductions
 
 The old architectures are recovered as reductions of the general branch:
 
-| Sector | Added rows |
+| Reduction | Added rows |
 | --- | --- |
 | exact-antipodal binary | involution $\iota$, antipodal geometry, speed parity, binary-root parity |
 | shell swarm | partition $\mathcal{P}$, small partition-indexed radius spread, common support band |
 | nested shell swarm | partition $\mathcal{P}$, ordered partition-indexed radii, persistent radius gaps |
-| nested shell swarm transition sector | partition $\mathcal{P}$ plus radius functional and transition rows |
+| nested shell swarm transition case | partition $\mathcal{P}$ plus radius functional and transition rows |
 | neutral swarm without binary partition | no partition; hollow support band, occupancy density, topology, and all-pairs root ledger |
 
 The proof direction is one-way:
@@ -575,10 +575,10 @@ The proof direction is one-way:
 $$
 \text{general retained branch with optional reduction rows}
 \Longrightarrow
-\text{sector branch}.
+\text{branch satisfying the added reduction rows}.
 $$
 
-The reverse implication is false unless the sector certificate also proves that no required general-case rows were hidden by the symmetry ansatz.
+The reverse implication is false unless the reduction certificate also proves that no required general-case rows were hidden by the symmetry ansatz.
 
 ---
 
@@ -593,17 +593,17 @@ $$
 \qquad
 \texttt{hollow-support-band-open},
 \qquad
-\texttt{cloud-occupancy-row-optional-open},
+\texttt{support-occupancy-row-optional-open},
 \qquad
 \texttt{optional-binary-partition-reduction-open},
 $$
 
 $$
-\texttt{general-knot-topology-ledger-open},
+\texttt{general-topology-ledger-open},
 \qquad
-\texttt{general-knot-cloud-action-row-open},
+\texttt{general-neutral-swarm-action-row-open},
 \qquad
-\texttt{general-knot-cloud-event-ledger-open},
+\texttt{general-neutral-swarm-event-ledger-open},
 \qquad
 \texttt{not-retained}.
 $$

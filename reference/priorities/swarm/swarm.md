@@ -167,6 +167,8 @@ Batch: `certificate_and_gate_repair_1`.
 
 Scope: `reference/priorities/swarm/` only. The batch may update control, architecture, gate, synthesis, and bounded-speed certificate packets when the edit reconnects existing proof obligations to the accepted triad. It may not edit `content/markdown/aaa`, simulations, scene assets, app code, formula symbols, file paths, or task identifiers.
 
+Progress: first repair pass completed for [proof-program-and-decision-gate.md](shell-swarm/proof-program-and-decision-gate.md), [swarm-architecture.md](shell-swarm/swarm-architecture.md), [current-dynamics-synthesis.md](shell-swarm/current-dynamics-synthesis.md), [bounded-speed-factor-finite-mode-branch-system.md](shell-swarm/bounded-speed-factor-finite-mode-branch-system.md), [neutral-swarm-model.md](neutral-swarm/neutral-swarm-model.md), and [nested-shell-swarm-radial-support-functional.md](nested-shell-swarm/nested-shell-swarm-radial-support-functional.md). The next priority-side step is `scoped_validation_method_promotion_plan`, followed by a small user-facing corpus migration batch proposal for operator approval.
+
 Migration rule: preserve the mathematics and residual symbols while replacing loose taxonomy with the accepted triad or with explicit mathematical objects. Use `case` for informal comparisons unless the passage is using `sector` in the standard mathematical sense of a subset, invariant subspace, or solution region cut out by stated constraints.
 
 Acceptance criteria:

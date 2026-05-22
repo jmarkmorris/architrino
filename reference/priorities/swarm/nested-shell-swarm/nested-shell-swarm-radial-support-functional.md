@@ -26,7 +26,7 @@ $$
 R_{a,\sigma}^-,
 R_{a,\sigma}^+,
 \delta_{a,\sigma},
-\Pi_{\mathrm{sector}}
+\Pi_{\mathrm{case}}
 \right).
 $$
 

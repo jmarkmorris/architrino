@@ -21,7 +21,7 @@ The architecture must keep the following levels separate.
 | Claim | Level | Current status | Required mathematical object |
 | --- | --- | --- | --- |
 | Architrinos move in absolute time through the Euclidean void and interact through causal wakes. | ontology | inherited from the canonical dynamics | no new swarm proof needed |
-| A neutral swarm may be a six-architrino branch without mandatory binary grouping. | derivation/closure target | staged in neutral swarm source packet | all-pairs root ledger, support-band rows, bounded-speed dynamics, action/event ledgers, optional sector reduction status, and retained branch certificate |
+| A neutral swarm may be a six-architrino branch without mandatory binary grouping. | derivation/closure target | staged in neutral swarm source packet | all-pairs root ledger, support-band rows, bounded-speed dynamics, action/event ledgers, optional reduction status, and retained branch certificate |
 | Nested shell swarm and shell swarm geometries may be cases of one branch family. | derivation/closure target | staged in nested shell swarm model card | radial support functional, radial residuals, label-use decision, and retained nested shell swarm branch certificate |
 | A shell swarm branch can remain noncolliding in one support band. | derivation/closure target | open | retained carrier row with $d_{\min}>\epsilon_x$ and finite active causal roots |
 | A twelve-architrino charged fermion can be represented by a central-inventory ledger plus neutral shell swarm choreography. | derivation/closure target | open | integer inventory row plus noncollision/regularization representative |
@@ -302,7 +302,7 @@ The first proof-packet layer is now staged:
 | Bounded speed factor variational Noether closure | states the period-multiplier, speed-factor Euler-Lagrange, speed-ODE equivalence, storage/exchange, support-work, and Noether-current rows as one action ledger |
 | Bounded speed factor self-hit exchange closure | converts finite self-hit return into a named exchange event with speed energy, self-hit potential, work splits, endpoint exits, conservation ledgers, and source provenance |
 | Exact-antipodal parity lemma | proves the expected pair-even tangential and pair-odd curvature residual split; antipodal relaxation requires a stable pair-even obstruction, not parity alone |
-| Symmetry block decomposition theorem | decomposes exact-antipodal obstruction, adjoint cokernel, and midpoint relaxation tests by row-aware pair sector and binary Fourier block |
+| Symmetry block decomposition theorem | decomposes exact-antipodal obstruction, adjoint cokernel, and midpoint relaxation tests by row-aware source-pair block and binary Fourier block |
 | Support-complete dynamics obstruction certificate | states the left-null/cokernel inequality required before declaring exact-antipodal support-complete dynamics locally impossible |
 | Adjoint cokernel equations | derives the root-dependent adjoint equations, obstruction scalar budget, and relaxation-column projection test behind the support-complete cokernel row |
 | Support-complete Newton closure certificate | states the range/cokernel Kantorovich certificate required before residual descent becomes a local dynamics-closure candidate |

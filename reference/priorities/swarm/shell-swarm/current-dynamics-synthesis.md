@@ -1,12 +1,12 @@
 # Current Dynamics Synthesis
 
-Promotion status: `priority-only`. This packet summarizes the current mathematical state of same-level tri-binary dynamics after the rigid, polarity, deformation, arclength, linearized, and theorem-target packets in this directory. It is a synthesis of priority-side work only. It does not retain a branch or authorize migration into `content/markdown/aaa`.
+Promotion status: `priority-only`. This packet summarizes the current mathematical state of shell swarm dynamics after the rigid, polarity, deformation, arclength, linearized, and theorem-target packets in this directory. It is a synthesis of priority-side work only. It does not retain a branch or authorize migration into `content/markdown/aaa`.
 
 ---
 
 ## 1. Main Conclusion
 
-The rigid octahedral same-level carrier is a strong geometry/root seed, but it is not a dynamics branch.
+The rigid octahedral shell swarm seed carrier is a strong geometry/root seed, but it is not a dynamics branch.
 
 The viable dynamics problem is not:
 
@@ -40,7 +40,7 @@ $$
 \Gamma\widetilde{\mathbf{F}}_i^\nu,
 $$
 
-with the fixed-speed equation recovered only on the special slice $\nu_i\equiv1$. The free-support row further says that these closed curves live in $\mathbb{R}^3$ with a support descriptor; fixed-radius or spherical motion is a sector condition, not a base assumption.
+with the fixed-speed equation recovered only on the special slice $\nu_i\equiv1$. The free-support row further says that these closed curves live in $\mathbb{R}^3$ with a support descriptor; ideal zero-variation or spherical motion is a special row, not a base assumption.
 
 The tangential bounded-speed row is now a scalar ODE rather than a residual to suppress:
 
@@ -132,7 +132,7 @@ The current screens all remain negative.
 | [support-complete-m3-root-sheet-variations.md](support-complete-m3-root-sheet-variations.md) | differentiates assimilated tail root sheets through delayed force, projected residuals, virtual-work curl, action-scale derivative, and Krawczyk envelopes | if tail roots exist, no action or proof-budget row is valid until these sheet derivatives are emitted on the same ledger |
 | [unresolved-tail-force-error-bound.md](unresolved-tail-force-error-bound.md) | bounds the omitted delayed-force and curvature-residual perturbation if the tail is not certified absent | the current $M=3$ tail has no emitted count/Jacobian envelope, so the branch-certificate error remains unbounded |
 | [exact-antipodal-parity-lemma.md](exact-antipodal-parity-lemma.md) | proves the expected pair-even/pair-odd residual split for an antipodally closed exact-antipodal ledger | parity alone does not trigger antipodal relaxation; a stable pair-even obstruction is still required |
-| [symmetry-block-decomposition-theorem.md](symmetry-block-decomposition-theorem.md) | decomposes exact-antipodal obstruction and relaxation tests by row-aware pair sector and binary Fourier block | current $M=3$ data lack the support-complete adjoint cokernel basis needed before a block obstruction can be certified |
+| [symmetry-block-decomposition-theorem.md](symmetry-block-decomposition-theorem.md) | decomposes exact-antipodal obstruction and relaxation tests by row-aware source-pair block and binary Fourier block | current $M=3$ data lack the support-complete adjoint cokernel basis needed before a block obstruction can be certified |
 | [support-complete-dynamics-obstruction-certificate.md](support-complete-dynamics-obstruction-certificate.md) | states the cokernel inequality needed to prove no exact-antipodal zero exists in a certified support-complete ball | current $M=3$ packets do not emit the support-complete residual, left-null basis, Lipschitz bound, or tail envelope needed to apply it |
 | [adjoint-cokernel-equations.md](adjoint-cokernel-equations.md) | derives the adjoint root-transfer equations, obstruction scalars, and relaxation-column projections behind the cokernel test | current $M=3$ packets do not emit a weighted adjoint basis, root-transfer margins, or projected relaxation-column matrix |
 | [support-complete-newton-closure-certificate.md](support-complete-newton-closure-certificate.md) | gives the constructive range/cokernel Newton certificate for a support-complete dynamics candidate | current $M=3$ data has descent and rank, but lacks support-complete memory, right-inverse/Lipschitz bounds, and cokernel closure after a ledger-consistent correction |
@@ -274,7 +274,7 @@ There is now a second, broader interpretation. A bounded speed factor $\nu_i$ ca
 
 ## 4. Current Dynamics Picture
 
-The fixed-speed same-level branch has three hard constraints that must be solved together.
+The fixed-speed shell swarm branch has three hard constraints that must be solved together.
 
 First, the delayed force field must be tangent-free:
 
@@ -482,7 +482,7 @@ The finite-mode convergence handoff now separates a certified finite $M=3$ candi
 
 The master retention theorem now states the complete exact-antipodal $M=3$ meaning of "solved": a single normalized master residual $\mathfrak{E}_{M3}\le1$ plus positive floors, with every certified error term accounted for and every row on one ledger. It also makes the alternatives explicit: retained exact-antipodal $M=3$ branch candidate, support-complete dynamics/action candidate, support-complete exact-antipodal obstruction, or active-window-only.
 
-The promotion theorem now composes those obligations into one decision surface. A same-level branch promotes only when geometry, support-complete roots, dynamics, finite-mode convergence, action scale, Noether conservation, root-dependent stability, inventory, and event rows all share one ledger convention. The current $M=3$ row is useful continuation evidence, but its promotion status is still `not-retained`.
+The promotion theorem now composes those obligations into one decision surface. A shell swarm branch promotes only when geometry, support-complete roots, dynamics, finite-mode convergence, action scale, Noether conservation, root-dependent stability, inventory, and event rows all share one ledger convention. The current $M=3$ row is useful continuation evidence, but its promotion status is still `not-retained`.
 
 The same-source lemma removes a tempting but invalid fixed-speed escape route. In an arclength chart with $\nu_i\equiv1$, ordinary same-source roots satisfy chord length $\le$ arclength delay; equality forces a straight segment and $J_{\mathrm{self}}=0$. The bounded speed factor extension reopens only a controlled version: an ordinary self-hit requires an overspeed hinge, a positive $J_{\mathrm{self}}^{\nu}$ floor, a short center-time duration $\operatorname{dur}_u(\mathcal{H}_i)\le\tau_{\mathrm{hit}}^u$, overspeed budget, return certificate, and action/event rows. Without those rows, a same-source force channel must still be a declared regularized fold-layer or split-source representative.
 
@@ -497,5 +497,5 @@ $$
 \qquad
 \texttt{priority-only},
 \qquad
-\texttt{no-retained-same-level-branch-yet}.
+\texttt{no-retained-shell-swarm-branch-yet}.
 $$

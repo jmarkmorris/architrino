@@ -330,9 +330,9 @@ $$
 
 and the tangential projection drives the speed factor instead of vanishing.
 
-Thus the residual slots $\mathcal{R}_{\mathrm{speed/clock}}$ and $\mathcal{R}_{\mathrm{dyn}}$ are branch-mode dependent. In a fixed-speed arclength sector they include period compatibility, $\mathcal{R}_{\mathrm{tan}}=0$, and curvature closure. In a bounded-speed sector they include $\mathcal{R}_{\nu\mathrm{band}}$, $\mathcal{R}_{\mathrm{speedODE}}^\nu$, $\mathcal{R}_{N\mathrm{rec}}^\nu$, $\mathcal{R}_{H}$, $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, and the action/event exchange rows that make nonzero tangential force ledgered rather than hidden. A retained bounded-speed packet must also emit the coupled live-ledger residual $\mathcal{R}_{\mathrm{cpl}}^{\nu}$ from [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), because roots, force weights, speed clocks, support multipliers, action scale, and event surfaces vary together.
+Thus the residual blocks $\mathcal{R}_{\mathrm{speed/clock}}$ and $\mathcal{R}_{\mathrm{dyn}}$ are branch-mode dependent. In a fixed-speed arclength case they include period compatibility, $\mathcal{R}_{\mathrm{tan}}=0$, and curvature closure. In a bounded-speed case they include $\mathcal{R}_{\nu\mathrm{band}}$, $\mathcal{R}_{\mathrm{speedODE}}^\nu$, $\mathcal{R}_{N\mathrm{rec}}^\nu$, $\mathcal{R}_{H}$, $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, and the action/event exchange rows that make nonzero tangential force ledgered rather than hidden. A retained bounded-speed packet must also emit the coupled live-ledger residual $\mathcal{R}_{\mathrm{cpl}}^{\nu}$ from [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), because roots, force weights, speed clocks, support multipliers, action scale, and event surfaces vary together.
 
-### 3.1 Same-Level Carrier Conditions
+### 3.1 Shell Swarm Carrier Conditions
 
 The shell swarm hypothesis replaces radius-ratio gates with support-band, phase-offset, and topology gates. Relative to the branch center $\mathbf{C}(t)$, define the orbital velocity
 
