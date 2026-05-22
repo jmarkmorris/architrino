@@ -13,8 +13,6 @@
 
 The remembered reader-facing swarm triad is frozen here until a dedicated terminology cleanup pass replaces or confirms it:
 
-Git diagnosis: commit `5f830d3f` created the Noether swarm hub and the six scene names using the clean `Noether Swarm`, `Neutral Swarm`, `Shell Swarm`, `Nested Shell Swarm`, `Swarm Geometry`, and `Swarm Dynamics` vocabulary. Commit `73d34ddd` had earlier introduced a separate generalized priority packet with disputed working labels. This control file now treats those disputed labels as quarantined priority history, not as accepted terminology.
-
 | Reader-facing term | Working meaning for now | Status |
 | --- | --- | --- |
 | `neutral swarm` | The broad six-architrino neutral case before any required binary grouping or radial organization is assumed. | Accepted-for-now reader-facing term. |

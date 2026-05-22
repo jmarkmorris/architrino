@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 156,
-      "sections": 1220
+      "entries": 157,
+      "sections": 1232
     }
   },
   "tocRoot": {
@@ -1864,6 +1864,112 @@
         "scenePath": "content/scenes/noether-swarm/noether_swarm.json",
         "children": [
           {
+            "id": "noether_swarm__overview",
+            "title": "Noether Swarm",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-swarm/noether_swarm_overview.json",
+            "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Neutral Swarm",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Neutral Swarm",
+                "sectionKey": "neutral swarm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Shell Swarm",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Shell Swarm",
+                "sectionKey": "shell swarm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Nested Shell Swarm",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Nested Shell Swarm",
+                "sectionKey": "nested shell swarm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Properties of the Nested Shell Swarm",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Properties of the Nested Shell Swarm",
+                "sectionKey": "properties of the nested shell swarm",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Integer Phase-Closure States",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Integer Phase-Closure States",
+                "sectionKey": "integer phase closure states",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cadence-Scale Retuning Hypothesis",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Cadence-Scale Retuning Hypothesis",
+                "sectionKey": "cadence scale retuning hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Rest-Level Scaling Curve",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Rest-Level Scaling Curve",
+                "sectionKey": "rest level scaling curve",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reduced Nested Shell Swarm Closure Label",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Reduced Nested Shell Swarm Closure Label",
+                "sectionKey": "reduced nested shell swarm closure label",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometry and Exclusion Envelope",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Geometry and Exclusion Envelope",
+                "sectionKey": "geometry and exclusion envelope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Nested Shell Swarm Hierarchy and Fermion Generations",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "The Nested Shell Swarm Hierarchy and Fermion Generations",
+                "sectionKey": "the nested shell swarm hierarchy and fermion generations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Nested Shell Swarm Alignment and Planck-Scale Framing",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "Nested Shell Swarm Alignment and Planck-Scale Framing",
+                "sectionKey": "nested shell swarm alignment and planck scale framing",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Foundation for Fermions",
+                "markdownPath": "content/markdown/aaa/noether-swarm/noether-swarm.md",
+                "markdownSection": "The Foundation for Fermions",
+                "sectionKey": "the foundation for fermions",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "noether_swarm__neutral_swarm",
             "title": "Neutral Swarm",
             "kind": "diagram",
@@ -2071,11 +2177,11 @@
             ]
           },
           {
-            "id": "noether_swarm__swarm_geometry",
-            "title": "Swarm Geometry",
+            "id": "noether_swarm__nested_shell_swarm_geometry",
+            "title": "Nested Shell Swarm Geometry",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-swarm/swarm_geometry.json",
+            "scenePath": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
             "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
             "sections": [
               {

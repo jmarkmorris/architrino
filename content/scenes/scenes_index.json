@@ -1591,11 +1591,6 @@
       "path": "content/scenes/noether-swarm/shell_swarm.json"
     },
     {
-      "id": "noether_swarm__swarm_geometry",
-      "name": "Nested Shell Swarm Geometry",
-      "path": "content/scenes/noether-swarm/swarm_geometry.json"
-    },
-    {
       "id": "assemblies__gauge_structure_emergence",
       "name": "Gauge Structure Emergence",
       "path": "content/scenes/assemblies/gauge_structure_emergence.json"
@@ -1619,6 +1614,11 @@
       "id": "noether_swarm__overview",
       "name": "Noether Swarm",
       "path": "content/scenes/noether-swarm/noether_swarm_overview.json"
+    },
+    {
+      "id": "noether_swarm__nested_shell_swarm_geometry",
+      "name": "Nested Shell Swarm Geometry",
+      "path": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json"
     }
   ]
 }

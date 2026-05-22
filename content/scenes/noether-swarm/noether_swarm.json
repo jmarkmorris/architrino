@@ -32,8 +32,8 @@
         "scenePath": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json"
       },
       {
-        "nodeId": "swarm_geometry",
-        "scenePath": "content/scenes/noether-swarm/swarm_geometry.json"
+        "nodeId": "nested_shell_swarm_geometry",
+        "scenePath": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json"
       }
     ]
   },
@@ -104,7 +104,7 @@
       "fixedPosition": true
     },
     {
-      "id": "swarm_geometry",
+      "id": "nested_shell_swarm_geometry",
       "title": "Nested Shell Swarm Geometry",
       "radius": 2.05,
       "color": "#2f4f7a",

@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 500,
-      "edges": 1241,
-      "scenes": 323,
+      "nodes": 501,
+      "edges": 1243,
+      "scenes": 324,
       "markdownIndexes": 0,
       "markdownDocs": 177,
       "runtimeEdges": 476,
@@ -2057,12 +2057,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "noether_swarm__swarm_geometry",
-      "name": "Swarm Geometry",
-      "path": "content/scenes/noether-swarm/swarm_geometry.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "assemblies__gauge_structure_emergence",
       "name": "Gauge Structure Emergence",
       "path": "content/scenes/assemblies/gauge_structure_emergence.json",
@@ -2084,6 +2078,18 @@
       "id": "noether_swarm__nested_shell_swarm_dynamics",
       "name": "Nested Shell Swarm Dynamics",
       "path": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_swarm__overview",
+      "name": "Noether Swarm",
+      "path": "content/scenes/noether-swarm/noether_swarm_overview.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_swarm__nested_shell_swarm_geometry",
+      "name": "Nested Shell Swarm Geometry",
+      "path": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
       "nodeType": "scene"
     },
     {
@@ -4924,6 +4930,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "nodeType": "scene",
+      "id": "noether_swarm__nested_shell_swarm_geometry",
+      "name": "Nested Shell Swarm Geometry",
+      "path": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "searchTarget": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/noether-swarm/nested_shell_swarm.json",
       "nodeType": "scene",
       "id": "noether_swarm__nested_shell_swarm",
@@ -4942,6 +4957,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/noether-swarm/noether_swarm_overview.json",
+      "nodeType": "scene",
+      "id": "noether_swarm__overview",
+      "name": "Noether Swarm",
+      "path": "content/scenes/noether-swarm/noether_swarm_overview.json",
+      "searchTarget": "content/scenes/noether-swarm/noether_swarm_overview.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/noether-swarm/noether_swarm.json",
       "nodeType": "scene",
       "id": "noether_swarm",
@@ -4957,15 +4981,6 @@
       "name": "Shell Swarm",
       "path": "content/scenes/noether-swarm/shell_swarm.json",
       "searchTarget": "content/scenes/noether-swarm/shell_swarm.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/noether-swarm/swarm_geometry.json",
-      "nodeType": "scene",
-      "id": "noether_swarm__swarm_geometry",
-      "name": "Swarm Geometry",
-      "path": "content/scenes/noether-swarm/swarm_geometry.json",
-      "searchTarget": "content/scenes/noether-swarm/swarm_geometry.json",
       "implicit": false
     },
     {
@@ -10856,18 +10871,32 @@
       "to": "scene:content/scenes/noether-swarm/nested_shell_swarm_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-swarm/noether_swarm.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "to": "scene:content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-swarm/noether_swarm.json",
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
       "to": "scene:content/scenes/noether-swarm/nested_shell_swarm.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-swarm/noether_swarm.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
       "to": "scene:content/scenes/noether-swarm/neutral_swarm.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-swarm/noether_swarm.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
+      "to": "scene:content/scenes/noether-swarm/noether_swarm_overview.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-swarm/noether_swarm.json",
       "field": "scene.children[0]"
@@ -10877,14 +10906,7 @@
       "to": "scene:content/scenes/noether-swarm/shell_swarm.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-swarm/noether_swarm.json",
-      "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/noether-swarm/noether_swarm.json",
-      "to": "scene:content/scenes/noether-swarm/swarm_geometry.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-swarm/noether_swarm.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -12364,10 +12386,17 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-swarm/swarm_geometry.json",
+      "from": "scene:content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
       "to": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-swarm/swarm_geometry.json",
+      "source": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/noether-swarm/noether_swarm_overview.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-swarm/noether-swarm.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/noether-swarm/noether_swarm_overview.json",
       "field": "scene.source.path"
     },
     {

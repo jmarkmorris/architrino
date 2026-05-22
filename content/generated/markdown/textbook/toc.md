@@ -268,7 +268,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Revision Triggers (Failure Modes)](../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md?section=Revision+Triggers+%28Failure+Modes%29)
     - [Acceleration-Gradient Branch Comparison](../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md?section=Acceleration-Gradient+Branch+Comparison)
     - [Routed Extensions](../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md?section=Routed+Extensions)
-  - [Nested Shell Swarm Geometry](../../../scenes/noether-swarm/swarm_geometry.json)
+  - [Nested Shell Swarm Geometry](../../../scenes/noether-swarm/nested_shell_swarm_geometry.json)
     - [Ownership Boundary](../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md?section=Ownership+Boundary)
     - [Dynamic Exclusion Envelope](../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md?section=Dynamic+Exclusion+Envelope)
     - [Assembly-Noether-Sea Interface Diagnostic](../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md?section=Assembly-Noether-Sea+Interface+Diagnostic)
