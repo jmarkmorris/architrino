@@ -2088,10 +2088,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Dynamic Exclusion Zone",
+                "title": "Dynamic Exclusion Envelope",
                 "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-                "markdownSection": "Dynamic Exclusion Zone",
-                "sectionKey": "dynamic exclusion zone",
+                "markdownSection": "Dynamic Exclusion Envelope",
+                "sectionKey": "dynamic exclusion envelope",
                 "headingLevel": 2
               },
               {

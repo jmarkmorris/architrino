@@ -257,7 +257,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Routed Extensions](../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md?section=Routed+Extensions)
   - [Swarm Geometry](../../../scenes/noether-swarm/swarm_geometry.json)
     - [Ownership Boundary](../../../markdown/aaa/spacetime/noether-core-geometry.md?section=Ownership+Boundary)
-    - [Dynamic Exclusion Zone](../../../markdown/aaa/spacetime/noether-core-geometry.md?section=Dynamic+Exclusion+Zone)
+    - [Dynamic Exclusion Envelope](../../../markdown/aaa/spacetime/noether-core-geometry.md?section=Dynamic+Exclusion+Envelope)
     - [Assembly-Noether-Sea Interface Diagnostic](../../../markdown/aaa/spacetime/noether-core-geometry.md?section=Assembly-Noether-Sea+Interface+Diagnostic)
     - [Oblate Spheroidal Form](../../../markdown/aaa/spacetime/noether-core-geometry.md?section=Oblate+Spheroidal+Form)
     - [Canonical Geometry Variables](../../../markdown/aaa/spacetime/noether-core-geometry.md?section=Canonical+Geometry+Variables)
