@@ -1,5 +1,7 @@
 # Tri-Binary Proof Program And Decision Gate
 
+Terminology status: `quarantined-priority-history`. This gate map is inherited architecture source, not terminology authority. Its disputed labels may remain here for git history and mathematical source mining, but they are not accepted reader-facing taxonomy. Route any reuse through [swarm.md](swarm.md), whose active reader-facing triad is `neutral swarm`, `shell swarm`, and `nested shell swarm`.
+
 Promotion status: `priority-only`. This document coordinates the same-level tri-binary mathematics developed in this directory. It does not authorize migration into `content/markdown/aaa` until a retained branch packet satisfies the decision gate in [swarm-architecture.md](swarm-architecture.md).
 
 The merge decision now runs through [neutral-knot-cloud-branch-model.md](neutral-knot-cloud-branch-model.md) and [hybrid-variable-radius-model-card.md](hybrid-variable-radius-model-card.md). Same-level tri-binary is therefore one sector of a broader neutral six-site knot-cloud branch family, while the nested tri-binary packet set remains comparison and fallback source material until the hybrid user-facing corpus merge gate passes.
