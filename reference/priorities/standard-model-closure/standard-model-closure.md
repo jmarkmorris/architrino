@@ -4,9 +4,9 @@
 
 - Kind: `priority`
 - Rank: `12`
-- Value: `17.22`
+- Value: `17.11`
 - Cost: `6.2`
-- ROI: `2.78`
+- ROI: `2.76`
 - Status: `tolerance-rule-scaffolded`
 
 ## Task Queue

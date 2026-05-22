@@ -284,6 +284,27 @@ $$
 
 The certificate is the sampled phase-offset scan itself: a phase row may lower RMS relative to the zero-offset row, but the best sampled row remains `not_retained`, keeps a positive maximum tangential residual, and leaves support-complete root certification, action, event, Noether, stability, and convergence rows open. This rejects only the retention overread, not the broader usefulness of phase offsets as search coordinates.
 
+The polarity-phase retention overread witness is implemented at:
+
+```bash
+node scripts/neutral-swarm/octahedral-polarity-phase-retention-witness.mjs --out /tmp/neutral-swarm-octahedral-polarity-phase-retention-witness.json --pretty
+node scripts/neutral-swarm/octahedral-polarity-phase-retention-witness.mjs --validate /tmp/neutral-swarm-octahedral-polarity-phase-retention-witness.json --pretty
+```
+
+Its schema is
+
+$$
+\texttt{neutral-swarm-octahedral-polarity-phase-retention-witness/v1}.
+$$
+
+It closes the neutral-polarity-plus-rigid-phase retention overread by rejection:
+
+$$
+\texttt{closed-rejected:polarity-phase-improvement-implies-retention}.
+$$
+
+The certificate is [../shell-swarm/polarity-phase-rigid-screen-results.md](../shell-swarm/polarity-phase-rigid-screen-results.md): neutral polarity reassignment plus rigid phase offsets improve the RMS tangential residual to about $0.8296$, but the best row remains `not_retained`, keeps positive pointwise tangential residual with maximum about $1.7874$, and leaves the master retention rows open. This rejects only the retention overread, not polarity reassignment or phase offsets as search coordinates.
+
 ---
 
 ## 3. Pair And Inventory Audit
