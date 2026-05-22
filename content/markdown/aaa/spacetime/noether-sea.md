@@ -339,7 +339,7 @@ $$
 \right],
 $$
 
-where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Noether Core Geometry](noether-core-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether core can sit inside the same coordinate window as ambient Noether-Sea cores without becoming part of the ambient medium record; ledger complement, not mere spatial proximity, makes the separation.
+where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether core can sit inside the same coordinate window as ambient Noether-Sea cores without becoming part of the ambient medium record; ledger complement, not mere spatial proximity, makes the separation.
 
 A candidate equilibrium-transport equation is
 
@@ -893,7 +893,7 @@ This page owns:
 This page does not own:
 
 - Noether-core internal architecture; see [Noether Swarm](../noether-swarm/noether-swarm.md).
-- Noether-core exclusion-envelope geometry; see [Noether Core Geometry](noether-core-geometry.md).
+- Noether-core exclusion-envelope geometry; see [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md).
 - Pro/anti coupling hypotheses and cluster motifs; see [Spacetime Assemblies](spacetime-assemblies.md).
 - Effective metric derivation; see [Emergent Metric](emergent-metric.md).
 - Clock and ruler behavior; see [Proper Time and Time Dilation](proper-time-and-time-dilation.md).

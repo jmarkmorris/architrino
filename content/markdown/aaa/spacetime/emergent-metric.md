@@ -338,7 +338,7 @@ In the shared pullback notation, the stress-side consumer is $\Pi_{\mathrm{matte
 
 ## Noether-Core Deformation and Metric Language
 
-At the assembly level, an individual Noether core has an oblate, deformable exclusion envelope; see [Noether Core Geometry](noether-core-geometry.md). This chapter does not identify that single-core envelope with the metric. The metric bridge uses many deforming Noether cores in the Noether Sea as the medium whose coarse variables determine clock, ruler, and signal behavior.
+At the assembly level, an individual Noether core has an oblate, deformable exclusion envelope; see [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md). This chapter does not identify that single-core envelope with the metric. The metric bridge uses many deforming Noether cores in the Noether Sea as the medium whose coarse variables determine clock, ruler, and signal behavior.
 
 When translating toward General Relativity, Einstein's field equations are treated as the effective continuum relation
 $$
@@ -364,7 +364,7 @@ The useful GR analogy is therefore limited but important:
 - perturbative methods can capture small departures from spherical symmetry,
 - and standard predictions such as redshift, Shapiro delay, lensing, orbital precession, frame-dragging, and gravitational-wave emission from deformed sources must be recovered from one reusable constitutive map.
 
-The assembly fact that a Noether core is oblate belongs in [Noether Core Geometry](noether-core-geometry.md). The spacetime claim that a population of deformed cores yields an effective metric belongs here and in [PPN Parameters](ppn-parameters.md).
+The assembly fact that a Noether core is oblate belongs in [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md). The spacetime claim that a population of deformed cores yields an effective metric belongs here and in [PPN Parameters](ppn-parameters.md).
 
 ## Jacobson-Type Support: Metric as Equation of State
 

@@ -32047,7 +32047,7 @@ If planar bridge closure fails, those higher-level chapters must become more con
 
 This chapter formulates nested shell swarm dynamics by extending the two-body delayed causal-wake system to a coupled three-binary Noether core. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
 
-It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md), and [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
+It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md), [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md), and [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
 
 This chapter is the canonical dynamics home for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms inside the nested shell swarm variant. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; coupled stability mechanisms belong here and in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md).
 
@@ -34112,38 +34112,38 @@ For the strong-field continuation of that story, see [Black Holes](../../../../m
 
 ### Swarm Geometry
 
-This chapter is the canonical home for the geometric footprint of the Noether core: its dynamic exclusion zone, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether Sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether-Sea density, strain, and delay variables are coarse-grained. The nested-binary scaffold itself belongs in [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). The delayed dynamics that stabilize and deform the tri-binary belong in [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md).
+This chapter is the canonical home for the geometric footprint of the nested shell swarm: its dynamic exclusion envelope, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether Sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether-Sea density, strain, and delay variables are coarse-grained. The nested shell swarm scaffold itself belongs in [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). The delayed dynamics that stabilize and deform the nested shell swarm belong in [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md).
 
-The core is not a static object. It is a dynamic system of six architrinos in a triply nested binary configuration. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the Noether core's effective exclusion envelope.
+The nested shell swarm is not a static object. It is a dynamic system of six architrinos organized as three ordered shell binaries when the exact-binary assumptions are active. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the nested shell swarm's effective exclusion envelope.
 
 #### Ownership Boundary
 
 This chapter owns:
 
-- the dynamic exclusion-zone interpretation of a Noether core,
-- the oblate spheroidal form of the low-energy core envelope,
+- the dynamic exclusion-envelope interpretation of a nested shell swarm,
+- the oblate spheroidal form of the low-energy nested shell swarm envelope,
 - the role of the outer binary in setting the leading boundary,
 - and assembly-level deformation of the envelope under external effective fields, nearby wakes, and Noether-Sea conditions.
 
 This chapter does not own:
 
 - primitive architrino ontology; see [Architrino](../../../../markdown/aaa/foundations/architrino.md),
-- the nested-binary scaffold; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
+- the nested shell swarm scaffold; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
 - exact delay-root dynamics; see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md),
 - observer clocks and rulers; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
 - or metric reconstruction; see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
-#### Dynamic Exclusion Zone
+#### Dynamic Exclusion Envelope
 
-The six architrinos within a Noether core are in rapid orbital motion. The superposition of their fluctuating causal-wake contributions creates a region that is difficult for other architrinos or assemblies to penetrate without being strongly accelerated, deflected, or phase-disrupted.
+The six architrinos within a nested shell swarm are in rapid orbital motion. The superposition of their fluctuating causal-wake contributions creates a region that is difficult for other architrinos or assemblies to penetrate without being strongly accelerated, deflected, or phase-disrupted.
 
-This region acts as a dynamic **exclusion zone**. It is not a solid object with a hard material surface. It is a coherent region of intense wake activity defined by the collective path history of the constituent architrinos.
+This region acts as a dynamic **exclusion envelope**. It is not a solid object with a hard material surface. It is a coherent region of intense wake activity defined by the collective path history of the constituent architrinos.
 
-Another Noether core approaching this region does not encounter a classical wall. It encounters a rapidly varying causal-wake environment whose accelerations and phase constraints can prevent stable transit through the core volume.
+Another Noether swarm approaching this region does not encounter a classical wall. It encounters a rapidly varying causal-wake environment whose accelerations and phase constraints can prevent stable transit through the swarm volume.
 
 #### Assembly-Noether-Sea Interface Diagnostic
 
-The dynamic exclusion zone supplies a spatial approximation to a deeper ledger boundary. At the exact level, an assembly is defined by the architrinos, closure labels, and wake-exchange records phase-locked to that assembly. The surrounding Noether Sea is the neighboring neutral-core population and its ambient wake record after the assembly ledger has been excluded.
+The dynamic exclusion envelope supplies a spatial approximation to a deeper ledger boundary. At the exact level, an assembly is defined by the architrinos, closure labels, and wake-exchange records phase-locked to that assembly. The surrounding Noether Sea is the neighboring neutral swarm population and its ambient wake record after the assembly ledger has been excluded.
 
 For an assembly $a$ and a declared response channel $X$, let $\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)$ denote the local coarse-grained wake/exclusion contribution tied to the assembly's accepted closure label, and let $\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)$ denote the ambient Noether-Sea contribution in the same region. A practical interface diagnostic is
 
@@ -34225,7 +34225,7 @@ q_j,\,
 \right)_{(\mathbf{x},t;t_0)}.
 $$
 
-Here $\mathcal{L}_{j}^{\mathrm{wake}}$ is the wake-history ledger carried by the source branch and $\Lambda_j$ is the closure label or neutral-core label available on that branch. The locked weight is the assembly projector
+Here $\mathcal{L}_{j}^{\mathrm{wake}}$ is the wake-history ledger carried by the source branch and $\Lambda_j$ is the closure label or neutral swarm label available on that branch. The locked weight is the assembly projector
 
 $$
 w_{j,a}^{\mathrm{lock}}(t_0;t)
@@ -34271,7 +34271,7 @@ w_j^{\mathrm{sea}}(t_0;t)
 \right),
 $$
 
-where $\zeta_{\mathrm{sea}}^{(\ell)}\in[0,1]$ retains branches belonging to the neutral-core equilibrium record in the coarse window after all resolved assembly ledgers have been removed. Thus a branch cannot contribute to the locked numerator and the ambient denominator by relabeling alone; it must pass the corresponding ledger projector.
+where $\zeta_{\mathrm{sea}}^{(\ell)}\in[0,1]$ retains branches belonging to the neutral swarm equilibrium record in the coarse window after all resolved assembly ledgers have been removed. Thus a branch cannot contribute to the locked numerator and the ambient denominator by relabeling alone; it must pass the corresponding ledger projector.
 
 The first symbolic form of this ambient projector comes from ledger complement plus local cadence smoothing. Let $\mathfrak A_{\mathrm{res}}(\Omega_\ell,t)$ be the resolved assembly ledgers inside the same coarse window, including matter assemblies and any resolved corridor ledger that has not been declared ambient Noether Sea. Define the complement factor
 
@@ -34292,7 +34292,7 @@ $$
 \right].
 $$
 
-For any neutral-core branch quantity $f_k(t)$, write the ambient window average after resolved assembly ledgers have been removed as
+For any neutral swarm branch quantity $f_k(t)$, write the ambient window average after resolved assembly ledgers have been removed as
 
 $$
 \left\langle f\right\rangle_{\mathrm{sea},\ell}(\mathbf{x},t)
@@ -34306,7 +34306,7 @@ W_\ell(\mathbf{x}-\mathbf{X}_k(t))
 }.
 $$
 
-Let $\nu_k$ be the cadence variable of neutral core $k$, let $\bar\nu_{\mathrm{sea}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and let $\sigma_{\nu,\ell}^2=\left\langle(\nu-\bar\nu_{\mathrm{sea}}^{(\ell)})^2\right\rangle_{\mathrm{sea},\ell}$. The cadence residual of the candidate branch is
+Let $\nu_k$ be the cadence variable of neutral swarm $k$, let $\bar\nu_{\mathrm{sea}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and let $\sigma_{\nu,\ell}^2=\left\langle(\nu-\bar\nu_{\mathrm{sea}}^{(\ell)})^2\right\rangle_{\mathrm{sea},\ell}$. The cadence residual of the candidate branch is
 
 $$
 \Delta_{\mathrm{cad}}^{(\ell)}
@@ -34363,9 +34363,9 @@ $$
 \right].
 $$
 
-This form rejects assembly-locked branches because any resolved locked projector $\zeta_{a'}=1$ drives the complement factor to zero in the exact ledger limit. It retains ambient Noether-Sea branches in the same coarse window when they remain outside all resolved assembly ledgers and agree with the locally smoothed neutral-core cadence and balance record. The tolerances $\epsilon_\nu$, $\epsilon_N$, and $\epsilon_P$ are resolution tolerances for the chosen window and ledger chart; they are not channel-specific fit knobs. Channel differences still enter through $\Pi_X$ and $Q_X$, while the assembly/complement split and neutral-equilibrium projector remain common to the diagnostic.
+This form rejects assembly-locked branches because any resolved locked projector $\zeta_{a'}=1$ drives the complement factor to zero in the exact ledger limit. It retains ambient Noether-Sea branches in the same coarse window when they remain outside all resolved assembly ledgers and agree with the locally smoothed neutral swarm cadence and balance record. The tolerances $\epsilon_\nu$, $\epsilon_N$, and $\epsilon_P$ are resolution tolerances for the chosen window and ledger chart; they are not channel-specific fit knobs. Channel differences still enter through $\Pi_X$ and $Q_X$, while the assembly/complement split and neutral-equilibrium projector remain common to the diagnostic.
 
-The channel intensity is the sector exposure of the same root-selected branch record:
+The channel intensity is the channel exposure of the same root-selected branch record:
 
 $$
 \mathcal{E}_{X}
@@ -34532,7 +34532,7 @@ $$
 \frac{\left(\Delta\ln\xi_j\right)^2}{\epsilon_\xi^2}.
 $$
 
-Here each $\Delta\ln$ term is measured relative to the declared branch reference for the channel: the weak homogeneous core for clock/ruler calibration, the candidate neighboring core for packing, or the pre-entry path branch for penetration.
+Here each $\Delta\ln$ term is measured relative to the declared branch reference for the channel: the weak homogeneous nested shell swarm for clock/ruler calibration, the candidate neighboring swarm for packing, or the pre-entry path branch for penetration.
 
 For penetration along $\hat{\mathbf u}$, decompose the signed branch acceleration into tangent and transverse parts,
 
@@ -34634,7 +34634,7 @@ $$
 \Delta\ln\xi^{\mathrm{stab}},
 $$
 
-for packing scans, where the stable ranges are measured over accepted neighboring-core branches rather than chosen per atom or line. For penetration over a trial path of duration $T_{\mathrm{path}}$ and speed $v_{\mathrm{path}}$,
+for packing scans, where the stable ranges are measured over accepted neighboring-swarm branches rather than chosen per atom or line. For penetration over a trial path of duration $T_{\mathrm{path}}$ and speed $v_{\mathrm{path}}$,
 
 $$
 a_{\parallel,\mathrm{tol}}
@@ -34721,13 +34721,13 @@ D_{\mathrm{penetration}}
 1.
 $$
 
-Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor needs a stronger coherent channel but need not coincide with the full exclusion envelope. Packing asks where another stable Noether core or assembly can remain without persistent phase disruption. Penetration asks where transit through the assembly-dominated wake becomes dynamically unstable. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_X,t)$ is a spatial interface extracted from that ledger and the surrounding Noether-Sea response.
+Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor needs a stronger coherent channel but need not coincide with the full exclusion envelope. Packing asks where another stable Noether swarm or assembly can remain without persistent phase disruption. Penetration asks where transit through the assembly-dominated wake becomes dynamically unstable. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_X,t)$ is a spatial interface extracted from that ledger and the surrounding Noether-Sea response.
 
 #### Oblate Spheroidal Form
 
-The tri-binary structure of the Noether core is anisotropic. The three nested binaries orbit and precess, with their orbital planes tending toward mutual orthogonality in stable low-apparent-energy conditions. The time-averaged envelope is therefore not perfectly spherical.
+The nested shell swarm structure is anisotropic. The three shell binaries orbit and precess, with their orbital planes tending toward mutual orthogonality in stable low-apparent-energy conditions. The time-averaged envelope is therefore not perfectly spherical.
 
-The leading boundary of the exclusion zone is set primarily by the **outer binary**:
+The leading boundary of the exclusion envelope is set primarily by the **outer binary**:
 
 - it has the largest orbital radius,
 - it has the slowest frequency,
@@ -34735,7 +34735,7 @@ The leading boundary of the exclusion zone is set primarily by the **outer binar
 
 The inner and middle binaries supply the high-frequency internal wake structure and stabilizing density of the envelope. The outer binary supplies the main geometric boundary. Together, outer orbit sweep plus system precession naturally produce a flattened-pole, equatorial-bulge form: an **oblate spheroidal exclusion envelope**.
 
-In low-energy prose, "Noether core shape" should usually mean this effective envelope, not a literal material surface.
+In low-energy prose, "nested shell swarm shape" should usually mean this effective envelope, not a literal material surface.
 
 #### Canonical Geometry Variables
 
@@ -34749,7 +34749,7 @@ Use
 $$
 \lambda\equiv\frac{R_{\perp}}{R_{\perp,0}}
 $$
-for the transverse scale ratio relative to a stated reference envelope. The pair $(\xi,\lambda)$ belongs first to Noether-core geometry: $\xi$ records shape and $\lambda$ records scale.
+for the transverse scale ratio relative to a stated reference envelope. The pair $(\xi,\lambda)$ belongs first to nested shell swarm geometry: $\xi$ records shape and $\lambda$ records scale.
 
 Observer clock behavior is a downstream readout, not the definition of either geometry variable. In a successful homogeneous Lorentz-closure regime, the theory should derive
 $$
@@ -34759,7 +34759,7 @@ but this is a closure target linking the clock channel to the oblate envelope. I
 
 #### Lorentz Projection Role
 
-For branch-quantized Lorentz response, the envelope variables $(\xi,\lambda)$ are projection variables. They expose the geometry of a stable all-layer Noether-core branch to external clocks, rulers, and nearby assemblies, but they do not by themselves contain the full branch state.
+For branch-quantized Lorentz response, the envelope variables $(\xi,\lambda)$ are projection variables. They expose the geometry of a stable all-layer nested shell swarm branch to external clocks, rulers, and nearby assemblies, but they do not by themselves contain the full branch state.
 
 The hidden branch state contains the inner, middle, and outer layer radii, frequencies, speeds, axes, active causal-root ledger, and wake exchange. The outer binary controls the leading boundary because it has the largest radius and weakest shielding. Therefore the observed ruler factor is extracted through the outer envelope,
 $$
@@ -34815,7 +34815,7 @@ $$
 \gamma_{\mathrm{rul}}^{(q)}(v)
 +O(\epsilon_{\mathrm{LV}}).
 $$
-The envelope is therefore the visible projection of the all-three-binary causal-root ledger, not an independently assigned Lorentz surface.
+The envelope is therefore the visible projection of the three-binary causal-root ledger, not an independently assigned Lorentz surface.
 
 #### Retuning Projection to Envelope Variables
 
@@ -34881,37 +34881,37 @@ The oblate spheroidal envelope is deformable because it is generated by orbit pa
 - self-hit and partner-hit closure,
 - nearby assembly wakes,
 - Noether-Sea density and stress,
-- and the core's translational state through the medium.
+- and the swarm's translational state through the medium.
 
 External effective fields, nearby assembly wakes, and dense local assemblies can perturb the binary paths. The outer binary is the most exposed channel because it is the largest and most weakly shielded layer. A distortion of that outer path changes the exclusion envelope.
 
-This gives the Noether core two distinct geometric roles:
+This gives the nested shell swarm two distinct geometric roles:
 
-1. As an assembly, it can deform while preserving nested-binary identity across a stable regime.
-2. As a medium constituent, many deforming cores can contribute to coarse-grained Noether-Sea density, strain, and signal-propagation changes.
+1. As an assembly, it can deform while preserving nested shell swarm identity across a stable regime.
+2. As a medium constituent, many deforming swarms can contribute to coarse-grained Noether-Sea density, strain, and signal-propagation changes.
 
 The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
-For the special-relativity-facing comparison of this deformation channel, see [Special Relativity and Deformable Noether Cores](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md). For the focused synthesis of the closed-return quantization claim, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
+For the special-relativity-facing comparison of this deformation channel, see [the deformable Noether swarm comparison](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md). For the focused synthesis of the closed-return quantization claim, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
 
 #### Geometry Interfaces
 
 For local assembly modeling, use this page as the geometric source for:
 
 - an oblate envelope boundary,
-- principal axes set by tri-binary orientation,
+- principal axes set by nested shell swarm orientation,
 - deformation of the outer-binary envelope under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.
 
 For dynamics modeling, use [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
 
-For medium modeling, use [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) and [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md), where many Noether cores become a coupled medium rather than isolated assembly envelopes.
+For medium modeling, use [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) and [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md), where many Noether swarms become a coupled medium rather than isolated assembly envelopes.
 
 #### Summary Commitment
 
-> **Noether Core Geometry Commitment:** A Noether core has an oblate spheroidal exclusion envelope generated by the path history of its nested binaries. The envelope is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether-Sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
+> **Nested Shell Swarm Geometry Commitment:** A nested shell swarm has an oblate spheroidal exclusion envelope generated by the path history of its shell binaries. The envelope is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether-Sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
 
-> **Lorentz Projection Commitment:** In Lorentz closure, the outer-binary envelope supplies the leading observable ruler projection, while the accepted branch state remains an all-three-binary causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to outer-envelope shape alone.
+> **Lorentz Projection Commitment:** In Lorentz closure, the outer-binary envelope supplies the leading observable ruler projection, while the accepted branch state remains a three-binary causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to outer-envelope shape alone.
 
 ### Swarm Dynamics
 
@@ -35258,7 +35258,7 @@ $$
 \right],
 $$
 
-where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether core can sit inside the same coordinate window as ambient Noether-Sea cores without becoming part of the ambient medium record; ledger complement, not mere spatial proximity, makes the separation.
+where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether core can sit inside the same coordinate window as ambient Noether-Sea cores without becoming part of the ambient medium record; ledger complement, not mere spatial proximity, makes the separation.
 
 A candidate equilibrium-transport equation is
 
@@ -35812,7 +35812,7 @@ This page owns:
 This page does not own:
 
 - Noether-core internal architecture; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md).
-- Noether-core exclusion-envelope geometry; see [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md).
+- Noether-core exclusion-envelope geometry; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
 - Pro/anti coupling hypotheses and cluster motifs; see [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md).
 - Effective metric derivation; see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 - Clock and ruler behavior; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
@@ -37141,7 +37141,7 @@ When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
  - As $v\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{v}}$ while maintaining transverse dimensions, yielding an ellipsoid with semi‑axes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
 
-Geometry terminology follows [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The proper-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt$. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
+Geometry terminology follows [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The proper-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt$. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
 
 **Kinematic hypothesis:**
 $$
@@ -37295,7 +37295,7 @@ $$
 \frac{d\tau}{dt}\equiv\frac{\omega_{\text{clk}}}{\omega_0}.
 $$
 
-This observable is the benchmark preserved by the clock projector in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#assembly-noether-sea-interface-diagnostic). For a branch record $\mathcal{B}_{\mathbf{x}j}^{(t_0)}$, the clock-facing projection keeps only the entries that can change the extracted phase or cadence:
+This observable is the benchmark preserved by the clock projector in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). For a branch record $\mathcal{B}_{\mathbf{x}j}^{(t_0)}$, the clock-facing projection keeps only the entries that can change the extracted phase or cadence:
 
 $$
 \Pi_{\mathrm{clock}}
@@ -38022,7 +38022,7 @@ The immediate task is to identify which subset dominates $\partial \tau_{\text{o
 
 Working assumption:
 
-1. The outer precessing binary of a Noether core defines the effective exclusion volume boundary; see [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md).
+1. The outer precessing binary of a Noether core defines the effective exclusion volume boundary; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
 2. Each tri-binary layer ($H,M,L$) has its own circulation axis.
 3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
 
@@ -38099,7 +38099,7 @@ $$
 $$
 with $\xi\in(0,1]$ as shape and $\lambda$ as scale. The Lorentz-closure target is $\xi(x)\to1/\gamma(x)$ in the homogeneous drift regime.
 
-Terminology guardrail: $\xi$ is the Noether-core envelope shape ratio, inherited from [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
+Terminology guardrail: $\xi$ is the Noether-core envelope shape ratio, inherited from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
 $$
 \frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma},
 $$
@@ -39061,7 +39061,7 @@ In the shared pullback notation, the stress-side consumer is $\Pi_{\mathrm{matte
 
 ##### Noether-Core Deformation and Metric Language
 
-At the assembly level, an individual Noether core has an oblate, deformable exclusion envelope; see [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md). This chapter does not identify that single-core envelope with the metric. The metric bridge uses many deforming Noether cores in the Noether Sea as the medium whose coarse variables determine clock, ruler, and signal behavior.
+At the assembly level, an individual Noether core has an oblate, deformable exclusion envelope; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md). This chapter does not identify that single-core envelope with the metric. The metric bridge uses many deforming Noether cores in the Noether Sea as the medium whose coarse variables determine clock, ruler, and signal behavior.
 
 When translating toward General Relativity, Einstein's field equations are treated as the effective continuum relation
 $$
@@ -39087,7 +39087,7 @@ The useful GR analogy is therefore limited but important:
 - perturbative methods can capture small departures from spherical symmetry,
 - and standard predictions such as redshift, Shapiro delay, lensing, orbital precession, frame-dragging, and gravitational-wave emission from deformed sources must be recovered from one reusable constitutive map.
 
-The assembly fact that a Noether core is oblate belongs in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md). The spacetime claim that a population of deformed cores yields an effective metric belongs here and in [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md).
+The assembly fact that a Noether core is oblate belongs in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md). The spacetime claim that a population of deformed cores yields an effective metric belongs here and in [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md).
 
 ##### Jacobson-Type Support: Metric as Equation of State
 
@@ -42137,7 +42137,7 @@ The next question is whether a rapidly translating tri-binary should drive the t
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
 
-The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md) and its dynamics treatment in [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md):
+The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md) and its dynamics treatment in [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md):
 
 $$
 \frac{x^2+y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1,
@@ -47460,7 +47460,7 @@ S(t)\big|_{\Omega_{\mathrm{H}}}
 \mathcal{A}_{\mathrm{H}}(t).
 $$
 
-The spatial boundary used in effective modeling is the dynamic exclusion envelope generated by an assembly. For a fermion $f$, define a local dominance diagnostic by inheriting the channel kernel from [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#assembly-noether-sea-interface-diagnostic):
+The spatial boundary used in effective modeling is the dynamic exclusion envelope generated by an assembly. For a fermion $f$, define a local dominance diagnostic by inheriting the channel kernel from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic):
 
 $$
 D_{f,X}(\mathbf{x},t)
@@ -47626,7 +47626,7 @@ At hydrogen resolution the four first projectors have distinct jobs:
 | $\Pi_{\mathrm{packing}}$ | Exclusion magnitude, exclusion-stress tensor, and envelope scale/shape entries | Determines stable adjacency and coarse excluded volume without treating signs of force as a packing criterion |
 | $\Pi_{\mathrm{penetration}}$ | Signed branch acceleration, path-tangent acceleration, and phase-disruption entries | Determines whether a trial path through the fermion envelope remains dynamically stable |
 
-The corresponding first norm packet for hydrogen is inherited from the channel norms in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#assembly-noether-sea-interface-diagnostic). In an atomic window, define the channel exposure scan
+The corresponding first norm packet for hydrogen is inherited from the channel norms in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). In an atomic window, define the channel exposure scan
 
 $$
 \mathfrak N_{\mathrm H,X}^{(\ell)}(f)
@@ -51325,7 +51325,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 - **Born-rule basin-measure ledger:** [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md), [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), and [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md) own the transfer-operator, invariant-measure, finite-time separatrix, and effective wave-equation targets.
 - **Semi-classical and scattering ledger:** [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md) owns WKB, Airy turning-point, and tunneling-action envelope checks, while [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md) owns $S$-matrix unitarity, optical-theorem, resonance-pole, and Born-approximation recovery targets.
 - **Symmetry, holonomy, and index ledger:** [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) owns parity/time-reversal antiunitary benchmarks, Berry-phase/Chern-number holonomy checks, and supersymmetric-index comparison guardrails.
-- **Spin-statistics / exchange ledger:** [quantum-statistics.md](../../../../markdown/aaa/quantum/quantum-statistics.md), [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md), and [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) own the route from 3D volumetric exclusion to fermionic antisymmetry and from coherent 2D support to bosonic symmetric occupation. Fermionic exchange may consume the spinor label only from the same retained non-gauge ordered-core row that passes the $2\pi/4\pi$, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+- **Spin-statistics / exchange ledger:** [quantum-statistics.md](../../../../markdown/aaa/quantum/quantum-statistics.md), [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), and [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) own the route from 3D volumetric exclusion to fermionic antisymmetry and from coherent 2D support to bosonic symmetric occupation. Fermionic exchange may consume the spinor label only from the same retained non-gauge ordered-core row that passes the $2\pi/4\pi$, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 - **Spin, measurement, and Bell ledger:** [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md), and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md) own the lifted Stern-Gerlach response, pair-provenance joint law, measurement-independence, no-signaling, and product-screening audits. The current Bell no-go is sharper than a gate: two independent one-wing threshold-pullback kernels over a setting-independent source measure imply the CHSH bound, and exact singlet recovery requires $\Delta_{\mathrm{prod}}\ge(\sqrt2-1)/8$ in the per-cell residual normalization. Bell closure therefore requires a derived non-product joint response or non-restartable provenance compression, while spinor, exchange, weak, and fermion-metric consumers must share the same retained spinor-label pullback record.
 - **Photon Gate A/B/C ledger:** [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface) owns the photon-channel theorem scaffold, while [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md#photon-closure-gates) records the Gate A/B/C acceptance filters. Gate B is the quantum-facing bridge where planar-pair capture must recover Malus' law and the native squared-amplitude rule without replacing the broader Born-rule basin-measure program; it inherits the spin and helicity ledger from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and the source-depletion/recoil/wake/handoff event residual from [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md). Photon helicity is now an event-window projection of that same balance, with error controlled by $\|\mathbf B_{\gamma}^{0}\|/\hbar$. Gate A and Gate C constrain the same photon branch through kinematics, optics, transition vertices, Bose-Einstein occupation behavior, and validated QED limits.
 
@@ -53367,7 +53367,7 @@ The answer must not erase substrate identity. Individual architrinos remain prov
 
 #### Noether-Core Geometry Basis
 
-The relevant object is the Noether core, the triply nested binary assembly described in [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its geometric footprint is the dynamic exclusion envelope described in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md).
+The relevant object is the Noether core, the triply nested binary assembly described in [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its geometric footprint is the dynamic exclusion envelope described in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md).
 
 In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
@@ -53416,7 +53416,7 @@ Photon-like channel behavior is the cleanest target for this mechanism. A bosoni
 
 #### The 3D-to-2D Transition
 
-The transition can be summarized by the canonical Noether-core shape ratio from [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
+The transition can be summarized by the canonical Noether-core shape ratio from [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
 
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}.
@@ -53516,7 +53516,7 @@ For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on reco
 
 This chapter depends on:
 
-- [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md) for the oblate spheroidal exclusion envelope,
+- [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md) for the oblate spheroidal exclusion envelope,
 - [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md) for the tri-binary scaffold,
 - [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
@@ -59205,7 +59205,7 @@ These quantities belong to tri-binary architecture, shielding, branch structure,
 | --- | --- | --- | --- | --- | --- |
 | G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch tri-binary Noether-core reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [../dynamics/energy.md](../../../../markdown/aaa/dynamics/energy.md) |
 | G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open; compact finite-coordinate no-go recorded, branch-chart revision required before Tier 1 continuation | certificate packet tying the finite closure graph $\mathcal{G}_{A_0}$, active root ledger, quotient Floquet gap $\Delta_{\mathbf{k}}$, shielding extraction, and $\mathcal{M}_{\text{sea}}^{ab}$ response probe into one promotion sequence | [simulations/a0-branch-certificate-protocol.md](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
-| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether core | [../noether-swarm/noether-swarm.md](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [../spacetime/noether-core-geometry.md](../../../../markdown/aaa/spacetime/noether-core-geometry.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) |
+| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether core | [../noether-swarm/noether-swarm.md](../../../../markdown/aaa/noether-swarm/noether-swarm.md), [../noether-swarm/nested-shell-swarm-geometry.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), [../noether-swarm/nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) |
 | G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [../noether-swarm/nested-shell-swarm-dynamics.md](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
 | G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md) |
 | G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md) |
@@ -73305,7 +73305,7 @@ The Bell claim therefore stops at the closure target and failure conditions. A c
 
 ##### Special Relativity and Deformable Noether Cores
 
-This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether-core assemblies. It is a mapping document: the canonical Noether-core geometry remains in [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md), the canonical mass thesis remains in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
+This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether-core assemblies. It is a mapping document: the canonical Noether-core geometry remains in [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), the canonical mass thesis remains in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
 
 ###### Bridge Thesis
 
@@ -73327,7 +73327,7 @@ This chapter owns:
 This chapter does not own:
 
 - the definition of a Noether core; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md),
-- the geometry of the dynamic exclusion envelope; see [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md),
+- the geometry of the dynamic exclusion envelope; see [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md),
 - the proper-time map; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
 - the energy ledger; see [Energy](../../../../markdown/aaa/dynamics/energy.md),
 - or the exact delayed law; see [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
@@ -73674,7 +73674,7 @@ To promote this bridge from mapping to derivation, the following targets must cl
 
 This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether-core chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether-core causal-root ledger.
 
-The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Noether Core Geometry](../../../../markdown/aaa/spacetime/noether-core-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Cores](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md).
+The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Swarm Geometry](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Cores](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md).
 
 ###### Naming And Scope
 

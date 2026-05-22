@@ -55,6 +55,7 @@
     "content/markdown/aaa/interactions/gauge-symmetries.md",
     "content/markdown/aaa/interactions/mode-taxonomy.md",
     "content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md",
+    "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
     "content/markdown/aaa/noether-swarm/noether-swarm.md",
     "content/markdown/aaa/nuclear-atomic/atomic-spectra.md",
     "content/markdown/aaa/nuclear-atomic/atomic-structure.md",
@@ -111,7 +112,6 @@
     "content/markdown/aaa/spacetime/horizon-chirality.md",
     "content/markdown/aaa/spacetime/lorentz-kinematics.md",
     "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-    "content/markdown/aaa/spacetime/noether-core-geometry.md",
     "content/markdown/aaa/spacetime/noether-sea.md",
     "content/markdown/aaa/spacetime/observer-framework.md",
     "content/markdown/aaa/spacetime/ppn-parameters.md",
@@ -151,6 +151,7 @@
     "content/markdown/aaa/validation/simulations/convergence-tests.md",
     "content/markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md",
     "content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md",
+    "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
     "content/markdown/aaa/validation/simulations/perspective.md",
     "content/markdown/aaa/validation/simulations/README.md",
     "content/markdown/aaa/validation/simulations/redshift-budget-toy-model.md",
@@ -159,7 +160,6 @@
     "content/markdown/aaa/validation/simulations/static-response-vector-toy-model.md",
     "content/markdown/aaa/validation/simulations/synthetic-observables.md",
     "content/markdown/aaa/validation/simulations/thermodynamic-residual.md",
-    "content/markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md",
     "content/markdown/aaa/validation/simulations/unsolved-problems.md",
     "content/markdown/aaa/validation/validation-protocols.md"
   ]

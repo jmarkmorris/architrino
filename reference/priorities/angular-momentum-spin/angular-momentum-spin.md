@@ -582,7 +582,7 @@ Sixth continuation status: four additional theory lemmas were promoted without a
 - [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md)
 - [planck-scale-nested-shell-swarm-alignment](../../../content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md)
 - [noether-swarm](../../../content/markdown/aaa/noether-swarm/noether-swarm.md)
-- [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md)
+- [nested-shell-swarm-geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md)
 - [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md)
 - [causal-action-functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md)
 - [energy](../../../content/markdown/aaa/dynamics/energy.md)

@@ -2076,12 +2076,12 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/noether-swarm/swarm_geometry.json",
-            "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+            "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Ownership Boundary",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Ownership Boundary",
                 "sectionKey": "ownership boundary",
                 "headingLevel": 2
@@ -2089,7 +2089,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Dynamic Exclusion Envelope",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Dynamic Exclusion Envelope",
                 "sectionKey": "dynamic exclusion envelope",
                 "headingLevel": 2
@@ -2097,7 +2097,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Assembly-Noether-Sea Interface Diagnostic",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Assembly-Noether-Sea Interface Diagnostic",
                 "sectionKey": "assembly noether sea interface diagnostic",
                 "headingLevel": 2
@@ -2105,7 +2105,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Oblate Spheroidal Form",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Oblate Spheroidal Form",
                 "sectionKey": "oblate spheroidal form",
                 "headingLevel": 2
@@ -2113,7 +2113,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Canonical Geometry Variables",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Canonical Geometry Variables",
                 "sectionKey": "canonical geometry variables",
                 "headingLevel": 2
@@ -2121,7 +2121,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Lorentz Projection Role",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Lorentz Projection Role",
                 "sectionKey": "lorentz projection role",
                 "headingLevel": 2
@@ -2129,7 +2129,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Retuning Projection to Envelope Variables",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Retuning Projection to Envelope Variables",
                 "sectionKey": "retuning projection to envelope variables",
                 "headingLevel": 2
@@ -2137,7 +2137,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Deformability of the Envelope",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Deformability of the Envelope",
                 "sectionKey": "deformability of the envelope",
                 "headingLevel": 2
@@ -2145,7 +2145,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Geometry Interfaces",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Geometry Interfaces",
                 "sectionKey": "geometry interfaces",
                 "headingLevel": 2
@@ -2153,7 +2153,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Summary Commitment",
-                "markdownPath": "content/markdown/aaa/spacetime/noether-core-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
                 "markdownSection": "Summary Commitment",
                 "sectionKey": "summary commitment",
                 "headingLevel": 2

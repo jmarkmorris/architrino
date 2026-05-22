@@ -2513,6 +2513,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "name": "Nested Shell Swarm Geometry",
+      "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/noether-swarm/noether-swarm.md",
       "name": "Noether Swarm",
       "path": "content/markdown/aaa/noether-swarm/noether-swarm.md",
@@ -2846,12 +2852,6 @@
       "id": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "name": "Medium Exclusion Volume",
       "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-      "name": "Nested Shell Swarm Geometry",
-      "path": "content/markdown/aaa/spacetime/noether-core-geometry.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -6703,6 +6703,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "name": "Nested Shell Swarm Geometry",
+      "path": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "searchTarget": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/noether-swarm/noether-swarm.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/noether-swarm/noether-swarm.md",
@@ -7204,15 +7213,6 @@
       "name": "Medium Exclusion Volume",
       "path": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
       "searchTarget": "content/markdown/aaa/spacetime/medium-exclusion-volume.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/noether-core-geometry.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-      "name": "Nested Shell Swarm Geometry",
-      "path": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-      "searchTarget": "content/markdown/aaa/spacetime/noether-core-geometry.md",
       "implicit": false
     },
     {
@@ -12387,7 +12387,7 @@
     },
     {
       "from": "scene:content/scenes/noether-swarm/swarm_geometry.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/noether-core-geometry.md",
+      "to": "markdown_doc:content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/noether-swarm/swarm_geometry.json",
       "field": "scene.source.path"

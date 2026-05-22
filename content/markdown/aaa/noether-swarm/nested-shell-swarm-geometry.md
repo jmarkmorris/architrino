@@ -1,6 +1,6 @@
 # Nested Shell Swarm Geometry
 
-This chapter is the canonical home for the geometric footprint of the nested shell swarm: its dynamic exclusion envelope, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether Sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether-Sea density, strain, and delay variables are coarse-grained. The nested shell swarm scaffold itself belongs in [Noether Swarm](../noether-swarm/noether-swarm.md). The delayed dynamics that stabilize and deform the nested shell swarm belong in [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md).
+This chapter is the canonical home for the geometric footprint of the nested shell swarm: its dynamic exclusion envelope, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether Sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether-Sea density, strain, and delay variables are coarse-grained. The nested shell swarm scaffold itself belongs in [Noether Swarm](noether-swarm.md). The delayed dynamics that stabilize and deform the nested shell swarm belong in [Nested Shell Swarm Dynamics](nested-shell-swarm-dynamics.md).
 
 The nested shell swarm is not a static object. It is a dynamic system of six architrinos organized as three ordered shell binaries when the exact-binary assumptions are active. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the nested shell swarm's effective exclusion envelope.
 
@@ -16,10 +16,10 @@ This chapter owns:
 This chapter does not own:
 
 - primitive architrino ontology; see [Architrino](../foundations/architrino.md),
-- the nested shell swarm scaffold; see [Noether Swarm](../noether-swarm/noether-swarm.md),
-- exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md) and [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md),
-- observer clocks and rulers; see [Proper Time and Time Dilation](proper-time-and-time-dilation.md),
-- or metric reconstruction; see [Emergent Metric](emergent-metric.md).
+- the nested shell swarm scaffold; see [Noether Swarm](noether-swarm.md),
+- exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md) and [Nested Shell Swarm Dynamics](nested-shell-swarm-dynamics.md),
+- observer clocks and rulers; see [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md),
+- or metric reconstruction; see [Emergent Metric](../spacetime/emergent-metric.md).
 
 ## Dynamic Exclusion Envelope
 
@@ -690,7 +690,7 @@ $$
 \frac{1}{\gamma_{\text{eff}}(v)}
 +O(\epsilon_{\mathrm{LV}}).
 $$
-The role of the geometry chapter is to record this as an envelope projection, not as a primitive definition. The derivation and closure coefficients belong to [Lorentz Kinematics](lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio).
+The role of the geometry chapter is to record this as an envelope projection, not as a primitive definition. The derivation and closure coefficients belong to [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio).
 
 This distinction prevents an outer-only shortcut. An outer-binary oblation model can estimate the visible deformation channel, while a mature Lorentz closure must show that the same branch update also determines the clock factor
 $$
@@ -778,7 +778,7 @@ This gives the nested shell swarm two distinct geometric roles:
 1. As an assembly, it can deform while preserving nested shell swarm identity across a stable regime.
 2. As a medium constituent, many deforming swarms can contribute to coarse-grained Noether-Sea density, strain, and signal-propagation changes.
 
-The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](emergent-metric.md), [PPN Parameters](ppn-parameters.md), and [Proper Time and Time Dilation](proper-time-and-time-dilation.md).
+The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](../spacetime/emergent-metric.md), [PPN Parameters](../spacetime/ppn-parameters.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 
 For the special-relativity-facing comparison of this deformation channel, see [the deformable Noether swarm comparison](../philosophy-history/theory-bridges/special-relativity-noether-core.md). For the focused synthesis of the closed-return quantization claim, see [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
 
@@ -791,9 +791,9 @@ For local assembly modeling, use this page as the geometric source for:
 - deformation of the outer-binary envelope under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.
 
-For dynamics modeling, use [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
+For dynamics modeling, use [Nested Shell Swarm Dynamics](nested-shell-swarm-dynamics.md), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
 
-For medium modeling, use [Noether Sea](noether-sea.md) and [Spacetime Assemblies](spacetime-assemblies.md), where many Noether swarms become a coupled medium rather than isolated assembly envelopes.
+For medium modeling, use [Noether Sea](../spacetime/noether-sea.md) and [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), where many Noether swarms become a coupled medium rather than isolated assembly envelopes.
 
 ## Summary Commitment
 

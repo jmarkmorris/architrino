@@ -31,7 +31,7 @@ The immediate organization goal is to keep three materials distinct:
 
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
-| [effective-metric-deformation.md](effective-metric-deformation.md) | Preserves the shape-plus-scale deformation draft for effective metric, proper time, lensing, anisotropy, Planck alignment, and cosmology. | [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md), [horizon-chirality](../../../content/markdown/aaa/spacetime/horizon-chirality.md) |
+| [effective-metric-deformation.md](effective-metric-deformation.md) | Preserves the shape-plus-scale deformation draft for effective metric, proper time, lensing, anisotropy, Planck alignment, and cosmology. | [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), [nested-shell-swarm-geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), [horizon-chirality](../../../content/markdown/aaa/spacetime/horizon-chirality.md) |
 | [raw-notes.md](raw-notes.md) | Preserves scratch notes and open questions that should not be promoted until classified. | [energy](../../../content/markdown/aaa/dynamics/energy.md), [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) |
 | [ideal-core.md](ideal-core.md) | App design brief for a technical Noether-core inspection instrument. | [animator](../animator/animator.md), [simulations](../simulations/simulations.md), [about-the-webapp](../../../content/markdown/aaa/archie/about-the-webapp.md) |
 
@@ -65,6 +65,6 @@ This directory can be retired after all three sibling files have explicit outcom
 - [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
 - [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)
 - [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md)
-- [noether-core-geometry](../../../content/markdown/aaa/spacetime/noether-core-geometry.md)
+- [nested-shell-swarm-geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md)
 - [horizon-chirality](../../../content/markdown/aaa/spacetime/horizon-chirality.md)
 - [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)

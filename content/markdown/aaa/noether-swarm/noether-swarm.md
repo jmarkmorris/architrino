@@ -2,7 +2,7 @@
 
 The **Noether swarm** is the neutral six-architrino assembly scaffold that later supports both the Noether Sea and Standard Model particle architecture. The general object is not assumed to be a set of exact binaries. It is a closed, charge-neutral, bounded-speed six-body branch in which three positive architrinos and three negative architrinos maintain a persistent causal-return ledger.
 
-Older chapters in the corpus use **Noether core**, **tri-binary**, and **nested binary** for the highly structured nested shell swarm case. This chapter treats that structure as a special case of the broader Noether swarm. The downstream corpus still mostly describes the nested shell swarm and has not yet been generalized; the older terms should therefore be read as nested shell swarm terminology unless a later page explicitly promotes the more general swarm case. The swarm's dynamic envelope geometry is developed separately in [the nested shell swarm geometry chapter](../spacetime/noether-core-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
+Older chapters in the corpus use **Noether core**, **tri-binary**, and **nested binary** for the highly structured nested shell swarm case. This chapter treats that structure as a special case of the broader Noether swarm. The downstream corpus still mostly describes the nested shell swarm and has not yet been generalized; the older terms should therefore be read as nested shell swarm terminology unless a later page explicitly promotes the more general swarm case. The swarm's dynamic envelope geometry is developed separately in [the nested shell swarm geometry chapter](nested-shell-swarm-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
 
 ## General Neutral Swarm
 
@@ -470,7 +470,7 @@ Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compat
 
 ## Geometry and Exclusion Envelope
 
-The same nested shell swarm motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the swarm definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-envelope interpretation, and deformation channels, see [the nested shell swarm geometry chapter](../spacetime/noether-core-geometry.md).
+The same nested shell swarm motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the swarm definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-envelope interpretation, and deformation channels, see [the nested shell swarm geometry chapter](nested-shell-swarm-geometry.md).
 
 ## The Nested Shell Swarm Hierarchy and Fermion Generations
 

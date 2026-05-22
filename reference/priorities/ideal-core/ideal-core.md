@@ -325,6 +325,6 @@ This priority is done when:
 
 - [../ellipsoid/ideal-core.md](../ellipsoid/ideal-core.md)
 - [../../../content/markdown/aaa/spacetime/lorentz-kinematics.md](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
-- [../../../content/markdown/aaa/spacetime/noether-core-geometry.md](../../../content/markdown/aaa/spacetime/noether-core-geometry.md)
+- [../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md)
 - [../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [../../../content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-core.md)

@@ -1,6 +1,6 @@
 # Special Relativity and Deformable Noether Cores
 
-This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether-core assemblies. It is a mapping document: the canonical Noether-core geometry remains in [Noether Core Geometry](../../spacetime/noether-core-geometry.md), the canonical mass thesis remains in [Particle Masses](../../assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md).
+This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether-core assemblies. It is a mapping document: the canonical Noether-core geometry remains in [Nested Shell Swarm Geometry](../../noether-swarm/nested-shell-swarm-geometry.md), the canonical mass thesis remains in [Particle Masses](../../assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md).
 
 ## Bridge Thesis
 
@@ -22,7 +22,7 @@ This chapter owns:
 This chapter does not own:
 
 - the definition of a Noether core; see [Noether Swarm](../../noether-swarm/noether-swarm.md),
-- the geometry of the dynamic exclusion envelope; see [Noether Core Geometry](../../spacetime/noether-core-geometry.md),
+- the geometry of the dynamic exclusion envelope; see [Nested Shell Swarm Geometry](../../noether-swarm/nested-shell-swarm-geometry.md),
 - the proper-time map; see [Proper Time and Time Dilation](../../spacetime/proper-time-and-time-dilation.md),
 - the energy ledger; see [Energy](../../dynamics/energy.md),
 - or the exact delayed law; see [Master Equation of Motion](../../dynamics/master-equation.md).

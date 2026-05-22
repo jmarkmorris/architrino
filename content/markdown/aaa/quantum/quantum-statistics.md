@@ -18,7 +18,7 @@ The answer must not erase substrate identity. Individual architrinos remain prov
 
 ## Noether-Core Geometry Basis
 
-The relevant object is the Noether core, the triply nested binary assembly described in [Noether Swarm](../noether-swarm/noether-swarm.md). Its geometric footprint is the dynamic exclusion envelope described in [Noether Core Geometry](../spacetime/noether-core-geometry.md).
+The relevant object is the Noether core, the triply nested binary assembly described in [Noether Swarm](../noether-swarm/noether-swarm.md). Its geometric footprint is the dynamic exclusion envelope described in [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md).
 
 In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
@@ -67,7 +67,7 @@ Photon-like channel behavior is the cleanest target for this mechanism. A bosoni
 
 ## The 3D-to-2D Transition
 
-The transition can be summarized by the canonical Noether-core shape ratio from [Noether Core Geometry](../spacetime/noether-core-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
+The transition can be summarized by the canonical Noether-core shape ratio from [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
 
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}.
@@ -167,7 +167,7 @@ For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on reco
 
 This chapter depends on:
 
-- [Noether Core Geometry](../spacetime/noether-core-geometry.md) for the oblate spheroidal exclusion envelope,
+- [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md) for the oblate spheroidal exclusion envelope,
 - [Noether Swarm](../noether-swarm/noether-swarm.md) for the tri-binary scaffold,
 - [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](./wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
