@@ -29,10 +29,12 @@ Priority-only labels introduced during the architecture generalization are clean
 
 1. `certificate_and_gate_repair` — Reconnect proof obligations, certificate rows, and migration-gate language to the accepted swarm triad. Status: `active`. Depends on: completed triad freeze, approved transition table, notation compatibility inventory, and packet quarantine audit. Notes: start with priority files only; no corpus migration, formula-symbol rewrite, simulation edit, scene edit, or app-copy edit.
 2. `priority_label_cleanup_samples` — Apply the approved transition table in reviewable priority-side samples when a packet is touched. Status: `active`. Depends on: `certificate_and_gate_repair`. Notes: completed first sample batch renamed the neutral swarm and nested shell swarm source packets; continue with bounded proof/gate packets only when directly touched.
-3. `scoped_validation_method_promotion_plan` — Identify validation-method material that may later move into `content/markdown/aaa` before a retained branch. Status: `open`. Depends on: `certificate_and_gate_repair`. Notes: candidate material must be a certificate schema, residual definition, solver-test protocol, ledger requirement, negative-result interpretation, or reproducibility criterion that does not claim branch retention.
-4. `user_facing_corpus_merge_gate` — Decide when to start the broad merge in the user-facing corpus. Status: `staged`. Depends on: accepted cleanup pass, notation compatibility inventory, retained certificate plan, NTB comparison, comparison against the common-support architecture material, migration batch plan, and operator approval. Notes: this is the main decision gate for broad `content/markdown/aaa`, simulation, scene-asset, and app-copy migration. It does not block scoped promotion of accepted terminology, notation compatibility notes, or detailed validation-method documents that satisfy the scoped promotion policy below.
-5. `swarm_model_migration` — Execute the approved user-facing corpus, priority-ledger, validation-surface, simulation, and web/app merge batches. Status: `deferred`. Depends on: `user_facing_corpus_merge_gate`. Notes: migration must use the accepted reader-facing triad or later approved replacements, not frozen priority-only labels.
-6. `assembly_swarm_fallback_investigation` — If closure stalls after the triad migration, study whether assembly swarms are needed. Status: `low-priority`. Depends on: stalled closure after the triad migration. Notes: an assembly swarm would let all architrinos in an assembly participate in one swarm rather than being added externally as poles or kept separately in a nucleus.
+3. `scoped_validation_method_promotion_plan` — Identify validation-method material that may later move into `content/markdown/aaa` before a retained branch. Status: `review-ready`. Depends on: `certificate_and_gate_repair`. Notes: candidate material must be a certificate schema, residual definition, solver-test protocol, ledger requirement, negative-result interpretation, or reproducibility criterion that does not claim branch retention; see the plan below.
+4. `user_facing_corpus_migration_batch_1` — Start the user-facing terminology migration in one reviewable corpus file. Status: `review-ready`. Depends on: approved transition table, notation compatibility inventory, scoped promotion policy, and operator approval to go. Notes: first sample applied in `content/markdown/aaa/noether-swarm/noether-swarm.md`; no formula-symbol, file-path, simulation, scene, or app-copy migration.
+5. `user_facing_corpus_migration_batch_2` — Migrate the nested shell swarm geometry chapter. Status: `review-ready`. Depends on: `user_facing_corpus_migration_batch_1`. Notes: sample applied in `content/markdown/aaa/spacetime/noether-core-geometry.md`; file path and legacy link targets are preserved for the later file/path pass.
+6. `user_facing_corpus_merge_gate` — Decide when to start the broad merge in the user-facing corpus. Status: `staged`. Depends on: accepted cleanup pass, notation compatibility inventory, retained certificate plan, NTB comparison, comparison against the common-support architecture material, migration batch plan, and operator approval. Notes: this is the main decision gate for broad `content/markdown/aaa`, simulation, scene-asset, and app-copy migration. It does not block scoped promotion of accepted terminology, notation compatibility notes, or detailed validation-method documents that satisfy the scoped promotion policy below.
+7. `swarm_model_migration` — Execute the approved user-facing corpus, priority-ledger, validation-surface, simulation, and web/app merge batches. Status: `deferred`. Depends on: `user_facing_corpus_merge_gate`. Notes: migration must use the accepted reader-facing triad or later approved replacements, not frozen priority-only labels.
+8. `assembly_swarm_fallback_investigation` — If closure stalls after the triad migration, study whether assembly swarms are needed. Status: `low-priority`. Depends on: stalled closure after the triad migration. Notes: an assembly swarm would let all architrinos in an assembly participate in one swarm rather than being added externally as poles or kept separately in a nucleus.
 
 ## First Reviewable Work Packets
 
@@ -158,8 +160,10 @@ The work items below replace the inherited pre-freeze queue. Older architecture 
 5. `neutral_swarm_model_restatement` — Restate the broad six-architrino neutral case under the accepted `neutral swarm` wording. Status: `review-ready`. Depends on: `swarm_triad_definition_table`, `swarm_notation_compatibility_inventory`, `priority_packet_quarantine_audit`. Notes: see the neutral swarm model restatement below; it restates the base object without promoting the quarantined generalized packet or renaming formulas.
 6. `shell_swarm_model_restatement` — Restate the controlled radial-support case under `shell swarm`. Status: `review-ready`. Depends on: `neutral_swarm_model_restatement`. Notes: see the shell swarm model restatement below; keep support-band, recovery, and near-antipodal rows as mathematical conditions; do not introduce new names for subcases without approval.
 7. `nested_shell_swarm_preservation_map` — Preserve the old three-layer material as `nested shell swarm` source material while separating exact binary assumptions from reader-facing terminology. Status: `review-ready`. Depends on: `shell_swarm_model_restatement`. Notes: see the nested shell swarm preservation map below; compare against the restored NTB causal-closure packet set without treating source labels as current public taxonomy.
-8. `certificate_and_gate_repair` — Reconnect proof obligations to the accepted swarm wording after the terminology and notation tables pass review. Status: `active`. Depends on: `neutral_swarm_model_restatement`, `shell_swarm_model_restatement`, `nested_shell_swarm_preservation_map`. Notes: update certificate, conservation, observer-export, and migration-gate language in priority files first; do not start broad corpus migration.
-9. `user_facing_corpus_merge_gate` — Decide whether and when to perform broad edits to `content/markdown/aaa`, simulations, scenes, or app copy. Status: `staged`. Depends on: accepted terminology table, notation inventory, packet quarantine audit, certificate repair, migration batch plan, and operator approval. Notes: this gate blocks broad model migration and file/path migration, but not scoped promotion of accepted terminology, notation compatibility notes, or detailed validation-method documents under the policy below.
+8. `certificate_and_gate_repair` — Reconnect proof obligations to the accepted swarm wording after the terminology and notation tables pass review. Status: `active`. Depends on: `neutral_swarm_model_restatement`, `shell_swarm_model_restatement`, `nested_shell_swarm_preservation_map`. Notes: first priority-side repair pass is complete; continue only when new proof/gate packets are touched.
+9. `user_facing_corpus_migration_batch_1` — Apply the first reviewable corpus terminology sample. Status: `review-ready`. Depends on: accepted terminology table, notation inventory, scoped promotion policy, certificate repair sample, and operator approval. Notes: sample applied in `content/markdown/aaa/noether-swarm/noether-swarm.md`; no formula-symbol, file-path, simulation, scene, or app-copy migration.
+10. `user_facing_corpus_migration_batch_2` — Apply the nested shell swarm geometry chapter migration. Status: `review-ready`. Depends on: `user_facing_corpus_migration_batch_1`. Notes: sample applied in `content/markdown/aaa/spacetime/noether-core-geometry.md`; file path and legacy links are held for the file/path pass.
+11. `user_facing_corpus_merge_gate` — Decide whether and when to perform broad edits to `content/markdown/aaa`, simulations, scenes, or app copy. Status: `staged`. Depends on: accepted terminology table, notation inventory, packet quarantine audit, certificate repair, migration batch plan, and operator approval. Notes: this gate blocks broad model migration and file/path migration, but not scoped promotion of accepted terminology, notation compatibility notes, or detailed validation-method documents under the policy below.
 
 ### Active Migration Batch
 
@@ -167,7 +171,7 @@ Batch: `certificate_and_gate_repair_1`.
 
 Scope: `reference/priorities/swarm/` only. The batch may update control, architecture, gate, synthesis, and bounded-speed certificate packets when the edit reconnects existing proof obligations to the accepted triad. It may not edit `content/markdown/aaa`, simulations, scene assets, app code, formula symbols, file paths, or task identifiers.
 
-Progress: first repair pass completed for [proof-program-and-decision-gate.md](shell-swarm/proof-program-and-decision-gate.md), [swarm-architecture.md](shell-swarm/swarm-architecture.md), [current-dynamics-synthesis.md](shell-swarm/current-dynamics-synthesis.md), [bounded-speed-factor-finite-mode-branch-system.md](shell-swarm/bounded-speed-factor-finite-mode-branch-system.md), [neutral-swarm-model.md](neutral-swarm/neutral-swarm-model.md), and [nested-shell-swarm-radial-support-functional.md](nested-shell-swarm/nested-shell-swarm-radial-support-functional.md). The next priority-side step is `scoped_validation_method_promotion_plan`, followed by a small user-facing corpus migration batch proposal for operator approval.
+Progress: first repair pass completed for [proof-program-and-decision-gate.md](shell-swarm/proof-program-and-decision-gate.md), [swarm-architecture.md](shell-swarm/swarm-architecture.md), [current-dynamics-synthesis.md](shell-swarm/current-dynamics-synthesis.md), [bounded-speed-factor-finite-mode-branch-system.md](shell-swarm/bounded-speed-factor-finite-mode-branch-system.md), [neutral-swarm-model.md](neutral-swarm/neutral-swarm-model.md), and [nested-shell-swarm-radial-support-functional.md](nested-shell-swarm/nested-shell-swarm-radial-support-functional.md). The scoped validation-method plan is review-ready. The next active step is `user_facing_corpus_migration_batch_1`.
 
 Migration rule: preserve the mathematics and residual symbols while replacing loose taxonomy with the accepted triad or with explicit mathematical objects. Use `case` for informal comparisons unless the passage is using `sector` in the standard mathematical sense of a subset, invariant subspace, or solution region cut out by stated constraints.
 
@@ -212,6 +216,44 @@ This policy relaxes the earlier all-or-nothing rule. The priority folder remains
 | broad model migration | no | Requires the user-facing corpus merge gate. | Replacing the existing architecture across corpus prose, simulations, scenes, apps, or file paths. |
 
 Validation-method documents include behind-the-scenes gates, certificates, solver-test documents, residual inventories, and live-ledger checklists when their role is to explain how a claim would be certified. They should be organized as reader-facing validation or methodology material, not as operational scratch notes. The promotion pass must update this priority bucket with the corpus destination and the remaining blocker so future work does not repeat the same triage.
+
+### Scoped Validation Method Promotion Plan
+
+Status: `review-ready`.
+
+Validation-method material may be promoted before a retained branch only when it is self-contained, reader-facing, and explicit about what remains unproved. The current plan is to keep exploratory branch artifacts in `reference/priorities/swarm/`, then promote only stable method statements into the corpus validation area.
+
+| Priority source | Candidate corpus destination | Promotion decision | Blocker before promotion |
+| --- | --- | --- | --- |
+| Bounded-speed certificate rows and live-ledger checklists | `content/markdown/aaa/validation/` or a focused subpage under `content/markdown/aaa/validation/simulations/` | defer with blocker | Restate as a general validation method rather than a retained-branch claim; keep all residual names compatible with the notation table. |
+| Solver-test protocols for branch boxes, Krawczyk rows, event resets, and local rejection | `content/markdown/aaa/validation/simulations/` | defer with blocker | Separate reproducibility criteria from priority-only branch-search status; remove workstream labels that are not reader-facing concepts. |
+| Negative-result interpretation and residual inventories | `content/markdown/aaa/validation/` | defer with blocker | State what a failed row proves, what it does not prove, and which theorem target consumes the result. |
+| Accepted terminology and notation compatibility notes | Existing corpus pages where the terms are already introduced, beginning with `content/markdown/aaa/noether-swarm/noether-swarm.md` | promote now in small samples | Do not rename formula symbols, file paths, scene IDs, or app copy in the terminology sample. |
+
+Organization rule: keep exploratory gates, certificates, solver-test drafts, residual inventories, and live-ledger checklists in the relevant priority subdirectory until they are restated as reusable methodology. When promoted, place reader-facing validation methods under the corpus validation tree; keep theorem-specific scratch work in `reference/priorities/swarm/`.
+
+### User-Facing Corpus Migration Batch 1
+
+Status: `review-ready`.
+
+Scope: `content/markdown/aaa/noether-swarm/noether-swarm.md`, opening definition through the first nested shell swarm closure sections. This batch starts the corpus migration by replacing stale reader-facing terminology with the accepted triad while preserving legacy notation and deeper theorem content.
+
+Progress: first sample applied in the Noether swarm chapter. The remaining stale strings in that chapter are historical transition sentences, legacy formula notation, link titles/file paths, or material held for later file/path cleanup.
+
+| Item | Decision |
+| --- | --- |
+| allowed edits | Prose-only terminology cleanup for `Noether core`, `tri-binary`, `triply`, loose `sector`, and taxonomy uses of `slot`. |
+| held back | Formula-symbol renames, file/path renames, scene updates, simulation updates, app copy, and broad migration of later dense theory sections. |
+| expected remaining stale terms | Later occurrences in the same chapter may remain for batch 2 when they sit inside formulas, legacy labels, or dense branch-retuning claims. |
+| validation | Run markdown validation and scene-graph checks after the sample edit. |
+
+### User-Facing Corpus Migration Batch 2
+
+Status: `review-ready`.
+
+Scope: `content/markdown/aaa/spacetime/noether-core-geometry.md`. This batch migrates the geometry chapter title and prose to nested shell swarm terminology while preserving the legacy file path, link targets, and established symbols.
+
+Progress: applied the nested shell swarm geometry migration. The chapter now uses `nested shell swarm`, `Noether swarm`, `neutral swarm`, `dynamic exclusion envelope`, and `three-binary causal-root ledger` language. The remaining old string exposure is limited to legacy file paths outside the prose surface.
 
 ### Neutral Swarm Model Restatement
 

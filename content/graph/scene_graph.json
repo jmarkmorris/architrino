@@ -2850,7 +2850,7 @@
     },
     {
       "id": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-      "name": "Noether Core Geometry",
+      "name": "Nested Shell Swarm Geometry",
       "path": "content/markdown/aaa/spacetime/noether-core-geometry.md",
       "nodeType": "markdown_doc"
     },
@@ -7210,7 +7210,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/spacetime/noether-core-geometry.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/spacetime/noether-core-geometry.md",
-      "name": "Noether Core Geometry",
+      "name": "Nested Shell Swarm Geometry",
       "path": "content/markdown/aaa/spacetime/noether-core-geometry.md",
       "searchTarget": "content/markdown/aaa/spacetime/noether-core-geometry.md",
       "implicit": false
