@@ -1,12 +1,20 @@
 # Noether Swarm
 
-The **Noether swarm** is the neutral six-architrino assembly scaffold that later supports both the Noether Sea and Standard Model particle architecture. The general object is not assumed to be a set of exact binaries. It is a closed, charge-neutral, bounded-speed six-body branch in which three positive architrinos and three negative architrinos maintain a persistent causal-return ledger.
+The **Noether swarm** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether-Sea and particle-architecture program. A Noether swarm is not assumed at the outset to be a set of exact binaries. The base object is a closed, charge-neutral, bounded-speed six-body branch in which three positive architrinos and three negative architrinos maintain a persistent causal-return ledger.
 
-Older chapters in the corpus use **Noether core**, **tri-binary**, and **nested binary** for the highly structured nested shell swarm case. This chapter treats that structure as a special case of the broader Noether swarm. The downstream corpus still mostly describes the nested shell swarm and has not yet been generalized; the older terms should therefore be read as nested shell swarm terminology unless a later page explicitly promotes the more general swarm case. The swarm's dynamic envelope geometry is developed separately in [the nested shell swarm geometry chapter](nested-shell-swarm-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
+This chapter uses three swarm types:
 
-## General Neutral Swarm
+| Term | Definition | Additional structure |
+| --- | --- | --- |
+| **neutral swarm** | The broad six-architrino neutral case before any required binary grouping or radial organization. | Charge balance and causal-return bookkeeping. |
+| **shell swarm** | A neutral swarm whose six architrino paths remain in a controlled radial support band. | Radial support control, with near-antipodality only as an optional constraint. |
+| **nested shell swarm** | A shell swarm with three ordered radial support bands. | The old three-layer picture; exact binaries are an additional proof assumption, not a separate swarm type. |
 
-A **neutral swarm** is the broad Noether-carrier case. It contains six architrinos indexed by $i\in\{1,\ldots,6\}$, with polarity signs $\sigma_i\in\{+1,-1\}$ satisfying
+Older chapters in the corpus use **Noether core**, **tri-binary**, and **nested binary** for material that usually belongs to the nested shell swarm case. This chapter treats that structure as a special case of the broader Noether swarm class. The downstream corpus still mostly describes the nested shell swarm and has not yet been generalized; the older terms should therefore be read as nested shell swarm terminology unless a later page explicitly promotes the more general swarm case. The swarm's dynamic envelope geometry is developed separately in [the nested shell swarm geometry chapter](nested-shell-swarm-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
+
+## Neutral Swarm
+
+A **neutral swarm** is the base six-architrino case. It contains six architrinos indexed by $i\in\{1,\ldots,6\}$, with polarity signs $\sigma_i\in\{+1,-1\}$ satisfying
 
 $$
 \#\{i:\sigma_i=+1\}
@@ -39,7 +47,7 @@ X_i(t)=Y_i(\lambda_i(t)),
 0<\nu_-\leq\nu_i(t)\leq\nu_+<\infty.
 $$
 
-The bounded speed factor $\nu_i(t)$ is the place where speed-lapse behavior enters the architecture. A branch may temporarily push an architrino over a local hinge into a self-hit mode, but an admissible neutral swarm must still return to a closed causal ledger within the branch's recovery tolerance. The general neutral swarm therefore allows changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to three exact binaries.
+The bounded speed factor $\nu_i(t)$ is the place where speed-lapse behavior enters the architecture. A branch may temporarily push an architrino over a local hinge into a self-hit mode, but an admissible neutral swarm must still return to a closed causal ledger within the branch's recovery tolerance. The neutral swarm therefore allows changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to three exact binaries.
 
 ## Shell Swarm
 
@@ -59,7 +67,7 @@ $$
 \frac{R_+-R_-}{R_*}\leq\varepsilon_{\mathrm{shell}},
 $$
 
-while a broader shell branch keeps only the hollow-band condition. This is still not the nested-shell model. It is a one-band neutral swarm whose support is spatially organized strongly enough to produce a persistent exclusion envelope, shielding pattern, and Noether-Sea coupling channel.
+while a broader shell branch keeps only the hollow-band condition. This is still not the nested shell swarm. It is a one-band neutral swarm whose support is spatially organized strongly enough to produce a persistent exclusion envelope, shielding pattern, and Noether-Sea coupling channel.
 
 Near-antipodality is an optional shell swarm constraint, not a definition of the neutral swarm. A shell branch may carry an approximate polarity-reversing matching $\iota$ with $\iota^2=\mathrm{id}$ and $\sigma_{\iota(i)}=-\sigma_i$. Relative to a branch center $C(t)$, define the near-antipodality defect
 
@@ -87,7 +95,7 @@ for a branch interval $J$, recovery time $T_{\mathrm{rec}}$, contraction factor 
 
 ## Nested Shell Swarm
 
-A **nested shell swarm** is a shell swarm with three ordered radial support bands. It is the case most of the existing corpus currently describes. The old phrase **Noether core** usually names this nested shell swarm case unless the surrounding context explicitly says otherwise.
+A **nested shell swarm** is a shell swarm with three ordered radial support bands. It is the case most of the existing downstream corpus currently describes.
 
 The geometric shell labels are
 
@@ -103,7 +111,7 @@ $$
 H,\ M,\ L
 $$
 
-for **high**, **middle**, and **low** branch role. In the weak-stress nested-shell chart, $H$ is the high-cadence or high-stress role, $M$ is the hinge or transfer role, and $L$ is the low-cadence or external-coupling role. The letter $M$ is therefore context-dependent: in $I/M/O$ it means middle radius, while in $H/M/L$ it means the middle role between high and low branch response. The usual weak-stress branch is expected to align these two orderings approximately, but that alignment is a branch result rather than a naming axiom.
+for **high**, **middle**, and **low** branch role. In the weak-stress nested shell swarm chart, $H$ is the high-cadence or high-stress role, $M$ is the hinge or transfer role, and $L$ is the low-cadence or external-coupling role. The letter $M$ is therefore context-dependent: in $I/M/O$ it means middle radius, while in $H/M/L$ it means the middle role between high and low branch response. The usual weak-stress branch is expected to align these two orderings approximately, but that alignment is a branch result rather than a naming axiom.
 
 The recursive binary picture remains valuable inside this case. Just as an Electrino and a Positrino can form a stable binary, a declared binary can participate in a larger coupled support structure, and three energy-separated binaries can form a nested shell hierarchy. The key to stability is still separation of scale: each surrounding support band must have a larger radius, a lower cadence, and a compatible causal-root ledger than the deeper support band.
 
@@ -111,7 +119,7 @@ In this case, a candidate stable configuration is the **nested shell swarm with 
 
 -   **Why Three?** The stability of a three-shell nested structure is a theorem target tied to the three-dimensional nature of Euclidean space. Each binary defines an orbital plane or dominant support sheet. The working claim is that three mutually orthogonal support sheets can form a dynamically stable, symmetric, three-dimensional structure that is resistant to perturbation; the proof burden is to derive that role count from the delayed causal dynamics rather than assuming it.
 
--   **Why "Noether"?** This assembly family is named in honor of Emmy Noether. Noether's theorem links symmetries in physical systems to conserved quantities. The highly symmetric nested shell swarm is the candidate scaffold through which spin, branch-quantized energy records, and other conserved observer-level labels should be recovered from closure labels and emitted causal-wake envelopes.
+-   **Why "Noether"?** This swarm family is named in honor of Emmy Noether. Noether's theorem links symmetries in physical systems to conserved quantities. The highly symmetric nested shell swarm is the candidate scaffold through which spin, branch-quantized energy records, and other conserved observer-level labels should be recovered from closure labels and emitted causal-wake envelopes.
 
 ## Properties of the Nested Shell Swarm
 
@@ -224,7 +232,7 @@ D\mathcal{C}_q[\Delta\mathbf{y}]
 =0.
 $$
 
-If $\Delta\mathcal{C}_{\mathcal{G}}=0$, the retuning stays on the same causal-root ledger. If $\Delta\mathcal{C}_{\mathcal{G}}\neq0$, the event is a branch transition and must be treated as a separator crossing or causal-locus reconnection rather than as smooth single-core drift.
+If $\Delta\mathcal{C}_{\mathcal{G}}=0$, the retuning stays on the same causal-root ledger. If $\Delta\mathcal{C}_{\mathcal{G}}\neq0$, the event is a branch transition and must be treated as a separator crossing or causal-locus reconnection rather than as smooth single-swarm drift.
 
 The local cadence-scale retuning map is therefore the closure target
 
@@ -385,7 +393,7 @@ R_{\mathrm{excl}}
 \alpha_O^{(q)}R_O,
 $$
 
-where $\alpha_O^{(q)}$ converts the outer-binary radius into the selected exclusion-interface threshold. Equal-core center contact then occurs at
+where $\alpha_O^{(q)}$ converts the outer-binary radius into the selected exclusion-interface threshold. Equal exclusion-envelope center contact then occurs at
 
 $$
 d_{\mathrm{nn}}=2R_{\mathrm{excl}},
@@ -399,7 +407,7 @@ $$
 \frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}.
 $$
 
-Therefore the packing curve inherits the radius closure:
+The legacy density symbol is retained as packing notation for this chart. It names the maximum center density of the relevant Noether swarm exclusion envelopes, not a separate swarm type. Therefore the packing curve inherits the radius closure:
 
 $$
 \rho_{\mathrm{core},\max}^{\#}(N)
@@ -474,24 +482,24 @@ The same nested shell swarm motion that supplies shielding also sweeps out a per
 
 ## The Nested Shell Swarm Hierarchy and Fermion Generations
 
-The broader assembly program suggests reading the nested binary family as a natural hierarchy of fermion shielding tiers:
+The broader assembly program suggests reading the nested shell swarm hierarchy as a natural hierarchy of fermion shielding tiers:
 
 -   **Isolated binary:** the most exposed shielding tier, corresponding to Generation III.
--   **Bi-binary:** one shielding tier restored, corresponding to the Generation-II shielding tier.
+-   **Two-binary shielding tier:** one shielding tier restored, corresponding to the Generation-II shielding tier.
 -   **Nested shell swarm:** the fully shielded three-tier swarm, corresponding to the Generation-I shielding tier.
 
 On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../assemblies/fermions/electron.md).
 
 ## Nested Shell Swarm Alignment and Planck-Scale Framing
 
-The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary** is the near-field-speed hinge, written as $s_M\approx c_f$ in the ordinary weak-stress branch and as $v_M=c_f$ in the terminal-alignment target; its **radius and frequency vary**. It acts as the **energy-storage fulcrum** for transfers across the nested shell swarm.
+The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary** is the near-field-speed hinge, written as $s_M\approx c_f$ in the ordinary weak-stress branch and as $v_M=c_f$ in the terminal-alignment target; its shell scale and cadence retune along the branch. It acts as the **energy-storage fulcrum** for transfers across the nested shell swarm.
 
-As a nested shell swarm approaches an event horizon, the **outer binary frequency increases** and its **speed approaches $c_f$**, while the **middle binary** remains on the declared hinge branch as its radius/frequency shift. At the horizon-alignment target, the **middle and outer binaries reach $c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
+As a nested shell swarm approaches an event horizon, the **outer binary frequency increases** and its **speed approaches $c_f$**, while the **middle binary** remains on the declared hinge branch as its shell scale and cadence retune. At the horizon-alignment target, the **middle and outer binaries reach $c_f$ and become coplanar and co-linear with the inner binary**, with **precession ceasing** at alignment.
 
 **Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (nested shell swarm coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale; compare [Singularity Resolution](../spacetime/singularity-resolution.md) and [Mapping the Planck Scale to the Nested Shell Swarm Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md).
 
 ## The Foundation for Fermions
 
-The Noether swarm is the structural scaffold used by the fermion program. Different closure labels, shielding tiers, energy records, and surrounding axial/wake structures are expected to map to Standard Model flavors and generations, but the mapping remains a derivation target until the branch labels, axial-layer inventory, and apparatus-coupling records have been recovered from the dynamics.
+The Noether swarm class supplies the structural scaffold used by the fermion program. Different closure labels, shielding tiers, energy records, and surrounding axial/wake structures are expected to map to Standard Model flavors and generations, but the mapping remains a derivation target until the branch labels, axial-layer inventory, and apparatus-coupling records have been recovered from the dynamics.
 
 The collective motion, or **group velocity**, of a Noether swarm assembly determines its emergent behavior. The way these assemblies interact and pack together can lead to different statistical properties. The geometry-facing version of that claim is developed in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md): volumetric Noether swarm envelopes are the substrate candidate for fermionic exclusion, while strongly oblated coherent support is the candidate route to bosonic shared occupation.

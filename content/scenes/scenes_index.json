@@ -1592,7 +1592,7 @@
     },
     {
       "id": "noether_swarm__swarm_geometry",
-      "name": "Swarm Geometry",
+      "name": "Nested Shell Swarm Geometry",
       "path": "content/scenes/noether-swarm/swarm_geometry.json"
     },
     {
@@ -1614,6 +1614,11 @@
       "id": "noether_swarm__nested_shell_swarm_dynamics",
       "name": "Nested Shell Swarm Dynamics",
       "path": "content/scenes/noether-swarm/nested_shell_swarm_dynamics.json"
+    },
+    {
+      "id": "noether_swarm__overview",
+      "name": "Noether Swarm",
+      "path": "content/scenes/noether-swarm/noether_swarm_overview.json"
     }
   ]
 }

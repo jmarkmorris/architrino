@@ -229,6 +229,19 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - [Why This Is the Best Next Closure Target](../../../markdown/aaa/proof-programs/planar-bridge-closure.md?section=Why+This+Is+the+Best+Next+Closure+Target)
       - [Interfaces to Other Chapters](../../../markdown/aaa/proof-programs/planar-bridge-closure.md?section=Interfaces+to+Other+Chapters)
 - [Noether Swarm](../../../scenes/noether-swarm/noether_swarm.json)
+  - [Noether Swarm](../../../scenes/noether-swarm/noether_swarm_overview.json)
+    - [Neutral Swarm](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=Neutral+Swarm)
+    - [Shell Swarm](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=Shell+Swarm)
+    - [Nested Shell Swarm](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=Nested+Shell+Swarm)
+    - [Properties of the Nested Shell Swarm](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=Properties+of+the+Nested+Shell+Swarm)
+    - [Integer Phase-Closure States](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=Integer+Phase-Closure+States)
+    - [Cadence-Scale Retuning Hypothesis](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=Cadence-Scale+Retuning+Hypothesis)
+    - [Rest-Level Scaling Curve](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=Rest-Level+Scaling+Curve)
+    - [Reduced Nested Shell Swarm Closure Label](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=Reduced+Nested+Shell+Swarm+Closure+Label)
+    - [Geometry and Exclusion Envelope](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=Geometry+and+Exclusion+Envelope)
+    - [The Nested Shell Swarm Hierarchy and Fermion Generations](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=The+Nested+Shell+Swarm+Hierarchy+and+Fermion+Generations)
+    - [Nested Shell Swarm Alignment and Planck-Scale Framing](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=Nested+Shell+Swarm+Alignment+and+Planck-Scale+Framing)
+    - [The Foundation for Fermions](../../../markdown/aaa/noether-swarm/noether-swarm.md?section=The+Foundation+for+Fermions)
   - [Neutral Swarm](../../../scenes/noether-swarm/neutral_swarm.json) _(diagram)_
   - [Shell Swarm](../../../scenes/noether-swarm/shell_swarm.json) _(diagram)_
   - [Nested Shell Swarm](../../../scenes/noether-swarm/nested_shell_swarm.json) _(diagram)_
@@ -255,7 +268,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - [Revision Triggers (Failure Modes)](../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md?section=Revision+Triggers+%28Failure+Modes%29)
     - [Acceleration-Gradient Branch Comparison](../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md?section=Acceleration-Gradient+Branch+Comparison)
     - [Routed Extensions](../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md?section=Routed+Extensions)
-  - [Swarm Geometry](../../../scenes/noether-swarm/swarm_geometry.json)
+  - [Nested Shell Swarm Geometry](../../../scenes/noether-swarm/swarm_geometry.json)
     - [Ownership Boundary](../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md?section=Ownership+Boundary)
     - [Dynamic Exclusion Envelope](../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md?section=Dynamic+Exclusion+Envelope)
     - [Assembly-Noether-Sea Interface Diagnostic](../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md?section=Assembly-Noether-Sea+Interface+Diagnostic)
