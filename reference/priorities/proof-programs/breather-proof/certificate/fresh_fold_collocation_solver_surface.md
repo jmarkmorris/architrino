@@ -59,6 +59,23 @@ domination inequalities, 0 topology/no-double-counting certificates, and 0
 non-core complement closures, accepts 0 regular-boundary-covered strips,
 consumes 0 simple-root parent rows, and still rejects before branch-chart
 authorization.
+A proof-interval-v9 sidecar is now present as
+`scripts/proof-programs/fresh-proof-interval-preledger-v9.mjs`; it imports the
+v8 finite regular-boundary candidate-family inventory and proves a current-field
+separator-assignment no-go. All 10 imported candidate cores have two candidate
+separators, no exact singleton selector, and no accepted topology ownership
+rule. Side labels, endpoint adjacency without ownership, array order, separator
+order, and family order are rejected as certificates. It accepts 0 separator
+assignments, 0 complement strips, consumes 0 simple-root parent rows, and still
+rejects before branch-chart authorization.
+A proof-interval-v10 sidecar is now present as
+`scripts/proof-programs/fresh-proof-interval-preledger-v10.mjs`; it imports the
+v9 no-go inventory and audits the missing topology/no-double-counting route
+directly. Across 10 imported regular-boundary cores it tests 5
+topology/no-double-counting methods, records 50 method evaluations, certifies 0
+topology/no-double-counting certificates, accepts 0 parent-complement strips,
+consumes 0 simple-root parent rows, and still rejects before branch-chart
+authorization.
 
 The available surface is contractual and diagnostic:
 
@@ -146,20 +163,41 @@ The available surface is contractual and diagnostic:
   topology/no-double-counting certificates, and 0 non-core complement closures,
   accepts 0 complement strips, consumes 0 simple-root parent rows, keeps 38
   parent rows `split_required`, and authorizes no branch chart.
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json`,
+  `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json`,
+  `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.md`,
+  and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json`
+  record the proof-interval-v9 separator-assignment no-go sidecar: it imports
+  the v8 finite candidate-family inventory, tests 5 selector methods over 10
+  cores, records 10 ambiguous two-separator cores and 20 rejected heuristic
+  assignments, certifies 0 exact single separator assignments, accepts 0
+  complement strips, consumes 0 simple-root parent rows, keeps 38 parent rows
+  `split_required`, and authorizes no branch chart.
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.json`,
+  `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.json`,
+  `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.md`,
+  and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.json`
+  record the proof-interval-v10 topology/no-double-counting no-go sidecar: it
+  imports the v9 inventory, tests 5 topology/no-double-counting methods over 10
+  residual regular-boundary cores, records 50 method evaluations, certifies 0
+  topology/no-double-counting certificates, accepts 0 complement strips,
+  consumes 0 simple-root parent rows, keeps 38 parent rows `split_required`,
+  and authorizes no branch chart.
 - `fresh_preledger_blocker_anatomy.fresh-same-packet-fold-shear-seed-v0.json`
   and `fold_layer_burden.fresh-same-packet-fold-shear-seed-v0.json` classify
   those blockers into row-level proof burdens: 16 same-packet fold-layer rows, 6
   regular parent root-candidate overlaps, 10 endpoint/contact rows, and 2
   nonmonotone diagonal contacts.
 
-The next proof advance therefore requires proof-grade fields for one of the v8
-finite-family routes around the proof-interval-v4 simple-root subwindows:
-accepted same-packet fold-layer rows with exact complement membership, exact
-single separator assignments plus same-packet regular-boundary
-inclusion/domination for the finite candidate families, endpoint/topology
-ownership with finite contact tables and positive post-deletion gaps where
-applicable, or a repaired successor candidate whose complement collars become
-strict range-empty.
+The next proof advance therefore requires proof-grade fields for one of the v10
+blocked routes around the proof-interval-v4 simple-root subwindows: accepted
+same-packet fold-layer rows with exact complement membership, an exact
+core-to-separator assignment certificate plus a topology/no-double-counting
+ownership convention with branch-reuse exclusions and
+same-packet regular-boundary inclusion/domination for the finite candidate
+families, endpoint/topology ownership with finite contact tables and positive
+post-deletion gaps where applicable, or a repaired successor candidate whose
+complement collars become strict range-empty.
 Endpoint/seam ownership, fold-aware diagonal handling, and fold-layer
 certification are still required before branch-chart work. The blocker cannot
 be removed by relabeling the rejected cosine artifacts, treating sampled screen
@@ -399,6 +437,23 @@ assignments, 0 same-packet inclusion proofs, 0 fresh domination inequalities, 0
 topology/no-double-counting certificates, and 0 non-core complement closures.
 It accepts 0 complement strips, consumes 0 simple-root parent rows, and leaves
 the same 38 parent rows `split_required`.
+The proof-interval-v9 ledger
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json`
+also records `preledger_pass=false` and `branch_chart_authorized=false`; it
+imports the v8 finite candidate-family inventory and proves that current fields
+do not certify a singleton separator assignment for any of the 10 imported
+cores. All 10 cores have two candidate separators and no accepted selector. It
+accepts 0 separator assignments, accepts 0 complement strips, consumes 0
+simple-root parent rows, and leaves the same 38 parent rows `split_required`.
+The proof-interval-v10 ledger
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.json`
+also records `preledger_pass=false` and `branch_chart_authorized=false`; it
+imports the v9 inventory and proves that current fields do not certify
+topology/no-double-counting ownership for any of the 10 imported cores. It
+tests 5 topology/no-double-counting methods, records 50 failed method
+evaluations, accepts 0 topology/no-double-counting certificates, accepts 0
+complement strips, consumes 0 simple-root parent rows, and leaves the same 38
+parent rows `split_required`.
 
 ## Capture Decision
 

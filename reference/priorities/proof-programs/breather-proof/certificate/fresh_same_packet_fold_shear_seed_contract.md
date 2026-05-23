@@ -50,6 +50,14 @@ Source artifacts:
 - `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json`
 - `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.md`
 - `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json`
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json`
+- `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json`
+- `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.md`
+- `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json`
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.json`
+- `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.json`
+- `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.md`
+- `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.json`
 - `fresh_preledger_blocker_anatomy.fresh-same-packet-fold-shear-seed-v0.json`
 - `fold_layer_burden.fresh-same-packet-fold-shear-seed-v0.json`
 
@@ -336,18 +344,48 @@ It accepts 0 complement strips, consumes 0 simple-root parent rows, leaves 38
 parent rows `split_required`, accepts no fold-layer row, and records
 `branch_chart_authorized=false`.
 
+Fulfillment note, 2026-05-22: `scripts/proof-programs/fresh-proof-interval-preledger-v9.mjs`
+now emits a proof-interval-v9 sidecar for the same fresh packet:
+`preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json`,
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json`,
+`causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.md`,
+and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json`.
+This sidecar imports the v8 finite regular-boundary candidate-family inventory
+and proves a current-field separator-assignment no-go: all 10 imported
+candidate cores have two candidate separators, no exact singleton selector, and
+no accepted topology ownership rule. It rejects side labels, endpoint adjacency
+without ownership, array order, separator order, and family order as
+certificates, accepts 0 separator assignments, accepts 0 complement strips,
+consumes 0 simple-root parent rows, leaves 38 parent rows `split_required`,
+accepts no fold-layer row, and records `branch_chart_authorized=false`.
+
+Fulfillment note, 2026-05-22: `scripts/proof-programs/fresh-proof-interval-preledger-v10.mjs`
+now emits a proof-interval-v10 sidecar for the same fresh packet:
+`preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.json`,
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.json`,
+`causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.md`,
+and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v10.json`.
+This sidecar imports the v9 regular-boundary inventory and audits the missing
+topology/no-double-counting route. It tests 5 topology/no-double-counting
+methods over 10 residual cores, records 50 method evaluations, certifies 0
+topology/no-double-counting certificates, accepts 0 complement strips, consumes
+0 simple-root parent rows, leaves 38 parent rows `split_required`, accepts no
+fold-layer row, and records `branch_chart_authorized=false`.
+
 The stop rule remains unchanged: no branch chart is authorized unless the fresh
 null-coordinate pre-ledger has no `split_required` rows and every parent
 complement is consumed by an accepted same-packet alternative.
 The fresh sidecar fails this stop rule in the current attempt. The strongest
 proof-interval sidecar currently records 6 simple-root subrows, a same-packet
-ownership-data constructor, and a regular-boundary finite-family candidate
-inventory, but all 10 probed complement strips remain `split_required`: strict
+ownership-data constructor, a regular-boundary finite-family candidate
+inventory, a separator-assignment no-go, and a topology/no-double-counting
+no-go, but all 10 probed complement strips remain `split_required`: strict
 range-empty and endpoint/topology ownership fail, the 16 fresh fold-layer
 burden rows are not accepted same-packet fold-layer rows with exact complement
 membership, the 10 candidate regular-boundary cores still have no certified
-single separator assignment, and the 4 finite candidate families lack
-same-packet inclusion, fresh domination, topology/no-double-counting, and
+single separator assignment, no topology/no-double-counting ownership
+certificate, and no branch-reuse exclusion, and the 4 finite candidate families
+lack same-packet inclusion, fresh domination, topology/no-double-counting, and
 non-core complement-closure fields. The sidecar leaves 38 parent rows
 unresolved: 16 same-packet fold-layer certificate rows, regular parent
 complements around the simple-root subwindows, 8 inactive-fold-neighborhood

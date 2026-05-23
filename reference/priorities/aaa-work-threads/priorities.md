@@ -160,10 +160,6 @@ These are tracked for visibility, but they are not ranked active workstreams in 
 - Make a new subreddit named `architrino`.
 - Rename the blog.
 
-### Raw Research Prompts
-
-- Think more about multi-determinism and how it maps to quantum theory, many worlds, and free will; route concrete claims through [agency-decision-and-decider](../quantum-closure/agency-decision-and-decider.md) or [algorithmic-resonance-and-pilot-wave](../quantum-closure/algorithmic-resonance-and-pilot-wave.md) instead of leaving them as loose prompts.
-
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
 - [closure-scorecard](../../../content/markdown/aaa/validation/closure-scorecard.md)

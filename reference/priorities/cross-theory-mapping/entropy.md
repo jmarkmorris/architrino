@@ -285,6 +285,7 @@ The proof burden is to derive $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native hori
 
 - [temperature](temperature.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
+- [holographic-entropy-boundary-data-benchmark](../strong-field-closure/holographic-entropy-boundary-data-benchmark.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [validation-gates](../validation-gates/validation-gates.md)

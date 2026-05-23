@@ -6,8 +6,6 @@
 ### study orbital mechanics - Carleton University. Is it the same math?  Not really because they usually have one mass orbiting another, not in a circle.  But on the other hand they do orbit the center of mass.
 - if they are ignoring path history, then it is not interesting at the limit, but might still be good to know.
 
-### on the surface of a sphere a point can move in two directions at @.   E = q @@ ??
-
 ### Can planck equations be separated into parts a) that covers the whole territory and b) is only for v > @
 
 ### is a dirac sphere stream really a scalar field?

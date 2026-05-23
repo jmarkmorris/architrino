@@ -1,0 +1,82 @@
+{
+  "schema": "breather-proof-interval-separator-assignment-no-go-certificate-v9",
+  "packet_id": "fresh-same-packet-fold-shear-seed-v0",
+  "refinement_id": "fresh-same-packet-fold-shear-seed-v0-proof-interval-separator-assignment-no-go-v9",
+  "status": "proof_interval_v9_separator_assignment_no_go_fail_closed",
+  "theorem_target": "Null-Coordinate Causal Pre-Ledger",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "source_artifacts": {
+    "proof_interval_v8_ledger": {
+      "path": "causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json",
+      "sha256": "d4828cf3be5b033553990060c6d41dcb9e78496cb595c58ec564dc331637e554",
+      "bytes": 3453748
+    },
+    "proof_interval_v8_backend_certificate": {
+      "path": "preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json",
+      "sha256": "4f55b4963c6adfc6065bd5ade6287a096c6680784cf0b8469929ad1324cac552",
+      "bytes": 5064
+    },
+    "proof_interval_v8_engine_audit": {
+      "path": "preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json",
+      "sha256": "6b18a3805de4046634f57fa6c3def8bbe28616b0567f5772f18c1f17c7996a9c",
+      "bytes": 2134
+    },
+    "proof_interval_v8_report": {
+      "path": "causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.md",
+      "sha256": "c750683ec7e03af9ea29882458ae388e0132288fdf7a86ec292ecd74beb6e363",
+      "bytes": 8159
+    },
+    "fresh_input_screen": {
+      "path": "causal_preledger_input_screen.fresh-same-packet-fold-shear-seed-v0.json",
+      "sha256": "ce96eda158429f1d6f3dc070f1dfcefb2a7b50f18aeeee165ad06a790188e86a",
+      "bytes": 247870
+    },
+    "fresh_mesh": {
+      "path": "mesh.fresh-same-packet-fold-shear-seed-v0.json",
+      "sha256": "6870a4d916203e2bc8d30f16f9665cbc4f17315a800f82cac948914f0265a209",
+      "bytes": 20891
+    },
+    "fresh_seed_contract": {
+      "path": "fresh_same_packet_fold_shear_seed.v0.json",
+      "sha256": "322a6baf6e36360890b3e1c67f3781e8cd55ba9fb83d576a696e47371e43492b",
+      "bytes": 3772
+    },
+    "policy": {
+      "parent_complement_contract": {
+        "path": "fold_parent_boundary_complement_packet.md",
+        "sha256": "bdfe5d1bd031117234202808dd3141d3dd4c0329bc0b4ceae9f329db691fc01d",
+        "bytes": 12632
+      },
+      "regular_boundary_contract_probe": {
+        "path": "fold_parent_regular_boundary_contract_probe.md",
+        "sha256": "2ebceafffdfc3f4fcfc27e2e5164c48197cbe6d99e90f948772931c56e9b551b",
+        "bytes": 8448
+      },
+      "regular_boundary_coverage_attempt": {
+        "path": "fold_parent_regular_boundary_coverage_attempt.md",
+        "sha256": "4725b74b51ccebeaf3ecef28e12a9a99bfd18a5d51200a8a08ccc81fa04ef6fc",
+        "bytes": 7010
+      },
+      "fresh_seed_contract": {
+        "path": "fresh_same_packet_fold_shear_seed_contract.md",
+        "sha256": "645e018a6de7771a159b11e3082d294645accca52761b49cbcaf68bfc5d070f9",
+        "bytes": 20229
+      }
+    }
+  },
+  "pass_rule": "A residual regular-boundary core can receive an accepted separator assignment only from an explicit exact single separator assignment field or an accepted topology ownership convention that selects one separator from the candidate adjacency set; candidate-list singleton length is not proof-grade by itself.",
+  "no_go_rule": "If a core has two candidate separators and no accepted topology ownership selector, adjacency, side labels, array order, and family order must fail closed.",
+  "construction_scope": "v9 imports proof-interval-v8 finite regular-boundary candidate families and audits separator-assignment selectors only; it accepts no parent-complement strips.",
+  "authorization_lock": {
+    "branch_chart_authorized": false,
+    "preledger_pass": false,
+    "updates_live_ledger": false,
+    "must_not_emit": [
+      "branch_chart.json",
+      "seed_chart_interval_report.md",
+      "causal_ledger.json"
+    ]
+  }
+}

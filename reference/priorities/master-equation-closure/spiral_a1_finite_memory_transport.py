@@ -4214,6 +4214,323 @@ def finite_collar_mixed_second_order_response_audit(args: argparse.Namespace) ->
     }
 
 
+def finite_collar_remainder_constants_ladder(args: argparse.Namespace) -> dict:
+    try:
+        import numpy as np
+        from scipy.linalg import null_space
+    except ImportError as exc:
+        raise RuntimeError(
+            "--diagnostic-mode finite_collar_remainder_constants_ladder "
+            "requires scipy and numpy"
+        ) from exc
+
+    degree = args.finite_collar_repair_degree
+    radii = parse_positive_float_csv(
+        args.finite_collar_remainder_radii,
+        "--finite-collar-remainder-radii",
+    )
+    amplitudes = parse_positive_float_csv(
+        args.finite_collar_second_order_steps,
+        "--finite-collar-second-order-steps",
+    )
+    if len(amplitudes) < 2:
+        raise ValueError(
+            "--finite-collar-second-order-steps must contain at least two amplitudes"
+        )
+
+    seed, base_coefficients, seed_perturbation, sensitivity, rows, _ = (
+        build_endpoint_slope_cancel_seed(args, degree)
+    )
+    constraints = np.asarray(rows, dtype=float)
+    null_basis = null_space(constraints)
+    opt_args = finite_collar_objective_args(args)
+    base_array = np.asarray(base_coefficients, dtype=float)
+    seed_array = np.asarray(seed_perturbation, dtype=float)
+    seed_coefficients = tuple(float(value) for value in base_array + seed_array)
+    seed_profile = PastProfileSpec(
+        kind=f"finite_collar_remainder_constants_seed_degree_{degree}",
+        coefficients=seed_coefficients,
+        basis_scale=seed.basis_scale,
+        summary=seed.summary,
+    )
+    base_profile = build_tangential_transport_profile(opt_args, past_profile=seed_profile)
+    base_objective = retained_collar_radial_objective_value_from_profile(
+        opt_args, base_profile
+    )
+    base_vector = [
+        row["radial_residual_tangential_substituted"]
+        for row in base_objective["samples"]
+    ]
+    base_residual = np.asarray(base_vector, dtype=float)
+    base_max_abs = float(np.max(np.abs(base_residual)))
+    base_min_abs = float(np.min(np.abs(base_residual)))
+    material_floor = max(
+        args.finite_collar_tracking_improvement_floor,
+        args.finite_collar_material_improvement_frac * base_max_abs,
+    )
+
+    column_count = int(null_basis.shape[1])
+    if column_count == 0:
+        return {
+            "artifact": "spiral_a1_finite_collar_remainder_constants_ladder",
+            "claim_level": "sampled remainder constants ladder, not interval certificate",
+            "degree": degree,
+            "basis_scale": seed.basis_scale,
+            "finite_collar_theta_hi": args.finite_collar_theta_hi,
+            "finite_collar_samples": args.finite_collar_samples,
+            "finite_collar_nullspace_dimension": 0,
+            "base_objective": base_objective,
+            "base_residual_vector": base_vector,
+            "base_max_abs": base_max_abs,
+            "material_improvement_floor": material_floor,
+            "classification": "underdetermined_no_homogeneous_remainder_directions",
+            "policy": (
+                "Sampled support only: this diagnostic does not replace outward "
+                "interval constants or admissibility certification."
+            ),
+        }
+
+    analytic_matrix, analytic_packet = finite_collar_analytic_tangent_matrix_packet(
+        args,
+        np=np,
+        seed=seed,
+        null_basis=null_basis,
+        base_profile=base_profile,
+        opt_args=opt_args,
+    )
+    c1_sampled = float(
+        max(np.linalg.norm(analytic_matrix[row_index, :]) for row_index in range(analytic_matrix.shape[0]))
+    )
+
+    direction_packets = deterministic_mixed_parameter_directions(
+        np,
+        column_count,
+        args.finite_collar_remainder_ray_count,
+        args.finite_collar_mixed_seed,
+    )
+    ray_kind_counts: dict[str, int] = {}
+    for packet in direction_packets:
+        kind = packet["kind"]
+        ray_kind_counts[kind] = ray_kind_counts.get(kind, 0) + 1
+
+    def profile_packet_for_parameters(parameters: object, label: str) -> PastProfileSpec:
+        perturbation = seed_array + null_basis @ np.asarray(parameters, dtype=float)
+        coefficients = tuple(float(value) for value in base_array + perturbation)
+        return PastProfileSpec(
+            kind=f"finite_collar_remainder_constants_{label}",
+            coefficients=coefficients,
+            basis_scale=seed.basis_scale,
+        )
+
+    def candidate_vector_and_objective(spec: PastProfileSpec) -> tuple[object, dict, dict]:
+        profile = build_tangential_transport_profile(opt_args, past_profile=spec)
+        objective = retained_collar_radial_objective_value_from_profile(opt_args, profile)
+        vector = np.asarray(
+            [
+                row["radial_residual_tangential_substituted"]
+                for row in objective["samples"]
+            ],
+            dtype=float,
+        )
+        past_bounds = sampled_q_bounds(
+            spec.coefficients,
+            spec.basis_scale,
+            args.finite_collar_positivity_samples,
+        )
+        future_values = [profile.q(theta) for theta in theta_grid(0.0, opt_args.theta_hi, opt_args.theta_samples)]
+        q_bounds = {
+            "past_min_q": past_bounds["min_q"],
+            "past_max_q": past_bounds["max_q"],
+            "future_min_Q": min(future_values),
+            "future_max_Q": max(future_values),
+            "sampled_min_q": min(past_bounds["min_q"], min(future_values)),
+            "sampled_max_q": max(past_bounds["max_q"], max(future_values)),
+        }
+        return vector, objective, q_bounds
+
+    amplitude_packets: list[dict] = []
+    c2_by_amplitude: list[float] = []
+    candidate_failures: list[dict] = []
+    max_central_second_numerator = 0.0
+    for amplitude in amplitudes:
+        second_columns: list[object] = []
+        direction_summaries: list[dict] = []
+        for direction_packet in direction_packets:
+            direction = np.asarray(direction_packet["parameters"], dtype=float)
+            plus_parameters = amplitude * direction
+            minus_parameters = -amplitude * direction
+            try:
+                plus_vector, plus_objective, plus_q_bounds = candidate_vector_and_objective(
+                    profile_packet_for_parameters(
+                        plus_parameters,
+                        f"plus_{direction_packet['label']}_{amplitude:g}",
+                    )
+                )
+                minus_vector, minus_objective, minus_q_bounds = candidate_vector_and_objective(
+                    profile_packet_for_parameters(
+                        minus_parameters,
+                        f"minus_{direction_packet['label']}_{amplitude:g}",
+                    )
+                )
+            except (RuntimeError, ValueError) as exc:
+                candidate_failures.append(
+                    {
+                        "amplitude": amplitude,
+                        "direction": direction_packet["label"],
+                        "message": str(exc),
+                    }
+                )
+                continue
+            numerator = plus_vector + minus_vector - 2.0 * base_residual
+            second_derivative = numerator / (amplitude * amplitude)
+            second_columns.append(second_derivative)
+            numerator_norm = float(np.max(np.abs(numerator)))
+            max_central_second_numerator = max(
+                max_central_second_numerator, numerator_norm
+            )
+            plus_max_abs = float(np.max(np.abs(plus_vector)))
+            minus_max_abs = float(np.max(np.abs(minus_vector)))
+            best_candidate_max_abs = min(plus_max_abs, minus_max_abs)
+            direction_summaries.append(
+                {
+                    "label": direction_packet["label"],
+                    "kind": direction_packet["kind"],
+                    "max_abs_second_derivative": float(np.max(np.abs(second_derivative))),
+                    "central_second_numerator_max_abs": numerator_norm,
+                    "plus_max_abs": plus_max_abs,
+                    "minus_max_abs": minus_max_abs,
+                    "best_candidate_improvement": base_max_abs - best_candidate_max_abs,
+                    "plus_min_abs_J": min(
+                        row["min_abs_J"] for row in plus_objective["samples"]
+                    ),
+                    "minus_min_abs_J": min(
+                        row["min_abs_J"] for row in minus_objective["samples"]
+                    ),
+                    "plus_q_bounds": plus_q_bounds,
+                    "minus_q_bounds": minus_q_bounds,
+                    "plus_sampled_admissible_q_bounds": (
+                        plus_q_bounds["sampled_min_q"] >= args.finite_collar_min_q
+                        and plus_q_bounds["sampled_max_q"] <= args.finite_collar_max_q
+                    ),
+                    "minus_sampled_admissible_q_bounds": (
+                        minus_q_bounds["sampled_min_q"] >= args.finite_collar_min_q
+                        and minus_q_bounds["sampled_max_q"] <= args.finite_collar_max_q
+                    ),
+                }
+            )
+        if second_columns:
+            second_matrix = np.column_stack(second_columns)
+            c2_amplitude = float(np.max(np.abs(second_matrix)))
+            frobenius_norm = float(np.linalg.norm(second_matrix))
+        else:
+            c2_amplitude = math.inf
+            frobenius_norm = math.inf
+        c2_by_amplitude.append(c2_amplitude)
+        amplitude_packets.append(
+            {
+                "amplitude": amplitude,
+                "successful_direction_count": len(second_columns),
+                "failed_direction_count": len(direction_packets) - len(second_columns),
+                "C2_sampled_amplitude": c2_amplitude,
+                "second_derivative_frobenius_norm": frobenius_norm,
+                "direction_summaries": direction_summaries,
+            }
+        )
+
+    adjacent_c2_changes = [
+        abs(c2_by_amplitude[index] - c2_by_amplitude[index - 1])
+        / max(abs(c2_by_amplitude[index - 1]), 1.0e-30)
+        for index in range(1, len(c2_by_amplitude))
+        if math.isfinite(c2_by_amplitude[index])
+        and math.isfinite(c2_by_amplitude[index - 1])
+    ]
+    max_adjacent_c2_relative_change = (
+        max(adjacent_c2_changes) if adjacent_c2_changes else math.inf
+    )
+    c2_stable = bool(
+        adjacent_c2_changes
+        and max_adjacent_c2_relative_change < args.finite_collar_variation_stability_tol
+    )
+    c2_sampled = max(
+        (value for value in c2_by_amplitude if math.isfinite(value)),
+        default=math.inf,
+    )
+
+    ladder: list[dict] = []
+    for radius in radii:
+        c1_term = c1_sampled * radius
+        c2_term = 0.5 * c2_sampled * radius * radius
+        remainder_bound = c1_term + c2_term
+        ladder.append(
+            {
+                "b": radius,
+                "C1_b": c1_term,
+                "half_C2_b2": c2_term,
+                "remainder_bound": remainder_bound,
+                "bound_to_material_floor_ratio": (
+                    remainder_bound / material_floor if material_floor else math.inf
+                ),
+                "bound_to_base_max_abs_ratio": (
+                    remainder_bound / base_max_abs if base_max_abs else math.inf
+                ),
+                "sampled_material_obstruction_support": (
+                    c2_stable and remainder_bound < material_floor
+                ),
+                "sampled_base_row_obstruction_support": (
+                    c2_stable and remainder_bound < base_min_abs
+                ),
+            }
+        )
+
+    any_material_support = any(
+        row["sampled_material_obstruction_support"] for row in ladder
+    )
+    if not c2_stable:
+        classification = "sampled_remainder_constants_unstable"
+    elif any_material_support:
+        classification = "sampled_remainder_below_material_floor"
+    else:
+        classification = "sampled_remainder_too_large_for_material_obstruction"
+
+    return {
+        "artifact": "spiral_a1_finite_collar_remainder_constants_ladder",
+        "claim_level": "sampled remainder constants ladder, not interval certificate",
+        "degree": degree,
+        "basis_scale": seed.basis_scale,
+        "finite_collar_theta_hi": args.finite_collar_theta_hi,
+        "finite_collar_samples": args.finite_collar_samples,
+        "finite_collar_nullspace_dimension": column_count,
+        "base_objective": base_objective,
+        "base_residual_vector": base_vector,
+        "base_max_abs": base_max_abs,
+        "base_min_abs": base_min_abs,
+        "material_improvement_floor": material_floor,
+        "analytic_effective_rank": analytic_packet["analytic_effective_rank"],
+        "analytic_response_singular_values": analytic_packet[
+            "analytic_response_singular_values"
+        ],
+        "C1_sampled": c1_sampled,
+        "amplitudes": amplitudes,
+        "mixed_direction_count": len(direction_packets),
+        "ray_kind_counts": ray_kind_counts,
+        "C2_sampled": c2_sampled,
+        "C2_sampled_stable": c2_stable,
+        "max_adjacent_C2_relative_change": max_adjacent_c2_relative_change,
+        "max_central_second_numerator": max_central_second_numerator,
+        "amplitude_packets": amplitude_packets,
+        "candidate_failures": candidate_failures,
+        "ladder": ladder,
+        "classification": classification,
+        "policy": (
+            "Sampled support only: C2_sampled is a deterministic-ray screen, "
+            "not an operator norm or outward interval constant. Do not promote "
+            "an A1 obstruction until admissibility and residual-envelope "
+            "constants are outward-certified on the same boxes."
+        ),
+        "endpoint_cancel_summary": seed.summary,
+    }
+
+
 def build_past_profile_spec(args: argparse.Namespace) -> PastProfileSpec:
     past_profile = getattr(args, "past_profile", PAST_PROFILE_POLYNOMIAL_WITNESS)
     if past_profile == PAST_PROFILE_ENDPOINT_SLOPE_CANCEL:
@@ -4982,6 +5299,23 @@ def main(argv: Iterable[str] | None = None) -> int:
         help="Seed for optional deterministic signed mixed parameter rays.",
     )
     parser.add_argument(
+        "--finite-collar-remainder-radii",
+        default="0.001,0.003,0.01,0.03",
+        help=(
+            "Comma-separated perturbation radii for --diagnostic-mode "
+            "finite_collar_remainder_constants_ladder."
+        ),
+    )
+    parser.add_argument(
+        "--finite-collar-remainder-ray-count",
+        type=int,
+        default=24,
+        help=(
+            "Deterministic unit rays for sampled C2 in --diagnostic-mode "
+            "finite_collar_remainder_constants_ladder."
+        ),
+    )
+    parser.add_argument(
         "--transport-steps",
         type=int,
         default=120,
@@ -5002,6 +5336,7 @@ def main(argv: Iterable[str] | None = None) -> int:
             "finite_collar_response_noise_audit",
             "finite_collar_second_order_response_audit",
             "finite_collar_mixed_second_order_response_audit",
+            "finite_collar_remainder_constants_ladder",
         ),
         default="evaluate",
         help="Choose the emitted diagnostic packet.",
@@ -5055,6 +5390,8 @@ def main(argv: Iterable[str] | None = None) -> int:
         result = finite_collar_second_order_response_audit(args)
     elif args.diagnostic_mode == "finite_collar_mixed_second_order_response_audit":
         result = finite_collar_mixed_second_order_response_audit(args)
+    elif args.diagnostic_mode == "finite_collar_remainder_constants_ladder":
+        result = finite_collar_remainder_constants_ladder(args)
     else:
         result = evaluate(args)
     print(json.dumps(result, indent=2 if args.pretty else None, sort_keys=True))

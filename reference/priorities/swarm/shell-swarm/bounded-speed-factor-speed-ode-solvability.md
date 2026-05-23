@@ -688,6 +688,10 @@ A bounded speed factor speed-ODE packet must emit:
 
 The zero-mean correction intake may separately emit `speed-primitive-feasibility-certified` when the post-correction primitive return and speed-band interval pass for a certified $\alpha_B$ direction. It may then emit `speed-clock-length-return-certified` when the same primitive also satisfies the clock/length return residual. These statuses close the scalar speed-ODE row only up to its declared boundary; they remain below retained bounded-speed branch status unless normal reconstruction and the downstream same-ledger rows also close.
 
+After clock/length return, the zero-mean correction intake may stage `normal-reconstruction-handoff-staged` by exporting the corrected speed profile and receiver normal residual rows to the normal-reconstruction packet. This is not a scalar speed-ODE certification status and not a bounded-speed live-ledger certification. It is only the handoff boundary where the first open row becomes `normal-reconstruction-open`.
+
+If a downstream normal packet closes those rows, the intake may record `bounded-speed-normal-reconstruction-candidate`. That status is outside scalar speed-ODE solvability; it is still below retained bounded-speed live-ledger status because action/Noether, event, stability, observer-export, refinement, and coupled fixed-point rows remain open.
+
 Status codes:
 
 $$

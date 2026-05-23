@@ -1,0 +1,82 @@
+{
+  "schema": "breather-proof-interval-topology-no-double-counting-no-go-certificate-v10",
+  "packet_id": "fresh-same-packet-fold-shear-seed-v0",
+  "refinement_id": "fresh-same-packet-fold-shear-seed-v0-proof-interval-topology-no-double-counting-no-go-v10",
+  "status": "proof_interval_v10_topology_no_double_counting_no_go_fail_closed",
+  "theorem_target": "Null-Coordinate Causal Pre-Ledger",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "source_artifacts": {
+    "proof_interval_v9_ledger": {
+      "path": "causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json",
+      "sha256": "f2ac2b2e9344f7259f2e04b226694214b87c97739d745d83b0e8c34b3568cf3e",
+      "bytes": 3627481
+    },
+    "proof_interval_v9_backend_certificate": {
+      "path": "preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json",
+      "sha256": "2491cb7e856ffe546dc47d31238476780359ebfdc08c3d073a7f3aff633f93f3",
+      "bytes": 3997
+    },
+    "proof_interval_v9_engine_audit": {
+      "path": "preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.json",
+      "sha256": "2286616119f9493b7ae3ff06cbf2ff670da59a3c53c8965f9fc0d3388300e2fb",
+      "bytes": 2161
+    },
+    "proof_interval_v9_report": {
+      "path": "causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v9.md",
+      "sha256": "2d1614d4c64f31af6058556e30cb0509e92c476ff572a60fc8b1014167d16012",
+      "bytes": 7264
+    },
+    "fresh_input_screen": {
+      "path": "causal_preledger_input_screen.fresh-same-packet-fold-shear-seed-v0.json",
+      "sha256": "ce96eda158429f1d6f3dc070f1dfcefb2a7b50f18aeeee165ad06a790188e86a",
+      "bytes": 247870
+    },
+    "fresh_mesh": {
+      "path": "mesh.fresh-same-packet-fold-shear-seed-v0.json",
+      "sha256": "6870a4d916203e2bc8d30f16f9665cbc4f17315a800f82cac948914f0265a209",
+      "bytes": 20891
+    },
+    "fresh_seed_contract": {
+      "path": "fresh_same_packet_fold_shear_seed.v0.json",
+      "sha256": "322a6baf6e36360890b3e1c67f3781e8cd55ba9fb83d576a696e47371e43492b",
+      "bytes": 3772
+    },
+    "policy": {
+      "parent_complement_contract": {
+        "path": "fold_parent_boundary_complement_packet.md",
+        "sha256": "bdfe5d1bd031117234202808dd3141d3dd4c0329bc0b4ceae9f329db691fc01d",
+        "bytes": 12632
+      },
+      "regular_boundary_contract_probe": {
+        "path": "fold_parent_regular_boundary_contract_probe.md",
+        "sha256": "2ebceafffdfc3f4fcfc27e2e5164c48197cbe6d99e90f948772931c56e9b551b",
+        "bytes": 8448
+      },
+      "regular_boundary_coverage_attempt": {
+        "path": "fold_parent_regular_boundary_coverage_attempt.md",
+        "sha256": "4725b74b51ccebeaf3ecef28e12a9a99bfd18a5d51200a8a08ccc81fa04ef6fc",
+        "bytes": 7010
+      },
+      "fresh_seed_contract": {
+        "path": "fresh_same_packet_fold_shear_seed_contract.md",
+        "sha256": "2d9d57560b9e25f8006d63912ea438a562922ab30c0b5c3511e8e9c5e02a3313",
+        "bytes": 21670
+      }
+    }
+  },
+  "pass_rule": "A residual regular-boundary core can receive topology/no-double-counting acceptance only from an explicit ownership convention that assigns shared simple-root and fold boundaries and proves no reuse in strict simple-root branch sums, endpoint-excluded complements, or fold-layer rectangles.",
+  "no_go_rule": "If no such ownership and branch-reuse exclusion certificate is present, endpoint ownership, simple-root acceptance, fold-family inventory, side labels, and separator adjacency must fail closed.",
+  "construction_scope": "v10 imports proof-interval-v9 selector no-go data and audits topology/no-double-counting fields only; it accepts no parent-complement strips.",
+  "authorization_lock": {
+    "branch_chart_authorized": false,
+    "preledger_pass": false,
+    "updates_live_ledger": false,
+    "must_not_emit": [
+      "branch_chart.json",
+      "seed_chart_interval_report.md",
+      "causal_ledger.json"
+    ]
+  }
+}
