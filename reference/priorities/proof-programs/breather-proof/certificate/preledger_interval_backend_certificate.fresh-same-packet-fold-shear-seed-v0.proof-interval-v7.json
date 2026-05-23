@@ -1,0 +1,112 @@
+{
+  "schema": "breather-proof-interval-same-packet-ownership-data-certificate-v7",
+  "packet_id": "fresh-same-packet-fold-shear-seed-v0",
+  "refinement_id": "fresh-same-packet-fold-shear-seed-v0-proof-interval-same-packet-ownership-data-v7",
+  "status": "proof_interval_v7_same_packet_ownership_data_certificate_fail_closed",
+  "theorem_target": "Null-Coordinate Causal Pre-Ledger",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "source_artifacts": {
+    "proof_interval_v6_ledger": {
+      "path": "causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json",
+      "sha256": "5d5c6f54a24d73e31e1536d63a033dd69d301ffc8289a5bcabf4d7e8c1afbf52",
+      "bytes": 3095175
+    },
+    "proof_interval_v6_backend_certificate": {
+      "path": "preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json",
+      "sha256": "ecea8d45349494df3119949562933bee2a0dd9261ffbf0c9302c21a7ef20b407",
+      "bytes": 4103
+    },
+    "proof_interval_v6_engine_audit": {
+      "path": "preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json",
+      "sha256": "208f683f1545378fad613cad43351eb29e1d9ba80b0e026fa41f9cced97fcee8",
+      "bytes": 2129
+    },
+    "proof_interval_v6_report": {
+      "path": "causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.md",
+      "sha256": "1b6eefc63b323c7a440b0bf170dc1db0573b84d6170e1257b3d1b8f1463230c1",
+      "bytes": 6302
+    },
+    "fresh_fold_layer_burden": {
+      "path": "fold_layer_burden.fresh-same-packet-fold-shear-seed-v0.json",
+      "sha256": "7948ad914455d0303d9b97e7d4a176766579458949060cf91c202af48965b1bf",
+      "bytes": 12727
+    },
+    "fresh_preledger_blocker_anatomy": {
+      "path": "fresh_preledger_blocker_anatomy.fresh-same-packet-fold-shear-seed-v0.json",
+      "sha256": "1fa08ed4283a0c22b30a371a9a6473732af0dd3d091160ee7322cc6f02516e10",
+      "bytes": 59138
+    },
+    "fresh_input_screen": {
+      "path": "causal_preledger_input_screen.fresh-same-packet-fold-shear-seed-v0.json",
+      "sha256": "ce96eda158429f1d6f3dc070f1dfcefb2a7b50f18aeeee165ad06a790188e86a",
+      "bytes": 247870
+    },
+    "fresh_mesh": {
+      "path": "mesh.fresh-same-packet-fold-shear-seed-v0.json",
+      "sha256": "6870a4d916203e2bc8d30f16f9665cbc4f17315a800f82cac948914f0265a209",
+      "bytes": 20891
+    },
+    "fresh_seed_contract": {
+      "path": "fresh_same_packet_fold_shear_seed.v0.json",
+      "sha256": "322a6baf6e36360890b3e1c67f3781e8cd55ba9fb83d576a696e47371e43492b",
+      "bytes": 3772
+    },
+    "policy": {
+      "parent_complement_contract": {
+        "path": "fold_parent_boundary_complement_packet.md",
+        "sha256": "bdfe5d1bd031117234202808dd3141d3dd4c0329bc0b4ceae9f329db691fc01d",
+        "bytes": 12632
+      },
+      "endpoint_contract": {
+        "path": "fold_parent_endpoint_contract_extension.md",
+        "sha256": "54569bcf6e0bf30426cff8a76bfadf167d641e938d50ce550ddc1f85914721b9",
+        "bytes": 2435
+      },
+      "fold_family_membership_attempt": {
+        "path": "fold_parent_fold_family_membership_attempt.md",
+        "sha256": "82a62b359f7d12d62f3c7a6be4573c86f204539975d602385124ac4b632f1fe4",
+        "bytes": 11809
+      },
+      "regular_boundary_contract_probe": {
+        "path": "fold_parent_regular_boundary_contract_probe.md",
+        "sha256": "2ebceafffdfc3f4fcfc27e2e5164c48197cbe6d99e90f948772931c56e9b551b",
+        "bytes": 8448
+      },
+      "regular_boundary_coverage_attempt": {
+        "path": "fold_parent_regular_boundary_coverage_attempt.md",
+        "sha256": "4725b74b51ccebeaf3ecef28e12a9a99bfd18a5d51200a8a08ccc81fa04ef6fc",
+        "bytes": 7010
+      },
+      "w_positive_overlap_attempt": {
+        "path": "fold_parent_w_positive_overlap_subdivision_attempt.md",
+        "sha256": "3a46328ef7487ff0d246afe362213c59c2435fdf9472dfe1b6b24ab22f391ebb",
+        "bytes": 9653
+      },
+      "u_positive_overlap_attempt": {
+        "path": "fold_parent_u_positive_overlap_subdivision_attempt.md",
+        "sha256": "c20818eab1cf737043796779f77e4fd2de4c5310987ef1a3f9536e50ee42bc8d",
+        "bytes": 9492
+      }
+    }
+  },
+  "accepted_alternatives_tested": [
+    "strict_range_empty",
+    "endpoint_topology_owned",
+    "exact_fold_family_covered",
+    "regular_boundary_covered"
+  ],
+  "pass_rule": "A parent-complement strip is accepted only if same-packet data proves one accepted alternative. Candidate ownership records are not accepted unless endpoint/topology fields, exact fold-family membership, or regular-boundary inclusion/domination fields are certified.",
+  "construction_scope": "v7 imports proof-interval-v6 strips, builds same-packet candidate endpoint/fold-family/regular-boundary records from fresh packet artifacts, and fails closed when the required proof fields are absent.",
+  "authorization_lock": {
+    "branch_chart_authorized": false,
+    "preledger_pass": false,
+    "updates_live_ledger": false,
+    "must_not_emit": [
+      "branch_chart.json",
+      "seed_chart_interval_report.md",
+      "causal_ledger.json"
+    ]
+  }
+}

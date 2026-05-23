@@ -109,6 +109,19 @@ function runCertificate(baselineArtifact, variantArtifact, args = []) {
   return JSON.parse(fs.readFileSync(outPath, "utf8"));
 }
 
+function runCertificateSamePath(sourceArtifact, args = []) {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "a0-root-transport-cert-same-"));
+  const sourcePath = path.join(tempDir, "source.json");
+  const outPath = path.join(tempDir, "out.json");
+  fs.writeFileSync(sourcePath, JSON.stringify(sourceArtifact), "utf8");
+  execFileSync(
+    process.execPath,
+    [scriptPath, "--baseline", sourcePath, "--variant", sourcePath, "--out", outPath, "--pretty", ...args],
+    { encoding: "utf8" }
+  );
+  return JSON.parse(fs.readFileSync(outPath, "utf8"));
+}
+
 test("root-transport certificate passes a cyclic phase-origin reindexing without transport_id matching", () => {
   const output = runCertificate(artifact({ transportIdPrefix: "a" }), artifact({ shift: 2, transportIdPrefix: "b" }), [
     "--phase-shift-buckets",
@@ -116,6 +129,8 @@ test("root-transport certificate passes a cyclic phase-origin reindexing without
   ]);
 
   assert.equal(output.status, "root_transport_refinement_certificate_passed");
+  assert.equal(output.accepted_history_boundary, false);
+  assert.equal(output.rerun_authority, "certificate_only_not_corrected_rerun_authority");
   assert.equal(output.source_contract.transport_id_used_for_matching, false);
   assert.equal(output.certificate.transport_identity_refinement_stable, true);
   assert.equal(output.certificate.phase_origin_covariance_certified, true);
@@ -167,4 +182,30 @@ test("root-transport certificate fails when selected quotient is not source-decl
 
   assert.equal(output.status, "root_transport_source_metadata_mismatch");
   assert.equal(output.failure_code, "root-transport-quotient-not-source-declared");
+});
+
+test("root-transport certificate rejects same artifact paths", () => {
+  const output = runCertificateSamePath(artifact({ transportIdPrefix: "a" }), ["--phase-shift-buckets", "0"]);
+
+  assert.equal(output.status, "blocked_same_artifact_not_variant");
+  assert.equal(output.failure_code, "same-artifact-not-a-refinement-or-phase-origin-variant");
+  assert.equal(output.accepted_history_boundary, false);
+  assert.equal(output.rerun_authority, "certificate_only_not_corrected_rerun_authority");
+});
+
+test("root-transport certificate rejects pre-certified input source records", () => {
+  const baseline = artifact({ transportIdPrefix: "a" });
+  baseline.rows[0].branch_chart_source_records.root_transport_source_record.transport_identity_refinement_stable = true;
+  const output = runCertificate(baseline, artifact({ shift: 2, transportIdPrefix: "b" }), [
+    "--phase-shift-buckets",
+    "2",
+  ]);
+
+  assert.equal(output.status, "blocked_missing_root_transport_records");
+  assert.equal(output.failure_code, "missing-root-transport-source-record-fields");
+  assert.ok(
+    output.missing_fields.includes(
+      "baseline.root_transport_source_record.transport_identity_refinement_stable=false before certificate"
+    )
+  );
 });

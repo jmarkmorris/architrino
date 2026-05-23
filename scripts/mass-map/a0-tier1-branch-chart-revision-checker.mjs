@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 
 const INTAKE_SCHEMA = "a0-tier1-fold-layer-locked-one-period-attempt/v1";
 const OUTPUT_SCHEMA = "a0-tier1-branch-chart-revision-checker/v1";
@@ -13,6 +14,21 @@ const REVISION_MODE = "i_layer_harmonic_deformation_coordinate";
 const ROOT_TRANSPORT_SOURCE_SCHEMA = "a0-root-transport-source-record/v1";
 const ROOT_TRANSPORT_IDENTITY_SCHEMA = "a0-root-transport-identity/v1";
 const ROOT_TRANSPORT_PHASE_COVARIANCE_SCHEMA = "a0-root-transport-phase-origin-covariance/v1";
+const ROOT_TRANSPORT_CERTIFICATE_SCHEMA = "a0-root-transport-refinement-certificate/v1";
+const ROOT_LEDGER_STABILITY_CERTIFICATE_SCHEMA = "a0-root-ledger-refinement-stability-certificate/v1";
+const ROOT_LEDGER_CONTINUATION_SOURCE_SCHEMA = "a0-tier1-continuation-source-prototype/v1";
+const ROOT_TRANSPORT_CERTIFICATE_RERUN_AUTHORITY = "certificate_only_not_corrected_rerun_authority";
+const SOURCE_RECORD_FINGERPRINT_ALGORITHM = "sha256-canonical-root-transport-source-record-v1";
+const ACTIVE_ROOT_LEDGER_FINGERPRINT_ALGORITHM = "sha256-canonical-a0-active-root-ledger-v1";
+const ROOT_LEDGER_STABILITY_MATCHING_RULE =
+  "receiver|source|relation|status + cyclic order at fixed period; no transport_id or phase-origin reindexing";
+const ROOT_LEDGER_CONTINUATION_SOURCE_VARIANT_KIND = "carrier_root_replay_refinement";
+const ROOT_LEDGER_PHASE_ORIGIN_VARIANT_KINDS = new Set([
+  "phase_origin_variant",
+  "phase_origin_or_refinement_variant",
+  "declared_phase_origin_bucket_shift",
+  "reference_reemission_from_active_root_ledger",
+]);
 const ROOT_TRANSPORT_FIT_FAILURE = "root-transport-coordinate-fit-not-implemented";
 const DEFAULT_ROOT_TRANSPORT_QUOTIENT = "source_layer_shear";
 const ROOT_TRANSPORT_QUOTIENTS = new Set([
@@ -42,6 +58,8 @@ function parseArgs(argv) {
     ridge: DEFAULT_RIDGE,
     coordinateSource: "residual_surface_audit",
     rootTransportQuotient: "source_layer_shear",
+    rootTransportCertificate: null,
+    rootLedgerStabilityCertificate: null,
     primaryModes: PRIMARY_MODES,
     guardModes: GUARD_MODES,
     nyquistGuardMode: NYQUIST_WARNING_MODE,
@@ -66,6 +84,10 @@ function parseArgs(argv) {
       args.coordinateSource = parseSourceDeclaration(argv[++i]);
     } else if (arg === "--root-transport-quotient") {
       args.rootTransportQuotient = parseRootTransportQuotient(argv[++i]);
+    } else if (arg === "--root-transport-certificate") {
+      args.rootTransportCertificate = argv[++i];
+    } else if (arg === "--root-ledger-stability-certificate") {
+      args.rootLedgerStabilityCertificate = argv[++i];
     } else if (arg === "--primary-modes") {
       args.primaryModes = parseModeList(argv[++i], "--primary-modes");
     } else if (arg === "--guard-modes") {
@@ -96,6 +118,12 @@ Options:
   --root-transport-quotient VALUE
                             source_layer_shear, source_layer_signed_polarity_shear, or m_jacobian_signed_polarity_shear.
                             Defaults to source_layer_shear and only applies with root_transport_source_record.
+  --root-transport-certificate PATH
+                            Optional a0-root-transport-refinement-certificate/v1 artifact for root_transport_source_record.
+                            It must name this intake as its baseline, use a declared phase shift, and keep accepted history false.
+  --root-ledger-stability-certificate PATH
+                            Optional a0-root-ledger-refinement-stability-certificate/v1 artifact for root_transport_source_record.
+                            It must name this intake as its baseline, reject phase-origin variants, and keep accepted history false.
   --primary-modes VALUE     Comma-separated harmonic modes. Defaults to ${PRIMARY_MODES.join(",")}.
   --guard-modes VALUE       Comma-separated guard harmonic modes. Defaults to ${GUARD_MODES.join(",")}.
   --nyquist-guard-mode N    Mode treated as a Nyquist warning. Defaults to ${NYQUIST_WARNING_MODE}.
@@ -294,6 +322,423 @@ function rootTransportPhaseOriginStatus(record) {
       ? record.phase_origin_tested_offsets
       : [],
     phase_origin_covariance_rule: record?.phase_origin_covariance_rule ?? null,
+  };
+}
+
+function canonicalSourceRecordPayload(record) {
+  return {
+    period: record?.period ?? null,
+    coordinate_family: record?.coordinate_family ?? null,
+    source: record?.source ?? null,
+    gap_source: record?.gap_source ?? null,
+    locked_fold_layer_keys_excluded: record?.locked_fold_layer_keys_excluded === true,
+    benchmark_inputs_excluded: record?.benchmark_inputs_excluded === true,
+    declared_root_transport_quotients: rootTransportDeclaredQuotients(record).slice().sort(),
+    roots: (Array.isArray(record?.roots) ? record.roots : [])
+      .map((root) => ({
+        root_key: root?.root_key ?? null,
+        receiver: root?.receiver ?? null,
+        source: root?.source ?? null,
+        relation: root?.relation ?? null,
+        status: root?.status ?? null,
+        t: root?.t ?? null,
+        theta: root?.theta ?? null,
+        D_tau: root?.D_tau ?? null,
+        D_J: root?.D_J ?? null,
+        G_r: root?.G_r ?? null,
+        locked_fold_layer_key: root?.locked_fold_layer_key === true,
+      }))
+      .sort((left, right) => {
+        const keyComparison = String(left.root_key).localeCompare(String(right.root_key));
+        return keyComparison !== 0 ? keyComparison : Number(left.t) - Number(right.t);
+      }),
+  };
+}
+
+function sourceRecordFingerprint(record) {
+  return crypto
+    .createHash("sha256")
+    .update(JSON.stringify(canonicalSourceRecordPayload(record)))
+    .digest("hex");
+}
+
+function canonicalActiveRoots(row) {
+  const roots =
+    row?.active_causal_root_ledger ??
+    row?.active_roots ??
+    row?.root_ledger?.active_roots ??
+    row?.root_ledger?.roots ??
+    [];
+  return Array.isArray(roots)
+    ? roots
+        .map((root) => ({
+          receiver: root?.receiver ?? null,
+          source: root?.source ?? null,
+          relation: root?.relation ?? null,
+          status: root?.status ?? null,
+          t: Number(root?.t ?? root?.time),
+          delay: Number(root?.delay ?? root?.tau ?? root?.root_delay),
+          J: Number(root?.J),
+        }))
+        .filter(
+          (root) =>
+            typeof root.receiver === "string" &&
+            typeof root.source === "string" &&
+            typeof root.relation === "string" &&
+            root.status === "active" &&
+            finiteNumber(root.t) &&
+            finiteNumber(root.delay) &&
+            finiteNumber(root.J)
+        )
+    : [];
+}
+
+function activeRootIdentity(root) {
+  return `${root.receiver}|${root.source}|${root.relation}|${root.status}`;
+}
+
+function canonicalActiveRootLedgerPayload(row) {
+  return {
+    period: row?.period ?? null,
+    roots: canonicalActiveRoots(row)
+      .map((root) => ({
+        root_key: activeRootIdentity(root),
+        receiver: root.receiver,
+        source: root.source,
+        relation: root.relation,
+        status: root.status,
+        t: root.t,
+        delay: root.delay,
+        J: root.J,
+      }))
+      .sort((left, right) => {
+        const keyComparison = String(left.root_key).localeCompare(String(right.root_key));
+        return keyComparison !== 0 ? keyComparison : Number(left.t) - Number(right.t);
+      }),
+  };
+}
+
+function activeRootLedgerFingerprint(row) {
+  return crypto
+    .createHash("sha256")
+    .update(JSON.stringify(canonicalActiveRootLedgerPayload(row)))
+    .digest("hex");
+}
+
+function sameResolvedPath(left, right) {
+  if (typeof left !== "string" || typeof right !== "string") {
+    return false;
+  }
+  return path.resolve(left) === path.resolve(right);
+}
+
+function rootTransportCertificateStatus(row, record, args, intakePath, context) {
+  const certificate = context?.rootTransportCertificate ?? null;
+  const certificatePath = context?.rootTransportCertificatePath ?? null;
+  if (!certificate) {
+    return {
+      requested: false,
+      status: "not_provided",
+      failure_code: null,
+      path: null,
+      passed: false,
+    };
+  }
+  const failures = [];
+  if (certificate.artifact_schema !== ROOT_TRANSPORT_CERTIFICATE_SCHEMA) {
+    failures.push("root-transport-certificate-schema-mismatch");
+  }
+  if (certificate.status !== "root_transport_refinement_certificate_passed") {
+    failures.push("root-transport-certificate-not-passed");
+  }
+  if (certificate.failure_code !== null) {
+    failures.push("root-transport-certificate-failure-code-not-null");
+  }
+  if (certificate.accepted_history_boundary !== false) {
+    failures.push("root-transport-certificate-accepted-history-boundary-not-false");
+  }
+  if (certificate.rerun_authority !== ROOT_TRANSPORT_CERTIFICATE_RERUN_AUTHORITY) {
+    failures.push("root-transport-certificate-rerun-authority-mismatch");
+  }
+  if (!sameResolvedPath(certificate.inputs?.baseline, intakePath)) {
+    failures.push("root-transport-certificate-baseline-path-mismatch");
+  }
+  if (sameResolvedPath(certificate.inputs?.baseline, certificate.inputs?.variant)) {
+    failures.push("root-transport-certificate-same-artifact");
+  }
+  if (certificate.inputs?.baseline_schema !== INTAKE_SCHEMA) {
+    failures.push("root-transport-certificate-baseline-schema-mismatch");
+  }
+  if (certificate.inputs?.variant_schema !== INTAKE_SCHEMA) {
+    failures.push("root-transport-certificate-variant-schema-mismatch");
+  }
+  if (certificate.inputs?.baseline_row !== row.row) {
+    failures.push("root-transport-certificate-baseline-row-mismatch");
+  }
+  if (certificate.parameters?.quotient !== args.rootTransportQuotient) {
+    failures.push("root-transport-certificate-quotient-mismatch");
+  }
+  if (
+    certificate.parameters?.phase_shift_buckets === "auto" ||
+    !Number.isInteger(certificate.parameters?.phase_shift_buckets)
+  ) {
+    failures.push("root-transport-certificate-phase-shift-not-declared");
+  }
+  if (certificate.parameters?.declared_phase_shift_required_for_pass !== true) {
+    failures.push("root-transport-certificate-declared-shift-contract-missing");
+  }
+  if (certificate.parameters?.matching_rule !== "root_key + cyclic order; transport_id is not used as identity") {
+    failures.push("root-transport-certificate-matching-rule-mismatch");
+  }
+  if (!Number.isFinite(certificate.parameters?.tolerance) || certificate.parameters.tolerance < 0) {
+    failures.push("root-transport-certificate-tolerance-missing");
+  }
+  if (certificate.source_contract?.transport_id_used_for_matching !== false) {
+    failures.push("root-transport-certificate-used-transport-id");
+  }
+  if (
+    !Array.isArray(certificate.source_contract?.metadata_mismatches) ||
+    certificate.source_contract.metadata_mismatches.length !== 0
+  ) {
+    failures.push("root-transport-certificate-metadata-mismatch");
+  }
+  if (certificate.source_contract?.baseline_root_count !== record?.roots?.length) {
+    failures.push("root-transport-certificate-baseline-root-count-mismatch");
+  }
+  if (certificate.source_contract?.baseline_transport_identity_scope !== record?.transport_identity_scope) {
+    failures.push("root-transport-certificate-identity-scope-mismatch");
+  }
+  if (certificate.source_contract?.baseline_phase_origin_covariance_status !== record?.phase_origin_covariance_status) {
+    failures.push("root-transport-certificate-phase-origin-status-mismatch");
+  }
+  if (certificate.source_contract?.source_record_fingerprint_algorithm !== SOURCE_RECORD_FINGERPRINT_ALGORITHM) {
+    failures.push("root-transport-certificate-fingerprint-algorithm-mismatch");
+  }
+  if (certificate.source_contract?.baseline_source_record_fingerprint !== sourceRecordFingerprint(record)) {
+    failures.push("root-transport-certificate-baseline-fingerprint-mismatch");
+  }
+  if (!rootTransportQuotientSourceDeclared(record, args.rootTransportQuotient)) {
+    failures.push("root-transport-certificate-quotient-not-source-declared");
+  }
+  if (certificate.certificate?.transport_identity_refinement_stable !== true) {
+    failures.push("root-transport-certificate-identity-not-stable");
+  }
+  if (certificate.certificate?.phase_origin_covariance_certified !== true) {
+    failures.push("root-transport-certificate-phase-origin-not-certified");
+  }
+  if (certificate.certificate?.matched_without_transport_id !== true) {
+    failures.push("root-transport-certificate-not-matched-without-transport-id");
+  }
+  if (certificate.certificate?.diagnostic_phase_shift_detected !== false) {
+    failures.push("root-transport-certificate-diagnostic-only");
+  }
+  const comparison = certificate.certificate?.comparison;
+  if (comparison?.mismatch_count !== 0) {
+    failures.push("root-transport-certificate-comparison-mismatch");
+  }
+  if (comparison?.root_field_drift_count !== 0) {
+    failures.push("root-transport-certificate-root-field-drift");
+  }
+  if (!Number.isFinite(comparison?.feature_sample_count) || comparison.feature_sample_count <= 0) {
+    failures.push("root-transport-certificate-feature-sample-empty");
+  }
+  if (!Number.isFinite(comparison?.matched_root_count) || comparison.matched_root_count < 2) {
+    failures.push("root-transport-certificate-matched-root-count-too-small");
+  }
+  if (!Number.isFinite(comparison?.feature_bucket_count) || comparison.feature_bucket_count < 2) {
+    failures.push("root-transport-certificate-feature-bucket-count-too-small");
+  }
+  if (!Number.isFinite(comparison?.max_feature_relative_delta)) {
+    failures.push("root-transport-certificate-feature-delta-missing");
+  } else if (
+    Number.isFinite(certificate.parameters?.tolerance) &&
+    comparison.max_feature_relative_delta > certificate.parameters.tolerance
+  ) {
+    failures.push("root-transport-certificate-feature-delta-over-tolerance");
+  }
+  return {
+    requested: true,
+    status: failures.length === 0 ? "passed" : "failed",
+    failure_code: failures[0] ?? null,
+    path: certificatePath,
+    passed: failures.length === 0,
+    artifact_schema: certificate.artifact_schema ?? null,
+    certificate_status: certificate.status ?? null,
+    baseline: certificate.inputs?.baseline ?? null,
+    variant: certificate.inputs?.variant ?? null,
+    baseline_row: certificate.inputs?.baseline_row ?? null,
+    variant_row: certificate.inputs?.variant_row ?? null,
+    phase_shift_buckets: certificate.parameters?.phase_shift_buckets ?? null,
+    matched_root_count: comparison?.matched_root_count ?? null,
+    feature_bucket_count: comparison?.feature_bucket_count ?? null,
+    max_feature_relative_delta: comparison?.max_feature_relative_delta ?? null,
+    baseline_source_record_fingerprint: certificate.source_contract?.baseline_source_record_fingerprint ?? null,
+    failures,
+  };
+}
+
+function rootLedgerStabilityCertificateStatus(row, intakePath, context) {
+  const certificate = context?.rootLedgerStabilityCertificate ?? null;
+  const certificatePath = context?.rootLedgerStabilityCertificatePath ?? null;
+  if (!certificate) {
+    return {
+      requested: false,
+      status: "not_provided",
+      failure_code: null,
+      path: null,
+      passed: false,
+    };
+  }
+  const failures = [];
+  const activeRoots = canonicalActiveRoots(row);
+  if (certificate.artifact_schema !== ROOT_LEDGER_STABILITY_CERTIFICATE_SCHEMA) {
+    failures.push("root-ledger-stability-certificate-schema-mismatch");
+  }
+  if (certificate.status !== "root_ledger_refinement_stability_certificate_passed") {
+    failures.push("root-ledger-stability-certificate-not-passed");
+  }
+  if (certificate.failure_code !== null) {
+    failures.push("root-ledger-stability-certificate-failure-code-not-null");
+  }
+  if (certificate.accepted_history_boundary !== false) {
+    failures.push("root-ledger-stability-certificate-accepted-history-boundary-not-false");
+  }
+  if (certificate.rerun_authority !== ROOT_TRANSPORT_CERTIFICATE_RERUN_AUTHORITY) {
+    failures.push("root-ledger-stability-certificate-rerun-authority-mismatch");
+  }
+  if (!sameResolvedPath(certificate.inputs?.baseline, intakePath)) {
+    failures.push("root-ledger-stability-certificate-baseline-path-mismatch");
+  }
+  if (sameResolvedPath(certificate.inputs?.baseline, certificate.inputs?.variant)) {
+    failures.push("root-ledger-stability-certificate-same-artifact");
+  }
+  if (certificate.inputs?.baseline_schema !== INTAKE_SCHEMA) {
+    failures.push("root-ledger-stability-certificate-baseline-schema-mismatch");
+  }
+  const variantSchema = certificate.inputs?.variant_schema ?? null;
+  const variantKind = certificate.inputs?.variant_kind ?? null;
+  if (variantSchema !== INTAKE_SCHEMA) {
+    if (variantSchema !== ROOT_LEDGER_CONTINUATION_SOURCE_SCHEMA) {
+      failures.push("root-ledger-stability-certificate-variant-schema-mismatch");
+    }
+  }
+  if (certificate.inputs?.baseline_row !== row.row) {
+    failures.push("root-ledger-stability-certificate-baseline-row-mismatch");
+  }
+  if (typeof variantKind !== "string" || variantKind.length === 0) {
+    failures.push("root-ledger-stability-certificate-variant-kind-missing");
+  } else if (ROOT_LEDGER_PHASE_ORIGIN_VARIANT_KINDS.has(variantKind)) {
+    failures.push("root-ledger-stability-certificate-phase-origin-variant-kind");
+  } else if (
+    variantSchema === ROOT_LEDGER_CONTINUATION_SOURCE_SCHEMA &&
+    variantKind !== ROOT_LEDGER_CONTINUATION_SOURCE_VARIANT_KIND
+  ) {
+    failures.push("root-ledger-stability-certificate-carrier-replay-kind-mismatch");
+  }
+  if (variantSchema === ROOT_LEDGER_CONTINUATION_SOURCE_SCHEMA) {
+    if (certificate.source_contract?.refinement_evidence_source !== "carrier_replay_root_refinement_diagnostic") {
+      failures.push("root-ledger-stability-certificate-carrier-replay-evidence-source-mismatch");
+    }
+    if (certificate.source_contract?.refinement_diagnostic_status !== "carrier-root-ledger-refinement-passed") {
+      failures.push("root-ledger-stability-certificate-carrier-replay-diagnostic-not-passed");
+    }
+    if (certificate.source_contract?.refinement_diagnostic_scope !== "carrier_root_replay_only") {
+      failures.push("root-ledger-stability-certificate-carrier-replay-scope-mismatch");
+    }
+    if (
+      certificate.source_contract?.variant_active_root_ledger_fingerprint !==
+      certificate.source_contract?.baseline_active_root_ledger_fingerprint
+    ) {
+      failures.push("root-ledger-stability-certificate-carrier-replay-fingerprint-mismatch");
+    }
+  }
+  if (!Number.isFinite(certificate.parameters?.tolerance) || certificate.parameters.tolerance < 0) {
+    failures.push("root-ledger-stability-certificate-tolerance-missing");
+  }
+  if (certificate.parameters?.matching_rule !== ROOT_LEDGER_STABILITY_MATCHING_RULE) {
+    failures.push("root-ledger-stability-certificate-matching-rule-mismatch");
+  }
+  if (certificate.parameters?.phase_origin_reindexing_allowed !== false) {
+    failures.push("root-ledger-stability-certificate-phase-origin-reindexing-allowed");
+  }
+  if (certificate.parameters?.variant_kind_required_for_pass !== true) {
+    failures.push("root-ledger-stability-certificate-variant-kind-contract-missing");
+  }
+  if (certificate.source_contract?.baseline_root_count !== activeRoots.length) {
+    failures.push("root-ledger-stability-certificate-baseline-root-count-mismatch");
+  }
+  if (certificate.source_contract?.baseline_period !== row?.period) {
+    failures.push("root-ledger-stability-certificate-baseline-period-mismatch");
+  }
+  if (
+    certificate.source_contract?.active_root_ledger_fingerprint_algorithm !== ACTIVE_ROOT_LEDGER_FINGERPRINT_ALGORITHM
+  ) {
+    failures.push("root-ledger-stability-certificate-fingerprint-algorithm-mismatch");
+  }
+  if (certificate.source_contract?.baseline_active_root_ledger_fingerprint !== activeRootLedgerFingerprint(row)) {
+    failures.push("root-ledger-stability-certificate-baseline-fingerprint-mismatch");
+  }
+  if (
+    !Array.isArray(certificate.source_contract?.metadata_mismatches) ||
+    certificate.source_contract.metadata_mismatches.length !== 0
+  ) {
+    failures.push("root-ledger-stability-certificate-metadata-mismatch");
+  }
+  if (
+    Array.isArray(certificate.source_contract?.phase_origin_variant_evidence) &&
+    certificate.source_contract.phase_origin_variant_evidence.length > 0
+  ) {
+    failures.push("root-ledger-stability-certificate-phase-origin-variant");
+  }
+  if (certificate.certificate?.root_ledger_stable_under_refinement !== true) {
+    failures.push("root-ledger-stability-certificate-root-ledger-not-stable");
+  }
+  if (certificate.certificate?.matched_without_transport_id !== true) {
+    failures.push("root-ledger-stability-certificate-not-matched-without-transport-id");
+  }
+  if (certificate.certificate?.phase_origin_shift_used_for_matching !== false) {
+    failures.push("root-ledger-stability-certificate-used-phase-origin-shift");
+  }
+  if (certificate.certificate?.phase_origin_variant_detected !== false) {
+    failures.push("root-ledger-stability-certificate-phase-origin-detected");
+  }
+  const comparison = certificate.certificate?.comparison;
+  if (comparison?.mismatch_count !== 0) {
+    failures.push("root-ledger-stability-certificate-comparison-mismatch");
+  }
+  if (comparison?.field_drift_count !== 0) {
+    failures.push("root-ledger-stability-certificate-field-drift");
+  }
+  if (!Number.isFinite(comparison?.matched_root_count) || comparison.matched_root_count < 2) {
+    failures.push("root-ledger-stability-certificate-matched-root-count-too-small");
+  }
+  if (!Number.isFinite(comparison?.max_field_relative_delta)) {
+    failures.push("root-ledger-stability-certificate-field-delta-missing");
+  } else if (
+    Number.isFinite(certificate.parameters?.tolerance) &&
+    comparison.max_field_relative_delta > certificate.parameters.tolerance
+  ) {
+    failures.push("root-ledger-stability-certificate-field-delta-over-tolerance");
+  }
+  return {
+    requested: true,
+    status: failures.length === 0 ? "passed" : "failed",
+    failure_code: failures[0] ?? null,
+    path: certificatePath,
+    passed: failures.length === 0,
+    artifact_schema: certificate.artifact_schema ?? null,
+    certificate_status: certificate.status ?? null,
+    baseline: certificate.inputs?.baseline ?? null,
+    variant: certificate.inputs?.variant ?? null,
+    baseline_row: certificate.inputs?.baseline_row ?? null,
+    variant_row: certificate.inputs?.variant_row ?? null,
+    variant_kind: certificate.inputs?.variant_kind ?? null,
+    matched_root_count: comparison?.matched_root_count ?? null,
+    max_time_delta: comparison?.max_time_delta ?? null,
+    max_field_relative_delta: comparison?.max_field_relative_delta ?? null,
+    baseline_active_root_ledger_fingerprint:
+      certificate.source_contract?.baseline_active_root_ledger_fingerprint ?? null,
+    failures,
   };
 }
 
@@ -562,30 +1007,44 @@ function benchmarkCheck(row, ledger) {
   };
 }
 
-function transportCheck(row, args) {
+function transportCheck(row, args, intakePath, context) {
   const validationStable = row?.validation?.root_ledger_stable_under_refinement === true;
   if (args.coordinateSource === "root_transport_source_record") {
     const record = rootTransportRecord(row);
     const identity = rootTransportIdentityStatus(record);
     const phaseOrigin = rootTransportPhaseOriginStatus(record);
+    const certificate = rootTransportCertificateStatus(row, record, args, intakePath, context);
+    const rootLedgerCertificate = rootLedgerStabilityCertificateStatus(row, intakePath, context);
+    const certificatePassed = certificate.passed === true;
+    const rootLedgerCertificatePassed = rootLedgerCertificate.passed === true;
+    const rootLedgerCertificateOnly = rootLedgerCertificatePassed && validationStable !== true;
     const recordPresent =
       record?.schema === ROOT_TRANSPORT_SOURCE_SCHEMA && Array.isArray(record?.roots) && record.roots.length >= 2;
+    const rootTransportCertified = record?.root_transport_certified === true || certificatePassed;
+    const identityRefinementStable = identity.identity_refinement_stable === true || certificatePassed;
+    const phaseOriginCertified = phaseOrigin.phase_origin_covariance_certified === true || certificatePassed;
     const passed =
       validationStable &&
-      record?.root_transport_certified === true &&
-      identity.identity_refinement_stable === true &&
+      rootTransportCertified &&
+      identityRefinementStable &&
       identity.raw_root_key_phase_bucket_transport_id_count === 0 &&
-      phaseOrigin.phase_origin_covariance_certified === true;
+      phaseOriginCertified;
     let failureCode = null;
     if (!passed) {
       if (!recordPresent) {
         failureCode = "missing-root-transport-source-record";
       } else if (identity.raw_root_key_phase_bucket_transport_id_count > 0) {
         failureCode = "root-transport-identity-uses-raw-root-key-phase-bucket";
-      } else if (identity.identity_refinement_stable !== true) {
+      } else if (rootLedgerCertificate.requested && rootLedgerCertificate.status !== "passed") {
+        failureCode = rootLedgerCertificate.failure_code ?? "root-ledger-stability-certificate-not-passed";
+      } else if (certificate.requested && certificate.status !== "passed") {
+        failureCode = certificate.failure_code ?? "root-transport-certificate-not-passed";
+      } else if (identityRefinementStable !== true) {
         failureCode = "root-transport-identity-not-refinement-stable";
-      } else if (phaseOrigin.phase_origin_covariance_certified !== true) {
+      } else if (phaseOriginCertified !== true) {
         failureCode = "root-transport-phase-origin-covariance-not-certified";
+      } else if (rootLedgerCertificateOnly) {
+        failureCode = "root-ledger-refinement-stability-certificate-only-not-rerun-authority";
       } else {
         failureCode = "branch_transport_not_yet_certified";
       }
@@ -595,12 +1054,22 @@ function transportCheck(row, args) {
       status: passed ? "passed" : "pending",
       failure_code: failureCode,
       root_ledger_stable_under_refinement: row?.validation?.root_ledger_stable_under_refinement ?? null,
-      root_transport_certified: record?.root_transport_certified === true,
+      root_ledger_stable_under_refinement_by_certificate: rootLedgerCertificatePassed,
+      root_ledger_stable_under_refinement_effective: validationStable || rootLedgerCertificatePassed,
+      root_ledger_refinement_stability_certificate_only: rootLedgerCertificateOnly,
+      root_ledger_stable_under_refinement_rerun_authorizing: validationStable,
+      root_transport_certified: rootTransportCertified,
+      root_transport_certified_by_source_record: record?.root_transport_certified === true,
+      root_transport_certified_by_certificate: certificatePassed,
       transport_certification_status: record?.transport_certification_status ?? null,
       ...identity,
+      identity_refinement_stable_effective: identityRefinementStable,
       ...phaseOrigin,
+      phase_origin_covariance_certified_effective: phaseOriginCertified,
+      external_certificate: certificate,
+      external_root_ledger_stability_certificate: rootLedgerCertificate,
       note:
-        "Root-transport coordinates require refinement-stable transport identity and phase-origin covariance before they can authorize a corrected rerun.",
+        "Root-transport coordinates require raw-row root-ledger stability plus refinement-stable transport identity and phase-origin covariance before they can authorize a corrected rerun input.",
     };
   }
   const passed = validationStable;
@@ -1296,7 +1765,7 @@ function equalityGroupKeyFor(args) {
   return "relation + receiver_layer + source_layer + polarity_pair + root_key + harmonic_mode + harmonic_quadrature + projection";
 }
 
-function solveRow(row, args, intakePath) {
+function solveRow(row, args, intakePath, context) {
   const missing = rowMissingFields(row);
   if (missing.length > 0) {
     return {
@@ -1346,7 +1815,7 @@ function solveRow(row, args, intakePath) {
     R_sym: symmetryCheck(args),
     R_eq: equalityCheck(ledger, args),
     R_lock: lockCheck(ledger),
-    R_transport: transportCheck(row, args),
+    R_transport: transportCheck(row, args, intakePath, context),
     R_df:
       args.coordinateSource === "root_transport_source_record" && rootTransportCoordinate?.status === "computed"
         ? dfGuardWithFeatures(fitSamples, args.ridge)
@@ -1432,9 +1901,10 @@ function solveRow(row, args, intakePath) {
   };
 }
 
-function buildOutput(artifact, args, intakePath) {
+function buildOutput(artifact, args, intakePath, context = {}) {
   const topMissing = topLevelMissingFields(artifact);
-  const rows = topMissing.length > 0 ? [] : selectRows(artifact, args.rows).map((row) => solveRow(row, args, intakePath));
+  const rows =
+    topMissing.length > 0 ? [] : selectRows(artifact, args.rows).map((row) => solveRow(row, args, intakePath, context));
   const statusCounts = rows.reduce((counts, row) => {
     counts[row.status] = (counts[row.status] ?? 0) + 1;
     return counts;
@@ -1456,6 +1926,8 @@ function buildOutput(artifact, args, intakePath) {
       ridge: args.ridge,
       coordinate_source: args.coordinateSource,
       root_transport_quotient: args.rootTransportQuotient,
+      root_transport_certificate: context.rootTransportCertificatePath ?? null,
+      root_ledger_stability_certificate: context.rootLedgerStabilityCertificatePath ?? null,
       primary_modes: args.primaryModes,
       guard_modes: args.guardModes,
       nyquist_guard_mode: args.nyquistGuardMode,
@@ -1480,9 +1952,35 @@ function main() {
     printHelp();
     return;
   }
+  if (args.rootTransportCertificate && args.coordinateSource !== "root_transport_source_record") {
+    throw new Error("--root-transport-certificate is only valid with --coordinate-source root_transport_source_record.");
+  }
+  if (args.rootLedgerStabilityCertificate && args.coordinateSource !== "root_transport_source_record") {
+    throw new Error(
+      "--root-ledger-stability-certificate is only valid with --coordinate-source root_transport_source_record."
+    );
+  }
   const intakePath = requireIntakePath(args);
+  const rootTransportCertificatePath = args.rootTransportCertificate
+    ? path.resolve(args.rootTransportCertificate)
+    : null;
+  const rootLedgerStabilityCertificatePath = args.rootLedgerStabilityCertificate
+    ? path.resolve(args.rootLedgerStabilityCertificate)
+    : null;
   const artifact = readJson(intakePath);
-  writeJson(args, buildOutput(artifact, args, intakePath));
+  const rootTransportCertificate = rootTransportCertificatePath ? readJson(rootTransportCertificatePath) : null;
+  const rootLedgerStabilityCertificate = rootLedgerStabilityCertificatePath
+    ? readJson(rootLedgerStabilityCertificatePath)
+    : null;
+  writeJson(
+    args,
+    buildOutput(artifact, args, intakePath, {
+      rootTransportCertificate,
+      rootTransportCertificatePath,
+      rootLedgerStabilityCertificate,
+      rootLedgerStabilityCertificatePath,
+    })
+  );
 }
 
 main();

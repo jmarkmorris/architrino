@@ -418,7 +418,7 @@ $$
 \approx0.18420699635,
 \qquad
 \langle f_{i,\mathrm{cross}}^1\rangle
-\approx0.
+=0.
 $$
 
 The partner contribution is positive by the analytic formula
@@ -429,7 +429,7 @@ $$
 \frac{\sin y_*}{y_*^3\left(1+\sin(y_*/2)\right)}
 $$
 
-on the certified constant partner root $2\cos(y_*/2)-y_*=0$. The cross-binary aggregate is currently emitted as sampled pair-cancellation rows, with the exact anti-periodicity proof route staged in the diagnostic packet. Thus the frozen rigid ledger fails the zero-mean row before speed-band or clock/length rescue can retain it:
+on the certified constant partner root $2\cos(y_*/2)-y_*=0$. The cross-binary aggregate is certified by the phase anti-periodicity proof $C_i(\theta+\pi/2)=-C_i(\theta)$ in the diagnostic packet. Thus the frozen rigid ledger fails the zero-mean row by certified partner obstruction before speed-band or clock/length rescue can retain it:
 
 $$
 \texttt{sampled-speed-ode-zero-mean-failed}.
@@ -685,6 +685,8 @@ A bounded speed factor speed-ODE packet must emit:
 | `self_hit_excursion` | absent, compatible primitive, exchange-carried jump, or open |
 | `action_exchange_status` | action-derived scale, speed-factor exchange row, support-work exchange if active, or `gamma-fitted-not-derived` |
 | `status` | first failed row or `speed-ode-solvability-certified` |
+
+The zero-mean correction intake may separately emit `speed-primitive-feasibility-certified` when the post-correction primitive return and speed-band interval pass for a certified $\alpha_B$ direction. It may then emit `speed-clock-length-return-certified` when the same primitive also satisfies the clock/length return residual. These statuses close the scalar speed-ODE row only up to its declared boundary; they remain below retained bounded-speed branch status unless normal reconstruction and the downstream same-ledger rows also close.
 
 Status codes:
 

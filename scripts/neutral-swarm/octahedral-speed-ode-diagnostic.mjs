@@ -252,6 +252,74 @@ function crossBinaryCancellationRows(rows) {
   return cancellationRows;
 }
 
+function crossBinaryPartnerPair(pair, receiverPairs) {
+  const source = octahedralSiteById(pair.source);
+  return receiverPairs.find((candidate) => {
+    if (candidate.source_relation !== "cross-binary" || candidate.source === pair.source) {
+      return false;
+    }
+    const candidateSource = octahedralSiteById(candidate.source);
+    return candidateSource.binary !== source.binary && candidateSource.sign === -source.sign;
+  });
+}
+
+function sourceTangentialContribution(pair, receiver, theta, ySubdivisions) {
+  const receiverTangent = octahedralSiteTangent(receiver, theta);
+  const row = sourceForceRow(pair, theta, ySubdivisions, receiverTangent);
+  return row.root_count === 1 ? row.tangential_contribution : null;
+}
+
+function crossBinaryAntiPeriodicityRows(site, pairs, options) {
+  const receiverPairs = pairs.filter((candidate) => candidate.receiver === site.id);
+  const crossRows = receiverPairs.filter((pair) => pair.source_relation === "cross-binary");
+  const used = new Set();
+  const rows = [];
+
+  for (const pair of crossRows) {
+    if (used.has(pair.source)) {
+      continue;
+    }
+    const partnerPair = crossBinaryPartnerPair(pair, receiverPairs);
+    if (!partnerPair || used.has(partnerPair.source)) {
+      continue;
+    }
+
+    let maxAbsKernelSum = 0;
+    for (let phaseIndex = 0; phaseIndex < options.phaseSamples; phaseIndex += 1) {
+      const theta = phaseTheta(phaseIndex, options.phaseSamples);
+      const left = sourceTangentialContribution(pair, site, theta, options.ySubdivisions);
+      const right = sourceTangentialContribution(partnerPair, site, theta + Math.PI / 2, options.ySubdivisions);
+      if (left === null || right === null) {
+        maxAbsKernelSum = Infinity;
+        break;
+      }
+      maxAbsKernelSum = Math.max(maxAbsKernelSum, Math.abs(left + right));
+    }
+
+    used.add(pair.source);
+    used.add(partnerPair.source);
+    rows.push({
+      sources: [pair.source, partnerPair.source],
+      source_labels: [pair.source_label, partnerPair.source_label],
+      phase_shift: "pi/2",
+      source_pair_involution: "exchange the two nonreceiver binaries and flip the source sign",
+      reduced_graph_invariant: "same kappa and same reduced phase modulo pi",
+      kernel_identity: "f_{i,j}(theta)+f_{i,j'}(theta+pi/2)=0",
+      sampled_max_abs_kernel_sum: formatNumber(maxAbsKernelSum),
+    });
+  }
+
+  const maxAbsKernelSum = finiteMax(rows.map((row) => row.sampled_max_abs_kernel_sum));
+  return {
+    rows,
+    sampled_max_abs_kernel_sum: formatNumber(maxAbsKernelSum),
+    sampled_status:
+      maxAbsKernelSum <= options.zeroMeanTolerance
+        ? "sampled-cross-binary-antiperiodicity-check-passed"
+        : "sampled-cross-binary-antiperiodicity-check-failed",
+  };
+}
+
 function primitiveStats(values, step, gamma, nuMin, nuMax) {
   let primitive = 0;
   let primitiveIntegral = 0;
@@ -325,6 +393,7 @@ function buildSiteRow(site, pairs, options) {
   const sourceMeans = sourceMeanRows(sourceSamples);
   const cancellationRows = crossBinaryCancellationRows(sourceMeans);
   const crossCancellationAbsMax = finiteMax(cancellationRows.map((row) => row.abs_sum));
+  const antiPeriodicity = crossBinaryAntiPeriodicityRows(site, pairs, options);
   const periodIntegral = mean * TAU;
   const stats = primitiveStats(values, step, options.gamma, options.nuMin, options.nuMax);
   const zeroMeanResidual = Math.abs(periodIntegral);
@@ -355,6 +424,9 @@ function buildSiteRow(site, pairs, options) {
       source_mean_rows: sourceMeans,
       cross_binary_pair_cancellation_rows: cancellationRows,
       cross_binary_pair_cancellation_abs_max: formatNumber(crossCancellationAbsMax),
+      cross_binary_antiperiodicity_rows: antiPeriodicity.rows,
+      cross_binary_antiperiodicity_sampled_max_abs: antiPeriodicity.sampled_max_abs_kernel_sum,
+      cross_binary_antiperiodicity_sampled_status: antiPeriodicity.sampled_status,
       cross_binary_pair_cancellation_status:
         failures.length === 0 && crossCancellationAbsMax <= options.zeroMeanTolerance
           ? "sampled-cross-binary-pair-mean-cancellation-passed"
@@ -430,6 +502,9 @@ export function buildOctahedralSpeedOdeDiagnostic(options = {}) {
   const crossBinaryPairCancellationAbsMax = finiteMax(
     siteRows.map((row) => row.mean_split.cross_binary_pair_cancellation_abs_max)
   );
+  const crossBinaryAntiPeriodicityAbsMax = finiteMax(
+    siteRows.map((row) => row.mean_split.cross_binary_antiperiodicity_sampled_max_abs)
+  );
 
   return {
     schema: OCTAHEDRAL_SPEED_ODE_DIAGNOSTIC_SCHEMA,
@@ -499,6 +574,7 @@ export function buildOctahedralSpeedOdeDiagnostic(options = {}) {
         partner_mean_max: formatNumber(partnerMeanMax),
         cross_binary_mean_abs_max: formatNumber(crossBinaryMeanAbsMax),
         cross_binary_pair_cancellation_abs_max: formatNumber(crossBinaryPairCancellationAbsMax),
+        cross_binary_antiperiodicity_sampled_max_abs: formatNumber(crossBinaryAntiPeriodicityAbsMax),
       },
       mean_split_certificate: {
         status: "frozen-fixed-ledger-mean-obstruction",
@@ -508,12 +584,26 @@ export function buildOctahedralSpeedOdeDiagnostic(options = {}) {
         partner_mean_max: formatNumber(partnerMeanMax),
         cross_binary_mean_abs_max: formatNumber(crossBinaryMeanAbsMax),
         cross_binary_pair_cancellation_abs_max: formatNumber(crossBinaryPairCancellationAbsMax),
+        cross_binary_antiperiodicity_sampled_max_abs: formatNumber(crossBinaryAntiPeriodicityAbsMax),
         partner_positive_certificate: analyticPartnerMeanCertificate(),
         cross_binary_cancellation_status:
           crossBinaryMeanAbsMax <= zeroMeanTolerance && crossBinaryPairCancellationAbsMax <= zeroMeanTolerance
             ? "sampled-cross-binary-pair-mean-cancellation-passed"
             : "sampled-cross-binary-pair-mean-cancellation-failed",
-        cross_binary_symmetry_certificate_status: "symmetry-proof-route-staged",
+        cross_binary_symmetry_certificate_status: "analytic-cross-binary-phase-antiperiodicity-certified",
+        cross_binary_symmetry_certificate: {
+          phase_shift: "pi/2",
+          aggregate_identity: "C_i(theta+pi/2)=-C_i(theta)",
+          source_pair_involution: "for fixed receiver, exchange the two nonreceiver binaries and flip source sign",
+          reduced_graph_basis:
+            "the involution preserves kappa and the reduced phase modulo pi in F_kappa(theta_tilde,y)=0",
+          jacobian_weight_status: "preserved-by-reduced-root-graph-uniqueness",
+          tangent_numerator_status: "sign-reversed-by-coordinate-substitution",
+          sampled_checksum_status:
+            crossBinaryAntiPeriodicityAbsMax <= zeroMeanTolerance
+              ? "sampled-cross-binary-antiperiodicity-check-passed"
+              : "sampled-cross-binary-antiperiodicity-check-failed",
+        },
         zero_mean_status: "sampled-speed-ode-zero-mean-failed",
         bounded_speed_handoff_status: "bounded-speed-ledger-handoff-open",
         retention_effect: "diagnostic-only",
@@ -644,6 +734,14 @@ export function validateOctahedralSpeedOdeDiagnostic(artifact) {
       errors
     );
   }
+  if (speed.sampled_summary?.cross_binary_antiperiodicity_sampled_max_abs !== undefined) {
+    assertField(
+      Number.isFinite(speed.sampled_summary.cross_binary_antiperiodicity_sampled_max_abs) &&
+        speed.sampled_summary.cross_binary_antiperiodicity_sampled_max_abs < 1e-9,
+      "cross-binary anti-periodicity sampled checksum should pass to numerical tolerance",
+      errors
+    );
+  }
   if (speed.mean_split_certificate !== undefined) {
     assertField(
       speed.mean_split_certificate.status === "frozen-fixed-ledger-mean-obstruction",
@@ -674,7 +772,13 @@ export function validateOctahedralSpeedOdeDiagnostic(artifact) {
     assertField(
       speed.mean_split_certificate.cross_binary_cancellation_status ===
         "sampled-cross-binary-pair-mean-cancellation-passed",
-      "mean split certificate must include sampled cross-binary cancellation",
+      "mean split certificate must include the sampled cross-binary pair checksum",
+      errors
+    );
+    assertField(
+      speed.mean_split_certificate.cross_binary_symmetry_certificate_status ===
+        "analytic-cross-binary-phase-antiperiodicity-certified",
+      "mean split certificate must include the analytic cross-binary anti-periodicity row",
       errors
     );
   }
@@ -695,6 +799,18 @@ export function validateOctahedralSpeedOdeDiagnostic(artifact) {
         row.mean_split.cross_binary_pair_cancellation_status ===
           "sampled-cross-binary-pair-mean-cancellation-passed",
         "cross-binary pair cancellation status must pass",
+        errors
+      );
+      assertField(
+        Array.isArray(row.mean_split.cross_binary_antiperiodicity_rows) &&
+          row.mean_split.cross_binary_antiperiodicity_rows.length === 2,
+        "each site must emit two cross-binary anti-periodicity rows",
+        errors
+      );
+      assertField(
+        row.mean_split.cross_binary_antiperiodicity_sampled_status ===
+          "sampled-cross-binary-antiperiodicity-check-passed",
+        "cross-binary anti-periodicity sampled checksum must pass",
         errors
       );
       assertField(

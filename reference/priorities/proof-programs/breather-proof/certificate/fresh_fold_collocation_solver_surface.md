@@ -22,6 +22,43 @@ trigonometric interval preledger. A proof-interval-v2 sidecar is now present as
 `scripts/proof-programs/fresh-proof-interval-preledger-v2.mjs`; it adds
 row-specific certified trigonometric $X_\delta$ ranges and certifies 116
 range-empty rows, while still rejecting before branch-chart authorization.
+A proof-interval-v3 sidecar is now present as
+`scripts/proof-programs/fresh-proof-interval-preledger-v3.mjs`; it keeps those
+range enclosures and adds exact-rational derivative enclosures for
+same-interval regular diagonal rows, certifying 124 empty rows total while
+still rejecting before branch-chart authorization. A proof-interval-v4 sidecar
+is now present as
+`scripts/proof-programs/fresh-proof-interval-preledger-v4.mjs`; it records 6
+fresh simple-root subrow certificates by oriented source-inner coverage while
+still leaving parent complements and fold/seam rows unresolved. A
+proof-interval-v5 sidecar is now present as
+`scripts/proof-programs/fresh-proof-interval-preledger-v5.mjs`; it probes the
+10 receiver-side parent-complement strips around those simple-root subwindows,
+certifies zero strict-empty complement strips, consumes zero simple-root parent
+rows, and still rejects before branch-chart authorization. A proof-interval-v6
+sidecar is now present as
+`scripts/proof-programs/fresh-proof-interval-preledger-v6.mjs`; it imports those
+10 strips and tests strict range-empty, endpoint/topology ownership, exact
+same-packet fold-family coverage, and same-packet regular-boundary coverage,
+accepts zero complement strips by those alternatives, consumes zero simple-root
+parent rows, and still rejects before branch-chart authorization.
+A proof-interval-v7 sidecar is now present as
+`scripts/proof-programs/fresh-proof-interval-preledger-v7.mjs`; it imports the
+v6 strips and constructs same-packet ownership-data candidate records. It
+constructs 10 candidate regular-boundary cores, considers the 16 fresh
+fold-layer burden rows, constructs 0 endpoint contact tables, accepts 0
+endpoint/topology-owned strips, 0 exact fold-family-covered strips, 0
+regular-boundary-covered strips, consumes 0 simple-root parent rows, and still
+rejects before branch-chart authorization.
+A proof-interval-v8 sidecar is now present as
+`scripts/proof-programs/fresh-proof-interval-preledger-v8.mjs`; it imports the
+v7 candidate regular-boundary cores and constructs 4 finite regular-boundary
+candidate families with 20 candidate membership edges. It certifies 0 exact
+single separator assignments, 0 same-packet inclusion proofs, 0 fresh
+domination inequalities, 0 topology/no-double-counting certificates, and 0
+non-core complement closures, accepts 0 regular-boundary-covered strips,
+consumes 0 simple-root parent rows, and still rejects before branch-chart
+authorization.
 
 The available surface is contractual and diagnostic:
 
@@ -53,17 +90,82 @@ The available surface is contractual and diagnostic:
   record the proof-interval-v2 exact-rational trigonometric range sidecar: 116
   rows are accepted as range-empty, 46 rows remain `split_required`, and no
   branch chart is authorized.
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.json`,
+  `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.json`,
+  `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.md`,
+  and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.json`
+  record the proof-interval-v3 exact-rational trigonometric range plus
+  monotone-diagonal sidecar: 116 rows are accepted as range-empty, 8 regular
+  same-interval rows are accepted by derivative-floor diagonal exclusion, 38
+  rows remain `split_required`, and no branch chart is authorized.
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.json`,
+  `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.json`,
+  `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.md`,
+  and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.json`
+  record the proof-interval-v4 exact-rational simple-root subwindow sidecar: it
+  keeps the 124 accepted empty rows, records 6 simple-root subrow certificates
+  with minimum coverage gap `0.001122267086258`, keeps 38 parent rows
+  `split_required`, and authorizes no branch chart.
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json`,
+  `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json`,
+  `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.md`,
+  and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json`
+  record the proof-interval-v5 exact-rational parent-complement-probe sidecar:
+  it keeps the 124 accepted empty rows and 6 simple-root subrow certificates,
+  probes 10 receiver-side complement strips, certifies 0 strict-empty complement
+  strips, consumes 0 simple-root parent rows, keeps 38 parent rows
+  `split_required`, and authorizes no branch chart.
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json`,
+  `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json`,
+  `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.md`,
+  and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json`
+  record the proof-interval-v6 complement ownership/coverage probe sidecar: it
+  imports the v5 complement strips, tests all accepted complement-consumption
+  alternatives against current same-packet data, accepts 0 endpoint/topology
+  owned strips, 0 exact fold-family-covered strips, 0 regular-boundary-covered
+  strips, consumes 0 simple-root parent rows, keeps 38 parent rows
+  `split_required`, and authorizes no branch chart.
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.json`,
+  `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.json`,
+  `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.md`,
+  and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.json`
+  record the proof-interval-v7 same-packet ownership-data constructor sidecar:
+  it imports the v6 complement strips, constructs 10 finite candidate
+  regular-boundary core records, checks the 16 fresh fold-layer burden rows,
+  constructs 0 endpoint contact tables, accepts 0 complement strips by accepted
+  ownership or coverage alternatives, consumes 0 simple-root parent rows, keeps
+  38 parent rows `split_required`, and authorizes no branch chart.
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json`,
+  `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json`,
+  `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.md`,
+  and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json`
+  record the proof-interval-v8 regular-boundary finite-family sidecar: it
+  imports the v7 candidate cores, constructs 4 finite candidate families and 20
+  candidate membership edges, certifies 0 exact single separator assignments, 0
+  same-packet inclusion proofs, 0 fresh domination inequalities, 0
+  topology/no-double-counting certificates, and 0 non-core complement closures,
+  accepts 0 complement strips, consumes 0 simple-root parent rows, keeps 38
+  parent rows `split_required`, and authorizes no branch chart.
 - `fresh_preledger_blocker_anatomy.fresh-same-packet-fold-shear-seed-v0.json`
   and `fold_layer_burden.fresh-same-packet-fold-shear-seed-v0.json` classify
   those blockers into row-level proof burdens: 16 same-packet fold-layer rows, 6
   regular parent root-candidate overlaps, 10 endpoint/contact rows, and 2
   nonmonotone diagonal contacts.
 
-The next proof advance therefore requires adding monotone diagonal exclusions,
-simple-root extraction, endpoint/seam ownership, and fold-layer certification on
-top of proof-interval-v2, followed later by the full structural Jacobian and
-dynamic residual checks. It cannot be obtained by relabeling the rejected
-cosine artifacts or by treating sampled screen rows as accepted rows.
+The next proof advance therefore requires proof-grade fields for one of the v8
+finite-family routes around the proof-interval-v4 simple-root subwindows:
+accepted same-packet fold-layer rows with exact complement membership, exact
+single separator assignments plus same-packet regular-boundary
+inclusion/domination for the finite candidate families, endpoint/topology
+ownership with finite contact tables and positive post-deletion gaps where
+applicable, or a repaired successor candidate whose complement collars become
+strict range-empty.
+Endpoint/seam ownership, fold-aware diagonal handling, and fold-layer
+certification are still required before branch-chart work. The blocker cannot
+be removed by relabeling the rejected cosine artifacts, treating sampled screen
+rows as accepted rows, trying strict range-empty again on the same v5 collars,
+or invoking regular-boundary coverage without same-packet inclusion and
+domination fields.
 
 ## Minimum Lawful Successor Packet
 
@@ -258,6 +360,45 @@ The proof-interval-v2 ledger
 also records `preledger_pass=false` and `branch_chart_authorized=false`; it
 certifies 116 exact-rational row-specific trigonometric range-empty rows and
 leaves 46 rows `split_required`.
+The proof-interval-v3 ledger
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.json`
+also records `preledger_pass=false` and `branch_chart_authorized=false`; it
+certifies 116 exact-rational row-specific trigonometric range-empty rows plus 8
+regular monotone diagonal exclusions and leaves 38 rows `split_required`.
+The proof-interval-v4 ledger
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.json`
+also records `preledger_pass=false` and `branch_chart_authorized=false`; it
+records 6 simple-root subrow certificates but leaves the same 38 parent rows
+`split_required` until complements, seam ownership, fold-aware diagonal locks,
+and active fold-layer rows are consumed.
+The proof-interval-v5 ledger
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json`
+also records `preledger_pass=false` and `branch_chart_authorized=false`; it
+probes 10 receiver-side parent-complement strips, certifies 0 strict-empty
+complement strips, consumes 0 simple-root parent rows, and leaves the same 38
+parent rows `split_required`.
+The proof-interval-v6 ledger
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json`
+also records `preledger_pass=false` and `branch_chart_authorized=false`; it
+accepts 0 endpoint/topology-owned strips, 0 exact fold-family-covered strips,
+and 0 regular-boundary-covered strips, consumes 0 simple-root parent rows, and
+leaves the same 38 parent rows `split_required`.
+The proof-interval-v7 ledger
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.json`
+also records `preledger_pass=false` and `branch_chart_authorized=false`; it
+constructs 10 candidate regular-boundary core records, considers 16 fresh
+fold-layer burden rows, constructs 0 endpoint contact tables, accepts 0
+complement strips, consumes 0 simple-root parent rows, and leaves the same 38
+parent rows `split_required`.
+The proof-interval-v8 ledger
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json`
+also records `preledger_pass=false` and `branch_chart_authorized=false`; it
+constructs 4 finite regular-boundary candidate families and 20 candidate
+membership edges from the v7 cores, but certifies 0 exact single separator
+assignments, 0 same-packet inclusion proofs, 0 fresh domination inequalities, 0
+topology/no-double-counting certificates, and 0 non-core complement closures.
+It accepts 0 complement strips, consumes 0 simple-root parent rows, and leaves
+the same 38 parent rows `split_required`.
 
 ## Capture Decision
 

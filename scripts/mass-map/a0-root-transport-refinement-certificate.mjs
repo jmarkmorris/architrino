@@ -2,10 +2,12 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 
 const INTAKE_SCHEMA = "a0-tier1-fold-layer-locked-one-period-attempt/v1";
 const SOURCE_SCHEMA = "a0-root-transport-source-record/v1";
 const CERTIFICATE_SCHEMA = "a0-root-transport-refinement-certificate/v1";
+const SOURCE_RECORD_FINGERPRINT_ALGORITHM = "sha256-canonical-root-transport-source-record-v1";
 const DEFAULT_TOLERANCE = 1e-9;
 const QUOTIENTS = new Set([
   "source_layer_shear",
@@ -240,6 +242,43 @@ function metadataMismatches(baselineRecord, variantRecord, quotient) {
     }
   }
   return mismatches;
+}
+
+function canonicalSourceRecordPayload(record) {
+  return {
+    period: record?.period ?? null,
+    coordinate_family: record?.coordinate_family ?? null,
+    source: record?.source ?? null,
+    gap_source: record?.gap_source ?? null,
+    locked_fold_layer_keys_excluded: record?.locked_fold_layer_keys_excluded === true,
+    benchmark_inputs_excluded: record?.benchmark_inputs_excluded === true,
+    declared_root_transport_quotients: declaredQuotients(record).slice().sort(),
+    roots: (Array.isArray(record?.roots) ? record.roots : [])
+      .map((root) => ({
+        root_key: root?.root_key ?? null,
+        receiver: root?.receiver ?? null,
+        source: root?.source ?? null,
+        relation: root?.relation ?? null,
+        status: root?.status ?? null,
+        t: root?.t ?? null,
+        theta: root?.theta ?? null,
+        D_tau: root?.D_tau ?? null,
+        D_J: root?.D_J ?? null,
+        G_r: root?.G_r ?? null,
+        locked_fold_layer_key: root?.locked_fold_layer_key === true,
+      }))
+      .sort((left, right) => {
+        const keyComparison = String(left.root_key).localeCompare(String(right.root_key));
+        return keyComparison !== 0 ? keyComparison : Number(left.t) - Number(right.t);
+      }),
+  };
+}
+
+function sourceRecordFingerprint(record) {
+  return crypto
+    .createHash("sha256")
+    .update(JSON.stringify(canonicalSourceRecordPayload(record)))
+    .digest("hex");
 }
 
 function modulo(value, modulus) {
@@ -598,6 +637,9 @@ function buildCertificate(args, baselineArtifact, variantArtifact) {
       baseline_phase_origin_covariance_status: baselineRecord?.phase_origin_covariance_status ?? null,
       variant_phase_origin_covariance_status: variantRecord?.phase_origin_covariance_status ?? null,
       transport_id_used_for_matching: false,
+      source_record_fingerprint_algorithm: SOURCE_RECORD_FINGERPRINT_ALGORITHM,
+      baseline_source_record_fingerprint: baselineRecord ? sourceRecordFingerprint(baselineRecord) : null,
+      variant_source_record_fingerprint: variantRecord ? sourceRecordFingerprint(variantRecord) : null,
       metadata_mismatches: sourceMetadataMismatches,
     },
     certificate: {

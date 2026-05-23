@@ -106,12 +106,18 @@ $$
 0.18420699635,
 \qquad
 \left\langle f_{i,\mathrm{cross}}^1\right\rangle
-\approx0.
+=0.
 $$
 
-The antipodal-partner positive mean is analytic on the certified constant partner root; the cross-binary aggregate is sampled as pairwise mean cancellation with an exact anti-periodicity proof route still staged. Thus the frozen cross-binary mean cancels in the current diagnostic row while the antipodal-partner mean leaves a positive drift. This rejects only the frozen fixed-ledger speed primitive. The bounded-speed live-ledger handoff remains `bounded-speed-ledger-handoff-open`.
+The antipodal-partner positive mean is analytic on the certified constant partner root; the cross-binary aggregate is certified by the phase anti-periodicity proof $C_i(\theta+\pi/2)=-C_i(\theta)$, with sampled checksum rows retained for audit. Thus the frozen cross-binary mean cancels in the current diagnostic row while the antipodal-partner mean leaves a positive drift. This rejects only the frozen fixed-ledger speed primitive. The bounded-speed live-ledger handoff remains `bounded-speed-ledger-handoff-open`.
 
-The successor priority target is [../shell-swarm/bounded-speed-factor-speed-ode-zero-mean-correction-target.md](../shell-swarm/bounded-speed-factor-speed-ode-zero-mean-correction-target.md). It does not add another neutral first-execution artifact yet; it states the live shell-swarm equation that would have to turn the frozen mean obstruction into $\mathcal{M}_i^\nu(z)=0$ with bounded-speed clock, root, Jacobian, force, support, action, and event derivative columns on one ledger.
+The successor priority target is [../shell-swarm/bounded-speed-factor-speed-ode-zero-mean-correction-target.md](../shell-swarm/bounded-speed-factor-speed-ode-zero-mean-correction-target.md). The bridge intake certificate consumes `neutral-swarm-octahedral-speed-ode-diagnostic/v1` and emits $\mathbf{m}_{\mathrm{frz}}=m_*\mathbf{1}_6$ plus the range-condition target for bounded-speed shell swarm work. It is not another neutral first-execution success criterion; it packages the source vector for the live shell-swarm equation that would have to turn the frozen mean obstruction into $\mathcal{M}_i^\nu(z)=0$ with bounded-speed clock, root, Jacobian, force, support, action, and event derivative columns on one ledger.
+
+If the bridge intake includes a candidate range/cokernel checker, that checker remains a shell-swarm diagnostic screen for $B_{\mathrm{cand}}$ against the frozen constant-vector obstruction. It is not another neutral first-execution success criterion, does not certify a live derivative matrix, and leaves `live-ledger-derivative-open`.
+
+If the bridge intake includes a live derivative column audit, that audit remains a provenance screen for future shell-swarm columns. It may record parameter labels, perturbation artifacts, same-ledger guards, and a matrix preview, but it is not the neutral first-execution ledger and it still leaves `certifies_live_derivative_matrix=false` until the bounded-speed live-ledger handoff, rank/range certificate, and correction verdict close on one ledger.
+
+If that matrix preview is range-probed, the derived probe remains a preview-only shell-swarm diagnostic. It may report whether $-\mathbf{m}_{\mathrm{frz}}$ lies in the preview range, but it still does not populate the certified live derivative matrix $B$ or change the neutral first-execution status.
 
 ---
 
@@ -200,6 +206,12 @@ The sampled octahedral frozen-ledger speed-ODE diagnostic emits:
 
 $$
 \texttt{neutral-swarm-octahedral-speed-ode-diagnostic/v1}.
+$$
+
+The frozen zero-mean correction intake bridge emits:
+
+$$
+\texttt{neutral-swarm-octahedral-zero-mean-correction-intake/v1}.
 $$
 
 The deterministic fixed-speed no-go witness emits:

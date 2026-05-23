@@ -184,6 +184,44 @@ class TransportProfile(Profile):
         }
 
 
+@dataclass(frozen=True)
+class TangentTransportProfile:
+    theta_nodes: tuple[float, ...]
+    eta_nodes: tuple[float, ...]
+    eta_prime_nodes: tuple[float, ...]
+    solve_log: tuple[dict, ...]
+    past_direction: tuple[float, ...]
+    past_basis_scale: float
+
+    def eta(self, theta: float) -> float:
+        if theta <= 0.0:
+            return polynomial_tangent(self.past_direction, -theta, self.past_basis_scale)
+        if theta >= self.theta_nodes[-1]:
+            return self.eta_nodes[-1]
+        upper = bisect_right(self.theta_nodes, theta)
+        lo = self.theta_nodes[upper - 1]
+        hi = self.theta_nodes[upper]
+        frac = (theta - lo) / (hi - lo)
+        return self.eta_nodes[upper - 1] + frac * (
+            self.eta_nodes[upper] - self.eta_nodes[upper - 1]
+        )
+
+    def eta_prime(self, theta: float) -> float:
+        if theta < 0.0:
+            return -polynomial_tangent_prime(
+                self.past_direction, -theta, self.past_basis_scale
+            )
+        if theta >= self.theta_nodes[-1]:
+            return self.eta_prime_nodes[-1]
+        upper = bisect_right(self.theta_nodes, theta)
+        lo = self.theta_nodes[upper - 1]
+        hi = self.theta_nodes[upper]
+        frac = (theta - lo) / (hi - lo)
+        return self.eta_prime_nodes[upper - 1] + frac * (
+            self.eta_prime_nodes[upper] - self.eta_prime_nodes[upper - 1]
+        )
+
+
 def polynomial_q(
     coefficients: tuple[float, ...], x: float, basis_scale: float = 1.0
 ) -> float:
@@ -192,6 +230,20 @@ def polynomial_q(
     if x >= DELTA_R:
         return 1.0
     return polynomial_raw_q(coefficients, x, basis_scale)
+
+
+def polynomial_tangent(
+    coefficients: tuple[float, ...], x: float, basis_scale: float = 1.0
+) -> float:
+    if x <= 0.0 or x >= DELTA_R:
+        return 0.0
+    total = 0.0
+    y = x / basis_scale
+    power = y
+    for coeff in coefficients:
+        total += coeff * power
+        power *= y
+    return total
 
 
 def polynomial_raw_q(
@@ -212,6 +264,20 @@ def polynomial_q_prime(
     if x <= 0.0 or x >= DELTA_R:
         return 0.0
     return polynomial_raw_q_prime(coefficients, x, basis_scale)
+
+
+def polynomial_tangent_prime(
+    coefficients: tuple[float, ...], x: float, basis_scale: float = 1.0
+) -> float:
+    if x <= 0.0 or x >= DELTA_R:
+        return 0.0
+    total = 0.0
+    y = x / basis_scale
+    power = 1.0
+    for n, coeff in enumerate(coefficients, start=1):
+        total += n * coeff * power / basis_scale
+        power *= y
+    return total
 
 
 def polynomial_raw_q_prime(
@@ -373,6 +439,21 @@ def memory_integral(theta: float, delta: float, *, panels: int, profile: Profile
     return total * step / 3.0
 
 
+def tangent_memory_integral(
+    theta: float, delta: float, *, panels: int, tangent: TangentTransportProfile
+) -> float:
+    if panels % 2:
+        panels += 1
+    lo = theta - delta
+    hi = theta
+    step = (hi - lo) / panels
+    total = tangent.eta(lo) + tangent.eta(hi)
+    for index in range(1, panels):
+        weight = 4.0 if index % 2 else 2.0
+        total += weight * tangent.eta(lo + index * step)
+    return total * step / 3.0
+
+
 def root_function_nc(
     kind: str, theta: float, delta: float, *, panels: int, profile: Profile
 ) -> float:
@@ -391,6 +472,64 @@ def jacobian_nc(kind: str, theta: float, delta: float, *, profile: Profile) -> f
         return 1.0 + source_speed * bracket / lam
     bracket = math.sin(delta) + p0 * (rho - math.cos(delta))
     return 1.0 - source_speed * bracket / lam
+
+
+def lambda_delta_derivative(kind: str, theta: float, delta: float) -> float:
+    step = 1.0e-6 * max(1.0, abs(delta))
+    return (
+        fixed.lambda_value(kind, theta, delta + step)
+        - fixed.lambda_value(kind, theta, delta - step)
+    ) / (2.0 * step)
+
+
+def branch_values_with_source_q(
+    kind: str, theta: float, delta: float, q_source: float
+) -> tuple[float, float, float]:
+    rho = fixed.rho(theta, delta)
+    lam = fixed.lambda_value(kind, theta, delta)
+    p0 = -A * math.sin(theta - delta)
+    source_speed = B_STAR * sigma(theta) * rho / q_source
+    if kind == "partner":
+        bracket = math.sin(delta) - p0 * (math.cos(delta) + rho)
+        jacobian = 1.0 + source_speed * bracket / lam
+        radial_numerator = -(1.0 + rho * math.cos(delta))
+    else:
+        bracket = math.sin(delta) + p0 * (rho - math.cos(delta))
+        jacobian = 1.0 - source_speed * bracket / lam
+        radial_numerator = 1.0 - rho * math.cos(delta)
+    tangential = fixed.tangential_numerator(kind, theta, delta) / (
+        lam**3 * abs(jacobian)
+    )
+    radial = radial_numerator / (lam**3 * abs(jacobian))
+    return jacobian, tangential, radial
+
+
+def branch_partials_with_source_q(
+    kind: str, theta: float, delta: float, q_source: float
+) -> dict:
+    delta_step = 1.0e-6 * max(1.0, abs(delta))
+    q_step = 1.0e-6 * max(1.0, abs(q_source))
+    _, tangent_plus_delta, radial_plus_delta = branch_values_with_source_q(
+        kind, theta, delta + delta_step, q_source
+    )
+    _, tangent_minus_delta, radial_minus_delta = branch_values_with_source_q(
+        kind, theta, delta - delta_step, q_source
+    )
+    _, tangent_plus_q, radial_plus_q = branch_values_with_source_q(
+        kind, theta, delta, q_source + q_step
+    )
+    _, tangent_minus_q, radial_minus_q = branch_values_with_source_q(
+        kind, theta, delta, q_source - q_step
+    )
+    return {
+        "tangential_delta": (tangent_plus_delta - tangent_minus_delta)
+        / (2.0 * delta_step),
+        "radial_delta": (radial_plus_delta - radial_minus_delta)
+        / (2.0 * delta_step),
+        "tangential_q_source": (tangent_plus_q - tangent_minus_q)
+        / (2.0 * q_step),
+        "radial_q_source": (radial_plus_q - radial_minus_q) / (2.0 * q_step),
+    }
 
 
 def tangential_contribution_nc(kind: str, theta: float, delta: float, *, profile: Profile) -> float:
@@ -535,6 +674,240 @@ def tangential_transport_derivative(
     )
     residuals = force_residuals(theta, rows, gamma_star=gamma_star, profile=profile)
     return derivative, rows, residuals
+
+
+def tangent_branch_sums(
+    theta: float,
+    *,
+    profile: Profile,
+    tangent: TangentTransportProfile,
+    panels: int,
+) -> dict:
+    rows = retained_rows(theta, panels=panels, profile=profile)
+    tangent_rows: list[dict] = []
+    delta_tangent_sum = 0.0
+    delta_radial_sum = 0.0
+    for row in rows:
+        source_theta = theta - row.delta
+        q_source = profile.q(source_theta)
+        source_eta = tangent.eta(source_theta)
+        source_q_prime = profile.q_prime(source_theta)
+        root_denominator = (
+            lambda_delta_derivative(row.kind, theta, row.delta)
+            - q_source / (B_STAR * sigma(theta))
+        )
+        memory_variation = tangent_memory_integral(
+            theta, row.delta, panels=panels, tangent=tangent
+        )
+        delta_root = memory_variation / (B_STAR * sigma(theta) * root_denominator)
+        source_q_variation = source_eta - source_q_prime * delta_root
+        partials = branch_partials_with_source_q(
+            row.kind, theta, row.delta, q_source
+        )
+        delta_tangential = (
+            partials["tangential_delta"] * delta_root
+            + partials["tangential_q_source"] * source_q_variation
+        )
+        delta_radial = (
+            partials["radial_delta"] * delta_root
+            + partials["radial_q_source"] * source_q_variation
+        )
+        delta_tangent_sum += delta_tangential
+        delta_radial_sum += delta_radial
+        tangent_rows.append(
+            {
+                "label": row.label,
+                "kind": row.kind,
+                "theta": theta,
+                "delta": row.delta,
+                "delta_root": delta_root,
+                "root_denominator": root_denominator,
+                "memory_variation": memory_variation,
+                "source_theta": source_theta,
+                "q_source": q_source,
+                "source_eta": source_eta,
+                "source_q_prime": source_q_prime,
+                "source_q_variation": source_q_variation,
+                "delta_tangential": delta_tangential,
+                "delta_radial": delta_radial,
+                "partials": partials,
+                "jacobian": row.jacobian,
+            }
+        )
+    return {
+        "rows": tangent_rows,
+        "delta_T_Q": delta_tangent_sum,
+        "delta_B_Q": delta_radial_sum,
+        "base_rows": rows,
+    }
+
+
+def tangent_transport_derivative(
+    theta: float,
+    *,
+    profile: Profile,
+    tangent: TangentTransportProfile,
+    panels: int,
+    gamma_star: float,
+) -> tuple[float, dict]:
+    rows = retained_rows(theta, panels=panels, profile=profile)
+    tangent_sum = sum(row.tangential for row in rows)
+    q = profile.q(theta)
+    eta = tangent.eta(theta)
+    branch_tangent = tangent_branch_sums(
+        theta, profile=profile, tangent=tangent, panels=panels
+    )
+    derivative = 2.0 * A * math.sin(theta) * eta - (
+        (3.0 * q * q * eta * tangent_sum + q**3 * branch_tangent["delta_T_Q"])
+        / (gamma_star * sigma(theta) ** 3)
+    )
+    return derivative, branch_tangent
+
+
+def tangent_radial_residual(
+    theta: float,
+    *,
+    profile: Profile,
+    tangent: TangentTransportProfile,
+    panels: int,
+    gamma_star: float,
+) -> dict:
+    branch_tangent = tangent_branch_sums(
+        theta, profile=profile, tangent=tangent, panels=panels
+    )
+    q = profile.q(theta)
+    eta = tangent.eta(theta)
+    gamma = gamma_star * sigma(theta) ** 3 / (q * q)
+    radial_shape = A * math.cos(theta) - A * A * math.sin(theta) ** 2 - 1.0
+    delta_radial_residual = (
+        branch_tangent["delta_B_Q"]
+        + 2.0 * gamma * radial_shape * eta / q
+        - A * math.sin(theta) * branch_tangent["delta_T_Q"]
+    )
+    return {
+        "theta": theta,
+        "delta_radial_residual_tangential_substituted": delta_radial_residual,
+        "delta_B_Q": branch_tangent["delta_B_Q"],
+        "delta_T_Q": branch_tangent["delta_T_Q"],
+        "eta": eta,
+        "Q": q,
+        "Gamma": gamma,
+        "radial_shape": radial_shape,
+        "rows": branch_tangent["rows"],
+    }
+
+
+def build_tangent_transport_profile(
+    args: argparse.Namespace,
+    *,
+    base_profile: Profile,
+    past_direction: tuple[float, ...],
+    past_basis_scale: float,
+) -> TangentTransportProfile:
+    if args.transport_steps <= 0:
+        raise ValueError("--transport-steps must be positive for tangent transport")
+    if args.theta_hi <= 0.0:
+        return TangentTransportProfile(
+            theta_nodes=(0.0,),
+            eta_nodes=(0.0,),
+            eta_prime_nodes=(0.0,),
+            solve_log=(),
+            past_direction=past_direction,
+            past_basis_scale=past_basis_scale,
+        )
+
+    step = args.theta_hi / args.transport_steps
+    theta_nodes = [0.0]
+    eta_nodes = [0.0]
+    eta_prime_nodes: list[float] = []
+    solve_log: list[dict] = []
+
+    for _ in range(args.transport_steps):
+        theta = theta_nodes[-1]
+        current_tangent = TangentTransportProfile(
+            theta_nodes=tuple(theta_nodes),
+            eta_nodes=tuple(eta_nodes),
+            eta_prime_nodes=tuple(eta_prime_nodes or [0.0]),
+            solve_log=tuple(solve_log),
+            past_direction=past_direction,
+            past_basis_scale=past_basis_scale,
+        )
+        derivative, branch_tangent = tangent_transport_derivative(
+            theta,
+            profile=base_profile,
+            tangent=current_tangent,
+            panels=args.integration_panels,
+            gamma_star=args.gamma_star,
+        )
+        if not eta_prime_nodes:
+            eta_prime_nodes.append(derivative)
+        else:
+            eta_prime_nodes[-1] = derivative
+
+        theta_next = min(args.theta_hi, theta + step)
+        eta_next = eta_nodes[-1] + (theta_next - theta) * derivative
+        derivative_next = derivative
+        next_branch_tangent = branch_tangent
+        for _ in range(3):
+            corrector = TangentTransportProfile(
+                theta_nodes=tuple([*theta_nodes, theta_next]),
+                eta_nodes=tuple([*eta_nodes, eta_next]),
+                eta_prime_nodes=tuple([*eta_prime_nodes, derivative_next]),
+                solve_log=tuple(solve_log),
+                past_direction=past_direction,
+                past_basis_scale=past_basis_scale,
+            )
+            derivative_next, next_branch_tangent = tangent_transport_derivative(
+                theta_next,
+                profile=base_profile,
+                tangent=corrector,
+                panels=args.integration_panels,
+                gamma_star=args.gamma_star,
+            )
+            eta_next = eta_nodes[-1] + 0.5 * (theta_next - theta) * (
+                derivative + derivative_next
+            )
+
+        final_tangent = TangentTransportProfile(
+            theta_nodes=tuple([*theta_nodes, theta_next]),
+            eta_nodes=tuple([*eta_nodes, eta_next]),
+            eta_prime_nodes=tuple([*eta_prime_nodes, derivative_next]),
+            solve_log=tuple(solve_log),
+            past_direction=past_direction,
+            past_basis_scale=past_basis_scale,
+        )
+        derivative_next, next_branch_tangent = tangent_transport_derivative(
+            theta_next,
+            profile=base_profile,
+            tangent=final_tangent,
+            panels=args.integration_panels,
+            gamma_star=args.gamma_star,
+        )
+
+        theta_nodes.append(theta_next)
+        eta_nodes.append(eta_next)
+        eta_prime_nodes.append(derivative_next)
+        solve_log.append(
+            {
+                "theta": theta,
+                "theta_next": theta_next,
+                "eta": eta_nodes[-2],
+                "eta_next": eta_next,
+                "eta_prime": derivative,
+                "eta_prime_next": derivative_next,
+                "delta_T_Q": branch_tangent["delta_T_Q"],
+                "delta_T_Q_next": next_branch_tangent["delta_T_Q"],
+            }
+        )
+
+    return TangentTransportProfile(
+        theta_nodes=tuple(theta_nodes),
+        eta_nodes=tuple(eta_nodes),
+        eta_prime_nodes=tuple(eta_prime_nodes),
+        solve_log=tuple(solve_log),
+        past_direction=past_direction,
+        past_basis_scale=past_basis_scale,
+    )
 
 
 def polynomial_value_row(degree: int, x: float, basis_scale: float = 1.0) -> list[float]:
@@ -770,6 +1143,12 @@ def retained_collar_radial_objective_value(
     args: argparse.Namespace, past_profile: PastProfileSpec
 ) -> dict:
     profile = build_tangential_transport_profile(args, past_profile=past_profile)
+    return retained_collar_radial_objective_value_from_profile(args, profile)
+
+
+def retained_collar_radial_objective_value_from_profile(
+    args: argparse.Namespace, profile: Profile
+) -> dict:
     samples = theta_grid(0.0, args.finite_collar_theta_hi, args.finite_collar_samples)
     max_abs_radial = 0.0
     rows_out: list[dict] = []
@@ -1381,6 +1760,2460 @@ def finite_collar_radial_trust_region(args: argparse.Namespace) -> dict:
     }
 
 
+def finite_collar_response_matrix_packet(
+    args: argparse.Namespace,
+    *,
+    np: object,
+    base_array: object,
+    seed_array: object,
+    null_basis: object,
+    basis_scale: float,
+    opt_args: argparse.Namespace,
+    base_residual: object,
+    response_step: float,
+) -> tuple[object, dict]:
+    response_columns: list[object] = []
+    column_diagnostics: list[dict] = []
+    for column_index in range(null_basis.shape[1]):
+        direction = null_basis[:, column_index]
+        plus_coefficients = tuple(
+            float(value) for value in base_array + seed_array + response_step * direction
+        )
+        minus_coefficients = tuple(
+            float(value) for value in base_array + seed_array - response_step * direction
+        )
+        plus_profile = PastProfileSpec(
+            kind=f"finite_collar_variation_plus_{column_index}",
+            coefficients=plus_coefficients,
+            basis_scale=basis_scale,
+        )
+        minus_profile = PastProfileSpec(
+            kind=f"finite_collar_variation_minus_{column_index}",
+            coefficients=minus_coefficients,
+            basis_scale=basis_scale,
+        )
+        plus_vector, plus_objective = finite_collar_residual_vector(opt_args, plus_profile)
+        minus_vector, minus_objective = finite_collar_residual_vector(
+            opt_args, minus_profile
+        )
+        plus_array = np.asarray(plus_vector, dtype=float)
+        minus_array = np.asarray(minus_vector, dtype=float)
+        derivative = (plus_array - minus_array) / (2.0 * response_step)
+        central_second = plus_array + minus_array - 2.0 * base_residual
+        response_columns.append(derivative)
+        column_diagnostics.append(
+            {
+                "column": column_index,
+                "plus_max_abs": plus_objective[
+                    "max_abs_radial_residual_tangential_substituted"
+                ],
+                "minus_max_abs": minus_objective[
+                    "max_abs_radial_residual_tangential_substituted"
+                ],
+                "max_abs_derivative": float(np.max(np.abs(derivative))),
+                "max_abs_central_second_difference": float(
+                    np.max(np.abs(central_second))
+                ),
+                "max_abs_plus_delta": float(np.max(np.abs(plus_array - base_residual))),
+                "max_abs_minus_delta": float(np.max(np.abs(minus_array - base_residual))),
+            }
+        )
+    response_matrix = np.column_stack(response_columns)
+    singular_values = np.linalg.svd(response_matrix, compute_uv=False)
+    packet = {
+        "response_step": response_step,
+        "response_rank": int(np.linalg.matrix_rank(response_matrix)),
+        "response_singular_values": [float(value) for value in singular_values],
+        "response_frobenius_norm": float(np.linalg.norm(response_matrix)),
+        "column_diagnostics": column_diagnostics,
+    }
+    return response_matrix, packet
+
+
+def finite_collar_variational_audit(args: argparse.Namespace) -> dict:
+    try:
+        import numpy as np
+        from scipy.linalg import null_space
+        from scipy.optimize import linprog
+    except ImportError as exc:
+        raise RuntimeError(
+            "--diagnostic-mode finite_collar_variational_audit requires scipy and numpy"
+        ) from exc
+
+    degree = args.finite_collar_repair_degree
+    response_steps = parse_positive_float_csv(
+        args.finite_collar_variation_steps,
+        "--finite-collar-variation-steps",
+    )
+    variation_bound = args.finite_collar_variation_bound
+    if variation_bound <= 0.0:
+        raise ValueError("--finite-collar-variation-bound must be positive")
+
+    seed, base_coefficients, seed_perturbation, sensitivity, rows, _ = (
+        build_endpoint_slope_cancel_seed(args, degree)
+    )
+    opt_args = finite_collar_objective_args(args)
+    base_array = np.asarray(base_coefficients, dtype=float)
+    seed_array = np.asarray(seed_perturbation, dtype=float)
+    constraints = np.asarray(rows, dtype=float)
+    null_basis = null_space(constraints)
+    seed_coefficients = tuple(float(value) for value in base_array + seed_array)
+    seed_profile = PastProfileSpec(
+        kind=f"finite_collar_variational_audit_seed_degree_{degree}",
+        coefficients=seed_coefficients,
+        basis_scale=seed.basis_scale,
+        summary=seed.summary,
+    )
+    base_vector, base_objective = finite_collar_residual_vector(opt_args, seed_profile)
+    base_residual = np.asarray(base_vector, dtype=float)
+    base_max_abs = float(np.max(np.abs(base_residual)))
+
+    if null_basis.shape[1] == 0:
+        return {
+            "artifact": "spiral_a1_finite_collar_variational_audit",
+            "claim_level": "sampled variational audit, not interval certificate",
+            "degree": degree,
+            "finite_collar_nullspace_dimension": 0,
+            "base_objective": base_objective,
+        }
+
+    def solve_chebyshev(response_matrix: object) -> tuple[object, object, object]:
+        row_count, column_count = response_matrix.shape
+        a_ub: list[list[float]] = []
+        b_ub: list[float] = []
+        for row_index in range(row_count):
+            row = response_matrix[row_index, :]
+            a_ub.append([*row.tolist(), -1.0])
+            b_ub.append(-float(base_residual[row_index]))
+            a_ub.append([*(-row).tolist(), -1.0])
+            b_ub.append(float(base_residual[row_index]))
+        result = linprog(
+            [0.0] * column_count + [1.0],
+            A_ub=np.asarray(a_ub, dtype=float),
+            b_ub=np.asarray(b_ub, dtype=float),
+            bounds=[(-variation_bound, variation_bound) for _ in range(column_count)]
+            + [(0.0, None)],
+            method="highs",
+        )
+        if result.success:
+            parameters = np.asarray(result.x[:column_count], dtype=float)
+        else:
+            least_squares_parameters, *_ = np.linalg.lstsq(
+                response_matrix, -base_residual, rcond=None
+            )
+            parameters = np.clip(
+                least_squares_parameters,
+                -variation_bound,
+                variation_bound,
+            )
+        linear_residual = base_residual + response_matrix @ parameters
+        return result, parameters, linear_residual
+
+    step_packets: list[dict] = []
+    previous_matrix = None
+    best_tracking: dict | None = None
+    for response_step in response_steps:
+        response_matrix, packet = finite_collar_response_matrix_packet(
+            args,
+            np=np,
+            base_array=base_array,
+            seed_array=seed_array,
+            null_basis=null_basis,
+            basis_scale=seed.basis_scale,
+            opt_args=opt_args,
+            base_residual=base_residual,
+            response_step=response_step,
+        )
+        if previous_matrix is None:
+            packet["relative_frobenius_change_from_previous_step"] = None
+        else:
+            denominator = max(float(np.linalg.norm(previous_matrix)), 1.0e-30)
+            packet["relative_frobenius_change_from_previous_step"] = float(
+                np.linalg.norm(response_matrix - previous_matrix) / denominator
+            )
+        previous_matrix = response_matrix
+
+        result, parameters, linear_residual = solve_chebyshev(response_matrix)
+        candidate_perturbation = seed_array + null_basis @ parameters
+        candidate_coefficients = tuple(
+            float(value) for value in base_array + candidate_perturbation
+        )
+        q_bounds = sampled_q_bounds(
+            candidate_coefficients,
+            seed.basis_scale,
+            args.finite_collar_positivity_samples,
+        )
+        candidate_profile = PastProfileSpec(
+            kind=f"finite_collar_variational_audit_candidate_degree_{degree}",
+            coefficients=candidate_coefficients,
+            basis_scale=seed.basis_scale,
+        )
+        candidate_vector, candidate_objective = finite_collar_residual_vector(
+            opt_args, candidate_profile
+        )
+        linear_max_abs = float(np.max(np.abs(linear_residual)))
+        nonlinear_max_abs = candidate_objective[
+            "max_abs_radial_residual_tangential_substituted"
+        ]
+        predicted_improvement = base_max_abs - linear_max_abs
+        nonlinear_improvement = base_max_abs - nonlinear_max_abs
+        tracking_ratio = (
+            nonlinear_improvement / predicted_improvement
+            if predicted_improvement > 0.0
+            else None
+        )
+        packet["variation_bound"] = variation_bound
+        packet["linear_chebyshev_success"] = bool(result.success)
+        packet["linear_chebyshev_message"] = result.message
+        packet["linear_chebyshev_predicted_max_abs"] = linear_max_abs
+        packet["nonlinear_candidate_max_abs"] = nonlinear_max_abs
+        packet["predicted_improvement"] = predicted_improvement
+        packet["nonlinear_improvement"] = nonlinear_improvement
+        packet["tracking_ratio"] = tracking_ratio
+        packet["parameters"] = [float(value) for value in parameters]
+        packet["candidate_q_bounds"] = q_bounds
+        packet["candidate_admissible_sampled_bounds"] = (
+            q_bounds["min_q"] >= args.finite_collar_min_q
+            and q_bounds["max_q"] <= args.finite_collar_max_q
+        )
+        packet["candidate_residual_vector"] = candidate_vector
+        packet["linear_residual_vector"] = [float(value) for value in linear_residual]
+        step_packets.append(packet)
+        if (
+            best_tracking is None
+            or (
+                tracking_ratio is not None
+                and (
+                    best_tracking["tracking_ratio"] is None
+                    or tracking_ratio > best_tracking["tracking_ratio"]
+                )
+            )
+        ):
+            best_tracking = packet
+
+    relative_changes = [
+        packet["relative_frobenius_change_from_previous_step"]
+        for packet in step_packets
+        if packet["relative_frobenius_change_from_previous_step"] is not None
+    ]
+    stable_response_matrix = bool(
+        relative_changes and max(relative_changes) < args.finite_collar_variation_stability_tol
+    )
+    useful_tracking = bool(
+        best_tracking
+        and best_tracking["tracking_ratio"] is not None
+        and best_tracking["tracking_ratio"] >= args.finite_collar_tracking_threshold
+        and best_tracking["nonlinear_improvement"] > 0.0
+    )
+
+    return {
+        "artifact": "spiral_a1_finite_collar_variational_audit",
+        "claim_level": "sampled variational audit, not interval certificate",
+        "degree": degree,
+        "basis_scale": seed.basis_scale,
+        "finite_collar_theta_hi": args.finite_collar_theta_hi,
+        "finite_collar_samples": args.finite_collar_samples,
+        "finite_collar_nullspace_dimension": null_basis.shape[1],
+        "base_objective": base_objective,
+        "base_residual_vector": base_vector,
+        "base_max_abs": base_max_abs,
+        "variation_steps": response_steps,
+        "variation_bound": variation_bound,
+        "stability_tolerance": args.finite_collar_variation_stability_tol,
+        "tracking_threshold": args.finite_collar_tracking_threshold,
+        "stable_response_matrix": stable_response_matrix,
+        "useful_tracking": useful_tracking,
+        "best_tracking_step": best_tracking,
+        "step_relative_frobenius_changes": relative_changes,
+        "variation_steps_detail": step_packets,
+        "endpoint_cancel_summary": seed.summary,
+    }
+
+
+def scaled_transport_args(
+    args: argparse.Namespace, scale: int, *, finite_collar: bool = False
+) -> argparse.Namespace:
+    level_args = argparse.Namespace(**vars(args))
+    level_args.transport_steps = args.transport_steps * scale
+    level_args.integration_panels = args.integration_panels * scale
+    level_args.delta_steps = args.delta_steps * scale
+    if finite_collar:
+        level_args.finite_collar_integration_panels = (
+            args.finite_collar_integration_panels * scale
+        )
+        level_args.finite_collar_transport_steps = (
+            args.finite_collar_transport_steps * scale
+        )
+        level_args.finite_collar_delta_steps = args.finite_collar_delta_steps * scale
+    return level_args
+
+
+def finite_collar_variational_refinement_audit(args: argparse.Namespace) -> dict:
+    if args.convergence_levels <= 0:
+        raise ValueError("--convergence-levels must be positive")
+    if args.refinement_factor <= 1:
+        raise ValueError("--refinement-factor must be greater than 1")
+
+    def step_summary(packet: dict) -> list[dict]:
+        return [
+            {
+                "response_step": step_packet["response_step"],
+                "response_rank": step_packet["response_rank"],
+                "response_frobenius_norm": step_packet["response_frobenius_norm"],
+                "largest_singular_value": (
+                    step_packet["response_singular_values"][0]
+                    if step_packet["response_singular_values"]
+                    else None
+                ),
+                "linear_chebyshev_predicted_max_abs": step_packet[
+                    "linear_chebyshev_predicted_max_abs"
+                ],
+                "nonlinear_candidate_max_abs": step_packet[
+                    "nonlinear_candidate_max_abs"
+                ],
+                "tracking_ratio": step_packet["tracking_ratio"],
+                "predicted_improvement": step_packet["predicted_improvement"],
+                "nonlinear_improvement": step_packet["nonlinear_improvement"],
+                "relative_frobenius_change_from_previous_step": step_packet[
+                    "relative_frobenius_change_from_previous_step"
+                ],
+            }
+            for step_packet in packet["variation_steps_detail"]
+        ]
+
+    levels: list[dict] = []
+    for level in range(args.convergence_levels):
+        scale = args.refinement_factor**level
+        level_args = scaled_transport_args(args, scale, finite_collar=True)
+        packet = finite_collar_variational_audit(level_args)
+        levels.append(
+            {
+                "level": level,
+                "scale": scale,
+                "integration_panels": level_args.integration_panels,
+                "transport_steps": level_args.transport_steps,
+                "delta_steps": level_args.delta_steps,
+                "finite_collar_integration_panels": level_args.finite_collar_integration_panels,
+                "finite_collar_transport_steps": level_args.finite_collar_transport_steps,
+                "finite_collar_delta_steps": level_args.finite_collar_delta_steps,
+                "stable_response_matrix": packet["stable_response_matrix"],
+                "useful_tracking": packet["useful_tracking"],
+                "base_max_abs": packet["base_max_abs"],
+                "best_tracking_step": packet["best_tracking_step"]["response_step"]
+                if packet["best_tracking_step"]
+                else None,
+                "best_tracking_ratio": packet["best_tracking_step"]["tracking_ratio"]
+                if packet["best_tracking_step"]
+                else None,
+                "max_step_relative_frobenius_change": max(
+                    packet["step_relative_frobenius_changes"]
+                )
+                if packet["step_relative_frobenius_changes"]
+                else None,
+                "variation_steps_summary": step_summary(packet),
+                "packet": packet,
+            }
+        )
+
+    adjacent_levels: list[dict] = []
+    for index in range(1, len(levels)):
+        previous = levels[index - 1]
+        current = levels[index]
+        previous_steps = {
+            entry["response_step"]: entry for entry in previous["variation_steps_summary"]
+        }
+        current_steps = {
+            entry["response_step"]: entry for entry in current["variation_steps_summary"]
+        }
+        step_comparisons: list[dict] = []
+        for response_step in sorted(set(previous_steps) & set(current_steps)):
+            previous_step = previous_steps[response_step]
+            current_step = current_steps[response_step]
+            previous_frobenius = previous_step["response_frobenius_norm"]
+            current_frobenius = current_step["response_frobenius_norm"]
+            previous_singular = previous_step["largest_singular_value"]
+            current_singular = current_step["largest_singular_value"]
+            step_comparisons.append(
+                {
+                    "response_step": response_step,
+                    "frobenius_relative_change": abs(
+                        current_frobenius - previous_frobenius
+                    )
+                    / max(abs(previous_frobenius), 1.0e-30),
+                    "largest_singular_relative_change": (
+                        abs(current_singular - previous_singular)
+                        / max(abs(previous_singular), 1.0e-30)
+                        if previous_singular is not None and current_singular is not None
+                        else None
+                    ),
+                    "tracking_ratio_delta": (
+                        current_step["tracking_ratio"] - previous_step["tracking_ratio"]
+                        if previous_step["tracking_ratio"] is not None
+                        and current_step["tracking_ratio"] is not None
+                        else None
+                    ),
+                }
+            )
+        adjacent_levels.append(
+            {
+                "from_level": index - 1,
+                "to_level": index,
+                "base_max_abs_relative_change": abs(
+                    current["base_max_abs"] - previous["base_max_abs"]
+                )
+                / max(abs(previous["base_max_abs"]), 1.0e-30),
+                "step_comparisons": step_comparisons,
+            }
+        )
+
+    cross_level_frobenius_changes = [
+        comparison["frobenius_relative_change"]
+        for adjacent in adjacent_levels
+        for comparison in adjacent["step_comparisons"]
+    ]
+    cross_level_singular_changes = [
+        comparison["largest_singular_relative_change"]
+        for adjacent in adjacent_levels
+        for comparison in adjacent["step_comparisons"]
+        if comparison["largest_singular_relative_change"] is not None
+    ]
+    stable_across_refinement = bool(
+        cross_level_frobenius_changes
+        and max(cross_level_frobenius_changes) < args.finite_collar_variation_stability_tol
+        and (
+            not cross_level_singular_changes
+            or max(cross_level_singular_changes)
+            < args.finite_collar_variation_stability_tol
+        )
+    )
+
+    return {
+        "artifact": "spiral_a1_finite_collar_variational_refinement_audit",
+        "claim_level": "sampled solver-noise refinement diagnostic, not interval certificate",
+        "degree": args.finite_collar_repair_degree,
+        "variation_steps": parse_positive_float_csv(
+            args.finite_collar_variation_steps,
+            "--finite-collar-variation-steps",
+        ),
+        "variation_bound": args.finite_collar_variation_bound,
+        "convergence_levels": args.convergence_levels,
+        "refinement_factor": args.refinement_factor,
+        "stability_tolerance": args.finite_collar_variation_stability_tol,
+        "all_levels_stable_response_matrix": all(
+            level["stable_response_matrix"] for level in levels
+        ),
+        "any_level_useful_tracking": any(level["useful_tracking"] for level in levels),
+        "stable_across_refinement": stable_across_refinement,
+        "max_cross_level_frobenius_change": max(cross_level_frobenius_changes)
+        if cross_level_frobenius_changes
+        else None,
+        "max_cross_level_largest_singular_change": max(cross_level_singular_changes)
+        if cross_level_singular_changes
+        else None,
+        "levels": levels,
+        "adjacent_levels": adjacent_levels,
+    }
+
+
+def solve_bounded_chebyshev(
+    *,
+    np: object,
+    linprog: object,
+    response_matrix: object,
+    base_residual: object,
+    bound: float,
+) -> tuple[object, object, object]:
+    row_count, column_count = response_matrix.shape
+    a_ub: list[list[float]] = []
+    b_ub: list[float] = []
+    for row_index in range(row_count):
+        row = response_matrix[row_index, :]
+        a_ub.append([*row.tolist(), -1.0])
+        b_ub.append(-float(base_residual[row_index]))
+        a_ub.append([*(-row).tolist(), -1.0])
+        b_ub.append(float(base_residual[row_index]))
+    result = linprog(
+        [0.0] * column_count + [1.0],
+        A_ub=np.asarray(a_ub, dtype=float),
+        b_ub=np.asarray(b_ub, dtype=float),
+        bounds=[(-bound, bound) for _ in range(column_count)] + [(0.0, None)],
+        method="highs",
+    )
+    if result.success:
+        parameters = np.asarray(result.x[:column_count], dtype=float)
+    else:
+        least_squares_parameters, *_ = np.linalg.lstsq(
+            response_matrix, -base_residual, rcond=None
+        )
+        parameters = np.clip(least_squares_parameters, -bound, bound)
+    linear_residual = base_residual + response_matrix @ parameters
+    return result, parameters, linear_residual
+
+
+def finite_collar_analytic_tangent_matrix_packet(
+    args: argparse.Namespace,
+    *,
+    np: object,
+    seed: PastProfileSpec,
+    null_basis: object,
+    base_profile: Profile,
+    opt_args: argparse.Namespace,
+) -> tuple[object, dict]:
+    samples = theta_grid(0.0, opt_args.theta_hi, opt_args.theta_samples)
+    analytic_columns: list[object] = []
+    column_diagnostics: list[dict] = []
+    for column_index in range(null_basis.shape[1]):
+        direction = tuple(float(value) for value in null_basis[:, column_index])
+        tangent_profile = build_tangent_transport_profile(
+            opt_args,
+            base_profile=base_profile,
+            past_direction=direction,
+            past_basis_scale=seed.basis_scale,
+        )
+        residual_rows = [
+            tangent_radial_residual(
+                theta,
+                profile=base_profile,
+                tangent=tangent_profile,
+                panels=opt_args.integration_panels,
+                gamma_star=opt_args.gamma_star,
+            )
+            for theta in samples
+        ]
+        column = np.asarray(
+            [
+                row["delta_radial_residual_tangential_substituted"]
+                for row in residual_rows
+            ],
+            dtype=float,
+        )
+        analytic_columns.append(column)
+        root_denominators = [
+            abs(tangent_row["root_denominator"])
+            for residual_row in residual_rows
+            for tangent_row in residual_row["rows"]
+        ]
+        column_diagnostics.append(
+            {
+                "column": column_index,
+                "max_abs_analytic_derivative": float(np.max(np.abs(column))),
+                "min_abs_root_denominator": min(root_denominators),
+                "eta_end": tangent_profile.eta_nodes[-1],
+                "eta_prime_end": tangent_profile.eta_prime_nodes[-1],
+                "solve_log_last": (
+                    tangent_profile.solve_log[-1] if tangent_profile.solve_log else None
+                ),
+                "sample_rows": residual_rows,
+            }
+        )
+    analytic_matrix = np.column_stack(analytic_columns)
+    singular_values = np.linalg.svd(analytic_matrix, compute_uv=False)
+    packet = {
+        "analytic_response_rank": int(np.linalg.matrix_rank(analytic_matrix)),
+        "analytic_effective_rank_threshold": args.finite_collar_analytic_rank_tol,
+        "analytic_effective_rank": int(
+            sum(value >= args.finite_collar_analytic_rank_tol for value in singular_values)
+        ),
+        "analytic_response_singular_values": [
+            float(value) for value in singular_values
+        ],
+        "analytic_response_frobenius_norm": float(np.linalg.norm(analytic_matrix)),
+        "column_diagnostics": column_diagnostics,
+    }
+    return analytic_matrix, packet
+
+
+def finite_collar_analytic_tangent(args: argparse.Namespace) -> dict:
+    try:
+        import numpy as np
+        from scipy.linalg import null_space
+        from scipy.optimize import linprog
+    except ImportError as exc:
+        raise RuntimeError(
+            "--diagnostic-mode finite_collar_analytic_tangent requires scipy and numpy"
+        ) from exc
+
+    degree = args.finite_collar_repair_degree
+    response_step = args.finite_collar_response_step
+    if response_step <= 0.0:
+        raise ValueError("--finite-collar-response-step must be positive")
+    tangent_bound = args.finite_collar_variation_bound
+    if tangent_bound <= 0.0:
+        raise ValueError("--finite-collar-variation-bound must be positive")
+
+    seed, base_coefficients, seed_perturbation, sensitivity, rows, _ = (
+        build_endpoint_slope_cancel_seed(args, degree)
+    )
+    opt_args = finite_collar_objective_args(args)
+    base_array = np.asarray(base_coefficients, dtype=float)
+    seed_array = np.asarray(seed_perturbation, dtype=float)
+    constraints = np.asarray(rows, dtype=float)
+    null_basis = null_space(constraints)
+    seed_coefficients = tuple(float(value) for value in base_array + seed_array)
+    seed_profile = PastProfileSpec(
+        kind=f"finite_collar_analytic_tangent_seed_degree_{degree}",
+        coefficients=seed_coefficients,
+        basis_scale=seed.basis_scale,
+        summary=seed.summary,
+    )
+    base_profile = build_tangential_transport_profile(opt_args, past_profile=seed_profile)
+    base_objective = retained_collar_radial_objective_value_from_profile(
+        opt_args, base_profile
+    )
+    base_vector = [
+        row["radial_residual_tangential_substituted"]
+        for row in base_objective["samples"]
+    ]
+    base_residual = np.asarray(base_vector, dtype=float)
+    base_max_abs = float(np.max(np.abs(base_residual)))
+
+    if null_basis.shape[1] == 0:
+        return {
+            "artifact": "spiral_a1_finite_collar_analytic_tangent",
+            "claim_level": "sampled semi-analytic tangent diagnostic, not interval certificate",
+            "degree": degree,
+            "finite_collar_nullspace_dimension": 0,
+            "base_objective": base_objective,
+        }
+
+    analytic_matrix, analytic_packet = finite_collar_analytic_tangent_matrix_packet(
+        args,
+        np=np,
+        seed=seed,
+        null_basis=null_basis,
+        base_profile=base_profile,
+        opt_args=opt_args,
+    )
+    finite_difference_matrix, finite_difference_packet = (
+        finite_collar_response_matrix_packet(
+            args,
+            np=np,
+            base_array=base_array,
+            seed_array=seed_array,
+            null_basis=null_basis,
+            basis_scale=seed.basis_scale,
+            opt_args=opt_args,
+            base_residual=base_residual,
+            response_step=response_step,
+        )
+    )
+    matrix_delta = analytic_matrix - finite_difference_matrix
+    finite_difference_norm = float(np.linalg.norm(finite_difference_matrix))
+    analytic_norm = analytic_packet["analytic_response_frobenius_norm"]
+    matrix_delta_norm = float(np.linalg.norm(matrix_delta))
+    relative_to_finite_difference = matrix_delta_norm / max(
+        finite_difference_norm, 1.0e-30
+    )
+
+    result, parameters, linear_residual = solve_bounded_chebyshev(
+        np=np,
+        linprog=linprog,
+        response_matrix=analytic_matrix,
+        base_residual=base_residual,
+        bound=tangent_bound,
+    )
+    candidate_perturbation = seed_array + null_basis @ parameters
+    candidate_coefficients = tuple(
+        float(value) for value in base_array + candidate_perturbation
+    )
+    candidate_profile = PastProfileSpec(
+        kind=f"finite_collar_analytic_tangent_candidate_degree_{degree}",
+        coefficients=candidate_coefficients,
+        basis_scale=seed.basis_scale,
+    )
+    candidate_vector, candidate_objective = finite_collar_residual_vector(
+        opt_args, candidate_profile
+    )
+    q_bounds = sampled_q_bounds(
+        candidate_coefficients,
+        seed.basis_scale,
+        args.finite_collar_positivity_samples,
+    )
+    linear_max_abs = float(np.max(np.abs(linear_residual)))
+    nonlinear_max_abs = candidate_objective[
+        "max_abs_radial_residual_tangential_substituted"
+    ]
+    predicted_improvement = base_max_abs - linear_max_abs
+    nonlinear_improvement = base_max_abs - nonlinear_max_abs
+    tracking_ratio = (
+        nonlinear_improvement / predicted_improvement
+        if predicted_improvement > 0.0
+        else None
+    )
+    tracking_ratio_meaningful = (
+        predicted_improvement > args.finite_collar_tracking_improvement_floor
+    )
+
+    return {
+        "artifact": "spiral_a1_finite_collar_analytic_tangent",
+        "claim_level": "sampled semi-analytic tangent diagnostic, not interval certificate",
+        "degree": degree,
+        "basis_scale": seed.basis_scale,
+        "finite_collar_theta_hi": args.finite_collar_theta_hi,
+        "finite_collar_samples": args.finite_collar_samples,
+        "finite_collar_nullspace_dimension": null_basis.shape[1],
+        "base_objective": base_objective,
+        "base_residual_vector": base_vector,
+        "base_max_abs": base_max_abs,
+        "analytic_response_rank": analytic_packet["analytic_response_rank"],
+        "analytic_effective_rank_threshold": analytic_packet[
+            "analytic_effective_rank_threshold"
+        ],
+        "analytic_effective_rank": analytic_packet["analytic_effective_rank"],
+        "analytic_response_singular_values": analytic_packet[
+            "analytic_response_singular_values"
+        ],
+        "analytic_response_frobenius_norm": analytic_norm,
+        "finite_difference_response_step": response_step,
+        "finite_difference_response_packet": finite_difference_packet,
+        "finite_difference_effective_rank": int(sum(
+            value >= args.finite_collar_analytic_rank_tol
+            for value in finite_difference_packet["response_singular_values"]
+        )),
+        "analytic_vs_finite_difference_frobenius_norm": matrix_delta_norm,
+        "analytic_vs_finite_difference_relative_to_fd": (
+            relative_to_finite_difference
+        ),
+        "analytic_match_tolerance": args.finite_collar_analytic_match_tol,
+        "analytic_matches_finite_difference": (
+            relative_to_finite_difference < args.finite_collar_analytic_match_tol
+        ),
+        "column_diagnostics": analytic_packet["column_diagnostics"],
+        "linear_chebyshev_success": bool(result.success),
+        "linear_chebyshev_message": result.message,
+        "linear_chebyshev_predicted_max_abs": linear_max_abs,
+        "linear_residual_vector": [float(value) for value in linear_residual],
+        "parameters": [float(value) for value in parameters],
+        "variation_bound": tangent_bound,
+        "nonlinear_candidate_max_abs": nonlinear_max_abs,
+        "nonlinear_candidate_residual_vector": candidate_vector,
+        "predicted_improvement": predicted_improvement,
+        "nonlinear_improvement": nonlinear_improvement,
+        "tracking_ratio": tracking_ratio,
+        "tracking_improvement_floor": args.finite_collar_tracking_improvement_floor,
+        "tracking_ratio_meaningful": tracking_ratio_meaningful,
+        "useful_tracking": (
+            tracking_ratio_meaningful
+            and tracking_ratio is not None
+            and tracking_ratio >= args.finite_collar_tracking_threshold
+            and nonlinear_improvement > 0.0
+        ),
+        "candidate_q_bounds": q_bounds,
+        "candidate_admissible_sampled_bounds": (
+            q_bounds["min_q"] >= args.finite_collar_min_q
+            and q_bounds["max_q"] <= args.finite_collar_max_q
+        ),
+        "endpoint_cancel_summary": seed.summary,
+        "tangent_backend_notes": [
+            "Root motion uses the linearized finite-memory root equation.",
+            "Branch rows use semi-analytic partial derivatives in delta and source Q.",
+            "Future eta is advanced by the linearized tangential transport equation.",
+        ],
+    }
+
+
+def finite_collar_response_noise_audit(args: argparse.Namespace) -> dict:
+    try:
+        import numpy as np
+        from scipy.linalg import null_space
+        from scipy.optimize import linprog
+    except ImportError as exc:
+        raise RuntimeError(
+            "--diagnostic-mode finite_collar_response_noise_audit requires scipy and numpy"
+        ) from exc
+
+    degree = args.finite_collar_repair_degree
+    raw_steps = args.finite_collar_response_steps or args.finite_collar_variation_steps
+    response_steps = parse_positive_float_csv(raw_steps, "--finite-collar-response-steps")
+
+    seed, base_coefficients, seed_perturbation, sensitivity, rows, _ = (
+        build_endpoint_slope_cancel_seed(args, degree)
+    )
+    opt_args = finite_collar_objective_args(args)
+    base_array = np.asarray(base_coefficients, dtype=float)
+    seed_array = np.asarray(seed_perturbation, dtype=float)
+    constraints = np.asarray(rows, dtype=float)
+    null_basis = null_space(constraints)
+    seed_coefficients = tuple(float(value) for value in base_array + seed_array)
+    seed_profile = PastProfileSpec(
+        kind=f"finite_collar_response_noise_audit_seed_degree_{degree}",
+        coefficients=seed_coefficients,
+        basis_scale=seed.basis_scale,
+        summary=seed.summary,
+    )
+    base_profile = build_tangential_transport_profile(opt_args, past_profile=seed_profile)
+    base_objective = retained_collar_radial_objective_value_from_profile(
+        opt_args, base_profile
+    )
+    base_vector = [
+        row["radial_residual_tangential_substituted"]
+        for row in base_objective["samples"]
+    ]
+    base_residual = np.asarray(base_vector, dtype=float)
+
+    if null_basis.shape[1] == 0:
+        return {
+            "artifact": "spiral_a1_finite_collar_response_noise_audit",
+            "claim_level": "sampled response-noise diagnostic, not interval certificate",
+            "degree": degree,
+            "finite_collar_nullspace_dimension": 0,
+            "base_objective": base_objective,
+        }
+
+    analytic_matrix, analytic_packet = finite_collar_analytic_tangent_matrix_packet(
+        args,
+        np=np,
+        seed=seed,
+        null_basis=null_basis,
+        base_profile=base_profile,
+        opt_args=opt_args,
+    )
+    analytic_norm = analytic_packet["analytic_response_frobenius_norm"]
+
+    step_packets: list[dict] = []
+    previous_matrix = None
+    previous_largest_singular = None
+    best_tracking_step = None
+    for response_step in response_steps:
+        finite_difference_matrix, finite_difference_packet = (
+            finite_collar_response_matrix_packet(
+                args,
+                np=np,
+                base_array=base_array,
+                seed_array=seed_array,
+                null_basis=null_basis,
+                basis_scale=seed.basis_scale,
+                opt_args=opt_args,
+                base_residual=base_residual,
+                response_step=response_step,
+            )
+        )
+        finite_difference_norm = float(np.linalg.norm(finite_difference_matrix))
+        matrix_delta_norm = float(
+            np.linalg.norm(finite_difference_matrix - analytic_matrix)
+        )
+        relative_to_finite_difference = matrix_delta_norm / max(
+            finite_difference_norm, 1.0e-30
+        )
+        column_diagnostics = finite_difference_packet["column_diagnostics"]
+        singular_values = finite_difference_packet["response_singular_values"]
+        largest_singular = singular_values[0] if singular_values else None
+        if previous_matrix is None:
+            fd_relative_change_from_previous_step = None
+            largest_singular_relative_change_from_previous_step = None
+        else:
+            fd_relative_change_from_previous_step = float(
+                np.linalg.norm(finite_difference_matrix - previous_matrix)
+                / max(float(np.linalg.norm(previous_matrix)), 1.0e-30)
+            )
+            largest_singular_relative_change_from_previous_step = (
+                abs(largest_singular - previous_largest_singular)
+                / max(abs(previous_largest_singular), 1.0e-30)
+                if largest_singular is not None
+                and previous_largest_singular is not None
+                else None
+            )
+        previous_matrix = finite_difference_matrix
+        previous_largest_singular = largest_singular
+        max_abs_fd_derivative = max(
+            entry["max_abs_derivative"] for entry in column_diagnostics
+        )
+        max_abs_fd_numerator = max(
+            2.0 * response_step * entry["max_abs_derivative"]
+            for entry in column_diagnostics
+        )
+        max_abs_plus_delta = max(
+            entry["max_abs_plus_delta"] for entry in column_diagnostics
+        )
+        max_abs_minus_delta = max(
+            entry["max_abs_minus_delta"] for entry in column_diagnostics
+        )
+        max_abs_central_second_difference = max(
+            entry["max_abs_central_second_difference"]
+            for entry in column_diagnostics
+        )
+        finite_difference_effective_rank = int(
+            sum(
+                value >= args.finite_collar_analytic_rank_tol
+                for value in finite_difference_packet["response_singular_values"]
+            )
+        )
+        column_relative_mismatches = [
+            float(
+                np.linalg.norm(
+                    finite_difference_matrix[:, column_index]
+                    - analytic_matrix[:, column_index]
+                )
+                / max(
+                    float(np.linalg.norm(finite_difference_matrix[:, column_index])),
+                    1.0e-30,
+                )
+            )
+            for column_index in range(finite_difference_matrix.shape[1])
+        ]
+        result, parameters, linear_residual = solve_bounded_chebyshev(
+            np=np,
+            linprog=linprog,
+            response_matrix=finite_difference_matrix,
+            base_residual=base_residual,
+            bound=args.finite_collar_variation_bound,
+        )
+        candidate_perturbation = seed_array + null_basis @ parameters
+        candidate_coefficients = tuple(
+            float(value) for value in base_array + candidate_perturbation
+        )
+        candidate_profile = PastProfileSpec(
+            kind=(
+                f"finite_collar_response_noise_candidate_degree_{degree}_"
+                f"step_{response_step:g}"
+            ),
+            coefficients=candidate_coefficients,
+            basis_scale=seed.basis_scale,
+        )
+        candidate_vector, candidate_objective = finite_collar_residual_vector(
+            opt_args, candidate_profile
+        )
+        linear_max_abs = float(np.max(np.abs(linear_residual)))
+        nonlinear_max_abs = candidate_objective[
+            "max_abs_radial_residual_tangential_substituted"
+        ]
+        base_max_abs = float(np.max(np.abs(base_residual)))
+        predicted_improvement = base_max_abs - linear_max_abs
+        nonlinear_improvement = base_max_abs - nonlinear_max_abs
+        tracking_ratio = (
+            nonlinear_improvement / predicted_improvement
+            if predicted_improvement > 0.0
+            else None
+        )
+        tracking_ratio_meaningful = (
+            predicted_improvement > args.finite_collar_tracking_improvement_floor
+        )
+        useful_tracking = bool(
+            tracking_ratio_meaningful
+            and tracking_ratio is not None
+            and tracking_ratio >= args.finite_collar_tracking_threshold
+            and nonlinear_improvement > 0.0
+        )
+        q_bounds = sampled_q_bounds(
+            candidate_coefficients,
+            seed.basis_scale,
+            args.finite_collar_positivity_samples,
+        )
+        step_packets.append(
+            {
+                "response_step": response_step,
+                "finite_difference_response_rank": finite_difference_packet[
+                    "response_rank"
+                ],
+                "finite_difference_effective_rank": finite_difference_effective_rank,
+                "finite_difference_singular_values": finite_difference_packet[
+                    "response_singular_values"
+                ],
+                "finite_difference_frobenius_norm": finite_difference_norm,
+                "finite_difference_times_step_frobenius_norm": (
+                    response_step * finite_difference_norm
+                ),
+                "finite_difference_relative_change_from_previous_step": (
+                    fd_relative_change_from_previous_step
+                ),
+                "finite_difference_largest_singular_relative_change_from_previous_step": (
+                    largest_singular_relative_change_from_previous_step
+                ),
+                "analytic_vs_finite_difference_frobenius_norm": matrix_delta_norm,
+                "analytic_vs_finite_difference_relative_to_fd": (
+                    relative_to_finite_difference
+                ),
+                "analytic_vs_finite_difference_relative_to_analytic": (
+                    matrix_delta_norm / max(analytic_norm, 1.0e-30)
+                ),
+                "analytic_finite_difference_effective_rank_delta": (
+                    analytic_packet["analytic_effective_rank"]
+                    - finite_difference_effective_rank
+                ),
+                "max_column_relative_mismatch": max(column_relative_mismatches),
+                "median_column_relative_mismatch": float(
+                    np.median(np.asarray(column_relative_mismatches, dtype=float))
+                ),
+                "analytic_matches_finite_difference": (
+                    relative_to_finite_difference
+                    < args.finite_collar_analytic_match_tol
+                ),
+                "finite_difference_over_analytic_norm_ratio": (
+                    finite_difference_norm / max(analytic_norm, 1.0e-30)
+                ),
+                "max_abs_fd_derivative": max_abs_fd_derivative,
+                "max_abs_fd_numerator": max_abs_fd_numerator,
+                "max_abs_plus_delta": max_abs_plus_delta,
+                "max_abs_minus_delta": max_abs_minus_delta,
+                "max_abs_central_second_difference": (
+                    max_abs_central_second_difference
+                ),
+                "max_central_second_to_first_delta_ratio": (
+                    max_abs_central_second_difference
+                    / max(max_abs_plus_delta, max_abs_minus_delta, 1.0e-30)
+                ),
+                "linear_chebyshev_success": bool(result.success),
+                "linear_chebyshev_message": result.message,
+                "linear_chebyshev_predicted_max_abs": linear_max_abs,
+                "linear_residual_vector": [
+                    float(value) for value in linear_residual
+                ],
+                "parameters": [float(value) for value in parameters],
+                "nonlinear_candidate_max_abs": nonlinear_max_abs,
+                "nonlinear_candidate_residual_vector": candidate_vector,
+                "predicted_improvement": predicted_improvement,
+                "nonlinear_improvement": nonlinear_improvement,
+                "tracking_ratio": tracking_ratio,
+                "tracking_ratio_meaningful": tracking_ratio_meaningful,
+                "useful_tracking": useful_tracking,
+                "candidate_q_bounds": q_bounds,
+                "candidate_admissible_sampled_bounds": (
+                    q_bounds["min_q"] >= args.finite_collar_min_q
+                    and q_bounds["max_q"] <= args.finite_collar_max_q
+                ),
+                "column_diagnostics": column_diagnostics,
+            }
+        )
+        current_step = step_packets[-1]
+        if (
+            best_tracking_step is None
+            or (
+                tracking_ratio is not None
+                and (
+                    best_tracking_step["tracking_ratio"] is None
+                    or tracking_ratio > best_tracking_step["tracking_ratio"]
+                )
+            )
+        ):
+            best_tracking_step = current_step
+
+    any_step_matches = any(
+        step["analytic_matches_finite_difference"] for step in step_packets
+    )
+    any_rank_bearing_fd = any(
+        step["finite_difference_effective_rank"] > analytic_packet["analytic_effective_rank"]
+        for step in step_packets
+    )
+    adjacent_frobenius_changes = [
+        step["finite_difference_relative_change_from_previous_step"]
+        for step in step_packets
+        if step["finite_difference_relative_change_from_previous_step"] is not None
+    ]
+    adjacent_largest_singular_changes = [
+        step["finite_difference_largest_singular_relative_change_from_previous_step"]
+        for step in step_packets
+        if step[
+            "finite_difference_largest_singular_relative_change_from_previous_step"
+        ]
+        is not None
+    ]
+    stable_fd_window = bool(
+        adjacent_frobenius_changes
+        and max(adjacent_frobenius_changes)
+        < args.finite_collar_variation_stability_tol
+        and (
+            not adjacent_largest_singular_changes
+            or max(adjacent_largest_singular_changes)
+            < args.finite_collar_variation_stability_tol
+        )
+    )
+    analytic_matches_stable_fd_window = bool(stable_fd_window and any_step_matches)
+    rank_agrees_on_stable_window = bool(
+        stable_fd_window
+        and all(
+            step["finite_difference_effective_rank"]
+            == analytic_packet["analytic_effective_rank"]
+            for step in step_packets[1:]
+        )
+    )
+    useful_tracking_any_step = any(step["useful_tracking"] for step in step_packets)
+    finite_difference_response_usable = bool(
+        stable_fd_window
+        and any_step_matches
+        and rank_agrees_on_stable_window
+        and analytic_packet["analytic_effective_rank"] > 0
+        and not any_rank_bearing_fd
+    )
+    if not adjacent_frobenius_changes:
+        classification = "underdetermined_no_stable_window"
+        classification_reasons = [
+            "fewer than two response steps were available for adjacent-step stability"
+        ]
+    elif stable_fd_window and analytic_matches_stable_fd_window and rank_agrees_on_stable_window:
+        if useful_tracking_any_step:
+            classification = "repair_grade_tangent"
+            classification_reasons = [
+                "finite differences match analytic tangent on a stable response window",
+                "nonlinear replay gives useful tracking",
+            ]
+        else:
+            classification = "linear_tangent_only"
+            classification_reasons = [
+                "finite differences match analytic tangent on a stable response window",
+                "nonlinear replay does not give useful tracking",
+            ]
+    elif stable_fd_window:
+        classification = "backend_disagreement_unresolved"
+        classification_reasons = [
+            "finite-difference response appears stable across the tested window",
+            "finite-difference response does not match the analytic tangent backend",
+        ]
+    else:
+        classification = "finite_difference_noise_artifact"
+        classification_reasons = [
+            "finite-difference response is not stable across response steps",
+            "finite-difference rank is not reproduced by the analytic tangent backend",
+        ]
+
+    return {
+        "artifact": "spiral_a1_finite_collar_response_noise_audit",
+        "claim_level": "sampled response-noise diagnostic, not interval certificate",
+        "degree": degree,
+        "basis_scale": seed.basis_scale,
+        "finite_collar_theta_hi": args.finite_collar_theta_hi,
+        "finite_collar_samples": args.finite_collar_samples,
+        "finite_collar_nullspace_dimension": null_basis.shape[1],
+        "base_objective": base_objective,
+        "base_residual_vector": base_vector,
+        "response_steps": response_steps,
+        "analytic_packet": analytic_packet,
+        "analytic_match_tolerance": args.finite_collar_analytic_match_tol,
+        "stability_tolerance": args.finite_collar_variation_stability_tol,
+        "tracking_threshold": args.finite_collar_tracking_threshold,
+        "rank_floor": args.finite_collar_analytic_rank_tol,
+        "max_fd_adjacent_relative_frobenius_change": max(adjacent_frobenius_changes)
+        if adjacent_frobenius_changes
+        else None,
+        "max_fd_adjacent_largest_singular_change": max(
+            adjacent_largest_singular_changes
+        )
+        if adjacent_largest_singular_changes
+        else None,
+        "min_analytic_vs_fd_relative_to_fd": min(
+            step["analytic_vs_finite_difference_relative_to_fd"]
+            for step in step_packets
+        ),
+        "best_matching_step": min(
+            step_packets,
+            key=lambda step: step["analytic_vs_finite_difference_relative_to_fd"],
+        )["response_step"],
+        "stable_fd_window": stable_fd_window,
+        "analytic_matches_stable_fd_window": analytic_matches_stable_fd_window,
+        "rank_agrees_on_stable_window": rank_agrees_on_stable_window,
+        "best_tracking_step": best_tracking_step,
+        "useful_tracking": useful_tracking_any_step,
+        "any_step_matches_analytic": any_step_matches,
+        "finite_difference_response_usable": finite_difference_response_usable,
+        "recommended_response_backend": (
+            "finite_difference_allowed_only_after_analytic_match"
+            if finite_difference_response_usable
+            else "semi_analytic_tangent_or_no_repair_response"
+        ),
+        "repair_search_allowed_from_profile_finite_difference": (
+            finite_difference_response_usable
+        ),
+        "classification": classification,
+        "classification_reasons": classification_reasons,
+        "step_packets": step_packets,
+        "endpoint_cancel_summary": seed.summary,
+        "policy": (
+            "Do not use profile-level finite-difference response columns as repair "
+            "directions unless they match the analytic tangent response within the "
+            "declared tolerance and produce meaningful nonlinear replay tracking."
+        ),
+    }
+
+
+def finite_collar_second_order_packet(
+    args: argparse.Namespace,
+    *,
+    np: object,
+    base_array: object,
+    seed_array: object,
+    null_basis: object,
+    basis_scale: float,
+    opt_args: argparse.Namespace,
+    base_residual: object,
+    analytic_matrix: object | None,
+    amplitude: float,
+) -> tuple[object, dict]:
+    second_order_columns: list[object] = []
+    column_diagnostics: list[dict] = []
+    base_max_abs = float(np.max(np.abs(base_residual)))
+    best_coordinate_replay: dict | None = None
+    sign_choices: list[float] = []
+    for column_index in range(null_basis.shape[1]):
+        direction = null_basis[:, column_index]
+        plus_coefficients = tuple(
+            float(value) for value in base_array + seed_array + amplitude * direction
+        )
+        minus_coefficients = tuple(
+            float(value) for value in base_array + seed_array - amplitude * direction
+        )
+        plus_profile = PastProfileSpec(
+            kind=f"finite_collar_second_order_plus_{column_index}",
+            coefficients=plus_coefficients,
+            basis_scale=basis_scale,
+        )
+        minus_profile = PastProfileSpec(
+            kind=f"finite_collar_second_order_minus_{column_index}",
+            coefficients=minus_coefficients,
+            basis_scale=basis_scale,
+        )
+        plus_vector, plus_objective = finite_collar_residual_vector(opt_args, plus_profile)
+        minus_vector, minus_objective = finite_collar_residual_vector(
+            opt_args, minus_profile
+        )
+        plus_array = np.asarray(plus_vector, dtype=float)
+        minus_array = np.asarray(minus_vector, dtype=float)
+        central_second = plus_array + minus_array - 2.0 * base_residual
+        second_derivative = central_second / (amplitude * amplitude)
+        first_derivative = (plus_array - minus_array) / (2.0 * amplitude)
+        analytic_column = (
+            analytic_matrix[:, column_index]
+            if analytic_matrix is not None
+            else np.zeros_like(first_derivative)
+        )
+        linear_mismatch = first_derivative - analytic_column
+        second_order_columns.append(second_derivative)
+
+        plus_max_abs = plus_objective[
+            "max_abs_radial_residual_tangential_substituted"
+        ]
+        minus_max_abs = minus_objective[
+            "max_abs_radial_residual_tangential_substituted"
+        ]
+        plus_improvement = base_max_abs - plus_max_abs
+        minus_improvement = base_max_abs - minus_max_abs
+        best_sign = 1.0 if plus_max_abs <= minus_max_abs else -1.0
+        sign_choices.append(best_sign)
+        best_coordinate = {
+            "column": column_index,
+            "sign": best_sign,
+            "max_abs": min(plus_max_abs, minus_max_abs),
+            "improvement": max(plus_improvement, minus_improvement),
+        }
+        if (
+            best_coordinate_replay is None
+            or best_coordinate["improvement"] > best_coordinate_replay["improvement"]
+        ):
+            best_coordinate_replay = best_coordinate
+
+        average_residual = 0.5 * (plus_array + minus_array)
+        column_diagnostics.append(
+            {
+                "column": column_index,
+                "plus_max_abs": plus_max_abs,
+                "minus_max_abs": minus_max_abs,
+                "plus_improvement": plus_improvement,
+                "minus_improvement": minus_improvement,
+                "best_sign": best_sign,
+                "symmetric_average_max_abs": float(np.max(np.abs(average_residual))),
+                "max_abs_first_derivative": float(np.max(np.abs(first_derivative))),
+                "max_abs_linear_mismatch_to_analytic_tangent": float(
+                    np.max(np.abs(linear_mismatch))
+                ),
+                "max_abs_second_derivative": float(np.max(np.abs(second_derivative))),
+                "max_abs_central_second_difference": float(
+                    np.max(np.abs(central_second))
+                ),
+                "max_abs_plus_delta": float(np.max(np.abs(plus_array - base_residual))),
+                "max_abs_minus_delta": float(np.max(np.abs(minus_array - base_residual))),
+            }
+        )
+
+    second_order_matrix = np.column_stack(second_order_columns)
+    singular_values = np.linalg.svd(second_order_matrix, compute_uv=False)
+    packet = {
+        "amplitude": amplitude,
+        "second_order_rank": int(np.linalg.matrix_rank(second_order_matrix)),
+        "second_order_effective_rank": int(
+            sum(value >= args.finite_collar_analytic_rank_tol for value in singular_values)
+        ),
+        "second_order_singular_values": [float(value) for value in singular_values],
+        "second_order_frobenius_norm": float(np.linalg.norm(second_order_matrix)),
+        "amplitude_squared_times_second_order_frobenius_norm": (
+            amplitude * amplitude * float(np.linalg.norm(second_order_matrix))
+        ),
+        "max_abs_central_second_difference": max(
+            entry["max_abs_central_second_difference"]
+            for entry in column_diagnostics
+        ),
+        "max_abs_first_derivative": max(
+            entry["max_abs_first_derivative"] for entry in column_diagnostics
+        ),
+        "max_abs_linear_mismatch_to_analytic_tangent": max(
+            entry["max_abs_linear_mismatch_to_analytic_tangent"]
+            for entry in column_diagnostics
+        ),
+        "best_coordinate_replay": best_coordinate_replay,
+        "sign_choices": sign_choices,
+        "column_diagnostics": column_diagnostics,
+    }
+    return second_order_matrix, packet
+
+
+def solve_nonnegative_quadratic_chebyshev(
+    *,
+    np: object,
+    linprog: object,
+    second_order_matrix: object,
+    base_residual: object,
+    amplitude_bound: float,
+) -> tuple[object, object, object]:
+    row_count, column_count = second_order_matrix.shape
+    model_matrix = 0.5 * second_order_matrix
+    a_ub: list[list[float]] = []
+    b_ub: list[float] = []
+    for row_index in range(row_count):
+        row = model_matrix[row_index, :]
+        a_ub.append([*row.tolist(), -1.0])
+        b_ub.append(-float(base_residual[row_index]))
+        a_ub.append([*(-row).tolist(), -1.0])
+        b_ub.append(float(base_residual[row_index]))
+    result = linprog(
+        [0.0] * column_count + [1.0],
+        A_ub=np.asarray(a_ub, dtype=float),
+        b_ub=np.asarray(b_ub, dtype=float),
+        bounds=[(0.0, amplitude_bound * amplitude_bound) for _ in range(column_count)]
+        + [(0.0, None)],
+        method="highs",
+    )
+    if result.success:
+        squared_parameters = np.asarray(result.x[:column_count], dtype=float)
+    else:
+        squared_parameters = np.zeros(column_count, dtype=float)
+    linear_residual = base_residual + model_matrix @ squared_parameters
+    return result, squared_parameters, linear_residual
+
+
+def finite_collar_second_order_response_audit(args: argparse.Namespace) -> dict:
+    try:
+        import numpy as np
+        from scipy.linalg import null_space
+        from scipy.optimize import linprog
+    except ImportError as exc:
+        raise RuntimeError(
+            "--diagnostic-mode finite_collar_second_order_response_audit "
+            "requires scipy and numpy"
+        ) from exc
+
+    degree = args.finite_collar_repair_degree
+    amplitudes = parse_positive_float_csv(
+        args.finite_collar_second_order_steps,
+        "--finite-collar-second-order-steps",
+    )
+    seed, base_coefficients, seed_perturbation, sensitivity, rows, _ = (
+        build_endpoint_slope_cancel_seed(args, degree)
+    )
+    opt_args = finite_collar_objective_args(args)
+    base_array = np.asarray(base_coefficients, dtype=float)
+    seed_array = np.asarray(seed_perturbation, dtype=float)
+    constraints = np.asarray(rows, dtype=float)
+    null_basis = null_space(constraints)
+    seed_coefficients = tuple(float(value) for value in base_array + seed_array)
+    seed_profile = PastProfileSpec(
+        kind=f"finite_collar_second_order_seed_degree_{degree}",
+        coefficients=seed_coefficients,
+        basis_scale=seed.basis_scale,
+        summary=seed.summary,
+    )
+    base_profile = build_tangential_transport_profile(opt_args, past_profile=seed_profile)
+    base_objective = retained_collar_radial_objective_value_from_profile(
+        opt_args, base_profile
+    )
+    base_vector = [
+        row["radial_residual_tangential_substituted"]
+        for row in base_objective["samples"]
+    ]
+    base_residual = np.asarray(base_vector, dtype=float)
+    base_max_abs = float(np.max(np.abs(base_residual)))
+    material_improvement_floor = max(
+        args.finite_collar_tracking_improvement_floor,
+        args.finite_collar_material_improvement_frac * base_max_abs,
+    )
+
+    if null_basis.shape[1] == 0:
+        return {
+            "artifact": "spiral_a1_finite_collar_second_order_response_audit",
+            "claim_level": "sampled second-order response diagnostic, not interval certificate",
+            "degree": degree,
+            "finite_collar_nullspace_dimension": 0,
+            "base_objective": base_objective,
+        }
+
+    analytic_matrix, analytic_packet = finite_collar_analytic_tangent_matrix_packet(
+        args,
+        np=np,
+        seed=seed,
+        null_basis=null_basis,
+        base_profile=base_profile,
+        opt_args=opt_args,
+    )
+
+    amplitude_packets: list[dict] = []
+    previous_matrix = None
+    previous_largest_singular = None
+    best_quadratic_replay: dict | None = None
+    best_coordinate_replay: dict | None = None
+    for amplitude in amplitudes:
+        second_order_matrix, packet = finite_collar_second_order_packet(
+            args,
+            np=np,
+            base_array=base_array,
+            seed_array=seed_array,
+            null_basis=null_basis,
+            basis_scale=seed.basis_scale,
+            opt_args=opt_args,
+            base_residual=base_residual,
+            analytic_matrix=analytic_matrix,
+            amplitude=amplitude,
+        )
+        singular_values = packet["second_order_singular_values"]
+        largest_singular = singular_values[0] if singular_values else None
+        if previous_matrix is None:
+            packet["second_order_relative_change_from_previous_step"] = None
+            packet[
+                "second_order_largest_singular_relative_change_from_previous_step"
+            ] = None
+        else:
+            packet["second_order_relative_change_from_previous_step"] = float(
+                np.linalg.norm(second_order_matrix - previous_matrix)
+                / max(float(np.linalg.norm(previous_matrix)), 1.0e-30)
+            )
+            packet[
+                "second_order_largest_singular_relative_change_from_previous_step"
+            ] = (
+                abs(largest_singular - previous_largest_singular)
+                / max(abs(previous_largest_singular), 1.0e-30)
+                if largest_singular is not None
+                and previous_largest_singular is not None
+                else None
+            )
+        previous_matrix = second_order_matrix
+        previous_largest_singular = largest_singular
+
+        result, squared_parameters, quadratic_residual = (
+            solve_nonnegative_quadratic_chebyshev(
+                np=np,
+                linprog=linprog,
+                second_order_matrix=second_order_matrix,
+                base_residual=base_residual,
+                amplitude_bound=amplitude,
+            )
+        )
+        signs = np.asarray(packet["sign_choices"], dtype=float)
+        parameters = signs * np.sqrt(np.maximum(squared_parameters, 0.0))
+        candidate_perturbation = seed_array + null_basis @ parameters
+        candidate_coefficients = tuple(
+            float(value) for value in base_array + candidate_perturbation
+        )
+        candidate_profile = PastProfileSpec(
+            kind=f"finite_collar_second_order_candidate_degree_{degree}_{amplitude:g}",
+            coefficients=candidate_coefficients,
+            basis_scale=seed.basis_scale,
+        )
+        candidate_vector, candidate_objective = finite_collar_residual_vector(
+            opt_args, candidate_profile
+        )
+        q_bounds = sampled_q_bounds(
+            candidate_coefficients,
+            seed.basis_scale,
+            args.finite_collar_positivity_samples,
+        )
+        quadratic_max_abs = float(np.max(np.abs(quadratic_residual)))
+        nonlinear_max_abs = candidate_objective[
+            "max_abs_radial_residual_tangential_substituted"
+        ]
+        predicted_improvement = base_max_abs - quadratic_max_abs
+        nonlinear_improvement = base_max_abs - nonlinear_max_abs
+        tracking_ratio = (
+            nonlinear_improvement / predicted_improvement
+            if predicted_improvement > 0.0
+            else None
+        )
+        tracking_ratio_meaningful = predicted_improvement > material_improvement_floor
+        candidate_admissible = (
+            q_bounds["min_q"] >= args.finite_collar_min_q
+            and q_bounds["max_q"] <= args.finite_collar_max_q
+        )
+        useful_tracking = bool(
+            tracking_ratio_meaningful
+            and tracking_ratio is not None
+            and tracking_ratio >= args.finite_collar_tracking_threshold
+            and nonlinear_improvement > 0.0
+            and candidate_admissible
+        )
+        packet.update(
+            {
+                "quadratic_chebyshev_success": bool(result.success),
+                "quadratic_chebyshev_message": result.message,
+                "quadratic_model_predicted_max_abs": quadratic_max_abs,
+                "quadratic_model_residual_vector": [
+                    float(value) for value in quadratic_residual
+                ],
+                "squared_parameters": [float(value) for value in squared_parameters],
+                "signed_parameters": [float(value) for value in parameters],
+                "nonlinear_candidate_max_abs": nonlinear_max_abs,
+                "nonlinear_candidate_residual_vector": candidate_vector,
+                "predicted_improvement": predicted_improvement,
+                "nonlinear_improvement": nonlinear_improvement,
+                "tracking_ratio": tracking_ratio,
+                "tracking_ratio_meaningful": tracking_ratio_meaningful,
+                "useful_tracking": useful_tracking,
+                "candidate_q_bounds": q_bounds,
+                "candidate_admissible_sampled_bounds": candidate_admissible,
+                "sign_strategy": (
+                    "coordinate sign with smaller one-coordinate max residual"
+                ),
+            }
+        )
+        coordinate_replay = packet["best_coordinate_replay"]
+        coordinate_replay["amplitude"] = amplitude
+        if (
+            best_coordinate_replay is None
+            or coordinate_replay["improvement"]
+            > best_coordinate_replay["improvement"]
+        ):
+            best_coordinate_replay = coordinate_replay
+        if (
+            best_quadratic_replay is None
+            or nonlinear_improvement > best_quadratic_replay["nonlinear_improvement"]
+        ):
+            best_quadratic_replay = packet
+        amplitude_packets.append(packet)
+
+    adjacent_changes = [
+        packet["second_order_relative_change_from_previous_step"]
+        for packet in amplitude_packets
+        if packet["second_order_relative_change_from_previous_step"] is not None
+    ]
+    adjacent_largest_singular_changes = [
+        packet["second_order_largest_singular_relative_change_from_previous_step"]
+        for packet in amplitude_packets
+        if packet[
+            "second_order_largest_singular_relative_change_from_previous_step"
+        ]
+        is not None
+    ]
+    stable_second_order_window = bool(
+        adjacent_changes
+        and max(adjacent_changes) < args.finite_collar_variation_stability_tol
+        and (
+            not adjacent_largest_singular_changes
+            or max(adjacent_largest_singular_changes)
+            < args.finite_collar_variation_stability_tol
+        )
+    )
+    useful_quadratic_tracking = any(
+        packet["useful_tracking"] for packet in amplitude_packets
+    )
+    any_predicted_quadratic_improvement = any(
+        packet["predicted_improvement"] > material_improvement_floor
+        for packet in amplitude_packets
+    )
+    any_actual_coordinate_improvement = bool(
+        best_coordinate_replay
+        and best_coordinate_replay["improvement"] > material_improvement_floor
+    )
+
+    if not adjacent_changes:
+        classification = "underdetermined_no_second_order_window"
+        classification_reasons = [
+            "fewer than two second-order amplitudes were available for stability"
+        ]
+    elif stable_second_order_window and useful_quadratic_tracking:
+        classification = "quadratic_continuation_candidate"
+        classification_reasons = [
+            "second-order response is stable across the tested amplitude window",
+            "quadratic replay gives useful nonlinear tracking",
+        ]
+    elif stable_second_order_window and any_predicted_quadratic_improvement:
+        classification = "quadratic_model_only"
+        classification_reasons = [
+            "second-order response is stable across the tested amplitude window",
+            "quadratic model predicts improvement but nonlinear replay does not track",
+        ]
+    elif stable_second_order_window:
+        classification = "structural_first_order_obstruction_candidate"
+        classification_reasons = [
+            "second-order response is stable but gives no useful sampled control",
+            "the first-order analytic tangent is effective rank zero",
+        ]
+    elif any_actual_coordinate_improvement or any_predicted_quadratic_improvement:
+        classification = "finite_amplitude_signal_unresolved"
+        classification_reasons = [
+            "some finite-amplitude response is visible",
+            "the second-order estimate is not stable enough to classify as curvature",
+        ]
+    else:
+        classification = "second_order_noise_artifact"
+        classification_reasons = [
+            "second-order response is not stable across amplitudes",
+            "no useful finite-amplitude replay is detected",
+        ]
+
+    return {
+        "artifact": "spiral_a1_finite_collar_second_order_response_audit",
+        "claim_level": "sampled second-order response diagnostic, not interval certificate",
+        "degree": degree,
+        "basis_scale": seed.basis_scale,
+        "finite_collar_theta_hi": args.finite_collar_theta_hi,
+        "finite_collar_samples": args.finite_collar_samples,
+        "finite_collar_nullspace_dimension": null_basis.shape[1],
+        "base_objective": base_objective,
+        "base_residual_vector": base_vector,
+        "base_max_abs": base_max_abs,
+        "analytic_effective_rank": analytic_packet["analytic_effective_rank"],
+        "analytic_response_frobenius_norm": analytic_packet[
+            "analytic_response_frobenius_norm"
+        ],
+        "analytic_response_singular_values": analytic_packet[
+            "analytic_response_singular_values"
+        ],
+        "amplitudes": amplitudes,
+        "rank_floor": args.finite_collar_analytic_rank_tol,
+        "stability_tolerance": args.finite_collar_variation_stability_tol,
+        "tracking_threshold": args.finite_collar_tracking_threshold,
+        "material_improvement_floor": material_improvement_floor,
+        "material_improvement_fraction": args.finite_collar_material_improvement_frac,
+        "max_second_order_adjacent_relative_frobenius_change": max(adjacent_changes)
+        if adjacent_changes
+        else None,
+        "max_second_order_adjacent_largest_singular_change": max(
+            adjacent_largest_singular_changes
+        )
+        if adjacent_largest_singular_changes
+        else None,
+        "stable_second_order_window": stable_second_order_window,
+        "best_coordinate_replay": best_coordinate_replay,
+        "best_quadratic_replay": best_quadratic_replay,
+        "useful_quadratic_tracking": useful_quadratic_tracking,
+        "quadratic_response_usable": bool(
+            stable_second_order_window and useful_quadratic_tracking
+        ),
+        "classification": classification,
+        "classification_reasons": classification_reasons,
+        "amplitude_packets": amplitude_packets,
+        "endpoint_cancel_summary": seed.summary,
+        "policy": (
+            "Treat second-order finite-collar response as a continuation target "
+            "only after symmetric second differences are stable across amplitude "
+            "and nonlinear replay tracks the quadratic model on the same retained "
+            "chart."
+        ),
+    }
+
+
+def deterministic_mixed_parameter_directions(
+    np: object, dimension: int, mixed_ray_count: int, seed: int
+) -> list[dict]:
+    if mixed_ray_count <= 0:
+        raise ValueError("--finite-collar-mixed-ray-count must be positive")
+    if dimension <= 0:
+        return []
+    directions: list[dict] = []
+
+    def append_direction(
+        label: str,
+        kind: str,
+        values: object,
+        metadata: dict | None = None,
+    ) -> None:
+        if len(directions) >= mixed_ray_count:
+            return
+        vector = np.asarray(values, dtype=float)
+        norm = float(np.linalg.norm(vector))
+        if norm <= 0.0:
+            return
+        vector = vector / norm
+        for existing in directions:
+            existing_vector = np.asarray(existing["parameters"], dtype=float)
+            if (
+                np.linalg.norm(vector - existing_vector) < 1.0e-12
+                or np.linalg.norm(vector + existing_vector) < 1.0e-12
+            ):
+                return
+        directions.append(
+            {
+                "label": label,
+                "kind": kind,
+                "parameters": [float(value) for value in vector],
+                "metadata": metadata or {},
+            }
+        )
+
+    for index in range(dimension):
+        values = np.zeros(dimension, dtype=float)
+        values[index] = 1.0
+        append_direction(
+            f"coordinate_{index}",
+            "coordinate",
+            values,
+            {"indices": [index]},
+        )
+
+    if dimension == 1 or len(directions) >= mixed_ray_count:
+        return directions
+
+    for left in range(dimension):
+        for right in range(left + 1, dimension):
+            values = np.zeros(dimension, dtype=float)
+            values[left] = 1.0
+            values[right] = 1.0
+            append_direction(
+                f"pair_plus_{left}_{right}",
+                "pair_plus",
+                values,
+                {"indices": [left, right], "pair_sign": 1.0},
+            )
+
+    for left in range(dimension):
+        for right in range(left + 1, dimension):
+            values = np.zeros(dimension, dtype=float)
+            values[left] = 1.0
+            values[right] = -1.0
+            append_direction(
+                f"pair_minus_{left}_{right}",
+                "pair_minus",
+                values,
+                {"indices": [left, right], "pair_sign": -1.0},
+            )
+
+    if len(directions) < mixed_ray_count:
+        append_direction(
+            "aggregate_all_plus",
+            "aggregate",
+            np.ones(dimension, dtype=float),
+            {"aggregate": "all_plus"},
+        )
+    if len(directions) < mixed_ray_count:
+        values = np.zeros(dimension, dtype=float)
+        for index in range(dimension):
+            values[index] = 1.0 if index % 2 == 0 else -1.0
+        append_direction(
+            "aggregate_alternating",
+            "aggregate",
+            values,
+            {"aggregate": "alternating"},
+        )
+
+    rng = np.random.default_rng(seed)
+    attempts = 0
+    while len(directions) < mixed_ray_count and attempts < 100 + 20 * mixed_ray_count:
+        attempts += 1
+        values = rng.choice([-1.0, 1.0], size=dimension)
+        if abs(float(np.sum(values))) == float(dimension):
+            continue
+        append_direction(
+            f"signed_combo_{attempts}",
+            "deterministic_signed_combo",
+            values,
+            {"seed": seed, "attempt": attempts},
+        )
+    return directions
+
+
+def finite_collar_mixed_second_order_packet(
+    args: argparse.Namespace,
+    *,
+    np: object,
+    base_array: object,
+    seed_array: object,
+    null_basis: object,
+    basis_scale: float,
+    opt_args: argparse.Namespace,
+    base_residual: object,
+    analytic_matrix: object,
+    direction_packets: list[dict],
+    amplitude: float,
+    material_improvement_floor: float,
+) -> tuple[object, dict]:
+    second_order_columns: list[object] = []
+    ray_diagnostics: list[dict] = []
+    base_max_abs = float(np.max(np.abs(base_residual)))
+    best_ray_replay: dict | None = None
+
+    for direction_packet in direction_packets:
+        parameters = np.asarray(direction_packet["parameters"], dtype=float)
+        coefficient_delta = null_basis @ (amplitude * parameters)
+        plus_coefficients = tuple(
+            float(value) for value in base_array + seed_array + coefficient_delta
+        )
+        minus_coefficients = tuple(
+            float(value) for value in base_array + seed_array - coefficient_delta
+        )
+        plus_profile = PastProfileSpec(
+            kind=f"finite_collar_mixed_second_order_plus_{direction_packet['label']}",
+            coefficients=plus_coefficients,
+            basis_scale=basis_scale,
+        )
+        minus_profile = PastProfileSpec(
+            kind=f"finite_collar_mixed_second_order_minus_{direction_packet['label']}",
+            coefficients=minus_coefficients,
+            basis_scale=basis_scale,
+        )
+        plus_vector, plus_objective = finite_collar_residual_vector(opt_args, plus_profile)
+        minus_vector, minus_objective = finite_collar_residual_vector(
+            opt_args, minus_profile
+        )
+        plus_array = np.asarray(plus_vector, dtype=float)
+        minus_array = np.asarray(minus_vector, dtype=float)
+        central_second = plus_array + minus_array - 2.0 * base_residual
+        second_derivative = central_second / (amplitude * amplitude)
+        first_derivative = (plus_array - minus_array) / (2.0 * amplitude)
+        analytic_direction = analytic_matrix @ parameters
+        linear_mismatch = first_derivative - analytic_direction
+        second_order_columns.append(second_derivative)
+
+        plus_max_abs = plus_objective[
+            "max_abs_radial_residual_tangential_substituted"
+        ]
+        minus_max_abs = minus_objective[
+            "max_abs_radial_residual_tangential_substituted"
+        ]
+        plus_improvement = base_max_abs - plus_max_abs
+        minus_improvement = base_max_abs - minus_max_abs
+        if plus_max_abs <= minus_max_abs:
+            best_sign = 1.0
+            best_max_abs = plus_max_abs
+            best_coefficients = plus_coefficients
+            best_vector = plus_vector
+            nonlinear_improvement = plus_improvement
+        else:
+            best_sign = -1.0
+            best_max_abs = minus_max_abs
+            best_coefficients = minus_coefficients
+            best_vector = minus_vector
+            nonlinear_improvement = minus_improvement
+
+        best_q_bounds = sampled_q_bounds(
+            best_coefficients,
+            basis_scale,
+            args.finite_collar_positivity_samples,
+        )
+        candidate_admissible = (
+            best_q_bounds["min_q"] >= args.finite_collar_min_q
+            and best_q_bounds["max_q"] <= args.finite_collar_max_q
+        )
+        quadratic_residual = base_residual + 0.5 * amplitude * amplitude * second_derivative
+        quadratic_max_abs = float(np.max(np.abs(quadratic_residual)))
+        predicted_improvement = base_max_abs - quadratic_max_abs
+        tracking_ratio = (
+            nonlinear_improvement / predicted_improvement
+            if predicted_improvement > 0.0
+            else None
+        )
+        tracking_ratio_meaningful = predicted_improvement > material_improvement_floor
+        useful_tracking = bool(
+            tracking_ratio_meaningful
+            and tracking_ratio is not None
+            and tracking_ratio >= args.finite_collar_tracking_threshold
+            and nonlinear_improvement > material_improvement_floor
+            and candidate_admissible
+        )
+        ray_packet = {
+            "direction_label": direction_packet["label"],
+            "direction_kind": direction_packet["kind"],
+            "parameters": direction_packet["parameters"],
+            "metadata": direction_packet.get("metadata", {}),
+            "amplitude": amplitude,
+            "plus_max_abs": plus_max_abs,
+            "minus_max_abs": minus_max_abs,
+            "plus_improvement": plus_improvement,
+            "minus_improvement": minus_improvement,
+            "best_sign": best_sign,
+            "best_max_abs": best_max_abs,
+            "best_residual_vector": best_vector,
+            "candidate_q_bounds": best_q_bounds,
+            "candidate_admissible_sampled_bounds": candidate_admissible,
+            "quadratic_model_predicted_max_abs": quadratic_max_abs,
+            "quadratic_model_residual_vector": [
+                float(value) for value in quadratic_residual
+            ],
+            "predicted_improvement": predicted_improvement,
+            "nonlinear_improvement": nonlinear_improvement,
+            "tracking_ratio": tracking_ratio,
+            "tracking_ratio_meaningful": tracking_ratio_meaningful,
+            "useful_tracking": useful_tracking,
+            "max_abs_first_derivative": float(np.max(np.abs(first_derivative))),
+            "max_abs_linear_mismatch_to_analytic_tangent": float(
+                np.max(np.abs(linear_mismatch))
+            ),
+            "max_abs_second_derivative": float(np.max(np.abs(second_derivative))),
+            "second_derivative_norm": float(np.linalg.norm(second_derivative)),
+            "amplitude_squared_times_second_derivative_norm": (
+                amplitude * amplitude * float(np.linalg.norm(second_derivative))
+            ),
+            "max_abs_central_second_difference": float(
+                np.max(np.abs(central_second))
+            ),
+            "max_abs_plus_delta": float(np.max(np.abs(plus_array - base_residual))),
+            "max_abs_minus_delta": float(np.max(np.abs(minus_array - base_residual))),
+            "second_derivative_vector": [float(value) for value in second_derivative],
+            "linear_mismatch_vector": [float(value) for value in linear_mismatch],
+        }
+        if (
+            best_ray_replay is None
+            or ray_packet["nonlinear_improvement"]
+            > best_ray_replay["nonlinear_improvement"]
+        ):
+            best_ray_replay = ray_packet
+        ray_diagnostics.append(ray_packet)
+
+    coordinate_second_vectors = {
+        ray["metadata"]["indices"][0]: np.asarray(
+            ray["second_derivative_vector"], dtype=float
+        )
+        for ray in ray_diagnostics
+        if ray["direction_kind"] == "coordinate"
+        and ray["metadata"].get("indices")
+    }
+    mixed_term_diagnostics: list[dict] = []
+    for ray in ray_diagnostics:
+        if ray["direction_kind"] not in ("pair_plus", "pair_minus"):
+            continue
+        indices = ray["metadata"].get("indices", [])
+        if len(indices) != 2:
+            continue
+        left, right = int(indices[0]), int(indices[1])
+        if left not in coordinate_second_vectors or right not in coordinate_second_vectors:
+            continue
+        pair_second = np.asarray(ray["second_derivative_vector"], dtype=float)
+        diagonal_average = 0.5 * (
+            coordinate_second_vectors[left] + coordinate_second_vectors[right]
+        )
+        if ray["direction_kind"] == "pair_plus":
+            mixed_vector = pair_second - diagonal_average
+        else:
+            mixed_vector = diagonal_average - pair_second
+        mixed_term_diagnostics.append(
+            {
+                "direction_label": ray["direction_label"],
+                "direction_kind": ray["direction_kind"],
+                "indices": [left, right],
+                "mixed_second_term_norm": float(np.linalg.norm(mixed_vector)),
+                "amplitude_squared_times_mixed_second_term_norm": (
+                    amplitude * amplitude * float(np.linalg.norm(mixed_vector))
+                ),
+                "mixed_second_term_vector": [
+                    float(value) for value in mixed_vector
+                ],
+            }
+        )
+
+    second_order_matrix = np.column_stack(second_order_columns)
+    singular_values = np.linalg.svd(second_order_matrix, compute_uv=False)
+    if mixed_term_diagnostics:
+        mixed_term_matrix = np.column_stack(
+            [
+                np.asarray(entry["mixed_second_term_vector"], dtype=float)
+                for entry in mixed_term_diagnostics
+            ]
+        )
+        mixed_term_singular_values = np.linalg.svd(
+            mixed_term_matrix, compute_uv=False
+        )
+        mixed_term_rank = int(np.linalg.matrix_rank(mixed_term_matrix))
+        mixed_term_effective_rank = int(
+            sum(
+                value >= args.finite_collar_analytic_rank_tol
+                for value in mixed_term_singular_values
+            )
+        )
+        mixed_term_frobenius_norm = float(np.linalg.norm(mixed_term_matrix))
+    else:
+        mixed_term_matrix = None
+        mixed_term_singular_values = []
+        mixed_term_rank = 0
+        mixed_term_effective_rank = 0
+        mixed_term_frobenius_norm = 0.0
+    packet = {
+        "amplitude": amplitude,
+        "mixed_direction_count": len(direction_packets),
+        "second_order_rank": int(np.linalg.matrix_rank(second_order_matrix)),
+        "second_order_effective_rank": int(
+            sum(value >= args.finite_collar_analytic_rank_tol for value in singular_values)
+        ),
+        "second_order_singular_values": [float(value) for value in singular_values],
+        "second_order_frobenius_norm": float(np.linalg.norm(second_order_matrix)),
+        "amplitude_squared_times_second_order_frobenius_norm": (
+            amplitude * amplitude * float(np.linalg.norm(second_order_matrix))
+        ),
+        "max_abs_central_second_difference": max(
+            entry["max_abs_central_second_difference"] for entry in ray_diagnostics
+        ),
+        "max_abs_first_derivative": max(
+            entry["max_abs_first_derivative"] for entry in ray_diagnostics
+        ),
+        "max_abs_linear_mismatch_to_analytic_tangent": max(
+            entry["max_abs_linear_mismatch_to_analytic_tangent"]
+            for entry in ray_diagnostics
+        ),
+        "mixed_term_count": len(mixed_term_diagnostics),
+        "mixed_term_rank": mixed_term_rank,
+        "mixed_term_effective_rank": mixed_term_effective_rank,
+        "mixed_term_singular_values": [
+            float(value) for value in mixed_term_singular_values
+        ],
+        "mixed_term_frobenius_norm": mixed_term_frobenius_norm,
+        "amplitude_squared_times_mixed_term_frobenius_norm": (
+            amplitude * amplitude * mixed_term_frobenius_norm
+        ),
+        "mixed_term_diagnostics": mixed_term_diagnostics,
+        "_mixed_term_matrix": mixed_term_matrix,
+        "best_ray_replay": best_ray_replay,
+        "ray_diagnostics": ray_diagnostics,
+    }
+    return second_order_matrix, packet
+
+
+def finite_collar_mixed_second_order_response_audit(args: argparse.Namespace) -> dict:
+    try:
+        import numpy as np
+        from scipy.linalg import null_space
+    except ImportError as exc:
+        raise RuntimeError(
+            "--diagnostic-mode finite_collar_mixed_second_order_response_audit "
+            "requires scipy and numpy"
+        ) from exc
+
+    degree = args.finite_collar_repair_degree
+    amplitudes = parse_positive_float_csv(
+        args.finite_collar_second_order_steps,
+        "--finite-collar-second-order-steps",
+    )
+    seed, base_coefficients, seed_perturbation, sensitivity, rows, _ = (
+        build_endpoint_slope_cancel_seed(args, degree)
+    )
+    opt_args = finite_collar_objective_args(args)
+    base_array = np.asarray(base_coefficients, dtype=float)
+    seed_array = np.asarray(seed_perturbation, dtype=float)
+    constraints = np.asarray(rows, dtype=float)
+    null_basis = null_space(constraints)
+    seed_coefficients = tuple(float(value) for value in base_array + seed_array)
+    seed_profile = PastProfileSpec(
+        kind=f"finite_collar_mixed_second_order_seed_degree_{degree}",
+        coefficients=seed_coefficients,
+        basis_scale=seed.basis_scale,
+        summary=seed.summary,
+    )
+    base_profile = build_tangential_transport_profile(opt_args, past_profile=seed_profile)
+    base_objective = retained_collar_radial_objective_value_from_profile(
+        opt_args, base_profile
+    )
+    base_vector = [
+        row["radial_residual_tangential_substituted"]
+        for row in base_objective["samples"]
+    ]
+    base_residual = np.asarray(base_vector, dtype=float)
+    base_max_abs = float(np.max(np.abs(base_residual)))
+    material_improvement_floor = max(
+        args.finite_collar_tracking_improvement_floor,
+        args.finite_collar_material_improvement_frac * base_max_abs,
+    )
+
+    if null_basis.shape[1] == 0:
+        return {
+            "artifact": "spiral_a1_finite_collar_mixed_second_order_response_audit",
+            "claim_level": "sampled mixed second-order response diagnostic, not interval certificate",
+            "degree": degree,
+            "finite_collar_nullspace_dimension": 0,
+            "base_objective": base_objective,
+        }
+
+    direction_packets = deterministic_mixed_parameter_directions(
+        np,
+        null_basis.shape[1],
+        args.finite_collar_mixed_ray_count,
+        args.finite_collar_mixed_seed,
+    )
+    analytic_matrix, analytic_packet = finite_collar_analytic_tangent_matrix_packet(
+        args,
+        np=np,
+        seed=seed,
+        null_basis=null_basis,
+        base_profile=base_profile,
+        opt_args=opt_args,
+    )
+
+    amplitude_packets: list[dict] = []
+    previous_matrix = None
+    previous_largest_singular = None
+    previous_mixed_term_matrix = None
+    best_ray_replay: dict | None = None
+    for amplitude in amplitudes:
+        second_order_matrix, packet = finite_collar_mixed_second_order_packet(
+            args,
+            np=np,
+            base_array=base_array,
+            seed_array=seed_array,
+            null_basis=null_basis,
+            basis_scale=seed.basis_scale,
+            opt_args=opt_args,
+            base_residual=base_residual,
+            analytic_matrix=analytic_matrix,
+            direction_packets=direction_packets,
+            amplitude=amplitude,
+            material_improvement_floor=material_improvement_floor,
+        )
+        singular_values = packet["second_order_singular_values"]
+        largest_singular = singular_values[0] if singular_values else None
+        if previous_matrix is None:
+            packet["second_order_relative_change_from_previous_step"] = None
+            packet[
+                "second_order_largest_singular_relative_change_from_previous_step"
+            ] = None
+        else:
+            packet["second_order_relative_change_from_previous_step"] = float(
+                np.linalg.norm(second_order_matrix - previous_matrix)
+                / max(float(np.linalg.norm(previous_matrix)), 1.0e-30)
+            )
+            packet[
+                "second_order_largest_singular_relative_change_from_previous_step"
+            ] = (
+                abs(largest_singular - previous_largest_singular)
+                / max(abs(previous_largest_singular), 1.0e-30)
+                if largest_singular is not None
+                and previous_largest_singular is not None
+                else None
+            )
+        previous_matrix = second_order_matrix
+        previous_largest_singular = largest_singular
+        mixed_term_matrix = packet.get("_mixed_term_matrix")
+        if previous_mixed_term_matrix is None or mixed_term_matrix is None:
+            packet["mixed_term_relative_change_from_previous_step"] = None
+        else:
+            packet["mixed_term_relative_change_from_previous_step"] = float(
+                np.linalg.norm(mixed_term_matrix - previous_mixed_term_matrix)
+                / max(float(np.linalg.norm(previous_mixed_term_matrix)), 1.0e-30)
+            )
+        if mixed_term_matrix is not None:
+            previous_mixed_term_matrix = mixed_term_matrix
+        packet.pop("_mixed_term_matrix", None)
+        if (
+            best_ray_replay is None
+            or packet["best_ray_replay"]["nonlinear_improvement"]
+            > best_ray_replay["nonlinear_improvement"]
+        ):
+            best_ray_replay = packet["best_ray_replay"]
+            best_ray_replay["amplitude"] = amplitude
+        amplitude_packets.append(packet)
+
+    scaled_second_numerators = [
+        ray["amplitude_squared_times_second_derivative_norm"]
+        for packet in amplitude_packets
+        for ray in packet["ray_diagnostics"]
+    ]
+    noise_floor_estimate = (
+        float(np.median(np.asarray(scaled_second_numerators, dtype=float)))
+        if scaled_second_numerators
+        else 0.0
+    )
+    effective_improvement_floor = max(
+        material_improvement_floor,
+        args.finite_collar_noise_multiplier * noise_floor_estimate,
+    )
+
+    direction_summaries: list[dict] = []
+    for direction_packet in direction_packets:
+        series = [
+            ray
+            for packet in amplitude_packets
+            for ray in packet["ray_diagnostics"]
+            if ray["direction_label"] == direction_packet["label"]
+        ]
+        adjacent_changes: list[float] = []
+        adjacent_scaled_numerator_changes: list[float] = []
+        previous_second = None
+        previous_scaled = None
+        for ray in series:
+            current_second = np.asarray(ray["second_derivative_vector"], dtype=float)
+            current_scaled = ray["amplitude_squared_times_second_derivative_norm"]
+            if previous_second is not None:
+                adjacent_changes.append(
+                    float(
+                        np.linalg.norm(current_second - previous_second)
+                        / max(float(np.linalg.norm(previous_second)), 1.0e-30)
+                    )
+                )
+                adjacent_scaled_numerator_changes.append(
+                    abs(current_scaled - previous_scaled)
+                    / max(abs(previous_scaled), 1.0e-30)
+                )
+            previous_second = current_second
+            previous_scaled = current_scaled
+
+        best_ray = max(series, key=lambda ray: ray["nonlinear_improvement"])
+        best_predicted = max(series, key=lambda ray: ray["predicted_improvement"])
+        stable_direction = bool(
+            adjacent_changes
+            and max(adjacent_changes) < args.finite_collar_variation_stability_tol
+        )
+        material_nonlinear = (
+            best_ray["nonlinear_improvement"] > effective_improvement_floor
+        )
+        material_predicted = (
+            best_predicted["predicted_improvement"] > effective_improvement_floor
+        )
+        useful_tracking = bool(
+            stable_direction
+            and any(
+                ray["tracking_ratio_meaningful"]
+                and ray["tracking_ratio"] is not None
+                and ray["tracking_ratio"] >= args.finite_collar_tracking_threshold
+                and ray["nonlinear_improvement"] > effective_improvement_floor
+                and ray["candidate_admissible_sampled_bounds"]
+                for ray in series
+            )
+        )
+        direction_summaries.append(
+            {
+                "direction_label": direction_packet["label"],
+                "direction_kind": direction_packet["kind"],
+                "parameters": direction_packet["parameters"],
+                "stable_second_order_direction": stable_direction,
+                "max_adjacent_second_derivative_change": max(adjacent_changes)
+                if adjacent_changes
+                else None,
+                "max_adjacent_scaled_numerator_change": max(
+                    adjacent_scaled_numerator_changes
+                )
+                if adjacent_scaled_numerator_changes
+                else None,
+                "best_nonlinear_improvement": best_ray["nonlinear_improvement"],
+                "best_predicted_improvement": best_predicted[
+                    "predicted_improvement"
+                ],
+                "best_amplitude": best_ray["amplitude"],
+                "best_max_abs": best_ray["best_max_abs"],
+                "best_tracking_ratio": best_ray["tracking_ratio"],
+                "best_tracking_ratio_meaningful": best_ray[
+                    "tracking_ratio_meaningful"
+                ],
+                "best_candidate_admissible_sampled_bounds": best_ray[
+                    "candidate_admissible_sampled_bounds"
+                ],
+                "material_nonlinear_improvement": material_nonlinear,
+                "material_predicted_improvement": material_predicted,
+                "improvement_to_material_floor_ratio": (
+                    best_ray["nonlinear_improvement"]
+                    / max(material_improvement_floor, 1.0e-30)
+                ),
+                "improvement_to_noise_floor_ratio": (
+                    best_ray["nonlinear_improvement"]
+                    / max(noise_floor_estimate, 1.0e-30)
+                ),
+                "useful_tracking": useful_tracking,
+            }
+        )
+
+    adjacent_matrix_changes = [
+        packet["second_order_relative_change_from_previous_step"]
+        for packet in amplitude_packets
+        if packet["second_order_relative_change_from_previous_step"] is not None
+    ]
+    adjacent_largest_singular_changes = [
+        packet["second_order_largest_singular_relative_change_from_previous_step"]
+        for packet in amplitude_packets
+        if packet[
+            "second_order_largest_singular_relative_change_from_previous_step"
+        ]
+        is not None
+    ]
+    adjacent_mixed_term_changes = [
+        packet["mixed_term_relative_change_from_previous_step"]
+        for packet in amplitude_packets
+        if packet["mixed_term_relative_change_from_previous_step"] is not None
+    ]
+    non_coordinate_summaries = [
+        summary
+        for summary in direction_summaries
+        if summary["direction_kind"] != "coordinate"
+    ]
+    classification_summaries = non_coordinate_summaries or direction_summaries
+    any_stable_direction = any(
+        summary["stable_second_order_direction"] for summary in classification_summaries
+    )
+    useful_mixed_tracking = any(
+        summary["useful_tracking"] for summary in classification_summaries
+    )
+    material_mixed_improvement = any(
+        summary["material_nonlinear_improvement"]
+        for summary in classification_summaries
+    )
+    material_mixed_prediction = any(
+        summary["material_predicted_improvement"]
+        for summary in classification_summaries
+    )
+
+    if not adjacent_matrix_changes:
+        classification = "underdetermined_no_mixed_second_order_window"
+        classification_reasons = [
+            "fewer than two amplitudes were available for mixed-direction stability"
+        ]
+    elif any_stable_direction and useful_mixed_tracking:
+        classification = "mixed_quadratic_continuation_candidate"
+        classification_reasons = [
+            "at least one mixed direction has stable second-order response",
+            "material nonlinear replay tracks the quadratic model",
+        ]
+    elif any_stable_direction and material_mixed_improvement:
+        classification = "mixed_finite_amplitude_signal_unresolved"
+        classification_reasons = [
+            "at least one stable mixed direction has material finite-amplitude improvement",
+            "quadratic replay does not yet give useful tracking",
+        ]
+    elif any_stable_direction and material_mixed_prediction:
+        classification = "mixed_quadratic_model_only"
+        classification_reasons = [
+            "at least one stable mixed direction predicts material quadratic improvement",
+            "nonlinear replay does not give material tracked improvement",
+        ]
+    elif material_mixed_improvement or material_mixed_prediction:
+        classification = "mixed_finite_amplitude_signal_unresolved"
+        classification_reasons = [
+            "a material mixed-direction response is visible",
+            "the mixed second-order estimate is not stable enough to classify as curvature",
+        ]
+    elif any_stable_direction:
+        classification = "mixed_structural_obstruction_support"
+        classification_reasons = [
+            "some mixed second-order directions are stable",
+            "no mixed direction gives material sampled control",
+        ]
+    else:
+        classification = "mixed_second_order_noise_artifact"
+        classification_reasons = [
+            "mixed second-order responses are not stable across amplitudes",
+            "no mixed direction gives material nonlinear replay improvement",
+        ]
+
+    best_direction_summary = max(
+        classification_summaries,
+        key=lambda summary: summary["best_nonlinear_improvement"],
+    )
+    best_overall_direction_summary = max(
+        direction_summaries,
+        key=lambda summary: summary["best_nonlinear_improvement"],
+    )
+    ray_kind_counts = {
+        kind: sum(1 for direction in direction_packets if direction["kind"] == kind)
+        for kind in sorted({direction["kind"] for direction in direction_packets})
+    }
+    best_mixed_amplitude_packet = max(
+        amplitude_packets,
+        key=lambda packet: packet["mixed_term_frobenius_norm"],
+    )
+    return {
+        "artifact": "spiral_a1_finite_collar_mixed_second_order_response_audit",
+        "claim_level": "sampled mixed second-order response diagnostic, not interval certificate",
+        "degree": degree,
+        "basis_scale": seed.basis_scale,
+        "finite_collar_theta_hi": args.finite_collar_theta_hi,
+        "finite_collar_samples": args.finite_collar_samples,
+        "finite_collar_nullspace_dimension": null_basis.shape[1],
+        "mixed_direction_count_requested": args.finite_collar_mixed_ray_count,
+        "mixed_direction_count": len(direction_packets),
+        "mixed_direction_count_request_satisfied": (
+            len(direction_packets) == args.finite_collar_mixed_ray_count
+        ),
+        "ray_set_kind": "+".join(sorted(ray_kind_counts)),
+        "ray_kind_counts": ray_kind_counts,
+        "coordinate_ray_count": ray_kind_counts.get("coordinate", 0),
+        "pair_sum_ray_count": ray_kind_counts.get("pair_plus", 0),
+        "pair_difference_ray_count": ray_kind_counts.get("pair_minus", 0),
+        "aggregate_ray_count": ray_kind_counts.get("aggregate", 0),
+        "optional_probe_ray_count": ray_kind_counts.get(
+            "deterministic_signed_combo", 0
+        ),
+        "mixed_seed": args.finite_collar_mixed_seed,
+        "direction_packets": direction_packets,
+        "base_objective": base_objective,
+        "base_residual_vector": base_vector,
+        "base_max_abs": base_max_abs,
+        "analytic_effective_rank": analytic_packet["analytic_effective_rank"],
+        "analytic_response_frobenius_norm": analytic_packet[
+            "analytic_response_frobenius_norm"
+        ],
+        "analytic_response_singular_values": analytic_packet[
+            "analytic_response_singular_values"
+        ],
+        "amplitudes": amplitudes,
+        "rank_floor": args.finite_collar_analytic_rank_tol,
+        "stability_tolerance": args.finite_collar_variation_stability_tol,
+        "tracking_threshold": args.finite_collar_tracking_threshold,
+        "material_improvement_floor": material_improvement_floor,
+        "material_improvement_fraction": args.finite_collar_material_improvement_frac,
+        "noise_multiplier": args.finite_collar_noise_multiplier,
+        "noise_floor_estimate": noise_floor_estimate,
+        "effective_improvement_floor": effective_improvement_floor,
+        "max_scaled_second_difference_numerator": max(scaled_second_numerators)
+        if scaled_second_numerators
+        else None,
+        "min_scaled_second_difference_numerator": min(scaled_second_numerators)
+        if scaled_second_numerators
+        else None,
+        "max_mixed_matrix_adjacent_relative_frobenius_change": max(
+            adjacent_matrix_changes
+        )
+        if adjacent_matrix_changes
+        else None,
+        "max_mixed_matrix_adjacent_largest_singular_change": max(
+            adjacent_largest_singular_changes
+        )
+        if adjacent_largest_singular_changes
+        else None,
+        "max_adjacent_mixed_term_relative_change": max(adjacent_mixed_term_changes)
+        if adjacent_mixed_term_changes
+        else None,
+        "mixed_term_frobenius_norm": best_mixed_amplitude_packet[
+            "mixed_term_frobenius_norm"
+        ],
+        "mixed_term_effective_rank": best_mixed_amplitude_packet[
+            "mixed_term_effective_rank"
+        ],
+        "mixed_term_singular_values": best_mixed_amplitude_packet[
+            "mixed_term_singular_values"
+        ],
+        "any_stable_mixed_direction": any_stable_direction,
+        "useful_mixed_tracking": useful_mixed_tracking,
+        "material_mixed_improvement": material_mixed_improvement,
+        "material_mixed_prediction": material_mixed_prediction,
+        "best_ray_replay": best_ray_replay,
+        "best_overall_direction_summary": best_overall_direction_summary,
+        "best_direction_summary": best_direction_summary,
+        "best_nonlinear_improvement": best_direction_summary[
+            "best_nonlinear_improvement"
+        ],
+        "best_predicted_improvement": max(
+            summary["best_predicted_improvement"]
+            for summary in direction_summaries
+        ),
+        "best_tracking_ratio": best_direction_summary["best_tracking_ratio"],
+        "improvement_to_material_floor_ratio": best_direction_summary[
+            "improvement_to_material_floor_ratio"
+        ],
+        "improvement_to_noise_floor_ratio": best_direction_summary[
+            "improvement_to_noise_floor_ratio"
+        ],
+        "mixed_response_usable": bool(
+            any_stable_direction and useful_mixed_tracking
+        ),
+        "classification": classification,
+        "classification_reasons": classification_reasons,
+        "direction_summaries": direction_summaries,
+        "amplitude_packets": amplitude_packets,
+        "endpoint_cancel_summary": seed.summary,
+        "policy": (
+            "Treat mixed second-order response as a continuation target only "
+            "after at least one mixed direction has stable symmetric response "
+            "across amplitude and material nonlinear replay on the same retained "
+            "chart."
+        ),
+    }
+
+
 def build_past_profile_spec(args: argparse.Namespace) -> PastProfileSpec:
     past_profile = getattr(args, "past_profile", PAST_PROFILE_POLYNOMIAL_WITNESS)
     if past_profile == PAST_PROFILE_ENDPOINT_SLOPE_CANCEL:
@@ -1780,10 +4613,7 @@ def radial_transport_convergence(args: argparse.Namespace) -> dict:
     levels: list[dict] = []
     for level in range(args.convergence_levels):
         scale = args.refinement_factor**level
-        level_args = argparse.Namespace(**vars(args))
-        level_args.transport_steps = args.transport_steps * scale
-        level_args.integration_panels = args.integration_panels * scale
-        level_args.delta_steps = args.delta_steps * scale
+        level_args = scaled_transport_args(args, scale)
         levels.append(radial_transport_jet(level_args))
 
     adjacent = [
@@ -2076,6 +4906,82 @@ def main(argv: Iterable[str] | None = None) -> int:
         help="Comma-separated repair bounds for --diagnostic-mode finite_collar_trust_region.",
     )
     parser.add_argument(
+        "--finite-collar-variation-steps",
+        default="1e-5,3e-5,0.0001,0.0003,0.001",
+        help="Comma-separated response steps for --diagnostic-mode finite_collar_variational_audit.",
+    )
+    parser.add_argument(
+        "--finite-collar-variation-bound",
+        type=float,
+        default=0.01,
+        help="Repair bound used by --diagnostic-mode finite_collar_variational_audit.",
+    )
+    parser.add_argument(
+        "--finite-collar-variation-stability-tol",
+        type=float,
+        default=0.25,
+        help="Relative matrix-change tolerance for finite-collar variational stability.",
+    )
+    parser.add_argument(
+        "--finite-collar-tracking-threshold",
+        type=float,
+        default=0.25,
+        help="Actual-vs-predicted tracking threshold for useful local finite-collar control.",
+    )
+    parser.add_argument(
+        "--finite-collar-analytic-rank-tol",
+        type=float,
+        default=1.0e-9,
+        help="Singular-value threshold for effective rank in analytic tangent diagnostics.",
+    )
+    parser.add_argument(
+        "--finite-collar-analytic-match-tol",
+        type=float,
+        default=0.25,
+        help="Relative Frobenius tolerance for analytic-vs-finite-difference agreement.",
+    )
+    parser.add_argument(
+        "--finite-collar-tracking-improvement-floor",
+        type=float,
+        default=1.0e-10,
+        help="Minimum predicted improvement for interpreting a tracking ratio.",
+    )
+    parser.add_argument(
+        "--finite-collar-material-improvement-frac",
+        type=float,
+        default=0.01,
+        help=(
+            "Minimum fractional residual improvement for material second-order "
+            "finite-collar control."
+        ),
+    )
+    parser.add_argument(
+        "--finite-collar-noise-multiplier",
+        type=float,
+        default=10.0,
+        help="Noise-floor multiplier required for material mixed second-order control.",
+    )
+    parser.add_argument(
+        "--finite-collar-second-order-steps",
+        default="0.0025,0.005,0.01,0.02",
+        help=(
+            "Comma-separated nullspace amplitudes for --diagnostic-mode "
+            "finite_collar_second_order_response_audit and mixed variants."
+        ),
+    )
+    parser.add_argument(
+        "--finite-collar-mixed-ray-count",
+        type=int,
+        default=12,
+        help="Number of deterministic mixed parameter rays for mixed second-order audit.",
+    )
+    parser.add_argument(
+        "--finite-collar-mixed-seed",
+        type=int,
+        default=20260522,
+        help="Seed for optional deterministic signed mixed parameter rays.",
+    )
+    parser.add_argument(
         "--transport-steps",
         type=int,
         default=120,
@@ -2090,6 +4996,12 @@ def main(argv: Iterable[str] | None = None) -> int:
             "radial_sensitivity",
             "finite_collar_response",
             "finite_collar_trust_region",
+            "finite_collar_variational_audit",
+            "finite_collar_variational_refinement_audit",
+            "finite_collar_analytic_tangent",
+            "finite_collar_response_noise_audit",
+            "finite_collar_second_order_response_audit",
+            "finite_collar_mixed_second_order_response_audit",
         ),
         default="evaluate",
         help="Choose the emitted diagnostic packet.",
@@ -2104,13 +5016,13 @@ def main(argv: Iterable[str] | None = None) -> int:
         "--convergence-levels",
         type=int,
         default=3,
-        help="Number of refinement levels for --diagnostic-mode radial_convergence.",
+        help="Number of refinement levels for convergence-style diagnostics.",
     )
     parser.add_argument(
         "--refinement-factor",
         type=int,
         default=2,
-        help="Multiplicative step refinement for --diagnostic-mode radial_convergence.",
+        help="Multiplicative step refinement for convergence-style diagnostics.",
     )
     parser.add_argument(
         "--sensitivity-theta",
@@ -2131,6 +5043,18 @@ def main(argv: Iterable[str] | None = None) -> int:
         result = finite_collar_radial_response(args)
     elif args.diagnostic_mode == "finite_collar_trust_region":
         result = finite_collar_radial_trust_region(args)
+    elif args.diagnostic_mode == "finite_collar_variational_audit":
+        result = finite_collar_variational_audit(args)
+    elif args.diagnostic_mode == "finite_collar_variational_refinement_audit":
+        result = finite_collar_variational_refinement_audit(args)
+    elif args.diagnostic_mode == "finite_collar_analytic_tangent":
+        result = finite_collar_analytic_tangent(args)
+    elif args.diagnostic_mode == "finite_collar_response_noise_audit":
+        result = finite_collar_response_noise_audit(args)
+    elif args.diagnostic_mode == "finite_collar_second_order_response_audit":
+        result = finite_collar_second_order_response_audit(args)
+    elif args.diagnostic_mode == "finite_collar_mixed_second_order_response_audit":
+        result = finite_collar_mixed_second_order_response_audit(args)
     else:
         result = evaluate(args)
     print(json.dumps(result, indent=2 if args.pretty else None, sort_keys=True))

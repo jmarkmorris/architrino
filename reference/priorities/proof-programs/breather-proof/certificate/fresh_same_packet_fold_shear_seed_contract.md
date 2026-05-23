@@ -26,6 +26,30 @@ Source artifacts:
 - `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`
 - `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.md`
 - `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v2.json`
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.json`
+- `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.json`
+- `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.md`
+- `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.json`
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.json`
+- `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.json`
+- `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.md`
+- `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.json`
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json`
+- `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json`
+- `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.md`
+- `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json`
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json`
+- `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json`
+- `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.md`
+- `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json`
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.json`
+- `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.json`
+- `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.md`
+- `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.json`
+- `preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json`
+- `causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json`
+- `causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.md`
+- `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json`
 - `fresh_preledger_blocker_anatomy.fresh-same-packet-fold-shear-seed-v0.json`
 - `fold_layer_burden.fresh-same-packet-fold-shear-seed-v0.json`
 
@@ -231,13 +255,104 @@ enclosures to certify 116 range-empty rows. It leaves 46 rows
 `split_required`, accepts no diagonal, simple-root, or fold-layer row, and
 records `branch_chart_authorized=false`.
 
+Fulfillment note, 2026-05-22: `scripts/proof-programs/fresh-proof-interval-preledger-v3.mjs`
+now emits a proof-interval-v3 sidecar for the same fresh packet:
+`preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.json`,
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.json`,
+`causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.md`,
+and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v3.json`.
+This sidecar keeps the v2 trigonometric range backend and adds exact-rational
+derivative enclosures for same-interval regular diagonal rows. It certifies 116
+range-empty rows plus 8 monotone diagonal exclusions, leaves 38 rows
+`split_required`, accepts no simple-root or fold-layer row, and records
+`branch_chart_authorized=false`.
+
+Fulfillment note, 2026-05-22: `scripts/proof-programs/fresh-proof-interval-preledger-v4.mjs`
+now emits a proof-interval-v4 sidecar for the same fresh packet:
+`preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.json`,
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.json`,
+`causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.md`,
+and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v4.json`.
+This sidecar keeps the v3 exact-rational range and derivative backend and adds
+oriented source-inner simple-root subwindow extraction. It records 6 strict
+simple-root subrows with minimum coverage gap `0.001122267086258`, minimum
+simple-root Jacobian floor `0.001946149764116`, and minimum memory lower margin
+`0.263009875015056`. It still leaves 38 parent rows `split_required` because
+parent complements, endpoint/seam rows, fold-aware diagonal rows, and active
+fold-layer rows remain unconsumed, and it records
+`branch_chart_authorized=false`.
+
+Fulfillment note, 2026-05-22: `scripts/proof-programs/fresh-proof-interval-preledger-v5.mjs`
+now emits a proof-interval-v5 sidecar for the same fresh packet:
+`preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json`,
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json`,
+`causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.md`,
+and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json`.
+This sidecar imports the v4 simple-root subrows, partitions their receiver-side
+parent complements, and probes 10 complement strips by the exact-rational strict
+range-empty test. It certifies 0 strict-empty complement strips, consumes 0
+simple-root parent rows, leaves 38 parent rows `split_required`, accepts no
+fold-layer row, and records `branch_chart_authorized=false`.
+
+Fulfillment note, 2026-05-22: `scripts/proof-programs/fresh-proof-interval-preledger-v6.mjs`
+now emits a proof-interval-v6 sidecar for the same fresh packet:
+`preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json`,
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json`,
+`causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.md`,
+and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v6.json`.
+This sidecar imports the v5 complement strips and tests strict range-empty,
+endpoint/topology ownership, exact same-packet fold-family coverage, and
+same-packet regular-boundary coverage. It accepts 0 complement strips by those
+alternatives, consumes 0 simple-root parent rows, leaves 38 parent rows
+`split_required`, accepts no fold-layer row, and records
+`branch_chart_authorized=false`.
+
+Fulfillment note, 2026-05-22: `scripts/proof-programs/fresh-proof-interval-preledger-v7.mjs`
+now emits a proof-interval-v7 sidecar for the same fresh packet:
+`preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.json`,
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.json`,
+`causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.md`,
+and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v7.json`.
+This sidecar imports the v6 complement strips and constructs same-packet
+ownership-data candidate records. It constructs 10 finite candidate
+regular-boundary cores, considers the 16 fresh fold-layer burden rows,
+constructs 0 endpoint contact tables, accepts 0 complement strips by endpoint,
+fold-family, or regular-boundary alternatives, consumes 0 simple-root parent
+rows, leaves 38 parent rows `split_required`, accepts no fold-layer row, and
+records `branch_chart_authorized=false`.
+
+Fulfillment note, 2026-05-22: `scripts/proof-programs/fresh-proof-interval-preledger-v8.mjs`
+now emits a proof-interval-v8 sidecar for the same fresh packet:
+`preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json`,
+`causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json`,
+`causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.md`,
+and `preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v8.json`.
+This sidecar imports the v7 candidate regular-boundary cores and constructs 4
+finite regular-boundary candidate families with 20 candidate membership edges.
+It certifies 0 exact single separator assignments, 0 same-packet inclusion
+proofs, 0 fresh same-packet domination inequalities, 0
+topology/no-double-counting certificates, and 0 non-core complement closures.
+It accepts 0 complement strips, consumes 0 simple-root parent rows, leaves 38
+parent rows `split_required`, accepts no fold-layer row, and records
+`branch_chart_authorized=false`.
+
 The stop rule remains unchanged: no branch chart is authorized unless the fresh
 null-coordinate pre-ledger has no `split_required` rows and every parent
 complement is consumed by an accepted same-packet alternative.
-The fresh sidecar fails this stop rule in the current attempt. The blocker
-anatomy records the remaining burden as 16 same-packet fold-layer certificate
-rows, 6 regular parent root-candidate overlaps, 10 endpoint/seam or
-inactive-fold-neighborhood contacts, and 2 nonmonotone diagonal contacts.
+The fresh sidecar fails this stop rule in the current attempt. The strongest
+proof-interval sidecar currently records 6 simple-root subrows, a same-packet
+ownership-data constructor, and a regular-boundary finite-family candidate
+inventory, but all 10 probed complement strips remain `split_required`: strict
+range-empty and endpoint/topology ownership fail, the 16 fresh fold-layer
+burden rows are not accepted same-packet fold-layer rows with exact complement
+membership, the 10 candidate regular-boundary cores still have no certified
+single separator assignment, and the 4 finite candidate families lack
+same-packet inclusion, fresh domination, topology/no-double-counting, and
+non-core complement-closure fields. The sidecar leaves 38 parent rows
+unresolved: 16 same-packet fold-layer certificate rows, regular parent
+complements around the simple-root subwindows, 8 inactive-fold-neighborhood
+contacts, 4 fold-interval diagonal locks, and 2 regular nonmonotone diagonal or
+endpoint contacts.
 
 ## Capture Decision
 

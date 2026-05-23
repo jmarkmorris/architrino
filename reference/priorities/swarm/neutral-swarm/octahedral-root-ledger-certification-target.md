@@ -251,6 +251,8 @@ y^2-2+\sin(2\tilde{\theta}-y)+\kappa\sin y,
 \kappa=\delta_{ij}\varepsilon_{ab}\in\{+1,-1\}.
 $$
 
+These certified $\kappa=\pm1$ reduced root graphs are the root-graph input consumed by the frozen speed-ODE cross-binary anti-periodicity proof in [octahedral-speed-ode-diagnostic.md](octahedral-speed-ode-diagnostic.md). That proof is a downstream force-mean consumer; it does not change the all-pairs root-ledger status.
+
 A cross root can occur only when
 
 $$

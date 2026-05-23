@@ -89,10 +89,10 @@ $$
 0.18420699635,
 \qquad
 \langle f_{i,\mathrm{cross}}^1\rangle
-\approx0.
+=0.
 $$
 
-Thus the cross-binary rows cancel in the sampled period mean, while the antipodal-partner row leaves a positive drift. For $\Gamma=1$, the sampled primitive endpoint is
+Thus the cross-binary rows cancel in the certified frozen period mean, while the antipodal-partner row leaves a positive drift. The artifact still uses `sampled-speed-ode-zero-mean-failed` and `sampled-periodic-primitive-failed` as diagnostic status labels because the primitive and extrema are evaluated by the executable mesh. For $\Gamma=1$, the sampled primitive endpoint is
 
 $$
 A_i(2\pi)
@@ -122,7 +122,7 @@ $$
 }
 $$
 
-This certifies the positive partner drift away from zero on the frozen ledger. The executable also emits per-source mean rows and two sampled cross-binary cancellation pairs per receiver; their maximum sampled pair-sum residual is below the zero-mean tolerance. The exact cross-binary proof route is the phase anti-periodicity target
+This certifies the positive partner drift away from zero on the frozen ledger. The cross-binary part is certified by the phase anti-periodicity lemma
 
 $$
 C_i\left(\theta+\frac{\pi}{2}\right)=-C_i(\theta),
@@ -130,7 +130,13 @@ C_i\left(\theta+\frac{\pi}{2}\right)=-C_i(\theta),
 C_i(\theta)=f_{i,\mathrm{cross}}^1(\theta),
 $$
 
-using the two certified cross-binary reduced root graphs from [octahedral-root-ledger-certification-target.md](octahedral-root-ledger-certification-target.md). Until that anti-periodicity is written as an interval proof, the cross row is a sampled cancellation certificate with status `sampled-cross-binary-pair-mean-cancellation-passed`, not a bounded-speed live-ledger result.
+using the two certified cross-binary reduced root graphs from [octahedral-root-ledger-certification-target.md](octahedral-root-ledger-certification-target.md). Therefore
+
+$$
+\int_0^{2\pi}f_{i,\mathrm{cross}}^1(\theta)\,d\theta=0.
+$$
+
+The executable still emits sampled anti-periodicity checksum rows for audit, but the mathematical cross-binary mean cancellation is now the certified frozen-ledger input. This remains a fixed-ledger statement, not a bounded-speed live-ledger result.
 
 ---
 
@@ -145,6 +151,8 @@ $$
 The rejected implication is that the certified rigid root ledger and nonzero tangent force can be converted into a periodic bounded-speed primitive while keeping the rigid geometry, fixed-speed roots, fixed-speed Jacobians, and fixed force weights frozen.
 
 It does not reject bounded-speed continuation in general. A true bounded-speed candidate must rebuild the clocks, roots, Jacobians, derivative columns, tail interface, force checksum, support rows, action/Noether rows, event rows, and coupled Krawczyk data on one live ledger as required by [../shell-swarm/bounded-speed-factor-all-pairs-ledger-handoff-contract.md](../shell-swarm/bounded-speed-factor-all-pairs-ledger-handoff-contract.md) and [../shell-swarm/bounded-speed-factor-coupled-fixed-point-theorem.md](../shell-swarm/bounded-speed-factor-coupled-fixed-point-theorem.md).
+
+The companion intake script `scripts/neutral-swarm/octahedral-zero-mean-correction-intake.mjs` consumes this diagnostic and packages the frozen source vector as $\mathbf{m}_{\mathrm{frz}}=m_*\mathbf{1}_6$ for the live range condition. That bridge still leaves `live-ledger-derivative-open` and `zero-mean-correction-open`.
 
 The next surviving route is therefore not a frozen speed primitive on the rigid carrier. It is either:
 

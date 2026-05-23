@@ -31,6 +31,7 @@ test("octahedral speed-ODE diagnostic rejects the frozen fixed-ledger primitive"
   assert.ok(artifact.speed_ode_solvability.sampled_summary.partner_mean_min > 0.18);
   assert.ok(artifact.speed_ode_solvability.sampled_summary.cross_binary_mean_abs_max < 1e-9);
   assert.ok(artifact.speed_ode_solvability.sampled_summary.cross_binary_pair_cancellation_abs_max < 1e-9);
+  assert.ok(artifact.speed_ode_solvability.sampled_summary.cross_binary_antiperiodicity_sampled_max_abs < 1e-9);
   assert.equal(artifact.speed_ode_solvability.mean_split_certificate.status, "frozen-fixed-ledger-mean-obstruction");
   assert.equal(artifact.speed_ode_solvability.mean_split_certificate.obstructing_source_relation, "antipodal-partner");
   assert.equal(
@@ -42,6 +43,15 @@ test("octahedral speed-ODE diagnostic rejects the frozen fixed-ledger primitive"
     "sampled-cross-binary-pair-mean-cancellation-passed"
   );
   assert.equal(
+    artifact.speed_ode_solvability.mean_split_certificate.cross_binary_symmetry_certificate_status,
+    "analytic-cross-binary-phase-antiperiodicity-certified"
+  );
+  assert.equal(artifact.speed_ode_solvability.mean_split_certificate.cross_binary_symmetry_certificate.phase_shift, "pi/2");
+  assert.equal(
+    artifact.speed_ode_solvability.mean_split_certificate.cross_binary_symmetry_certificate.aggregate_identity,
+    "C_i(theta+pi/2)=-C_i(theta)"
+  );
+  assert.equal(
     artifact.speed_ode_solvability.mean_split_certificate.bounded_speed_handoff_status,
     "bounded-speed-ledger-handoff-open"
   );
@@ -49,9 +59,18 @@ test("octahedral speed-ODE diagnostic rejects the frozen fixed-ledger primitive"
   for (const row of artifact.speed_ode_solvability.site_rows) {
     assert.equal(row.mean_split.source_mean_rows.length, 5);
     assert.equal(row.mean_split.cross_binary_pair_cancellation_rows.length, 2);
+    assert.equal(row.mean_split.cross_binary_antiperiodicity_rows.length, 2);
+    assert.deepEqual(
+      row.mean_split.cross_binary_antiperiodicity_rows.map((entry) => entry.sources),
+      row.mean_split.cross_binary_pair_cancellation_rows.map((entry) => entry.sources)
+    );
     assert.equal(
       row.mean_split.cross_binary_pair_cancellation_status,
       "sampled-cross-binary-pair-mean-cancellation-passed"
+    );
+    assert.equal(
+      row.mean_split.cross_binary_antiperiodicity_sampled_status,
+      "sampled-cross-binary-antiperiodicity-check-passed"
     );
     assert.equal(row.mean_split.partner_positive_mean_status, "sampled-antipodal-partner-positive-mean-passed");
   }

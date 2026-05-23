@@ -11,7 +11,84 @@
 
 ## Task Queue
 
-1. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch spiral roots realize negative weighted tangential drive with positive Jacobian floors and finite memory depth, using the promoted variable-pitch formulas, radial-turn inequality, and weighted tangential obstruction test. Status: `active`; the `circular_asymptotics` dependency is satisfied, VP-1 has passed structural interval rows for the fixed $3+1$ root chart, and the tangential-drive row is outward-certified as a VP-1 failure with $\mathcal{D}_T(I_\ast)\ge0.036446308644655666$. The VP-1 radial branch interval is $B_r(0)\in[-0.27143260470972164,-0.27143255629407625]$; source audit and dimensional closure find no accepted strict $\Gamma$ interval and prove $\Gamma=b_\ast^2c_f^2r_\ast/(\kappa q_1^2)$ is not determined by VP-1 kinematics alone. The fixed A1 continuation candidate $a_{\mathrm{A1}}=0.204$ is now runner/sidecar-integrated for retained roots, inactive gaps, Jacobian floor, self-coincidence, finite memory, root transport, radial balance, strict negative weighted tangential drive, and exact turn-center tangential compatibility. The prescribed constant-$\Omega$ A1 radial kinematics give $\Gamma\in[0.007531050241046427,\ 0.007531144882881889]$ and pass the minimum-turn inequality, but the retained chart gives $T_0(C_{\mathrm{A1}})\in[-0.007585901776635041,\ -0.007585740886803276]$ where the prescribed history requires $T_0=0$. [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) now promotes A1 as a theorem-grade constant-$\Omega$ kinematic-balance no-go for this prescribed isolated two-body history, not as a closed isolated spiral certificate and not as a global non-circular no-go. The same rows give the variable-angular-rate target $\ddot\theta(0)/\dot\theta(0)^2\in[-1.0072833846320208,\ -1.007249363114164]$; [spiral-a1-nonconstant-time-law-chart](spiral-a1-nonconstant-time-law-chart.md) shows that the real continuation variable is the finite-memory integral $H(\Delta)=\omega_\ast\int_{-\Delta}^{0}d\phi/\dot\theta(\phi)$, and simple one-parameter continuations either lose the old roots or require negative $\Gamma$. [spiral-a1-retained-memory-profile](spiral-a1-retained-memory-profile.md) now gives a positive $C^2$ retained-root inverse-rate witness at $\theta=0$ with $B_r=-0.005994753659205029$, $T_0=-0.007585821333186402$, and $T_0/\Gamma=-1.0072663739809324$. [spiral-a1-retained-memory-transport-lemma](spiral-a1-retained-memory-transport-lemma.md) proves that the retained endpoint constraints cancel the first off-center derivative of $H/b$ at $\theta=0$, so the witness has no pointwise or first-order root-transport obstruction. [spiral-a1-finite-memory-transport-sampled-report](spiral-a1-finite-memory-transport-sampled-report.md), [spiral-a1-radial-transport-jet-report](spiral-a1-radial-transport-jet-report.md), and [spiral_a1_finite_memory_transport.py](spiral_a1_finite_memory_transport.py) now separate compact-profile failure from tangential transport, radial-jet failure for the chosen polynomial witness, and endpoint-slope cancellation for a positive sampled retained past profile. The compact $C^2$ baseline on $[-0.02,0.02]$ retains the $3+1$ roots with $\min |J_{\alpha,Q}|\approx1.5928176272253922$ but fails force balance with $\max|\mathcal R_T|\approx0.0030460301085433322$ and $\max|\mathcal R_R|\approx0.0015619859607697833$. The one-sided tangential-transport profile on $[0,0.02]$ retains the $3+1$ roots with $\min |J_{\alpha,Q}|\approx1.5990327127652662$, closes $\max|\mathcal R_T|\approx8.673617379884035\times10^{-18}$, leaves a radial obstruction $\max|\mathcal R_R^{\mathrm{tr}}|\approx0.0012313880360096457$, and has a stable near-turn slope $D_{0.0003125}\approx0.0685726853845603$ for the fixed witness. The endpoint-slope sensitivity row shows why this is not a class-wide no-go: the retained value and moment constraints do not determine all source-side endpoint slopes entering $B'_+(0)$ in $\left(\mathcal R_R^{\mathrm{tr}}\right)'_+(0)=B'_+(0)-(3a-2)T_0$. A sampled degree-14 endpoint-slope perturbation now preserves the retained endpoint and moment rows, keeps the past profile positive with sampled minimum about $0.652$, keeps the $3+1$ ledger and tangential transport on the tested collar, and reduces the smallest reported near-turn radial slope from about $0.0686$ to about $8.0\times10^{-5}$ in magnitude. The larger $[0,0.02]$ collar still leaves $\max|\mathcal R_R^{\mathrm{tr}}|\approx2.443507830688996\times10^{-4}$, so the endpoint-slope witness cancels the leading jet but does not close the finite collar. A degree-16 homogeneous finite-collar radial repair preserves those locked rows but only lowers the strict sampled larger-collar residual to $\max|\mathcal R_R^{\mathrm{tr}}|\approx2.439861159943147\times10^{-4}$. A degree-18 low-fidelity repair lowers the five-sample objective only to about $2.1102768870129383\times10^{-4}$, while the finite-collar linear-response diagnostic has sampled rank $5$ and predicts a much smaller Chebyshev residual before nonlinear replay returns about $2.110369844324743\times10^{-4}$. Trust-region sweeps at response steps $10^{-4}$ and $10^{-3}$ find no smaller bound with useful local tracking; at the smallest tested bounds, actual-versus-predicted tracking is only about $1.47\times10^{-3}$ and $2.88\times10^{-2}$ respectively. The next mathematical continuation is a variational response audit for the nonlinear transport/root map after endpoint-slope cancellation: derive or numerically integrate the true first variation of $p\mapsto(\mathcal R_R^{\mathrm{tr}}(\theta_i;p))_i$, including induced variation of $Q$, $\Delta_\alpha$, and the substituted radial row, before another repair search. Depends on: none.
+1. `spiral_branch_chart_test` — Certify whether any admissible variable-pitch
+   spiral roots realize negative weighted tangential drive with positive
+   Jacobian floors and finite memory depth, using the promoted variable-pitch
+   formulas, radial-turn inequality, and weighted tangential obstruction test.
+   Status: `active`; the circular, VP-1, fixed A1, nonconstant-time-law,
+   retained-memory, first-order transport, tangential-transport,
+   endpoint-slope-cancellation, and finite-collar repair packets are integrated
+   through [spiral-a1-radial-transport-jet-report](spiral-a1-radial-transport-jet-report.md)
+   and [spiral_a1_finite_memory_transport.py](spiral_a1_finite_memory_transport.py).
+   The current A1 state is not a fixed-witness radial-jet no-go and not an
+   isolated spiral certificate. Endpoint-slope cancellation gives a positive
+   sampled retained past profile that cancels the leading radial jet, but the
+   larger $[0,0.02]$ collar still leaves
+   $\max|\mathcal R_R^{\mathrm{tr}}|\approx2.443507830688996\times10^{-4}$.
+   Degree-16 and degree-18 homogeneous finite-collar repairs only marginally
+   lower the five-sample or strict replay residuals. The degree-18
+   finite-collar response diagnostic has sampled rank $5$, but nonlinear replay
+   and trust-region sweeps fail to track the Chebyshev prediction; at the
+   smallest tested bounds, actual-versus-predicted tracking is only about
+   $1.47\times10^{-3}$ and $2.88\times10^{-2}$. The variational-response audit
+   across $h=10^{-5},3\times10^{-5},10^{-4},3\times10^{-4},10^{-3}$ reports
+   unstable response matrices, singular-scale collapse from about
+   $1.395\times10^{-3}$ to $2.164\times10^{-5}$, and no useful small-bound
+   replay tracking. The apparent sampled rank-$5$ response is therefore
+   priority-only as a finite-difference artifact until a noise-controlled or
+   analytic tangent backend reproduces it. A two-level solver-noise refinement
+   smoke keeps fixed response steps stable at roughly the $7\%$ level across
+   refinement, but preserves the order-one response-step instability and failed
+   replay tracking. The next mathematical continuation is therefore the true
+   variational equation for the nonlinear transport/root map after
+   endpoint-slope cancellation: solve the coupled $\delta Q$,
+   $\delta\Delta_\alpha$, $\delta T_Q$, $\delta B_Q$, and
+   $\delta\mathcal R_R^{\mathrm{tr}}$ rows named in the analytic tangent target
+   before another repair search. The first semi-analytic sampled implementation
+   now gives effective rank $0$ at singular-value floor $10^{-9}$ while the
+   profile-level finite-difference response at $h=10^{-4}$ remains effective
+   rank $5$; the relative Frobenius mismatch is about $1.0$, so the old rank-$5$
+   response remains classified as a numerical artifact rather than a
+   repair-grade tangent. The response-noise replacement audit now classifies
+   the profile-level columns as `finite_difference_noise_artifact`: at
+   $h=10^{-4}$ and $10^{-3}$ the finite-difference matrices stay effective
+   rank $5$ while the analytic tangent stays effective rank $0$, the adjacent
+   Frobenius change is about $0.996$, and the relative mismatch to the analytic
+   tangent is about $1.0$. Profile-level finite-difference columns are disabled
+   as repair directions unless a future audit shows a stable response window,
+   analytic-tangent agreement, rank agreement, and meaningful replay tracking.
+   The second-order response audit then classifies the tested diagonal
+   quadratic response as `second_order_noise_artifact`: across
+   $a=0.0025,0.005,0.01,0.02$, $a^2\|Q_a\|_F$ stays near
+   $3\times10^{-8}$ while $\|Q_a\|_F$ collapses with amplitude, adjacent
+   second-order matrix changes remain order one, and the best nonlinear
+   improvement is about $7.03\times10^{-9}$ against a material-improvement
+   floor of about $2.11\times10^{-6}$. The next mathematical continuation is
+   obstruction-side. The mixed second-variation audit first expands the
+   executable test to six coordinate rays and six pair-sum rays, then checks the
+   full quadratic mixed basis of six coordinate, fifteen pair-sum, fifteen
+   pair-difference, and two aggregate rays at $a=0.01,0.02$, and finally screens
+   all $68$ current deterministic projective rays at $a=0.02$ for missed
+   finite-amplitude improvement. The widened result still reports
+   `mixed_second_order_noise_artifact`: mixed-term matrices change by order-one
+   factors across amplitudes, scaled mixed numerators stay near the
+   $10^{-8}$ residual-evaluation scale, pair-difference, aggregate, and
+   signed-combo probes do not beat the earlier pair-sum direction, and the best
+   mixed replay improvement remains about $1.52\times10^{-8}$, about
+   $0.00721$ of the material floor. The diagnostic now reports actual
+   ray-family counts and classifies mixed continuation from non-coordinate rays
+   rather than coordinate calibration rays. The controlled second-variation /
+   finite-amplitude remainder target is now staged in
+   [spiral-a1-second-variation-remainder-bound](spiral-a1-second-variation-remainder-bound.md):
+   the proof burden is to bound $R(p)-R(0)$ for all admissible retained-profile
+   perturbations in a declared class while preserving positivity, inactive
+   gaps, Jacobian floors, finite memory, tangential transport, and the sampled
+   $3+1$ retained ledger. The retained-root bound row is branch-chart
+   persistence input only: it narrows the admissible class for the remainder
+   packet, but the workstream remains priority-only until the transport,
+   branch-sum, substituted-radial, and admissibility rows combine into an
+   interval obstruction or expose a specific admissible finite-amplitude
+   channel. Depends on: none.
 2. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
 3. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
 
@@ -26,7 +103,7 @@ This file remains the control surface for the workstream. No sibling detailed pr
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
 | `circular_asymptotics` | This file and [circular-interval-certificate-report](circular-interval-certificate-report.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding and large-$\beta$ circular self-force asymptotics are extended beyond the current leading-order footholds. |
-| `spiral_branch_chart_test` | [spiral-branch-chart-certificate](spiral-branch-chart-certificate.md), [spiral-branch-chart-interval-report](spiral-branch-chart-interval-report.md), [spiral-vp1-current-interval-rows](spiral-vp1-current-interval-rows.json), [spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json), [spiral-a1-nonconstant-time-law-chart](spiral-a1-nonconstant-time-law-chart.md), [spiral-a1-retained-memory-profile](spiral-a1-retained-memory-profile.md), [spiral-a1-retained-memory-transport-lemma](spiral-a1-retained-memory-transport-lemma.md), [spiral-a1-finite-memory-transport-sampled-report](spiral-a1-finite-memory-transport-sampled-report.md), [spiral-a1-radial-transport-jet-report](spiral-a1-radial-transport-jet-report.md), [spiral_a1_finite_memory_transport.py](spiral_a1_finite_memory_transport.py), and [spiral_branch_chart_certificate.py](spiral_branch_chart_certificate.py) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | One admissible variable-pitch candidate reports partner and self roots, positive Jacobian floors, finite memory depth, radial-turn status, and weighted tangential-drive verdict with outward interval rows; for A1 specifically, the gate is now to certify or refute finite-collar radial closure after sampled endpoint-slope cancellation, while preserving the retained positive $C^2$ profile class, tangential transport, inactive gaps, Jacobian floors, finite memory, and the $3+1$ retained ledger. |
+| `spiral_branch_chart_test` | [spiral-branch-chart-certificate](spiral-branch-chart-certificate.md), [spiral-branch-chart-interval-report](spiral-branch-chart-interval-report.md), [spiral-vp1-current-interval-rows](spiral-vp1-current-interval-rows.json), [spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json), [spiral-a1-nonconstant-time-law-chart](spiral-a1-nonconstant-time-law-chart.md), [spiral-a1-retained-memory-profile](spiral-a1-retained-memory-profile.md), [spiral-a1-retained-memory-transport-lemma](spiral-a1-retained-memory-transport-lemma.md), [spiral-a1-finite-memory-transport-sampled-report](spiral-a1-finite-memory-transport-sampled-report.md), [spiral-a1-radial-transport-jet-report](spiral-a1-radial-transport-jet-report.md), [spiral-a1-second-variation-remainder-bound](spiral-a1-second-variation-remainder-bound.md), [spiral_a1_finite_memory_transport.py](spiral_a1_finite_memory_transport.py), and [spiral_branch_chart_certificate.py](spiral_branch_chart_certificate.py) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../dyadic-lock/dyadic-lock.md) | One admissible variable-pitch candidate reports partner and self roots, positive Jacobian floors, finite memory depth, radial-turn status, and weighted tangential-drive verdict with outward interval rows; for A1 specifically, the gate is now to certify or refute finite-collar radial closure after sampled endpoint-slope cancellation, while preserving the retained positive $C^2$ profile class, tangential transport, inactive gaps, Jacobian floors, finite memory, and the $3+1$ retained ledger. |
 | `lorentz_gr_bridge` | [lorentz-gr-bridge-handoff](lorentz-gr-bridge-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving tri-binary contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
 | `lorentz_test_residual_handoff` | [lorentz-test-residual-handoff](lorentz-test-residual-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [lorentz-invariance-test-suite](../cross-theory-mapping/lorentz-invariance-test-suite.md) | RMS, PPN, and SME-style residual rows are exported only after the Lorentz/GR bridge supplies one shared branch, clock, ruler, signal, and medium-response artifact. |
 
@@ -44,6 +121,42 @@ and defines the corresponding energy, momentum, and angular-momentum wake-histor
 This completion does not certify a branch or terminal label. Downstream consumers must still pull the increments back to their retained branch charts and prove closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ with the same root-ledger, memory-depth, and Jacobian-floor conditions used by the Master EOM. The corpus now states this as a concrete branch-chart conservation test rather than as an open handoff phrase: the required output is the retained-chart pullback of the three Noether totals, with exact wake-history charges separated from work-integral and torque-projection diagnostics.
 
 `spiral_turning_conditions` is also promoted into [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md). The corpus now contains the variable-pitch extension, corrected partner Jacobian, self-branch Frenet analogue, radial-turn inequality, weighted tangential obstruction test, normalized radial-row clarification that separates the branch sum $B_r$ from the independent force ratio $\Gamma$, and the fixed A1 retained-chart no-go: the prescribed constant-$\Omega$ radial kinematics fix $\Gamma$ and pass the radial turn, while the exact turn-center tangential residual excludes zero. The A1 rejection is now constructive: the same rows imply the local continuation condition $\ddot\theta(0)/\dot\theta(0)^2\in[-1.0072833846320208,\ -1.007249363114164]$ for a variable-angular-rate turn, the nonconstant chart packet shows that this local slope must be reconciled with the finite-memory root integral $H(\Delta)$, and the retained-memory profile packet gives a positive turn-center inverse-rate witness that satisfies those retained-root moment equations. The first-order transport lemma now proves that those endpoint constraints also cancel the first off-center derivative of $H/b$ at $\theta=0$, and the sampled finite-collar diagnostics now show that a one-sided future tangential-transport profile keeps the retained $3+1$ root ledger on $[0,0.02]$, closes the tangential residual to sampled precision, and leaves a nonzero leading radial jet for the chosen polynomial witness. The endpoint-slope cancellation packet then constructs a positive sampled retained past profile that cancels that leading jet while preserving the retained endpoint and moment rows, but the larger collar still leaves a nonzero radial residual; first degree-16 and degree-18 homogeneous finite-collar repairs only marginally lower that residual. The new finite-collar response diagnostic shows sampled linear rank but failed nonlinear replay at the required bounded step, and trust-region sweeps find no small bound with useful actual-versus-predicted tracking. The active priority is no longer to state the turn-center formulas, classify A1 as radial-blocked, check first-order root transport, merely solve the tangential transport equation, report only the endpoint radial residual, treat the fixed-witness radial-jet slope as a class-wide no-go, or merely show formal endpoint-slope sensitivity. It is to certify or refute finite-collar radial closure after endpoint-slope cancellation on the retained branch chart, with the immediate burden on the true variational response of the nonlinear transport/root map.
+
+The latest A1 finite-collar continuation adds a variational-response audit:
+after trust-region sweeps found no small bound with useful
+actual-versus-predicted tracking, the audit shows that the finite-difference
+matrices themselves are step-unstable. The immediate burden is now a
+noise-controlled or analytic variational backend for the nonlinear
+transport/root map, not another repair search in the same finite-difference
+basis. A first two-level refinement smoke keeps fixed response-step scales
+stable at roughly $7\%$ across numerical refinement but does not fix
+response-step instability or replay tracking, so the preferred next artifact is
+the analytic tangent transport/root equation. The target is now explicit:
+derive and implement the coupled $\delta Q$, $\delta\Delta_\alpha$,
+$\delta T_Q$, $\delta B_Q$, and $\delta\mathcal R_R^{\mathrm{tr}}$ rows for the
+endpoint-slope-cancelled retained chart. The first semi-analytic backend
+selects the disagreement outcome: it gives effective tangent rank $0$ while the
+profile-level finite-difference response remains effective rank $5$, so the
+previous response rank is rejected as a first-variation claim on this chart. A
+response-noise replacement audit now locks that into the control policy: the
+profile-level finite-difference columns fail step-stability, analytic-tangent
+agreement, rank agreement, and useful replay tracking, so they are not
+repair-grade directions on the tested endpoint-slope-cancelled collar. The
+remaining A1 continuation is therefore not another first-order finite-difference
+repair search; it is to determine whether the analytic rank-zero tangent is a
+structural first-order obstruction or whether second-order or finite-amplitude
+control can still move the radial residual. The first diagonal second-order
+audit stays obstruction-side: it finds no stable sampled quadratic response and
+no material nonlinear residual reduction, so it does not reopen A1 as a
+second-order finite-collar continuation target. The mixed second-variation
+audit then tests the cross-direction loophole and also stays obstruction-side:
+the initial pair-sum rays, the widened quadratic basis with pair-difference and
+aggregate rays, and the one-amplitude signed-combo replay screen produce no
+amplitude-stable mixed curvature or material nonlinear residual reduction. The
+mixed audit has now been consumed into a priority-only controlled
+second-variation / finite-amplitude remainder target: prove a residual envelope
+for all admissible retained-profile perturbations in a declared class, or
+identify the admissible finite-amplitude channel that prevents such a bound.
 
 ## Live Targets
 

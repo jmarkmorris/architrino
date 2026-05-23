@@ -177,7 +177,7 @@ This packet rejects only the rigid zero-offset fixed-speed row under the sampled
 4. a controlled same-source or fold-layer event row;
 5. a bounded-speed factor row that changes the force projection.
 
-The frozen-ledger speed-ODE companion adds one more narrow boundary: the rigid fixed-speed force ledger also fails the zero-mean tangent-forcing row, with period integral about $1.15740669293$ for every site. Its mean-split certificate identifies the analytic antipodal-partner positive drift and the sampled cross-binary pair cancellation. Therefore the fixed rigid ledger cannot be promoted merely by integrating a periodic speed factor while leaving the root, Jacobian, and force weights frozen. A genuine bounded-speed route must rebuild the live ledger.
+The frozen-ledger speed-ODE companion adds one more narrow boundary: the rigid fixed-speed force ledger also fails the zero-mean tangent-forcing row, with period integral about $1.15740669293$ for every site. Its mean-split certificate identifies the analytic antipodal-partner positive drift and the certified cross-binary phase anti-periodicity cancellation. Therefore the fixed rigid ledger cannot be promoted merely by integrating a periodic speed factor while leaving the root, Jacobian, and force weights frozen. A genuine bounded-speed route must rebuild the live ledger.
 
 The retained-branch certificate cannot consume this result as closure because force balance, action/Noether, event, stability, and observer-export rows are not closed. The proper retained-branch status remains:
 
