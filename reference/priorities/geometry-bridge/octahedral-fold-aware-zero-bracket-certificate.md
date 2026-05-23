@@ -263,6 +263,8 @@ $$
 
 The result is mathematically stronger than a sampled scalar zero because it identifies the remaining clock freedom. It also explains why this packet cannot certify an absolute clock row: the trace-period zero fixes $v=s/h$, not $s$ and $h$ separately.
 
+The direct successor [octahedral-fold-aware-dynamics-handoff](octahedral-fold-aware-dynamics-handoff.md) classifies the zero dynamically: it rejects fixed-speed pointwise tangential closure by a regular all-root witness and routes the candidate into the bounded-speed primitive row.
+
 ## Claim Boundary
 
 This packet certifies a period-integral zero bracket for the reduced fold-aware trace route. It is not an outward-rounded interval theorem for every coarea chart endpoint and it is not a retained branch. The remaining blockers are:
@@ -301,6 +303,7 @@ The executable diagnostic [octahedral-fold-aware-zero-bracket-certificate.mjs](.
 - the endpoint sign certificate;
 - the simple-zero transversality row;
 - the projective zero-ray clock-scale gauge row;
+- the fixed-speed pointwise obstruction successor packet;
 - the zero-speed-ratio enclosure and bisection estimate;
 - the non-retention verdict.
 

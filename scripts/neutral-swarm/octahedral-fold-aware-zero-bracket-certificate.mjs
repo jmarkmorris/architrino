@@ -320,6 +320,8 @@ export function buildOctahedralFoldAwareZeroBracketCertificate(options = {}) {
       "reference/priorities/geometry-bridge/octahedral-fold-aware-multiroot-period-integral.md",
     priority_packet:
       "reference/priorities/geometry-bridge/octahedral-fold-aware-zero-bracket-certificate.md",
+    successor_packet:
+      "reference/priorities/geometry-bridge/octahedral-fold-aware-dynamics-handoff.md",
     scan_parameters: {
       speed_constraint: "none; the bracket is a certified positive speed-ratio zero enclosure",
       zero_speed_ratio_bracket: zeroSpeedRatioBracket.map(formatNumber),
@@ -511,6 +513,19 @@ export function validateOctahedralFoldAwareZeroBracketCertificate(artifact) {
     artifact?.clock_scale_gauge_lemma?.status ===
       "projective-zero-ray-certified-clock-normalization-open",
     "certificate must record the projective zero-ray clock gauge row",
+    errors
+  );
+  assertField(
+    artifact?.clock_scale_gauge_lemma?.certifies_absolute_clock_period === false,
+    "certificate must leave absolute clock period uncertified",
+    errors
+  );
+  assertField(
+    artifact?.artifact_claim?.certifies_speed_clock_length === false &&
+      artifact?.artifact_claim?.certifies_bounded_speed_live_ledger === false &&
+      artifact?.artifact_claim?.certifies_action_noether_event_rows === false &&
+      artifact?.artifact_claim?.certifies_observer_export === false,
+    "artifact must leave speed clock/length, bounded-speed live ledger, action/Noether/event rows, and observer export uncertified",
     errors
   );
   assertField(
