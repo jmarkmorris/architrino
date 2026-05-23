@@ -417,7 +417,7 @@ export function buildOctahedralPhaseOffsetScan(options = {}) {
       retained_branch: false,
       retention: "not_retained",
       first_failure_status: "sampled-tangential-residual-open",
-      master_first_failure_status: "support-complete-root-ledger-open",
+      master_first_failure_status: "interval-payload-open",
       status_note:
         "This is a sampled grid search over rigid phase offsets. It is a screening artifact only and does not close tangential, radial, root-certification, action, event, or Noether rows.",
     },
@@ -463,8 +463,8 @@ export function validateOctahedralPhaseOffsetScan(artifact) {
   assertField(Array.isArray(artifact.scan_summary?.best_rows), "best_rows must be an array", errors);
   assertField(artifact.scan_summary.best_rows.length > 0, "best_rows must not be empty", errors);
   assertField(
-    artifact.result?.master_first_failure_status === "support-complete-root-ledger-open",
-    "master first failure must remain support-complete-root-ledger-open",
+    artifact.result?.master_first_failure_status === "interval-payload-open",
+    "master first failure must remain interval-payload-open",
     errors
   );
 

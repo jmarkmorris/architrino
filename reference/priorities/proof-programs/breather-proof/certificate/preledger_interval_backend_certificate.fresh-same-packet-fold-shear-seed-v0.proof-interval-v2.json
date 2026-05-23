@@ -1,0 +1,320 @@
+{
+  "schema": "breather-proof-interval-backend-certificate-v2",
+  "packet_id": "fresh-same-packet-fold-shear-seed-v0",
+  "refinement_id": "fresh-same-packet-fold-shear-seed-v0-proof-interval-trig-range-v2",
+  "status": "proof_interval_backend_trig_range_certificate_fail_closed",
+  "theorem_target": "Null-Coordinate Causal Pre-Ledger",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "source_artifacts": {
+    "contract": {
+      "path": "fresh_same_packet_fold_shear_seed.v0.json",
+      "sha256": "322a6baf6e36360890b3e1c67f3781e8cd55ba9fb83d576a696e47371e43492b",
+      "numeric_token_count": 28,
+      "numeric_token_samples": [
+        "6.28318530718",
+        "0.02",
+        "1.2447644729563",
+        "-0.0876176690331297",
+        "0.0876176690331297",
+        "1",
+        "0.02",
+        "0.05",
+        "1",
+        "0.0625",
+        "0.12758361765",
+        "0.33241638235"
+      ]
+    },
+    "phi_cyc": {
+      "path": "phi_cyc.fresh-same-packet-fold-shear-seed-v0.json",
+      "sha256": "8c1453a9c24fead14a57bc8eec8ced74bb277b09efcce09d30046db7b42bb52c",
+      "numeric_token_count": 222,
+      "numeric_token_samples": [
+        "6.28318530718",
+        "1",
+        "0.02",
+        "0.05",
+        "1",
+        "0.0625",
+        "6.28318530718",
+        "1",
+        "0.02",
+        "0.05",
+        "1",
+        "0.0625"
+      ]
+    },
+    "mesh": {
+      "path": "mesh.fresh-same-packet-fold-shear-seed-v0.json",
+      "sha256": "6870a4d916203e2bc8d30f16f9665cbc4f17315a800f82cac948914f0265a209",
+      "numeric_token_count": 275,
+      "numeric_token_samples": [
+        "6.28318530718",
+        "1",
+        "0.02",
+        "0.05",
+        "1",
+        "0.0625",
+        "6.28318530718",
+        "0.02",
+        "1.2447644729563",
+        "-0.0876176690331297",
+        "0.0876176690331297",
+        "0.02"
+      ]
+    },
+    "input_screen": {
+      "path": "causal_preledger_input_screen.fresh-same-packet-fold-shear-seed-v0.json",
+      "sha256": "ce96eda158429f1d6f3dc070f1dfcefb2a7b50f18aeeee165ad06a790188e86a",
+      "numeric_token_count": 2495,
+      "numeric_token_samples": [
+        "6.28318530718",
+        "1",
+        "0.02",
+        "0.05",
+        "1",
+        "0.0625",
+        "6.28318530718",
+        "0.02",
+        "1.2447644729563",
+        "-0.0876176690331297",
+        "0.0876176690331297",
+        "1"
+      ]
+    }
+  },
+  "exact_decimal_intake": {
+    "method": "All JSON number tokens are wrapped before JSON.parse and converted from decimal lexemes to reduced BigInt rationals before row classification.",
+    "binary64_number_use": "none_for_certified_row_endpoints"
+  },
+  "arithmetic_backend": {
+    "language": "JavaScript",
+    "integer_type": "BigInt",
+    "rational_form": "reduced signed numerator / positive denominator",
+    "endpoint_policy": "exact rational lower and upper endpoints; row accepted only by strict rational interval disjointness"
+  },
+  "period_policy": {
+    "period_T_cyc_lexeme": "6.28318530718",
+    "period_T_cyc_q": {
+      "num": "314159265359",
+      "den": "50000000000"
+    },
+    "field_speed_c_f_q": {
+      "num": "1",
+      "den": "1"
+    },
+    "note": "This v2 sidecar treats the packet decimal T_cyc as the exact period token for time ranges. The rational pi interval is used only for trigonometric enclosure of X_delta, not as a replacement for the packet period token."
+  },
+  "pi_certificate": {
+    "method": "Classical rational enclosure 333/106 < pi < 355/113 used as a conservative priority-side pi bracket for trig range enclosures.",
+    "pi_interval_q": {
+      "lo": {
+        "num": "333",
+        "den": "106"
+      },
+      "hi": {
+        "num": "355",
+        "den": "113"
+      },
+      "display": [
+        "3.141509433962264",
+        "3.141592920353982"
+      ]
+    },
+    "width_q": {
+      "num": "1",
+      "den": "11978"
+    },
+    "width_display": "1/11978"
+  },
+  "trig_enclosure_method": {
+    "argument_reduction": "Normalize q modulo 1, reduce 2*pi*q to the nearest quarter-turn, and evaluate sine/cosine on a residual interval with |residual angle| <= pi/4.",
+    "taylor_terms": {
+      "sin": 5,
+      "cos": 5
+    },
+    "remainder_bound": "Absolute Taylor tail bounded by first omitted term divided by 1-r, where r <= M^2/((d+1)(d+2)) and M is the rational maximum absolute reduced angle.",
+    "subdivision_rule": "Each mesh interval is split by uniform rational subdivisions plus phase-wrap, half-period, bump-support endpoint, and bump-maximum breakpoints before null-coordinate hulls are formed.",
+    "subdivisions_per_mesh_interval": 32
+  },
+  "x_delta_definition": {
+    "formula": "X_delta(theta)=A*cos(2*pi*(theta+delta))+epsilon*H(theta+delta)",
+    "bump_formula": "psi_A(theta)=sin^2(pi*(theta-L_A)/(R_A-L_A)) on the support interval and zero outside",
+    "half_period_antisymmetry": "H(theta+1/2)=-H(theta)",
+    "coefficients": {
+      "formula": "|X_delta(theta)| <= A + epsilon * sum_i |h_i|",
+      "proof_scope": "Uses |cos| <= 1 and 0 <= psi_i <= 1 on first-half arcs, with half-period antisymmetry preserving the same absolute bound. This does not use trigonometric interval enclosures and therefore certifies only coarse time-separated range-empty rows.",
+      "amplitude_source": "phi_cyc.fresh-same-packet-fold-shear-seed-v0.json:basis.coefficients.A",
+      "amplitude_lexeme": "1.25",
+      "amplitude_q": {
+        "num": "5",
+        "den": "4"
+      },
+      "epsilon_lexeme": "0.0625",
+      "epsilon_q": {
+        "num": "1",
+        "den": "16"
+      },
+      "witness_terms": [
+        {
+          "basis": "h_A0",
+          "coefficient_lexeme": "0.433491813815",
+          "coefficient_q": {
+            "num": "86698362763",
+            "den": "200000000000"
+          },
+          "abs_coefficient_q": {
+            "num": "86698362763",
+            "den": "200000000000"
+          },
+          "theta_range_lexemes": [
+            "0",
+            "0.14758361765"
+          ]
+        },
+        {
+          "basis": "h_A1",
+          "coefficient_lexeme": "-0.556350501775",
+          "coefficient_q": {
+            "num": "-22254020071",
+            "den": "40000000000"
+          },
+          "abs_coefficient_q": {
+            "num": "22254020071",
+            "den": "40000000000"
+          },
+          "theta_range_lexemes": [
+            "0.14758361765",
+            "0.35241638235"
+          ]
+        },
+        {
+          "basis": "h_A2",
+          "coefficient_lexeme": "-1",
+          "coefficient_q": {
+            "num": "-1",
+            "den": "1"
+          },
+          "abs_coefficient_q": {
+            "num": "1",
+            "den": "1"
+          },
+          "theta_range_lexemes": [
+            "0.35241638235",
+            "0.5"
+          ]
+        }
+      ],
+      "witness_abs_sum_q": {
+        "num": "198984231559",
+        "den": "100000000000"
+      },
+      "witness_abs_sum_display": "1.98984231559",
+      "shear_bound_q": {
+        "num": "198984231559",
+        "den": "1600000000000"
+      },
+      "shear_bound_display": "0.124365144724375",
+      "x_abs_bound_q": {
+        "num": "2198984231559",
+        "den": "1600000000000"
+      },
+      "x_abs_bound_display": "1.374365144724375",
+      "simple_rational_ceiling_q": {
+        "num": "11",
+        "den": "8"
+      },
+      "simple_rational_ceiling_display": "1.375",
+      "simple_rational_ceiling_relation": "x_abs_bound < 11/8"
+    }
+  },
+  "x_bound_certificate": {
+    "formula": "|X_delta(theta)| <= A + epsilon * sum_i |h_i|",
+    "proof_scope": "Uses |cos| <= 1 and 0 <= psi_i <= 1 on first-half arcs, with half-period antisymmetry preserving the same absolute bound. This does not use trigonometric interval enclosures and therefore certifies only coarse time-separated range-empty rows.",
+    "amplitude_source": "phi_cyc.fresh-same-packet-fold-shear-seed-v0.json:basis.coefficients.A",
+    "amplitude_lexeme": "1.25",
+    "amplitude_q": {
+      "num": "5",
+      "den": "4"
+    },
+    "epsilon_lexeme": "0.0625",
+    "epsilon_q": {
+      "num": "1",
+      "den": "16"
+    },
+    "witness_terms": [
+      {
+        "basis": "h_A0",
+        "coefficient_lexeme": "0.433491813815",
+        "coefficient_q": {
+          "num": "86698362763",
+          "den": "200000000000"
+        },
+        "abs_coefficient_q": {
+          "num": "86698362763",
+          "den": "200000000000"
+        },
+        "theta_range_lexemes": [
+          "0",
+          "0.14758361765"
+        ]
+      },
+      {
+        "basis": "h_A1",
+        "coefficient_lexeme": "-0.556350501775",
+        "coefficient_q": {
+          "num": "-22254020071",
+          "den": "40000000000"
+        },
+        "abs_coefficient_q": {
+          "num": "22254020071",
+          "den": "40000000000"
+        },
+        "theta_range_lexemes": [
+          "0.14758361765",
+          "0.35241638235"
+        ]
+      },
+      {
+        "basis": "h_A2",
+        "coefficient_lexeme": "-1",
+        "coefficient_q": {
+          "num": "-1",
+          "den": "1"
+        },
+        "abs_coefficient_q": {
+          "num": "1",
+          "den": "1"
+        },
+        "theta_range_lexemes": [
+          "0.35241638235",
+          "0.5"
+        ]
+      }
+    ],
+    "witness_abs_sum_q": {
+      "num": "198984231559",
+      "den": "100000000000"
+    },
+    "witness_abs_sum_display": "1.98984231559",
+    "shear_bound_q": {
+      "num": "198984231559",
+      "den": "1600000000000"
+    },
+    "shear_bound_display": "0.124365144724375",
+    "x_abs_bound_q": {
+      "num": "2198984231559",
+      "den": "1600000000000"
+    },
+    "x_abs_bound_display": "1.374365144724375",
+    "simple_rational_ceiling_q": {
+      "num": "11",
+      "den": "8"
+    },
+    "simple_rational_ceiling_display": "1.375",
+    "simple_rational_ceiling_relation": "x_abs_bound < 11/8"
+  },
+  "trig_enclosure_status": "used_for_row_specific_range_empty_rows_only; derivative, simple-root, and fold-layer certificates remain absent"
+}

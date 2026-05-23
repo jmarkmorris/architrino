@@ -1,6 +1,6 @@
 # Octahedral Force-Residual Diagnostic
 
-Promotion status: `priority-only`. This packet records the executable sampled force-residual diagnostic for the rigid octahedral carrier from [../shell-swarm/octahedral-carrier-worked-example.md](../shell-swarm/octahedral-carrier-worked-example.md). It uses the sampled root ledger from `scripts/neutral-swarm/octahedral-root-ledger.mjs` as input evidence, but it does not certify the all-pairs root ledger and does not retain a branch.
+Promotion status: `priority-only`. This packet records the executable sampled force-residual diagnostic for the rigid octahedral carrier from [../shell-swarm/octahedral-carrier-worked-example.md](../shell-swarm/octahedral-carrier-worked-example.md). It consumes the certified rigid-octahedral all-pairs root ledger from `scripts/neutral-swarm/octahedral-root-ledger.mjs`, but it does not retain a branch.
 
 Run the diagnostic with:
 
@@ -118,6 +118,8 @@ $$
 
 The diagnostic is intentionally a fixed-speed slice. It does not solve the normal equation, speed ODE, action row, Noether row, or event ledger.
 
+The companion frozen-ledger speed-ODE screen is [octahedral-speed-ode-diagnostic.md](octahedral-speed-ode-diagnostic.md). It reuses the same scalar row $\mathbf{T}_i\cdot\widetilde{\mathbf{F}}_i$ as the speed forcing and tests whether it has the closed-period mean required by a periodic speed primitive while the rigid root and force ledger remain frozen.
+
 ---
 
 ## 3. Current Executable Verdict
@@ -126,12 +128,12 @@ With the default $181$ phase samples and default delay root search, the current 
 
 | Row | Current executable result |
 | --- | --- |
-| Sampled root dependency | `sampled-root-ledger-diagnostic-passed` |
+| Root dependency | `certified-root-ledger-dependency-passed` |
 | Force residual diagnostic | `sampled_failed` |
 | Rigid carrier status | `rejected_by_sampled_tangential_residual` |
 | Retention | `not_retained` |
 | Diagnostic first failure | `sampled-tangential-residual-failed` |
-| Master first failure | `support-complete-root-ledger-open` |
+| Master first failure | `closed-rejected:rigid-octahedral-fixed-speed-neutral-row` |
 
 The current sampled summary is approximately
 
@@ -151,7 +153,7 @@ $$
 1.098.
 $$
 
-Thus the rigid zero-offset octahedral carrier is useful as a negative seed. It passes sampled all-pairs root counting, but fails the sampled fixed-speed tangential force row by an order-one margin.
+Thus the rigid zero-offset octahedral carrier is useful as a negative seed. It has a certified all-pairs root ledger, but fails the sampled fixed-speed tangential force row by an order-one margin.
 
 The no-go closure is sharpened in [rigid-octahedral-fixed-speed-no-go.md](rigid-octahedral-fixed-speed-no-go.md). At the single required node $(i,\theta)=((1,+),0)$, the witness artifact gives
 
@@ -175,7 +177,9 @@ This packet rejects only the rigid zero-offset fixed-speed row under the sampled
 4. a controlled same-source or fold-layer event row;
 5. a bounded-speed factor row that changes the force projection.
 
-The retained-branch certificate cannot consume this result as closure because the root ledger is sampled rather than interval-certified. The proper retained-branch status remains:
+The frozen-ledger speed-ODE companion adds one more narrow boundary: the rigid fixed-speed force ledger also fails the zero-mean tangent-forcing row, with period integral about $1.15740669293$ for every site. Its mean-split certificate identifies the analytic antipodal-partner positive drift and the certified cross-binary phase anti-periodicity cancellation. Therefore the fixed rigid ledger cannot be promoted merely by integrating a periodic speed factor while leaving the root, Jacobian, and force weights frozen. A genuine bounded-speed route must rebuild the live ledger.
+
+The retained-branch certificate cannot consume this result as closure because force balance, action/Noether, event, stability, and observer-export rows are not closed. The proper retained-branch status remains:
 
 $$
 \texttt{not\_retained}.

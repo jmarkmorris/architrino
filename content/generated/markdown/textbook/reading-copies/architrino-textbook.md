@@ -4892,7 +4892,70 @@ $$
 $$
 Thus the variable-rate A1 continuation is a finite-memory time-law problem: the local angular-deceleration target must be reconciled with inverse-rate averages over the delayed branch intervals. Simple one-parameter extensions of the local slope do not preserve A1; they either lose the retained roots or move to a branch ledger with the wrong radial sign for positive $\Gamma$.
 
-This finite-memory condition is nevertheless not an algebraic no-go at the turn center. A positive retained-root inverse-rate profile can be chosen so that the old A1 delayed offsets keep $H(\Delta_\alpha)=\Delta_\alpha$, the active source-speed factors return to their constant-rate values at those offsets, and the same branch sums give $T_0(C_{\mathrm{A1}})/\Gamma_\ast$ equal to the required local angular-rate slope. Such a profile is a branch-chart search target, not an orbit certificate: the active roots, inactive gaps, source-speed Jacobians, finite-memory depth, and root-transport rows still have to be recomputed on an interval for the chosen nonconstant time law.
+This finite-memory condition is nevertheless not an algebraic no-go at the turn center. In past-lag coordinates $x=-\phi$, define
+$$
+q(x)=\frac{\omega_\ast}{\dot\theta(-x)}.
+$$
+A retained-root profile must satisfy both moment and endpoint constraints,
+$$
+\int_0^{\Delta_\alpha}\bigl(q(x)-1\bigr)\,dx=0,
+\qquad
+q(\Delta_\alpha)=1,
+$$
+for each retained A1 delay. Because the local target gives $q'(0)=T_0(C_{\mathrm{A1}})/\Gamma_\ast<0$, the inverse-rate profile dips below $1$ just behind the turn and must compensate by rising above $1$ before the first retained delay. A positive retained-root inverse-rate profile can satisfy these constraints, keep the active source-speed factors at their constant-rate values at the retained offsets, and make the same branch sums give the required local angular-rate slope.
+
+The first off-center transport row is also fixed at the turn center. If $q_\theta(u)=\dot\theta(\theta)/\dot\theta(\theta-u)$ and $H(\theta,\Delta)=\int_0^\Delta q_\theta(u)\,du$, then the retained endpoint constraints imply
+$$
+\left.\partial_\theta H(\theta,\Delta_\alpha)\right|_{\theta=0}
+=
+k_\ast\Delta_\alpha,
+\qquad
+k_\ast=\frac{T_0(C_{\mathrm{A1}})}{\Gamma_\ast}.
+$$
+Since $b'(\theta)/b(\theta)=k_\ast$ at the turn center, the first $\theta$-derivative of $H/b$ cancels at the retained endpoints. Thus the retained-memory witness inherits the constant-chart first-order root-transport identity at $\theta=0$. This is still only a branch-chart search target, not an orbit certificate: the active roots, inactive gaps, source-speed Jacobians, finite-memory depth, generalized root-transport residuals, and force-balance rows still have to be recomputed on a finite $\theta$ interval for the chosen nonconstant time law.
+
+The finite-collar target can be stated without adding a new law. Let
+$$
+Q(\theta)=\frac{\omega_\ast}{\dot\theta(\theta)},
+\qquad
+\sigma(\theta)=\frac{r(\theta)}{r_\ast},
+\qquad
+K_Q(\theta,\Delta)=\int_{\theta-\Delta}^{\theta}Q(\phi)\,d\phi.
+$$
+Then the transported retained-root equation is
+$$
+F_{\alpha,Q}(\theta,\Delta)
+=
+\Lambda_\alpha(\theta,\Delta)
+-
+\frac{K_Q(\theta,\Delta)}{b_\ast\sigma(\theta)}=0.
+$$
+At each retained endpoint, $K_Q(0,\Delta_\alpha)=\Delta_\alpha$ and $\partial_\theta K_Q(0,\Delta_\alpha)=0$, so the first memory drift begins at second order in $\theta$. The branch-chart certificate must bound that drift while satisfying the tangential transport equation for $Q$ and the radial residual on the same active root ledger.
+
+A local convergence diagnostic can sharpen this finite-collar target, but it
+does not by itself fix the full continuation class. After the tangential row is
+imposed on the retained ledger, the transported radial row should be tested
+through the leading one-sided jet of $\mathcal R_R^{\mathrm{tr}}(\theta)$ near
+$\theta=0$. For a specified tangential-transport profile, the jet coefficient is
+$$
+\left(\mathcal R_R^{\mathrm{tr}}\right)'_+(0)
+=
+B'_+(0)-(3a-2)T_0.
+$$
+The retained endpoint and moment constraints do not yet fix all source-side
+endpoint-slope data entering $B'_+(0)$. A nonzero sampled coefficient is
+therefore a local obstruction candidate for that profile, not a theorem that
+every positive $C^2$ variable-rate continuation fails.
+
+A sampled endpoint-slope construction sharpens the same caution. By perturbing
+the retained past inverse-rate profile while preserving the retained endpoint
+values, moment rows, compact $C^2$ tail, and center slope, one can cancel the
+leading affine radial jet at sampled level and still keep a positive retained
+past profile with the expected $3+1$ active-root ledger after tangential
+transport. This does not certify A1 closure. It moves the theorem-grade burden
+to finite-collar control after endpoint-slope cancellation: positivity,
+inactive gaps, Jacobian floors, finite memory, tangential transport, and the
+full radial residual must all be bounded on the same branch chart.
 
 ---
 
@@ -4935,7 +4998,7 @@ Several formerly open checks are now footholds rather than blank targets:
 
 1. **Partner-only circular orbit with causal delay ($v<c_f$)** now has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
 2. **Uniform circular self-hit ($v>c_f$)** now has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, and large-$\beta$ self-hit estimates.
-3. **Variable-pitch spiral retained-chart benchmarks** now expose both branch-chart rows and prescribed-history compatibility rows. The fixed A1 constant-$\Omega$ history has certified active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows; its exact radial kinematics fix $\Gamma$ in the accepted normalization and pass the minimum-turn inequality, while the exact turn-center tangential residual excludes zero. A1 is therefore a replayable constant-$\Omega$ kinematic-balance no-go for that prescribed isolated two-body history, not a closure result and not a global no-go for non-circular histories. The same calculation turns the failure into a local continuation equation: a variable-angular-rate A1 turn would need $\ddot\theta(0)/\dot\theta(0)^2\in[-1.0072833846320208,\ -1.007249363114164]$ before the delayed-root chart is recomputed for the new time law. The recomputation is now sharpened as a finite-memory problem: the root equation uses $H(\Delta)=\omega_\ast\int_{-\Delta}^{0}d\phi/\dot\theta(\phi)$, so any viable nonconstant A1 history must match branch-memory averages as well as the local turn slope. A retained-root inverse-rate profile can satisfy those turn-center memory equations, so the remaining burden is interval transport of that profile into a certified branch chart rather than a pointwise algebraic obstruction.
+3. **Variable-pitch spiral retained-chart benchmarks** now expose both branch-chart rows and prescribed-history compatibility rows. The fixed A1 constant-$\Omega$ history has certified active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows; its exact radial kinematics fix $\Gamma$ in the accepted normalization and pass the minimum-turn inequality, while the exact turn-center tangential residual excludes zero. A1 is therefore a replayable constant-$\Omega$ kinematic-balance no-go for that prescribed isolated two-body history, not a closure result and not a global no-go for non-circular histories. The same calculation turns the failure into a local continuation equation: a variable-angular-rate A1 turn would need $\ddot\theta(0)/\dot\theta(0)^2\in[-1.0072833846320208,\ -1.007249363114164]$ before the delayed-root chart is recomputed for the new time law. The recomputation is now sharpened as a finite-memory problem: the root equation uses $H(\Delta)=\omega_\ast\int_{-\Delta}^{0}d\phi/\dot\theta(\phi)$, so any viable nonconstant A1 history must match branch-memory averages as well as the local turn slope. A retained-root inverse-rate profile can satisfy those turn-center memory equations, its endpoint constraints cancel the first off-center derivative of $H/b$ at $\theta=0$, and sampled endpoint-slope freedom can cancel the leading transported radial jet. The remaining burden is finite-interval transport and radial control of that profile class inside a certified branch chart rather than a pointwise or first-order algebraic obstruction.
 
 The remaining analytic targets are sharper:
 
@@ -31728,7 +31791,7 @@ The present chapter sits between four existing layers:
 
 1. the exact delayed equations in [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md),
 2. the topological branch formalism in [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md),
-3. the reduced return-map success in [1D Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md),
+3. the reduced return-map architecture in [1D Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md),
 4. the higher-dimensional program statement in [Master-Equation Breather Program](../../../../markdown/aaa/proof-programs/master-equation-breather.md).
 
 The role of this chapter is narrower than the full breather program. It does not attempt immediate many-body closure. It focuses on the first planar binary regime in which line-order arguments fail, tangential escape becomes real, and branch topology must be controlled in tandem with radial recapture rather than in a separate later chapter.
@@ -32016,9 +32079,9 @@ The next sequence should be short and disciplined.
 
 That order matters. Without a transverse seed packet, the return map is not well-defined. Without local cone control, the branch atlas is not stable enough to transport. Without bounded fold transit, the self-hit mechanism is not mathematically usable. Without a radial-turnaround inequality, no planar breather can exist.
 
-##### Why This Is the Best Next Closure Target
+##### Why This Is the Best Queued Planar Target
 
-This chapter is the top bottleneck because it is upstream of several attractive but softer narratives.
+After the collinear certificate either passes or produces a precise obstruction that planar geometry is meant to resolve, this chapter is the top higher-dimensional bottleneck because it is upstream of several attractive but softer narratives.
 
 - It is upstream of the terminal aligned-mode story in [Mapping the Planck Scale to the Nested Shell Swarm Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md).
 - It is upstream of the planar-lock and branch-selection story in [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md).
@@ -32048,6 +32111,8 @@ This chapter uses three swarm types:
 | **neutral swarm** | The broad six-architrino neutral case before any required binary grouping or radial organization. | Charge balance and causal-return bookkeeping. |
 | **shell swarm** | A neutral swarm whose six architrino paths remain in a controlled radial support band. | Radial support control, with near-antipodality only as an optional constraint. |
 | **nested shell swarm** | A shell swarm with three ordered radial support bands. | The old three-layer picture; exact binaries are an additional proof assumption, not a separate swarm type. |
+
+These definitions name case structure, not retained-branch existence. A neutral swarm requires six-body polarity balance and causal-return bookkeeping; a shell swarm adds radial support and recovery residuals; a nested shell swarm adds ordered support bands. Exact binary nesting, stable all-pairs roots, and observer-export behavior are theorem targets that must be certified by the branch ledger rather than read back into the definition.
 
 Older chapters in the corpus use **Noether swarm**, **nested shell swarm**, and **nested binary** for material that usually belongs to the nested shell swarm case. This chapter treats that structure as a special case of the broader Noether swarm class. The downstream corpus still mostly describes the nested shell swarm and has not yet been generalized; the older terms should therefore be read as nested shell swarm terminology unless a later page explicitly promotes the more general swarm case. The swarm's dynamic envelope geometry is developed separately in [the nested shell swarm geometry chapter](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), while metric-level translation belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
@@ -32087,6 +32152,97 @@ X_i(t)=Y_i(\lambda_i(t)),
 $$
 
 The bounded speed factor $\nu_i(t)$ is the place where speed-lapse behavior enters the architecture. A branch may temporarily push an architrino over a local hinge into a self-hit mode, but an admissible neutral swarm must still return to a closed causal ledger within the branch's recovery tolerance. The neutral swarm therefore allows changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to three exact binaries.
+
+#### Retained-Branch Certificate Target
+
+The present neutral swarm claim is a theorem target, not a retained-branch result. A candidate branch $B$ over a test window $W$ is retained only if the required rows close on one ledger identity. The master certificate can be summarized as
+
+$$
+\mathsf{R}_{\mathrm{NS}}(B,W)
+=
+\left(
+\mathsf{Inventory},
+\mathsf{Curves}^{\nu},
+\mathsf{Support},
+\mathsf{Root}^{\nu},
+\mathsf{Tail}^{\nu},
+\mathsf{Dynamics}^{\nu},
+\mathsf{Action}_{\Gamma}^{\nu},
+\mathsf{Noether}^{\nu},
+\mathsf{Event}^{\nu},
+\mathsf{Stability}^{\nu},
+\mathsf{Convergence},
+\mathsf{Status}
+\right).
+$$
+
+The corresponding retention predicate is
+
+$$
+\mathrm{Retain}_{\mathrm{NS}}(B,W)
+\Longleftrightarrow
+P_{\mathrm{inventory}}
+\wedge
+P_{\mathrm{curves}}
+\wedge
+P_{\mathrm{support}}
+\wedge
+P_{\mathrm{root}}
+\wedge
+P_{\mathrm{tail}}
+\wedge
+P_{\mathrm{dyn}}
+\wedge
+P_{\Gamma}
+\wedge
+P_{\mathrm{Noether}}
+\wedge
+P_{\mathrm{event}}
+\wedge
+P_{\mathrm{stab}}
+\wedge
+P_{\mathrm{conv}}.
+$$
+
+Every predicate in this conjunction must use the same source-pair policy, same-source policy, memory depth, support descriptor, action convention, event interval, and inventory ledger. If any row changes those conventions, the status is a ledger mismatch rather than a retention result.
+
+The root row begins with all ordered distinct source pairs,
+
+$$
+\Pi_{\mathrm{all}}
+=
+\{(i,j)\in I\times I:i\ne j\},
+\qquad
+|\Pi_{\mathrm{all}}|=30.
+$$
+
+The $3$ attractive and $2$ repellent source-site counts for each receiver are inventory facts, not a compressed force law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, and line-of-action vectors for these ordered pairs. A shell swarm or nested shell swarm can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
+
+The certificate should report the first blocking row as
+
+$$
+\mathsf{F}_{\mathrm{NS}}(B,W)
+=
+\left(
+\mathrm{first\_failed\_row},
+\mathrm{ledger\_id},
+\mathrm{margin},
+\mathrm{blocking\_packet},
+\mathrm{repair\_or\_rejection}
+\right).
+$$
+
+Rows through convergence block branch retention. Case-reduction and observer-export rows classify downstream structure only after the required neutral rows close. Therefore a favorable Lorentz, photon, topology, mass-map, or shell-geometry diagnostic cannot rescue an open root, tail, dynamics, action, event, stability, or convergence row.
+
+Current fixed-speed octahedral diagnostics have produced scoped negative results. For the rigid zero-offset octahedral carrier, the all-pairs causal-root ledger is certified for all $30$ ordered distinct source pairs, with one positive-delay root per row, support-complete memory depth $h_{\mathrm{mem}}=2$, and a positive Jacobian floor. This root-ledger result does not retain the branch. The rigid zero-offset fixed-speed neutral row has a certified nonzero tangential residual at the receiver node $((1,+),0)$,
+
+$$
+\widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
+\in
+[0.07393815228,0.07393815232],
+$$
+
+so that narrow branch chart is rejected. The diagnostic family also rejects several overreads: the ordinary same-source positive-delay rescue is absent under the rigid exact-$c_f$ circular convention, inventory attraction bias does not imply force closure, resolved positive-delay root rows do not imply force closure, and sampled phase or polarity-phase improvements do not imply retention. These are negative results for rigid fixed-speed octahedral hypotheses, not rejections of the broader neutral swarm, shell swarm, nested shell swarm, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
 
 #### Shell Swarm
 
@@ -32579,7 +32735,7 @@ The chapter should therefore be read as the stable dynamics layer beneath the ca
 
 #### Causal-Closure Certificate Target
 
-The rest-mass, moving-deformation, photon, observer-export, and event-ledger rows should be populated by one retained branch record, not by separately tuned fits. For a retained nested shell swarm branch class $q$ over a test window $W$, the shared certificate target is
+The rest-mass, moving-deformation, photon, observer-export, and event-ledger rows should be populated by one retained branch record, not by separately tuned fits. Retention is the conclusion of the certificate, not an assumption made before the rows are checked. For a candidate nested shell swarm chart $q$ over a test window $W$, the shared certificate target is
 
 $$
 \mathcal{C}_{\mathrm{tri}}^{(q)}(W)
@@ -32626,7 +32782,7 @@ d_{\mathcal{A}}
 \right).
 $$
 
-The certificate can support promotion only if the branch floors and stability gap stay positive and the normalized closure residual
+The candidate chart may be promoted to a retained branch class $q$ only if the same ledger supplies a positive Jacobian floor, inactive-root gap, finite memory depth, positive stability gap, closed event ledger, and the normalized closure residual
 
 $$
 \mathcal{U}_{\mathrm{tri}}^{(q)}(W)
@@ -32643,7 +32799,7 @@ $$
 \le1.
 $$
 
-This is a certificate target, not an additional force law. It prevents a moving-deformation ratio, a mass-response average, a photon row, or an observer-export residual from being promoted unless the same causal-root branch supplies the period, envelope, signal, observer-export, mass, sector, and event-ledger data.
+This is a certificate target, not an additional force law. It prevents a moving-deformation ratio, a mass-response average, a photon row, or an observer-export residual from being promoted unless the same causal-root branch supplies the period, envelope, signal, observer-export, mass, sector, and event-ledger data. If a row fails on $q$, the verdict is a rejected chart or continuation target under its declared hypotheses, not evidence against the broader neutral swarm or shell swarm class.
 
 #### Substrate and Effective Levels
 
@@ -37666,7 +37822,7 @@ This target fails if $\Gamma_N$ is multiplied directly into the line frequency a
 
 The first proof/simulation packet for this row is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). It treats $\mathbf{b}_{N}^{\mathrm{spec}}$ as a constrained clock-row instance: $b_\xi=1$ is fixed by the homogeneous Lorentz branch, the weak static endpoint row must satisfy $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$, and the observer frequency uses $C_N=\Gamma_N^{-1}$. The packet passes only if a shared row controls the chosen hydrogen line set across admissible refinement; it fails when the scan needs a transition-specific row, a direct $\Gamma_N$ frequency multiplier, a collapsed density/delay variable, or a residual budget that hides recoil, hyperfine structure, photon-channel propagation, or unresolved source-branch effects.
 
-The first executable scaffold keeps the clock proof burden visible. Its accepted spectral row is inherited from the density/scale-compensated static-response packet, not fitted from hydrogen lines alone. Its hydrogen records also keep $n$, $\chi_{\text{sea}}$, $\lambda$, $\xi$, and $R_{\text{core}}$ as separate entries in $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, so a row that matches one line or one record can still fail when the component split changes under admissible refinement. The executable now derives the scaffold line factors, observer frequencies, and replay envelope gaps from recovered principal labels plus one shared line-inferred $\ln\Gamma_N$. A completed theory-bearing record must therefore supply the same four inputs together: the hydrogen $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ record, envelope gaps, observer frequencies, and static response vector.
+The first executable scaffold keeps the clock proof burden visible. Its accepted spectral row is inherited from the density/scale-compensated static-response packet, not fitted from hydrogen lines alone. Its hydrogen records also keep $n$, $\chi_{\text{sea}}$, $\lambda$, $\xi$, and $R_{\text{core}}$ as separate entries in $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, so a row that matches one line or one record can still fail when the component split changes under admissible refinement. The executable now derives the scaffold line factors, observer frequencies, and replay envelope gaps from recovered principal labels plus one shared line-inferred $\ln\Gamma_N$. A completed theory-bearing record must therefore supply the same four inputs together from one declared hydrogen spectral channel ledger and the same Noether-Sea cell: the hydrogen $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ record, envelope gaps, observer frequencies, and static response vector.
 
 ---
 
@@ -41408,6 +41564,8 @@ s_a-\mathcal{P}_{D_a}h^\theta
 $$
 This residual is the modern version of the separated-detector check: a signal must be coherent across instruments after antenna response, timing, calibration, and background rejection are fixed. An isolated excess in one detector, or a coincidence that requires an implausible source energy after the same response projection, remains a candidate disturbance rather than an accepted gravitational-wave record.
 
+Public GWOSC/LVK claims must also pass the packet protocol in [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md#public-gravitational-wave-benchmark-protocol) before they support strong-field or effective-metric claims. The public packet fixes event version, strain files, detector masks, parameter-estimation release, waveform family, calibration notes, analysis window, nuisance record, and artifact hashes before residual evaluation. This makes the detector-side gate replayable rather than a general statement that gravitational-wave observations are available.
+
 **Closure Target 2A (graviton-comparison detectability residual).**
 When a detector record is compared with a quantum-gravity language, keep the comparison at observer level. A calibrated classical strain event does not become a single-quantum detection merely because a graviton basis can be used for bookkeeping. For a narrowband comparison with angular frequency $\omega$ and strain amplitude $f$, retain the occupation lower bound
 $$
@@ -41448,7 +41606,7 @@ When $\theta_{\mathrm{GW}}$ is also used to support a finite-range or dark-energ
 
 Stationary no-hair agreement is not enough to close the dynamical strong-field problem. If a black-hole model changes the horizon-interface boundary condition during formation, merger, or evaporation, the change must be tested against the detector-facing waveform packet and the same final compact-object labels used by exterior GR.
 
-For a candidate horizon-interface record $\theta_H$, let $h_{\ell m}^{\theta_H}(t)$ be the effective strain modes predicted after projection through the detector response, and let $D_{\mathrm{merge}}^{\mathrm{obs}}$ collect the observed inspiral, merger, ringdown, calibration, and covariance packet. A compact residual is
+For a candidate horizon-interface record $\theta_H$, let $h_{\ell m}^{\theta_H}(t)$ be the effective strain modes predicted after projection through the detector response, and let $D_{\mathrm{merge}}^{\mathrm{obs}}$ collect the observed inspiral, merger, ringdown, calibration, and covariance packet. This observed packet must be sourced from the same versioned GWOSC/LVK event row and artifact hashes used by $\mathcal{C}_{\mathrm{GW}}$ when ringdown is used as strong-field evidence. A compact residual is
 $$
 \mathcal{R}_{\mathrm{merge}}(\theta_H)
 =
@@ -49492,6 +49650,8 @@ This residual keeps the spectral benchmark tied to the envelope calculation. It 
 The coefficient row version of the same benchmark is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). Its input variables are the shared hydrogen channel ledger, the line set $\mathcal L_{\mathrm H}^{0}$, the envelope gaps, the observer frequencies, the clock-facing deformation record $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, and the declared residual budgets. The scan accepts only rows that preserve $b_\xi=1$, satisfy the weak static endpoint constraint, and use the same $C_N=\Gamma_N^{-1}$ clock-rate conversion for every selected transition. It therefore turns the Rydberg benchmark into a coefficient row constraint rather than a per-line fitting surface.
 
 The first executable scaffold for that scan keeps the hydrogen labels theory-facing while the envelope solver remains open. It derives $\Lambda_{ab}$ from recovered principal labels, sets the normalized observer-frequency entries to that line factor, derives the replay envelope gaps from one shared line-inferred cadence stretch, and carries two $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ records with different density/delay/scale/core splits. Those entries are placeholders only where the current corpus has not yet supplied the native calculation: the envelope calculation must later replace the scaffolded cadence stretch with computed gap entries, the hydrogen response map must replace the $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ entries, and the static response calculation must replace the declared $(a_n,a_\chi,a_\lambda,a_R)$ row without changing the line-by-line clock factor.
+
+The scaffold is therefore a coefficient-row constraint, not a completed hydrogen spectral derivation. The derivation closes only when the hydrogen branch supplies the envelope gaps, $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, observer frequencies, and static response row from the same spectral channel ledger and Noether-Sea cell.
 
 For element comparisons, shell closure should enter through the realized envelope and its stability gap, not through the periodic-table family name. A local shell-closure diagnostic can be written as
 
@@ -62290,7 +62450,7 @@ Detailed explanation (impulses vs smooth pushes):
   - With exact surface deltas, dynamics are impulsive: velocities are functions of bounded variation with jump discontinuities at hit times.
 
 - Mollified isochron surfaces:
-  - Replacing $\delta(\cdot)$ by a narrow Gaussian of width $\eta>0$ spreads each causal surface’s intersection into a short, smooth push, yielding classical $C^1$ trajectories for standard ODE solvers.
+  - Replacing $\delta(\cdot)$ by a narrow Gaussian of width $\eta > 0$ spreads each causal surface’s intersection into a short, smooth push, yielding classical $C^1$ trajectories for standard ODE solvers.
 
 - Choosing $\eta$:
   - Select $\eta$ small relative to local geometric scales (path curvature radius, inter-source spacing) to approximate the event-driven picture while maintaining numerical stability.
@@ -62343,7 +62503,7 @@ Detailed explanation (impulses vs smooth pushes):
     The invalid shortcut $\nabla\!\cdot(F_r\hat{\mathbf{r}})=\partial_rF_r$ breaks the conservation normalization of causal wake surfaces.
 
 - Finite-limit discipline:
-  - Treat finite source count, finite memory depth, finite step size, finite domain/window, and finite $\eta>0$ as the first proof or simulation regime.
+  - Treat finite source count, finite memory depth, finite step size, finite domain/window, and finite $\eta > 0$ as the first proof or simulation regime.
   - Promote large-system, continuum, or $\eta\to0$ statements only after the retained observables converge under the declared refinement path.
   - Do not replace arbitrarily large finite systems with an actual infinite medium unless the limit preserves the causal-root count, Jacobian floors, work-energy residuals, and thermodynamic summaries being claimed.
 
@@ -62393,8 +62553,80 @@ Detailed explanation (impulses vs smooth pushes):
     $$
     Unstable jump identity routes to $\mathsf{branch\_root\_instability}$; unresolved jump or interpolation convergence routes to $\mathsf{mesh\_nonconvergence}$.
 
+- Fold-layer status is only a transition classification. A stable fold-layer row may preserve branch identity through $\eta$ refinement, but it does not prove branch-equation balance. When the run claims a corrected one-period carrier, the acceleration-balance residual for that period must also pass before the result can proceed to monodromy, $\Delta_{\mathbf{k}}$, or $\eta$-ladder persistence.
+
 - Energetic consistency:
   - On resolved intervals, the work–energy relation holds with $\Phi_\eta$; as $\eta\to 0$, interval integrals converge to the impulsive model.
+
+###### Formal $\eta > 0$ Continuation Package
+
+The regularization package for a promoted run family is
+$$
+\mathsf{Reg}_\eta
+=
+(\delta_\eta,\mathcal{A}_\eta,\mathsf{WP}_\eta,\mathsf{NR}_\eta,\mathsf{Cont}_\eta,\partial\mathcal{A}_\eta),
+$$
+where $\delta_\eta$ is the mollified causal-wake kernel, $\mathcal{A}_\eta$ is the admissible history set, $\mathsf{WP}_\eta$ is the existence-uniqueness statement, $\mathsf{NR}_\eta$ is the no-runaway bound, $\mathsf{Cont}_\eta$ is the continuation criterion, and $\partial\mathcal{A}_\eta$ is the failure boundary.
+
+On a finite interval $[0,T]$, the admissible history set is
+$$
+\mathcal{A}_\eta(T;V,d,\nu,B)
+=
+\left\{
+S_{\eta,t}:
+\sup_{t\le T}\|\mathbf{v}(t)\|\le V,\quad
+\inf r_{ij,\ell}(t)\ge d,\quad
+\inf|\partial_\tau g_{ij,\ell}(t)|\ge \nu,\quad
+\sup B_{ij}^{\mathrm{active}}(t)\le B
+\right\}.
+$$
+Existence and uniqueness mean that every declared initial history $S_{\eta,0}\in\mathcal{A}_\eta(T;V,d,\nu,B)$ generates a unique $S_\eta(t)$ on $[0,T]$ in the declared history class, and that the emitted root ledger is generated by that solution rather than by a post-hoc branch choice.
+
+The no-runaway condition is a lower bound on the regularized wake energy:
+$$
+E_{\text{tot}}^{(\eta)}(t)
+=
+K_{\mu}(t)+E_{\text{wake}}^{(\eta)}(t),
+\qquad
+E_{\text{wake}}^{(\eta)}(t)\ge U_{\min}^{(\eta)}>-\infty.
+$$
+When the regularization preserves the relevant time-translation symmetry, this gives
+$$
+K_{\mu}(t)
+\le
+E_{\text{tot}}^{(\eta)}(0)-U_{\min}^{(\eta)}
+$$
+on the isolated run window.
+
+The continuation criterion is
+$$
+S_\eta([0,T])\subset\mathcal{A}_\eta(T;V,d,\nu,B)
+\quad\Longrightarrow\quad
+\text{the run may be extended past }T
+$$
+using the same local well-posedness constants after refreshing the history segment at $T$. The failure boundary is
+$$
+\partial\mathcal{A}_\eta
+=
+\{\|\mathbf{v}\|=V\}
+\cup
+\{r_{ij,\ell}=d\}
+\cup
+\{|\partial_\tau g_{ij,\ell}|=\nu\}
+\cup
+\{B_{ij}^{\mathrm{active}}=B\}
+\cup
+\{E_{\text{wake}}^{(\eta)}\downarrow -\infty\}.
+$$
+Crossing any component of $\partial\mathcal{A}_\eta$ changes the promotion status to $\mathsf{eta\_continuation\_failure}$ unless a stricter replacement bound is proved in the same artifact packet.
+
+The $\eta\to0^+$ claim boundary is
+$$
+\limsup_{\eta\to0^+}E_\eta(Y;\eta,\eta/2)=0,
+\qquad
+\limsup_{\eta\to0^+}\Delta_{\eta,\mathrm{root}}=0
+$$
+for every promoted observable and active branch ledger. Otherwise the result remains finite-$\eta$ evidence only.
 
 Plain language: The ideal model gives instantaneous kicks; a tiny thickening turns them into brief, smooth nudges so you can integrate with ordinary ODE solvers. Large-system or zero-width claims have to be earned by convergence, not assumed from the finite calculation.
 
@@ -62835,18 +63067,18 @@ Plain language: we can test the framework by checking order effects, interferenc
 
 This note is the launch overview for the simulation branch. It explains the common simulation frame, the role of the virtual $\mathbb{U}_{\text{now}}$ universe-state perspective, and the separation between raw microstate logging and detector-level synthetic observables.
 
-Use it as the top orientation document before reading the more specialized simulation protocols, convergence checks, action-energy notes, the [$A_0$ branch certificate protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), the [$A_0$ Tier 0 result interpretation](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), the [Nested Shell Swarm Action-Increment Protocol](../../../../markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md), the [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md), the [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md), the [Redshift-Budget Toy Model](../../../../markdown/aaa/validation/simulations/redshift-budget-toy-model.md), the [Static Response Vector Toy Model](../../../../markdown/aaa/validation/simulations/static-response-vector-toy-model.md), and the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md).
+Use it as the top orientation document before reading the more specialized [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md), convergence checks, action-energy notes, the [$A_0$ branch certificate protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), the [$A_0$ Tier 0 result interpretation](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), the [Nested Shell Swarm Action-Increment Protocol](../../../../markdown/aaa/validation/simulations/nested-shell-swarm-action-increment-protocol.md), the [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md), the [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md), the [Redshift-Budget Toy Model](../../../../markdown/aaa/validation/simulations/redshift-budget-toy-model.md), the [Static Response Vector Toy Model](../../../../markdown/aaa/validation/simulations/static-response-vector-toy-model.md), and the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md).
 
 ##### Simulation Frame: Virtual $\mathbb{U}_{\text{now}}$ Perspective
 
 - All tiers are implemented in the absolute Euclidean frame (fixed x,y,z; absolute t).
-- The simulator effectively plays the role of the $\mathbb{U}_{\text{now}}$ universe-state perspective by integrating the master equation and maintaining S(t).
+- The simulator effectively plays the role of the $\mathbb{U}_{\text{now}}$ universe-state perspective by integrating the master equation and maintaining $S(t)$.
 - Raw outputs are $\mathbb{U}_{\text{now}}$-style (fields, provenance, microstate summaries).
-- “What experiments see” is generated by post-processing: embed detector assemblies with worldlines X_det(t), compute $\tau$_det(t), and generate detector-like logs.
+- “What experiments see” is generated by post-processing: embed detector assemblies with worldlines $\mathbf{X}_{\text{det}}(t)$, compute $\tau_{\text{det}}(t)$, and generate detector-like logs.
 
 Checklist per tier:
 - What $\mathbb{U}_{\text{now}}$ records ($\Phi$, $\nabla\Phi$, Noether-Sea variables, provenance)
-- How to compute physical observables ($\tau$, redshift, lensing proxies, GW strain proxies)
+- How to compute physical observables ($\tau$, redshift, lensing proxies, public gravitational-wave packet outputs: detector strain, phase, event energy ledger, timing residuals, and provenance)
 - Convergence requirements for each output type
 - For the first mass-map target, how the $A_0$ Tier 0/Tier 1 branch certificate is separated from later energy, shielding, and Noether-Sea response interpretation
 - For Tier 0 rows, how active roots, raw roots, excluded near-zero self roots, residual semantics, and promotion gates should be read before any Tier 1 continuation
@@ -62893,16 +63125,167 @@ The opening gives the top-level simulation rule set; the later sections unpack t
 5. **Convergence**: $\Delta t$ refinement must be accompanied by "History Resolution" refinement to ensure self-hit calculations are numerically stable.
 6. **Campaign Packet**: Any run used for a proof certificate, branch-certificate gate, or promoted validation claim must emit a machine-checkable packet rather than only plots or summaries.
 
+##### Simulation Campaign Object
+
+Every promoted numerical claim is carried by a campaign object, not by an isolated plot or best-fit table:
+$$
+\mathcal{C}_{\mathrm{sim}}
+=
+\big(
+\mathsf{id},
+S_\eta,
+\mathcal{G}_h,
+\Delta t,
+\eta,
+I_h^q,
+\mathcal{L}_{\mathrm{root}},
+\mathcal{T}_{\eta},
+\mathcal{R}_{\mathrm{branch}},
+\Pi_{\mathbb{U}_{\text{now}}},
+\mathcal{E}_{\mathrm{conv}},
+\mathcal{F}
+\big).
+$$
+Here $\mathsf{id}$ fixes the run identifier and source commit, $S_\eta$ is the regularized state history, $\mathcal{G}_h$ is the spatial and history mesh, $\Delta t$ is the absolute-time step, $\eta > 0$ is the causal-wake regularization width, $I_h^q$ is the declared order-$q$ history interpolation operator, $\mathcal{L}_{\mathrm{root}}$ is the causal-root ledger, $\mathcal{T}_{\eta}$ is the transition-record family for fold-layer, separator, or active-root status windows, $\mathcal{R}_{\mathrm{branch}}$ is the named branch-residual vector, $\Pi_{\mathbb{U}_{\text{now}}}$ is the provenance log, $\mathcal{E}_{\mathrm{conv}}$ is the convergence-measure vector, and $\mathcal{F}$ is the finite failure-code set.
+
+The state history is
+$$
+S_\eta(t)
+=
+\{(\mathbf{x}_i(t),\mathbf{v}_i(t),q_i)\}_{i=1}^{N},
+\qquad
+S_{\eta,t}(\theta)=S_\eta(t+\theta),\quad \theta\in[-h,0].
+$$
+A Tier 1 packet must state whether this history is evaluated in $C^1([-h,0])$, $W^{1,\infty}([-h,0])$, or a stricter history class. A missing history class is an incomplete artifact, because the delayed source-state evaluation cannot be audited without it.
+
+The mesh and interpolation record is
+$$
+\mathcal{G}_h=(\Omega_h,\Delta x,\{x_k\}_{k=1}^{K},\Theta_h,\Delta h,\mathsf{bc}),
+$$
+where $\Omega_h\subset\mathbb{R}^3$ is the Euclidean-void computational domain, $\{x_k\}$ are the fixed $\mathbb{U}_{\text{now}}$ sample points, $\Theta_h\subset[-h,0]$ is the stored path-history mesh, $\Delta h$ is the history resolution, and $\mathsf{bc}$ records boundary conditions. The interpolation operator $I_h^q$ is part of the packet; delayed source states cannot be reconstructed by an implicit or undocumented lookup rule.
+
+##### Executable Diagnostic Contract
+
+A campaign that disciplines a proof certificate must reduce its numerical status to predeclared scalar diagnostics. The default diagnostic vector is
+$$
+\mathcal{D}_{\mathrm{exec}}
+=
+\big(
+D_{\mathrm{branch}},
+D_{\mathrm{ref}},
+D_{\mathrm{ord}},
+D_{\mathrm{hist}},
+D_{\mathrm{space}},
+D_{\mathrm{cross}},
+D_{\mathrm{prov}},
+D_{\mathrm{cons}},
+D_{\eta},
+D_{\mathrm{jump}}
+\big),
+$$
+where every component is a ratio with passing threshold $1$. The component meanings are:
+
+| Component | Required role |
+| --- | --- |
+| $D_{\mathrm{branch}}$ | largest branch residual divided by its declared tolerance |
+| $D_{\mathrm{ref}}$ | temporal refinement residual for $\Phi$, $\|\nabla\Phi\|$, and self-hit rate |
+| $D_{\mathrm{ord}}$ | observed-order gate for the retained primary field channel |
+| $D_{\mathrm{hist}}$ | history-resolution, interpolation, and provenance-distribution gate |
+| $D_{\mathrm{space}}$ | spatial refinement and self-hit stability-window gate |
+| $D_{\mathrm{cross}}$ | cross-integrator agreement with matching branch identity |
+| $D_{\mathrm{prov}}$ | $\mathbb{U}_{\text{now}}$ causal-provenance residual |
+| $D_{\mathrm{cons}}$ | energy, momentum, and angular-momentum drift gate |
+| $D_{\eta}$ | regulator-dependence gate for promoted observables |
+| $D_{\mathrm{jump}}$ | jump or branch-transition residual for nonsmooth windows |
+
+The Tier 1 acceptance predicate is
+$$
+\mathsf{Accept}_1(\mathcal{C}_{\mathrm{sim}})
+\Longleftrightarrow
+R_0\in\mathsf{Candidate}_{1},
+\quad
+\max_a\mathcal{D}_{\mathrm{exec},a}\le 1,
+\quad
+\Delta_{\mathrm{root}}(\Delta t,\Delta t/2)=0,
+$$
+$$
+\Delta_{\mathrm{root}}(\Delta h,\Delta h/2)=0,
+\quad
+\Delta_{\eta,\mathrm{root}}=0,
+\quad
+\mathsf{NullFail}=1,
+\quad
+\mathsf{Artifacts}=1.
+$$
+Here $\mathsf{NullFail}=1$ means the negative control violates at least one required null-test margin, and $\mathsf{Artifacts}=1$ means every required artifact exists with a content hash and source commit.
+
+Failure routing is deterministic. Missing required artifacts, source commits, pre-run tolerances, or hashes route to $\mathsf{artifact\_incomplete}$. Changing a promoted observable, tolerance, branch label, or regulator ladder after output inspection routes to $\mathsf{hidden\_tuning}$. Unstable active-root identity routes to $\mathsf{branch\_root\_instability}$; failed refinement routes to $\mathsf{mesh\_nonconvergence}$; failed provenance routes to $\mathsf{provenance\_discontinuity}$; failed conservation routes to $\mathsf{conservation\_drift}$; failed regulator rows route to $\mathsf{regulator\_dependence}$; and exit from the admissible $\eta$ continuation set routes to $\mathsf{eta\_continuation\_failure}$.
+
+##### Proof-Certificate Handoff
+
+The proof-to-simulation handoff for a finite certificate is
+$$
+\mathsf{H}_{\mathrm{proof}\to\mathrm{sim}}
+=
+\big(
+\mathsf{certificate\_id},
+S_{\eta,0},
+W,
+\Lambda,
+\mathcal{L}_{\mathrm{root}}^{\mathrm{expected}},
+\tau_{\mathrm{branch}},
+\tau_{\mathrm{conv}},
+\tau_{\eta},
+\mathsf{Null},
+\mathsf{Outputs}
+\big).
+$$
+It names the source certificate, initial history, analysis window, branch label, expected active-root classes, branch tolerances, convergence tolerances, regulator ladder, negative-control mutation, and required output channels before the run starts.
+
+The simulation-to-proof handoff is
+$$
+\mathsf{H}_{\mathrm{sim}\to\mathrm{proof}}
+=
+\big(
+\mathsf{artifact\_hashes},
+\mathcal{L}_{\mathrm{root}}^{\mathrm{matched}},
+\mathcal{T}_{\eta},
+\mathcal{R}_{\mathrm{branch}},
+\mathcal{E}_{\mathrm{conv}},
+\mathcal{D}_{\mathrm{exec}},
+\mathsf{failure\_code},
+\mathsf{promotion\_status}
+\big).
+$$
+A proof packet may cite a simulation only through this handoff. It must state whether every expected active root was matched under $\Delta t$, $\Delta h$, and $\eta$ refinement, which residual component controls the verdict, and which artifact contains each value.
+
+**Lemma (simulation-promotion criterion).** Let $Q$ be a priority-theory claim whose variables are contained in $\mathcal{C}_{\mathrm{sim}}$, and let $R_1$ be a Tier 1 continuation of a Tier 0 candidate $R_0$. If $R_0$ satisfies the Tier 0 acceptance criteria, $R_1$ satisfies the Tier 1 acceptance criteria, the negative control fails as required, and
+$$
+\max_a\frac{\mathcal{E}_{\mathrm{ref},a}}{\tau_{\mathrm{ref},a}}\le 1,
+\qquad
+\max_a\frac{\mathcal{E}_{\mathrm{prov},a}}{\tau_{\mathrm{prov},a}}\le 1,
+\qquad
+\max_a\frac{\mathcal{E}_{\mathrm{cons},a}}{\tau_{\mathrm{cons},a}}\le 1,
+$$
+$$
+\max_a\frac{\mathcal{R}_{\mathrm{branch},a}}{\tau_{\mathrm{branch},a}}\le 1,
+\qquad
+\max_Y\frac{E_\eta(Y)}{\tau_{\eta,Y}}\le 1,
+$$
+with all tolerances declared before the run, then the result may be promoted from numerical candidate to simulation-supported priority claim for $Q$. This lemma does not convert a simulation-supported priority claim into an analytic theorem; it authorizes proof-program routing only with artifact hashes and the failure-code ledger attached.
+
 ##### $A_0$ Branch-Certificate Protocol
 
 The first mass-map target has a specialized protocol in [$A_0$ Branch Certificate Protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), with Tier 0 row semantics summarized in [$A_0$ Tier 0 Result Interpretation](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md). That protocol separates four stages:
 
 1. Tier 0 algebraic branch search for finite root-ledger candidates.
-2. Tier 1 $\eta>0$ delayed-dynamics continuation and Floquet diagnostics.
+2. Tier 1 $\eta > 0$ delayed-dynamics continuation and Floquet diagnostics.
 3. Tier 2 internal-energy and shielding extraction.
 4. Tier 3 Noether-Sea response tensor probes.
 
 A rerun after a finite-coordinate no-go must include the predeclared branch-chart revision record; residual-selected coordinates, locked keys promoted into branch geometry, or benchmark-derived inputs invalidate the packet as hidden fitting.
+
+After the current compact scalar-basis no-go, an $A_0$ rerun must also predeclare the corrected one-period branch-equation basis, the non-circular carrier correction if used, the residual-balance ledger, held-out residual rule, and failure code before it can proceed to $\Delta_{\mathbf{k}}$ or $\eta$-ladder persistence.
 
 No simulation run should report $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\mathcal{M}_{\text{sea}}^{ab}$ as accepted outputs unless the preceding branch-certificate gates have passed.
 
@@ -62959,11 +63342,45 @@ The intrinsic source-emission delay $\Delta t_{\mathrm{src}}$ must be declared b
 
 The minimum artifact list is `event.json`, `strain_files.json`, `detector_quality.json`, `parameter_estimation.json`, `waveform_provenance.json`, `analysis_window.json`, `strain_residuals.csv`, `phase_residuals.csv`, `energy_ledger.csv`, `speed_residual.json` when applicable, `artifact_hashes.json`, and `failure_report.md`. For long binary-neutron-star inspirals the packet must also include a glitch/cleaning row, a low-frequency cutoff row, and a reason if any detector is excluded from a visible-strain comparison. For short binary-black-hole benchmarks the packet must include an inspiral-merger-ringdown window, detector arrival-time comparison, and ringdown handoff row.
 
+The normalized public-data diagnostic is
+$$
+\mathcal{D}_{\mathrm{GW}}
+=
+\big(
+D_h,D_\phi,D_E,D_{c_g},D_{\mathrm{det}},D_{\mathrm{PE}},D_{\mathrm{prov}}
+\big),
+$$
+with
+$$
+D_h=\frac{R_h}{\tau_h},
+\qquad
+D_\phi=\frac{R_\phi}{\tau_\phi},
+\qquad
+D_E=\frac{R_E}{\tau_E},
+\qquad
+D_{c_g}=\frac{|R_{c_g}|}{\tau_{c_g}}.
+$$
+$D_{\mathrm{det}}$, $D_{\mathrm{PE}}$, and $D_{\mathrm{prov}}$ are binary completeness ratios whose value is `0` only when detector masks/calibration, parameter-estimation release metadata, and artifact hashes are all present. A packet can support a promoted gravitational-wave claim only if
+$$
+\max_a\mathcal{D}_{\mathrm{GW},a}\le 1
+$$
+and the public-data provenance row was fixed before waveform comparison.
+
+The first benchmark triad is:
+
+| Packet row | Required public-data role | Failure routed if missing |
+| --- | --- | --- |
+| `GW150914_short_bbh` | Short inspiral-merger-ringdown strain, two-detector arrival timing, radiated-energy ledger, numerical-relativity waveform provenance, and ringdown handoff | $\mathsf{artifact\_incomplete}$ or $\mathsf{hidden\_tuning}$ |
+| `GW170817_long_bns` | Long inspiral strain, three-detector timing, glitch/cleaning provenance, chirp-mass phase benchmark, and parameter-estimation waveform-family record | $\mathsf{provenance\_discontinuity}$ or $\mathsf{mesh\_nonconvergence}$ |
+| `GW170817_GRB_speed` | Photon/gravity timing residual with luminosity distance, observed delay, and intrinsic source-emission lag nuisance | $\mathsf{hidden\_tuning}$ or $\mathsf{conservation\_drift}$ |
+
+This public benchmark packet is a success marker under the existing simulation provenance and conservation gates, not a new gate family. Its value is that public strain, parameter-estimation samples, waveform provenance, and multimessenger timing make strong-field radiation tests replayable without importing GR waveform success as $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology.
+
 ##### Tier 0 / Tier 1 Campaign Packet
 
 Tier 0 and Tier 1 results are accepted only through an auditable campaign packet. The packet must include the source commit, pre-run tolerances, root ledger, branch residual vector, convergence table, $\eta$ ladder when a regulator claim is made, declared history interpolation, failure report, and artifact hashes. When a run crosses a fold-layer, separator, or active-root status transition, the packet must also include transition records for that window.
 
-The minimum Tier 0 packet contains `campaign.json`, `mesh.json`, `state_vector.json`, `root_ledger.json`, `branch_residuals.json`, `candidate_rows.csv`, `failure_codes.md`, and `promotion_gate.md`. The minimum Tier 1 packet adds `run_metadata.json`, $\mathbb{U}_{\text{now}}$ provenance data, `history_interpolation.json`, `convergence_table.csv`, `eta_ladder.csv`, `conservation_ledger.csv`, `cross_integrator_report.md`, `negative_control_report.md`, `failure_report.md`, and `promotion_lemma_check.md`. If a Tier 1 run claims a branch transition, it also emits `transition_records.json` with the status, regularization route, transition-window scale, root-ledger rows, and promoted observables for each transition window.
+The minimum Tier 0 packet contains `campaign.json`, `mesh.json`, `state_vector.json`, `root_ledger.json`, `branch_residuals.json`, `candidate_rows.csv`, `failure_codes.md`, and `promotion_gate.md`. For corrected branch-equation reruns, `branch_residuals.json` must include the branch-native basis, predeclared coefficient rule, held-out residual rule, and pass/fail value for the residual-balance row. The minimum Tier 1 packet adds `run_metadata.json`, $\mathbb{U}_{\text{now}}$ provenance data, `history_interpolation.json`, `convergence_table.csv`, `eta_ladder.csv`, `conservation_ledger.csv`, `cross_integrator_report.md`, `negative_control_report.md`, `failure_report.md`, and `promotion_lemma_check.md`. If a Tier 1 run claims a branch transition, it also emits `transition_records.json` with the status, regularization route, transition-window scale, root-ledger rows, and promoted observables for each transition window.
 
 The `cross_integrator_report.md` artifact must name the solver family, delayed interpolation polynomial or reconstruction rule, nonlinear solve residuals when implicit stages are used, small-delay or vanishing-delay encounters, and event or restart handling. Cross-integrator agreement is evidence only when the branch identity and transition records match, not merely when plotted observables are close.
 
@@ -63115,7 +63532,7 @@ Required inputs:
 - scale ratios $\varepsilon_{IM}=R_I/R_M$ and $\varepsilon_{MO}=R_M/R_O$;
 - speed offsets enforcing $s_I > c_f$, $s_M \approx c_f$, and $s_O < c_f$;
 - candidate handedness tuple and carrier ellipticity;
-- $\eta>0$, sampling resolution, and history-window rule.
+- $\eta > 0$, sampling resolution, and history-window rule.
 
 Required outputs:
 
@@ -63163,11 +63580,11 @@ At Tier 0, `nonpositive-floquet-gap` appears only as the reserved `Delta_k.failu
 
 Tier 0 must distinguish raw self-root sightings from active self-hit branches. A self root at the configured near-zero delay threshold is recorded in the raw ledger but excluded from the active ledger as an instantaneous self-kick artifact under the convention $H(0)=0$.
 
-Such a root may not count as self-hit closure unless a later regularized fold-layer model explicitly accepts it with a named branch condition, tolerance, and promotion rule. Until that model exists, near-zero self roots block Tier 0 promotion rather than satisfying the self-hit branch requirement.
+Such a root may not count as self-hit closure merely because a fold-layer diagnostic preserves the locked self-root keys. The current fold-layer row is a transition candidate only; it promotes after a corrected one-period branch-equation attempt passes the declared residual surface, with $\Delta_{\mathbf{k}}$ and $\eta$-ladder persistence still downstream.
 
 The reader-facing interpretation of these rows is in [$A_0$ Tier 0 Result Interpretation](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md).
 
-##### Tier 1: $\eta>0$ Continuation
+##### Tier 1: $\eta > 0$ Continuation
 
 Tier 1 promotes a surviving Tier 0 row into direct delayed dynamics with the regularized wake kernel still active. It must preserve the absolute-frame logging standard.
 
@@ -63193,6 +63610,50 @@ Such a row is a revision candidate only. A branch-chart checker may authorize on
 
 Tier 1 passes only if the same branch remains stable before any $\eta\to0^+$ extrapolation.
 
+###### Corrected One-Period Branch-Equation Boundary
+
+The current fold-layer-locked compact fixture is a controlled negative result, not an accepted attractor and not a broad falsification of the $A_0$ program. The direct one-period runner can preserve the locked self-root keys in $\mathcal{R}_{\text{lock}}$ without solving the branch equations: state return, root closure, phase closure, speed ordering, center drift, and energy-like speed closure still fail. The scalar branch-native relation basis over $B_{\text{self}}$, $B_{\text{partner}}$, and $B_{\text{inter}}$ leaves a relative acceleration residual far above the Tier 1 tolerance, so the next allowed rerun must predeclare either a non-circular carrier correction $\mathbf{d}_\ell(t)$ or a richer branch-native interaction basis before residual fitting.
+
+For a declared period window $W=[t_0,t_0+T_{\mathbf{k}}]$, the corrected carrier has the form
+$$
+\mathbf{x}_{a,\ell}^{\star}(t)
+=
+\mathbf{x}_{a,\ell}^{(0)}(t)+\mathbf{d}_\ell(t),
+\qquad
+\mathbf{d}_\ell(t+T_{\mathbf{k}})=\mathbf{d}_\ell(t),
+\qquad
+\left\langle\mathbf{d}_\ell\right\rangle_W=0.
+$$
+The one-period residual is
+$$
+\mathcal{R}_{\mathrm{1per}}
+=
+\frac{
+\left(
+\int_W
+\sum_a
+\left\|
+\mathbf{a}^{\mathrm{ME}}_a(t;\mathbf{d})
+-
+\sum_{B\in\{B_{\text{self}},B_{\text{partner}},B_{\text{inter}}\}}
+\alpha_B\,\mathbf{A}_{a,B}(t;\mathbf{d})
+\right\|^2 dt
+\right)^{1/2}
+}{
+\left(
+\int_W
+\sum_a
+\|\mathbf{a}^{\mathrm{ME}}_a(t;\mathbf{d})\|^2 dt
+\right)^{1/2}
++\varepsilon_0
+}.
+$$
+The rerun may proceed toward monodromy only if
+$$
+\mathcal{R}_{\mathrm{1per}}\le 0.02
+$$
+with $\mathbf{d}_\ell(t)$, the basis terms $\mathbf{A}_{a,B}$, the coefficient rule for $\alpha_B$, and any held-out interval declared before fitting. A scalar-basis no-go is therefore a chart or basis failure; it does not become an attractor failure unless every admissible corrected carrier and branch-native basis inside the declared search class fails the same residual boundary.
+
 ##### Tier 2: Energy and Shielding
 
 Tier 2 begins only after Tier 1 passes. It computes the internal-energy ledger and far-field shielding extraction described in [Energy](../../../../markdown/aaa/dynamics/energy.md). The required outputs are:
@@ -63215,7 +63676,7 @@ Tier 3 begins only after Tier 2 passes. It applies small acceleration and gradie
 
 The first reduced Tier 0 artifact is `scripts/mass-map/a0-tier0-branch-search.mjs`, with default grid `scripts/mass-map/a0-tier0-default-grid.json`. It is an algebraic branch-search scaffold, not a production simulator. Its required role is to emit candidate rows with parameter choices, quotient-coordinate rows, carrier diagnostics, root ledgers, term classifications, residual surfaces, $\Delta_{\mathbf{k}}$ handoff status, leakage placeholders, certificate gates, and failure codes matching this protocol.
 
-The Tier 1 handoff scaffold is `scripts/mass-map/a0-tier1-continuation-scaffold.mjs`. It consumes Tier 0 JSON rows and emits the $\eta>0$ continuation contract, reduced-coordinate chart, symmetry-quotiented monodromy plan, $\Delta_{\mathbf{k}}$ acceptance boundary, and required output artifact list. It is not a delayed-dynamics solver and cannot certify the branch without a later Tier 1 run.
+The Tier 1 handoff scaffold is `scripts/mass-map/a0-tier1-continuation-scaffold.mjs`. It consumes Tier 0 JSON rows and emits the $\eta > 0$ continuation contract, reduced-coordinate chart, symmetry-quotiented monodromy plan, $\Delta_{\mathbf{k}}$ acceptance boundary, and required output artifact list. It is not a delayed-dynamics solver and cannot certify the branch without a later Tier 1 run.
 
 The companion audit is `scripts/audit-a0-mass-map-promotion.mjs`. It scans AAA and mass-map priority prose for premature statements that treat $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\mathcal{M}_{\text{sea}}^{ab}$ as accepted before the Tier gates pass.
 
@@ -63575,7 +64036,7 @@ The total remains far below modern operational closure for the same reason as Ma
 
 The 2026-05-20 assessment raises the weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score from `55` to `59`. The gain is real but deliberately limited: May 20 work moved several live areas from vague obligation to exact certificate, residual, no-go, or fail-closed form, while leaving the decisive coefficient and benchmark recoveries open.
 
-The largest gains are in Master EOM+Local Dynamics, Potential+Action Closure, Conservation+Invariant Closure, Falsification Gates, and Cross-Regime Bridge. The master-equation stack now has the normalized delayed-interior characteristic-tail kernel, receiver-gradient cancellation, and wake-history energy/momentum/angular-momentum increments in corpus prose. The spiral program has a retained A1 tangential-pass/radial-blocked benchmark, a VP-1 outward tangential-drive failure, and an explicit force-ratio obstruction showing that $\Gamma=b_\ast^2c_f^2r_\ast/(\kappa q_1^2)$ is not fixed by the branch kinematics alone. The proof-program ledger also now records accepted fold constants, multiple parent-complement rejection routes, and a fresh fold-adapted collocation target rather than treating the failed cosine packet as an ambiguous near miss.
+The largest gains are in Master EOM+Local Dynamics, Potential+Action Closure, Conservation+Invariant Closure, Falsification Gates, and Cross-Regime Bridge. The master-equation stack now has the normalized delayed-interior characteristic-tail kernel, receiver-gradient cancellation, and wake-history energy/momentum/angular-momentum increments in corpus prose. The spiral program has a theorem-grade A1 constant-$\Omega$ kinematic-balance no-go, a VP-1 outward tangential-drive failure, and an explicit force-ratio obstruction showing that $\Gamma=b_\ast^2c_f^2r_\ast/(\kappa q_1^2)$ is not fixed by the branch kinematics alone. For A1, the radial turn passes for the prescribed history, exact tangential compatibility fails, and the finite-memory inverse-rate witness moves the live burden to interval transport of a nonconstant time law. The proof-program ledger also now records accepted fold constants, multiple parent-complement rejection routes, and a fresh fold-adapted collocation target rather than treating the failed cosine packet as an ambiguous near miss.
 
 Formula, parameter, and empirical scores rise only modestly. The $A_0$ mass-map work now has a compact finite-coordinate no-go, a branch-chart revision contract, fail-closed anti-overfit checks, energy/shielding and medium-response handoffs, and normalized $\alpha_m$ mass-map notation across the corpus. Angular-momentum work has populated symbolic certificate instances, spinor return-table controls, photon Gate B substrate residuals, Stern-Gerlach-like diagnostics, and Bell handoff packets. These are stronger mathematical objects, but they are still blocked on retained branch-chart rows, native photon Gate A branches, event ledgers, apparatus models, or accepted source measures.
 

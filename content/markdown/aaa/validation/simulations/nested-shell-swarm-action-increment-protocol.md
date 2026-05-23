@@ -23,6 +23,15 @@ Passing this protocol would not complete quantum theory. It would only promote t
 ## Accepted Transition Class
 
 Let $B_q$ and $B_{q'}$ denote candidate nested shell swarm branch states with passed stability rows, layer radii, frequencies, speeds, plane normals, active causal-root ledger, and wake ledger. A candidate accepted transition belongs to
+
+$$
+\mathcal{T}_{\mathrm{acc}}=\varnothing
+$$
+
+unless both endpoint packets first satisfy branch-certificate eligibility: matching ledger identity, matching active-root convention, positive Jacobian floors, declared inactive-root or tail status, $\Delta_{\mathbf{k}}>0$, conservation pullback on the same rows, and refinement records sufficient to keep the endpoint status stable. Before that eligibility is supplied, a run may report diagnostics or rejected endpoint packets, but it may not promote `candidate_action_increment` or `candidate_h_recovery`.
+
+When endpoint eligibility has been established, the accepted transition class is
+
 $$
 \mathcal{T}_{\mathrm{acc}}
 =
@@ -147,12 +156,13 @@ The minimum campaign packet contains:
 A packet may promote `candidate_action_increment` only if all of the following pass:
 
 1. `$h,\hbar$` are absent from the simulated equations of motion and accepted-transition selection, except as post-run benchmark labels.
-2. At least one transition class has $0<\Delta I_*<\infty$.
-3. Endpoint branches and transition continuations have $\Delta_{\mathbf{k}}>0$ after symmetry modes are removed.
-4. Phase closure, root residuals, energy residuals, momentum residuals, and angular-momentum residuals pass the predeclared tolerances.
-5. $\delta_I$ is below the predeclared cluster tolerance.
-6. The temporal, history-resolution, spatial, cross-integrator, and negative-control checks from [Convergence Tests](convergence-tests.md) pass.
-7. The packet reports $\delta_h$ honestly, whether or not the benchmark match is good.
+2. Both endpoint packets satisfy branch-certificate eligibility on matching ledger identity and active-root convention.
+3. At least one transition class has $0<\Delta I_*<\infty$.
+4. Endpoint branches and transition continuations have $\Delta_{\mathbf{k}}>0$ after symmetry modes are removed.
+5. Phase closure, root residuals, energy residuals, momentum residuals, and angular-momentum residuals pass the predeclared tolerances.
+6. $\delta_I$ is below the predeclared cluster tolerance.
+7. The temporal, history-resolution, spatial, cross-integrator, and negative-control checks from [Convergence Tests](convergence-tests.md) pass.
+8. The packet reports $\delta_h$ honestly, whether or not the benchmark match is good.
 
 Only a packet that also has small $\delta_h$ may promote `candidate_h_recovery`. A packet with a positive and stable $\Delta I_*$ but poor $\delta_h$ promotes only a derived action increment that does not recover the measured Planck benchmark.
 

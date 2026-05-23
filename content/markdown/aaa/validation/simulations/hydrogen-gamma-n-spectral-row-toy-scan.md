@@ -140,7 +140,7 @@ $$
 0.001.
 $$
 
-This makes the packet stronger than a mock arithmetic witness. It now checks that a row inherited from the static response packet can control several hydrogen line labels across two admissible records without collapsing $n$ and $\chi_{\text{sea}}$ or fitting a separate coefficient row to each transition.
+This makes the packet stronger than a free mock arithmetic witness, but still below a constitutive hydrogen derivation. It checks that a declared row inherited from the static response packet can control several hydrogen line labels across two admissible records without collapsing $n$ and $\chi_{\text{sea}}$ or fitting a separate coefficient row to each transition.
 
 The scaffold still has a limited claim level. It derives the observer-frequency and envelope-gap entries from the Rydberg line-factor equation and a declared shared cadence stretch, but it does not derive the hydrogen envelope gaps from the master dynamics, does not derive the static response vector, and does not assign real observer frequencies. Its job is to make those inputs explicit and replaceable while keeping the coefficient-row scan executable.
 
@@ -449,6 +449,74 @@ $$
 $$
 
 The stronger extraction claim requires the diameter of $\mathcal B_{\mathrm H}^{\mathrm{spec}}$ to shrink under additional independent hydrogen records or under a constitutive response calculation for $(a_n,a_\chi,a_\lambda,a_R)$. The first packet does not require that stronger claim; it only requires that a shared constrained row survive the line set.
+
+This is not yet the full promotion gate. That gate requires $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, $E_{\text{env}}^{(\ell)}(a)-E_{\text{env}}^{(\ell)}(b)$, $\nu_{a\to b}^{\mathrm{obs},(\ell)}$, and $(a_n,a_\chi,a_\lambda,a_R)$ to be extracted from one declared hydrogen spectral channel record and the same Noether-Sea cell, with recoil, hyperfine structure, photon-channel propagation, and source-branch effects carried outside $\Gamma_N$ unless they are in the declared residual budget.
+
+## Hydrogen $\Gamma_N$ Certificate Boundary
+
+A deterministic hydrogen row is a certificate rather than only a nonempty accepted-row set. The certificate object is
+$$
+\mathcal C_{\mathrm H}^{\Gamma}
+=
+\left(
+\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)},
+\mathcal L_{\mathrm H}^{0},
+\mathbf{g}_{N,\mathrm H}^{(\ell)},
+\Delta E_{\mathrm{env}}^{(\ell)},
+\nu_{\mathrm{obs}}^{(\ell)},
+\mathbf a^{G},
+\mathbf b_{N}^{\mathrm{spec}},
+\boldsymbol{\tau}
+\right),
+$$
+where $\mathbf a^{G}=(a_n,a_\chi,a_\lambda,a_R)$ is the static Noether-Sea response row for the same cell and $\boldsymbol{\tau}$ collects the declared tolerances.
+
+The certificate residual vector is
+$$
+\mathcal R_{\mathrm H}^{\Gamma}
+=
+\left(
+b_\xi^{\mathrm{spec}}-1,\,
+\mathbf b_{N,\mathrm{stat}}^{\mathrm{spec}}\cdot\mathbf a^{G}-1,\,
+\mathcal R_{\mathrm{line}},\,
+\mathcal R_{\mathrm{ref}},\,
+\mathcal R_{\mathrm{H,res}}
+\right),
+$$
+with
+$$
+\mathcal R_{\mathrm{line}}
+=
+\max_{\ell,(a,b)}
+\frac{
+\left|
+\ln\widehat\Gamma_{N,\mathrm H}^{(\ell)}(a,b)
+-
+\mathbf b_{N}^{\mathrm{spec}}\cdot\mathbf g_{N,\mathrm H}^{(\ell)}
+\right|
+}{
+\left|\ln\widehat\Gamma_{N,\mathrm H}^{(\ell)}(a,b)\right|+\varepsilon_\Gamma
+},
+$$
+and
+$$
+\mathcal R_{\mathrm{ref}}
+=
+\max_{\ell,\ell'}
+\frac{
+\left|
+\mathbf b_{N}^{\mathrm{spec}}\cdot
+\left(
+\mathbf g_{N,\mathrm H}^{(\ell)}
+-
+\mathbf g_{N,\mathrm H}^{(\ell')}
+\right)
+\right|
+}{
+\left|\mathbf b_{N}^{\mathrm{spec}}\cdot\mathbf g_{N,\mathrm H}^{(\ell)}\right|+\varepsilon_{\mathrm{row}}
+}.
+$$
+Here $\mathbf b_{N,\mathrm{stat}}^{\mathrm{spec}}=(b_n^{\mathrm{spec}},b_\chi^{\mathrm{spec}},b_\lambda^{\mathrm{spec}},b_R^{\mathrm{spec}})$ is the four-entry static endpoint subrow. The packet passes only if every component of $\mathcal R_{\mathrm H}^{\Gamma}$ is within its declared tolerance and all packet inputs share the same provenance ledger $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ and the same static Noether-Sea cell. Otherwise it fails with the first violated row: provenance, $b_\xi$, endpoint, line-set, refinement, or residual separation.
 
 ## Failure Tests
 

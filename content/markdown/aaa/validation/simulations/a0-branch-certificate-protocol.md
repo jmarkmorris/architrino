@@ -92,7 +92,7 @@ Required inputs:
 - scale ratios $\varepsilon_{IM}=R_I/R_M$ and $\varepsilon_{MO}=R_M/R_O$;
 - speed offsets enforcing $s_I > c_f$, $s_M \approx c_f$, and $s_O < c_f$;
 - candidate handedness tuple and carrier ellipticity;
-- $\eta>0$, sampling resolution, and history-window rule.
+- $\eta > 0$, sampling resolution, and history-window rule.
 
 Required outputs:
 
@@ -140,11 +140,11 @@ At Tier 0, `nonpositive-floquet-gap` appears only as the reserved `Delta_k.failu
 
 Tier 0 must distinguish raw self-root sightings from active self-hit branches. A self root at the configured near-zero delay threshold is recorded in the raw ledger but excluded from the active ledger as an instantaneous self-kick artifact under the convention $H(0)=0$.
 
-Such a root may not count as self-hit closure unless a later regularized fold-layer model explicitly accepts it with a named branch condition, tolerance, and promotion rule. Until that model exists, near-zero self roots block Tier 0 promotion rather than satisfying the self-hit branch requirement.
+Such a root may not count as self-hit closure merely because a fold-layer diagnostic preserves the locked self-root keys. The current fold-layer row is a transition candidate only; it promotes after a corrected one-period branch-equation attempt passes the declared residual surface, with $\Delta_{\mathbf{k}}$ and $\eta$-ladder persistence still downstream.
 
 The reader-facing interpretation of these rows is in [$A_0$ Tier 0 Result Interpretation](a0-tier0-result-interpretation.md).
 
-## Tier 1: $\eta>0$ Continuation
+## Tier 1: $\eta > 0$ Continuation
 
 Tier 1 promotes a surviving Tier 0 row into direct delayed dynamics with the regularized wake kernel still active. It must preserve the absolute-frame logging standard.
 
@@ -170,6 +170,50 @@ Such a row is a revision candidate only. A branch-chart checker may authorize on
 
 Tier 1 passes only if the same branch remains stable before any $\eta\to0^+$ extrapolation.
 
+### Corrected One-Period Branch-Equation Boundary
+
+The current fold-layer-locked compact fixture is a controlled negative result, not an accepted attractor and not a broad falsification of the $A_0$ program. The direct one-period runner can preserve the locked self-root keys in $\mathcal{R}_{\text{lock}}$ without solving the branch equations: state return, root closure, phase closure, speed ordering, center drift, and energy-like speed closure still fail. The scalar branch-native relation basis over $B_{\text{self}}$, $B_{\text{partner}}$, and $B_{\text{inter}}$ leaves a relative acceleration residual far above the Tier 1 tolerance, so the next allowed rerun must predeclare either a non-circular carrier correction $\mathbf{d}_\ell(t)$ or a richer branch-native interaction basis before residual fitting.
+
+For a declared period window $W=[t_0,t_0+T_{\mathbf{k}}]$, the corrected carrier has the form
+$$
+\mathbf{x}_{a,\ell}^{\star}(t)
+=
+\mathbf{x}_{a,\ell}^{(0)}(t)+\mathbf{d}_\ell(t),
+\qquad
+\mathbf{d}_\ell(t+T_{\mathbf{k}})=\mathbf{d}_\ell(t),
+\qquad
+\left\langle\mathbf{d}_\ell\right\rangle_W=0.
+$$
+The one-period residual is
+$$
+\mathcal{R}_{\mathrm{1per}}
+=
+\frac{
+\left(
+\int_W
+\sum_a
+\left\|
+\mathbf{a}^{\mathrm{ME}}_a(t;\mathbf{d})
+-
+\sum_{B\in\{B_{\text{self}},B_{\text{partner}},B_{\text{inter}}\}}
+\alpha_B\,\mathbf{A}_{a,B}(t;\mathbf{d})
+\right\|^2 dt
+\right)^{1/2}
+}{
+\left(
+\int_W
+\sum_a
+\|\mathbf{a}^{\mathrm{ME}}_a(t;\mathbf{d})\|^2 dt
+\right)^{1/2}
++\varepsilon_0
+}.
+$$
+The rerun may proceed toward monodromy only if
+$$
+\mathcal{R}_{\mathrm{1per}}\le 0.02
+$$
+with $\mathbf{d}_\ell(t)$, the basis terms $\mathbf{A}_{a,B}$, the coefficient rule for $\alpha_B$, and any held-out interval declared before fitting. A scalar-basis no-go is therefore a chart or basis failure; it does not become an attractor failure unless every admissible corrected carrier and branch-native basis inside the declared search class fails the same residual boundary.
+
 ## Tier 2: Energy and Shielding
 
 Tier 2 begins only after Tier 1 passes. It computes the internal-energy ledger and far-field shielding extraction described in [Energy](../../dynamics/energy.md). The required outputs are:
@@ -192,7 +236,7 @@ Tier 3 begins only after Tier 2 passes. It applies small acceleration and gradie
 
 The first reduced Tier 0 artifact is `scripts/mass-map/a0-tier0-branch-search.mjs`, with default grid `scripts/mass-map/a0-tier0-default-grid.json`. It is an algebraic branch-search scaffold, not a production simulator. Its required role is to emit candidate rows with parameter choices, quotient-coordinate rows, carrier diagnostics, root ledgers, term classifications, residual surfaces, $\Delta_{\mathbf{k}}$ handoff status, leakage placeholders, certificate gates, and failure codes matching this protocol.
 
-The Tier 1 handoff scaffold is `scripts/mass-map/a0-tier1-continuation-scaffold.mjs`. It consumes Tier 0 JSON rows and emits the $\eta>0$ continuation contract, reduced-coordinate chart, symmetry-quotiented monodromy plan, $\Delta_{\mathbf{k}}$ acceptance boundary, and required output artifact list. It is not a delayed-dynamics solver and cannot certify the branch without a later Tier 1 run.
+The Tier 1 handoff scaffold is `scripts/mass-map/a0-tier1-continuation-scaffold.mjs`. It consumes Tier 0 JSON rows and emits the $\eta > 0$ continuation contract, reduced-coordinate chart, symmetry-quotiented monodromy plan, $\Delta_{\mathbf{k}}$ acceptance boundary, and required output artifact list. It is not a delayed-dynamics solver and cannot certify the branch without a later Tier 1 run.
 
 The companion audit is `scripts/audit-a0-mass-map-promotion.mjs`. It scans AAA and mass-map priority prose for premature statements that treat $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\mathcal{M}_{\text{sea}}^{ab}$ as accepted before the Tier gates pass.
 

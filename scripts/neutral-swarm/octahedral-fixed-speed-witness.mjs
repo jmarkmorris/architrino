@@ -271,7 +271,7 @@ export function buildOctahedralFixedSpeedWitness(options = {}) {
       ],
       diagnostic_first_failure_row:
         rejectingNodes.length > 0 ? "R_tangential_fixed_speed_witness" : "deterministic-witness-not-found",
-      master_first_failure_row: "support-complete-root-ledger-open",
+      master_first_failure_row: "closed-rejected:rigid-octahedral-fixed-speed-neutral-row",
     },
     result: {
       fixed_speed_witness_diagnostic: rejectingNodes.length > 0 ? "certified_failed" : "sampled_inconclusive",
@@ -281,11 +281,11 @@ export function buildOctahedralFixedSpeedWitness(options = {}) {
       retained_branch: false,
       diagnostic_first_failure_status:
         rejectingNodes.length > 0 ? "certified-nonzero-tangential-residual" : "deterministic-witness-not-found",
-      master_first_failure_status: "support-complete-root-ledger-open",
+      master_first_failure_status: "closed-rejected:rigid-octahedral-fixed-speed-neutral-row",
     },
     not_retained_reason: [
       "deterministic witness node has nonzero fixed-speed tangential residual",
-      "support-complete root ledger remains open",
+      "rigid-octahedral fixed-speed neutral row is closed by rejection",
       "normal force, speed ODE, action, Noether, event, stability, and observer-export rows are not closed",
     ],
   };

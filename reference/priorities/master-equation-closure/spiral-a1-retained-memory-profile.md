@@ -176,6 +176,37 @@ $$
 \min |J|\approx1.59903358919.
 $$
 
+## First-Order Transport Consequence
+
+The retained endpoint constraints also supply a first off-center transport
+lemma, recorded in
+[spiral-a1-retained-memory-transport-lemma](spiral-a1-retained-memory-transport-lemma.md).
+In sliding-window inverse-rate notation,
+$$
+Q(\theta)=\frac{\omega_\ast}{\dot\theta(\theta)},
+\qquad
+K_Q(\theta,\Delta)=\int_{\theta-\Delta}^{\theta}Q(\phi)\,d\phi,
+$$
+the retained endpoints have
+$$
+K_Q(0,\Delta_\alpha)=\Delta_\alpha,
+\qquad
+\partial_\theta K_Q(0,\Delta_\alpha)
+=Q(0)-Q(-\Delta_\alpha)=0.
+$$
+Thus the first off-center memory drift begins at second order:
+$$
+K_Q(\theta,\Delta_\alpha)-\Delta_\alpha
+=
+\frac12\bigl(-k_\ast+q'(\Delta_\alpha)\bigr)\theta^2
++O(\theta^3).
+$$
+The witness is therefore not blocked by the pointwise memory equations or by
+first-order root transport at the turn center. It remains uncertified as an
+orbit because no finite $\theta$-collar has yet retained the active roots,
+inactive gaps, Jacobian floors, finite memory, and radial/tangential force
+balance.
+
 ## Meaning
 
 The A1 finite-memory problem has sharpened again. The previous

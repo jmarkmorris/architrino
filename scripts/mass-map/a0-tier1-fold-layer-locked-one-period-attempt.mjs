@@ -10,6 +10,9 @@ const ROOT_RELATIONS = ["partner", "self", "inter_layer"];
 const REFINED_PROJECTION_CHANNELS = ["radial", "tangential"];
 const I_RECEIVER_PHASE_BIN_COUNT = 2;
 const POLARITIES = ["+", "-"];
+const ROOT_TRANSPORT_SOURCE_SCHEMA = "a0-root-transport-source-record/v1";
+const ROOT_TRANSPORT_IDENTITY_SCHEMA = "a0-root-transport-identity/v1";
+const ROOT_TRANSPORT_PHASE_COVARIANCE_SCHEMA = "a0-root-transport-phase-origin-covariance/v1";
 const READY_STATUS = "ready_for_fold_layer_locked_one_period_attempt";
 const DEFAULT_C_F = 1;
 const DEFAULT_STEP_CAP = 1_000_000;
@@ -533,6 +536,203 @@ function groupRootsByObservationTime(roots, period) {
     byKey.get(key).roots.push(root);
   }
   return [...byKey.values()].sort((a, b) => a.t - b.t);
+}
+
+function rootTransportTheta(root, period) {
+  if (!Number.isFinite(period) || period <= 0) {
+    return null;
+  }
+  return modulo((2 * Math.PI * (root.t - root.delay)) / period, 2 * Math.PI);
+}
+
+function rootTransportPhase(root, period) {
+  return (2 * Math.PI * modulo(root.t, period)) / period;
+}
+
+function finiteLog(value) {
+  const magnitude = Math.abs(value);
+  return Number.isFinite(magnitude) && magnitude > 0 ? Math.log(magnitude) : null;
+}
+
+function byRootKey(roots) {
+  const groups = new Map();
+  for (const root of roots) {
+    const key = rootKey(root);
+    if (!groups.has(key)) {
+      groups.set(key, []);
+    }
+    groups.get(key).push(root);
+  }
+  return groups;
+}
+
+function sortedRootGroup(group, period) {
+  return [...group].sort((left, right) => modulo(left.t, period) - modulo(right.t, period));
+}
+
+function cyclicNeighbor(group, index, offset) {
+  return group[(index + offset + group.length) % group.length];
+}
+
+function cyclicNeighborPhase(group, index, offset, period) {
+  const phase = rootTransportPhase(cyclicNeighbor(group, index, offset), period);
+  const current = rootTransportPhase(group[index], period);
+  if (offset > 0 && phase <= current) {
+    return phase + 2 * Math.PI;
+  }
+  if (offset < 0 && phase >= current) {
+    return phase - 2 * Math.PI;
+  }
+  return phase;
+}
+
+function cyclicLogDerivative(group, index, period, valueFor) {
+  if (group.length < 3) {
+    return null;
+  }
+  const previous = cyclicNeighbor(group, index, -1);
+  const next = cyclicNeighbor(group, index, 1);
+  const previousLog = finiteLog(valueFor(previous));
+  const nextLog = finiteLog(valueFor(next));
+  const previousPhase = cyclicNeighborPhase(group, index, -1, period);
+  const nextPhase = cyclicNeighborPhase(group, index, 1, period);
+  const denominator = nextPhase - previousPhase;
+  if (
+    !Number.isFinite(previousLog) ||
+    !Number.isFinite(nextLog) ||
+    !Number.isFinite(denominator) ||
+    denominator <= Number.EPSILON
+  ) {
+    return null;
+  }
+  return (nextLog - previousLog) / denominator;
+}
+
+function rootBucketSpacing(roots, period) {
+  const times = [...new Set(roots.map((root) => modulo(root.t, period).toPrecision(12)).filter(Boolean))]
+    .map(Number)
+    .sort((left, right) => left - right);
+  if (times.length < 2) {
+    return null;
+  }
+  let minGap = Number.POSITIVE_INFINITY;
+  for (let index = 0; index < times.length; index += 1) {
+    const next = times[(index + 1) % times.length];
+    const gap = index + 1 < times.length ? next - times[index] : period - times[index] + next;
+    if (gap > Number.EPSILON) {
+      minGap = Math.min(minGap, gap);
+    }
+  }
+  return Number.isFinite(minGap) ? minGap : null;
+}
+
+function cyclicNeighborGap(group, index, period, denominator) {
+  if (group.length < 2 || !Number.isFinite(denominator) || denominator <= 0) {
+    return null;
+  }
+  const current = group[index];
+  const previous = cyclicNeighbor(group, index, -1);
+  const next = cyclicNeighbor(group, index, 1);
+  const gap = Math.min(
+    circularDistance(modulo(current.t, period), modulo(previous.t, period), period),
+    circularDistance(modulo(current.t, period), modulo(next.t, period), period)
+  );
+  return Number.isFinite(gap) ? gap / denominator : null;
+}
+
+function rootTransportSourceRecord(row, trajectory, args, validationFlags) {
+  const roots = trajectory.roots ?? [];
+  const period = row.period;
+  const groups = byRootKey(roots);
+  const bucketSpacing = rootBucketSpacing(roots, period);
+  const eta = resolveEta(row, null, args);
+  const gapDenominator = Math.max(
+    Number.isFinite(bucketSpacing) ? bucketSpacing : 0,
+    Number.isFinite(eta) && Number.isFinite(args.cF) && args.cF > 0 ? eta / args.cF : 0,
+    Number.EPSILON
+  );
+  const lockedKeys = new Set(row.trajectory_target?.branch_chart_assumptions?.locked_self_root_keys ?? []);
+  const transportRoots = [];
+  for (const [key, group] of groups.entries()) {
+    const sorted = sortedRootGroup(group, period);
+    for (let index = 0; index < sorted.length; index += 1) {
+      const root = sorted[index];
+      const theta = rootTransportTheta(root, period);
+      const dTau = cyclicLogDerivative(sorted, index, period, (entry) => entry.delay);
+      const dJ = cyclicLogDerivative(sorted, index, period, (entry) => entry.J);
+      const gap = cyclicNeighborGap(sorted, index, period, gapDenominator);
+      if (
+        !Number.isFinite(theta) ||
+        !Number.isFinite(dTau) ||
+        !Number.isFinite(dJ) ||
+        !Number.isFinite(gap)
+      ) {
+        continue;
+      }
+      const transportSlot = transportRoots.length;
+      transportRoots.push({
+        root_key: key,
+        receiver: root.receiver,
+        source: root.source,
+        relation: root.relation,
+        status: root.status,
+        t: modulo(root.t, period),
+        theta,
+        D_tau: dTau,
+        D_J: dJ,
+        G_r: gap,
+        transport_id: `single_artifact_root_transport:${transportSlot}`,
+        transport_identity_components: {
+          root_key: key,
+          cyclic_slot: index,
+          same_key_root_count: sorted.length,
+        },
+        transport_identity_status: "single_artifact_not_refinement_stable",
+        locked_fold_layer_key: lockedKeys.has(key),
+      });
+    }
+  }
+  return {
+    schema: ROOT_TRANSPORT_SOURCE_SCHEMA,
+    source: "active_causal_root_ledger",
+    coordinate_family: "I_receiver_inter_layer_J_delay_shear",
+    period,
+    root_count: transportRoots.length,
+    active_root_count: roots.length,
+    bucket_spacing: bucketSpacing,
+    gap_normalizer: gapDenominator,
+    gap_source: "nearest_same-key_active_root_time_gap",
+    default_root_transport_quotient: "source_layer_shear",
+    declared_root_transport_quotients: ["source_layer_shear"],
+    transport_identity_schema: ROOT_TRANSPORT_IDENTITY_SCHEMA,
+    transport_identity_scope: "single_artifact_cyclic_root_slot",
+    transport_identity_rule:
+      "transport_id is a non-semantic local slot scoped to this emitted artifact; transport_identity_components expose the root key and cyclic slot for audit only.",
+    transport_identity_refinement_stable: validationFlags.root_ledger_stable_under_refinement === true,
+    phase_origin_covariance_schema: ROOT_TRANSPORT_PHASE_COVARIANCE_SCHEMA,
+    phase_origin_covariance_status:
+      validationFlags.root_ledger_stable_under_refinement === true
+        ? "phase-origin-covariance-requires-independent-artifact-check"
+        : "single-artifact-phase-origin-not-certified",
+    phase_origin_covariance_certified: false,
+    phase_origin_tested_offsets: [0],
+    phase_origin_covariance_rule:
+      "A future certificate must rerun the source record under declared phase-origin offsets and compare quotient features after cyclic reindexing.",
+    phase_origin_rule:
+      "theta=2*pi*(t-delay)/T mod 2*pi; D_tau and D_J use cyclic central differences by root_key over observation phase.",
+    equality_group_key:
+      "receiver + source + relation + status + declared quotient + phase origin + single-artifact transport slot",
+    locked_fold_layer_keys_excluded: true,
+    locked_fold_layer_keys_exclusion_rule:
+      "locked roots remain tagged in the source record but are excluded from checker feature rows.",
+    benchmark_inputs_excluded: validationFlags.benchmark_inputs_excluded === true,
+    root_transport_certified: validationFlags.root_ledger_stable_under_refinement === true,
+    transport_certification_status:
+      validationFlags.root_ledger_stable_under_refinement === true
+        ? "root-ledger-refinement-certified"
+        : "single-artifact-source-record-only",
+    roots: transportRoots,
+  };
 }
 
 function nearestRootBucket(buckets, t, period) {
@@ -2369,6 +2569,9 @@ function attemptRow(row, sourceRow, args, correctionArtifact) {
     selected_weak_tier_layers: row.selected_weak_tier_layers ?? ["I", "M", "O"],
     samples: trajectory.samples,
     active_causal_root_ledger: trajectory.roots,
+    branch_chart_source_records: {
+      root_transport_source_record: rootTransportSourceRecord(row, trajectory, args, validationFlags),
+    },
     residual_ledgers: ledgers,
     correction_context: correctionContext.ok
       ? {

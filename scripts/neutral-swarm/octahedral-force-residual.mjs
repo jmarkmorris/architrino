@@ -262,7 +262,7 @@ export function buildOctahedralForceResidual(options = {}) {
     },
     site_inventory: siteInventory(),
     sampled_root_dependency: {
-      status: rootDiagnosticPassed ? "sampled-root-ledger-diagnostic-passed" : "sampled-root-ledger-diagnostic-failed",
+      status: rootDiagnosticPassed ? "certified-root-ledger-dependency-passed" : "sampled-root-ledger-diagnostic-failed",
       failed_root_node_count: rootFailures.length,
       first_failed_root_node: rootFailures[0] ?? null,
     },
@@ -293,7 +293,7 @@ export function buildOctahedralForceResidual(options = {}) {
       diagnostic_first_failure_row: rootDiagnosticPassed
         ? "sampled-tangential-residual-failed"
         : "sampled-root-ledger-diagnostic-failed",
-      master_first_failure_row: "support-complete-root-ledger-open",
+      master_first_failure_row: "closed-rejected:rigid-octahedral-fixed-speed-neutral-row",
     },
     result: {
       force_residual_diagnostic: tangentialPassed ? "sampled_passed" : "sampled_failed",
@@ -303,12 +303,12 @@ export function buildOctahedralForceResidual(options = {}) {
       diagnostic_first_failure_status: rootDiagnosticPassed
         ? "sampled-tangential-residual-failed"
         : "sampled-root-ledger-diagnostic-failed",
-      master_first_failure_status: "support-complete-root-ledger-open",
+      master_first_failure_status: "closed-rejected:rigid-octahedral-fixed-speed-neutral-row",
       status_note:
-        "This artifact uses sampled roots to evaluate the fixed-speed tangential residual. The rigid seed is not retained, and the master certificate remains blocked earlier by support-complete root-ledger certification.",
+        "This artifact uses the certified rigid-octahedral root ledger to evaluate the fixed-speed tangential residual. The rigid seed is not retained because the tangential residual is nonzero.",
     },
     not_retained_reason: [
-      "support-complete root ledger remains open",
+      "rigid-octahedral fixed-speed tangential residual is nonzero",
       "sampled fixed-speed tangential residual is nonzero",
       "normal force, speed ODE, action, Noether, event, stability, and observer-export rows are not closed",
     ],
@@ -343,7 +343,7 @@ export function validateOctahedralForceResidual(artifact) {
   assertField(artifact.branch_scope?.pair_policy?.cardinality === 30, "pair policy cardinality must be 30", errors);
 
   const rootDependency = artifact.sampled_root_dependency ?? {};
-  assertField(rootDependency.status === "sampled-root-ledger-diagnostic-passed", "sampled root dependency must pass", errors);
+  assertField(rootDependency.status === "certified-root-ledger-dependency-passed", "certified root dependency must pass", errors);
   assertField(rootDependency.failed_root_node_count === 0, "sampled root dependency failed node count must be 0", errors);
 
   const summary = artifact.force_residual?.sampled_summary ?? {};
@@ -370,8 +370,8 @@ export function validateOctahedralForceResidual(artifact) {
   );
   assertField(artifact.result?.retention === "not_retained", "retention must be not_retained", errors);
   assertField(
-    artifact.result?.master_first_failure_status === "support-complete-root-ledger-open",
-    "master first failure must remain support-complete-root-ledger-open",
+    artifact.result?.master_first_failure_status === "closed-rejected:rigid-octahedral-fixed-speed-neutral-row",
+    "master first failure must be the rigid-octahedral fixed-speed rejection",
     errors
   );
 

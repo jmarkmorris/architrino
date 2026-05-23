@@ -1,0 +1,83 @@
+{
+  "schema": "breather-proof-interval-complement-ownership-certificate-v6",
+  "packet_id": "fresh-same-packet-fold-shear-seed-v0",
+  "refinement_id": "fresh-same-packet-fold-shear-seed-v0-proof-interval-complement-ownership-v6",
+  "status": "proof_interval_v6_complement_ownership_certificate_fail_closed",
+  "theorem_target": "Null-Coordinate Causal Pre-Ledger",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "source_artifacts": {
+    "proof_interval_v5_ledger": {
+      "path": "causal_ledger.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json",
+      "sha256": "15730328d60c1b4ddd3628c9de186b01d4471dcb4bd1724a1cecd00fe424d589",
+      "bytes": 2953587
+    },
+    "proof_interval_v5_backend_certificate": {
+      "path": "preledger_interval_backend_certificate.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json",
+      "sha256": "f85be64a5e6fdcfff48676ab92e3ba73ebda95cd1f93221a81f6dc297bb6e912",
+      "bytes": 10813
+    },
+    "proof_interval_v5_engine_audit": {
+      "path": "preledger_interval_engine_audit.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.json",
+      "sha256": "358fe902bc36f4cfc48e077d07361de3c44fb87580dd67c03271f4f9bf53f59b",
+      "bytes": 2898
+    },
+    "proof_interval_v5_report": {
+      "path": "causal_preledger_interval_report.fresh-same-packet-fold-shear-seed-v0.proof-interval-v5.md",
+      "sha256": "40dea4fce15dddeec28f159bacd92adfef2351e2fdeda165bb22fecdff2dc75e",
+      "bytes": 15422
+    },
+    "fresh_fold_layer_burden": {
+      "path": "fold_layer_burden.fresh-same-packet-fold-shear-seed-v0.json",
+      "sha256": "7948ad914455d0303d9b97e7d4a176766579458949060cf91c202af48965b1bf",
+      "bytes": 12727
+    },
+    "policy": {
+      "parent_complement_contract": {
+        "path": "fold_parent_boundary_complement_packet.md",
+        "sha256": "bdfe5d1bd031117234202808dd3141d3dd4c0329bc0b4ceae9f329db691fc01d",
+        "bytes": 12632
+      },
+      "endpoint_contract": {
+        "path": "fold_parent_endpoint_contract_extension.md",
+        "sha256": "54569bcf6e0bf30426cff8a76bfadf167d641e938d50ce550ddc1f85914721b9",
+        "bytes": 2435
+      },
+      "fold_family_membership_attempt": {
+        "path": "fold_parent_fold_family_membership_attempt.md",
+        "sha256": "82a62b359f7d12d62f3c7a6be4573c86f204539975d602385124ac4b632f1fe4",
+        "bytes": 11809
+      },
+      "regular_boundary_contract_probe": {
+        "path": "fold_parent_regular_boundary_contract_probe.md",
+        "sha256": "2ebceafffdfc3f4fcfc27e2e5164c48197cbe6d99e90f948772931c56e9b551b",
+        "bytes": 8448
+      },
+      "regular_boundary_coverage_attempt": {
+        "path": "fold_parent_regular_boundary_coverage_attempt.md",
+        "sha256": "4725b74b51ccebeaf3ecef28e12a9a99bfd18a5d51200a8a08ccc81fa04ef6fc",
+        "bytes": 7010
+      }
+    }
+  },
+  "accepted_alternatives_tested": [
+    "strict_range_empty",
+    "endpoint_topology_owned",
+    "exact_fold_family_covered",
+    "regular_boundary_covered"
+  ],
+  "pass_rule": "A simple-root parent row is consumed only if the imported simple-root subrow remains accepted and every receiver-side complement strip satisfies one accepted alternative: strict range-empty, endpoint/topology ownership, exact same-packet fold-family coverage, or accepted same-packet regular-boundary coverage.",
+  "same_packet_fold_layer_policy": "Historical fold constants and fold-family attempts are policy references only for this fresh packet. v6 accepts fold-family coverage only from same-packet accepted fold-layer rows and exact strip membership, neither of which is present.",
+  "regular_boundary_policy": "Regular-boundary coverage is accepted only with finite same-packet family definition, exact inclusion, domination, topology/no-double-counting, and non-core complement closure fields.",
+  "authorization_lock": {
+    "branch_chart_authorized": false,
+    "preledger_pass": false,
+    "updates_live_ledger": false,
+    "must_not_emit": [
+      "branch_chart.json",
+      "seed_chart_interval_report.md",
+      "causal_ledger.json"
+    ]
+  }
+}
