@@ -83,12 +83,24 @@
    the proof burden is to bound $R(p)-R(0)$ for all admissible retained-profile
    perturbations in a declared class while preserving positivity, inactive
    gaps, Jacobian floors, finite memory, tangential transport, and the sampled
-   $3+1$ retained ledger. The retained-root bound row is branch-chart
-   persistence input only: it narrows the admissible class for the remainder
-   packet, but the workstream remains priority-only until the transport,
-   branch-sum, substituted-radial, and admissibility rows combine into an
+   $3+1$ retained ledger. The retained-root, tangential-transport, branch-sum,
+   substituted-radial, and admissibility bound rows are now staged as
+   conditional proof inputs: they narrow the admissible retained branch chart,
+   convert branch-sum envelopes into future-profile and first/second variation
+   envelopes, express $T_{Q,p}$ and $B_{Q,p}$ envelopes from retained-root
+   offsets and source-profile perturbations, assemble those quantities into
+   $E_\ast(b)$ or $C_1,C_2$, and state the shared legality checks for
+   positivity, inactive gaps, Jacobian floors, finite memory, tangential
+   transport, and the retained $3+1$ ledger. The workstream remains
+   priority-only until outward constants turn these row contracts into an
    interval obstruction or expose a specific admissible finite-amplitude
-   channel. Depends on: none.
+   channel. A sampled degree-18 `finite_collar_remainder_constants_ladder`
+   mode now gives $C_{1,\mathrm{samp}}\approx5.46\times10^{-12}$,
+   $C_{2,\mathrm{samp}}\approx6.61\times10^{-4}$, and radius-ladder bounds
+   below the material floor through $b=0.03$, but it classifies
+   `sampled_remainder_constants_unstable` because the adjacent sampled $C_2$
+   change is about $0.731$; it is therefore diagnostic support only until
+   stable or outward constants close on the same A1 boxes. Depends on: none.
 2. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `spiral_branch_chart_test`.
 3. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
 

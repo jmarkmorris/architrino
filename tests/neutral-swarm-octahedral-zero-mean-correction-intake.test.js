@@ -16,6 +16,8 @@ import {
   OCTAHEDRAL_ZERO_MEAN_LIVE_CORRECTION_DIRECTION_CERTIFICATE_SCHEMA,
   OCTAHEDRAL_ZERO_MEAN_SPEED_PRIMITIVE_FEASIBILITY_CERTIFICATE_SCHEMA,
   OCTAHEDRAL_ZERO_MEAN_SPEED_CLOCK_LENGTH_CERTIFICATE_SCHEMA,
+  OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA,
+  OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA,
   evaluateCandidateBRangeProbe,
   evaluateLiveCorrectionDirectionCertificate,
   evaluateLiveDerivativeMatrixCertificate,
@@ -23,6 +25,8 @@ import {
   evaluateLiveDerivativeColumnIntake,
   evaluateSpeedPrimitiveFeasibilityCertificate,
   evaluateSpeedClockLengthCertificate,
+  evaluateNormalReconstructionHandoff,
+  evaluateBoundedSpeedNormalReconstructionCandidate,
   buildOctahedralZeroMeanCorrectionIntake,
   validateOctahedralZeroMeanCorrectionIntake,
 } from "../scripts/neutral-swarm/octahedral-zero-mean-correction-intake.mjs";
@@ -281,6 +285,93 @@ function speedClockLengthPacket(overrides = {}) {
       nu_initial: 1,
       primitive_integral: 0,
       length_return_residual: 0,
+    })),
+    ...overrides,
+  };
+}
+
+function normalReconstructionHandoffPacket(overrides = {}) {
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA,
+    claim_scope: "normal-reconstruction-handoff",
+    promotion_status: "priority-only",
+    source_intake_schema: OCTAHEDRAL_ZERO_MEAN_CORRECTION_INTAKE_SCHEMA,
+    source_artifact_id: SOURCE_ARTIFACT_ID,
+    source_speed_clock_length_schema: OCTAHEDRAL_ZERO_MEAN_SPEED_CLOCK_LENGTH_CERTIFICATE_SCHEMA,
+    source_speed_clock_length_id: "post-correction-speed-clock-length-test",
+    bounded_speed_ledger_id: "bounded-speed-live-ledger-test",
+    normal_handoff_id: "post-correction-normal-reconstruction-handoff-test",
+    certifies_live_derivative_matrix: true,
+    certifies_correction_direction: true,
+    certifies_speed_primitive_feasibility: true,
+    certifies_speed_clock_length: true,
+    certifies_normal_reconstruction: false,
+    certifies_bounded_speed_live_ledger: false,
+    retained_branch: false,
+    row_labels: RECEIVER_LABELS,
+    receiver_normal_handoff_rows: RECEIVER_LABELS.map((receiver_label) => ({
+      receiver_label,
+      normal_residual_norm_2: 0.25,
+      tangent_holonomy_residual_norm_2: 0.125,
+      position_closure_residual_norm_2: 0.0625,
+      unit_tangent_residual_abs_max: 0,
+      support_margin_min: 0.5,
+    })),
+    ...overrides,
+  };
+}
+
+function boundedSpeedNormalReconstructionCandidatePacket(overrides = {}) {
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA,
+    claim_scope: "bounded-speed-normal-reconstruction-candidate",
+    promotion_status: "priority-only",
+    source_intake_schema: OCTAHEDRAL_ZERO_MEAN_CORRECTION_INTAKE_SCHEMA,
+    source_artifact_id: SOURCE_ARTIFACT_ID,
+    source_normal_reconstruction_handoff_schema: OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA,
+    source_normal_handoff_id: "post-correction-normal-reconstruction-handoff-test",
+    bounded_speed_ledger_id: "bounded-speed-live-ledger-test",
+    force_checksum_id: "force-checksum-test",
+    consumer_checksum_id: "consumer-checksum-test",
+    normal_reconstruction_candidate_id: "post-correction-bounded-speed-normal-reconstruction-candidate-test",
+    normal_equation_status: "normal-equation-closed",
+    tangent_holonomy_status: "tangent-holonomy-closed",
+    position_closure_status: "position-closure-closed",
+    unit_tangent_status: "unit-tangent-closed",
+    support_margin_status: "support-margin-positive",
+    noncollision_status: "noncollision-certified",
+    root_persistence_status: "root-persistence-certified",
+    krawczyk_status: "bounded-speed-branch-krawczyk-accepted",
+    certifies_live_derivative_matrix: true,
+    certifies_correction_direction: true,
+    certifies_speed_primitive_feasibility: true,
+    certifies_speed_clock_length: true,
+    certifies_normal_reconstruction: true,
+    certifies_bounded_speed_live_ledger: false,
+    retained_branch: false,
+    row_labels: RECEIVER_LABELS,
+    tolerances: {
+      normal_residual_norm_2: 1e-9,
+      tangent_holonomy_residual_norm_2: 1e-9,
+      position_closure_residual_norm_2: 1e-9,
+      unit_tangent_residual_abs_max: 1e-9,
+      krawczyk_residual_norm_2: 1e-9,
+    },
+    margin_floors: {
+      support_margin_min: 0,
+      noncollision_margin_min: 0,
+      root_persistence_margin_min: 0,
+    },
+    receiver_normal_candidate_rows: RECEIVER_LABELS.map((receiver_label) => ({
+      receiver_label,
+      normal_residual_norm_2: 0,
+      tangent_holonomy_residual_norm_2: 0,
+      position_closure_residual_norm_2: 0,
+      unit_tangent_residual_abs_max: 0,
+      support_margin_min: 0.5,
+      noncollision_margin_min: 0.25,
+      root_persistence_margin_min: 0.125,
+      krawczyk_residual_norm_2: 0,
     })),
     ...overrides,
   };
@@ -1076,6 +1167,339 @@ test("octahedral zero-mean correction intake certifies post-correction speed clo
   );
 });
 
+test("octahedral zero-mean correction intake stages normal reconstruction handoff without certification", () => {
+  const baseArtifact = buildOctahedralZeroMeanCorrectionIntake({
+    phaseSamples: 120,
+    ySubdivisions: 240,
+  });
+  const matrixPacket = liveDerivativeMatrixPacket(Array.from({ length: 6 }, () => [1]), {
+    matrix_id: "same-ledger-constant-column-pass",
+    column_labels: ["constant_receiver_direction"],
+  });
+  const directionPacket = liveCorrectionDirectionPacket({
+    alpha_b_vector: [baseArtifact.linear_system_intake.rhs_vector[0]],
+  });
+  const primitivePacket = speedPrimitiveFeasibilityPacket();
+  const clockPacket = speedClockLengthPacket();
+  const handoffPacket = normalReconstructionHandoffPacket();
+  const clockArtifact = buildOctahedralZeroMeanCorrectionIntake({
+    phaseSamples: 120,
+    ySubdivisions: 240,
+    liveDerivativeMatrixPacket: matrixPacket,
+    liveCorrectionDirectionPacket: directionPacket,
+    speedPrimitiveFeasibilityPacket: primitivePacket,
+    speedClockLengthPacket: clockPacket,
+  });
+  const artifact = buildOctahedralZeroMeanCorrectionIntake({
+    phaseSamples: 120,
+    ySubdivisions: 240,
+    liveDerivativeMatrixPacket: matrixPacket,
+    liveCorrectionDirectionPacket: directionPacket,
+    speedPrimitiveFeasibilityPacket: primitivePacket,
+    speedClockLengthPacket: clockPacket,
+    normalReconstructionHandoffPacket: handoffPacket,
+  });
+  const evaluatedHandoff = evaluateNormalReconstructionHandoff(clockArtifact, handoffPacket);
+
+  assert.deepEqual(validateOctahedralZeroMeanCorrectionIntake(artifact), []);
+  assert.deepEqual(artifact.normal_reconstruction_handoff, evaluatedHandoff);
+  assert.equal(artifact.normal_reconstruction_handoff.schema, OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA);
+  assert.equal(artifact.artifact_claim.emits_normal_reconstruction_handoff, true);
+  assert.equal(artifact.artifact_claim.certifies_normal_reconstruction, false);
+  assert.equal(artifact.artifact_claim.certifies_bounded_speed_live_ledger, false);
+  assert.equal(
+    artifact.normal_reconstruction_handoff.normal_reconstruction_handoff_status,
+    "normal-reconstruction-handoff-staged"
+  );
+  assert.equal(artifact.normal_reconstruction_handoff.normal_reconstruction_status, "normal-reconstruction-open");
+  assert.equal(artifact.normal_reconstruction_handoff.certifies_normal_reconstruction, false);
+  assert.equal(artifact.normal_reconstruction_handoff.certifies_bounded_speed_live_ledger, false);
+  assert.equal(artifact.normal_reconstruction_handoff.retention, "not_retained");
+  assert.equal(artifact.result.intake_status, "zero-mean-normal-reconstruction-handoff-staged");
+  assert.equal(artifact.result.retention, "not_retained");
+  assert.equal(artifact.result.retained_branch, false);
+  assert.equal(artifact.residual_vector.first_failure_row, "normal-reconstruction-open");
+  assert.equal(
+    artifact.residual_vector.rows.some(
+      (row) => row.row === "R_normal_reconstruction_handoff" && row.status === "open"
+    ),
+    true
+  );
+
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+      }),
+    /requires an attached speed clock length certificate/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: normalReconstructionHandoffPacket({
+          source_speed_clock_length_id: "wrong-clock-length-id",
+        }),
+      }),
+    /source_speed_clock_length_id must match/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: normalReconstructionHandoffPacket({
+          certifies_normal_reconstruction: true,
+        }),
+      }),
+    /must set certifies_normal_reconstruction=false/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: normalReconstructionHandoffPacket({
+          certifies_bounded_speed_live_ledger: true,
+        }),
+      }),
+    /must set certifies_bounded_speed_live_ledger=false/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: normalReconstructionHandoffPacket({
+          receiver_normal_handoff_rows: RECEIVER_LABELS.map((receiver_label) => ({
+            receiver_label,
+            normal_residual_norm_2: Number.NaN,
+            tangent_holonomy_residual_norm_2: 0.125,
+            position_closure_residual_norm_2: 0.0625,
+            unit_tangent_residual_abs_max: 0,
+            support_margin_min: 0.5,
+          })),
+        }),
+      }),
+    /normal residual norms must be nonnegative finite numbers/
+  );
+});
+
+test("octahedral zero-mean correction intake certifies bounded-speed normal reconstruction candidate without retention", () => {
+  const baseArtifact = buildOctahedralZeroMeanCorrectionIntake({
+    phaseSamples: 120,
+    ySubdivisions: 240,
+  });
+  const matrixPacket = liveDerivativeMatrixPacket(Array.from({ length: 6 }, () => [1]), {
+    matrix_id: "same-ledger-constant-column-pass",
+    column_labels: ["constant_receiver_direction"],
+  });
+  const directionPacket = liveCorrectionDirectionPacket({
+    alpha_b_vector: [baseArtifact.linear_system_intake.rhs_vector[0]],
+  });
+  const primitivePacket = speedPrimitiveFeasibilityPacket();
+  const clockPacket = speedClockLengthPacket();
+  const handoffPacket = normalReconstructionHandoffPacket();
+  const candidatePacket = boundedSpeedNormalReconstructionCandidatePacket();
+  const handoffArtifact = buildOctahedralZeroMeanCorrectionIntake({
+    phaseSamples: 120,
+    ySubdivisions: 240,
+    liveDerivativeMatrixPacket: matrixPacket,
+    liveCorrectionDirectionPacket: directionPacket,
+    speedPrimitiveFeasibilityPacket: primitivePacket,
+    speedClockLengthPacket: clockPacket,
+    normalReconstructionHandoffPacket: handoffPacket,
+  });
+  const artifact = buildOctahedralZeroMeanCorrectionIntake({
+    phaseSamples: 120,
+    ySubdivisions: 240,
+    liveDerivativeMatrixPacket: matrixPacket,
+    liveCorrectionDirectionPacket: directionPacket,
+    speedPrimitiveFeasibilityPacket: primitivePacket,
+    speedClockLengthPacket: clockPacket,
+    normalReconstructionHandoffPacket: handoffPacket,
+    boundedSpeedNormalReconstructionCandidatePacket: candidatePacket,
+  });
+  const evaluatedCandidate = evaluateBoundedSpeedNormalReconstructionCandidate(handoffArtifact, candidatePacket);
+
+  assert.deepEqual(validateOctahedralZeroMeanCorrectionIntake(artifact), []);
+  assert.deepEqual(artifact.bounded_speed_normal_reconstruction_candidate, evaluatedCandidate);
+  assert.equal(
+    artifact.bounded_speed_normal_reconstruction_candidate.schema,
+    OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA
+  );
+  assert.equal(artifact.artifact_claim.emits_bounded_speed_normal_reconstruction_candidate, true);
+  assert.equal(artifact.artifact_claim.certifies_normal_reconstruction, true);
+  assert.equal(artifact.artifact_claim.certifies_bounded_speed_live_ledger, false);
+  assert.equal(
+    artifact.bounded_speed_normal_reconstruction_candidate.candidate_status,
+    "bounded-speed-normal-reconstruction-candidate"
+  );
+  assert.equal(
+    artifact.bounded_speed_normal_reconstruction_candidate.downstream_status,
+    "bounded-speed-live-ledger-open"
+  );
+  assert.equal(artifact.bounded_speed_normal_reconstruction_candidate.certifies_normal_reconstruction, true);
+  assert.equal(artifact.bounded_speed_normal_reconstruction_candidate.certifies_bounded_speed_live_ledger, false);
+  assert.equal(artifact.bounded_speed_normal_reconstruction_candidate.retention, "not_retained");
+  assert.equal(artifact.result.intake_status, "zero-mean-bounded-speed-normal-reconstruction-candidate");
+  assert.equal(artifact.result.retention, "not_retained");
+  assert.equal(artifact.result.retained_branch, false);
+  assert.equal(artifact.residual_vector.first_failure_row, "bounded-speed-live-ledger-open");
+  assert.equal(
+    artifact.residual_vector.rows.some(
+      (row) => row.row === "R_bounded_speed_normal_reconstruction_candidate" && row.status === "passed"
+    ),
+    true
+  );
+
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: candidatePacket,
+      }),
+    /requires an attached normal reconstruction handoff/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: boundedSpeedNormalReconstructionCandidatePacket({
+          source_normal_handoff_id: "wrong-normal-handoff-id",
+        }),
+      }),
+    /source_normal_handoff_id must match/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: boundedSpeedNormalReconstructionCandidatePacket({
+          tangent_holonomy_status: "normal-holonomy-open",
+        }),
+      }),
+    /tangent holonomy row must be closed/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: boundedSpeedNormalReconstructionCandidatePacket({
+          receiver_normal_candidate_rows: RECEIVER_LABELS.map((receiver_label) => ({
+            receiver_label,
+            normal_residual_norm_2: 2e-9,
+            tangent_holonomy_residual_norm_2: 0,
+            position_closure_residual_norm_2: 0,
+            unit_tangent_residual_abs_max: 0,
+            support_margin_min: 0.5,
+            noncollision_margin_min: 0.25,
+            root_persistence_margin_min: 0.125,
+            krawczyk_residual_norm_2: 0,
+          })),
+        }),
+      }),
+    /normal residuals must be inside tolerance/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: boundedSpeedNormalReconstructionCandidatePacket({
+          margin_floors: {
+            support_margin_min: 1,
+            noncollision_margin_min: 0,
+            root_persistence_margin_min: 0,
+          },
+        }),
+      }),
+    /support margins must clear the floor/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: boundedSpeedNormalReconstructionCandidatePacket({
+          certifies_bounded_speed_live_ledger: true,
+        }),
+      }),
+    /must set certifies_bounded_speed_live_ledger=false/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: boundedSpeedNormalReconstructionCandidatePacket({
+          retained_branch: true,
+        }),
+      }),
+    /must set retained_branch=false/
+  );
+});
+
 test("octahedral zero-mean correction intake CLI emits and validates JSON artifacts", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "neutral-swarm-zero-mean-intake-"));
   const artifactPath = path.join(tempDir, "artifact.json");
@@ -1086,6 +1510,11 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
   const liveCorrectionDirectionPath = path.join(tempDir, "live-correction-direction.json");
   const speedPrimitiveFeasibilityPath = path.join(tempDir, "speed-primitive-feasibility.json");
   const speedClockLengthPath = path.join(tempDir, "speed-clock-length.json");
+  const normalReconstructionHandoffPath = path.join(tempDir, "normal-reconstruction-handoff.json");
+  const boundedSpeedNormalReconstructionCandidatePath = path.join(
+    tempDir,
+    "bounded-speed-normal-reconstruction-candidate.json"
+  );
   const baseArtifact = buildOctahedralZeroMeanCorrectionIntake({
     phaseSamples: 120,
     ySubdivisions: 240,
@@ -1131,6 +1560,11 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
   );
   fs.writeFileSync(speedPrimitiveFeasibilityPath, `${JSON.stringify(speedPrimitiveFeasibilityPacket())}\n`);
   fs.writeFileSync(speedClockLengthPath, `${JSON.stringify(speedClockLengthPacket())}\n`);
+  fs.writeFileSync(normalReconstructionHandoffPath, `${JSON.stringify(normalReconstructionHandoffPacket())}\n`);
+  fs.writeFileSync(
+    boundedSpeedNormalReconstructionCandidatePath,
+    `${JSON.stringify(boundedSpeedNormalReconstructionCandidatePacket())}\n`
+  );
 
   execFileSync(
     process.execPath,
@@ -1153,6 +1587,10 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
       speedPrimitiveFeasibilityPath,
       "--speed-clock-length",
       speedClockLengthPath,
+      "--normal-reconstruction-handoff",
+      normalReconstructionHandoffPath,
+      "--bounded-speed-normal-reconstruction-candidate",
+      boundedSpeedNormalReconstructionCandidatePath,
       "--out",
       artifactPath,
       "--pretty",
@@ -1172,7 +1610,7 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
     execFileSync(process.execPath, [scriptPath, "--validate", artifactPath], { encoding: "utf8" })
   );
   assert.equal(validation.valid, true);
-  assert.equal(validation.result.intake_status, "zero-mean-speed-clock-length-certified");
+  assert.equal(validation.result.intake_status, "zero-mean-bounded-speed-normal-reconstruction-candidate");
   assert.equal(validation.result.correction_direction, "found_first_order_not_retained");
   assert.equal(validation.result.retention, "not_retained");
   assert.equal(validation.result.retained_branch, false);
@@ -1194,6 +1632,21 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
     "speed-clock-length-return-certified"
   );
   assert.equal(validation.speed_ode_clock_length_certificate.certifies_bounded_speed_live_ledger, false);
+  assert.equal(
+    validation.normal_reconstruction_handoff.normal_reconstruction_handoff_status,
+    "normal-reconstruction-handoff-staged"
+  );
+  assert.equal(validation.normal_reconstruction_handoff.certifies_normal_reconstruction, false);
+  assert.equal(validation.normal_reconstruction_handoff.certifies_bounded_speed_live_ledger, false);
+  assert.equal(
+    validation.bounded_speed_normal_reconstruction_candidate.candidate_status,
+    "bounded-speed-normal-reconstruction-candidate"
+  );
+  assert.equal(validation.bounded_speed_normal_reconstruction_candidate.certifies_normal_reconstruction, true);
+  assert.equal(
+    validation.bounded_speed_normal_reconstruction_candidate.certifies_bounded_speed_live_ledger,
+    false
+  );
 
   const validationWithColumnPacket = JSON.parse(
     execFileSync(
@@ -1246,5 +1699,13 @@ test("octahedral zero-mean correction intake CLI emits and validates JSON artifa
   assert.equal(
     schema.speed_clock_length_certificate_schema,
     OCTAHEDRAL_ZERO_MEAN_SPEED_CLOCK_LENGTH_CERTIFICATE_SCHEMA
+  );
+  assert.equal(
+    schema.normal_reconstruction_handoff_schema,
+    OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA
+  );
+  assert.equal(
+    schema.bounded_speed_normal_reconstruction_candidate_schema,
+    OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA
   );
 });

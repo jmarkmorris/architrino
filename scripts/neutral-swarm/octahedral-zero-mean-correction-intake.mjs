@@ -30,6 +30,10 @@ export const OCTAHEDRAL_ZERO_MEAN_SPEED_PRIMITIVE_FEASIBILITY_CERTIFICATE_SCHEMA
   "neutral-swarm-octahedral-zero-mean-speed-primitive-feasibility-certificate/v1";
 export const OCTAHEDRAL_ZERO_MEAN_SPEED_CLOCK_LENGTH_CERTIFICATE_SCHEMA =
   "neutral-swarm-octahedral-zero-mean-speed-clock-length-certificate/v1";
+export const OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA =
+  "neutral-swarm-octahedral-zero-mean-normal-reconstruction-handoff/v1";
+export const OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA =
+  "neutral-swarm-octahedral-zero-mean-bounded-speed-normal-reconstruction-candidate/v1";
 
 const PACKET_ID = "octahedral_zero_mean_correction_intake";
 const PROMOTION_STATUS = "priority-only";
@@ -145,6 +149,14 @@ function readSpeedPrimitiveFeasibilityPacket(filePath) {
 
 function readSpeedClockLengthPacket(filePath) {
   return readJsonObjectPacket(filePath, "speed clock length");
+}
+
+function readNormalReconstructionHandoffPacket(filePath) {
+  return readJsonObjectPacket(filePath, "normal reconstruction handoff");
+}
+
+function readBoundedSpeedNormalReconstructionCandidatePacket(filePath) {
+  return readJsonObjectPacket(filePath, "bounded speed normal reconstruction candidate");
 }
 
 function isNonemptyString(value) {
@@ -1414,6 +1426,637 @@ export function attachSpeedClockLengthCertificate(artifact, clockPacket, options
   };
 }
 
+function normalReconstructionHandoffValidationErrors(artifact, handoffPacket) {
+  const errors = [];
+  const clockLengthCertificate = artifact?.speed_ode_clock_length_certificate;
+
+  assertField(
+    handoffPacket?.schema === OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA,
+    `normal reconstruction handoff schema must be ${OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA}`,
+    errors
+  );
+  assertField(
+    handoffPacket?.claim_scope === "normal-reconstruction-handoff",
+    "normal reconstruction handoff claim_scope must be normal-reconstruction-handoff",
+    errors
+  );
+  assertField(
+    handoffPacket?.source_intake_schema === OCTAHEDRAL_ZERO_MEAN_CORRECTION_INTAKE_SCHEMA,
+    `normal reconstruction handoff source_intake_schema must be ${OCTAHEDRAL_ZERO_MEAN_CORRECTION_INTAKE_SCHEMA}`,
+    errors
+  );
+  assertField(
+    handoffPacket?.source_artifact_id === artifact?.artifact_id,
+    "normal reconstruction handoff source_artifact_id must match the intake artifact",
+    errors
+  );
+  assertField(
+    handoffPacket?.promotion_status === PROMOTION_STATUS,
+    `normal reconstruction handoff promotion_status must be ${PROMOTION_STATUS}`,
+    errors
+  );
+  assertField(
+    clockLengthCertificate?.schema === OCTAHEDRAL_ZERO_MEAN_SPEED_CLOCK_LENGTH_CERTIFICATE_SCHEMA,
+    "normal reconstruction handoff requires an attached speed clock length certificate",
+    errors
+  );
+  assertField(
+    clockLengthCertificate?.speed_clock_length_status === "speed-clock-length-return-certified",
+    "normal reconstruction handoff requires speed-clock-length-return-certified",
+    errors
+  );
+  assertField(
+    handoffPacket?.source_speed_clock_length_schema === OCTAHEDRAL_ZERO_MEAN_SPEED_CLOCK_LENGTH_CERTIFICATE_SCHEMA,
+    "normal reconstruction handoff must cite the speed clock length certificate schema",
+    errors
+  );
+  assertField(
+    handoffPacket?.source_speed_clock_length_id === clockLengthCertificate?.clock_length_id,
+    "normal reconstruction handoff source_speed_clock_length_id must match the clock length certificate",
+    errors
+  );
+  assertField(
+    handoffPacket?.bounded_speed_ledger_id === clockLengthCertificate?.bounded_speed_ledger_id,
+    "normal reconstruction handoff bounded_speed_ledger_id must match the clock length certificate",
+    errors
+  );
+  assertField(
+    handoffPacket?.certifies_live_derivative_matrix === true,
+    "normal reconstruction handoff packet must set certifies_live_derivative_matrix=true",
+    errors
+  );
+  assertField(
+    handoffPacket?.certifies_correction_direction === true,
+    "normal reconstruction handoff packet must set certifies_correction_direction=true",
+    errors
+  );
+  assertField(
+    handoffPacket?.certifies_speed_primitive_feasibility === true,
+    "normal reconstruction handoff packet must set certifies_speed_primitive_feasibility=true",
+    errors
+  );
+  assertField(
+    handoffPacket?.certifies_speed_clock_length === true,
+    "normal reconstruction handoff packet must set certifies_speed_clock_length=true",
+    errors
+  );
+  assertField(
+    handoffPacket?.certifies_normal_reconstruction === false,
+    "normal reconstruction handoff packet must set certifies_normal_reconstruction=false",
+    errors
+  );
+  assertField(
+    handoffPacket?.certifies_bounded_speed_live_ledger === false,
+    "normal reconstruction handoff packet must set certifies_bounded_speed_live_ledger=false",
+    errors
+  );
+  assertField(
+    handoffPacket?.retained_branch === false,
+    "normal reconstruction handoff packet must set retained_branch=false",
+    errors
+  );
+  assertField(
+    isNonemptyString(handoffPacket?.normal_handoff_id),
+    "normal reconstruction handoff must declare normal_handoff_id",
+    errors
+  );
+  assertField(
+    Array.isArray(handoffPacket?.row_labels) &&
+      JSON.stringify(handoffPacket.row_labels) === JSON.stringify(artifact?.frozen_mean_vector?.receiver_labels),
+    "normal reconstruction handoff row_labels must match frozen receiver labels",
+    errors
+  );
+  const normalRows = handoffPacket?.receiver_normal_handoff_rows;
+  assertField(
+    Array.isArray(normalRows) && normalRows.length === RECEIVER_COUNT,
+    "normal reconstruction handoff must provide one normal handoff row per receiver",
+    errors
+  );
+  if (Array.isArray(normalRows)) {
+    assertField(
+      uniqueEntries(normalRows.map((row) => row?.receiver_label)),
+      "normal reconstruction handoff receiver labels must be unique",
+      errors
+    );
+    const expectedLabels = artifact?.frozen_mean_vector?.receiver_labels ?? [];
+    normalRows.forEach((row, index) => {
+      assertField(
+        row?.receiver_label === expectedLabels[index],
+        "normal reconstruction handoff receiver rows must follow frozen receiver order",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.normal_residual_norm_2) && row.normal_residual_norm_2 >= 0,
+        "normal reconstruction handoff normal residual norms must be nonnegative finite numbers",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.tangent_holonomy_residual_norm_2) && row.tangent_holonomy_residual_norm_2 >= 0,
+        "normal reconstruction handoff tangent holonomy residual norms must be nonnegative finite numbers",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.position_closure_residual_norm_2) && row.position_closure_residual_norm_2 >= 0,
+        "normal reconstruction handoff position closure residual norms must be nonnegative finite numbers",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.unit_tangent_residual_abs_max) && row.unit_tangent_residual_abs_max >= 0,
+        "normal reconstruction handoff unit tangent residuals must be nonnegative finite numbers",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.support_margin_min),
+        "normal reconstruction handoff support margins must be finite numbers",
+        errors
+      );
+    });
+  }
+  return errors;
+}
+
+export function evaluateNormalReconstructionHandoff(artifact, handoffPacket) {
+  const errors = normalReconstructionHandoffValidationErrors(artifact, handoffPacket);
+  if (errors.length > 0) {
+    throw new Error(`normal reconstruction handoff packet failed validation: ${errors.join("; ")}`);
+  }
+
+  const clockLengthCertificate = artifact.speed_ode_clock_length_certificate;
+  const receiverRows = handoffPacket.receiver_normal_handoff_rows.map((row) => ({
+    receiver_label: row.receiver_label,
+    normal_residual_norm_2: formatNumber(row.normal_residual_norm_2),
+    tangent_holonomy_residual_norm_2: formatNumber(row.tangent_holonomy_residual_norm_2),
+    position_closure_residual_norm_2: formatNumber(row.position_closure_residual_norm_2),
+    unit_tangent_residual_abs_max: formatNumber(row.unit_tangent_residual_abs_max),
+    support_margin_min: formatNumber(row.support_margin_min),
+  }));
+
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA,
+    source_intake_schema: OCTAHEDRAL_ZERO_MEAN_CORRECTION_INTAKE_SCHEMA,
+    source_speed_clock_length_schema: clockLengthCertificate.schema,
+    claim_scope: "normal-reconstruction-handoff",
+    promotion_status: PROMOTION_STATUS,
+    normal_handoff_id: handoffPacket.normal_handoff_id,
+    source_artifact_id: handoffPacket.source_artifact_id,
+    source_speed_clock_length_id: clockLengthCertificate.clock_length_id,
+    equation: "nu_i(lambda_i)^2*K_i=Gamma_B^nu*P_i^perp*F_i^nu",
+    handoff_source: "supplied-normal-reconstruction-handoff-rows",
+    bounded_speed_ledger_id: clockLengthCertificate.bounded_speed_ledger_id,
+    force_checksum_id: clockLengthCertificate.force_checksum_id,
+    consumer_checksum_id: clockLengthCertificate.consumer_checksum_id,
+    row_labels: handoffPacket.row_labels,
+    receiver_normal_handoff_rows: receiverRows,
+    normal_residual_norm_2_max: formatNumber(Math.max(...receiverRows.map((row) => row.normal_residual_norm_2))),
+    tangent_holonomy_residual_norm_2_max: formatNumber(
+      Math.max(...receiverRows.map((row) => row.tangent_holonomy_residual_norm_2))
+    ),
+    position_closure_residual_norm_2_max: formatNumber(
+      Math.max(...receiverRows.map((row) => row.position_closure_residual_norm_2))
+    ),
+    unit_tangent_residual_abs_max: formatNumber(
+      Math.max(...receiverRows.map((row) => row.unit_tangent_residual_abs_max))
+    ),
+    support_margin_min: formatNumber(Math.min(...receiverRows.map((row) => row.support_margin_min))),
+    guard_status: "normal-reconstruction-handoff-staged",
+    normal_reconstruction_handoff_status: "normal-reconstruction-handoff-staged",
+    normal_reconstruction_status: "normal-reconstruction-open",
+    downstream_status: "normal-reconstruction-open",
+    certifies_live_derivative_matrix: true,
+    certifies_correction_direction: true,
+    certifies_speed_primitive_feasibility: true,
+    certifies_speed_clock_length: true,
+    certifies_normal_reconstruction: false,
+    certifies_bounded_speed_live_ledger: false,
+    retention: "not_retained",
+    retained_branch: false,
+    status_note:
+      "This packet stages same-ledger normal reconstruction residual, tangent-holonomy, position-closure, unit-tangent, and support-margin data after the speed clock/length row. It does not certify normal reconstruction, a bounded-speed live ledger, or a retained branch.",
+  };
+}
+
+export function attachNormalReconstructionHandoff(artifact, handoffPacket) {
+  const normalReconstructionHandoff = evaluateNormalReconstructionHandoff(artifact, handoffPacket);
+  const existingRows = artifact.residual_vector.rows.filter((row) => row.row !== "R_normal_reconstruction_handoff");
+
+  return {
+    ...artifact,
+    artifact_claim: {
+      ...artifact.artifact_claim,
+      emits_normal_reconstruction_handoff: true,
+      certifies_normal_reconstruction: false,
+      strongest_claim:
+        "The frozen rigid-octahedral speed-ODE mean vector is a positive constant six-vector, the scalar speed-ODE correction chain is certified through clock/length return, and same-ledger normal reconstruction handoff rows are staged, but normal reconstruction and retained-branch rows remain open.",
+    },
+    residual_vector: {
+      ...artifact.residual_vector,
+      rows: [
+        ...existingRows,
+        {
+          row: "R_normal_reconstruction_handoff",
+          status: "open",
+          value: "normal-reconstruction-handoff-staged",
+        },
+      ],
+      first_failure_row: "normal-reconstruction-open",
+    },
+    result: {
+      ...artifact.result,
+      intake_status: "zero-mean-normal-reconstruction-handoff-staged",
+      correction_direction: "found_first_order_not_retained",
+      retention: "not_retained",
+      retained_branch: false,
+      status_note:
+        "This artifact packages the frozen zero-mean right-hand side, certifies the scalar speed-ODE correction chain through clock/length return, and stages normal reconstruction handoff rows. It does not certify normal reconstruction, a bounded-speed live ledger, or retained branch.",
+    },
+    not_retained_reason: [
+      "normal reconstruction is staged but not certified",
+      "bounded-speed live ledger is not certified as a retained branch",
+      "action, Noether, event, stability, and observer-export rows are not closed",
+    ],
+    normal_reconstruction_handoff: normalReconstructionHandoff,
+  };
+}
+
+function boundedSpeedNormalReconstructionCandidateValidationErrors(artifact, candidatePacket) {
+  const errors = [];
+  const handoff = artifact?.normal_reconstruction_handoff;
+  const tolerances = candidatePacket?.tolerances ?? {};
+  const marginFloors = candidatePacket?.margin_floors ?? {};
+
+  assertField(
+    candidatePacket?.schema === OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA,
+    `bounded speed normal reconstruction candidate schema must be ${OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA}`,
+    errors
+  );
+  assertField(
+    candidatePacket?.claim_scope === "bounded-speed-normal-reconstruction-candidate",
+    "bounded speed normal reconstruction candidate claim_scope must be bounded-speed-normal-reconstruction-candidate",
+    errors
+  );
+  assertField(
+    candidatePacket?.source_intake_schema === OCTAHEDRAL_ZERO_MEAN_CORRECTION_INTAKE_SCHEMA,
+    `bounded speed normal reconstruction candidate source_intake_schema must be ${OCTAHEDRAL_ZERO_MEAN_CORRECTION_INTAKE_SCHEMA}`,
+    errors
+  );
+  assertField(
+    candidatePacket?.source_artifact_id === artifact?.artifact_id,
+    "bounded speed normal reconstruction candidate source_artifact_id must match the intake artifact",
+    errors
+  );
+  assertField(
+    candidatePacket?.promotion_status === PROMOTION_STATUS,
+    `bounded speed normal reconstruction candidate promotion_status must be ${PROMOTION_STATUS}`,
+    errors
+  );
+  assertField(
+    handoff?.schema === OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA,
+    "bounded speed normal reconstruction candidate requires an attached normal reconstruction handoff",
+    errors
+  );
+  assertField(
+    handoff?.normal_reconstruction_handoff_status === "normal-reconstruction-handoff-staged",
+    "bounded speed normal reconstruction candidate requires normal-reconstruction-handoff-staged",
+    errors
+  );
+  assertField(
+    candidatePacket?.source_normal_reconstruction_handoff_schema ===
+      OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA,
+    "bounded speed normal reconstruction candidate must cite the normal reconstruction handoff schema",
+    errors
+  );
+  assertField(
+    candidatePacket?.source_normal_handoff_id === handoff?.normal_handoff_id,
+    "bounded speed normal reconstruction candidate source_normal_handoff_id must match the normal handoff",
+    errors
+  );
+  assertField(
+    candidatePacket?.bounded_speed_ledger_id === handoff?.bounded_speed_ledger_id,
+    "bounded speed normal reconstruction candidate bounded_speed_ledger_id must match the handoff",
+    errors
+  );
+  assertField(
+    candidatePacket?.force_checksum_id === handoff?.force_checksum_id,
+    "bounded speed normal reconstruction candidate force_checksum_id must match the handoff",
+    errors
+  );
+  assertField(
+    candidatePacket?.consumer_checksum_id === handoff?.consumer_checksum_id,
+    "bounded speed normal reconstruction candidate consumer_checksum_id must match the handoff",
+    errors
+  );
+  assertField(
+    isNonemptyString(candidatePacket?.normal_reconstruction_candidate_id),
+    "bounded speed normal reconstruction candidate must declare normal_reconstruction_candidate_id",
+    errors
+  );
+  assertField(
+    Array.isArray(candidatePacket?.row_labels) &&
+      JSON.stringify(candidatePacket.row_labels) === JSON.stringify(artifact?.frozen_mean_vector?.receiver_labels),
+    "bounded speed normal reconstruction candidate row_labels must match frozen receiver labels",
+    errors
+  );
+  assertField(
+    candidatePacket?.normal_equation_status === "normal-equation-closed",
+    "bounded speed normal reconstruction candidate normal equation row must be closed",
+    errors
+  );
+  assertField(
+    candidatePacket?.tangent_holonomy_status === "tangent-holonomy-closed",
+    "bounded speed normal reconstruction candidate tangent holonomy row must be closed",
+    errors
+  );
+  assertField(
+    candidatePacket?.position_closure_status === "position-closure-closed",
+    "bounded speed normal reconstruction candidate position closure row must be closed",
+    errors
+  );
+  assertField(
+    candidatePacket?.unit_tangent_status === "unit-tangent-closed",
+    "bounded speed normal reconstruction candidate unit tangent row must be closed",
+    errors
+  );
+  assertField(
+    candidatePacket?.support_margin_status === "support-margin-positive",
+    "bounded speed normal reconstruction candidate support margin row must be positive",
+    errors
+  );
+  assertField(
+    candidatePacket?.noncollision_status === "noncollision-certified",
+    "bounded speed normal reconstruction candidate noncollision row must be certified",
+    errors
+  );
+  assertField(
+    candidatePacket?.root_persistence_status === "root-persistence-certified",
+    "bounded speed normal reconstruction candidate root persistence row must be certified",
+    errors
+  );
+  assertField(
+    candidatePacket?.krawczyk_status === "bounded-speed-branch-krawczyk-accepted",
+    "bounded speed normal reconstruction candidate Krawczyk row must be accepted",
+    errors
+  );
+  assertField(
+    candidatePacket?.certifies_live_derivative_matrix === true &&
+      candidatePacket?.certifies_correction_direction === true &&
+      candidatePacket?.certifies_speed_primitive_feasibility === true &&
+      candidatePacket?.certifies_speed_clock_length === true,
+    "bounded speed normal reconstruction candidate must preserve the certified scalar speed chain",
+    errors
+  );
+  assertField(
+    candidatePacket?.certifies_normal_reconstruction === true,
+    "bounded speed normal reconstruction candidate must set certifies_normal_reconstruction=true",
+    errors
+  );
+  assertField(
+    candidatePacket?.certifies_bounded_speed_live_ledger === false,
+    "bounded speed normal reconstruction candidate must set certifies_bounded_speed_live_ledger=false",
+    errors
+  );
+  assertField(
+    candidatePacket?.retained_branch === false,
+    "bounded speed normal reconstruction candidate must set retained_branch=false",
+    errors
+  );
+
+  const toleranceKeys = [
+    "normal_residual_norm_2",
+    "tangent_holonomy_residual_norm_2",
+    "position_closure_residual_norm_2",
+    "unit_tangent_residual_abs_max",
+    "krawczyk_residual_norm_2",
+  ];
+  for (const key of toleranceKeys) {
+    assertField(
+      Number.isFinite(tolerances?.[key]) && tolerances[key] >= 0,
+      `bounded speed normal reconstruction candidate tolerance ${key} must be a nonnegative finite number`,
+      errors
+    );
+  }
+  for (const key of ["support_margin_min", "noncollision_margin_min", "root_persistence_margin_min"]) {
+    assertField(
+      Number.isFinite(marginFloors?.[key]),
+      `bounded speed normal reconstruction candidate margin floor ${key} must be finite`,
+      errors
+    );
+  }
+
+  const candidateRows = candidatePacket?.receiver_normal_candidate_rows;
+  assertField(
+    Array.isArray(candidateRows) && candidateRows.length === RECEIVER_COUNT,
+    "bounded speed normal reconstruction candidate must provide one candidate row per receiver",
+    errors
+  );
+  if (Array.isArray(candidateRows)) {
+    assertField(
+      uniqueEntries(candidateRows.map((row) => row?.receiver_label)),
+      "bounded speed normal reconstruction candidate receiver labels must be unique",
+      errors
+    );
+    const expectedLabels = artifact?.frozen_mean_vector?.receiver_labels ?? [];
+    candidateRows.forEach((row, index) => {
+      assertField(
+        row?.receiver_label === expectedLabels[index],
+        "bounded speed normal reconstruction candidate receiver rows must follow frozen receiver order",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.normal_residual_norm_2) &&
+          row.normal_residual_norm_2 >= 0 &&
+          row.normal_residual_norm_2 <= tolerances.normal_residual_norm_2,
+        "bounded speed normal reconstruction candidate normal residuals must be inside tolerance",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.tangent_holonomy_residual_norm_2) &&
+          row.tangent_holonomy_residual_norm_2 >= 0 &&
+          row.tangent_holonomy_residual_norm_2 <= tolerances.tangent_holonomy_residual_norm_2,
+        "bounded speed normal reconstruction candidate tangent holonomy residuals must be inside tolerance",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.position_closure_residual_norm_2) &&
+          row.position_closure_residual_norm_2 >= 0 &&
+          row.position_closure_residual_norm_2 <= tolerances.position_closure_residual_norm_2,
+        "bounded speed normal reconstruction candidate position closure residuals must be inside tolerance",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.unit_tangent_residual_abs_max) &&
+          row.unit_tangent_residual_abs_max >= 0 &&
+          row.unit_tangent_residual_abs_max <= tolerances.unit_tangent_residual_abs_max,
+        "bounded speed normal reconstruction candidate unit tangent residuals must be inside tolerance",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.support_margin_min) && row.support_margin_min >= marginFloors.support_margin_min,
+        "bounded speed normal reconstruction candidate support margins must clear the floor",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.noncollision_margin_min) &&
+          row.noncollision_margin_min >= marginFloors.noncollision_margin_min,
+        "bounded speed normal reconstruction candidate noncollision margins must clear the floor",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.root_persistence_margin_min) &&
+          row.root_persistence_margin_min >= marginFloors.root_persistence_margin_min,
+        "bounded speed normal reconstruction candidate root persistence margins must clear the floor",
+        errors
+      );
+      assertField(
+        Number.isFinite(row?.krawczyk_residual_norm_2) &&
+          row.krawczyk_residual_norm_2 >= 0 &&
+          row.krawczyk_residual_norm_2 <= tolerances.krawczyk_residual_norm_2,
+        "bounded speed normal reconstruction candidate Krawczyk residuals must be inside tolerance",
+        errors
+      );
+    });
+  }
+
+  return errors;
+}
+
+export function evaluateBoundedSpeedNormalReconstructionCandidate(artifact, candidatePacket) {
+  const errors = boundedSpeedNormalReconstructionCandidateValidationErrors(artifact, candidatePacket);
+  if (errors.length > 0) {
+    throw new Error(`bounded speed normal reconstruction candidate packet failed validation: ${errors.join("; ")}`);
+  }
+
+  const handoff = artifact.normal_reconstruction_handoff;
+  const receiverRows = candidatePacket.receiver_normal_candidate_rows.map((row) => ({
+    receiver_label: row.receiver_label,
+    normal_residual_norm_2: formatNumber(row.normal_residual_norm_2),
+    tangent_holonomy_residual_norm_2: formatNumber(row.tangent_holonomy_residual_norm_2),
+    position_closure_residual_norm_2: formatNumber(row.position_closure_residual_norm_2),
+    unit_tangent_residual_abs_max: formatNumber(row.unit_tangent_residual_abs_max),
+    support_margin_min: formatNumber(row.support_margin_min),
+    noncollision_margin_min: formatNumber(row.noncollision_margin_min),
+    root_persistence_margin_min: formatNumber(row.root_persistence_margin_min),
+    krawczyk_residual_norm_2: formatNumber(row.krawczyk_residual_norm_2),
+  }));
+
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA,
+    source_intake_schema: OCTAHEDRAL_ZERO_MEAN_CORRECTION_INTAKE_SCHEMA,
+    source_normal_reconstruction_handoff_schema: handoff.schema,
+    claim_scope: "bounded-speed-normal-reconstruction-candidate",
+    promotion_status: PROMOTION_STATUS,
+    normal_reconstruction_candidate_id: candidatePacket.normal_reconstruction_candidate_id,
+    source_artifact_id: candidatePacket.source_artifact_id,
+    source_normal_handoff_id: handoff.normal_handoff_id,
+    equation: "nu_i(lambda_i)^2*K_i=Gamma_B^nu*P_i^perp*F_i^nu",
+    candidate_source: "supplied-same-ledger-normal-reconstruction-rows",
+    bounded_speed_ledger_id: handoff.bounded_speed_ledger_id,
+    force_checksum_id: handoff.force_checksum_id,
+    consumer_checksum_id: handoff.consumer_checksum_id,
+    row_labels: candidatePacket.row_labels,
+    tolerances: {
+      normal_residual_norm_2: formatNumber(candidatePacket.tolerances.normal_residual_norm_2),
+      tangent_holonomy_residual_norm_2: formatNumber(
+        candidatePacket.tolerances.tangent_holonomy_residual_norm_2
+      ),
+      position_closure_residual_norm_2: formatNumber(candidatePacket.tolerances.position_closure_residual_norm_2),
+      unit_tangent_residual_abs_max: formatNumber(candidatePacket.tolerances.unit_tangent_residual_abs_max),
+      krawczyk_residual_norm_2: formatNumber(candidatePacket.tolerances.krawczyk_residual_norm_2),
+    },
+    margin_floors: {
+      support_margin_min: formatNumber(candidatePacket.margin_floors.support_margin_min),
+      noncollision_margin_min: formatNumber(candidatePacket.margin_floors.noncollision_margin_min),
+      root_persistence_margin_min: formatNumber(candidatePacket.margin_floors.root_persistence_margin_min),
+    },
+    normal_equation_status: candidatePacket.normal_equation_status,
+    tangent_holonomy_status: candidatePacket.tangent_holonomy_status,
+    position_closure_status: candidatePacket.position_closure_status,
+    unit_tangent_status: candidatePacket.unit_tangent_status,
+    support_margin_status: candidatePacket.support_margin_status,
+    noncollision_status: candidatePacket.noncollision_status,
+    root_persistence_status: candidatePacket.root_persistence_status,
+    krawczyk_status: candidatePacket.krawczyk_status,
+    receiver_normal_candidate_rows: receiverRows,
+    normal_residual_norm_2_max: formatNumber(Math.max(...receiverRows.map((row) => row.normal_residual_norm_2))),
+    tangent_holonomy_residual_norm_2_max: formatNumber(
+      Math.max(...receiverRows.map((row) => row.tangent_holonomy_residual_norm_2))
+    ),
+    position_closure_residual_norm_2_max: formatNumber(
+      Math.max(...receiverRows.map((row) => row.position_closure_residual_norm_2))
+    ),
+    unit_tangent_residual_abs_max: formatNumber(
+      Math.max(...receiverRows.map((row) => row.unit_tangent_residual_abs_max))
+    ),
+    support_margin_min: formatNumber(Math.min(...receiverRows.map((row) => row.support_margin_min))),
+    noncollision_margin_min: formatNumber(Math.min(...receiverRows.map((row) => row.noncollision_margin_min))),
+    root_persistence_margin_min: formatNumber(
+      Math.min(...receiverRows.map((row) => row.root_persistence_margin_min))
+    ),
+    krawczyk_residual_norm_2_max: formatNumber(
+      Math.max(...receiverRows.map((row) => row.krawczyk_residual_norm_2))
+    ),
+    guard_status: "bounded-speed-normal-reconstruction-rows-closed",
+    candidate_status: "bounded-speed-normal-reconstruction-candidate",
+    normal_reconstruction_status: "bounded-speed-normal-reconstruction-candidate",
+    downstream_status: "bounded-speed-live-ledger-open",
+    certifies_live_derivative_matrix: true,
+    certifies_correction_direction: true,
+    certifies_speed_primitive_feasibility: true,
+    certifies_speed_clock_length: true,
+    certifies_normal_reconstruction: true,
+    certifies_bounded_speed_live_ledger: false,
+    retention: "not_retained",
+    retained_branch: false,
+    status_note:
+      "This packet certifies supplied bounded-speed normal reconstruction candidate rows on the same handoff ledger. It does not certify a bounded-speed live ledger, action/Noether/event/stability closure, observer export, or a retained branch.",
+  };
+}
+
+export function attachBoundedSpeedNormalReconstructionCandidate(artifact, candidatePacket) {
+  const candidate = evaluateBoundedSpeedNormalReconstructionCandidate(artifact, candidatePacket);
+  const existingRows = artifact.residual_vector.rows.filter(
+    (row) => row.row !== "R_bounded_speed_normal_reconstruction_candidate"
+  );
+
+  return {
+    ...artifact,
+    artifact_claim: {
+      ...artifact.artifact_claim,
+      emits_bounded_speed_normal_reconstruction_candidate: true,
+      certifies_normal_reconstruction: true,
+      strongest_claim:
+        "The frozen rigid-octahedral speed-ODE correction chain is certified through clock/length return, and supplied same-ledger bounded-speed normal reconstruction rows form a candidate, but bounded-speed live-ledger retention remains open.",
+    },
+    residual_vector: {
+      ...artifact.residual_vector,
+      rows: [
+        ...existingRows,
+        {
+          row: "R_bounded_speed_normal_reconstruction_candidate",
+          status: "passed",
+          value: "bounded-speed-normal-reconstruction-candidate",
+        },
+      ],
+      first_failure_row: "bounded-speed-live-ledger-open",
+    },
+    result: {
+      ...artifact.result,
+      intake_status: "zero-mean-bounded-speed-normal-reconstruction-candidate",
+      bounded_speed_live_ledger: "not_built",
+      correction_direction: "found_first_order_not_retained",
+      retention: "not_retained",
+      retained_branch: false,
+      status_note:
+        "This artifact packages the frozen zero-mean right-hand side, certifies the scalar speed-ODE correction chain through clock/length return, and certifies supplied bounded-speed normal reconstruction candidate rows. It does not certify a bounded-speed live ledger or retained branch.",
+    },
+    not_retained_reason: [
+      "bounded-speed live ledger is not certified as a retained branch",
+      "action, Noether, event, stability, and observer-export rows are not closed",
+      "coupled fixed-point and refinement-persistence rows are not closed",
+    ],
+    bounded_speed_normal_reconstruction_candidate: candidate,
+  };
+}
+
 function candidateBValidationErrors(artifact, candidateBPacket, options) {
   const errors = [];
   const rankTolerance = options.rankTolerance;
@@ -1925,6 +2568,9 @@ export function buildOctahedralZeroMeanCorrectionIntake(options = {}) {
   const liveCorrectionDirectionPacket = options.liveCorrectionDirectionPacket ?? null;
   const speedPrimitiveFeasibilityPacket = options.speedPrimitiveFeasibilityPacket ?? null;
   const speedClockLengthPacket = options.speedClockLengthPacket ?? null;
+  const normalReconstructionHandoffPacket = options.normalReconstructionHandoffPacket ?? null;
+  const boundedSpeedNormalReconstructionCandidatePacket =
+    options.boundedSpeedNormalReconstructionCandidatePacket ?? null;
   const probeLiveDerivativeColumnPreview = Boolean(options.probeLiveDerivativeColumnPreview);
 
   const artifact = {
@@ -1945,6 +2591,9 @@ export function buildOctahedralZeroMeanCorrectionIntake(options = {}) {
       certifies_correction_direction: false,
       certifies_speed_primitive_feasibility: false,
       certifies_speed_clock_length: false,
+      emits_normal_reconstruction_handoff: false,
+      emits_bounded_speed_normal_reconstruction_candidate: false,
+      certifies_normal_reconstruction: false,
       retained_branch: false,
       strongest_claim:
         "The frozen rigid-octahedral speed-ODE mean vector is a positive constant six-vector, so any live zero-mean correction matrix must hit that right-hand-side direction.",
@@ -2090,6 +2739,8 @@ export function buildOctahedralZeroMeanCorrectionIntake(options = {}) {
     live_correction_direction_certificate: null,
     speed_ode_primitive_feasibility_certificate: null,
     speed_ode_clock_length_certificate: null,
+    normal_reconstruction_handoff: null,
+    bounded_speed_normal_reconstruction_candidate: null,
   };
 
   let packagedArtifact = artifact;
@@ -2125,6 +2776,15 @@ export function buildOctahedralZeroMeanCorrectionIntake(options = {}) {
       clockLengthTolerance,
     });
   }
+  if (normalReconstructionHandoffPacket) {
+    packagedArtifact = attachNormalReconstructionHandoff(packagedArtifact, normalReconstructionHandoffPacket);
+  }
+  if (boundedSpeedNormalReconstructionCandidatePacket) {
+    packagedArtifact = attachBoundedSpeedNormalReconstructionCandidate(
+      packagedArtifact,
+      boundedSpeedNormalReconstructionCandidatePacket
+    );
+  }
   return packagedArtifact;
 }
 
@@ -2153,6 +2813,13 @@ export function validateOctahedralZeroMeanCorrectionIntake(artifact) {
   const speedClockLengthCertificate = artifact.speed_ode_clock_length_certificate;
   const hasSpeedClockLengthCertificate =
     speedClockLengthCertificate !== null && speedClockLengthCertificate !== undefined;
+  const normalReconstructionHandoff = artifact.normal_reconstruction_handoff;
+  const hasNormalReconstructionHandoff =
+    normalReconstructionHandoff !== null && normalReconstructionHandoff !== undefined;
+  const boundedSpeedNormalReconstructionCandidate = artifact.bounded_speed_normal_reconstruction_candidate;
+  const hasBoundedSpeedNormalReconstructionCandidate =
+    boundedSpeedNormalReconstructionCandidate !== null &&
+    boundedSpeedNormalReconstructionCandidate !== undefined;
   assertField(artifact.artifact_claim?.solves_dynamics === false, "artifact must declare solves_dynamics=false", errors);
   assertField(
     artifact.artifact_claim?.certifies_bounded_speed_live_ledger === false,
@@ -2182,6 +2849,22 @@ export function validateOctahedralZeroMeanCorrectionIntake(artifact) {
   assertField(
     artifact.artifact_claim?.certifies_speed_clock_length === hasSpeedClockLengthCertificate,
     "artifact speed clock length claim must match attached speed clock length certificate",
+    errors
+  );
+  assertField(
+    artifact.artifact_claim?.emits_normal_reconstruction_handoff === hasNormalReconstructionHandoff,
+    "artifact normal reconstruction handoff claim must match attached handoff",
+    errors
+  );
+  assertField(
+    artifact.artifact_claim?.emits_bounded_speed_normal_reconstruction_candidate ===
+      hasBoundedSpeedNormalReconstructionCandidate,
+    "artifact bounded speed normal reconstruction candidate claim must match attached candidate",
+    errors
+  );
+  assertField(
+    artifact.artifact_claim?.certifies_normal_reconstruction === hasBoundedSpeedNormalReconstructionCandidate,
+    "artifact normal reconstruction claim must match attached candidate",
     errors
   );
   assertField(artifact.result?.retained_branch === false, "result.retained_branch must be false", errors);
@@ -2991,6 +3674,147 @@ export function validateOctahedralZeroMeanCorrectionIntake(artifact) {
     );
   }
 
+  if (hasNormalReconstructionHandoff) {
+    assertField(
+      hasSpeedClockLengthCertificate,
+      "normal reconstruction handoff requires speed clock length certificate",
+      errors
+    );
+    assertField(
+      normalReconstructionHandoff.schema === OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA,
+      `normal reconstruction handoff schema must be ${OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA}`,
+      errors
+    );
+    assertField(
+      normalReconstructionHandoff.claim_scope === "normal-reconstruction-handoff",
+      "normal reconstruction handoff must keep handoff scope",
+      errors
+    );
+    assertField(
+      normalReconstructionHandoff.source_speed_clock_length_id === speedClockLengthCertificate?.clock_length_id,
+      "normal reconstruction handoff must cite the attached speed clock length certificate",
+      errors
+    );
+    assertField(
+      normalReconstructionHandoff.guard_status === "normal-reconstruction-handoff-staged" &&
+        normalReconstructionHandoff.normal_reconstruction_handoff_status ===
+          "normal-reconstruction-handoff-staged",
+      "normal reconstruction handoff status must be staged",
+      errors
+    );
+    assertField(
+      normalReconstructionHandoff.normal_reconstruction_status === "normal-reconstruction-open" &&
+        normalReconstructionHandoff.downstream_status === "normal-reconstruction-open",
+      "normal reconstruction handoff must leave normal reconstruction open",
+      errors
+    );
+    assertField(
+      normalReconstructionHandoff.certifies_live_derivative_matrix === true &&
+        normalReconstructionHandoff.certifies_correction_direction === true &&
+        normalReconstructionHandoff.certifies_speed_primitive_feasibility === true &&
+        normalReconstructionHandoff.certifies_speed_clock_length === true &&
+        normalReconstructionHandoff.certifies_normal_reconstruction === false &&
+        normalReconstructionHandoff.certifies_bounded_speed_live_ledger === false,
+      "normal reconstruction handoff must not certify normal reconstruction or bounded-speed live ledger",
+      errors
+    );
+    assertField(
+      normalReconstructionHandoff.retention === "not_retained" &&
+        normalReconstructionHandoff.retained_branch === false,
+      "normal reconstruction handoff must not retain a branch",
+      errors
+    );
+    assertField(
+      Array.isArray(normalReconstructionHandoff.receiver_normal_handoff_rows) &&
+        normalReconstructionHandoff.receiver_normal_handoff_rows.length === RECEIVER_COUNT,
+      "normal reconstruction handoff must emit six handoff rows",
+      errors
+    );
+    assertField(
+      Number.isFinite(normalReconstructionHandoff.normal_residual_norm_2_max) &&
+        Number.isFinite(normalReconstructionHandoff.tangent_holonomy_residual_norm_2_max) &&
+        Number.isFinite(normalReconstructionHandoff.position_closure_residual_norm_2_max) &&
+        Number.isFinite(normalReconstructionHandoff.unit_tangent_residual_abs_max) &&
+        Number.isFinite(normalReconstructionHandoff.support_margin_min),
+      "normal reconstruction handoff summaries must be finite",
+      errors
+    );
+  }
+
+  if (hasBoundedSpeedNormalReconstructionCandidate) {
+    assertField(
+      hasNormalReconstructionHandoff,
+      "bounded speed normal reconstruction candidate requires normal reconstruction handoff",
+      errors
+    );
+    assertField(
+      boundedSpeedNormalReconstructionCandidate.schema ===
+        OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA,
+      `bounded speed normal reconstruction candidate schema must be ${OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA}`,
+      errors
+    );
+    assertField(
+      boundedSpeedNormalReconstructionCandidate.claim_scope === "bounded-speed-normal-reconstruction-candidate",
+      "bounded speed normal reconstruction candidate must keep candidate scope",
+      errors
+    );
+    assertField(
+      boundedSpeedNormalReconstructionCandidate.source_normal_handoff_id ===
+        normalReconstructionHandoff?.normal_handoff_id,
+      "bounded speed normal reconstruction candidate must cite the attached normal reconstruction handoff",
+      errors
+    );
+    assertField(
+      boundedSpeedNormalReconstructionCandidate.guard_status ===
+        "bounded-speed-normal-reconstruction-rows-closed" &&
+        boundedSpeedNormalReconstructionCandidate.candidate_status ===
+          "bounded-speed-normal-reconstruction-candidate",
+      "bounded speed normal reconstruction candidate rows must be closed",
+      errors
+    );
+    assertField(
+      boundedSpeedNormalReconstructionCandidate.normal_reconstruction_status ===
+        "bounded-speed-normal-reconstruction-candidate" &&
+        boundedSpeedNormalReconstructionCandidate.downstream_status === "bounded-speed-live-ledger-open",
+      "bounded speed normal reconstruction candidate must leave bounded-speed live ledger open",
+      errors
+    );
+    assertField(
+      boundedSpeedNormalReconstructionCandidate.certifies_live_derivative_matrix === true &&
+        boundedSpeedNormalReconstructionCandidate.certifies_correction_direction === true &&
+        boundedSpeedNormalReconstructionCandidate.certifies_speed_primitive_feasibility === true &&
+        boundedSpeedNormalReconstructionCandidate.certifies_speed_clock_length === true &&
+        boundedSpeedNormalReconstructionCandidate.certifies_normal_reconstruction === true &&
+        boundedSpeedNormalReconstructionCandidate.certifies_bounded_speed_live_ledger === false,
+      "bounded speed normal reconstruction candidate must certify normal rows only, not bounded-speed live ledger",
+      errors
+    );
+    assertField(
+      boundedSpeedNormalReconstructionCandidate.retention === "not_retained" &&
+        boundedSpeedNormalReconstructionCandidate.retained_branch === false,
+      "bounded speed normal reconstruction candidate must not retain a branch",
+      errors
+    );
+    assertField(
+      Array.isArray(boundedSpeedNormalReconstructionCandidate.receiver_normal_candidate_rows) &&
+        boundedSpeedNormalReconstructionCandidate.receiver_normal_candidate_rows.length === RECEIVER_COUNT,
+      "bounded speed normal reconstruction candidate must emit six candidate rows",
+      errors
+    );
+    assertField(
+      Number.isFinite(boundedSpeedNormalReconstructionCandidate.normal_residual_norm_2_max) &&
+        Number.isFinite(boundedSpeedNormalReconstructionCandidate.tangent_holonomy_residual_norm_2_max) &&
+        Number.isFinite(boundedSpeedNormalReconstructionCandidate.position_closure_residual_norm_2_max) &&
+        Number.isFinite(boundedSpeedNormalReconstructionCandidate.unit_tangent_residual_abs_max) &&
+        Number.isFinite(boundedSpeedNormalReconstructionCandidate.support_margin_min) &&
+        Number.isFinite(boundedSpeedNormalReconstructionCandidate.noncollision_margin_min) &&
+        Number.isFinite(boundedSpeedNormalReconstructionCandidate.root_persistence_margin_min) &&
+        Number.isFinite(boundedSpeedNormalReconstructionCandidate.krawczyk_residual_norm_2_max),
+      "bounded speed normal reconstruction candidate summaries must be finite",
+      errors
+    );
+  }
+
   const derivativeAudit = artifact.derivative_column_audit ?? {};
   if (hasLiveMatrixCertificate) {
     assertField(
@@ -3076,6 +3900,10 @@ function usage() {
     "                             Post-correction speed primitive feasibility certificate JSON",
     "  --speed-clock-length <path>",
     "                             Post-correction speed clock/length return certificate JSON",
+    "  --normal-reconstruction-handoff <path>",
+    "                             Post-correction normal reconstruction handoff packet JSON",
+    "  --bounded-speed-normal-reconstruction-candidate <path>",
+    "                             Bounded-speed normal reconstruction candidate packet JSON",
     "  --out <path>               Write artifact JSON to path instead of stdout",
     "  --validate <path>          Validate an existing artifact JSON file",
     "  --schema                   Print the artifact schema identifier",
@@ -3101,6 +3929,8 @@ function parseArgs(argv) {
     liveCorrectionDirectionPath: null,
     speedPrimitiveFeasibilityPath: null,
     speedClockLengthPath: null,
+    normalReconstructionHandoffPath: null,
+    boundedSpeedNormalReconstructionCandidatePath: null,
     out: null,
     validate: null,
     schema: false,
@@ -3140,6 +3970,10 @@ function parseArgs(argv) {
       args.speedPrimitiveFeasibilityPath = argv[++index];
     } else if (arg === "--speed-clock-length") {
       args.speedClockLengthPath = argv[++index];
+    } else if (arg === "--normal-reconstruction-handoff") {
+      args.normalReconstructionHandoffPath = argv[++index];
+    } else if (arg === "--bounded-speed-normal-reconstruction-candidate") {
+      args.boundedSpeedNormalReconstructionCandidatePath = argv[++index];
     } else if (arg === "--out") {
       args.out = argv[++index];
     } else if (arg === "--validate") {
@@ -3187,6 +4021,9 @@ function main() {
           speed_primitive_feasibility_certificate_schema:
             OCTAHEDRAL_ZERO_MEAN_SPEED_PRIMITIVE_FEASIBILITY_CERTIFICATE_SCHEMA,
           speed_clock_length_certificate_schema: OCTAHEDRAL_ZERO_MEAN_SPEED_CLOCK_LENGTH_CERTIFICATE_SCHEMA,
+          normal_reconstruction_handoff_schema: OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA,
+          bounded_speed_normal_reconstruction_candidate_schema:
+            OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA,
           candidate_b_support: "optional candidate B packet checked only as an algebraic range probe",
           live_derivative_column_support:
             "optional live derivative column packet checked only as provenance intake, not as a certified live derivative matrix",
@@ -3200,6 +4037,10 @@ function main() {
             "optional post-correction speed primitive return and speed-band feasibility certificate that requires a certified correction direction and still retains no branch",
           speed_clock_length_certificate_support:
             "optional post-correction speed clock/length return certificate that requires primitive feasibility and still retains no branch",
+          normal_reconstruction_handoff_support:
+            "optional normal reconstruction handoff packet that requires speed clock/length return and still certifies neither normal reconstruction nor a retained branch",
+          bounded_speed_normal_reconstruction_candidate_support:
+            "optional bounded-speed normal reconstruction candidate packet that requires normal reconstruction handoff and still certifies neither a bounded-speed live ledger nor a retained branch",
         },
         args.pretty
       )
@@ -3223,6 +4064,12 @@ function main() {
       ? readSpeedPrimitiveFeasibilityPacket(args.speedPrimitiveFeasibilityPath)
       : null;
     const speedClockLengthPacket = args.speedClockLengthPath ? readSpeedClockLengthPacket(args.speedClockLengthPath) : null;
+    const normalReconstructionHandoffPacket = args.normalReconstructionHandoffPath
+      ? readNormalReconstructionHandoffPacket(args.normalReconstructionHandoffPath)
+      : null;
+    const boundedSpeedNormalReconstructionCandidatePacket = args.boundedSpeedNormalReconstructionCandidatePath
+      ? readBoundedSpeedNormalReconstructionCandidatePacket(args.boundedSpeedNormalReconstructionCandidatePath)
+      : null;
     const candidateBRangeProbe =
       candidateBPacket && errors.length === 0
         ? evaluateCandidateBRangeProbe(artifact, candidateBPacket, {
@@ -3322,6 +4169,87 @@ function main() {
             }
           )
         : artifact.speed_ode_clock_length_certificate ?? null;
+    const normalReconstructionHandoff =
+      normalReconstructionHandoffPacket && errors.length === 0
+        ? evaluateNormalReconstructionHandoff(
+            speedClockLengthCertificate && !artifact.speed_ode_clock_length_certificate
+              ? attachSpeedClockLengthCertificate(
+                  speedPrimitiveFeasibilityCertificate && !artifact.speed_ode_primitive_feasibility_certificate
+                    ? attachSpeedPrimitiveFeasibilityCertificate(
+                        liveCorrectionDirectionCertificate && !artifact.live_correction_direction_certificate
+                          ? attachLiveCorrectionDirectionCertificate(
+                              liveDerivativeMatrixCertificate && !artifact.live_derivative_matrix_certificate
+                                ? attachLiveDerivativeMatrixCertificate(artifact, liveDerivativeMatrixPacket, {
+                                    rankTolerance: args.rankTolerance,
+                                    rangeTolerance: args.rangeTolerance,
+                                  })
+                                : artifact,
+                              liveCorrectionDirectionPacket,
+                              {
+                                rankTolerance: args.rankTolerance,
+                                rangeTolerance: args.rangeTolerance,
+                              }
+                            )
+                          : artifact,
+                        speedPrimitiveFeasibilityPacket,
+                        {
+                          primitiveReturnTolerance: args.primitiveReturnTolerance,
+                          speedBandMarginFloor: args.speedBandMarginFloor,
+                        }
+                      )
+                    : artifact,
+                  speedClockLengthPacket,
+                  {
+                    clockLengthTolerance: args.clockLengthTolerance,
+                  }
+                )
+              : artifact,
+            normalReconstructionHandoffPacket
+          )
+        : artifact.normal_reconstruction_handoff ?? null;
+    const boundedSpeedNormalReconstructionCandidate =
+      boundedSpeedNormalReconstructionCandidatePacket && errors.length === 0
+        ? evaluateBoundedSpeedNormalReconstructionCandidate(
+            normalReconstructionHandoff && !artifact.normal_reconstruction_handoff
+              ? attachNormalReconstructionHandoff(
+                  speedClockLengthCertificate && !artifact.speed_ode_clock_length_certificate
+                    ? attachSpeedClockLengthCertificate(
+                        speedPrimitiveFeasibilityCertificate && !artifact.speed_ode_primitive_feasibility_certificate
+                          ? attachSpeedPrimitiveFeasibilityCertificate(
+                              liveCorrectionDirectionCertificate && !artifact.live_correction_direction_certificate
+                                ? attachLiveCorrectionDirectionCertificate(
+                                    liveDerivativeMatrixCertificate && !artifact.live_derivative_matrix_certificate
+                                      ? attachLiveDerivativeMatrixCertificate(artifact, liveDerivativeMatrixPacket, {
+                                          rankTolerance: args.rankTolerance,
+                                          rangeTolerance: args.rangeTolerance,
+                                        })
+                                      : artifact,
+                                    liveCorrectionDirectionPacket,
+                                    {
+                                      rankTolerance: args.rankTolerance,
+                                      rangeTolerance: args.rangeTolerance,
+                                    }
+                                  )
+                                : artifact,
+                              speedPrimitiveFeasibilityPacket,
+                              {
+                                primitiveReturnTolerance: args.primitiveReturnTolerance,
+                                speedBandMarginFloor: args.speedBandMarginFloor,
+                              }
+                            )
+                          : artifact,
+                        speedClockLengthPacket,
+                        {
+                          clockLengthTolerance: args.clockLengthTolerance,
+                        }
+                      )
+                    : artifact,
+                  normalReconstructionHandoffPacket
+                )
+              : artifact,
+            boundedSpeedNormalReconstructionCandidatePacket
+          )
+        : artifact.bounded_speed_normal_reconstruction_candidate ?? null;
     console.log(
       emitJson(
         {
@@ -3338,6 +4266,8 @@ function main() {
           live_correction_direction_certificate: liveCorrectionDirectionCertificate,
           speed_ode_primitive_feasibility_certificate: speedPrimitiveFeasibilityCertificate,
           speed_ode_clock_length_certificate: speedClockLengthCertificate,
+          normal_reconstruction_handoff: normalReconstructionHandoff,
+          bounded_speed_normal_reconstruction_candidate: boundedSpeedNormalReconstructionCandidate,
         },
         args.pretty
       )
@@ -3359,6 +4289,12 @@ function main() {
     ? readSpeedPrimitiveFeasibilityPacket(args.speedPrimitiveFeasibilityPath)
     : null;
   const speedClockLengthPacket = args.speedClockLengthPath ? readSpeedClockLengthPacket(args.speedClockLengthPath) : null;
+  const normalReconstructionHandoffPacket = args.normalReconstructionHandoffPath
+    ? readNormalReconstructionHandoffPacket(args.normalReconstructionHandoffPath)
+    : null;
+  const boundedSpeedNormalReconstructionCandidatePacket = args.boundedSpeedNormalReconstructionCandidatePath
+    ? readBoundedSpeedNormalReconstructionCandidatePacket(args.boundedSpeedNormalReconstructionCandidatePath)
+    : null;
   const artifact = buildOctahedralZeroMeanCorrectionIntake({
     ...args,
     candidateBPacket,
@@ -3367,6 +4303,8 @@ function main() {
     liveCorrectionDirectionPacket,
     speedPrimitiveFeasibilityPacket,
     speedClockLengthPacket,
+    normalReconstructionHandoffPacket,
+    boundedSpeedNormalReconstructionCandidatePacket,
   });
   const errors = validateOctahedralZeroMeanCorrectionIntake(artifact);
   if (errors.length > 0) {

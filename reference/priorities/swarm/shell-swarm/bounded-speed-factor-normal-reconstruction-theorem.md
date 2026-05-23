@@ -48,6 +48,42 @@ $$
 
 together with the speed-band interval, clock/length row, and winding replacement when $m_iH_i=H_{\mathrm{com}}$ is declared.
 
+The zero-mean correction intake may hand this scalar row to the present packet through `normal_reconstruction_handoff`, but that handoff is not a reconstruction certificate. It must cite the same `speed_ode_clock_length_certificate`, carry the same bounded-speed ledger id and force/consumer checksums, and expose the pullback
+
+$$
+\widehat{\nu}_i(u)
+=
+\nu_{i,0}
++
+A_i(u;z_0+\delta z_B),
+\qquad
+\frac{d\Lambda_i}{du}
+=
+\widehat{\nu}_i(u),
+\qquad
+\nu_i(\lambda_i)
+=
+\widehat{\nu}_i(\chi_i(\lambda_i)).
+$$
+
+The handoff may stage supplied rows for the normal residual, tangent holonomy, position closure, unit-tangent residual, and support margin. Those rows only prove that the scalar speed packet is available to the normal solver. If the speed certificate is absent, the status is `speed-ode-row-missing`; if ledger ids or force checksums disagree, the status is `normal-force-ledger-mismatch`; if only this handoff is present, the status remains `normal-reconstruction-open`.
+
+A later `bounded_speed_normal_reconstruction_candidate` may upgrade that handoff only when all candidate rows close on the same ledger:
+
+$$
+\nu_i(\lambda_i)^2\mathbf{K}_i(\lambda_i)
+-
+\Gamma_B^{\nu}P_i^\perp(\lambda_i)F_i^{\nu}(\chi_i(\lambda_i))
+=
+\mathbf{0},
+\qquad
+\int\mathbf{K}_i\,d\lambda_i=\mathbf{0},
+\qquad
+\int\mathbf{T}_i\,d\lambda_i=\mathbf{0}.
+$$
+
+It must also close the unit-tangent, support-margin, noncollision, root-ledger-persistence, and normal Krawczyk rows. The success status is `bounded-speed-normal-reconstruction-candidate`; the candidate is still `not_retained` and does not certify a bounded-speed live ledger until action/Noether, event, stability, observer-export, refinement, and coupled fixed-point rows close.
+
 The normal reconstruction input is then the tuple
 
 $$
@@ -595,7 +631,8 @@ A bounded speed factor normal reconstruction packet must emit:
 | Field | Payload |
 | --- | --- |
 | `solver_space` | `bounded-speed-normal-reconstruction` or `fixed-speed-special-case` |
-| `speed_ode_certificate` | $\nu_i$, $\chi_i$, $\Lambda_i$, tangent forcing, zero-mean row, primitive excursion, speed-band interval, and clock/length row consumed from the scalar packet |
+| `speed_ode_certificate` | $\nu_i$, $\chi_i$, $\Lambda_i$, tangent forcing, zero-mean row, primitive excursion, speed-band interval, clock/length row consumed from the scalar packet, and optional `normal_reconstruction_handoff` provenance when the zero-mean correction intake supplies it |
+| `bounded_speed_normal_reconstruction_candidate` | optional same-ledger candidate provenance from the zero-mean correction intake, including normal equation, tangent holonomy, position closure, unit-tangent, support-margin, noncollision, root-persistence, and normal Krawczyk rows |
 | `period_winding` | $L_i$, $H_i$, $H_*$ or $m_iH_i=H_{\mathrm{com}}$, lifted-cover convention, and period residuals |
 | `normal_equation` | $\nu_i^2\mathbf{K}_i-\Gamma_B^{\nu}P_i^\perp F_i^{\nu}$ residual in sampled and continuous norms |
 | `tangent_holonomy` | $\int\mathbf{K}_i\,d\lambda$, lifted winding version, tolerance, and status |
@@ -721,6 +758,7 @@ Proof route:
 | Status | Meaning |
 | --- | --- |
 | `speed-ode-row-missing` | $\nu_i$, $\chi_i$, $\Lambda_i$, zero-mean tangent forcing, primitive excursion, speed-band interval, or clock/length row is not certified |
+| `normal-reconstruction-handoff-staged` | the zero-mean correction intake supplied scalar speed and receiver residual rows, but the normal equation and closure identities have not been certified |
 | `bounded-speed-period-winding-open` | $H_i=H_*$ or $m_iH_i=H_{\mathrm{com}}$ fails |
 | `normal-force-ledger-mismatch` | normal force, root ledger, support descriptor, or action scale uses a different bounded-speed convention |
 | `normal-holonomy-open` | $\int\mathbf{K}_i\,d\lambda\ne0$ on the declared cover |

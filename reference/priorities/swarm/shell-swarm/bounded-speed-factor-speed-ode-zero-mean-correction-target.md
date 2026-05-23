@@ -552,6 +552,37 @@ $$
 
 For a winding branch, replace $H_*$ and $L_i$ by $H_{\mathrm{com}}$ and $m_iL_i$. The executable intake records this boundary as `speed_ode_clock_length_certificate` with schema `neutral-swarm-octahedral-zero-mean-speed-clock-length-certificate/v1`. A passing packet may set `speed-clock-length-return-certified` and advance the first failed row to `normal-reconstruction-open`. It must still keep `certifies_bounded_speed_live_ledger=false`, `retention=not_retained`, and `retained_branch=false` because normal reconstruction, action/Noether, event, stability, observer-export, and coupled fixed-point rows remain open.
 
+After that boundary, the same intake may emit a downstream `normal_reconstruction_handoff` packet with schema `neutral-swarm-octahedral-zero-mean-normal-reconstruction-handoff/v1`. This packet is priority-only bridge data, not a normal reconstruction certificate. It transports the corrected speed profile
+
+$$
+\widehat{\nu}_i(u)
+=
+\nu_{i,0}
++
+A_i(u;z_0+\delta z_B),
+\qquad
+\frac{d\Lambda_i}{du}
+=
+\widehat{\nu}_i(u),
+\qquad
+\nu_i(\lambda_i)
+=
+\widehat{\nu}_i(\chi_i(\lambda_i))
+$$
+
+and the receiver rows for normal residual, tangent holonomy, position closure, unit-tangent error, and support margin into the normal-reconstruction theorem target. It must consume the same `speed_ode_clock_length_certificate`, keep `certifies_normal_reconstruction=false`, keep `certifies_bounded_speed_live_ledger=false`, keep `retention=not_retained`, and report `normal-reconstruction-open` as the next failed row. A winding branch uses the same pullback after replacing the clock/length residual by
+
+$$
+R_{L,i}^{\nu,\mathrm{wind}}
+=
+\int_0^{H_{\mathrm{com}}}
+\widehat{\nu}_i(u)\,du
+-
+m_iL_i.
+$$
+
+If the normal solver supplies same-ledger closure rows after this handoff, the intake may emit `bounded_speed_normal_reconstruction_candidate` with schema `neutral-swarm-octahedral-zero-mean-bounded-speed-normal-reconstruction-candidate/v1`. The candidate must close the normal equation, tangent holonomy, position closure, unit-tangent, support-margin, noncollision, root-persistence, and normal Krawczyk rows against the same bounded-speed ledger id, force checksum, and consumer checksum. Passing this packet may set `bounded-speed-normal-reconstruction-candidate`, but it must still keep `certifies_bounded_speed_live_ledger=false`, `retention=not_retained`, and `retained_branch=false`; the next open row remains bounded-speed live-ledger/action/Noether/stability closure rather than branch retention.
+
 ---
 
 ## 5. Allowed Correction Channels
