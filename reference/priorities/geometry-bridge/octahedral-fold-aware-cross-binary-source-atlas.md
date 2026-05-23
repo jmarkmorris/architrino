@@ -188,6 +188,18 @@ The future coarea interval proof no longer has to discover the source topology. 
 
 The only fold endpoints to enclose are the two $\kappa=+1$ endpoints above. The $\kappa=-1$ rows require regular one-root bounds only at this speed.
 
+The direct successor [octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction](octahedral-fold-aware-cross-binary-source-atlas-quarter-cell-reduction.md) consumes this atlas and fixes the unified quarter-cell partition:
+
+$$
+\boxed{
+[6,4,6]
+\quad\text{across}\quad
+0<\theta_{3-}<\theta_{2+}<H/4.
+}
+$$
+
+It also fixes the source-atlas-aware formula for $f_\times$, $C_\times$, $m_Q$, and $M_Q$ while preserving that their interval enclosures remain open.
+
 ## Executable Artifact
 
 The executable diagnostic [octahedral-fold-aware-cross-binary-source-atlas.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-source-atlas.mjs) emits:
@@ -246,4 +258,4 @@ $$
 
 ## Promotion Decision
 
-This packet remains `priority-only`. It is mathematically substantive because it identifies the exact source-class fold topology for the remaining quarter-profile proof. It should not be promoted into reader-facing AAA prose until the atlas is used by a coarea interval enclosure for $C$, $m_Q$, and $M_Q$.
+This packet remains `priority-only`. It is mathematically substantive because it identifies the exact source-class fold topology for the remaining quarter-profile proof. Its direct successor upgrades that topology into a source-atlas-aware three-cell formula reduction. Neither packet should be promoted into reader-facing AAA prose until the atlas is used by a coarea interval enclosure for $C_\times$, $m_Q$, and $M_Q$.
