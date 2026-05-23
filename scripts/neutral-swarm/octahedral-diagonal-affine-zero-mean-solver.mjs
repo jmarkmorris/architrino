@@ -344,7 +344,7 @@ export function evaluateDiagonalAffineScale(scales, options = {}) {
   );
   const primitiveExcursions = primitiveRows.map((row) => row.primitive_excursion);
   const initialSpeedWidths = primitiveRows.map((row) => row.initial_speed_interval_width);
-  const speedBandRowsPassed = primitiveRows.every(
+  const declaredSpeedWindowRowsPassed = primitiveRows.every(
     (row) => row.initial_speed_interval_nonempty && row.clock_length_initial_speed_in_interval
   );
 
@@ -366,7 +366,7 @@ export function evaluateDiagonalAffineScale(scales, options = {}) {
     primitive_end_abs_max: maxAbs(primitiveRows.map((row) => row.primitive_end_value)),
     primitive_excursion_max: finiteMax(primitiveExcursions),
     initial_speed_interval_width_min: finiteMin(initialSpeedWidths),
-    speed_band_rows_passed: speedBandRowsPassed,
+    declared_speed_window_rows_passed: declaredSpeedWindowRowsPassed,
   };
 }
 
@@ -389,7 +389,7 @@ function formatRow(row) {
       primitive_end_abs_max: formatNumber(row.primitive_end_abs_max),
       primitive_excursion_max: formatNumber(row.primitive_excursion_max),
       initial_speed_interval_width_min: formatNumber(row.initial_speed_interval_width_min),
-      speed_band_rows_passed: row.speed_band_rows_passed,
+      declared_speed_window_rows_passed: row.declared_speed_window_rows_passed,
       receiver_rows: row.primitive_rows.map((primitiveRow, index) => ({
         receiver: OCTAHEDRAL_SITES[index].id,
         receiver_label: OCTAHEDRAL_SITES[index].label,
@@ -413,10 +413,10 @@ function formatRow(row) {
         delay_max: formatNumber(primitiveRow.delay_max),
         jacobian_abs_min: formatNumber(primitiveRow.jacobian_abs_min),
         jacobian_abs_max: formatNumber(primitiveRow.jacobian_abs_max),
-        speed_band_status:
+        declared_speed_window_status:
           primitiveRow.initial_speed_interval_nonempty && primitiveRow.clock_length_initial_speed_in_interval
-            ? "sampled-speed-band-and-clock-length-compatible"
-            : "sampled-speed-band-or-clock-length-failed",
+            ? "declared-speed-window-and-clock-length-compatible"
+            : "declared-speed-window-or-clock-length-failed",
       })),
     },
     row_status: row.root_failure_count === 0 ? "sampled-one-root-passed" : "sampled-root-ledger-failed",
@@ -582,7 +582,7 @@ function buildResolutionValidation(candidateRow, options) {
       primitive_end_abs_max: formatted.primitive.primitive_end_abs_max,
       primitive_excursion_max: formatted.primitive.primitive_excursion_max,
       initial_speed_interval_width_min: formatted.primitive.initial_speed_interval_width_min,
-      speed_band_rows_passed: formatted.primitive.speed_band_rows_passed,
+      declared_speed_window_rows_passed: formatted.primitive.declared_speed_window_rows_passed,
       root_failure_count: row.root_failure_count,
       delay_min: formatted.delay_min,
       delay_max: formatted.delay_max,
@@ -650,7 +650,7 @@ export function buildOctahedralDiagonalAffineZeroMeanSolver(options = {}) {
     throw new Error("gamma must be a finite nonzero number");
   }
   if (!Number.isFinite(nuMin) || !Number.isFinite(nuMax) || !(0 < nuMin && nuMin < nuMax)) {
-    throw new Error("speed band must satisfy 0 < nuMin < nuMax");
+    throw new Error("declared speed window must satisfy 0 < nuMin < nuMax");
   }
   if (!Array.isArray(gridValues) || gridValues.length === 0 || !gridValues.every((value) => value >= scaleMin && value <= scaleMax)) {
     throw new Error("grid values must be a nonempty array inside the scale domain");
@@ -720,7 +720,8 @@ export function buildOctahedralDiagonalAffineZeroMeanSolver(options = {}) {
       valid_grid_row_count: validGridRows.length,
       zero_mean_tolerance: zeroMeanTolerance,
       gamma,
-      speed_band: [formatNumber(nuMin), formatNumber(nuMax)],
+      declared_speed_window: [formatNumber(nuMin), formatNumber(nuMax)],
+      declared_speed_window_claim_level: "diagnostic only; not an imposed theory constraint",
       speed_projection: "physical unit tangent forcing",
       fixed_candidate_validation_reruns: DEFAULT_VALIDATION_RERUNS,
       jacobian_floor: JACOBIAN_FLOOR,
@@ -742,13 +743,13 @@ export function buildOctahedralDiagonalAffineZeroMeanSolver(options = {}) {
       best_zero_mean_residual_norm_2: formatNumber(best.zero_mean_residual_norm_2),
       primitive_end_abs_max: formatNumber(best.primitive_end_abs_max),
       primitive_excursion_max: formatNumber(best.primitive_excursion_max),
-      speed_band_rows_passed: best.speed_band_rows_passed,
+      declared_speed_window_rows_passed: best.declared_speed_window_rows_passed,
       resolution_stability_status: fixedCandidateValidation.summary.status,
       first_failure_status:
         solveStatus === "sampled-diagonal-zero-mean-candidate-found" && !resolutionStable
           ? "sampled-candidate-resolution-stability-failed"
-          : solveStatus === "sampled-diagonal-zero-mean-candidate-found" && !best.speed_band_rows_passed
-            ? "sampled-speed-band-or-clock-length-failed"
+          : solveStatus === "sampled-diagonal-zero-mean-candidate-found" && !best.declared_speed_window_rows_passed
+            ? "declared-speed-window-or-clock-length-failed"
           : solveStatus === "sampled-diagonal-zero-mean-candidate-found"
             ? "bounded-speed-live-ledger-open"
             : "non-diagonal-live-variable-or-speed-support-correction-required",

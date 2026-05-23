@@ -334,7 +334,7 @@ A_{\max}-A_{\min}
 1.041664058515.
 $$
 
-Against the declared absolute speed band $[0.5,1.5]$, the admissible initial-speed interval is
+Against the diagnostic speed window $[0.5,1.5]$, the admissible initial-speed interval would be
 
 $$
 [
@@ -370,7 +370,7 @@ $$
 2.175577762206,
 $$
 
-which is outside the same absolute speed band and outside the empty admissible interval.
+which is outside that diagnostic window and outside the empty admissible interval. This is a conditional window diagnostic, not a theory-level speed constraint.
 
 ## Corrected Trace Interpretation
 
@@ -407,7 +407,7 @@ The executable diagnostic [octahedral-diagonal-affine-zero-mean-solver.mjs](../.
 - the damped Newton iteration history in log-scale variables;
 - the sampled zero-mean candidate;
 - fixed-candidate resolution reruns at $73/480$ and $149/960$;
-- the physical unit-tangent speed primitive, speed-band interval, and clock-length row;
+- the physical unit-tangent speed primitive and declared-window clock-length diagnostic row;
 - delay and sampled Jacobian bounds;
 - the non-retention verdict.
 
@@ -437,15 +437,35 @@ $$
 }
 $$
 
-The same coarse candidate also fails the absolute physical speed-band and clock-length row:
+The same coarse candidate also fails the diagnostic $[0.5,1.5]$ speed-window and clock-length row:
 
 $$
 \boxed{
-\texttt{sampled-speed-band-or-clock-length-failed}.
+\texttt{declared-speed-window-clock-diagnostic-failed}.
 }
 $$
 
-The downstream live branch rows therefore remain open only for a successor branch, not for this coarse finite-trace point:
+[octahedral-bounded-speed-successor-closure-row](octahedral-bounded-speed-successor-closure-row.md) now keeps that row conditional. For any declared speed window,
+
+$$
+\nu_-
+\le
+\frac{L_i}{H}
+\le
+\nu_+
+$$
+
+is necessary for a clock/length row, and the coarse trace carrier has $L_i/H=s_*\approx1.694464950788$. That statement does not impose the $[0.5,1.5]$ window as theory.
+
+[octahedral-period-rescaled-trace-scan](octahedral-period-rescaled-trace-scan.md) then removes the fixed speed-window assumption and tests $Y_i(u)=s\,p_i(u/h)$ over positive speed ratios $v=s/h$. Its sampled simple-root rows stay positive through $v=1.7$:
+
+$$
+\min_i\mathcal M_i^\nu
+\approx
+0.789308084676,
+$$
+
+and the first sampled one-root ledger failure appears at $v=1.75$. [octahedral-period-rescaled-fold-chart](octahedral-period-rescaled-fold-chart.md) sharpens that boundary into a $\kappa=+1$ cross-binary saddle-node onset at $v_c\approx1.704939069887$. [octahedral-fold-aware-multiroot-period-integral](octahedral-fold-aware-multiroot-period-integral.md) then finds a sampled fold-aware all-root zero bracket at $v_0\approx3.021564740248$, and [octahedral-fold-aware-zero-bracket-certificate](octahedral-fold-aware-zero-bracket-certificate.md) certifies a sign-changing bracket $3.02156\le v\le3.02157$. The downstream live branch rows therefore remain open for that fold-aware candidate, not for this coarse finite-trace point:
 
 $$
 \texttt{clock-length-return-open},
@@ -469,4 +489,4 @@ $$
 
 ## Promotion Decision
 
-This packet remains `priority-only`. It is mathematically substantive because it removes a false positive from the geometry bridge: the $37/240$ trace zero is a resolution-unstable near-fold cancellation and fails the physical speed primitive/clock row under the declared absolute speed band. Promotion should wait for a successor branch that is resolution-stable, interval-certified, and speed-row compatible, so the corpus does not mistake a sampled scalar speed-ODE cancellation for a retained geometry branch.
+This packet remains `priority-only`. It is mathematically substantive because it removes a false positive from the geometry bridge: the $37/240$ trace zero is a resolution-unstable near-fold cancellation. Any speed-window row is only a declared diagnostic unless a retained branch supplies that window as part of its live variables. The fold-chart successor explains the nearby root-ledger instability as a saddle-node boundary, and the fold-aware successor chain now finds a sign-certified zero bracket, but promotion should still wait for a successor branch that is fold-aware, resolution-stable, interval-certified where needed, and speed-row compatible, so the corpus does not mistake a scalar speed-ODE cancellation for a retained geometry branch.

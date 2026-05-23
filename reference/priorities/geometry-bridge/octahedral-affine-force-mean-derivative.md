@@ -261,7 +261,7 @@ $$
 }
 $$
 
-It does not prove that the rigid carrier becomes retained. Instead it identifies the next retained-branch equation: a bounded-speed or deformed-support live ledger must realize the trace affine direction as an admissible correction while preserving root regularity, speed band, clock/length return, normal reconstruction, action rows, event rows, stability, Noether rows, and observer export on the same ledger.
+It does not prove that the rigid carrier becomes retained. Instead it identifies the next retained-branch equation: a live ledger must realize the trace affine direction as an admissible correction while preserving root regularity, any declared speed-variable row, clock/length return, normal reconstruction, action rows, event rows, stability, Noether rows, and observer export on the same ledger.
 
 ## Executable Diagnostic
 

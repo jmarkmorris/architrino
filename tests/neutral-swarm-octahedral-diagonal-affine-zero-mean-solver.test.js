@@ -55,7 +55,7 @@ test("diagonal affine solver finds the finite sampled zero-mean trace candidate"
   assert.equal(artifact.solve_result.resolution_stability_status, "sampled-candidate-resolution-unstable");
   assert.equal(artifact.solve_result.first_failure_status, "sampled-candidate-resolution-stability-failed");
   assert.equal(artifact.result.theory_status, "sampled-diagonal-affine-zero-mean-candidate-resolution-unstable");
-  assert.equal(artifact.solve_result.speed_band_rows_passed, false);
+  assert.equal(artifact.solve_result.declared_speed_window_rows_passed, false);
   assert.ok(Math.abs(artifact.solve_result.primitive_excursion_max - 1.041664058515) <= 1e-9);
   assert.ok(artifact.solve_result.primitive_end_abs_max <= 1e-8);
   assert.equal(artifact.best_row.primitive.receiver_rows.length, 6);

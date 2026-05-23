@@ -165,7 +165,7 @@ for which $h^{ij}\delta\gamma_{ij}=-6\Psi_{\mathrm{sp}}/c_0^2$. Thus $\Psi_{\mat
 
 7. `adm_cartan_projection` — Translate a passed geometry-export packet into the ADM/Cartan observer fields $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ as a constitutive projection, not as substrate curvature. Status: `single-mode-axial-cancellation-closed`; packets: [action-curl-and-adm-projection](action-curl-and-adm-projection.md), [axial-response-adm-projection](axial-response-adm-projection.md), [axial-projection-coefficient-ratio](axial-projection-coefficient-ratio.md), [axial-medium-response-realization](axial-medium-response-realization.md), [axial-tensor-coefficient-extraction](axial-tensor-coefficient-extraction.md), [specific-branch-medium-response-row](specific-branch-medium-response-row.md), [retained-branch-medium-response-candidate](retained-branch-medium-response-candidate.md), [retained-medium-action-ledger-row](retained-medium-action-ledger-row.md), [retained-medium-response-object-emission](retained-medium-response-object-emission.md), [octahedral-exposure-derivative-adjoint](octahedral-exposure-derivative-adjoint.md), [octahedral-affine-exposure-matrix](octahedral-affine-exposure-matrix.md), and [octahedral-full-coordinate-exposure-matrix](octahedral-full-coordinate-exposure-matrix.md). Depends on: `geometry_export_packet` and `virtual_work_curl_test`.
 
-8. `minimal_worked_branch` — Choose the smallest available branch chart, likely the current exact-antipodal $M=3$ shell swarm row or a bounded-speed successor, and populate the response packet far enough to classify it as `response-passed`, `response-open`, or `response-rejected`. Status: `sampled-finite-trace-affine-zero-mean-candidate-resolution-unstable-speed-row-failed`; packets: [minimal-worked-branch-response](minimal-worked-branch-response.md), [specific-branch-response-insertion](specific-branch-response-insertion.md), [specific-branch-response-closure](specific-branch-response-closure.md), [specific-branch-medium-response-row](specific-branch-medium-response-row.md), [retained-branch-medium-response-candidate](retained-branch-medium-response-candidate.md), [retained-medium-action-ledger-row](retained-medium-action-ledger-row.md), [retained-medium-response-object-emission](retained-medium-response-object-emission.md), [octahedral-exposure-derivative-adjoint](octahedral-exposure-derivative-adjoint.md), [octahedral-affine-exposure-matrix](octahedral-affine-exposure-matrix.md), [octahedral-full-coordinate-exposure-matrix](octahedral-full-coordinate-exposure-matrix.md), [octahedral-affine-force-mean-derivative](octahedral-affine-force-mean-derivative.md), [octahedral-trace-affine-zero-mean-obstruction](octahedral-trace-affine-zero-mean-obstruction.md), and [octahedral-diagonal-affine-zero-mean-solver](octahedral-diagonal-affine-zero-mean-solver.md). Depends on: `branch_local_response_object`.
+8. `minimal_worked_branch` — Choose the smallest available branch chart, likely the current exact-antipodal $M=3$ shell swarm row or a bounded-speed successor, and populate the response packet far enough to classify it as `response-passed`, `response-open`, or `response-rejected`. Status: `sign-certified-fold-aware-multiroot-period-integral-zero-bracket`; packets: [minimal-worked-branch-response](minimal-worked-branch-response.md), [specific-branch-response-insertion](specific-branch-response-insertion.md), [specific-branch-response-closure](specific-branch-response-closure.md), [specific-branch-medium-response-row](specific-branch-medium-response-row.md), [retained-branch-medium-response-candidate](retained-branch-medium-response-candidate.md), [retained-medium-action-ledger-row](retained-medium-action-ledger-row.md), [retained-medium-response-object-emission](retained-medium-response-object-emission.md), [octahedral-exposure-derivative-adjoint](octahedral-exposure-derivative-adjoint.md), [octahedral-affine-exposure-matrix](octahedral-affine-exposure-matrix.md), [octahedral-full-coordinate-exposure-matrix](octahedral-full-coordinate-exposure-matrix.md), [octahedral-affine-force-mean-derivative](octahedral-affine-force-mean-derivative.md), [octahedral-trace-affine-zero-mean-obstruction](octahedral-trace-affine-zero-mean-obstruction.md), [octahedral-diagonal-affine-zero-mean-solver](octahedral-diagonal-affine-zero-mean-solver.md), [octahedral-bounded-speed-successor-closure-row](octahedral-bounded-speed-successor-closure-row.md), [octahedral-period-rescaled-trace-scan](octahedral-period-rescaled-trace-scan.md), [octahedral-period-rescaled-fold-chart](octahedral-period-rescaled-fold-chart.md), [octahedral-fold-aware-multiroot-period-integral](octahedral-fold-aware-multiroot-period-integral.md), and [octahedral-fold-aware-zero-bracket-certificate](octahedral-fold-aware-zero-bracket-certificate.md). Depends on: `branch_local_response_object`.
 
 9. `promotion_decision` — Promote only theorem-target material that is reader-facing and branch-safe into the AAA corpus; preserve diagnostics, failed branches, and unproven response rows in this priority folder. Status: `pending`. Depends on: `geometry_export_packet` and `minimal_worked_branch`.
 
@@ -212,7 +212,12 @@ for which $h^{ij}\delta\gamma_{ij}=-6\Psi_{\mathrm{sp}}/c_0^2$. Thus $\Psi_{\mat
 | [octahedral-full-coordinate-exposure-matrix](octahedral-full-coordinate-exposure-matrix.md) | Emits the same-ledger affine branch-coordinate derivative $D_H^{\mathrm{coord}}Z_{\mathrm{oct}}$, including delayed endpoint, tangent, curvature, and $J_\rho$ variation; validates all nine columns by central finite differences while preserving the rigid-row `not_retained` verdict. | full coordinate derivative closure for rejected rigid chart |
 | [octahedral-affine-force-mean-derivative](octahedral-affine-force-mean-derivative.md) | Emits the six-by-nine affine force-mean derivative $B_{iA}$ for the frozen rigid octahedral speed-ODE row and proves $-M(0)\in\operatorname{Range}(B)$, with the trace column alone giving $\alpha_{\mathrm{trace}}\approx3.24679501458$ and residual $\approx9.4\times10^{-11}$. | candidate affine zero-mean range obstruction removed; not retained |
 | [octahedral-trace-affine-zero-mean-obstruction](octahedral-trace-affine-zero-mean-obstruction.md) | Proves that the finite trace-scaled antipodal partner mean $m_{\mathrm{partner}}(s)$ stays positive for every $s>0$, while correcting the claim level: partner positivity does not decide the total trace row because cross-binary roots also move. | partner-row positivity certificate; total trace row open |
-| [octahedral-diagonal-affine-zero-mean-solver](octahedral-diagonal-affine-zero-mean-solver.md) | Corrects the finite positive diagonal affine result: the $37/240$ uniform trace cancellation at $s_1=s_2=s_3\approx1.694464950788$ has $\|M(s)\|_\infty\approx3.48\times10^{-10}$, but fixed-candidate reruns give $\|M(s)\|_\infty\approx0.851344912333$ at $73/480$ and $\approx1.040328440834$ at $149/960$; the physical speed primitive/clock row also fails under the declared absolute band. | resolution-unstable near-fold cancellation; not retained |
+| [octahedral-diagonal-affine-zero-mean-solver](octahedral-diagonal-affine-zero-mean-solver.md) | Corrects the finite positive diagonal affine result: the $37/240$ uniform trace cancellation at $s_1=s_2=s_3\approx1.694464950788$ has $\|M(s)\|_\infty\approx3.48\times10^{-10}$, but fixed-candidate reruns give $\|M(s)\|_\infty\approx0.851344912333$ at $73/480$ and $\approx1.040328440834$ at $149/960$; any speed-window primitive row is diagnostic only. | resolution-unstable near-fold cancellation; not retained |
+| [octahedral-bounded-speed-successor-closure-row](octahedral-bounded-speed-successor-closure-row.md) | Restates the average-speed lemma as a conditional clock-window diagnostic: if a branch declares $\nu_-\le\nu_i\le\nu_+$ and $\int_0^H\nu_i\,du=L_i$, then $\nu_-\le L_i/H\le\nu_+$. The earlier $[0.5,1.5]$ row is retained only as a declared-window failure, not as a theory constraint. | conditional declared-window diagnostic; not retained |
+| [octahedral-period-rescaled-trace-scan](octahedral-period-rescaled-trace-scan.md) | Removes the imposed speed-window assumption and scans $Y_i(u)=s\,p_i(u/h)$ with positive $v=s/h$. On fixed simple-root rows, $\mathcal M_i^\nu(s,h)=(1/h)C_i(v)$; sampled rows through $v=1.7$ stay positive with minimum $\approx0.789308084676$, and the first sampled one-root ledger failure appears at $v=1.75$. | sampled simple-root positivity plus root-ledger boundary; not retained |
+| [octahedral-period-rescaled-fold-chart](octahedral-period-rescaled-fold-chart.md) | Derives the period-rescaled cross-binary fold equation $F_{\kappa,v}=\delta^2/v^2-2+\sin(2\tilde\theta-\delta)+\kappa\sin\delta=0$, proves $F_\delta=(2\delta/v^2)J$, and sharpens the sampled $v=1.75$ failure into a continuum $\kappa=+1$ saddle-node onset at $v_c\approx1.704939069887$. | analytic cross-binary fold onset; not retained |
+| [octahedral-fold-aware-multiroot-period-integral](octahedral-fold-aware-multiroot-period-integral.md) | Derives the $\phi=2\tilde\theta-\delta$ coarea chart for cross-binary folds, records exact cross-binary period cancellation by symmetry, reduces the fold-aware mean to the antipodal-partner all-root sum, and finds a sampled three-root partner zero bracket at $v_0\approx3.021564740248$. | sampled fold-aware multi-root period-integral diagnostic; not retained |
+| [octahedral-fold-aware-zero-bracket-certificate](octahedral-fold-aware-zero-bracket-certificate.md) | Rewrites the partner roots in the $x=\delta/2$ coordinate, proves the bracket $3.02156\le v\le3.02157$ stays on a regular three-root sheet, certifies a sign change of $P_{\mathrm{all}}(v)$ across the bracket, computes $dP_{\mathrm{all}}/dv\approx7.202077954503>0$ at the zero estimate, and identifies the clock-scale zero ray $s=v_0h$. | sign-certified simple fold-aware multi-root zero bracket plus projective zero ray; not retained |
 
 ## Immediate Next Packet
 
@@ -257,6 +262,12 @@ D_H^{\mathrm{coord}}Z_{\mathrm{oct}},
 $$
 
 including delayed endpoint transport, tangent transport, curvature, and $J_\rho$ variation. Its executable diagnostic in [octahedral-coordinate-exposure-matrix.mjs](../../../scripts/neutral-swarm/octahedral-coordinate-exposure-matrix.mjs) validates all nine affine columns by central finite differences. This resolves the derivative ambiguity between fixed-ledger exposure probes and true branch-coordinate motion.
+
+The trace zero-mean route no longer uses the earlier $[0.5,1.5]$ diagnostic window as a theory constraint. [octahedral-bounded-speed-successor-closure-row](octahedral-bounded-speed-successor-closure-row.md) now records only a conditional declared-window lemma. [octahedral-period-rescaled-trace-scan](octahedral-period-rescaled-trace-scan.md) is the speed-unconstrained trace-period follow-on: in the ansatz $Y_i(u)=s\,p_i(u/h)$, the speed-ODE mean obeys $\mathcal M_i^\nu(s,h)=(1/h)C_i(s/h)$ on a fixed simple-root sheet. The sampled simple-root rows stay positive through $v=1.7$, and the first sampled one-root ledger failure appears at $v=1.75$. [octahedral-period-rescaled-fold-chart](octahedral-period-rescaled-fold-chart.md) sharpens that sampled boundary: the $\kappa=+1$ cross-binary row has a continuum saddle-node onset at $v_c\approx1.704939069887$. [octahedral-fold-aware-multiroot-period-integral](octahedral-fold-aware-multiroot-period-integral.md) then supplies the fold-aware successor diagnostic: cross-binary rows cancel by symmetry in the $\phi$ coarea chart, and the antipodal-partner all-root sum has a sampled zero bracket at $v_0\approx3.021564740248$. [octahedral-fold-aware-zero-bracket-certificate](octahedral-fold-aware-zero-bracket-certificate.md) upgrades that row to a sign-certified zero bracket on $3.02156\le v\le3.02157$. A retained successor therefore requires live retention rows for
+
+$$
+B\alpha=-\mathcal M^\nu(z_0).
+$$
 
 The affine force-mean derivative in [octahedral-affine-force-mean-derivative](octahedral-affine-force-mean-derivative.md) now closes the first-order range question for the frozen six-row speed-ODE mean. It defines
 
@@ -358,7 +369,7 @@ $$
 (149/960).
 $$
 
-The physical unit-tangent speed primitive also fails under the declared absolute speed band $[0.5,1.5]$. At the coarse cancellation point,
+The physical unit-tangent speed primitive row was previously evaluated against the diagnostic window $[0.5,1.5]$. That window is not a theory constraint. At the coarse cancellation point, the conditional diagnostic values are
 
 $$
 A_{\max}-A_{\min}
@@ -378,7 +389,111 @@ $$
 2.175577762206.
 $$
 
-Thus the remaining next packet is no longer another exposure matrix, another linear range test, or an attempt to promote the finite trace point. The trace route is now a rejected minimal worked branch candidate unless a successor branch adds live variables or a different bounded-speed support correction. The compact current status is:
+[octahedral-bounded-speed-successor-closure-row](octahedral-bounded-speed-successor-closure-row.md) now records the underlying average-speed lemma as conditional. Any branch that declares a speed window
+
+$$
+\nu_-\le \nu_i(u)\le \nu_+,
+\qquad
+\int_0^H\nu_i(u)\,du=L_i
+$$
+
+must satisfy
+
+$$
+\nu_-
+\le
+\frac{L_i}{H}
+\le
+\nu_+.
+$$
+
+For the uniform trace carrier at fixed period,
+
+$$
+\frac{L_i}{H}=s_*,
+$$
+
+so it fails the diagnostic window by
+
+$$
+s_*-\nu_+
+\approx
+0.194464950788.
+$$
+
+This is no longer treated as a trace-route rejection. The speed-unconstrained period follow-on [octahedral-period-rescaled-trace-scan](octahedral-period-rescaled-trace-scan.md) instead studies
+
+$$
+Y_i(u)=s\,p_i(u/h),
+\qquad
+v=\frac{s}{h},
+$$
+
+with no fixed speed window. On a fixed simple-root sheet,
+
+$$
+\boxed{
+\mathcal M_i^\nu(s,h)
+=
+\frac{1}{h}C_i(s/h).
+}
+$$
+
+The sampled simple-root rows remain positive through $v=1.7$:
+
+$$
+\boxed{
+\min_i\mathcal M_i^\nu
+\approx
+0.789308084676
+\qquad
+(v=1.7),
+}
+$$
+
+and the first sampled one-root ledger failure appears at $v=1.75$. The successor fold chart proves that this sampled failure is a grid witness of the $\kappa=+1$ cross-binary saddle-node onset
+
+$$
+v_c\approx1.704939069887.
+$$
+
+The fold-aware successor then reduces the symmetric cross-binary contribution to zero and finds the antipodal-partner all-root zero bracket
+
+$$
+\boxed{
+v_0\approx3.021564740248.
+}
+$$
+
+The sign-certificate successor proves that the bracket
+
+$$
+\boxed{
+3.02156\le v\le3.02157
+}
+$$
+
+stays on a regular three-root partner sheet, changes the sign of $P_{\mathrm{all}}(v)$, and has
+
+$$
+\frac{dP_{\mathrm{all}}}{dv}(v_0)
+\approx
+7.202077954503>0.
+$$
+
+Because the period-rescaled mean obeys $\mathcal M_i^\nu(s,h)=(1/h)C_i(s/h)$, this zero fixes the projective ray
+
+$$
+\boxed{
+s=v_0h,
+\qquad
+h>0,
+}
+$$
+
+not an absolute clock period.
+
+The trace route is therefore not closed by the imposed speed window; it is narrowed to sampled simple-root positivity, an analytic root-fold boundary, and a sign-certified simple fold-aware multi-root zero bracket. The compact current status is:
 
 $$
 \texttt{candidate-affine-zero-mean-range-obstruction-removed;}
@@ -389,7 +504,15 @@ $$
 $$
 
 $$
-\texttt{sampled-speed-band-or-clock-length-failed;}
+\texttt{declared-speed-window-clock-diagnostic-failed;}
+$$
+
+$$
+\texttt{analytic-cross-binary-fold-onset-charted;}
+$$
+
+$$
+\texttt{sign-certified-fold-aware-multiroot-period-integral-zero-bracket;}
 $$
 
 $$
