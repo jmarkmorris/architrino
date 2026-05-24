@@ -8,11 +8,13 @@ It is a sampled mixed-stencil derivative-variation certificate. It is not a brac
 
 ## Variation Certificate
 
-The direct theorem-grade successor remains
+For this packet standing alone, the direct theorem-grade successor was
 
 $$
 \texttt{I1.f1.bracket-local-directed-rounding-derivative-variation-enclosure-required}.
 $$
+
+The successor packet now closes that row for the finite peak-budget covering and moves the live burden downstream to full `I1.f1` interval zero isolation, interval critical exhaustion, interval quadrature, and retained branch status.
 
 This packet advances that row by checking the existing mesh allowance against a denser mixed stencil. On every cell
 
@@ -123,7 +125,7 @@ That is a real narrowing of the next theorem-grade burden. A directed-rounding s
 
 The packet therefore separates two burdens that were previously blended: mixed-cell variation domination and endpoint derivative clearance.
 
-The direct successor [octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-peak-budget-reduction](octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-peak-budget-reduction.md) now sharpens this remaining burden again. It converts the unsampled-peak exclusion problem into $2048$ explicit stencil-subcell inequalities and confirms, by a $9\times9$ refined replay on each predecessor mesh cell, that no sampled refined point exceeds the parent stencil vertex maxima. The tightest remaining overshoot ceiling is still the allowance slack of `I1.f1.bracket-derivative-mesh.0.7`, about $3.78761869309\times10^{-6}$. The same successor also tests the bilinear pure-curvature and root-tube regularity routes on the refined sample grid; all $2048$ rows pass with worst sampled curvature remainder ratio $\approx0.0632306995182$, minimum sampled $|F_\delta|\approx0.686789509138$, and minimum sampled adjacent-tube separation $\approx1.28117968261$. It then emits $12288$ protected root-tube targets and $20480$ complement-slab targets, with minimum tube padding radius $\approx0.108489314201$ and minimum complement width $\approx0.325467942606$, leaving interval endpoint signs, fixed-$F_\delta$ floors, complement exclusions, and directed-rounded pure-curvature bounds as the real theorem-grade blocker.
+The direct successor [octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-peak-budget-reduction](octahedral-fold-aware-cross-binary-i1-bracket-local-derivative-peak-budget-reduction.md) now consumes that separation. It certifies the emitted source-root partition by directed-rounded interval arithmetic, contracts the source-root sheets, constructs directed-rounded vertex derivative anchors, encloses the needed pure-curvature terms by interval root-sheet jets on theta-localized tiles, and proves every finite Taylor upper envelope below the row budget. The former unsampled-peak burden is therefore closed for the finite `I1.f1` peak-budget packet; full zero isolation, critical exhaustion, quadrature, and retained branch status remain open.
 
 ## Executable Artifact
 
@@ -198,4 +200,4 @@ $$
 
 ## Promotion Decision
 
-This packet remains `priority-only` and classified as `defer with blocker`. It is mathematically substantive because it validates the predecessor mesh allowance against mixed theta/speed stencil variation on the reduced `I1.f1` bracket and converts the next row into an explicit unsampled-peak exclusion burden. The peak-budget successor further narrows that burden to finite subcell overshoot inequalities, sampled bilinear curvature feasibility, sampled root-tube regularity feasibility, and finite protected-tube/complement targets, but promotion is still blocked until an interval/Taylor backend proves those inequalities, or until a retained branch certificate consumes this sampled certificate with the remaining finite-row obligations clearly stated.
+This packet remains `priority-only` and classified as `defer with blocker`. It is mathematically substantive because it validates the predecessor mesh allowance against mixed theta/speed stencil variation on the reduced `I1.f1` bracket and converts the next row into an explicit unsampled-peak exclusion burden. The peak-budget successor now closes that burden for the finite covering by combining directed-rounded source-root interval isolation, fixed-sign $F_\delta$ monotone root-sheet contraction, directed-rounded vertex derivative anchors, interval root-sheet pure-curvature jets, and theta-localized Taylor upper envelopes. Promotion is still blocked until full `I1.f1` interval zero isolation, interval critical exhaustion, interval quadrature, or a retained branch certificate consumes this certificate with the remaining interval-row obligations clearly stated.
