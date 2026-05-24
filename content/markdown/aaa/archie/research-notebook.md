@@ -214,7 +214,7 @@ The Hyde periodic table became a meaningful part of the project’s reader-facin
 
 Relevant files:
 
-- [Hyde geometry and periodic structure](../nuclear-atomic/hyde-info.md#5-how-the-hyde-geometry-encodes-periodic-structure)
+- [Hyde geometry and periodic structure](../nuclear-atomic/hyde-info.md#how-the-hyde-geometry-encodes-periodic-structure)
 - [Hyde working hypotheses](../nuclear-atomic/hyde-info.md)
 - [Periodic-table navigation and controls](navigation-and-controls.md#periodic-table-scene)
 

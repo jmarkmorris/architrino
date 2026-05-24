@@ -43,7 +43,7 @@ Integral (delta) form selecting the causal root:
 
 Why closed-form solutions are unlikely (even with symmetry):
 - The delay is state-dependent: the unknown $r(t)$ appears both in the right-hand side and in the implicit constraint defining $\tau(t)$, making the problem a nonlinear functional equation rather than an ODE.
-- Even linear constant-delay DDEs rarely admit elementary closed forms; state-dependent delays are generically non-integrable. The fixed-center problem is a special case that collapses to an ODE (see 00.2.3.1).
+- Even linear constant-delay DDEs rarely admit elementary closed forms; state-dependent delays are generically non-integrable. The fixed-center problem is a special case that collapses to an ODE (see [Radial Fall to Fixed Center](radial-attraction.md)).
 
 Solution techniques (toolbox for delayed, radial DDEs):
 - Method of steps (constant delays): for problems with fixed delay $\tau$ and a given history $x(t)=\phi(t)$ on $t\in[-\tau,0]$, integrate an ODE on successive intervals, using the known past segment on each step.

@@ -11,15 +11,15 @@ In classical electrostatics, a static 1/r potential yields an electric field E �
 This project does not posit a static near field. Instead:
 
 - Measure-valued expanding causal surfaces (no static 1/r near field):
-- Each emission is a razor-thin causal isochron with surface density q/(4$\pi$r²), represented by $\rho$(t,s) = (q/(4$\pi$r²)) $\delta$(r − v$\tau$) H($\tau$). The field support at fixed t is a causal wake surface $S_r$, not a 3D 1/r² fill down to r=0. See 00.1.0 — Architrino (Analytic form).
+- Each emission is a razor-thin causal isochron with surface density q/(4$\pi$r²), represented by $\rho$(t,s) = (q/(4$\pi$r²)) $\delta$(r − v$\tau$) H($\tau$). The field support at fixed t is a causal wake surface $S_r$, not a 3D 1/r² fill down to r=0. See [Background and Simple Action](background-and-simple-action.md).
 
 - H(0)=0 (no coincident self-kick):
-  - The instantaneous emission ($\tau$=0) contributes nothing to the force on the emitter; r=0 roots beyond $\tau$=0 do not exist because r = v(t − t₀). This removes the only event where a literal r=0 could enter. See 00.1.4 — Action (conventions).
+  - The instantaneous emission ($\tau$=0) contributes nothing to the force on the emitter; r=0 roots beyond $\tau$=0 do not exist because r = v(t − t₀). This removes the only event where a literal r=0 could enter. See [Causal Set and Delay Geometry](causal-set-and-delay-geometry.md).
 
 - $\eta$-mollification (finite, well-defined work over resolved windows):
   - Replace $\delta$(r − v$\tau$) by a narrow Gaussian $\delta$_$\eta$ with width $\eta$>0 when differentiability is required. Potentials $\Phi$_$\eta$ and forces −∇(q′$\Phi$_$\eta$) are then regular functions; on any resolved interval the work–energy identity holds:
     $\Delta$E_k = −$\Delta$U, with U = q′ $\Phi$_$\eta$,
-    and remains finite. As $\eta$→0, integrals converge in the weak sense to the impulsive model without introducing infinities. See 00.2.1.6 — Well-posedness and regularization.
+    and remains finite. As $\eta$→0, integrals converge in the weak sense to the impulsive model without introducing infinities. See [Well-posedness and Regularization](well-posedness-and-regularization.md).
 
 - Event-driven geometry (self-hits occur at r>0):
   - Self-interaction requires outrunning recent wake surfaces (|v|>v). Self-hits are intersections with one’s own earlier wakes at strictly positive radius r>0, yielding finite 1/r² impulses (repulsive, like-on-like). There is no accumulation of divergent near-field energy at r→0.

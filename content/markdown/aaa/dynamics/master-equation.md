@@ -1167,7 +1167,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 #### Maximum-Curvature Orbit (Self-Hit Stabilization)
 
 **Setup:**
-- Opposite-polarity binary spirals inward (as in 8.2) until speed crosses $\|\mathbf{v}\| = c_f$
+- Opposite-polarity binary spirals inward (as in [Sub-Field-Speed Circular Orbit (Instability)](#sub-field-speed-circular-orbit-instability)) until speed crosses $\|\mathbf{v}\| = c_f$
 - Self-hits activate → repulsive outward force
 
 **Geometric definition (Null Separatrix):**
@@ -1961,8 +1961,8 @@ Analytic expectations:
 
   - We can construct a controlled circular ansatz:
     - Assume perfectly circular orbits with fixed $R$, $\omega$,
-    - Compute partner force including causal delay (as in 2.3),
-    - Compute self‑force (as in 2.4),
+    - Compute partner force including causal delay (as in [Sub-Field-Speed Circular Orbit (Instability)](#sub-field-speed-circular-orbit-instability)),
+    - Compute self‑force (as in [Self-Interaction (Self-Hit Dynamics)](#self-interaction-self-hit-dynamics)),
     - Demand that time‑averaged radial force gives exactly $\omega^2 R$,
     - Demand that time‑averaged tangential force vanish.
 
@@ -3470,7 +3470,7 @@ $$
 
 #### Simulation Diagnostics (Symmetry and Conservation)
 
-In addition to the convergence checks in Section 4.2, track these conserved functionals in any isolated run:
+In addition to the convergence checks in [Numerical Implementation Notes](#numerical-implementation-notes), track these conserved functionals in any isolated run:
 
 - **Total energy**: $H_{\text{tot}}(t) = K_{\mu}(t) + E_{\text{wake}}(t)$, or a declared compatible reconstruction $K_{\mu}+U$, should remain constant within the chosen numerical tolerance.
 - **Total momentum**: $\mathbf{P}_{\text{tot}}(t)$ should be constant; monitor $\|\mathbf{P}_{\text{tot}}(t)-\mathbf{P}_{\text{tot}}(0)\|$.
