@@ -6,6 +6,8 @@ This packet continues [octahedral-fold-aware-cross-binary-forcing-interval-sign-
 
 It is a conditional theorem plus sampled certificate. It does not certify interval fold-collar enclosure, interval sign topology, interval derivative enclosure on regular subcells, interval critical exhaustion, interval quadrature, $C_\times,m_Q,M_Q$ interval enclosures, receiver-orbit clock-length return, or retained branch status.
 
+The direct successor [octahedral-fold-aware-cross-binary-source-atlas-interval-implication](octahedral-fold-aware-cross-binary-source-atlas-interval-implication.md) combines this $G,D$ collar theorem with the source-atlas quarter-cell formula and the interval sign-enclosure target atlas. It states the exact implication from shared source-atlas interval predicates to critical exhaustion and exposes the three bridge predicates that must be certified before the finite-candidate row can become theorem-grade.
+
 ## Square-Coordinate Transport Theorem
 
 Let the folded side be written as
