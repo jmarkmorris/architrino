@@ -21,6 +21,7 @@ This file is Cody's living feedback backlog for improving operator/developer wor
 - [ ] Prefer one hard target per turn; batch only independent items with clear file boundaries.
 - [ ] Promote recurring operating decisions into repo docs instead of re-explaining them in chat.
 - [ ] For broad advancement prompts, let Cody continue into safe direct follow-on work instead of stopping at a Priority Action Menu.
+- [ ] For multi-hour self-running theory passes, state the desired checkpoint cadence or final artifact threshold when it differs from Cody's default.
 
 ## Clarity
 

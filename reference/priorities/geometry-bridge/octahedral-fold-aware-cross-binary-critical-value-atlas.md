@@ -110,6 +110,26 @@ $$
 
 These values should not be mixed with the older left-endpoint sampled payload in [octahedral-fold-aware-cross-binary-quarter-profile-certificate](octahedral-fold-aware-cross-binary-quarter-profile-certificate.md) unless the quadrature convention is named. Both rows are sampled diagnostics rather than interval enclosures.
 
+The direct successor [octahedral-fold-aware-cross-binary-fold-square-limit-atlas](octahedral-fold-aware-cross-binary-fold-square-limit-atlas.md) supplies the local fold normal form behind the transformed quadrature. It proves the square-coordinate endpoint model
+
+$$
+g_\pm(y)=2y\,f_\times(\theta_f\pm y^2)
+$$
+
+has finite one-sided limits at the folded sides, with analytic limits
+
+$$
+\theta_{3-}^{-}:\ -0.192715477558,
+\qquad
+\theta_{2+}^{+}:\ -0.325542989718,
+$$
+
+and zero square limits on the opposite regular sides. It preserves that interval endpoint enclosures and interval quadrature remain open.
+
+The next successor [octahedral-fold-aware-cross-binary-forcing-derivative-atlas](octahedral-fold-aware-cross-binary-forcing-derivative-atlas.md) supplies the regular-cell derivative formula for $f_\times$ and samples the two interior primitive-critical rows as nondegenerate negative-slope crossings. It preserves that interval derivative enclosures, interval critical exhaustion, and interval quadrature remain open.
+
+The later [octahedral-fold-aware-cross-binary-finite-candidate-reduction](octahedral-fold-aware-cross-binary-finite-candidate-reduction.md) consumes this value ordering with the forcing-topology rows. It states the conditional finite-candidate theorem and computes the equal-radius value budgets required to certify $C_\times$, $m_Q$, and $M_Q$ once interval critical exhaustion and interval quadrature exist.
+
 ## Executable Artifact
 
 The executable diagnostic [octahedral-fold-aware-cross-binary-critical-value-atlas.mjs](../../../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-critical-value-atlas.mjs) emits:
@@ -186,4 +206,4 @@ $$
 
 ## Promotion Decision
 
-This packet remains `priority-only`. It is mathematically substantive because it converts the sampled finite candidate set into sampled values for $C_\times$, $m_Q$, and $M_Q$. It should not be promoted into reader-facing AAA prose until transformed quadrature is replaced by interval quadrature and the primitive-critical candidate set is upgraded to interval critical exhaustion.
+This packet remains `priority-only`. It is mathematically substantive because it converts the sampled finite candidate set into sampled values for $C_\times$, $m_Q$, and $M_Q$. Its direct successors add the fold-square endpoint model required by future interval quadrature and the regular-cell derivative formula required by future interval critical exhaustion. These packets should not be promoted into reader-facing AAA prose until transformed quadrature is replaced by interval quadrature and the primitive-critical candidate set is upgraded to interval critical exhaustion.
