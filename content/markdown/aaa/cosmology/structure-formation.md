@@ -411,7 +411,7 @@ A concrete prediction: if Noether-Sea compliance decreases as it cools (outer bi
 In the modular cosmology architecture, this document provides:
 
 **Ontic inputs** (from medium dynamics and assembly physics):
-- Noether Sea equation of state $w_{\text{sea}}(t)$ and density $\rho_{\text{sea}}(t)$,
+- Noether-Sea equation of state $w_{\text{sea}}(t)$ and density $\rho_{\text{sea}}(t)$,
 - neutral-assembly (dark-matter) density $\rho_{\text{dm}}(t)$ and interaction cross-section,
 - effective gravitational coupling $G_{\text{eff}}(t, k)$ from medium compliance,
 - primordial perturbation spectrum $P_0(k)$ (from the initial Noether-Sea state or an inflation-equivalent process).

@@ -1,7 +1,7 @@
 # Radial Fall to Fixed Center (Test Particle)
 
 Setup:
-- A test architrino with charge q′ falls radially toward a fixed center with charge q.
+- A test architrino with polarity $q'$ falls radially toward a fixed center with polarity $q$.
 - The interaction is delayed; the causal emission time exists uniquely for a fixed source, but the acceleration depends only on the current separation because the source position is time-independent.
 
 Objectives:

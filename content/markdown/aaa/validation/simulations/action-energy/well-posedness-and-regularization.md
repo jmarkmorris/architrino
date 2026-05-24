@@ -1,13 +1,13 @@
 # Well-posedness and regularization
 
-Existing text excerpt:
-> ### **Well-posedness and Regularization**
-> $$
-> \delta(r - \tau)\ \longrightarrow\ \frac{1}{\sqrt{2\pi}\,\eta}\,\exp\!\Big(-\frac{(r - \tau)^2}{2\eta^2}\Big),
-> $$
-> while preserving total emission $q$.
+The regularized simulation replaces each sharp causal-surface delta by a narrow mollifier while preserving total emission $q$:
+$$
+\delta(r-\tau)\longrightarrow
+\frac{1}{\sqrt{2\pi}\,\eta}
+\exp\!\left(-\frac{(r-\tau)^2}{2\eta^2}\right).
+$$
 
-Detailed explanation (impulses vs smooth pushes):
+## Impulses Versus Smooth Pushes
 
 - Measure-driven dynamics:
   - With exact surface deltas, dynamics are impulsive: velocities are functions of bounded variation with jump discontinuities at hit times.
@@ -191,4 +191,4 @@ $$
 $$
 for every promoted observable and active branch ledger. Otherwise the result remains finite-$\eta$ evidence only.
 
-Plain language: The ideal model gives instantaneous kicks; a tiny thickening turns them into brief, smooth nudges so you can integrate with ordinary ODE solvers. Large-system or zero-width claims have to be earned by convergence, not assumed from the finite calculation.
+Plain language: The ideal model gives instantaneous kicks; a tiny thickening turns them into brief, smooth nudges that ordinary ODE solvers can integrate. Large-system or zero-width claims have to be earned by convergence, not assumed from the finite calculation.

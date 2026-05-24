@@ -810,7 +810,7 @@ $$
 \frac{d}{dt}\mathbf{v}_\perp\Big|_{\text{hit}} = \mathbf{0}, \quad \frac{d}{dt}v_r\Big|_{\text{hit}} = \mathbf{a}_{ij} \cdot \hat{\mathbf{r}}_{ij} = \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2\,\left|J_{ij}(t;t_0)\right|}.
 $$
 
-**Plain language:** A hit only changes the along-the-line velocity component right now; sideways motion continues unaffected (at the instant of the hit). Over time, of course, the changing radial motion alters the trajectory and thus the subsequent orthogonal component.
+**Plain language:** A hit only changes the along-the-line velocity component right now; sideways motion continues unaffected at the instant of the hit. Over time, the changing radial motion alters the trajectory and thus the subsequent orthogonal component.
 
 **Translating-assembly deformation requirement:** The receiver kinematics described here must mechanically produce the moving-assembly deformation, branch-period stretch, and two-way signal-synchronization records that later observer-inference chapters consume. If nested shell swarms do not squash along the direction of motion and do not preserve one retained causal-root ledger while translating through the Noether Sea, the downstream recovery program fails at the dynamics layer.
 
@@ -1107,7 +1107,7 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 **Implication:** Self-hit is a **path-history memory effect**. The architrino's current acceleration depends on **whether it ever exceeded $c_f$ in the past and curved**, not just on its instantaneous state.
 
-**Non-Markovian nature:** Knowing $\mathbf{x}_i(t)$ and $\mathbf{v}_i(t)$ is insufficient to determine $\mathbf{a}_i(t)$. You need the **full past worldline** $\{\mathbf{x}_i(t') : t' < t\}$ to identify all causal self-hit times $t_0 \in \mathcal{C}_{ii}(t)$.
+**Non-Markovian nature:** Knowing $\mathbf{x}_i(t)$ and $\mathbf{v}_i(t)$ is insufficient to determine $\mathbf{a}_i(t)$. The **full past worldline** $\{\mathbf{x}_i(t') : t' < t\}$ is needed to identify all causal self-hit times $t_0 \in \mathcal{C}_{ii}(t)$.
 
 #### Self-Hit as Stabilization Mechanism
 
@@ -1435,17 +1435,17 @@ This is the basic consistency-check regime of the theory.
 Setup:
 
 - Two opposite polarities on a line, starting at rest, moving directly toward each other,
-- Symmetry: center‑of‑mass at rest, only radial variable $r(t)$,
-- Speeds sub‑$c_f$ so no self‑hit.
+- Symmetry: center-of-mass at rest, only radial variable $r(t)$,
+- Speeds sub-$c_f$ so no self-hit.
 
 Then:
 
 - Causal delay gives a small correction; in the slow regime we can treat it perturbatively.
-- To zeroth order, you already wrote:
+- To zeroth order, the reduced equation is:
   $$
   \frac{d^2 r}{dt^2} = -\frac{2\kappa \epsilon^2}{r^2},
   $$
-  which has an exact analytic solution for $r(t)$ (same math as Kepler fall‑to‑center).
+  which has an exact analytic solution for $r(t)$ (same mathematics as Kepler fall-to-center).
 
 We can:
 

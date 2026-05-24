@@ -279,7 +279,7 @@ The first failure modes are concrete:
 | large `image_bundle_variance` | neighboring beams accumulate incompatible $Y$ values, which threatens image sharpness |
 | large `time_dilation_residual` | frequency shift and packet-cadence stretch no longer share one propagation record |
 | large `dark_energy.*` dominance with failed chromaticity or cadence checks | the dark-energy handoff is acting like a fitted redshift source rather than a shared Noether-Sea transport coefficient |
-| continuity packet replaced by unrelated named source terms | the run is not testing the no-case-switch transport law because $\partial_\nu J_\nu$, source loading, equilibration, and flow response have been separated into free knobs |
+| continuity packet replaced by unrelated named source terms | the run is not testing the no-case-switch transport law because $\partial_\nu J_\nu$, source loading, equilibration, and flow response have been separated into free fit parameters |
 | large total $Z_X$ with small $Z_{\mathrm{prop},X}$ | endpoint cadence, source branch, or launch geometry dominate, so distance cannot be inferred from propagation alone |
 | nonzero laboratory residual after local corrections | the factorization leaks local calibration or source-branch effects into the propagation channel |
 

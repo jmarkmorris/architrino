@@ -273,7 +273,7 @@ The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 *   **Strong Attraction:** Color-singlet closure forces the three quarks into a shared strong-sector braid whose tension overwhelms the electric repulsion.
 *   **Pauli Exclusion:** Since the quarks occupy different color sectors, they are distinguishable quantum states, allowing them to share the same spatial ground-state assembly.
 
-This paragraph explains ordinary bound-state stability inside the nucleon. It is not yet a derivation of proton-decay exclusion or topological baryon conservation. The stronger claim belongs to the closed-braid program in [Color Charge and Strong Confinement](./color-charge-su3.md): the color-singlet 9-axis braid must make baryon-number-violating rupture either impossible on the admitted branch or suppressed beyond current null-result limits. A local recovery target is therefore
+This paragraph explains ordinary bound-state stability inside the nucleon. It is not yet a derivation of proton-dissociation exclusion or topological baryon conservation. The stronger claim belongs to the closed-braid program in [Color Charge and Strong Confinement](./color-charge-su3.md): the color-singlet 9-axis braid must make baryon-number-violating rupture either impossible on the admitted branch or suppressed beyond current null-result limits. A local recovery target is therefore
 $$
 \tau_p^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta;\mathcal{C}_{\Delta B\ne0})
 >
@@ -641,9 +641,9 @@ where $\mathrm{col}(A)$ is the color singlet/triplet bookkeeping and $\mathcal{E
 $$
 d_{\mathrm{rep}}(A,B)
 =
-\left\lVert
+\left\|
 \Pi_{\mathrm{gauge}}A-\Pi_{\mathrm{gauge}}B
-\right\rVert_{W_{\mathrm{rep}}}^{2},
+\right\|_{W_{\mathrm{rep}}}^{2},
 $$
 with discrete penalties for mismatched color or weak-exposure classes. This enforces that generation changes exposed mass response while leaving the Standard-Model-facing representation table fixed.
 

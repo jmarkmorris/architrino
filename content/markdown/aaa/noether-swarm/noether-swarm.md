@@ -1,12 +1,12 @@
 # Noether Swarm
 
-The **Noether swarm** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether-Sea and particle-architecture program. A Noether swarm is not assumed at the outset to be a set of exact binaries. The base object is a closed, charge-neutral, bounded-speed six-body branch in which three positive architrinos and three negative architrinos maintain a persistent causal-return ledger.
+The **Noether swarm** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether-Sea and particle-architecture program. A Noether swarm is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos and three negative-polarity architrinos maintain a persistent causal-return ledger.
 
 This chapter uses three swarm types:
 
 | Term | Definition | Additional structure |
 | --- | --- | --- |
-| **neutral swarm** | The broad six-architrino neutral case before any required binary grouping or radial organization. | Charge balance and causal-return bookkeeping. |
+| **neutral swarm** | The broad six-architrino neutral case before any required binary grouping or radial organization. | Polarity balance and causal-return bookkeeping. |
 | **shell swarm** | A neutral swarm whose six architrino paths remain in a controlled radial support band. | Radial support control, with near-antipodality only as an optional constraint. |
 | **nested shell swarm** | A shell swarm with three ordered radial support bands. | The old three-layer picture; exact binaries are an additional proof assumption, not a separate swarm type. |
 
@@ -27,14 +27,14 @@ $$
 \sum_{i=1}^{6}\sigma_i=0.
 $$
 
-This charge-neutral ledger is imposed before any binary partition, shell ordering, or near-antipodal matching is assumed. Each positive architrino has three attractive channels to negative architrinos and two repellent channels to the other positive architrinos. Each negative architrino has the polarity-reversed version of the same count: three attractive channels to positives and two repellent channels to negatives. That $3+2$ channel count is part of the neutral swarm bookkeeping even when no binary partition has been certified.
+This polarity-neutral ledger is imposed before any binary partition, shell ordering, or near-antipodal matching is assumed. Each positive-polarity architrino has three attractive channels to negative-polarity architrinos and two repellent channels to the other positive-polarity architrinos. Each negative-polarity architrino has the polarity-reversed version of the same count: three attractive channels to positives and two repellent channels to negatives. That $3+2$ channel count is part of the neutral swarm bookkeeping even when no binary partition has been certified.
 
 The intrinsic path of architrino $i$ may be represented by a closed arclength curve
 
 $$
 Y_i:\mathbb{R}/L_i\mathbb{Z}\to\mathbb{R}^3,
 \qquad
-\left\lVert Y_i'(s)\right\rVert=1,
+\left\| Y_i'(s)\right\|=1,
 \qquad
 Y_i(s+L_i)=Y_i(s).
 $$
@@ -148,7 +148,7 @@ A **shell swarm** is a neutral swarm whose six trajectories remain in a controll
 
 $$
 R_-\leq
-\left\lVert X_i(t)-C(t)\right\rVert
+\left\| X_i(t)-C(t)\right\|
 \leq R_+,
 \qquad
 i=1,\ldots,6.
@@ -168,7 +168,7 @@ $$
 \delta_{\mathrm{anti},i}(t)
 =
 \frac{
-\left\lVert X_i(t)+X_{\iota(i)}(t)-2C(t)\right\rVert
+\left\| X_i(t)+X_{\iota(i)}(t)-2C(t)\right\|
 }{R_*}.
 $$
 

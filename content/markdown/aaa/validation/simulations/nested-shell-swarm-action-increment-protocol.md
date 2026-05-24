@@ -14,7 +14,7 @@ $$
 $$
 for $n$ record-facing action-angle channels. This protocol tests the missing premise. It asks whether accepted nested shell swarm dynamics select a positive increment $\Delta I_*$ such that
 $$
-h_{\mathrm{AAA}}=2\pi\Delta I_*
+h_{\mathbb{A}\mathbb{A}\mathbb{A}}=2\pi\Delta I_*
 $$
 matches the observer-level Planck constant benchmark.
 
@@ -146,7 +146,7 @@ The minimum campaign packet contains:
 | `conservation_pullback.csv` | branch-chart id, cut/window id, $\eta$, $\epsilon_c$, $h$, endpoint convention, $\nu_J$, inactive-gap minimum, $h_{\mathrm{mem}}$, $K_{\mu}$, $E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}$, $\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{J}_{\mathrm{mech}}$, $\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$, $\mathcal{R}_E$, $\mathcal{R}_P$, $\mathcal{R}_J$, and verdict |
 | `phase_closure_residuals.csv` | layer and inter-layer phase closure residuals, winding labels, and tolerance status |
 | `floquet_report.json` | monodromy or finite-difference return map, excluded symmetry modes, multipliers, and $\Delta_{\mathbf{k}}$ |
-| `cluster_summary.json` | $\Delta I_*$, class means, class standard deviations, $\delta_I$, $h_{\mathrm{AAA}}$, $\delta_h$, and promotion status |
+| `cluster_summary.json` | $\Delta I_*$, class means, class standard deviations, $\delta_I$, $h_{\mathbb{A}\mathbb{A}\mathbb{A}}$, $\delta_h$, and promotion status |
 | `convergence_table.csv` | the convergence rows required by [Convergence Tests](convergence-tests.md), including active-root mismatch and stability-window shift |
 | `negative_control_report.md` | null runs and the invariant, provenance, or stability channel they break |
 | `promotion_gate.md` | final pass/fail statement and the strongest claim the packet authorizes |
@@ -180,7 +180,7 @@ Only a packet that also has small $\delta_h$ may promote `candidate_h_recovery`.
 | `conservation-pullback-open` | $\mathcal{R}_P$ or $\mathcal{R}_J$ exceeds tolerance, or the exact Noether pullback uses different rows than the root ledger or force residual |
 | `convergence-fail` | required convergence or cross-integrator gates fail |
 | `negative-control-fail` | the intentionally wrong model still passes the packet gates |
-| `benchmark-mismatch` | $h_{\mathrm{AAA}}$ is stable but fails the declared `$h$` benchmark tolerance |
+| `benchmark-mismatch` | $h_{\mathbb{A}\mathbb{A}\mathbb{A}}$ is stable but fails the declared `$h$` benchmark tolerance |
 
 ## Interpretation
 

@@ -1,10 +1,8 @@
 # Self-interaction switch
 
-Existing text excerpt:
-> ### **Self-Interaction**
-> An architrino can intersect an expanding causal isochron that it emitted itself at an earlier point in its history. Self-hit occurs when the same-source causal-root set is nonempty, $\mathcal{C}_{aa}(t)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake. The like-polarity self-hit contribution is repulsive and plays a key role in the stability of emergent structures.
+An architrino can intersect an expanding causal isochron that it emitted earlier in its own history. Self-hit occurs when the same-source causal-root set is nonempty, $\mathcal{C}_{aa}(t)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake. The like-polarity self-hit contribution is repulsive and plays a key role in the stability of emergent structures.
 
-Detailed explanation (conditions and effects):
+## Conditions and Effects
 
 - Root multiplicity and self-roots:
   - The simulation should open the self-hit channel only when it finds same-source roots

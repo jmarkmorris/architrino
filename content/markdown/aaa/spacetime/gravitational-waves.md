@@ -230,11 +230,11 @@ For a candidate horizon-interface record $\theta_H$, let $h_{\ell m}^{\theta_H}(
 $$
 \mathcal{R}_{\mathrm{merge}}(\theta_H)
 =
-\left\lVert
+\left\|
 D_{\mathrm{merge}}^{\mathrm{obs}}
 -
 \mathcal{P}_{\mathrm{det}}\{h_{\ell m}^{\theta_H}\}
-\right\rVert_{C_{\mathrm{merge}}^{-1}}^2
+\right\|_{C_{\mathrm{merge}}^{-1}}^2
 +
 d_{\mathrm{nohair}}\!\left(
 (M_f,\mathbf{J}_f,Q_f)^{\theta_H},

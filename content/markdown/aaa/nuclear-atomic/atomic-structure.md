@@ -110,11 +110,11 @@ $$
 D_{f,X}(\mathbf{x},t)
 =
 \frac{
-\left\lVert\mathcal{W}_{f,X}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
+\left\|\mathcal{W}_{f,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
 }{
-\left\lVert\mathcal{W}_{f,X}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
+\left\|\mathcal{W}_{f,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
 +
-\left\lVert\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\rVert
+\left\|\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\|
 },
 $$
 
@@ -495,16 +495,16 @@ $$
 \Delta_X(\ell,\ell')
 =
 \frac{
-\left\lVert
+\left\|
 \mathcal O_{\mathrm H,X}^{(\ell)}
 -
 \mathcal R_{\ell\leftarrow\ell'}
 \mathcal O_{\mathrm H,X}^{(\ell')}
-\right\rVert_X
+\right\|_X
 }{
-\left\lVert
+\left\|
 \mathcal O_{\mathrm H,X}^{(\ell)}
-\right\rVert_X
+\right\|_X
 +
 \varepsilon_X
 },

@@ -307,7 +307,7 @@ In other words, the field may sometimes be patching across a layer mismatch rath
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The project's basic wager is that metric structure and quantum effective behavior may both be downstream from a deeper substrate organization. On that reading, neither GR nor QM is discarded. Both are retained as effective closures whose domain success must be recovered while their ontological placement is lowered.
 
-More specifically, the AAA proposal distinguishes a fixed Euclidean void, a physical medium whose organization produces effective metric behavior, and assembly dynamics whose coarse-grained statistics produce quantum-effective structure. The hoped-for unification is therefore neither "quantize spacetime as fundamental" nor "treat the wavefunction as final ontology," but derive both observer-level packages from one causal substrate.
+More specifically, the $\mathbb{A}\mathbb{A}\mathbb{A}$ proposal distinguishes a fixed Euclidean void, a physical medium whose organization produces effective metric behavior, and assembly dynamics whose coarse-grained statistics produce quantum-effective structure. The hoped-for unification is therefore neither "quantize spacetime as fundamental" nor "treat the wavefunction as final ontology," but derive both observer-level packages from one causal substrate.
 
 Transition relevance is maximal because this crisis is one of the clearest motivations for ontological relocation rather than formal patching. In that sense the aim is closer to refactoring than replacement: preserve the durable empirical and mathematical achievements, but reconnect them to a generator-level architecture of nature.
 
@@ -507,7 +507,7 @@ These remain incomplete because the space of repairs continues to expand without
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory is motivated by the possibility that some dark-sector inferences reflect effective closure over substrate organization, medium history, or neutral assembly behavior rather than separate final substances. In the current AAA cosmology, the working baseline is not a single universal replacement slogan but a hybrid picture: neutral assemblies carry much of the dark-matter role, while medium response and medium relaxation contribute to galaxy-scale and expansion-history effects now grouped under dark-sector language.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory is motivated by the possibility that some dark-sector inferences reflect effective closure over substrate organization, medium history, or neutral assembly behavior rather than separate final substances. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology, the working baseline is not a single universal replacement slogan but a hybrid picture: neutral assemblies carry much of the dark-matter role, while medium response and medium relaxation contribute to galaxy-scale and expansion-history effects now grouped under dark-sector language.
 
 Transition relevance is maximal because this is one of the clearest domains where ontological replacement could matter without rejecting data. The ambition is not to explain away the evidence, but to show that at least part of what is currently packaged as dark matter and dark energy may be reclassified as properties of one deeper medium-and-assembly ontology.
 
@@ -555,7 +555,7 @@ But they remain incomplete because they manage the symptom of parameter freedom 
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. One motivation of the theory is the hope that masses, interactions, and large-scale behavior can be related to assembly structure and medium dynamics rather than multiplied as independent inserts. In the AAA picture, parameter ledgers are still necessary, but they are treated as transitional bookkeeping to be reduced wherever common mechanism can be shown.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. One motivation of the theory is the hope that masses, interactions, and large-scale behavior can be related to assembly structure and medium dynamics rather than multiplied as independent inserts. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ picture, parameter ledgers are still necessary, but they are treated as transitional bookkeeping to be reduced wherever common mechanism can be shown.
 
 Transition relevance is high because patchwork closure is one of the main signals that a field may be protecting an effective layer from ontological revision. If several apparently independent parameters can be traced back to a shared substrate geometry or shared medium response, then what looked like many inputs may turn out to be one architecture seen through several effective channels.
 
@@ -603,7 +603,7 @@ They remain incomplete because they too easily answer the request for mechanism 
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The project's core ambition is to increase mechanistic explanation without losing mathematical control. The AAA wager is that effective mathematics should be preserved, but relocated: some equations summarize observer-level or medium-level behavior, while a deeper substrate should explain why those summaries work.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The project's core ambition is to increase mechanistic explanation without losing mathematical control. The $\mathbb{A}\mathbb{A}\mathbb{A}$ wager is that effective mathematics should be preserved, but relocated: some equations summarize observer-level or medium-level behavior, while a deeper substrate should explain why those summaries work.
 
 Transition relevance is maximal because this crisis states the most general reason a substrate theory is worth attempting at all. If the project cannot improve mechanism while retaining formal success, it fails on its own terms. If it can, then this is one of the clearest places where ontological relocation would matter.
 

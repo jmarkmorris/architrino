@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 157,
-      "sections": 1239
+      "sections": 1247
     }
   },
   "tocRoot": {
@@ -7154,10 +7154,10 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Recommendation (going forward)",
+                        "title": "Recommendation",
                         "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                        "markdownSection": "Recommendation (going forward)",
-                        "sectionKey": "recommendation going forward",
+                        "markdownSection": "Recommendation",
+                        "sectionKey": "recommendation",
                         "headingLevel": 2
                       },
                       {
@@ -7192,7 +7192,17 @@
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/background_simple_action.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md"
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Dynamical Geometry",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+                        "markdownSection": "Dynamical Geometry",
+                        "sectionKey": "dynamical geometry",
+                        "headingLevel": 2
+                      }
+                    ]
                   },
                   {
                     "id": "validation_action_energy__causal_set_delay_geometry",
@@ -7200,7 +7210,17 @@
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/causal_set_delay_geometry.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md"
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Geometry of Delay and Roots",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md",
+                        "markdownSection": "Geometry of Delay and Roots",
+                        "sectionKey": "geometry of delay and roots",
+                        "headingLevel": 2
+                      }
+                    ]
                   },
                   {
                     "id": "validation_action_energy__informational_ambiguity",
@@ -7208,7 +7228,17 @@
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/informational_ambiguity.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md"
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Degeneracies and Inference Limits",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+                        "markdownSection": "Degeneracies and Inference Limits",
+                        "sectionKey": "degeneracies and inference limits",
+                        "headingLevel": 2
+                      }
+                    ]
                   },
                   {
                     "id": "validation_action_energy__numerical_recipe_stability",
@@ -7232,7 +7262,17 @@
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/receiver_velocity_work.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md"
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Decomposition and Energetics",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md",
+                        "markdownSection": "Decomposition and Energetics",
+                        "sectionKey": "decomposition and energetics",
+                        "headingLevel": 2
+                      }
+                    ]
                   },
                   {
                     "id": "validation_action_energy__repulsion",
@@ -7290,7 +7330,17 @@
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/self_interaction_switch.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md"
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Conditions and Effects",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md",
+                        "markdownSection": "Conditions and Effects",
+                        "sectionKey": "conditions and effects",
+                        "headingLevel": 2
+                      }
+                    ]
                   },
                   {
                     "id": "validation_action_energy__superposition_locality",
@@ -7298,7 +7348,17 @@
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/superposition_locality.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md"
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Why Nearby Wakes Dominate",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+                        "markdownSection": "Why Nearby Wakes Dominate",
+                        "sectionKey": "why nearby wakes dominate",
+                        "headingLevel": 2
+                      }
+                    ]
                   },
                   {
                     "id": "validation_action_energy__units_constants",
@@ -7306,7 +7366,17 @@
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/units_constants.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md"
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Dynamical Geometry",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+                        "markdownSection": "Dynamical Geometry",
+                        "sectionKey": "dynamical geometry",
+                        "headingLevel": 2
+                      }
+                    ]
                   },
                   {
                     "id": "validation_action_energy__well_posedness_regularization",
@@ -7316,6 +7386,14 @@
                     "scenePath": "content/scenes/validation/well_posedness_regularization.json",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
                     "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Impulses Versus Smooth Pushes",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
+                        "markdownSection": "Impulses Versus Smooth Pushes",
+                        "sectionKey": "impulses versus smooth pushes",
+                        "headingLevel": 2
+                      },
                       {
                         "kind": "markdown-section",
                         "title": "Formal $\\eta > 0$ Continuation Package",
@@ -7454,10 +7532,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Open questions (productive)",
+                    "title": "Open Closure Questions",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Open questions (productive)",
-                    "sectionKey": "open questions productive",
+                    "markdownSection": "Open Closure Questions",
+                    "sectionKey": "open closure questions",
                     "headingLevel": 2
                   },
                   {

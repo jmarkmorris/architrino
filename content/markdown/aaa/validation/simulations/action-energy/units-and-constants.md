@@ -1,22 +1,21 @@
 # Units and Constants
 
-Existing text excerpt:
-> ### **Units and constants**
-> -   We choose units with field speed $v=1$ (select $L_0,T_0$ so $v=L_0/T_0=1$); all speeds are hence dimensionless.
-> -   $\kappa>0$ is the universal coupling constant controlling interaction strength.
-> -   $\eta>0$ is the default regularization thickness for causal isochrons.
->
-> Symbols:
--> -   $v=1$ (field speed by units), $\kappa>0$ (coupling), $\eta>0$ (isochron thickness)
-> -   $\epsilon>0$ (polarity-unit magnitude); Electrino $q=-\epsilon$, Positrino $q=+\epsilon$
-> -   $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$
-> -   $r=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|$, $\;\hat{\mathbf{r}}=(\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0))/r$
+This note fixes the unit and symbol conventions used by the action-energy simulation notes. We work in units with field speed $v=1$ unless stated otherwise, use $\kappa>0$ for the universal coupling, and use $\eta>0$ as the default regularization thickness for causal isochrons.
 
-Detailed explanation (dynamical geometry):
+Core symbols:
+
+- $v=1$: field speed in normalized units.
+- $\kappa>0$: universal coupling constant.
+- $\eta>0$: causal-isochron thickness.
+- $\epsilon>0$: polarity-unit magnitude; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
+- $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$.
+- $r=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|$, with $\hat{\mathbf{r}}=(\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0))/r$.
+
+## Dynamical Geometry
 
 - Field-speed units ($v=1$):
   - Choosing $L_0,T_0$ with $v=L_0/T_0=1$ fixes a conversion between spatial and temporal scales so that all speeds are dimensionless ratios to the field speed. This is akin to “setting c=1,” but the reference is the model’s field speed. Kinematics still lives on absolute time × Euclidean space; we have not mixed time and space into a 4D line element.
-  - Consequence: every velocity appears as a pure number $|\mathbf{v}|$; the symmetry point “$|\mathbf{v}|=v$” becomes “$|\mathbf{v}|=1$.” Rescaling $L_0$ and $T_0$ together leaves all dimensionless predictions invariant.
+  - Consequence: every velocity appears as a pure number $\|\mathbf{v}\|$; the symmetry point $\|\mathbf{v}\|=v$ becomes $\|\mathbf{v}\|=1$. Rescaling $L_0$ and $T_0$ together leaves all dimensionless predictions invariant.
 
 - Coupling constant ($\kappa>0$):
   - $\kappa$ sets the overall scale of per-hit acceleration. In the canonical law,
@@ -30,8 +29,8 @@ Detailed explanation (dynamical geometry):
   - $\eta$ is the width applied to each causal isochron (wake surface) to mollify the surface delta $\delta(r-\tau)$. It converts impulsive hits into brief, smooth pushes so that standard ODE integration applies and pointwise quantities (like gradients) are well-defined.
   - Geometric guidance: choose $\eta$ small relative to local geometric scales (e.g., the receiver’s instantaneous curvature radius along its path and the local inter-source separation) so the regularized dynamics approximate the ideal path-history picture while remaining numerically stable.
 
-- Unit charge magnitude ($\epsilon>0$):
-  - $\epsilon$ is the fundamental charge scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). In this framework $\epsilon$ is often identified with $|e|/6$, making quark charges integer multiples of $\epsilon$.
+- Polarity-unit magnitude ($\epsilon>0$):
+  - $\epsilon$ is the fundamental polarity scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). In this framework $\epsilon$ is often identified with $|e|/6$, making observer-level quark electric charges integer multiples of $\epsilon$.
   - Per-wavefront amplitude and emission cadence are constant at the source. The received force magnitude is additionally modulated by the branch Jacobian $|J|^{-1}$, which depends on source motion along the line of action.
 
 - Sign of interaction ($\sigma_{q q'}$):

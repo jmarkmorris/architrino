@@ -455,11 +455,11 @@ This table is only the partner column of the certificate packet. The self-image 
 
 For same-side self hits on an affine segment,
 $$
-|x(t)-x(t_0)|=|v|\tau.
+|x(t)-x(t_0)|=\|\mathbf{v}\|\tau.
 $$
-The exact causal shell equation is
+The exact causal-isochron equation is
 $$
-|v|\tau=c_f\tau.
+\|\mathbf{v}\|\tau=c_f\tau.
 $$
 For
 $$
@@ -467,7 +467,7 @@ $$
 $$
 this is possible only when
 $$
-|v|=c_f.
+\|\mathbf{v}\|=c_f.
 $$
 Therefore a perfectly affine segment has no same-side exact self root away from the field-speed separator. Self branches appear because the real trajectory is not globally affine: acceleration, origin crossing, and later return geometry let a present point meet older path-history images.
 
@@ -485,7 +485,7 @@ For certificate purposes, the field-speed separator is a codimension-one event s
 $$
 \Sigma_{\mathcal{B}}
 =
-\{(x,v,\mathcal{B}): |v|=c_f\}.
+\{(x,\mathbf{v},\mathcal{B}): \|\mathbf{v}\|=c_f\}.
 $$
 Here
 $$
@@ -672,7 +672,7 @@ A first closed-form skeleton should use four arcs:
    $$
    \eta
    $$
-   regularizes the causal-shell selection.
+   regularizes the causal-isochron selection.
 3. **Outbound super-field or near-field-speed arc**
    The right branch moves outward. If
    $$

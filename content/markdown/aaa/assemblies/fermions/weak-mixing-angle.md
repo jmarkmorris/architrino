@@ -44,7 +44,7 @@ $$
 
 ### 2. Axial Frame
 
-The six axial architrinos define a second frame through their coarse-grained charge moments. At lowest order this can be represented by a principal-axis frame extracted from the axial distribution:
+The six axial architrinos define a second frame through their coarse-grained polarity moments. At lowest order this can be represented by a principal-axis frame extracted from the axial distribution:
 $$
 \mathcal{F}_{\text{ax}} = \{\hat{\mathbf{p}}_1,\hat{\mathbf{p}}_2,\hat{\mathbf{p}}_3\}.
 $$
@@ -236,7 +236,7 @@ A minimal phenomenological form is
 $$
 E_{\text{eff}}(\alpha,\phi_c)
 =
-E_{\text{charge}}(\alpha)
+E_{\text{polarity}}(\alpha)
 +
 E_{\text{color}}(\phi_c)
 +
@@ -247,7 +247,7 @@ $$
 
 Here:
 
-- $E_{\text{charge}}$ measures internal strain from placing an imbalanced six-architrino axial layer on the fixed scaffold,
+- $E_{\text{polarity}}$ measures internal strain from placing an imbalanced six-architrino axial layer on the fixed scaffold,
 - $E_{\text{color}}$ enforces the threefold azimuthal structure,
 - $E_{\text{cross}}$ captures coupling between exceptional-axis choice and axial tilt,
 - $E_{\text{wake}}$ is the Noether-Sea response to the exposed axial geometry.
@@ -264,7 +264,7 @@ and that these stationary points are true minima for the stable branches.
 
 A simple toy realization, with $\alpha$ and $\theta_{\mathrm{inc}}$ measured in radians, is
 $$
-E_{\text{charge}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_{\mathrm{inc}}}\pi\right)+B\,f_{\text{type}}(\alpha),
+E_{\text{polarity}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_{\mathrm{inc}}}\pi\right)+B\,f_{\text{type}}(\alpha),
 $$
 where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a derivation; it is just the minimal shape needed to encode discrete minima at multiples of the bare angle.
 

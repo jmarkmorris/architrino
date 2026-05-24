@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This chapter is a placeholder for the electron assembly in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+This chapter defines the current electron-assembly target for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 ## Current framing
 

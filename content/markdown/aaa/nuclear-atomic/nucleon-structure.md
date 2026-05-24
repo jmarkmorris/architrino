@@ -111,15 +111,15 @@ $$
 \mathcal E_{p,X}^{\mathrm{color}}
 =
 \frac{
-\left\lVert
+\left\|
 \Pi_{\mathrm{open},X}
 \mathcal W_{p,X}^{\mathrm{locked}}
-\right\rVert_X
+\right\|_X
 }{
-\left\lVert
+\left\|
 \Pi_{\mathrm{singlet},X}
 \mathcal W_{p,X}^{\mathrm{locked}}
-\right\rVert_X
+\right\|_X
 +
 \varepsilon_{p,X}
 }
@@ -135,18 +135,18 @@ $$
 \Delta_{p,X}^{\mathrm{env}}(\ell,\ell')
 =
 \frac{
-\left\lVert
+\left\|
 C_{\ell_{\mathrm{atom}},X}
 \mathcal W_{p,X}^{\mathrm{locked}}(\ell)
 -
 C_{\ell_{\mathrm{atom}},X}
 \mathcal W_{p,X}^{\mathrm{locked}}(\ell')
-\right\rVert_X
+\right\|_X
 }{
-\left\lVert
+\left\|
 C_{\ell_{\mathrm{atom}},X}
 \mathcal W_{p,X}^{\mathrm{locked}}(\ell)
-\right\rVert_X
+\right\|_X
 +
 \varepsilon_{p,X}^{\mathrm{env}}
 }
