@@ -26,6 +26,6 @@
 | `tri-core` | `nested shell swarm` |
 | `quark core` | `Noether swarm` |
 | `core shielding` | `Noether swarm shielding` |
-| $\rho_{\text{core}}$, $\rho_{\mathrm{core}}$, and indexed or decorated variants | $\rho_{\text{NS}}$, $\rho_{\mathrm{NS}}$, and matching indexed or decorated variants |
+| physical Noether swarm density notation | $\rho_{\text{NS}}$, $\rho_{\mathrm{NS}}$, and matching indexed or decorated variants |
 | $\Lambda_{\text{NC}}$, $\Lambda_{\mathrm{NC}}$, and indexed variants | $\Lambda_{\text{NS}}$, $\Lambda_{\mathrm{NS}}$, and matching indexed variants |
 | $\Lambda_{\text{core}}$ | $\Lambda_{\text{NS}}$ |

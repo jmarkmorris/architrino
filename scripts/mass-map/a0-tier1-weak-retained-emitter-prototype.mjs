@@ -1065,7 +1065,7 @@ function rowPacket(tier0, row, args) {
         value: `exponential aperture with width ${params.apertureWidth}`,
         status: args.apertureWidth ? "cli_supplied_prototype_input" : "prototype_default",
       },
-      rho_core: {
+      rho_NS: {
         value: null,
         status: "not_reconstructed",
       },
@@ -1084,7 +1084,7 @@ function rowPacket(tier0, row, args) {
       schema_status: "provisional",
       handedness: "L",
       measure: "discrete direction average with exposure weight eta_a^(L) A_a(x;R_rel)",
-      rho_core: null,
+      rho_NS: null,
       chi_sea: tier0.sea_cell?.chi_sea ?? null,
       normalizer: "computed per layer and refinement stage",
     },

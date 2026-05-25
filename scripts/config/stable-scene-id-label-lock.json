@@ -129,10 +129,10 @@
       "sceneName": "Noether Sea and Effective Spacetime",
       "objects": {
         "effective_metric": "Effective Metric",
-        "molecular_exclusion_and_noether_sea_response": "Molecular Exclusion and Noether-Sea Response",
+        "molecular_exclusion_and_noether_sea_response": "Molecular Exclusion and Noether Sea Response",
         "noether_sea": "Noether Sea",
         "physical_observers": "Physical Observers",
-        "spacetime_assemblies": "Spacetime Assemblies",
+        "noether_sea_pro_anti_coupling": "Noether Sea Pro/Anti Coupling",
         "strong_field_regime": "Strong-Field Regime"
       }
     },

@@ -129,8 +129,9 @@ $$
 | `theta3minus.fold-pair-first-y-GD-finite-shift31-next-successor-root-tail-tube` | directed-rounded positive-y certified by the separate $W_\varepsilon$ packet |
 | `theta3minus.fold-pair-first-y-GD-twenty-seventh-order-lower-coefficient-cancellation` | coefficient-preserving cancellation certified |
 | `theta3minus.fold-pair-first-y-GD-twenty-seventh-order-post-U-successor-coefficient` | directed-rounded interval certified |
-| `theta3minus.fold-pair-first-y-GD-twenty-eighth-order-successor-tail-bound` | directed-rounded open |
-| `theta3minus.fold-pair-first-y-GD-directed-rounded-enclosure` | blocked by twenty-eighth-order successor tail bound |
+| `theta3minus.fold-pair-first-y-GD-twenty-eighth-order-post-U-successor-coefficient` | directed-rounded interval certified by successor packet |
+| `theta3minus.fold-pair-first-y-GD-twenty-ninth-order-successor-tail-bound` | directed-rounded open |
+| `theta3minus.fold-pair-first-y-GD-directed-rounded-enclosure` | blocked by twenty-ninth-order successor tail bound |
 | `theta3minus.fold-pair-scaled-remainder-continuous-collar` | blocked by directed-rounded first-y $G,D$ enclosure |
 
 ## Successor Tail Coordinate

@@ -2210,9 +2210,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Assembly-Noether-Sea Interface Diagnostic",
+                "title": "Assembly-Noether Sea Interface Diagnostic",
                 "markdownPath": "content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md",
-                "markdownSection": "Assembly-Noether-Sea Interface Diagnostic",
+                "markdownSection": "Assembly-Noether Sea Interface Diagnostic",
                 "sectionKey": "assembly noether sea interface diagnostic",
                 "headingLevel": 2
               },
@@ -2414,17 +2414,17 @@
             ]
           },
           {
-            "id": "spacetime__spacetime_assemblies",
-            "title": "Spacetime Assemblies",
+            "id": "spacetime__noether_sea_pro_anti_coupling",
+            "title": "Noether Sea Pro/Anti Coupling",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/spacetime/spacetime_assemblies.json",
-            "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+            "scenePath": "content/scenes/spacetime/noether_sea_pro_anti_coupling.json",
+            "markdownPath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Pro/Anti Noether Swarm Basis",
-                "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
                 "markdownSection": "Pro/Anti Noether Swarm Basis",
                 "sectionKey": "pro anti noether swarm basis",
                 "headingLevel": 2
@@ -2432,23 +2432,23 @@
               {
                 "kind": "markdown-section",
                 "title": "2 Pro + 2 Anti Coupling Hypothesis",
-                "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
                 "markdownSection": "2 Pro + 2 Anti Coupling Hypothesis",
                 "sectionKey": "2 pro 2 anti coupling hypothesis",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Why This Matters for Spacetime Phenomenology",
-                "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-                "markdownSection": "Why This Matters for Spacetime Phenomenology",
-                "sectionKey": "why this matters for spacetime phenomenology",
+                "title": "Why This Matters for Effective Spacetime Phenomenology",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
+                "markdownSection": "Why This Matters for Effective Spacetime Phenomenology",
+                "sectionKey": "why this matters for effective spacetime phenomenology",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "Ownership Boundary",
-                "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
                 "markdownSection": "Ownership Boundary",
                 "sectionKey": "ownership boundary",
                 "headingLevel": 2
@@ -2456,7 +2456,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Claim Scope",
-                "markdownPath": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
                 "markdownSection": "Claim Scope",
                 "sectionKey": "claim scope",
                 "headingLevel": 2
@@ -2465,7 +2465,7 @@
           },
           {
             "id": "spacetime__molecular_exclusion_and_noether_sea_response",
-            "title": "Molecular Exclusion and Noether-Sea Response",
+            "title": "Molecular Exclusion and Noether Sea Response",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
@@ -2899,9 +2899,9 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Explicit Weak-Field Noether-Sea Delay Map (PPN $\\gamma$)",
+                    "title": "Explicit Weak-Field Noether Sea Delay Map (PPN $\\gamma$)",
                     "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
-                    "markdownSection": "Explicit Weak-Field Noether-Sea Delay Map (PPN $\\gamma$)",
+                    "markdownSection": "Explicit Weak-Field Noether Sea Delay Map (PPN $\\gamma$)",
                     "sectionKey": "explicit weak field noether sea delay map ppn gamma",
                     "headingLevel": 2
                   },
@@ -4219,9 +4219,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "The Higgs Boson ($H$): Scalar Noether-Sea Benchmark",
+                "title": "The Higgs Boson ($H$): Scalar Noether Sea Benchmark",
                 "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
-                "markdownSection": "The Higgs Boson ($H$): Scalar Noether-Sea Benchmark",
+                "markdownSection": "The Higgs Boson ($H$): Scalar Noether Sea Benchmark",
                 "sectionKey": "the higgs boson h scalar noether sea benchmark",
                 "headingLevel": 2
               },
@@ -4762,9 +4762,9 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Noether-Sea Transport",
+                "title": "Noether Sea Transport",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
-                "markdownSection": "Noether-Sea Transport",
+                "markdownSection": "Noether Sea Transport",
                 "sectionKey": "noether sea transport",
                 "headingLevel": 2
               },
@@ -5007,9 +5007,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Thermal Equilibrium Assumptions in Evolving Noether-Sea States",
+                "title": "Thermal Equilibrium Assumptions in Evolving Noether Sea States",
                 "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
-                "markdownSection": "Thermal Equilibrium Assumptions in Evolving Noether-Sea States",
+                "markdownSection": "Thermal Equilibrium Assumptions in Evolving Noether Sea States",
                 "sectionKey": "thermal equilibrium assumptions in evolving noether sea states",
                 "headingLevel": 2
               },
@@ -6365,9 +6365,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Noether-Sea State Interpretation of Accelerated Expansion",
+                "title": "Noether Sea State Interpretation of Accelerated Expansion",
                 "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
-                "markdownSection": "Noether-Sea State Interpretation of Accelerated Expansion",
+                "markdownSection": "Noether Sea State Interpretation of Accelerated Expansion",
                 "sectionKey": "noether sea state interpretation of accelerated expansion",
                 "headingLevel": 2
               },

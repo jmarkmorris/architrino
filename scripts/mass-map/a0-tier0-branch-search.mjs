@@ -981,10 +981,10 @@ function buildWeakInputs(config) {
       "Tier 2 shielding extraction",
       "The polar-site aperture is part of the weak-visible extraction geometry, not the Tier 0 carrier chart."
     ),
-    rho_core: missingWeakInput(
-      "rho_core(x,t)",
+    rho_NS: missingWeakInput(
+      "rho_NS(x,t)",
       "Tier 1/Tier 2 local Noether-Sea state",
-      "Tier 0 uses a homogeneous rest-cell scaffold and does not reconstruct local core density."
+      "Tier 0 uses a homogeneous rest-cell scaffold and does not reconstruct local Noether swarm density."
     ),
     chi_sea: {
       value: config.seaCell.chi_sea ?? null,

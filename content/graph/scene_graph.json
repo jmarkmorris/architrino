@@ -1344,7 +1344,7 @@
     },
     {
       "id": "spacetime__molecular_exclusion_and_noether_sea_response",
-      "name": "Molecular Exclusion and Noether-Sea Response",
+      "name": "Molecular Exclusion and Noether Sea Response",
       "path": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
       "nodeType": "scene"
     },
@@ -1442,12 +1442,6 @@
       "id": "spacetime__singularity_resolution",
       "name": "Singularity Resolution",
       "path": "content/scenes/spacetime/singularity_resolution.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "spacetime__spacetime_assemblies",
-      "name": "Spacetime Assemblies",
-      "path": "content/scenes/spacetime/spacetime_assemblies.json",
       "nodeType": "scene"
     },
     {
@@ -2090,6 +2084,12 @@
       "id": "noether_swarm__nested_shell_swarm_geometry",
       "name": "Nested Shell Swarm Geometry",
       "path": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "spacetime__noether_sea_pro_anti_coupling",
+      "name": "Noether Sea Pro/Anti Coupling",
+      "path": "content/scenes/spacetime/noether_sea_pro_anti_coupling.json",
       "nodeType": "scene"
     },
     {
@@ -2850,8 +2850,14 @@
     },
     {
       "id": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
-      "name": "Molecular Exclusion and Noether-Sea Response",
+      "name": "Molecular Exclusion and Noether Sea Response",
       "path": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
+      "name": "Noether Sea Pro/Anti Coupling",
+      "path": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2882,12 +2888,6 @@
       "id": "content/markdown/aaa/spacetime/singularity-resolution.md",
       "name": "Singularity Resolution",
       "path": "content/markdown/aaa/spacetime/singularity-resolution.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-      "name": "Spacetime Assemblies",
-      "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5545,9 +5545,18 @@
       "nodeId": "scene:content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
       "nodeType": "scene",
       "id": "spacetime__molecular_exclusion_and_noether_sea_response",
-      "name": "Molecular Exclusion and Noether-Sea Response",
+      "name": "Molecular Exclusion and Noether Sea Response",
       "path": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
       "searchTarget": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/spacetime/noether_sea_pro_anti_coupling.json",
+      "nodeType": "scene",
+      "id": "spacetime__noether_sea_pro_anti_coupling",
+      "name": "Noether Sea Pro/Anti Coupling",
+      "path": "content/scenes/spacetime/noether_sea_pro_anti_coupling.json",
+      "searchTarget": "content/scenes/spacetime/noether_sea_pro_anti_coupling.json",
       "implicit": false
     },
     {
@@ -5602,15 +5611,6 @@
       "name": "Singularity Resolution",
       "path": "content/scenes/spacetime/singularity_resolution.json",
       "searchTarget": "content/scenes/spacetime/singularity_resolution.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/spacetime/spacetime_assemblies.json",
-      "nodeType": "scene",
-      "id": "spacetime__spacetime_assemblies",
-      "name": "Spacetime Assemblies",
-      "path": "content/scenes/spacetime/spacetime_assemblies.json",
-      "searchTarget": "content/scenes/spacetime/spacetime_assemblies.json",
       "implicit": false
     },
     {
@@ -7210,9 +7210,18 @@
       "nodeId": "markdown_doc:content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
-      "name": "Molecular Exclusion and Noether-Sea Response",
+      "name": "Molecular Exclusion and Noether Sea Response",
       "path": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
       "searchTarget": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
+      "name": "Noether Sea Pro/Anti Coupling",
+      "path": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
+      "searchTarget": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
       "implicit": false
     },
     {
@@ -7258,15 +7267,6 @@
       "name": "Singularity Resolution",
       "path": "content/markdown/aaa/spacetime/singularity-resolution.md",
       "searchTarget": "content/markdown/aaa/spacetime/singularity-resolution.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/spacetime/spacetime-assemblies.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-      "name": "Spacetime Assemblies",
-      "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
-      "searchTarget": "content/markdown/aaa/spacetime/spacetime-assemblies.md",
       "implicit": false
     },
     {
@@ -11372,6 +11372,13 @@
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/noether_sea_pro_anti_coupling.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "scene:content/scenes/spacetime/noether_sea.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
@@ -11383,13 +11390,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/spacetime_assemblies.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
@@ -12750,6 +12750,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/spacetime/noether_sea_pro_anti_coupling.json",
+      "to": "markdown_doc:content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/spacetime/noether_sea_pro_anti_coupling.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/spacetime/noether_sea.json",
       "to": "markdown_doc:content/markdown/aaa/spacetime/noether-sea.md",
       "edgeType": "markdown_doc",
@@ -12782,13 +12789,6 @@
       "to": "markdown_doc:content/markdown/aaa/spacetime/singularity-resolution.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/spacetime/singularity_resolution.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/spacetime_assemblies.json",
-      "to": "markdown_doc:content/markdown/aaa/spacetime/spacetime-assemblies.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/spacetime/spacetime_assemblies.json",
       "field": "scene.source.path"
     },
     {

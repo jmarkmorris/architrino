@@ -16,8 +16,8 @@
         "scenePath": "content/scenes/spacetime/noether_sea.json"
       },
       {
-        "nodeId": "spacetime_assemblies",
-        "scenePath": "content/scenes/spacetime/spacetime_assemblies.json"
+        "nodeId": "noether_sea_pro_anti_coupling",
+        "scenePath": "content/scenes/spacetime/noether_sea_pro_anti_coupling.json"
       },
       {
         "nodeId": "molecular_exclusion_and_noether_sea_response",
@@ -56,8 +56,8 @@
       "fixedPosition": true
     },
     {
-      "id": "spacetime_assemblies",
-      "title": "Spacetime Assemblies",
+      "id": "noether_sea_pro_anti_coupling",
+      "title": "Noether Sea Pro/Anti Coupling",
       "radius": 2.05,
       "color": "#6a3c3c",
       "position": [
@@ -68,13 +68,13 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Spacetime Assemblies",
+      "labelTitle": "Noether Sea Pro/Anti Coupling",
       "labelBadge": "doc",
       "fixedPosition": true
     },
     {
       "id": "molecular_exclusion_and_noether_sea_response",
-      "title": "Molecular Exclusion and Noether-Sea Response",
+      "title": "Molecular Exclusion and Noether Sea Response",
       "radius": 2.05,
       "color": "#3f6a5a",
       "position": [
@@ -85,7 +85,7 @@
       "motion": {
         "type": "fixed"
       },
-      "labelTitle": "Molecular Exclusion and Noether-Sea Response",
+      "labelTitle": "Molecular Exclusion and Noether Sea Response",
       "labelBadge": "doc",
       "fixedPosition": true
     },

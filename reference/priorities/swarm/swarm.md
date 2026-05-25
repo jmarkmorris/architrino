@@ -20,7 +20,7 @@ The active reader-facing swarm terms are:
 | `shell swarm` | A neutral swarm whose six architrino paths remain in a controlled radial support band. |
 | `nested shell swarm` | A shell swarm with three ordered radial support bands. |
 
-Formula notation currently uses $\rho_{\text{NS}}$ for physical Noether swarm density and $\Lambda_{\text{NS}}$ for the reduced nested shell swarm closure label. Other formula symbols with legacy `core` subscripts, including $R_{\text{core}}$, $\omega_{\text{core}}$, $Q_{\mathrm{core}}$, and $\mathcal{F}_{\text{core}}$, remain compatibility symbols unless a separate approved row renames them.
+Formula notation currently uses $\rho_{\text{NS}}$ for physical Noether swarm density and $\Lambda_{\text{NS}}$ for the reduced nested shell swarm closure label. The temporary density spelling from the previous pass is retired. Other formula symbols with `core` subscripts, including $R_{\text{core}}$, $\omega_{\text{core}}$, $Q_{\mathrm{core}}$, and $\mathcal{F}_{\text{core}}$, remain compatibility symbols unless a separate approved row renames them.
 
 The completed terminology migration table is archived in [swarm-migration-archive.md](swarm-migration-archive.md).
 
