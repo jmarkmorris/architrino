@@ -69,7 +69,7 @@
       }
     },
     {
-      "name": "fixed_core_density_rescue_toy",
+      "name": "fixed_core_readout_density_rescue_toy",
       "branch_evidence": {
         "kind": "toy",
         "status": "toy_algebraic_fixture",

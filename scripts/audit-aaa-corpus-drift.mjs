@@ -43,7 +43,7 @@ const rules = [
     id: "mass-drag-language",
     description: "Older mass/inertia language that can misstate ordinary drag as the mass mechanism.",
     pattern:
-      /\b(Mass as Drag|drag coefficient|Spacetime Drag|null-drag|Noether Sea drag|drag on the Sea|medium drag|field drag|refractive drag|frictional interaction|Frictional Heating)\b/i,
+      /\b(Mass as Drag|drag coefficient|Spacetime Drag|null-drag|Noether sea drag|drag on the sea|medium drag|field drag|refractive drag|frictional interaction|Frictional Heating)\b/i,
     suggestion:
       "Use shielded internal causal history, medium-dressed response, or dissipative failure-channel language as appropriate.",
   },
@@ -139,21 +139,21 @@ const rules = [
     pattern:
       /field speed limit \(\$v \\approx 1\$\)|v_\{phase\}\s*<\s*c/i,
     suggestion:
-      "Use c_gamma for photon-channel speed, c_f for primitive wake speed, and chi_sea for Noether-Sea delay.",
+      "Use c_gamma for photon-channel speed, c_f for primitive wake speed, and chi_sea for Noether sea delay.",
   },
   {
     id: "noether-sea-hyphen-standalone",
-    description: "Noether-Sea should be hyphenated only before a following noun.",
+    description: "Noether-Sea is retired; use Noether sea in prose and Noether Sea only in title contexts.",
     pattern: /Noether-Sea(?=\s*($|[.,;:)\]}]))/,
-    suggestion: "Use Noether Sea as the standalone noun; reserve Noether-Sea for compound modifiers.",
+    suggestion: "Use Noether sea in prose and compound modifiers; reserve Noether Sea for title contexts.",
   },
   {
     id: "void-noether-sea-fusion",
-    description: "Noether Sea wording should not identify the medium with the Euclidean void.",
+    description: "Noether sea wording should not identify the medium with the Euclidean void.",
     pattern:
-      /(\bNoether Sea\b[^\n]{0,200}\bIt is\s+(?:an?\s+|the\s+)?(?:\[Euclidean void\]\([^)]+\)|Euclidean void)\b[^\n]{0,120}\bfilled with\b|\bEuclidean void\b[^\n.]{0,100}\bis populated by\b[^\n.]{0,100}\bNoether Sea\b|\bEuclidean void\b[^\n.]{0,120}\bfilled with\b[^\n.]{0,120}\bNoether Sea\b)/i,
+      /(\bNoether sea\b[^\n]{0,200}\bIt is\s+(?:an?\s+|the\s+)?(?:\[Euclidean void\]\([^)]+\)|Euclidean void)\b[^\n]{0,120}\bfilled with\b|\bEuclidean void\b[^\n.]{0,100}\bis populated by\b[^\n.]{0,100}\bNoether sea\b|\bEuclidean void\b[^\n.]{0,120}\bfilled with\b[^\n.]{0,120}\bNoether sea\b)/i,
     suggestion:
-      "Say the Noether Sea occupies the Euclidean void; the void is the fixed container and the Noether Sea is medium content.",
+      "Say the Noether sea occupies the Euclidean void; the void is the fixed container and the Noether sea is medium content.",
   },
   {
     id: "void-expansion-leak",
@@ -164,7 +164,7 @@ const rules = [
       /\b(must not|not be interpreted as|Forbidden inference|forbidden|forbid|not from curvature or expansion|not as metric expansion|does not curve|does not expand)\b/i,
     contextRadius: 3,
     suggestion:
-      "Route a(t), H(t), redshift, and effective curvature to Noether-Sea / observer records, not to the void metric.",
+      "Route a(t), H(t), redshift, and effective curvature to Noether sea / observer records, not to the void metric.",
   },
   {
     id: "effective-metric-notation",
@@ -207,11 +207,11 @@ const surfaceRules = [
   },
   {
     id: "surface-aether-bridge-drift",
-    description: "Aether wording in active guidance can blur the Noether Sea with historical ether concepts.",
+    description: "Aether wording in active guidance can blur the Noether sea with historical ether concepts.",
     pattern:
       /\b(spacetime[- ]aether|aether[- ]assembly|aether assemblies|aether density|aether response|aether coupling|aether gradients|aether dynamics|aether parameters|aether simulations|aether language|aether sea|background aether)\b/i,
     suggestion:
-      "Use Noether Sea, Noether-Sea response, Noether-Sea state, or Noether swarm density unless the passage is explicitly historical.",
+      "Use Noether sea, Noether sea response, Noether sea state, or Noether swarm density unless the passage is explicitly historical.",
   },
   {
     id: "surface-density-delay-notation",
@@ -219,12 +219,12 @@ const surfaceRules = [
     pattern:
       /\\rho_\{\\text\{vac\}\}|\\rho_\{\\rm\s+aether\}|\\rho_\{vac\}|rho_vac|\bn\(x\)|refractive index (?:field|model)|Spacetime medium density/i,
     suggestion:
-      "Use \\rho_{\\text{core}}(\\mathbf{x},t) for physical Noether swarm density, n(\\mathbf{x},t) for normalized density, and \\chi_{\\text{sea}} for delay.",
+      "Use \\rho_{\\text{NS}}(\\mathbf{x},t) for physical Noether swarm density, n(\\mathbf{x},t) for normalized density, and \\chi_{\\text{sea}} for delay.",
   },
   {
     id: "surface-mass-drag-language",
     description: "Mass or Lorentz language that can misstate ordinary drag as the mechanism.",
-    pattern: /\b(Lorentzian Conspiracy|medium drag|field drag|refractive drag|push through sea|Noether Sea drag|drag on the Sea)\b/i,
+    pattern: /\b(Lorentzian Conspiracy|medium drag|field drag|refractive drag|push through sea|Noether sea drag|drag on the sea)\b/i,
     suggestion:
       "Use preferred-frame suppression, medium-dressed response, shielding, and trapped internal causal history as appropriate.",
   },

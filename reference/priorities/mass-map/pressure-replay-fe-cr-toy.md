@@ -1020,8 +1020,8 @@ The default mock packet reports one rescue witness and one falsification control
 | Scenario | Readout candidate | Scanner status | Reason |
 | --- | --- | --- | --- |
 | `chi_only_falsification_control` | all four readouts | fail | scalar feasibility is not enough because the delay denominator is zero and $\kappa_n$ is undefined |
-| `fixed_core_density_rescue_toy` | fixed-core readout | pass | positive Hessian, $B_H=0$, $\kappa_n=1$, and zero scalar residual |
-| `fixed_core_density_rescue_toy` | transverse-radius, volume-equivalent, parallel-radius readouts | fail | same Hessian and pressure rows give a nonzero scalar feasibility residual for those $R_{\text{core}}$ readouts |
+| `fixed_core_readout_density_rescue_toy` | fixed-core readout | pass | positive Hessian, $B_H=0$, $\kappa_n=1$, and zero scalar residual |
+| `fixed_core_readout_density_rescue_toy` | transverse-radius, volume-equivalent, parallel-radius readouts | fail | same Hessian and pressure rows give a nonzero scalar feasibility residual for those $R_{\text{core}}$ readouts |
 
 This is a branch-certificate scaffold, not empirical evidence. Its value is that future finite-branch Hessian entries can replace the toy values without changing the rescue test.
 

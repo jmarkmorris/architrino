@@ -491,7 +491,7 @@ The default mock packet has two scenarios:
 | Scenario | Scanner result | Reading |
 | --- | --- | --- |
 | `chi_only_falsification_control` | all four readouts fail | the scalar equation is formally underdetermined, but the density denominator is zero, so $\kappa_n$ cannot be positive while $G_\chi\ne0$ |
-| `fixed_core_density_rescue_toy` | fixed-core readout passes; transverse-radius, volume-equivalent, and parallel-radius readouts fail scalar feasibility | a positive aligned-cancellation Hessian can rescue the toy row only for the declared fixed-core readout and density-side pressure response |
+| `fixed_core_readout_density_rescue_toy` | fixed-core readout passes; transverse-radius, volume-equivalent, and parallel-radius readouts fail scalar feasibility | a positive aligned-cancellation Hessian can rescue the toy row only for the declared fixed-core readout and density-side pressure response |
 
 This is still a toy branch certificate. It should remain priority-side material until a finite Noether swarm branch supplies actual Hessian entries and the induced $\xi$ residual is checked against the retained null-sector bounds.
 

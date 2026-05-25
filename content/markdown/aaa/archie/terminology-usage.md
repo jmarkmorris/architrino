@@ -119,7 +119,7 @@ Sentence guidance:
 
 - Prefer: "The Noether sea is the canonical ontological term."
 - Prefer: Use `Noether sea` as the standalone canonical name, and use `Noether sea` as the compound modifier before another noun: `Noether sea density`, `Noether sea delay factor`.
-- Capitalization rule: write `Noether sea` in ordinary prose and link text. Reserve `Noether Sea` for title contexts such as headings, frontmatter titles, scene titles, generated TOC titles, and title-cased chapter names.
+- Capitalization rule: write `Noether sea` in ordinary prose and non-title link text. Reserve `Noether Sea` for title contexts such as headings, frontmatter titles, scene titles, generated TOC titles, and title-cased chapter names.
 - Avoid: `Noether-Sea`. Do not hyphenate the canonical term in prose or titles.
 - Prefer: "Use `spacetime medium` when easing the reader from effective spacetime language to constitutive substrate language."
 - Avoid by default: "vacuum" as the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology term.

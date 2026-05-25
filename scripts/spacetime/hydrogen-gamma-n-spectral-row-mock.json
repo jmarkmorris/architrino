@@ -11,7 +11,7 @@
       ],
       "g_N_H_components": {
         "ln_n": "Normalized Noether swarm density response from the hydrogen spectral channel ledger.",
-        "ln_chi_sea": "Noether-Sea delay factor from the same hydrogen spectral channel ledger.",
+        "ln_chi_sea": "Noether sea delay factor from the same hydrogen spectral channel ledger.",
         "ln_lambda": "Envelope transverse scale response retained by the spectral channel.",
         "minus_ln_xi": "Negative envelope shape-ratio response; the Lorentz-branch coefficient is fixed by b_xi=1.",
         "ln_R_core_ratio": "Representative Noether swarm scale response retained by the static endpoint row."
@@ -22,7 +22,7 @@
       "remaining_obligations": [
         "Replace the scaffolded frequency_scale and line_inferred_ln_Gamma_N with envelope gaps computed from the hydrogen electron-envelope branch.",
         "Replace scaffolded g_N_H entries with records extracted from the hydrogen spectral channel ledger at admissible resolutions.",
-        "Replace declared static response values with a constitutive response calculation for the same Noether-Sea cell.",
+        "Replace declared static response values with a constitutive response calculation for the same Noether sea cell.",
         "Keep recoil, hyperfine structure, photon-channel propagation, and source-branch effects outside Gamma_N unless a declared residual budget carries them."
       ]
     }

@@ -983,7 +983,7 @@ function buildWeakInputs(config) {
     ),
     rho_NS: missingWeakInput(
       "rho_NS(x,t)",
-      "Tier 1/Tier 2 local Noether-Sea state",
+      "Tier 1/Tier 2 local Noether sea state",
       "Tier 0 uses a homogeneous rest-cell scaffold and does not reconstruct local Noether swarm density."
     ),
     chi_sea: {
@@ -991,7 +991,7 @@ function buildWeakInputs(config) {
       status: Object.hasOwn(config.seaCell, "chi_sea")
         ? "tier0_fixed_homogeneous_rest_cell_input"
         : "missing_tier1_tier2_input",
-      required_stage: "Tier 1/Tier 2 local Noether-Sea state",
+      required_stage: "Tier 1/Tier 2 local Noether sea state",
       note:
         "The homogeneous rest-cell value is recorded for audit only; weak-measure reconstruction must retest the local chi_sea field.",
     },
