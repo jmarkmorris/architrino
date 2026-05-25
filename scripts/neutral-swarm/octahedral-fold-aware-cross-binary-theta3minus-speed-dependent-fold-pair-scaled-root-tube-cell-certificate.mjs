@@ -952,6 +952,50 @@ export function validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentF
   return errors;
 }
 
+export const theta3minusFoldPairScaledRootTubeCellInternals = {
+  SPEED_RATIO_ENCLOSURE,
+  DEFAULT_SPEED_CELL_COUNT,
+  DEFAULT_Y_CELL_COUNT,
+  DEFAULT_ROOT_SUBDIVISIONS,
+  DEFAULT_Y_BREAKS,
+  BRANCH_TUBES,
+  BRANCH_H_TUBES,
+  formatSmallNumber,
+  formatInterval,
+  nextUp,
+  nextDown,
+  outwardInterval,
+  pointInterval,
+  intervalHull,
+  scaleInterval,
+  addIntervals,
+  subtractIntervals,
+  multiplyTwoIntervals,
+  multiplyIntervals,
+  reciprocalInterval,
+  divideIntervals,
+  positivePowerInterval,
+  intervalAbsUpper,
+  intervalSignAndClearance,
+  sinInterval,
+  cosInterval,
+  inverseSpeedSquaredInterval,
+  stableS3Interval,
+  stableC4Interval,
+  stableS5Interval,
+  branchSign,
+  makeSpeedBreaks,
+  parseNumberList,
+  validateYBreaks,
+  foldCellFromEndpointRows,
+  branchTInterval,
+  branchHInterval,
+  branchRInterval,
+  branchQInterval,
+  scaledKEndpointInterval,
+  scaledJInterval,
+};
+
 function parseArgs(argv) {
   const options = {};
   for (let index = 0; index < argv.length; index += 1) {
