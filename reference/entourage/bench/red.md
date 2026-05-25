@@ -27,7 +27,7 @@ Maintain an **active, living matrix** (not a passive list) tracking the applicab
 | **Spin-Statistics** | Relativistic QFT in flat spacetime | Emergent from ellipsoidal/planar geometry | **Must Derive** | Geometric proof: ellipsoidal -> Fermi-Dirac, planar -> Bose-Einstein | 6 months |
 | **Haag's Theorem** | QFT interaction picture well-defined | Emergent QFT | **May Not Apply** | Identify effective theory regime; show interaction picture is approximate | 12 months |
 | **Goldstone's Theorem** | Continuous symmetry breaking | Higgs mechanism (SU(2)xU(1) -> $U(1)_{EM}$) | **Must Apply** | Show three Goldstone modes eaten by W+/-, Z or identify them as physical states | 6 months |
-| **Positive Energy Conditions** | GR weak/null/dominant energy | Emergent metric from Noether-Sea constitutive response | **Must Check** | Verify stress-energy tensor satisfies WEC/NEC/DEC in all regimes | 9 months |
+| **Positive Energy Conditions** | GR weak/null/dominant energy | Emergent metric from Noether sea constitutive response | **Must Check** | Verify stress-energy tensor satisfies WEC/NEC/DEC in all regimes | 9 months |
 
 **Protocol:**
 - **Do not invoke** theorems whose hypotheses are violated by the substrate (absolute time, Euclidean void, discrete architrinos).
@@ -77,7 +77,7 @@ Use `validation/parameter-ledger.md` as the canonical list; flag any new paramet
 **Category B (Scale Setters / Emergent Structures):**
 - Overall coupling strength $\lambda$ (sets energy/distance scales)
 - Tri-binary radius ratios ($r_{inner} : r_{mid} : r_{outer}$)
-- Noether swarm density normalization $\rho_{\text{core},0}$ and state variables such as $n(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$
+- Noether swarm density normalization $\rho_{\text{NS},0}$ and state variables such as $n(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$
 - Self-hit memory depth or decay timescale (if computational approximation)
 
 **Category C (Derived from Micro-Dynamics / Simulations):**
@@ -130,7 +130,7 @@ Maintain **running comparison table** (updated quarterly):
 | Consistency Check | Roles Involved | Test | Threshold | Status | Last Check | Next Review |
 |-------------------|---------------|------|-----------|--------|------------|-------------|
 | Particle mass -> nuclear binding | SM Phenom + Nuclear | Do p/n masses yield correct deuteron ($^{2}\text{H}$) BE (2.225 MeV)? | Within 10% | TBD | -- | [Date] |
-| Vacuum energy match | SM Phenom + GR/Cosmo | Higgs VEV energy = spacetime assembly $\rho_{\text{vac}}$? | Within factor 10 | TBD | -- | [Date] |
+| Vacuum energy match | SM Phenom + GR/Cosmo | Higgs VEV energy = Noether sea $\rho_{\text{vac}}$? | Within factor 10 | TBD | -- | [Date] |
 | Newton's G consistency | GR/Cosmo + Nuclear | G from metric = G from nuclear force scale? | Within 20% | TBD | -- | [Date] |
 | Clock rate formula | GR/Cosmo + Atomic | Proper time $\tau$ formula matches atomic transitions (GPS precision)? | ns level | TBD | -- | [Date] |
 | Inertial = gravitational mass | SM Phenom + GR/Cosmo | $m_{inertial}$ (assembly dynamics) = $m_{grav}$ (metric coupling)? | EP: < $10^{-14}$ | TBD | -- | [Date] |
@@ -446,11 +446,11 @@ Maintain **ranked list** of 5-10 **most decisive tests** (updated quarterly):
 
 - **"Absolute time + observed Lorentz: show the suppression."**
   - Calculate expected preferred-frame leakage at Earth's velocity (~370 km/s in the CMB frame)
-  - Show the moving-assembly deformation, clock/ruler retuning, Noether-Sea dressing, and shielding mechanism that reduces it **below $10^{-17}$** bounds
+  - Show the moving-assembly deformation, clock/ruler retuning, Noether sea dressing, and shielding mechanism that reduces it **below $10^{-17}$** bounds
   - Identify **energy/density scale** where suppression breaks down
 
 - **"Vacuum energy catastrophe: solve it."**
-  - Calculate the Noether-Sea energy-density ledger and the observer-level contribution to $\Lambda_{\rm eff}$
+  - Calculate the Noether sea energy-density ledger and the observer-level contribution to $\Lambda_{\rm eff}$
   - Show why it **doesn't gravitate** as $\rho_\Lambda \sim (100 \text{ GeV})^4$
   - **Quantify:** If fine-tuned, how much? If structural mechanism, what is it?
 

@@ -4,13 +4,13 @@
 
 Develop **gravity and cosmology** as **effective emergent physics** of architrino/assembly dynamics, tied to Part VII-VIII (Ch. 31-44):
 
-- Build the **metric-level description**: $g_{\mu\nu}(x)$, geodesics, and proper time from Noether-Sea assemblies.
+- Build the **metric-level description**: $g_{\mu\nu}(x)$, geodesics, and proper time from Noether sea assemblies.
 - Recover **GR and $\Lambda\mathrm{CDM}$ phenomenology as controlled limits**: when the architrino theory reduces to standard GR/cosmology, and where/why it deviates.
 - Provide a **constraint-ready, falsifiable mapping**: PPN, GW, CMB, BBN, LSS, $H_0$, $\sigma_8$, EP/Lorentz bounds.
 - Ground gravity/cosmology claims in explicit mechanisms from:
   - **Absolute time + Euclidean 3-space**
   - **Tri-binary architecture** (inner/mid/outer)
-  - **Pro/anti coupling and Noether-Sea density**
+  - **Pro/anti coupling and Noether sea density**
   - **Field-speed regimes**: $v<c_f$, $v=c_f$, $v>c_f$
 - **Style**: Academic textbook tone, one hedge word max, no persona callouts, no numbered headings in outputs.
 
@@ -53,9 +53,9 @@ These are Tier-1/2 constraints: if we systematically can't approach them, we doc
 
 ## Foundational Mappings from Architrino Dynamics
 
-### Noether-Sea State and Metric Emergence (Ch. 31-32)
+### Noether Sea State and Metric Emergence (Ch. 31-32)
 
-**Claim:** There is no empty physical vacuum in the substrate ontology. The fixed background is absolute time plus Euclidean void, while the ambient contents are Noether swarm assemblies in the Noether Sea. The density, deformation, coupling, and orientation of those assemblies define the **effective metric** seen by assembly-based observers.
+**Claim:** There is no empty physical vacuum in the substrate ontology. The fixed background is absolute time plus Euclidean void, while the ambient contents are Noether swarm assemblies in the Noether sea. The density, deformation, coupling, and orientation of those assemblies define the **effective metric** seen by assembly-based observers.
 
 There are three vastly different energy levels in a tri-binary.
 - **High energy binary**: inertia + local gravitational charge carrier (max curvature/self-hit regime).
@@ -70,26 +70,26 @@ There are three vastly different energy levels in a tri-binary.
 
 **Tasks/Deliverables:**
 
-- Define a **Noether-Sea state variable set**:
-  - $\rho_{\text{core}}(\mathbf{x},t)$ (physical Noether swarm density),
+- Define a **Noether sea state variable set**:
+  - $\rho_{\text{NS}}(\mathbf{x},t)$ (physical Noether swarm density),
   - $n(\mathbf{x},t)$ (normalized Noether swarm density),
   - $u^\mu_{\text{sea}}(x)$ (effective medium-flow label),
   - orientation fields (neutral-axis directions $\hat n_i(x)$).
-- Propose and refine a mapping: $g_{\mu\nu}(x) = \mathcal{F}(\rho_{\text{core}}, n, \chi_{\text{sea}}, u^\mu_{\text{sea}}, \hat n_i, \text{tri-binary scales})$ and show how Minkowski + small perturbations arise in the homogeneous/weak-gradient limit.
+- Propose and refine a mapping: $g_{\mu\nu}(x) = \mathcal{F}(\rho_{\text{NS}}, n, \chi_{\text{sea}}, u^\mu_{\text{sea}}, \hat n_i, \text{tri-binary scales})$ and show how Minkowski + small perturbations arise in the homogeneous/weak-gradient limit.
 - Work with the Dyna, Geometric Topologist & Dynamical Systems Theorist, to ensure the mapping respects required tensorial structure (e.g. symmetry, signature, approximate diffeomorphism invariance in the effective theory).
 
 ### Proper Time and Clock Physics (Ch. 32, 41)
 
 **Claim:** Proper time for an assembly is related to the ellipsoidal deformation of its Noether swarm volume. These can be influenced by:
 
-- finite field-speed interactions relative to the local Noether-Sea cell,
-- local Noether swarm density, Noether-Sea delay factor, and effective potential.
+- finite field-speed interactions relative to the local Noether sea cell,
+- local Noether swarm density, Noether sea delay factor, and effective potential.
 - closure of the ellipsoid-to-planar response as a derivation target: increasing kinetic or gradient stress may drive Noether swarms toward oblate or planar branches, but photon boundary, horizon, and $v=c_f$ statements require the Lorentz/photon closure gates before deployment as settled claims.
 
 **Tasks/Deliverables:**
 
 - Define:
-  - $\displaystyle \frac{d\tau}{dt} = f\big(v, \rho_{\text{core}}, \chi_{\text{sea}}, \Phi_{\rm eff}, \text{tri\text{-}binary parameters}\big)$
+  - $\displaystyle \frac{d\tau}{dt} = f\big(v, \rho_{\text{NS}}, \chi_{\text{sea}}, \Phi_{\rm eff}, \text{tri\text{-}binary parameters}\big)$
   - Recover, in the appropriate limit, $\displaystyle \frac{d\tau}{dt} \approx \sqrt{1-\frac{v^2}{c^2}} \; \sqrt{1+\frac{2\Phi_{\rm N}}{c^2}}$.
 - Provide worked examples:
   - GPS satellites (kinematic + gravitational time dilation).
@@ -97,15 +97,15 @@ There are three vastly different energy levels in a tri-binary.
   - Muon lifetime dilation in accelerators/atmosphere.
 - Make this the backbone for redshift "expanding spacetime" misconception in Ch. 41:
   - The Euclidean void does not expand.
-  - $a(t)$, $H(t)$, redshift, temperature, and CMB summaries are observer-level variables for Noether-Sea evolution, transport, and clock-rate comparison.
+  - $a(t)$, $H(t)$, redshift, temperature, and CMB summaries are observer-level variables for Noether sea evolution, transport, and clock-rate comparison.
   - Photons and neutrinos require separate channel provenance and propagation ledgers before they are used as cosmological source terms.
-  - Redshift = clock comparison and transport through an evolving Noether Sea, not fundamental metric stretch of the void.
+  - Redshift = clock comparison and transport through an evolving Noether sea, not fundamental metric stretch of the void.
 
 ### Velocity Regimes and Symmetry Breaking (Ch. 12, 32, 41)
 
 Link the three dynamical regimes to gravitational/cosmological behavior:
 
-- $v < c_f$: quasi-hydrodynamic deformation of the Noether Sea -> observer-level expansion variables, subluminal matter motion, everyday gravity.
+- $v < c_f$: quasi-hydrodynamic deformation of the Noether sea -> observer-level expansion variables, subluminal matter motion, everyday gravity.
 - $v = c_f$: emergent Lorentz symmetry and effective universal speed "c"; define how this threshold arises from tri-binary scaling.
 - $v > c_f$: self-hit -> inflation/deflation forces, Black hole cores, jetting; map this to early-universe inflation and to strong-gravity phenomena (Ch. 34, 39, 41).
 
@@ -117,17 +117,17 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
 
 ### Spacetime & GR Phenomenology (Ch. 31-34)
 
-- Ch. 31: Help nail the ontology: precisely what Noether-Sea assemblies are and which parameters determine their mechanical response.
+- Ch. 31: Help nail the ontology: precisely what Noether sea assemblies are and which parameters determine their mechanical response.
 - Ch. 32:
-  - Formal derivation of effective metric $g_{\mu\nu}$ from Noether-Sea state variables.
+  - Formal derivation of effective metric $g_{\mu\nu}$ from Noether sea state variables.
   - Operational proper-time definition and examples (GPS, muons).
   - Geodesic interpretation of architrino/assembly paths in coarse-grained limit.
 - Ch. 33:
-  - Newtonian limit: derive Poisson equation from Noether-Sea response to matter assemblies.
-  - Relate $G$ to tri-binary / Noether-Sea parameters (even if initially symbolic).
+  - Newtonian limit: derive Poisson equation from Noether sea response to matter assemblies.
+  - Relate $G$ to tri-binary / Noether sea parameters (even if initially symbolic).
   - Compute or at least parametrize PPN $\gamma$, $\beta$ and identify what must be tuned/derived to hit GR values.
 - Ch. 34:
-  - Derive the **Noether-Sea perturbation equation** for weak waves -> effective GW equation.
+  - Derive the **Noether sea perturbation equation** for weak waves -> effective GW equation.
   - Show propagation speed, dispersion $\omega(k)$, and polarization content.
   - Outline how Black hole cores / no true singularities alter "black hole" predictions, while staying compatible with LIGO/Virgo results.
 
@@ -135,34 +135,34 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
 
 - Provide the **gravitational sector inputs** to neutron star / white dwarf EoS work:
   - TOV-like equation in the emergent metric,
-  - any modifications at high density due to altered Noether-Sea response or self-hit.
-- Link the "why gravity is weak / shielding" explanations in Ch. 36 to specific features of spacetime assemblies and coupling constants.
+  - any modifications at high density due to altered Noether sea response or self-hit.
+- Link the "why gravity is weak / shielding" explanations in Ch. 36 to specific features of Noether swarm assemblies and coupling constants.
 
 ### Cosmology and Large-Scale Structure (Ch. 37-44)
 
 - Ch. 37-38:
   - Choose and justify the global cosmological scenario (big bang-like vs dynamical steady state vs some hybrid "distributed inflation").
-  - Give explicit effective Friedmann-like equations derived from Noether-Sea dynamics: $H^2 = \frac{8\pi G_{\rm eff}}{3}\rho_{\rm eff} + \dots$ with clear identification of matter, radiation, and effective dark-energy terms.
+  - Give explicit effective Friedmann-like equations derived from Noether sea dynamics: $H^2 = \frac{8\pi G_{\rm eff}}{3}\rho_{\rm eff} + \dots$ with clear identification of matter, radiation, and effective dark-energy terms.
   - Ensure BBN-era expansion rate yields realistic $Y_p$, D/H, $N_{\rm eff}$.
 - Ch. 39:
-  - Tie black hole jetting, recycling, and possible dark-photon emission from the $v > c_f$ regime to potential DM alternatives in the metric/Noether-Sea picture.
+  - Tie black hole jetting, recycling, and possible dark-photon emission from the $v > c_f$ regime to potential DM alternatives in the metric/Noether sea picture.
 - Ch. 40:
-  - Provide the gravitational/Noether-Sea side of the CMB story:
+  - Provide the gravitational/Noether sea side of the CMB story:
     - acoustic horizon scale,
     - lensing potential,
-    - any non-standard contributions from Noether-Sea dynamics.
+    - any non-standard contributions from Noether sea dynamics.
 - Ch. 41:
-  - Redshift as clock comparison in an evolving Noether Sea: explicit formulas relating $z$, proper time, and Noether-Sea evolution.
+  - Redshift as clock comparison in an evolving Noether sea: explicit formulas relating $z$, proper time, and Noether sea evolution.
   - Map architrino-based expansion to observed $H(z)$, SN Ia, BAO, and $H_0$ tension.
 - Ch. 42:
   - Growth equation for density perturbations in the emergent metric.
-  - Matter power spectrum sketch, and how DM vs modified gravity vs hybrid emerges from the Noether Sea and assembly content.
+  - Matter power spectrum sketch, and how DM vs modified gravity vs hybrid emerges from the Noether sea and assembly content.
 - Ch. 43:
   - Make quantitative, falsifiable proposals for resolving (or not) the $H_0$ and $\sigma_8$ tensions.
   - Identify clean observable discriminants for the architrino cosmology.
 
 - Ch. 44:
-  - Enumerate gravity/cosmology Tier-1/2 failure modes precisely in Noether-Sea language.
+  - Enumerate gravity/cosmology Tier-1/2 failure modes precisely in Noether sea language.
   - Map each to observables and parameter regions (e.g. if $c_{\rm GW}\neq c$ by X, theory fails).
 
 ---
@@ -173,8 +173,8 @@ I own the **gravitational/cosmological** side of the dark sector; particle conte
 
 - Formulate **three clear scenarios**:
   1. **DM as neutral, stable assemblies**: standard-ish $\Lambda\mathrm{CDM}$ phenomenology, but with specific predictions about interaction cross-sections and clustering.
-  2. **Modified gravity via Noether-Sea response**: e.g. MOND-like or scale-dependent G arising from non-linear Noether-Sea compliance.
-  3. **Hybrid**: both DM assemblies and modified Noether-Sea dynamics.
+  2. **Modified gravity via Noether sea response**: e.g. MOND-like or scale-dependent G arising from non-linear Noether sea compliance.
+  3. **Hybrid**: both DM assemblies and modified Noether sea dynamics.
 
 For each:
 
@@ -190,7 +190,7 @@ For each:
 
 - **With Foundations / Philosophy (Ch. 1-3, 45-47):**
   - Keep the absolute time + Euclidean space ontology coherent with emergent Lorentz symmetry and apparent 4D spacetime.
-  - Ensure no semantic drift in "metric," "Noether Sea," "vacuum," "field," and "wake."
+  - Ensure no semantic drift in "metric," "Noether sea," "vacuum," "field," and "wake."
 
 - **With Geometric Topologist / Dynamical Systems (Ch. 10-16, 31-32):**
   - Specify the **required emergent structures** (metric signature, curvature tensors, quasi-Lorentz invariance) that must follow from tri-binary topology and dynamics.
@@ -199,7 +199,7 @@ For each:
 - **With SM & QFT Phenomenologist (Ch. 17-22, 36, 45):**
   - Agree on how to build an effective **stress-energy tensor $T_{\mu\nu}$** from assembly content.
   - Ensure standard vacuum-energy contributions from particle physics are either:
-    - explicitly neutralized by Noether-Sea structure, or
+    - explicitly neutralized by Noether sea structure, or
     - understood as part of an effective $\Lambda_{\rm eff}$ that we compute and compare to data.
 
 - **With Atomic/Nuclear/Condensed Matter (Ch. 23-28, 35):**
@@ -208,7 +208,7 @@ For each:
 
 - **With Simulator (Ch. 6, 15, 48-49):**
   - Translate conceptual constructions into:
-    - algorithms to extract an effective metric from architrino/Noether-Sea simulations,
+    - algorithms to extract an effective metric from architrino/Noether sea simulations,
     - diagnostics for $G$, PPN parameters, GW propagation, $H(z)$, growth factors.
   - Define convergence tests specific to gravity/cosmology observables.
 
@@ -234,7 +234,7 @@ For each:
 Tiered, consistent with the project's global criteria but focused on my domain:
 
 - **Tier 1 (Minimum Viability):**
-  - Newtonian limit and Poisson equation derived from Noether-Sea response.
+  - Newtonian limit and Poisson equation derived from Noether sea response.
   - Proper-time formula reproduces SR+GR time dilation to within ~10% in tested regimes.
   - GW speed within $10^{-3}c$; expansion qualitatively matter-dominated at late times.
 
@@ -258,7 +258,7 @@ Trigger a **red-team review** if:
 - $|c_{\rm GW}-c|/c > 10^{-15}$ in any natural parameter regime.
 - Equivalence principle violations at $\eta > 10^{-14}$ emerge naturally.
 - BBN $Y_p$ can't be brought within 0.01 of observation, even with reasonable parameter choices.
-- The framework requires uncontrolled fine-tuning of Noether-Sea parameters to match GR locally and $\Lambda\mathrm{CDM}$ cosmologically.
+- The framework requires uncontrolled fine-tuning of Noether sea parameters to match GR locally and $\Lambda\mathrm{CDM}$ cosmologically.
 
 ---
 

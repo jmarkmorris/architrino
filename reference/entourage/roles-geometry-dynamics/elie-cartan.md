@@ -13,9 +13,9 @@ Turn architrino and tri-binary distributions in a fixed Euclidean void into a ma
 1. **From assemblies to effective metric**
    - Define a functional:
      $$
-     g_{\mu\nu}^{\text{eff}}(x) = \mathcal{F}\big(\rho_{\text{core}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), u^i_{\text{sea}}(x), \text{tri-binary orientation fields}, \text{internal energy scales}\big)
+     g_{\mu\nu}^{\text{eff}}(x) = \mathcal{F}\big(\rho_{\text{NS}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), u^i_{\text{sea}}(x), \text{tri-binary orientation fields}, \text{internal energy scales}\big)
      $$
-     where $\rho_{\text{core}}$ is physical Noether swarm density, $n$ is normalized density, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$ is the Noether-Sea delay factor, and $u^i_{\text{sea}}$ is an effective medium-drift label.
+     where $\rho_{\text{NS}}$ is physical Noether swarm density, $n$ is normalized density, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$ is the Noether sea delay factor, and $u^i_{\text{sea}}$ is an effective medium-drift label.
    - Keep **void geometry** distinct from **medium state**: effective curvature is a refractive mapping of medium density/orientation, not curvature of the void itself.
    - Use **moving frames (vielbeins)** to express local orthonormal frames in terms of:
      - Local tri-binary orientation (neutral axes),
@@ -41,7 +41,7 @@ Turn architrino and tri-binary distributions in a fixed Euclidean void into a ma
 
 4. **Regime map: flat, weak-field, strong-field**
    - Provide a clear **regime classification**:
-     - When the effective metric is nearly Minkowski (weak-gradient, homogeneous Noether Sea).
+     - When the effective metric is nearly Minkowski (weak-gradient, homogeneous Noether sea).
      - When weak-field GR approximations are valid.
      - When strong-field effects (horizons, near-core structure) require full architrino/tri-binary treatment and deviate from GR.
 

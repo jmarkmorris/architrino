@@ -45,7 +45,7 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.
 
-This is a container claim, not a denial that observers can reconstruct curved effective geometry. The Noether sea is physical content within the void, not the void itself. For the Noether sea branch, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Noether sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+This is a container claim, not a denial that observers can reconstruct curved effective geometry. The Noether sea is physical content within the void, not the void itself. For the Noether sea branch, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
 #### Absolute Timespace (The Product Structure)
 
@@ -104,7 +104,7 @@ In this ontology hub, the key commitment is:
 The routing boundary is:
 
 - [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) owns medium ontology, state variables, and terminology.
-- [Noether sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md) owns pro/anti coupling hypotheses and medium assembly motifs.
+- [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md) owns pro/anti coupling hypotheses and medium assembly motifs.
 - [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) owns the map from medium variables to effective metric language.
 - [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) owns clock and ruler behavior.
 - [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) owns the cosmology-level interpretation of Noether sea evolution.
@@ -1067,7 +1067,7 @@ Nevertheless, a coordinate location in the full universe should not be treated a
 
 In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population.
 
-Noether sea density and response variables belong to the Noether sea layer, not the spatial substrate. For the Noether sea ontology, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). For Noether swarm assembly hypotheses, see [Noether sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md).
+Noether sea density and response variables belong to the Noether sea layer, not the spatial substrate. For the Noether sea ontology, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). For Noether swarm assembly hypotheses, see [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md).
 
 ### Distinction From Curved Space
 
@@ -2507,7 +2507,7 @@ The recursive picture is easiest to read as a bottom-up construction ladder. The
 4. **Nested shell swarms:** binaries can capture into larger nested systems, giving isolated binaries, shell swarms, and nested shell swarms with progressively stronger shielding structure.
 5. **Noether swarm stabilization:** the nested shell swarm is the first fully three-dimensional shielded Noether swarm scaffold; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
 6. **Fermions with axial layers:** a nested shell swarm plus a six-site axial layer is the working map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same swarm architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
-7. **Collective medium:** larger balanced populations of neutral swarms organize into the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), so the Noether sea is a higher-order collective state of neutral swarms rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Noether sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md).
+7. **Collective medium:** larger balanced populations of neutral swarms organize into the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), so the Noether sea is a higher-order collective state of neutral swarms rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md).
 8. **Bosonic channels:** propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating pro/anti planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
 9. **Composite matter and reactions:** nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
 

@@ -20,31 +20,31 @@ Standard $\Lambda$CDM structure formation accounts for the SGP as a natural outc
 
 ## Mapping to the Architrino Assembly Architecture
 
-### Gravitational instability and Noether-Sea density gradients
+### Gravitational instability and Noether Sea density gradients
 
-In the architrino framework, large-scale gravitational dynamics are emergent properties of the tri-binary spacetime medium (the Noether Sea). Matter concentrations correspond to regions of enhanced Noether-Sea energy density; voids correspond to depleted regions. The effective metric experienced by assemblies is set by the local density, stress, and orientation of spacetime tri-binaries: gradients in these quantities produce the refractive deflection that assemblies interpret as gravitational acceleration.
+In the architrino framework, large-scale gravitational dynamics are emergent properties of the Noether sea. Matter concentrations correspond to regions of enhanced Noether sea energy density; voids correspond to depleted regions. The effective metric experienced by assemblies is set by the local density, stress, and orientation of Noether swarm assemblies in the Sea: gradients in these quantities produce the refractive deflection that assemblies interpret as gravitational acceleration.
 
-The Zel'dovich pancake mechanism carries over directly. The Noether-Sea compliance is anisotropic wherever density gradients are anisotropic: the axis along which the gradient is steepest collapses first, producing a sheet. Subsequent matter infall is funneled along filamentary density ridges toward the nodes (clusters) embedded in the sheet. The topology of the cosmic web—sheets, filaments, nodes, voids—is therefore the same in $\mathbb{A}\mathbb{A}\mathbb{A}$ as in standard $\Lambda$CDM, with a different underlying ontology (assembly density gradients in a flat Euclidean void, rather than metric expansion of a curved manifold).
+The Zel'dovich pancake mechanism carries over directly. The Noether sea compliance is anisotropic wherever density gradients are anisotropic: the axis along which the gradient is steepest collapses first, producing a sheet. Subsequent matter infall is funneled along filamentary density ridges toward the nodes (clusters) embedded in the sheet. The topology of the cosmic web—sheets, filaments, nodes, voids—is therefore the same in $\mathbb{A}\mathbb{A}\mathbb{A}$ as in standard $\Lambda$CDM, with a different underlying ontology (assembly density gradients in a flat Euclidean void, rather than metric expansion of a curved manifold).
 
-No new mechanism is required to produce the SGP: it is a standard gravitational-instability outcome expressed in the language of Noether-Sea energy-density modulation.
+No new mechanism is required to produce the SGP: it is a standard gravitational-instability outcome expressed in the language of Noether sea energy-density modulation.
 
 ### Elliptical dominance as Noether swarm decoherence
 
-A spiral galaxy, in the architrino picture, is a state in which the angular momentum vectors of constituent Noether swarms and their composite assemblies (stars, gas clouds) are correlated over galactic scales: the tri-binary spacetime medium co-rotates coherently, sustaining a thin disk. This coherence is maintained by steady, quiescent accretion along filaments that delivers angular-momentum-aligned material.
+A spiral galaxy, in the architrino picture, is a state in which the angular momentum vectors of constituent Noether swarms and their composite assemblies (stars, gas clouds) are correlated over galactic scales: the Noether sea response co-rotates coherently, sustaining a thin disk. This coherence is maintained by steady, quiescent accretion along filaments that delivers angular-momentum-aligned material.
 
-In the dense cluster environment of the SGP, frequent galaxy–galaxy interactions and major mergers randomize the orientations of Noether swarms within the merger product. The coherent co-rotation is destroyed, and the resulting assembly is pressure-supported with roughly isotropic velocity dispersion—an elliptical galaxy. The morphological segregation (ellipticals on the plane, spirals off it) is thus a direct consequence of the local interaction rate, which in turn traces the Noether-Sea density: higher density produces more frequent mergers and faster decoherence of the disk state.
+In the dense cluster environment of the SGP, frequent galaxy–galaxy interactions and major mergers randomize the orientations of Noether swarms within the merger product. The coherent co-rotation is destroyed, and the resulting assembly is pressure-supported with roughly isotropic velocity dispersion—an elliptical galaxy. The morphological segregation (ellipticals on the plane, spirals off it) is thus a direct consequence of the local interaction rate, which in turn traces the Noether sea density: higher density produces more frequent mergers and faster decoherence of the disk state.
 
-This mapping adds no free parameters and makes no prediction distinct from the standard environmental-transformation picture; it simply re-expresses it in assembly language. Its value is internal consistency: the same Noether-Sea density field that produces the gravitational sheet also sets the merger rate that determines morphological type.
+This mapping adds no free parameters and makes no prediction distinct from the standard environmental-transformation picture; it simply re-expresses it in assembly language. Its value is internal consistency: the same Noether sea density field that produces the gravitational sheet also sets the merger rate that determines morphological type.
 
 ### SMBH feedback and void sharpening
 
 Observationally, AGN jets from massive ellipticals in filaments and clusters are preferentially oriented at large angles to the filament or sheet spine, propagating into the lower-density void-facing channels where environmental resistance is minimized. Matter accretion flows along filaments; jet energy is deposited perpendicular to them, into the voids.
 
-In the architrino framework, SMBHs are regions where tri-binary assemblies reach extreme energy configurations (Planck-alignment states near the event horizon). A fraction of the infalling material is re-emitted in jets as high-energy assemblies. These jets inject energy into the Noether Sea along the minor axis of the local mass distribution—the direction facing the voids.
+In the architrino framework, SMBHs are regions where tri-binary assemblies reach extreme energy configurations (Planck-alignment states near the event horizon). A fraction of the infalling material is re-emitted in jets as high-energy assemblies. These jets inject energy into the Noether sea along the minor axis of the local mass distribution—the direction facing the voids.
 
 This produces a self-reinforcing feedback loop:
 
-1. Matter flows along the sheet, following Noether-Sea density gradients, and accretes onto SMBHs in cluster cores.
+1. Matter flows along the sheet, following Noether sea density gradients, and accretes onto SMBHs in cluster cores.
 2. Jets fire perpendicular to the sheet, depositing energy into the flanking voids.
 3. The energy injection heats and further evacuates the voids, deepening the density contrast between sheet and void.
 4. The steeper density gradient strengthens the refractive funneling of matter back toward the sheet.
@@ -57,7 +57,7 @@ The feedback-sharpening hypothesis yields three observationally accessible predi
 
 - **Void energetics.** The void regions flanking the SGP should carry a measurable thermal or non-thermal energy excess (detectable via the Sunyaev–Zel'dovich effect or diffuse X-ray emission) that scales with the cumulative AGN luminosity of adjacent clusters.
 - **Jet-sculpted morphology at the sheet edge.** The boundaries of the SGP should exhibit cavities, lobes, and weak shock features at scales of tens of megaparsecs, consistent with the cumulative imprint of AGN outflows from the embedded clusters.
-- **Density-contrast evolution.** In numerical simulations that include AGN feedback within the Noether-Sea refractive-gravity framework, the sheet–void density ratio should increase more rapidly than in simulations without jet feedback, producing a sharper SGP at low redshift.
+- **Density-contrast evolution.** In numerical simulations that include AGN feedback within the Noether sea refractive-gravity framework, the sheet–void density ratio should increase more rapidly than in simulations without jet feedback, producing a sharper SGP at low redshift.
 
 **Failure mode.** If void energy content shows no correlation with nearby cluster jet activity—consistent instead with purely adiabatic evolution—the jet-sharpening mechanism is ruled out as a significant contributor at these scales, and the $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmological picture must confine SMBH recycling effects to cluster and sub-cluster scales.
 
@@ -69,7 +69,7 @@ The Supergalactic Plane maps cleanly onto the architrino framework at three leve
 
 | Feature | $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism | Status |
 |---|---|---|
-| Planar geometry | Anisotropic gravitational collapse via Noether-Sea density gradients (Zel'dovich pancake) | Direct carry-over from standard structure formation; no new physics required |
+| Planar geometry | Anisotropic gravitational collapse via Noether sea density gradients (Zel'dovich pancake) | Direct carry-over from standard structure formation; no new physics required |
 | Elliptical dominance on the plane | Merger-driven decoherence of Noether swarm angular-momentum alignment | Consistent re-expression of standard environmental transformation |
 | Sheet–void contrast maintenance | SMBH jet feedback deposits energy into voids, deepening the density gradient | Quantitative prediction; testable against void energetics and jet-power inventories |
 

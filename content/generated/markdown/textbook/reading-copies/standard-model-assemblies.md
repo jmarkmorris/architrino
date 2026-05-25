@@ -10,7 +10,7 @@ This chapter is a working emergence map from Noether sea and assembly language t
 
 In standard QFT, the vacuum is represented by quantum fields and their ground-state structure. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that language is retained only as an observer-level comparison. The physical medium is the Noether sea, while the fixed container remains the Euclidean void.
 
-In this chapter, the Noether sea means the dense, permeating medium of coupled, neutral Noether swarms occupying the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md); see [Noether sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md). It is not empty space and is not the Euclidean void itself.
+In this chapter, the Noether sea means the dense, permeating medium of coupled, neutral Noether swarms occupying the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md); see [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md). It is not empty space and is not the Euclidean void itself.
 
 - **Occupancy:** Nonzero occupancy of pro/anti Noether swarm assemblies.
 - **Net properties:** Balanced charge and angular-momentum bookkeeping at the medium scale, schematically $\sum q = 0$ and $\sum S = 0$ over neutral coarse windows.

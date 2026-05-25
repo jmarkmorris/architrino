@@ -329,7 +329,7 @@ Nevertheless, a coordinate location in the full universe should not be treated a
 
 In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population.
 
-Noether sea density and response variables belong to the Noether sea layer, not the spatial substrate. For the Noether sea ontology, see [Noether sea](../spacetime/noether-sea.md). For Noether swarm assembly hypotheses, see [Noether sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
+Noether sea density and response variables belong to the Noether sea layer, not the spatial substrate. For the Noether sea ontology, see [Noether sea](../spacetime/noether-sea.md). For Noether swarm assembly hypotheses, see [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
 
 ## Distinction From Curved Space
 

@@ -13,7 +13,7 @@ Shape the **qualitative dynamical skeleton** of the architrino system--especiall
 1. **Phase-space formulation & basins of attraction**
    - Define the relevant **state spaces**:
      - Few-body: positions/velocities of a small number of architrinos or effective "binary centers."
-     - Reduced models for tri-binaries and spacetime assemblies.
+     - Reduced models for tri-binaries and Noether swarm assemblies.
    - Identify and classify:
      - **Fixed points**, **limit cycles**, **quasi-periodic tori**, and **strange attractors** corresponding to:
        - Isolated binaries

@@ -83,7 +83,7 @@ When relevant, state whether a claim belongs to:
 
 Do not allow predictive success, measurement language, and final ontology to collapse into one another by stylistic implication.
 
-When a subject has both a substrate record and an observer-level readout, write both layers explicitly. A good passage should say what happens in absolute time and the Euclidean void, what changes in assemblies or the Noether Sea, what physical observers infer, and which equation connects those levels. For example, do not stop at "the photon is redshifted"; state which emission ledger, path-history term, medium cadence, and receiver coupling are being compared.
+When a subject has both a substrate record and an observer-level readout, write both layers explicitly. A good passage should say what happens in absolute time and the Euclidean void, what changes in assemblies or the Noether sea, what physical observers infer, and which equation connects those levels. For example, do not stop at "the photon is redshifted"; state which emission ledger, path-history term, medium cadence, and receiver coupling are being compared.
 
 ### 4. Preserve strengths before criticizing limits
 
@@ -224,7 +224,7 @@ Prefer:
 - effective closure
 - wake
 
-Avoid outdated terminology built from `retard` or `retarded` outside literal historical quotations.
+Do not use `retard`, `retarded`, `retarding`, `retardation`, or related variants in authored prose. This sentence is the explicit enforcement exception: it is allowed to name the disallowed terms so future terminology passes preserve the rule rather than deleting it. Use causal-delay, delayed, path-history, or causal-wake language instead.
 
 ### Quantum-comparison terminology
 
@@ -255,14 +255,14 @@ Use `decay` only for fixed historical or canonical Standard Model labels, and tr
 
 ### Spacetime terminology
 
-Do not let `spacetime`, `void`, `timespace`, `Noether Sea`, and `spacetime medium` drift into one another.
+Do not let `spacetime`, `void`, `timespace`, `Noether sea`, and `spacetime medium` drift into one another.
 
 Preferred prose discipline:
 
 - `Euclidean void` for the fixed spatial container
 - `absolute time` for the universal temporal parameter
 - `absolute timespace` for the formal product background $\mathbb{R}\times\mathbb{R}^3$
-- `Noether Sea` for the ambient contents
+- `Noether sea` for the ambient contents
 - `spacetime medium` only as a bridge term
 - `spacetime` for emergent or observer-level geometry
 

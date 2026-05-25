@@ -43,7 +43,7 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.
 
-This is a container claim, not a denial that observers can reconstruct curved effective geometry. The Noether sea is physical content within the void, not the void itself. For the Noether sea branch, see [Noether sea](../spacetime/noether-sea.md), [Noether sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../spacetime/emergent-metric.md).
+This is a container claim, not a denial that observers can reconstruct curved effective geometry. The Noether sea is physical content within the void, not the void itself. For the Noether sea branch, see [Noether sea](../spacetime/noether-sea.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../spacetime/emergent-metric.md).
 
 ### Absolute Timespace (The Product Structure)
 
@@ -102,7 +102,7 @@ In this ontology hub, the key commitment is:
 The routing boundary is:
 
 - [Noether sea](../spacetime/noether-sea.md) owns medium ontology, state variables, and terminology.
-- [Noether sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md) owns pro/anti coupling hypotheses and medium assembly motifs.
+- [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md) owns pro/anti coupling hypotheses and medium assembly motifs.
 - [Emergent Metric](../spacetime/emergent-metric.md) owns the map from medium variables to effective metric language.
 - [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) owns clock and ruler behavior.
 - [Cosmology Ontology](../cosmology/cosmology-ontology.md) owns the cosmology-level interpretation of Noether sea evolution.

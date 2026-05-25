@@ -33,7 +33,7 @@ Develop the **Assembly Atlas**: a low-dimensional topological classification of 
 3. **Tri-binary geometry & shape transitions**
    - Use 3-manifold and foliation intuition to understand:
      - How tri-binaries transition between spherical, oblate, and planar configurations with changing gravitational environment.
-     - How spacetime assemblies might organize into quasi-crystalline vs fluid-like vs turbulent topological phases.
+     - How Noether swarm assemblies might organize into quasi-crystalline vs fluid-like vs turbulent topological phases.
 
 4. **Decay channels & topological surgery**
    - Use ideas from 3-manifold decomposition and **topological surgery** to:

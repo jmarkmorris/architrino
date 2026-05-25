@@ -14,7 +14,7 @@ Definition (geometric, working): A neutrino is a near-planar pro/anti Noether sw
   - Near-planarity hides most of the internal ledger from exterior coupling. The remaining signal is a tiny phase and energy residue from the internal binaries.
 
 - Near-photon boundary:
-  - The photon state is the fully coherent planar-pair transport channel.
+  - The photon state is the fully coherent coaxial contra-rotating pro/anti planar pair transport channel.
   - The neutrino sits just off that lock: close enough to be neutral, fast, and weakly coupled, but not coherent enough to propagate as a photon train.
   - This "not quite photon" status gives the neutrino a small observer-facing mass channel and a nontrivial oscillation ledger.
 
@@ -56,7 +56,7 @@ H_{\mathrm{geo}}=
 \Omega_{13}e^{i\phi_{13}} & \Omega_{23}e^{i\phi_{23}} & \epsilon_3
 \end{pmatrix},
 $$
-with $(\epsilon_i,\Omega_{ij},\phi_{ij})$ derived from near-planar pro/anti swarm-pair geometry, residual internal-binary exposure, and Noether-Sea coupling.
+with $(\epsilon_i,\Omega_{ij},\phi_{ij})$ derived from near-planar pro/anti swarm-pair geometry, residual internal-binary exposure, and Noether sea coupling.
 
 Here $H_{\mathrm{geo}}$ is the operator that supplies the relativistic propagation phase, not an ordinary energy Hamiltonian. In natural units, $\epsilon_i$ and $\Omega_{ij}$ carry mass-squared-response units. Diagonalization defines the mixing matrix and the effective mass-squared-response eigenvalues:
 $$
@@ -86,7 +86,7 @@ P_{\nu_e\to\nu_\mu}(L,E)
 $$
 using the same mass-squared-response eigenvalue gap convention as the three-flavor equation above. Any later conversion to ordinary mass language is a comparison-layer unit map; it must not replace the geometric eigenvalue derivation.
 
-Matter correction enters through the Noether-Sea state:
+Matter correction enters through the Noether sea state:
 $$
 H_{\mathrm{eff}}=H_{\mathrm{geo}}+V_{\mathrm{sea}}(n(\mathbf{x},t)),
 \qquad

@@ -20,7 +20,7 @@ This chapter does not alter that constitutive rule. It asks what chirality infor
 
 ## Pro/Anti Before Planar Lock
 
-Away from the horizon, the project already treats `pro/anti` as a handedness or ordering property of the 3D nested shell swarm scaffold rather than as a net-charge distinction. The standard working convention appears in [spacetime-assemblies.md](spacetime-assemblies.md) and [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md):
+Away from the horizon, the project already treats `pro/anti` as a handedness or ordering property of the 3D nested shell swarm scaffold rather than as a net-charge distinction. The standard working convention appears in [noether-sea-pro-anti-coupling.md](noether-sea-pro-anti-coupling.md) and [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md):
 
 - `pro`: $H \to M \to L$ ordering in time;
 - `anti`: $H \to L \to M$ ordering in time.
@@ -43,11 +43,11 @@ The horizon state is different. Once the planes collapse into one planar lock an
 
 ## Broader Pro/Anti Balance in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-This chapter should also be read against a broader guardrail from the project framing: $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** naturally suggest a large universal pro/anti imbalance in the substrate as a whole. The Noether-Sea picture is instead built around persistent local or mesoscopic balance between complementary Noether swarm orientations.
+This chapter should also be read against a broader guardrail from the project framing: $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** naturally suggest a large universal pro/anti imbalance in the substrate as a whole. The Noether sea picture is instead built around persistent local or mesoscopic balance between complementary Noether swarm orientations.
 
 Several standing examples point in that direction.
 
-- **Noether Sea / spacetime medium:** the ambient Noether Sea is already framed as a coupled pro/anti population rather than a single-sign sea.
+- **Noether sea / spacetime medium:** the ambient Noether sea is already framed as a coupled pro/anti population rather than a single-sign sea.
 - **Photon channel:** the photon assembly is naturally read as a coaxial contra-rotating pro/anti planar pair, or equivalently one `CW` and one `CCW` planar branch in the flat state as an absolute-frame observer compares the two sides of the propagating pair.
 - **Higgs-like cluster:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti Noether swarms in a three-dimensional coupled state rather than a single-sign configuration.
 
@@ -75,7 +75,7 @@ The horizon question becomes clearer when compared against the main assembly sec
 
 | Sector | Pro/anti organization | Dimensional character | Why it matters here |
 | --- | --- | --- | --- |
-| Noether Sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not predict a large universal imbalance |
+| Noether sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not predict a large universal imbalance |
 | Photon channel | coaxial contra-rotating pro/anti planar pair | planar / propagating pair | shows that opposite branch pairing is natural in flat planar states |
 | Higgs-like cluster | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-swarm organization without collapsing to one sign |
 | Ordinary matter reaction channels | pro/anti encounters can open rapid reconfiguration channels | mixed 3D and reaction geometry | the place where asymmetry becomes dynamically important rather than globally dominant |
