@@ -143,7 +143,7 @@ const rules = [
   },
   {
     id: "noether-sea-hyphen-standalone",
-    description: "Noether-Sea is retired; use Noether sea in prose and Noether Sea only in title contexts.",
+    description: "Noether sea is retired; use Noether sea in prose and Noether Sea only in title contexts.",
     pattern: /Noether-Sea(?=\s*($|[.,;:)\]}]))/,
     suggestion: "Use Noether sea in prose and compound modifiers; reserve Noether Sea for title contexts.",
   },

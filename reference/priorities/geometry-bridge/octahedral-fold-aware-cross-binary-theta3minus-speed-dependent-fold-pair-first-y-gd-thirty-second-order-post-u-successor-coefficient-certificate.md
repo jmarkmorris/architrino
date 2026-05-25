@@ -85,6 +85,15 @@ $$
 }
 $$
 
+Subsequent status: the thirty-third- through thirty-seventh-order post-$U$
+successor coefficient packets now certify $h_{33,\varepsilon}$ through
+$h_{37,\varepsilon}$ and the corresponding $Q_G,Q_D$ rows through
+$Q_{D,37}+38Q_{G,37}\ni0$. The live blocker has moved from the
+thirty-third-order successor tail to the coefficient-preserving
+thirty-eighth-order successor tail, with budget floors
+$B_{G,38}=1.82989295868\times10^{103}$ and
+$B_{D,38}=1.82977192800\times10^{103}$.
+
 ## Claim Boundary
 
 This packet may claim:
