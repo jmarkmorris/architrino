@@ -2,7 +2,7 @@
 
 ## Noether Swarm
 
-The **Noether swarm** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether-Sea and particle-architecture program. A Noether swarm is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos and three negative-polarity architrinos maintain a persistent causal-return ledger.
+The **Noether swarm** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether sea and particle-architecture program. A Noether swarm is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos and three negative-polarity architrinos maintain a persistent causal-return ledger.
 
 This chapter uses three swarm types:
 
@@ -162,7 +162,7 @@ $$
 \frac{R_+-R_-}{R_*}\leq\varepsilon_{\mathrm{shell}},
 $$
 
-while a broader shell branch keeps only the hollow-band condition. This is still not the nested shell swarm. It is a one-band neutral swarm whose support is spatially organized strongly enough to produce a persistent exclusion envelope, shielding pattern, and Noether-Sea coupling channel.
+while a broader shell branch keeps only the hollow-band condition. This is still not the nested shell swarm. It is a one-band neutral swarm whose support is spatially organized strongly enough to produce a persistent exclusion envelope, shielding pattern, and Noether sea coupling channel.
 
 Near-antipodality is an optional shell swarm constraint, not a definition of the neutral swarm. A shell branch may carry an approximate polarity-reversing matching $\iota$ with $\iota^2=\mathrm{id}$ and $\sigma_{\iota(i)}=-\sigma_i$. Relative to a branch center $C(t)$, define the near-antipodality defect
 
@@ -244,7 +244,7 @@ $$
 
 The integers $k_a$ are winding counts over the closure period. They are not a claim that the layer frequencies are integer-valued at every instant. The surrounding root ledger records which self-hit, partner-hit, and inter-layer branches made the closure admissible.
 
-On this reading, an accepted energy-level change is a one-$h$ closed-cycle action transaction that moves the nested shell swarm from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned swarm should therefore carry information about the swarm's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether-Sea wake environment, not as primitive labels pasted onto the swarm.
+On this reading, an accepted energy-level change is a one-$h$ closed-cycle action transaction that moves the nested shell swarm from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned swarm should therefore carry information about the swarm's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether sea wake environment, not as primitive labels pasted onto the swarm.
 
 The same closure-label machinery is the native carrier for branch-quantized Lorentz response. A moving nested shell swarm should not be assigned a Lorentz factor independently of its internal ledger. Instead, a stable closure label should determine the all-layer retuning of radii, frequencies, characteristic speeds, and wake exchange; the outer envelope then projects the ruler factor seen by Physical Observers. In the homogeneous weak-field limit, the admitted labels must collapse to the usual effective $\gamma(v)$ within the preferred-frame leakage bound.
 
@@ -341,7 +341,7 @@ $$
 \right),
 $$
 
-where $\theta_{\mathrm{env}}$ records the local Noether-Sea and neighboring-assembly conditions. The representative cadence increment is an extraction from the layer increments, for example
+where $\theta_{\mathrm{env}}$ records the local Noether sea state and neighboring-assembly conditions. The representative cadence increment is an extraction from the layer increments, for example
 
 $$
 \Delta\ln\nu_N
@@ -357,7 +357,7 @@ $$
 
 with the weights determined by the same branch and exposure record used for clock and medium coupling. The full nested shell swarm need not put the entire transaction into a single layer. One layer may tighten while another expands, and the outer envelope may change through $\lambda$ or $\xi$, provided the total closure label remains admissible.
 
-This is the local branchwise origin of the smoother Noether-Sea equilibrium-current language: individual retunings are discrete, while many asynchronous accepted retunings can coarse-grain into a continuous cadence-space current.
+This is the local branchwise origin of the smoother Noether sea equilibrium-current language: individual retunings are discrete, while many asynchronous accepted retunings can coarse-grain into a continuous cadence-space current.
 
 ### Rest-Level Scaling Curve
 
@@ -455,7 +455,7 @@ f_O\propto N^{-3}.
 }
 $$
 
-Thus the $Nh$ ledger alone does not canonize a single radius curve. It supplies the product law; the branch speed, delayed-root radial balance, tangential closure, and any Noether-Sea return terms decide the actual rest-level scaling.
+Thus the $Nh$ ledger alone does not canonize a single radius curve. It supplies the product law; the branch speed, delayed-root radial balance, tangential closure, and any Noether sea return terms decide the actual rest-level scaling.
 
 If the outer binary instead carries a declared outer energy projection
 
@@ -480,7 +480,7 @@ $$
 
 This form is the safest way to use any external energy-level equation: insert the branch energy projection $E_O(N)$, then derive the corresponding outer radius and speed.
 
-The same chart also gives a packing readout for the Noether Sea. In a nearly spherical exclusion-envelope approximation, let
+The same chart also gives a packing readout for the Noether sea. In a nearly spherical exclusion-envelope approximation, let
 
 $$
 R_{\mathrm{excl}}
@@ -512,7 +512,7 @@ $$
 
 For example, the fixed-speed branch gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-3}$, while the bare inverse-square branch with approximately constant $\mathcal{B}_O$ gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-6}$. These are branch diagnostics, not competing definitions of a Noether swarm.
 
-This packing formula is only the spherical leading estimate. At high relative velocity, high Noether-Sea delay, or high gravitational strain, the branch data cannot be kept constant:
+This packing formula is only the spherical leading estimate. At high relative velocity, high Noether sea delay, or high gravitational strain, the branch data cannot be kept constant:
 
 $$
 p_O^{(q)},\ \mu_O^{\mathrm{rot}},\ \alpha_O^{(q)},\ \mathcal{B}_O(\beta_O;\Lambda_O)
@@ -520,7 +520,7 @@ p_O^{(q)},\ \mu_O^{\mathrm{rot}},\ \alpha_O^{(q)},\ \mathcal{B}_O(\beta_O;\Lambd
 p_O(q,\theta_{\mathrm{env}}),\ \mu_O^{\mathrm{rot}}(q,\theta_{\mathrm{env}}),\ \alpha_O(q,\theta_{\mathrm{env}}),\ \mathcal{B}_O(\beta_O;\Lambda_O,\theta_{\mathrm{env}}).
 $$
 
-The scaling curve is therefore piecewise by branch. Once the branch supplies $\xi$ and $\lambda$, the exclusion envelope must be treated as an oblate spheroid rather than a sphere, and the center-density calculation must inherit orientation, strain, and Noether-Sea delay data from the same branch label.
+The scaling curve is therefore piecewise by branch. Once the branch supplies $\xi$ and $\lambda$, the exclusion envelope must be treated as an oblate spheroid rather than a sphere, and the center-density calculation must inherit orientation, strain, and Noether sea delay data from the same branch label.
 
 ### Reduced Nested Shell Swarm Closure Label
 
@@ -583,7 +583,7 @@ The broader assembly program suggests reading the nested shell swarm hierarchy a
 -   **Two-binary shielding tier:** one shielding tier restored, corresponding to the Generation-II shielding tier.
 -   **Nested shell swarm:** the fully shielded three-tier swarm, corresponding to the Generation-I shielding tier.
 
-On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md).
+On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md).
 
 ### Nested Shell Swarm Alignment and Planck-Scale Framing
 
@@ -712,7 +712,7 @@ Nested shell swarm dynamics uses four levels of description:
 | Observer-inference exports | Rest mass, photon propagation, reconstructed kinematics, geodesics, and horizon behavior as later reconstructed by assembly-built observers. |
 | Inference and closure status | Mathematical closures that remain to be derived before effective claims can be treated as proved rather than reconstructed. |
 
-The distinction matters because the Euclidean void is not being curved at the substrate level. Curvature, geodesic motion, lapse, and horizon language enter only as observer-level bookkeeping reconstructed downstream from Noether-Sea state variables and assembly response.
+The distinction matters because the Euclidean void is not being curved at the substrate level. Curvature, geodesic motion, lapse, and horizon language enter only as observer-level bookkeeping reconstructed downstream from Noether sea state variables and assembly response.
 
 ### Speed Hierarchy
 
@@ -721,11 +721,11 @@ Several speed symbols must remain separated:
 | Symbol or phrase | Meaning |
 | --- | --- |
 | $c_f$ | Primitive wake propagation speed in the substrate. |
-| $c_{\text{eff}}(\mathbf{x},t)$ | Noether-Sea dressed assembly-channel propagation speed used only after a downstream observer-channel map has been declared. |
+| $c_{\text{eff}}(\mathbf{x},t)$ | Noether sea dressed assembly-channel propagation speed used only after a downstream observer-channel map has been declared. |
 | $c_\gamma(\mathbf{x},t)$ | Local photon-channel speed; equality with $c_{\text{eff}}(\mathbf{x},t)$ is a photon-channel closure target for the working observer-level photon branch, not a definition. |
 | Locally measured light speed | The operational speed reconstructed downstream from assembly periods, rulers, and photon synchronization. |
 
-The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. The effective speed $c_{\text{eff}}$ belongs to Noether-Sea dressed closure and observer-level comparisons. These are not interchangeable. Any diagnostic that moves from primitive wake geometry to observer-level periods, rulers, or photons must declare its dressing map outside the primitive branch calculation.
+The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. The effective speed $c_{\text{eff}}$ belongs to Noether sea dressed closure and observer-level comparisons. These are not interchangeable. Any diagnostic that moves from primitive wake geometry to observer-level periods, rulers, or photons must declare its dressing map outside the primitive branch calculation.
 
 ### Multi-Scale Layer Locking
 
@@ -1079,7 +1079,7 @@ $$
 \right).
 $$
 
-This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection and branch-period stretch come from different retained ledgers, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether-Sea cadence current used in cosmology.
+This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection and branch-period stretch come from different retained ledgers, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether sea cadence current used in cosmology.
 
 The first reduced validation model for this target is [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md), with runtime script `scripts/nested-shell-swarm/retuning-map-toy-model.mjs`. That model solves the linearized constrained compliance problem and reports the induced $J_\nu$ estimate. It is a branch-bookkeeping scaffold, not delayed-dynamics validation.
 
@@ -2444,9 +2444,9 @@ This expression belongs to the primitive branch chart; downstream dressed-channe
 
 **Assumption (testable):** A strong external gradient (tidal field or effective curvature) perturbs the delay loop, altering phase closure and stability of rungs.
 
-**Origin of the gradient (model definition):** Gravitation is implemented as an emergent Noether-Sea response gradient, not as fundamental curvature of the Euclidean void. Dense collections of standard-model assemblies perturb Noether-Sea density, compliance, stress, effective potential, and terminal-alignment state. The effective gravitational field in this delay-geometry model is the observer-level reconstruction of those coupled gradients.
+**Origin of the gradient (model definition):** Gravitation is implemented as an emergent Noether sea response gradient, not as fundamental curvature of the Euclidean void. Dense collections of standard-model assemblies perturb Noether sea density, compliance, stress, effective potential, and terminal-alignment state. The effective gravitational field in this delay-geometry model is the observer-level reconstruction of those coupled gradients.
 
-**Geometry inputs:** Represent this gradient as a scalar control parameter $G_{\text{grad}}$ only in reduced scans, for example a magnitude extracted from Noether-Sea density/compliance/stress gradients, $\partial_r\Phi_{\text{eff}}$, or a tidal tensor. In simulations, treat $G_{\text{grad}}$ as a declared proxy around the outer-binary orbit and record which Noether-Sea response channel it compresses.
+**Geometry inputs:** Represent this gradient as a scalar control parameter $G_{\text{grad}}$ only in reduced scans, for example a magnitude extracted from Noether sea density/compliance/stress gradients, $\partial_r\Phi_{\text{eff}}$, or a tidal tensor. In simulations, treat $G_{\text{grad}}$ as a declared proxy around the outer-binary orbit and record which Noether sea response channel it compresses.
 
 **Expected effects to test:**
 - Differential path delays across the outer orbit (forward vs backward sector).
@@ -2478,7 +2478,7 @@ C_{\text{cyc}}(\mathbf{x})
 \equiv
 \frac{T_0}{T_{\text{local}}(\mathbf{x})}
 $$
-in the rest branch of the local Noether-Sea cell. This quantity is a dynamics-side period ratio, not a time coordinate.
+in the rest branch of the local Noether sea cell. This quantity is a dynamics-side period ratio, not a time coordinate.
 
 **Sector-delay diagnostic from delay geometry:** Define a reference round-trip delay $\Delta t_{\text{rt,ref}}$ and a local delay $\Delta t_{\text{rt}}(\theta, G_{\text{grad}})$. Then
 $$
@@ -2603,7 +2603,7 @@ The spacetime and observer-inference chapters may convert this packet into lapse
 
 ### Acceleration-Gradient Branch Comparison
 
-The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. A uniformly accelerated assembly and a stationary assembly placed in a matched Noether-Sea gradient should output compatible delay-geometry records on the same kind of branch packet:
+The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. A uniformly accelerated assembly and a stationary assembly placed in a matched Noether sea gradient should output compatible delay-geometry records on the same kind of branch packet:
 $$
 \mathcal{D}_{\mathrm{tri}}^{\mathrm{accel}}(W)
 \sim
@@ -2611,7 +2611,7 @@ $$
 $$
 with the comparison made from phase-closure residuals, anisotropy ratios, branch-period records, stability thresholds, and cycle-averaged causal-work or phase-slip variance.
 
-The ambient Noether Sea must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether-Sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported packets recover the usual local equivalence behavior. This chapter only asks whether the substrate packets match before that translation.
+The ambient Noether sea must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported packets recover the usual local equivalence behavior. This chapter only asks whether the substrate packets match before that translation.
 
 ---
 
@@ -2627,7 +2627,7 @@ Nested shell swarm minimality is a theorem target: the working claim is that thr
 
 - **Inner binary** (MCB, partner/exterior comparison role): typically in/near self-hit branch ($v \gtrsim c_f$ by history), and would define fundamental units if MCB attractor is confirmed.
 - **Middle binary** (partner/exterior comparison role): near the symmetry hinge ($v \approx c_f$), with shell scale and cadence retuning; energy-storage fulcrum and coupling bridge.
-- **Outer binary** (partner/exterior comparison role): typically $v < c_f$ with expansion/contraction modes; couples strongly to Noether-Sea gravitational/cosmological response.
+- **Outer binary** (partner/exterior comparison role): typically $v < c_f$ with expansion/contraction modes; couples strongly to Noether sea gravitational/cosmological response.
 At the terminal-alignment interface, the three binaries are treated as a different regime where forward-sector components approach $c_f$ together; in self-hit interior comparison hypotheses, wake-closure can be described with combined $v_{\text{eff}} > c_f$ without requiring every component speed to exceed $c_f$.
 
 The stronger claim that this architecture supplies the basis for rest mass, observer clock behavior, photon behavior, and standard-model particle families remains a theorem burden for the broader causal-closure program.
@@ -2674,7 +2674,7 @@ For the strong-field continuation of that story, see [Black Holes](../../../../m
 
 ## Nested Shell Swarm Geometry
 
-This chapter is the canonical home for the geometric footprint of the nested shell swarm: its dynamic exclusion envelope, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether Sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether-Sea density, strain, and delay variables are coarse-grained. The nested shell swarm scaffold itself belongs in [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). The delayed dynamics that stabilize and deform the nested shell swarm belong in [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md).
+This chapter is the canonical home for the geometric footprint of the nested shell swarm: its dynamic exclusion envelope, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The nested shell swarm scaffold itself belongs in [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). The delayed dynamics that stabilize and deform the nested shell swarm belong in [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md).
 
 The nested shell swarm is not a static object. It is a dynamic system of six architrinos organized as three ordered shell binaries when the exact-binary assumptions are active. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the nested shell swarm's effective exclusion envelope.
 
@@ -2685,7 +2685,7 @@ This chapter owns:
 - the dynamic exclusion-envelope interpretation of a nested shell swarm,
 - the oblate spheroidal form of the low-energy nested shell swarm envelope,
 - the role of the outer binary in setting the leading boundary,
-- and assembly-level deformation of the envelope under external effective fields, nearby wakes, and Noether-Sea conditions.
+- and assembly-level deformation of the envelope under external effective fields, nearby wakes, and Noether sea conditions.
 
 This chapter does not own:
 
@@ -2703,11 +2703,11 @@ This region acts as a dynamic **exclusion envelope**. It is not a solid object w
 
 Another Noether swarm approaching this region does not encounter a classical wall. It encounters a rapidly varying causal-wake environment whose accelerations and phase constraints can prevent stable transit through the swarm volume.
 
-### Assembly-Noether-Sea Interface Diagnostic
+### Assembly-Noether Sea Interface Diagnostic
 
-The dynamic exclusion envelope supplies a spatial approximation to a deeper ledger boundary. At the exact level, an assembly is defined by the architrinos, closure labels, and wake-exchange records phase-locked to that assembly. The surrounding Noether Sea is the neighboring neutral swarm population and its ambient wake record after the assembly ledger has been excluded.
+The dynamic exclusion envelope supplies a spatial approximation to a deeper ledger boundary. At the exact level, an assembly is defined by the architrinos, closure labels, and wake-exchange records phase-locked to that assembly. The surrounding Noether sea is the neighboring neutral swarm population and its ambient wake record after the assembly ledger has been excluded.
 
-For an assembly $a$ and a declared response channel $X$, let $\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)$ denote the local coarse-grained wake/exclusion contribution tied to the assembly's accepted closure label, and let $\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)$ denote the ambient Noether-Sea contribution in the same region. A practical interface diagnostic is
+For an assembly $a$ and a declared response channel $X$, let $\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)$ denote the local coarse-grained wake/exclusion contribution tied to the assembly's accepted closure label, and let $\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)$ denote the ambient Noether sea contribution in the same region. A practical interface diagnostic is
 
 $$
 D_{a,X}(\mathbf{x},t)
@@ -2744,7 +2744,7 @@ J_{\mathbf{x}j}(t;t_0)
 \{t_0<t:g_{\mathbf{x}j}(t;t_0)=0\}.
 $$
 
-Let $\mathcal{I}_a(t)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)$ be the ambient Noether-Sea contributors in the same coarse window after excluding $\mathcal{I}_a(t)$. Let $w_{j,a}^{\mathrm{lock}}(t_0;t)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(t_0;t)$ retain the ambient branches, and let $\alpha_{j,X}(\mathbf{x},t;t_0)\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$. Then the simple-root diagnostic is
+Let $\mathcal{I}_a(t)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(t)$. Let $w_{j,a}^{\mathrm{lock}}(t_0;t)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(t_0;t)$ retain the ambient branches, and let $\alpha_{j,X}(\mathbf{x},t;t_0)\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$. Then the simple-root diagnostic is
 
 $$
 \mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t;\ell)
@@ -2835,7 +2835,7 @@ $$
 
 where $\zeta_{\mathrm{sea}}^{(\ell)}\in[0,1]$ retains branches belonging to the neutral swarm equilibrium record in the coarse window after all resolved assembly ledgers have been removed. Thus a branch cannot contribute to the locked numerator and the ambient denominator by relabeling alone; it must pass the corresponding ledger projector.
 
-The first symbolic form of this ambient projector comes from ledger complement plus local cadence smoothing. Let $\mathfrak A_{\mathrm{res}}(\Omega_\ell,t)$ be the resolved assembly ledgers inside the same coarse window, including matter assemblies and any resolved corridor ledger that has not been declared ambient Noether Sea. Define the complement factor
+The first symbolic form of this ambient projector comes from ledger complement plus local cadence smoothing. Let $\mathfrak A_{\mathrm{res}}(\Omega_\ell,t)$ be the resolved assembly ledgers inside the same coarse window, including matter assemblies and any resolved corridor ledger that has not been declared ambient Noether sea. Define the complement factor
 
 $$
 \chi_{\mathrm{comp}}^{(\ell)}
@@ -2925,7 +2925,7 @@ $$
 \right].
 $$
 
-This form rejects assembly-locked branches because any resolved locked projector $\zeta_{a'}=1$ drives the complement factor to zero in the exact ledger limit. It retains ambient Noether-Sea branches in the same coarse window when they remain outside all resolved assembly ledgers and agree with the locally smoothed neutral swarm cadence and balance record. The tolerances $\epsilon_\nu$, $\epsilon_N$, and $\epsilon_P$ are resolution tolerances for the chosen window and ledger chart; they are not channel-specific fit parameters. Channel differences still enter through $\Pi_X$ and $Q_X$, while the assembly/complement split and neutral-equilibrium projector remain common to the diagnostic.
+This form rejects assembly-locked branches because any resolved locked projector $\zeta_{a'}=1$ drives the complement factor to zero in the exact ledger limit. It retains ambient Noether sea branches in the same coarse window when they remain outside all resolved assembly ledgers and agree with the locally smoothed neutral swarm cadence and balance record. The tolerances $\epsilon_\nu$, $\epsilon_N$, and $\epsilon_P$ are resolution tolerances for the chosen window and ledger chart; they are not channel-specific fit parameters. Channel differences still enter through $\Pi_X$ and $Q_X$, while the assembly/complement split and neutral-equilibrium projector remain common to the diagnostic.
 
 The channel intensity is the channel exposure of the same root-selected branch record:
 
@@ -2970,7 +2970,7 @@ J_{\mathbf{x}j},\,
 \right),
 $$
 
-where $\delta\theta_{\mathrm{clk}}^{(j)}$ and $\delta\omega_{\mathrm{clk}}^{(j)}$ are the branch-induced phase and cadence increments of the declared clock functional, and $\delta\chi_{\mathrm{sea}}^{(\ell,j)}$ is the branch contribution to the coarse Noether-Sea delay factor. The quotient $Q_{\mathrm{clock}}$ may remove phase-origin choices and hidden constituent relabelings only when $\omega_{\mathrm{clk}}/\omega_0$ is unchanged.
+where $\delta\theta_{\mathrm{clk}}^{(j)}$ and $\delta\omega_{\mathrm{clk}}^{(j)}$ are the branch-induced phase and cadence increments of the declared clock functional, and $\delta\chi_{\mathrm{sea}}^{(\ell,j)}$ is the branch contribution to the coarse Noether sea delay factor. The quotient $Q_{\mathrm{clock}}$ may remove phase-origin choices and hidden constituent relabelings only when $\omega_{\mathrm{clk}}/\omega_0$ is unchanged.
 
 For a reaction corridor,
 
@@ -3256,7 +3256,7 @@ Here $d_{\mathrm{disc}}=0$ when the discrete closure labels are compatible and $
 
 For regularized simulations, the branch sum is replaced by the corresponding finite-width integral with $\delta_\eta(g_{\mathbf{x}j})$. The important constraint is that the numerator and denominator of $D_{a,X}$ use the same channel $X$, the same causal-width rule, and the same coarse-graining window. Signed force cancellation belongs in acceleration calculations; interface dominance uses retained channel magnitude so that a cancellation in one direction is not mistaken for absence of wake activity.
 
-Then the effective assembly-Noether-Sea interface for a declared stability threshold $D_X$ is the level set
+Then the effective assembly-Noether sea interface for a declared stability threshold $D_X$ is the level set
 
 $$
 \partial\Omega_a(D_X,t)
@@ -3283,7 +3283,7 @@ D_{\mathrm{penetration}}
 1.
 $$
 
-Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor needs a stronger coherent channel but need not coincide with the full exclusion envelope. Packing asks where another stable Noether swarm or assembly can remain without persistent phase disruption. Penetration asks where transit through the assembly-dominated wake becomes dynamically unstable. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_X,t)$ is a spatial interface extracted from that ledger and the surrounding Noether-Sea response.
+Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor needs a stronger coherent channel but need not coincide with the full exclusion envelope. Packing asks where another stable Noether swarm or assembly can remain without persistent phase disruption. Penetration asks where transit through the assembly-dominated wake becomes dynamically unstable. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_X,t)$ is a spatial interface extracted from that ledger and the surrounding Noether sea response.
 
 ### Oblate Spheroidal Form
 
@@ -3433,7 +3433,7 @@ $$
 \Delta\ln R_{\perp,O}.
 $$
 
-This approximation is a projection estimate, not a branch proof. It fails when middle-layer hinge motion, inner self-hit history, axis precession, or neighbor-induced strain contributes at the same order as the outer binary. Those failures are informative: they identify which hidden ledger entries must be retained before the retuning map can be used for clock, ruler, or Noether-Sea transport calculations.
+This approximation is a projection estimate, not a branch proof. It fails when middle-layer hinge motion, inner self-hit history, axis precession, or neighbor-induced strain contributes at the same order as the outer binary. Those failures are informative: they identify which hidden ledger entries must be retained before the retuning map can be used for clock, ruler, or Noether sea transport calculations.
 
 ### Deformability of the Envelope
 
@@ -3442,15 +3442,15 @@ The oblate spheroidal envelope is deformable because it is generated by orbit pa
 - internal binary wakes,
 - self-hit and partner-hit closure,
 - nearby assembly wakes,
-- Noether-Sea density and stress,
-- and the swarm's translational state through the Noether Sea.
+- Noether sea density and stress,
+- and the swarm's translational state through the Noether sea.
 
 External effective fields, nearby assembly wakes, and dense local assemblies can perturb the binary paths. The outer binary is the most exposed channel because it is the largest and most weakly shielded layer. A distortion of that outer path changes the exclusion envelope.
 
 This gives the nested shell swarm two distinct geometric roles:
 
 1. As an assembly, it can deform while preserving nested shell swarm identity across a stable regime.
-2. As a medium constituent, many deforming swarms can contribute to coarse-grained Noether-Sea density, strain, and signal-propagation changes.
+2. As a medium constituent, many deforming swarms can contribute to coarse-grained Noether sea density, strain, and signal-propagation changes.
 
 The claim that those coarse-grained changes reconstruct observer-level gravity is not owned here. It belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
@@ -3467,10 +3467,10 @@ For local assembly modeling, use this page as the geometric source for:
 
 For dynamics modeling, use [Nested Shell Swarm Dynamics](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
 
-For Noether-Sea modeling, use [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) and [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md), where many Noether swarms become a coupled medium rather than isolated assembly envelopes.
+For Noether sea modeling, use [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) and [Noether sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), where many Noether swarms become a coupled medium rather than isolated assembly envelopes.
 
 ### Summary Commitment
 
-> **Nested Shell Swarm Geometry Commitment:** A nested shell swarm has an oblate spheroidal exclusion envelope generated by the path history of its shell binaries. The envelope is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether-Sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
+> **Nested Shell Swarm Geometry Commitment:** A nested shell swarm has an oblate spheroidal exclusion envelope generated by the path history of its shell binaries. The envelope is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
 
 > **Lorentz Projection Commitment:** In Lorentz closure, the outer-binary envelope supplies the leading observable ruler projection, while the accepted branch state remains a three-binary causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to outer-envelope shape alone.

@@ -2,7 +2,7 @@
 
 This chapter is the canonical substrate-level specification for **absolute timespace** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the fixed product background $\mathbb{R}\times\mathbb{R}^3$, its global foliation into simultaneous Euclidean slices, the Newton-Cartan data used to keep time and space separate, and the causal wake geometry used by the microscopic dynamics.
 
-Absolute timespace is not relativistic spacetime. It is the formal product of [Absolute Time](absolute-time.md) and the [Euclidean Void](euclidean-void.md). Effective spacetime geometry is reconstructed later from assembly and Noether-Sea dynamics; it is not the substrate itself.
+Absolute timespace is not relativistic spacetime. It is the formal product of [Absolute Time](absolute-time.md) and the [Euclidean Void](euclidean-void.md). Effective spacetime geometry is reconstructed later from assembly and Noether sea dynamics; it is not the substrate itself.
 
 ## Core Concept
 
@@ -13,11 +13,11 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 - Time and space are logically and mathematically separate at the kinematic level.
 - There is absolute simultaneity: all events with the same $t$ belong to the same simultaneity slice.
 - There is no fundamental 4D Lorentzian metric mixing temporal and spatial dimensions.
-- The background is non-dynamical: it does not respond to matter, energy, assemblies, or the Noether Sea.
+- The background is non-dynamical: it does not respond to matter, energy, assemblies, or the Noether sea.
 
-This separation fixes the chapter's sequence: first name the substrate datum, then identify the effective or inferential layer that reads it. The Euclidean void and absolute time are ontology. Clocks, rulers, metric tensors, and relativistic symmetries are treated as recovered behavior of assemblies and the Noether Sea; their detailed laws are closure targets when the derivation is not supplied locally.
+This separation fixes the chapter's sequence: first name the substrate datum, then identify the effective or inferential layer that reads it. The Euclidean void and absolute time are ontology. Clocks, rulers, metric tensors, and relativistic symmetries are treated as recovered behavior of assemblies and the Noether sea; their detailed laws are closure targets when the derivation is not supplied locally.
 
-All curvature, expansion, clock dilation, and relativistic behavior must be recovered as effective descriptions of assemblies and Noether-Sea response within this fixed background.
+All curvature, expansion, clock dilation, and relativistic behavior must be recovered as effective descriptions of assemblies and Noether sea response within this fixed background.
 
 ## Product Manifold
 
@@ -69,12 +69,10 @@ $$
 \mathbb{U}_{\text{now}} \equiv S(t).
 $$
 
-This denotes the complete ontic universe state on $\Sigma_t$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether-Sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
+This denotes the complete ontic universe state on $\Sigma_t$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
 
 Because the master equation is path-history dependent, this complete state is not merely an instantaneous Markov list of positions and velocities. A precise slice-state schematic is
 $$
-\mathbb{U}_{\text{now}}(t)
-\equiv
 S(t)
 =
 \big(
@@ -84,7 +82,7 @@ H_t,
 \mathcal{B}_t
 \big).
 $$
-Here $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether-Sea state record, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
+Here $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea state record, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
 
 ## Newton-Cartan Data
 
@@ -217,7 +215,7 @@ Forces cause accelerations in the Euclidean void. Time supplies the universal ev
 
 The same distinction applies to momentum and inertia: the kinematic variables live on the substrate, while the coefficients that make them measurable are effective assembly responses.
 
-The scalar $m$ in the low-velocity observer formula is not a primitive rigid-body constant of the substrate. A rigid-body inertia tensor is a useful foil: in ordinary mechanics it maps a fixed body's angular velocity to angular momentum after a mass distribution has already been supplied. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding observer-level inertial response must be derived from the assembly's trapped causal history, shielding state, coupling to the Noether Sea, and orientation.
+The scalar $m$ in the low-velocity observer formula is not a primitive rigid-body constant of the substrate. A rigid-body inertia tensor is a useful foil: in ordinary mechanics it maps a fixed body's angular velocity to angular momentum after a mass distribution has already been supplied. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding observer-level inertial response must be derived from the assembly's trapped causal history, shielding state, coupling to the Noether sea, and orientation.
 
 For a coarse-grained assembly $A$, the local linear response may be written as a pair of response maps
 $$
@@ -234,7 +232,7 @@ $$
 \delta\Omega^j.
 $$
 
-Here $\mathcal{H}_A$ denotes the trapped path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether-Sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
+Here $\mathcal{H}_A$ denotes the trapped path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
 
 ## Galilean Kinematic Structure
 
@@ -290,7 +288,7 @@ s<t.
 $$
 Thus boosts preserve the product foliation and are allowed coordinate descriptions, but they do not preserve the same isotropic wake-law form unless $\mathbf{u}=\mathbf{0}$ relative to the Euclidean-void rest frame. Galilean boosts are therefore kinematic coordinate transformations of the background, not dynamical symmetries of the primitive wake law.
 
-This preferred frame is not curvature of the background. It is a dynamical consequence of finite-speed causal wake propagation, Noether-Sea dynamics, and assembly dynamics built on top of the absolute timespace substrate.
+This preferred frame is not curvature of the background. It is a dynamical consequence of finite-speed causal wake propagation, Noether sea dynamics, and assembly dynamics built on top of the absolute timespace substrate.
 
 The observer-level task is therefore not to remove the absolute frame from the ontology. The task is to derive how physical clocks, rulers, and signals hide preferred-frame leakage to the required experimental precision. See [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 
@@ -301,7 +299,7 @@ The foundation stack keeps primitive, channel, branch, and calibrated speeds dis
 | Symbol | Meaning | Status |
 | --- | --- | --- |
 | $c_f$ | Primitive causal-wake propagation speed relative to the Euclidean void | fundamental |
-| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether-Sea state and direction | derived |
+| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether sea state and direction | derived |
 | $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
 | $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
 | $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration |
@@ -473,10 +471,10 @@ Relativistic spacetime remains the correct comparison target for recovered obser
 | **Metric** | Separate $(dt,h)$ data | Non-degenerate $g_{\mu\nu}$ |
 | **Simultaneity** | Absolute global foliation | Observer/frame dependent |
 | **Causality** | Absolute order plus finite wake speed | Effective metric light cones |
-| **Gravity** | Emergent from assembly and Noether-Sea dynamics | Spacetime curvature |
+| **Gravity** | Emergent from assembly and Noether sea dynamics | Spacetime curvature |
 | **Expansion** | No expansion of the void | Metric expansion possible |
 
-The effective metric used in GR-style recovery is a downstream constitutive object. It must be derived from clocks, rulers, signal transport, and Noether-Sea response. The local handoff is an observer-level clock-and-ruler relation of the form
+The effective metric used in GR-style recovery is a downstream constitutive object. It must be derived from clocks, rulers, signal transport, and Noether sea response. The local handoff is an observer-level clock-and-ruler relation of the form
 $$
 d\tau^2
 =
@@ -501,7 +499,7 @@ g^{\mathrm{eff}}_{ij}
 =
 B_{ij}.
 $$
-This is the same observer-level ADM/Cartan map stated in [Emergent Metric](../spacetime/emergent-metric.md). This equation is not substrate geometry; it is the required metric handoff from Noether-Sea state and Physical Observer assemblies into effective spacetime language.
+This is the same observer-level ADM/Cartan map stated in [Emergent Metric](../spacetime/emergent-metric.md). This equation is not substrate geometry; it is the required metric handoff from Noether sea state and Physical Observer assemblies into effective spacetime language.
 
 ## Role in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -515,4 +513,4 @@ Absolute timespace is the formal product background in which all architrino dyna
 
 ## Summary Postulate
 
-> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dt$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law selects a preferred rest frame dynamically. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are emergent descriptions of assemblies and Noether-Sea dynamics within absolute timespace, not properties of the background itself.
+> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dt$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law selects a preferred rest frame dynamically. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are recovery targets: when the assembly and Noether sea closure programs succeed, they are emergent descriptions within absolute timespace, not properties of the background itself.

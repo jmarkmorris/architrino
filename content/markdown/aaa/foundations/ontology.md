@@ -10,14 +10,14 @@ This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\m
 
 1. **The Substrate** ([absolute time](./absolute-time.md), [Euclidean void](./euclidean-void.md), and [absolute timespace](./absolute-timespace.md))
 2. **The Fundamental Entity** ([architrino](./architrino.md): point transceiver of potential-bearing causal wakes)
-3. **The Physical Medium** ([Noether Sea](../spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether swarm assemblies)
+3. **The Physical Medium** ([Noether sea](../spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether swarm assemblies)
 4. **The Observer Framework** ([complete-state vs Physical Observer access](../spacetime/observer-framework.md))
 5. **Terminology Discipline** ([canonical level-aware terminology](../archie/terminology-usage.md))
 6. **Parameter Ledger** ([fundamental postulates vs derived quantities](../validation/parameter-ledger.md))
 
 All subsequent dynamical laws, assembly mappings, and emergent phenomena depend on these foundations. A contradiction or ambiguity at this level propagates through the entire $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus; therefore, this document is maintained with maximal rigor and clarity.
 
-The teaching order is controlled by four levels. Substrate ontology names absolute time, the Euclidean void, and architrino identities. Assembly and medium behavior names organized architrino configurations and the Noether Sea. Effective description names the metric, field, particle, and clock language reconstructed from those dynamics. Observer inference names the records available to embedded Physical Observers, not the complete state itself.
+The teaching order is controlled by four levels. Substrate ontology names absolute time, the Euclidean void, and architrino identities. Assembly and medium behavior names organized architrino configurations and the Noether sea. Effective description names the metric, field, particle, and clock language reconstructed from those dynamics. Observer inference names the records available to embedded Physical Observers, not the complete state itself.
 
 Two category distinctions govern the rest of this hub. First, fundamental material is not the same as emergent matter: the architrino is primitive substance, while matter begins only as assembly-level behavior with mass, exclusion, and persistent organization. Second, physical reality is not the same as autonomous material inventory: causal wakes are physically real, finite-speed, potential-bearing causal records, but their substrate-level content is fixed by source identity, polarity, and path history rather than by an additional material ingredient in the void.
 
@@ -31,7 +31,7 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 1 (Absolute Time):** Time is an absolute, universal, one-dimensional continuum $\mathbb{R}$ with fixed orientation, uniform advancement, frame-independent duration, non-dynamical status, and no substrate-level time dilation or relativity of simultaneity. Dynamics occur through finite-speed causal-wake propagation ($c_f$) in absolute time, with all interactions routed through path history rather than instantaneous action-at-a-distance or advanced effects; worldlines are parametrized directly by $t$.
 
-This is a substrate claim, not a claim about what embedded clocks report. Clock slowing, synchronization offsets, and proper-time readings belong to assembly and Noether-Sea dynamics at the observer-accessible level.
+This is a substrate claim, not a claim about what embedded clocks report. Clock slowing, synchronization offsets, and proper-time readings belong to assembly and Noether sea dynamics at the observer-accessible level.
 
 For the argumentative case, see [Absolute Time Defense](./absolute-time-defense.md). For observer-level clocks and dilation, see [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 
@@ -43,7 +43,7 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.
 
-This is a container claim, not a denial that observers can reconstruct curved effective geometry. The Noether Sea is physical content within the void, not the void itself. For the Noether-Sea branch, see [Noether Sea](../spacetime/noether-sea.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Emergent Metric](../spacetime/emergent-metric.md).
+This is a container claim, not a denial that observers can reconstruct curved effective geometry. The Noether sea is physical content within the void, not the void itself. For the Noether sea branch, see [Noether sea](../spacetime/noether-sea.md), [Noether sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../spacetime/emergent-metric.md).
 
 ### Absolute Timespace (The Product Structure)
 
@@ -91,31 +91,31 @@ For the full primitive-entity page, see [Architrino](./architrino.md). For the r
 
 ## The Physical Medium (Noether Sea)
 
-[Noether Sea](../spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether Sea as the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void.
+[Noether sea](../spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether sea as the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void.
 
-This section marks the first step away from primitive ontology. The Noether Sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
+This section marks the first step away from primitive ontology. The Noether sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
 
 In this ontology hub, the key commitment is:
 
-> **Medium Commitment (Noether Sea):** The Noether Sea is physical content inside the Euclidean void, not the void itself. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock and ruler behavior, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether-Sea dynamics and assembly coupling, not from curvature or expansion of the void.
+> **Medium Commitment (Noether sea):** The Noether sea is physical content inside the Euclidean void, not the void itself. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock and ruler behavior, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void.
 
 The routing boundary is:
 
-- [Noether Sea](../spacetime/noether-sea.md) owns medium ontology, state variables, and terminology.
-- [Spacetime Assemblies](../spacetime/spacetime-assemblies.md) owns pro/anti coupling hypotheses and medium assembly motifs.
+- [Noether sea](../spacetime/noether-sea.md) owns medium ontology, state variables, and terminology.
+- [Noether sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md) owns pro/anti coupling hypotheses and medium assembly motifs.
 - [Emergent Metric](../spacetime/emergent-metric.md) owns the map from medium variables to effective metric language.
 - [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) owns clock and ruler behavior.
-- [Cosmology Ontology](../cosmology/cosmology-ontology.md) owns the cosmology-level interpretation of Noether-Sea evolution.
+- [Cosmology Ontology](../cosmology/cosmology-ontology.md) owns the cosmology-level interpretation of Noether sea evolution.
 
 ## The Observer Framework (Ontic vs Epistemic)
 
 [Observer Framework](../spacetime/observer-framework.md) is the canonical page for the $\mathbb{U}_{\text{now}}$ universe-state perspective, Physical Observers, the ontic/epistemic distinction, and absolute-versus-operational simultaneity.
 
-The complete ontic state is the absolute-time slice $\mathbb{U}_{\text{now}}\equiv S(t)$. A Physical Observer samples only a constrained record inside that state, using clocks, rulers, and signals whose behavior is itself produced by the same assembly and Noether-Sea dynamics.
+The complete ontic state is the absolute-time slice $\mathbb{U}_{\text{now}}\equiv S(t)$. A Physical Observer samples only a constrained record inside that state, using clocks, rulers, and signals whose behavior is itself produced by the same assembly and Noether sea dynamics.
 
 In this ontology hub, the key commitment is:
 
-> **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete ontic state on an absolute-time slice from the measurements available to embedded Physical Observers. Physical Observers are assemblies inside the Noether Sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate itself.
+> **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete ontic state on an absolute-time slice from the measurements available to embedded Physical Observers. Physical Observers are assemblies inside the Noether sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate itself.
 
 The resulting observer descriptions can be indispensable without being final ontology. Effective metric reconstruction, wave function transition, and particle records are inferential summaries of accessible interactions, not replacements for the substrate and assembly account.
 
@@ -159,7 +159,7 @@ Terminology discipline is controlled by the Archie canon, not by this hub. The r
 
 This ontology hub keeps only the global rule:
 
-> Use substrate-native terms for substrate ontology, medium terms for Noether-Sea contents, and effective/observer terms for emergent descriptions. Do not let `spacetime`, `field`, `charge`, `vacuum`, or `particle` silently cross levels without saying which level is being described.
+> Use substrate-native terms for substrate ontology, medium terms for Noether sea contents, and effective/observer terms for emergent descriptions. Do not let `spacetime`, `field`, `charge`, `vacuum`, or `particle` silently cross levels without saying which level is being described.
 
 ## Parameter Ledger (Foundation Level)
 
@@ -194,7 +194,7 @@ This Foundational Ontology defines:
 
 1. **The Substrate**: absolute time and Euclidean void organized as absolute timespace, the fixed non-dynamical product background.
 2. **The Fundamental Entity**: architrino as the fixed-identity primitive point transceiver with polarity and persistent identity.
-3. **The Physical Medium**: Noether Sea as emergent physical content formed by coupled neutral Noether swarm assemblies inside the Euclidean void.
+3. **The Physical Medium**: Noether sea as emergent physical content formed by coupled neutral Noether swarm assemblies inside the Euclidean void.
 4. **The Observer Framework**: complete-state bookkeeping versus Physical Observer access.
 5. **Terminology Discipline**: level-aware wording routed to the Archie canon.
 6. **Validation Routing**: parameters, closure burdens, and open questions routed to validation and branch chapters.

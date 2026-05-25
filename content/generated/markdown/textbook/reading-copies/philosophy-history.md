@@ -914,7 +914,7 @@ Branching accounts also face a representation discipline that is easy to underst
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**, though not yet fully solved. The project's proposed move is to treat measurement not as a primitive discontinuity but as finite-time threshold resolution in a deterministic, path-history-dependent substrate. On that picture, the measured system and the apparatus are assemblies governed by the same underlying microdynamics. What standard quantum language calls collapse is reinterpreted as the crossing of a metastable separatrix into one attractor basin under structured causal interaction, with macroscopic irreversibility arising from dissipation into the surrounding Noether Sea.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**, though not yet fully solved. The project's proposed move is to treat measurement not as a primitive discontinuity but as finite-time threshold resolution in a deterministic, path-history-dependent substrate. On that picture, the measured system and the apparatus are assemblies governed by the same underlying microdynamics. What standard quantum language calls collapse is reinterpreted as the crossing of a metastable separatrix into one attractor basin under structured causal interaction, with macroscopic irreversibility arising from dissipation into the surrounding Noether sea.
 
 This makes transition relevance extremely high. If a substrate account can derive effective quantum statistics while explaining outcome fixation as a causal process, eliminate the Heisenberg cut as a fundamental division, and show how apparent collapse emerges from one continuous dynamics, it would address one of the central foundational crises.
 
@@ -1062,7 +1062,7 @@ The repair space also reveals a methodological danger. A theory can be mathemati
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted as a comparison problem**, not as an imported ontology. The Euclidean void does not expand, and there is no native boundary CFT living at spatial infinity. What observers summarize as de Sitter-like behavior must instead be recovered from Noether-Sea evolution, clock-rate comparison, redshift transport, horizon-limited access, and finite observer records.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted as a comparison problem**, not as an imported ontology. The Euclidean void does not expand, and there is no native boundary CFT living at spatial infinity. What observers summarize as de Sitter-like behavior must instead be recovered from Noether sea evolution, clock-rate comparison, redshift transport, horizon-limited access, and finite observer records.
 
 A compact closure target is an observer-accessible de Sitter comparison ledger. For a Physical Observer $O$, let the relevant coarse state be written schematically as
 
@@ -1078,7 +1078,7 @@ S_{\mathrm{out}}^{(O)}(t)
 \right),
 $$
 
-where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf{x},t)$ is physical Noether swarm density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether-Sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether-Sea state map
+where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf{x},t)$ is physical Noether swarm density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether sea state map
 
 $$
 \mathcal{F}_{\mathrm{sea}}\!\left[\mathcal{Q}_{\mathrm{dS}}^{(O)}(t)\right]
@@ -1094,7 +1094,7 @@ that matches late-time expansion, horizon entropy, CMB/BAO/SN/growth benchmarks,
 
 #### What Would Count As Resolution
 
-Resolution would require a quantum-gravity account of late-time cosmological horizons that preserves the consistency lessons of AdS/CFT while working in the observed de Sitter-like regime. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that means deriving the observer-level $H_{\mathrm{eff}}(t)$, $w_{\mathrm{eff}}(t)$, horizon-access entropy, and structure-growth behavior from the same Noether-Sea variables used in local gravity, radiation, and reaction ledgers. The long-term relevance of this crisis is as a gate against false confidence: mathematical control in a comparison spacetime is not yet ontological closure of the observed universe.
+Resolution would require a quantum-gravity account of late-time cosmological horizons that preserves the consistency lessons of AdS/CFT while working in the observed de Sitter-like regime. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that means deriving the observer-level $H_{\mathrm{eff}}(t)$, $w_{\mathrm{eff}}(t)$, horizon-access entropy, and structure-growth behavior from the same Noether sea variables used in local gravity, radiation, and reaction ledgers. The long-term relevance of this crisis is as a gate against false confidence: mathematical control in a comparison spacetime is not yet ontological closure of the observed universe.
 
 ---
 
@@ -1174,11 +1174,11 @@ Standard repairs include treating vacuum properties as field-theoretic state str
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether Sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. The companion bridge [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) adds the further distinction between primitive architrino substance and causal wake structure. This does not recover an older medium theory by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, causal wake history, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. The companion bridge [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) adds the further distinction between primitive architrino substance and causal wake structure. This does not recover an older medium theory by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, causal wake history, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
 
 #### What Would Count As Resolution
 
-Resolution would require a concrete derivation showing how vacuum-like behavior, effective metric phenomena, and at least some dark-sector-like residuals arise from a shared substrate rather than from an unexplained emptiness. It would also need to distinguish clearly between geometric void, Noether-Sea organization, and matter assembly, and to specify when observed anomalies should be attributed to additional occupants versus constitutive response of the Noether Sea itself. The long-term relevance is likely as a signpost to correct ontological language. Once clarified, "empty space" would survive only as an effective description of a particular regime, not as literal absence.
+Resolution would require a concrete derivation showing how vacuum-like behavior, effective metric phenomena, and at least some dark-sector-like residuals arise from a shared substrate rather than from an unexplained emptiness. It would also need to distinguish clearly between geometric void, Noether sea organization, and matter assembly, and to specify when observed anomalies should be attributed to additional occupants versus constitutive response of the Noether sea itself. The long-term relevance is likely as a signpost to correct ontological language. Once clarified, "empty space" would survive only as an effective description of a particular regime, not as literal absence.
 
 ---
 
@@ -1403,7 +1403,7 @@ This chapter is a multi-level split: `##` thematic buckets and `###` issue entri
 
 **Standard Repairs:** Standard repairs include a bare cosmological constant, dynamical dark-energy fields, coupled dark sectors, and infrared modifications of gravity. None has yet won because the same background data can be fit by more than one mechanism class.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ reading treats dark-energy phenomenology as an effective summary of Noether-Sea evolution, clock-rate comparison, and relaxation of nested shell swarm spacetime assemblies rather than as proof that the Euclidean void expands. On this path, high-curvature self-hit cores, source history, and outer-layer relaxation would have to generate the observed distance-redshift and growth signatures without introducing an unconstrained dark-pressure term. The strong version of this proposal remains a closure target: it must derive the measured near-$w=-1$ behavior, specify how local relaxation histories average into observer-facing cosmological parameters, and show which deviations in $w(z)$, supernova directionality, BAO anisotropy, and CMB/matter dipole consistency would diagnose medium evolution rather than a separate dark-energy substance. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ reading treats dark-energy phenomenology as an effective summary of Noether sea evolution, clock-rate comparison, and relaxation of nested shell swarm assemblies in the Noether sea rather than as proof that the Euclidean void expands. On this path, high-curvature self-hit cores, source history, and outer-layer relaxation would have to generate the observed distance-redshift and growth signatures without introducing an unconstrained dark-pressure term. The strong version of this proposal remains a closure target: it must derive the measured near-$w=-1$ behavior, specify how local relaxation histories average into observer-facing cosmological parameters, and show which deviations in $w(z)$, supernova directionality, BAO anisotropy, and CMB/matter dipole consistency would diagnose medium evolution rather than a separate dark-energy substance. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
 
 **What Would Count As Resolution:** Resolution would require either a stable observational separation among vacuum energy, dynamical fields, and modified gravity, or a deeper derivation showing why only one of those possibilities can generate the measured expansion and growth history.
 
@@ -1423,7 +1423,7 @@ This chapter is a multi-level split: `##` thematic buckets and `###` issue entri
 
 **Standard Repairs:** Standard repairs include WIMPs, axions, sterile neutrinos, primordial black holes, self-interacting dark sectors, and modified-gravity alternatives such as MOND-like responses. Each explains part of the evidence, but none yet provides decisive closure across all scales.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The working $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation treats dark-sector evidence as a possible mixture of neutral Noether swarm assemblies and scale-dependent Noether-Sea response. Stable neutral clusters could supply collisionless-matter-like behavior, with apparent mass understood as the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. A separate elastic-response channel could supply MOND-like behavior at low accelerations without replacing the assembly picture. The closure target is to calibrate three regimes without parameter rescue: neutral assemblies, elastic-response modification, and a constrained hybrid able to meet Bullet-Cluster, CMB, lensing, and small-scale-structure tests. The proposed falsifier should therefore be stated as a scale-dependent transition test: if lensing tomography and structure probes exclude the predicted transition pattern under the same parameter ledger, this dark-matter interpretation fails. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The working $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation treats dark-sector evidence as a possible mixture of neutral Noether swarm assemblies and scale-dependent Noether sea response. Stable neutral clusters could supply collisionless-matter-like behavior, with apparent mass understood as the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling. A separate elastic-response channel could supply MOND-like behavior at low accelerations without replacing the assembly picture. The closure target is to calibrate three regimes without parameter rescue: neutral assemblies, elastic-response modification, and a constrained hybrid able to meet Bullet-Cluster, CMB, lensing, and small-scale-structure tests. The proposed falsifier should therefore be stated as a scale-dependent transition test: if lensing tomography and structure probes exclude the predicted transition pattern under the same parameter ledger, this dark-matter interpretation fails. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
 
 **What Would Count As Resolution:** Resolution would require either direct identification of the dark component, or a cross-scale demonstration that a non-particle mechanism reproduces rotation curves, lensing, cluster dynamics, and CMB structure without hidden parameter rescue.
 
@@ -1443,7 +1443,7 @@ This chapter is a multi-level split: `##` thematic buckets and `###` issue entri
 
 **Standard Repairs:** Standard repairs include supersymmetric cancellations, sequestering, unimodular gravity, anthropic landscape arguments, and modified-gravity decoupling schemes. These reduce parts of the pressure, but none is widely accepted as a clean mechanism rather than a relocation of the fine-tuning.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A possible $\mathbb{A}\mathbb{A}\mathbb{A}$ reframing treats the cosmological constant problem as a mismatch between QFT zero-point bookkeeping and the actual degrees of freedom available in the Noether Sea. Space is not an empty stage in this ontology; the relevant question is how nested shell swarm spacetime assemblies store, shield, recycle, and expose energy at the effective metric level. Absolute time, global polarity balance, and the field-speed limit $v=c_f$ may constrain how vacuum-like contributions enter outer-layer deformation, but this is not yet a completed solution. The hierarchy problem is reformulated as a quantitative shielding target: the theory must show whether inner and middle binary structure can suppress the effective large-scale energy density by the required $10^{120}$ factor while preserving successful low-energy field calculations. It must also supply an exposure rule for the slow sector, so that shielding does not erase the observed late-time stress signal. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A possible $\mathbb{A}\mathbb{A}\mathbb{A}$ reframing treats the cosmological constant problem as a mismatch between QFT zero-point bookkeeping and the actual degrees of freedom available in the Noether sea. Space is not an empty stage in this ontology; the relevant question is how nested shell swarm assemblies in the Noether sea store, shield, recycle, and expose energy at the effective metric level. Absolute time, global polarity balance, and the field-speed limit $v=c_f$ may constrain how vacuum-like contributions enter outer-layer deformation, but this is not yet a completed solution. The hierarchy problem is reformulated as a quantitative shielding target: the theory must show whether inner and middle binary structure can suppress the effective large-scale energy density by the required $10^{120}$ factor while preserving successful low-energy field calculations. It must also supply an exposure rule for the slow sector, so that shielding does not erase the observed late-time stress signal. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
 
 **What Would Count As Resolution:** Resolution would require a theory that explains why vacuum contributions gravitate in exactly the suppressed way observed while still preserving the successful low-energy field theory calculations built on those same vacuum structures.
 
@@ -1461,7 +1461,7 @@ This chapter is a multi-level split: `##` thematic buckets and `###` issue entri
 
 **Standard Repairs:** Standard repairs include early dark energy, extra relativistic species, interacting dark sectors, modified recombination histories, and recalibration of the distance ladder. None has yet achieved broad acceptance without generating fresh tension elsewhere.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure path treats the Hubble tension as a possible comparison between sampling methods that probe different Noether-Sea environments and clock-rate histories, rather than as immediate evidence for two literal expansion rates of the Euclidean void. Early-universe inferences could average over a denser or less-relaxed Noether-Sea state, while local distance ladders could sample regions with different outer-layer relaxation and clock calibration. The required derivation is precise: the same Noether-Sea evolution model must reproduce the sound horizon, BAO ladder, supernova calibration, CMB-frame correction, bulk-flow residuals, and environment dependence without tuning each dataset independently. A useful falsifier would be the absence of the predicted environment-linked bifurcation and directional residuals after controlling for known survey systematics. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure path treats the Hubble tension as a possible comparison between sampling methods that probe different Noether sea environments and clock-rate histories, rather than as immediate evidence for two literal expansion rates of the Euclidean void. Early-universe inferences could average over a denser or less-relaxed Noether sea state, while local distance ladders could sample regions with different outer-layer relaxation and clock calibration. The required derivation is precise: the same Noether sea evolution model must reproduce the sound horizon, BAO ladder, supernova calibration, CMB-frame correction, bulk-flow residuals, and environment dependence without tuning each dataset independently. A useful falsifier would be the absence of the predicted environment-linked bifurcation and directional residuals after controlling for known survey systematics. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
 
 **What Would Count As Resolution:** Resolution would require convergence of the measurement pipelines after systematic control, or a new mechanism that raises one inference route while remaining consistent with BAO, CMB, BBN, and late-time structure data.
 
@@ -1481,7 +1481,7 @@ This chapter is a multi-level split: `##` thematic buckets and `###` issue entri
 
 **Standard Repairs:** Standard repairs include improved lensing calibration, massive neutrinos, interacting or decaying dark matter, and modified-gravity growth suppression. They remain incomplete because the effect is modest, survey-sensitive, and tightly coupled to other cosmological constraints.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, the $S_8$ tension reflects a late-time mismatch between baryonic spacetime assemblies and a partially decoupled dark-assembly sector in the Noether Sea. If dark assemblies exchange momentum through deformation-wave channels that are weakly coupled to baryonic curvature, structure growth stalls relative to $\Lambda\mathrm{CDM}$ even when the background expansion matches Planck. This shows up as suppressed small-scale clustering without requiring a change to early-time CMB physics. A falsifier would be a precise lensing+clustering dataset showing scale-independent growth consistent with standard gravity across the same redshift range where $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts dark-sector drag. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, the $S_8$ tension reflects a late-time mismatch between baryonic Noether swarm assemblies and a partially decoupled dark-assembly sector in the Noether sea. If dark assemblies exchange momentum through deformation-wave channels that are weakly coupled to baryonic curvature, structure growth stalls relative to $\Lambda\mathrm{CDM}$ even when the background expansion matches Planck. This shows up as suppressed small-scale clustering without requiring a change to early-time CMB physics. A falsifier would be a precise lensing+clustering dataset showing scale-independent growth consistent with standard gravity across the same redshift range where $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts dark-sector drag. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
 
 **What Would Count As Resolution:** Resolution would require a stable joint lensing-and-clustering result that either removes the discrepancy under controlled systematics or isolates a specific growth-suppression mechanism consistent with the full cosmological dataset.
 
@@ -1501,7 +1501,7 @@ This chapter is a multi-level split: `##` thematic buckets and `###` issue entri
 
 **Standard Repairs:** Standard repairs include single-field slow-roll models, multifield variants, axion and plateau models, and alternatives such as ekpyrotic or bounce scenarios. The field remains open because current data constrain broad classes without uniquely selecting the mechanism.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, “inflation” is not driven by a separate inflaton field but by the dynamics of Noether swarm assemblies inside supermassive black-hole cores. The interior of an SMBH maps naturally to an AdS-like region populated by maximal-curvature (self-hit) binaries; the event horizon is the AdS/CFT boundary where the middle binary layer locks to $v=c_f$ and mediates energy exchange with the exterior conformal spacetime. As infalling matter feeds the core, the inner binaries are compressed toward the smallest radii they can reach, pumping energy into the middle layer and forcing its radius to grow. Inside the black hole this manifests as coupled inflation/deflation cycles: outbound self-hit energy (inflation) paired with inbound partner energy (deflation), whereas outside the horizon the same energy release shows up as expansion versus contraction of ordinary spacetime assemblies. Primordial inflation is therefore interpreted as the rapid outward propagation of Noether swarm disturbances triggered when early-universe Planck cores were driven near their minimal size and then bled energy through the horizon, setting up the near-flat, homogeneous initial conditions without invoking a separate scalar potential $V(\phi)$. Gravitational-wave B-modes or non-Gaussian signatures would then trace back to episodic bursts of self-hit energy escaping the AdS core, providing a falsifiable handle on this black-hole-driven inflationary mechanism. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, “inflation” is not driven by a separate inflaton field but by the dynamics of Noether swarm assemblies inside supermassive black-hole cores. The interior of an SMBH maps naturally to an AdS-like region populated by maximal-curvature (self-hit) binaries; the event horizon is the AdS/CFT boundary where the middle binary layer locks to $v=c_f$ and mediates energy exchange with the exterior conformal spacetime. As infalling matter feeds the core, the inner binaries are compressed toward the smallest radii they can reach, pumping energy into the middle layer and forcing its radius to grow. Inside the black hole this manifests as coupled inflation/deflation cycles: outbound self-hit energy (inflation) paired with inbound partner energy (deflation), whereas outside the horizon the same energy release shows up as expansion versus contraction of ordinary Noether swarm assembly distributions. Primordial inflation is therefore interpreted as the rapid outward propagation of Noether swarm disturbances triggered when early-universe Planck cores were driven near their minimal size and then bled energy through the horizon, setting up the near-flat, homogeneous initial conditions without invoking a separate scalar potential $V(\phi)$. Gravitational-wave B-modes or non-Gaussian signatures would then trace back to episodic bursts of self-hit energy escaping the AdS core, providing a falsifiable handle on this black-hole-driven inflationary mechanism. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
 
 **What Would Count As Resolution:** Resolution would require a discriminating primordial signature, such as a robust tensor or non-Gaussian pattern, together with a model that connects that signature to a concrete reheating history.
 
@@ -1525,7 +1525,7 @@ This chapter is a multi-level split: `##` thematic buckets and `###` issue entri
 
 The methodological lesson is narrower than many historical repairs made it sound. Naturalness is an inference pressure, not an independent law: the absence of expected low-energy stabilizing sectors in tested regimes weakens the move from aesthetic simplicity to ontology, while leaving the Higgs-stability question as a real closure target.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** From the view of the Architrino Assembly Architecture, the Hierarchy Problem is an artifact of assuming point-like particles interacting in a continuous manifold down to the Planck scale ($10^{-35}$ m). In $\mathbb{A}\mathbb{A}\mathbb{A}$, SM point particles do not exist; all SM particles are based upon Noether swarm assemblies (possibly fragmented), so the "loop integrals" of QFT correspond to physical summing of potentials and interactions with the background and are truncated at the Maximal Curvature Radius (inner binary radius, $r_{inner}$). The Higgs mass is therefore "natural" at the scale of the Noether swarm assembly architecture because geometry screens interactions at that scale. Likewise, "virtual particles" in loops are transient couplings with the spacetime assembly medium (Noether Sea), which has finite Noether swarm density $\rho_{\text{NS}}$, so corrections cannot exceed the local energy density and the integral saturates naturally. In short, the Standard Model expectation $\delta m_H^2 \propto \Lambda^2$ is replaced by an Architrino-model cutoff $\delta m_H^2 \propto \int_{R_{min}}^{\infty} ...$ that is finite and fixed by geometry. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** From the view of the Architrino Assembly Architecture, the Hierarchy Problem is an artifact of assuming point-like particles interacting in a continuous manifold down to the Planck scale ($10^{-35}$ m). In $\mathbb{A}\mathbb{A}\mathbb{A}$, SM point particles do not exist; all SM particles are based upon Noether swarm assemblies (possibly fragmented), so the "loop integrals" of QFT correspond to physical summing of potentials and interactions with the background and are truncated at the Maximal Curvature Radius (inner binary radius, $r_{inner}$). The Higgs mass is therefore "natural" at the scale of the Noether swarm assembly architecture because geometry screens interactions at that scale. Likewise, "virtual particles" in loops are transient couplings with the Noether sea, which has finite Noether swarm density $\rho_{\text{NS}}$, so corrections cannot exceed the local energy density and the integral saturates naturally. In short, the Standard Model expectation $\delta m_H^2 \propto \Lambda^2$ is replaced by an Architrino-model cutoff $\delta m_H^2 \propto \int_{R_{min}}^{\infty} ...$ that is finite and fixed by geometry. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
 
 **What Would Count As Resolution:** Resolution would require either direct evidence for a protection mechanism or a deeper derivation showing why the Higgs scale is finite and stable without the symmetry-based rescue structures that naturalness originally predicted.
 
@@ -1565,7 +1565,7 @@ The methodological lesson is narrower than many historical repairs made it sound
 
 **Standard Repairs:** Standard repairs include electroweak baryogenesis, leptogenesis, Affleck-Dine scenarios, and other beyond-standard-model CP sources. They remain incomplete because the required new ingredients have not been directly established.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A cautious $\mathbb{A}\mathbb{A}\mathbb{A}$ route treats baryon asymmetry as a Noether-Sea chiral-bias closure target. The required mechanism would be an orientation-dependent difference in how pro-aligned and anti-aligned Noether swarm assemblies couple to the ambient Noether-Sea state. Anti-oriented assemblies would have to lose coherence or fail stability basins before they seed persistent protons or neutrons, while pro-oriented assemblies would have to stabilize through layered neutral axes. Such a mechanism could supply the effective baryon-number bias required by Sakharov's conditions only if it quantitatively reproduces the baryon-to-photon ratio and remains compatible with CP-violation, neutrino, and electric-dipole-moment bounds. The photon is treated as a coaxial contra-rotating pro/anti planar pair, which constrains whether radiation mediates net polarity leakage between clusters. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A cautious $\mathbb{A}\mathbb{A}\mathbb{A}$ route treats baryon asymmetry as a Noether sea chiral-bias closure target. The required mechanism would be an orientation-dependent difference in how pro-aligned and anti-aligned Noether swarm assemblies couple to the ambient Noether sea state. Anti-oriented assemblies would have to lose coherence or fail stability basins before they seed persistent protons or neutrons, while pro-oriented assemblies would have to stabilize through layered neutral axes. Such a mechanism could supply the effective baryon-number bias required by Sakharov's conditions only if it quantitatively reproduces the baryon-to-photon ratio and remains compatible with CP-violation, neutrino, and electric-dipole-moment bounds. The photon is treated as a coaxial contra-rotating pro/anti planar pair, which constrains whether radiation mediates net polarity leakage between clusters. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
 
 **What Would Count As Resolution:** Resolution would require a mechanism that reproduces the observed asymmetry quantitatively and is independently supported by neutrino, EDM, collider, or cosmological evidence rather than by post hoc parameter tuning alone.
 
@@ -1605,9 +1605,9 @@ The methodological lesson is narrower than many historical repairs made it sound
 
 **Standard Repairs:** Standard repairs include the Peccei-Quinn mechanism and its axion consequence, along with less-favored alternatives such as a massless up quark or spontaneous CP structure. The problem remains open because the axion has not been decisively found and the alternatives are increasingly constrained.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ account treats the smallness of the CP-violating angle $\theta$ as a possible assembly-stability selection effect rather than as a free coincidence. On this reading, a non-zero neutron electric dipole moment would correspond to an asymmetric axial-charge distribution relative to the nested shell swarm rotation structure, and sufficiently large asymmetry could destabilize the assembly through torque, Noether-Sea coupling, or self-hit imbalance. This remains a derivation target. The theory must compute the allowed asymmetry, recover the observed electric-dipole-moment bounds, and show whether any Peccei-Quinn-like effective behavior emerges from assembly relaxation rather than from a new fundamental axion field. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ account treats the smallness of the CP-violating angle $\theta$ as a possible assembly-stability selection effect rather than as a free coincidence. On this reading, a non-zero neutron electric dipole moment would correspond to an asymmetric axial-charge distribution relative to the nested shell swarm rotation structure, and sufficiently large asymmetry could destabilize the assembly through torque, Noether sea coupling, or self-hit imbalance. This remains a derivation target. The theory must compute the allowed asymmetry, recover the observed electric-dipole-moment bounds, and show whether any Peccei-Quinn-like effective behavior emerges from assembly relaxation rather than from a new fundamental axion field. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
 
-**Residual Scaffold:** The retained observable is the neutron electric dipole moment, not the ontology of any proposed repair. The nucleon-side scaffold in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md#cp-odd-neutron-dipole-scaffold) defines $\vartheta_n$ as the spin-aligned axial first moment of the neutron assembly, with additional flux and Noether-Sea contributions retained in the same branch record. A minimal comparison residual is
+**Residual Scaffold:** The retained observable is the neutron electric dipole moment, not the ontology of any proposed repair. The nucleon-side scaffold in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md#cp-odd-neutron-dipole-scaffold) defines $\vartheta_n$ as the spin-aligned axial first moment of the neutron assembly, with additional flux and Noether sea contributions retained in the same branch record. A minimal comparison residual is
 $$
 d_n^{\mathrm{asm}}(\vartheta_n;\theta)
 =
@@ -1670,7 +1670,7 @@ with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucl
 
 **Standard Repairs:** Standard repairs include raising the unification scale, adding protective symmetries, suppressing dangerous operators, or moving to more elaborate GUT breaking patterns. These keep models alive, but often at the cost of simplicity or predictive sharpness.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, proton stability is a topological constraint: baryon number corresponds to a Noether swarm assembly motif whose axial ordering and cross-layer bonding are conserved under all low-energy interactions in the Noether Sea. Proton dissociation would require a wholesale re-threading of the inner and middle binaries across the self-hit barrier, a process energetically forbidden except in extreme core conditions. This makes the standard `proton decay` channels effectively absent in normal spacetime while allowing baryon number violation only inside maximal-curvature assemblies (e.g., black-hole cores). A falsifier is unambiguous: a confirmed `proton decay` channel under ordinary experimental conditions with a lifetime within reach of GUT expectations would contradict the $\mathbb{A}\mathbb{A}\mathbb{A}$ stability claim. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, proton stability is a topological constraint: baryon number corresponds to a Noether swarm assembly motif whose axial ordering and cross-layer bonding are conserved under all low-energy interactions in the Noether sea. Proton dissociation would require a wholesale re-threading of the inner and middle binaries across the self-hit barrier, a process energetically forbidden except in extreme core conditions. This makes the standard `proton decay` channels effectively absent in normal spacetime while allowing baryon number violation only inside maximal-curvature assemblies (e.g., black-hole cores). A falsifier is unambiguous: a confirmed `proton decay` channel under ordinary experimental conditions with a lifetime within reach of GUT expectations would contradict the $\mathbb{A}\mathbb{A}\mathbb{A}$ stability claim. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
 
 **What Would Count As Resolution:** Resolution would require either a confirmed `proton decay` channel with a reproducible lifetime pattern or a deeper theory showing why proton stability is structurally guaranteed across the accessible ordinary-spacetime regime.
 
@@ -1690,7 +1690,7 @@ with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucl
 
 **Standard Repairs:** Standard repairs include improved top-mass extraction, new heavy states that stabilize the running, inflationary constraints on early Higgs excursions, and alternative UV completions. None closes the issue because the inference is exquisitely sensitive to input assumptions.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, "vacuum instability" is an artifact of extrapolating a continuum Higgs potential beyond its domain: the Noether Sea has a hard microphysical cutoff at the self-hit scale, and assembly cores enforce a bounded energy density so the effective quartic never runs past the stability envelope. What appears as a negative high-energy potential in the EFT is reinterpreted as a phase-transition boundary between assembly configurations rather than a true catastrophic vacuum. Bubble nucleation is thus suppressed if the Noether Sea cannot support a lower-energy phase disconnected from the coupled nested shell swarm configuration; transitions require coherent rethreading across layers that is dynamically forbidden outside extreme cores. A falsifier would be unambiguous evidence of metastable vacuum decay or Higgs-field fluctuations inconsistent with a bounded assembly cutoff. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, "vacuum instability" is an artifact of extrapolating a continuum Higgs potential beyond its domain: the Noether sea has a hard microphysical cutoff at the self-hit scale, and assembly cores enforce a bounded energy density so the effective quartic never runs past the stability envelope. What appears as a negative high-energy potential in the EFT is reinterpreted as a phase-transition boundary between assembly configurations rather than a true catastrophic vacuum. Bubble nucleation is thus suppressed if the Noether sea cannot support a lower-energy phase disconnected from the coupled nested shell swarm configuration; transitions require coherent rethreading across layers that is dynamically forbidden outside extreme cores. A falsifier would be unambiguous evidence of metastable vacuum decay or Higgs-field fluctuations inconsistent with a bounded assembly cutoff. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
 
 **What Would Count As Resolution:** Resolution would require a stable determination of the high-scale potential together with a consistent account of early-universe history that either forbids dangerous excursions or shows they are physically real.
 
@@ -1710,7 +1710,7 @@ with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucl
 
 **Standard Repairs:** Standard repairs include improved lattice and dispersive hadronic calculations, new vector bosons, leptoquarks, and other flavor-sensitive beyond-standard-model sectors. They remain incomplete because the statistical picture is still evolving and some anomaly classes have already weakened under new data.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A cautious $\mathbb{A}\mathbb{A}\mathbb{A}$ reading treats lepton magnetic moments and universality anomalies as a scale-sensitive medium-coupling closure target, not as established evidence for Noether-Sea microstructure. The electron, muon, and tau have different assembly scales and shielding patterns, so a completed model could in principle produce distinct residual couplings to Noether-Sea density, strain, and causal-wake history. That possibility must be derived as a correction to the effective QED and flavor ledger, not inferred from a literal spatial discretization. A falsifier would be convergence of the anomaly data and hadronic/flavor calculations to the Standard Model expectation, or a required correction whose sign, scale, or channel dependence cannot be produced by the same Noether-Sea response record used elsewhere. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A cautious $\mathbb{A}\mathbb{A}\mathbb{A}$ reading treats lepton magnetic moments and universality anomalies as a scale-sensitive medium-coupling closure target, not as established evidence for Noether sea microstructure. The electron, muon, and tau have different assembly scales and shielding patterns, so a completed model could in principle produce distinct residual couplings to Noether sea density, strain, and causal-wake history. That possibility must be derived as a correction to the effective QED and flavor ledger, not inferred from a literal spatial discretization. A falsifier would be convergence of the anomaly data and hadronic/flavor calculations to the Standard Model expectation, or a required correction whose sign, scale, or channel dependence cannot be produced by the same Noether sea response record used elsewhere. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
 
 **What Would Count As Resolution:** Resolution would require either convergent experimental confirmation across multiple channels or a calculation-level reconciliation that removes the discrepancy without special pleading.
 
@@ -1750,7 +1750,7 @@ with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucl
 
 **Standard Repairs:** Standard repairs are not so much competing theories as competing analytic tools: lattice gauge theory, effective string pictures, large-$N$ reasoning, dual-superconductor models, and various nonperturbative continuum truncations. These illuminate the structure, but none yet counts as the accepted closed proof.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, confinement is a mechanical constraint: quark-like decorations are partial nested shell swarm fragments that only exist as shared boundary conditions within a larger assembly, so separating them forces the Noether Sea to stretch the middle-binary alignment response and generates a linear restoring tension. The mass gap follows from the minimum energy required to excite a stable, closed nested shell swarm loop in the Noether Sea, so there are no arbitrarily soft gluonic modes in isolation. This recasts confinement and the gap as consequences of assembly geometry rather than gauge-field topology. A falsifier would be a confirmed observation of free, asymptotic color charge or a glueball spectrum with no finite gap in the pure-gauge limit. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, confinement is a mechanical constraint: quark-like decorations are partial nested shell swarm fragments that only exist as shared boundary conditions within a larger assembly, so separating them forces the Noether sea to stretch the middle-binary alignment response and generates a linear restoring tension. The mass gap follows from the minimum energy required to excite a stable, closed nested shell swarm loop in the Noether sea, so there are no arbitrarily soft gluonic modes in isolation. This recasts confinement and the gap as consequences of assembly geometry rather than gauge-field topology. A falsifier would be a confirmed observation of free, asymptotic color charge or a glueball spectrum with no finite gap in the pure-gauge limit. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
 
 **What Would Count As Resolution:** Resolution would require a mathematically controlled derivation of confinement and the gap, tied clearly enough to hadron physics that the proof is not merely formal but physically explanatory.
 
@@ -1772,7 +1772,7 @@ with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucl
 
 **Standard Repairs:** Standard repairs include string theory, loop quantum gravity, asymptotic safety, causal and emergent-spacetime programs, and holographic duality constructions. They remain incomplete because experimental access is limited and no candidate has achieved decisive empirical separation.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The $\mathbb{A}\mathbb{A}\mathbb{A}$ route would relocate quantum-gravity and renormalizability pressure by denying that the Euclidean void is a continuum field that must itself be quantized. The effective metric called General Relativity would instead be a coarse-grained description of Noether-Sea middle and outer binary behavior, while gravitons would be collective deformation-wave excitations in an effective limit. That move only becomes closure if it derives the GR limit, recovers the controlled long-distance quantum correction to Newtonian gravity, identifies the ultraviolet cutoff from maximal-curvature assembly structure, and shows how singularity and high-frequency gravitational-wave behavior are replaced by finite substrate dynamics. Concrete falsifiers remain appropriate: data requiring independent degrees of freedom above the self-hit threshold, or preferred-frame tests inconsistent with the allowed leakage scale, would rule out this gravity-as-assembly-mechanics path. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The $\mathbb{A}\mathbb{A}\mathbb{A}$ route would relocate quantum-gravity and renormalizability pressure by denying that the Euclidean void is a continuum field that must itself be quantized. The effective metric called General Relativity would instead be a coarse-grained description of Noether sea middle and outer binary behavior, while gravitons would be collective deformation-wave excitations in an effective limit. That move only becomes closure if it derives the GR limit, recovers the controlled long-distance quantum correction to Newtonian gravity, identifies the ultraviolet cutoff from maximal-curvature assembly structure, and shows how singularity and high-frequency gravitational-wave behavior are replaced by finite substrate dynamics. Concrete falsifiers remain appropriate: data requiring independent degrees of freedom above the self-hit threshold, or preferred-frame tests inconsistent with the allowed leakage scale, would rule out this gravity-as-assembly-mechanics path. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
 
 **What Would Count As Resolution:** Resolution would require a UV-complete account that reproduces low-energy gravity, controlled low-energy quantum-gravity corrections, black-hole thermodynamics, and cosmological consistency while also generating at least one discriminating observational signature.
 
@@ -1810,7 +1810,7 @@ with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucl
 
 **Standard Repairs:** Standard repairs include Copenhagen-style collapse rules, decoherence-based approaches, objective-collapse models, Bohmian hidden variables, and Everettian branching. They remain in competition because each resolves one part of the problem while shifting cost to ontology, dynamics, or empirical accessibility.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, the measurement problem is treated as a physical transition between coherent nested shell swarm superpositions and decohered assembly configurations in the Noether Sea. "Measurement" corresponds to an irreversible coupling of a system's nested shell swarm pattern to a dense, many-assembly environment that enforces a stable attractor state via self-hit dynamics and memory effects. This does not invoke ad hoc collapse; it posits that outcome selection occurs at the level of assembly attractor basins, where **meta-stable branching** reflects deterministic multistability under microstate/wake-phase sensitivity. The falsifier is straightforward: if macroscopic assembly environments can be engineered to preserve superpositions beyond the predicted self-hit attractor thresholds, the $\mathbb{A}\mathbb{A}\mathbb{A}$ account fails. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, the measurement problem is treated as a physical transition between coherent nested shell swarm superpositions and decohered assembly configurations in the Noether sea. "Measurement" corresponds to an irreversible coupling of a system's nested shell swarm pattern to a dense, many-assembly environment that enforces a stable attractor state via self-hit dynamics and memory effects. This does not invoke ad hoc collapse; it posits that outcome selection occurs at the level of assembly attractor basins, where **meta-stable branching** reflects deterministic multistability under microstate/wake-phase sensitivity. The falsifier is straightforward: if macroscopic assembly environments can be engineered to preserve superpositions beyond the predicted self-hit attractor thresholds, the $\mathbb{A}\mathbb{A}\mathbb{A}$ account fails. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
 
 **What Would Count As Resolution:** Resolution would require a framework that explains definite outcomes, recovers interference and Bell constraints, and identifies what counts as measurement without inserting an observer-exception clause.
 
@@ -1832,7 +1832,7 @@ The entropy statement also has a domain-of-validity gate. A finite subsystem adm
 
 **Standard Repairs:** Standard repairs include Past-Hypothesis appeals, inflationary smoothing, multiverse selection, and various cosmological boundary proposals. They each address part of the puzzle, but none commands consensus as a non-circular origin story for temporal asymmetry.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The $\mathbb{A}\mathbb{A}\mathbb{A}$ arrow-of-time proposal starts from absolute time, then seeks the thermodynamic arrow in Noether-Sea history, wake-phase memory, and irreversible self-hit dissipation. The candidate mechanism is that macroscopic reversal would require reconstructing micro-wake phases and assembly histories with inaccessible precision after dissipation has dispersed them. The "Past Hypothesis" would be replaced only if the theory can derive an initially low-defect assembly configuration or equivalent boundary condition and show how it relaxes toward higher-defect, higher-entropy states. A falsifier would be a closed assembly system that exhibits macroscopic reversibility after large entropy production without external intervention, contradicting the predicted wake-memory irreversibility. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The $\mathbb{A}\mathbb{A}\mathbb{A}$ arrow-of-time proposal starts from absolute time, then seeks the thermodynamic arrow in Noether sea history, wake-phase memory, and irreversible self-hit dissipation. The candidate mechanism is that macroscopic reversal would require reconstructing micro-wake phases and assembly histories with inaccessible precision after dissipation has dispersed them. The "Past Hypothesis" would be replaced only if the theory can derive an initially low-defect assembly configuration or equivalent boundary condition and show how it relaxes toward higher-defect, higher-entropy states. A falsifier would be a closed assembly system that exhibits macroscopic reversibility after large entropy production without external intervention, contradicting the predicted wake-memory irreversibility. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
 
 **What Would Count As Resolution:** Resolution would require a framework that explains low-entropy initial structure and irreversible macroscopic behavior without simply restating one of them as an unexplained boundary condition.
 
@@ -1874,7 +1874,7 @@ The entropy statement also has a domain-of-validity gate. A finite subsystem adm
 
 **Standard Repairs:** Standard repairs include Great Filter arguments, self-destruction scenarios, zoo hypotheses, slow-colonization models, and claims that our searches are too narrow in band or timescale. None closes the problem because each depends on uncertain priors about life, technology, and detectability.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, the Fermi Paradox is reframed as a signal-and-medium problem: if advanced technologies manipulate or traverse the Noether Sea via nested shell swarm engineering, their emissions may not couple to standard electromagnetic channels or may dissipate into super-field-speed regimes that are invisible to our detectors. The architecture implies that high-energy manipulation could preferentially excite dark-photon or deformation-wave channels that leave little in the EM band, and that expansion strategies may exploit Noether-Sea corridors rather than broadcastable artifacts. If so, the paradox weakens as a detection-limited selection effect rather than a strong Bayesian constraint on the abundance of life; the falsifier would be a confirmed technosignature in the standard EM spectrum that cannot be reinterpreted through assembly-mediated channels. Transition relevance is moderate because the issue mainly constrains how detection theory, medium assumptions, and prior expectations should be interpreted during expansion of the framework. Long-term relevance is likely cautionary rather than central, unless technosignature evidence forces the issue back into the core ontology stack.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, the Fermi Paradox is reframed as a signal-and-medium problem: if advanced technologies manipulate or traverse the Noether sea via nested shell swarm engineering, their emissions may not couple to standard electromagnetic channels or may dissipate into super-field-speed regimes that are invisible to our detectors. The architecture implies that high-energy manipulation could preferentially excite dark-photon or deformation-wave channels that leave little in the EM band, and that expansion strategies may exploit Noether sea corridors rather than broadcastable artifacts. If so, the paradox weakens as a detection-limited selection effect rather than a strong Bayesian constraint on the abundance of life; the falsifier would be a confirmed technosignature in the standard EM spectrum that cannot be reinterpreted through assembly-mediated channels. Transition relevance is moderate because the issue mainly constrains how detection theory, medium assumptions, and prior expectations should be interpreted during expansion of the framework. Long-term relevance is likely cautionary rather than central, unless technosignature evidence forces the issue back into the core ontology stack.
 
 **What Would Count As Resolution:** Resolution would require either a confirmed technosignature or a far stronger quantitative account of habitability, emergence, and detectability than we currently possess.
 
@@ -1987,7 +1987,7 @@ $$
 S=\int d^4x\; \left(\frac{1}{2}\partial_\mu\phi\,\partial^\mu\phi
 -\frac{1}{2}m^2\phi^2 - V(\phi)\right).
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi(x)$ is a coarse-grained effective field describing collective wake and assembly behavior in the architrino/Noether-Sea system. Creation/annihilation operators encode observer-level association, dissociation, repartitioning, and normal-mode changes of assemblies, not ontic birth or death of architrinos and not fundamental quanta of a continuous field. For the underlying substance-structure distinction, see [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi(x)$ is a coarse-grained effective field describing collective wake and assembly behavior in the architrino/Noether sea system. Creation/annihilation operators encode observer-level association, dissociation, repartitioning, and normal-mode changes of assemblies, not ontic birth or death of architrinos and not fundamental quanta of a continuous field. For the underlying substance-structure distinction, see [Substance, Structure, and the Plenum of Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md).
 
 **What Still Works:** Quantum Field Theory (QFT) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model. Its precision comparisons with experiment, renormalized perturbation methods, lattice calculations where applicable, effective actions, and operator language are benchmark successes that any replacement must recover in the regimes where practitioners currently use them. That success does not by itself settle the ontology of continuum fields, vacuum structure, or creation and annihilation operators; it fixes a recovery burden.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, field operators, vacuum summaries, particle-number changes, symmetries, and couplings are treated as effective descriptors of assembly association, dissociation, normal-mode changes, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -2011,7 +2011,7 @@ $$
 \Box = -\frac{1}{c^2}\frac{\partial^2}{\partial t^2}+\nabla^2
 $$
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi$ should be treated as a coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response, not as a fundamental continuous substance. The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether Sea; particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. For the detailed bridge, including mode operators, curved-spacetime coupling, source terms, and closure targets, see [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi$ should be treated as a coarse-grained scalar amplitude of Noether sea density, compression, or radial-breathing response, not as a fundamental continuous substance. The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether sea; particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling. For the detailed bridge, including mode operators, curved-spacetime coupling, source terms, and closure targets, see [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md).
 
 **What Still Works:** Relativistic scalar-field equations remain indispensable for spin-0 sectors, scalar perturbations, effective field theory, cosmology, and curved-spacetime comparison work. They provide a compact target for any substrate theory that claims to recover continuum field behavior.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the scalar field, mass parameter, potential $V(\phi)$, and curvature coupling $\xi R\phi^2$ are reclassified as effective descriptors of collective assembly response, medium stiffness, nonlinear relaxation, and emergent-metric feedback.
@@ -2019,8 +2019,8 @@ $$
 **Long-Term Relevance:** Long-term relevance is as a benchmark continuum limit: the mature stack should derive when a scalar collective mode obeys a Klein-Gordon-like equation, when it reduces to an ordinary scalar wave equation, and when delayed path-history effects produce measurable departures.
 
 **Geometric proof targets:**
-- Derive a coarse-grained scalar amplitude $\phi$ from Noether-Sea density, compression, or radial breathing modes.
-- Show when linearization around a homogeneous Noether-Sea background yields a dispersion relation of the form $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$, with $\omega_0$ supplying the Klein-Gordon-like mode gap.
+- Derive a coarse-grained scalar amplitude $\phi$ from Noether sea density, compression, or radial breathing modes.
+- Show when linearization around a homogeneous Noether sea background yields a dispersion relation of the form $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$, with $\omega_0$ supplying the Klein-Gordon-like mode gap.
 - Relate the effective mass parameter $m$ to assembly stiffness, confinement energy, or radial restoring dynamics rather than treating it as primitive.
 - Determine whether effective curvature coupling $\xi R\phi^2$ emerges from medium-density gradients, strain response, or scalar-tensor leakage in emergent metric closure.
 
@@ -2096,7 +2096,7 @@ $$
 \mathrm{SU(2)}_L \times \mathrm{U(1)}_Y \xrightarrow{\langle H\rangle\neq 0}
 \mathrm{U(1)}_{\mathrm{EM}}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform nested shell swarm configuration in the Noether Sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in the Noether Sea, which distinguishes the massless photon channel, described canonically as a coaxial contra-rotating pro/anti planar pair, from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform nested shell swarm configuration in the Noether sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in the Noether sea, which distinguishes the massless photon channel, described canonically as a coaxial contra-rotating pro/anti planar pair, from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
 
 **What Still Works:** Electroweak Theory (EW) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -2143,7 +2143,7 @@ to a dynamical field that relaxes to zero. Axions and axion-like particles are u
 $$
 \mathcal{L} \supset \frac{a}{f_a} G\tilde G.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An axion-like field can be modeled as a long-wavelength phase or handedness-sensitive mode of a particular architrino/Noether swarm sub-sector (a quasi-Goldstone of an approximate assembly symmetry). Whether a strong-CP problem exists at the $\mathbb{A}\mathbb{A}\mathbb{A}$ level depends on how QCD emerges from the underlying assembly symmetries; PQ-like dynamics may be an effective stand-in for deeper alignment mechanisms in the Noether Sea.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An axion-like field can be modeled as a long-wavelength phase or handedness-sensitive mode of a particular architrino/Noether swarm sub-sector (a quasi-Goldstone of an approximate assembly symmetry). Whether a strong-CP problem exists at the $\mathbb{A}\mathbb{A}\mathbb{A}$ level depends on how QCD emerges from the underlying assembly symmetries; PQ-like dynamics may be an effective stand-in for deeper alignment mechanisms in the Noether sea.
 
 **What Still Works:** Axion Theory (Peccei-Quinn) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -2187,7 +2187,7 @@ without a fundamental scalar.
 $$
 \langle \bar\Psi \Psi \rangle \neq 0 \Rightarrow \text{EW breaking}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** This is natural in $\mathbb{A}\mathbb{A}\mathbb{A}$: the Higgs is interpreted as a composite pattern in the Noether Sea, not a fundamental scalar. “New strong sector” corresponds to dense, self-coupled architrino assemblies whose collective behavior generates the effective Higgs condensate and associated symmetry breaking.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** This is natural in $\mathbb{A}\mathbb{A}\mathbb{A}$: the Higgs is interpreted as a composite pattern in the Noether sea, not a fundamental scalar. “New strong sector” corresponds to dense, self-coupled architrino assemblies whose collective behavior generates the effective Higgs condensate and associated symmetry breaking.
 
 **What Still Works:** Technicolor / Composite Higgs remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -2195,7 +2195,7 @@ $$
 **Long-Term Relevance:** Long-term relevance is as an effective field summary that should be derivable from assembly dynamics wherever the continuum approximation remains accurate.
 #### Spacetime / Gravity (Emergent Metric)
 
-These are theories of spacetime structure and gravitational dynamics. In the architrino view, they are emergent descriptions of how the Noether Sea modulates signal speeds, clock rates, and effective geometry.
+These are theories of spacetime structure and gravitational dynamics. In the architrino view, they are emergent descriptions of how the Noether sea modulates signal speeds, clock rates, and effective geometry.
 
 ##### General Relativity (GR)
 
@@ -2212,16 +2212,16 @@ the metric.
 $$
 G_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4} T_{\mu\nu}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $g_{\mu\nu}$ is an effective metric functional of the local state of the Noether Sea: its density, internal oscillation rate, delay factor, and anisotropy. Architrino and nested shell swarm trajectories in Euclidean 3D with absolute time project to geodesics in this emergent metric only after coarse-graining over clock/ruler and signal behavior. $G_{\mu\nu}$ encodes how inhomogeneities in the Noether Sea redirect propagation, while $\Lambda$ represents baseline energy density of the spacetime assemblies.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $g_{\mu\nu}$ is an effective metric functional of the local state of the Noether sea: its density, internal oscillation rate, delay factor, and anisotropy. Architrino and nested shell swarm trajectories in Euclidean 3D with absolute time project to geodesics in this emergent metric only after coarse-graining over clock/ruler and signal behavior. $G_{\mu\nu}$ encodes how inhomogeneities in the Noether sea redirect propagation, while $\Lambda$ represents a baseline energy-density summary of the Noether sea state.
 
 **What Still Works:** General Relativity (GR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 **Geometric proof targets:**
 - Derive an effective metric from assembly density/oscillation fields.
-- Show geodesic motion emerges from straight-line motion in the Noether Sea with variable signal speed.
+- Show geodesic motion emerges from straight-line motion in the Noether sea with variable signal speed.
 
 ---
 ##### Special Relativity (SR)
@@ -2242,16 +2242,16 @@ Equivalent invariant relation (mass shell):
 $$
 E^2 = (pc)^2 + (mc^2)^2.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” are theorem targets for assemblies moving through an approximately homogeneous and isotropic Noether Sea. Proper time corresponds to internal cycle count relative to absolute time, while time dilation and length contraction must be derived from moving-assembly deformation, clock-law retuning, two-way signal synchronization, and bounded preferred-frame leakage. The middle-binary $v=c_f$ regime supplies a candidate signal-scale mechanism, not a completed proof by itself.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Lorentz symmetry and an invariant “speed of light” are theorem targets for assemblies moving through an approximately homogeneous and isotropic Noether sea. Proper time corresponds to internal cycle count relative to absolute time, while time dilation and length contraction must be derived from moving-assembly deformation, clock-law retuning, two-way signal synchronization, and bounded preferred-frame leakage. The middle-binary $v=c_f$ regime supplies a candidate signal-scale mechanism, not a completed proof by itself.
 For the assembly-level closure used in this program, see [Effective Energy-Momentum Closure](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure). For a detailed side-by-side bridge between SR language and the deformable Noether swarm implementation story, see [Special Relativity and Deformable Noether Swarms](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-swarm.md).
 
 **What Still Works:** Special Relativity (SR) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
 **Geometric proof targets:**
-- Derive Lorentz-invariant cones from the middle-binary signal limit plus Noether-Sea delay-factor closure.
+- Recover observer-level Lorentz-consistent causal-cone behavior from moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage.
 - Prove time dilation and length contraction from dual deformation, phase-rate comparisons across assemblies, and bounded preferred-frame leakage.
 
 ---
@@ -2268,10 +2268,10 @@ acts instantaneously through a potential.
 $$
 \mathbf{F} = m\mathbf{a}, \quad F = G\frac{m_1 m_2}{r^2}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Newtonian mechanics is the low-speed, weak-field limit of architrino/assembly dynamics in Euclidean 3D with absolute time. The effective $1/r^2$ gravitational potential arises from long-range patterns in the Noether Sea’s density and its influence on the causal wake geometry; “gravitational force” is an emergent shorthand for small deviations from straight-line motion within the Noether Sea.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Newtonian mechanics is the low-speed, weak-field limit of architrino/assembly dynamics in Euclidean 3D with absolute time. The effective $1/r^2$ gravitational potential arises from long-range patterns in the Noether sea’s density and its influence on the causal wake geometry; “gravitational force” is an emergent shorthand for small deviations from straight-line motion within the Noether sea.
 
 **What Still Works:** Newtonian Mechanics and Gravity remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -2293,10 +2293,10 @@ the force law below a threshold $a_0$.
 $$
 \mu\left(\frac{a}{a_0}\right) a = a_N.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** MOND-like behavior can, in principle, emerge if the Noether Sea exhibits new phases or non-linear response below a characteristic acceleration or curvature scale set by its internal self-hit dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this would be a property of the Noether Sea's constitutive relation (how assembly density responds to stress/curvature), not a modification of fundamental laws in the Euclidean void.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** MOND-like behavior can, in principle, emerge if the Noether sea exhibits new phases or non-linear response below a characteristic acceleration or curvature scale set by its internal self-hit dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this would be a property of the Noether sea's constitutive relation (how assembly density responds to stress/curvature), not a modification of fundamental laws in the Euclidean void.
 
 **What Still Works:** Modified Gravity (MOND / TeVeS) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -2316,10 +2316,10 @@ are compactified; gravity emerges from closed strings.
 $$
 S = -\frac{T}{2}\int d^2\sigma \sqrt{-h} h^{ab}\partial_a X^\mu \partial_b X_\mu.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ does not posit fundamental strings or extra dimensions; these appear, at best, as effective models of certain extended architrino assembly patterns (e.g., long coherent trains or vortex lines in the Noether Sea). String actions then summarize the dynamics of these extended excitations in a particular limit rather than define the underlying substrate.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ does not posit fundamental strings or extra dimensions; these appear, at best, as effective models of certain extended architrino assembly patterns (e.g., long coherent trains or vortex lines in the Noether sea). String actions then summarize the dynamics of these extended excitations in a particular limit rather than define the underlying substrate.
 
 **What Still Works:** String Theory remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -2339,10 +2339,10 @@ is described by spin networks.
 $$
 A \sim 8\pi \gamma \ell_P^2 \sum_i \sqrt{j_i(j_i+1)}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ starts from a continuous Euclidean void and discrete architrinos. Any apparent discreteness of area/volume would be emergent, arising from quantized, stable patterns of nested shell swarm spacetime assemblies and selection rules on their configurations. Spin networks can be viewed as effective graphs summarizing how these assemblies connect and exchange architrinos, not as a fundamental replacement of the Euclidean container.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ starts from a continuous Euclidean void and discrete architrinos. Any apparent discreteness of area/volume would be emergent, arising from quantized, stable patterns of nested shell swarm assemblies in the Noether sea and selection rules on their configurations. Spin networks can be viewed as effective graphs summarizing how these assemblies connect and exchange architrinos, not as a fundamental replacement of the Euclidean container.
 
 **What Still Works:** Loop Quantum Gravity (LQG) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -2362,7 +2362,7 @@ Z_{\mathrm{grav}}[\phi_0] = Z_{\mathrm{CFT}}[\phi_0].
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Within $\mathbb{A}\mathbb{A}\mathbb{A}$, these concepts are treated as high-level clues rather than as final ontology. The project does not start from a fundamental AdS bulk or a literal boundary CFT. Instead, it interprets horizon structure as a constitutive interface between different nested shell swarm regimes. In that setting, cosmic censorship becomes a statement about access to maximal-curvature regimes, holography becomes a statement about compressed interface encoding, and AdS/CFT becomes a suggestive dual-language analogue rather than the primitive architecture itself.
 
-The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entropy results. They are strongest here as comparison mathematics showing how Page-curve recovery can be organized in controlled holographic settings. They should not be imported as horizon ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping target is narrower: determine which boundary-encoding features survive as effective compression laws after the horizon-interface regime is derived from nested shell swarm alignment and Noether-Sea dynamics.
+The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entropy results. They are strongest here as comparison mathematics showing how Page-curve recovery can be organized in controlled holographic settings. They should not be imported as horizon ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping target is narrower: determine which boundary-encoding features survive as effective compression laws after the horizon-interface regime is derived from nested shell swarm alignment and Noether sea dynamics.
 
 | Nested Shell Swarm Region | $f$ | Speed Regime | Black Hole Region | Volume | AdS/CFT Side |
 | :--- | :--: | :---: | :--- | :--- | :--- |
@@ -2377,12 +2377,12 @@ For this reason the preferred local term is **Horizon interface**: surface degre
 - Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
 - Planck-frequency hierarchy (inner 4x, middle 2x, outer 1x),
 - Information flow constrained to the interface sheet,
-- Ready to bifurcate into volumetric Noether swarms as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether-Sea content).
+- Ready to bifurcate into volumetric Noether swarms as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether sea content).
 
 That yields a disciplined shorthand: Horizon interface for the Planck-aligned interface layer, bulk for $v<c_f$ volumetric cores, and AdS-like for the $v>c_f$ self-hit interior, all treated as regimes on one constitutive continuum.
 
 **What Still Works:** Cosmic Censorship / Holographic Principle / AdS-CFT remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether-Sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
 
@@ -2394,7 +2394,7 @@ That yields a disciplined shorthand: Horizon interface for the Planck-aligned in
 ---
 #### Cosmology / Large-Scale Assembly
 
-These theories describe the universe at large scales: expansion history, structure formation, and cosmic origins. In the architrino view, they map to how spacetime assemblies evolve, cool, and transport energy across epochs.
+These theories describe the universe at large scales: expansion history, structure formation, and cosmic origins. In the architrino view, they map to how Noether swarm assemblies in the Noether sea evolve, cool, and transport energy across epochs.
 
 ##### Lambda-CDM (Big Bang Cosmology)
 
@@ -2411,7 +2411,7 @@ $$
 H^2 = \left(\frac{\dot a}{a}\right)^2 = \frac{8\pi G}{3}\rho + \frac{\Lambda}{3}
  - \frac{k}{a^2}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The scale factor $a(t)$ summarizes large-scale evolution of the Noether Sea’s density and energy content. Dark matter corresponds to additional, weakly-coupled architrino assemblies; $\Lambda$ reflects baseline energy of the Noether Sea. Friedmann dynamics are effective equations for averaged assembly densities and their equation of state, not direct statements about the underlying Euclidean container.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The scale factor $a(t)$ summarizes large-scale evolution of the Noether sea’s density and energy content. Dark matter corresponds to additional, weakly-coupled architrino assemblies; $\Lambda$ reflects baseline energy of the Noether sea. Friedmann dynamics are effective equations for averaged assembly densities and their equation of state, not direct statements about the underlying Euclidean container.
 
 **What Still Works:** Lambda-CDM (Big Bang Cosmology) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -2434,7 +2434,7 @@ accelerated expansion; quantum fluctuations seed structure.
 $$
 \ddot a > 0, \quad \epsilon = \frac{M_P^2}{2}\left(\frac{V'}{V}\right)^2 \ll 1.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An inflationary phase can be interpreted as a high-energy regime where inner nested shell swarm components operate in the $v>c_f$ self-hit domain, driving rapid effective expansion/deflation of the spacetime assembly density. The “inflaton” is a coarse-grained scalar describing the average state of this regime; its potential $V$ encodes how nested shell swarm configurations relax toward lower-curvature, more equilibrated states.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An inflationary phase can be interpreted as a high-energy regime where inner nested shell swarm components operate in the $v>c_f$ self-hit domain, driving rapid effective expansion/deflation of the Noether swarm assembly-density record. The “inflaton” is a coarse-grained scalar describing the average state of this regime; its potential $V$ encodes how nested shell swarm configurations relax toward lower-curvature, more equilibrated states.
 
 **What Still Works:** Inflationary Cosmology remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -2456,7 +2456,7 @@ the angular power spectrum.
 $$
 C_\ell = \langle |a_{\ell m}|^2 \rangle.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The acoustic peaks record standing-wave patterns of coupled assembly sectors: photon modes described canonically as coaxial contra-rotating pro/anti planar pairs, plus baryon-like composite assemblies embedded in the Noether Sea. Their spectrum encodes how the Noether Sea and matter assemblies responded collectively to density and pressure perturbations before decoupling.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The acoustic peaks record standing-wave patterns of coupled assembly sectors: photon modes described canonically as coaxial contra-rotating pro/anti planar pairs, plus baryon-like composite assemblies embedded in the Noether sea. Their spectrum encodes how the Noether sea and matter assemblies responded collectively to density and pressure perturbations before decoupling.
 
 **What Still Works:** CMB Acoustic Peaks remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -2479,7 +2479,7 @@ $$
 \frac{dn_i}{dt} = \sum_{j,k} \langle \sigma v \rangle_{jk\to i}\, n_j n_k
  - \sum_{l} \langle \sigma v \rangle_{i l}\, n_i n_l.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** BBN is the period when nested shell swarm-based nucleon assemblies combine into light nuclear assemblies (e.g., deuteron, helium) at rates set by their architrino-level interaction cross sections and the cooling history of the Noether Sea. The standard reaction network remains valid, but each “species” corresponds to a distinct architrino assembly topology.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** BBN is the period when nested shell swarm-based nucleon assemblies combine into light nuclear assemblies (e.g., deuteron, helium) at rates set by their architrino-level interaction cross sections and the cooling history of the Noether sea. The standard reaction network remains valid, but each “species” corresponds to a distinct architrino assembly topology.
 
 **What Still Works:** Big Bang Nucleosynthesis (BBN) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -2501,7 +2501,7 @@ from equilibrium.
 $$
 \Delta B \neq 0,\quad \mathrm{CP}\ \text{violation},\quad \text{out of equilibrium}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Net matter–antimatter asymmetry may reflect subtle asymmetries in the initial architrino polarity distribution, in nested shell swarm formation pathways, or in how self-hit dynamics favor certain assembly channels. Sakharov-like conditions become constraints on allowed assembly-level processes and their CP properties in the high-energy Noether-Sea environment.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Net matter–antimatter asymmetry may reflect subtle asymmetries in the initial architrino polarity distribution, in nested shell swarm formation pathways, or in how self-hit dynamics favor certain assembly channels. Sakharov-like conditions become constraints on allowed assembly-level processes and their CP properties in the high-energy Noether sea environment.
 
 **What Still Works:** Baryogenesis / Leptogenesis remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -2524,7 +2524,7 @@ Interacts gravitationally; weak or no EM coupling.
 $$
 \Omega_{\text{DM}} = \frac{\rho_{\text{DM}}}{\rho_{\text{crit}}}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark matter can be realized as additional stable or metastable architrino assemblies with weak couplings to ordinary nested shell swarm matter (e.g., neutrino-like or more exotic configurations), and/or as dense nested shell swarm spacetime defects (primordial core structures). Their abundance and clustering follow from the assembly-phase history encoded in the early Noether-Sea dynamics.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark matter can be realized as additional stable or metastable architrino assemblies with weak couplings to ordinary nested shell swarm matter (e.g., neutrino-like or more exotic configurations), and/or as dense nested shell swarm spacetime defects (primordial core structures). Their abundance and clustering follow from the assembly-phase history encoded in the early Noether sea dynamics.
 
 **What Still Works:** Dark Matter (Particle Hypotheses) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -2546,7 +2546,7 @@ holes across a range of masses.
 $$
 M_{\mathrm{PBH}} \sim \frac{c^3 t}{G}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** PBH-like objects correspond to regions where nested shell swarm spacetime assemblies reach maximum-curvature, high-density configurations (Planck-core-like defects) rather than true singularities. Their formation is governed by when and where the architrino medium crosses stability thresholds, with $M_{\mathrm{PBH}}$ set by the local assembly density and self-hit regime rather than geometric singularities in a fundamental metric.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** PBH-like objects correspond to regions where nested shell swarm assemblies in the Noether sea reach maximum-curvature, high-density configurations (Planck-core-like defects) rather than true singularities. Their formation is governed by when and where the architrino medium crosses stability thresholds, with $M_{\mathrm{PBH}}$ set by the local assembly density and self-hit regime rather than geometric singularities in a fundamental metric.
 
 **What Still Works:** Primordial Black Holes (PBH as DM) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -2568,7 +2568,7 @@ $$
 w = \frac{p}{\rho}, \quad w=-1.
 $$
 For a cosmological constant, $w=-1$.
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark-energy-like behavior arises from the residual energy density and stress of the Noether Sea itself, or in bridge prose the spacetime medium. Its effective equation of state $w$ reflects how the Noether Sea responds to expansion—whether it behaves like a quasi-constant tension, quintessence-like behavior, or a more complex assembly phase. In this view, quintessence-like dynamics are an effective large-scale Noether-Sea response, described in bridge prose as a spacetime-medium response, not a fundamental scalar ontology.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Dark-energy-like behavior arises from the residual energy density and stress of the Noether sea itself, or in bridge prose the spacetime medium. Its effective equation of state $w$ reflects how the Noether sea responds to expansion—whether it behaves like a quasi-constant tension, quintessence-like behavior, or a more complex assembly phase. In this view, quintessence-like dynamics are an effective large-scale Noether sea response, described in bridge prose as a spacetime-medium response, not a fundamental scalar ontology.
 
 **What Still Works:** Dark Energy (Beyond $\Lambda$) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -2590,7 +2590,7 @@ the observable universe.
 $$
 \rho_{\mathrm{DE}} \sim \frac{3 c^2 M_P^2}{L^2}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** In $\mathbb{A}\mathbb{A}\mathbb{A}$, such a scaling would signal a relationship between large-scale boundary conditions on the Noether Sea (set by an effective horizon scale $L$) and the average energy density stored in its assemblies. Holographic bounds capture how much information/structure architrino assemblies can support within a region, not a separate dark-energy microphysics.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** In $\mathbb{A}\mathbb{A}\mathbb{A}$, such a scaling would signal a relationship between large-scale boundary conditions on the Noether sea (set by an effective horizon scale $L$) and the average energy density stored in its assemblies. Holographic bounds capture how much information/structure architrino assemblies can support within a region, not a separate dark-energy microphysics.
 
 **What Still Works:** Holographic Dark Energy remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -2636,7 +2636,7 @@ a bounce leads to expansion.
 $$
 w \gg 1 \Rightarrow a(t) \propto (-t)^{2/3(1+w)}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Cyclic behavior is possible if the Noether Sea admits global attractor cycles: contraction into dense, high self-hit regimes followed by deflation/relaxation into expansion. The ekpyrotic $w \gg 1$ phase reflects an effective equation of state for dense assembly configurations approaching their maximal-curvature limits before bouncing.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Cyclic behavior is possible if the Noether sea admits global attractor cycles: contraction into dense, high self-hit regimes followed by deflation/relaxation into expansion. The ekpyrotic $w \gg 1$ phase reflects an effective equation of state for dense assembly configurations approaching their maximal-curvature limits before bouncing.
 
 **What Still Works:** Ekpyrotic / Cyclic Cosmology (Steinhardt--Turok) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -2658,7 +2658,7 @@ reverse collapse into expansion.
 $$
 H = 0,\quad \dot H > 0.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally replaces singularities with maximum-curvature nested shell swarm cores. A cosmological bounce would correspond to the point where further contraction of the Noether-Sea assembly network becomes dynamically forbidden (due to self-hit limits or assembly instability), triggering a re-expansion phase; $H=0$, $\dot H>0$ is the effective description of this Noether-Sea-level transition.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally replaces singularities with maximum-curvature nested shell swarm cores. A cosmological bounce would correspond to the point where further contraction of the Noether swarm assembly network becomes dynamically forbidden (due to self-hit limits or assembly instability), triggering a re-expansion phase; $H=0$, $\dot H>0$ is the effective description of this Noether sea-level transition.
 
 **What Still Works:** Bounce Cosmologies (Generic) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -2680,7 +2680,7 @@ matches a new early phase.
 $$
 \tilde g_{\mu\nu} = \Omega^2 g_{\mu\nu}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Conformal matching here is an effective way of gluing together different large-scale phases of the Noether Sea when mass scales (set by nested shell swarm internal dynamics) become negligible. Whether an exact CCC picture arises in $\mathbb{A}\mathbb{A}\mathbb{A}$ depends on long-time evolution of assembly masses and the eventual fate of nested shell swarm structures, but conformal rescaling is not a fundamental ingredient of the underlying architrino substrate.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Conformal matching here is an effective way of gluing together different large-scale phases of the Noether sea when mass scales (set by nested shell swarm internal dynamics) become negligible. Whether an exact CCC picture arises in $\mathbb{A}\mathbb{A}\mathbb{A}$ depends on long-time evolution of assembly masses and the eventual fate of nested shell swarm structures, but conformal rescaling is not a fundamental ingredient of the underlying architrino substrate.
 
 **What Still Works:** Conformal Cyclic Cosmology (Penrose) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -2921,7 +2921,7 @@ fluctuations. Entropy measures accessible microstates.
 $$
 S = k_B \ln \Omega.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Microstates are detailed architrino trajectories and assembly configurations; macrostates describe coarse-grained properties of large collections of assemblies (densities, energies, fluxes). Entropy counts the number of assembly-level configurations compatible with macroscopic constraints, and thermodynamic laws emerge from typical behavior in the Noether-Sea ensemble.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Microstates are detailed architrino trajectories and assembly configurations; macrostates describe coarse-grained properties of large collections of assemblies (densities, energies, fluxes). Entropy counts the number of assembly-level configurations compatible with macroscopic constraints, and thermodynamic laws emerge from typical behavior in the Noether sea ensemble.
 
 **What Still Works:** Statistical Mechanics / Thermodynamics remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the state objects, ensemble quantities, and interpretive claims in this entry are reclassified as inferential or effective descriptions over definite substrate histories and assembly statistics.
@@ -4606,7 +4606,7 @@ General Relativity gets a great deal right operationally: it is part of the inhe
 
 ###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, General Relativity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The relocation separates fixed Euclidean void, Noether-Sea medium response, and effective metric behavior instead of treating spacetime geometry as the primitive substance.
+In the neutral comparative stack, General Relativity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The relocation separates fixed Euclidean void, Noether sea medium response, and effective metric behavior instead of treating spacetime geometry as the primitive substance.
 
 ###### 5. Transition-Period Relevance
 
@@ -4847,7 +4847,7 @@ The clearest limiting tension for Massive Gravity is that its native variables a
 
 ###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive a scale-dependent Noether-Sea response that can mimic finite-range weakening in cosmology while recovering the GR limit in validated local and gravitational-wave regimes. The useful target is therefore a constitutive equation for $G_{\text{eff}}(a,k)$ and its local-recovery factor, not a fundamental graviton mass.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive a scale-dependent Noether sea response that can mimic finite-range weakening in cosmology while recovering the GR limit in validated local and gravitational-wave regimes. The useful target is therefore a constitutive equation for $G_{\text{eff}}(a,k)$ and its local-recovery factor, not a fundamental graviton mass.
 
 ---
 
@@ -5342,7 +5342,7 @@ The clearest limiting tension for Holography / AdS-CFT is that its native variab
 
 ###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the entropy, reconstruction, and unitarity constraints that holographic calculations sharpen while deriving the mechanism from horizon-interface alignment, path-history bookkeeping, Noether-Sea storage, and release-channel selection. The duality is a comparison framework unless those bookkeeping constraints are recovered natively.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the entropy, reconstruction, and unitarity constraints that holographic calculations sharpen while deriving the mechanism from horizon-interface alignment, path-history bookkeeping, Noether sea storage, and release-channel selection. The duality is a comparison framework unless those bookkeeping constraints are recovered natively.
 
 ---
 
@@ -5772,7 +5772,7 @@ The clearest limiting tension for Steady State Cosmology is that its explanatory
 
 ###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(t)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether-Sea histories, never as matter produced by the Euclidean void.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(t)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether sea histories, never as matter produced by the Euclidean void.
 
 ---
 
@@ -5952,7 +5952,7 @@ The clearest limiting tension for Conformal Cyclic Cosmology is that its native 
 
 ###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. The concrete reduction target is a single Noether-Sea history that reproduces CMB smoothness, TT/TE/EE, blackbody behavior, scalar/tensor bounds, late-time acceleration, and redshift handoff without importing conformal eons as ontology.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. The concrete reduction target is a single Noether sea history that reproduces CMB smoothness, TT/TE/EE, blackbody behavior, scalar/tensor bounds, late-time acceleration, and redshift handoff without importing conformal eons as ontology.
 
 ---
 
@@ -7766,7 +7766,7 @@ Spacetime Curvature gets something durable right: it captures a stable regularit
 
 ###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Spacetime Curvature sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The Euclidean void keeps fixed metric identity; curvature language survives as an observer-level reconstruction of Noether-Sea and assembly behavior.
+In the neutral comparative stack, Spacetime Curvature sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The Euclidean void keeps fixed metric identity; curvature language survives as an observer-level reconstruction of Noether sea and assembly behavior.
 
 ###### 5. Transition-Period Relevance
 
@@ -7811,7 +7811,7 @@ Vacuum Energy gets something durable right: it captures a stable regularity that
 
 ###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Vacuum Energy sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Medium and Constitutive Regimes**. The relation type is **Mislocated Ontology; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. Energy should be assigned to architrinos, wakes as interaction history, assemblies, and Noether-Sea state, not to the Euclidean void as a substance.
+In the neutral comparative stack, Vacuum Energy sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Medium and Constitutive Regimes**. The relation type is **Mislocated Ontology; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. Energy should be assigned to architrinos, wakes as interaction history, assemblies, and Noether sea state, not to the Euclidean void as a substance.
 
 ###### 5. Transition-Period Relevance
 
@@ -8417,9 +8417,9 @@ Entanglement-like behavior must separate newly established causal coupling from 
 
 Wavefunction collapse is formalized as a deterministic, non-linear relaxation process rather than a probabilistic axiom.
 
-The measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether Sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the nested shell swarm assembly undergoes attractor relaxation, deterministically entering a completed record basin. The effective eigenstate label is licensed only after the apparatus kernel maps that basin to a stable record channel.
+The measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the nested shell swarm assembly undergoes attractor relaxation, deterministically entering a completed record basin. The effective eigenstate label is licensed only after the apparatus kernel maps that basin to a stable record channel.
 
-Decoherence is the continuous loss of path-history coherence due to unresolved fluctuations in the local Noether-Sea state. It is an artifact of treating the observer-level vacuum as empty or structureless rather than as the effective quiet limit of a dense medium whose assemblies are still dynamically active.
+Decoherence is the continuous loss of path-history coherence due to unresolved fluctuations in the local Noether sea state. It is an artifact of treating the observer-level vacuum as empty or structureless rather than as the effective quiet limit of a dense medium whose assemblies are still dynamically active.
 
 ##### Falsifiability and Observables
 
@@ -8430,9 +8430,9 @@ Decoherence is the continuous loss of path-history coherence due to unresolved f
 * **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the legacy physical density variable $\rho_{\text{NS}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ##### Statistical Measure and the Born Rule Emergence
-While the trajectory of a single nested shell swarm under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether Sea.
+While the trajectory of a single nested shell swarm under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether sea.
 
-* **Local Finite-Time Invariant Measure Target:** For a fixed preparation class, apparatus calibration, local Noether-Sea band, and record window $T$, the closure target is a local measure $\mu_{*,T}$ on the relevant record-window section $\Gamma_{\text{eff}}^{(T)}$, not a global measure over every physically possible state. If $\Phi_T$ is the finite-time apparatus-target flow, the required recovery is approximate invariance on that retained window:
+* **Local Finite-Time Invariant Measure Target:** For a fixed preparation class, apparatus calibration, local Noether sea band, and record window $T$, the closure target is a local measure $\mu_{*,T}$ on the relevant record-window section $\Gamma_{\text{eff}}^{(T)}$, not a global measure over every physically possible state. If $\Phi_T$ is the finite-time apparatus-target flow, the required recovery is approximate invariance on that retained window:
 $$
 d_{\mathrm{TV}}\!\left((\Phi_T)_*\mu_{*,T},\,\mu_{*,T}\right)\le\varepsilon_\mu,
 \qquad
@@ -8478,11 +8478,11 @@ $$
 This is the native $\mathbb{A}\mathbb{A}\mathbb{A}$ version of the scientific-inference burden: once a record channel is declared, the derived $P_k(T)$ must be usable for confirmation and falsification in the same way the Born weights are used in laboratory quantum mechanics, without importing agent-centered rationality assumptions as substrate physics.
 
 ##### Kinetic Limits and Decoherence
-The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether Sea, or in bridge prose the spacetime medium.
+The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether sea, or in bridge prose the spacetime medium.
 
-* **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether Sea, the nested shell swarm orientation evolves according to an effective Fokker-Planck equation.
+* **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether sea, the nested shell swarm orientation evolves according to an effective Fokker-Planck equation.
 * **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor.
-* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether-Sea state and the spatial density variables $\rho_{\text{NS}}(\mathbf{x},t)$ or $n(\mathbf{x},t)$. It is not an intrinsic property of the nested shell swarm, but a measure of the local Noether-Sea entropy production rate during the operation.
+* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether sea state and the spatial density variables $\rho_{\text{NS}}(\mathbf{x},t)$ or $n(\mathbf{x},t)$. It is not an intrinsic property of the nested shell swarm, but a measure of the local Noether sea entropy production rate during the operation.
 
 ##### Statistical Falsifiability and Observables
 * **Finite-Time Born Rule Deviations:** If the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires the local invariant-measure approximation to settle over the apparatus record window, ultra-fast sequential measurements approaching the local path-history delay timescale $d/c_f$ become the natural place to search for deviations from standard $|\psi|^2$ statistics.
@@ -8623,14 +8623,14 @@ This is the single-ontology guidance picture behind the pilot-wave comparison: t
 
 The structural correspondence between the dBB pilot wave and the $\mathbb{A}\mathbb{A}\mathbb{A}$ causal wake is systematic:
 
-**Phase gradient → velocity field.** In dBB, $\dot{\mathbf{q}}_k = \nabla_k S / m_k$: the particle velocity is set by the phase gradient of $\psi$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration of an architrino is set by the vector sum of line-of-action forces from intersecting wake surfaces, with magnitudes weighted by the causal Jacobians of the active branches. For a coarse-grained assembly moving slowly through a quasi-homogeneous Noether Sea, the net wake gradient produces an effective velocity field for the assembly's center of mass that can be identified with $\nabla S / m$ in the appropriate continuum limit.
+**Phase gradient → velocity field.** In dBB, $\dot{\mathbf{q}}_k = \nabla_k S / m_k$: the particle velocity is set by the phase gradient of $\psi$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration of an architrino is set by the vector sum of line-of-action forces from intersecting wake surfaces, with magnitudes weighted by the causal Jacobians of the active branches. For a coarse-grained assembly moving slowly through a quasi-homogeneous Noether sea, the net wake gradient produces an effective velocity field for the assembly's center of mass that can be identified with $\nabla S / m$ in the appropriate continuum limit.
 
 **Amplitude → density and basin structure.** In dBB, $R^2 = |\psi|^2$ gives the probability density (in equilibrium). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the local intensity of the superposed wake determines the density of stable attractor basins and the fractional phase-space volume leading to each basin. Regions of high wake amplitude correspond to regions where assemblies are more likely to be found, not because they are "spread out" but because the deterministic dynamics funnel trajectories toward those regions.
 
 **Quantum potential → self-hit and medium feedback.** The dBB quantum potential $Q$ depends on the global shape of $R$ and produces nonlocal, context-dependent forces absent in classical mechanics. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the analogous role is played jointly by:
 
 - **Self-hit dynamics**: an architrino's interaction with its own past emissions, producing non-Markovian forces that depend on path history and trajectory curvature.
-- **Noether-Sea feedback**: the local Noether Sea responds to and modulates the propagation of causal wakes, introducing effective potential gradients that depend on the global density and stress of the Noether Sea.
+- **Noether sea feedback**: the local Noether sea responds to and modulates the propagation of causal wakes, introducing effective potential gradients that depend on the global density and stress of the Noether sea.
 
 Together, these are the candidate trajectory-shaping resources that could recover the qualitative role of $Q$: context dependence, path-history dependence, and forces irreducible to classical pairwise potentials.
 
@@ -8659,7 +8659,7 @@ In dBB, interference arises because the pilot wave $\psi$ passes through all ava
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the comparison is structurally suggestive, but the mechanism must be derived from causal-wake dynamics rather than borrowed from dBB:
 
-- A translating Noether swarm assembly emits causal wake surfaces continuously. When the assembly approaches a double slit, its wake, propagating at $c_f$ through the Noether Sea, passes through both openings.
+- A translating Noether swarm assembly emits causal wake surfaces continuously. When the assembly approaches a double slit, its wake, propagating at $c_f$ through the Noether sea, passes through both openings.
 - Behind the barrier, the wake contributions from the two slits superpose linearly (the Master Equation is linear in sources). The resulting potential landscape has a modulated spatial structure: regions of constructive reinforcement alternate with regions of cancellation.
 - The assembly, guided by the total wake gradient at its location, is steered toward high-intensity regions. Over many identically prepared trials, the closure target is to recover the standard interference pattern.
 
@@ -8669,12 +8669,12 @@ The candidate comparison is that the assembly passes through one slit while the 
 
 In dBB, a particle can traverse a classically forbidden barrier because the pilot wave penetrates the barrier (with exponentially decaying amplitude), and the guidance equation can steer particles through the evanescent tail.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding mechanism involves the Noether Sea and the assembly's interaction with the Noether Sea:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding mechanism involves the Noether sea and the assembly's interaction with the Noether sea:
 
 - The "barrier" is a region of high effective potential created by surrounding assemblies or medium configurations.
-- The assembly's causal wake extends into and through the barrier region, attenuated by the Noether-Sea response (analogous to evanescent coupling).
+- The assembly's causal wake extends into and through the barrier region, attenuated by the Noether sea response (analogous to evanescent coupling).
 - If the wake gradient at the assembly's location points into the barrier and the assembly's internal configuration (binary phases, wake history) places it near a basin boundary, the assembly can be driven across the barrier by the residual wake gradient.
-- The tunneling probability depends on the barrier geometry, the local Noether-Sea density, and the assembly's internal phase—all computable from the Master Equation in principle.
+- The tunneling probability depends on the barrier geometry, the local Noether sea density, and the assembly's internal phase—all computable from the Master Equation in principle.
 
 Weak-measurement trajectory reconstructions sharpen this comparison without settling the ontology. If a post-selected weak probe recovers an averaged path, flux, dwell time, or traversal-time response that agrees with a de Broglie--Bohm trajectory calculation, the retained content is the calibrated conditional ensemble observable. That result is useful comparison pressure on the causal-wake proof route, but it is not by itself evidence for a separate pilot wave, a completed intermediate record, or a literal Bohmian trajectory ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is to derive the same averaged response from below-threshold apparatus coupling, path-history data, and the record-forming basin selected at the end of the trial.
 
@@ -8682,7 +8682,7 @@ Weak-measurement trajectory reconstructions sharpen this comparison without sett
 
 In dBB, energy quantization follows from the requirement that $\psi$ be single-valued and normalizable, which selects discrete eigenvalues.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but equally rigorous mechanism: **phase-locking of the self-consistent response loop**. An assembly in a confining potential (e.g., an electron nested shell swarm bound to an atomic nucleus) must satisfy a closure condition: the wake it generates, after propagating through the surrounding Noether Sea and reflecting off the confining potential, must return to the assembly with the correct phase to sustain its current orbital frequency. Only a discrete set of orbital configurations satisfies this condition—the resonance bands indexed by integer $f$ (see [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)). Transitions between bands occur when the action transfer per cycle crosses the $h$-scale threshold.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but equally rigorous mechanism: **phase-locking of the self-consistent response loop**. An assembly in a confining potential (e.g., an electron nested shell swarm bound to an atomic nucleus) must satisfy a closure condition: the wake it generates, after propagating through the surrounding Noether sea and reflecting off the confining potential, must return to the assembly with the correct phase to sustain its current orbital frequency. Only a discrete set of orbital configurations satisfies this condition—the resonance bands indexed by integer $f$ (see [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)). Transitions between bands occur when the action transfer per cycle crosses the $h$-scale threshold.
 
 This is the wake-based analog of the Bohr-Sommerfeld quantization condition, derived from the self-consistency of the causal response loop rather than imposed as a boundary condition on an abstract wave.
 
@@ -8876,8 +8876,8 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizati
 |:---|:---|
 | **Pilot wave $\psi$ on $\mathbb{R}^{3N}$** | Superposed causal wake in physical $\mathbb{R}^3$, generated by all architrinos and experienced by each at its location. No separate ontological entity; wake is produced by and acts on the same architrinos. |
 | **Guidance equation** $\dot{\mathbf{q}}_k = (\hbar/m_k)\operatorname{Im}(\nabla_k\psi/\psi)$ | Master Equation: acceleration is the vector sum of all Jacobian-weighted inverse-square causal wake-surface intersections. In the coarse-grained, slow-assembly limit, the net wake gradient produces an effective velocity field identifiable with $\nabla S/m$. |
-| **Quantum potential** $Q = -(\hbar^2/2m)(\nabla^2 R/R)$ | Jointly: self-hit non-Markovian feedback (path-history-dependent forces from own past emissions) plus Noether-Sea response (context-dependent effective potential from the surrounding Noether Sea). |
-| **Quantum equilibrium** $\rho = |\psi|^2$ | Emergent statistical distribution over attractor basin volumes, mapped from unresolved Noether-Sea boundary and path-history structure. The Born rule is a **target derivation**, not an axiom; it belongs to the statistics gate below. |
+| **Quantum potential** $Q = -(\hbar^2/2m)(\nabla^2 R/R)$ | Jointly: self-hit non-Markovian feedback (path-history-dependent forces from own past emissions) plus Noether sea response (context-dependent effective potential from the surrounding Noether sea). |
+| **Quantum equilibrium** $\rho = |\psi|^2$ | Emergent statistical distribution over attractor basin volumes, mapped from unresolved Noether sea boundary and path-history structure. The Born rule is a **target derivation**, not an axiom; it belongs to the statistics gate below. |
 | **Configuration-space nonlocality** | Non-separable hidden-variable geometry from shared creation events (see [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)). Correlations are carried in the joint internal configuration, not mediated by a field on $\mathbb{R}^{3N}$. |
 | **Wave passes through both slits** | Candidate causal-wake comparison: the wake remains sensitive to both slits while the assembly follows one path. Guidance through the modulated wake landscape must recover the interference pattern. |
 | **Markovian guidance** (given $\psi$) | Non-Markovian guidance: acceleration depends on full past worldline via causal sets $\mathcal{C}_{ij}(t)$ and self-hit history. Richer dynamics; hysteresis and discrete mode-locking absent in standard dBB. |
@@ -8899,7 +8899,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizati
 
 ###### Open Costs and Challenges
 
-**Born rule derivation.** dBB achieves Born-rule statistics by assuming quantum equilibrium ($\rho = |\psi|^2$) and proving equivariance. $\mathbb{A}\mathbb{A}\mathbb{A}$ must derive the Born rule from the Master Equation dynamics and the statistical properties of the Noether Sea. This is the statistics gate in the closure chain below.
+**Born rule derivation.** dBB achieves Born-rule statistics by assuming quantum equilibrium ($\rho = |\psi|^2$) and proving equivariance. $\mathbb{A}\mathbb{A}\mathbb{A}$ must derive the Born rule from the Master Equation dynamics and the statistical properties of the Noether sea. This is the statistics gate in the closure chain below.
 
 **Effective $\psi$ recovery.** The claim that the coarse-grained wake reproduces $\psi$ in the continuum limit requires explicit construction: define the coarse-graining scale, derive the effective wave equation, and show that it reduces to the Schrödinger equation in the non-relativistic, weak-field limit. This derivation is incomplete.
 
@@ -8918,19 +8918,19 @@ The comparison warning is that a preferred foliation is not disqualifying by its
 **Assumptions:**
 - Architrinos are the sole fundamental entities; no separate pilot wave is postulated.
 - The superposed wake at each location is the linear sum of all intersecting causal wake surfaces.
-- Self-hit and Noether-Sea feedback jointly play the role of the quantum potential.
+- Self-hit and Noether sea feedback jointly play the role of the quantum potential.
 - Quantization arises from phase-locking of the causal response loop.
 - The Born rule is emergent from attractor basin statistics (to be derived).
 
 **Closure targets and candidate predictions:**
 - Recover standard quantum interference, diffraction, and tunneling phenomena after deriving the effective wave equation.
 - Match observed energy spectra, including the Rydberg constant and hydrogen fine structure, when the phase-locking conditions are solved for atomic-scale assemblies.
-- Derive decoherence timescales with environmental dependence through local Noether-Sea density, a sensitivity absent in bare dBB and potentially testable in precision interferometry.
-- Predict controlled deviations from standard Schrödinger evolution in extreme regimes, such as near Planck-core objects or high Noether-Sea density gradients, after the Noether-Sea nonlinearity and self-hit threshold terms are quantified.
+- Derive decoherence timescales with environmental dependence through local Noether sea density, a sensitivity absent in bare dBB and potentially testable in precision interferometry.
+- Predict controlled deviations from standard Schrödinger evolution in extreme regimes, such as near Planck-core objects or high Noether sea density gradients, after the Noether sea nonlinearity and self-hit threshold terms are quantified.
 
 **Failure Modes:**
 - If the coarse-grained wake does not reduce to the Schrödinger equation in the non-relativistic, weak-field limit, the framework fails to reproduce standard quantum mechanics at the effective level.
-- If the Born rule cannot be derived from the Master Equation dynamics and Noether-Sea statistics—even after accounting for chaotic mixing and attractor basin geometry—the statistical foundations are incomplete and the theory lacks predictive power for individual experiments.
+- If the Born rule cannot be derived from the Master Equation dynamics and Noether sea statistics—even after accounting for chaotic mixing and attractor basin geometry—the statistical foundations are incomplete and the theory lacks predictive power for individual experiments.
 - If the phase-locking quantization condition yields energy levels that deviate from observed atomic spectra by more than the theory's estimated systematic uncertainty, the specific self-consistent loop mechanism is falsified.
 - If emergent Lorentz invariance fails at tested precision ($> 10^{-17}$ anisotropy in assembly dynamics), the substrate ontology is experimentally excluded regardless of the guidance structure.
 
@@ -8988,9 +8988,9 @@ Linear causal-wake addition is one substrate ingredient for quantum superpositio
 
 This statement is substrate-level and should not be confused with the effective claim that a quantum state has formed a superposition in some Hilbert basis. Basis-dependent superposition language is admissible only after a preparation, apparatus kernel, retained coarse-graining, and record window have been declared. A change of Hilbert representation may move the apparent state-vector branch structure without changing the underlying assembly, causal-wake, or record-channel content.
 
-When a Noether swarm assembly is described as being in a "superposition," it is physically occupying a metastable region of its configuration space—typically a boundary zone near a separatrix between resonance bands, or hovering near the symmetry-breaking velocity threshold ($v = c_f$). The assembly is continuously driven by the high-dimensional, deterministic flux of the local Noether Sea.
+When a Noether swarm assembly is described as being in a "superposition," it is physically occupying a metastable region of its configuration space—typically a boundary zone near a separatrix between resonance bands, or hovering near the symmetry-breaking velocity threshold ($v = c_f$). The assembly is continuously driven by the high-dimensional, deterministic flux of the local Noether sea.
 
-Because a Physical Observer lacks access to the complete microstate and the exact path-history phases of the surrounding causal-wake and Noether-Sea environment, the system exhibits informational ambiguity. The assembly's exact trajectory is definite, but its eventual resolution into a stable basin is operationally unpredictable. The quantum state $|\psi\rangle$ is therefore a coarse-grained statistical envelope tracking this deterministic uncertainty.
+Because a Physical Observer lacks access to the complete microstate and the exact path-history phases of the surrounding causal-wake and Noether sea environment, the system exhibits informational ambiguity. The assembly's exact trajectory is definite, but its eventual resolution into a stable basin is operationally unpredictable. The quantum state $|\psi\rangle$ is therefore a coarse-grained statistical envelope tracking this deterministic uncertainty.
 
 ###### The Phenomenological Mapping
 
@@ -9000,15 +9000,15 @@ The correspondence between the quantum formalism and architrino micro-dynamics i
 *   **Basis States ($|n\rangle$)**: Distinct, dynamically stable attractor basins of the Noether swarm assembly. For example, these correspond to integer-indexed resonance bands or specific locked-phase geometries of the outer binary.
 *   **Linear Combination**: The direct physical consequence of the superposition of expanding causal wake surfaces. Distinct sources contribute additive radial accelerations without mutual interference.
 *   **Probability Amplitudes ($c_n$)**: A measure of the geometric basin of attraction (the fractional phase-space volume) leading to outcome $n$, mapped over the operational uncertainty bracket of the system's microstate.
-*   **Wavefunction Collapse**: The deterministic crossing of a phase-space separatrix triggered by an interaction (measurement). The measurement apparatus (itself an assembly) injects a targeted potential gradient that breaks the metastability, forcing the assembly into one specific attractor and leaving a permanent macroscopic record in the surrounding Noether Sea.
-*   **Decoherence**: The rapid, irreversible entanglement of the assembly's phase with the unmeasured degrees of freedom in the Noether Sea, effectively locking the system into its new basin and eliminating the metastable phase relationships.
+*   **Wavefunction Collapse**: The deterministic crossing of a phase-space separatrix triggered by an interaction (measurement). The measurement apparatus (itself an assembly) injects a targeted potential gradient that breaks the metastability, forcing the assembly into one specific attractor and leaving a permanent macroscopic record in the surrounding Noether sea.
+*   **Decoherence**: The rapid, irreversible entanglement of the assembly's phase with the unmeasured degrees of freedom in the Noether sea, effectively locking the system into its new basin and eliminating the metastable phase relationships.
 
 ###### Observables and Falsifiability
 
 Treating superposition as a dynamically maintained metastability rather than a fundamental ontological blur imposes strict, testable constraints on the system.
 
 *   **Claim**: Superposition represents a metastable dynamical state subject to local causal wake interactions, and "collapse" is a continuous, finite-time threshold crossing.
-*   **Prediction**: The state transition (collapse) time is finite and bounded by the local field speed $c_f$, the physical extent of the interacting assemblies, and the local density of the Noether Sea.
+*   **Prediction**: The state transition (collapse) time is finite and bounded by the local field speed $c_f$, the physical extent of the interacting assemblies, and the local density of the Noether sea.
 *   **Failure Mode**: Observation of strictly instantaneous state updates across space-like separated macroscopic distances—without mediation by previously correlated local hidden variables in the shared path history—falsifies the mechanism.
 *   **Closure Boundary**: This chapter supplies the separatrix and finite-threshold interface. Born weights require the basin-measure and transfer-operator closure developed in the quantum ontology chapters.
 
@@ -9059,7 +9059,7 @@ Traditional interpretations typically resolve this by either treating the wavefu
 
 ###### Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) Mechanism
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework rejects the projection postulate as a fundamental physical process. Instead, the universe evolves continuously in absolute time within a Euclidean void, governed strictly by the deterministic Master Equation. There is no ontological distinction between a "measured system" and a "measurement apparatus"—both are interacting Noether swarm assemblies immersed in the Noether Sea.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework rejects the projection postulate as a fundamental physical process. Instead, the universe evolves continuously in absolute time within a Euclidean void, governed strictly by the deterministic Master Equation. There is no ontological distinction between a "measured system" and a "measurement apparatus"—both are interacting Noether swarm assemblies immersed in the Noether sea.
 
 What standard quantum mechanics describes as "wavefunction collapse" maps directly to **threshold resolution** in a multistable dynamical system.
 
@@ -9075,14 +9075,14 @@ The correspondence between the quantum mechanical measurement formalism and arch
 *   **The Apparatus**: A massive complex of Noether swarm assemblies that injects a structured potential perturbation (action) sufficient to overwhelm the target's metastability.
 *   **The Measurement Interaction**: The deterministic exchange of causal wake surfaces between the apparatus and the target assembly.
 *   **Wavefunction Collapse**: The continuous, finite-time physical transit of the target assembly across a phase-space separatrix, settling into a new stable attractor.
-*   **Irreversibility / Record Creation**: The excess energy and phase information from the transition are dissipated into the surrounding Noether Sea and the macroscopic apparatus. This thermalization makes the transition operationally irreversible, cementing the macroscopic record.
-*   **The Born Rule ($P_k = |c_k|^2$)**: The emergent statistical distribution reflecting the relative fractional volumes of the competing attractor basins in the target's phase space, mapped over unresolved Noether-Sea boundary data and path-history structure.
+*   **Irreversibility / Record Creation**: The excess energy and phase information from the transition are dissipated into the surrounding Noether sea and the macroscopic apparatus. This thermalization makes the transition operationally irreversible, cementing the macroscopic record.
+*   **The Born Rule ($P_k = |c_k|^2$)**: The emergent statistical distribution reflecting the relative fractional volumes of the competing attractor basins in the target's phase space, mapped over unresolved Noether sea boundary data and path-history structure.
 
 ###### Overcoming the Heisenberg Cut
 
 Because both the target and the detector are governed by the same underlying Master Equation, the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework eliminates the Heisenberg cut. A "measurement" requires no conscious observer; it is merely an interaction involving sufficient action transfer (on the scale of $h$) and sufficient environmental dissipation to lock an assembly into a new limit cycle and prevent coherent revival.
 
-The threshold for a "record" is determined entirely by the stiffness of the local Noether Sea and the decoherence timescale of the surrounding assembly network.
+The threshold for a "record" is determined entirely by the stiffness of the local Noether sea and the decoherence timescale of the surrounding assembly network.
 
 ###### External Massive-Superposition Benchmark
 
@@ -9160,7 +9160,7 @@ Despite the correlations, entanglement cannot transmit information faster than l
 
 This note concerns ordinary pair-provenance entanglement: two assemblies are formed, filtered, or jointly selected by a shared event, and their later records remain correlated because the daughter ledgers inherit a common causal past. That is not the same claim as a literal connected geometry between every entangled pair.
 
-The useful black-hole signal is narrower. The thermofield-double construction for two black-hole exteriors gives a convincing case where entanglement is accompanied by an effective connected geometry. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that belongs to the strong-field black-hole regime and the horizon-interface layer, where effective geometry summarizes extreme Noether-Sea alignment and compression. It should not be exported to arbitrary Bell pairs as a settled ER=EPR theorem. For ordinary pairs, connected-geometry language is at most an aspirational closure target unless a separate derivation shows how the pair-provenance ledger induces that effective geometry.
+The useful black-hole signal is narrower. The thermofield-double construction for two black-hole exteriors gives a convincing case where entanglement is accompanied by an effective connected geometry. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that belongs to the strong-field black-hole regime and the horizon-interface layer, where effective geometry summarizes extreme Noether sea alignment and compression. It should not be exported to arbitrary Bell pairs as a settled ER=EPR theorem. For ordinary pairs, connected-geometry language is at most an aspirational closure target unless a separate derivation shows how the pair-provenance ledger induces that effective geometry.
 
 The distinction is important because the black-hole case uses a very special entangled state and a very special strong-field geometry. The safe statement is that some controlled black-hole states make entanglement and connected effective geometry two descriptions of the same coarse-grained structure. The unsafe statement is that every entangled pair carries the same connected-geometry interpretation. Ordinary Bell-pair closure should therefore stay with pair provenance, local apparatus response, and no-signaling statistics until a separate strong-field or continuum-limit derivation earns geometric language.
 
@@ -9204,7 +9204,7 @@ The crucial point is that the architrino trajectories, wake phases, and internal
 
 ###### Correlation Maintenance: Path-History Memory
 
-After separation, the two assemblies propagate through the Noether Sea, each following its own lawful trajectory. No causal wake from $A$ can influence $B$ (or vice versa) faster than $c_f$. Once the assemblies are separated by a distance $d > c_f \Delta t$, they evolve **causally independently** in the sense that no new information passes between them.
+After separation, the two assemblies propagate through the Noether sea, each following its own lawful trajectory. No causal wake from $A$ can influence $B$ (or vice versa) faster than $c_f$. Once the assemblies are separated by a distance $d > c_f \Delta t$, they evolve **causally independently** in the sense that no new information passes between them.
 
 The correlations established at $t_0$ are carried forward in the **internal configuration** of each assembly: the relative phases of its constituent binaries, the orientation of its nested shell swarm, and the detailed structure of its wake history. These internal degrees of freedom are the **hidden variables** of the system. They are:
 
@@ -9218,7 +9218,7 @@ When a measurement apparatus (itself an assembly of architrinos) interacts with 
 
 1. The internal microstate of $A$ (including binary phases, wake history),
 2. The internal microstate of the apparatus,
-3. The local Noether-Sea configuration.
+3. The local Noether sea configuration.
 
 The outcome is **deterministic** given complete microstate knowledge, but **operationally unpredictable** to the Physical Observer, who lacks access to the relevant hidden variables.
 
@@ -9266,7 +9266,7 @@ K_{ab}^{AB}\ge0,
 \sum_{a,b=\pm1}K_{ab}^{AB}=1.
 $$
 
-If $\Pi_{AB}^{\mathrm{sing}}$ is the singlet-like pair-provenance record, $P_{\mathrm{src}}^{\mathrm{sing}}$ is the source record, and $\zeta_A,\zeta_B$ collect unresolved local apparatus and Noether-Sea microstates, the observer-level joint response target is
+If $\Pi_{AB}^{\mathrm{sing}}$ is the singlet-like pair-provenance record, $P_{\mathrm{src}}^{\mathrm{sing}}$ is the source record, and $\zeta_A,\zeta_B$ collect unresolved local apparatus and Noether sea microstates, the observer-level joint response target is
 
 $$
 P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
@@ -9422,7 +9422,7 @@ and an admissible model must make this marginal independent of $\hat{\mathbf m}_
 
 1. The source-provenance distribution is set at the source event and does not depend on the distant setting $\hat{\mathbf m}_B$,
 2. No causal wake from the $B$-measurement apparatus reaches $A$ before $A$'s measurement (assuming spacelike separation in the emergent metric),
-3. The local dynamics at $A$ are fully determined by $A$'s microstate plus the local Noether Sea—no input from the distant setting.
+3. The local dynamics at $A$ are fully determined by $A$'s microstate plus the local Noether sea—no input from the distant setting.
 
 The correlations become visible only when outcomes from both sides are **compared** (via a classical, sub-$c_f$ communication channel). This is precisely the no-signaling structure observed experimentally.
 
@@ -9472,7 +9472,7 @@ The Bell-correlation recovery is admissible only with $\Delta_{\mathrm{screen}}\
 | **Bell inequality violation** ($\lvert S\rvert = 2\sqrt{2}$) | Closure target: the pair-provenance ledger plus both local apparatus-response maps must reproduce the observed Bell correlations while failing Bell locality because $\lambda$ is non-separable; the violation may not be asserted from shared provenance alone. |
 | **No-signaling** | Marginal statistics at each detector are independent of the distant setting; correlations are visible only upon classical comparison of results. |
 | **Black-hole thermofield-double connected geometry** | Special strong-field/horizon-interface effective geometry, not the default ontology of ordinary Bell-pair entanglement. The black-hole case motivates the comparison but does not settle ER=EPR for arbitrary entanglement. |
-| **Decoherence of entanglement** | Progressive loss of phase correlation between the two assemblies as each interacts with its local Noether-Sea environment, randomizing the internal wake phases that carry the correlated information. |
+| **Decoherence of entanglement** | Progressive loss of phase correlation between the two assemblies as each interacts with its local Noether sea environment, randomizing the internal wake phases that carry the correlated information. |
 | **Entanglement monogamy** | Conservation constraints at the source event distribute correlated hidden variables among a finite number of daughter assemblies; sharing a tight correlation with one partner limits the available phase-space for correlation with a third. |
 
 ---
@@ -9524,7 +9524,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 - Measurement-independence guardrail: report $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ for any pair-provenance simulation or analytic Bell packet, and do not count a correlation fit as successful if it requires setting-dependent hidden-variable preparation.
 - Residual reporting: report $\Delta_{\mathrm{NS}}^{A}$, $\Delta_{\mathrm{NS}}^{B}$, and $\Delta_{\mathrm{Bell}}$ alongside any claimed Bell-pair recovery.
 - Photon-polarization gate: for entangled photon tests, Gate B must recover the transverse analyzer statistics and no-signaling behavior before the note may claim operational equivalence with quantum mechanics.
-- Decoherence timescales for entangled assemblies are expected to scale with the local Noether-Sea density and temperature, but the quantitative law remains a validation target.
+- Decoherence timescales for entangled assemblies are expected to scale with the local Noether sea density and temperature, but the quantitative law remains a validation target.
 - No signaling: no protocol exploiting entanglement can transmit information faster than $c_f$, even in principle.
 
 **Failure Modes:**
@@ -9983,7 +9983,7 @@ $$
 
 Here $\Pi_{AB}^{\mathrm{sing}}$ is the daughter-pair provenance record and $C_{\mathrm{pair}*}^{\mathrm{sing}}$ is the singlet-pair construction or conditioning map. Later detector settings are excluded fields of $P_{\mathrm{src}}^{\mathrm{sing}}$; if they enter this source record, the model has moved into measurement-independence failure rather than Bell closure.
 
-**Measurement geometry.** When detector $A$ measures along axis $\hat{\mathbf m}_A$, the apparatus does not read a tiny arrow. It drives the local assembly through a finite-time coupling process whose outcome depends on the full spin ledger: ordered binary-plane geometry, phase, active causal wakes, local Noether-Sea state, and the apparatus potential. The Stern-Gerlach-like scaffold in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) formulates this as apparatus potential-gradient coupling, basin-boundary crossing, angular-momentum exchange, and wake / Noether-Sea recoil. A correct theory must derive how that coupling produces the two observed outcomes called spin-up and spin-down along $\hat{\mathbf m}_A$.
+**Measurement geometry.** When detector $A$ measures along axis $\hat{\mathbf m}_A$, the apparatus does not read a tiny arrow. It drives the local assembly through a finite-time coupling process whose outcome depends on the full spin ledger: ordered binary-plane geometry, phase, active causal wakes, local Noether sea state, and the apparatus potential. The Stern-Gerlach-like scaffold in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) formulates this as apparatus potential-gradient coupling, basin-boundary crossing, angular-momentum exchange, and wake / Noether sea recoil. A correct theory must derive how that coupling produces the two observed outcomes called spin-up and spin-down along $\hat{\mathbf m}_A$.
 
 **Why this is not action at a distance.** No usable signal, energy, or causal wake is allowed to pass from one detector to the other during spacelike-separated measurement. The Bell-level difficulty is therefore not solved by adding a signal. It must be solved by showing that the full pair provenance and each local measurement interaction do not compress into the factorizable local-response model that Bell excludes.
 
@@ -10286,7 +10286,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - No-signaling is exact: no measurement protocol on $A$ can alter the marginal statistics at $B$.
 - Measurement-independence leakage is explicitly bounded by $\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}}$ rather than absorbed into the pair-provenance explanation.
 - Correlation recovery is checked through $\Delta_{\mathrm{Bell}}$ against the full $-\cos\theta$ curve, not only by a single CHSH setting choice.
-- Decoherence rates for entangled pairs depend on local Noether-Sea density, providing an environmental sensitivity absent in bare QM (shared prediction with [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)).
+- Decoherence rates for entangled pairs depend on local Noether sea density, providing an environmental sensitivity absent in bare QM (shared prediction with [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)).
 
 **Failure Modes:**
 - If the Master Equation dynamics for a Noether swarm measurement interaction yield a response function that is **not** $\cos^2(\alpha/2)$—for instance, a linear or piecewise-linear function—the resulting $E(\theta_{AB})$ will disagree with the quantum prediction and with experiment. This is a falsification of the specific mechanism, requiring revision of the measurement model or the assembly-apparatus coupling.
@@ -10304,9 +10304,9 @@ This bridge compares the observer-level story of special relativity with the pro
 
 ##### Bridge Thesis
 
-Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether swarm account proposes the underlying implementation layer: a moving Noether swarm assembly must preserve finite-speed causal wake closure while translating through the Noether Sea. That requirement deforms the swarm's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
+Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether swarm account proposes the underlying implementation layer: a moving Noether swarm assembly must preserve finite-speed causal wake closure while translating through the Noether sea. That requirement deforms the swarm's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
 
-The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether-Sea dynamics.
+The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether sea dynamics.
 
 The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether swarm assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether swarm realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three binary layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
 
@@ -10331,12 +10331,12 @@ This chapter does not own:
 
 | Special relativity story | Deformable Noether swarm story |
 | --- | --- |
-| Physical clocks measure proper time $\tau$, and moving clocks satisfy $d\tau/dt = 1/\gamma$. | A physical clock is an assembly with a countable internal cycle. When a Noether swarm clock moves through the Noether Sea, delayed wake paths must still close across the inner, middle, and outer binaries, so fewer stable internal cycles occur per unit absolute time $t$. |
+| Physical clocks measure proper time $\tau$, and moving clocks satisfy $d\tau/dt = 1/\gamma$. | A physical clock is an assembly with a countable internal cycle. When a Noether swarm clock moves through the Noether sea, delayed wake paths must still close across the inner, middle, and outer binaries, so fewer stable internal cycles occur per unit absolute time $t$. |
 | Length contraction follows from Lorentz geometry: $L_{\parallel}=L_0/\gamma$. | The swarm's effective exclusion envelope deforms along the direction of translation. Stable delayed closure requires a longitudinal/transverse retuning of orbital paths, with the Lorentz-compatible target $R_{\parallel}=R_{\perp}/\gamma$ in the weak-field homogeneous limit. |
-| Rest energy is $E_0=m_0c^2$. | Rest energy is the observer-facing value of shielded internal causal history: the part of the trapped Noether swarm energy ledger exposed through far-field coupling and Noether-Sea response. |
-| Momentum is $p=\gamma m_0v$. | Momentum is the medium-dressed response of a moving assembly: the internal path-history ledger must relock under translation, and the Noether Sea supplies the effective response tensor that Physical Observers summarize as relativistic momentum. |
+| Rest energy is $E_0=m_0c^2$. | Rest energy is the observer-facing value of shielded internal causal history: the part of the trapped Noether swarm energy ledger exposed through far-field coupling and Noether sea response. |
+| Momentum is $p=\gamma m_0v$. | Momentum is the medium-dressed response of a moving assembly: the internal path-history ledger must relock under translation, and the Noether sea supplies the effective response tensor that Physical Observers summarize as relativistic momentum. |
 | Energy and momentum obey $E^2=p^2c^2+m_0^2c^4$. | In the weak-field observer limit, center-of-mass energy and momentum should satisfy the same effective mass-shell relation with $c_{\text{eff}}$, while the substrate calculation resolves the internal ledger, shielding coefficient, and medium-response tensor. |
-| The invariant speed $c$ is a postulate of the observer-level theory. | The observed signal speed is the effective propagation speed $c_{\text{eff}}$ of photon-like and clock-synchronization channels in the local Noether Sea, approaching $c_f$ in the homogeneous weak-field limit. |
+| The invariant speed $c$ is a postulate of the observer-level theory. | The observed signal speed is the effective propagation speed $c_{\text{eff}}$ of photon-like and clock-synchronization channels in the local Noether sea, approaching $c_f$ in the homogeneous weak-field limit. |
 | Lorentz symmetry is a spacetime symmetry. | Lorentz symmetry is an emergent operational symmetry of assemblies whose clocks, rulers, and signal channels are all built from the same finite-speed delayed closure dynamics. |
 
 ##### Clock Channel
@@ -10374,7 +10374,7 @@ L_{\perp}(v)=L_{\perp,0}.
 $$
 The standard equation is kinematic. It does not say what a ruler is made of.
 
-In the Noether swarm implementation story, rods are made from bound assemblies whose equilibrium spacings are maintained by finite-speed wake exchange. A moving rod is not merely re-described by a new coordinate system. Its constituent assemblies must preserve stable closure while their center-of-mass state changes relative to the Noether Sea. The local geometric carrier is the deformable exclusion envelope:
+In the Noether swarm implementation story, rods are made from bound assemblies whose equilibrium spacings are maintained by finite-speed wake exchange. A moving rod is not merely re-described by a new coordinate system. Its constituent assemblies must preserve stable closure while their center-of-mass state changes relative to the Noether sea. The local geometric carrier is the deformable exclusion envelope:
 $$
 \mathcal{E}_{\text{excl}}
 =
@@ -10395,7 +10395,7 @@ In the geometry canon, this contraction is recorded first as the Noether swarm e
 
 ###### Closed Return Cycle And Spheroid Map
 
-The shortest derivation of the spheroid map uses the difference between a one-way leg and a closed return cycle. A one-way causal leg in the drift direction exposes the preferred Noether-Sea frame:
+The shortest derivation of the spheroid map uses the difference between a one-way leg and a closed return cycle. A one-way causal leg in the drift direction exposes the preferred Noether sea frame:
 $$
 t_{+}=\frac{R_{\parallel}}{c_{\text{eff}}-v},
 \qquad
@@ -10537,7 +10537,7 @@ $$
 \equiv
 \frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)}.
 $$
-The Lorentz bridge closes only if, in a homogeneous weak-field Noether-Sea cell,
+The Lorentz bridge closes only if, in a homogeneous weak-field Noether sea cell,
 $$
 \gamma_{\mathrm{clk}}^{(q)}(v)
 =
@@ -10577,7 +10577,7 @@ The SR-side phrase "mass is energy divided by $c^2$" becomes, in the Noether swa
 $$
 \text{observed rest mass}
 \quad\leftrightarrow\quad
-\text{shielded internal ledger exposed through Noether-Sea response}.
+\text{shielded internal ledger exposed through Noether sea response}.
 $$
 This keeps the force of $E_0=m_0c^2$ while relocating its ontology. The equation remains the observer-level conversion law; the deeper task is to derive the internal ledger, shielding coefficient, and response tensor from Noether swarm dynamics.
 
@@ -10603,7 +10603,7 @@ E_{\text{CM}}^2
 p_{\text{CM}}^2 c_{\text{eff}}^2
 +M_0^2c_{\text{eff}}^4.
 $$
-The terms are not substrate primitives. They are center-of-mass summaries of a dressed assembly state. The more resolved theorem target should include the internal energy ledger, shielding coefficient, deformation state, and Noether-Sea response tensor:
+The terms are not substrate primitives. They are center-of-mass summaries of a dressed assembly state. The more resolved theorem target should include the internal energy ledger, shielding coefficient, deformation state, and Noether sea response tensor:
 $$
 p_{\text{int}}^a
 \approx
@@ -10638,7 +10638,7 @@ The branch-quantized version of this statement is stricter. The same branch upda
 
 This bridge is expected to match special relativity only in the regime where:
 
-- the local Noether Sea is approximately homogeneous and isotropic,
+- the local Noether sea is approximately homogeneous and isotropic,
 - the assembly remains in a stable attractor basin,
 - acceleration is weak enough that radiation and irreversible reconfiguration are negligible,
 - photon-like signal channels and material clock channels share the same effective $c_{\text{eff}}$ to tested accuracy,
@@ -10655,7 +10655,7 @@ To promote this bridge from mapping to derivation, the following targets must cl
 3. Derive the velocity-dependent exclusion-envelope axis ratio $R_{\parallel}/R_{\perp}\to 1/\gamma_{\text{eff}}$.
 4. Compute the internal energy ledger $E_{\text{internal}}(A)$ without assuming the mass being derived.
 5. Derive the shielding factor $\zeta(A)$ from far-field wake cancellation.
-6. Derive the Noether-Sea response tensor $\mathcal{M}_{\text{sea}}^{ab}$ and show its isotropic limit is $h^{ab}/c_{\text{eff}}^2$.
+6. Derive the Noether sea response tensor $\mathcal{M}_{\text{sea}}^{ab}$ and show its isotropic limit is $h^{ab}/c_{\text{eff}}^2$.
 7. Show that clock, ruler, momentum, and energy channels share the same $\gamma_{\text{eff}}$ to the required order.
 8. Bound preferred-frame leakage and identify the leading measurable correction terms.
 9. Derive the branch-quantized Lorentz response: for each stable admissible causal-root ledger class $q$, compute $B_q(v)$, extract $\gamma_{\mathrm{clk}}^{(q)}$ and $\gamma_{\mathrm{rul}}^{(q)}$, and show that all accepted clock/ruler branches collapse to the same effective $\gamma_{\text{eff}}$ within $O(\epsilon_{\mathrm{LV}})$.
@@ -10705,13 +10705,13 @@ The bridge separates four levels:
 | Substrate ontology | Architrinos evolve in the Euclidean void under absolute time and delayed causal wakes. |
 | Assembly dynamics | A Noether swarm must close inner, middle, and outer binary return cycles through a causal-root ledger. |
 | Geometry projection | The outer-binary exclusion envelope exposes an oblate spheroid with shape ratio $\xi=R_{\parallel}/R_{\perp}$. |
-| Observer law | Physical Observers infer Lorentz contraction, clock dilation, and two-way signal invariance after branch averaging and Noether-Sea dressing. |
+| Observer law | Physical Observers infer Lorentz contraction, clock dilation, and two-way signal invariance after branch averaging and Noether sea dressing. |
 
 This level separation is essential. The Lorentz equation is not being promoted to substrate ontology. It is an observer-level envelope that must be implemented by closed assembly dynamics.
 
 ##### One-Way Roots Are Not Yet Lorentz Geometry
 
-A one-way causal leg along the drift direction exposes the preferred Noether-Sea frame. In a homogeneous dressed channel with speed $c_\star$, define
+A one-way causal leg along the drift direction exposes the preferred Noether sea frame. In a homogeneous dressed channel with speed $c_\star$, define
 $$
 \beta_\star\equiv\frac{v}{c_\star},
 \qquad
@@ -10809,7 +10809,7 @@ R_{\parallel}
 =
 \frac{R_{\perp}}{\gamma_\star}
 $$
-in the homogeneous zero-leakage limit. If energy state or Noether-Sea conditions also change the transverse scale, separate the shape and scale channels:
+in the homogeneous zero-leakage limit. If energy state or Noether sea conditions also change the transverse scale, separate the shape and scale channels:
 $$
 R_{\perp}(v,E,n)
 =
@@ -10966,9 +10966,9 @@ If that step succeeds, the result is more than a Lorentz derivation. It is a con
 
 #### Spacetime Models and the Noether Sea
 
-This bridge compares inherited mathematical models of space, time, vacuum, aether, and emergent spacetime with the Noether-Sea implementation layer in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is not the canonical home of the spacetime mechanism. The mechanism remains in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md).
+This bridge compares inherited mathematical models of space, time, vacuum, aether, and emergent spacetime with the Noether sea implementation layer in $\mathbb{A}\mathbb{A}\mathbb{A}$. It is not the canonical home of the spacetime mechanism. The mechanism remains in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md), and [GR Phenomenology](../../../../markdown/aaa/spacetime/gr-phenomenology.md).
 
-The purpose is narrower: keep historically important models available as disciplined comparisons without letting their vocabulary become native ontology. Terms such as absolute space, vacuum, aether, elastic medium, analog metric, condensate, and superfluid can help locate a mathematical burden, but none of them replaces `Noether Sea`.
+The purpose is narrower: keep historically important models available as disciplined comparisons without letting their vocabulary become native ontology. Terms such as absolute space, vacuum, aether, elastic medium, analog metric, condensate, and superfluid can help locate a mathematical burden, but none of them replaces `Noether sea`.
 
 ##### Bridge Rule
 
@@ -10981,14 +10981,14 @@ The native stack is:
 | fixed spatial container | Euclidean void | The 3D spatial arena does not curve or expand. |
 | global temporal parameter | absolute time | The primitive ordering parameter for substrate dynamics. |
 | formal background | absolute timespace | The product $\mathbb{R}\times\mathbb{R}^3$. |
-| substrate contents | Noether Sea | The ambient population of coupled Noether swarms. |
+| substrate contents | Noether sea | The ambient population of coupled Noether swarms. |
 | bridge language | spacetime medium | Reader-facing translation toward effective spacetime language. |
 | observer-level geometry | effective spacetime or effective metric | The metric reconstructed by Physical Observers from clocks, rulers, and signal behavior. |
 
 Any outside model must therefore answer five questions before it can influence authored $\mathbb{A}\mathbb{A}\mathbb{A}$ prose:
 
 1. Which observer-level successes does the model preserve?
-2. Which part maps to Noether-Sea state rather than to the Euclidean void?
+2. Which part maps to Noether sea state rather than to the Euclidean void?
 3. Which inference is forbidden because it would import the outside model's ontology?
 4. Which equation, invariant, or constitutive law would have to be derived?
 5. Which failure mode would falsify the comparison?
@@ -11009,7 +11009,7 @@ $$
 }.
 $$
 
-The comparison is admissible only when $\Delta_{\mathrm{bc}}\le\epsilon_{\mathrm{bc}}$ for the apparatus class and when the same energy, momentum, and record channels are retained. Passing this residual says that two implementations realize the same effective boundary condition for a specific test; it does not import quantum-vacuum ontology, analog-medium ontology, or a new Noether-Sea mechanism.
+The comparison is admissible only when $\Delta_{\mathrm{bc}}\le\epsilon_{\mathrm{bc}}$ for the apparatus class and when the same energy, momentum, and record channels are retained. Passing this residual says that two implementations realize the same effective boundary condition for a specific test; it does not import quantum-vacuum ontology, analog-medium ontology, or a new Noether sea mechanism.
 
 ##### Historical Ladder
 
@@ -11018,9 +11018,9 @@ The bridge should cover the major mathematical families rather than only modern 
 | Historical model family | Mathematical core | What survives as a comparison | $\mathbb{A}\mathbb{A}\mathbb{A}$ placement |
 | --- | --- | --- | --- |
 | Euclidean 3D space plus universal time | A flat spatial metric $h_{ij}$ on $\mathbb{R}^3$ with a universal parameter $t$. | The earliest clean 3D + T background picture. | This is closest to absolute timespace: $\mathbb{R}\times\mathbb{R}^3$ with absolute time and Euclidean void. |
-| Newtonian absolute space and action-at-a-distance gravity | Euclidean geometry, inertial frames, absolute time, and an inverse-square potential. | Weak-field potential language and low-speed limiting behavior. | Keep the background, but replace instantaneous action with delayed causal wakes plus Noether-Sea response. |
-| Plenum and vortex-mechanical programs | Continuum motion, pressure, circulation, and vortex organization. | The intuition that geometry and matter behavior may arise from structured motion in a pervasive substrate. | Useful only as a warning and comparison: the Noether Sea is not a featureless plenum, and circulation claims need explicit Noether swarm dynamics. |
-| Wave and elastic-aether theories | Wave equations, elastic moduli, transverse waves, boundary conditions, and medium stress. | Stress, stiffness, wave-speed, and polarization burdens. | Translate only into explicit Noether-Sea compliance, delay, alignment, and response variables. |
+| Newtonian absolute space and action-at-a-distance gravity | Euclidean geometry, inertial frames, absolute time, and an inverse-square potential. | Weak-field potential language and low-speed limiting behavior. | Keep the background, but replace instantaneous action with delayed causal wakes plus Noether sea response. |
+| Plenum and vortex-mechanical programs | Continuum motion, pressure, circulation, and vortex organization. | The intuition that geometry and matter behavior may arise from structured motion in a pervasive substrate. | Useful only as a warning and comparison: the Noether sea is not a featureless plenum, and circulation claims need explicit Noether swarm dynamics. |
+| Wave and elastic-aether theories | Wave equations, elastic moduli, transverse waves, boundary conditions, and medium stress. | Stress, stiffness, wave-speed, and polarization burdens. | Translate only into explicit Noether sea compliance, delay, alignment, and response variables. |
 | Maxwellian electromagnetic aether | Field equations plus mechanical medium imagery for electromagnetic propagation. | The success belongs to field equations and wave propagation, not to the mechanical imagery. | Effective electromagnetic fields must be recovered from assembly and wake behavior; the aether analogy cannot become ontology. |
 | Lorentz aether theory | A preferred rest frame hidden by Lorentz contraction, clock slowing, and electromagnetic dynamics. | A preferred substrate frame can be operationally hidden if clocks, rulers, and signals co-transform. | This is a close bridge for absolute time plus Euclidean void, but the closure burden is emergent Lorentz behavior with bounded preferred-frame leakage. |
 | Minkowski spacetime | A 4D pseudo-Riemannian metric with invariant interval and Lorentz symmetry. | Observer-level kinematic bookkeeping. | Treated as the homogeneous effective geometry reconstructed by Physical Observers, not as substrate ontology. |
@@ -11028,49 +11028,49 @@ The bridge should cover the major mathematical families rather than only modern 
 | Kaluza-Klein and higher-dimensional geometry | Gauge fields from higher-dimensional metric components or compact dimensions. | A useful reminder that geometry can encode force bookkeeping. | Comparison only unless a $\mathbb{A}\mathbb{A}\mathbb{A}$-native hidden coordinate or fiber variable is derived from assembly state. |
 | Metric-affine, torsion, and Einstein-Cartan programs | Independent connection, torsion, spin coupling, and generalized geometric variables. | A structured way to ask whether spin, torsion, or nonmetricity survive as effective observer-level residues. | Possible deviation channels in the ADM/Cartan handoff, not primitive geometry of the Euclidean void. |
 | ADM and canonical spacetime decompositions | Lapse, shift, spatial metric, constraints, and foliation-based dynamics. | A practical 3+1 language for mapping observer geometry. | Directly useful as the reconstruction surface $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
-| Sakharov induced gravity | Gravity as an induced or elastic response of quantum vacuum degrees of freedom. | The idea that GR-like dynamics can be effective rather than fundamental. | Recast as a Noether-Sea microstructure-to-metric response problem, not as proof from QFT vacuum ontology. |
-| Jacobson thermodynamic spacetime | Einstein equation as an equation of state from local horizon thermodynamics, boost-energy flux, and the Clausius relation. | Thermodynamic and equation-of-state pressure on any emergent metric theory. | A high-value comparison for deriving GR-like limits from Noether-Sea entropy, stress, energy exchange, and finite-boundary observer data. |
+| Sakharov induced gravity | Gravity as an induced or elastic response of quantum vacuum degrees of freedom. | The idea that GR-like dynamics can be effective rather than fundamental. | Recast as a Noether sea microstructure-to-metric response problem, not as proof from QFT vacuum ontology. |
+| Jacobson thermodynamic spacetime | Einstein equation as an equation of state from local horizon thermodynamics, boost-energy flux, and the Clausius relation. | Thermodynamic and equation-of-state pressure on any emergent metric theory. | A high-value comparison for deriving GR-like limits from Noether sea entropy, stress, energy exchange, and finite-boundary observer data. |
 | Analog gravity and acoustic metrics | Effective Lorentzian metrics for perturbations in fluids or condensates. | Concrete examples where signal propagation in a medium carries metric form. | Useful if it sharpens the signal-channel map; insufficient if it only supplies scalar speed. |
-| Superfluid vacuum and condensed-matter vacuum models | Order parameters, phonons, vortices, critical velocities, collective excitations, and phase transitions. | Strong mathematics for coherent media, low dissipation, and emergent quasiparticles. | Comparison only until the Noether-Sea side has a defined order parameter, excitation spectrum, and threshold law. |
-| Khoury-style superfluid dark matter | A dark-sector condensate phase whose phonons mediate MOND-like galactic behavior while other regimes resemble cold dark matter. | A worked example of one substance with phase-dependent phenomenology, collective excitations, and environment-dependent transition behavior. | Useful for the question "when does a Noether-Sea sector behave as a coherent phase?", not evidence that the Noether Sea is literally a superfluid. |
-| Bose-Einstein-condensate and fuzzy-dark-matter models | Macroscopic wavefunction, coherence length, de Broglie scale, and Gross-Pitaevskii-like dynamics. | Coherence-scale and phase-locking diagnostics. | Comparison for collective Noether-Sea phase behavior only if a native wavefunction/order parameter is derived. |
-| Berezhiani-Khoury BEC long-range interaction | Contact source coupling inside a condensate can produce an emergent inverse-square interaction whose finite range is set by self-interaction, density, and constituent mass. | A worked example where long-range behavior depends on the coherent background and on the derivative handoff between a collective mode and the source. | Useful for derivative-coupling and range-control tests on Noether-Sea collective response; not evidence that the Noether Sea is a literal BEC. |
+| Superfluid vacuum and condensed-matter vacuum models | Order parameters, phonons, vortices, critical velocities, collective excitations, and phase transitions. | Strong mathematics for coherent media, low dissipation, and emergent quasiparticles. | Comparison only until the Noether sea side has a defined order parameter, excitation spectrum, and threshold law. |
+| Khoury-style superfluid dark matter | A dark-sector condensate phase whose phonons mediate MOND-like galactic behavior while other regimes resemble cold dark matter. | A worked example of one substance with phase-dependent phenomenology, collective excitations, and environment-dependent transition behavior. | Useful for the question "when does a Noether sea sector behave as a coherent phase?", not evidence that the Noether sea is literally a superfluid. |
+| Bose-Einstein-condensate and fuzzy-dark-matter models | Macroscopic wavefunction, coherence length, de Broglie scale, and Gross-Pitaevskii-like dynamics. | Coherence-scale and phase-locking diagnostics. | Comparison for collective Noether sea phase behavior only if a native wavefunction/order parameter is derived. |
+| Berezhiani-Khoury BEC long-range interaction | Contact source coupling inside a condensate can produce an emergent inverse-square interaction whose finite range is set by self-interaction, density, and constituent mass. | A worked example where long-range behavior depends on the coherent background and on the derivative handoff between a collective mode and the source. | Useful for derivative-coupling and range-control tests on Noether sea collective response; not evidence that the Noether sea is a literal BEC. |
 | Einstein-aether and vector-tensor preferred-frame theories | Metric plus unit timelike vector field and preferred-frame coefficients. | A modern mathematical way to parameterize Lorentz violation and preferred-frame observables. | Useful for bounding leakage, but the preferred frame is absolute time plus Euclidean void, not an added vector field ontology. |
 | Horava-Lifshitz-type anisotropic scaling | Preferred foliation and different UV scaling for time and space. | The idea that a preferred foliation can coexist with effective relativistic behavior. | Comparison only; $\mathbb{A}\mathbb{A}\mathbb{A}$ already has absolute time, so the question is empirical leakage and low-energy recovery. |
 | Causal-set and discrete-spacetime programs | Partial order, discreteness, and causal reconstruction. | Useful contrast for causal ordering and continuum emergence. | $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps continuous Euclidean void and absolute time; discreteness, if any, belongs to assemblies or ledgers, not the void. |
 | Loop, spin-network, and other quantum-geometry programs | Quantized geometric operators and graph-like states. | A comparison for area, volume, horizon, and spin-network claims. | Comparison framework unless a Noether swarm graph or horizon ledger imports a specific validated constraint. |
 | String, brane, holographic, and AdS/CFT programs | Extended objects, extra dimensions, dual boundary descriptions, and holographic entropy relations. | High-value consistency checks when entropy, unitarity, or horizon accounting becomes unavoidable. AdS/CFT is especially valuable as a controlled anti-de Sitter laboratory, not as direct evidence that our late-time de Sitter-like universe has the same boundary structure. | Comparison framework; do not promote to closure target unless a specific tested benchmark is imported. |
-| de Sitter quantum-gravity and dS/CFT attempts | Positive-curvature late-time comparison geometry, observer horizons, finite-access entropy, and proposed future-boundary or statistical descriptions. | A sharp reminder that the observed universe is not anti-de Sitter and that horizon-limited access must be handled without pretending there is an AdS-style spatial boundary. | Comparison framework only; the native target is a Noether-Sea observer-horizon ledger, not a literal boundary CFT. |
+| de Sitter quantum-gravity and dS/CFT attempts | Positive-curvature late-time comparison geometry, observer horizons, finite-access entropy, and proposed future-boundary or statistical descriptions. | A sharp reminder that the observed universe is not anti-de Sitter and that horizon-limited access must be handled without pretending there is an AdS-style spatial boundary. | Comparison framework only; the native target is a Noether sea observer-horizon ledger, not a literal boundary CFT. |
 
-Causal-set programs are strongest here as a discipline on what causal ordering can and cannot buy. Their useful mathematical lesson is that causal relations can carry much of the effective spacetime structure, while local scale still has to be supplied by a separate volume, clock, or ruler channel. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the corresponding recovery burden is not to make spacetime atomic. It is to show that Physical Observers reconstruct the same effective causal order, local clock scale, and bounded preferred-frame leakage from Noether-Sea signal, density, delay, and ruler-response variables.
+Causal-set programs are strongest here as a discipline on what causal ordering can and cannot buy. Their useful mathematical lesson is that causal relations can carry much of the effective spacetime structure, while local scale still has to be supplied by a separate volume, clock, or ruler channel. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the corresponding recovery burden is not to make spacetime atomic. It is to show that Physical Observers reconstruct the same effective causal order, local clock scale, and bounded preferred-frame leakage from Noether sea signal, density, delay, and ruler-response variables.
 
-A second comparison lesson is the distinction between a continuum approximation and a continuum limit. For this bridge, the correct project phrase is **continuum approximation**: effective fields, metrics, and volumes become valid when many Noether swarm degrees of freedom are coarse-grained, but the Euclidean void is not being replaced by an actual continuum-limit geometry and the Noether-Sea assembly inventory is not erased by taking a regulator to zero.
+A second comparison lesson is the distinction between a continuum approximation and a continuum limit. For this bridge, the correct project phrase is **continuum approximation**: effective fields, metrics, and volumes become valid when many Noether swarm degrees of freedom are coarse-grained, but the Euclidean void is not being replaced by an actual continuum-limit geometry and the Noether swarm assembly inventory is not erased by taking a regulator to zero.
 
 ##### Comparison Matrix
 
 | Inherited model | What it preserves | $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer | Forbidden inference | Closure target |
 | --- | --- | --- | --- | --- |
-| Euclidean 3D + T absolute background | Flat 3D geometry, universal time order, inertial baseline, and ordinary vector calculus. | Absolute timespace $\mathbb{R}\times\mathbb{R}^3$, with dynamics on simultaneity slices $\Sigma_t$. | Empty space by itself explains matter, inertia, or gravity. | Show how delayed wakes and Noether-Sea state add all observed fields, clocks, rulers, and gravitational behavior on top of the fixed container. |
+| Euclidean 3D + T absolute background | Flat 3D geometry, universal time order, inertial baseline, and ordinary vector calculus. | Absolute timespace $\mathbb{R}\times\mathbb{R}^3$, with dynamics on simultaneity slices $\Sigma_t$. | Empty space by itself explains matter, inertia, or gravity. | Show how delayed wakes and Noether sea state add all observed fields, clocks, rulers, and gravitational behavior on top of the fixed container. |
 | Newtonian gravity | Low-speed potential mechanics and inverse-square weak-field limits. | $\Phi_N$ remains a benchmark potential; the substrate mechanism is delayed causal-wake summation plus medium response. | Instantaneous action-at-a-distance is fundamental. | Recover Newtonian acceleration as the leading observer-level limit of the delayed ledger and effective metric map. |
-| Lorentz aether | Hidden preferred frame plus Lorentz-contracted matter and slowed clocks. | Absolute time and Euclidean void supply the preferred substrate frame; assemblies and signal channels must hide it operationally. | The Noether Sea is a mechanical luminiferous aether. | Derive shared clock/ruler/signal retuning with $\epsilon_{\text{LV}}$ and PPN preferred-frame coefficients below bounds. |
-| Special-relativistic Minkowski spacetime | Lorentz kinematics, invariant signal speed, mass-shell bookkeeping, and relativity of simultaneity for Physical Observers. | Homogeneous weak-field limit of deformable assemblies, synchronized signal channels, and Noether-Sea-dressed clocks and rulers. | Lorentz symmetry is primitive substrate geometry. | Show that stable assembly closure drives the same $\gamma_{\text{eff}}$ factor in clock, ruler, signal, energy, and momentum channels while preferred-frame leakage remains below bounds. |
-| General-relativistic metric spacetime | Proper time, geodesic motion, redshift, Shapiro delay, lensing, frame dragging, gravitational waves, and PPN observables. | Effective metric $g^{\text{eff}}_{\mu\nu}$ reconstructed from Noether-Sea clock, ruler, signal, drift, and compliance channels. | The Euclidean void itself curves. | Derive one constitutive map from Noether-Sea state to ADM/Cartan fields that recovers GR in tested regimes. |
-| Elastic or continuum-medium spacetime | Stress, strain, compliance, wave propagation, and equation-of-state language. | Coarse Noether-Sea variables such as density, delay factor, stress, drift, alignment, and spatial compliance. | The medium is a featureless continuum with no assembly microstructure. | Derive continuum stress and compliance tensors from Noether swarm population dynamics and identify their valid averaging scale. |
-| Analog-gravity or acoustic-metric models | Effective metrics can emerge from signal propagation through a medium. | Signal cones and clock/ruler maps emerge from Noether-Sea delay and assembly response. | The analogy proves gravity or fixes the metric by signal speed alone. | Extend scalar speed maps to the full ADM/Cartan handoff $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
-| Superfluid and condensate vacuum models | Coherence, order parameters, critical thresholds, quantized circulation, collective excitations, and low-dissipation transport. | Possible comparison class for coherent Noether-Sea phases only when the local document supplies a defined order parameter, excitation spectrum, critical threshold, or circulation analogue. | The Noether Sea is superfluid merely because it is coherent or low-dissipation. | Derive a concrete constitutive model: order parameter, transport equation, critical-velocity criterion, two-fluid analogue, quantized-vorticity analogue, or explicit reason the analogy fails. |
-| Berezhiani-Khoury-style superfluid dark matter | Phase-dependent behavior: cold-dark-matter-like cosmology and cluster behavior, plus phonon-mediated MOND-like galactic behavior in a superfluid phase. | Comparison for environment-dependent Noether-Sea phase behavior, excitation channels, two-component response, and galactic-scale effective-force recovery. | Noether-Sea ontology is dark matter superfluidity, or MOND behavior follows without a native phonon/order-parameter derivation. | Define the Noether-Sea analogue of condensate fraction, phonon mode, critical temperature/velocity, normal fraction, and baryon-coupling channel, then test whether it recovers or rejects MOND-like scaling. |
-| Berezhiani-Khoury BEC long-range interaction | A complex scalar condensate with contact source coupling can produce a mediated inverse-square force with $\ell^{-1}\propto\sqrt{\lambda n/m}$, and with $\ell\to\infty$ when the self-interaction is removed. | Comparison for coherent-background amplification, derivative phonon-source coupling, source-induced deformation, screening, and instability tests. | A contact-coupled BEC or phonon is the Noether Sea, or a native long-range Noether-Sea force follows without deriving the collective mode and coupling channel. | Define a Noether-Sea collective response variable, a source coupling, a range residual, a deformation parameter, and a failure condition for dense-source or unstable regimes. |
-| Sakharov or Jacobson-style emergent gravity | Metric dynamics may be thermodynamic, induced, or equation-of-state behavior rather than fundamental geometry. | Einstein-like behavior is a long-wavelength response of Noether-Sea microstructure. | The thermodynamic analogy derives $\mathbb{A}\mathbb{A}\mathbb{A}$ by itself. | Show how Noether-Sea entropy, stress, boundary-wake data, and energy exchange recover the Einstein equation or its validated weak-field approximation through one shared record. |
-| Quantum-vacuum or QFT-field ontology | Vacuum polarization, zero-point behavior, field excitations, and Standard Model effective predictions. | Observer-level fields are effective summaries of assembly and wake behavior in the Noether Sea. | The QFT vacuum is the substrate ontology. | Recover validated QFT limits while assigning substrate-level causation to assemblies, wakes, and Noether-Sea response. |
+| Lorentz aether | Hidden preferred frame plus Lorentz-contracted matter and slowed clocks. | Absolute time and Euclidean void supply the preferred substrate frame; assemblies and signal channels must hide it operationally. | The Noether sea is a mechanical luminiferous aether. | Derive shared clock/ruler/signal retuning with $\epsilon_{\text{LV}}$ and PPN preferred-frame coefficients below bounds. |
+| Special-relativistic Minkowski spacetime | Lorentz kinematics, invariant signal speed, mass-shell bookkeeping, and relativity of simultaneity for Physical Observers. | Homogeneous weak-field limit of deformable assemblies, synchronized signal channels, and Noether sea-dressed clocks and rulers. | Lorentz symmetry is primitive substrate geometry. | Show that stable assembly closure drives the same $\gamma_{\text{eff}}$ factor in clock, ruler, signal, energy, and momentum channels while preferred-frame leakage remains below bounds. |
+| General-relativistic metric spacetime | Proper time, geodesic motion, redshift, Shapiro delay, lensing, frame dragging, gravitational waves, and PPN observables. | Effective metric $g^{\text{eff}}_{\mu\nu}$ reconstructed from Noether sea clock, ruler, signal, drift, and compliance channels. | The Euclidean void itself curves. | Derive one constitutive map from Noether sea state to ADM/Cartan fields that recovers GR in tested regimes. |
+| Elastic or continuum-medium spacetime | Stress, strain, compliance, wave propagation, and equation-of-state language. | Coarse Noether sea variables such as density, delay factor, stress, drift, alignment, and spatial compliance. | The medium is a featureless continuum with no assembly microstructure. | Derive continuum stress and compliance tensors from Noether swarm population dynamics and identify their valid averaging scale. |
+| Analog-gravity or acoustic-metric models | Effective metrics can emerge from signal propagation through a medium. | Signal cones and clock/ruler maps emerge from Noether sea delay and assembly response. | The analogy proves gravity or fixes the metric by signal speed alone. | Extend scalar speed maps to the full ADM/Cartan handoff $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
+| Superfluid and condensate vacuum models | Coherence, order parameters, critical thresholds, quantized circulation, collective excitations, and low-dissipation transport. | Possible comparison class for coherent Noether sea phases only when the local document supplies a defined order parameter, excitation spectrum, critical threshold, or circulation analogue. | The Noether sea is superfluid merely because it is coherent or low-dissipation. | Derive a concrete constitutive model: order parameter, transport equation, critical-velocity criterion, two-fluid analogue, quantized-vorticity analogue, or explicit reason the analogy fails. |
+| Berezhiani-Khoury-style superfluid dark matter | Phase-dependent behavior: cold-dark-matter-like cosmology and cluster behavior, plus phonon-mediated MOND-like galactic behavior in a superfluid phase. | Comparison for environment-dependent Noether sea phase behavior, excitation channels, two-component response, and galactic-scale effective-force recovery. | Noether sea ontology is dark matter superfluidity, or MOND behavior follows without a native phonon/order-parameter derivation. | Define the Noether sea analogue of condensate fraction, phonon mode, critical temperature/velocity, normal fraction, and baryon-coupling channel, then test whether it recovers or rejects MOND-like scaling. |
+| Berezhiani-Khoury BEC long-range interaction | A complex scalar condensate with contact source coupling can produce a mediated inverse-square force with $\ell^{-1}\propto\sqrt{\lambda n/m}$, and with $\ell\to\infty$ when the self-interaction is removed. | Comparison for coherent-background amplification, derivative phonon-source coupling, source-induced deformation, screening, and instability tests. | A contact-coupled BEC or phonon is the Noether sea, or a native long-range Noether sea force follows without deriving the collective mode and coupling channel. | Define a Noether sea collective response variable, a source coupling, a range residual, a deformation parameter, and a failure condition for dense-source or unstable regimes. |
+| Sakharov or Jacobson-style emergent gravity | Metric dynamics may be thermodynamic, induced, or equation-of-state behavior rather than fundamental geometry. | Einstein-like behavior is a long-wavelength response of Noether sea microstructure. | The thermodynamic analogy derives $\mathbb{A}\mathbb{A}\mathbb{A}$ by itself. | Show how Noether sea entropy, stress, boundary-wake data, and energy exchange recover the Einstein equation or its validated weak-field approximation through one shared record. |
+| Quantum-vacuum or QFT-field ontology | Vacuum polarization, zero-point behavior, field excitations, and Standard Model effective predictions. | Observer-level fields are effective summaries of assembly and wake behavior in the Noether sea. | The QFT vacuum is the substrate ontology. | Recover validated QFT limits while assigning substrate-level causation to assemblies, wakes, and Noether sea response. |
 | Preferred-foliation and vector-aether models | Controlled parameterization of Lorentz violation, foliation effects, and preferred-frame bounds. | Absolute time is already the foliation; leakage appears through observer-level anisotropy and PPN channels. | A new vector field is the substrate. | Map leakage into $\Xi_i$, $(\alpha_1,\alpha_2,\alpha_3)$, and two-way signal-speed diagnostics. |
-| Quantum-geometry and holographic programs | Horizon entropy, unitarity pressure, boundary/bulk mappings, and discrete geometric observables. | Comparison targets for strong-field and horizon ledgers, with AdS/CFT treated as a controlled model and de Sitter holography treated as an unresolved horizon-access problem. | The Noether Sea is a spin network, string background, holographic boundary theory, or de Sitter boundary CFT. | Import only specific tested or mathematical constraints, such as entropy scaling, Page-curve-compatible accounting, horizon regularity, or observer-horizon entropy bookkeeping, and route them through strong-field and cosmology closure. |
-| Causal-set and discrete-spacetime programs | Causal-order reconstruction, Lorentz-sensitive discreteness tests, and the continuum-approximation distinction. | Comparison target for effective causal order reconstructed by Physical Observers from Noether-Sea clock, ruler, and signal behavior. | Discrete spacetime atoms, causal-set growth rules, or causal-set partial order replace absolute time, Euclidean void, Noether Sea, or causal wake roots. | Recover effective causal order and local scale through the same constitutive map used for clocks, rulers, signal transport, and preferred-frame leakage bounds. |
+| Quantum-geometry and holographic programs | Horizon entropy, unitarity pressure, boundary/bulk mappings, and discrete geometric observables. | Comparison targets for strong-field and horizon ledgers, with AdS/CFT treated as a controlled model and de Sitter holography treated as an unresolved horizon-access problem. | The Noether sea is a spin network, string background, holographic boundary theory, or de Sitter boundary CFT. | Import only specific tested or mathematical constraints, such as entropy scaling, Page-curve-compatible accounting, horizon regularity, or observer-horizon entropy bookkeeping, and route them through strong-field and cosmology closure. |
+| Causal-set and discrete-spacetime programs | Causal-order reconstruction, Lorentz-sensitive discreteness tests, and the continuum-approximation distinction. | Comparison target for effective causal order reconstructed by Physical Observers from Noether sea clock, ruler, and signal behavior. | Discrete spacetime atoms, causal-set growth rules, or causal-set partial order replace absolute time, Euclidean void, Noether sea, or causal wake roots. | Recover effective causal order and local scale through the same constitutive map used for clocks, rulers, signal transport, and preferred-frame leakage bounds. |
 
 ##### Superfluid Comparison Discipline
 
 The superfluid family is valuable precisely because it is mathematically demanding. A superfluid claim is not licensed by the words `coherent`, `low-dissipation`, or `medium`. It requires a local technical object.
 
-For a Noether-Sea comparison to become superfluid-like rather than merely medium-like, the local document must supply at least one of the following:
+For a Noether sea comparison to become superfluid-like rather than merely medium-like, the local document must supply at least one of the following:
 
 | Required object | Mathematical form to look for | What it would buy |
 | --- | --- | --- |
@@ -11081,7 +11081,7 @@ For a Noether-Sea comparison to become superfluid-like rather than merely medium
 | Vorticity quantization | A circulation condition such as $\oint \nabla\theta\cdot d\ell=2\pi n$ or a native ledger equivalent. | Vortex language becomes mathematical rather than decorative. |
 | Baryon or matter coupling | An explicit coupling channel between ordinary assemblies and the collective mode. | MOND-like or fifth-force comparisons become falsifiable. |
 
-Berezhiani-Khoury-style superfluid dark matter is a useful comparison because it makes this discipline visible. In that model, the same dark-sector substance is intended to behave like ordinary cold dark matter in cosmological regimes while forming a galactic superfluid phase whose phonons mediate a MOND-like force. The Noether-Sea bridge should borrow only the structure of that question: can one substrate have phase-dependent effective behavior with distinct collective modes and observational regimes? It should not borrow the conclusion unless $\mathbb{A}\mathbb{A}\mathbb{A}$ derives the corresponding Noether-Sea phase variables.
+Berezhiani-Khoury-style superfluid dark matter is a useful comparison because it makes this discipline visible. In that model, the same dark-sector substance is intended to behave like ordinary cold dark matter in cosmological regimes while forming a galactic superfluid phase whose phonons mediate a MOND-like force. The Noether sea bridge should borrow only the structure of that question: can one substrate have phase-dependent effective behavior with distinct collective modes and observational regimes? It should not borrow the conclusion unless $\mathbb{A}\mathbb{A}\mathbb{A}$ derives the corresponding Noether sea phase variables.
 
 The older Sinha-Sivaram-Sudarshan superfluid-vacuum papers sharpen a different part of the same discipline. Their useful source signal is not the literal aether claim. It is the demand that a coherent vacuum-medium comparison specify a gap, an excitation spectrum, and a critical threshold before using low-dissipation language. A BCS-like comparison has the schematic spectrum
 $$
@@ -11093,23 +11093,23 @@ v_c^{\mathrm{cmp}}
 =
 \min_k\frac{E_k^{\mathrm{cmp}}}{\hbar k}.
 $$
-In the source model the gap was identified with rest energy and a Compton-scale estimate pushed the critical velocity toward $c_0$. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that is only a comparison test. A Noether-Sea branch may borrow the structure only after it defines a native excitation gap, explains which assemblies or collective modes carry it, and shows that any low-dissipation or transparent regime follows from $v_{\mathrm{rel}}<v_c^\theta$ rather than from naming the medium a superfluid.
+In the source model the gap was identified with rest energy and a Compton-scale estimate pushed the critical velocity toward $c_0$. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that is only a comparison test. A Noether sea branch may borrow the structure only after it defines a native excitation gap, explains which assemblies or collective modes carry it, and shows that any low-dissipation or transparent regime follows from $v_{\mathrm{rel}}<v_c^\theta$ rather than from naming the medium a superfluid.
 
 The longer Berezhiani-Khoury theory paper sharpens the comparison into source-side technical criteria. Its useful contribution for this bridge is not the dark-matter ontology, but the way it ties phase behavior, an order-parameter phase, a phonon effective action, a two-component finite-temperature description, and observational failure modes into one calculable structure:
 
-| Source structure | Source-side mathematical marker | Noether-Sea comparison criterion |
+| Source structure | Source-side mathematical marker | Noether sea comparison criterion |
 | --- | --- | --- |
-| Condensation and phase onset | $\lambda_{\rm dB}\sim 1/(mv)\gtrsim(m/\rho)^{1/3}$ and $\Gamma t_{\rm dyn}\gtrsim 1$. | A coherent Noether-Sea phase comparison needs a native coherence threshold and a relaxation criterion, not only a qualitative claim of coherence. |
+| Condensation and phase onset | $\lambda_{\rm dB}\sim 1/(mv)\gtrsim(m/\rho)^{1/3}$ and $\Gamma t_{\rm dyn}\gtrsim 1$. | A coherent Noether sea phase comparison needs a native coherence threshold and a relaxation criterion, not only a qualitative claim of coherence. |
 | Condensate fraction | For free particles, $f_s=N_{\rm cond}/N\simeq1-(T/T_c)^{3/2}$ below $T_c$. | Environment-dependent behavior must expose a phase fraction or an explicit statement that no such fraction has been derived. |
-| Order parameter and phonon | A phase field $\theta$ with $X=\dot\theta-m\Phi-(\nabla\theta)^2/(2m)$ and $\mathcal{L}=P(X)$. | A Noether-Sea analogue must identify the variable that carries phase, stiffness, and collective-mode gradients. |
+| Order parameter and phonon | A phase field $\theta$ with $X=\dot\theta-m\Phi-(\nabla\theta)^2/(2m)$ and $\mathcal{L}=P(X)$. | A Noether sea analogue must identify the variable that carries phase, stiffness, and collective-mode gradients. |
 | Polytropic equation of state | $P(\mu)=2\Lambda(2m\mu)^{3/2}/3$ and $P=\rho^3/(12\Lambda^2m^6)$. | Medium-response prose should be replaced by an explicit pressure/compliance law or by a stated failure of the polytropic analogy. |
 | MOND-like phonon action | $P(X)=2\Lambda(2m)^{3/2}X\sqrt{|X|}/3$. | A MOND-like comparison must name the non-analytic effective action or the native equation that replaces it. |
 | Baryon coupling | $\mathcal{L}_{\rm int}=-(\alpha\Lambda/M_{\rm Pl})\theta\rho_b$ and $a_\phi=(\alpha\Lambda/M_{\rm Pl})\phi'$. | Any matter-coupled collective mode must state the ordinary-assembly coupling channel and its acceleration residual. |
 | Finite-temperature two-fluid behavior | A Landau-style finite-temperature form $F(X,B,Y)$, with normal-fluid variables and stability conditions such as $\beta\ge3/2$ in the source model. | Galaxy/cluster phase claims need a superfluid-like and normal-like split with a perturbative stability check, or they remain analogy only. |
 | Critical velocity and local coherence | $c_s=\sqrt{2\mu/m}$, $v_s\sim\|\nabla\phi\|/m$, and $v_c\sim(\rho/m^4)^{1/3}$. | Low-dissipation transport and local loss of coherence must be tied to a threshold residual, not inferred from the word `superfluid`. |
-| Cluster and merger separation | Subsonic superfluid components can pass with low dissipation, while normal components can lag and produce distinct mass-response peaks. | A Noether-Sea comparison must route density, friction, and lensing through the same effective-metric handoff before making cluster-scale claims. |
+| Cluster and merger separation | Subsonic superfluid components can pass with low dissipation, while normal components can lag and produce distinct mass-response peaks. | A Noether sea comparison must route density, friction, and lensing through the same effective-metric handoff before making cluster-scale claims. |
 | Vortices | $\omega_{\rm cr}\sim1/(mR^2)$ and vortex line density $\sigma_v\sim m\omega$. | Vortex language needs a circulation or vorticity analogue plus a predicted density, count, or absence condition. |
-| Cold-atom analogue | The unitary Fermi gas has a non-analytic phonon action $P(X)\sim X^{5/2}$; the source model's $P\sim\rho^3$ points toward three-body interaction structure. | Cold-atom analogies are admissible only when the equation of state, symmetry, and mode content match the Noether-Sea comparison target. |
+| Cold-atom analogue | The unitary Fermi gas has a non-analytic phonon action $P(X)\sim X^{5/2}$; the source model's $P\sim\rho^3$ points toward three-body interaction structure. | Cold-atom analogies are admissible only when the equation of state, symmetry, and mode content match the Noether sea comparison target. |
 
 A minimal source-derived MOND-like check can be stated without importing the source ontology. For a declared radial window $W$, ordinary matter mass profile $M_{\text{matter}}(r)$, Newtonian benchmark acceleration $a_N(r)=G_NM_{\text{matter}}(r)/r^2$, and native collective-mode acceleration $a_{\text{mode}}(r)$, define
 
@@ -11126,19 +11126,19 @@ $$
 
 This residual is a comparison handoff, not a doctrine. If no native $a_{\text{mode}}$ or matter-coupling channel has been derived, the residual is undefined and the MOND-like comparison fails the technical test.
 
-The later Berezhiani-Khoury BEC long-range-interaction paper sharpens a separate comparison: a source can have only contact coupling in vacuum and still acquire an effective long-range interaction after it is submerged in a coherent condensate. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is a handoff criterion, not an ontology import. A Noether-Sea comparison may borrow the logic only when a coherent background variable, a collective mode, and a source-coupling operator are all named on the Noether-Sea side.
+The later Berezhiani-Khoury BEC long-range-interaction paper sharpens a separate comparison: a source can have only contact coupling in vacuum and still acquire an effective long-range interaction after it is submerged in a coherent condensate. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is a handoff criterion, not an ontology import. A Noether sea comparison may borrow the logic only when a coherent background variable, a collective mode, and a source-coupling operator are all named on the Noether sea side.
 
-| Source signal | Source-side mathematical marker | Noether-Sea comparison criterion |
+| Source signal | Source-side mathematical marker | Noether sea comparison criterion |
 | --- | --- | --- |
-| Vacuum contact becomes condensate-mediated range | A source coupling such as $|\Phi|^2J/\Lambda^2$ has no long-range vacuum force, but a coherent background $\Phi=ve^{i\mu t}$ changes the mediated response. | A Noether-Sea long-range comparison must identify the ambient state variable that changes the source response; contact with the Noether Sea is not enough by itself. |
+| Vacuum contact becomes condensate-mediated range | A source coupling such as $|\Phi|^2J/\Lambda^2$ has no long-range vacuum force, but a coherent background $\Phi=ve^{i\mu t}$ changes the mediated response. | A Noether sea long-range comparison must identify the ambient state variable that changes the source response; contact with the Noether sea is not enough by itself. |
 | Range is controlled by condensate parameters | The weak-distortion range obeys $\ell=(2\lambda v^2)^{-1/2}\simeq(2mc_s)^{-1}$, equivalently $\ell^{-1}$ scales like $\sqrt{\lambda n/m}$. | Any imported range claim needs a native range functional $\ell_{\text{sea}}[\mathcal{X}_{\text{sea}},\mathcal{Y}_{\text{coh}}]$ and a residual against the observer-level force window. |
-| Derivative phonon-source handoff | In the $\lambda=0$ low-energy limit, the gapless mode has $\omega_k=k^2/(2m)$ but couples through a momentum-dependent form factor after kinetic mixing between phase and modulus. | The Noether-Sea analogue must name the derivative or gradient operator that hands the source channel to the collective mode; a gapless mode alone does not license an inverse-square force. |
-| Weakly versus strongly deformed condensate | Linear treatment fails when the source size and density violate a deformation bound such as $\rho R^2/\Lambda^2<1$, or the equivalent point-source breakdown radius $r_*=M/(4\pi\Lambda^2)$. | A Noether-Sea comparison needs a deformation residual that says when the background response remains linear and when the source changes the local Noether-Sea state. |
-| Dense-source screening | For repulsive source coupling and strong deformation, the effective source strength is screened; in the homogeneous spherical model $M_{\text{eff}}$ crosses from the source mass to a shell-controlled value. | If dense assemblies reduce local Noether-Sea response, the effective-metric handoff must use the screened source strength, not the bare matter inventory alone. |
+| Derivative phonon-source handoff | In the $\lambda=0$ low-energy limit, the gapless mode has $\omega_k=k^2/(2m)$ but couples through a momentum-dependent form factor after kinetic mixing between phase and modulus. | The Noether sea analogue must name the derivative or gradient operator that hands the source channel to the collective mode; a gapless mode alone does not license an inverse-square force. |
+| Weakly versus strongly deformed condensate | Linear treatment fails when the source size and density violate a deformation bound such as $\rho R^2/\Lambda^2<1$, or the equivalent point-source breakdown radius $r_*=M/(4\pi\Lambda^2)$. | A Noether sea comparison needs a deformation residual that says when the background response remains linear and when the source changes the local Noether sea state. |
+| Dense-source screening | For repulsive source coupling and strong deformation, the effective source strength is screened; in the homogeneous spherical model $M_{\text{eff}}$ crosses from the source mass to a shell-controlled value. | If dense assemblies reduce local Noether sea response, the effective-metric handoff must use the screened source strength, not the bare matter inventory alone. |
 | Instability for the opposite coupling sign | For attractive coupling in the strongly deformed regime, soft modes become unstable once the same deformation threshold is crossed. | A BEC analogy fails if the native coupling sign or dense-source response destroys the coherent phase on the window being used for comparison. |
-| Galactic dark-matter application | The paper treats the force as galactic-scale and model-dependent, with screening and finite condensate-core size restricting where it can compete with gravity. | This is only a comparison framework for range-limited collective response; it does not establish MOND-like scaling, dark matter ontology, or a Noether-Sea force law. |
+| Galactic dark-matter application | The paper treats the force as galactic-scale and model-dependent, with screening and finite condensate-core size restricting where it can compete with gravity. | This is only a comparison framework for range-limited collective response; it does not establish MOND-like scaling, dark matter ontology, or a Noether sea force law. |
 
-A compact derivative-coupling handoff can be expressed at bridge level. Let $S_A(\mathbf{x},t)$ be the ordinary-assembly source channel under comparison, $q_{\text{coh}}$ a candidate collective Noether-Sea coordinate, and $\mathcal{D}_{\text{coh}}$ the native gradient or path-history operator that couples them. The comparison is admissible only if the effective interaction has the schematic form
+A compact derivative-coupling handoff can be expressed at bridge level. Let $S_A(\mathbf{x},t)$ be the ordinary-assembly source channel under comparison, $q_{\text{coh}}$ a candidate collective Noether sea coordinate, and $\mathcal{D}_{\text{coh}}$ the native gradient or path-history operator that couples them. The comparison is admissible only if the effective interaction has the schematic form
 
 $$
 \mathcal{L}_{\text{handoff}}
@@ -11161,7 +11161,7 @@ $$
 }.
 $$
 
-This residual is undefined unless $a_{\text{sea-mode}}$, $a_0$, and $\ell_{\text{sea}}$ have native definitions. The failure condition is equally important: if no coherent $q_{\text{coh}}$ exists, if $\mathcal{D}_{\text{coh}}$ is only a borrowed phonon operator, if the source pushes the local Noether-Sea state outside the linear response window, or if the coupling sign destabilizes the collective mode, then the BEC analogy must be rejected for that calculation.
+This residual is undefined unless $a_{\text{sea-mode}}$, $a_0$, and $\ell_{\text{sea}}$ have native definitions. The failure condition is equally important: if no coherent $q_{\text{coh}}$ exists, if $\mathcal{D}_{\text{coh}}$ is only a borrowed phonon operator, if the source pushes the local Noether sea state outside the linear response window, or if the coupling sign destabilizes the collective mode, then the BEC analogy must be rejected for that calculation.
 
 ##### Mathematical Handoff
 
@@ -11230,7 +11230,7 @@ v_c,
 \right).
 $$
 
-Here $\Theta_{\text{def}}$ is a declared deformation parameter or residual measuring whether the ordinary source leaves the coherent background in its linear response regime. Without such a coherent-phase data object, `superfluid` and `BEC` should remain comparison labels in this bridge, not terms used in canonical Noether-Sea mechanism prose.
+Here $\Theta_{\text{def}}$ is a declared deformation parameter or residual measuring whether the ordinary source leaves the coherent background in its linear response regime. Without such a coherent-phase data object, `superfluid` and `BEC` should remain comparison labels in this bridge, not terms used in canonical Noether sea mechanism prose.
 
 ##### Analogy Discipline
 
@@ -11238,11 +11238,11 @@ The bridge also fixes a prose rule for active theory chapters:
 
 | If the prose wants to say... | Use this instead unless the model is derived |
 | --- | --- |
-| "The Noether Sea is a superfluid." | "The Noether Sea has a low-dissipation or coherent-response comparison target." |
-| "Spacetime is an elastic medium." | "Effective spacetime behavior is reconstructed from Noether-Sea stress and compliance." |
-| "The metric is the medium." | "The metric is the observer-level summary of clock, ruler, and signal behavior in the Noether Sea." |
+| "The Noether sea is a superfluid." | "The Noether sea has a low-dissipation or coherent-response comparison target." |
+| "Spacetime is an elastic medium." | "Effective spacetime behavior is reconstructed from Noether sea stress and compliance." |
+| "The metric is the medium." | "The metric is the observer-level summary of clock, ruler, and signal behavior in the Noether sea." |
 | "Transport through the Sea explains the effect." | Name the actual variable: delay factor, response tensor, drift field, compliance metric, residual, or event ledger. |
-| "Vacuum energy causes the behavior." | State the Noether-Sea inventory, excitation, or reaction channel that carries the energy. |
+| "Vacuum energy causes the behavior." | State the Noether sea inventory, excitation, or reaction channel that carries the energy. |
 | "The theory is aether-like." | State whether the comparison is to hidden preferred-frame kinematics, wave propagation, elastic stress, or medium ontology. |
 | "The model is MOND-like." | Name the scaling law, acceleration regime, coupling channel, and recovery target. |
 
@@ -11252,10 +11252,10 @@ This discipline keeps strong comparisons available without promoting them premat
 
 A spacetime comparison becomes more than a guide only when it passes the following tests:
 
-1. **Variable test:** it identifies which Noether-Sea variables enter the calculation.
+1. **Variable test:** it identifies which Noether sea variables enter the calculation.
 2. **Map test:** it contributes to the same ADM/Cartan handoff used by [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 3. **Recovery test:** it recovers the relevant observer-level limits: Lorentz kinematics, weak-field GR, PPN bounds, photon propagation, clock redshift, lensing, or thermodynamic consistency.
-4. **No-import test:** it does not import the outside model's ontology as a substitute for Noether-Sea ontology.
+4. **No-import test:** it does not import the outside model's ontology as a substitute for Noether sea ontology.
 5. **Failure test:** it states what result would demote the comparison to a failed analogy.
 
 For superfluid and condensate comparisons, add these stricter tests:
@@ -11269,7 +11269,7 @@ For superfluid and condensate comparisons, add these stricter tests:
 7. **Derivative-handoff test:** any condensate-mediated long-range comparison names the native operator, such as $\mathcal{D}_{\text{coh}}$, that couples the source channel to the collective mode.
 8. **Range and deformation test:** any finite-range or inverse-square condensate comparison defines $\ell_{\text{sea}}$, $\Delta_{\ell}$, and a deformation residual such as $\Theta_{\text{def}}$, or else rejects the comparison for dense-source regimes.
 
-The most important failure mode is hidden synonym drift. If a comparison term starts replacing `Noether Sea`, `effective metric`, `medium response`, `causal wake`, or `closure target`, the bridge has stopped clarifying and has started importing ontology.
+The most important failure mode is hidden synonym drift. If a comparison term starts replacing `Noether sea`, `effective metric`, `medium response`, `causal wake`, or `closure target`, the bridge has stopped clarifying and has started importing ontology.
 
 ##### External Anchor Points
 
@@ -11290,23 +11290,23 @@ This document is an internal bridge, not a bibliography, but several external ma
 
 ##### Summary Commitment
 
-The Noether Sea is not renamed by its comparisons. Absolute space, Newtonian mechanics, aether theory, Minkowski spacetime, GR, elastic media, analog gravity, induced gravity, thermodynamic spacetime, condensate models, superfluid models, and quantum-vacuum language each preserve useful mathematics or intuition. Their role in $\mathbb{A}\mathbb{A}\mathbb{A}$ is to expose closure burdens for the native substrate stack:
+The Noether sea is not renamed by its comparisons. Absolute space, Newtonian mechanics, aether theory, Minkowski spacetime, GR, elastic media, analog gravity, induced gravity, thermodynamic spacetime, condensate models, superfluid models, and quantum-vacuum language each preserve useful mathematics or intuition. Their role in $\mathbb{A}\mathbb{A}\mathbb{A}$ is to expose closure burdens for the native substrate stack:
 
 $$
 \text{absolute time}
 +
 \text{Euclidean void}
 +
-\text{Noether Sea}
+\text{Noether sea}
 \longrightarrow
 \text{effective spacetime}.
 $$
 
-That is why analogy belongs here. Mechanism chapters should inherit the disciplined result: use the native Noether-Sea variables first, and use outside spacetime models only when they name a concrete equation, test, or failure mode.
+That is why analogy belongs here. Mechanism chapters should inherit the disciplined result: use the native Noether sea variables first, and use outside spacetime models only when they name a concrete equation, test, or failure mode.
 
 #### Relativistic Scalar Fields and the Klein-Gordon Equation
 
-This bridge maps relativistic scalar-field language, especially the Klein-Gordon equation, onto the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer. It is a bridge document, not the canonical owner of scalar collective dynamics. The broad theory entry remains in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), while the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms live in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
+This bridge maps relativistic scalar-field language, especially the Klein-Gordon equation, onto the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer. It is a bridge document, not the canonical owner of scalar collective dynamics. The broad theory entry remains in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), while the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms live in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
 
 ##### Bridge Thesis
 
@@ -11317,10 +11317,10 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, a scalar field should not be read as a fund
 $$
 \text{scalar field } \phi
 \quad\leftrightarrow\quad
-\text{coarse-grained scalar amplitude of assembly or Noether-Sea response}.
+\text{coarse-grained scalar amplitude of assembly or Noether sea response}.
 $$
 
-The bridge target is to derive when a collective mode of Noether swarm clusters or Noether-Sea state variables obeys a Klein-Gordon-like equation, and when delayed path-history effects force corrections.
+The bridge target is to derive when a collective mode of Noether swarm clusters or Noether sea state variables obeys a Klein-Gordon-like equation, and when delayed path-history effects force corrections.
 
 ##### Scalar Field Meaning
 
@@ -11358,11 +11358,11 @@ Under $\mathbb{A}\mathbb{A}\mathbb{A}$, this should be read as effective bookkee
 
 | QFT language | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
 | --- | --- |
-| Vacuum state | Reference Noether-Sea background |
-| Scalar field $\phi$ | Coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response |
+| Vacuum state | Reference Noether sea background |
+| Scalar field $\phi$ | Coarse-grained scalar amplitude of Noether sea density, compression, or radial-breathing response |
 | Mode $u_k$ | Normal-mode pattern supported by a Noether swarm cluster or medium region |
 | Creation operator $a_k^\dagger$ | Coherent addition, nucleation, or release of a cluster contribution into mode $k$ |
-| Annihilation operator $a_k$ | Absorption, damping, or reconfiguration of that contribution back into the surrounding Noether Sea |
+| Annihilation operator $a_k$ | Absorption, damping, or reconfiguration of that contribution back into the surrounding Noether sea |
 | Number operator $N_k=a_k^\dagger a_k$ | Effective occupation count of stable mode contributions |
 | Particle | Observer-facing name for a stable quantized mode contribution |
 
@@ -11376,7 +11376,7 @@ $$
 $$
 in the mostly-plus metric convention.
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ bridge reads this as a continuum-limit target. A mature derivation should show when linearization around a homogeneous Noether-Sea background yields a dispersion relation of the form
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ bridge reads this as a continuum-limit target. A mature derivation should show when linearization around a homogeneous Noether sea background yields a dispersion relation of the form
 $$
 \omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2,
 $$
@@ -11436,7 +11436,7 @@ where
 $$
 \phi
 $$
-is a coarse-grained Noether-Sea or assembly-response amplitude, not a substrate primitive. A homogeneous branch
+is a coarse-grained Noether sea or assembly-response amplitude, not a substrate primitive. A homogeneous branch
 $$
 \phi=\phi_\ast
 $$
@@ -11489,9 +11489,9 @@ with the appropriate branch value subtracted on each side. For this bridge, such
 
 ##### $\mathbb{A}\mathbb{A}\mathbb{A}$ Reading
 
-$\phi$ should be treated as a coarse-grained scalar amplitude of Noether-Sea density, compression, or radial-breathing response, not as a fundamental continuous substance.
+$\phi$ should be treated as a coarse-grained scalar amplitude of Noether sea density, compression, or radial-breathing response, not as a fundamental continuous substance.
 
-The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether Sea. Particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling.
+The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether sea. Particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling.
 
 The metric wave operator $\nabla^\mu\nabla_\mu$ belongs to emergent metric closure, not to the substrate-level Euclidean void. The curvature-coupling term $\xi R\phi^2$ is therefore read as a bridge term: scalar-mode behavior changes with effective medium curvature, density, or stress.
 
@@ -11511,10 +11511,10 @@ Long-term relevance is as a benchmark continuum limit: the mature stack should d
 
 To promote this bridge from mapping to derivation, the following targets must close:
 
-1. Derive a coarse-grained scalar amplitude $\phi$ from Noether-Sea density, compression, or radial breathing modes.
+1. Derive a coarse-grained scalar amplitude $\phi$ from Noether sea density, compression, or radial breathing modes.
 2. Derive normal coordinates $Q_k(t)$ for Noether swarm cluster modes so that $\phi(\mathbf{x},t)\approx\sum_k Q_k(t)u_k(\mathbf{x})$ in the continuum limit.
 3. Show how stable discrete increments of $Q_k$ produce the effective occupation-count behavior encoded by $a_k^\dagger$, $a_k$, and $N_k$.
-4. Show when linearization around a homogeneous Noether-Sea background yields $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$.
+4. Show when linearization around a homogeneous Noether sea background yields $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$.
 5. Relate the effective mass parameter $m$ to assembly stiffness, confinement energy, or radial restoring dynamics rather than treating it as primitive.
 6. Determine whether effective curvature coupling $\xi R\phi^2$ emerges from medium-density gradients, strain response, or scalar-tensor leakage in the emergent metric closure.
 7. Derive an effective functional $\mathcal{F}_{\mathrm{eff}}[\phi]$ with a positive fluctuation operator on the retained branch, and identify any zero modes as symmetry or collective-coordinate directions rather than as unstable scalar modes.
@@ -11522,7 +11522,7 @@ To promote this bridge from mapping to derivation, the following targets must cl
 
 ##### Summary Commitment
 
-> **Scalar-Field Bridge Commitment:** Relativistic scalar-field equations are retained as effective continuum summaries where they work. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $\phi$, $m$, $V(\phi)$, and $\xi R\phi^2$ must be derived as collective assembly or Noether-Sea response variables, not assumed as substrate primitives.
+> **Scalar-Field Bridge Commitment:** Relativistic scalar-field equations are retained as effective continuum summaries where they work. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $\phi$, $m$, $V(\phi)$, and $\xi R\phi^2$ must be derived as collective assembly or Noether sea response variables, not assumed as substrate primitives.
 
 #### Weak Mixing CKM
 
@@ -11542,7 +11542,7 @@ This chapter is written as a bridge text: it first states CKM in standard SM lan
 | $\theta_{12},\theta_{23},\theta_{13}$ | Generation-chain transport amplitudes $(\kappa_{12},\kappa_{23},\sigma)$ via exponential ansatz | $\mathbb{A}\mathbb{A}\mathbb{A}$ postulate + calibration |
 | CKM phase $\delta$ | Geometric holonomy angle via closure $\cos\delta=s_{13}/(s_{12}s_{23})$ | $\mathbb{A}\mathbb{A}\mathbb{A}$ postulate leading to prediction |
 | Rates $\propto \lvert V_{ij}\rvert^2$ | Overlap-weighted transition probabilities (plus kinematics/hadronic factors) | SM observable mapping |
-| $W^\pm$ exchange | Transient corridor assembled during interaction in the Noether Sea | $\mathbb{A}\mathbb{A}\mathbb{A}$ descriptive hypothesis |
+| $W^\pm$ exchange | Transient corridor assembled during interaction in the Noether sea | $\mathbb{A}\mathbb{A}\mathbb{A}$ descriptive hypothesis |
 
 ###### The Cabibbo–Kobayashi–Maskawa matrix (CKM) in the Standard Model
 Quark flavor change in charged-current weak interactions is governed by one unitary matrix:
@@ -11596,20 +11596,20 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these thr
 - Big overlaps (similar shielding) give big CKM entries; mismatched shielding gives tiny entries.
 
 - In this $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, a $W^\pm$ is not created ex nihilo and is not treated as a preexisting free field quantum; it is a transient “corridor” that associates during a weak interaction:
-  - Assembly mechanism: localized polarization of the Noether Sea provides two neutral swarms, while the interacting weak-coupling triad transfers a six-charge excess ($\pm e$ net) into the corridor.
+  - Assembly mechanism: localized polarization of the Noether sea provides two neutral swarms, while the interacting weak-coupling triad transfers a six-charge excess ($\pm e$ net) into the corridor.
   - Geometrically it’s a short-lived, high-tension bundle (see [assemblies/bosons/electroweak-bosons.md](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md)) that ferries charge/phase between source and sink.
   - It dissociates quickly (lifetime set by corridor instability), matching the short-lived SM W.
-  - So: it is a transient, bound excitation of the Noether Sea from reconfiguration of participants' wakes and axial structure, not from a standing background field.
+  - So: it is a transient, bound excitation of the Noether sea from reconfiguration of participants' wakes and axial structure, not from a standing background field.
 
 ##### Minimal premises
 - **Generations = shielding level:** Gen I nested shell swarm (u,d), Gen II bi-binary (c,s), Gen III uni-binary (t,b).
 - **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
-- **Mass basis = shielding eigenstates:** Noether swarm shielding, trapped internal causal history, and Noether-Sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md).
+- **Mass basis = shielding eigenstates:** Noether swarm shielding, trapped internal causal history, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 
 Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
-Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether Sea ahead of the translating quark group, where cores are unshadowed and available to couple.
+Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether sea ahead of the translating quark group, where cores are unshadowed and available to couple.
 
-Noether-Sea sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty background here, only the Noether Sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during heavy-to-light weak dissociation as speculative until energy/number flow is explicitly budgeted.
+Noether sea sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty background here, only the Noether sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during heavy-to-light weak dissociation as speculative until energy/number flow is explicitly budgeted.
 
 Left/right coupling note (SM statement): charged-current SU(2), and therefore CKM mixing, act only on left-handed quarks (equivalently right-handed antiquarks). Right-handed quarks are SU(2) singlets and do not mix via CKM.
 
@@ -11663,7 +11663,7 @@ Let the six polar sites of the active quark be
 $$
 S=\{H_+,H_-,M_+,M_-,L_+,L_-\},
 $$
-with axial inventory $A_a\in\{E,P\}$ at each site $a\in S$. Let $\hat{\mathbf n}_a(R_{\mathrm{rel}})$ be the outward polar-site direction after the axial frame is placed relative to the fixed Noether swarm frame, and let $\hat{\mathbf v}$ be the quark drift direction through the local Noether Sea.
+with axial inventory $A_a\in\{E,P\}$ at each site $a\in S$. Let $\hat{\mathbf n}_a(R_{\mathrm{rel}})$ be the outward polar-site direction after the axial frame is placed relative to the fixed Noether swarm frame, and let $\hat{\mathbf v}$ be the quark drift direction through the local Noether sea.
 
 The finite-state exposure score for handedness $h\in\{L,R\}$ is
 $$
@@ -11743,7 +11743,7 @@ $$
 \Delta Q_{W^-}=3(q_E-q_P)=-6\epsilon=-e.
 $$
 
-In the neutron, this operator acts on one active down-like quark while the spectator $u$ and $d$ assemblies pass through by identity. The conservative provenance stance is the transaction-payload corridor: the $W^-$ carries the charged triad transaction and phase relation, while the electron and antineutrino swarm material must still be identified from local Noether-Sea or incoming-assembly provenance in the reaction ledger.
+In the neutron, this operator acts on one active down-like quark while the spectator $u$ and $d$ assemblies pass through by identity. The conservative provenance stance is the transaction-payload corridor: the $W^-$ carries the charged triad transaction and phase relation, while the electron and antineutrino swarm material must still be identified from local Noether sea or incoming-assembly provenance in the reaction ledger.
 
 This operator gives the first closure test for the unified route. It must fail if the same $\Sigma_{\mathrm{WCT}}$ cannot serve the left-handed gate, the $V_{ud}$ overlap, and the beta-reaction provenance record; if it changes the spectator quarks; or if a right-handed $d$ docks to the charged corridor without strong suppression.
 
@@ -11778,7 +11778,7 @@ Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether sw
 - $W^-$ payload: 3 positrinos + 9 electrinos (net $-6(e/6)=-e$).
 
 The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget.
-Ontology note ($\mathbb{A}\mathbb{A}\mathbb{A}$): this corridor is a transient bound excitation of the Noether Sea assembled from local polarization + transferred Active-Triad excess, not ex nihilo particle creation.
+Ontology note ($\mathbb{A}\mathbb{A}\mathbb{A}$): this corridor is a transient bound excitation of the Noether sea assembled from local polarization + transferred Active-Triad excess, not ex nihilo particle creation.
 
 ###### PDG CKM (2024 central values, magnitude)
 
@@ -12070,7 +12070,7 @@ so once $(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert)$ are cali
 
 ##### What to compute next
 - Derive $(\kappa_{12},\kappa_{23},\sigma)$ from first-principles $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry (radii ratios, wake exposure, and triad transport), rather than CKM calibration.
-- Prove or falsify the holonomy closure law $\cos\delta=\xi$ from explicit triad transport on the Noether-Sea background.
+- Prove or falsify the holonomy closure law $\cos\delta=\xi$ from explicit triad transport on the Noether sea background.
 - Quantify scale dependence: test whether the fitted actions remain stable under renormalization-scale translation of CKM inputs.
 - Simulate wake exposure to confirm/deny a forward-hemisphere weak-coupling triad; falsify the model if trailing-site coupling dominates.
 - Extend the same overlap geometry to PMNS and test whether the larger lepton mixing follows from different shielding/transport actions.
@@ -12089,13 +12089,13 @@ The conjectural weak-provenance material below is an illustration of what a futu
 - **Forward axial sites:** weak-coupling triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
 - **Environmental partners:**
   - Photon: a coaxial contra-rotating pro/anti planar pair.
-  - Noether Sea: hypothesized as paired pro/anti Noether swarms; a local interaction could draw neutral swarm content to participate while preserving recorded provenance.
-- **Architrino budget example:** reacting with a Noether-Sea super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
+  - Noether sea: hypothesized as paired pro/anti Noether swarms; a local interaction could draw neutral swarm content to participate while preserving recorded provenance.
+- **Architrino budget example:** reacting with a Noether sea super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
 - **Capability target:** a mature reaction ledger would state the corridor provenance stance, participating swarms/architrinos, candidate products, and forbidden outcomes with reasons such as shielding mismatch, insufficient flux-tube closure, or unmet charge quantization.
 
 ###### Illustrative Candidate Ledger Rows
 
-| Reactant set | Noether swarm shielding (IMO/HML) | weak-coupling-triad polarity | Noether-Sea swarms tapped? | Candidate products | Corridor(s) | Illustrative status | Reason/constraint |
+| Reactant set | Noether swarm shielding (IMO/HML) | weak-coupling-triad polarity | Noether sea swarms tapped? | Candidate products | Corridor(s) | Illustrative status | Reason/constraint |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | $d$ (IMO) → $u$ (IMO) + $W^-$ | tri → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | likely | Matches $V_{ud}$; charge quantized |
 | $s$ (IM-) → $u$ (IMO) + $W^-$ | bi → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{us}\rvert$ |
@@ -12112,7 +12112,7 @@ The conjectural weak-provenance material below is an illustration of what a futu
 | $W$ corridor budget (generic) | — | — | 2 neutral swarms + 6 excess decorations | returns neutral swarms to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 neutral swarms + (9P,3E) → +e; $W^-$: 2 neutral swarms + (3P,9E) → –e; swarms end neutral |
 
 Notes:
-- "Noether-Sea swarms tapped" means how many Noether-Sea swarms are pulled transiently, if any. Default 0 unless the corridor assembly needs external cores.
+- "Noether sea swarms tapped" means how many Noether sea swarms are pulled transiently, if any. Default 0 unless the corridor assembly needs external cores.
 - Populate further rows for $c\leftrightarrow s$, $b\to u$, rare loop-induced $b\to s$, and anti-quark channels (same CKM but right-handed anti-doublets).
 
 ###### Provenance
@@ -12124,11 +12124,11 @@ Notes:
 
 ###### Polarity and Charge Conservation Enforcement
 
-- Free $\pm\epsilon$ axial architrinos are dynamically suppressed by the strong Noether-Sea dielectric response (no long-lived spare-polarity propagation in the coarse-grained ledger).
+- Free $\pm\epsilon$ axial architrinos are dynamically suppressed by the strong Noether sea dielectric response (no long-lived spare-polarity propagation in the coarse-grained ledger).
 - Any spare axial architrinos must close through one of the following channels:
   - **Product incorporation:** absorbed into a final-state assembly while preserving charge/polarity bookkeeping.
   - **Current carriage:** carried out on charged lepton/neutrino legs as part of the weak-current flow.
-  - **Immediate neutral relock:** paired with opposite-polarity architrinos drawn from the Sea, routing energy into short coaxial contra-rotating pro/anti planar-pair photon modes while all participating identities remain in the ledger.
+  - **Immediate neutral relock:** paired with opposite-polarity architrinos drawn from the Sea, routing energy into short photon modes modeled as coaxial contra-rotating pro/anti planar pairs while all participating identities remain in the ledger.
 - Practical rule for simulations: treat a true long-range "escape" channel as forbidden unless a dedicated high-resolution run demonstrates otherwise.
 
 Decision cues to log in simulations: initial separation, relative phase, and local Noether swarm density. The selected dominant channel must record energy and charge routing.
@@ -12194,7 +12194,7 @@ The opening sections state the working thesis and the immediate kinematic map; l
 
 This chapter maps the Planck scale into nested shell swarm geometry and dynamics. The inherited Planck formulas are used as constraints and comparison targets, not as settled ontology. The immediate aim is to identify which geometric quantities, delay-feedback conditions, and alignment variables would have to be derived before the Planck scale can be claimed as a nested shell swarm closure result.
 
-We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of nested shell swarm assemblies in the Noether Sea:
+We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of nested shell swarm assemblies in the Noether sea:
 
 >
 > **Working Thesis (Planck Alignment Horizon).**
@@ -12287,7 +12287,7 @@ We keep these as open threads while we test whether alignment alone can lock the
 | Radius $R_{\text{align}}$ | $R_{\text{align}} = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the outer binary. |
 | Alignment geometry $A_{\text{align}}$ | $A_{\text{align}} = R_{\text{align}}^2$ | Square of the alignment radius | Planar alignment area scale. |
 | Gravitation $G$ | $G \propto c_f^3 A_{\text{align}} / h$ | Express in terms of $A_{\text{align}}$ and $h$ | Medium compliance tied to the alignment geometry scale ($A_{\text{align}}$). |
-| Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether Sea. |
+| Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether sea. |
 | Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
 | Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Corner case: an energy-equivalent scale for alignment, not a rest-mass of the planar, field-speed state. |
 | Time $t_P$ | $t_P = 1/f_P$ | Invert the cadence to get period | One orbital **period** at alignment if $f_{\text{align}} = f_P$. |
@@ -12371,7 +12371,7 @@ In this causal-wake framing:
 ###### Field-Speed Regimes in the Causal-Wake View
 
 - **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic (ahead starves, behind dominates). Phase-locking becomes delicate; alignment effects intensify.
-- **At $v > c_f$:** It outruns newly emitted causal-wake propagation. The only gradients it can receive are from delayed emissions and the Noether Sea behind or sideways, which leads to self-hit dynamics. This creates a strong inward or centripetal feedback candidate that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
+- **At $v > c_f$:** It outruns newly emitted causal-wake propagation. The only gradients it can receive are from delayed emissions and the Noether sea behind or sideways, which leads to self-hit dynamics. This creates a strong inward or centripetal feedback candidate that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
 
 ---
 
@@ -12538,10 +12538,10 @@ Our program is to compute $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text
 
 ###### $G$ as Noether Sea Compliance
 
-Qualitatively, gravitational coupling strength reflects the **elastic response of the Noether Sea**:
+Qualitatively, gravitational coupling strength reflects the **elastic response of the Noether sea**:
 
 > **Heuristic View:**
-> $G$ is inversely related to the **stiffness** of nested shell swarm assemblies in the Noether Sea against being driven toward the alignment phase. High energy density in aligned swarms deforms the surrounding Noether Sea, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
+> $G$ is inversely related to the **stiffness** of nested shell swarm assemblies in the Noether sea against being driven toward the alignment phase. High energy density in aligned swarms deforms the surrounding Noether sea, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
 
 A full derivation of $G$ from medium compliance is still to be done; the formula above gives a target relationship.
 
@@ -12615,7 +12615,7 @@ Those steps remain open.
 
 ### Overview
 
-This document gives a philosophical orientation for a central $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction: what exists as primitive substance, what exists as causal structure, and what remains only an effective description. It belongs in the philosophy-history lane because it explains the level discipline behind the ontology. The canonical technical owners remain [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md), [Architrino](../../../../markdown/aaa/foundations/architrino.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), and [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
+This document gives a philosophical orientation for a central $\mathbb{A}\mathbb{A}\mathbb{A}$ distinction: what exists as primitive substance, what exists as causal structure, and what remains only an effective description. It belongs in the philosophy-history lane because it explains the level discipline behind the ontology. The canonical technical owners remain [Foundational Ontology](../../../../markdown/aaa/foundations/ontology.md), [Architrino](../../../../markdown/aaa/foundations/architrino.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), and [Master Equation of Motion](../../../../markdown/aaa/dynamics/master-equation.md).
 
 The guiding problem is that modern physics often lets predictive objects carry more ontology than their derivation warrants. A metric, field, vacuum state, wavefunction, mass parameter, or particle label may be indispensable within its regime while still failing to identify the implementation layer that produces the observed behavior. The task here is not to dismiss those formalisms. It is to separate their effective success from the stronger claim that their native objects are the fundamental furniture of reality.
 
@@ -12635,7 +12635,7 @@ At the primitive level, the sole material entity is the [architrino](../../../..
 
 Matter is an assembly-level outcome. Stable matter-like objects appear when architrinos organize into shielded, persistent, interacting assemblies whose observer-facing behavior supports particle labels, mass response, charge bookkeeping, spin-like structure, and chemistry. In this sense, matter is real, but it is not primitive. It is a higher-order organization of a more basic material inventory.
 
-The distinction is important because it prevents false demands on the primitive. A point transceiver does not need bare density, radius, volume exclusion, or rest mass in order to be ontologically real. Those are not missing properties of the architrino. They are properties that become meaningful after assembly, shielding, Noether-Sea coupling, and observer-level measurement have entered the stack.
+The distinction is important because it prevents false demands on the primitive. A point transceiver does not need bare density, radius, volume exclusion, or rest mass in order to be ontologically real. Those are not missing properties of the architrino. They are properties that become meaningful after assembly, shielding, Noether sea coupling, and observer-level measurement have entered the stack.
 
 ### Wake as Structure
 
@@ -12651,11 +12651,11 @@ This is why $\mathbb{A}\mathbb{A}\mathbb{A}$ prefers `wake` or `causal wake` at 
 
 The third distinction is between the void and what occupies it. The [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) is the fixed spatial container. It is continuous, flat, homogeneous, isotropic, and non-dynamical. It has the fixed Euclidean metric $h_{ij}=\delta_{ij}$, but it does not curve, expand, contract, store energy, carry stress, or respond to matter.
 
-This means the void is not a physical medium. It is not the Noether Sea, not a quantum vacuum substance, and not a dynamical spacetime. Its role is to supply spatial identity, distance, direction, and the arena in which architrinos and their assemblies move.
+This means the void is not a physical medium. It is not the Noether sea, not a quantum vacuum substance, and not a dynamical spacetime. Its role is to supply spatial identity, distance, direction, and the arena in which architrinos and their assemblies move.
 
-The [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) is different. It is physical content inside the Euclidean void: an emergent population of neutral Noether swarm assemblies whose collective state produces effective metric, inertia, clock, ruler, signal-delay, and cosmological behavior. The Noether Sea can carry density, stress, flow, orientation, and energy response. The void itself cannot.
+The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is different. It is physical content inside the Euclidean void: an emergent population of neutral Noether swarm assemblies whose collective state produces effective metric, inertia, clock, ruler, signal-delay, and cosmological behavior. The Noether sea can carry density, stress, flow, orientation, and energy response. The void itself cannot.
 
-This split is one of the core ontological safeguards of the framework. If the void and the Noether Sea are fused, then geometry, occupancy, medium response, and observer-level spacetime become one ambiguous object. If they remain separated, the theory can say exactly which layer does which explanatory work.
+This split is one of the core ontological safeguards of the framework. If the void and the Noether sea are fused, then geometry, occupancy, medium response, and observer-level spacetime become one ambiguous object. If they remain separated, the theory can say exactly which layer does which explanatory work.
 
 ### The Plenum of Potential
 
@@ -12666,7 +12666,7 @@ At any location in the void, there need not be matter in the ordinary sense, and
 The Plenum of Potential therefore means:
 
 1. The void is not a material plenum.
-2. The Noether Sea is the ambient physical medium when medium content is present.
+2. The Noether sea is the ambient physical medium when medium content is present.
 3. Causal wakes supply a dense relational history of possible delayed interaction.
 4. A wake becomes dynamically active only through a receiver event.
 
@@ -12676,9 +12676,9 @@ This phrase is useful because it avoids two opposite mistakes. One mistake treat
 
 Modern vacuum language often combines several different ideas: absence of matter, field ground state, background energy, symmetry-breaking structure, boundary-sensitive behavior, and effective spacetime response. The resulting word can do too much. It can name emptiness in one sentence and an active physical sector in the next.
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement is level separation. If the subject is the fixed spatial container, say Euclidean void. If the subject is ambient medium content, say Noether Sea. If the subject is delayed emitted influence, say causal wake. If the subject is coarse-grained continuum behavior, say effective field. If the subject is observer-level gravitational geometry, say effective metric or effective spacetime.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement is level separation. If the subject is the fixed spatial container, say Euclidean void. If the subject is ambient medium content, say Noether sea. If the subject is delayed emitted influence, say causal wake. If the subject is coarse-grained continuum behavior, say effective field. If the subject is observer-level gravitational geometry, say effective metric or effective spacetime.
 
-This does not make modern vacuum calculations disposable. It gives them a migration target. The pieces that work should be recovered as effective summaries of causal wake superposition, assembly dynamics, Noether-Sea state, or observer-level reconstruction. What should not survive is the habit of letting one word, `vacuum`, carry all those roles without layer discipline.
+This does not make modern vacuum calculations disposable. It gives them a migration target. The pieces that work should be recovered as effective summaries of causal wake superposition, assembly dynamics, Noether sea state, or observer-level reconstruction. What should not survive is the habit of letting one word, `vacuum`, carry all those roles without layer discipline.
 
 ### Methodological Use
 
@@ -12690,7 +12690,7 @@ The substance-structure distinction gives the philosophy-history lane a clean te
 - What does it measure directly, and what does it infer?
 - Which part must be rederived from substrate dynamics?
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the answer should remain stable. Architrinos are the primitive material inventory. Causal wakes are source-provenanced relational structure. The Euclidean void is the fixed spatial container. The Noether Sea is emergent medium content. Matter, mass, particle types, effective fields, metric behavior, and quantum-state descriptions are downstream organizations or observer-facing summaries.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the answer should remain stable. Architrinos are the primitive material inventory. Causal wakes are source-provenanced relational structure. The Euclidean void is the fixed spatial container. The Noether sea is emergent medium content. Matter, mass, particle types, effective fields, metric behavior, and quantum-state descriptions are downstream organizations or observer-facing summaries.
 
 That architecture is stronger than a slogan about building from the bottom up. It is a rule for avoiding hidden ontology in inherited language. The bedrock claim is not that every effective theory is wrong. It is that a successful effective theory should be treated as a map to be recovered, not as automatic proof that its native variables are primitive.
 
@@ -12719,7 +12719,7 @@ This chapter also treats missed opportunities dynamically rather than as one-tim
 The minimal lens used in this chapter is:
 
 - Substrate kinematics: $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with exact absolute-time form $dt$.
-- Matter and "vacuum" share constituents (assemblies in the Noether Sea), not two disjoint ontologies.
+- Matter and "vacuum" share constituents (assemblies in the Noether sea), not two disjoint ontologies.
 - Relativistic observables are emergent summaries of assembly dynamics.
 - Deterministic microdynamics can yield multistability and attractor-basin outcome sensitivity.
 
@@ -12781,7 +12781,7 @@ Another recurring pattern is failure to revisit earlier assumption sets after la
 | 1860s-1890s (Maxwell + finite propagation) | Field propagation speed, wave structure of electromagnetism | Physical medium interpretation with finite-speed causal transport | Field formalism was treated as sufficient; ontology of the carrier was deprioritized |
 | 1887-1904 (Michelson-Morley + Lorentz) | Null aether-wind result, dynamical contraction/time slowdown models | Emergent Lorentz symmetry from matter-medium interaction | "Undetectable medium = dispensable medium" became the decisive simplification |
 | 1905 (Special Relativity) | Full Lorentz covariance of inertial laws | Could have been read as effective symmetry of assemblies in one substrate | Principle-theory victory reclassified kinematic effects as fundamental spacetime structure |
-| 1915-1920 (General Relativity) | Metric dynamics with exceptional predictive power | Metric as coarse-grained constitutive field of deeper Noether-Sea state | Geometrization succeeded so strongly that "geometry is fundamental" became default |
+| 1915-1920 (General Relativity) | Metric dynamics with exceptional predictive power | Metric as coarse-grained constitutive field of deeper Noether sea state | Geometrization succeeded so strongly that "geometry is fundamental" became default |
 | 1917 (Einstein World) | Boundary-condition pressure at spatial infinity, Machian relativity-of-inertia aims, and the first relativistic global cosmology | Global geometry could have been held as a closure hypothesis requiring observation, stability, and source/boundary residual tests | Logical consistency and aesthetic closedness could outrun empirical comparison and perturbative stability analysis |
 | 1924-1930 (de Broglie, pilot-wave, early quantum debates) | Deterministic alternatives existed, particle-wave dual structure observed | Deterministic microstate + contextual readout + basin selection | Copenhagen operationalism treated ontology as unnecessary overhead |
 | 1930s-1950s (QFT vacuum, renormalization) | Vacuum structure, divergence control, effective computational rules | Divergences as signs of missing microstructure and finite substrate scales | Renormalization success normalized continuum ontology plus parameter absorption |
@@ -12843,7 +12843,7 @@ In other words, the ingredients for a layered interpretation were already presen
 |:---|:---|:---|:---|
 | Preferred frame | Yes, physically real ether rest frame | No preferred inertial frame | Yes, Euclidean void with absolute time |
 | Status of Lorentz transformations | Dynamical compensation from motion through a medium | Fundamental kinematics of spacetime itself | Emergent observable symmetry from assembly dynamics |
-| Medium composition | Unspecified ether substance | No constitutive medium required | Noether Sea of architrino assemblies |
+| Medium composition | Unspecified ether substance | No constitutive medium required | Noether sea of architrino assemblies |
 | Relation between matter and medium | Matter moves through a distinct ether | Matter and spacetime are treated kinematically | Matter and medium share one ontology |
 | Why ordinary experiments fail to reveal the frame | Rod-clock compensation is exact | No hidden frame exists to detect | Accessible-regime assembly deformation and clock retuning hide the frame in ordinary conditions, if the coefficient closure succeeds |
 | Moving-source causal structure | Finite-propagation source history already matters in electrodynamics | Retained mathematically but stripped of medium ontology | Elevated into a substrate-first path-history picture |
@@ -12953,7 +12953,7 @@ where $Q_\theta$ is the retained effective quantity, $\mathbf{F}_\theta$ is its 
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary and directly useful as method**. It does not support importing Einstein's static closed universe, nor does it justify treating $\lambda$ as a disguised proof of Noether-Sea dynamics. It supports a stricter rule: whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes an effective cosmological history in a fixed Euclidean void, the history must distinguish observer-level variables such as $a(t)$ and $H(t)$ from substrate claims about assemblies and the Noether Sea, and it must carry observation, stability, and source/boundary residuals together.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary and directly useful as method**. It does not support importing Einstein's static closed universe, nor does it justify treating $\lambda$ as a disguised proof of Noether sea dynamics. It supports a stricter rule: whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes an effective cosmological history in a fixed Euclidean void, the history must distinguish observer-level variables such as $a(t)$ and $H(t)$ from substrate claims about assemblies and the Noether sea, and it must carry observation, stability, and source/boundary residuals together.
 
 Transition relevance is high because emergent cosmologies are especially vulnerable to the same failure mode. A model can be mathematically elegant, philosophically attractive, and still be under-validated. The Einstein World warns that a closure device should remain a closure device until it survives the full residual check.
 
@@ -13073,7 +13073,7 @@ $$
 +\frac{\left\|\mathcal{P}_{\mathrm{wake}}(W)-\mathcal{P}_{\mathrm{field}}(W)\right\|}{P_W}
 +\frac{\left|m_{\mathrm{resp}}(W)-m_{\mathrm{obs}}(W)\right|}{m_W}.
 $$
-Here $\Delta\mathbf{p}_{\mathrm{wake}}$ is the impulse accumulated from finite-speed causal-wake hits, $\Delta\mathbf{p}_{\mathrm{eff}}$ is the corresponding impulse in the effective field description being recovered, $\mathcal{P}_{\mathrm{wake}}$ and $\mathcal{P}_{\mathrm{field}}$ are matched provenance records for where the interaction content enters and exits the calculation, and $m_{\mathrm{resp}}$ is the externally exposed inertial response derived from path history, shielding, and Noether-Sea coupling. A Wheeler-style near miss becomes live only if all three terms are small without adding instantaneous action, non-causal branch content, or independent mass constants.
+Here $\Delta\mathbf{p}_{\mathrm{wake}}$ is the impulse accumulated from finite-speed causal-wake hits, $\Delta\mathbf{p}_{\mathrm{eff}}$ is the corresponding impulse in the effective field description being recovered, $\mathcal{P}_{\mathrm{wake}}$ and $\mathcal{P}_{\mathrm{field}}$ are matched provenance records for where the interaction content enters and exits the calculation, and $m_{\mathrm{resp}}$ is the externally exposed inertial response derived from path history, shielding, and Noether sea coupling. A Wheeler-style near miss becomes live only if all three terms are small without adding instantaneous action, non-causal branch content, or independent mass constants.
 
 The later collapse crisis adds a companion requirement: no-hair coarse-graining must not be mistaken for literal source erasure unless the derivation says so. A recovery account has to identify which incoming assembly records remain available to exterior effective variables, which are hidden behind the collapse boundary, and which conservation labels were only valid at the pre-collapse effective layer. That is the concrete historical pressure behind Wheeler's law-without-law language: if lawfulness is emergent closure, the corpus must specify the closure map rather than simply deny Wheeler's worry.
 
@@ -13085,7 +13085,7 @@ Transition relevance is high. The project should not inherit Wheeler's particles
 
 #### Recovery Target
 
-The long-term relevance of this episode is permanent until the field/particle distinction is closed at the constitutive level. Recovery would require deriving effective fields from causal-wake superposition, deriving inertial response from trapped internal causal history and Noether-Sea coupling, and replacing singular point-particle idealization with finite stable assembly branches that still reproduce the tested point-particle and field-theory limits. Wheeler's historical sequence then becomes a near-miss benchmark: $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds only if it can keep the particles-first pressure without losing the field-level successes that Wheeler eventually had to recover.
+The long-term relevance of this episode is permanent until the field/particle distinction is closed at the constitutive level. Recovery would require deriving effective fields from causal-wake superposition, deriving inertial response from trapped internal causal history and Noether sea coupling, and replacing singular point-particle idealization with finite stable assembly branches that still reproduce the tested point-particle and field-theory limits. Wheeler's historical sequence then becomes a near-miss benchmark: $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds only if it can keep the particles-first pressure without losing the field-level successes that Wheeler eventually had to recover.
 
 ---
 
@@ -13120,11 +13120,11 @@ The historical lock-in around this episode is two-sided. Einstein's preference f
 
 #### What Was Left Unfinished
 
-What was occluded was a disciplined source-provenance analysis. A cosmological constant, dark-energy-like stress, or medium tension can alter an effective expansion history without automatically producing matter. Conversely, recurring assembly association, dissociation, black-hole recycling, or Noether-Sea exchange can source effective matter only if the ledger closes in absolute time. The unfinished target is therefore not "revive steady state"; it is "never allow a fitted expansion history to smuggle in unaccounted source terms."
+What was occluded was a disciplined source-provenance analysis. A cosmological constant, dark-energy-like stress, or medium tension can alter an effective expansion history without automatically producing matter. Conversely, recurring assembly association, dissociation, black-hole recycling, or Noether sea exchange can source effective matter only if the ledger closes in absolute time. The unfinished target is therefore not "revive steady state"; it is "never allow a fitted expansion history to smuggle in unaccounted source terms."
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether Sea may carry Noether-Sea state dynamics that project into $a_{\mathrm{eff}}(t)$, $H_{\mathrm{eff}}(t)$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(t)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether sea may carry Noether sea state dynamics that project into $a_{\mathrm{eff}}(t)$, $H_{\mathrm{eff}}(t)$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(t)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
 
 #### Recovery Target
 
@@ -13321,11 +13321,11 @@ It should be read alongside [Philosophy of Science](../../../../markdown/aaa/phi
 The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
 - **Reductionist**: All complexity derives from one fundamental entity type (architrinos = eternal, equal-and-opposite architrinos) and their interaction rules.
 - **Causal substrate with emergent quantum behavior**: Pilot-wave-like aspects without fundamental randomness in the base interactions, with **deterministic multistability** at self-hit branch points.
-- **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry, clock slowing, ruler contraction, and GR effective behavior emergent through Noether-Sea response.
+- **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry, clock slowing, ruler contraction, and GR effective behavior emergent through Noether sea response.
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
 - **Self-hit regime**: Entirely novel dynamics when sources exceed field propagation speed.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and polarity of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This perspective knows where and when each causal wake surface was emitted as it passes any point.
-- **Noether Sea / spacetime-medium bridge**: What GR calls the "vacuum" is not empty void but the **Noether Sea**: ambient substrate contents made from coupled pro/anti Noether swarms, with `spacetime medium` reserved as bridge language for the effective metric context.
+- **Noether sea / spacetime-medium bridge**: What GR calls the "vacuum" is not empty void but the **Noether sea**: ambient substrate contents made from coupled pro/anti Noether swarms, with `spacetime medium` reserved as bridge language for the effective metric context.
 
 **Terminology note:** In this document, **"branching"** refers to **deterministic multistability** (microstate-sensitive attractor selection), not Many-Worlds splitting or fundamental randomness.
 
@@ -13769,7 +13769,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Electromagnetic phenomena are governed by a medium-relative dynamics in which observed Lorentz symmetry can emerge despite a preferred rest structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the relevant substrate as Noether-Sea assembly-network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the relevant substrate as Noether sea response-network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
 
 **Legacy Shift**: Lorentz moves from discarded alternative to core interpretive ancestor, with his ontology formalized by explicit causal delayed substrate mechanics.
 
@@ -13796,7 +13796,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Special relativity treats Lorentz symmetry and relativity of simultaneity as foundational kinematics, while general relativity treats gravity as dynamical spacetime curvature with coordinate-gauge structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from Noether swarm deformation, clock-law retuning, and Noether-Sea response, with GR curvature as effective assembly-network behavior on Euclidean space with absolute time. In this reading, $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from Noether swarm deformation, clock-law retuning, and Noether sea response, with GR curvature as effective assembly-network behavior on Euclidean space with absolute time. In this reading, $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
 
 **Legacy Shift**: Relativity remains indispensable as a high-accuracy effective theory stack, while its primitive geometric ontology is replaced by substrate-first mechanistic emergence.
 
@@ -13823,7 +13823,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Gravity is not fundamental but induced from deeper microphysical degrees of freedom, so Einstein structure can emerge from lower-level dynamics.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves this orientation by treating gravity as effective hydrodynamics of spacetime assembly-network behavior over a causal delayed substrate.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves this orientation by treating gravity as effective hydrodynamics of Noether sea response-network behavior over a causal delayed substrate.
 
 **Legacy Shift**: Sakharov's idea moves from suggestive proposal to operational reduction target with explicit microphysical realization.
 
@@ -14394,7 +14394,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Weak and electromagnetic interactions are unified through gauge symmetry with mass generation via symmetry-breaking structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves electroweak phenomenology but interprets gauge and Higgs structure as emergent from spacetime assembly-network organization and phase behavior.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves electroweak phenomenology but interprets gauge and Higgs structure as emergent from Noether sea response-network organization and phase behavior.
 
 **Legacy Shift**: Electroweak unification remains a core effective success while its primitives are demoted to emergent descriptors.
 
@@ -14477,7 +14477,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Reality is fundamentally processual and relational, with enduring substances treated as abstractions over event structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration. It relocates Whitehead's metric worry into a constitutive recovery demand: effective geometry is legitimate only when the same record of the Noether Sea and the Physical Observer produces the relevant clocks, rulers, signal paths, and gravitational benchmarks.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration. It relocates Whitehead's metric worry into a constitutive recovery demand: effective geometry is legitimate only when the same record of the Noether sea and the Physical Observer produces the relevant clocks, rulers, signal paths, and gravitational benchmarks.
 
 **Legacy Shift**: Whitehead remains a relational critic of simplistic substance talk, while final ontology returns to entity-first realism.
 
@@ -15412,7 +15412,7 @@ What this subject gets right is decisive. It keeps open the possibility that fin
 
 The main overstatement arises when discreteness is too quickly equated with digitality. A discrete substrate need not behave like a register of symbolic bits, and it need not inherit the semantic baggage of computer architecture. Likewise, a graph is not yet a physical ontology unless one can say what its nodes and links are, how delayed influence propagates through them, and why effective symmetries arise. The subject therefore risks replacing one abstraction with another if its combinatorial objects are left physically underinterpreted.
 
-The same caution applies to deterministic cellular-automaton programs. A reversible local update rule can be a useful comparison model because it forces the theory to state a microstate, an update law, and a recovery burden. It does not follow that the physical substrate is a literal grid, a register, or an integer-only state table. To become physics rather than representation, such a model must identify the entities being updated, the Noether Sea through which influence propagates, the conservation ledgers it preserves, and the route by which quantum statistics, Standard Model parameters, GR-like behavior, and strong-field thermodynamics are recovered.
+The same caution applies to deterministic cellular-automaton programs. A reversible local update rule can be a useful comparison model because it forces the theory to state a microstate, an update law, and a recovery burden. It does not follow that the physical substrate is a literal grid, a register, or an integer-only state table. To become physics rather than representation, such a model must identify the entities being updated, the Noether sea through which influence propagates, the conservation ledgers it preserves, and the route by which quantum statistics, Standard Model parameters, GR-like behavior, and strong-field thermodynamics are recovered.
 
 Another tension concerns empirical recovery. Many discrete programs excel at conceptual resistance to the continuum, but fewer provide a compelling, fully worked derivation of the observed low-energy world. What they get wrong or overstate is sometimes not the discrete hypothesis itself, but the ease with which metric behavior, quantum statistics, relativistic invariance, and cosmological structure are supposed to descend from a chosen microscopic scaffold. Discreteness is a direction of repair, not a completed ontology.
 
@@ -15573,7 +15573,7 @@ X_\Omega(t),
 N_{\text{sea}}|_{\Omega}(t)
 \right).
 $$
-The basin geometry and threshold control of the subsystem are therefore functions of internal state plus omitted boundary wakes and Noether-Sea conditions, not of the locally inspected state alone. Local prediction can fail for an open subsystem even when the $\mathbb{U}_{\text{now}}$ universe-state perspective remains globally deterministic, because the global state retains the finite-speed signals and path-history data that the Physical Observer has not resolved.
+The basin geometry and threshold control of the subsystem are therefore functions of internal state plus omitted boundary wakes and Noether sea conditions, not of the locally inspected state alone. Local prediction can fail for an open subsystem even when the $\mathbb{U}_{\text{now}}$ universe-state perspective remains globally deterministic, because the global state retains the finite-speed signals and path-history data that the Physical Observer has not resolved.
 
 A sharper validation condition is to hold the external boundary context fixed and ask whether internal preparation changes the basin weights. Let
 $$

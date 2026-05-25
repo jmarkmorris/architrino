@@ -149,7 +149,7 @@ The concentric-wake diagnostic requires access to full microdynamics: something 
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
 
-Assembly-based measuring devices are themselves distorted by motion and coupling to the Noether Sea. At accessible energies and weak Noether-Sea density gradients, the Lorentz-recovery target is that moving assemblies contract, retune their internal periods, and synchronize photon channels so that preferred-frame signatures remain below experimental detection thresholds. The absolute frame exists as the ontological foundation, but emergent effective geometry shields it from direct operational observation only if that moving-assembly closure is derived, not merely assumed.
+Assembly-based measuring devices are themselves distorted by motion and coupling to the Noether sea. At accessible energies and weak Noether sea density gradients, the Lorentz-recovery target is that moving assemblies contract, retune their internal periods, and synchronize photon channels so that preferred-frame signatures remain below experimental detection thresholds. The absolute frame exists as the ontological foundation, but emergent effective geometry shields it from direct operational observation only if that moving-assembly closure is derived, not merely assumed.
 
 ### The Source-Independence Assumption
 
@@ -171,11 +171,11 @@ In the terminology of this chapter, the substantival claim is the reality of the
 
 This places the theory in the tradition of **Lorentz Ether Theory**:
 - Absolute space and time are fundamental
-- Lorentz symmetry is emergent and approximate
+- Operational Lorentz symmetry is a recovery target of the moving-assembly closure ladder, not a primitive substrate symmetry
 - A preferred frame exists but must be operationally hidden at low energies by the moving-assembly closure ladder
 
 **Key distinctions from classical LET:**
-- The Noether Sea is not a continuous classical ether; it is an assembly network rather than a coordinate grid
+- The Noether sea is not a continuous classical ether; it is an assembly network rather than a coordinate grid
 - The preferred frame is hidden by emergent effective geometry
 - The framework states explicit closure targets and failure criteria for where symmetry-breaking signatures would appear
 
