@@ -1,14 +1,14 @@
 # Condensed Matter
 
-This chapter states the condensed-matter closure target for medium-level behavior in the Noether Sea. Its current focus is Noether-Sea transport: the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of cores.
+This chapter states the condensed-matter closure target for medium-level behavior in the Noether sea. Its current focus is Noether sea transport: the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of cores.
 
-This note bridges [Atomic Structure](atomic-structure.md), [Particle Masses](../assemblies/particle-masses.md), [Spacetime Assemblies](../spacetime/spacetime-assemblies.md), and [Molecular Exclusion and Noether-Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md), since all four depend on how the Noether Sea stores stress and permits transport.
+This note bridges [Atomic Structure](atomic-structure.md), [Particle Masses](../assemblies/particle-masses.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), and [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md), since all four depend on how the Noether sea stores stress and permits transport.
 
-At present this is a closure target rather than a finished derivation. The residual and its critical value must still be extracted from stable assembly dynamics, Noether-Sea constitutive response, and the relevant stability diagnostics.
+At present this is a closure target rather than a finished derivation. The residual and its critical value must still be extracted from stable assembly dynamics, Noether sea constitutive response, and the relevant stability diagnostics.
 
-## Noether-Sea Transport
+## Noether Sea Transport
 
-The condensed-matter claim is not that ordinary matter feels a continuous dissipative drag from the Noether Sea. In the validated weak regime, a stable assembly should move by reversible retuning: its internal causal ledger and local Noether-Sea coupling deform, store stress, and return that stress without opening a net loss channel.
+The condensed-matter claim is not that ordinary matter feels a continuous dissipative drag from the Noether sea. In the validated weak regime, a stable assembly should move by reversible retuning: its internal causal ledger and local Noether sea coupling deform, store stress, and return that stress without opening a net loss channel.
 
 ### Transport Residual and Critical Surface
 
@@ -27,7 +27,7 @@ $$
 \right).
 $$
 
-Here $\mathbf{V}_{\text{cm}}$ and $\mathbf{a}_{\text{cm}}$ record center-of-mass transport, $\rho_{\text{NS}}$ and $\chi_{\text{sea}}$ record the local Noether-Sea state, $\mathcal{M}_{\text{sea}}^{ab}$ records the medium-response tensor, and $\Delta_{\mathbf{k}}$ records the relevant non-symmetry stability gap. The equation defines the diagnostic target; it does not yet prove the constitutive form of $\mathcal{R}_{\text{tr}}$.
+Here $\mathbf{V}_{\text{cm}}$ and $\mathbf{a}_{\text{cm}}$ record center-of-mass transport, $\rho_{\text{NS}}$ and $\chi_{\text{sea}}$ record the local Noether sea state, $\mathcal{M}_{\text{sea}}^{ab}$ records the medium-response tensor, and $\Delta_{\mathbf{k}}$ records the relevant non-symmetry stability gap. The equation defines the diagnostic target; it does not yet prove the constitutive form of $\mathcal{R}_{\text{tr}}$.
 
 The critical surface is
 
@@ -56,7 +56,7 @@ p_{\text{int}}^a
 \mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b}.
 $$
 
-This is the condensed-matter version of medium-dressed inertial response. The Noether Sea may shape the response tensor, the local delay factor, and the stability margin, but it must not drain energy from a stable bound state merely because that state is moving through the Noether Sea.
+This is the condensed-matter version of medium-dressed inertial response. The Noether sea may shape the response tensor, the local delay factor, and the stability margin, but it must not drain energy from a stable bound state merely because that state is moving through the Noether sea.
 
 The algebraic reason for this distinction is that the reversible kinetic scalar can consume only the symmetric part of the medium-response tensor. Decompose
 
@@ -140,7 +140,7 @@ u_{\alpha\mathbf k}(\mathbf x+\mathbf R)=u_{\alpha\mathbf k}(\mathbf x),
 \mathbf R\in\Lambda,
 $$
 
-with $\mathbf k$ identified modulo reciprocal-lattice vectors. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an effective envelope statement: the periodic material branch constrains the electron assembly's resonance envelope, while the underlying causal-wake and Noether-Sea records remain the native dynamics.
+with $\mathbf k$ identified modulo reciprocal-lattice vectors. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an effective envelope statement: the periodic material branch constrains the electron assembly's resonance envelope, while the underlying causal-wake and Noether sea records remain the native dynamics.
 
 The corresponding band residual should compare the recovered dispersion $E_\alpha(\mathbf k)$ to the observed material branch without fitting a separate rule for each probe:
 
@@ -203,7 +203,7 @@ $$
 \frac{e^2\tau n_{\mathrm{car}}}{m_*},
 $$
 
-but $\tau^{-1}$ must vanish in the ideal branch limit and must not be confused with Noether-Sea drag below $\mathcal{R}_{\text{tr},*}$. This is the condensed-matter version of the no-drag rule: stable Bloch transport is coherent envelope transport until a material imperfection, lattice excitation, or branch transition opens a logged loss channel.
+but $\tau^{-1}$ must vanish in the ideal branch limit and must not be confused with Noether sea drag below $\mathcal{R}_{\text{tr},*}$. This is the condensed-matter version of the no-drag rule: stable Bloch transport is coherent envelope transport until a material imperfection, lattice excitation, or branch transition opens a logged loss channel.
 
 ## Lattice Scattering and Phonon Response
 
@@ -235,7 +235,7 @@ S(\mathbf q),
 \right)
 $$
 
-tests whether the declared lattice branch, basis, and atom-local Noether-Sea response generate the same reciprocal-space selection rule. Thermal or zero-point lattice motion may reduce peak intensity through an effective Debye-Waller factor, but it should not move the reciprocal-lattice condition unless the material branch itself changes.
+tests whether the declared lattice branch, basis, and atom-local Noether sea response generate the same reciprocal-space selection rule. Thermal or zero-point lattice motion may reduce peak intensity through an effective Debye-Waller factor, but it should not move the reciprocal-lattice condition unless the material branch itself changes.
 
 Phonons are the next material-response layer. For a branch displacement vector $\mathbf u_n(t)$ about equilibrium sites, the harmonic branch is governed by a dynamical matrix $D_{ij}(\mathbf k)$:
 
@@ -322,7 +322,7 @@ $$
 \frac{1}{2\pi}\oint_\gamma d\varphi
 \in\mathbb Z.
 $$
-These are recovery or comparison objects. They do not replace the architrino, causal-wake, or Noether-Sea branch records that must generate the effective material description.
+These are recovery or comparison objects. They do not replace the architrino, causal-wake, or Noether sea branch records that must generate the effective material description.
 
 The transport consequence is a gap rule. A stable branch may deform, strain, or retune without changing its defect label while the relevant stability gap remains open:
 $$
@@ -412,9 +412,9 @@ Fractional quantum Hall states, anyons, non-Abelian edge sectors, Chern-Simons e
 
 ### Photon-Coupled Surface Transport
 
-Photon absorption, reflection, and surface heating are thresholded transport events in the same condensed-matter sense. The incoming photon ledger does not permit a continuous drag term on the material, and the material does not act as a hard spatial wall. A surface cell supplies electron-envelope, bonding or lattice, nuclear-source, and local Noether-Sea records that route the incoming planar-pair ledger into coherent re-release, capture, scattering, heat, recoil, or retained excitation.
+Photon absorption, reflection, and surface heating are thresholded transport events in the same condensed-matter sense. The incoming photon ledger does not permit a continuous drag term on the material, and the material does not act as a hard spatial wall. A surface cell supplies electron-envelope, bonding or lattice, nuclear-source, and local Noether sea records that route the incoming planar-pair ledger into coherent re-release, capture, scattering, heat, recoil, or retained excitation.
 
-This surface-transport language is not a hidden particle-production rule. If a photon-coupled material event yields different outgoing Standard Model assemblies, the local reaction record must add a separate identity-routing row for the target or Noether-Sea content that supplies those inventories.
+This surface-transport language is not a hidden particle-production rule. If a photon-coupled material event yields different outgoing Standard Model assemblies, the local reaction record must add a separate identity-routing row for the target or Noether sea content that supplies those inventories.
 
 A compact surface residual can be treated as a specialization of the transport residual:
 
@@ -431,7 +431,7 @@ a_{\perp},
 \right),
 $$
 
-where $a_{\perp}$ is the incoming photon transverse ledger, $\mathcal B_e$ is the realized electron-envelope branch, $\mathcal B_{\mathrm{lat}}$ is the material bonding or lattice branch, $\Theta_E^{(\ell)}$ is the local Noether-Sea response record, $\mathcal M_{\text{sea}}^{ab}$ is the medium-response tensor, and $\Delta_{\mathbf{k}}$ is the relevant stability gap. The surface channel becomes dissipative only when the selected route opens a logged excitation or heating channel; otherwise the event is coherent transport or reversible retuning.
+where $a_{\perp}$ is the incoming photon transverse ledger, $\mathcal B_e$ is the realized electron-envelope branch, $\mathcal B_{\mathrm{lat}}$ is the material bonding or lattice branch, $\Theta_E^{(\ell)}$ is the local Noether sea response record, $\mathcal M_{\text{sea}}^{ab}$ is the medium-response tensor, and $\Delta_{\mathbf{k}}$ is the relevant stability gap. The surface channel becomes dissipative only when the selected route opens a logged excitation or heating channel; otherwise the event is coherent transport or reversible retuning.
 
 The corresponding energy row is
 
@@ -451,13 +451,13 @@ E_{\gamma,\mathrm{out}}
 \Delta E_{\mathrm{rem}}.
 $$
 
-For a metal-like branch, the conduction-electron response supports a coherent re-release channel with large $E_{\gamma,\mathrm{out}}$. For a Vantablack-like branch, repeated capture and dephasing through the material geometry drive $E_{\gamma,\mathrm{out}}$ toward zero while the ledger closes through electron-envelope excitation, lattice heating, Noether-Sea update, recoil, and remnant terms. Ordinary optical surface routing must preserve nuclear inventory, so $\Delta Z=0$ and $\Delta A=0$ unless a separate nuclear-reaction gate is supplied.
+For a metal-like branch, the conduction-electron response supports a coherent re-release channel with large $E_{\gamma,\mathrm{out}}$. For a Vantablack-like branch, repeated capture and dephasing through the material geometry drive $E_{\gamma,\mathrm{out}}$ toward zero while the ledger closes through electron-envelope excitation, lattice heating, Noether sea update, recoil, and remnant terms. Ordinary optical surface routing must preserve nuclear inventory, so $\Delta Z=0$ and $\Delta A=0$ unless a separate nuclear-reaction gate is supplied.
 
 ### Earth-Core Iron as a Boundary Case
 
 Earth-core iron is a useful correction case because it separates three levels that are easy to collapse. In standard geophysics and nucleosynthesis, most iron in Earth formed before Earth accreted, then became incorporated during accretion and segregated into the core during planetary differentiation. The high pressure and temperature of the core stabilize metallic phases and alter transport, electronic, and elastic response. They do not, by themselves, create iron nuclei.
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation should therefore treat Earth-core iron as density sorting, metallic phase response, Noether-Sea strain, local clock and transport modification, and possible branch-preserving retuning of already existing iron assemblies. It should not treat the core as an iron-nucleus production site unless a separate reaction-provenance mechanism is derived. A compact guardrail is
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation should therefore treat Earth-core iron as density sorting, metallic phase response, Noether sea strain, local clock and transport modification, and possible branch-preserving retuning of already existing iron assemblies. It should not treat the core as an iron-nucleus production site unless a separate reaction-provenance mechanism is derived. A compact guardrail is
 
 $$
 \partial_t \mathcal{N}_{\mathrm{Fe}}
@@ -483,7 +483,7 @@ M_{\mathrm{sh}}(A_{\mathrm{Fe}};\theta_{\mathrm{sea}})\Phi_{\mathrm{eff}}
 \right],
 $$
 
-where $\theta_{\mathrm{sea}}$ denotes the local Noether-Sea state record, including $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, $\mathcal{M}_{\text{sea}}^{ab}$, and strain data. The term $M_{\mathrm{sh}}(A_{\mathrm{Fe}};\theta_{\mathrm{sea}})$ is the medium-dressed exposed mass response of an iron assembly, not a new nuclear species. In this form the reason iron sinks is not that the center creates iron, but that existing iron-bearing assemblies minimize the relevant chemical, gravitational, and medium-response potential in dense planetary interiors.
+where $\theta_{\mathrm{sea}}$ denotes the local Noether sea state record, including $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, $\mathcal{M}_{\text{sea}}^{ab}$, and strain data. The term $M_{\mathrm{sh}}(A_{\mathrm{Fe}};\theta_{\mathrm{sea}})$ is the medium-dressed exposed mass response of an iron assembly, not a new nuclear species. In this form the reason iron sinks is not that the center creates iron, but that existing iron-bearing assemblies minimize the relevant chemical, gravitational, and medium-response potential in dense planetary interiors.
 
 The sharper equilibrium hypothesis is that the iron-rich metallic branch is compatible with higher normalized Noether swarm density than a silicate branch at the same pressure and temperature. Let
 
@@ -513,7 +513,7 @@ $$
 0
 $$
 
-along the planetary-interior branch, with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$. This does not say that Noether-Sea density creates iron. It says that, after iron already exists, the metallic iron branch may reduce relative chemical and medium-response cost as ambient Noether swarm density increases. In ordinary terms, iron-rich material sinks because it is dense; in the native theory, density must eventually be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether-Sea coupling.
+along the planetary-interior branch, with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$. This does not say that Noether sea density creates iron. It says that, after iron already exists, the metallic iron branch may reduce relative chemical and medium-response cost as ambient Noether swarm density increases. In ordinary terms, iron-rich material sinks because it is dense; in the native theory, density must eventually be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling.
 
 A local sufficient condition can be stated by differentiating the packing ceiling rather than treating it as a fixed phase label. For a material branch $X$, let
 
@@ -557,7 +557,7 @@ G_{\mathrm{Fe}}-G_{\mathrm{sil}}
 B_{\mathrm{coeff}}.
 $$
 
-This is a sufficient inequality, not yet a completed derivation. It becomes a derivation only when $n_{\max,X}^{\mathrm{obl}}(n)$ comes from exclusion-envelope packing, $G_X$ comes from metallic coordination and Noether-Sea coupling, and $\mathcal{D}_X$ comes from the same local Noether-Sea state record used for clock, delay, strain, and transport response.
+This is a sufficient inequality, not yet a completed derivation. It becomes a derivation only when $n_{\max,X}^{\mathrm{obl}}(n)$ comes from exclusion-envelope packing, $G_X$ comes from metallic coordination and Noether sea coupling, and $\mathcal{D}_X$ comes from the same local Noether sea state record used for clock, delay, strain, and transport response.
 
 The support-function version of the packing burden is concrete. For branch-cell directions $\hat{\mathbf{b}}_{X,i}$, define support-function spacings
 
@@ -637,4 +637,4 @@ The source term enforces the no-new-iron guardrail, the segregation and phase te
 
 Crossing $\mathcal{R}_{\text{tr},*}$ is the point at which reversible transport stops being the adequate description. Above threshold, some transported energy or action must route into an explicit channel: medium excitation, radiation-like transport, local heating, action shedding, or branch transition. For the dynamical bookkeeping of those channels, see [Energy](../dynamics/energy.md) and [Nested Shell Swarm Dynamics](../noether-swarm/nested-shell-swarm-dynamics.md).
 
-The main failure modes are therefore sharp. If $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ still produces ordinary dissipative drag in stable atoms, the framework loses chemical stability. If $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ occurs without a logged excitation, radiation, heating, or branch-transition channel, the energy ledger is incomplete. If the threshold cannot be expressed in terms of assembly motion, local Noether-Sea state, medium response, and stability gap data, the medium-transport picture has not matured into a usable transport closure.
+The main failure modes are therefore sharp. If $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ still produces ordinary dissipative drag in stable atoms, the framework loses chemical stability. If $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ occurs without a logged excitation, radiation, heating, or branch-transition channel, the energy ledger is incomplete. If the threshold cannot be expressed in terms of assembly motion, local Noether sea state, medium response, and stability gap data, the medium-transport picture has not matured into a usable transport closure.

@@ -1,8 +1,8 @@
 # Noether Sea
 
-This chapter is the canonical medium-ontology page for the **Noether Sea** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines what the physical medium is, how it differs from the Euclidean void, which state variables describe it, and where detailed assembly, metric, clock, and cosmology work belongs.
+This chapter is the canonical medium-ontology page for the **Noether sea** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines what the physical medium is, how it differs from the Euclidean void, which state variables describe it, and where detailed assembly, metric, clock, and cosmology work belongs.
 
-The Noether Sea is not the substrate. The substrate is [absolute timespace](../foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../foundations/euclidean-void.md). The Noether Sea is physical content inside that background: an emergent, coupled population of neutral Noether swarm assemblies whose collective response appears to physical observers as spacetime behavior.
+The Noether sea is not the substrate. The substrate is [absolute timespace](../foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../foundations/euclidean-void.md). The Noether sea is physical content inside that background: an emergent, coupled population of neutral Noether swarm assemblies whose collective response appears to physical observers as spacetime behavior.
 
 This is why the reader path introduces Noether swarm scaffold and geometry before observer-level spacetime. At the roadmap level, the physical Noether swarm density can be read as a coarse-grained population field,
 $$
@@ -10,11 +10,11 @@ $$
 \sim
 \sum_s W_\ell(\mathbf{x}-\mathbf{X}_s(t)),
 $$
-where $W_\ell$ is a smoothing window over Noether swarm center variables $\mathbf{X}_s(t)$. The Noether-Sea stress, delay factor, and orientation variables then depend on each swarm's closure label, orientation, and envelope deformation. The Noether Sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether swarm geometry, not primitive geometric postulates.
+where $W_\ell$ is a smoothing window over Noether swarm center variables $\mathbf{X}_s(t)$. The Noether sea stress, delay factor, and orientation variables then depend on each swarm's closure label, orientation, and envelope deformation. The Noether sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether swarm geometry, not primitive geometric postulates.
 
 ## Core Definition
 
-The **Noether Sea** is the ambient physical medium formed by dense, balanced populations of coupled neutral Noether swarms in the Euclidean void.
+The **Noether sea** is the ambient physical medium formed by dense, balanced populations of coupled neutral Noether swarms in the Euclidean void.
 
 It is:
 
@@ -24,23 +24,23 @@ It is:
 - **Ambient:** it surrounds and couples to matter assemblies, clocks, rulers, photons, and strong-field regions.
 - **Medium-level:** it is neither the empty void nor the observer-level effective metric.
 
-The bridge term **spacetime medium** may be used when translating toward effective spacetime language. The canonical ontology name remains **Noether Sea**.
+The bridge term **spacetime medium** may be used when translating toward effective spacetime language. The canonical ontology name remains **Noether sea**.
 
-In prose, use **Noether Sea** as the standalone proper noun. Use **Noether-Sea** only as a compound modifier before another noun, as in **Noether-Sea density** or **Noether-Sea delay factor**.
+In prose, use **Noether sea** as the standalone proper noun. Use **Noether sea** only as a compound modifier before another noun, as in **Noether sea density** or **Noether sea delay factor**.
 
 ## Boundary With the Euclidean Void
 
-The Euclidean void and the Noether Sea must remain distinct.
+The Euclidean void and the Noether sea must remain distinct.
 
 | **Layer** | **Status** | **What It Owns** |
 |:---|:---|:---|
 | Euclidean void | Fundamental substrate | Fixed spatial container $\mathbb{R}^3$, metric $h_{ij}=\delta_{ij}$, coordinate identity |
-| Noether Sea | Emergent physical medium | Density, stress, flow, orientation, energy storage, delay-factor response |
+| Noether sea | Emergent physical medium | Density, stress, flow, orientation, energy storage, delay-factor response |
 | Effective spacetime | Observer-level reconstruction | Clock rates, ruler behavior, signal propagation, effective metric |
 
-The void does not curve, expand, contract, or carry energy. The Noether Sea, as physical content, can carry energy and stress, flow, strain, compress, relax, and change its response variables. Effective curvature and effective expansion are therefore derived descriptions of Noether-Sea response, not curvature or expansion of the void itself.
+The void does not curve, expand, contract, or carry energy. The Noether sea, as physical content, can carry energy and stress, flow, strain, compress, relax, and change its response variables. Effective curvature and effective expansion are therefore derived descriptions of Noether sea response, not curvature or expansion of the void itself.
 
-At a fixed coordinate point $\mathbf{x}$ and absolute time $t$, the Noether-Sea state may change:
+At a fixed coordinate point $\mathbf{x}$ and absolute time $t$, the Noether sea state may change:
 $$
 \rho_{\text{NS}}(\mathbf{x},t),\quad
 \Sigma_{\text{sea}}(\mathbf{x},t),\quad
@@ -56,9 +56,9 @@ $$
 \mathbb{U}_{\text{now}}\equiv S(t).
 $$
 
-This state is not an observer frame. It is the absolute-time record of positions, velocities, assemblies, causal wakes, Noether-Sea variables, and path-history ledgers inside the Euclidean void. Physical observers recover clock rates, photon frequencies, energies, distances, and effective geometry only after their local assemblies couple to part of that record.
+This state is not an observer frame. It is the absolute-time record of positions, velocities, assemblies, causal wakes, Noether sea variables, and path-history ledgers inside the Euclidean void. Physical observers recover clock rates, photon frequencies, energies, distances, and effective geometry only after their local assemblies couple to part of that record.
 
-This distinction matters most in redshift language. The void does not stretch, and absolute time does not slow. A source assembly emits a photon-channel packet with a local emission ledger; the packet follows a definite path history through the Noether Sea; and the receiver assembly samples the packet using its own local cadence. The measured energy is therefore a receiver-coupling result,
+This distinction matters most in redshift language. The void does not stretch, and absolute time does not slow. A source assembly emits a photon-channel packet with a local emission ledger; the packet follows a definite path history through the Noether sea; and the receiver assembly samples the packet using its own local cadence. The measured energy is therefore a receiver-coupling result,
 
 $$
 E_{\mathrm{obs}}=h\nu_{\mathrm{obs}},
@@ -68,17 +68,17 @@ not a primitive frame-free photon scalar. The redshift task is to compute the en
 
 ## Composition
 
-The Noether Sea is composed of neutral Noether swarm assemblies. In the present corpus the best-developed Noether swarm case is the nested shell swarm, made from three nested electrino:positrino binaries. A Noether swarm itself is not elementary; its stability is a downstream assembly result.
+The Noether sea is composed of neutral Noether swarm assemblies. In the present corpus the best-developed Noether swarm case is the nested shell swarm, made from three nested electrino:positrino binaries. A Noether swarm itself is not elementary; its stability is a downstream assembly result.
 
-The large-scale Noether Sea is modeled as a balanced population of complementary Noether swarm orientations.
+The large-scale Noether sea is modeled as a balanced population of complementary Noether swarm orientations.
 
-This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the core level. Their coupled balance is part of the working explanation for how the Noether Sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
+This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the core level. Their coupled balance is part of the working explanation for how the Noether sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
 
-The detailed pro/anti basis, density split, imbalance stability, local coupling law, and candidate cluster motifs belong in [Spacetime Assemblies](spacetime-assemblies.md). This page only fixes the Noether-Sea ontology those assembly hypotheses serve.
+The detailed pro/anti basis, density split, imbalance stability, local coupling law, and candidate cluster motifs belong in [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md). This page only fixes the Noether sea ontology those assembly hypotheses serve.
 
 ## Local Branches in the Medium
 
-The Noether Sea changes how isolated assembly calculations should be read. A truly isolated Noether swarm or matter assembly is a limiting seed chart, not the generic physical situation. The physical target is a local branch retained inside the surrounding Noether-Sea and nearby-assembly record.
+The Noether sea changes how isolated assembly calculations should be read. A truly isolated Noether swarm or matter assembly is a limiting seed chart, not the generic physical situation. The physical target is a local branch retained inside the surrounding Noether sea state and nearby-assembly record.
 
 For a candidate local branch $B$, the stronger closure form is not
 
@@ -95,7 +95,7 @@ B;\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal{H}_{\partial\Omega}
 \right)=0,
 $$
 
-where $\Theta_{\mathrm{sea}}$ records the local Noether-Sea density, cadence, orientation, strain, and delay-response state; $\Theta_{\mathrm{asm}}$ records nearby resolved assemblies, including assemblies that later map to Standard Model particle language; and $\mathcal{H}_{\partial\Omega}$ records the causal-wake and event data entering the local region through its boundary. These are not extra fit parameters. They are the retained part of the same absolute record $S(t)$ needed to decide whether the local branch persists.
+where $\Theta_{\mathrm{sea}}$ records the local Noether sea density, cadence, orientation, strain, and delay-response state; $\Theta_{\mathrm{asm}}$ records nearby resolved assemblies, including assemblies that later map to Standard Model particle language; and $\mathcal{H}_{\partial\Omega}$ records the causal-wake and event data entering the local region through its boundary. These are not extra fit parameters. They are the retained part of the same absolute record $S(t)$ needed to decide whether the local branch persists.
 
 At the force-ledger level this means that a local architrino row should be understood schematically as
 
@@ -111,15 +111,15 @@ F_{i,\mathrm{asm}}
 F_{i,\partial\Omega},
 $$
 
-with every non-internal contribution either computed from the surrounding Noether-Sea and assembly record or explicitly assigned a residual. The isolated equation is recovered only when $F_{i,\mathrm{sea}}$, $F_{i,\mathrm{asm}}$, and $F_{i,\partial\Omega}$ vanish, are homogeneous enough to collapse into fixed boundary data, or are below the declared tolerance.
+with every non-internal contribution either computed from the surrounding Noether sea state and assembly record or explicitly assigned a residual. The isolated equation is recovered only when $F_{i,\mathrm{sea}}$, $F_{i,\mathrm{asm}}$, and $F_{i,\partial\Omega}$ vanish, are homogeneous enough to collapse into fixed boundary data, or are below the declared tolerance.
 
 This does not require solving the entire universe before studying one assembly. It does require a controlled embedding record. The useful analytic hierarchy is:
 
-1. solve or approximate a homogeneous Noether-Sea record;
+1. solve or approximate a homogeneous Noether sea record;
 2. solve the candidate branch against that local medium and nearby-assembly record;
 3. check the branch's back-reaction on $\rho_{\text{NS}}$, $f_N$, $\chi_{\text{sea}}$, cadence, orientation, and event ledgers.
 
-Assembly emergence is therefore not emergence from empty isolation. It is local retention inside an already populated Noether Sea, with isolated analytical branches serving as seed charts, symmetry limits, or comparison cases.
+Assembly emergence is therefore not emergence from empty isolation. It is local retention inside an already populated Noether sea, with isolated analytical branches serving as seed charts, symmetry limits, or comparison cases.
 
 ## State Variables
 
@@ -136,7 +136,7 @@ n(\mathbf{x},t)
 =\frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}}.
 $$
 
-The Noether-Sea delay factor is written
+The Noether sea delay factor is written
 
 $$
 \chi_{\text{sea}}(\mathbf{x},t)
@@ -144,9 +144,9 @@ $$
 \frac{c_f}{c_{\text{eff}}(\mathbf{x},t)}.
 $$
 
-It plays the role that refractive index plays in ordinary optical analogies, but it is a native Noether-Sea response variable. Do not use $n$ for this delay factor; $n$ is reserved for normalized Noether swarm density.
+It plays the role that refractive index plays in ordinary optical analogies, but it is a native Noether sea response variable. Do not use $n$ for this delay factor; $n$ is reserved for normalized Noether swarm density.
 
-Clock and spectral comparisons may also extract the Noether-Sea cadence-stretch diagnostic
+Clock and spectral comparisons may also extract the Noether sea cadence-stretch diagnostic
 
 $$
 \Gamma_N(\mathbf{x},t)
@@ -156,30 +156,30 @@ $$
 C_N(\mathbf{x},t)=\Gamma_N^{-1}(\mathbf{x},t).
 $$
 
-Here $\Omega_N$ is a representative local Noether-Sea swarm cadence and $C_N$ is the corresponding clock-rate factor. This pair is not a new density or delay factor: $n$ tracks normalized Noether swarm density, $\chi_{\text{sea}}$ tracks effective causal delay, and $\Gamma_N$ tracks cadence stretch. The clock extraction and hydrogen spectral use of this diagnostic belong in [Proper Time and Time Dilation](proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
+Here $\Omega_N$ is a representative local Noether sea swarm cadence and $C_N$ is the corresponding clock-rate factor. This pair is not a new density or delay factor: $n$ tracks normalized Noether swarm density, $\chi_{\text{sea}}$ tracks effective causal delay, and $\Gamma_N$ tracks cadence stretch. The clock extraction and hydrogen spectral use of this diagnostic belong in [Proper Time and Time Dilation](proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
 
-When a calculation needs pro/anti subcomponents, orientation imbalance, or coupling-regime stability thresholds, use [Spacetime Assemblies](spacetime-assemblies.md).
+When a calculation needs pro/anti subcomponents, orientation imbalance, or coupling-regime stability thresholds, use [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md).
 
-Older parameter-ledger language may denote the baseline ambient Noether-Sea density by $\rho_{vac}$. In spacetime chapters, the preferred medium-density notation is $\rho_{\text{NS},0}$ for the reference density and $\rho_{\text{NS}}(\mathbf{x},t)$ for the local density. When both notations appear, read $\rho_{vac}$ as the baseline ambient density parameter, not as a separate kind of substance.
+Older parameter-ledger language may denote the baseline ambient Noether sea density by $\rho_{vac}$. In spacetime chapters, the preferred medium-density notation is $\rho_{\text{NS},0}$ for the reference density and $\rho_{\text{NS}}(\mathbf{x},t)$ for the local density. When both notations appear, read $\rho_{vac}$ as the baseline ambient density parameter, not as a separate kind of substance.
 
 ## Medium Properties
 
-The Noether Sea is characterized by collective variables, not by a new point-particle inventory.
+The Noether sea is characterized by collective variables, not by a new point-particle inventory.
 
 Important medium properties include:
 
 - **Noether swarm density:** $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$.
 - **Energy density:** approximately $\rho_{\text{NS}}E_{\text{swarm}}$ at the coarse level, with corrections from stress, excitation, and coupling.
 - **Orientation and strain:** local ordering of swarm axes and deformation away from equilibrium.
-- **Flow or drift:** collective motion of the Noether Sea relative to the absolute frame.
-- **Compliance:** how strongly the Noether Sea responds to compression, shear, polarization, and alignment loading.
-- **Delay-factor response:** how $\chi_{\text{sea}}$, signal propagation, clock behavior, and effective light speed depend on local Noether-Sea state.
+- **Flow or drift:** collective motion of the Noether sea relative to the absolute frame.
+- **Compliance:** how strongly the Noether sea responds to compression, shear, polarization, and alignment loading.
+- **Delay-factor response:** how $\chi_{\text{sea}}$, signal propagation, clock behavior, and effective light speed depend on local Noether sea state.
 
 These are medium variables. They are not properties of the Euclidean void.
 
 ## Continuum Balance and Constitutive Closure
 
-The first continuum obligation for the Noether Sea is local bookkeeping of conserved or slowly relaxing coarse variables. For a material region $V\subset\Sigma_t$, a density variable is mature only when its integral changes by boundary flux, declared source, and residual:
+The first continuum obligation for the Noether sea is local bookkeeping of conserved or slowly relaxing coarse variables. For a material region $V\subset\Sigma_t$, a density variable is mature only when its integral changes by boundary flux, declared source, and residual:
 $$
 \frac{d}{dt}\int_V \rho_{\text{NS}}\,dV
 +
@@ -199,9 +199,9 @@ S_{\rho}
 $$
 The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether swarm population and the residual decreases under refinement.
 
-The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether Sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether swarm population dynamics, causal wakes, and branch ledgers.
+The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether swarm population dynamics, causal wakes, and branch ledgers.
 
-The kinetic-theory lesson is that hydrodynamic variables are the slow variables associated with conserved quantities. For the Noether Sea, the candidate slow state is
+The kinetic-theory lesson is that hydrodynamic variables are the slow variables associated with conserved quantities. For the Noether sea, the candidate slow state is
 $$
 \mathcal{N}_{\mathrm{sea}}
 =
@@ -231,7 +231,7 @@ $$
 +\varepsilon
 },
 $$
-with $a$ ranging over the retained density, momentum, energy, cadence, and orientation moments. This residual is the guardrail against closing the Noether Sea by naming a fluid-like equation while hiding unresolved causal-wake memory in fitted coefficients.
+with $a$ ranging over the retained density, momentum, energy, cadence, and orientation moments. This residual is the guardrail against closing the Noether sea by naming a fluid-like equation while hiding unresolved causal-wake memory in fitted coefficients.
 
 Analogue-gravity comparisons sharpen this point. In an ordinary acoustic medium, the effective metric seen by small sound perturbations is fixed by medium density, flow, and sound speed, for example schematically
 $$
@@ -243,14 +243,14 @@ $$
 -u_{\mathrm{fluid},i} & h_{ij}
 \end{pmatrix}.
 $$
-The comparison is useful because it keeps the levels separated: the perturbation metric is a constitutive readout, while the underlying medium still obeys its own dynamics. The Noether-Sea target has the same form of obligation,
+The comparison is useful because it keeps the levels separated: the perturbation metric is a constitutive readout, while the underlying medium still obeys its own dynamics. The Noether sea target has the same form of obligation,
 $$
 g_{\mu\nu}^{\mathrm{eff}}
 =
 \mathcal{G}_{\mu\nu}\!\left[\mathcal{N}_{\mathrm{sea}}\right]
 +\mathcal{R}_{\mathrm{metric}},
 $$
-where $\mathcal{G}_{\mu\nu}$ must be derived from the retained density, flow, cadence, orientation, strain, and causal-wake records. A metric row that fits clock, signal, pressure, or lensing behavior with separate coefficients for each observable is not yet a Noether-Sea constitutive law.
+where $\mathcal{G}_{\mu\nu}$ must be derived from the retained density, flow, cadence, orientation, strain, and causal-wake records. A metric row that fits clock, signal, pressure, or lensing behavior with separate coefficients for each observable is not yet a Noether sea constitutive law.
 
 Hu's stochastic-gravity comparison sharpens the next rung above moment closure. Mean-field variables are not enough; fluctuations and correlations carry information about the mesoscopic state. Let $\delta T_A^{\mathrm{eff}}$ denote observer-level stress, cadence, or response-channel fluctuations induced by a branch record $\theta$, and let $C_{AB}^{\theta}(x,y)$ be the corresponding two-point correlation:
 $$
@@ -261,7 +261,7 @@ C_{AB}^{\theta}(x,y)
 \delta T_B^{\mathrm{eff}}(y)
 \right\rangle_{\theta}.
 $$
-The Noether-Sea side must supply this from unresolved deterministic histories, not from an independent stochastic metric postulate. A compact correlation-hierarchy residual is
+The Noether sea side must supply this from unresolved deterministic histories, not from an independent stochastic metric postulate. A compact correlation-hierarchy residual is
 $$
 \mathcal{R}_{\mathrm{corr},n}(\theta)
 =
@@ -274,7 +274,7 @@ C_{\mathrm{obs}}^{(n)}-
 \qquad
 n=2,3,\ldots .
 $$
-Here $\Pi_{\mathrm{corr}}^{(n)}$ is the declared projection from retained Noether-Sea histories to the $n$-point observer-level correlation. Passing the $n=2$ test is the analogue of the noise-kernel step in stochastic gravity; higher $n$ tests are the kinetic-theory route toward mesoscopic closure.
+Here $\Pi_{\mathrm{corr}}^{(n)}$ is the declared projection from retained Noether sea histories to the $n$-point observer-level correlation. Passing the $n=2$ test is the analogue of the noise-kernel step in stochastic gravity; higher $n$ tests are the kinetic-theory route toward mesoscopic closure.
 
 Constitutive response must be stated as a map from the same state variables. A weak linear row has the schematic form
 $$
@@ -302,11 +302,11 @@ $$
 +\varepsilon
 },
 $$
-where $\mathcal H$ is the principal-value Hilbert transform used by the packet. A nonzero residual means the proposed response row is not yet a causal Noether-Sea constitutive law.
+where $\mathcal H$ is the principal-value Hilbert transform used by the packet. A nonzero residual means the proposed response row is not yet a causal Noether sea constitutive law.
 
 ## Equilibrium Transport Hypothesis
 
-A provisional cosmology-facing hypothesis treats the Noether Sea as a dense neighbor-coupled population of Noether swarms whose individual action transactions are discrete while the ensemble response can be smooth. Most swarms in a weak deep-space region have other Noether swarms as their nearest dynamical neighbors. Photons and neutrinos can traverse the population, and gravitational waves can perturb it, but the baseline relaxation law is a swarm-to-swarm medium law.
+A provisional cosmology-facing hypothesis treats the Noether sea as a dense neighbor-coupled population of Noether swarms whose individual action transactions are discrete while the ensemble response can be smooth. Most swarms in a weak deep-space region have other Noether swarms as their nearest dynamical neighbors. Photons and neutrinos can traverse the population, and gravitational waves can perturb it, but the baseline relaxation law is a swarm-to-swarm medium law.
 
 Let $\nu_N$ denote an ordinary frequency extracted from a representative Noether swarm cadence state. The local swarm energy scale is then
 
@@ -314,7 +314,7 @@ $$
 E_N=h\nu_N.
 $$
 
-The point of this expression is not to add a new quantum postulate at the Noether-Sea level. It records the same closed-cycle action accounting used elsewhere in the corpus: a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether swarm may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
+The point of this expression is not to add a new quantum postulate at the Noether sea level. It records the same closed-cycle action accounting used elsewhere in the corpus: a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether swarm may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
 
 At the single Noether swarm level, each accepted $h$-scale transfer forces the swarm to retune its cadence-scale closure. The retuning may appear as a cadence shift, shell-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring swarms. In the simplest fixed-speed shell-binary approximation,
 
@@ -384,7 +384,7 @@ $$
 \right],
 $$
 
-where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether swarm can sit inside the same coordinate window as ambient Noether-Sea swarms without becoming part of the ambient Noether-Sea record; ledger complement, not mere spatial proximity, makes the separation.
+where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies, $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether swarm can sit inside the same coordinate window as ambient Noether sea swarms without becoming part of the ambient Noether sea record; ledger complement, not mere spatial proximity, makes the separation.
 
 A candidate equilibrium-transport equation is
 
@@ -400,7 +400,7 @@ $$
 
 Here $J_\nu$ is the current through frequency or cadence state space, $S_{\mathrm{BH}}$ is loading from black-hole recycling regions, $S_{\mathrm{GW}}$ is the perturbative contribution from gravitational-wave disturbances, and $R_{\mathrm{eq}}[f_N]$ is the local neighbor-equilibration operator. This equation is a derivation target, not a completed constitutive law. It becomes relevant to redshift only if the same $f_N$ record also determines $\Gamma_N$, $\chi_{\text{sea}}$, and the path-history propagation term $\mathcal{P}_{E\to R}$ used in the cosmology chapters.
 
-The first absolute-record transport target packages those requirements into one map. For a photon-channel or spectral family $X$ emitted at $E$ and received at $R$, let $\mathcal S_{X,E\to R}$ be the restriction of $S(t)$ to the source branch, receiver branch, endpoint Noether-Sea cadence records, medium flow, causal wakes, and the path-history ledger relevant to that packet. The candidate transport map is
+The first absolute-record transport target packages those requirements into one map. For a photon-channel or spectral family $X$ emitted at $E$ and received at $R$, let $\mathcal S_{X,E\to R}$ be the restriction of $S(t)$ to the source branch, receiver branch, endpoint Noether sea cadence records, medium flow, causal wakes, and the path-history ledger relevant to that packet. The candidate transport map is
 
 $$
 \mathfrak T_X
@@ -540,7 +540,7 @@ $$
 
 where $\hat{\mathbf k}$ points from source to receiver, $c_{\gamma,Q}$ is the local photon-channel speed used for the endpoint comparison, and $\mathcal R_v$ carries higher-order and multi-root Jacobian corrections from the exact causal ledger.
 
-The path-history term is a line integral over the packet path through the Noether Sea:
+The path-history term is a line integral over the packet path through the Noether sea:
 
 $$
 Y_{X,E\to R}
@@ -660,7 +660,7 @@ p_{\sigma,X}\sigma_{X,j}
 \mathcal R_{\mathrm{coh},X,j}.
 $$
 
-The coefficient rows $\mathbf b_N$ and $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ must be fixed from the declared Noether-Sea constitutive response and then reused across gravitational, relative-motion, and deep-space cases. A deep-space contribution may come from a persistent $\mathcal C_N[f_N]$, flow-divergence, or anisotropic-response record, but not from switching to a generic photon-energy-loss explanation.
+The coefficient rows $\mathbf b_N$ and $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ must be fixed from the declared Noether sea constitutive response and then reused across gravitational, relative-motion, and deep-space cases. A deep-space contribution may come from a persistent $\mathcal C_N[f_N]$, flow-divergence, or anisotropic-response record, but not from switching to a generic photon-energy-loss explanation.
 
 The first coefficient-row constraints are recovery constraints, not a fit to one redshift case. The endpoint row has the form
 
@@ -828,7 +828,7 @@ f_{N,j}+\epsilon_f
 }.
 $$
 
-This equation fixes the sign convention and the shared-row obligation for deep-space transport, but it does not yet determine $\mathbf p_X$, $p_{\nu,X}$, $p_{u,X}$, or $p_{\sigma,X}$ individually. They remain constitutive freedoms until independent segment records vary the corresponding Noether-Sea gradients, cadence residual, flow divergence, and anisotropic response. The first observable falsifiers are the existing transport diagnostics: chromaticity residuals for line-family dependence, time-dilation residuals for frequency/cadence splitting, image-bundle variance for anisotropic or flow-induced beam spread, and directional residuals for unmodeled large-scale Noether-Sea structure.
+This equation fixes the sign convention and the shared-row obligation for deep-space transport, but it does not yet determine $\mathbf p_X$, $p_{\nu,X}$, $p_{u,X}$, or $p_{\sigma,X}$ individually. They remain constitutive freedoms until independent segment records vary the corresponding Noether sea gradients, cadence residual, flow divergence, and anisotropic response. The first observable falsifiers are the existing transport diagnostics: chromaticity residuals for line-family dependence, time-dilation residuals for frequency/cadence splitting, image-bundle variance for anisotropic or flow-induced beam spread, and directional residuals for unmodeled large-scale Noether sea structure.
 
 The coherence residue is admissible only if the same $Y_X$ passes the observational transport tests,
 
@@ -871,7 +871,7 @@ The expansionary reading is therefore conditional. Local equilibrium by itself d
 
 ## Refractive Gravity and Effective Metric
 
-Massive assemblies polarize and load the surrounding Noether Sea. In weak-field language, this changes the normalized density, stress, and effective signal speed:
+Massive assemblies polarize and load the surrounding Noether sea. In weak-field language, this changes the normalized density, stress, and effective signal speed:
 
 $$
 c_{\text{eff}}(\mathbf{x}) < c_f
@@ -879,13 +879,13 @@ $$
 
 in denser or more strongly loaded regions.
 
-Physical observers reconstruct this behavior as gravitational redshift, lensing, Shapiro delay, and curved effective geodesics. In the substrate description, the void remains flat; the observed curvature is a constitutive summary of how clocks, rulers, and signals behave in the Noether Sea.
+Physical observers reconstruct this behavior as gravitational redshift, lensing, Shapiro delay, and curved effective geodesics. In the substrate description, the void remains flat; the observed curvature is a constitutive summary of how clocks, rulers, and signals behave in the Noether sea.
 
 The canonical metric bridge is [Emergent Metric](emergent-metric.md). Clock extraction belongs in [Proper Time and Time Dilation](proper-time-and-time-dilation.md). PPN-facing tests belong in [PPN Parameters](ppn-parameters.md).
 
 ## Matter Coupling and Inertia
 
-Matter assemblies are not isolated objects moving through nothing. They are stable architrino assemblies embedded in the Noether Sea.
+Matter assemblies are not isolated objects moving through nothing. They are stable architrino assemblies embedded in the Noether sea.
 
 Their observed inertia and mass are expected to depend on:
 
@@ -893,13 +893,13 @@ Their observed inertia and mass are expected to depend on:
 - shielding depth,
 - exposure of inner binary structure,
 - medium-dressed compliance and inertial response,
-- and how the assembly closes its causal ledger relative to the surrounding Noether Sea.
+- and how the assembly closes its causal ledger relative to the surrounding Noether sea.
 
-The canonical mass-side treatment is [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md). This page only states that the Noether Sea is the ambient Noether Sea against which those assembly responses are defined.
+The canonical mass-side treatment is [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md). This page only states that the Noether sea is the ambient Noether sea against which those assembly responses are defined.
 
 ## Cosmological Role
 
-The Noether Sea also carries cosmological state. In this framework, cosmological expansion language is not substrate expansion. The void remains fixed; cosmological observables are interpreted through medium evolution, clock-rate comparison, signal propagation, and the large-scale state of the Noether Sea.
+The Noether sea also carries cosmological state. In this framework, cosmological expansion language is not substrate expansion. The void remains fixed; cosmological observables are interpreted through medium evolution, clock-rate comparison, signal propagation, and the large-scale state of the Noether sea.
 
 For cosmology, the relevant medium-level variables include:
 
@@ -920,26 +920,26 @@ Use these terms consistently:
 |:---|:---|
 | **Euclidean void** | Fixed spatial container and substrate geometry |
 | **Absolute timespace** | Product background of absolute time and Euclidean void |
-| **Noether Sea** | Canonical physical-medium name |
-| **Spacetime medium** | Bridge term for the Noether Sea when translating toward effective spacetime language |
+| **Noether sea** | Canonical physical-medium name |
+| **Spacetime medium** | Bridge term for the Noether sea when translating toward effective spacetime language |
 | **Effective spacetime** | Observer-level metric reconstruction from clocks, rulers, and signals |
 
-Avoid using **vacuum** alone. It is ambiguous between empty substrate, QFT vacuum language, and the actual Noether Sea. If the intended meaning is the physical substrate contents, use **Noether Sea**.
+Avoid using **vacuum** alone. It is ambiguous between empty substrate, QFT vacuum language, and the actual Noether sea. If the intended meaning is the physical substrate contents, use **Noether sea**.
 
 ## Ownership Boundary
 
 This page owns:
 
-- the Noether Sea as canonical medium ontology,
+- the Noether sea as canonical medium ontology,
 - the distinction between void, medium, and effective spacetime,
-- the main Noether-Sea state variables,
+- the main Noether sea state variables,
 - and the routing map for downstream spacetime work.
 
 This page does not own:
 
 - Noether swarm internal architecture; see [Noether Swarm](../noether-swarm/noether-swarm.md).
 - Noether swarm exclusion-envelope geometry; see [Nested Shell Swarm Geometry](../noether-swarm/nested-shell-swarm-geometry.md).
-- Pro/anti coupling hypotheses and cluster motifs; see [Spacetime Assemblies](spacetime-assemblies.md).
+- Pro/anti coupling hypotheses and cluster motifs; see [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md).
 - Effective metric derivation; see [Emergent Metric](emergent-metric.md).
 - Clock and ruler behavior; see [Proper Time and Time Dilation](proper-time-and-time-dilation.md).
 - Cosmological scale-factor translation; see [Expansion Mechanism](../cosmology/expansion-mechanism.md).
@@ -947,4 +947,4 @@ This page does not own:
 
 ## Summary Commitment
 
-> **Medium Commitment (Noether Sea):** The Noether Sea is the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether-Sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether swarm branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether-Sea and nearby-assembly boundary residuals are statused.
+> **Medium Commitment (Noether sea):** The Noether sea is the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock dilation, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void itself. Matter assemblies and Noether swarm branches are physically meaningful as local retained branches embedded in this medium record; isolated branch calculations are seed charts or limiting cases unless their Noether sea state and nearby-assembly boundary residuals are statused.

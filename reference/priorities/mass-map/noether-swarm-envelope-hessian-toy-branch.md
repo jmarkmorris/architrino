@@ -1,6 +1,6 @@
 # Noether Swarm Envelope Hessian Toy Branch
 
-This priority packet supplies the first reduced Hessian calculation behind the Noether-Sea pressure modulus. It is report material, not reader-facing canon. Its purpose is to turn the open branch stiffness $H_{\mathrm{env}}$ into an explicit two-variable toy branch that can be checked, falsified, and later replaced by a certified Noether swarm branch calculation.
+This priority packet supplies the first reduced Hessian calculation behind the Noether sea pressure modulus. It is report material, not reader-facing canon. Its purpose is to turn the open branch stiffness $H_{\mathrm{env}}$ into an explicit two-variable toy branch that can be checked, falsified, and later replaced by a certified Noether swarm branch calculation.
 
 ## Claim Level
 
@@ -11,7 +11,7 @@ This priority packet supplies the first reduced Hessian calculation behind the N
 
 ## Source Anchors
 
-- [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) defines $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$ and requires $H_{\mathrm{env}}$ to compute $K_{\mathrm{env}}$.
+- [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) defines $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$ and requires $H_{\mathrm{env}}$ to compute $K_{\mathrm{env}}$.
 - [Noether Swarm Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) defines the oblate envelope, support-function lattice-cell bound, and same-level packing scalings.
 - [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) records how shape response feeds $\chi_{\text{sea}}$, $\Gamma_N$, and $\mathcal{M}_{\text{sea}}^{ab}$.
 
@@ -530,7 +530,7 @@ $$
 Until those quantities are produced by the same finite branch that passes residual closure, positive $\Delta_{\mathbf{k}}$, and $\eta$-ladder persistence, the compensated-row scanner has only two durable conclusions:
 
 1. the $\chi_{\text{sea}}$-only row is falsified by the pressure denominator and density-sign test;
-2. the fixed-core density rescue is a toy witness, not branch evidence.
+2. the fixed Noether-swarm-density rescue is a toy witness, not branch evidence.
 
 Running the scanner with finite-branch evidence required currently returns zero passing scenarios and zero passing candidates, because both default scenarios are marked as toy algebra rather than accepted branch output.
 

@@ -39,13 +39,13 @@ This file is the workstream control surface for mass-side integration. It should
 | [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) | Tier 3 acceleration and gradient probe target for $\mathcal{M}_{\text{sea}}^{ab}$, now carrying the exposed inertial-response tensor $\mathsf{I}_{A_0}^{ab}$, scalar trace invariant, and retained-response-direction refinement that isolates which trace-free exposure components can affect scalar mass; the reader-facing trace form was promoted into Particle Masses on May 20, 2026, while coefficient extraction remains priority-side. | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [gr-phenomenology](../../../content/markdown/aaa/spacetime/gr-phenomenology.md) |
 | [Mass-Trace Composition Proof Chain](mass-trace-composition-proof-chain.md) | Proof-synthesis packet composing scalar exposed-source descent, exposed inertial-response trace, reversible symmetric medium response, pressure-trace composition, composed trace quotient-descent, retained-response-direction refinement, and the packing-headroom density-channel limit; compact form promoted into Particle Masses on May 20, 2026. | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) |
 | [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) | Critical-transport packet that keeps reversible medium-dressed inertia separate from dissipative resistance, radiation/action-shedding thresholds, and unlogged transport loss channels; the reversible symmetric response lemma was promoted into Condensed Matter on May 20, 2026 while coefficient extraction remains priority-side. | [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
-| [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) | Candidate pressure-loading law connecting atomic/lattice pressure to $n$, $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, assembly strain, and $\mathcal{M}_{\text{sea}}^{ab}$, with iron/nickel metallic lattices and the Earth-core iron residual packet as first test cases. | [noether-sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) |
-| [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) | Branch-conditional coefficient identities for the pressure law, reducing $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, strain, and $\mathcal{M}_{\text{sea}}^{ab}$ to shared isotropic and anisotropic pressure combinations; now stages the subthreshold exposed-pressure trace lemma for $\delta_Pm_{\mathrm{tr}}(A)$. | None until branch closure; supports [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) and [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) |
-| [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) | Candidate derivation of $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, support-function headroom $s_n$, packing-limited pressure hardening, branch-derived pressure slopes, and the density-channel vanishing invariant for mass-trace response as $s_n\to0^+$. | None until branch closure; supports [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md), [Noether Swarm Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md), and [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) |
-| [Noether Swarm Envelope Hessian Toy Branch](noether-swarm-envelope-hessian-toy-branch.md) | Reduced $2\times2$ Hessian packet for $(\ln R_\perp,\ln\xi)$, deriving $k_{\mathrm{env}}^{(V)}$, branch stability conditions, density-constrained deformation, positive-Hessian feasibility, and shape-response cancellation conditions. | None until branch closure; supports [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) and [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) |
-| [Fe/Cr Toy Pressure Replay](pressure-replay-fe-cr-toy.md) | Scaffold-only two-material replay table for the pressure law, including a shared-row toy residual, heavy/control slope check, and branch-derived slope acceptance residual. | None until empirical replay; supports [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) |
+| [Pressure-Dependent Noether sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) | Candidate pressure-loading law connecting atomic/lattice pressure to $n$, $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, assembly strain, and $\mathcal{M}_{\text{sea}}^{ab}$, with iron/nickel metallic lattices and the Earth-core iron residual packet as first test cases. | [noether-sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) |
+| [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) | Branch-conditional coefficient identities for the pressure law, reducing $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, strain, and $\mathcal{M}_{\text{sea}}^{ab}$ to shared isotropic and anisotropic pressure combinations; now stages the subthreshold exposed-pressure trace lemma for $\delta_Pm_{\mathrm{tr}}(A)$. | None until branch closure; supports [Pressure-Dependent Noether sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) and [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) |
+| [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) | Candidate derivation of $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, support-function headroom $s_n$, packing-limited pressure hardening, branch-derived pressure slopes, and the density-channel vanishing invariant for mass-trace response as $s_n\to0^+$. | None until branch closure; supports [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md), [Noether Swarm Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md), and [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) |
+| [Noether Swarm Envelope Hessian Toy Branch](noether-swarm-envelope-hessian-toy-branch.md) | Reduced $2\times2$ Hessian packet for $(\ln R_\perp,\ln\xi)$, deriving $k_{\mathrm{env}}^{(V)}$, branch stability conditions, density-constrained deformation, positive-Hessian feasibility, and shape-response cancellation conditions. | None until branch closure; supports [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) and [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) |
+| [Fe/Cr Toy Pressure Replay](pressure-replay-fe-cr-toy.md) | Scaffold-only two-material replay table for the pressure law, including a shared-row toy residual, heavy/control slope check, and branch-derived slope acceptance residual. | None until empirical replay; supports [Pressure-Dependent Noether sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) |
 | [Fe/Silicate Dense-Medium Segregation](fe-silicate-dense-medium-segregation.md) | Candidate proof and executable toy replay scaffold for deriving or falsifying $\partial_n\Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}<0$ without treating Earth-core conditions as an iron-nucleus source; now gated by a two-margin segregation and transport-reversibility condition. | [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [condensed-matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [molecular-exclusion-and-noether-sea-response](../../../content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md) |
-| [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) | Real-data replay schema for Fe/Cr or Ni/Co pressure tests, including material-state records, residual extraction, transport-reversibility rows, covariance, shared-row fit, heavy-scaling scan, and null-sector bounds. | None until empirical replay; supports [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) |
+| [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) | Real-data replay schema for Fe/Cr or Ni/Co pressure tests, including material-state records, residual extraction, transport-reversibility rows, covariance, shared-row fit, heavy-scaling scan, and null-sector bounds. | None until empirical replay; supports [Pressure-Dependent Noether sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) |
 | [Fe/Cr Empirical Pressure Replay Skeleton](pressure-replay-fe-cr-empirical-skeleton.md) | First blank empirical packet for Fe/Cr pressure replay, fixing fit-runner inputs, transport-reversibility requirements, and the missing-data ledger before any residual interpretation. | None until empirical replay; supports [Metallic-Lattice Pressure Replay Data Schema](pressure-replay-metallic-lattice-data-schema.md) |
 
 ## Promotion Map
@@ -59,11 +59,11 @@ This file is the workstream control surface for mass-side integration. It should
 
 ## Mass Translation Doctrine
 
-Preserve `mass` as the standard observer-facing scalar. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is not to replace the word with a new term, but to derive the mechanism behind it from Noether swarm geometry, shielding, and Noether-Sea response.
+Preserve `mass` as the standard observer-facing scalar. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is not to replace the word with a new term, but to derive the mechanism behind it from Noether swarm geometry, shielding, and Noether sea response.
 
 - Individual architrinos do not carry primitive particle-specific mass.
 - Stable assemblies may carry effective mass because their trapped Noether swarm energy ledger has an externally exposed response.
-- The internal ledger itself should be called $E_{\text{internal}}(A)$, not mass. Mass is the observer-level scalar extracted from how the shielded ledger responds to acceleration, momentum transfer, and Noether-Sea gradients.
+- The internal ledger itself should be called $E_{\text{internal}}(A)$, not mass. Mass is the observer-level scalar extracted from how the shielded ledger responds to acceleration, momentum transfer, and Noether sea gradients.
 - The rest-energy and energy-momentum relations are retained as effective closure laws to be recovered:
 
 $$
@@ -80,12 +80,12 @@ $$
 m(A)c_{\text{eff}}^2\sim\zeta(A)E_{\text{internal}}(A),
 $$
 
-Here $\zeta(A)$ is the shielding or exposure coefficient and $c_{\text{eff}}$ is the local observer-facing light-speed scale set by the Noether-Sea state.
+Here $\zeta(A)$ is the shielding or exposure coefficient and $c_{\text{eff}}$ is the local observer-facing light-speed scale set by the Noether sea state.
 
 - Stronger mass claims must declare which role is meant: rest mass, inertial response, gravitational response, external mass footprint, effective boson mass scale, neutral-assembly mass, or internal energy ledger.
 - Effective boson mass scale must split photon-like and weak-corridor cases. Photon-like planar channels lose stable volumetric rest-clock closure and therefore occupy the massless null branch; $W/Z$ corridors retain a localized recoupling burden whose longitudinal or mixed-axis structure appears as a short-lived massive vector channel.
 - Higgs-sector mass language is downstream of the mass map. The ATLAS scalar benchmark may be used only after the branch, shielding, and medium-response records are fixed without particle-mass input. The closure target is not merely $M_H^{\mathrm{breath}}\approx126.0\,\mathrm{GeV}$; the same scalar response must also recover $\hat{\mu}=1.4\pm0.3$, the channel-rate ledger for $ZZ^{(*)}4\ell$, $\gamma\gamma$, and $WW^{(*)}\ell\nu\ell\nu$, and the absence of additional accepted scalar windows. If those terms require separate tuning, the mass map has not recovered the Higgs sector.
-- Avoid treating Noether-Sea response as ordinary dissipative drag unless dissipation is actually being modeled. The preferred derivation language is medium-dressed inertial response.
+- Avoid treating Noether sea response as ordinary dissipative drag unless dissipation is actually being modeled. The preferred derivation language is medium-dressed inertial response.
 
 ## PDG 2025 Mass Benchmark Surface
 
@@ -117,7 +117,7 @@ C_{\mathrm{PDG}}^{-1/2}
 \right]_{\mathrm{declared}},
 $$
 
-where $A$ is the accepted assembly branch data and $S$ is the declared Noether-Sea state. The covariance object $C_{\mathrm{PDG}}$ must retain PDG scale factors, asymmetric uncertainty rows, confidence limits, and review-level correlation statements when they are available. If only a summary-table uncertainty is carried forward, the row must explicitly mark `correlation-unresolved` rather than pretending that every benchmark is independent.
+where $A$ is the accepted assembly branch data and $S$ is the declared Noether sea state. The covariance object $C_{\mathrm{PDG}}$ must retain PDG scale factors, asymmetric uncertainty rows, confidence limits, and review-level correlation statements when they are available. If only a summary-table uncertainty is carried forward, the row must explicitly mark `correlation-unresolved` rather than pretending that every benchmark is independent.
 
 Quark and QCD rows carry an extra convention burden. The 2024 QCD review states that light quark masses are commonly quoted in the $\overline{\mathrm{MS}}$ scheme near $2\,\mathrm{GeV}$, while heavy quark masses are often quoted as $\overline m_q(\overline m_q)$ or as pole/direct masses, and that modern $\alpha_s$ results should be quoted at a reference scale such as $M_Z$ rather than as a standalone $\Lambda_{\mathrm{QCD}}$ value. The mass map must therefore recover a scheme-translation path, not merely a list of scalar masses.
 
@@ -131,7 +131,7 @@ m_{\text{inertial}}(A)
 \alpha_{\mathrm{m}}\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2},
 $$
 
-with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly rather than re-fit particle by particle. In this expression, $E_{\text{internal}}(A)$ is the closed assembly energy ledger, $\zeta(A)$ is the far-field shielding or exposure coefficient, and $c_{\text{eff}}$ is the local observer-facing light-speed scale set by the Noether-Sea state. Here $\alpha_{\mathrm{m}}$ is the mass-map normalization; bare $\alpha$ remains reserved for measured fine-structure or locally declared angle and phase uses.
+with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly rather than re-fit particle by particle. In this expression, $E_{\text{internal}}(A)$ is the closed assembly energy ledger, $\zeta(A)$ is the far-field shielding or exposure coefficient, and $c_{\text{eff}}$ is the local observer-facing light-speed scale set by the Noether sea state. Here $\alpha_{\mathrm{m}}$ is the mass-map normalization; bare $\alpha$ remains reserved for measured fine-structure or locally declared angle and phase uses.
 
 For directional or environment-dependent response, the scalar denominator should be treated as the homogeneous isotropic limit of a medium-response tensor:
 
@@ -148,14 +148,14 @@ $$
 
 Promotion note, 2026-05-20: [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md#reference-normalized-mass-ratio) now carries the reference-normalized mass-ratio invariant and its directional tensor extension. In a shared homogeneous isotropic response record, $\alpha_{\mathrm{m}}$ cancels from scalar mass ratios, so the hierarchy burden moves to $\zeta(A)E_{\text{internal}}(A)$ and its scalar exposure quotient rather than to another adjustable normalization. In anisotropic or pressure-dependent cells, the corresponding ratio uses $\hat v_a\mathsf{I}_{A}^{ab}\hat v_b$ and therefore keeps trace-free exposure and trace-free medium response visible.
 
-Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. This tensor form is the stronger derivation target. It keeps the mass map from being read as shielding alone; the finished formula must also encode medium-dressed inertial response, Noether-Sea gradient response, and any residual anisotropy or leakage. Until $E_{\text{internal}}(A)$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are derived from a stable closed tri-binary root ledger, the scalar expression remains a controlled roadmap formula rather than a theorem.
+Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. This tensor form is the stronger derivation target. It keeps the mass map from being read as shielding alone; the finished formula must also encode medium-dressed inertial response, Noether sea gradient response, and any residual anisotropy or leakage. Until $E_{\text{internal}}(A)$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are derived from a stable closed tri-binary root ledger, the scalar expression remains a controlled roadmap formula rather than a theorem.
 
 ## Source-of-Truth Map
 
 | Layer | Document | Ownership |
 | --- | --- | --- |
 | Canonical mass chapter | [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md) | Reader-facing statement of the current mass thesis, definitions, and conservative explanatory path. |
-| Electroweak boson channel split | [Electroweak Bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Reader-facing distinction between massless photon planar-pair transport, massive $W/Z$ recoupling corridors, and the Higgs medium-mode comparison. |
+| Electroweak boson channel split | [Electroweak Bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Reader-facing distinction between massless coaxial contra-rotating pro/anti planar pair photon transport, massive $W/Z$ recoupling corridors, and the Higgs medium-mode comparison. |
 | Energy ledger source | [Energy](../../../content/markdown/aaa/dynamics/energy.md) | Energy-zero convention, assembly energy bookkeeping, and the operational definition of inertial mass. |
 | Dynamics baseline | [Nested Shell Swarm Dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md) | Noether swarm roles, speed-regime conventions, delay geometry, stability diagnostics, and metric/connection reconstruction diagnostics. |
 | Reduced branch certificate | [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) | First finite proof/simulation packet for the reduced $A_0$ branch search: carrier ansatz, root-ledger enumeration, averaging/locking/leakage lemmas, continuation gates, and promotion rules. |
@@ -174,7 +174,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 
 - Individual architrinos do not carry a primitive particle-specific inertial mass parameter.
 - Inertial mass is defined operationally by the force-response coefficient of a stable assembly.
-- The current mass thesis is that observed rest/inertial mass is the externally exposed response of trapped internal causal history, shaped by shielding and Noether-Sea coupling.
+- The current mass thesis is that observed rest/inertial mass is the externally exposed response of trapped internal causal history, shaped by shielding and Noether sea coupling.
 - The canonical mass chapter should state this thesis conservatively and route unresolved derivations to this workstream.
 
 ### Roadmap
@@ -193,8 +193,8 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 - Extract $\zeta(A)$ from far-field wake cancellation and shielding geometry.
 - State which projection and quotient turn the accepted branch ledger into each sector-visible response, and report leakage or residue instead of hiding it.
 - Produce a baseline electron-mass prediction and at least one hierarchy check, such as $m_\mu/m_e$.
-- Treat branch-preserving Noether-Sea response as the symmetric medium-dressed response tensor $\mathcal{M}_{+}^{ab}$ rather than as a separate additive mass contribution; only loss, orientation, Hall-like transverse, or branch-transition residues remain outside scalar rest mass.
-- Route the weak-corridor mass calculation through the electroweak channel split: identify the corridor closure variables, the longitudinal or mixed-axis contribution, and the local Noether-Sea response coefficient before promoting any $M_W$ or $M_Z$ estimate.
+- Treat branch-preserving Noether sea response as the symmetric medium-dressed response tensor $\mathcal{M}_{+}^{ab}$ rather than as a separate additive mass contribution; only loss, orientation, Hall-like transverse, or branch-transition residues remain outside scalar rest mass.
+- Route the weak-corridor mass calculation through the electroweak channel split: identify the corridor closure variables, the longitudinal or mixed-axis contribution, and the local Noether sea response coefficient before promoting any $M_W$ or $M_Z$ estimate.
 
 ## Program Notes
 
@@ -213,7 +213,7 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 
 The first mass-side calculation should not begin with a particle label. It should begin with the simplest stable Noether swarm attractor family that can emit the data needed for a mass calculation.
 
-Define $A_0$ as a neutral, rest-branch tri-binary Noether swarm in a weak homogeneous Noether-Sea cell. The family contains three nested pro/anti binaries:
+Define $A_0$ as a neutral, rest-branch tri-binary Noether swarm in a weak homogeneous Noether sea cell. The family contains three nested pro/anti binaries:
 
 | Layer | Role | Baseline branch |
 | --- | --- | --- |
@@ -221,7 +221,7 @@ Define $A_0$ as a neutral, rest-branch tri-binary Noether swarm in a weak homoge
 | Middle binary $M$ | commensurability buffer and phase-lock hinge | near-separator transition branch |
 | Outer binary $O$ | shielding and boundary-coupling interface | sub-field-speed observer-facing branch |
 
-This reference family should be solved first in the local rest frame of the Noether-Sea cell with $G_{\text{grad}}=0$ and $u^i_{\text{sea}}=0$. Primitive wake geometry may use $c_f$, but all observer-facing mass outputs must declare the dressing map to $c_{\text{eff}}$ or mark it as unresolved. The family must not be calibrated to the electron mass or to any charged-lepton hierarchy value; those comparisons are downstream tests.
+This reference family should be solved first in the local rest frame of the Noether sea cell with $G_{\text{grad}}=0$ and $u^i_{\text{sea}}=0$. Primitive wake geometry may use $c_f$, but all observer-facing mass outputs must declare the dressing map to $c_{\text{eff}}$ or mark it as unresolved. The family must not be calibrated to the electron mass or to any charged-lepton hierarchy value; those comparisons are downstream tests.
 
 ### Required Output Contract
 
@@ -274,7 +274,7 @@ X_{A_0}(t)
 \mathcal{S}_{\text{sea}}
 \right),
 $$
-where $\mathcal{H}_{A_0}(t)$ is the path-history segment long enough to resolve every active causal root over one closed cycle, and $\mathcal{S}_{\text{sea}}$ is the homogeneous Noether-Sea cell data:
+where $\mathcal{H}_{A_0}(t)$ is the path-history segment long enough to resolve every active causal root over one closed cycle, and $\mathcal{S}_{\text{sea}}$ is the homogeneous Noether sea cell data:
 $$
 u^i_{\text{sea}}=0,
 \qquad
