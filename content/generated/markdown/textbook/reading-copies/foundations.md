@@ -1998,9 +1998,9 @@ This distinction fixes the level of the claim. Ontologically, the preferred fram
 
 ### Connections to Core Dynamics
 
-#### Self-Hit and Delay-Root Geometry (Ch. 5)
+#### Self-Hit and Delay-Root Geometry
 
-The concentricity diagnostic connects directly to the geometry that later appears in **self-hit** and delay-root analysis, but the two claims must remain distinct:
+The concentricity diagnostic connects directly to the geometry developed in [Self-Interaction (Self-Hit Dynamics)](../../../../markdown/aaa/dynamics/master-equation.md#self-interaction-self-hit-dynamics) and [Causal Interaction Set (The Geometry of Delay)](../../../../markdown/aaa/dynamics/master-equation.md#causal-interaction-set-the-geometry-of-delay), but the two claims must remain distinct:
 
 - An architrino at rest ($\mathbf{v}=\mathbf{0}$) emits concentric causal isochrons, but it does not receive a delayed self-hit merely by being stationary. For $t_0<t$, the self-hit root condition would require $\|\mathbf{x}_i(t)-\mathbf{x}_i(t_0)\|=c_f(t-t_0)$; a stationary worldline has the left side equal to zero while the right side is positive.
 - An architrino in ordinary sub-field-speed straight motion emits non-concentric source-tagged isochrons, but that is still not enough by itself to create a self-hit. Self-hit is a source-identity root condition, not a synonym for nonzero absolute velocity.
@@ -2010,17 +2010,17 @@ The concentricity diagnostic connects directly to the geometry that later appear
 
 **The upshot:** Absolute velocity is not merely a kinematic label, but the direct rest diagnostic is geometric rather than an immediate self-hit claim. The dynamical burden belongs to the Lorentz-closure ladder: moving assemblies must show stable delayed-root closure, medium-dressed deformation, and bounded preferred-frame leakage before Physical Observers can recover ordinary relativistic behavior.
 
-#### Master Equation Requirements (Ch. 9)
+#### Master Equation Requirements
 
-The master equation demands **explicit positions** $\mathbf{x}_i(t)$ to compute:
+The [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) demands **explicit positions** $\mathbf{x}_i(t)$ to compute:
 - Separation distance $r_{ij}$ between architrinos $i$ and $j$
 - Path-history positions (where was architrino $j$ when the wake contribution currently reaching $i$ was emitted?)
 
 The concentric-wake diagnostic demonstrates that $\mathbf{x}_i(t)$ is physically meaningful within complete-state reconstruction. Stationarity can be identified without circular reference to pre-existing coordinate labels; coordinates enter afterward as a convenient representation of the already-defined rest condition.
 
-#### Foundational Validation (Ch. 7)
+#### Foundational Validation
 
-This complete-state diagnostic serves as a **consistency test**:
+This complete-state diagnostic serves as a **consistency test** for [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md) and [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md):
 - Can the theory self-consistently define its own reference frame from intrinsic physics alone?
 - **Yes**: through geometric properties of continuous wake dynamics.
 

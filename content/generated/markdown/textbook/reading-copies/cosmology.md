@@ -128,9 +128,9 @@ The stronger test is cross-row provenance. Let $Q_i^\theta$ and $Q_j^\theta$ be 
 $$
 \mathcal{R}_{i\leftrightarrow j}^{\theta}
 =
-\left\lVert
+\left\|
 Q_i^\theta-\mathcal{T}_{ij}^\theta Q_j^\theta
-\right\rVert_{C_{ij}^{-1}}^2.
+\right\|_{C_{ij}^{-1}}^2.
 $$
 Examples include nuclear binding versus radiation and neutrino backgrounds, baryon density versus BBN and CMB inference, quasar luminosity versus massive-black-hole remnant density, and lensing mass versus galaxy luminosity and clustering. A component row that cannot be connected to the rest of the ledger remains an interpretation placeholder.
 
@@ -961,7 +961,7 @@ S_{ij}
 \left(\nabla\cdot\mathbf{u}_{\text{sea}}\right)h_{ij}
 $$
 
-is the trace-free strain-rate part, with contractions taken using the Euclidean spatial metric $h_{ij}$. The coefficients $a_\chi^X$, $a_n^X$, $a_R^X$, $a_u^X$, and $a_S^X$ are dimensionless closure coefficients for the line family $X$, not independent fitting knobs for each object. The residual $\mathcal{R}_{\mathrm{prop},X}$ contains unresolved higher-order and anisotropic terms and must be bounded by the same image-sharpness, coherence, and time-dilation constraints that exclude ordinary tired-light loss.
+is the trace-free strain-rate part, with contractions taken using the Euclidean spatial metric $h_{ij}$. The coefficients $a_\chi^X$, $a_n^X$, $a_R^X$, $a_u^X$, and $a_S^X$ are dimensionless closure coefficients for the line family $X$, not independent fitting parameters for each object. The residual $\mathcal{R}_{\mathrm{prop},X}$ contains unresolved higher-order and anisotropic terms and must be bounded by the same image-sharpness, coherence, and time-dilation constraints that exclude ordinary tired-light loss.
 
 This ansatz gives the distance ladder a concrete target: recover the observed low-redshift slope from the leading homogeneous part of $\alpha_{\mathrm{prop},X}$, while requiring local gravitational redshift, motion, and source-branch changes to be removed before fitting path accumulation.
 
@@ -999,7 +999,7 @@ $$
 \epsilon_{\mathrm{chrom}},
 $$
 
-where $\epsilon_{\mathrm{chrom}}$ is set by corrected multi-line spectroscopy. This prevents the line-family coefficients from being used as arbitrary object-by-object fitting knobs.
+where $\epsilon_{\mathrm{chrom}}$ is set by corrected multi-line spectroscopy. This prevents the line-family coefficients from being used as arbitrary object-by-object fitting parameters.
 
 For a finite path, write
 
@@ -1974,7 +1974,7 @@ N_{\mathrm{eff}}^\theta,\,
 \frac{s_\gamma^\theta}{n_b^\theta}
 \right)
 $$
-is propagated through the same source window that produces the yields. A source story that changes the photon loading, neutron fraction, entropy per baryon, or relativistic-species count independently of the light-element network has not supplied a BBN mechanism; it has assigned separate knobs to the outputs.
+is propagated through the same source window that produces the yields. A source story that changes the photon loading, neutron fraction, entropy per baryon, or relativistic-species count independently of the light-element network has not supplied a BBN mechanism; it has assigned separate fit parameters to the outputs.
 
 The standard freeze-out scalings should remain explicit because they are the hard targets for any SMBH-local or transport-cooling replacement. In a radiation-dominated comparison packet,
 $$
@@ -2411,7 +2411,7 @@ This statistic is a validation target, not a permission to import an external co
 **$\Lambda\mathrm{CDM}$ interpretation:** Electron-positron pairs are abundant; annihilation and cooling reshape the radiation bath.
 **$\Lambda\mathrm{CDM}$ (neutrino decoupling):** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether swarms with 6*|e/6| Axial Architrinos Form):** Stable lepton analogs form from Noether swarms carrying six bound axial architrinos (net $|e|$ from six $|e/6|$ units). Lepton-like assemblies populate the Noether Sea and mediate charge-neutralization channels.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether swarms with six $\epsilon$ axial architrinos form):** Stable lepton analogs form from Noether swarms carrying six bound axial architrinos, with net observer-level $|e|$ from six $\epsilon=|e|/6$ units. Lepton-like assemblies populate the Noether Sea and mediate charge-neutralization channels.
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether swarms with Neutral Axial Layers):** Nearly neutral Noether swarm assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language; compare [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
 ### Photon Epoch ($\sim 10$ s to $\sim 3.8\times10^5$ years)
@@ -3026,11 +3026,11 @@ For a candidate medium record $\theta_{\mathrm{sea}}$ and neutral-assembly densi
 $$
 \mathcal{R}_{\mathrm{cl\ offset}}(\theta_{\mathrm{sea}},\rho_A)
 =
-\left\lVert
+\left\|
 D_{\mathrm{cl}}^{\mathrm{obs}}
 -
 \mathcal{P}_{\mathrm{cl}}(\theta_{\mathrm{sea}},\rho_A)
-\right\rVert_{C_{\mathrm{cl}}^{-1}}^2
+\right\|_{C_{\mathrm{cl}}^{-1}}^2
 +
 \mathcal{R}_{\mathrm{lens\ prior}}
 +
@@ -3059,11 +3059,11 @@ Let $\theta_{\mathrm{sea}}$ be the shared Noether-Sea state record, let $\Pi_{\m
 $$
 \mathcal{R}_{\mathrm{dark\ scale}}(\theta_{\mathrm{sea}})
 =
-\left\lVert
+\left\|
 \Pi_{\mathrm{DM}}\theta_{\mathrm{sea}}
 -
 F_{\mathrm{DM}}\!\left(\Pi_{\mathrm{DE}}\theta_{\mathrm{sea}}\right)
-\right\rVert_{C_{\mathrm{DM/DE}}^{-1}}^2
+\right\|_{C_{\mathrm{DM/DE}}^{-1}}^2
 +
 \mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}).
 $$
@@ -3770,11 +3770,11 @@ r_X(\theta_{\mathrm{sea}},\nu_X)
 \;+\;
 \lambda
 \sum_{X<Y}
-\left\lVert
+\left\|
 \Pi_X\theta_{\mathrm{sea}}
 -
 \Pi_Y\theta_{\mathrm{sea}}
-\right\rVert^2.
+\right\|^2.
 $$
 
 Here $r_X$ is the residual vector for observable family $X$, $\nu_X$ records nuisance and calibration variables, $C_X$ is the covariance model, and $\Pi_X$ projects the shared Noether-Sea state record into the variables consumed by that observable family. A dark-energy interpretation is promotable only if both the ordinary residuals and the cross-projection penalty can be controlled without replacing $\theta_{\mathrm{sea}}$ separately for each pipeline. The first mock validation artifact for this gate is [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md).
@@ -3911,7 +3911,7 @@ For that branch, the promoted Noether-Sea account must keep the effective stress
 $$
 \mathcal{R}_{\mathrm{role}}
 =
-\left\lVert
+\left\|
 \begin{pmatrix}
 \rho_{\mathrm{DE,eff}} \\
 p_{\mathrm{sea}} \\
@@ -3927,7 +3927,7 @@ p_{\mathrm{sea}} \\
 \mathcal{H}_{\mathrm{BH}},
 \mathcal{H}_{\mathrm{sea}}
 \right]
-\right\rVert .
+\right\| .
 $$
 
 The closure condition is $\mathcal{R}_{\mathrm{role}}\to 0$ without changing $\theta_{\mathrm{sea}}$ between the distance, age, growth, and source ledgers. A negative sign in an effective fluid may be retained only as a sign in the comparison stress tensor; it does not license negative masses as native assemblies. A phase-transition or vacuum-energy comparison may constrain $\dot{\Lambda}_{\mathrm{eff}}$ or the shielding law; it does not make $\Lambda(t)$ fundamental. A Hubble-age repair may motivate a branch constant; it does not supply $\mathcal{S}_{m,\mathrm{eff}}$. This protects the Noether-Sea derivation from smuggling negative masses, matter creation, or variable $\Lambda$ into $\mathbb{A}\mathbb{A}\mathbb{A}$ as doctrine.
@@ -4812,7 +4812,7 @@ A concrete prediction: if Noether-Sea compliance decreases as it cools (outer bi
 In the modular cosmology architecture, this document provides:
 
 **Ontic inputs** (from medium dynamics and assembly physics):
-- Noether Sea equation of state $w_{\text{sea}}(t)$ and density $\rho_{\text{sea}}(t)$,
+- Noether-Sea equation of state $w_{\text{sea}}(t)$ and density $\rho_{\text{sea}}(t)$,
 - neutral-assembly (dark-matter) density $\rho_{\text{dm}}(t)$ and interaction cross-section,
 - effective gravitational coupling $G_{\text{eff}}(t, k)$ from medium compliance,
 - primordial perturbation spectrum $P_0(k)$ (from the initial Noether-Sea state or an inflation-equivalent process).

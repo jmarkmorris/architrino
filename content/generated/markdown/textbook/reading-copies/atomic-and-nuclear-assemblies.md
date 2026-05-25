@@ -112,11 +112,11 @@ $$
 D_{f,X}(\mathbf{x},t)
 =
 \frac{
-\left\lVert\mathcal{W}_{f,X}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
+\left\|\mathcal{W}_{f,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
 }{
-\left\lVert\mathcal{W}_{f,X}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
+\left\|\mathcal{W}_{f,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
 +
-\left\lVert\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\rVert
+\left\|\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\|
 },
 $$
 
@@ -497,16 +497,16 @@ $$
 \Delta_X(\ell,\ell')
 =
 \frac{
-\left\lVert
+\left\|
 \mathcal O_{\mathrm H,X}^{(\ell)}
 -
 \mathcal R_{\ell\leftarrow\ell'}
 \mathcal O_{\mathrm H,X}^{(\ell')}
-\right\rVert_X
+\right\|_X
 }{
-\left\lVert
+\left\|
 \mathcal O_{\mathrm H,X}^{(\ell)}
-\right\rVert_X
+\right\|_X
 +
 \varepsilon_X
 },
@@ -873,15 +873,15 @@ $$
 \mathcal E_{p,X}^{\mathrm{color}}
 =
 \frac{
-\left\lVert
+\left\|
 \Pi_{\mathrm{open},X}
 \mathcal W_{p,X}^{\mathrm{locked}}
-\right\rVert_X
+\right\|_X
 }{
-\left\lVert
+\left\|
 \Pi_{\mathrm{singlet},X}
 \mathcal W_{p,X}^{\mathrm{locked}}
-\right\rVert_X
+\right\|_X
 +
 \varepsilon_{p,X}
 }
@@ -897,18 +897,18 @@ $$
 \Delta_{p,X}^{\mathrm{env}}(\ell,\ell')
 =
 \frac{
-\left\lVert
+\left\|
 C_{\ell_{\mathrm{atom}},X}
 \mathcal W_{p,X}^{\mathrm{locked}}(\ell)
 -
 C_{\ell_{\mathrm{atom}},X}
 \mathcal W_{p,X}^{\mathrm{locked}}(\ell')
-\right\rVert_X
+\right\|_X
 }{
-\left\lVert
+\left\|
 C_{\ell_{\mathrm{atom}},X}
 \mathcal W_{p,X}^{\mathrm{locked}}(\ell)
-\right\rVert_X
+\right\|_X
 +
 \varepsilon_{p,X}^{\mathrm{env}}
 }
@@ -1702,13 +1702,13 @@ This document treats the periodic table as a scientific structure first, then an
 
 ---
 
-### 1. Periodic Law and Structural Invariants
+### Periodic Law and Structural Invariants
 
-#### 1.1 Atomic-number ordering
+#### Atomic-number ordering
 
 The modern periodic law is indexed by atomic number $Z$ (nuclear charge), not atomic mass. Any valid table layout must preserve monotonic ordering in $Z$ and recover family-level chemical recurrence.
 
-#### 1.2 Electronic shell and subshell capacities
+#### Electronic shell and subshell capacities
 
 For principal quantum number $n$, the shell capacity is
 
@@ -1727,7 +1727,7 @@ which yields
 
 These capacities are invariant; the chart geometry can change, but these occupancy limits do not.
 
-#### 1.3 Filling sequence and period lengths
+#### Filling sequence and period lengths
 
 To first order, filling follows the Madelung ($n+\ell$) ordering with known exceptions in transition and heavy elements. This produces canonical period lengths:
 
@@ -1743,7 +1743,7 @@ Thus, any alternative representation must still encode $s/p/d/f$ block capacitie
 
 ---
 
-### 2. Periodic Patterns in Element Data
+### Periodic Patterns in Element Data
 
 Across the table, recurrent observables include:
 
@@ -1756,7 +1756,7 @@ These are the scientific patterns a geometry must reveal or at least preserve.
 
 ---
 
-### 3. Element-Level Information Carried by Periodic Charts
+### Element-Level Information Carried by Periodic Charts
 
 A technically rich periodic diagram typically carries multiple fields per element region:
 
@@ -1770,9 +1770,9 @@ In the Hyde artwork used in this project, small numeric annotations and labels a
 
 ---
 
-### 4. Historical Lineage and Shape Evolution
+### Historical Lineage and Shape Evolution
 
-#### 4.1 Genealogy of the Hyde form
+#### Genealogy of the Hyde form
 
 The Benfey (2009) analysis gives an explicit lineage for the Hyde table.[2]
 
@@ -1783,7 +1783,7 @@ The Benfey (2009) analysis gives an explicit lineage for the Hyde table.[2]
 
 Therefore Hyde did not originate the spiral family; he modified an existing spiral lineage with a specific structural emphasis.
 
-#### 4.2 Shape evolution: protrusions and speculative extensions
+#### Shape evolution: protrusions and speculative extensions
 
 The same source records two distinct geometric modifications over time.[2]
 
@@ -1791,43 +1791,43 @@ The same source records two distinct geometric modifications over time.[2]
 2. Later protrusion logic: associated with superactinide-era shell-filling discussions, including the Weiner-Seaborg exchange.
 3. Historical extension argument: a 50-element period expectation based on $2+6+10+14+18$ was explicitly discussed in that speculative context.[2][10][11]
 
-#### 4.3 Hyde’s conceptual intervention
+#### Hyde’s conceptual intervention
 
 Hyde’s specific move was to place a horizontal axis through H, C, and Si, emphasizing C/Si centrality between electropositive and electronegative regions, with explicit biosphere/lithosphere framing in the historical account.[2][7]
 
-#### 4.4 Historical intent statement
+#### Historical intent statement
 
 In Benfey’s own account, the spiral was designed to improve visibility of periodic pattern structure relative to fragmented rectangular presentations; it was not presented as a replacement for the underlying periodic law.[2]
 
 ---
 
-### 5. How the Hyde Geometry Encodes Periodic Structure
+### How the Hyde Geometry Encodes Periodic Structure
 
-#### 5.1 Continuous topological embedding
+#### Continuous topological embedding
 
 Rectangular tables encode periodicity on a Cartesian grid with detached $f$-block rows. Hyde-style embedding keeps a near-continuous trajectory in $Z$, reducing topological breaks and emphasizing sequence continuity.
 
-#### 5.2 Radial/curvilinear shell progression
+#### Radial/curvilinear shell progression
 
 The concentric-curvilinear organization can be read as shell-period progression outward from low-$Z$ regions toward heavier elements. This does not alter quantum mechanics; it is a reparameterization of the same ordering constraints.
 
-#### 5.3 Lobe structure and chemical polarity
+#### Lobe structure and chemical polarity
 
 The two-lobed (peanut/lemniscate-like) morphology separates strongly electropositive and strongly electronegative regions while preserving continuity through transition zones.
 
-#### 5.4 Carbon-silicon axis emphasis
+#### Carbon-silicon axis emphasis
 
 Hyde’s explicit H-C-Si axis emphasizes group-14 centrality between electropositive and electronegative domains and links carbon-rich and silicon-rich materials regimes.[2][7]
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ working interpretation, this axis corresponds to the radial tier where four outer nested shell swarms can achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency.
 
-#### 5.5 Branches and heavy-series treatment
+#### Branches and heavy-series treatment
 
 Historical Hyde-lineage forms use protrusions to avoid severe compression of lanthanides and to depict speculative superheavy continuations in a geometrically attached manner.[2]
 
 ---
 
-### 6. Interpreting Linework and Labels in the Hyde Artwork
+### Interpreting Linework and Labels in the Hyde Artwork
 
 In technical reading, the Hyde linework can be interpreted as layered semantic structure:
 
@@ -1836,21 +1836,21 @@ In technical reading, the Hyde linework can be interpreted as layered semantic s
 
 ---
 
-### 7. $\mathbb{A}\mathbb{A}\mathbb{A}$ Working Hypothesis Collection (Draft)
+### $\mathbb{A}\mathbb{A}\mathbb{A}$ Working Hypothesis Collection (Draft)
 
 The points below are collected as a framework-internal research program, not as established consensus chemistry.
 
-#### 7.1 Central Claim
+#### Central Claim
 
 - The 1976 Hyde periodic chart abandons the rigid Cartesian block structure of the Mendeleev-style table in favor of a continuous spiral topology, and this topology is proposed to map directly to geometric packing constraints of Noether swarm assemblies.
 
-#### 7.2 Assumptions
+#### Assumptions
 
 - The $s, p, d, f$ orbitals are treated not as abstract probability distributions, but as emergent volume-exclusion zones of ellipsoidal electron nested shell swarms carrying six axial architrinos.
 - Electron nested shell swarms are assumed to couple to a central nuclear Noether swarm through local Noether-Sea density gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 
-#### 7.3 Mechanism and Derivation Sketch
+#### Mechanism and Derivation Sketch
 
 - Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether swarm, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
 - Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether-Sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell swarms.
@@ -1862,19 +1862,19 @@ The points below are collected as a framework-internal research program, not as 
 - Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in outer nested shell swarms, which controls preferred bonding directions.
 - Carbon-silicon centrality hypothesis: the H-C-Si axis is identified with the first tier permitting a symmetric four-site tetrahedral outer-docking pattern, giving a direct structural basis for group-14 bonding behavior.
 
-#### 7.4 Predictions and Observables
+#### Predictions and Observables
 
 - If shell structure is a packing phenomenon, ionization-energy trends along Hyde’s spiral should show systematic high-$Z$ deviations from idealized Dirac-limit expectations.
 - Mechanism for the deviation: increasing nuclear mass steepens the local Noether-Sea density gradient, geometrically compressing inner-shell nested shell swarms and driving middle-binary velocities toward field-speed limits.
 - This inner-shell geometric strain changes the effective shielding potential seen by valence nested shell swarms, producing measurable departures from standard relativistic-correction-only trends.
 
-#### 7.5 Failure Modes and Falsification Criteria
+#### Failure Modes and Falsification Criteria
 
 - If multi-body simulations of nested shell swarms with axial layers do not spontaneously produce discrete 8/18/32 packing regimes, the geometric-periodicity derivation fails.
 - If the model collapses into continuous charge distributions with no discrete angular nodes, the orbital-geometry mapping is falsified.
 - If predicted high-$Z$ ionization-energy deviations are absent beyond uncertainty and known correction terms, the proposed finite-volume mechanism is disfavored.
 
-#### 7.6 Geometric-Periodicity Closure Program
+#### Geometric-Periodicity Closure Program
 
 The Hyde hypothesis becomes useful only if it can be converted into a closure program with explicit geometric tests. The first step is to translate Hyde's 2D spiral ordering into a 3D close-packing algorithm for ellipsoidal electron Noether swarm assemblies.
 
