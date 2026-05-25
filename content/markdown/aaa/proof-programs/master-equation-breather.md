@@ -138,13 +138,13 @@ is the certified memory horizon,
 $$
 \eta
 $$
-is the causal-shell width, and
+is the causal-isochron width, and
 $$
 \epsilon_c
 $$
 is the short-distance core scale.
 
-Branch-sum formulas are derived from this absolute-time integral only on simple-root charts, where the causal shell has isolated transversal roots. They are therefore local analytic reductions, not the global definition of the dynamics through fold transit or certified topology.
+Branch-sum formulas are derived from this absolute-time integral only on simple-root charts, where the causal isochron has isolated transversal roots. They are therefore local analytic reductions, not the global definition of the dynamics through fold transit or certified topology.
 
 The proof burden is consequently finite-certificate closure:
 $$
@@ -188,7 +188,7 @@ and the core cutoff
 $$
 \epsilon_c
 $$
-play different roles and should not be conflated. The first regularizes caustic transit across the causal shell. The second regularizes the short-distance amplitude divergence. The 1D scaffold works precisely because those two pathologies are separated rather than blurred into a single smoothing parameter.
+play different roles and should not be conflated. The first regularizes caustic transit across the causal isochron. The second regularizes the short-distance amplitude divergence. The 1D scaffold works precisely because those two pathologies are separated rather than blurred into a single smoothing parameter.
 
 ### 2. Convex Banach bounds and tame delayed geometry must be split
 
@@ -3728,11 +3728,11 @@ q_3=+\epsilon,
 $$
 with all three trajectories constrained to one plane.
 
-This seed is not charge-neutral:
+This seed is not polarity-neutral:
 $$
 q_1+q_2+q_3=+\epsilon.
 $$
-It should therefore be read as a local nonneutral three-body subsystem, or as a compensated subsystem inside a larger neutral assembly whose compensating charge remains outside the reduced bridge model. A globally neutral many-body theorem would need a different seed, for example a neutral four-body packet, and should not be inferred from the present
+It should therefore be read as a local nonneutral three-body subsystem, or as a compensated subsystem inside a larger neutral assembly whose compensating polarity remains outside the reduced bridge model. A globally neutral many-body theorem would need a different seed, for example a neutral four-body packet, and should not be inferred from the present
 $$
 (+,-,+)
 $$

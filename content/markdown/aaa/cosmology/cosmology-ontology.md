@@ -126,9 +126,9 @@ The stronger test is cross-row provenance. Let $Q_i^\theta$ and $Q_j^\theta$ be 
 $$
 \mathcal{R}_{i\leftrightarrow j}^{\theta}
 =
-\left\lVert
+\left\|
 Q_i^\theta-\mathcal{T}_{ij}^\theta Q_j^\theta
-\right\rVert_{C_{ij}^{-1}}^2.
+\right\|_{C_{ij}^{-1}}^2.
 $$
 Examples include nuclear binding versus radiation and neutrino backgrounds, baryon density versus BBN and CMB inference, quasar luminosity versus massive-black-hole remnant density, and lensing mass versus galaxy luminosity and clustering. A component row that cannot be connected to the rest of the ledger remains an interpretation placeholder.
 

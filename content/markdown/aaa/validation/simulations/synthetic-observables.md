@@ -17,7 +17,7 @@ A $\mathbb{U}_{\text{now}}$ is defined by:
   - Local potential $\Phi(x_k,t)$
   - Local gradient $\nabla\Phi(x_k,t)$ (force proxy)
   - Optional local Noether-Sea state variables (e.g., $\rho_{\text{NS}}$, alignment/orientation metrics)
-  - Causal wake surface provenance/event tags: for each received contribution at $(x_k,t)$, record `emitter_id` together with $t_{\text{emit}}$, satisfying $\lVert x_k - x_{\text{emitter}}(t_{\text{emit}})\rVert = c_f (t - t_{\text{emit}})$
+  - Causal wake surface provenance/event tags: for each received contribution at $(x_k,t)$, record `emitter_id` together with $t_{\text{emit}}$, satisfying $\| x_k - x_{\text{emitter}}(t_{\text{emit}})\| = c_f (t - t_{\text{emit}})$
   - Optional finite-window operator diagnostics for declared reconstructed channels $\mathbf{Y}_\eta$, including Gauss, Stokes, and wake-surface normalization residuals
 
 ### Minimal synthetic products

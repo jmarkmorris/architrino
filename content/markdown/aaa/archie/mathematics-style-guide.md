@@ -68,7 +68,7 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
   - $H(0)=0$ (no instantaneous self-kick).
   - No $r=0$ causal roots beyond $\tau=0$: because $r = v(t - t_0)$, $r=0$ implies $\tau=0$; the $\tau=0$ case is excluded by $H(0)=0$. Under mollification, the symmetric limit as $r\to 0$ yields zero net push.
 
-Plain language: A push now only happens if a past causal wake surface has had exactly enough time to reach you.
+Plain language: A push now only happens if a past causal wake surface has had exactly enough time to reach the receiver.
 
 ---
 
@@ -125,13 +125,13 @@ DDE view: let state $x = (\mathbf{s}, \mathbf{v})$. With $\eta>0$ regularization
 $$
 \frac{d x}{d t} = F\big(x(t), \{x_j(t - \tau_j)\}_j, t\big),
 $$
-with $\tau_j$ determined implicitly by $\lVert \mathbf{s}(t) - \mathbf{s}_j(t - \tau_j)\rVert = v\,\tau_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
+with $\tau_j$ determined implicitly by $\|\mathbf{s}(t)-\mathbf{s}_j(t-\tau_j)\| = v\,\tau_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
 
 Notes:
 - Emission cadence and per-wavefront amplitude are constant at the source; the received force magnitude is modulated by the Jacobian factor $|J|^{-1}$.
 - No cross products, no right-hand-rule magnetism; every per-hit action is along $\hat{\mathbf{r}}$.
 
-Plain language: For each past emission that can reach you now, push along the line back to where it came from, with inverse-square falloff and Jacobian flux weighting, then add all pushes.
+Plain language: For each past emission that can reach the receiver now, push along the line back to where it came from, with inverse-square falloff and Jacobian flux weighting, then add all pushes.
 
 Receiver velocity decomposition (instantaneous):
 - Decompose the receiver velocity relative to $\hat{\mathbf{r}}_{o'j}$:
@@ -179,7 +179,7 @@ Plain language: With slightly thick causal wake surfaces, the usual “force is 
 - Emission cadence and per-wavefront amplitude are constant. Receiver velocity affects only instantaneous power $\,\mathbf{F}\cdot\mathbf{v} = |\mathbf{F}|\,v_r$.
 - $r$, $\hat{\mathbf{r}}$ as above; $H$ is the Heaviside step function with $H(0)=0$.
 
-Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic charge; emission cadence and per-wavefront amplitude are constant; receiver motion affects only instantaneous power.
+Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic polarity unit; emission cadence and per-wavefront amplitude are constant; receiver motion affects only instantaneous power.
 
 ---
 

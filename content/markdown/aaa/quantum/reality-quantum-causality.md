@@ -44,12 +44,12 @@ At the emergent level:
 
 - Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **Noether swarm assembly** plus its coupling to the surrounding Noether-Sea wake background.
 - Most of the time, the assembly’s internal state is robust against small variations in the net potential.
-- Occasionally, when the assembly’s configuration is **metastable** (near a threshold boundary; see 3.1.1), a particular combination of incoming wakes pushes it across a threshold:
+- Occasionally, when the assembly’s configuration is **metastable** (near a threshold boundary; see [Metastability and Threshold Crossings](#metastability-and-threshold-crossings)), a particular combination of incoming wakes pushes it across a threshold:
   - Electron “jumps” orbital
   - Nucleus dissociates
   - Detector “clicks”
 
-Those events are **rare threshold crossings** in a continuous, deterministic flow, not spontaneous coin-flips. The micro-trajectory remains continuous, but the **coarse-grained pattern** can change quickly once the state crosses the relevant boundary (see 3.1.1).
+Those events are **rare threshold crossings** in a continuous, deterministic flow, not spontaneous coin-flips. The micro-trajectory remains continuous, but the **coarse-grained pattern** can change quickly once the state crosses the relevant boundary (see [Metastability and Threshold Crossings](#metastability-and-threshold-crossings)).
 
 Two clarifications matter here:
 
@@ -114,9 +114,9 @@ At the assembly level (Noether swarms, atoms, etc.):
 
 - The **outer binary** can be modeled as such a metastable subsystem:
   - It supports discrete resonance bands labeled by an integer index $f$ (linked to a characteristic frequency).
-  - A transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E \approx h \nu$, and pushes the system across the boundary between resonance bands (the $f \to f \pm 1$ boundary; see 3.1.1). Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
+  - A transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E \approx h \nu$, and pushes the system across the boundary between resonance bands (the $f \to f \pm 1$ boundary; see [Metastability and Threshold Crossings](#metastability-and-threshold-crossings)). Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
 
-- The **middle binary**, near $v = c_f$, likely sits near a **self-hit threshold** (see 3.1.1):
+- The **middle binary**, near $v = c_f$, likely sits near a **self-hit threshold** (see [Self-Hit Threshold Analogy](#self-hit-threshold-analogy)):
   - Slightly below $c_f$: one regime (e.g., a response on the order of an $h$-scale action increment per cycle, phenomenological).
   - Slightly above $c_f$: another regime (e.g., a response on the order of a $2h$-scale action increment per cycle, phenomenological; self-hit-amplified).
   - Small differences in forcing near this manifold can switch which $f$-band is selected and send trajectories to qualitatively different long-term behavior.
@@ -143,7 +143,7 @@ The delay-oscillator picture is useful only as an illustration: a control parame
 Because:
 
 - The input signal, namely the sum of causal wakes from the Noether Sea and nearby assemblies, is **high-dimensional** and **history-dependent**,
-- The local assembly is sitting near a **threshold boundary** (e.g., a resonance-band boundary in the outer binary or a self-hit onset in the middle binary; see 3.1.1),
+- The local assembly is sitting near a **threshold boundary** (e.g., a resonance-band boundary in the outer binary or a self-hit onset in the middle binary; see [Threshold Structure Guide](#threshold-structure-guide-plain-language-labels)),
 
 we get classic deterministic chaos:
 
@@ -362,9 +362,9 @@ The extended discussion of internal/external causation, functional agency, and c
 These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard quantum interpretations onto explicit dynamical mechanisms. They are foundational claims of the framework, but the quantitative derivations remain closure targets where noted.
 
 > ### **Wavefunction Collapse = Threshold Resolution**
-> In standard QM, "collapse" is an axiom added to a linear wave equation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the underlying dynamics are continuous, but **bifurcation boundaries are real**. When a metastable system is pushed across a threshold boundary (see 3.1.1) by a record-making interaction, the **effective wave equation changes** because the basin geometry changes. Observers therefore use a different effective equation *after* the resolution than *before*. "Collapse" is the observer's forced update to the correct effective equation once the threshold has been crossed.
+> In standard QM, "collapse" is an axiom added to a linear wave equation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the underlying dynamics are continuous, but **bifurcation boundaries are real**. When a metastable system is pushed across a threshold boundary (see [Threshold Structure Guide](#threshold-structure-guide-plain-language-labels)) by a record-making interaction, the **effective wave equation changes** because the basin geometry changes. Observers therefore use a different effective equation *after* the resolution than *before*. "Collapse" is the observer's forced update to the correct effective equation once the threshold has been crossed.
 >
-> Crucially, the transition itself is not an observable steady state. Attempting to probe the in‑between injects action and **forces a resolution to one side**, which is why you cannot continuously sample the bifurcation with photons.
+> Crucially, the transition itself is not an observable steady state. Attempting to probe the in-between injects action and **forces a resolution to one side**, which is why continuous photon sampling cannot leave the bifurcation unresolved.
 
 > ### **Uncertainty Brackets the Integer Step (Phenomenological + Toy Dynamics)**
 > The outer binary occupies discrete **resonance bands** labeled by an integer index $f$ (or $n$). A transition occurs when the **action per cycle** crosses the $h$‑scale threshold. In absolute dynamics the step is clean: $f \to f \pm 1$.

@@ -295,7 +295,7 @@ Every run must instantiate $\mathbb{U}_{\text{now}}$ sensors:
 
 ### Causal wake surface bookkeeping requirement
 When a potential wake surface intersects a $\mathbb{U}_{\text{now}}$ sensor or contributes to $\Phi(x,t)$, the code must:
-- Solve for emission time $t_{\text{emit}}$ using $\lVert x - x_{\text{emitter}}(t_{\text{emit}})\rVert = c_f (t - t_{\text{emit}})$
+- Solve for emission time $t_{\text{emit}}$ using $\| x - x_{\text{emitter}}(t_{\text{emit}})\| = c_f (t - t_{\text{emit}})$
 - Record emitter identity plus $t_{\text{emit}}$ (provenance logging)
 
 ### Metadata (required)

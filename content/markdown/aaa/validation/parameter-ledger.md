@@ -54,7 +54,7 @@ The following should **not** be treated as free global constants:
 - $\chi_{\text{sea}}(\mathbf{x},t)$,
 - $m_{\text{inertial}}(A)$ for a specific assembly $A$.
 
-These are state variables, constitutive fields, or derived outputs. They may be controlled by a smaller parameter set, but they are not themselves independent knobs.
+These are state variables, constitutive fields, or derived outputs. They may be controlled by a smaller parameter set, but they are not themselves independent parameters.
 
 ### Benchmark versus postulate
 

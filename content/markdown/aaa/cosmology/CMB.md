@@ -150,7 +150,7 @@ This statistic is a validation target, not a permission to import an external co
 **$\Lambda\mathrm{CDM}$ interpretation:** Electron-positron pairs are abundant; annihilation and cooling reshape the radiation bath.
 **$\Lambda\mathrm{CDM}$ (neutrino decoupling):** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether swarms with 6*|e/6| Axial Architrinos Form):** Stable lepton analogs form from Noether swarms carrying six bound axial architrinos (net $|e|$ from six $|e/6|$ units). Lepton-like assemblies populate the Noether Sea and mediate charge-neutralization channels.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether swarms with six $\epsilon$ axial architrinos form):** Stable lepton analogs form from Noether swarms carrying six bound axial architrinos, with net observer-level $|e|$ from six $\epsilon=|e|/6$ units. Lepton-like assemblies populate the Noether Sea and mediate charge-neutralization channels.
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether swarms with Neutral Axial Layers):** Nearly neutral Noether swarm assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language; compare [Neutrinos](../assemblies/fermions/neutrinos.md).
 
 ## Photon Epoch ($\sim 10$ s to $\sim 3.8\times10^5$ years)

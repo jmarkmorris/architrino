@@ -97,7 +97,7 @@ B;\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal{H}_{\partial\Omega}
 \right)=0,
 $$
 
-where $\Theta_{\mathrm{sea}}$ records the local Noether-Sea density, cadence, orientation, strain, and delay-response state; $\Theta_{\mathrm{asm}}$ records nearby resolved assemblies, including assemblies that later map to Standard Model particle language; and $\mathcal{H}_{\partial\Omega}$ records the causal-wake and event data entering the local region through its boundary. These are not extra fit knobs. They are the retained part of the same absolute record $S(t)$ needed to decide whether the local branch persists.
+where $\Theta_{\mathrm{sea}}$ records the local Noether-Sea density, cadence, orientation, strain, and delay-response state; $\Theta_{\mathrm{asm}}$ records nearby resolved assemblies, including assemblies that later map to Standard Model particle language; and $\mathcal{H}_{\partial\Omega}$ records the causal-wake and event data entering the local region through its boundary. These are not extra fit parameters. They are the retained part of the same absolute record $S(t)$ needed to decide whether the local branch persists.
 
 At the force-ledger level this means that a local architrino row should be understood schematically as
 
@@ -741,7 +741,7 @@ A_\chi^{-1},\,
 \right).
 $$
 
-For $\gamma_{\text{eff}}=1$, this gives $a_\chi=2$ and $b_\chi=1/2$. Nonzero $n$, $\lambda$, or $R_{\text{core}}$ contributions remain admissible only as a compensated static family that preserves the endpoint sum and the inverse clock-rate row; they are not free redshift-fit knobs.
+For $\gamma_{\text{eff}}=1$, this gives $a_\chi=2$ and $b_\chi=1/2$. Nonzero $n$, $\lambda$, or $R_{\text{core}}$ contributions remain admissible only as a compensated static family that preserves the endpoint sum and the inverse clock-rate row; they are not free redshift-fit parameters.
 
 The relative-motion recovery fixes the separation between launch geometry and transport coefficients. In a homogeneous weak record with $\mathbf g_N(E)=\mathbf g_N(R)=0$, $B_X(E)=1$, and $\mathcal K_{X,j}=0$ for every segment,
 
@@ -2623,7 +2623,7 @@ A stronger prediction is also available. The Lorentz formulas should not be impo
 
 #### Problem Statement
 
-##### 1.1 Kinematic closure target
+##### Kinematic closure target
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate ontology is:
 
@@ -2633,7 +2633,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate ontology is:
 
 To match modern precision constraints, operational observers made from bound assemblies must infer effective Lorentz kinematics even though the substrate itself is not Minkowskian at the fundamental level. We call this required dynamical compensation the Lorentzian conspiracy.
 
-##### 1.2 Mathematical objective
+##### Mathematical objective
 
 Given a translating bound assembly (binary and then nested shell swarm), derive:
 
@@ -2644,7 +2644,7 @@ Given a translating bound assembly (binary and then nested shell swarm), derive:
 
 #### Governing Microdynamics
 
-##### 2.1 Causal path-history interaction form
+##### Causal path-history interaction form
 
 For architrino labels $i,j\in\{1,\dots,N\}$, with positions $\mathbf{x}_i(t)$ and regularized inertial weights $m_i$,
 $$
@@ -2658,7 +2658,7 @@ The self-hit term $\mathbf{F}^{\text{self}}_i$ captures history-dependent wake r
 
 The weights $m_i$ in this reduced equation are not primitive architrino rest masses. They are regularized bookkeeping weights for an assembly-level branch chart, analogous to the universal conversion constant used in the master-equation energy diagnostic. A fundamental scan may set them equal before closure, while an effective assembly calculation may replace them with branch-extracted weights only after the relevant internal energy ledger has been specified.
 
-##### 2.2 Co-moving decomposition
+##### Co-moving decomposition
 
 For an assembly center trajectory $\mathbf{X}(t)$ with mean velocity $\mathbf{v}$, write
 $$
@@ -2666,7 +2666,7 @@ $$
 $$
 The closure task is to solve for bounded relative motion $\mathbf{r}_i(t)$ under translation $\|\mathbf{v}\|<c_f$ and extract period and geometry renormalization.
 
-##### 2.3 Dimensionless drift-delay form and variational closure
+##### Dimensionless drift-delay form and variational closure
 
 Fix a rest-attractor length scale $a_0$ and period $T_0$, and define
 $$
@@ -2693,7 +2693,7 @@ where $\mathbf{y}$ stacks positions and velocities in relative coordinates. Kine
 2. Spectral stability of the monodromy operator (all nontrivial Floquet multipliers inside the unit disk).
 3. Smooth coefficient maps for axis and period renormalization extracted from $\boldsymbol{\rho}^\star$.
 
-##### 2.4 Exact substrate symmetries and delay currents
+##### Exact substrate symmetries and delay currents
 
 At action level, use a causal path-history functional
 $$
@@ -2721,7 +2721,7 @@ Therefore an isolated translating assembly admits a co-moving reduction to a bou
 
 #### Emergent Kinematics from Delay Anisotropy
 
-##### 3.1 Directional delay asymmetry
+##### Directional delay asymmetry
 
 For a primitive benchmark drifting binary with instantaneous separation vector $\mathbf{r}=r\,\hat{\mathbf{n}}$ and center drift $\mathbf{v}=v\,\hat{\mathbf{e}}_{\parallel}$, causal-delay closure satisfies
 $$
@@ -2757,7 +2757,7 @@ $$
 K_{\parallel}(v)\neq K_{\perp}(v).
 $$
 
-##### 3.1.1 Weak-velocity expansion to $O(\beta^4)$
+##### Weak-velocity expansion to $O(\beta^4)$
 
 Direct expansion of the symmetric lag gives
 $$
@@ -2782,7 +2782,7 @@ $$
 \mu=0:\ \bar{\tau}=\frac{r}{c_f}\gamma,\ \nu=\frac{c_f}{r}\frac{1}{\gamma}.
 $$
 
-##### 3.1.2 Closed-return derivation of the Lorentz axis ratio
+##### Closed-return derivation of the Lorentz axis ratio
 
 The one-way roots above expose the preferred branch chart. They are not yet an observer-facing Lorentz law, because a physical clock or ruler is not made from a single one-way leg. A stable material branch is admitted only when the relevant causal wake returns to a compatible phase. The primitive Lorentz-geometry object is therefore a closed return cycle.
 
@@ -2924,7 +2924,7 @@ Here $m_q$ is the observer-sector inertial response assigned to the admitted bra
 
 This derivation is stronger than assigning an ellipsoid after the fact. The one-way longitudinal legs remain asymmetric; the Lorentz geometry appears only when the closed return cycle is allowed to choose the semiaxes that make longitudinal and transverse closure periods agree. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the spheroid is the visible projection of a branch that has solved its return-cycle ledger.
 
-##### 3.2 Effective shape law
+##### Effective shape law
 
 Fix a drift band $0\le\beta_f\le\beta_{\max}<1$, with $\beta_f=v/c_f$, and choose one admitted translating branch $q$. The primitive root ledger on that band is still solved at $c_f$; $\beta_\star=v/c_\star$ is introduced only for the declared primitive or dressed observer channel being tested.
 
@@ -2959,7 +2959,7 @@ C_{\parallel}\epsilon_{\text{LV}}\beta_\star^2
 $$
 uniformly on the declared drift band. This is a moving-assembly extraction condition. Weak-field PPN tests can later falsify the dressed medium response, but they are not inputs to this semiaxis extraction.
 
-##### 3.2.1 Quadratic closure and coefficient constraints
+##### Quadratic closure and coefficient constraints
 
 On the attracting manifold, use principal-frame quadratic closure
 $$
@@ -3001,7 +3001,7 @@ $$
 4(\ell_4-k_4)+3k_2^2-2k_2\ell_2-\ell_2^2=-1.
 $$
 
-##### 3.2.2 Stiffness tensor from causal-wake surface integrals
+##### Stiffness tensor from causal-wake surface integrals
 
 To anchor coefficient matching in the microdynamics, define the pairwise causal-wake potential on a translating attractor $\boldsymbol{\rho}^\star(s;\beta)$:
 $$
@@ -3051,9 +3051,9 @@ k_4=
 \frac{\partial_{\beta}^4\mathcal{I}_{\perp}\big|_{\beta=0}}
 {24\,\mathcal{I}_{\perp}(0)}.
 $$
-Therefore the Lorentz-matching constraints in Sec. 3.2.1 and Sec. 3.3.1 become explicit derivative identities on $\mathcal{I}_{\parallel},\mathcal{I}_{\perp}$ evaluated on the delay-Floquet attractor.
+Therefore the Lorentz-matching constraints in [Quadratic Closure and Coefficient Constraints](#quadratic-closure-and-coefficient-constraints) and [Clock-Channel Expansion and Minimal Closure Solution](#clock-channel-expansion-and-minimal-closure-solution) become explicit derivative identities on $\mathcal{I}_{\parallel},\mathcal{I}_{\perp}$ evaluated on the delay-Floquet attractor.
 
-##### 3.3 Period renormalization
+##### Period renormalization
 
 Let $T_q(v)$ be the fundamental oscillation period of the assembly attractor in absolute time, extracted from the declared clock phase on the same branch ledger as the semiaxes. The clock retuning residual is
 $$
@@ -3071,7 +3071,7 @@ C_T\epsilon_{\text{LV}}\beta_\star^2.
 $$
 Exact closure is the limit $\epsilon_{\text{LV}}\to 0$.
 
-##### 3.3.1 Clock-channel expansion and minimal closure solution
+##### Clock-channel expansion and minimal closure solution
 
 Use a symmetric clock-frequency aggregator
 $$
@@ -3112,13 +3112,13 @@ k_4=-\frac{1}{9},\qquad \ell_4=\frac{2}{9},
 $$
 before leakage terms are added.
 
-##### 3.4 Outer-binary transduction hypothesis (working)
+##### Outer-binary transduction hypothesis (working)
 
 Assume the outer binary $L$ is the dominant transducer for energy exchange with passerby assemblies (non-locally coupled encounters). Under this hypothesis, the leading kinematic response is boundary-driven at $L$, then propagated inward through $M$ and $H$ couplings.
 
 For locally coupled assemblies (strong axial coupling), interaction pathways are distinct and should be modeled as a separate regime, not merged with passerby-transfer fits.
 
-##### 3.5 State update map for single-quantum uptake
+##### State update map for single-quantum uptake
 
 For an assembly state
 $$
@@ -3136,7 +3136,7 @@ with the following structured components:
 4. Exclusion-zone geometry shift: $\Delta\mathcal{E}_{\text{excl}}\neq 0$ (shape and orientation update).
 5. Operational time response shift: $\Delta\tau_{\text{op}}\neq 0$.
 
-##### 3.6 Open mapping: perceived time dilation in $\mathbb{A}\mathbb{A}\mathbb{A}$
+##### Open mapping: perceived time dilation in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The human-observed "time dilation" channel is not yet fully mapped in substrate variables. The working interpretation in this document is:
 $$
@@ -3146,7 +3146,7 @@ where $\tau_{\text{op}}$ is an emergent clock functional of assembly internal fr
 
 The immediate task is to identify which subset dominates $\partial \tau_{\text{op}}/\partial E$ in the passerby-transfer regime, with the default prior that outer-binary $L$ mediated updates are first-order.
 
-##### 3.7 Evolving scenario: exclusion-volume driven effective spacetime
+##### Evolving scenario: exclusion-volume driven effective spacetime
 
 Working assumption:
 
@@ -3190,7 +3190,7 @@ Consistency checks required for this scenario:
 
 Status: scenario is a structured hypothesis, not yet a proved derivation. It is retained as an evolving design model for theorem and simulation development.
 
-##### 3.8 Two-channel deformation: shape plus scale
+##### Two-channel deformation: shape plus scale
 
 Relevant to Lorentzian closure, the Noether swarm deformation is not only axis-ratio change. A working two-channel model is:
 
@@ -3218,7 +3218,7 @@ $$
 (\beta_\star,E)\longmapsto (R_\parallel,R_\perp,V).
 $$
 
-##### 3.9 Local deformation fields and effective geometry handoff
+##### Local deformation fields and effective geometry handoff
 
 For coarse-grained modeling, define local fields
 $$
@@ -3239,7 +3239,7 @@ $$
 $$
 for constructing effective kinematic and metric responses. The kinematic closure requirement is that observer-built rods/clocks from this Noether Sea recover Lorentz-consistent operational laws to bounded leakage.
 
-##### 3.9.1 Algebraic effective metric map from the handoff tuple
+##### Algebraic effective metric map from the handoff tuple
 
 To make Stage D constructive, introduce an observer-sector pseudo-Riemannian template
 $$
@@ -3276,11 +3276,11 @@ Therefore the stationary ideal clock-rate factor extracted from the metric subcl
 
 #### Observer Construction and Operational Invariance
 
-##### 4.1 Assembly clocks and rods
+##### Assembly clocks and rods
 
 Physical observers are built from the same bound-state class that obeys the above deformation and period laws. Therefore, measurement devices inherit velocity-dependent retuning.
 
-##### 4.2 Two-way signal speed criterion
+##### Two-way signal speed criterion
 
 For ruler and clock systems made of translated assemblies, two-way signal experiments must satisfy
 $$
@@ -3303,7 +3303,7 @@ $$
 $$
 Operational Lorentz closure therefore requires this residual to vanish, or remain below the declared timing bound, in the same weak homogeneous branch that supplies $c_{2w}(\theta,v)=c_{\text{iso}}+O(\epsilon_{\text{LV}})$. It is not enough to recover local two-way isotropy while leaving cosmological photon timing to a separately tuned channel record.
 
-##### 4.3 Round-trip anisotropy cancellation through $O(\beta^4)$
+##### Round-trip anisotropy cancellation through $O(\beta^4)$
 
 Let arm lengths in the preferred frame be written using the declared two-way signal channel speed, with $\beta_\star=v/c_\star$:
 $$
@@ -3350,7 +3350,7 @@ which is precisely $L_{\parallel}=L_0/\gamma_\star+O(\beta_\star^6)$.
 
 #### Derivation Program
 
-##### 5.1 Stage A: binary analytic benchmark
+##### Stage A: binary analytic benchmark
 
 Start with a single causal path-history binary under constant drift $\mathbf{v}$. Derive:
 
@@ -3358,7 +3358,7 @@ Start with a single causal path-history binary under constant drift $\mathbf{v}$
 2. Closed-form or asymptotic estimates for $(a_{\parallel}/a_{\perp})(v)$.
 3. First nonzero leakage coefficients in $v/c_f$ expansion.
 
-##### 5.2 Stage B: nested shell swarm full closure
+##### Stage B: nested shell swarm full closure
 
 Promote to a nested shell swarm with coupled circulation scales. Establish:
 
@@ -3366,7 +3366,7 @@ Promote to a nested shell swarm with coupled circulation scales. Establish:
 2. Factorization or controlled coupling of inner/middle/outer period shifts.
 3. Emergent universal $\gamma$-law independent of axial-structure details, within a defined class.
 
-##### 5.3 Stage C: continuum handoff
+##### Stage C: continuum handoff
 
 Derive coarse-grained kinematic constitutive relations used by effective metric models:
 $$
@@ -3374,7 +3374,7 @@ $$
 $$
 so local assembly kinematics and macroscopic refractive geometry are mathematically linked.
 
-##### 5.4 Stage D: effective-medium and weak-field closure sequence
+##### Stage D: effective-medium and weak-field closure sequence
 
 To connect the two-channel deformation model to observables, use the following sequence:
 
@@ -3384,9 +3384,9 @@ To connect the two-channel deformation model to observables, use the following s
 4. Weak-field consistency checks: verify Newtonian limit and required post-Newtonian behavior in the operational observer sector.
 5. Strong-field/cosmology consistency checks: test horizon-adjacent and expansion-regime implications of the same constitutive channels.
 
-##### 5.4.1 Effective connection and geodesic emergence
+##### Effective connection and geodesic emergence
 
-Given $g_{\mu\nu}^{\text{eff}}$ from Sec. 3.9.1, define
+Given $g_{\mu\nu}^{\text{eff}}$ from [Algebraic Effective Metric Map from the Handoff Tuple](#algebraic-effective-metric-map-from-the-handoff-tuple), define
 $$
 \Gamma^\lambda_{\mu\nu}
 =\frac{1}{2}g^{\lambda\rho}_{\text{eff}}
@@ -3438,7 +3438,7 @@ $$
 $$
 in the weak-field refractive regime.
 
-##### 5.5 Coefficient-extraction and closure estimators
+##### Coefficient-extraction and closure estimators
 
 For each simulated drift speed, keep the channel label explicit. Primitive branch calculations use $\beta=v/c_f$; dressed observer-channel fits use $\beta_\star=v/c_\star$ after the dressing map is declared. Extract from long-window attractor statistics:
 $$
@@ -3489,7 +3489,7 @@ $$
 \sup_{0\le \beta\le \beta_\star}|\mathcal{A}_{2m}(\beta)|\le C_m\epsilon_{\text{LV}}.
 $$
 
-##### 5.6 Analytic derivation of kinematic closure coefficients
+##### Analytic derivation of kinematic closure coefficients
 
 On the circular benchmark branch, take the rest-frame attractor $\boldsymbol{\rho}^\star(s;0)$ as a stable planar orbit of radius $r_0$ and frequency $\omega_0$. The cycle carries emergent phase symmetry $\phi\mapsto \phi+\text{const}$ with adiabatic invariant
 $$
@@ -3499,7 +3499,7 @@ For each principal oscillator channel, $J_i\propto \sqrt{K_i}\,A_i^2$, so adiaba
 $$
 A_i(\beta)=A_i(0)\left(\frac{K_i(0)}{K_i(\beta)}\right)^{1/4}.
 $$
-This provides the fixed-action retuning route from stiffness expansion to the coefficient extraction in Sec. 3.2.2.
+This provides the fixed-action retuning route from stiffness expansion to the coefficient extraction in [Stiffness Tensor from Causal-Wake Surface Integrals](#stiffness-tensor-from-causal-wake-surface-integrals).
 
 The simplest scalar kernel is useful mainly because it fails in a controlled way. For translation $\mathbf{v}=v\hat{\mathbf{e}}_{\parallel}$ with primitive $\beta=v/c_f$, suppose one tries the causal-delay potential form
 $$
@@ -3536,7 +3536,7 @@ $$
 $$
 This naive block is not a derivation of the Lorentz-matching vector. With the displayed normalization it gives positive normalized stiffness growth rather than the required negative coefficient pattern, and any sign reversal would require an additional channel normalization that is not present in the scalar kernel. The block is therefore a failure diagnostic: the target vector must come from the completed action kernel on the same causal-root ledger, with branch phase closure and fixed-action retuning included before the stiffness derivatives are taken.
 
-The valid theorem target keeps the Sec. 3.2.2 extraction rules,
+The valid theorem target keeps the [Stiffness Tensor from Causal-Wake Surface Integrals](#stiffness-tensor-from-causal-wake-surface-integrals) extraction rules,
 $$
 k_2=
 \frac{\partial_{\beta}^2\mathcal{I}_{\parallel}\big|_{\beta=0}}
@@ -3563,7 +3563,7 @@ $$
 $$
 The target vector is not a fit parameter, but this section no longer claims that the displayed scalar kernel derives it. A valid derivation must show that the completed action kernel, the causal-root ledger, branch phase closure, and fixed-action retuning together yield the derivative identities above on the same branch.
 
-##### 5.6.1 Causal-root ledger progression as a Lorentz prediction
+##### Causal-root ledger progression as a Lorentz prediction
 
 The coefficient calculation above suggests a sharper interpretation of the Lorentz closure problem. In standard observer physics, the Lorentz formulas are usually treated as kinematic consequences of invariant signal speed and the relativity principle. In this chapter they are instead treated as emergent observer-level consequences of a delayed assembly dynamics. The additional $\mathbb{A}\mathbb{A}\mathbb{A}$ prediction is that the Lorentz coefficients are not merely smooth deformation coefficients. They should be generated by the same branch-chart structure that later appears, after coarse-graining, as discrete quantum behavior.
 
@@ -3661,7 +3661,7 @@ The technology-facing status is therefore conditional. The immediate test is not
 
 This also prevents overclaiming. The present chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
 
-##### 5.7 Nested shell swarm adiabatic decoupling bound
+##### Nested shell swarm adiabatic decoupling bound
 
 Let
 $$
@@ -3709,9 +3709,9 @@ $$
 \mathcal{D}_{23}\le C_{23}\epsilon_{\text{LV}}.
 $$
 
-##### 5.8 Spectral-decoupling vulnerability criterion
+##### Spectral-decoupling vulnerability criterion
 
-The adiabatic bound in Sec. 5.7 assumes Diophantine nonresonance:
+The [Nested Shell Swarm Adiabatic Decoupling Bound](#nested-shell-swarm-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
 $$
 |m\omega_L-n\omega_M|
 \ge
@@ -3824,7 +3824,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 3. Residual anisotropy terms exceed accepted bounds after full observer construction.
 4. Different assembly decorations produce incompatible kinematic laws that prevent universal operational closure.
 5. The weak-field connection built from $g_{\mu\nu}^{\text{eff}}$ fails to reproduce a Newtonian Poisson limit for $\Phi_{\text{eff}}$ in the operational observer sector.
-6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in Sec. 5.7.
+6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in [Nested Shell Swarm Adiabatic Decoupling Bound](#nested-shell-swarm-adiabatic-decoupling-bound).
 7. The extracted Lorentz coefficients cannot be traced to the causal-root ledger on a completed branch chart, or the same ledger cannot generate clock, ruler, and two-way signal closure without separate per-observable tuning.
 
 #### Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
@@ -4852,7 +4852,7 @@ The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakag
 
 #### Preferred-Motion Null-Test Bundle
 
-Historical clock, interferometer, Zeeman-splitting, and gravimeter tests show how many different apparatus types can search for the same preferred-frame leakage without sharing the same dominant nuisance. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a bundle test on the same drift coefficients, not a set of independent knobs. For an apparatus channel $A$ with orientation $\hat{\mathbf{n}}_A(t)$ and laboratory velocity $\mathbf{w}(t)$ relative to the Noether-Sea rest comparison frame, write the leading fractional readout as
+Historical clock, interferometer, Zeeman-splitting, and gravimeter tests show how many different apparatus types can search for the same preferred-frame leakage without sharing the same dominant nuisance. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a bundle test on the same drift coefficients, not a set of independent fit parameters. For an apparatus channel $A$ with orientation $\hat{\mathbf{n}}_A(t)$ and laboratory velocity $\mathbf{w}(t)$ relative to the Noether-Sea rest comparison frame, write the leading fractional readout as
 $$
 y_A(t)
 =
@@ -6033,11 +6033,11 @@ For a candidate horizon-interface record $\theta_H$, let $h_{\ell m}^{\theta_H}(
 $$
 \mathcal{R}_{\mathrm{merge}}(\theta_H)
 =
-\left\lVert
+\left\|
 D_{\mathrm{merge}}^{\mathrm{obs}}
 -
 \mathcal{P}_{\mathrm{det}}\{h_{\ell m}^{\theta_H}\}
-\right\rVert_{C_{\mathrm{merge}}^{-1}}^2
+\right\|_{C_{\mathrm{merge}}^{-1}}^2
 +
 d_{\mathrm{nohair}}\!\left(
 (M_f,\mathbf{J}_f,Q_f)^{\theta_H},

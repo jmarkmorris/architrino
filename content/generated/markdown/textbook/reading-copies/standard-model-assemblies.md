@@ -1961,7 +1961,7 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../../../markd
 
 #### Purpose
 
-This chapter is a placeholder for the electron assembly in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+This chapter defines the current electron-assembly target for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 #### Current framing
 
@@ -2111,11 +2111,11 @@ Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite
 
 The near-photon picture raises natural photon/neutrino conversion questions. The current corpus should treat these as closure questions, not as settled claims.
 
-- A free photon is not assumed to decay directly into neutrinos. Photon-channel energy can participate in neutrino production only if the full reaction provenance closes: energy, momentum, charge/polarity, spin/angular momentum, and medium participation must all balance.
+- A free photon is not assumed to dissociate directly into neutrinos. Photon-channel energy can participate in neutrino production only if the full reaction provenance closes: energy, momentum, charge/polarity, spin/angular momentum, and medium participation must all balance.
 - A neutrino is not assumed to relock spontaneously into a photon. A photon-channel outcome would require an interaction that relocks the near-planar pro/anti pair into the fully coherent coaxial contra-rotating pro/anti planar-pair mode.
-- The useful search target is therefore not simple decay, but assisted relocking: which environments, partner assemblies, or weak corridors can move a near-photon neutrino assembly into or out of the photon channel while preserving the ledgers?
+- The useful search target is therefore not simple dissociation, but assisted relocking: which environments, partner assemblies, or weak corridors can move a near-photon neutrino assembly into or out of the photon channel while preserving the ledgers?
 
-This keeps the strong intuition - neutrinos live close to photons in assembly space - without overclaiming an unvalidated free-particle decay path.
+This keeps the strong intuition - neutrinos live close to photons in assembly space - without overclaiming an unvalidated free-particle dissociation path.
 
 #### PMNS closure program (primary lepton integration)
 
@@ -2460,7 +2460,7 @@ The Proton ($uud$) consists of two $+2/3$ quarks and one $-1/3$ quark.
 *   **Strong Attraction:** Color-singlet closure forces the three quarks into a shared strong-sector braid whose tension overwhelms the electric repulsion.
 *   **Pauli Exclusion:** Since the quarks occupy different color sectors, they are distinguishable quantum states, allowing them to share the same spatial ground-state assembly.
 
-This paragraph explains ordinary bound-state stability inside the nucleon. It is not yet a derivation of proton-decay exclusion or topological baryon conservation. The stronger claim belongs to the closed-braid program in [Color Charge and Strong Confinement](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md): the color-singlet 9-axis braid must make baryon-number-violating rupture either impossible on the admitted branch or suppressed beyond current null-result limits. A local recovery target is therefore
+This paragraph explains ordinary bound-state stability inside the nucleon. It is not yet a derivation of proton-dissociation exclusion or topological baryon conservation. The stronger claim belongs to the closed-braid program in [Color Charge and Strong Confinement](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md): the color-singlet 9-axis braid must make baryon-number-violating rupture either impossible on the admitted branch or suppressed beyond current null-result limits. A local recovery target is therefore
 $$
 \tau_p^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta;\mathcal{C}_{\Delta B\ne0})
 >
@@ -2828,9 +2828,9 @@ where $\mathrm{col}(A)$ is the color singlet/triplet bookkeeping and $\mathcal{E
 $$
 d_{\mathrm{rep}}(A,B)
 =
-\left\lVert
+\left\|
 \Pi_{\mathrm{gauge}}A-\Pi_{\mathrm{gauge}}B
-\right\rVert_{W_{\mathrm{rep}}}^{2},
+\right\|_{W_{\mathrm{rep}}}^{2},
 $$
 with discrete penalties for mismatched color or weak-exposure classes. This enforces that generation changes exposed mass response while leaving the Standard-Model-facing representation table fixed.
 
@@ -3658,7 +3658,7 @@ $$
 
 ##### 2. Axial Frame
 
-The six axial architrinos define a second frame through their coarse-grained charge moments. At lowest order this can be represented by a principal-axis frame extracted from the axial distribution:
+The six axial architrinos define a second frame through their coarse-grained polarity moments. At lowest order this can be represented by a principal-axis frame extracted from the axial distribution:
 $$
 \mathcal{F}_{\text{ax}} = \{\hat{\mathbf{p}}_1,\hat{\mathbf{p}}_2,\hat{\mathbf{p}}_3\}.
 $$
@@ -3850,7 +3850,7 @@ A minimal phenomenological form is
 $$
 E_{\text{eff}}(\alpha,\phi_c)
 =
-E_{\text{charge}}(\alpha)
+E_{\text{polarity}}(\alpha)
 +
 E_{\text{color}}(\phi_c)
 +
@@ -3861,7 +3861,7 @@ $$
 
 Here:
 
-- $E_{\text{charge}}$ measures internal strain from placing an imbalanced six-architrino axial layer on the fixed scaffold,
+- $E_{\text{polarity}}$ measures internal strain from placing an imbalanced six-architrino axial layer on the fixed scaffold,
 - $E_{\text{color}}$ enforces the threefold azimuthal structure,
 - $E_{\text{cross}}$ captures coupling between exceptional-axis choice and axial tilt,
 - $E_{\text{wake}}$ is the Noether-Sea response to the exposed axial geometry.
@@ -3878,7 +3878,7 @@ and that these stationary points are true minima for the stable branches.
 
 A simple toy realization, with $\alpha$ and $\theta_{\mathrm{inc}}$ measured in radians, is
 $$
-E_{\text{charge}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_{\mathrm{inc}}}\pi\right)+B\,f_{\text{type}}(\alpha),
+E_{\text{polarity}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_{\mathrm{inc}}}\pi\right)+B\,f_{\text{type}}(\alpha),
 $$
 where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a derivation; it is just the minimal shape needed to encode discrete minima at multiples of the bare angle.
 
@@ -4079,7 +4079,7 @@ The Aharonov-Bohm item in Gate C inherits the observer-level benchmark from [Gau
 
 ##### Gate A Theorem Scaffold: Kinematics and Optics
 
-Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar core $L$ and trailing planar core $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf{x})$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#42-two-way-signal-speed-criterion).
+Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar core $L$ and trailing planar core $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf{x})$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#two-way-signal-speed-criterion).
 
 The axial communication budget is asymmetric:
 $$
@@ -4407,7 +4407,7 @@ The weak corridor is an event record, not a permanent container that owns the ou
 
 | Corridor event | Participating architrinos | Neutral Noether swarm provenance | Corridor payload | Required ledger closure |
 | --- | --- | --- | --- | --- |
-| Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3P$ and active $3E$; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral core provenance; the corridor does not manufacture a new Noether swarm. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3P\to3E$, while emitting $W^-$ balances a source-side $3E\to3P$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether-Sea recoil must close across the source assembly, target assembly or decay products, corridor, and ambient Noether Sea. |
+| Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3P$ and active $3E$; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral core provenance; the corridor does not manufacture a new Noether swarm. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3P\to3E$, while emitting $W^-$ balances a source-side $3E\to3P$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether-Sea recoil must close across the source assembly, target assembly or reaction products, corridor, and ambient Noether Sea. |
 | Quark charged current, $d_L \leftrightarrow u_L$ within a CKM-weighted weak basis | The active quark weak-coupling triad changes $3E\leftrightarrow3P$ while color axis-exceptionality and generation bookkeeping remain separate ledgers. | Source and product quark Noether swarms provide the neutral scaffold and color record; CKM weighting belongs to overlap between weak basis and mass/branch basis, not to a new corridor inventory. | The corridor transports the compensating $\pm 6\epsilon$ payload for the active-triad swap and carries the energy-momentum needed for the branch transition. | Charge/polarity, baryon number, color-singlet embedding, spin/angular momentum, energy, momentum, and Noether-Sea recoil must all be accounted for in the full reaction ledger. |
 | Neutral current, $Z^0$ exchange | The weak-coupling-triad and shielded-triad records are read or rephased without a $3P\leftrightarrow3E$ swap. | The participating assemblies keep their neutral Noether swarm provenance; no charged axial inventory is imported from the corridor. | No net charge payload; the corridor carries energy, momentum, phase, and vector angular-momentum transfer. | The event must close energy, momentum, spin/angular momentum, phase, wake, and Noether-Sea recoil while preserving electric charge and axial inventory. |
 
@@ -4508,7 +4508,7 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 - A neutral Noether Pair should be treated as the local source architecture for spontaneous pro-anti fermion pair production. With sufficient energy input, a pair-conversion mode can unpack that neutral pair into a fermion and antifermion while returning the Noether swarm bookkeeping to overall neutrality.
 - In this framing, the key point is not limited to the electron channel. A Noether Pair can furnish the neutral swarm content needed for any pro-anti fermion pair, provided the supplied energy and axial-bookkeeping conditions match the target pair.
 - In photon-photon pair production, the photons supply the energy; the Sea contributes the neutral Noether Pair, and the axial excess arranges into the outgoing pro/anti fermion inventories. Electric bookkeeping and architrino counts stay balanced because the Noether-pair source remains neutral after the conversion bookkeeping closes.
-- The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti swarm pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon decay claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
+- The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti swarm pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
 - Sketch model: energy in -> pair-conversion mode forms using a neutral Noether Pair plus the required axial split -> fermion + antifermion -> the neutral Noether-pair bookkeeping relaxes back into the Sea.
 
 ### Closure Interface: Corridor Operators for Mixing

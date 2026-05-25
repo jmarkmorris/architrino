@@ -23,7 +23,7 @@ Treat terminology maintenance as a theory-protective cleanup discipline, not as 
 - Keep changes small, surgical, and level-aware.
 - Use terminology cleanup to prevent category mistakes across ontology levels, not to add synonym churn.
 - Once a terminology family is stable, place its durable rule in the Archie canon docs and remove it from transition notes or open cleanup queues.
-- Keep canon docs positive-only and canonical; do not preserve retired AAA vocabulary for its own sake.
+- Keep canon docs positive-only and canonical; do not preserve retired $\mathbb{A}\mathbb{A}\mathbb{A}$ vocabulary for its own sake.
 - When a sentence still blurs levels, rewrite it so ontology, effective bookkeeping, and comparative language are explicitly separated.
 - Pay special attention to recurring confusion pairs such as `spacetime` versus `Euclidean void` / `absolute timespace`, and `shell` versus `layer`, because those often hide constitutive ambiguity rather than harmless style variation.
 
@@ -213,7 +213,7 @@ Use `wave` when discussing standard QM language, experimental narratives, or int
 Sentence guidance:
 
 - Prefer: "The observed particle is an assembly in $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology."
-- Prefer: "The interference pattern is produced by wake structure, not by an ontic wave-particle ambiguity."
+- Prefer: "The interference pattern is produced by wake structure, not by an ontic particle-wave ambiguity."
 - Prefer: "$\mathbb{A}\mathbb{A}\mathbb{A}$ responds to particle-versus-wave language with assembly and wake."
 - Avoid by default: "The assembly is sometimes a particle and sometimes a wave."
 

@@ -485,7 +485,7 @@ The following should **not** be treated as free global constants:
 - $\chi_{\text{sea}}(\mathbf{x},t)$,
 - $m_{\text{inertial}}(A)$ for a specific assembly $A$.
 
-These are state variables, constitutive fields, or derived outputs. They may be controlled by a smaller parameter set, but they are not themselves independent knobs.
+These are state variables, constitutive fields, or derived outputs. They may be controlled by a smaller parameter set, but they are not themselves independent parameters.
 
 #### Benchmark versus postulate
 
@@ -862,7 +862,7 @@ Reaction provenance is a closure target. A channel may use standard observer not
 The conservative status is:
 
 - Architrino count and polarity conservation are required constraints.
-- Noether Sea participation is allowed, but it must be recorded as a reactant, product reservoir, or medium-excitation channel rather than left implicit.
+- Noether-Sea participation is allowed, but it must be recorded as a reactant, product reservoir, or medium-excitation channel rather than left implicit.
 - W, Z, photon, and pair-production language may be retained at observer level, while the substrate map must identify the transient assembly, exchanged payload, or planar-mode nucleation event being invoked.
 - Radiative, photon-capture, and sub-threshold shedding entries must attach the shared radiation event-record schema: source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status.
 - Any weak-channel ledger that depends on chirality, axial-frame orientation, CKM/PMNS mixing, or antineutrino routing remains provisional until the corresponding geometry is derived.
@@ -1171,7 +1171,7 @@ A reaction record may be promoted beyond a provisional map only when all of the 
 1. **Replayable residual:** $\mathcal{R}(X)$ is computed from $\Gamma$, $\mathcal{H}$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and explicitly named sector variables, with no hidden sector-specific residual term.
 2. **Boundary selection:** each selected channel has a stated boundary test $g_i(X,\mathcal{R})\ge0$, and every excluded channel required by the sector either fails its boundary test or is ruled out by a compatibility condition.
 3. **Admissible output:** $Y_{\mathsf e}$ names all outgoing assemblies, recoil targets, medium updates, remnant states, and provenance records required by the selected channel set.
-4. **Ledger closure:** $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}$ after adding the sector-required charge, polarity, architrino-inventory, identity-routing, path-history, Noether-Sea, and remnant rows.
+4. **Ledger closure:** $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}$ after adding the sector-required charge, polarity, architrino-inventory, identity-routing, path-history, Noether Sea, and remnant rows.
 5. **Benchmark compatibility:** the promoted event recovers the sector benchmark without breaking any required weak, quantum, gravity, hadronic, radiation, cosmology, conservation-law, or direct-observation acceptance gate.
 
 This is a promotion criterion, not a completed theorem. Worked sector cases remain open until at least one channel supplies a named residual, a named threshold or separatrix, a channel decision, a complete $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger, a benchmark recovery, and a failure diagnostic in one record. The free-neutron beta reaction, the $t\to b+W^+$ channel, radiation-coupled pair channels, and nuclear reaction examples therefore remain provisional where their sector records still lack closed residual routing, outgoing swarm provenance, angular-momentum balance, rate recovery, or quantitative benchmark closure.
@@ -1183,7 +1183,7 @@ This is a promotion criterion, not a completed theorem. Worked sector cases rema
 | Residual replay failure | Two records with the same $(\Gamma,\mathcal{H},\rho_{\text{NS}},\chi_{\text{sea}},Z_S)$ produce different $\mathcal{R}$ values or different selected channel sets without an additional recorded state variable. |
 | Boundary failure | A resolved event occurs while every required $g_i(X,\mathcal{R})<0$, or two mutually exclusive selected channels demand incompatible output assignments. |
 | Ledger residual failure | After all sector-required rows are included, $\Delta_E\ne0$, $\Delta_{\mathbf{p}}\ne\mathbf{0}$, or $\Delta_{\mathbf{J}}\ne\mathbf{0}$. |
-| Inventory or provenance failure | $\Delta_{\mathrm{pol}}\ne0$, $\Delta_{\mathrm{arch}}\ne0$, or $\Delta_{\mathrm{path}}\ne0$ after the claimed Noether-Sea, corridor, source-identity, emission-time, causal-root, and branch-Jacobian records are included. |
+| Inventory or provenance failure | $\Delta_{\mathrm{pol}}\ne0$, $\Delta_{\mathrm{arch}}\ne0$, or $\Delta_{\mathrm{path}}\ne0$ after the claimed Noether Sea, corridor, source-identity, emission-time, causal-root, and branch-Jacobian records are included. |
 | Identity-routing failure | No bijection $\Pi_{\mathsf e}$, or equivalent identity route, maps participating input architrinos to participating output architrinos after named Noether-Sea reservoir terms are included. |
 | Medium or remnant failure | $\Delta_{\mathrm{med}}\ne0$ or $\Delta_{\mathrm{rem}}\ne0$, meaning the route used medium heating, recoil, retained excitation, or remnant deformation as an implicit loss term. |
 | Retuning failure | The same benchmark family can be recovered only by changing the residual definition, the channel boundary, or the Noether-Sea state variables between sector cases. |
@@ -1638,7 +1638,7 @@ $$
 \pi_{\mathrm{shared}}\theta_+
 \right),
 $$
-where $\pi_{\mathrm{shared}}$ keeps the common Noether-Sea, assembly, weak-exposure, metric, and provenance coordinates consumed by both the positive benchmark and the null channel. The operational audit residual is
+where $\pi_{\mathrm{shared}}$ keeps the common Noether Sea, assembly, weak-exposure, metric, and provenance coordinates consumed by both the positive benchmark and the null channel. The operational audit residual is
 $$
 \mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)
 =
@@ -2075,7 +2075,7 @@ Radiation Gate C closure is validated only if the same event record passes the f
 | Check | Class | Required validation | Failure signal |
 | --- | --- | --- | --- |
 | Radiative event record | ontology | Record routed closure residuals, planar-mode photon output when present, non-photon shedding channels, recoil, local Noether-Sea state, and conservation ledgers. | Radiation is treated as primitive field emission or as untracked energy loss. |
-| Larmor/Lienard recovery | derivation target | Recover $P\propto\lVert\mathbf{a}\rVert^2$ in the weak nonrelativistic limit and the Larmor/Lienard observer-level power/angular behavior after clock conversion. | Low-speed power is not quadratic in acceleration, or relativistic recovery needs a separate fit. |
+| Larmor/Lienard recovery | derivation target | Recover $P\propto\|\mathbf{a}\|^2$ in the weak nonrelativistic limit and the Larmor/Lienard observer-level power/angular behavior after clock conversion. | Low-speed power is not quadratic in acceleration, or relativistic recovery needs a separate fit. |
 | Bremsstrahlung emissivity | derivation target | Recover $d\sigma/dk$, screening/form-factor corrections, $\epsilon_{\nu}^{\mathrm{ff}}\propto Z^2 n_e n_i T^{-1/2}e^{-h\nu/(k_B T)}g_{\mathrm{ff}}$, and $\epsilon_{\mathrm{ff}}\propto Z^2 n_e n_i T^{1/2}$ in LTE. | Cross-section and emissivity require incompatible Noether-Sea variables or plasma-specific hidden fits. |
 | Synchrotron $\gamma^2B$ scaling | derivation target | Recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, and cooling breaks from one effective magnetic-state map. | The $\gamma^2$ frequency scaling is absent, or the $B$ map changes between curvature and emission. |
 | Pair thresholds | derivation target | Recover $s\ge4m_e^2c^4$ and the angle-dependent photon-photon threshold while preserving architrino inventory and pair provenance. | Pair channels imply creation from nothing, wrong thresholds, or unbalanced Noether swarm recruitment. |
@@ -2130,7 +2130,7 @@ If that intersection becomes empty after quantitative work is done, the present 
 
 #### Action Model
 
-We synthesize Steps 1–10 and the canonical Action to compare, side by side, the three modeling options for the emission-propagation-interaction pipeline and to recommend a primary approach (with supporting roles for the others). We work in units with field speed $v=1$ unless stated otherwise; emission cadence and per-wavefront amplitude are constant at the source; per-hit actions are directed along $\hat{\mathbf{r}}$ with inverse-square geometric decay and Jacobian-weighted magnitude; $H(0)=0$ excludes the coincident-time self-kick; no cross products or right-hand-rule terms appear.
+This note compares three modeling options for the emission-propagation-interaction pipeline and recommends a primary approach, with supporting roles for the others. We work in units with field speed $v=1$ unless stated otherwise; emission cadence and per-wavefront amplitude are constant at the source; per-hit actions are directed along $\hat{\mathbf{r}}$ with inverse-square geometric decay and Jacobian-weighted magnitude; $H(0)=0$ excludes the coincident-time self-kick; no cross products or right-hand-rule terms appear.
 
 ---
 
@@ -2144,11 +2144,11 @@ We synthesize Steps 1–10 and the canonical Action to compare, side by side, th
   r(t,\tau) = c\,(t-\tau) \quad \text{for } t\ge\tau,
   $$
 
-  where $c$ is the constant **field speed** (you wrote $dr/dt=$ field speed; I call that $c$).
-* Each emitted wake surface carries a **strength** $Q$ (I’ll call that “wake surface amplitude” — the physical meaning depends on your application: charge, potential impulse, energy, etc.).
+  where $c$ is the constant **field speed**.
+* Each emitted wake surface carries a **strength** $Q$, interpreted here as wake-surface amplitude. Its physical bookkeeping role depends on the comparison target: polarity, potential impulse, energy, or another declared quantity.
 * Continuous source (preferred): model the emitter as a moving point injection with time-density $q(t)$ (amplitude per unit time) at its instantaneous position, i.e., $S(\mathbf{x},t)=q(t)\,\delta\!\big(\mathbf{x}-\mathbf{x}_s(t)\big)$. Each instant $t_0$ contributes a causal wake surface; we do not count “wake surfaces per second” (pulse trains are merely numerical surrogates).
-* We want to know the field $\phi(\mathbf{x},t)$ (I’ll call the scalar field “potential” or simply $\phi$) produced at any point $\mathbf{x}$ and time $t$.
-* Global neutrality (working hypothesis): on large scales the total architrino charge inventory sums to zero (equal counts of $\pm\epsilon$); use this as the default boundary condition in PDE/Green’s-function comparisons.
+* The diagnostic target is the effective scalar potential $\phi(\mathbf{x},t)$ produced at any point $\mathbf{x}$ and time $t$.
+* Global neutrality (working hypothesis): on large scales the total architrino polarity inventory sums to zero (equal counts of $\pm\epsilon$); use this as the default boundary condition in PDE/Green’s-function comparisons.
 
 We compare three frameworks: (1) a time-domain PDE/source, (2) an integral/Green’s-function (path history) solution, and (3) an event-driven radial-transport plus per-hit EOM. For each, we define symbols, show how the expanding causal wake surfaces appear, discuss how slowing or stopping the emitter is handled, and weigh trade-offs to inform a recommendation.
 
@@ -2185,20 +2185,20 @@ Here $q(t)$ has units “amplitude per unit time.” The finite-speed wave opera
 
 **How expanding causal wake surfaces appear**
 
-* You did **not** put a “radius” into the right-hand side. Instead, the PDE and the finite speed $c$ cause any instantaneous injection at the point $\mathbf{x}_s(\tau)$ to produce an *outgoing spherical wave* whose wavefront moves outward at speed $c$. That is the built-in behavior of the wave equation.
+* The source term does not explicitly insert a radius into the right-hand side. Instead, the PDE and the finite speed $c$ cause any instantaneous injection at the point $\mathbf{x}_s(\tau)$ to produce an outgoing spherical wave whose wavefront moves outward at speed $c$. That is the built-in behavior of the wave equation.
 * The Green’s function ensures that, at $(\mathbf{x},t)$, only the path history emission $q(\tau)$ with $\tau = t - r/c$ contributes, producing an outgoing spherical wave with amplitude $q(\tau)/(4\pi r)$ supported on $r=c(t-\tau)$. Thus Method 1 with $S(\mathbf{x},t)=q(t)\delta(\mathbf{x}-\mathbf{x}_s(t))$ naturally yields expanding causal wake surfaces at speed $c$.
 
-**Why $v$ (emitter speed) doesn’t cause blow-ups**
+**Why $\|\mathbf{v}\|$ (emitter speed) does not cause blow-ups**
 
-* If the emitter slows or stops, $S(\mathbf{x},t)$ just keeps being nonzero at the same spatial location; the wave equation spreads each injection outward at speed $c$. No $1/|\mathbf{v}|$ singularity appears because you never converted from “per time” to “per distance.” You remain time-based.
-* Numerically, represent the point delta by a small, smooth kernel if you want to avoid grid artifacts. Example: instead of $\delta(\mathbf{x}-\mathbf{x}_s)$ use a small Gaussian of width $\sigma$ comparable to grid spacing.
+* If the emitter slows or stops, $S(\mathbf{x},t)$ remains nonzero at the same spatial location; the wave equation spreads each injection outward at speed $c$. No $1/\|\mathbf{v}\|$ singularity appears because the formulation does not convert from per-time emission to per-distance emission.
+* Numerically, represent the point delta by a small, smooth kernel when avoiding grid artifacts. For example, instead of $\delta(\mathbf{x}-\mathbf{x}_s)$ use a small Gaussian of width $\sigma$ comparable to grid spacing.
 
 **Numerical recipe (simple)**
 
 * Choose spatial grid $\mathbf{x}_i$ and time step $\Delta t$ satisfying CFL stability (roughly $c\Delta t/\Delta x \le \text{const}$).
 * Use a standard finite-difference time stepping for the wave equation (centered difference in time and space).
 * At each time step $t_n$ add the source contribution $S(\cdot,t_n)$ to the RHS at the grid cells nearest $\mathbf{x}_s(t_n)$. If the emitter stops, it remains injecting at that grid location — the solver propagates outgoing wake surfaces.
-* To avoid a numerical spike, spread the delta over a few cells (mollifier) so you physically model a thin wake surface of finite thickness.
+* To avoid a numerical spike, spread the delta over a few cells with a mollifier, representing a thin wake surface of finite thickness.
 
 **Summary for Method 1**
 
@@ -2237,11 +2237,11 @@ For three spatial dimensions (the usual case for causal wake surfaces), the caus
 $$
 G(\mathbf{x},t;\mathbf{y},\tau)
 \;=\;
-\frac{\delta\!\big(t-\tau - \tfrac{|\mathbf{x}-\mathbf{y}|}{c}\big)}{4\pi\,|\mathbf{x}-\mathbf{y}|},
+\frac{\delta\!\big(t-\tau - \tfrac{\|\mathbf{x}-\mathbf{y}\|}{c}\big)}{4\pi\,\|\mathbf{x}-\mathbf{y}\|},
 \qquad t>\tau.
 $$
 
-**Interpretation:** a unit impulse at location $\mathbf{y}$ and time $\tau$ influences $\mathbf{x}$ at time $t$ only when the travel time $ |\mathbf{x}-\mathbf{y}|/c$ has elapsed; the $1/(4\pi r)$ factor is the usual geometric decay of an outgoing spherical wave in 3D.
+**Interpretation:** a unit impulse at location $\mathbf{y}$ and time $\tau$ influences $\mathbf{x}$ at time $t$ only when the travel time $\|\mathbf{x}-\mathbf{y}\|/c$ has elapsed; the $1/(4\pi r)$ factor is the usual geometric decay of an outgoing spherical wave in 3D.
 
 ###### Plugging in a moving point source
 
@@ -2251,8 +2251,8 @@ $$
 \boxed{\;\displaystyle
 \phi(\mathbf{x},t) \;=\; \int_{-\infty}^{t}
 \frac{q(\tau)\;
-\delta\!\big(t-\tau - \tfrac{|\mathbf{x}-\mathbf{x}_s(\tau)|}{c}\big)}
-{4\pi\,|\mathbf{x}-\mathbf{x}_s(\tau)|}\; d\tau\;}
+\delta\!\big(t-\tau - \tfrac{\|\mathbf{x}-\mathbf{x}_s(\tau)\|}{c}\big)}
+{4\pi\,\|\mathbf{x}-\mathbf{x}_s(\tau)\|}\; d\tau\;}
 $$
 
 * $q(\tau)$ is the continuous emission density per unit time at the emission instant $\tau$. For a steady source, $q(\tau)=q_0$ (constant); more generally, $q$ may vary smoothly with $\tau$.
@@ -2262,7 +2262,7 @@ $$
 The $\delta$-function in the integrand enforces the *path-history-time condition*:
 
 $$
-t - \tau = \frac{r(\tau)}{c}, \qquad r(\tau)\equiv |\mathbf{x}-\mathbf{x}_s(\tau)|.
+t-\tau=\frac{r(\tau)}{c}, \qquad r(\tau)\equiv\|\mathbf{x}-\mathbf{x}_s(\tau)\|.
 $$
 
 So the contribution to $\phi(\mathbf{x},t)$ comes only from times $\tau$ such that the expanding causal wake surface emitted at $\tau$ has just reached $\mathbf{x}$ at time $t$.
@@ -2281,8 +2281,8 @@ $$
 where:
 
 * the sum runs over **path-history times** $\tau_i$ solving $t-\tau_i=r(\tau_i)/c$ (usually there is a single relevant root).
-* $r(\tau_i)=|\mathbf{x}-\mathbf{x}_s(\tau_i)|$.
-* $r'(\tau)=\dfrac{d}{d\tau}|\mathbf{x}-\mathbf{x}_s(\tau)| = -\,\mathbf{n}(\tau)\cdot\mathbf{v}_s(\tau)$.
+* $r(\tau_i)=\|\mathbf{x}-\mathbf{x}_s(\tau_i)\|$.
+* $r'(\tau)=\dfrac{d}{d\tau}\|\mathbf{x}-\mathbf{x}_s(\tau)\|=-\,\mathbf{n}(\tau)\cdot\mathbf{v}_s(\tau)$.
 * $\mathbf{v}_s(\tau)=\dfrac{d\mathbf{x}_s}{d\tau}$ is the source velocity at emission time $\tau$.
 * $\mathbf{n}(\tau) = \dfrac{\mathbf{x}-\mathbf{x}_s(\tau)}{r(\tau)}$ is the unit vector pointing from source (at emission) to the field point.
 
@@ -2292,18 +2292,18 @@ In standard wave-equation solutions, a Jacobian factor $|1 - \mathbf{n}\!\cdot\!
 
 If $\mathbf{x}_s(\tau)=\mathbf{x}_0$ (emitter fixed) and $q(\tau)=Q\,\delta(\tau-\tau_0)$ (single wake surface at $\tau_0$), then the formula reduces to the intuitive result:
 
-* The field at $\mathbf{x},t$ is nonzero only when $t-\tau_0 = |\mathbf{x}-\mathbf{x}_0|/c$, i.e., when the causal wake surface of radius $r=c(t-\tau_0)$ reaches $\mathbf{x}$.
+* The field at $\mathbf{x},t$ is nonzero only when $t-\tau_0=\|\mathbf{x}-\mathbf{x}_0\|/c$, i.e., when the causal wake surface of radius $r=c(t-\tau_0)$ reaches $\mathbf{x}$.
 * The amplitude is $\displaystyle \phi(\mathbf{x},t) = \frac{Q}{4\pi\,r}$ (no extra Jacobian factor because $v_s=0$).
 
 ###### How wake surfaces show up here
 
 * Each emitted wake surface corresponds to one emission time $\tau$. The delta in the Green’s function selects the observation times $t$ at which the wake surface reaches $\mathbf{x}$.
-* The shape of the contribution is the $1/(4\pi r)$ geometric factor (for wave amplitude); the wake surface is “thin” in time if $q(\tau)$ is a delta in $\tau$, so you get a short impulse when the wavefront passes.
+* The shape of the contribution is the $1/(4\pi r)$ geometric factor for wave amplitude; the wake surface is thin in time if $q(\tau)$ is a delta in $\tau$, so the receiver gets a short impulse when the wavefront passes.
 
-###### Handling an emitter that stops / $|\mathbf v_s|\to 0$
+###### Handling an emitter that stops / $\|\mathbf{v}_s\|\to 0$
 
 * If the emitter slows or stops, the Jacobian factor $1 - \mathbf{n}\cdot\mathbf{v}_s/c$ tends to 1 and nothing singular happens. The path-history equation still has a solution and each wake surface arrives at the predicted time.
-* If the emitter sits still and emits many wake surfaces (continuous $q(\tau)$), the field is the time integral (or sum) of all wake surface contributions evaluated at their respective causal times. No $1/|\mathbf{v}_s|$ blowup occurs.
+* If the emitter sits still and emits many wake surfaces (continuous $q(\tau)$), the field is the time integral (or sum) of all wake surface contributions evaluated at their respective causal times. No $1/\|\mathbf{v}_s\|$ blowup occurs.
 
 ---
 
@@ -2369,13 +2369,13 @@ Operator diagnostics (finite-window checks)
   $$
   For the conservative potential channel $\mathbf{Y}_\eta=\nabla\Phi_\eta$, nonzero circulation is a numerical, boundary, or coordinate-operator error unless a non-gradient effective channel has been explicitly declared.
 
-Plain language: Treat the field as razor-thin “paint” spread over a growing causal wake surface so the total amount stays the same. Every time a wake surface reaches you, you get a straight-line shove that falls off like one over distance squared; we either treat it as a sharp kick or a short, smooth nudge.
+Plain language: treat the potential contribution as a conserved amount spread over a growing causal wake surface. When a wake surface reaches a receiver, the receiver gets a straight-line push that falls off like $1/r^2$; the calculation may treat it as a sharp kick or as a short, smooth nudge.
 
 ##### Cross-Method Guidance
 
-When to use which method (quick pick)
+###### Cross-Method Selection
 - Method 1 (PDE): whole-field grid simulations, visualization, and complex media/boundaries. Deposit a smeared source each step; robust when an emitter slows or stops. Aggregate particle data to coarse-grained densities n(x,t), $\rho$(x,t), and ℰ(x,t) as inputs/targets for PDE runs and validation.
-- Method 2 (Green’s function / path-history integral): closed forms and sparse probe evaluation. Enforce the path-history condition $t-\tau=|\mathbf{x}-\mathbf{x}_s(\tau)|/c$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf{v}_s/c$ during evaluation; root-solve one (or more) $\tau$ per (observer, time) pair.
+- Method 2 (Green’s function / path-history integral): closed forms and sparse probe evaluation. Enforce the path-history condition $t-\tau=\|\mathbf{x}-\mathbf{x}_s(\tau)\|/c$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf{v}_s/c$ during evaluation; root-solve one (or more) $\tau$ per (observer, time) pair.
 - Method 3 (Event-driven canonical): production many-body dynamics. Find causal roots and sum per-hit $1/r^2$ pushes; prefer $\eta$-mollified mode for smooth ODEs when needed.
 
 Short worked example — stationary emitter, continuous source (consistent across methods)
@@ -2389,7 +2389,7 @@ Practical implementation notes (concise)
 - Path-history: robust root-finding for $\tau$ from $t-\tau=r(\tau)/c$; take care near grazing geometries where $1-\mathbf{n}\cdot\mathbf{v}_s/c$ is small.
 - Event-driven: bracket causal roots for continuity, optionally use $\delta_\eta$ for smooth pushes, and limit step sizes so only a controlled number of mollified wake surfaces overlap.
 
-Bottom line (3 lines)
+###### Operational Summary
 - Model sources as $S(\mathbf{x},t)=q(t)\,\delta\!\big(\mathbf{x}-\mathbf{x}_s(t)\big)$ (time-based emission density).
 - Use Method 3 as the primary dynamics engine; use Method 2 for calibration/spot checks; use Method 1 for whole-field/media studies.
 - All three agree on simple stationary cases; they differ mainly in computational scope: grids (1), closed-form probes (2), and event-driven ODEs (3).
@@ -2399,8 +2399,8 @@ Bottom line (3 lines)
 ##### Differential analysis (criteria-by-criteria)
 
 Axiomatic fidelity (delayed-only, line-of-action, constant source emission)
-- Method 1: Partially aligned. The PDE yields 1/(4$\pi$r) wave amplitudes; mapping to 1/r² per-hit accelerations requires gradients and conventions. Radial-only action is not built-in.
-- Method 2: Causality and superposition are exact; amplitudes are 1/(4$\pi$r) with a Jacobian |1−$\mathbf{n}\cdot\mathbf{v}_s$/$c$|⁻¹ when evaluating the path-history time delta. The canonical law keeps that Jacobian weighting explicitly, while overall geometric normalizations are absorbed into $\kappa$ when comparing accelerations.
+- Method 1: Partially aligned. The PDE yields $1/(4\pi r)$ wave amplitudes; mapping to $1/r^2$ per-hit accelerations requires gradients and conventions. Radial-only action is not built-in.
+- Method 2: Causality and superposition are exact; amplitudes are $1/(4\pi r)$ with a Jacobian $\left|1-\mathbf{n}\cdot\mathbf{v}_s/c\right|^{-1}$ when evaluating the path-history time delta. The canonical law keeps that Jacobian weighting explicitly, while overall geometric normalizations are absorbed into $\kappa$ when comparing accelerations.
 - Method 3: Exact match. Delayed-only, line-of-action per-hit with constant source emission is native, and the branch Jacobian appears explicitly in the received force magnitude. Geometric normalizations are conventionally absorbed into $\kappa$.
 
 Causal root structure, self-interaction, multiplicity
@@ -2410,7 +2410,7 @@ Causal root structure, self-interaction, multiplicity
 
 Energetics and work
 - Method 1: Continuum energy bookkeeping is natural ($\phi$, ∂t$\phi$, ∇$\phi$). Mapping to radial per-hit work needs careful averaging and alignment with the EOM.
-- Method 2: Exact potentials in free space; gradients give forces; care is needed near |1−$\mathbf{n}\cdot\mathbf{v}_s$/$c$| → 0 geometries.
+- Method 2: Exact potentials in free space; gradients give forces; care is needed near $\left|1-\mathbf{n}\cdot\mathbf{v}_s/c\right|\to0$ geometries.
 - Method 3: Energetics are validated via $\eta$-mollified potentials $\Phi_\eta$ and work–energy on resolved windows; impulses are recovered as $\eta$→0 in the weak sense.
 
 Numerical stability and well-posedness
@@ -2428,7 +2428,7 @@ Boundaries, media, and heterogeneity
 - Method 2: Natural only in homogeneous free space; complex media/boundaries require bespoke Green’s functions.
 - Method 3: Natural in free space. Media/boundaries need additional modeling (e.g., corridor-level effective rules); not PDE-native.
 
-Observables and inference (Step 9)
+###### Observables and Inference
 - Method 1: Full-field pictures aid intuition and corridor studies but obscure per-hit ambiguity without extra processing.
 - Method 2: Clarifies causal timing and geometry at probes; good for inference templates and surrogate-location recasts.
 - Method 3: Directly aligned with hit histories {A(t_k), L(t_k)}; best substrate for event-driven inference and assembly dynamics.
@@ -2440,7 +2440,7 @@ Summary (one line each)
 
 Operational guidance — when to use which method
 - Method 1 (PDE): use this for whole-field grid simulations, visualization, and complex media or boundaries; step the wave PDE forward with a smeared source. Robust when an emitter slows or stops.
-- Method 2 (Path history integral): use this for closed forms, analytic insight, or sparse probe evaluation; enforce the path-history condition $t-\tau=|\mathbf{x}-\mathbf{x}_s(\tau)|/c$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf{v}_s/c$ in evaluation; solve one root per (observer, time) pair in slow-motion, more if sources move fast.
+- Method 2 (Path history integral): use this for closed forms, analytic insight, or sparse probe evaluation; enforce the path-history condition $t-\tau=\|\mathbf{x}-\mathbf{x}_s(\tau)\|/c$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf{v}_s/c$ in evaluation; solve one root per (observer, time) pair in slow-motion, more if sources move fast.
 - Method 3 (Event-driven canonical): use this for production many-body dynamics; find causal roots and sum per-hit $1/r^2$ pushes; prefer $\eta$-mollified mode for smooth ODEs when needed.
 
 ##### Pros and cons (comparative)
@@ -2459,7 +2459,7 @@ Method 2 — Green’s function (path-history integral)
 - Pros
   - Exact in homogeneous free space; no grid or time stepping for the field.
   - Makes causality explicit via path-history times; captures Doppler/Jacobian $1-\mathbf{n}\!\cdot\!\mathbf{v}_s/c$ automatically.
-  - Efficient when you need the field at a few observation points; excellent for analysis and cross-checks.
+  - Efficient for field evaluation at a few observation points; excellent for analysis and cross-checks.
 - Cons
   - Requires root-finding for each (observer, time) pair; multiple roots possible when sources outrun wake surfaces.
   - Costly when many receivers/sources are present; bookkeeping grows quickly.
@@ -2477,25 +2477,25 @@ Method 3 — Event-driven radial-transport + per-hit EOM (current canonical)
 
 ---
 
-##### Recommendation (going forward)
+##### Recommendation
 
 - Use Method 3 as the primary engine for particle dynamics and assemblies. It matches the model’s axioms (radial-only action, constant emission cadence) and scales well.
 - Adopt Method 2 as the analytic reference for calibration and validation. Calibrate $\kappa$ so simple benchmarks (stationary/slow sources, symmetric binaries) agree between Methods 2 and 3 at the per-hit level; do not introduce any per-hit emitter-speed weighting.
 - Baseline formula (stationary emitter at origin): with $q(t)\equiv q_0$, $\displaystyle \phi(r,t)=\frac{q_0}{4\pi r}$ since the path history condition selects $\tau=t-r/c$; if $q$ varies, $\displaystyle \phi(r,t)=\frac{q(t-r/c)}{4\pi r}$.
 - Reserve Method 1 for full-field studies (visualization, media, boundary effects) and for end-to-end tests of numerical stability; it is valuable but unnecessary for routine ODE-based assembly simulations.
 - Documentation/actionables: keep the continuity-form field definition and per-hit EOM as the canonical statement; add a brief appendix mapping densities (Method 3) to potentials (Method 2) to clarify when $1/r$ vs $1/r^2$ factors appear and how calibration preserves totals.
-- Numerical cautions (quick checklist):
+- Numerical cautions:
   - Always smear $\delta(\mathbf{x}-\mathbf{x}_s)$ to a normalized kernel of width $\sigma$ comparable to the grid spacing in PDE runs to avoid grid-scale artifacts.
   - Enforce CFL: choose $\Delta t$ so that $c\,\Delta t/\Delta x$ meets the stability bound for the chosen stencil to prevent instability.
-  - Path history solving: solve $t-\tau=r(\tau)/c$ carefully; near $|\mathbf{v}_s|\approx c$, root finding and the factor $1-\mathbf{n}\cdot\mathbf{v}_s/c$ require extra care.
+  - Path history solving: solve $t-\tau=r(\tau)/c$ carefully; near $\|\mathbf{v}_s\|\approx c$, root finding and the factor $1-\mathbf{n}\cdot\mathbf{v}_s/c$ require extra care.
   - Finite temporal thickness: if wake surfaces have duration, replace $\delta(t-\tau)$ with a smooth profile to model finite-width wavefronts.
 
-Plain language: Keep using the event-driven, radial-only method for dynamics, check it against the path-history integral to set the knobs, and bring out the PDE only when you need whole-field pictures or complex media.
+Plain language: use the event-driven, radial-only method for dynamics, check it against the path-history integral to calibrate parameters, and use the PDE only when the calculation needs whole-field pictures or complex media.
 
 Recap (in three lines)
 - Model sources as $S(\mathbf{x},t)=q(t)\,\delta\!\big(\mathbf{x}-\mathbf{x}_s(t)\big)$ (time-based emission density).
 - Method 1: easiest for grid-based whole-field runs; wake surfaces emerge at speed $c$.
-- Method 2: exact path-history formula; contributions occur only when $t-\tau = |\mathbf{x}-\mathbf{x}_s(\tau)|/c$, with amplitude decaying as $1/(4\pi r)$ and a geometric $1-\mathbf{n}\cdot\mathbf{v}_s/c$ factor in evaluation.
+- Method 2: exact path-history formula; contributions occur only when $t-\tau=\|\mathbf{x}-\mathbf{x}_s(\tau)\|/c$, with amplitude decaying as $1/(4\pi r)$ and a geometric $1-\mathbf{n}\cdot\mathbf{v}_s/c$ factor in evaluation.
 
 ---
 
@@ -2563,7 +2563,7 @@ Integral (delta) form selecting the causal root:
 
 Why closed-form solutions are unlikely (even with symmetry):
 - The delay is state-dependent: the unknown $r(t)$ appears both in the right-hand side and in the implicit constraint defining $\tau(t)$, making the problem a nonlinear functional equation rather than an ODE.
-- Even linear constant-delay DDEs rarely admit elementary closed forms; state-dependent delays are generically non-integrable. The fixed-center problem is a special case that collapses to an ODE (see 00.2.3.1).
+- Even linear constant-delay DDEs rarely admit elementary closed forms; state-dependent delays are generically non-integrable. The fixed-center problem is a special case that collapses to an ODE (see [Radial Fall to Fixed Center](../../../../markdown/aaa/validation/simulations/action-energy/radial-attraction.md)).
 
 Solution techniques (toolbox for delayed, radial DDEs):
 - Method of steps (constant delays): for problems with fixed delay $\tau$ and a given history $x(t)=\phi(t)$ on $t\in[-\tau,0]$, integrate an ODE on successive intervals, using the known past segment on each step.
@@ -2593,7 +2593,7 @@ Plain language: We give only the exact delayed equations; where an exact solutio
 #### Attraction
 
 Setup:
-- Two architrinos with charges q1=−$\epsilon$ and q2=+$\epsilon$.
+- Two architrinos with polarities $q_1=-\epsilon$ and $q_2=+\epsilon$.
 - Initial velocities v1≈0, v2≈0; initial separation r0 ≫ 1 (in v=1 units).
 - For all examples, we restrict motion to a single geometrical line.
 
@@ -2684,56 +2684,57 @@ Plain language: Start very far apart and nearly at rest—motion remains on the 
 
 #### Background and Simple Action
 
-Existing text excerpt:
-> The dynamics of an architrino are governed by a simple action: an acceleration caused by the intersection of its path with a potential field.
->
-> Geodesics and dynamics: The background is fixed (absolute time × Euclidean space); free paths are straight. Accelerations come only from delayed causal hits from emitted causal isochrons, with line-of-action direction and Jacobian-weighted magnitude, never from background curvature.
+The dynamics of an architrino are governed by a simple action: acceleration occurs when the receiver intersects a delayed causal wake surface emitted by a source architrino.
 
-Detailed explanation (dynamical geometry):
+The background is fixed absolute time times Euclidean space. Free paths are straight. Accelerations come only from delayed causal hits, with line-of-action direction and Jacobian-weighted magnitude, never from background curvature.
 
-- Background kinematics (Newton–Cartan/Galilean):
+##### Dynamical Geometry
+
+- Background kinematics (Newton-Cartan/Galilean):
   - The arena is absolute time × Euclidean space, $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, with simultaneity slices $\Sigma_t=\{t\}\times\mathbb{R}^3$ carrying the flat spatial metric $h_{ij}=\delta_{ij}$.
-  - “Geodesics are straight” means: in the absence of any interaction, a worldline $\mathbf{s}(t)$ satisfies $\mathbf{a}(t)=d^2\mathbf{s}/dt^2=\mathbf{0}$; motion is uniform and rectilinear in each slice $\Sigma_t$. The background is fixed; there is no curvature to encode forces.
+  - "Geodesics are straight" means: in the absence of any interaction, a worldline $\mathbf{s}(t)$ satisfies $\mathbf{a}(t)=d^2\mathbf{s}/dt^2=\mathbf{0}$; motion is uniform and rectilinear in each slice $\Sigma_t$. The background is fixed; there is no curvature to encode forces.
 
--- Field geometry as a continuous causal flux:
+- Wake geometry as a continuous causal flux:
   - Each architrino streams potential continuously. At any observation time $t$, the contribution emitted at past time $t_0$ sits on the **causal wake surface** (spherical isochron) $r=v(t-t_0)$ centered on $\mathbf{s}(t_0)$, with surface density $\propto 1/r^2$ so the integrated flux remains $q$.
-  - “Potential field” refers to the superposition of all such causal isochrons from past emissions. The flux never shuts off; the surfaces are bookkeeping devices isolating portions of the path history whose intersection with a receiver delivers acceleration.
+  - The potential wake is the superposition of all such causal isochrons from past emissions. The flux never shuts off; the surfaces are bookkeeping devices isolating portions of the path history whose intersection with a receiver delivers acceleration.
 
 - Intersection as the driver of acceleration:
   - The receiver’s worldline is $\mathbf{s}_{o'}(t)$. An intersection at time $t$ means some earlier emission time $t_0 < t$ satisfies the causal-distance condition
-    $
-    \|\mathbf{s}_{o'}(t) - \mathbf{s}_o(t_0)\| = v(t - t_0)
-    $
+    $$
+    \|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|=v(t-t_0).
+    $$
     That event is a causal hit from source $o$’s past to the receiver’s present.
   - At a hit, the acceleration impulse is directed along
-    $
-    \hat{\mathbf{r}} = \frac{\mathbf{s}_{o'}(t) - \mathbf{s}_o(t_0)}{\|\mathbf{s}_{o'}(t) - \mathbf{s}_o(t_0)\|}.
-    $
+    $$
+    \hat{\mathbf{r}}
+    =
+    \frac{\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)}
+    {\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|}.
+    $$
     No cross products or right-hand-rule terms appear; the action is collinear with $\hat{\mathbf{r}}$. Its magnitude is weighted by the branch Jacobian $|J|^{-1}$, which captures causal-flux bunching or dilation due to source motion.
 
 - “Simple action” in precise terms:
   - The law is event-driven: acceleration is a sum of per-hit line-of-action contributions, each scaled by $1/(r^2 |J|)$. Between hits (as $\eta\to 0$) motion is inertial; with mollification ($\eta>0$) the impulses become short, smooth pushes.
-  - The background adds no force; departures from straight motion arise only from these intersections with emitted fields (including self-hits when kinematics allow).
+  - The background adds no force; departures from straight motion arise only from these intersections with emitted causal wakes, including self-hits when kinematics allow.
 
 - Physical picture:
   - Picture many continuously expanding wake surfaces (causal isochrons). A push occurs whenever one of those surfaces intersects the receiver, directed straight along the radius back to its emission point, with inverse-square geometric decay and an additional Jacobian weight set by the source motion on that branch.
 
-If you’d like to continue, next up are “Units and constants” (the $v=1$ convention, coupling $\kappa$, regularization width $\eta$) and the formal definition of the causal interaction set $\mathcal{C}_{o'j}(t)$.
-
 #### Causal Set and Delay Geometry
 
-Existing text excerpt:
-> -   **Causal Interaction Set:** The receiver $o'$ at time $t$ interacts with a source $o$ through the (possibly multi-valued) set of causal emission times
->     $$
->     \mathcal{C}_o(t) = \big\{\, t_0 < t \;\big|\; \|\mathbf{s}_{o'}(t) - \mathbf{s}_o(t_0)\| = (t - t_0) \,\big\}.
->     $$
->     For $|\mathbf{v}_o(t_0)| < 1$ locally, $\mathcal{C}_o(t)$ is generically a singleton; for $|\mathbf{v}_o|> 1$ it may contain multiple solutions (including self-hits when $o'=o$).
+The receiver $o'$ at time $t$ interacts with a source $o$ through the possibly multi-valued set of causal emission times
+$$
+\mathcal{C}_o(t)
+=
+\big\{\,t_0<t\mid \|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|=t-t_0\,\big\}.
+$$
+For $\|\mathbf{v}_o(t_0)\|<1$ locally, $\mathcal{C}_o(t)$ is generically a singleton; for $\|\mathbf{v}_o\|>1$, it may contain multiple solutions, including self-hits when $o'=o$.
 
-Clarification: “Multi-valued” means that, for a fixed observation time $t$, there can be more than one emission time $t_0$ that satisfies the causal-distance condition; i.e., $\mathcal{C}_o(t)$ may contain multiple causal roots (e.g., when $|\mathbf{v}_o|> 1$ or for self-hits when $o'=o$). This multiplicity can occur only if the transmitter/source has exceeded field speed at least once; if $|\mathbf{v}_o|<1$ everywhere, $F(t_0;t)$ is strictly increasing in $t_0$ and the causal root is unique.
+Clarification: "Multi-valued" means that, for a fixed observation time $t$, there can be more than one emission time $t_0$ that satisfies the causal-distance condition; i.e., $\mathcal{C}_o(t)$ may contain multiple causal roots when $\|\mathbf{v}_o\|>1$ or when same-source roots exist for $o'=o$. This multiplicity can occur only if the transmitter/source has exceeded field speed at least once; if $\|\mathbf{v}_o\|<1$ everywhere, $F(t_0;t)$ is strictly increasing in $t_0$ and the causal root is unique.
 
 Terminology note: the `causal set` in this simulation note is the causal interaction set $\mathcal{C}_o(t)$: a set of delayed emission times that reach a receiver now. It is not Causal Set Theory, the external quantum-gravity program that treats discrete spacetime events and partial order as fundamental. That outside program remains useful as a comparison for causal ordering and continuum emergence, but the native object here is a path-history root set inside absolute timespace.
 
-Detailed explanation (geometry of delay and roots):
+##### Geometry of Delay and Roots
 
 - Root condition as an expanding causal isochron intersection:
   - Define $F(t_0; t) \equiv \|\mathbf{s}_{o'}(t) - \mathbf{s}_o(t_0)\| - (t - t_0)$ (with $v=1$ units). Causal roots satisfy $F(t_0; t)=0$ with $t_0 < t$ and $H(t-t_0)$.
@@ -2750,7 +2751,7 @@ Detailed explanation (geometry of delay and roots):
   - We adopt $H(0)=0$ so the instantaneous emission at $t_0=t$ does not produce an immediate self-kick.
   - No $r=0$ causal roots beyond $\tau=0$: because $r = v(t - t_0)$, $r=0$ implies $\tau=0$; the $\tau=0$ case is excluded by $H(0)=0$. Under mollification, the symmetric limit as $r\to 0$ yields zero net push.
 
-Plain language: You only feel pushes from those earlier moments of a source whose causal isochrons currently pass through you. Usually there’s just one such moment; if the source is very fast or its path loops around, there can be several.
+Plain language: a receiver is pushed only by earlier source moments whose causal isochrons currently pass through it. Usually there is one such moment; if the source is very fast or its path loops around, there can be several.
 
 Non-technical visualization — outrunning your own wake (speedboat analogy):
 - Picture a speedboat continuously laying down circular wake ridges that spread outward across the water at a fixed wave speed $c_w$ (analogy variable: wake ridge expansion speed). If the boat stays slower than $c_w$, it remains inside its newest ridge and will never meet it again, no self-hits. Once the boat exceeds $c_w$, it moves ahead of its freshest ridge. Later, if it curves or slows, it can run into older ridges it created earlier. Each crossing delivers a brief shove normal to the ridge (straight outward from the ridge’s center), mirroring the model’s line-of-action push. The ridge “drop rate” never changes, but the received shove is stronger or weaker depending on how the boat’s earlier motion bunches or dilates the ridge spacing along the crossing direction, mirroring the model’s Jacobian weighting. This is an analogy: real Kelvin wakes are dispersive; we idealize to circular ridges expanding at one speed to match the model’s fixed-speed causal isochrons.
@@ -2760,28 +2761,27 @@ Four self-hits in one maneuver (storyboard):
 2) Set up spacing: Maintain the super-speed for long enough to create at least four successive ridges with noticeable gaps (their radii grow at $c_w\cdot \Delta t$ while the boat advances faster than $c_w$).
 3) Curving return: Bank into a broad, smooth turn (a teardrop/U-turn or a gentle outward spiral) that arcs back toward the track laid moments earlier.
 4) Crossings: As the boat’s curved path cuts across the expanding circles, it re-enters first the outermost of those recent ridges, then the next three in sequence. With a steady arc and timing, four distinct ridge crossings occur in quick succession—four self-hits. The shove at each crossing points straight away from the center of that ring (the boat’s earlier position).
-5) Tuning intuition: To make four hits likely, think “fast straight run” $(\lvert v\rvert>c_w)$ to lay multiple rings, then a wide-radius turn whose chord length is comparable to the ring spacing. Tighter loops and longer super-speed runs increase the chance of multiple crossings; if you never exceed $c_w$, you cannot produce this multi-hit pattern at all.
+5) Tuning intuition: to make four hits likely, use a fast straight run $(\lvert v\rvert>c_w)$ to lay multiple rings, then a wide-radius turn whose chord length is comparable to the ring spacing. Tighter loops and longer super-speed runs increase the chance of multiple crossings; without exceeding $c_w$, this multi-hit pattern cannot occur.
 
 #### Informational Ambiguity
 
-Existing text excerpt:
-> ### **Informational Ambiguity at the Receiver**
-> From the perspective of the receiving architrino, the information carried by an intersecting causal wake surface (isochron) is limited. The receiver only knows two things:
-> 1.  The net strength of the potential at the point of intersection.
-> 2.  The unoriented line of action through its current position (i.e., one of the two open rays on that line; orientation along the line is ambiguous).
+From the perspective of the receiving architrino, the information carried by an intersecting causal wake surface is limited. The receiver has direct access only to two local facts:
 
-Detailed explanation (degeneracies and inference limits):
+1. The net strength of the potential at the point of intersection.
+2. The unoriented line of action through its current position. Orientation along that line remains ambiguous.
+
+##### Degeneracies and Inference Limits
 
 - Many-to-one mapping:
-  - Different combinations of source identity, charge magnitudes, distances, and emission timings/geometry can yield the same instantaneous hit magnitude and direction at the receiver.
+  - Different combinations of source identity, polarity magnitudes, distances, and emission timing/geometry can yield the same instantaneous hit magnitude and direction at the receiver.
 
 - Sign ambiguity across a line:
-  - Attraction from a positive charge on one side is indistinguishable, at an instant, from repulsion by a negative charge located at the diametrically opposite point along the same line.
+  - Attraction from a positive-polarity source on one side is indistinguishable, at an instant, from repulsion by a negative-polarity source located at the diametrically opposite point along the same line.
 
 - Consequence for reconstruction:
   - Instantaneous local data at the receiver are insufficient to invert for sources; this remains true even for an $\mathbb{U}_{\text{now}}$ universe-state perspective who knows the universal clock $t$ and the Euclidean rest frame. The $\mathbb{U}_{\text{now}}$ universe-state perspective can eliminate coordinate uncertainty (perfect synchronization and alignment) but not the physical ambiguities below.
   - Irreducible ambiguities at an instant:
-    - Sign/side ambiguity: attraction from a positive source on one side is indistinguishable from repulsion by a negative source on the diametrically opposite side along the same line.
+    - Sign/side ambiguity: attraction from a positive-polarity source on one side is indistinguishable from repulsion by a negative-polarity source on the diametrically opposite side along the same line.
     - Superposition along a line: multiple sources aligned on the same unoriented line of action can sum to the same net magnitude and direction at one instant.
     - Self-hit confound: a self-interaction and an external source can yield identical instantaneous data if they lie on the same line with compensating magnitudes.
     - Continuum of surrogate locations: for any instantaneous hit there exists a continuum of stationary surrogate source positions along the same unoriented line of action, each with a correspondingly adjusted emission time $t_0$, that reproduces the same instantaneous data; hence instantaneous inversion is severely underdetermined.
@@ -2790,11 +2790,11 @@ Detailed explanation (degeneracies and inference limits):
     - Track the time series of the line of action $\hat{\mathbf{r}}(t)$ and separation proxy $r(t)$ inferred from timing and geometry; curvature and rotation of $\hat{\mathbf{r}}$ constrain source trajectories.
     - Use multiple receivers (an array) to triangulate unoriented lines at the same $t$; intersecting rays narrow candidate locations (two-sided).
     - Actively vary the receiver path to sample different directions and ranges, turning the inverse problem into a controlled experiment.
-    - Impose priors: charge inventories, speed bounds, and assembly templates reduce degeneracy space.
+    - Impose priors: polarity inventories, speed bounds, and assembly templates reduce degeneracy space.
     - Use surrogate-location recasts: for instantaneous hits, place a stationary surrogate source somewhere along the same unoriented line of action and adjust only the emission time; this simplifies hypothesis testing without altering per-wavefront amplitude.
   - Absolute-observer note: Access to absolute time and a common Euclidean frame enables global correlation of events across receivers, but unique inversion at an instant would require hidden information (the full emission ledger $\{(t_0,\mathbf{s}_j(t_0),q_j,\mathbf{v}_j(t_0))\}_j$). Practical reconstruction is therefore necessarily temporal, statistical, and multi-view.
 
-Plain language: A hit tells you how hard and from which direction you’re being pushed—but not who pushed you or how far away they are. Many different source stories can fit the same momentary shove. A null action at an instant conveys no information about sources; superposition can cancel perfectly even in a non-empty universe.
+Plain language: a hit reports magnitude and line of action, not source identity or distance. Many different source histories can fit the same momentary push. A null action at an instant conveys no information about sources; superposition can cancel perfectly even in a non-empty universe.
 
 #### Numerical Recipe and Stability
 
@@ -2823,12 +2823,12 @@ Event-aware integration (practical algorithm):
 5. Units:
    - Use $v=1$ nondimensionalization throughout. Remember: emission cadence and per-wavefront amplitude are constant; receiver speed influences only power via $v_r$.
 
-Plain language: At each time, find which past emissions can reach you now, sum their radial pushes with 1/r² falloff, and step forward—either with sharp kicks at exact hit times or with tiny-thick wake surfaces for smooth integration.
+Plain language: At each time, find which past emissions can reach the receiver now, sum their radial pushes with $1/r^2$ falloff, and step forward either with sharp kicks at exact hit times or with thin mollified wake surfaces for smooth integration.
 
 #### Radial Attraction
 
 Setup:
-- A test architrino with charge q′ falls radially toward a fixed center with charge q.
+- A test architrino with polarity $q'$ falls radially toward a fixed center with polarity $q$.
 - The interaction is delayed; the causal emission time exists uniquely for a fixed source, but the acceleration depends only on the current separation because the source position is time-independent.
 
 Objectives:
@@ -2865,18 +2865,18 @@ Plain language: With a stationary center, the Jacobian is trivial and the delaye
 
 #### Receiver Velocity and Work
 
-Existing text excerpt:
-> ### Receiver velocity: radial vs orthogonal components (instantaneous effect)
-> Because $\mathbf{a}_{o'\leftarrow o}(t;t_0) \parallel \hat{\mathbf{r}}$, its instantaneous effect satisfies
-> $$
-> \frac{d}{dt}\mathbf{v}_\perp \;=\; \mathbf{0}\quad\text{from this hit},
-> \qquad
-> \frac{d}{dt}v_r \;=\; \mathbf{a}_{o'\leftarrow o}(t;t_0)\cdot \hat{\mathbf{r}}
-> \;=\;
-> \frac{\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|}{r^2}.
-> $$
+Because $\mathbf{a}_{o'\leftarrow o}(t;t_0)\parallel\hat{\mathbf{r}}$, a single hit changes only the radial velocity component:
+$$
+\frac{d}{dt}\mathbf{v}_\perp=\mathbf{0}\quad\text{from this hit},
+\qquad
+\frac{d}{dt}v_r
+=
+\mathbf{a}_{o'\leftarrow o}(t;t_0)\cdot\hat{\mathbf{r}}
+=
+\frac{\kappa\,\sigma_{q_o q_{o'}}\,\lvert q_o q_{o'}\rvert}{r^2}.
+$$
 
-Detailed explanation (decomposition and energetics):
+##### Decomposition and Energetics
 
 - Decomposition at a hit:
   - Write $\mathbf{v} = v_r\,\hat{\mathbf{r}} + \mathbf{v}_\perp$, where $v_r=\mathbf{v}\cdot\hat{\mathbf{r}}$ and $\mathbf{v}_\perp\cdot\hat{\mathbf{r}}=0$.
@@ -2934,45 +2934,45 @@ Plain language: Two like polarities at rest push apart along the line under the 
 
 #### Self-Energy
 
-Purpose: explain why classical “point-charge self-energy” divergences do not arise in this framework, and summarize the role of measure-valued causal surfaces, the H(0)=0 convention, and $\eta$-mollification.
+Purpose: explain why classical "point-charge self-energy" divergences do not arise in this framework, and summarize the role of measure-valued causal surfaces, the $H(0)=0$ convention, and $\eta$-mollification.
 
 ##### Classical self-energy pathology (contrast)
 
-In classical electrostatics, a static 1/r potential yields an electric field E ∝ 1/r² with energy density ∝ |E|² ∝ 1/r⁴. Integrating 1/r⁴ over a ball produces a divergent ∫(1/r²)dr near r→0, the textbook “infinite self-energy of a point charge.” This is an artifact of modeling the source as an enduring, everywhere-filled near field.
+In classical electrostatics, a static $1/r$ potential yields an electric field $\mathbf{E}\propto 1/r^2$ with energy density proportional to $\|\mathbf{E}\|^2\propto 1/r^4$. Integrating $1/r^4$ over a ball produces a divergent $\int (1/r^2)\,dr$ near $r\to0$, the textbook "infinite self-energy of a point charge." This is an artifact of modeling the source as an enduring, everywhere-filled near field.
 
 ##### Why the divergence is absent here
 
 This project does not posit a static near field. Instead:
 
-- Measure-valued expanding causal surfaces (no static 1/r near field):
-- Each emission is a razor-thin causal isochron with surface density q/(4$\pi$r²), represented by $\rho$(t,s) = (q/(4$\pi$r²)) $\delta$(r − v$\tau$) H($\tau$). The field support at fixed t is a causal wake surface $S_r$, not a 3D 1/r² fill down to r=0. See 00.1.0 — Architrino (Analytic form).
+- Measure-valued expanding causal surfaces (no static $1/r$ near field):
+  - Each emission is a razor-thin causal isochron with surface density $q/(4\pi r^2)$, represented by $\rho(t,s)=(q/(4\pi r^2))\delta(r-c_f\tau)H(\tau)$. The support at fixed $t$ is a causal wake surface $S_r$, not a three-dimensional $1/r^2$ fill down to $r=0$. See [Background and Simple Action](../../../../markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md).
 
-- H(0)=0 (no coincident self-kick):
-  - The instantaneous emission ($\tau$=0) contributes nothing to the force on the emitter; r=0 roots beyond $\tau$=0 do not exist because r = v(t − t₀). This removes the only event where a literal r=0 could enter. See 00.1.4 — Action (conventions).
+- $H(0)=0$ (no coincident self-kick):
+  - The instantaneous emission $(\tau=0)$ contributes nothing to the force on the emitter; $r=0$ roots beyond $\tau=0$ do not exist because $r=c_f(t-t_0)$. This removes the only event where a literal $r=0$ could enter. See [Causal Set and Delay Geometry](../../../../markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md).
 
 - $\eta$-mollification (finite, well-defined work over resolved windows):
-  - Replace $\delta$(r − v$\tau$) by a narrow Gaussian $\delta$_$\eta$ with width $\eta$>0 when differentiability is required. Potentials $\Phi$_$\eta$ and forces −∇(q′$\Phi$_$\eta$) are then regular functions; on any resolved interval the work–energy identity holds:
-    $\Delta$E_k = −$\Delta$U, with U = q′ $\Phi$_$\eta$,
-    and remains finite. As $\eta$→0, integrals converge in the weak sense to the impulsive model without introducing infinities. See 00.2.1.6 — Well-posedness and regularization.
+  - Replace $\delta(r-c_f\tau)$ by a narrow Gaussian $\delta_\eta$ with width $\eta>0$ when differentiability is required. Potentials $\Phi_\eta$ and forces $-\nabla(q'\Phi_\eta)$ are then regular functions; on any resolved interval the work-energy identity holds:
+    $\Delta E_k=-\Delta U$, with $U=q'\Phi_\eta$,
+    and remains finite. As $\eta\to0$, integrals converge in the weak sense to the impulsive model without introducing infinities. See [Well-posedness and Regularization](../../../../markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md).
 
-- Event-driven geometry (self-hits occur at r>0):
-  - Self-interaction requires outrunning recent wake surfaces (|v|>v). Self-hits are intersections with one’s own earlier wakes at strictly positive radius r>0, yielding finite 1/r² impulses (repulsive, like-on-like). There is no accumulation of divergent near-field energy at r→0.
+- Event-driven geometry (self-hits occur at $r>0$):
+  - Self-interaction requires outrunning recent wake surfaces $(\|\mathbf{v}\|>c_f)$. Self-hits are intersections with one's own earlier wakes at strictly positive radius $r>0$, yielding finite $1/r^2$ impulses (repulsive, like-on-like). There is no accumulation of divergent near-field energy at $r\to0$.
 
 Net effect: the canonical ontology (moving surface measures, H(0)=0, mollification for analysis) avoids the classical point-charge self-energy divergence by construction.
 
 ##### Practical guidance (numerics and analysis)
 
-- Choose $\eta$ small relative to local geometry (path curvature radius, inter-source spacing) for smooth ODE integration; verify $\Delta$E_k = −$\Delta$U on resolved windows.
+- Choose $\eta$ small relative to local geometry (path curvature radius, inter-source spacing) for smooth ODE integration; verify $\Delta E_k=-\Delta U$ on resolved windows.
 - Calibrate $\kappa$ using stationary/slow benchmarks (Method 2) and use the event-driven law (Method 3) for many-body dynamics; no per-hit emitter-speed amplitude weighting is introduced.
 - Treat self-hits as ordinary finite r>0 events; ensure H(0)=0 in implementation to exclude coincident-time artifacts.
 
 ##### Sign-resolved bookkeeping
 
-An additional numerical caution is worth stating explicitly: a Noether-Sea region or assembly may carry a large internal action budget even when its coarse far field appears weak.
+An additional numerical caution is worth stating explicitly: a Noether-Sea region or assembly may carry a large internal action budget even when its coarse far-wake potential appears weak.
 
 - Positive and negative sectors can superpose so that the net far-field potential is small.
 - That cancellation does **not** imply the underlying kinetic work or stored interaction content is individually small in each sector.
-- For this reason, diagnostics should track sign-resolved contributions whenever possible rather than relying only on net-field summaries.
+- For this reason, diagnostics should track sign-resolved contributions whenever possible rather than relying only on net-potential summaries.
 
 This matters especially for shielding claims. A strongly shielded assembly may look energetically modest from afar while still containing substantial internal positive/negative activity whose cancellation is only effective after superposition. Sign-resolved ledgers therefore help distinguish true low-energy states from high-content states hidden by cancellation.
 
@@ -2980,11 +2980,9 @@ Plain language: We don’t keep a permanent 1/r field glued to the point. Instea
 
 #### Self-Interaction Switch
 
-Existing text excerpt:
-> ### **Self-Interaction**
-> An architrino can intersect an expanding causal isochron that it emitted itself at an earlier point in its history. Self-hit occurs when the same-source causal-root set is nonempty, $\mathcal{C}_{aa}(t)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake. The like-polarity self-hit contribution is repulsive and plays a key role in the stability of emergent structures.
+An architrino can intersect an expanding causal isochron that it emitted earlier in its own history. Self-hit occurs when the same-source causal-root set is nonempty, $\mathcal{C}_{aa}(t)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake. The like-polarity self-hit contribution is repulsive and plays a key role in the stability of emergent structures.
 
-Detailed explanation (conditions and effects):
+##### Conditions and Effects
 
 - Root multiplicity and self-roots:
   - The simulation should open the self-hit channel only when it finds same-source roots
@@ -3003,17 +3001,16 @@ Plain language: A fast interval can make self-hit possible, but the code must st
 
 #### Superposition and Locality
 
-Existing text excerpt:
-> -   **Superposition:** The potential fields from all sources superpose linearly. The net potential at any point is the sum of the individual potentials:
->     $$
->     \Phi_{\text{net}} = \sum_{i} \Phi_i
->     $$
->     The total acceleration on a particle at any instant is the vector sum of the contributions from every intersecting causal wake surface. Operationally, every architrino is continuously immersed in the superposed wakes of all others (and, when the same-source root condition permits, its own); calculating the path-history integral is tractable by isolating each causal emission event, evaluating the Jacobian-weighted $1/r^2$ kernel at that emission, and then summing under a declared finite active horizon, screening rule, cancellation argument, or summation prescription.
+Potential wake contributions from all sources superpose linearly. The net potential at any point is the sum of the individual contributions:
+$$
+\Phi_{\text{net}}=\sum_i\Phi_i.
+$$
+The total acceleration on a particle at any instant is the vector sum of the contributions from every intersecting causal wake surface. Operationally, every architrino is continuously immersed in the superposed wakes of all others and, when the same-source root condition permits, its own. Calculating the path-history integral is tractable by isolating each causal emission event, evaluating the Jacobian-weighted $1/r^2$ kernel at that emission, and then summing under a declared finite active horizon, screening rule, cancellation argument, or summation prescription.
 
-Detailed explanation (why near fields dominate):
+##### Why Nearby Wakes Dominate
 
   - Linear addition at the causal-surface level:
-    - Because each source contributes a distribution supported on its causal wake surfaces, the total field is a sum of these measures; the acceleration law is linear in the summed contributions.
+    - Because each source contributes a distribution supported on its causal wake surfaces, the total wake measure is a sum of these measures; the acceleration law is linear in the summed contributions.
 
   - Locality from $1/r^2$ plus convergence control:
     - The surface density on each causal wake surface scales as $1/r^2$, so nearby coherent hits contribute disproportionately compared to distant ones. In an infinite three-dimensional source population this does not by itself guarantee convergence, because the number of sources in a radial layer grows like $r^2\,dr$. Random phases, angular cancellation, screening, finite active horizons, or explicit mean-field/principal-value subtraction must be part of the branch prescription.
@@ -3025,23 +3022,22 @@ Plain language: Add the pushes from all causal wake surfaces, but do not assume 
 
 #### Units and Constants
 
-Existing text excerpt:
-> ### **Units and constants**
-> -   We choose units with field speed $v=1$ (select $L_0,T_0$ so $v=L_0/T_0=1$); all speeds are hence dimensionless.
-> -   $\kappa>0$ is the universal coupling constant controlling interaction strength.
-> -   $\eta>0$ is the default regularization thickness for causal isochrons.
->
-> Symbols:
--> -   $v=1$ (field speed by units), $\kappa>0$ (coupling), $\eta>0$ (isochron thickness)
-> -   $\epsilon>0$ (polarity-unit magnitude); Electrino $q=-\epsilon$, Positrino $q=+\epsilon$
-> -   $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$
-> -   $r=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|$, $\;\hat{\mathbf{r}}=(\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0))/r$
+This note fixes the unit and symbol conventions used by the action-energy simulation notes. We work in units with field speed $v=1$ unless stated otherwise, use $\kappa>0$ for the universal coupling, and use $\eta>0$ as the default regularization thickness for causal isochrons.
 
-Detailed explanation (dynamical geometry):
+Core symbols:
+
+- $v=1$: field speed in normalized units.
+- $\kappa>0$: universal coupling constant.
+- $\eta>0$: causal-isochron thickness.
+- $\epsilon>0$: polarity-unit magnitude; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
+- $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$.
+- $r=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|$, with $\hat{\mathbf{r}}=(\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0))/r$.
+
+##### Dynamical Geometry
 
 - Field-speed units ($v=1$):
   - Choosing $L_0,T_0$ with $v=L_0/T_0=1$ fixes a conversion between spatial and temporal scales so that all speeds are dimensionless ratios to the field speed. This is akin to “setting c=1,” but the reference is the model’s field speed. Kinematics still lives on absolute time × Euclidean space; we have not mixed time and space into a 4D line element.
-  - Consequence: every velocity appears as a pure number $|\mathbf{v}|$; the symmetry point “$|\mathbf{v}|=v$” becomes “$|\mathbf{v}|=1$.” Rescaling $L_0$ and $T_0$ together leaves all dimensionless predictions invariant.
+  - Consequence: every velocity appears as a pure number $\|\mathbf{v}\|$; the symmetry point $\|\mathbf{v}\|=v$ becomes $\|\mathbf{v}\|=1$. Rescaling $L_0$ and $T_0$ together leaves all dimensionless predictions invariant.
 
 - Coupling constant ($\kappa>0$):
   - $\kappa$ sets the overall scale of per-hit acceleration. In the canonical law,
@@ -3055,8 +3051,8 @@ Detailed explanation (dynamical geometry):
   - $\eta$ is the width applied to each causal isochron (wake surface) to mollify the surface delta $\delta(r-\tau)$. It converts impulsive hits into brief, smooth pushes so that standard ODE integration applies and pointwise quantities (like gradients) are well-defined.
   - Geometric guidance: choose $\eta$ small relative to local geometric scales (e.g., the receiver’s instantaneous curvature radius along its path and the local inter-source separation) so the regularized dynamics approximate the ideal path-history picture while remaining numerically stable.
 
-- Unit charge magnitude ($\epsilon>0$):
-  - $\epsilon$ is the fundamental charge scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). In this framework $\epsilon$ is often identified with $|e|/6$, making quark charges integer multiples of $\epsilon$.
+- Polarity-unit magnitude ($\epsilon>0$):
+  - $\epsilon$ is the fundamental polarity scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). In this framework $\epsilon$ is often identified with $|e|/6$, making observer-level quark electric charges integer multiples of $\epsilon$.
   - Per-wavefront amplitude and emission cadence are constant at the source. The received force magnitude is additionally modulated by the branch Jacobian $|J|^{-1}$, which depends on source motion along the line of action.
 
 - Sign of interaction ($\sigma_{q q'}$):
@@ -3115,14 +3111,14 @@ Plain language: We measure speeds in units where the field speed is one, use $\k
 
 #### Well-Posedness and Regularization
 
-Existing text excerpt:
-> ### **Well-posedness and Regularization**
-> $$
-> \delta(r - \tau)\ \longrightarrow\ \frac{1}{\sqrt{2\pi}\,\eta}\,\exp\!\Big(-\frac{(r - \tau)^2}{2\eta^2}\Big),
-> $$
-> while preserving total emission $q$.
+The regularized simulation replaces each sharp causal-surface delta by a narrow mollifier while preserving total emission $q$:
+$$
+\delta(r-\tau)\longrightarrow
+\frac{1}{\sqrt{2\pi}\,\eta}
+\exp\!\left(-\frac{(r-\tau)^2}{2\eta^2}\right).
+$$
 
-Detailed explanation (impulses vs smooth pushes):
+##### Impulses Versus Smooth Pushes
 
 - Measure-driven dynamics:
   - With exact surface deltas, dynamics are impulsive: velocities are functions of bounded variation with jump discontinuities at hit times.
@@ -3306,7 +3302,7 @@ $$
 $$
 for every promoted observable and active branch ledger. Otherwise the result remains finite-$\eta$ evidence only.
 
-Plain language: The ideal model gives instantaneous kicks; a tiny thickening turns them into brief, smooth nudges so you can integrate with ordinary ODE solvers. Large-system or zero-width claims have to be earned by convergence, not assumed from the finite calculation.
+Plain language: The ideal model gives instantaneous kicks; a tiny thickening turns them into brief, smooth nudges that ordinary ODE solvers can integrate. Large-system or zero-width claims have to be earned by convergence, not assumed from the finite calculation.
 
 ### Architrino
 
@@ -3495,7 +3491,7 @@ A claim is numerically validated only if all applicable refinement gates pass an
 
 ### Perspective
 
-This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices—reduction to two true primitives (±$\epsilon$ architrinos) and choosing $\epsilon$=|e/6|—help with parsimony and charge bookkeeping, but the outsized wins come from how delayed line-of-action action, Jacobian-weighted causal flux, and same-source causal-root branches conspire to produce stability, scale selection, and emergent “magnetic-like” behavior without ever invoking right-hand-rule cross products.
+This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices--reduction to $+\epsilon$ and $-\epsilon$ architrino polarities and choosing $\epsilon=|e|/6$--help with parsimony and observer-level charge bookkeeping, but the outsized wins come from how delayed line-of-action action, Jacobian-weighted causal flux, and same-source causal-root branches conspire to produce stability, scale selection, and emergent "magnetic-like" behavior without ever invoking right-hand-rule cross products.
 
 Historically, general relativity and quantum mechanics are extraordinarily successful as effective theories that summarize large classes of phenomena. We position this neoclassical, delayed line-of-action model as a simpler dynamical substrate whose coherent assemblies recover GR/QM-like phenomenology in appropriate coarse-grained, slow/weak, or phase-locked limits.
 
@@ -3510,11 +3506,11 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
   - Each causal hit is directed along $\hat{\mathbf{r}}$ from the source history point to the receiver, with received magnitude weighted by the branch Jacobian.
 
 - Why it matters:
-  - Gauss-like behavior falls out immediately (1/r² on causal wake fronts).
-  - Moving systems automatically generate tangential components in the receiver’s frame due to path-history geometry and causal-flux bunching: the “aim point” is in the past, and source motion enhances or suppresses active branches through the Jacobian. Orbital and vortex-like patterns emerge from delay, not from any B∝v×E construction.
+  - Gauss-like behavior follows immediately ($1/r^2$ on causal wake fronts).
+  - Moving systems automatically generate tangential components in the receiver’s frame due to path-history geometry and causal-flux bunching: the “aim point” is in the past, and source motion enhances or suppresses active branches through the Jacobian. Orbital and vortex-like patterns emerge from delay, not from any $B\propto \mathbf{v}\times\mathbf{E}$ construction.
 
 - Consequence:
-  - You can reproduce many “magnetic” phenomenologies (circulation, axial vortices, flux tubes) as kinematic consequences of delayed, Jacobian-weighted line-of-action pushes. There is no right-hand rule, no cross products, just geometry, flux weighting, and time delay.
+  - Many “magnetic” phenomenologies (circulation, axial vortices, flux tubes) can be reproduced as kinematic consequences of delayed, Jacobian-weighted line-of-action pushes. There is no right-hand rule, no cross products, just geometry, flux weighting, and time delay.
 
 ---
 
@@ -3525,7 +3521,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 - Why it matters:
   - Simplifies calibration and emphasizes that stability and scale selection arise from delay and self-interaction. Receiver motion influences instantaneous power via $\mathbf{F}\cdot\mathbf{v}$ through the radial component $v_r$, while source motion modulates the received force magnitude through the Jacobian.
-  - With $\eta$-mollification ($\delta\to\delta_\eta$), you can define $\Phi_\eta$ and verify $\Delta E_k = -\,\Delta U$ on resolved intervals while still taking $\eta\to 0$ for sharp impulses.
+  - With $\eta$-mollification ($\delta\to\delta_\eta$), the calculation can define $\Phi_\eta$ and verify $\Delta E_k=-\Delta U$ on resolved intervals while still taking $\eta\to 0$ for sharp impulses.
 
 ---
 
@@ -3553,7 +3549,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 - Why it matters:
   - Locality: inverse-square geometric weighting together with finite-speed branch selection makes nearby coherent roots dominant, but infinite populations still require an explicit cutoff, screening rule, cancellation estimate, sampled mean field, or principal-value/mean-field subtraction.
-  - Bookkeeping: with $\delta_\eta$ you can integrate numerically with standard ODE solvers; with $\delta$ you can reason about impulses and events. Both views agree in the $\eta\to 0$ limit for integrals over resolved intervals.
+  - Bookkeeping: with $\delta_\eta$, standard ODE solvers can integrate numerically; with $\delta$, the analysis can reason about impulses and events. Both views agree in the $\eta\to 0$ limit for integrals over resolved intervals.
 
 ---
 
@@ -3572,7 +3568,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 #### Charge quantization at $\epsilon$=|e/6|
 
 - What we assume:
-  - The architrino charge magnitude is $\epsilon$, so quark charges are integers of $\epsilon$.
+  - The architrino polarity magnitude is $\epsilon$, so observer-level quark electric charges are integers of $\epsilon$.
 
 - Why it matters:
   - Observed quark fractions (±1/3, ±2/3 of e) become ±2$\epsilon$ and ±4$\epsilon$ integers in the natural unit. This removes “fractionality” at the fundamental level and simplifies assembly rules and conservation statements.
@@ -3629,13 +3625,13 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 ---
 
-#### Open questions (productive)
+#### Open Closure Questions
 
 - Exact analytic forms for d0 and t0 in the symmetric binary with the canonical modulation.
 - Rigorous conditions for uniqueness/multiplicity of causal roots in accelerated motion and their contribution to stability.
 - Statistical mechanics of many-body wake structures: when and how do coherent, Lorentz-consistent effective cones emerge from moving-assembly deformation, clock/ruler retuning, and Noether-Sea response, and with what characteristic speed relative to the declared branch speed $c_\star$?
 
-Plain language summary: Keep the hits radial, delay them in time, keep per-wavefront amplitude constant, and let fast movers run into their own wakes. From those four ideas, you get stable orbits, natural rulers and clocks, shielding that looks like inertia, and “magnetic-like” structures—all without any right-hand-rule magnetism.
+Plain language summary: radial hits, time delay, constant per-wavefront amplitude, and self-hit for fast movers are enough to produce stable orbits, natural rulers and clocks, shielding that looks like inertia, and “magnetic-like” structures without right-hand-rule magnetism.
 
 ---
 
@@ -3643,25 +3639,25 @@ Plain language summary: Keep the hits radial, delay them in time, keep per-wavef
 
 Premise: single-hit information is sparse. At an instant, a receiver learns only (i) the net magnitude of the push and (ii) an unoriented line of action through its current position. The $\mathbb{U}_{\text{now}}$ universe-state perspective can include the full source-tagged emission ledger as complete-state bookkeeping, but a local receiver or Physical Observer cannot infer that hidden ledger from a single hit.
 
-- Emission ledger (microstate): the set of tuples {(t₀, s_j(t₀), v_j(t₀), q_j)} over all sources j that causally affect the receiver.
-- Observational map: ledgers → histories of hits {A(t_k), L(t_k)} across one or more receivers and over time.
+- Emission ledger (microstate): the set of tuples $(t_0,\mathbf{s}_j(t_0),\mathbf{v}_j(t_0),q_j)$ over all sources $j$ that causally affect the receiver.
+- Observational map: ledgers map to histories of hits $\{A(t_k),L(t_k)\}$ across one or more receivers and over time.
 - Observational equivalence: two ledgers are equivalent if they induce indistinguishable hit histories at the chosen resolution (including mollifier width $\eta$, temporal sampling, and receiver geometry).
 
 - Coarse-grained PDE observables (Method 1):
   - Number density $n(\mathbf{x}, t)$: count-per-volume of architrinos.
-  - Charge density $\rho(\mathbf{x}, t)$: net $+\epsilon-\epsilon$ per unit volume; natural source term in continuum PDE variants.
+  - Polarity density $\rho(\mathbf{x}, t)$: net $+\epsilon-\epsilon$ per unit volume; natural source term in continuum PDE variants.
   - Energy density $\mathcal{E}(\mathbf{x}, t)$: local kinetic + potential energy density for validation and conservation checks.
   - Use: these fields are the natural inputs/targets for grid-based PDE runs and for validating event-driven simulations in aggregate.
 
 Observability axioms:
-- A1 Single-hit observables are magnitude A and an unoriented line L; orientation along L, source identity, distance r, and emitter speed |v_em| are not individually observable at an instant.
+- A1 Single-hit observables are magnitude $A$ and an unoriented line $L$; orientation along $L$, source identity, distance $r$, and emitter speed $\|\mathbf{v}_{\mathrm{em}}\|$ are not individually observable at an instant.
 - A2 All practical observables are functionals of hit histories across time and receivers; unique micro inversion is generically impossible.
 - A3 An effective “state” is a probability measure over observationally equivalent ledger classes, updated as new hits arrive.
 
 Bayesian operational stance:
 - State update = conditioning on new hit histories; active interventions (changing receiver geometry/filters) alter future histories and thus the posterior over ledger classes.
 
-Plain language: you never see the full book of who emitted what; you only see a time series of shove sizes and lines. So the right language is statistical over micro-histories that fit those shoves.
+Plain language: a receiver never sees the full ledger of who emitted what; it sees only a time series of push magnitudes and lines. The appropriate language is therefore statistical over micro-histories that fit those pushes.
 
 ---
 
@@ -3680,7 +3676,7 @@ Consequence: embedded observers and synthetic detector records must reason stati
 
 #### Single-source multi-hit nuance vs universal superposition
 
-Even for a single source, the receiver cannot be sure that a given shove did not come from multiple distinct emission times $t_0 \in \mathcal{C}_{o'j}(t)$ on that same source. When $\lVert \mathbf{v}_j \rVert > 1$ or the source trajectory curves, several roots of $r = v(t - t_0)$ can occur and arrive in close succession along the same unoriented line of action, contributing separate per-hit pushes that are locally indistinguishable as to origin.
+Even for a single source, the receiver cannot be sure that a given shove did not come from multiple distinct emission times $t_0 \in \mathcal{C}_{o'j}(t)$ on that same source. When $\|\mathbf{v}_j\| > 1$ or the source trajectory curves, several roots of $r = v(t - t_0)$ can occur and arrive in close succession along the same unoriented line of action, contributing separate per-hit pushes that are locally indistinguishable as to origin.
 
 However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net field is the linear sum of contributions from all architrinos in the universe whose causal isochrons intersect the receiver “now.” While inverse-square surface dilution and Jacobian weighting usually make nearby sources dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
 
@@ -3689,10 +3685,10 @@ However, this is not the dominant practical difficulty. The governing issue is g
 #### Operational noncommutativity and contextuality (emergent)
 
 Measurement procedures are interventions that condition future hit histories:
-- Let F, G be experimental contexts (e.g., planar-mode analyzers, path blockers, timing gates). Because they modify trajectories and thus the set of future causal roots, their composition generally satisfies F∘G ≠ G∘F at the level of observed statistics.
+- Let $F,G$ be experimental contexts (e.g., planar-mode analyzers, path blockers, timing gates). Because they modify trajectories and thus the set of future causal roots, their composition generally satisfies $F\circ G\ne G\circ F$ at the level of observed statistics.
 - Contextuality: the distribution over ledger classes that best explains data depends on which filters were applied and in what order; the outcomes are context-dependent without invoking microscopic cross-product forces.
 
-Plain language: changing what you do now changes which shoves you’ll see later; doing A then B is not the same as B then A.
+Plain language: a present intervention changes which pushes will be recorded later; doing $A$ then $B$ is not generally the same as doing $B$ then $A$.
 
 ---
 
@@ -3703,7 +3699,7 @@ Linear superposition at the isochron level plus coherent geometry yields interfe
 - Intensity emerges as an overlap norm proportional to $|A_{\mathrm{mode}}|^2$ under time/ensemble averaging of phase-like structure encoded by path histories.
 - Polarization example (already used): Malus’s law arises as a geometric projection of a planar mode's transverse ledger onto an analyzer axis, giving $\cos^2\theta$ transmission without right-hand-rule magnetism.
 
-Plain language: aligned planar-mode records add, misaligned ones cancel; the strength you record scales like the square of how well patterns line up.
+Plain language: aligned planar-mode records add, misaligned ones cancel, and the recorded strength scales like the square of the pattern overlap.
 
 ---
 
@@ -4085,7 +4081,7 @@ Every run must instantiate $\mathbb{U}_{\text{now}}$ sensors:
 
 ##### Causal wake surface bookkeeping requirement
 When a potential wake surface intersects a $\mathbb{U}_{\text{now}}$ sensor or contributes to $\Phi(x,t)$, the code must:
-- Solve for emission time $t_{\text{emit}}$ using $\lVert x - x_{\text{emitter}}(t_{\text{emit}})\rVert = c_f (t - t_{\text{emit}})$
+- Solve for emission time $t_{\text{emit}}$ using $\| x - x_{\text{emitter}}(t_{\text{emit}})\| = c_f (t - t_{\text{emit}})$
 - Record emitter identity plus $t_{\text{emit}}$ (provenance logging)
 
 ##### Metadata (required)
@@ -4356,7 +4352,7 @@ The first reduced Tier 0 artifact is `scripts/mass-map/a0-tier0-branch-search.mj
 
 The Tier 1 handoff scaffold is `scripts/mass-map/a0-tier1-continuation-scaffold.mjs`. It consumes Tier 0 JSON rows and emits the $\eta > 0$ continuation contract, reduced-coordinate chart, symmetry-quotiented monodromy plan, $\Delta_{\mathbf{k}}$ acceptance boundary, and required output artifact list. It is not a delayed-dynamics solver and cannot certify the branch without a later Tier 1 run.
 
-The companion audit is `scripts/audit-a0-mass-map-promotion.mjs`. It scans AAA and mass-map priority prose for premature statements that treat $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\mathcal{M}_{\text{sea}}^{ab}$ as accepted before the Tier gates pass.
+The companion audit is `scripts/audit-a0-mass-map-promotion.mjs`. It scans $\mathbb{A}\mathbb{A}\mathbb{A}$ and mass-map priority prose for premature statements that treat $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, or $\mathcal{M}_{\text{sea}}^{ab}$ as accepted before the Tier gates pass.
 
 #### Acceptance Boundary
 
@@ -4381,7 +4377,7 @@ A $\mathbb{U}_{\text{now}}$ is defined by:
   - Local potential $\Phi(x_k,t)$
   - Local gradient $\nabla\Phi(x_k,t)$ (force proxy)
   - Optional local Noether-Sea state variables (e.g., $\rho_{\text{NS}}$, alignment/orientation metrics)
-  - Causal wake surface provenance/event tags: for each received contribution at $(x_k,t)$, record `emitter_id` together with $t_{\text{emit}}$, satisfying $\lVert x_k - x_{\text{emitter}}(t_{\text{emit}})\rVert = c_f (t - t_{\text{emit}})$
+  - Causal wake surface provenance/event tags: for each received contribution at $(x_k,t)$, record `emitter_id` together with $t_{\text{emit}}$, satisfying $\| x_k - x_{\text{emitter}}(t_{\text{emit}})\| = c_f (t - t_{\text{emit}})$
   - Optional finite-window operator diagnostics for declared reconstructed channels $\mathbf{Y}_\eta$, including Gauss, Stokes, and wake-surface normalization residuals
 
 ##### Minimal synthetic products
@@ -4671,11 +4667,11 @@ $$
 D_{a,X}(\mathbf{x},t)
 =
 \frac{
-\left\lVert\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
+\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
 }{
-\left\lVert\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\rVert
+\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
 +
-\left\lVert\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\rVert
+\left\|\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\|
 },
 $$
 
@@ -4704,7 +4700,7 @@ F_{i,\mathrm{asm}}
 F_{i,\partial\Omega}.
 $$
 
-This is a concrete mathematical advance because it prevents isolated seed charts from being read as physical branch closure unless Noether-Sea, assembly, and boundary residuals are statused. It supports modest increases in Master EOM+Local Dynamics, Potential+Action Closure, Conservation+Invariant Closure, Parameter+Scale Closure, and UV/IR+Regularization Completion.
+This is a concrete mathematical advance because it prevents isolated seed charts from being read as physical branch closure unless Noether Sea, assembly, and boundary residuals are statused. It supports modest increases in Master EOM+Local Dynamics, Potential+Action Closure, Conservation+Invariant Closure, Parameter+Scale Closure, and UV/IR+Regularization Completion.
 
 Executable neutral-swarm diagnostics add negative evidence and sharper first-failure semantics. The current sampled octahedral root-ledger diagnostic passes the all-pairs sampled root/Jacobian screen, while the rigid zero-offset fixed-speed row is rejected by a nonzero tangential residual witness and an ordinary same-source positive-delay no-go. These artifacts improve falsification readiness and empirical/simulation discipline because they report `not_retained` rather than converting a failed seed into branch evidence. The score increase is deliberately small because sampled diagnostics, no-go witnesses for one rigid seed, and finite-mode search schemas do not yet replace an interval-certified all-pairs root ledger, action/Noether row, event ledger, stability certificate, or observer-export recovery.
 
@@ -4726,7 +4722,7 @@ The 2026-05-19 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ sc
 
 The largest score changes come from the proof and validation surfaces. The collinear-breather and Master EOM material now contain stronger dual-mollified branch-chart, finite-certificate, fold-layer, impulse-bound, continuity, and self-map structures. The $A_0$ branch-certificate protocol and run protocols now specify machine-checkable residual vectors, gate semantics, artifact lists, hidden-tuning failures, and promotion boundaries. These additions justify higher scores for Master EOM+Local Dynamics, Potential+Action Closure, UV/IR+Regularization Completion, Falsification Gates, and Empirical Precision+Benchmark Validation.
 
-Formula, parameter, and cross-regime scores also rise because the corpus now separates exact SI conventions from adjusted CODATA benchmark rows, states the high-pressure roles of $\alpha$, $m_p/m_e$, $R_\infty$, particle masses, and $G$, and gives the hydrogen $\Gamma_N$ spectral row an executable shared-row scaffold rather than a per-line fit. The electroweak, weak-mixing, CKM/PMNS, Higgs, mass-map, Noether-Sea, and cosmology files now expose more of the required shared-record structure across particle, atomic, gravitational, thermodynamic, and cosmological regimes.
+Formula, parameter, and cross-regime scores also rise because the corpus now separates exact SI conventions from adjusted CODATA benchmark rows, states the high-pressure roles of $\alpha$, $m_p/m_e$, $R_\infty$, particle masses, and $G$, and gives the hydrogen $\Gamma_N$ spectral row an executable shared-row scaffold rather than a per-line fit. The electroweak, weak-mixing, CKM/PMNS, Higgs, mass-map, Noether Sea, and cosmology files now expose more of the required shared-record structure across particle, atomic, gravitational, thermodynamic, and cosmological regimes.
 
 The total remains far below modern operational closure because the decisive derivations are still open. The first certified $A_0$ branch has not passed; $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are not accepted outputs; Lorentz, PPN, redshift, and photon-channel coefficients still lack one accepted Noether-Sea constitutive map; Born/Bell closure still has negative controls and measure targets rather than a positive pair-provenance theorem; Standard Model mixing and mass formulas remain shared-record theorem targets; and cosmology has a shared residual scaffold but not a fit to SN, BAO, CMB, growth, BBN, and pre-BBN rows with one $\theta_{\mathrm{sea}}$.
 

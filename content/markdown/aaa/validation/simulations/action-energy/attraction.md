@@ -1,7 +1,7 @@
 # Opposite Charges From Rest at Large Separation
 
 Setup:
-- Two architrinos with charges q1=−$\epsilon$ and q2=+$\epsilon$.
+- Two architrinos with polarities $q_1=-\epsilon$ and $q_2=+\epsilon$.
 - Initial velocities v1≈0, v2≈0; initial separation r0 ≫ 1 (in v=1 units).
 - For all examples, we restrict motion to a single geometrical line.
 

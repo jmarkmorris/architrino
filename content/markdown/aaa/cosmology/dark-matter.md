@@ -137,11 +137,11 @@ For a candidate medium record $\theta_{\mathrm{sea}}$ and neutral-assembly densi
 $$
 \mathcal{R}_{\mathrm{cl\ offset}}(\theta_{\mathrm{sea}},\rho_A)
 =
-\left\lVert
+\left\|
 D_{\mathrm{cl}}^{\mathrm{obs}}
 -
 \mathcal{P}_{\mathrm{cl}}(\theta_{\mathrm{sea}},\rho_A)
-\right\rVert_{C_{\mathrm{cl}}^{-1}}^2
+\right\|_{C_{\mathrm{cl}}^{-1}}^2
 +
 \mathcal{R}_{\mathrm{lens\ prior}}
 +
@@ -170,11 +170,11 @@ Let $\theta_{\mathrm{sea}}$ be the shared Noether-Sea state record, let $\Pi_{\m
 $$
 \mathcal{R}_{\mathrm{dark\ scale}}(\theta_{\mathrm{sea}})
 =
-\left\lVert
+\left\|
 \Pi_{\mathrm{DM}}\theta_{\mathrm{sea}}
 -
 F_{\mathrm{DM}}\!\left(\Pi_{\mathrm{DE}}\theta_{\mathrm{sea}}\right)
-\right\rVert_{C_{\mathrm{DM/DE}}^{-1}}^2
+\right\|_{C_{\mathrm{DM/DE}}^{-1}}^2
 +
 \mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}).
 $$

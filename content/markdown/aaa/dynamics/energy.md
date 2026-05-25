@@ -141,7 +141,7 @@ while the instantaneous power delivered to the receiver is controlled by
 $$
 \mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'}
 =
-\lVert\mathbf{a}_{o'\leftarrow o}\rVert\,v_r.
+\|\mathbf{a}_{o'\leftarrow o}\|\,v_r.
 $$
 
 On the affine partner chart used in the [closed-form collinear breather ansatz](../proof-programs/closed-form-collinear-breather-ansatz.md), the same causal bunching appears in the simple branch factor $J_p=1+\dot{x}/c_f$. That formula is not a new global definition of energy; it is the one-dimensional branch expression for how emission cadence is received on that chart.

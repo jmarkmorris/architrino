@@ -135,7 +135,7 @@ $$
 \pi_{\mathrm{shared}}\theta_+
 \right),
 $$
-where $\pi_{\mathrm{shared}}$ keeps the common Noether-Sea, assembly, weak-exposure, metric, and provenance coordinates consumed by both the positive benchmark and the null channel. The operational audit residual is
+where $\pi_{\mathrm{shared}}$ keeps the common Noether Sea, assembly, weak-exposure, metric, and provenance coordinates consumed by both the positive benchmark and the null channel. The operational audit residual is
 $$
 \mathcal{R}_{\mathrm{null}}^{\mathrm{op}}(\theta)
 =

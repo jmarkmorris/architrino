@@ -2970,7 +2970,7 @@
     },
     {
       "id": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-      "name": "Revisiting our Action Model — Comparative modeling frameworks for delayed, radial action",
+      "name": "Action Model Comparison",
       "path": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "nodeType": "markdown_doc"
     },
@@ -7390,7 +7390,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-      "name": "Revisiting our Action Model — Comparative modeling frameworks for delayed, radial action",
+      "name": "Action Model Comparison",
       "path": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "searchTarget": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
       "implicit": false

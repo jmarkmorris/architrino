@@ -812,7 +812,7 @@ $$
 \frac{d}{dt}\mathbf{v}_\perp\Big|_{\text{hit}} = \mathbf{0}, \quad \frac{d}{dt}v_r\Big|_{\text{hit}} = \mathbf{a}_{ij} \cdot \hat{\mathbf{r}}_{ij} = \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2\,\left|J_{ij}(t;t_0)\right|}.
 $$
 
-**Plain language:** A hit only changes the along-the-line velocity component right now; sideways motion continues unaffected (at the instant of the hit). Over time, of course, the changing radial motion alters the trajectory and thus the subsequent orthogonal component.
+**Plain language:** A hit only changes the along-the-line velocity component right now; sideways motion continues unaffected at the instant of the hit. Over time, the changing radial motion alters the trajectory and thus the subsequent orthogonal component.
 
 **Translating-assembly deformation requirement:** The receiver kinematics described here must mechanically produce the moving-assembly deformation, branch-period stretch, and two-way signal-synchronization records that later observer-inference chapters consume. If nested shell swarms do not squash along the direction of motion and do not preserve one retained causal-root ledger while translating through the Noether Sea, the downstream recovery program fails at the dynamics layer.
 
@@ -1109,7 +1109,7 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 **Implication:** Self-hit is a **path-history memory effect**. The architrino's current acceleration depends on **whether it ever exceeded $c_f$ in the past and curved**, not just on its instantaneous state.
 
-**Non-Markovian nature:** Knowing $\mathbf{x}_i(t)$ and $\mathbf{v}_i(t)$ is insufficient to determine $\mathbf{a}_i(t)$. You need the **full past worldline** $\{\mathbf{x}_i(t') : t' < t\}$ to identify all causal self-hit times $t_0 \in \mathcal{C}_{ii}(t)$.
+**Non-Markovian nature:** Knowing $\mathbf{x}_i(t)$ and $\mathbf{v}_i(t)$ is insufficient to determine $\mathbf{a}_i(t)$. The **full past worldline** $\{\mathbf{x}_i(t') : t' < t\}$ is needed to identify all causal self-hit times $t_0 \in \mathcal{C}_{ii}(t)$.
 
 ##### Self-Hit as Stabilization Mechanism
 
@@ -1167,7 +1167,7 @@ where the factor of 2 comes from the symmetry (each feels the same magnitude for
 ##### Maximum-Curvature Orbit (Self-Hit Stabilization)
 
 **Setup:**
-- Opposite-polarity binary spirals inward (as in 8.2) until speed crosses $\|\mathbf{v}\| = c_f$
+- Opposite-polarity binary spirals inward (as in [Sub-Field-Speed Circular Orbit (Instability)](#sub-field-speed-circular-orbit-instability)) until speed crosses $\|\mathbf{v}\| = c_f$
 - Self-hits activate → repulsive outward force
 
 **Geometric definition (Null Separatrix):**
@@ -1434,17 +1434,17 @@ This is the basic consistency-check regime of the theory.
 Setup:
 
 - Two opposite polarities on a line, starting at rest, moving directly toward each other,
-- Symmetry: center‑of‑mass at rest, only radial variable $r(t)$,
-- Speeds sub‑$c_f$ so no self‑hit.
+- Symmetry: center-of-mass at rest, only radial variable $r(t)$,
+- Speeds sub-$c_f$ so no self-hit.
 
 Then:
 
 - Causal delay gives a small correction; in the slow regime we can treat it perturbatively.
-- To zeroth order, you already wrote:
+- To zeroth order, the reduced equation is:
   $$
   \frac{d^2 r}{dt^2} = -\frac{2\kappa \epsilon^2}{r^2},
   $$
-  which has an exact analytic solution for $r(t)$ (same math as Kepler fall‑to‑center).
+  which has an exact analytic solution for $r(t)$ (same mathematics as Kepler fall-to-center).
 
 We can:
 
@@ -1960,8 +1960,8 @@ Analytic expectations:
 
   - We can construct a controlled circular ansatz:
     - Assume perfectly circular orbits with fixed $R$, $\omega$,
-    - Compute partner force including causal delay (as in 2.3),
-    - Compute self‑force (as in 2.4),
+    - Compute partner force including causal delay (as in [Sub-Field-Speed Circular Orbit (Instability)](#sub-field-speed-circular-orbit-instability)),
+    - Compute self‑force (as in [Self-Interaction (Self-Hit Dynamics)](#self-interaction-self-hit-dynamics)),
     - Demand that time‑averaged radial force gives exactly $\omega^2 R$,
     - Demand that time‑averaged tangential force vanish.
 
@@ -3469,7 +3469,7 @@ $$
 
 ##### Simulation Diagnostics (Symmetry and Conservation)
 
-In addition to the convergence checks in Section 4.2, track these conserved functionals in any isolated run:
+In addition to the convergence checks in [Numerical Implementation Notes](#numerical-implementation-notes), track these conserved functionals in any isolated run:
 
 - **Total energy**: $H_{\text{tot}}(t) = K_{\mu}(t) + E_{\text{wake}}(t)$, or a declared compatible reconstruction $K_{\mu}+U$, should remain constant within the chosen numerical tolerance.
 - **Total momentum**: $\mathbf{P}_{\text{tot}}(t)$ should be constant; monitor $\|\mathbf{P}_{\text{tot}}(t)-\mathbf{P}_{\text{tot}}(0)\|$.
@@ -3811,7 +3811,7 @@ while the instantaneous power delivered to the receiver is controlled by
 $$
 \mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'}
 =
-\lVert\mathbf{a}_{o'\leftarrow o}\rVert\,v_r.
+\|\mathbf{a}_{o'\leftarrow o}\|\,v_r.
 $$
 
 On the affine partner chart used in the [closed-form collinear breather ansatz](../../../../markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md), the same causal bunching appears in the simple branch factor $J_p=1+\dot{x}/c_f$. That formula is not a new global definition of energy; it is the one-dimensional branch expression for how emission cadence is received on that chart.
@@ -7148,13 +7148,13 @@ is the certified memory horizon,
 $$
 \eta
 $$
-is the causal-shell width, and
+is the causal-isochron width, and
 $$
 \epsilon_c
 $$
 is the short-distance core scale.
 
-Branch-sum formulas are derived from this absolute-time integral only on simple-root charts, where the causal shell has isolated transversal roots. They are therefore local analytic reductions, not the global definition of the dynamics through fold transit or certified topology.
+Branch-sum formulas are derived from this absolute-time integral only on simple-root charts, where the causal isochron has isolated transversal roots. They are therefore local analytic reductions, not the global definition of the dynamics through fold transit or certified topology.
 
 The proof burden is consequently finite-certificate closure:
 $$
@@ -7198,7 +7198,7 @@ and the core cutoff
 $$
 \epsilon_c
 $$
-play different roles and should not be conflated. The first regularizes caustic transit across the causal shell. The second regularizes the short-distance amplitude divergence. The 1D scaffold works precisely because those two pathologies are separated rather than blurred into a single smoothing parameter.
+play different roles and should not be conflated. The first regularizes caustic transit across the causal isochron. The second regularizes the short-distance amplitude divergence. The 1D scaffold works precisely because those two pathologies are separated rather than blurred into a single smoothing parameter.
 
 ##### 2. Convex Banach bounds and tame delayed geometry must be split
 
@@ -10738,11 +10738,11 @@ q_3=+\epsilon,
 $$
 with all three trajectories constrained to one plane.
 
-This seed is not charge-neutral:
+This seed is not polarity-neutral:
 $$
 q_1+q_2+q_3=+\epsilon.
 $$
-It should therefore be read as a local nonneutral three-body subsystem, or as a compensated subsystem inside a larger neutral assembly whose compensating charge remains outside the reduced bridge model. A globally neutral many-body theorem would need a different seed, for example a neutral four-body packet, and should not be inferred from the present
+It should therefore be read as a local nonneutral three-body subsystem, or as a compensated subsystem inside a larger neutral assembly whose compensating polarity remains outside the reduced bridge model. A globally neutral many-body theorem would need a different seed, for example a neutral four-body packet, and should not be inferred from the present
 $$
 (+,-,+)
 $$
@@ -16691,13 +16691,13 @@ This is the correct point from which to resume work on the broader dynamics stac
 
 This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 
-The guiding idea is narrow: if delayed self-interaction can contribute to any bounded recapture mechanism at all, it should first be visible in a reflection-symmetric one-dimensional opposite-charge binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, nested shell swarm locking, and assembly-level closure lose their cleanest analytic foothold.
+The guiding idea is narrow: if delayed self-interaction can contribute to any bounded recapture mechanism at all, it should first be visible in a reflection-symmetric one-dimensional opposite-polarity binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, nested shell swarm locking, and assembly-level closure lose their cleanest analytic foothold.
 
 #### Overview
 
-In Lineland there is only a single endless road. Upon it travel two charged points. From a great distance they rush toward one another, drawn together by their mutual pull. Each accelerates as it approaches the other. Yet whatever influence a point emits into the line does not act everywhere at once; it spreads along the road at a finite pace, leaving behind a wake of its past motion. For a time each charge runs ahead of the disturbance it has already sent out. They meet, pass, and continue apart. But presently each encounters the older wake it cast while approaching. This delayed encounter pushes outward, while the partner charge, now behind, continues to pull inward. Thus the whole affair reduces to a contest on a line: a delayed push from one’s own past against the present pull of the other. The purpose of this chapter is to determine whether that contest can be forced into repeated recapture rather than escape, and to state the theorem program that would make such a bounded cycle rigorous.
+In Lineland there is only a single endless road. Upon it travel two polarity-bearing points. From a great distance they rush toward one another, drawn together by their mutual pull. Each accelerates as it approaches the other. Yet whatever influence a point emits into the line does not act everywhere at once; it spreads along the road at a finite pace, leaving behind a wake of its past motion. For a time each point runs ahead of the disturbance it has already sent out. They meet, pass, and continue apart. But presently each encounters the older wake it cast while approaching. This delayed encounter pushes outward, while the partner, now behind, continues to pull inward. Thus the whole affair reduces to a contest on a line: a delayed push from one's own past against the present pull of the other. The purpose of this chapter is to determine whether that contest can be forced into repeated recapture rather than escape, and to state the theorem program that would make such a bounded cycle rigorous.
 
-Formally, this chapter develops a proof scaffold for the global existence question of a periodic limit cycle in a symmetric two-body collinear system governed by a strongly nonlinear state-dependent delay differential equation. The dynamics use a dual-mollified delayed kernel, separating the short-distance $1/r^2$ singularity from the causal-shell boundary. The main analytic difficulty is the velocity-dependent causal-fold geometry, where Jacobians can approach
+Formally, this chapter develops a proof scaffold for the global existence question of a periodic limit cycle in a symmetric two-body collinear system governed by a strongly nonlinear state-dependent delay differential equation. The dynamics use a dual-mollified delayed kernel, separating the short-distance $1/r^2$ singularity from the causal-isochron boundary. The main analytic difficulty is the velocity-dependent causal-fold geometry, where Jacobians can approach
 $$
 J\to 0.
 $$
@@ -27923,11 +27923,11 @@ This table is only the partner column of the certificate packet. The self-image 
 
 For same-side self hits on an affine segment,
 $$
-|x(t)-x(t_0)|=|v|\tau.
+|x(t)-x(t_0)|=\|\mathbf{v}\|\tau.
 $$
-The exact causal shell equation is
+The exact causal-isochron equation is
 $$
-|v|\tau=c_f\tau.
+\|\mathbf{v}\|\tau=c_f\tau.
 $$
 For
 $$
@@ -27935,7 +27935,7 @@ $$
 $$
 this is possible only when
 $$
-|v|=c_f.
+\|\mathbf{v}\|=c_f.
 $$
 Therefore a perfectly affine segment has no same-side exact self root away from the field-speed separator. Self branches appear because the real trajectory is not globally affine: acceleration, origin crossing, and later return geometry let a present point meet older path-history images.
 
@@ -27953,7 +27953,7 @@ For certificate purposes, the field-speed separator is a codimension-one event s
 $$
 \Sigma_{\mathcal{B}}
 =
-\{(x,v,\mathcal{B}): |v|=c_f\}.
+\{(x,\mathbf{v},\mathcal{B}): \|\mathbf{v}\|=c_f\}.
 $$
 Here
 $$
@@ -28140,7 +28140,7 @@ A first closed-form skeleton should use four arcs:
    $$
    \eta
    $$
-   regularizes the causal-shell selection.
+   regularizes the causal-isochron selection.
 3. **Outbound super-field or near-field-speed arc**
    The right branch moves outward. If
    $$

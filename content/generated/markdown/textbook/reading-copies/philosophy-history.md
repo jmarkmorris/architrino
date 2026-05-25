@@ -1018,7 +1018,7 @@ In other words, the field may sometimes be patching across a layer mismatch rath
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The project's basic wager is that metric structure and quantum effective behavior may both be downstream from a deeper substrate organization. On that reading, neither GR nor QM is discarded. Both are retained as effective closures whose domain success must be recovered while their ontological placement is lowered.
 
-More specifically, the AAA proposal distinguishes a fixed Euclidean void, a physical medium whose organization produces effective metric behavior, and assembly dynamics whose coarse-grained statistics produce quantum-effective structure. The hoped-for unification is therefore neither "quantize spacetime as fundamental" nor "treat the wavefunction as final ontology," but derive both observer-level packages from one causal substrate.
+More specifically, the $\mathbb{A}\mathbb{A}\mathbb{A}$ proposal distinguishes a fixed Euclidean void, a physical medium whose organization produces effective metric behavior, and assembly dynamics whose coarse-grained statistics produce quantum-effective structure. The hoped-for unification is therefore neither "quantize spacetime as fundamental" nor "treat the wavefunction as final ontology," but derive both observer-level packages from one causal substrate.
 
 Transition relevance is maximal because this crisis is one of the clearest motivations for ontological relocation rather than formal patching. In that sense the aim is closer to refactoring than replacement: preserve the durable empirical and mathematical achievements, but reconnect them to a generator-level architecture of nature.
 
@@ -1218,7 +1218,7 @@ These remain incomplete because the space of repairs continues to expand without
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory is motivated by the possibility that some dark-sector inferences reflect effective closure over substrate organization, medium history, or neutral assembly behavior rather than separate final substances. In the current AAA cosmology, the working baseline is not a single universal replacement slogan but a hybrid picture: neutral assemblies carry much of the dark-matter role, while medium response and medium relaxation contribute to galaxy-scale and expansion-history effects now grouped under dark-sector language.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory is motivated by the possibility that some dark-sector inferences reflect effective closure over substrate organization, medium history, or neutral assembly behavior rather than separate final substances. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology, the working baseline is not a single universal replacement slogan but a hybrid picture: neutral assemblies carry much of the dark-matter role, while medium response and medium relaxation contribute to galaxy-scale and expansion-history effects now grouped under dark-sector language.
 
 Transition relevance is maximal because this is one of the clearest domains where ontological replacement could matter without rejecting data. The ambition is not to explain away the evidence, but to show that at least part of what is currently packaged as dark matter and dark energy may be reclassified as properties of one deeper medium-and-assembly ontology.
 
@@ -1266,7 +1266,7 @@ But they remain incomplete because they manage the symptom of parameter freedom 
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. One motivation of the theory is the hope that masses, interactions, and large-scale behavior can be related to assembly structure and medium dynamics rather than multiplied as independent inserts. In the AAA picture, parameter ledgers are still necessary, but they are treated as transitional bookkeeping to be reduced wherever common mechanism can be shown.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. One motivation of the theory is the hope that masses, interactions, and large-scale behavior can be related to assembly structure and medium dynamics rather than multiplied as independent inserts. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ picture, parameter ledgers are still necessary, but they are treated as transitional bookkeeping to be reduced wherever common mechanism can be shown.
 
 Transition relevance is high because patchwork closure is one of the main signals that a field may be protecting an effective layer from ontological revision. If several apparently independent parameters can be traced back to a shared substrate geometry or shared medium response, then what looked like many inputs may turn out to be one architecture seen through several effective channels.
 
@@ -1314,7 +1314,7 @@ They remain incomplete because they too easily answer the request for mechanism 
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The project's core ambition is to increase mechanistic explanation without losing mathematical control. The AAA wager is that effective mathematics should be preserved, but relocated: some equations summarize observer-level or medium-level behavior, while a deeper substrate should explain why those summaries work.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The project's core ambition is to increase mechanistic explanation without losing mathematical control. The $\mathbb{A}\mathbb{A}\mathbb{A}$ wager is that effective mathematics should be preserved, but relocated: some equations summarize observer-level or medium-level behavior, while a deeper substrate should explain why those summaries work.
 
 Transition relevance is maximal because this crisis states the most general reason a substrate theory is worth attempting at all. If the project cannot improve mechanism while retaining formal success, it fails on its own terms. If it can, then this is one of the clearest places where ontological relocation would matter.
 
@@ -1730,7 +1730,7 @@ with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucl
 
 **Standard Repairs:** Standard repairs include stellar-mixing and diffusion models, revised nuclear cross sections, decaying-particle injections, and inhomogeneous nucleosynthesis scenarios. None has become standard because each tends to damage another successful part of BBN or stellar modeling.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, the lithium mismatch is attributed to early-universe assembly-mediated neutron transport: deformation-wave channels can move neutrons between dense and diffuse regions during BBN, biasing late-time Li-7 destruction without altering deuterium or helium yields. This is effectively a medium-driven, non-thermal redistribution rather than new particle decays. A falsifier would be BBN observations showing Li-7 inhomogeneities uncorrelated with any neutron-diffusion signatures or a resolved lithium plateau matching standard nuclear network predictions. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, the lithium mismatch is attributed to early-universe assembly-mediated neutron transport: deformation-wave channels can move neutrons between dense and diffuse regions during BBN, biasing late-time Li-7 destruction without altering deuterium or helium yields. This is effectively a medium-driven, non-thermal redistribution rather than new-particle reaction channels. A falsifier would be BBN observations showing Li-7 inhomogeneities uncorrelated with any neutron-diffusion signatures or a resolved lithium plateau matching standard nuclear network predictions. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
 
 **What Would Count As Resolution:** Resolution would require a mechanism that lowers lithium without spoiling deuterium and helium, together with observational evidence that the relevant depletion or transport channel actually occurred.
 
@@ -11655,7 +11655,7 @@ where $R_{\mathrm{rel}}$ records axial-frame orientation relative to the fixed N
 
 ##### First beta exposure operator: $d\to u$
 
-This first model is deliberately local. It defines the operator-level exposure gate for one generation-I down-type quark in free-neutron beta reaction. It is not yet a decay-rate derivation, a nuclear form-factor model, or a completed lepton-provenance account.
+This first model is deliberately local. It defines the operator-level exposure gate for one generation-I down-type quark in free-neutron beta reaction. It is not yet a reaction-rate derivation, a nuclear form-factor model, or a completed lepton-provenance account.
 
 The handedness label in this operator is an inherited observer-level weak-channel label, not a newly derived substrate spin variable. The exposure gate below is a test object that must be supplied by the ordered-frame spinor/helicity ledger in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) before it can count as a proof of weak handedness.
 
@@ -12093,9 +12093,9 @@ The conjectural weak-provenance material below is an illustration of what a futu
 - **Architrino budget example:** reacting with a Noether-Sea super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
 - **Capability target:** a mature reaction ledger would state the corridor provenance stance, participating swarms/architrinos, candidate products, and forbidden outcomes with reasons such as shielding mismatch, insufficient flux-tube closure, or unmet charge quantization.
 
-###### Illustrative future ledger rows (speculative; not a correctness claim)
+###### Illustrative Candidate Ledger Rows
 
-| Reactant set | Noether swarm shielding (IMO/HML) | weak-coupling-triad polarity | Sea swarms tapped? | Candidate products | Corridor(s) | Illustrative status | Reason/constraint |
+| Reactant set | Noether swarm shielding (IMO/HML) | weak-coupling-triad polarity | Noether-Sea swarms tapped? | Candidate products | Corridor(s) | Illustrative status | Reason/constraint |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | $d$ (IMO) → $u$ (IMO) + $W^-$ | tri → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | likely | Matches $V_{ud}$; charge quantized |
 | $s$ (IM-) → $u$ (IMO) + $W^-$ | bi → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{us}\rvert$ |
@@ -12112,17 +12112,18 @@ The conjectural weak-provenance material below is an illustration of what a futu
 | $W$ corridor budget (generic) | — | — | 2 neutral swarms + 6 excess decorations | returns neutral swarms to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 neutral swarms + (9P,3E) → +e; $W^-$: 2 neutral swarms + (3P,9E) → –e; swarms end neutral |
 
 Notes:
-- “Sea swarms tapped” = how many Noether-Sea swarms are pulled transiently (if any). Default 0 unless we posit corridor assembly needs external cores.
+- "Noether-Sea swarms tapped" means how many Noether-Sea swarms are pulled transiently, if any. Default 0 unless the corridor assembly needs external cores.
 - Populate further rows for $c\leftrightarrow s$, $b\to u$, rare loop-induced $b\to s$, and anti-quark channels (same CKM but right-handed anti-doublets).
 
 ###### Provenance
 
-- We ultimately want **provenance**, not just bookkeeping: track every architrino’s path through a reaction, so simulations can reproduce PDG observables from first principles.
+- The target is **provenance**, not only bookkeeping: track every architrino's path through a reaction, so simulations can reproduce PDG observables from first principles.
 - Beyond individual architrinos, track **sub-assembly provenance**: entire Noether swarms may transfer intact, detach outer binaries, dissociate, reassociate, or relock into different groupings while their architrino identities persist. Knowing which Noether swarms move as units vs fragment gives insight into allowed channels and lifetimes.
-- Conservation: electrinos IN = electrinos OUT. Same for positrinos. Transmutation: reactants → products; true understanding is to map (simulate) each architrino's path.
-- Point to ponder: What becomes of a spare electrino and positrino from a reaction? Do they couple and spiral inward to max curvature? Do they become highly reactive at some point?
+- Conservation requires Electrino count in to equal Electrino count out, and likewise for Positrino count. A completed transmutation map must identify each architrino path from reactants to products.
+- The remaining spare-polarity question is where an unincorporated Electrino-Positrino pair goes after a reaction: neutral relock, maximal-curvature inward spiral, local photon-mode release, or another declared channel.
 
-Charge Conservation Enforcement (speculative, to simulate):
+###### Polarity and Charge Conservation Enforcement
+
 - Free $\pm\epsilon$ axial architrinos are dynamically suppressed by the strong Noether-Sea dielectric response (no long-lived spare-polarity propagation in the coarse-grained ledger).
 - Any spare axial architrinos must close through one of the following channels:
   - **Product incorporation:** absorbed into a final-state assembly while preserving charge/polarity bookkeeping.
@@ -12130,9 +12131,10 @@ Charge Conservation Enforcement (speculative, to simulate):
   - **Immediate neutral relock:** paired with opposite-polarity architrinos drawn from the Sea, routing energy into short coaxial contra-rotating pro/anti planar-pair photon modes while all participating identities remain in the ledger.
 - Practical rule for simulations: treat a true long-range "escape" channel as forbidden unless a dedicated high-resolution run demonstrates otherwise.
 
-Decision cues to log in sims: initial separation, relative phase, local Noether swarm density; pick dominant channel based on these and record energy/charge routing.
+Decision cues to log in simulations: initial separation, relative phase, and local Noether swarm density. The selected dominant channel must record energy and charge routing.
 
-Provenance TODOs:
+###### Open Provenance Obligations
+
 - Validate the explicit overlap functional in this document by reconstructing $(\kappa_{12},\kappa_{23},\sigma)$ from simulated transport trajectories.
 - Build per-architrino tracking in simulations to recover CKM magnitudes and CP phase from first principles.
 - Add sub-assembly tracking: which Noether swarms move intact vs. fragment in each channel; ensure charge/polarity balances close at both architrino and core levels.
@@ -12781,7 +12783,7 @@ Another recurring pattern is failure to revisit earlier assumption sets after la
 | 1905 (Special Relativity) | Full Lorentz covariance of inertial laws | Could have been read as effective symmetry of assemblies in one substrate | Principle-theory victory reclassified kinematic effects as fundamental spacetime structure |
 | 1915-1920 (General Relativity) | Metric dynamics with exceptional predictive power | Metric as coarse-grained constitutive field of deeper Noether-Sea state | Geometrization succeeded so strongly that "geometry is fundamental" became default |
 | 1917 (Einstein World) | Boundary-condition pressure at spatial infinity, Machian relativity-of-inertia aims, and the first relativistic global cosmology | Global geometry could have been held as a closure hypothesis requiring observation, stability, and source/boundary residual tests | Logical consistency and aesthetic closedness could outrun empirical comparison and perturbative stability analysis |
-| 1924-1930 (de Broglie, pilot-wave, early quantum debates) | Deterministic alternatives existed, wave-particle dual structure observed | Deterministic microstate + contextual readout + basin selection | Copenhagen operationalism treated ontology as unnecessary overhead |
+| 1924-1930 (de Broglie, pilot-wave, early quantum debates) | Deterministic alternatives existed, particle-wave dual structure observed | Deterministic microstate + contextual readout + basin selection | Copenhagen operationalism treated ontology as unnecessary overhead |
 | 1930s-1950s (QFT vacuum, renormalization) | Vacuum structure, divergence control, effective computational rules | Divergences as signs of missing microstructure and finite substrate scales | Renormalization success normalized continuum ontology plus parameter absorption |
 | 1941-1954 (Wheeler's particles-first to fields-first turn) | Wheeler-Feynman direct-action electrodynamics, Machian inertia pressure, liaison/light-ray reconstruction attempts, EIH point-particle motion, and geon-style nonsingular field configurations | A constituent-first program could have asked whether field-like and inertial behavior are derived summaries of causal interaction records rather than primitive continua | The failed liaison-action program and the success of GR/QED redirected pressure toward fields-first formalism before a delayed causal-wake ontology was available |
 | 1960s-1970s (Wheeler's collapse and law-without-law turn) | Gravitational-collapse singularity pressure, black-hole no-hair compression, and Wheeler's claim that baryon and lepton conservation lose operational content in collapse | Lawfulness could have been treated as an emergent closure whose conservation records survive only where the accessible exterior variables still carry the needed provenance | Collapse and no-hair results redirected Wheeler from lawlike geometrodynamics toward law-without-law, participatory cosmology, and universe-evolution language |
@@ -12969,7 +12971,7 @@ The long-term relevance of this episode is permanent process control for cosmolo
 
 #### Where The Opening Appeared
 
-What physics already had was wave-particle duality, de Broglie's pilot ideas, matrix and wave mechanics, and the brute empirical pressure of atomic and subatomic phenomena. Deterministic alternatives were not absent. The opening was to ask whether one exact microstate, evolving under hidden but lawful dynamics, could produce probabilistic-looking outcomes through multistability, path-history dependence, and measurement-context sensitivity.
+What physics already had was particle-wave duality, de Broglie's pilot ideas, matrix and wave mechanics, and the brute empirical pressure of atomic and subatomic phenomena. Deterministic alternatives were not absent. The opening was to ask whether one exact microstate, evolving under hidden but lawful dynamics, could produce probabilistic-looking outcomes through multistability, path-history dependence, and measurement-context sensitivity.
 
 That line is architrino-adjacent because it does not deny the empirical success of quantum statistics. It instead seeks the mechanism of outcome selection underneath them. Once one allows attractor-basin capture under delayed interaction, the probability layer can become emergent rather than primitive.
 

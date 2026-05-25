@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This chapter is a placeholder for the heavier charged lepton excitation states in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+This chapter defines the current heavier charged-lepton branch targets for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 ## Current framing
 
@@ -38,7 +38,7 @@ $$
 
 should be read as event-ledger targets, not as proof that the heavier lepton simply turns into lighter particles by label replacement. A closed $\mathbb{A}\mathbb{A}\mathbb{A}$ record must identify the incoming heavy charged-lepton branch, the finite $W^-$ corridor transaction, the outgoing charged-lepton axial inventory, the neutral-lepton near-photon weak ledgers, and every recoil or medium row needed for energy, momentum, angular momentum, charge, and identity routing.
 
-The same provenance discipline applies to tau hadronic channels. When a tau branch routes into pions, kaons, or other hadrons, the record must state how the charged-lepton corridor hands off to quark or meson assemblies without treating hadron content as created from nothing. Until those inventories are closed, the muon and tau pages should be read as branch and validation targets rather than completed decay derivations.
+The same provenance discipline applies to tau hadronic channels. When a tau branch routes into pions, kaons, or other hadrons, the record must state how the charged-lepton corridor hands off to quark or meson assemblies without treating hadron content as created from nothing. Until those inventories are closed, the muon and tau pages should be read as branch and validation targets rather than completed reaction derivations.
 
 ## `g-2` and Form-Factor Gates
 
@@ -52,7 +52,7 @@ a_\ell^{\text{SM,ref}}
 +O(R_L^4),
 $$
 
-with $\mathcal{C}_\ell$ extracted from the same mass-response, angular-response, Noether-Sea, and orientation maps used for the electron branch. A muon `g-2` residual cannot be accepted as an $\mathbb{A}\mathbb{A}\mathbb{A}$ signal unless the corresponding electron correction remains suppressed and the tau-side scaling is consistent with available bounds.
+with $\mathcal{C}_\ell$ extracted from the same mass-response, angular-response, Noether Sea, and orientation maps used for the electron branch. A muon `g-2` residual cannot be accepted as an $\mathbb{A}\mathbb{A}\mathbb{A}$ signal unless the corresponding electron correction remains suppressed and the tau-side scaling is consistent with available bounds.
 
 The paired scattering gate is the lepton form factor:
 

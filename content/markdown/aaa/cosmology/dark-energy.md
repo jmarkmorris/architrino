@@ -171,11 +171,11 @@ r_X(\theta_{\mathrm{sea}},\nu_X)
 \;+\;
 \lambda
 \sum_{X<Y}
-\left\lVert
+\left\|
 \Pi_X\theta_{\mathrm{sea}}
 -
 \Pi_Y\theta_{\mathrm{sea}}
-\right\rVert^2.
+\right\|^2.
 $$
 
 Here $r_X$ is the residual vector for observable family $X$, $\nu_X$ records nuisance and calibration variables, $C_X$ is the covariance model, and $\Pi_X$ projects the shared Noether-Sea state record into the variables consumed by that observable family. A dark-energy interpretation is promotable only if both the ordinary residuals and the cross-projection penalty can be controlled without replacing $\theta_{\mathrm{sea}}$ separately for each pipeline. The first mock validation artifact for this gate is [Cosmology Shared Residual Fit Protocol](../validation/simulations/cosmology-shared-residual-fit.md).
@@ -312,7 +312,7 @@ For that branch, the promoted Noether-Sea account must keep the effective stress
 $$
 \mathcal{R}_{\mathrm{role}}
 =
-\left\lVert
+\left\|
 \begin{pmatrix}
 \rho_{\mathrm{DE,eff}} \\
 p_{\mathrm{sea}} \\
@@ -328,7 +328,7 @@ p_{\mathrm{sea}} \\
 \mathcal{H}_{\mathrm{BH}},
 \mathcal{H}_{\mathrm{sea}}
 \right]
-\right\rVert .
+\right\| .
 $$
 
 The closure condition is $\mathcal{R}_{\mathrm{role}}\to 0$ without changing $\theta_{\mathrm{sea}}$ between the distance, age, growth, and source ledgers. A negative sign in an effective fluid may be retained only as a sign in the comparison stress tensor; it does not license negative masses as native assemblies. A phase-transition or vacuum-energy comparison may constrain $\dot{\Lambda}_{\mathrm{eff}}$ or the shielding law; it does not make $\Lambda(t)$ fundamental. A Hubble-age repair may motivate a branch constant; it does not supply $\mathcal{S}_{m,\mathrm{eff}}$. This protects the Noether-Sea derivation from smuggling negative masses, matter creation, or variable $\Lambda$ into $\mathbb{A}\mathbb{A}\mathbb{A}$ as doctrine.
