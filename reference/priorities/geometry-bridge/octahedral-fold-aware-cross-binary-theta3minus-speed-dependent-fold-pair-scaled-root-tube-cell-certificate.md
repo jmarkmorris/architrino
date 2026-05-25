@@ -128,7 +128,7 @@ $$
 }
 $$
 
-This closes the finite-node root-tube gap for the coalescing fold pair. The executable row now also proves the $h$-coordinate root graph described below, so the remaining fold-pair burden is no longer root existence, root-graph contraction, or $J$ sign control; it is the continuous $G,D$ quotient remainder row over the certified root graph.
+This closes the finite-node root-tube gap for the coalescing fold pair. The executable row now also proves the $h$-coordinate root graph described below, so the remaining fold-pair burden is no longer root existence, root-graph contraction, or $J$ sign control. The successor [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate.md) certifies the positive-y $G,D$ quotients on that $h$ graph, [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.md) certifies the sampled first-y cancellation mechanism, and the first-y coefficient packets now interval-certify the constant-through-sextic quotient coefficients through [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-sextic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-sextic-jet-coefficient-interval-certificate.md). The live burden is now the directed-rounded first-y $G,D$ septic-tail/enclosure.
 
 ## Quotient Successor Mechanism
 
@@ -274,7 +274,18 @@ $$
 | `theta3minus.sampled-node-fold-pair-scaled-interval` | directed-rounded sampled-node certified |
 | `theta3minus.fold-pair-scaled-root-tube-cell-cover` | directed-rounded cell-cover certified |
 | `theta3minus.fold-pair-h-root-graph-cell-cover` | directed-rounded cell-cover certified |
-| `theta3minus.fold-pair-scaled-remainder-continuous-collar` | directed-rounded open |
+| `theta3minus.fold-pair-h-graph-positive-y-GD-quotient` | directed-rounded cell-cover certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate.md) |
+| `theta3minus.fold-pair-first-y-GD-jet-cancellation` | sampled analytic jet certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.md) |
+| `theta3minus.fold-pair-first-y-GD-constant-coefficient` | directed-rounded interval certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate.md) |
+| `theta3minus.fold-pair-first-y-GD-linear-jet-coefficient` | directed-rounded interval certified |
+| `theta3minus.fold-pair-first-y-GD-quadratic-jet-coefficient` | directed-rounded interval certified |
+| `theta3minus.fold-pair-first-y-GD-cubic-jet-coefficient` | directed-rounded interval certified |
+| `theta3minus.fold-pair-first-y-GD-quartic-jet-coefficient` | directed-rounded interval certified |
+| `theta3minus.fold-pair-first-y-GD-quintic-jet-coefficient` | directed-rounded interval certified |
+| `theta3minus.fold-pair-first-y-GD-sextic-jet-coefficient` | directed-rounded interval certified |
+| `theta3minus.fold-pair-first-y-GD-septic-tail-bound` | directed-rounded open |
+| `theta3minus.fold-pair-first-y-GD-directed-rounded-enclosure` | blocked by septic-tail bound |
+| `theta3minus.fold-pair-scaled-remainder-continuous-collar` | blocked by directed-rounded first-y $G,D$ enclosure |
 | `theta3minus.regular-root-remainder-continuous-collar` | directed-rounded open |
 | `I1.regular-critical-exhaustion` | blocked by theta3minus remainder |
 | `representative-cross-binary-retention` | open |
