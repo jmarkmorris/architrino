@@ -20,8 +20,11 @@ $y^{29}$ division, and the successor coefficient rows now certify
 $h_{27}$, $Q_{G,27}$, $Q_{D,27}$, $h_{28}$, $Q_{G,28}$, and $Q_{D,28}$. The
 new twenty-ninth-order successor coefficient packet also certifies
 $h_{29}$, $Q_{G,29}$, and $Q_{D,29}$. The thirtieth-order successor coefficient
-packet now certifies $h_{30}$, $Q_{G,30}$, and $Q_{D,30}$. The live
-constructive problem is therefore the coefficient-preserving thirty-first-order
+packet certifies $h_{30}$, $Q_{G,30}$, and $Q_{D,30}$. The thirty-first-order
+successor coefficient packet certifies $h_{31}$, $Q_{G,31}$, and
+$Q_{D,31}$. The thirty-second-order successor coefficient packet now certifies
+$h_{32}$, $Q_{G,32}$, and $Q_{D,32}$. The live constructive problem is therefore
+the coefficient-preserving thirty-third-order
 $G,D$ successor tail,
 without dividing by a zero-touching $y$ interval.
 
@@ -716,52 +719,110 @@ B_{G,31}=1.10675310889\times10^{84},
 B_{D,31}=1.1066799073\times10^{84}.
 $$
 
+The thirty-first-order post-$U$ successor coefficient packet then certifies
+
+$$
+h_{31,\varepsilon}
+\in[-6.87856199450\times10^{18},6.87856650661\times10^{18}],
+$$
+
+$$
+Q_{G,31}
+\in[-5.85965356972\times10^{18},5.85965356972\times10^{18}],
+\qquad
+Q_{D,31}
+\in[-1.87508914231\times10^{20},1.87508914231\times10^{20}],
+$$
+
+with
+
+$$
+Q_{D,31}+32Q_{G,31}\ni0.
+$$
+
+The remaining budgets become
+
+$$
+B_{G,32}=6.15932164949\times10^{86},
+\qquad
+B_{D,32}=6.15891426672\times10^{86}.
+$$
+
+The thirty-second-order post-$U$ successor coefficient packet then certifies
+
+$$
+h_{32,\varepsilon}
+\in[-4.10533911463\times10^{19},4.10533911463\times10^{19}],
+$$
+
+$$
+Q_{G,32}
+\in[-3.49722356695\times10^{19},3.49722268609\times10^{19}],
+\qquad
+Q_{D,32}
+\in[-1.15408348641\times10^{21},1.15408377709\times10^{21}],
+$$
+
+with
+
+$$
+Q_{D,32}+33Q_{G,32}\ni0.
+$$
+
+The remaining budgets become
+
+$$
+B_{G,33}=3.42779639624\times10^{89},
+\qquad
+B_{D,33}=3.42756967887\times10^{89}.
+$$
+
 The live zero-safe tails are now
 
 $$
-T_G^{(31)}
+T_G^{(33)}
 =
-\operatorname{Shift}_{33}
+\operatorname{Shift}_{35}
 \left(
-P-L-y^2A_{G,30}
+P-L-y^2A_{G,32}
 \right),
 \qquad
-Q_G=A_{G,30}+y^{31}T_G^{(31)},
+Q_G=A_{G,32}+y^{33}T_G^{(33)},
 $$
 
 and
 
 $$
-T_D^{(31)}
+T_D^{(33)}
 =
-\operatorname{Shift}_{33}
+\operatorname{Shift}_{35}
 \left(
-D_{\mathrm{pair}}-L-y^2A_{D,30}
+D_{\mathrm{pair}}-L-y^2A_{D,32}
 \right),
 \qquad
-Q_D=A_{D,30}+y^{31}T_D^{(31)}.
+Q_D=A_{D,32}+y^{33}T_D^{(33)}.
 $$
 
 The preserved correlated identity is
 
 $$
-T_D^{(31)}
+T_D^{(33)}
 =
--32T_G^{(31)}
--\mathcal D_y^{(X)}T_G^{(31)},
+-34T_G^{(33)}
+-\mathcal D_y^{(X_{33})}T_G^{(33)},
 \qquad
-\mathcal D_y^{(X)}
+\mathcal D_y^{(X_{33})}
 =
-y\partial_y+\Xi_\varepsilon\partial_X,
+y\partial_y+\Xi_\varepsilon\partial_{X_{33}},
 \qquad
-\Xi_\varepsilon=-\frac{y\,\partial_yR_{\varepsilon,34}}{J_\varepsilon}.
+\Xi_\varepsilon=-\frac{y\,\partial_yR_{\varepsilon,36}}{J_\varepsilon}.
 $$
 
 The displayed $y\partial_y$ in the formal coefficient identity must therefore
 be implemented as the total derivative along a future certified
-$X_\varepsilon$ successor root graph, not as a constant-$X$ derivative. The
-$h_{30}$ packet below certifies only the coefficient row; it does not certify a
-finite $X_\varepsilon$ tube.
+$X_{33,\varepsilon}$ successor root graph, not as a constant-$X_{33}$
+derivative. The $h_{32}$ packet below certifies only the coefficient row; it
+does not certify a finite $X_{33,\varepsilon}$ tube.
 
 ## Certificate Requirements
 
@@ -794,15 +855,17 @@ A valid executable successor must certify:
 - the imported $h_{28}$ successor coefficient and twenty-ninth-order budgets;
 - the imported $h_{29}$ successor coefficient and thirtieth-order budgets;
 - the imported $h_{30}$ successor coefficient and thirty-first-order budgets;
-- a coefficient-preserving thirty-first-order successor-tail enclosure for
-  $P-L-y^2A_{G,30}$ and $D_{\mathrm{pair}}-L-y^2A_{D,30}$;
+- the imported $h_{31}$ successor coefficient and thirty-second-order budgets;
+- the imported $h_{32}$ successor coefficient and thirty-third-order budgets;
+- a coefficient-preserving thirty-third-order successor-tail enclosure for
+  $P-L-y^2A_{G,32}$ and $D_{\mathrm{pair}}-L-y^2A_{D,32}$;
 - the identity residual
-  $T_D^{(31)}+32T_G^{(31)}+\mathcal D_y^{(X)}T_G^{(31)}$ contains zero;
+  $T_D^{(33)}+34T_G^{(33)}+\mathcal D_y^{(X_{33})}T_G^{(33)}$ contains zero;
 - a factored $C^1$ quotient/inverse Taylor-model remainder on a certified
   successor root graph, including the implicit root-tangent term
-  $\Xi_\varepsilon=-y\,\partial_yR_{\varepsilon,34}/J_\varepsilon$, because the
+  $\Xi_\varepsilon=-y\,\partial_yR_{\varepsilon,36}/J_\varepsilon$, because the
   direct positive-y quotient rows do not provide a zero-endpoint proof and the
-  broad predecessor tube does not preserve the post-$h_{30}$ cancellations;
+  broad predecessor tube does not preserve the post-$h_{32}$ cancellations;
 - no raw division by a zero-touching $y$ interval.
 
 The broad C1 attempt on the certified $W_\varepsilon$ tube gives a rigorous
@@ -818,11 +881,11 @@ of that successor route: all coefficients $y^0$ through $y^{28}$ of
 $P-L-y^2A_{G,26}$ and $D_{\mathrm{pair}}-L-y^2A_{D,26}$ contain zero on all
 $128$ speed cells, with no raw $y$ inverse and no $y^{29}$ division. A
 twenty-seventh-order coefficient successor then certifies the $Q_{G,27}$ and
-$Q_{D,27}$ constant term. The twenty-eighth-, twenty-ninth-, and
-thirtieth-order coefficient successors now certify the
-$Q_{G,28},Q_{D,28}$, $Q_{G,29},Q_{D,29}$, and $Q_{G,30},Q_{D,30}$ constant
-terms. A successful successor must therefore enclose only the thirty-first-order
-tail in a Taylor or
+$Q_{D,27}$ constant term. The twenty-eighth-, twenty-ninth-, thirtieth-,
+thirty-first-, and thirty-second-order coefficient successors now certify the
+$Q_{G,28},Q_{D,28}$, $Q_{G,29},Q_{D,29}$, $Q_{G,30},Q_{D,30}$,
+$Q_{G,31},Q_{D,31}$, and $Q_{G,32},Q_{D,32}$ constant terms. A successful successor must therefore
+enclose only the thirty-third-order tail in a Taylor or
 Taylor-inverse quotient model while retaining the root-tangent operator. It
 must not claim full first-y quotient enclosure, scaled remainder closure, `I1`
 closure, interval quadrature, or retained branch status by itself.

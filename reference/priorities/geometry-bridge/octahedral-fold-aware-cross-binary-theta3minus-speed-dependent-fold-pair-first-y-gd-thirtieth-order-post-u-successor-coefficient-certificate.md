@@ -131,6 +131,11 @@ $$
 | `theta3minus.fold-pair-first-y-GD-directed-rounded-enclosure` | blocked by thirty-first-order successor tail bound |
 | `theta3minus.fold-pair-scaled-remainder-continuous-collar` | blocked by directed-rounded first-y $G,D$ enclosure |
 
+Subsequent status: the thirty-first-order successor coefficient packet now
+certifies the $T_G^{(31)},T_D^{(31)}$ constant row. The live blocker has moved
+to the coefficient-preserving thirty-second-order successor tail after
+$T_G^{(31)}=Q_{G,31}+yT_G^{(32)}$.
+
 ## Successor Tail Coordinate
 
 The predecessor $h_{29}$ coefficient packet left
