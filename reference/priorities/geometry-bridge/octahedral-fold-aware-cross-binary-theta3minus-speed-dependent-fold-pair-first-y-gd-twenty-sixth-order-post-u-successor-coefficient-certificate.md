@@ -5,8 +5,9 @@ Promotion status: `priority-only`.
 This packet continues the twenty-fifth-order post-$U$ successor coefficient
 row. It certifies the next zero-touching seed coefficient,
 $h_{26,\varepsilon}$, and the induced twenty-sixth-order quotient coefficients
-$Q_{G,26}$ and $Q_{D,26}$. It does not close the finite successor root-tail
-tube, the continuous quotient tail, or retained branch status.
+$Q_{G,26}$ and $Q_{D,26}$. Its finite successor root-tail tube is now closed by
+the later $\operatorname{Shift}_{31}$ $W_\varepsilon$ packet; the continuous
+quotient tail, full first-y enclosure, and retained branch status remain open.
 
 No fixed speed band is imposed. The certificate uses only the certified positive
 speed-ratio zero enclosure
@@ -121,46 +122,53 @@ $$
 | --- | --- |
 | `theta3minus.fold-pair-first-y-GD-twenty-fifth-order-post-U-successor-coefficient` | directed-rounded interval certified |
 | `theta3minus.fold-pair-first-y-GD-twenty-sixth-order-post-U-successor-coefficient` | directed-rounded interval certified |
-| `theta3minus.fold-pair-first-y-GD-finite-shift31-next-successor-root-tail-tube` | directed-rounded open |
-| `theta3minus.fold-pair-first-y-GD-twenty-seventh-order-tail-bound` | directed-rounded open |
-| `theta3minus.fold-pair-first-y-GD-directed-rounded-enclosure` | blocked by finite successor tube and twenty-seventh-order tail bound |
+| `theta3minus.fold-pair-first-y-GD-finite-shift31-next-successor-root-tail-tube` | directed-rounded interval certified |
+| `theta3minus.fold-pair-first-y-GD-twenty-seventh-order-lower-coefficient-cancellation` | coefficient-preserving cancellation certified |
+| `theta3minus.fold-pair-first-y-GD-twenty-seventh-order-post-U-successor-coefficient` | directed-rounded interval certified |
+| `theta3minus.fold-pair-first-y-GD-twenty-eighth-order-tail-bound` | blocked by coefficient-preserving successor tail bound |
+| `theta3minus.fold-pair-first-y-GD-directed-rounded-enclosure` | blocked by twenty-seventh-order tail bound |
 | `theta3minus.fold-pair-scaled-remainder-continuous-collar` | blocked by directed-rounded first-y $G,D$ enclosure |
 
 ## Successor Tail Coordinate
 
-The coefficient row exposes the correct next root-tail coordinate. Define
+The coefficient row exposes the finite next-successor root-tail coordinate. The
+now-certified finite tube uses
 
 $$
 h_\varepsilon(y,\nu)
 =
-h_{\varepsilon,\le25}(y,\nu)
-+y^{26}Z_\varepsilon(y,\nu),
+h_{\varepsilon,\le26}(y,\nu)
++y^{27}W_\varepsilon(y,\nu),
 $$
 
-so that
+with predecessor-image relation
 
 $$
-Z_\varepsilon(0,\nu)=h_{26,\varepsilon}(\nu).
+Z_\varepsilon
+=
+h_{25,\varepsilon}
++yh_{26,\varepsilon}
++y^2W_\varepsilon.
 $$
 
-The finite successor tube should use the shifted residual
+The finite successor tube uses the shifted residual
 
 $$
-R_{\varepsilon,31}(y,Z,\nu)
+R_{\varepsilon,31}(y,W,\nu)
 =
 \operatorname{Shift}_{31}\!\left(
-F_\varepsilon(y,h_{\varepsilon,\le25}+y^{26}Z,\nu)
+F_\varepsilon(y,h_{\varepsilon,\le26}+y^{27}W,\nu)
 \right).
 $$
 
 The expected branch orientation is inherited from the fold-local slope
 
 $$
-\partial_ZR_{\varepsilon,31}=J_\varepsilon.
+\partial_WR_{\varepsilon,31}=J_\varepsilon.
 $$
 
-After that finite next-successor $Z_\varepsilon$ tube is certified, the
-quotient-tail successor is
+After the finite next-successor $W_\varepsilon$ tube and lower coefficient
+cancellations through $y^{28}$ are certified, the quotient-tail successor is
 
 $$
 T_G^{(27)}
@@ -190,7 +198,9 @@ $$
 T_D^{(27)}
 =
 -28T_G^{(27)}
--y\partial_yT_G^{(27)}.
+-\mathcal D_y^{(W)}T_G^{(27)},
+\qquad
+\mathcal D_y^{(W)}=y\partial_y+\Xi_\varepsilon\partial_W.
 $$
 
 The next quotient-tail budget floors are

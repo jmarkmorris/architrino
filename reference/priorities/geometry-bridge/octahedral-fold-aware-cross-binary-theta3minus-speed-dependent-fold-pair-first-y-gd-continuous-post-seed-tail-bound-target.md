@@ -11,11 +11,15 @@ coefficient are certified. The finite $\operatorname{Shift}_{29}$ successor
 root-tail tube is now also certified. A valid C1 attempt on that certified
 $Z_\varepsilon$ tube produced a rigorous obstruction for the broad factored
 positive-y interval evaluator, and the coefficient chain then advanced one
-more row to the certified $h_{26}$, $Q_{G,26}$, and $Q_{D,26}$ row. The live
-constructive problem is therefore the next finite
-$\operatorname{Shift}_{31}$ root-tail tube followed by the continuous
-twenty-seventh-order $G,D$ quotient-tail bound, without dividing by a
-zero-touching $y$ interval.
+more row to the certified $h_{26}$, $Q_{G,26}$, and $Q_{D,26}$ row. The finite
+$\operatorname{Shift}_{31}$ next-successor root-tail tube is now certified. The
+root-tangent C1 attempt on that certified $W_\varepsilon$ tube proves that the
+broad positive-y interval evaluator is still too wide. The lower numerator
+coefficients through $y^{28}$ are certified to contain zero before any
+$y^{29}$ division, and the successor coefficient row now certifies
+$h_{27}$, $Q_{G,27}$, and $Q_{D,27}$. The live constructive problem is
+therefore the coefficient-preserving twenty-eighth-order $G,D$ successor tail,
+without dividing by a zero-touching $y$ interval.
 
 The next certificate should not use the broad finite $E_\varepsilon$ tube as the
 post-seed tail coordinate. The sharper zero-touching coordinate is
@@ -534,7 +538,7 @@ exceeds the inherited $D$ budget by a positive interval margin. This does not
 disprove the tail theorem; it proves that the broad factored positive-y C1
 interval model is too wide.
 
-## Closed Twenty-Sixth-Order Coefficient Row
+## Closed Twenty-Sixth- And Twenty-Seventh-Order Coefficient Rows
 
 The next coefficient row can still be certified at the $y=0$ endpoint. Let
 
@@ -573,54 +577,98 @@ B_{G,27}=1.15377790014\times10^{73},
 B_{D,27}=1.15370158828\times10^{73}.
 $$
 
-The live constructive successor is no longer the broad C1
-$T_G^{(26)},T_D^{(26)}$ evaluator on the predecessor tube. It is the finite
-next-successor root-tail tube
+The broad C1 $T_G^{(26)},T_D^{(26)}$ evaluator on the predecessor tube is not
+the live route. The finite next-successor root-tail tube is now certified:
 
 $$
-R_{\varepsilon,31}(y,Z,\nu)
+R_{\varepsilon,31}(y,W,\nu)
 =
 \operatorname{Shift}_{31}\!\left(
-F_\varepsilon(y,h_{\varepsilon,\le25}+y^{26}Z,\nu)
+F_\varepsilon(y,h_{\varepsilon,\le26}+y^{27}W,\nu)
 \right),
 \qquad
-\partial_ZR_{\varepsilon,31}=J_\varepsilon,
+\partial_WR_{\varepsilon,31}=J_\varepsilon,
 $$
 
-followed by the zero-safe tails
+The executable $\operatorname{Shift}_{31}$ packet certifies $3840$ positive-y
+rows, minimum endpoint clearance $7.87633458815\times10^{17}$, minimum
+$\partial_WR_{\varepsilon,31}$ clearance $0.791609030534$, induced predecessor
+$Z_\varepsilon$ containment, and shifted trigonometric remainder at most
+$9.14082344368\times10^{-158}$.
+
+The twenty-seventh-order post-$U$ successor coefficient packet then certifies
 
 $$
-T_G^{(27)}
+h_{27,\varepsilon}
+\in[-5.42114282999\times10^{15},5.42121259771\times10^{15}],
+$$
+
+$$
+Q_{G,27}
+\in[-4.61813833997\times10^{15},4.61813833997\times10^{15}],
+\qquad
+Q_{D,27}
+\in[-1.29307873519\times10^{17},1.29307873519\times10^{17}],
+$$
+
+with
+
+$$
+Q_{D,27}+28Q_{G,27}\ni0.
+$$
+
+The remaining budgets become
+
+$$
+B_{G,28}=6.42102483554\times10^{75},
+\qquad
+B_{D,28}=6.4206001435\times10^{75}.
+$$
+
+The live zero-safe tails are now
+
+$$
+T_G^{(28)}
 =
-\operatorname{Shift}_{29}
+\operatorname{Shift}_{30}
 \left(
-P-L-y^2A_{G,26}
+P-L-y^2A_{G,27}
 \right),
 \qquad
-Q_G=A_{G,26}+y^{27}T_G^{(27)},
+Q_G=A_{G,27}+y^{28}T_G^{(28)},
 $$
 
 and
 
 $$
-T_D^{(27)}
+T_D^{(28)}
 =
-\operatorname{Shift}_{29}
+\operatorname{Shift}_{30}
 \left(
-D_{\mathrm{pair}}-L-y^2A_{D,26}
+D_{\mathrm{pair}}-L-y^2A_{D,27}
 \right),
 \qquad
-Q_D=A_{D,26}+y^{27}T_D^{(27)}.
+Q_D=A_{D,27}+y^{28}T_D^{(28)}.
 $$
 
 The preserved correlated identity is
 
 $$
-T_D^{(27)}
+T_D^{(28)}
 =
--28T_G^{(27)}
--y\partial_yT_G^{(27)}.
+-29T_G^{(28)}
+-\mathcal D_y^{(W)}T_G^{(28)},
+\qquad
+\mathcal D_y^{(W)}
+=
+y\partial_y+\Xi_\varepsilon\partial_W,
+\qquad
+\Xi_\varepsilon=-\frac{y\,\partial_yR_{\varepsilon,31}}{J_\varepsilon}.
 $$
+
+The displayed $y\partial_y$ in the formal coefficient identity must therefore
+be implemented as the total derivative along the certified
+$W_\varepsilon$ root graph, not as a constant-$W$ derivative.
 
 ## Certificate Requirements
 
@@ -641,20 +689,41 @@ A valid executable successor must certify:
   twenty-sixth-order evaluator, so that future work does not reuse the invalid
   constant-$Z$ derivative route or overclaim the wide C1 interval result;
 - the imported $h_{26}$ successor coefficient and twenty-seventh-order budgets;
-- the finite $\operatorname{Shift}_{31}$ next-successor $Z_\varepsilon$
-  root-tail tube and its induced predecessor-tube containment;
-- lower coefficient containment through $y^{28}$ before applying
+- the imported finite $\operatorname{Shift}_{31}$ next-successor
+  $W_\varepsilon$ root-tail tube and its induced predecessor $Z_\varepsilon$
+  tube containment;
+- the recorded C1 obstruction for the broad factored positive-y
+  twenty-seventh-order evaluator, so that future work preserves coefficient
+  cancellations before dividing by $y^{29}$;
+- the certified lower coefficient containment through $y^{28}$ before applying
   $\operatorname{Shift}_{29}$ to the $G,D$ tail numerators;
+- the imported $h_{27}$ successor coefficient and twenty-eighth-order budgets;
+- a coefficient-preserving twenty-eighth-order successor-tail enclosure for
+  $P-L-y^2A_{G,27}$ and $D_{\mathrm{pair}}-L-y^2A_{D,27}$;
 - the identity residual
-  $T_D^{(27)}+28T_G^{(27)}+y\partial_yT_G^{(27)}$ contains zero;
+  $T_D^{(28)}+29T_G^{(28)}+\mathcal D_y^{(W)}T_G^{(28)}$ contains zero;
 - a factored $C^1$ quotient/inverse Taylor-model remainder on the certified
   successor root graph, including the implicit root-tangent term
   $\Xi_\varepsilon=-y\,\partial_yR_{\varepsilon,31}/J_\varepsilon$, because the
   direct positive-y quotient rows do not provide a zero-endpoint proof and the
-  broad predecessor tube does not preserve the post-$h_{26}$ cancellations;
+  broad predecessor tube does not preserve the post-$h_{27}$ cancellations;
 - no raw division by a zero-touching $y$ interval.
 
-This target may close the zero-touching continuous post-seed $G,D$ tail bound
-on the next certified finite $Z_\varepsilon$ successor tube. It must not claim
-full first-y quotient enclosure, scaled remainder closure, `I1` closure,
-interval quadrature, or retained branch status by itself.
+The broad C1 attempt on the certified $W_\varepsilon$ tube gives a rigorous
+obstruction, not closure: on the worst row
+`speed.0.first-y-positive.1.pair`, the shifted numerator enclosure is already
+about $1.1\times10^{-4}$ wide before the $y^{29}$ division, giving
+$\sup|T_G^{(27)}|\le3.80666108795\times10^{110}$ and
+$\sup|\mathcal D_y^{(W)}T_G^{(27)}|\le4.03517714144\times10^{128}$ against
+$B_{D,27}=1.15370158828\times10^{73}$.
+
+The coefficient-preserving lower-cancellation certificate closes the first half
+of that successor route: all coefficients $y^0$ through $y^{28}$ of
+$P-L-y^2A_{G,26}$ and $D_{\mathrm{pair}}-L-y^2A_{D,26}$ contain zero on all
+$128$ speed cells, with no raw $y$ inverse and no $y^{29}$ division. A
+twenty-seventh-order coefficient successor then certifies the $Q_{G,27}$ and
+$Q_{D,27}$ constant term. A successful successor must therefore enclose only
+the twenty-eighth-order tail in a Taylor or Taylor-inverse quotient model while
+retaining the root-tangent operator. It must not claim full first-y quotient
+enclosure, scaled remainder closure, `I1` closure, interval quadrature, or
+retained branch status by itself.
