@@ -15,7 +15,7 @@ The case is observationally anchored in thermal spectra and cosmologically sharp
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-This is the cleaner replacement for listing "UV divergence" as an observational case. $\mathbb{A}\mathbb{A}\mathbb{A}$ should use blackbody radiation to test photon Gate C, basin measures, thermalization depth, and CMB handoff. The target is not to import quantization as a postulate, but to recover a stable occupancy law for coaxial contra-rotating pro/anti planar pair modes interacting with matter and the Noether Sea.
+This is the cleaner replacement for listing "UV divergence" as an observational case. $\mathbb{A}\mathbb{A}\mathbb{A}$ should use blackbody radiation to test photon Gate C, basin measures, thermalization depth, and CMB handoff. The target is not to import quantization as a postulate, but to recover a stable occupancy law for coaxial contra-rotating pro/anti planar pair modes interacting with matter and the Noether sea.
 
 ## Canon Representation
 
@@ -26,7 +26,7 @@ The AAA canon represented by this case is:
 | [Unknowns and Paradoxes](../../../content/markdown/aaa/philosophy-history/unknowns-paradoxes.md#the-uv-catastrophe-blackbody-divergence) | The ultraviolet catastrophe is evidence that continuum mode counting has exceeded its substrate-valid domain; finite high-frequency behavior must be derived from explicit microscopic degrees of freedom. |
 | [Crisis in Physics](../../../content/markdown/aaa/philosophy-history/crisis-in-physics.md#renormalization-uv-completion-and-continuum-excess) | UV completion and renormalization pressure are part of the broader continuum-excess problem: successful continuum calculation does not grant infinite primitive mode structure ontological status. |
 | [Radiation](../../../content/markdown/aaa/reactions/radiation.md#blackbody-limit) | Blackbody behavior is a Gate C ensemble theorem target requiring repeated emission, absorption, scattering, mode exchange, detailed balance, and zero effective photon chemical potential. |
-| [CMB](../../../content/markdown/aaa/cosmology/CMB.md#thermalization-depth-and-planck-recovery-target) | Cosmology-facing blackbody claims require thermalization depth, redshift handoff, damping, anisotropy, and polarization transfer through one shared Noether-Sea state map. |
+| [CMB](../../../content/markdown/aaa/cosmology/CMB.md#thermalization-depth-and-planck-recovery-target) | Cosmology-facing blackbody claims require thermalization depth, redshift handoff, damping, anisotropy, and polarization transfer through one shared Noether sea state map. |
 | [Energy](../../../content/markdown/aaa/dynamics/energy.md#appendix-a-energy-zero-and-bookkeeping) and [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md) | The high-frequency cutoff side must be grounded in the hard inner cutoff / maximum-curvature boundary, not in an arbitrary fitted regulator. |
 | [Mapping the Planck Scale](../../../content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-swarm-alignment.md#thesis) and [Singularity Resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md#canonical-strong-field-alignment-condition) | Planck-scale language maps to an alignment condition in strong-field contexts; it should not be treated as a free continuum cutoff unless the alignment variables are present. |
 
@@ -34,7 +34,7 @@ Claim split:
 
 | Bucket | Blackbody / UV-divergence claim |
 | --- | --- |
-| Ontology | The continuum mode count is not primitive. Photon output is carried by coaxial contra-rotating pro/anti planar pair modes, and high-frequency attempts must remain within admitted assembly and Noether-Sea configurations. |
+| Ontology | The continuum mode count is not primitive. Photon output is carried by coaxial contra-rotating pro/anti planar pair modes, and high-frequency attempts must remain within admitted assembly and Noether sea configurations. |
 | Derivation-closure target | Recover Planck occupation, mode density, detailed balance, thermalization depth, and zero effective photon chemical potential from assembly return maps and event ledgers. |
 | Effective summary | Planck's law, Rayleigh-Jeans divergence, and CMB blackbody measurements are comparison objects used to test the mapping. |
 | Open / speculative component | The exact relationship between the local maximum-curvature scale, the Planck-alignment scale, and the effective photon-channel mode density remains to be derived. |

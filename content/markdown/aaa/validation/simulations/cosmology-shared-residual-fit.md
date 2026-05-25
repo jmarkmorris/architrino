@@ -1,6 +1,6 @@
 # Cosmology Shared Residual Fit Protocol
 
-This protocol turns the shared calibration gate in [Dark Energy](../../cosmology/dark-energy.md#inference-dependency-and-calibration-gates) into a first machine-checkable validation scaffold. Its purpose is narrow: test whether supernova, BAO, CMB, weak-lensing, redshift-space-distortion, BBN, and pre-BBN comparison packets can consume one shared Noether-Sea state record without silently replacing the state per observable family.
+This protocol turns the shared calibration gate in [Dark Energy](../../cosmology/dark-energy.md#inference-dependency-and-calibration-gates) into a first machine-checkable validation scaffold. Its purpose is narrow: test whether supernova, BAO, CMB, weak-lensing, redshift-space-distortion, BBN, and pre-BBN comparison packets can consume one shared Noether sea state record without silently replacing the state per observable family.
 
 This is not a cosmological parameter fit and not an empirical claim. The first runtime artifact is a mock packet that fixes the object shape, residual accounting, projection-penalty semantics, gates, and failure codes that a real survey-facing packet must later populate.
 
@@ -14,7 +14,7 @@ $$
 \{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{WL},\mathrm{RSD},\mathrm{BBN},\mathrm{PREBBN}\}.
 $$
 
-For each family $X\in\mathcal{X}_{\mathrm{cos}}$, the packet records a residual vector $r_X$, a covariance object $C_X$, nuisance/calibration context $\nu_X$, and a projection $\Pi_X\theta_{\mathrm{sea}}$ of the shared Noether-Sea state record into that family. The scaffold computes
+For each family $X\in\mathcal{X}_{\mathrm{cos}}$, the packet records a residual vector $r_X$, a covariance object $C_X$, nuisance/calibration context $\nu_X$, and a projection $\Pi_X\theta_{\mathrm{sea}}$ of the shared Noether sea state record into that family. The scaffold computes
 
 $$
 \mathcal{R}_X
@@ -80,7 +80,7 @@ r_{\mathrm{growth}}
 \frac{P^\theta(k,z)-P^{\mathrm{obs}}(k,z)}{\sigma_P}
 \right),
 $$
-and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any Noether-Sea state interpretation is promoted.
+and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any Noether sea state interpretation is promoted.
 
 The source-mined empirical packet should retain the following benchmark families without turning them into separate gates:
 
@@ -191,7 +191,7 @@ g_{\mathrm{bar}}(r)
 g_{\mathrm{med}}^\theta(r,E_{\mathrm{gal}}),
 $$
 
-where $g_{\mathrm{med}}^\theta$ is only the Noether-Sea response projection being tested against a MOND-like comparison residual. To make the galaxy-vs-cluster split measurable, the same packet should evaluate $a_\star(E)$ and $f_\star(E)$ at both $E_{\mathrm{gal}}$ and $E_{\mathrm{cl}}$. Passing the galaxy rotation-curve, BTFR, and RAR rows while failing the cluster rows below is not promotable as a shared-state success. These rows are not a request to add a new fundamental scalar-fluid ontology. Their purpose is to prevent a packet from fitting CMB and matter power data with one effective dark component while fitting galaxy, cluster, and merger accelerations with a separately tuned Noether-Sea law.
+where $g_{\mathrm{med}}^\theta$ is only the Noether sea response projection being tested against a MOND-like comparison residual. To make the galaxy-vs-cluster split measurable, the same packet should evaluate $a_\star(E)$ and $f_\star(E)$ at both $E_{\mathrm{gal}}$ and $E_{\mathrm{cl}}$. Passing the galaxy rotation-curve, BTFR, and RAR rows while failing the cluster rows below is not promotable as a shared-state success. These rows are not a request to add a new fundamental scalar-fluid ontology. Their purpose is to prevent a packet from fitting CMB and matter power data with one effective dark component while fitting galaxy, cluster, and merger accelerations with a separately tuned Noether sea law.
 
 For cluster-facing rows, include the hydrostatic/lensing equality packet
 
@@ -209,7 +209,7 @@ r_{\mathrm{cl}}
 \right).
 $$
 
-This row is a success marker under the existing shared-state gate, not a new standalone gate. It records whether the same Noether-Sea state packet can recover cluster gas temperature, SZ pressure, lensing potential, dynamical potential, and Bullet-like lensing/galaxy/gas peak separation without changing the acceleration law between observables.
+This row is a success marker under the existing shared-state gate, not a new standalone gate. It records whether the same Noether sea state packet can recover cluster gas temperature, SZ pressure, lensing potential, dynamical potential, and Bullet-like lensing/galaxy/gas peak separation without changing the acceleration law between observables.
 
 Merger-facing rows may be attached to the same cluster or dark-sector observable family when the packet claims regime-dependent behavior:
 
@@ -234,7 +234,7 @@ The runtime packet should preserve this shape even when a later empirical packet
 | --- | --- | --- |
 | `metadata` | run identifier, source commit when available, input provenance, fit family, and declared comparison level | makes the packet reproducible |
 | `required_families` | required observable families, defaulting to `SN`, `BAO`, `CMB`, `WL`, `RSD`, `BBN`, and `PRE_BBN` | prevents cherry-picking a subset of cosmology constraints |
-| `theta_sea` | shared dimensionless state record used by all projections | names the single Noether-Sea state candidate under test |
+| `theta_sea` | shared dimensionless state record used by all projections | names the single Noether sea state candidate under test |
 | `observables` | one row per family with residual vector, covariance, nuisance/calibration note when available, and projection coordinates | supplies $\mathcal{R}_X$ and $\Pi_X\theta_{\mathrm{sea}}$ |
 | `projection_weights` | dimensionless weights $w_a$ for common projection coordinates | makes the split penalty explicit rather than rhetorical |
 | `lambda` | nonnegative coefficient multiplying the projection penalty | controls how strongly shared-state incompatibility is penalized |
@@ -242,7 +242,7 @@ The runtime packet should preserve this shape even when a later empirical packet
 | `gates` | pass/fail records for coverage, residual total, projection penalty, projection overlap, and total shared residual | turns the comparison into an auditable decision surface |
 | `failure_code` | null on pass, otherwise the first failed gate | gives follow-up work a stable repair target |
 
-The current mock packet uses normalized comparison coordinates such as `H_norm`, `w_eff`, `n`, `chi_sea`, `G_growth`, `Y_BBN`, `Delta_N_eff`, `lambda_fs`, and `Omega_GW`. These are not new ontology. They are dimensionless placeholders for observer-level expansion, equation-of-state, normalized Noether swarm density, Noether-Sea delay, growth-response, BBN-yield, relativistic-species, free-streaming, and stochastic-gravitational-wave comparison channels.
+The current mock packet uses normalized comparison coordinates such as `H_norm`, `w_eff`, `n`, `chi_sea`, `G_growth`, `Y_BBN`, `Delta_N_eff`, `lambda_fs`, and `Omega_GW`. These are not new ontology. They are dimensionless placeholders for observer-level expansion, equation-of-state, normalized Noether swarm density, Noether sea delay, growth-response, BBN-yield, relativistic-species, free-streaming, and stochastic-gravitational-wave comparison channels.
 
 ## Pre-BBN Branch Packet
 
@@ -400,4 +400,4 @@ A real shared-state packet becomes promotable only if:
 6. any included `frame_split` packet passes coverage, residual, projection, angle, and shared-score gates;
 7. the same $\theta_{\mathrm{sea}}$ also remains compatible with the cosmology sector predicate in [Failure Criteria](../failure-criteria.md#sector-acceptance-sets).
 
-Failure is informative. If the ordinary residual passes but the projection penalty fails, the candidate has fit the data products while splitting the Noether-Sea state record. If the projection penalty passes but an observable residual fails, the shared state is coherent but not yet accurate. If coverage fails, the packet is not a cosmology closure artifact.
+Failure is informative. If the ordinary residual passes but the projection penalty fails, the candidate has fit the data products while splitting the Noether sea state record. If the projection penalty passes but an observable residual fails, the shared state is coherent but not yet accurate. If coverage fails, the packet is not a cosmology closure artifact.

@@ -60,7 +60,7 @@ $$
 L:\mathrm{Sym}^{2}_{0}(h)\to\mathrm{Sym}^{2}_{0}(h)
 $$
 
-be a linear medium-response susceptibility. If the response is isotropic in the homogeneous Noether-Sea reference cell, then
+be a linear medium-response susceptibility. If the response is isotropic in the homogeneous Noether sea reference cell, then
 
 $$
 L(RXR^T)=RL(X)R^T
@@ -180,7 +180,7 @@ $$
 }
 $$
 
-This same-units row should not be read as a derived Noether-Sea law. It is the exact susceptibility that a retained medium-response row must derive if the ADM/Cartan projection consumes $\delta\mathcal Z_{\mathrm{oct,tf}}^{ab}$ with $\lambda_Z=\lambda_M$.
+This same-units row should not be read as a derived Noether sea law. It is the exact susceptibility that a retained medium-response row must derive if the ADM/Cartan projection consumes $\delta\mathcal Z_{\mathrm{oct,tf}}^{ab}$ with $\lambda_Z=\lambda_M$.
 
 ## Candidate Storage Density
 
@@ -259,7 +259,7 @@ $$
 M_*^{ab}=-r_{ZM}Z^{ab},
 $$
 
-and its storage density is nonnegative before the medium tensor is eliminated. If $Z$ is varied rather than treated as a prescribed exposure source, the exposure-conjugate term from $D_Z\mathcal F_{\mathrm{sea,tf}}^\square$ must be ledgered in the same branch-local virtual-work row as the delayed-force and Noether-Sea pairings.
+and its storage density is nonnegative before the medium tensor is eliminated. If $Z$ is varied rather than treated as a prescribed exposure source, the exposure-conjugate term from $D_Z\mathcal F_{\mathrm{sea,tf}}^\square$ must be ledgered in the same branch-local virtual-work row as the delayed-force and Noether sea pairings.
 
 ## Pressure-Scaffold Link
 
@@ -295,11 +295,11 @@ This is not an independent pressure fit. It is the mechanism decomposition of th
 
 ## Admissibility Burden
 
-The susceptibility row is admissible only when it is emitted as a Noether-Sea response object, not when it is inserted as a residual-canceling fit. A retained packet must supply the same fields required by the medium-response closure theorem:
+The susceptibility row is admissible only when it is emitted as a Noether sea response object, not when it is inserted as a residual-canceling fit. A retained packet must supply the same fields required by the medium-response closure theorem:
 
 | Field | Required payload for this candidate |
 | --- | --- |
-| `medium_state` | branch-local Noether-Sea variables $\mathcal N_B$ and event interval |
+| `medium_state` | branch-local Noether sea variables $\mathcal N_B$ and event interval |
 | `response_map` | $\mathcal M_{\mathrm{resp}}$ whose trace-free export gives $M=\kappa_ZZ$ |
 | `response_force` | $\widetilde{\mathbf F}_{\mathrm{sea}}$ and projection convention |
 | `response_lipschitz` | local bound $L_{\mathrm{sea}}$ on the retained root chart |
@@ -357,7 +357,7 @@ $$
 \boxed{\kappa_Z=-r_{ZM}.}
 $$
 
-It also gives a local storage-density candidate whose stationarity produces that susceptibility. The remaining burden is not to invent another gate, but to derive or reject this response row from a retained Noether-Sea branch object with action, conservation, and root-sensitive curl accounting.
+It also gives a local storage-density candidate whose stationarity produces that susceptibility. The remaining burden is not to invent another gate, but to derive or reject this response row from a retained Noether sea branch object with action, conservation, and root-sensitive curl accounting.
 
 ## Promotion Decision
 
@@ -366,6 +366,6 @@ This packet remains `priority-only`. It is too branch-diagnostic for direct corp
 The promotion-ready theorem target, once those burdens are met, is:
 
 $$
-\text{A retained isotropic trace-free Noether-Sea susceptibility closes the octahedral axial ADM/Cartan residual at first order iff }
+\text{A retained isotropic trace-free Noether sea susceptibility closes the octahedral axial ADM/Cartan residual at first order iff }
 \kappa_Z=-\lambda_Z/\lambda_M.
 $$

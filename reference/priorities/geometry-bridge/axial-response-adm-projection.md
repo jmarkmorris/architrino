@@ -105,7 +105,7 @@ $$
 \lambda_M\,\mu_{\mathrm{sea}}\varepsilon A^{ij}.
 $$
 
-Here $\lambda_Z$ and $\lambda_M$ are observer-projection coefficients, while $\mu_{\mathrm{sea}}$ is the axial Noether-Sea medium-response amplitude along the same branch axis. Then the axial residual is the scalar equation
+Here $\lambda_Z$ and $\lambda_M$ are observer-projection coefficients, while $\mu_{\mathrm{sea}}$ is the axial Noether sea medium-response amplitude along the same branch axis. Then the axial residual is the scalar equation
 
 $$
 \boxed{
@@ -183,7 +183,7 @@ $$
 This is the main closure advance of the packet. It separates two questions that were previously mixed:
 
 1. scalar weak-field potential matching, controlled by trace/lapse response;
-2. axial preferred-frame or shear leakage, controlled by trace-free exposure and Noether-Sea medium response.
+2. axial preferred-frame or shear leakage, controlled by trace-free exposure and Noether sea medium response.
 
 ## Status
 
@@ -191,7 +191,7 @@ This is the main closure advance of the packet. It separates two questions that 
 | --- | --- | --- |
 | scalar Weyl-versus-dynamical residual | `projection-split` | trace/lapse matching is separate from axial shear leakage |
 | axial leakage residual | `equation-closed` | $\mathcal R_{\mathrm{ax},B}^{ij}=(\lambda_Z\zeta_{\delta Z}+\lambda_M\mu_{\mathrm{sea}})\varepsilon A^{ij}$ |
-| Noether-Sea cancellation amplitude | `solved-symbolically` | $\mu_{\mathrm{sea}}=-(\lambda_Z/\lambda_M)\zeta_{\delta Z}$ when $\lambda_M\ne0$ |
+| Noether sea cancellation amplitude | `solved-symbolically` | $\mu_{\mathrm{sea}}=-(\lambda_Z/\lambda_M)\zeta_{\delta Z}$ when $\lambda_M\ne0$ |
 | isotropic observer-geometry claim from root ledger alone | `rejected-unless-cancelled` | nonzero $\zeta_{\delta Z}$ creates trace-free leakage if the projection consumes $\mathcal Z_{\mathrm{tf}}$ without cancellation |
 
-This packet remains `priority-only` because $\lambda_Z$, $\lambda_M$, and the Noether-Sea constitutive response are not yet derived from a retained dynamics/action branch. The branch-local mathematical consequence is closed: a nonzero trace-free root response must either be canceled by medium response, projected out with justification, or carried as an observer-facing anisotropy residual.
+This packet remains `priority-only` because $\lambda_Z$, $\lambda_M$, and the Noether sea constitutive response are not yet derived from a retained dynamics/action branch. The branch-local mathematical consequence is closed: a nonzero trace-free root response must either be canceled by medium response, projected out with justification, or carried as an observer-facing anisotropy residual.

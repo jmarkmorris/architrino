@@ -64,7 +64,7 @@ The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb
 
 The 2026-05-22 assessment raises the weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score from `59` to `61`. The increase is concentrated in notation, internal constituent dynamics, cross-regime bridge quality, and falsification discipline. It is not a coefficient-recovery jump: the central benchmark rows still lack a retained branch that recovers masses, Lorentz / PPN coefficients, photon-channel coefficients, Born/Bell measures, weak mixing, Standard Model masses, or cosmological residuals from one accepted native record.
 
-The largest corpus-side improvement is the Noether swarm taxonomy. The corpus now separates the broad neutral swarm, shell swarm, and nested shell swarm cases; treats exact binaries as a proof assumption rather than a naming axiom; and routes dynamic exclusion-envelope geometry into a dedicated nested shell swarm geometry chapter. That chapter adds a computable assembly/Noether-Sea interface diagnostic,
+The largest corpus-side improvement is the Noether swarm taxonomy. The corpus now separates the broad neutral swarm, shell swarm, and nested shell swarm cases; treats exact binaries as a proof assumption rather than a naming axiom; and routes dynamic exclusion-envelope geometry into a dedicated nested shell swarm geometry chapter. That chapter adds a computable assembly/Noether sea interface diagnostic,
 
 $$
 D_{a,X}(\mathbf{x},t)
@@ -80,7 +80,7 @@ $$
 
 with locked and ambient contributions built from the same causal-root kernel, Jacobian floors, branch records, channel projections, and ledger-derived tolerance scales. This justifies raising Axiom+Notation, Cross-Regime Bridge, Internal Constituent Dynamics, and Coverage+Interface Readiness, while keeping the claim below full closure because the interface diagnostic is still a recovery target rather than a validated medium-response theorem.
 
-The Noether-Sea branch embedding also improves the master-equation bridge. Local assembly branches are now stated as retained branches inside a surrounding Noether-Sea and nearby-assembly record:
+The Noether sea branch embedding also improves the master-equation bridge. Local assembly branches are now stated as retained branches inside a surrounding Noether sea state and nearby-assembly record:
 
 $$
 \mathcal{R}_{\mathrm{branch}}
@@ -103,7 +103,7 @@ F_{i,\mathrm{asm}}
 F_{i,\partial\Omega}.
 $$
 
-This is a concrete mathematical advance because it prevents isolated seed charts from being read as physical branch closure unless Noether Sea, assembly, and boundary residuals are statused. It supports modest increases in Master EOM+Local Dynamics, Potential+Action Closure, Conservation+Invariant Closure, Parameter+Scale Closure, and UV/IR+Regularization Completion.
+This is a concrete mathematical advance because it prevents isolated seed charts from being read as physical branch closure unless Noether sea, assembly, and boundary residuals are statused. It supports modest increases in Master EOM+Local Dynamics, Potential+Action Closure, Conservation+Invariant Closure, Parameter+Scale Closure, and UV/IR+Regularization Completion.
 
 Executable neutral-swarm diagnostics add negative evidence and sharper first-failure semantics. The current sampled octahedral root-ledger diagnostic passes the all-pairs sampled root/Jacobian screen, while the rigid zero-offset fixed-speed row is rejected by a nonzero tangential residual witness and an ordinary same-source positive-delay no-go. These artifacts improve falsification readiness and empirical/simulation discipline because they report `not_retained` rather than converting a failed seed into branch evidence. The score increase is deliberately small because sampled diagnostics, no-go witnesses for one rigid seed, and finite-mode search schemas do not yet replace an interval-certified all-pairs root ledger, action/Noether row, event ledger, stability certificate, or observer-export recovery.
 
@@ -125,15 +125,15 @@ The 2026-05-19 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ sc
 
 The largest score changes come from the proof and validation surfaces. The collinear-breather and Master EOM material now contain stronger dual-mollified branch-chart, finite-certificate, fold-layer, impulse-bound, continuity, and self-map structures. The $A_0$ branch-certificate protocol and run protocols now specify machine-checkable residual vectors, gate semantics, artifact lists, hidden-tuning failures, and promotion boundaries. These additions justify higher scores for Master EOM+Local Dynamics, Potential+Action Closure, UV/IR+Regularization Completion, Falsification Gates, and Empirical Precision+Benchmark Validation.
 
-Formula, parameter, and cross-regime scores also rise because the corpus now separates exact SI conventions from adjusted CODATA benchmark rows, states the high-pressure roles of $\alpha$, $m_p/m_e$, $R_\infty$, particle masses, and $G$, and gives the hydrogen $\Gamma_N$ spectral row an executable shared-row scaffold rather than a per-line fit. The electroweak, weak-mixing, CKM/PMNS, Higgs, mass-map, Noether Sea, and cosmology files now expose more of the required shared-record structure across particle, atomic, gravitational, thermodynamic, and cosmological regimes.
+Formula, parameter, and cross-regime scores also rise because the corpus now separates exact SI conventions from adjusted CODATA benchmark rows, states the high-pressure roles of $\alpha$, $m_p/m_e$, $R_\infty$, particle masses, and $G$, and gives the hydrogen $\Gamma_N$ spectral row an executable shared-row scaffold rather than a per-line fit. The electroweak, weak-mixing, CKM/PMNS, Higgs, mass-map, Noether sea, and cosmology files now expose more of the required shared-record structure across particle, atomic, gravitational, thermodynamic, and cosmological regimes.
 
-The total remains far below modern operational closure because the decisive derivations are still open. The first certified $A_0$ branch has not passed; $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are not accepted outputs; Lorentz, PPN, redshift, and photon-channel coefficients still lack one accepted Noether-Sea constitutive map; Born/Bell closure still has negative controls and measure targets rather than a positive pair-provenance theorem; Standard Model mixing and mass formulas remain shared-record theorem targets; and cosmology has a shared residual scaffold but not a fit to SN, BAO, CMB, growth, BBN, and pre-BBN rows with one $\theta_{\mathrm{sea}}$.
+The total remains far below modern operational closure because the decisive derivations are still open. The first certified $A_0$ branch has not passed; $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are not accepted outputs; Lorentz, PPN, redshift, and photon-channel coefficients still lack one accepted Noether sea constitutive map; Born/Bell closure still has negative controls and measure targets rather than a positive pair-provenance theorem; Standard Model mixing and mass formulas remain shared-record theorem targets; and cosmology has a shared residual scaffold but not a fit to SN, BAO, CMB, growth, BBN, and pre-BBN rows with one $\theta_{\mathrm{sea}}$.
 
 ## 2026-05-16 Assessment Notes
 
 The 2026-05-16 assessment is rescored under the validated-closure lens. The previous $\mathbb{A}\mathbb{A}\mathbb{A}$ columns were removed because they used a softer equal-weight closure lens that allowed architecture, coverage, and auditability to dominate the total.
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ still scores very high in Theory Architecture+Ontic Logic because the corpus has a coherent substrate-first architecture, explicit causal-wake ontology, delayed Master Equation of Motion, Noether-Sea bridge program, and strong cross-document logic. That score is intentionally preserved rather than diluted.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ still scores very high in Theory Architecture+Ontic Logic because the corpus has a coherent substrate-first architecture, explicit causal-wake ontology, delayed Master Equation of Motion, Noether sea bridge program, and strong cross-document logic. That score is intentionally preserved rather than diluted.
 
 The total is much lower because the central tested-physics closures remain open. The first certified $A_0$ branch is still absent, $\zeta(A)$ and $E_{\text{internal}}(A)$ are not extracted for a mass map, Lorentz and PPN coefficients are not yet derived from accepted attractors, Born-rule and Bell closure remain source-measure targets, weak `V-A` and CKM/PMNS quantitative closure are open, cosmology lacks an empirical shared-state fit, and UV/IR completion still depends on terminal-alignment, singularity, horizon-entropy, and effective-GR recovery proofs.
 

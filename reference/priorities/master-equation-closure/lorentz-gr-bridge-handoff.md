@@ -14,7 +14,7 @@ Source anchors inspected for this handoff:
 The bridge has two proof stages.
 
 1. Moving-assembly extraction: a retained moving tri-binary branch must supply contraction, clock-retuning, and two-way leakage rows from one branch ledger.
-2. Weak-field medium response: only after the moving-assembly packet closes may the coarse-grained Noether-Sea record be projected into ADM/Cartan variables and PPN residuals.
+2. Weak-field medium response: only after the moving-assembly packet closes may the coarse-grained Noether sea record be projected into ADM/Cartan variables and PPN residuals.
 
 The first stage is blocked by `spiral_branch_chart_test`. The second stage can be prepared as a coefficient and residual contract, but it cannot be evaluated until the first stage supplies a branch class and a shared clock/ruler ledger.
 
@@ -194,7 +194,7 @@ before leakage terms. These numbers are not a closure claim; they are a diagnost
 
 ## Clock-Row Handoff
 
-The proper-time channel consumes the same moving branch through the Noether-Sea cadence stretch
+The proper-time channel consumes the same moving branch through the Noether sea cadence stretch
 
 $$
 \Gamma_N(\mathbf{x},t)
@@ -341,7 +341,7 @@ B^i{}_j w^j\frac{U}{c_0^2}
 +O(c_0^{-5},\epsilon_{\mathrm{LV}}).
 $$
 
-These coefficient rows must be derived from one retained Noether-Sea record. The bridge is not admissible if clock redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals require separate fitted records.
+These coefficient rows must be derived from one retained Noether sea record. The bridge is not admissible if clock redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals require separate fitted records.
 
 ## PPN And Leakage Variables
 

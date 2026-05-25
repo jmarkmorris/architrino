@@ -358,7 +358,7 @@ U_{\mathrm{supp}}(\rho_i,u)
 =0;
 $$
 
-4. nonzero support exchange is explicitly assigned to the Noether-Sea/event ledger:
+4. nonzero support exchange is explicitly assigned to the Noether sea/event ledger:
 
 $$
 \mathcal{W}_{\mathrm{supp}}^\nu(W)
@@ -505,7 +505,7 @@ $$
 2. the action scale row derives $\Gamma_B^\nu=E_\epsilon(R_*)/(m_{\mathrm{car}}c_f^2)$ or emits a tensorial inertia row;
 3. the support barriers $B_i^\pm\le0$ pass viability and have multipliers $\mu_i^\pm\ge0$ satisfying complementarity;
 4. the support virtual-work one-form $\omega_{\mathrm{supp}}^\nu$ is included in the total one-form or replaced by an equivalent variational inequality;
-5. the support work over every declared closed branch window vanishes, is periodic-potential exact, or is assigned to the Noether-Sea/event exchange ledger;
+5. the support work over every declared closed branch window vanishes, is periodic-potential exact, or is assigned to the Noether sea/event exchange ledger;
 6. all Noether currents use the same root, speed-factor, support, action, endpoint, and event conventions.
 
 Then the radial/free-support rows are action-compatible: their multiplier contribution is part of $\mathcal{S}_{\mathrm{constraints}}^\nu$, their support work is not hidden external power, and the bounded-speed Noether conservation envelope may include them through $\mathcal{R}_{\zeta,\mathrm{supp}}^\nu$. In the zero-error closed-branch limit with no sea/event support exchange,
@@ -528,7 +528,7 @@ This theorem target does not prove existence of a branch. It states the compatib
 | --- | --- |
 | `support-scale-descriptor-collapsed` | $R_*$ is treated as the actual support radius without declaring the support descriptor |
 | `support-multiplier-missing` | active support barriers are used in dynamics but no multiplier, potential, or variational inequality row is supplied |
-| `support-work-unledgered` | $\mathcal{W}_{\mathrm{supp}}^\nu(W)\ne0$ and no Noether-Sea/event exchange row absorbs it |
+| `support-work-unledgered` | $\mathcal{W}_{\mathrm{supp}}^\nu(W)\ne0$ and no Noether sea/event exchange row absorbs it |
 | `support-noether-breaking-external-center` | translation or rotation currents are claimed while the support center or band is fixed to an external structure |
 | `support-clock-mismatch` | support work is evaluated in arclength while force, action, and Noether rows use bounded-speed causal time |
 | `support-action-ledger-mismatch` | support, force, action, speed-factor, or event rows use different root ledgers, endpoint conventions, or support descriptors |

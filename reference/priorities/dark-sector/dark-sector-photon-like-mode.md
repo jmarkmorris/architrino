@@ -9,7 +9,7 @@
 
 ## Working Thesis
 
-A dark-sector photon-like mode is a candidate assembly that is adjacent to the ordinary photon channel but is not initially an ordinary visible photon. The core speculation is that black-hole horizon interfaces may release compact, weakly visible assemblies whose internal ordering carries information from a strong-field or interior-adjacent state. These assemblies would climb an extreme gravitational well, redshift during propagation, interact with the Noether Sea and with other assemblies, and only later react, thermalize, shed ordinary photons, or re-enter a visible photon channel.
+A dark-sector photon-like mode is a candidate assembly that is adjacent to the ordinary photon channel but is not initially an ordinary visible photon. The core speculation is that black-hole horizon interfaces may release compact, weakly visible assemblies whose internal ordering carries information from a strong-field or interior-adjacent state. These assemblies would climb an extreme gravitational well, redshift during propagation, interact with the Noether sea and with other assemblies, and only later react, thermalize, shed ordinary photons, or re-enter a visible photon channel.
 
 This packet does not claim a standard dark photon, a settled hidden $U(1)$ gauge boson, or a confirmed Hawking-radiation correction. It preserves a candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly family until the theory can say what the object is, how it escapes, how it propagates, when it reacts, and what visible observables distinguish it from ordinary astrophysics.
 
@@ -21,7 +21,7 @@ The speculative pressure comes from several converging intuitions:
 
 - strong-field interiors may prepare assembly configurations that ordinary weak-field photon language does not classify;
 - a released packet may be dense because it has escaped from a steep gravitational well with compact internal action still bundled;
-- a dense packet may be highly reactive with other packets, visible-sector assemblies, or Noether Sea medium response;
+- a dense packet may be highly reactive with other packets, visible-sector assemblies, or Noether sea medium response;
 - redshift may not merely lower observer frequency, but may move internal binary velocities and radii across a branch threshold;
 - a dark-visible reaction channel could produce ordinary photons after transport, not at the horizon itself;
 - high-redshift compact red source populations, especially Little Red Dots, may provide a convergence test for hidden release plus reprocessing if ordinary models leave a repeated residual.
@@ -60,7 +60,7 @@ The first theory task is to ask whether propagation away from the black hole mov
 - **interleaved-radius event:** $R_I \approx R_M \approx R_O$ with three binaries phase-locked at the same radius;
 - **ratio-collapse event:** $\omega_I:\omega_M:\omega_O$ moves from a structured ratio such as `4:2:1` toward a degenerate or symmetric ratio;
 - **exposure event:** $\zeta_{\gamma}$ crosses a photon-channel visibility threshold;
-- **medium-response event:** the packet's residual exceeds a Noether Sea response threshold and must route into radiation, transport excitation, reaction, or branch transition.
+- **medium-response event:** the packet's residual exceeds a Noether sea response threshold and must route into radiation, transport excitation, reaction, or branch transition.
 
 The synchronized case is the wild branch worth preserving: all three binaries could momentarily become perfectly synchronized and interleaved at one radius while traveling at $v=c_f$. If such a state exists, it should be treated as a singular transition surface or separatrix, not as a stable claim. Its value is that it gives the dark-visible re-entry problem a concrete target: visible photons may appear when a dark packet can no longer preserve its hidden internal ordering under redshift and medium response.
 
@@ -81,7 +81,7 @@ $$
 \right).
 $$
 
-The candidate reaction can be described as a small architrino assembly bits shower in the Noether Sea only if that shower has explicit ledger entries:
+The candidate reaction can be described as a small architrino assembly bits shower in the Noether sea only if that shower has explicit ledger entries:
 
 - outgoing ordinary photons or photon-like radiation;
 - medium heating or medium-response update;
@@ -95,7 +95,7 @@ This keeps the speculation useful. The dark-sector mode may solve a mystery only
 
 The CMB version is the highest-risk extension. It should be kept as a testable possibility, not as a claim.
 
-Working possibility: a cosmic population of dark-sector photon-like modes from early strong-field release could redshift, thermalize through Noether Sea response, and later produce ordinary photons or photon-like visible radiation. If the reaction products thermalize deeply enough, they might contribute to a CMB-like background.
+Working possibility: a cosmic population of dark-sector photon-like modes from early strong-field release could redshift, thermalize through Noether sea response, and later produce ordinary photons or photon-like visible radiation. If the reaction products thermalize deeply enough, they might contribute to a CMB-like background.
 
 Immediate constraints:
 

@@ -21,7 +21,7 @@ This case can sharpen internal-state rotation and weak-sector exposure. The stan
 
 1. `internal_rotation` — Define the assembly-state rotation or branch-phase map that replaces mass-eigenstate phase accumulation. Status: `draft`.
 2. `weak_projection` — Connect detector flavor labels to weak exposure quotient and axial-frame orientation. Status: `draft`.
-3. `matter_effect_gate` — Express matter effects as material/Noether-Sea response without changing the vacuum mixing record. Status: `draft`.
+3. `matter_effect_gate` — Express matter effects as material/Noether sea response without changing the vacuum mixing record. Status: `draft`.
 
 ## Closure Objects
 

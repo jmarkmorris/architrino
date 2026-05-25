@@ -83,7 +83,7 @@ Require $p_{\mathrm{obs}}\ge 0.8$ for at least one primary field channel ($\Phi$
 - Provenance agreement must satisfy $D_W\le 0.08$ and $D_{JS}\le 0.03$.
 - The cross-integrator report must name solver family, interpolation policy, solver residual controls, and event/restart handling. If the compared runs select different active-root identities or transition statuses, the claim fails even if observable plots are close.
 
-5. Continuum moment refinement when a run promotes a coarse PDE, kinetic moment, or Noether-Sea transport equation:
+5. Continuum moment refinement when a run promotes a coarse PDE, kinetic moment, or Noether sea transport equation:
 - Pass if the retained density/current channel satisfies
   $$
   E_{\mathrm{rel}}(R_{\rho}^{\mathrm{cg}})\le0.03,

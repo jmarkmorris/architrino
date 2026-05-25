@@ -105,7 +105,7 @@ Nested shell swarm dynamics uses four levels of description:
 | Observer-inference exports | Rest mass, photon propagation, reconstructed kinematics, geodesics, and horizon behavior as later reconstructed by assembly-built observers. |
 | Inference and closure status | Mathematical closures that remain to be derived before effective claims can be treated as proved rather than reconstructed. |
 
-The distinction matters because the Euclidean void is not being curved at the substrate level. Curvature, geodesic motion, lapse, and horizon language enter only as observer-level bookkeeping reconstructed downstream from Noether-Sea state variables and assembly response.
+The distinction matters because the Euclidean void is not being curved at the substrate level. Curvature, geodesic motion, lapse, and horizon language enter only as observer-level bookkeeping reconstructed downstream from Noether sea state variables and assembly response.
 
 ## Speed Hierarchy
 
@@ -114,11 +114,11 @@ Several speed symbols must remain separated:
 | Symbol or phrase | Meaning |
 | --- | --- |
 | $c_f$ | Primitive wake propagation speed in the substrate. |
-| $c_{\text{eff}}(\mathbf{x},t)$ | Noether-Sea dressed assembly-channel propagation speed used only after a downstream observer-channel map has been declared. |
+| $c_{\text{eff}}(\mathbf{x},t)$ | Noether sea dressed assembly-channel propagation speed used only after a downstream observer-channel map has been declared. |
 | $c_\gamma(\mathbf{x},t)$ | Local photon-channel speed; equality with $c_{\text{eff}}(\mathbf{x},t)$ is a photon-channel closure target for the working observer-level photon branch, not a definition. |
 | Locally measured light speed | The operational speed reconstructed downstream from assembly periods, rulers, and photon synchronization. |
 
-The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. The effective speed $c_{\text{eff}}$ belongs to Noether-Sea dressed closure and observer-level comparisons. These are not interchangeable. Any diagnostic that moves from primitive wake geometry to observer-level periods, rulers, or photons must declare its dressing map outside the primitive branch calculation.
+The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. The effective speed $c_{\text{eff}}$ belongs to Noether sea dressed closure and observer-level comparisons. These are not interchangeable. Any diagnostic that moves from primitive wake geometry to observer-level periods, rulers, or photons must declare its dressing map outside the primitive branch calculation.
 
 ## Multi-Scale Layer Locking
 
@@ -472,7 +472,7 @@ $$
 \right).
 $$
 
-This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection and branch-period stretch come from different retained ledgers, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether-Sea cadence current used in cosmology.
+This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection and branch-period stretch come from different retained ledgers, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether sea cadence current used in cosmology.
 
 The first reduced validation model for this target is [Retuning-Map Toy Model](../validation/simulations/retuning-map-toy-model.md), with runtime script `scripts/nested-shell-swarm/retuning-map-toy-model.mjs`. That model solves the linearized constrained compliance problem and reports the induced $J_\nu$ estimate. It is a branch-bookkeeping scaffold, not delayed-dynamics validation.
 
@@ -1837,9 +1837,9 @@ This expression belongs to the primitive branch chart; downstream dressed-channe
 
 **Assumption (testable):** A strong external gradient (tidal field or effective curvature) perturbs the delay loop, altering phase closure and stability of rungs.
 
-**Origin of the gradient (model definition):** Gravitation is implemented as an emergent Noether-Sea response gradient, not as fundamental curvature of the Euclidean void. Dense collections of standard-model assemblies perturb Noether-Sea density, compliance, stress, effective potential, and terminal-alignment state. The effective gravitational field in this delay-geometry model is the observer-level reconstruction of those coupled gradients.
+**Origin of the gradient (model definition):** Gravitation is implemented as an emergent Noether sea response gradient, not as fundamental curvature of the Euclidean void. Dense collections of standard-model assemblies perturb Noether sea density, compliance, stress, effective potential, and terminal-alignment state. The effective gravitational field in this delay-geometry model is the observer-level reconstruction of those coupled gradients.
 
-**Geometry inputs:** Represent this gradient as a scalar control parameter $G_{\text{grad}}$ only in reduced scans, for example a magnitude extracted from Noether-Sea density/compliance/stress gradients, $\partial_r\Phi_{\text{eff}}$, or a tidal tensor. In simulations, treat $G_{\text{grad}}$ as a declared proxy around the outer-binary orbit and record which Noether-Sea response channel it compresses.
+**Geometry inputs:** Represent this gradient as a scalar control parameter $G_{\text{grad}}$ only in reduced scans, for example a magnitude extracted from Noether sea density/compliance/stress gradients, $\partial_r\Phi_{\text{eff}}$, or a tidal tensor. In simulations, treat $G_{\text{grad}}$ as a declared proxy around the outer-binary orbit and record which Noether sea response channel it compresses.
 
 **Expected effects to test:**
 - Differential path delays across the outer orbit (forward vs backward sector).
@@ -1871,7 +1871,7 @@ C_{\text{cyc}}(\mathbf{x})
 \equiv
 \frac{T_0}{T_{\text{local}}(\mathbf{x})}
 $$
-in the rest branch of the local Noether-Sea cell. This quantity is a dynamics-side period ratio, not a time coordinate.
+in the rest branch of the local Noether sea cell. This quantity is a dynamics-side period ratio, not a time coordinate.
 
 **Sector-delay diagnostic from delay geometry:** Define a reference round-trip delay $\Delta t_{\text{rt,ref}}$ and a local delay $\Delta t_{\text{rt}}(\theta, G_{\text{grad}})$. Then
 $$
@@ -1996,7 +1996,7 @@ The spacetime and observer-inference chapters may convert this packet into lapse
 
 ## Acceleration-Gradient Branch Comparison
 
-The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. A uniformly accelerated assembly and a stationary assembly placed in a matched Noether-Sea gradient should output compatible delay-geometry records on the same kind of branch packet:
+The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. A uniformly accelerated assembly and a stationary assembly placed in a matched Noether sea gradient should output compatible delay-geometry records on the same kind of branch packet:
 $$
 \mathcal{D}_{\mathrm{tri}}^{\mathrm{accel}}(W)
 \sim
@@ -2004,7 +2004,7 @@ $$
 $$
 with the comparison made from phase-closure residuals, anisotropy ratios, branch-period records, stability thresholds, and cycle-averaged causal-work or phase-slip variance.
 
-The ambient Noether Sea must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether-Sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported packets recover the usual local equivalence behavior. This chapter only asks whether the substrate packets match before that translation.
+The ambient Noether sea must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported packets recover the usual local equivalence behavior. This chapter only asks whether the substrate packets match before that translation.
 
 ---
 
@@ -2020,7 +2020,7 @@ Nested shell swarm minimality is a theorem target: the working claim is that thr
 
 - **Inner binary** (MCB, partner/exterior comparison role): typically in/near self-hit branch ($v \gtrsim c_f$ by history), and would define fundamental units if MCB attractor is confirmed.
 - **Middle binary** (partner/exterior comparison role): near the symmetry hinge ($v \approx c_f$), with shell scale and cadence retuning; energy-storage fulcrum and coupling bridge.
-- **Outer binary** (partner/exterior comparison role): typically $v < c_f$ with expansion/contraction modes; couples strongly to Noether-Sea gravitational/cosmological response.
+- **Outer binary** (partner/exterior comparison role): typically $v < c_f$ with expansion/contraction modes; couples strongly to Noether sea gravitational/cosmological response.
 At the terminal-alignment interface, the three binaries are treated as a different regime where forward-sector components approach $c_f$ together; in self-hit interior comparison hypotheses, wake-closure can be described with combined $v_{\text{eff}} > c_f$ without requiring every component speed to exceed $c_f$.
 
 The stronger claim that this architecture supplies the basis for rest mass, observer clock behavior, photon behavior, and standard-model particle families remains a theorem burden for the broader causal-closure program.

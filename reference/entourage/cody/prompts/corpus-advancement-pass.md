@@ -27,7 +27,7 @@ High-priority autonomous method: when no more specific lane is supplied, inspect
 
 ## Current Core Geometrical Theory Bias
 
-The default target for corpus advancement is now hard mathematical progress on the core geometry-dynamics stack. When no narrower lane is supplied, prefer source signals tied to master-equation closure, potential/action proof programs, certified branch geometry, simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell swarm causal closure, Lorentz/effective-metric recovery, photon closure, or Noether-Sea constitutive response.
+The default target for corpus advancement is now hard mathematical progress on the core geometry-dynamics stack. When no narrower lane is supplied, prefer source signals tied to master-equation closure, potential/action proof programs, certified branch geometry, simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell swarm causal closure, Lorentz/effective-metric recovery, photon closure, or Noether sea constitutive response.
 
 Do not spend a self-running pass mainly on prose polish, broad coverage, linking, app surfaces, or new infrastructure unless the operator explicitly requested that mode or the work directly unblocks a core mathematical artifact.
 
@@ -156,14 +156,14 @@ High-leverage review targets:
 - Infrastructure opportunities: recurring drift patterns that should become a specific automated corpus-audit script, validation rule, closure ledger entry, or priority action item.
 
 Standing advancement programs to watch for when relevant:
-- Noether Sea / Noether-Sea usage: use `Noether Sea` as the standalone noun and `Noether-Sea` only as a compound modifier.
-- Density and delay notation: use `\rho_{\text{core}}(\mathbf{x},t)` for physical Noether swarm density, reserve `n(\mathbf{x},t)` for normalized Noether swarm density, and use `\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)` only for the Noether-Sea delay factor.
+- Noether sea / Noether sea usage: use `Noether sea` as the standalone noun and `Noether sea` only as a compound modifier.
+- Density and delay notation: use `\rho_{\text{NS}}(\mathbf{x},t)` for physical Noether swarm density, reserve `n(\mathbf{x},t)` for normalized Noether swarm density, and use `\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)` only for the Noether sea delay factor.
 - Photon ontology: use the canonical description `coaxial contra-rotating pro/anti planar pair`; avoid weaker variants such as `photon planar-pair`, `photon planar pair`, or `photon-like planar pair` unless quoted as a stale phrase to fix.
-- Mass and inertia: mass is the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. Ordinary dissipative drag is a failure channel or transport effect, not the mass mechanism.
+- Mass and inertia: mass is the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling. Ordinary dissipative drag is a failure channel or transport effect, not the mass mechanism.
 - Lorentz behavior: Lorentz symmetry, time dilation, length contraction, and invariant signal speed are theorem/closure targets. The closure ladder should name moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage.
 - Tri-binary minimality: treat as a theorem target unless a local derivation is present.
 - Reaction provenance: weak reactions, pair production, bremsstrahlung, synchrotron, and CKM mappings should expose where participating architrinos, Noether swarms, energy, charge, and polarity enter and exit.
-- Cosmology ontology: the Euclidean void does not expand. `a(t)`, `H(t)`, redshift, temperature, and CMB summaries are effective observer variables for Noether-Sea evolution, transport, and clock-rate comparison.
+- Cosmology ontology: the Euclidean void does not expand. `a(t)`, `H(t)`, redshift, temperature, and CMB summaries are effective observer variables for Noether sea evolution, transport, and clock-rate comparison.
 
 Required method:
 1. Run `git status --short` before any edit-oriented work. Do not revert existing changes.
@@ -264,7 +264,7 @@ Advancement priorities:
 - If a comparison suggests a leap of intuition, do not bury it in an edit. Record it as an Op-discussion item with the trigger passage, proposed synthesis, missing evidence, and decision question.
 - Remove or replace empty future-work prose. If the work cannot be done in this edit batch, convert it into a concrete priority action item or detailed prompt option.
 - Prefer local, reader-useful cross-links within content/markdown/aaa only when a link materially helps a mathematical claim, proof path, or reader-critical comparison.
-- Keep bridge terms such as `spacetime medium` subordinate to the canonical ontology term `Noether Sea`.
+- Keep bridge terms such as `spacetime medium` subordinate to the canonical ontology term `Noether sea`.
 - Do not expand gates, checkers, fixtures, or requirement ledgers by default. Add or recommend a new obligation artifact only after stating its incremental value over existing gates and confirming that it serves a live derivation or tested-physics contact point; otherwise prefer a theory-first derivation, equation, lemma, or proof scaffold. Do record low-maintenance success markers when an edit batch produces a recovery, benchmark pass, worked example, derivation milestone, or validation win under an existing gate.
 
 Constraints:
@@ -400,7 +400,7 @@ Lane C: Missing-material and stub scan
 
 Lane D: Drift and canonicalization scan
 - Secondary hygiene lane. Search for recurring stale phrases and notation drift when those issues obstruct theory clarity or the randomized pass selects this lane.
-- Start with known drift classes: Noether Sea usage, density/delay notation, photon ontology, mass/inertia language, Lorentz closure language, tri-binary minimality, reaction provenance, and cosmology ontology.
+- Start with known drift classes: Noether sea usage, density/delay notation, photon ontology, mass/inertia language, Lorentz closure language, tri-binary minimality, reaction provenance, and cosmology ontology.
 - Propose new automated audit patterns when a drift class appears in multiple files.
 
 Lane E: Closure-target ledger scan
@@ -584,8 +584,8 @@ Important constraints:
 - Keep foundational insights strong, but name their scope and what still requires separate argument.
 - Surface leaps of intuition as discussion items for Op before canonizing them or asking shard agents to treat them as established.
 - Treat Lorentz behavior, tri-binary minimality, and similar closure claims as theorem targets unless the local derivation is present.
-- Treat mass/inertia as externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling; do not recast it as ordinary dissipative drag.
-- Keep Noether Sea as the ontology term and spacetime medium as a bridge term.
+- Treat mass/inertia as externally exposed response of trapped internal causal history, shielding, and Noether sea coupling; do not recast it as ordinary dissipative drag.
+- Keep Noether sea as the ontology term and spacetime medium as a bridge term.
 - Shard agents must not edit files. Coordinator Cody may edit only when Op explicitly grants team-agent edit authority or selects a follow-up edit-batch prompt.
 
 End with:

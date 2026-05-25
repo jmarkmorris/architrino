@@ -1,6 +1,6 @@
 # Dark Matter in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-This chapter maps the standard dark-matter phenomenology onto substrate candidates available inside $\mathbb{A}\mathbb{A}\mathbb{A}$. The central task is to explain gravitational clustering without visible electromagnetic coupling, using assemblies or medium responses that belong to the same [Euclidean void](../foundations/euclidean-void.md) and [Noether Sea](../spacetime/noether-sea.md) framework as the rest of the theory.
+This chapter maps the standard dark-matter phenomenology onto substrate candidates available inside $\mathbb{A}\mathbb{A}\mathbb{A}$. The central task is to explain gravitational clustering without visible electromagnetic coupling, using assemblies or medium responses that belong to the same [Euclidean void](../foundations/euclidean-void.md) and [Noether sea](../spacetime/noether-sea.md) framework as the rest of the theory.
 
 The opening establishes the ontology and the criteria for what counts as dark in this setting. The later sections compare candidate substrates, summarize the current hybrid working baseline, and connect the picture to cosmological growth and observational interfaces.
 
@@ -10,21 +10,21 @@ Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 27% of the present e
 
 Throughout, "dark matter" refers to the set of phenomena conventionally attributed to CDM: flat galaxy rotation curves, cluster lensing offsets, the third acoustic peak of the CMB, large-scale structure growth, and BBN-consistent $\Omega_b$. The task is to explain this phenomenology within one ontology—Euclidean void, absolute time, architrinos, and Noether swarm assemblies—without importing new fundamental fields or ad hoc modifications to gravity.
 
-The dark-matter density entry is an observationally constrained bookkeeping requirement before it is a substrate identification. Lensing, growth, CMB matter loading, cluster offsets, and baryon-fraction constraints require an effective gravitating component beyond ordinary baryons, but the component ledger does not by itself decide whether the native carrier is neutral assemblies, Noether-Sea response, or a hybrid branch.
+The dark-matter density entry is an observationally constrained bookkeeping requirement before it is a substrate identification. Lensing, growth, CMB matter loading, cluster offsets, and baryon-fraction constraints require an effective gravitating component beyond ordinary baryons, but the component ledger does not by itself decide whether the native carrier is neutral assemblies, Noether sea response, or a hybrid branch.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 ### The Noether Sea as Gravitational Medium
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether Sea is a dense coupled population of neutral Noether swarm assemblies occupying the fixed Euclidean void. In the nested shell case, each Noether swarm consists of three nested electrino-positrino binaries (inner, middle, outer), with net charge zero and internal dynamics spanning the three field-speed regimes ($v > c_f$, $v = c_f$, $v < c_f$). Gravity is not a fundamental force but an emergent medium-response effect: local variations in Noether swarm density $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$ alter the Noether-Sea delay factor $\chi_{\text{sea}}$ and the transmission of delayed causal flux, producing observer-level geodesic deviation and an effective metric $g_{\mu\nu}^{\text{eff}}$ experienced by assemblies.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether sea is a dense coupled population of neutral Noether swarm assemblies occupying the fixed Euclidean void. In the nested shell case, each Noether swarm consists of three nested electrino-positrino binaries (inner, middle, outer), with net charge zero and internal dynamics spanning the three field-speed regimes ($v > c_f$, $v = c_f$, $v < c_f$). Gravity is not a fundamental force but an emergent medium-response effect: local variations in Noether swarm density $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$ alter the Noether sea delay factor $\chi_{\text{sea}}$ and the transmission of delayed causal flux, producing observer-level geodesic deviation and an effective metric $g_{\mu\nu}^{\text{eff}}$ experienced by assemblies.
 
-Massive composite assemblies (protons, atoms, stars) are nested shell swarm configurations with axial layers; they locally compress the Noether Sea, increasing $\rho_{\text{NS}}$ and changing $\chi_{\text{sea}}$ for effective signal propagation. This compression is the substrate-level origin of the Newtonian potential $\Phi_N$ in the weak-field limit. The effective gravitational constant $G$ is related to Noether-Sea compliance—how readily the Sea density responds to stress from embedded matter (see [spacetime/emergent-metric.md](../spacetime/emergent-metric.md)).
+Massive composite assemblies (protons, atoms, stars) are nested shell swarm configurations with axial layers; they locally compress the Noether sea, increasing $\rho_{\text{NS}}$ and changing $\chi_{\text{sea}}$ for effective signal propagation. This compression is the substrate-level origin of the Newtonian potential $\Phi_N$ in the weak-field limit. The effective gravitational constant $G$ is related to Noether sea compliance—how readily the Sea density responds to stress from embedded matter (see [spacetime/emergent-metric.md](../spacetime/emergent-metric.md)).
 
 ### What Counts as "Dark" in this Ontology
 
 A dark-matter candidate in $\mathbb{A}\mathbb{A}\mathbb{A}$ is characterized by two conditions:
 
-- **Gravitational coupling:** The candidate must compress the Noether Sea (contribute to effective $\rho_{\text{NS}}$ and $n$ gradients) and therefore deflect light and accelerate baryonic matter.
+- **Gravitational coupling:** The candidate must compress the Noether sea (contribute to effective $\rho_{\text{NS}}$ and $n$ gradients) and therefore deflect light and accelerate baryonic matter.
 - **Electromagnetic transparency:** The candidate must couple negligibly to photon assemblies modeled as coaxial contra-rotating pro/anti planar pairs so that it neither emits, absorbs, nor scatters electromagnetic radiation at detectable levels.
 
 Two substrate-level mechanisms can satisfy these conditions, either separately or together.
@@ -111,7 +111,7 @@ M_{\mathrm{extrapolated}}
 \left(1-w_{\mathrm{img}}(\mathbf{x})\right)\kappa_\theta(\mathbf{x})\,d^2x.
 $$
 
-These are not new dark-sector variables. They are inference-discipline diagnostics: $M_{\mathrm{supported}}$ records the part of the projected map close to the local lensing constraints, while $M_{\mathrm{extrapolated}}$ records the model-projected part that must be justified by priors, weak-lensing data, gas dynamics, galaxy kinematics, CMB lensing, or the shared Noether-Sea state record.
+These are not new dark-sector variables. They are inference-discipline diagnostics: $M_{\mathrm{supported}}$ records the part of the projected map close to the local lensing constraints, while $M_{\mathrm{extrapolated}}$ records the model-projected part that must be justified by priors, weak-lensing data, gas dynamics, galaxy kinematics, CMB lensing, or the shared Noether sea state record.
 
 Cluster-scale dark-matter maps therefore require an explicit inference ledger: which features are forced by local image transformations, which depend on feature matching, and which enter through lens-model priors such as light-traces-mass assumptions, thin-lens geometry, profile smoothness, line-of-sight compression, or interpolation across data-poor regions.
 
@@ -126,7 +126,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the conservative requirement is therefore 
 1. recover the CMB-lensing observable $C_L^{\phi\phi}$ from the same CMB history used for TT/TE/EE, damping, and blackbody preservation;
 2. project that lensing record into the same neutral-assembly density $\rho_A$, Noether swarm density $\rho_{\text{NS}}(\mathbf{x},t)$, and medium-response variables used by the structure-formation module.
 
-A dark-matter interpretation fails if it treats CMB lensing as direct proof of one substrate while using a different Noether-Sea state to fit galaxy clustering, weak lensing, or cluster offsets.
+A dark-matter interpretation fails if it treats CMB lensing as direct proof of one substrate while using a different Noether sea state to fit galaxy clustering, weak lensing, or cluster offsets.
 
 ### Cluster-Offset Inference Gate
 
@@ -159,13 +159,13 @@ $$
 \varepsilon_{\mathrm{cl}},
 $$
 
-with the same lensing priors, gas model, and shared Noether-Sea state record used to test the neutral-assembly or hybrid branch. Passing the gate does not by itself prove a collisionless neutral-assembly interpretation; it shows that the candidate branch has recovered the cluster-offset observable without changing the inference stack per system.
+with the same lensing priors, gas model, and shared Noether sea state record used to test the neutral-assembly or hybrid branch. Passing the gate does not by itself prove a collisionless neutral-assembly interpretation; it shows that the candidate branch has recovered the cluster-offset observable without changing the inference stack per system.
 
 ### Shared Dark-Sector Scale Gate
 
-Some quantum-gravity comparison programs try to relate the dark-matter and dark-energy problems through one scale. In this chapter that signal is useful only as a closure discipline. The $\mathbb{A}\mathbb{A}\mathbb{A}$ claim is not that dark matter and dark energy are one imported object; it is that any proposed relation between them must be carried by the same Noether-Sea state record used by the dark-energy, growth, lensing, and CMB modules.
+Some quantum-gravity comparison programs try to relate the dark-matter and dark-energy problems through one scale. In this chapter that signal is useful only as a closure discipline. The $\mathbb{A}\mathbb{A}\mathbb{A}$ claim is not that dark matter and dark energy are one imported object; it is that any proposed relation between them must be carried by the same Noether sea state record used by the dark-energy, growth, lensing, and CMB modules.
 
-Let $\theta_{\mathrm{sea}}$ be the shared Noether-Sea state record, let $\Pi_{\mathrm{DE}}\theta_{\mathrm{sea}}$ be its dark-energy projection, and let $\Pi_{\mathrm{DM}}\theta_{\mathrm{sea}}$ be its dark-matter projection. If a candidate relation $F_{\mathrm{DM}}$ maps the dark-energy-side projection into the dark-matter-side variables, a minimal shared-scale residual is
+Let $\theta_{\mathrm{sea}}$ be the shared Noether sea state record, let $\Pi_{\mathrm{DE}}\theta_{\mathrm{sea}}$ be its dark-energy projection, and let $\Pi_{\mathrm{DM}}\theta_{\mathrm{sea}}$ be its dark-matter projection. If a candidate relation $F_{\mathrm{DM}}$ maps the dark-energy-side projection into the dark-matter-side variables, a minimal shared-scale residual is
 
 $$
 \mathcal{R}_{\mathrm{dark\ scale}}(\theta_{\mathrm{sea}})
@@ -179,7 +179,7 @@ F_{\mathrm{DM}}\!\left(\Pi_{\mathrm{DE}}\theta_{\mathrm{sea}}\right)
 \mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}}).
 $$
 
-Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dark-sector comparison, and $\mathcal{R}_{\mathrm{shared}}$ is the shared calibration residual from [Dark Energy](./dark-energy.md#inference-dependency-and-calibration-gates). A dark-sector scale relation is promotable only if this residual stays small without assigning one Noether-Sea state to dark-energy data and another to dark-matter data. If the relation fits one observable family by changing $\theta_{\mathrm{sea}}$ for another, it remains an interpretation artifact rather than a substrate claim.
+Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dark-sector comparison, and $\mathcal{R}_{\mathrm{shared}}$ is the shared calibration residual from [Dark Energy](./dark-energy.md#inference-dependency-and-calibration-gates). A dark-sector scale relation is promotable only if this residual stays small without assigning one Noether sea state to dark-energy data and another to dark-matter data. If the relation fits one observable family by changing $\theta_{\mathrm{sea}}$ for another, it remains an interpretation artifact rather than a substrate claim.
 
 ## Candidate Substrates
 
@@ -189,7 +189,7 @@ Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dar
 
 - **Neutrino-class assemblies:** pro-orientation Noether swarms with balanced axial layers ($3P,3E$). These are the SM neutrinos themselves; their masses ($\sum m_\nu < 0.12$ eV from cosmological bounds) are too small to account for the full $\Omega_{\mathrm{DM}}$, but they contribute to the hot dark-matter fraction and to $N_{\mathrm{eff}}$.
 
-- **Heavier neutral assemblies (hypothetical):** nested shell swarms carrying axial patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these would be assemblies whose axial layers cancel in both net charge and oscillating dipole moment, analogous to the neutrino's balanced axial layer but realized on a heavier Noether swarm. The mass scale is set by internal binding energy, shielding, and medium-dressed response to the Noether Sea.
+- **Heavier neutral assemblies (hypothetical):** nested shell swarms carrying axial patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these would be assemblies whose axial layers cancel in both net charge and oscillating dipole moment, analogous to the neutrino's balanced axial layer but realized on a heavier Noether swarm. The mass scale is set by internal binding energy, shielding, and medium-dressed response to the Noether sea.
 
 - **Primordial Noether swarm defects:** dense, self-gravitating clusters of maximally contracted Noether swarms produced in the high-energy epoch, analogous to primordial black holes in standard cosmology but with internal maximum-curvature structure replacing singular interiors. Their mass spectrum depends on formation-epoch dynamics. The analogy is a benchmark, not an identification: a native defect branch would have to inherit the compact-object mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result checks without importing primordial-black-hole ontology.
 
@@ -236,13 +236,13 @@ $$
 $$
 The morphology term requires the candidate track to match the predicted energy-deposition and damage profile for the branch, while $\mathcal{R}_{\mathrm{ordinary}}$ penalizes fits explained by ordinary radiation, defects, inclusions, machining damage, or impact history. A null search becomes a constraint on $f_X(M_X)$ only after the survival and detection functions are declared; a positive search becomes a compact-object claim only after the same branch also passes the BBN, CMB, ephemeris, and high-energy co-signature tests.
 
-### Candidate B — Noether-Sea Medium Response
+### Candidate B — Noether Sea Medium Response
 
-**Definition.** Non-linear elastic or dispersive response of the Noether Sea itself under low-acceleration or low-density-gradient conditions. In regions where the effective gravitational acceleration falls below a characteristic scale $a_0^{\mathrm{MOND}}$, the Noether Sea's compliance (inverse stiffness) may change, altering the effective force law. This local notation keeps the galactic acceleration threshold distinct from the rest-attractor length scale $a_0$ used in Lorentz-kinematics chapters.
+**Definition.** Non-linear elastic or dispersive response of the Noether sea itself under low-acceleration or low-density-gradient conditions. In regions where the effective gravitational acceleration falls below a characteristic scale $a_0^{\mathrm{MOND}}$, the Noether sea's compliance (inverse stiffness) may change, altering the effective force law. This local notation keeps the galactic acceleration threshold distinct from the rest-attractor length scale $a_0$ used in Lorentz-kinematics chapters.
 
-**Mechanism sketch.** In the nested shell case, each Noether swarm in the Noether Sea has a minimum restoring-force threshold set by the outer-binary binding. Below the corresponding acceleration scale, the Noether Sea deforms more easily per unit stress—the effective $G$ increases with decreasing acceleration. This is structurally analogous to MOND ($\mu(a/a_0^{\mathrm{MOND}})\,a = a_N$) but derived from assembly elasticity rather than postulated. In the corrected master-law picture, part of this response can be understood as a constitutive shift in how the Noether Sea organizes Jacobian-weighted delayed flux under low-strain conditions: the same source population can produce a different received effective pull when branch geometry and local contraction state change. The transition function $\mu$ would then emerge from the outer-binary response curve as a function of the local strain rate $\nabla\Phi / a_0^{\mathrm{MOND}}$.
+**Mechanism sketch.** In the nested shell case, each Noether swarm in the Noether sea has a minimum restoring-force threshold set by the outer-binary binding. Below the corresponding acceleration scale, the Noether sea deforms more easily per unit stress—the effective $G$ increases with decreasing acceleration. This is structurally analogous to MOND ($\mu(a/a_0^{\mathrm{MOND}})\,a = a_N$) but derived from assembly elasticity rather than postulated. In the corrected master-law picture, part of this response can be understood as a constitutive shift in how the Noether sea organizes Jacobian-weighted delayed flux under low-strain conditions: the same source population can produce a different received effective pull when branch geometry and local contraction state change. The transition function $\mu$ would then emerge from the outer-binary response curve as a function of the local strain rate $\nabla\Phi / a_0^{\mathrm{MOND}}$.
 
-**Characteristic scale.** The MOND acceleration $a_0^{\mathrm{MOND}} \approx 1.2 \times 10^{-10}\;\mathrm{m\,s}^{-2}$ is suggestively close to horizon-scale accelerations such as $c_0 H_0/(2\pi)$ and, in some entropic-gravity comparisons, $c_0 H_0/6$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, those coefficients are comparison pressure rather than imported doctrine. The native question is whether the same Noether-Sea response law that supplies the effective Hubble history also yields the galaxy-scale transition acceleration.
+**Characteristic scale.** The MOND acceleration $a_0^{\mathrm{MOND}} \approx 1.2 \times 10^{-10}\;\mathrm{m\,s}^{-2}$ is suggestively close to horizon-scale accelerations such as $c_0 H_0/(2\pi)$ and, in some entropic-gravity comparisons, $c_0 H_0/6$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, those coefficients are comparison pressure rather than imported doctrine. The native question is whether the same Noether sea response law that supplies the effective Hubble history also yields the galaxy-scale transition acceleration.
 
 A compact cross-scale target is
 
@@ -255,7 +255,7 @@ a_0^{\mathrm{MOND}}
 \quad\text{as comparison coefficients.}
 $$
 
-For a shared Noether-Sea record $\theta$, define the low-acceleration comparison residual
+For a shared Noether sea record $\theta$, define the low-acceleration comparison residual
 
 $$
 \mathcal{R}_{\mathrm{low}\text{-}a}(\theta,\alpha_H)
@@ -274,7 +274,7 @@ d_{\mathrm{RAR}}\!\left(\mathrm{RAR}^{\theta},\mathrm{RAR}^{\mathrm{obs}}\right)
 \lambda\,\mathcal{R}_{\mathrm{shared}}(\theta).
 $$
 
-Here $\mathrm{RAR}^{\theta}$ is the radial-acceleration relation predicted by the coupled neutral-assembly plus medium-response model, $\mathrm{RAR}^{\mathrm{obs}}$ is the observed relation, and $\mathcal{R}_{\mathrm{shared}}$ is the cosmology shared residual in [Dark Energy](./dark-energy.md#inference-dependency-and-calibration-gates). If no value of $\alpha_H$ follows from the Noether-Sea response law while preserving CMB loading, cluster offsets, BAO, supernova, growth, and lensing constraints, the horizon-scale coincidence remains a heuristic rather than a derived result.
+Here $\mathrm{RAR}^{\theta}$ is the radial-acceleration relation predicted by the coupled neutral-assembly plus medium-response model, $\mathrm{RAR}^{\mathrm{obs}}$ is the observed relation, and $\mathcal{R}_{\mathrm{shared}}$ is the cosmology shared residual in [Dark Energy](./dark-energy.md#inference-dependency-and-calibration-gates). If no value of $\alpha_H$ follows from the Noether sea response law while preserving CMB loading, cluster offsets, BAO, supernova, growth, and lensing constraints, the horizon-scale coincidence remains a heuristic rather than a derived result.
 
 **Limitations.** A pure medium-response account faces well-documented difficulties:
 - Reproducing cluster-scale lensing/gas centroid separation without a collisionless component.
@@ -285,14 +285,14 @@ These difficulties motivate retaining Candidate A as the primary dark-matter sub
 
 ### Candidate C — Hybrid (Working Baseline)
 
-**Definition.** Neutral assemblies carry the dominant non-baryonic gravitating mass ($\Omega_{\mathrm{DM}} \sim 0.25$), while Noether-Sea response provides scale-dependent corrections that modify effective profiles in low-acceleration environments.
+**Definition.** Neutral assemblies carry the dominant non-baryonic gravitating mass ($\Omega_{\mathrm{DM}} \sim 0.25$), while Noether sea response provides scale-dependent corrections that modify effective profiles in low-acceleration environments.
 
 **Rationale.** This hybrid is the working baseline because:
 
 - Neutral assemblies handle the heavy lifting: CMB matter loading, large-scale power spectrum, cluster-merger offset behavior, and BBN consistency ($\Omega_b$ remains small).
 - Medium response can address observed tensions at galaxy scale—the diversity of rotation-curve shapes, the radial-acceleration relation (RAR) tightness, and possible deviations from pure NFW profiles—without introducing additional free parameters per galaxy.
 - The two contributions arise from the same ontological substrate (Noether swarm assemblies in Euclidean void with absolute time) and are coupled: neutral assemblies compress the Sea, which in turn responds non-linearly, feeding back on the effective potential.
-- If residual discrepancies concentrate in regions of strong Noether-Sea contraction or steepening contraction gradient, especially toward galactic centers and SMBH environments, that pattern would be naturally suggestive of medium-response contributions rather than of an entirely separate particulate sector.
+- If residual discrepancies concentrate in regions of strong Noether sea contraction or steepening contraction gradient, especially toward galactic centers and SMBH environments, that pattern would be naturally suggestive of medium-response contributions rather than of an entirely separate particulate sector.
 
 ### Why Hybrid Is Required (Closure Summary)
 
@@ -308,13 +308,13 @@ $$
 \nabla^2 \Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}(\nabla\Phi,\rho_{\text{NS}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{NS}}^{(\mathrm{pert})}\bigr),
 $$
 
-where $\rho_b$ is baryonic density, $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the Noether-Sea response modification. In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})} \to 0$; in the low-acceleration limit, $G_{\mathrm{eff}}$ stiffens and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
+where $\rho_b$ is baryonic density, $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the Noether sea response modification. In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})} \to 0$; in the low-acceleration limit, $G_{\mathrm{eff}}$ stiffens and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
 
-This coupled system must be solved self-consistently. The neutral-assembly component $\rho_A$ satisfies collisionless Boltzmann transport in the potential $\Phi_{\mathrm{eff}}$; the Noether-Sea response enters through constitutive relations derived from Noether swarm elasticity in the Noether Sea.
+This coupled system must be solved self-consistently. The neutral-assembly component $\rho_A$ satisfies collisionless Boltzmann transport in the potential $\Phi_{\mathrm{eff}}$; the Noether sea response enters through constitutive relations derived from Noether swarm elasticity in the Noether sea.
 
 ### Scalar-Fluid and MOND-Extension Comparison Gate
 
-Khoury-style hybrid models supply a useful comparison framework because they separate two burdens that are often blended in dark-sector prose: a nearly pressureless component can recover the expansion history and linear growth, while a distinct nonlinear force law accounts for galaxy rotation curves and cluster gas profiles. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not evidence for imported scalar fields. It is a discipline for the hybrid baseline: the neutral-assembly sector must carry the linear CDM-like loading, and the Noether-Sea response sector must carry the low-acceleration nonlinear residual without allowing either side to be retuned independently.
+Khoury-style hybrid models supply a useful comparison framework because they separate two burdens that are often blended in dark-sector prose: a nearly pressureless component can recover the expansion history and linear growth, while a distinct nonlinear force law accounts for galaxy rotation curves and cluster gas profiles. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not evidence for imported scalar fields. It is a discipline for the hybrid baseline: the neutral-assembly sector must carry the linear CDM-like loading, and the Noether sea response sector must carry the low-acceleration nonlinear residual without allowing either side to be retuned independently.
 
 The comparison acceleration law can be recorded as
 
@@ -328,7 +328,7 @@ f\,a_N, & a_N\ll a_\star/f^2,
 \end{cases}
 $$
 
-where $a_N$ is the baryonic Newtonian benchmark acceleration, $a_\star$ is the environment-dependent low-acceleration transition scale, and $f$ is the ultra-low-acceleration inverse-square enhancement. For the $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid branch these are not new constants. They are observer-level summaries of a shared Noether-Sea state:
+where $a_N$ is the baryonic Newtonian benchmark acceleration, $a_\star$ is the environment-dependent low-acceleration transition scale, and $f$ is the ultra-low-acceleration inverse-square enhancement. For the $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid branch these are not new constants. They are observer-level summaries of a shared Noether sea state:
 
 $$
 a_\star(E)=A_\star(\Pi_E\theta_{\mathrm{sea}}),
@@ -358,9 +358,9 @@ d_{\mathrm{shared}}\!\left(
 \right].
 $$
 
-This residual is useful because it turns the cluster-versus-galaxy pressure into a falsifiable question. If the observed cluster temperature and lensing profiles require an $a_\star$ scale significantly above the galaxy radial-acceleration scale, that scale shift must be derived from environment-dependent Noether-Sea density, delay, stress, or neutral-assembly loading. If the same shift is inserted by hand, the branch has reproduced a comparison curve but not closed a native dark-sector mechanism.
+This residual is useful because it turns the cluster-versus-galaxy pressure into a falsifiable question. If the observed cluster temperature and lensing profiles require an $a_\star$ scale significantly above the galaxy radial-acceleration scale, that scale shift must be derived from environment-dependent Noether sea density, delay, stress, or neutral-assembly loading. If the same shift is inserted by hand, the branch has reproduced a comparison curve but not closed a native dark-sector mechanism.
 
-Berezhiani-Khoury superfluid dark matter sharpens the same comparison discipline. Its source-level claim is that one dark sector can be CDM-like in cosmology and clusters while producing a MOND-like galactic force through collective low-temperature behavior. In this chapter that signal is not an ontology import: the Noether Sea is not identified with a literal superfluid, and the comparison phonon is not added as a new $\mathbb{A}\mathbb{A}\mathbb{A}$ constituent. What survives is the environment split that any hybrid branch must explain from one shared medium-and-assembly record.
+Berezhiani-Khoury superfluid dark matter sharpens the same comparison discipline. Its source-level claim is that one dark sector can be CDM-like in cosmology and clusters while producing a MOND-like galactic force through collective low-temperature behavior. In this chapter that signal is not an ontology import: the Noether sea is not identified with a literal superfluid, and the comparison phonon is not added as a new $\mathbb{A}\mathbb{A}\mathbb{A}$ constituent. What survives is the environment split that any hybrid branch must explain from one shared medium-and-assembly record.
 
 For that comparison, introduce source-side observer coordinates for the effective condensate and normal fractions,
 
@@ -434,9 +434,9 @@ D_{\mathrm{cos+cl}}^{\mathrm{obs}},
 \end{aligned}
 $$
 
-This residual records the Berezhiani-Khoury pressure in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms. The same $\theta_{\mathrm{sea}}$ must pass the galaxy RAR/BTFR comparison, the cluster temperature/lensing comparison, and the cosmological CDM-like comparison. $\mathcal{R}_{\mathrm{stable\ branch}}$ is included because the source's MOND branch requires finite-temperature stabilization; the native analogue is that a low-acceleration Noether-Sea response branch must be dynamically stable, not only curve-fit successful.
+This residual records the Berezhiani-Khoury pressure in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms. The same $\theta_{\mathrm{sea}}$ must pass the galaxy RAR/BTFR comparison, the cluster temperature/lensing comparison, and the cosmological CDM-like comparison. $\mathcal{R}_{\mathrm{stable\ branch}}$ is included because the source's MOND branch requires finite-temperature stabilization; the native analogue is that a low-acceleration Noether sea response branch must be dynamically stable, not only curve-fit successful.
 
-Ferreira-Franzmann-Khoury-Brandenberger unified-superfluid dark-sector models add a sharper comparison target: late-time acceleration can be driven by the same dark substance if that substance has two distinguishable states whose relative phase is coupled by a Josephson/Rabi interaction. In this chapter that is comparison language, not substrate ontology. The Noether Sea is not identified with a literal superfluid, and the phase variables are not introduced as new $\mathbb{A}\mathbb{A}\mathbb{A}$ constituents. What survives is a one-record discipline: the same dark-sector state must carry CDM-like loading, state conversion, late-time acceleration, and the growth history.
+Ferreira-Franzmann-Khoury-Brandenberger unified-superfluid dark-sector models add a sharper comparison target: late-time acceleration can be driven by the same dark substance if that substance has two distinguishable states whose relative phase is coupled by a Josephson/Rabi interaction. In this chapter that is comparison language, not substrate ontology. The Noether sea is not identified with a literal superfluid, and the phase variables are not introduced as new $\mathbb{A}\mathbb{A}\mathbb{A}$ constituents. What survives is a one-record discipline: the same dark-sector state must carry CDM-like loading, state conversion, late-time acceleration, and the growth history.
 
 Introduce comparison coordinates for two dark-sector populations,
 
@@ -554,9 +554,9 @@ d_f\!\left(f_{\mathrm{grow}}^\theta,f_{\mathrm{grow}}^{\mathrm{obs}}\right)
 \end{aligned}
 $$
 
-This residual is the safe promoted signal from the two-state dark-sector comparison. It tests whether one shared Noether-Sea and neutral-assembly record can supply effective acceleration, conserve the total dark-sector count while allowing internal conversion, keep the linear sound speed low, and reproduce growth observations without assigning separate medium histories to dark matter and dark energy.
+This residual is the safe promoted signal from the two-state dark-sector comparison. It tests whether one shared Noether sea state and neutral-assembly record can supply effective acceleration, conserve the total dark-sector count while allowing internal conversion, keep the linear sound speed low, and reproduce growth observations without assigning separate medium histories to dark matter and dark energy.
 
-The source's observational signatures are retained as comparison hooks rather than canonized predictions. Substructure-lensing features associated with vortices, merger behavior controlled by an infall-speed versus sound-speed threshold, mixed cluster lensing peaks, and MOND-free globular clusters are useful only if the native branch supplies corresponding Noether-Sea or neutral-assembly variables. Without that native map, those signatures remain model-specific to the superfluid-DM comparison.
+The source's observational signatures are retained as comparison hooks rather than canonized predictions. Substructure-lensing features associated with vortices, merger behavior controlled by an infall-speed versus sound-speed threshold, mixed cluster lensing peaks, and MOND-free globular clusters are useful only if the native branch supplies corresponding Noether sea or neutral-assembly variables. Without that native map, those signatures remain model-specific to the superfluid-DM comparison.
 
 ## Regime Map
 
@@ -570,7 +570,7 @@ The hybrid baseline yields a unified regime architecture:
 | Galaxy outer regions / low $a$ | Hybrid: assemblies + medium response | RAR tightness; rotation-curve diversity |
 | Dwarf galaxies / ultra-low $a$ | Medium response dominant | Possible core-vs-cusp modification |
 
-The boundaries between regimes are set by the ratio $|\nabla\Phi|/a_0^{\mathrm{MOND}}$ and the local Noether-Sea density gradient. These are continuous transitions within one ontology, not patched models.
+The boundaries between regimes are set by the ratio $|\nabla\Phi|/a_0^{\mathrm{MOND}}$ and the local Noether sea density gradient. These are continuous transitions within one ontology, not patched models.
 
 ## SMBH Recycling and Dark-Sector Flow
 
@@ -584,7 +584,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology, supermassive black holes (SMBHs) 
 
 ### Mass Scale
 
-The neutral-assembly mass is not a free parameter to be fitted post hoc; it must emerge from the assembly's internal energy ledger, shielding factor, and medium-dressed response to the Noether Sea. This is an inertial and gravitational response map, not ordinary dissipative drag. Candidate mass ranges, mapped to observational constraints:
+The neutral-assembly mass is not a free parameter to be fitted post hoc; it must emerge from the assembly's internal energy ledger, shielding factor, and medium-dressed response to the Noether sea. This is an inertial and gravitational response map, not ordinary dissipative drag. Candidate mass ranges, mapped to observational constraints:
 
 - $m \sim$ eV: warm dark matter; suppresses small-scale structure.
 - $m \sim$ keV–GeV: canonical cold dark matter window.
@@ -618,7 +618,7 @@ $$
 \qquad
 \Delta N_{\mathrm{eff}}\in\mathcal{B}_{\mathrm{BBN/CMB}}.
 $$
-Failure of any row keeps the branch external to the working dark-matter ontology. Passing these rows would still not identify the branch with the current neutral-assembly baseline unless the same internal-energy, shielding, and Noether-Sea response map derives its mass and coupling suppression.
+Failure of any row keeps the branch external to the working dark-matter ontology. Passing these rows would still not identify the branch with the current neutral-assembly baseline unless the same internal-energy, shielding, and Noether sea response map derives its mass and coupling suppression.
 
 ### Source-Limited WIMP/Neutralino Comparison Benchmark
 
@@ -648,7 +648,7 @@ The entries track assembly mass, relic abundance, annihilation rate, scalar and 
 
 Neutral assemblies interact with each other and with baryonic matter only through:
 
-- **Gravitational coupling** (Noether-Sea compression): always present; sets halo profiles.
+- **Gravitational coupling** (Noether sea compression): always present; sets halo profiles.
 - **Residual short-range coupling:** If the neutral assembly has any non-zero higher-multipole moment (e.g., a quadrupole from internal binary precession), there is a short-range van-der-Waals-like interaction scaling as $r^{-7}$ or steeper. The self-interaction sector can then carry nontrivial velocity dependence.
 
 ### Stability
@@ -675,7 +675,7 @@ $$
 \ddot{\delta}_A + 2H\dot{\delta}_A = 4\pi G_{\mathrm{eff}}\,\rho_m\,\delta_m,
 $$
 
-where $\rho_m = \rho_b + \rho_A$ and $G_{\mathrm{eff}}$ may carry scale-dependent corrections from Noether-Sea response. In the high-acceleration (linear) regime, $G_{\mathrm{eff}} \to G_N$ and standard CDM growth is recovered. Deviations from $\Lambda\mathrm{CDM}$ growth appear only when $|\nabla\Phi|/a_0^{\mathrm{MOND}} \lesssim 1$, which on cosmological scales ($k < 0.01\;h\,\mathrm{Mpc}^{-1}$) may be relevant at low redshift and could contribute to resolving the $S_8$ tension.
+where $\rho_m = \rho_b + \rho_A$ and $G_{\mathrm{eff}}$ may carry scale-dependent corrections from Noether sea response. In the high-acceleration (linear) regime, $G_{\mathrm{eff}} \to G_N$ and standard CDM growth is recovered. Deviations from $\Lambda\mathrm{CDM}$ growth appear only when $|\nabla\Phi|/a_0^{\mathrm{MOND}} \lesssim 1$, which on cosmological scales ($k < 0.01\;h\,\mathrm{Mpc}^{-1}$) may be relevant at low redshift and could contribute to resolving the $S_8$ tension.
 
 ### BAO and Matter Power Spectrum
 
@@ -697,13 +697,13 @@ In the modular cosmology architecture, this chapter connects to other modules th
 - **Input from [expansion-mechanism.md](./expansion-mechanism.md):** $H(z)$ and $\Omega_m(z)$ for growth-equation integration.
 - **Input from [BBN-constraints.md](./BBN-constraints.md):** $N_{\mathrm{eff}}$ bound constraining allowed neutral-assembly species at MeV temperatures.
 
-All interfaces use the same absolute-time / Euclidean-space substrate and the same Noether-Sea state variables, ensuring ontological consistency across modules. The cosmology-level framing for those shared interfaces lives in [Cosmology Ontology](./cosmology-ontology.md).
+All interfaces use the same absolute-time / Euclidean-space substrate and the same Noether sea state variables, ensuring ontological consistency across modules. The cosmology-level framing for those shared interfaces lives in [Cosmology Ontology](./cosmology-ontology.md).
 
 ## Summary
 
 Dark-matter phenomenology in $\mathbb{A}\mathbb{A}\mathbb{A}$ is attributed to a hybrid of two mechanisms arising from the same Noether swarm substrate:
 
 - **Neutral assemblies** (Candidate A): electromagnetically transparent nested shell swarm configurations that cluster gravitationally, reproducing CDM-like behavior at cluster and cosmological scales.
-- **Noether-Sea response** (Candidate B): non-linear elastic corrections to effective gravity at low accelerations, providing scale-dependent modifications relevant to galaxy-scale phenomenology.
+- **Noether sea response** (Candidate B): non-linear elastic corrections to effective gravity at low accelerations, providing scale-dependent modifications relevant to galaxy-scale phenomenology.
 
 The working baseline is the hybrid (Candidate C), with neutral assemblies carrying the dominant mass fraction and medium response supplying corrections. Deriving the neutral-assembly mass spectrum, interaction cross-sections, and medium constitutive relations from the master equation is the critical open program.

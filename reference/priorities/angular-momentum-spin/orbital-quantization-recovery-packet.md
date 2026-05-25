@@ -6,7 +6,7 @@ Claim level. The packet recovers the standard observer-level orbital labels from
 
 ## Envelope Input Contract
 
-Fix an assembly branch $B_e$ in an external potential chart with center $C$ and local Noether-Sea record $\theta_{\mathrm{sea}}^{(\ell)}$. The orbital recovery calculation may consume only an effective envelope
+Fix an assembly branch $B_e$ in an external potential chart with center $C$ and local Noether sea record $\theta_{\mathrm{sea}}^{(\ell)}$. The orbital recovery calculation may consume only an effective envelope
 
 $$
 \Psi_{\mathrm{env}}
@@ -321,4 +321,4 @@ L^2\to\ell(\ell+1)\hbar^2,
 L_z\to m\hbar.
 $$
 
-The remaining hard work is the native $\mathbb{A}\mathbb{A}\mathbb{A}$ envelope extraction: derive $\mathcal E_{\mathrm{orb}}$ from the electron assembly branch, the nuclear causal-wake envelope, and the local Noether-Sea record. Once that exists, this packet can be used to decide whether the standard orbital labels are recovered without smuggling in internal spin.
+The remaining hard work is the native $\mathbb{A}\mathbb{A}\mathbb{A}$ envelope extraction: derive $\mathcal E_{\mathrm{orb}}$ from the electron assembly branch, the nuclear causal-wake envelope, and the local Noether sea record. Once that exists, this packet can be used to decide whether the standard orbital labels are recovered without smuggling in internal spin.

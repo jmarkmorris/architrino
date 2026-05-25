@@ -333,7 +333,7 @@ The fallback therefore adds these proof risks:
 | hidden fitting | prevent $N$, polarity counts, or quotient choices from being selected by observer-facing targets |
 | noncollision pressure | maintain positive separation and Jacobian floors across more same-polarity and opposite-polarity channels |
 | action exactness | show one total action or a declared action obstruction for the enlarged history-work one-form |
-| event provenance | account for energy, momentum, angular momentum, charge, source provenance, recoil, and Noether-Sea update across all labels |
+| event provenance | account for energy, momentum, angular momentum, charge, source provenance, recoil, and Noether sea update across all labels |
 | observer-export leakage | keep Lorentz, photon, mass-map, color, strong-field, and cosmology exports downstream of the same retained ledger |
 
 This is why the packet is low priority. It increases the branch dimension,
@@ -380,7 +380,7 @@ Required rows:
 | $\mathsf{Tail}^{\nu}$ | finite owned tail cover and tail error carried into all residuals | `assembly-tail-ledger-open` |
 | $\mathsf{ForceDynamics}^{\nu}$ | tangential speed row, normal curvature row, force ledger, support and medium terms zero or action-accounted | `assembly-dynamics-open` |
 | $\mathsf{FiniteMode}$ | finite coefficient chart or direct curve-level certificate for all $N$ labels | `assembly-finite-mode-open` |
-| $\mathsf{ActionNoether}^{\nu}$ | total action or obstruction, action-derived scale or inertia operator, Noether currents, Noether-Sea exchange | `assembly-action-noether-open` |
+| $\mathsf{ActionNoether}^{\nu}$ | total action or obstruction, action-derived scale or inertia operator, Noether currents, Noether sea exchange | `assembly-action-noether-open` |
 | $\mathsf{Event}^{\nu}$ | endpoint convention, root-fold, support-boundary, topology-change, source provenance, recoil, and exchange rows | `assembly-event-ledger-open` |
 | $\mathsf{ReductionQuotient}$ | six-site, shell, nested shell, central-inventory, axial-inventory, or charged-sector quotient statuses | `assembly-quotient-open` |
 | $\mathsf{ObserverExport}$ | Lorentz, photon, mass-map, color, strong-field, and cosmology rows marked `passed`, `failed`, or `not_computed` | `observer-export-not-statused` |

@@ -92,7 +92,7 @@ R_{\mathrm{replay},b}
 \right).
 $$
 
-Here $E_b$, $p_b$, and $J_b$ are declared benchmark scales for the selected family, not fitted recovery knobs. $R_{\mathrm{bench},b}$ is the family-specific residual, such as Larmor/Lienard power, Compton shift, pair threshold, or Planck occupation. $R_{\mathrm{replay},b}$ vanishes only when the same residual definition, channel boundary, and Noether-Sea variables replay across the selected event panel without retuning. The Gate C acceptance target is
+Here $E_b$, $p_b$, and $J_b$ are declared benchmark scales for the selected family, not fitted recovery knobs. $R_{\mathrm{bench},b}$ is the family-specific residual, such as Larmor/Lienard power, Compton shift, pair threshold, or Planck occupation. $R_{\mathrm{replay},b}$ vanishes only when the same residual definition, channel boundary, and Noether sea variables replay across the selected event panel without retuning. The Gate C acceptance target is
 
 $$
 \left\|\mathbf{R}_{\gamma,b}(\mathsf e)\right\|_{\infty}
@@ -111,12 +111,12 @@ Radiation channel visibility also consumes the shared [exposure-quotient theorem
 | Benchmark | Required recovery | Failure mode |
 | --- | --- | --- |
 | Larmor/Lienard limit | Recover $P\propto\|\mathbf{a}\|^2$ in the weak nonrelativistic limit, with relativistic clock/ruler conversion routed through the effective metric program. | Power law requires a separate phenomenological radiation-reaction term. |
-| Bremsstrahlung | Recover free-free scaling, screening/form-factor corrections, and recoil from one event record. | Emissivity and cross-section need incompatible Noether-Sea variables. |
+| Bremsstrahlung | Recover free-free scaling, screening/form-factor corrections, and recoil from one event record. | Emissivity and cross-section need incompatible Noether sea variables. |
 | Synchrotron | Recover $\nu_c\propto\gamma^2B$ and $P_{\mathrm{syn}}\propto U_B\gamma^2$ in the effective magnetic-state map. | The $\gamma^2$ frequency scaling is absent or the effective $B$ map changes between curvature and emission. |
 | Atomic transitions | Close basin-transition records with energy, momentum, angular momentum, recoil, medium excitation, and photon Gate A/B handoff data. | Line emission is treated as automatic rather than as a planar-mode gate. |
 | Pair channels | Recover pair thresholds and provenance without unbalanced creation from nothing. | Pair production lacks source inventory, momentum ledger, or Noether swarm recruitment. |
 | Compton-like scattering | Recover Compton shift, Thomson limit, and Klein-Nishina correction as one Gate C vertex. | Frequency change becomes untracked loss rather than closed recoil and photon provenance. |
-| Blackbody recovery | Recover Planck occupation, zero effective photon chemical potential, thermalization depth, and redshift handoff without retuning the Noether-Sea map. | CMB or thermal radiation requires per-observable photon loading. |
+| Blackbody recovery | Recover Planck occupation, zero effective photon chemical potential, thermalization depth, and redshift handoff without retuning the Noether sea map. | CMB or thermal radiation requires per-observable photon loading. |
 
 ## Failure-Code Map
 
@@ -126,7 +126,7 @@ Radiation Gate C reuses the shared residual-routing failure codes. Radiation-loc
 | --- | --- | --- |
 | Same recorded state produces different residuals, channel boundaries, or replay rows. | `residual.replay_failure` | $\operatorname{Replay}_{\mathrm{rad}}$ |
 | A photon, retuning, medium, remnant, or reaction route is selected while its boundary test fails. | `route.boundary_failure` | $\operatorname{Route}_{\mathrm{rad}}$ |
-| Selected channels require incompatible remnant states, Noether-Sea updates, provenance records, or duplicate inventory. | `route.channel_incompatibility` | $\operatorname{Compat}_{\mathrm{rad}}$ |
+| Selected channels require incompatible remnant states, Noether sea updates, provenance records, or duplicate inventory. | `route.channel_incompatibility` | $\operatorname{Compat}_{\mathrm{rad}}$ |
 | Energy, momentum, or angular momentum remains nonzero after all named outputs are included. | `event.ledger_residual` | $\operatorname{Ledger}_{\gamma}$ |
 | Polarity, architrino inventory, source identity, emission time, causal-root branch, or branch-Jacobian provenance fails. | `event.inventory_provenance_failure` | $\operatorname{Ledger}_{\gamma}$ |
 | Medium heating, recoil, retained excitation, or remnant deformation is used as an implicit loss term. | `event.medium_remnant_failure` | $\operatorname{Ledger}_{\gamma}$ |
@@ -209,7 +209,7 @@ $$
 E_{\text{exc}}\ge E_{\gamma,\min}.
 $$
 
-The proof burden is not to fit $\mathcal{S}_{\gamma,*}$. It is to derive the local drive $\mathcal{S}_{\gamma}$ from causal-wake strain, root-branch data, Noether-Sea coupling, and return-map separatrices. The threshold $E_{\gamma,\min}$ is only a branch-local photon-nucleation threshold for a declared event family; it must either be derived from Gate A/C coupling or removed if the Gate A free-space branch has no stable floor.
+The proof burden is not to fit $\mathcal{S}_{\gamma,*}$. It is to derive the local drive $\mathcal{S}_{\gamma}$ from causal-wake strain, root-branch data, Noether sea coupling, and return-map separatrices. The threshold $E_{\gamma,\min}$ is only a branch-local photon-nucleation threshold for a declared event family; it must either be derived from Gate A/C coupling or removed if the Gate A free-space branch has no stable floor.
 
 ## Promotion Path
 

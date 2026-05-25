@@ -5,7 +5,7 @@
 This note treats quantum algorithmic speedup as a demanding coherence problem for many coupled assemblies. The immediate aim is not to rederive Shor's algorithm from the master equation. It is to identify which physical constraints a future derivation must satisfy if an effective quantum register is to remain coherent across many controlled operations.
 
 - **Ensemble phase-locking:** The closure problem is to maintain non-Markovian path-history coherence across a macroscopic array of Noether swarm assemblies.
-- **Noether-Sea context:** The local Noether Sea supplies the causal-wake background in which register-scale interference must remain stable. Any cavity analogy should be read as an effective description of bounded wake superposition, not as a new substrate ontology.
+- **Noether sea context:** The local Noether sea supplies the causal-wake background in which register-scale interference must remain stable. Any cavity analogy should be read as an effective description of bounded wake superposition, not as a new substrate ontology.
 - **Carrier and apparatus declaration:** An effective qubit is a calibrated two-record channel, not a substrate object by itself. A candidate hardware map must name the carrier assembly, the physical basis being controlled, the apparatus kernel $\mathcal{K}$, the retained access region $W$, and the record window $T$ before circuit notation is translated into dynamics. Photon path, polarization, photon-number, and spin encodings are useful comparison cases only after this carrier and record-channel declaration is fixed.
 
 ## The Quantum Fourier Transform as Physical Interference
@@ -39,7 +39,7 @@ The full period-extraction pipeline can be stated as a sequence of closure targe
 
 ## Falsifiability and Scaling Limits
 
-This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ account must state strict bounds on coherent circuit depth before Noether-Sea background coupling, finite propagation at $c_f$, and self-hit interaction kernels produce deterministic decoherence. The useful prediction class is therefore not a vague loss of coherence, but architecture-dependent deviations from ideal unitary behavior in large quantum processors.
+This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ account must state strict bounds on coherent circuit depth before Noether sea background coupling, finite propagation at $c_f$, and self-hit interaction kernels produce deterministic decoherence. The useful prediction class is therefore not a vague loss of coherence, but architecture-dependent deviations from ideal unitary behavior in large quantum processors.
 
 For any newly established two-register coupling, abstract gate identity does not remove finite propagation and settling time. If $d_{\mathrm{ctrl}}$ is the controlled-coupling separation and $\tau_{\mathrm{settle}}$ is the apparatus/assembly settling time needed to enter the calibrated gate channel, the gate-time floor is
 $$
@@ -61,4 +61,4 @@ $$
 <
 \tau_{\mathrm{decoh}},
 $$
-with the additional requirement that the correction operation closes its energy, momentum, angular-momentum, and record ledgers. Failure of this inequality in a hardware-dependent but reproducible way would be a useful departure from ideal unitary scaling; success over increasing code distance would constrain how weak the Noether-Sea decoherence channel must be in calibrated laboratory conditions.
+with the additional requirement that the correction operation closes its energy, momentum, angular-momentum, and record ledgers. Failure of this inequality in a hardware-dependent but reproducible way would be a useful departure from ideal unitary scaling; success over increasing code distance would constrain how weak the Noether sea decoherence channel must be in calibrated laboratory conditions.

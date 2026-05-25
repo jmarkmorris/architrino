@@ -14,11 +14,11 @@ where $b$ is impact parameter. Lensing also underwrites mass inference in galaxi
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-The case pressures the mass map and effective metric at the same time. $\mathbb{A}\mathbb{A}\mathbb{A}$ must distinguish internal assembly mass from the externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling. Lensing sees an effective geometry or propagation map, not the full internal ledger directly.
+The case pressures the mass map and effective metric at the same time. $\mathbb{A}\mathbb{A}\mathbb{A}$ must distinguish internal assembly mass from the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling. Lensing sees an effective geometry or propagation map, not the full internal ledger directly.
 
 ## Task Queue
 
-1. `deflection_integral` — Define a Noether-Sea optical-path or effective-geodesic deflection integral. Status: `draft`.
+1. `deflection_integral` — Define a Noether sea optical-path or effective-geodesic deflection integral. Status: `draft`.
 2. `mass_exposure_map` — Connect lensing mass to the exposure quotient and medium-response tensor. Status: `draft`.
 3. `shear_time_delay_join` — Use the same response object for angular deflection and lensing time delay. Status: `draft`.
 
@@ -113,7 +113,7 @@ w_t
 w_\gamma
 \left|\gamma_{\mathrm{lens}}(\theta)-\gamma_{\mathrm{Shap}}(\theta)\right|.
 $$
-This residual is low-maintenance because it strengthens the existing `deflection_integral` and `shear_time_delay_join` tasks rather than adding a new gate. It also protects the mass-map program: $\Phi_{\mathrm{eff}}$ must be computed from exposed response, shielding, and Noether-Sea coupling, not from a primitive mass substance inserted only for lensing.
+This residual is low-maintenance because it strengthens the existing `deflection_integral` and `shear_time_delay_join` tasks rather than adding a new gate. It also protects the mass-map program: $\Phi_{\mathrm{eff}}$ must be computed from exposed response, shielding, and Noether sea coupling, not from a primitive mass substance inserted only for lensing.
 
 ## Strong-Field Shadow Benchmark
 

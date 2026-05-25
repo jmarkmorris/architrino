@@ -291,7 +291,7 @@ E_\epsilon(R_*)
 \mathcal{P}_{\mathrm{sea/event},i}^{\nu}.
 $$
 
-Here $\mathcal{P}_{\mathrm{constr},i}^{\nu}$ records work done by speed-band, period, gauge, or same-source constraints, and $\mathcal{P}_{\mathrm{sea/event},i}^{\nu}$ records coherent Noether-Sea or event exchange. The integrated row on an event window $W=[u_-,u_+]$ is
+Here $\mathcal{P}_{\mathrm{constr},i}^{\nu}$ records work done by speed-band, period, gauge, or same-source constraints, and $\mathcal{P}_{\mathrm{sea/event},i}^{\nu}$ records coherent Noether sea or event exchange. The integrated row on an event window $W=[u_-,u_+]$ is
 
 In a free-support branch, the support multiplier power $\mathcal{P}_{\mathrm{supp},i}^{\nu}$ from [free-support-action-compatibility-theorem.md](free-support-action-compatibility-theorem.md) is a named component of $\mathcal{P}_{\mathrm{constr},i}^{\nu}$ unless it is assigned explicitly to the sea/event exchange ledger. Omitting nonzero support work leaves the energy current open.
 
@@ -529,7 +529,7 @@ C_{\zeta,\mathrm{exch}}
 \epsilon_{\mathrm{endpoint}}^{\nu}.
 $$
 
-The energy, momentum, angular momentum, charge, source-provenance, and Noether-Sea update rows are admissible only if this current and residual envelope use the same bounded speed factor root/action/event ledger.
+The energy, momentum, angular momentum, charge, source-provenance, and Noether sea update rows are admissible only if this current and residual envelope use the same bounded speed factor root/action/event ledger.
 
 ---
 
@@ -742,7 +742,7 @@ $$
 \le1.
 $$
 
-The exposure tensor and coherent Noether-Sea response must be recomputed on the same bounded speed factor branch:
+The exposure tensor and coherent Noether sea response must be recomputed on the same bounded speed factor branch:
 
 $$
 \mathcal{Z}_{A,\nu}^{ab}
@@ -888,14 +888,14 @@ A bounded speed factor action/stability successor packet must emit:
 | `branch_scope` | branch class, source-pair policy, same-source policy, endpoint convention, normalization scale $R_*$, support descriptor, event window, and finite-mode chart |
 | `bounded_speed_factor` | $\nu_i$, $\nu_-$, $\nu_+$, $\nu_i'$, causal-time maps $\chi_i$, inverse maps $\Lambda_i$, speed-factor status, and band margins |
 | `root_ledger` | active roots $G_{ij}^{\nu}=0$, delays $\eta_a$, signs, $J_a^{\nu}$ floors, root brackets, tail treatment, and root-sheet derivatives |
-| `action_total` | $\mathcal{S}_{\mathrm{tot}}^{\nu}$, carrier kinetic term, inertia row or $m_{\mathrm{car}}$, $\Gamma_B^{\nu}$, constraints, and Noether-Sea/event terms |
+| `action_total` | $\mathcal{S}_{\mathrm{tot}}^{\nu}$, carrier kinetic term, inertia row or $m_{\mathrm{car}}$, $\Gamma_B^{\nu}$, constraints, and Noether sea/event terms |
 | `history_work_causal_time` | $\omega_{\mathrm{hist}}^{\nu}$ in causal time, clock-corrected variations $\Xi_{v,i}$, root-work terms, and curl residual $\mathcal{R}_{\mathrm{curl}}^{\nu}$ |
-| `speed_factor_storage_exchange` | $E_{\mathrm{spd}}^{\nu}$, $\mathcal{R}_{\mathrm{exch}}^{\nu}$, constraint exchange, Noether-Sea/event exchange, and integrated window residuals |
-| `noether_currents` | $\mathcal{J}_{\zeta}^{\nu}$ split into shape, history, speed-factor, and Noether-Sea/event parts; conservation envelopes for energy, momentum, angular momentum, charge, and source provenance |
+| `speed_factor_storage_exchange` | $E_{\mathrm{spd}}^{\nu}$, $\mathcal{R}_{\mathrm{exch}}^{\nu}$, constraint exchange, Noether sea/event exchange, and integrated window residuals |
+| `noether_currents` | $\mathcal{J}_{\zeta}^{\nu}$ split into shape, history, speed-factor, and Noether sea/event parts; conservation envelopes for energy, momentum, angular momentum, charge, and source provenance |
 | `linearized_residuals` | $\delta R_N^{\nu}$, $\delta R_T^{\nu}$, $\delta R_{\nu}^{\mathrm{EL}}$, $\delta\mathcal{R}_{\mathrm{exch}}^{\nu}$, $\delta\widetilde{\mathbf{F}}^{\nu}$, $D_v\eta_a^{\nu}$, and $D_vJ_a^{\nu}$ |
 | `second_variation` | $Q_B^{\nu}$, Hessian block matrix, second root sensitivities, speed-factor cross blocks, neutral quotient, coercivity or Morse index row, and curl-symmetry error |
 | `monodromy_state` | state $(\mathbf{Y},\nu,\eta,\Gamma)$, variational state $(\xi,\rho,\delta\eta,\delta\Gamma)$, return section, reduced monodromy $M_B^{\nu}$, speed-sector classification, and spectrum |
-| `observer_mass_export` | moving carrier row $\|\mathbf{v}+\mathbf{u}_i^{(\mathbf{v})}\|=c_f\nu_i^{(\mathbf{v})}$, bounded speed factor energy, exposure tensor, coherent Noether-Sea response, speed-factor exchange tensor, $m_{\mathrm{tr}}^{\nu}$, and export residuals |
+| `observer_mass_export` | moving carrier row $\|\mathbf{v}+\mathbf{u}_i^{(\mathbf{v})}\|=c_f\nu_i^{(\mathbf{v})}$, bounded speed factor energy, exposure tensor, coherent Noether sea response, speed-factor exchange tensor, $m_{\mathrm{tr}}^{\nu}$, and export residuals |
 | `fixed_speed_special_case` | explicit $\nu_i\equiv1$ declaration, vanished exchange row, reduced Hessian and monodromy states, and list of fixed-speed packets reused only as special cases |
 | `status` | first failed row or one of `fixed-speed-special-case`, `bounded-speed-factor-action-open`, `bounded-speed-factor-hessian-stale`, `bounded-speed-factor-monodromy-state-incomplete`, `bounded-speed-factor-exchange-open`, `bounded-speed-factor-export-open`, `bounded-speed-factor-action-stability-candidate`, `not-retained` |
 

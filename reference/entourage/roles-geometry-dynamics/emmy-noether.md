@@ -27,7 +27,7 @@ Provide the symmetry, invariant, and conservation-law backbone for $\mathbb{A}\m
 
 - Classify which symmetries are substrate-level, medium-level, assembly-level, and observer-level.
 - Explain how local Lorentz behavior, gauge-like redundancy, and effective diffeomorphism invariance enter as closure targets rather than fundamental postulates.
-- Police the distinction between primitive wake speed $c_f$, Noether-Sea dressed speed $c_{\text{eff}}$, photon-channel speed $c_\gamma$, and measured asymptotic speed $c_0$.
+- Police the distinction between primitive wake speed $c_f$, Noether sea dressed speed $c_{\text{eff}}$, photon-channel speed $c_\gamma$, and measured asymptotic speed $c_0$.
 
 ### Bifurcations and invariant branch labels
 

@@ -29,7 +29,7 @@ At the absolute level, any local neighborhood is crowded:
   - Continuously emitting spherically expanding **causal wakes** at speed $c_f$.
 
 - At a given absolute time $t$, the **net potential** at a point is the **vector sum** of:
-  - Local Noether-Sea assembly wakes,
+  - Wakes from local Noether swarm assemblies in the Noether sea,
   - Wakes from bound matter in the vicinity,
   - Wakes from distant assemblies whose emission fronts are just arriving,
   - Self-hit structures from $v>c_f$ inner-binary motion.
@@ -42,7 +42,7 @@ At the absolute level, any local neighborhood is crowded:
 
 At the emergent level:
 
-- Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **Noether swarm assembly** plus its coupling to the surrounding Noether-Sea wake background.
+- Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **Noether swarm assembly** plus its coupling to the surrounding Noether sea wake background.
 - Most of the time, the assembly’s internal state is robust against small variations in the net potential.
 - Occasionally, when the assembly’s configuration is **metastable** (near a threshold boundary; see [Metastability and Threshold Crossings](#metastability-and-threshold-crossings)), a particular combination of incoming wakes pushes it across a threshold:
   - Electron “jumps” orbital
@@ -79,7 +79,7 @@ There is **no backward-in-$t$ influence**. The absolute-time ordering is strictl
 
 From the viewpoint of an embedded assembly:
 
-- The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by some effective $c$ associated with Noether-Sea assemblies and photon-like modes.
+- The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by some effective $c$ associated with Noether sea assemblies and photon-like modes.
 - Two key absolute-level configurations look “stealthy” or acausal at this emergent level:
 
 1. **Near-field-speed assemblies ("Stealth" vs. "Reactive" Modes)**
@@ -142,7 +142,7 @@ The delay-oscillator picture is useful only as an illustration: a control parame
 
 Because:
 
-- The input signal, namely the sum of causal wakes from the Noether Sea and nearby assemblies, is **high-dimensional** and **history-dependent**,
+- The input signal, namely the sum of causal wakes from the Noether sea and nearby assemblies, is **high-dimensional** and **history-dependent**,
 - The local assembly is sitting near a **threshold boundary** (e.g., a resonance-band boundary in the outer binary or a self-hit onset in the middle binary; see [Threshold Structure Guide](#threshold-structure-guide-plain-language-labels)),
 
 we get classic deterministic chaos:
@@ -259,12 +259,12 @@ Concretely:
 - Parameters could include:
   - Effective coupling strengths between sub‑assemblies (tri‑binary networks),
   - Orientation/phase relationships among middle binaries (near $v\approx c_f$),
-  - Local Noether-Sea-coupling “stiffness” (how strongly sub-assemblies respond to given wake amplitudes).
+  - Local Noether sea-coupling “stiffness” (how strongly sub-assemblies respond to given wake amplitudes).
 - These parameters must be **slow variables** relative to the fast threshold dynamics, so that:
   - The assembly can hold a “configuration of sensitivity” over many incoming wake peaks,
   - But can still adjust that configuration over longer time (learning, context).
 
-**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must dissipate entropy into the surrounding Noether Sea to maintain a tuned state.
+**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must dissipate entropy into the surrounding Noether sea to maintain a tuned state.
 
 ---
 

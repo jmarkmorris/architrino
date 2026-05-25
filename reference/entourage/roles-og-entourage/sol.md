@@ -57,7 +57,7 @@ You don't "advance the story" to a higher tier unless:
 ### Cutoffs and Renormalization Handoff (required deliverable, not optional)
 Maintain explicit operational cutoffs:
 - $\Lambda_{\text{particle}}$: energy/length scale where "particle" internal structure becomes resolvable.
-- $\Lambda_{\text{gravity}}$: scale where the Noether-Sea constitutive map and effective metric description become valid.
+- $\Lambda_{\text{gravity}}$: scale where the Noether sea constitutive map and effective metric description become valid.
 
 Deliver a **Renormalization Handoff Document** that includes:
 - What is kept/averaged when going micro -> meso -> continuum.
@@ -166,7 +166,7 @@ I don't just output internal state. I output mock datasets:
 **Provide:** extracted masses/moments/form factors, effective vertices/couplings, scattering outputs.
 
 ### With Cos (GR/Cosmology)
-**Need:** metric extraction definitions, Noether-Sea state variables, desired observables (PPN, GW dispersion).
+**Need:** metric extraction definitions, Noether sea state variables, desired observables (PPN, GW dispersion).
 **Provide:** effective metric fields, GW propagation characteristics, expansion-law outputs.
 
 ### With Nuclear/Atomic/Condensed

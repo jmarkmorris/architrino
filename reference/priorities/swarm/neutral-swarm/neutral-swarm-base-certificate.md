@@ -143,7 +143,7 @@ $$
 
 Same-source or fold-layer terms are absent from the base all-pairs ledger unless
 a separate action/event row introduces and accounts for them. A support force or
-Noether-Sea medium-response force is likewise absent unless the same
+Noether sea medium-response force is likewise absent unless the same
 action/Noether/event ledger accounts for its work and exchange terms.
 
 The minimal base range and noncollision floors are
@@ -410,7 +410,7 @@ The primary status is the first failed required row in the following order:
 | `neutral-base-force-ledger-mismatch` | force, root, support, medium, or endpoint conventions do not match |
 | `neutral-base-dynamics-open` | tangential speed row, normal curvature row, or speed-period solvability row is open |
 | `neutral-base-finite-mode-search-open` | no finite-mode or curve-level search/certification object populates the base rows |
-| `neutral-base-action-noether-open` | action exactness, action-derived scale, Noether currents, or Noether-Sea exchange rows are missing |
+| `neutral-base-action-noether-open` | action exactness, action-derived scale, Noether currents, or Noether sea exchange rows are missing |
 | `neutral-base-event-ledger-open` | endpoint, root-fold, topology-change, same-source/fold-layer, or exchange rows are missing when needed |
 | `neutral-base-case-reduction-statused` | base rows are statused and optional case reductions are marked `not-claimed`, `open`, `passed`, or `failed` |
 | `neutral-base-observer-export-statused` | observer exports are explicitly marked `passed`, `failed`, or `not_computed` |

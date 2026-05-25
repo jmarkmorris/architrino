@@ -15,7 +15,7 @@ g_{\mu\nu}^{\text{eff}}=\eta_{\mu\nu}+h_{\mu\nu},
 \qquad
 |h_{\mu\nu}|\ll1,
 $$
-with background Noether-Sea state homogeneous and isotropic at leading order.
+with background Noether sea state homogeneous and isotropic at leading order.
 
 Define trace-reversed perturbation
 $$
@@ -96,7 +96,7 @@ This is a forecast and comparison gate. It does not license a massive-graviton o
 
 ## Medium-Transport Perturbation
 
-For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether-Sea state used by redshift and dark-energy modules. In the provisional Noether swarm equilibrium packet,
+For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether sea state used by redshift and dark-energy modules. In the provisional Noether swarm equilibrium packet,
 
 $$
 \partial_t f_N
@@ -108,7 +108,7 @@ S_{\mathrm{BH}}
 -R_{\mathrm{eq}}[f_N],
 $$
 
-the term $S_{\mathrm{GW}}$ records the disturbance of the local Noether swarm cadence distribution by the gravitational-wave channel. It is not an additional default polarization mode and not a license for frequency-dependent gravitational-wave propagation in validated bands. It is a possible low-amplitude contribution to the Noether-Sea state later sampled by photons, clocks, and growth observables.
+the term $S_{\mathrm{GW}}$ records the disturbance of the local Noether swarm cadence distribution by the gravitational-wave channel. It is not an additional default polarization mode and not a license for frequency-dependent gravitational-wave propagation in validated bands. It is a possible low-amplitude contribution to the Noether sea state later sampled by photons, clocks, and growth observables.
 
 The redshift-facing projection should therefore be bounded as a perturbation of the path-rate functional:
 
@@ -162,7 +162,7 @@ $$
 \max_i \frac{|R_{\mathrm{GW},i}|}{\epsilon_{\mathrm{GW},i}}\le 1
 $$
 
-with the tolerances fixed by the validation band. This gate protects the separation between the observable data product and the ontology: the data product is a calibrated, coincident, low-residual strain record, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must still earn the claim that the record is the tensor-sector response of the effective metric induced by Noether-Sea constitutive dynamics.
+with the tolerances fixed by the validation band. This gate protects the separation between the observable data product and the ontology: the data product is a calibrated, coincident, low-residual strain record, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must still earn the claim that the record is the tensor-sector response of the effective metric induced by Noether sea constitutive dynamics.
 
 Coincidence is part of the data product, not an afterthought. For a detector network with instruments $D_a$, calibrated strain streams $s_a(t)$, response templates $h_a^\theta(t)$, and allowed light-speed timing windows $\Delta t_{ab}^{\mathrm{geom}}$, define
 $$
@@ -270,7 +270,7 @@ P_{\mathrm{GW}}
 \dddot Q_{ij}\dddot Q^{ij}
 \right\rangle,
 $$
-with $Q_{ij}$ the trace-free mass quadrupole of the effective source record in the validated weak-field limit. A native Noether-Sea wave model must therefore explain why scalar monopole leakage, vector dipole leakage, and non-TT power remain below detector bounds rather than adding them as free source channels.
+with $Q_{ij}$ the trace-free mass quadrupole of the effective source record in the validated weak-field limit. A native Noether sea wave model must therefore explain why scalar monopole leakage, vector dipole leakage, and non-TT power remain below detector bounds rather than adding them as free source channels.
 
 **Closure Target 3 (leading-order GW flux).**
 In the same regime, the cycle-averaged flux is

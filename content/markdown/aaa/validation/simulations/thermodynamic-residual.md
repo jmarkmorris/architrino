@@ -1,6 +1,6 @@
 # Thermodynamic Residual Protocol
 
-This protocol turns the local-horizon target in [Emergent Metric](../../spacetime/emergent-metric.md#local-horizon-recovery-target) into a validation scaffold. It does not assume that gravity is thermodynamic at the substrate level. It tests whether one Noether-Sea and observer-channel record can supply the three observer-level quantities used in the Jacobson comparison: boundary entropy, local temperature, and boost-energy flux.
+This protocol turns the local-horizon target in [Emergent Metric](../../spacetime/emergent-metric.md#local-horizon-recovery-target) into a validation scaffold. It does not assume that gravity is thermodynamic at the substrate level. It tests whether one Noether sea state and observer-channel record can supply the three observer-level quantities used in the Jacobson comparison: boundary entropy, local temperature, and boost-energy flux.
 
 The protocol is a proof-and-simulation target, not an empirical claim. A successful packet would show that the same record that recovers weak-field ADM/Cartan and PPN behavior also makes the local Clausius residual small in the equilibrium comparison regime.
 
@@ -10,7 +10,7 @@ For each Physical Observer $O$, effective-horizon patch $\partial\Omega$, and fi
 
 | Channel | Required content | Failure prevented |
 | --- | --- | --- |
-| Noether-Sea state | $n(\mathbf{x},t)$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, and $N$ on the relevant region | fitting entropy, flux, and metric response with separate Noether-Sea states |
+| Noether sea state | $n(\mathbf{x},t)$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, and $N$ on the relevant region | fitting entropy, flux, and metric response with separate Noether sea states |
 | Physical Observer | worldline, clock-rate record, access region, reference resources, and observer acceleration $a_O$ derived from the metric channel | importing an external observer or a free Rindler frame |
 | Boundary patch | $\partial\Omega$, effective patch area $A_{\partial\Omega}^{\mathrm{eff}}$, orientation, and signed crossing convention | hiding the area comparison in an undefined horizon surface |
 | Boundary wake labels | retained label set $\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)$ with emitter identity, emission time, receiver or sensor identity, reception time, channel, and persistence criterion | counting unrecorded or inaccessible microstates |
@@ -165,7 +165,7 @@ and the same $\theta$ also satisfies the weak-field metric gates relevant to the
 
 ## Free-Energy and Response Consistency
 
-The same record should also support the near-equilibrium free-energy direction when such a channel is claimed. Let the packet declare a coarse state $z(\theta;t)$, entropy estimator $\widehat S_z$, energy estimator $\widehat E_z$, and local temperature $\widehat T_z$ built from the same observer and Noether-Sea record. Define
+The same record should also support the near-equilibrium free-energy direction when such a channel is claimed. Let the packet declare a coarse state $z(\theta;t)$, entropy estimator $\widehat S_z$, energy estimator $\widehat E_z$, and local temperature $\widehat T_z$ built from the same observer and Noether sea record. Define
 $$
 \widehat F_z
 =
@@ -216,7 +216,7 @@ S_{AB}^{(O)}(\omega)
 +\varepsilon
 }.
 $$
-Here $\mathcal F_{\widehat T_z}$ is the packet's declared classical or quantum fluctuation-dissipation map. This check is a same-record discipline for equilibrium response. It does not assert that Noether-Sea dynamics is fundamentally stochastic.
+Here $\mathcal F_{\widehat T_z}$ is the packet's declared classical or quantum fluctuation-dissipation map. This check is a same-record discipline for equilibrium response. It does not assert that Noether sea dynamics is fundamentally stochastic.
 
 ## Proof Route
 
@@ -276,9 +276,9 @@ and emits a JSON result with this shape:
 | `gates` | label coverage, same-record temperature, same-record flux, area scaling, thermodynamic residual, conservation, weak-field same-record, and negative-control gates |
 | `failure_code` | null on pass, otherwise the first failed thermodynamic-residual gate |
 
-The mock packet is deliberately dimensionless. It uses $k_B=\hbar=c_0=A_{\text{align}}=1$ so the packet shape can be inspected by hand before any real Noether-Sea simulation supplies physical units, observer records, and boundary-wake provenance.
+The mock packet is deliberately dimensionless. It uses $k_B=\hbar=c_0=A_{\text{align}}=1$ so the packet shape can be inspected by hand before any real Noether sea simulation supplies physical units, observer records, and boundary-wake provenance.
 
-This runtime should not be expanded into a large fixture family unless it protects a live derivation. Its main value is to keep the theory honest at the handoff point where a candidate Noether-Sea record claims to supply entropy, temperature, flux, and weak-field metric recovery together. Until such a record exists, additional passing and failing fixtures are lower value than deriving the record itself.
+This runtime should not be expanded into a large fixture family unless it protects a live derivation. Its main value is to keep the theory honest at the handoff point where a candidate Noether sea record claims to supply entropy, temperature, flux, and weak-field metric recovery together. Until such a record exists, additional passing and failing fixtures are lower value than deriving the record itself.
 
 ## Promotion Boundary
 

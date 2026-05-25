@@ -25,7 +25,7 @@ n=\frac1{\sqrt3}(1,1,1),
 \zeta_{\delta Z}\approx-0.000680152657812.
 $$
 
-The question is whether existing ADM/Cartan, mass-map, or Noether-Sea constitutive material fixes the ratio $\lambda_Z/\lambda_M$. The answer is narrower and more useful: the existing corpus fixes the tensor basis and the directional medium readout, but it does not fix a numerical ratio. Axial cancellation identifies only one scalar combination unless the projection map supplies an independent calibration for the exposure and medium-response channels.
+The question is whether existing ADM/Cartan, mass-map, or Noether sea constitutive material fixes the ratio $\lambda_Z/\lambda_M$. The answer is narrower and more useful: the existing corpus fixes the tensor basis and the directional medium readout, but it does not fix a numerical ratio. Axial cancellation identifies only one scalar combination unless the projection map supplies an independent calibration for the exposure and medium-response channels.
 
 ## Source Status
 
@@ -247,7 +247,7 @@ r_{ZM}>0
 \delta\mathcal M_2^{\mathrm{req}}(n)>0.
 $$
 
-If a future Noether-Sea constitutive row forces $\mu_{\mathrm{sea}}\le0$ for this branch and probe sign while $r_{ZM}>0$, then the axial trace-free response cannot be canceled. The branch must then be classified as observer-anisotropic or as nonmetric exposure data with $\lambda_Z=0$. The current source material does not derive such a sign law.
+If a future Noether sea constitutive row forces $\mu_{\mathrm{sea}}\le0$ for this branch and probe sign while $r_{ZM}>0$, then the axial trace-free response cannot be canceled. The branch must then be classified as observer-anisotropic or as nonmetric exposure data with $\lambda_Z=0$. The current source material does not derive such a sign law.
 
 ## Closure Classification
 
@@ -271,4 +271,4 @@ $$
 0.000453435105208\,r_{ZM}\varepsilon
 $$
 
-from an existing or newly derived Noether-Sea constitutive row on the same branch-axis record.
+from an existing or newly derived Noether sea constitutive row on the same branch-axis record.

@@ -1,8 +1,8 @@
-# Axial Noether-Sea Cancellation
+# Axial Noether Sea Cancellation
 
 Promotion status: `priority-only`.
 
-This packet consumes [axial-response-adm-projection](axial-response-adm-projection.md) and states the Noether-Sea response needed to cancel the axial trace-free root-ledger geometry. It uses the existing medium-response rule that a Noether-Sea term must be a declared constitutive response with symmetry and preferred-orientation residuals, not an empirical correction.
+This packet consumes [axial-response-adm-projection](axial-response-adm-projection.md) and states the Noether sea response needed to cancel the axial trace-free root-ledger geometry. It uses the existing medium-response rule that a Noether sea term must be a declared constitutive response with symmetry and preferred-orientation residuals, not an empirical correction.
 
 ## Input Residual
 
@@ -39,11 +39,11 @@ $$
 \varepsilon A^{ij}.
 $$
 
-Here $\lambda_Z$ is the projection coefficient that maps exposure anisotropy into the observer spatial metric, $\lambda_M$ is the projection coefficient for the Noether-Sea medium-response tensor, and $\mu_{\mathrm{sea}}$ is the branch-axis trace-free medium-response amplitude.
+Here $\lambda_Z$ is the projection coefficient that maps exposure anisotropy into the observer spatial metric, $\lambda_M$ is the projection coefficient for the Noether sea medium-response tensor, and $\mu_{\mathrm{sea}}$ is the branch-axis trace-free medium-response amplitude.
 
-## Scalar-Only Noether-Sea Response Is Insufficient
+## Scalar-Only Noether Sea Response Is Insufficient
 
-If the Noether-Sea response near the branch is scalar-only, then
+If the Noether sea response near the branch is scalar-only, then
 
 $$
 \delta\mathcal M_{\mathrm{sea}}^{ij}
@@ -81,7 +81,7 @@ The scalar period response and the scalar Weyl-versus-dynamical residual cannot 
 
 ## Tensorial Cancellation Law
 
-If the Noether-Sea response retains a trace-free tensor channel along the branch axis, write
+If the Noether sea response retains a trace-free tensor channel along the branch axis, write
 
 $$
 \Pi_{\mathrm{tf}}\delta\mathcal M_{\mathrm{sea}}^{ij}
@@ -154,7 +154,7 @@ E_n^{ij}=A^{ij},
 A_{ij}A^{ij}=\frac23.
 $$
 
-Thus a directional Noether-Sea probe along the branch axis records
+Thus a directional Noether sea probe along the branch axis records
 
 $$
 \delta\mathcal M_2(n)
@@ -203,4 +203,4 @@ $$
 \end{cases}
 $$
 
-This is stronger than a future requirement. It is the explicit algebraic closure condition that the Noether-Sea constitutive response must satisfy for the first root-ledger geometry response to be compatible with isotropic weak-field observer geometry.
+This is stronger than a future requirement. It is the explicit algebraic closure condition that the Noether sea constitutive response must satisfy for the first root-ledger geometry response to be compatible with isotropic weak-field observer geometry.

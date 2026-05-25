@@ -113,7 +113,7 @@ $$
 \mathbf{F}_i^{\mathrm{med}}(t)
 $$
 
-denote the declared Noether-Sea medium-response contribution, if any. This packet does not assume a constitutive law for $\mathbf{F}_i^{\mathrm{med}}$. A retained branch must define it on the same time window and prove that it is compatible with the event ledger and weak-limit row.
+denote the declared Noether sea medium-response contribution, if any. This packet does not assume a constitutive law for $\mathbf{F}_i^{\mathrm{med}}$. A retained branch must define it on the same time window and prove that it is compatible with the event ledger and weak-limit row.
 
 The relative acceleration demanded by the force ledger is therefore
 

@@ -72,7 +72,7 @@ $$
 \mathcal{G}(z)=0.
 $$
 
-They select one representative of a symmetry orbit. They are not dynamics, action, Noether Sea, support, self-hit, or event residuals.
+They select one representative of a symmetry orbit. They are not dynamics, action, Noether sea, support, self-hit, or event residuals.
 
 ---
 
@@ -673,7 +673,7 @@ $$
 E_{\mathrm{pair}}\mathcal{E}
 $$
 
-after paired labels are identified. Action, event, self-hit, and Noether-Sea exchange rows must declare their pair sector because endpoint exchange can be pair-even, pair-odd, or mixed depending on the event convention.
+after paired labels are identified. Action, event, self-hit, and Noether sea exchange rows must declare their pair sector because endpoint exchange can be pair-even, pair-odd, or mixed depending on the event convention.
 
 If every row is also $C_3$-equivariant, then
 
@@ -912,7 +912,7 @@ A bounded speed factor branch search using this reduction must emit:
 | `bordered_jacobian` | $\mathcal{J}_{\mathrm{aug}}$ or KKT matrix, Schur corrections, rank, and condition estimate |
 | `root_label_slice` | delay ordering node, sign labels, provenance labels, self-hit/event labels, and strict margins |
 | `block_projectors` | $P_k$, $E_{\mathrm{pair}}$, $O_{\mathrm{pair}}$, $S_3$ standard/trivial projectors when declared |
-| `row_block_map` | pair and binary block of speed, normal, root, support, action, Noether-Sea, self-hit, and event rows |
+| `row_block_map` | pair and binary block of speed, normal, root, support, action, Noether sea, self-hit, and event rows |
 | `block_leakage` | $\delta_A$, $\delta_{\mathrm{off}}$, and row-wise equivariance defects |
 | `gauge_residuals` | numeric values of every gauge row after solve and after retraction |
 | `physical_residuals` | residual norms excluding gauge rows |

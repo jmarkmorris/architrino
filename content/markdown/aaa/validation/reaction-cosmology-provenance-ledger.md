@@ -10,14 +10,14 @@ Cosmology-facing reaction claims need more than a source story. They need a reco
 
 This ledger separates four levels:
 
-- **Ontology:** architrinos, Noether swarms, axial layers, photon assemblies, and Noether-Sea state variables.
+- **Ontology:** architrinos, Noether swarms, axial layers, photon assemblies, and Noether sea state variables.
 - **Reaction mechanics:** association, dissociation, planar-mode nucleation, pair production, recoil, and medium excitation.
 - **Transport and thermalization:** opacity, scattering, cascade depth, diffusion, cooling, and path-history redshift.
 - **Effective observables:** emissivity, light-element yield, blackbody spectrum, anisotropy, polarization, and inferred cosmological parameters.
 
 ## Leap Opportunity Record
 
-The opportunity tracked here is a possible unification of four previously separate bookkeeping problems: radiative planar-mode nucleation, pair-production provenance, BBN photon loading, and CMB thermalization. The shared claim is not that these channels are already derived from one equation. The disciplined claim is that they may need one common provenance ledger because each asks the same question at a different scale: which assemblies, Noether swarm material, energy-momentum terms, and Noether-Sea state variables enter and exit the channel?
+The opportunity tracked here is a possible unification of four previously separate bookkeeping problems: radiative planar-mode nucleation, pair-production provenance, BBN photon loading, and CMB thermalization. The shared claim is not that these channels are already derived from one equation. The disciplined claim is that they may need one common provenance ledger because each asks the same question at a different scale: which assemblies, Noether swarm material, energy-momentum terms, and Noether sea state variables enter and exit the channel?
 
 ### Current Claim Status
 
@@ -49,7 +49,7 @@ The minimal useful first path is BBN photon loading: identify a source-zone radi
 | Field | What must be recorded | Why it matters |
 | --- | --- | --- |
 | Architrino inventory | $E/P$ counts, swarm/axial-layer separation, and identity routing for recruited or returned substrate content | Prevents creation-from-nothing wording in pair and weak channels |
-| Noether-Sea state | $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, and excitation state | Keeps density, delay, and transport variables distinct |
+| Noether sea state | $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, and excitation state | Keeps density, delay, and transport variables distinct |
 | Radiation event record | Source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status | Provides the local event schema that can be propagated into source-zone, transport, and observer-level cosmology claims |
 | Photon assembly channel | Planar-mode nucleation threshold, emitted energy, direction, polarization basis, and transverse angular-momentum ledger | Links bremsstrahlung, synchrotron, and CMB photon-bath claims |
 | Pair channel | Incoming photon assemblies, identity-routed recruited Noether swarm content, final $e^+e^-$ assemblies, and recoil/medium excitation | Keeps pair production as association from local substrate content, not ex nihilo creation |
@@ -76,7 +76,7 @@ These gates are not separate ontologies. They are bookkeeping filters that preve
 | Channel | Source document | Provenance target | Current status |
 | --- | --- | --- | --- |
 | Bremsstrahlung planar-mode nucleation | [Bremsstrahlung](../reactions/bremsstrahlung.md) | Record electron assembly energy loss, target recoil, photon assembly output, and medium excitation | Provisional map |
-| Synchrotron planar-mode nucleation | [Synchrotron Cascades](../reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether-Sea states | Provisional map |
+| Synchrotron planar-mode nucleation | [Synchrotron Cascades](../reactions/synchrotron.md) | Derive photon output from curved charged-assembly transport in anisotropic Noether sea states | Provisional map |
 | Breit-Wheeler pair channel | [Synchrotron Cascades](../reactions/synchrotron.md) | Record incoming photon assemblies, recruited Noether swarm content, and final $e^+e^-$ assemblies | Derivation target |
 | BBN photon bath | [BBN Constraints](../cosmology/BBN-constraints.md) | Show that pair, bremsstrahlung, synchrotron, and related channels maintain effective $\eta\approx6\times10^{-10}$ during the bottleneck window | Closure target |
 | CMB thermal spectrum | [CMB](../cosmology/CMB.md) | Show that source emission, transport, and thermalization produce a near-blackbody photon bath with allowed anisotropy and damping structure | Closure target |
@@ -106,7 +106,7 @@ The provenance record must also include the source electron assembly, target ass
 
 ### Synchrotron Emission
 
-The event record must connect charged-assembly curvature, the effective magnetic-field map, source depletion, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, photon assembly output $E_\gamma$, recoil, medium excitation, causal-wake ledger, identity routing, and photon Gate B event residual. The closure target is to derive the standard $\nu_c \propto \gamma^2 B$ and $P_{\mathrm{syn}}\propto U_B\gamma^2$ scalings from Noether-Sea anisotropy and wake-strain threshold conditions rather than fitting a separate emission rule. Synchrotron polarization records inherit Gate B, so this ledger carries the transverse handoff without proving photon helicity locally.
+The event record must connect charged-assembly curvature, the effective magnetic-field map, source depletion, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, photon assembly output $E_\gamma$, recoil, medium excitation, causal-wake ledger, identity routing, and photon Gate B event residual. The closure target is to derive the standard $\nu_c \propto \gamma^2 B$ and $P_{\mathrm{syn}}\propto U_B\gamma^2$ scalings from Noether sea anisotropy and wake-strain threshold conditions rather than fitting a separate emission rule. Synchrotron polarization records inherit Gate B, so this ledger carries the transverse handoff without proving photon helicity locally.
 
 ### Pair Production
 
@@ -170,12 +170,12 @@ with $\tau_{\mathrm{th}}^{-1}$ decomposed into the specific event-recorded chann
 ## Closure Targets
 
 1. **Planar-mode threshold closure:** derive a shared threshold condition for bremsstrahlung and synchrotron photon assembly output.
-2. **Pair-production provenance closure:** prove that local Noether-Sea recruitment can satisfy architrino inventory, energy-momentum, and Breit-Wheeler rate constraints in the same event record.
+2. **Pair-production provenance closure:** prove that local Noether sea recruitment can satisfy architrino inventory, energy-momentum, and Breit-Wheeler rate constraints in the same event record.
 3. **Photon-bath closure:** show that the relevant radiation channels can maintain BBN-compatible photon loading during the deuterium bottleneck window.
 4. **Matter-asymmetry closure:** derive $\eta_B^{\mathrm{ledger}}$ from event-level reaction provenance without hidden baryon inventory, charge, or energy sources.
 5. **Detailed-balance closure:** derive the rate symmetry and ensemble weight relation that make emission, absorption, and stimulated terms recover Planck occupation with zero effective photon chemical potential.
-6. **Blackbody closure:** show that distributed source channels plus Noether-Sea transport can generate and preserve the CMB blackbody spectrum within observational limits.
-7. **Clock/redshift closure:** use one Noether-Sea state map for photon propagation, endpoint clock comparison, and redshift-distance inference.
+6. **Blackbody closure:** show that distributed source channels plus Noether sea transport can generate and preserve the CMB blackbody spectrum within observational limits.
+7. **Clock/redshift closure:** use one Noether sea state map for photon propagation, endpoint clock comparison, and redshift-distance inference.
 
 ## Failure Modes
 
@@ -185,7 +185,7 @@ The provenance program fails for a channel if a source story cannot survive the 
 | --- | --- | --- |
 | Single Noether swarm temperature mistake | A single excited Noether swarm is treated as thermodynamically hot rather than internally excited, closure-mismatched, or metastable | Temperature is being used before an ensemble distribution or entropy-energy relation has been established |
 | Inventory gap | Architrino inventory, Noether swarm recruitment, recoil, or returned medium content cannot be balanced without unrecorded substrate creation | Pair and radiation channels cannot be promoted beyond provisional maps |
-| Per-observable refit | The same Noether-Sea state variables must be re-fit independently for photon loading, blackbody recovery, damping, redshift, or growth observables | The cosmology interpretation loses its shared Noether-Sea state map |
+| Per-observable refit | The same Noether sea state variables must be re-fit independently for photon loading, blackbody recovery, damping, redshift, or growth observables | The cosmology interpretation loses its shared Noether sea state map |
 | Standard-limit violation | Pair, Compton-like, bremsstrahlung, synchrotron, or photon propagation channels violate validated limits in regimes where those limits are already measured | The proposed substrate route fails before it can claim new deviations |
 | Insufficient thermalization depth | $\mathcal{D}_{\mathrm{th}}$ is too small, or its channel decomposition is not tied to event records | Source photons need not relax to a Planck bath, and a nonzero effective photon chemical potential or spectral distortion remains |
 | Matter-asymmetry ledger failure | $\eta_B^{\mathrm{ledger}}$ cannot match the observed baryon-to-photon ratio without unrecorded baryon inventory, charge imbalance, or energy imbalance | A baryogenesis-like source story cannot be promoted into cosmology provenance |

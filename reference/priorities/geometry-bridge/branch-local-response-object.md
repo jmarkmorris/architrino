@@ -12,7 +12,7 @@ $$
 \mathcal{K}_{B}^{\mathrm{geom}}.
 $$
 
-The branch-local response object is the residual system whose linear inverse, after gauge quotient, turns a Noether-Sea or assembly-environment perturbation into first-order changes in period, branch geometry, exposure, and medium response.
+The branch-local response object is the residual system whose linear inverse, after gauge quotient, turns a Noether sea or assembly-environment perturbation into first-order changes in period, branch geometry, exposure, and medium response.
 
 ---
 
@@ -58,9 +58,9 @@ The entries are:
 | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | Energy, momentum, angular-momentum, charge, and provenance ledger rows. |
 | $Q_{ab}$ | Cycle-averaged branch shape tensor. |
 | $\mathcal{Z}^{ab}$ | Exterior exposure tensor: the symmetric tensor measuring which root-weighted directions remain visible to external probe rows. |
-| $\mathcal{M}_{\mathrm{sea}}^{ab}$ | Noether-Sea response tensor exported by the same branch chart. |
+| $\mathcal{M}_{\mathrm{sea}}^{ab}$ | Noether sea response tensor exported by the same branch chart. |
 
-The tensor rows are part of $z_B$, not post-processing. This forces period, shape tensor, exposure tensor, action rows, and Noether-Sea response tensor to close on the same root ledger.
+The tensor rows are part of $z_B$, not post-processing. This forces period, shape tensor, exposure tensor, action rows, and Noether sea response tensor to close on the same root ledger.
 
 ---
 
@@ -103,13 +103,13 @@ The remaining environment entries enter the residual as follows:
 | Environment entry | Residual use |
 | --- | --- |
 | $\widetilde{\mathbf{F}}_{\mathrm{self}}$ | Same-source or regularized fold-layer force row, when the ledger declares it. |
-| $\widetilde{\mathbf{F}}_{\mathrm{med}}$ | Noether-Sea or medium-response correction to the branch force row. |
-| $\Theta_{\mathrm{sea}}$ | Local Noether-Sea density, delay factor, drift, gradient, and constitutive coefficients used only in medium and export rows. |
+| $\widetilde{\mathbf{F}}_{\mathrm{med}}$ | Noether sea or medium-response correction to the branch force row. |
+| $\Theta_{\mathrm{sea}}$ | Local Noether sea density, delay factor, drift, gradient, and constitutive coefficients used only in medium and export rows. |
 | $\mathsf{W}_{\mathrm{ext}}$ | Exterior probe weights used to compute $\mathcal{Z}^{ab}$ and the preferred-frame leakage row. |
 | $\Delta\mathcal{A}_{\mathrm{env}}$ | Imposed action increment or cycle-work row. |
 | $\Delta\mathcal{L}_{E\mathbf{p}\mathbf{J},\mathrm{env}}$ | Imposed conservation-ledger exchange with the environment. |
 
-Thus $D_\theta\mathcal{R}_B$ has concrete sources: changes in drift/deformation, action scale, medium force, exterior probe weights, and Noether-Sea constitutive coefficients.
+Thus $D_\theta\mathcal{R}_B$ has concrete sources: changes in drift/deformation, action scale, medium force, exterior probe weights, and Noether sea constitutive coefficients.
 
 ---
 
@@ -369,7 +369,7 @@ $$
 \mathfrak{Z}^{ab}(z_B;\theta).
 $$
 
-The Noether-Sea response tensor is the branch derivative of the exported Noether-Sea momentum/current response with respect to a small imposed drift $\upsilon_b$ in the environment record:
+The Noether sea response tensor is the branch derivative of the exported Noether sea momentum/current response with respect to a small imposed drift $\upsilon_b$ in the environment record:
 
 $$
 \mathfrak{M}_{\mathrm{sea}}^{ab}(z_B;\theta)
@@ -390,7 +390,7 @@ $$
 \mathfrak{M}_{\mathrm{sea}}^{ab}(z_B;\theta).
 $$
 
-This row is the first controlled bridge from assembly response to Noether-Sea constitutive response. It does not assert an observer metric.
+This row is the first controlled bridge from assembly response to Noether sea constitutive response. It does not assert an observer metric.
 
 ---
 
@@ -481,7 +481,7 @@ together with any declared drift-odd part of $\mathcal{M}_{\mathrm{sea}}^{ab}$. 
 Proof route:
 
 1. Use the simple-root rows and $|J_\rho|\ge J_{\min}$ to apply the implicit-function theorem to every active root delay $\eta_\rho$ and Jacobian $J_\rho$ as $C^1$ functions of $(Y,\nu,\theta)$ on the fixed ledger.
-2. Substitute those root derivatives into the force, dynamics, action, tensor, and Noether-Sea rows to obtain a $C^1$ residual map on the finite coefficient or Galerkin branch chart.
+2. Substitute those root derivatives into the force, dynamics, action, tensor, and Noether sea rows to obtain a $C^1$ residual map on the finite coefficient or Galerkin branch chart.
 3. Quotient translation, rotation, phase, period, and root-label gauge directions by explicit border rows.
 4. Apply the Banach-space or finite-dimensional implicit-function theorem to $\Pi_B\mathcal{R}_B=0$ using invertibility of $\mathcal{L}_B$.
 5. Differentiate $\Pi_{\mathrm{geom}}$ along the resulting solution map $\theta\mapsto z_B(\theta)$ to obtain the displayed export formula.

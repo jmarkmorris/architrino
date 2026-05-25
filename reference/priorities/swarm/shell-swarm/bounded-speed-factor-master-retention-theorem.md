@@ -236,7 +236,7 @@ The force-moment row $\mathcal{R}_{\mathrm{force\text{-}moment}}^{\nu}$ emits th
 
 The variational Noether row $\mathcal{R}_{\mathrm{VN}}^{\nu}$ requires one declared variation convention: fixed-period projection or period-constrained variation with multipliers. It includes the speed-factor Euler-Lagrange row, the calibrated identity $\Pi_H^{\nu,*}R_{\nu}^{\mathrm{EL}}=\mathcal{M}_{\nu}R_T^\nu$, the storage/exchange residual $\mathcal{R}_{\mathrm{exch}}^\nu$, support work, and the Noether-current conservation envelope from [bounded-speed-factor-variational-noether-closure.md](bounded-speed-factor-variational-noether-closure.md). If it is missing, a speed ODE is only dynamics bookkeeping, not an action or conservation proof.
 
-If a self-hit interval is active, $\mathcal{R}_{\mathrm{exch,hit}}^{\nu}$ is the finite-window exchange residual from [bounded-speed-factor-self-hit-exchange-closure.md](bounded-speed-factor-self-hit-exchange-closure.md). It tracks speed energy, self-hit potential, partner/cross work, support work, constraint work, Noether-Sea/event work, endpoint speed exits, momentum, angular momentum, charge, and source provenance. Finite self-hit return without this exchange row remains `self-hit-exchange-residual-open`.
+If a self-hit interval is active, $\mathcal{R}_{\mathrm{exch,hit}}^{\nu}$ is the finite-window exchange residual from [bounded-speed-factor-self-hit-exchange-closure.md](bounded-speed-factor-self-hit-exchange-closure.md). It tracks speed energy, self-hit potential, partner/cross work, support work, constraint work, Noether sea/event work, endpoint speed exits, momentum, angular momentum, charge, and source provenance. Finite self-hit return without this exchange row remains `self-hit-exchange-residual-open`.
 
 ---
 

@@ -343,7 +343,7 @@ N_+=N_-=3,
 Q=0.
 $$
 
-Energy, momentum, angular momentum, charge, source provenance, recoil, and Noether-Sea update rows are all defined on the same state history and root ledger. Rows not defined may be marked `not_computed`, but then they cannot support retention beyond the narrower dynamics-only statement.
+Energy, momentum, angular momentum, charge, source provenance, recoil, and Noether sea update rows are all defined on the same state history and root ledger. Rows not defined may be marked `not_computed`, but then they cannot support retention beyond the narrower dynamics-only statement.
 
 ---
 
@@ -552,7 +552,7 @@ The minimal dynamics theorem does not produce observer-level recovery by implica
 | Lorentz clock/ruler recovery | a moving-branch export $\mathcal{O}_q(\mathbf{v};W)$ with retained active roots, clock extraction, ruler extraction, two-way signal row, and preferred-frame leakage residual |
 | Photon closure | a branch-transition packet recovering the coaxial contra-rotating pro/anti planar pair and closing the photon event ledger |
 | Mass map | $E_{\mathrm{hist}}$, $\mathcal{Z}^{ab}$, $\zeta$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, and $m_{\mathrm{tr}}$ computed by one extraction map on the same branch |
-| Generation hierarchy | branch-family rows whose mass ratios pass through exposure-dressed energy and Noether-Sea response rather than a standalone topological label |
+| Generation hierarchy | branch-family rows whose mass ratios pass through exposure-dressed energy and Noether sea response rather than a standalone topological label |
 | Color / $SU(3)$ | a continuous phase-bundle connection, generators, curvature, and transport/confinement residuals; $\mathcal{S}_3$ remains only a discrete scaffold |
 | Strong-field and cosmology comparison | finite-boundary continuation, event-ledger closure, and observer-variable translation rows |
 

@@ -1094,7 +1094,7 @@ A deformed carrier ansatz remains `priority-only` unless it supplies all rows be
 | Active roots | finite root count, status labels, and memory depth |
 | Jacobian floor | $J_{\min}>\epsilon_J$ across partner, cross-binary, node-adjacent, and same-source rows |
 | Tangential closure | $\mathcal{R}_{\mathrm{tan}}\le\epsilon_{\mathrm{tan}}$ |
-| Event ledgers | energy/action, momentum, angular momentum, charge provenance, and Noether-Sea medium update marked `passed`, `failed`, or `not_computed` |
+| Event ledgers | energy/action, momentum, angular momentum, charge provenance, and Noether sea medium update marked `passed`, `failed`, or `not_computed` |
 
 Immediate rejection codes:
 

@@ -23,7 +23,7 @@ This chapter also treats missed opportunities dynamically rather than as one-tim
 The minimal lens used in this chapter is:
 
 - Substrate kinematics: $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with exact absolute-time form $dt$.
-- Matter and "vacuum" share constituents (assemblies in the Noether Sea), not two disjoint ontologies.
+- Matter and "vacuum" share constituents (assemblies in the Noether sea), not two disjoint ontologies.
 - Relativistic observables are emergent summaries of assembly dynamics.
 - Deterministic microdynamics can yield multistability and attractor-basin outcome sensitivity.
 
@@ -85,7 +85,7 @@ Another recurring pattern is failure to revisit earlier assumption sets after la
 | 1860s-1890s (Maxwell + finite propagation) | Field propagation speed, wave structure of electromagnetism | Physical medium interpretation with finite-speed causal transport | Field formalism was treated as sufficient; ontology of the carrier was deprioritized |
 | 1887-1904 (Michelson-Morley + Lorentz) | Null aether-wind result, dynamical contraction/time slowdown models | Emergent Lorentz symmetry from matter-medium interaction | "Undetectable medium = dispensable medium" became the decisive simplification |
 | 1905 (Special Relativity) | Full Lorentz covariance of inertial laws | Could have been read as effective symmetry of assemblies in one substrate | Principle-theory victory reclassified kinematic effects as fundamental spacetime structure |
-| 1915-1920 (General Relativity) | Metric dynamics with exceptional predictive power | Metric as coarse-grained constitutive field of deeper Noether-Sea state | Geometrization succeeded so strongly that "geometry is fundamental" became default |
+| 1915-1920 (General Relativity) | Metric dynamics with exceptional predictive power | Metric as coarse-grained constitutive field of deeper Noether sea state | Geometrization succeeded so strongly that "geometry is fundamental" became default |
 | 1917 (Einstein World) | Boundary-condition pressure at spatial infinity, Machian relativity-of-inertia aims, and the first relativistic global cosmology | Global geometry could have been held as a closure hypothesis requiring observation, stability, and source/boundary residual tests | Logical consistency and aesthetic closedness could outrun empirical comparison and perturbative stability analysis |
 | 1924-1930 (de Broglie, pilot-wave, early quantum debates) | Deterministic alternatives existed, particle-wave dual structure observed | Deterministic microstate + contextual readout + basin selection | Copenhagen operationalism treated ontology as unnecessary overhead |
 | 1930s-1950s (QFT vacuum, renormalization) | Vacuum structure, divergence control, effective computational rules | Divergences as signs of missing microstructure and finite substrate scales | Renormalization success normalized continuum ontology plus parameter absorption |
@@ -147,7 +147,7 @@ In other words, the ingredients for a layered interpretation were already presen
 |:---|:---|:---|:---|
 | Preferred frame | Yes, physically real ether rest frame | No preferred inertial frame | Yes, Euclidean void with absolute time |
 | Status of Lorentz transformations | Dynamical compensation from motion through a medium | Fundamental kinematics of spacetime itself | Emergent observable symmetry from assembly dynamics |
-| Medium composition | Unspecified ether substance | No constitutive medium required | Noether Sea of architrino assemblies |
+| Medium composition | Unspecified ether substance | No constitutive medium required | Noether sea of architrino assemblies |
 | Relation between matter and medium | Matter moves through a distinct ether | Matter and spacetime are treated kinematically | Matter and medium share one ontology |
 | Why ordinary experiments fail to reveal the frame | Rod-clock compensation is exact | No hidden frame exists to detect | Accessible-regime assembly deformation and clock retuning hide the frame in ordinary conditions, if the coefficient closure succeeds |
 | Moving-source causal structure | Finite-propagation source history already matters in electrodynamics | Retained mathematically but stripped of medium ontology | Elevated into a substrate-first path-history picture |
@@ -257,7 +257,7 @@ where $Q_\theta$ is the retained effective quantity, $\mathbf{F}_\theta$ is its 
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary and directly useful as method**. It does not support importing Einstein's static closed universe, nor does it justify treating $\lambda$ as a disguised proof of Noether-Sea dynamics. It supports a stricter rule: whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes an effective cosmological history in a fixed Euclidean void, the history must distinguish observer-level variables such as $a(t)$ and $H(t)$ from substrate claims about assemblies and the Noether Sea, and it must carry observation, stability, and source/boundary residuals together.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary and directly useful as method**. It does not support importing Einstein's static closed universe, nor does it justify treating $\lambda$ as a disguised proof of Noether sea dynamics. It supports a stricter rule: whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes an effective cosmological history in a fixed Euclidean void, the history must distinguish observer-level variables such as $a(t)$ and $H(t)$ from substrate claims about assemblies and the Noether sea, and it must carry observation, stability, and source/boundary residuals together.
 
 Transition relevance is high because emergent cosmologies are especially vulnerable to the same failure mode. A model can be mathematically elegant, philosophically attractive, and still be under-validated. The Einstein World warns that a closure device should remain a closure device until it survives the full residual check.
 
@@ -377,7 +377,7 @@ $$
 +\frac{\left\|\mathcal{P}_{\mathrm{wake}}(W)-\mathcal{P}_{\mathrm{field}}(W)\right\|}{P_W}
 +\frac{\left|m_{\mathrm{resp}}(W)-m_{\mathrm{obs}}(W)\right|}{m_W}.
 $$
-Here $\Delta\mathbf{p}_{\mathrm{wake}}$ is the impulse accumulated from finite-speed causal-wake hits, $\Delta\mathbf{p}_{\mathrm{eff}}$ is the corresponding impulse in the effective field description being recovered, $\mathcal{P}_{\mathrm{wake}}$ and $\mathcal{P}_{\mathrm{field}}$ are matched provenance records for where the interaction content enters and exits the calculation, and $m_{\mathrm{resp}}$ is the externally exposed inertial response derived from path history, shielding, and Noether-Sea coupling. A Wheeler-style near miss becomes live only if all three terms are small without adding instantaneous action, non-causal branch content, or independent mass constants.
+Here $\Delta\mathbf{p}_{\mathrm{wake}}$ is the impulse accumulated from finite-speed causal-wake hits, $\Delta\mathbf{p}_{\mathrm{eff}}$ is the corresponding impulse in the effective field description being recovered, $\mathcal{P}_{\mathrm{wake}}$ and $\mathcal{P}_{\mathrm{field}}$ are matched provenance records for where the interaction content enters and exits the calculation, and $m_{\mathrm{resp}}$ is the externally exposed inertial response derived from path history, shielding, and Noether sea coupling. A Wheeler-style near miss becomes live only if all three terms are small without adding instantaneous action, non-causal branch content, or independent mass constants.
 
 The later collapse crisis adds a companion requirement: no-hair coarse-graining must not be mistaken for literal source erasure unless the derivation says so. A recovery account has to identify which incoming assembly records remain available to exterior effective variables, which are hidden behind the collapse boundary, and which conservation labels were only valid at the pre-collapse effective layer. That is the concrete historical pressure behind Wheeler's law-without-law language: if lawfulness is emergent closure, the corpus must specify the closure map rather than simply deny Wheeler's worry.
 
@@ -389,7 +389,7 @@ Transition relevance is high. The project should not inherit Wheeler's particles
 
 ### Recovery Target
 
-The long-term relevance of this episode is permanent until the field/particle distinction is closed at the constitutive level. Recovery would require deriving effective fields from causal-wake superposition, deriving inertial response from trapped internal causal history and Noether-Sea coupling, and replacing singular point-particle idealization with finite stable assembly branches that still reproduce the tested point-particle and field-theory limits. Wheeler's historical sequence then becomes a near-miss benchmark: $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds only if it can keep the particles-first pressure without losing the field-level successes that Wheeler eventually had to recover.
+The long-term relevance of this episode is permanent until the field/particle distinction is closed at the constitutive level. Recovery would require deriving effective fields from causal-wake superposition, deriving inertial response from trapped internal causal history and Noether sea coupling, and replacing singular point-particle idealization with finite stable assembly branches that still reproduce the tested point-particle and field-theory limits. Wheeler's historical sequence then becomes a near-miss benchmark: $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds only if it can keep the particles-first pressure without losing the field-level successes that Wheeler eventually had to recover.
 
 ---
 
@@ -424,11 +424,11 @@ The historical lock-in around this episode is two-sided. Einstein's preference f
 
 ### What Was Left Unfinished
 
-What was occluded was a disciplined source-provenance analysis. A cosmological constant, dark-energy-like stress, or medium tension can alter an effective expansion history without automatically producing matter. Conversely, recurring assembly association, dissociation, black-hole recycling, or Noether-Sea exchange can source effective matter only if the ledger closes in absolute time. The unfinished target is therefore not "revive steady state"; it is "never allow a fitted expansion history to smuggle in unaccounted source terms."
+What was occluded was a disciplined source-provenance analysis. A cosmological constant, dark-energy-like stress, or medium tension can alter an effective expansion history without automatically producing matter. Conversely, recurring assembly association, dissociation, black-hole recycling, or Noether sea exchange can source effective matter only if the ledger closes in absolute time. The unfinished target is therefore not "revive steady state"; it is "never allow a fitted expansion history to smuggle in unaccounted source terms."
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether Sea may carry Noether-Sea state dynamics that project into $a_{\mathrm{eff}}(t)$, $H_{\mathrm{eff}}(t)$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(t)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether sea may carry Noether sea state dynamics that project into $a_{\mathrm{eff}}(t)$, $H_{\mathrm{eff}}(t)$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(t)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
 
 ### Recovery Target
 

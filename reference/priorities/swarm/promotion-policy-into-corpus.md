@@ -156,11 +156,11 @@ Promotion prerequisites:
 | Material | Minimum promotion level | Required prerequisite |
 | --- | --- | --- |
 | action-derived scale or inertia | `theorem-target` until closed | work-one-form curl row, action-derived $\Gamma_B^\nu$ or inertia operator, and mismatch status for any fitted scale |
-| Noether conservation | `theorem-target` until closed | energy, momentum, angular momentum, charge, source provenance, Noether-Sea exchange, and event rows on the same ledger |
+| Noether conservation | `theorem-target` until closed | energy, momentum, angular momentum, charge, source provenance, Noether sea exchange, and event rows on the same ledger |
 | stability | `theorem-target` until closed | root-dependent variational equation, gauge split, monodromy or return-map data, and declared stability class |
 | Lorentz export | `theorem-target` | moving-assembly deformation, clock/ruler extraction, two-way signal synchronization, and bounded preferred-frame leakage |
 | photon closure | `theorem-target` | branch-transition row matching the coaxial contra-rotating pro/anti planar pair requirement, event ledger, and photon-channel speed status |
-| mass map | `theorem-target` | history-dressed energy, exposure tensor, scalar exposure quotient, and Noether-Sea medium-response tensor on the same branch |
+| mass map | `theorem-target` | history-dressed energy, exposure tensor, scalar exposure quotient, and Noether sea medium-response tensor on the same branch |
 | color, strong-field, or cosmology export | `speculation-comparison` until computed | continuous phase-bundle or finite-boundary/observer-level recovery rows as appropriate, plus `passed`, `failed`, or `not_computed` status |
 
 ---
@@ -189,7 +189,7 @@ Disallowed patterns:
 | "Nested shell swarm explains mass/Lorentz/photon behavior" before exports pass | promotes downstream exports by implication |
 | "A failed nested row rejects the Noether swarm" | confuses a stricter case reduction with the base neutral swarm case |
 | "Simulation found the branch" from a residual decrease or screen | treats diagnostics as proof |
-| "Topology determines generation mass" without mass-map rows | replaces energy, exposure, and Noether-Sea response with a label |
+| "Topology determines generation mass" without mass-map rows | replaces energy, exposure, and Noether sea response with a label |
 | corpus links to `reference/priorities` | violates corpus self-containment |
 
 Recommended wording for retained-branch caution:
@@ -218,7 +218,7 @@ Promotion should stop at the earliest unresolved row that affects the claim bein
 | `support-work-open` | shell swarm retention | support work is untracked by exact action or event rows |
 | `partition-case-open` | nested shell swarm promotion | binary partition is missing or not certified |
 | `nested-radial-gap-open` | nested shell swarm promotion | radial functional, gap margins, or derivative rows are missing |
-| `action-noether-open` | action, mass-map, observer export | action exactness, action-derived scale, Noether currents, or Noether-Sea exchange rows are missing |
+| `action-noether-open` | action, mass-map, observer export | action exactness, action-derived scale, Noether currents, or Noether sea exchange rows are missing |
 | `event-ledger-open` | branch retention and exports | endpoint, source provenance, recoil, boundary exchange, topology-change, or fold-layer rows are missing when needed |
 | `stability-open` | retained-branch result | stability class is not supported by variational, monodromy, return-map, or energy rows |
 | `observer-export-not_computed` | export result | export row was not computed; base branch claims may still be statused |

@@ -19,7 +19,7 @@ K_{\Delta t}(\Gamma\mid \Gamma',\mathcal{W}_{\text{sea}})
 \rho(\Gamma')\,d\Gamma'.
 $$
 
-Here $\mathcal{W}_{\text{sea}}$ denotes the relevant Noether-Sea and apparatus causal-wake context. Pilot-wave behavior requires this operator to produce effective guidance and basin weights. Algorithmic resonance requires the same kind of operator to preserve coherent phase structure across many controlled operations.
+Here $\mathcal{W}_{\text{sea}}$ denotes the relevant Noether sea state and apparatus causal-wake context. Pilot-wave behavior requires this operator to produce effective guidance and basin weights. Algorithmic resonance requires the same kind of operator to preserve coherent phase structure across many controlled operations.
 
 This packet consumes the shared [transfer-operator and basin-measure theorem](transfer-operator-basin-measure.md). It owns the pilot-wave guidance, feedback, and register-depth stress tests; the shared packet owns the operator, basin partition, invariant or metastable measure, and failure rule that blocks a second pilot-wave ontology.
 
@@ -29,7 +29,7 @@ The single-ontology pilot-wave claim should be sharpened into a three-part reduc
 
 1. **Guidance:** derive an effective velocity or acceleration field from the superposed causal-wake ledger.
 2. **Amplitude:** identify basin density or invariant measure that plays the role of $|\psi|^2$ without treating $\psi$ as a separate ontic field.
-3. **Quantum-potential analogue:** show which self-hit and Noether-Sea feedback terms supply context-dependent trajectory shaping.
+3. **Quantum-potential analogue:** show which self-hit and Noether sea feedback terms supply context-dependent trajectory shaping.
 
 Failure occurs if the effective guidance law requires an independent configuration-space pilot field rather than a coarse-grained description of assembly and wake dynamics.
 
@@ -41,8 +41,8 @@ The reader-facing bridge pages should state the ontology, comparison boundary, a
 
 The pilot-wave bridge keeps four active proof tasks:
 
-1. Derive the effective wave equation by coarse-graining the Master Equation over the Noether Sea at scales large compared to the tri-binary radius but small compared to atomic dimensions. The target is a regime in which a Schrödinger-form envelope appears, with leading corrections explicitly bounded.
-2. Simulate ensembles of identically prepared assemblies under the Master Equation with controlled unresolved Noether-Sea boundary histories; extract outcome distributions and compare them against $|\psi|^2$ only after the basin partition and measure source are declared.
+1. Derive the effective wave equation by coarse-graining the Master Equation over the Noether sea at scales large compared to the tri-binary radius but small compared to atomic dimensions. The target is a regime in which a Schrödinger-form envelope appears, with leading corrections explicitly bounded.
+2. Simulate ensembles of identically prepared assemblies under the Master Equation with controlled unresolved Noether sea boundary histories; extract outcome distributions and compare them against $|\psi|^2$ only after the basin partition and measure source are declared.
 3. Compute phase-locking conditions for a single tri-binary assembly in a Coulomb-like confining potential, as a hydrogen-analog energy-spectrum stress test.
 4. Characterize non-Markovian guidance corrections from self-hit memory and identify regimes where causal-wake guidance can diverge from standard de Broglie-Bohm summaries.
 
@@ -50,7 +50,7 @@ The pilot-wave bridge keeps four active proof tasks:
 
 The superposition and collapse bridge pages contribute the finite-threshold component of the same program. The retained tasks are:
 
-1. Build a metastable outer-binary or switch-like target model with unresolved Noether-Sea boundary histories.
+1. Build a metastable outer-binary or switch-like target model with unresolved Noether sea boundary histories.
 2. Derive or simulate the first-passage time $\tau_c$ across a declared separatrix $\Sigma(X)=0$.
 3. Show that the distribution of $\tau_c$ and the selected basin weights are computed from the same transfer operator and finite-window measure.
 4. Use massive-superposition and weak-probe comparisons only as benchmark pressure; do not import a second collapse mechanism or a second ensemble.

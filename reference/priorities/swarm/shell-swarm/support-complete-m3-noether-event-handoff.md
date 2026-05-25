@@ -86,7 +86,7 @@ $$
 \mathcal{S}_{\mathrm{sea/event}},
 $$
 
-where $\mathcal{S}_{\mathrm{hist}}^{+}$ is the action or exact virtual-work primitive associated with the sheet-complete force ledger. The event interval, endpoint convention, inventory labels, branch histories, and Noether-Sea exchange rows must all use the same $\mathcal{A}_{\eta}^{+}$ convention.
+where $\mathcal{S}_{\mathrm{hist}}^{+}$ is the action or exact virtual-work primitive associated with the sheet-complete force ledger. The event interval, endpoint convention, inventory labels, branch histories, and Noether sea exchange rows must all use the same $\mathcal{A}_{\eta}^{+}$ convention.
 
 The handoff is invalid if one row uses active-window roots and another uses support-complete roots:
 
@@ -181,7 +181,7 @@ This inventory row is not optional. The exact-antipodal geometry cannot replace 
 
 ## 4. Closed-Period Branch Test
 
-Before using a branch inside a reaction event, the single-period no-event test should close. Over one period $T_*$, with no boundary or Noether-Sea exchange, require
+Before using a branch inside a reaction event, the single-period no-event test should close. Over one period $T_*$, with no boundary or Noether sea exchange, require
 
 $$
 \left[
@@ -345,7 +345,7 @@ $$
 \tau_{\mathrm{event}}
 $$
 
-with all terms emitted on the same endpoint and Noether-Sea exchange convention. A missing exchange row is not zero by default; it has status
+with all terms emitted on the same endpoint and Noether sea exchange convention. A missing exchange row is not zero by default; it has status
 
 $$
 \texttt{medium-update-open}
@@ -415,7 +415,7 @@ Proof route:
 3. use the action-scale row to match dynamics and action units;
 4. apply Noether's identity to the total branch-plus-event action;
 5. identify boundary currents with $E$, $\mathbf{p}$, $\mathbf{J}$, $Q$, and source provenance;
-6. bound the residual terms by dynamics, curl, tail, discretization, scale, endpoint, and Noether-Sea exchange errors.
+6. bound the residual terms by dynamics, curl, tail, discretization, scale, endpoint, and Noether sea exchange errors.
 
 ---
 
@@ -460,7 +460,7 @@ The handoff returns:
 | `energy-ledger-open` | energy residual fails after all admitted terms are included |
 | `momentum-ledger-open` | momentum residual fails after all admitted terms are included |
 | `angular-momentum-ledger-open` | angular-momentum residual fails after all admitted terms are included |
-| `medium-update-open` | required Noether-Sea or boundary exchange row is absent |
+| `medium-update-open` | required Noether sea or boundary exchange row is absent |
 | `medium-update-root-mismatch` | medium exchange uses a different root, action, or event convention |
 | `endpoint-current-unmatched` | endpoint current convention does not match the event interval |
 | `branch-current-nonperiodic` | closed-period geometry passes but Noether currents do not close |

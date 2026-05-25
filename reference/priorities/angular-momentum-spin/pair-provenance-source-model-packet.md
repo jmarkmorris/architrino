@@ -159,7 +159,7 @@ $$
 -\mathbf J_{\mathrm{sea}}^{0}.
 $$
 
-Here $\mathbf L_{\mathrm{wake},AB}^{0}$ is the retained wake angular-momentum term generated across $W_{\mathrm{src}}$, $\mathbf J_{\mathrm{src,rem}}^{0}$ is any local source remnant or recoil angular momentum, and $\mathbf J_{\mathrm{sea}}^{0}$ is the local Noether-Sea recoil term when the source model retains it.
+Here $\mathbf L_{\mathrm{wake},AB}^{0}$ is the retained wake angular-momentum term generated across $W_{\mathrm{src}}$, $\mathbf J_{\mathrm{src,rem}}^{0}$ is any local source remnant or recoil angular momentum, and $\mathbf J_{\mathrm{sea}}^{0}$ is the local Noether sea recoil term when the source model retains it.
 
 The angular-momentum balance residual is
 
@@ -604,7 +604,7 @@ If $\Delta_{\mathrm{prod}}\le\varepsilon_{\mathrm{Bell}}$ for a claimed Bell-vio
 | Source section | $\Sigma_{\mathrm{src}}$, $\mu_{\mathrm{src}}$, $C_{\mathrm{pair}}^{\mathrm{sing}}$ | blocked | No accepted source-return section or source occupation measure has been emitted from a retained substrate branch. |
 | Daughter branch ledger $A$ | $\mathfrak B_A^+$ and $\Pi_A^{\mathrm{ent}}$ | blocked | No outgoing accepted daughter branch chart with active causal-root rows, local wake history, and detector-entrance pullback. |
 | Daughter branch ledger $B$ | $\mathfrak B_B^+$ and $\Pi_B^{\mathrm{ent}}$ | blocked | Same missing accepted daughter branch data for the $B$ wing. |
-| Source angular-momentum balance | $\Delta_{\mathbf J}^{0}$ | blocked | Missing substrate-derived $\mathbf J_A$, $\mathbf J_B$, $\mathbf L_{\mathrm{wake},AB}^{0}$, source remnant recoil, and local Noether-Sea recoil on one source event. |
+| Source angular-momentum balance | $\Delta_{\mathbf J}^{0}$ | blocked | Missing substrate-derived $\mathbf J_A$, $\mathbf J_B$, $\mathbf L_{\mathrm{wake},AB}^{0}$, source remnant recoil, and local Noether sea recoil on one source event. |
 | Relative phase certificate | $m_Z$, $\Delta_Z^{0}$, $\Delta_{\varphi}^{\mathrm{gauge}}$ | blocked | Missing layer phase ledgers, wake phase ledger, angular-momentum projections, and branch-preserving gauge probes. |
 | Local apparatus response $A$ | $\mathcal Q_{A,\hat{\mathbf m}_A}$, $d\nu_{A,\hat{\mathbf m}_A}$, $\theta_{\mathrm{rec}}^A$, local residuals | blocked | No accepted same-window Stern-Gerlach apparatus-response row for the $A$ wing. |
 | Local apparatus response $B$ | $\mathcal Q_{B,\hat{\mathbf m}_B}$, $d\nu_{B,\hat{\mathbf m}_B}$, $\theta_{\mathrm{rec}}^B$, local residuals | blocked | No accepted same-window Stern-Gerlach apparatus-response row for the $B$ wing. |

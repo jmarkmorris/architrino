@@ -1,6 +1,6 @@
 # Fe/Cr Toy Pressure Replay
 
-This priority packet is a toy replay report, not empirical material evidence and not reader-facing canon. It checks that the two-material pressure scaffold in [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) has enough structure to produce a shared-row residual test for a heavy metallic pressure case and a lighter neighboring-metal control.
+This priority packet is a toy replay report, not empirical material evidence and not reader-facing canon. It checks that the two-material pressure scaffold in [Pressure-Dependent Noether sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) has enough structure to produce a shared-row residual test for a heavy metallic pressure case and a lighter neighboring-metal control.
 
 ## Claim Level
 
@@ -199,7 +199,7 @@ The executable mock row is `pressure_bridge_fe_cr_toy_isotropic_projection` in `
 
 ## Shared Constitutive Row Compatibility Lemma
 
-The toy handoff now gives one concrete falsification condition for a single isotropic Noether-Sea cadence row. Let the weak gravitational endpoint record after shared-delay closure be
+The toy handoff now gives one concrete falsification condition for a single isotropic Noether sea cadence row. Let the weak gravitational endpoint record after shared-delay closure be
 
 $$
 \mathbf{a}^{G}
@@ -313,7 +313,7 @@ b_n a_n^{G}
 0
 $$
 
-in the same clean weak-field branch. Any future claim of one shared row must therefore either derive this compensating density, scale, or core-radius contribution from Noether-Sea constitutive response, or accept the chi-only falsification above.
+in the same clean weak-field branch. Any future claim of one shared row must therefore either derive this compensating density, scale, or core-radius contribution from Noether sea constitutive response, or accept the chi-only falsification above.
 
 The minimal compensation problem can be stated without adding a new fixture. Define the non-$\chi_{\text{sea}}$ vectors
 
@@ -1119,7 +1119,7 @@ A_H,\,
 }
 $$
 
-For a same-branch claim, $\mathcal{R}_{\mathrm{slope}}$ must vanish within the declared tolerance. If it does not, the response belongs to a branch split, a changed readout, an ordinary material correction, or a failed Noether-Sea pressure-row interpretation.
+For a same-branch claim, $\mathcal{R}_{\mathrm{slope}}$ must vanish within the declared tolerance. If it does not, the response belongs to a branch split, a changed readout, an ordinary material correction, or a failed Noether sea pressure-row interpretation.
 
 The current finite-branch intake verdict is negative. The compact $A_0$ fold-layer-locked one-period attempt in [A0 Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) fails direct one-period residual closure and does not compute the quotient monodromy, positive $\Delta_{\mathbf{k}}$, or $\eta$-ladder persistence. Its residual-balance ledger also gives a relation-weight-only no-go with relative residual about `0.755`, so it cannot supply a finite envelope Hessian. The finite-branch intake contract is now recorded in [Noether Swarm Envelope Hessian Toy Branch](noether-swarm-envelope-hessian-toy-branch.md): accepted pressure rescue requires emitted branch Hessian entries, accepted-history source fields, a predeclared $R_{\text{core}}$ readout, finite branch-evidence status, and fail-closed scanner semantics. With `--require-branch-evidence`, both default scanner scenarios fail as toy rows rather than accepted branch rows. Therefore the broader compensated family remains optional but unpromoted; nonzero $a_n$, $a_\lambda$, or $a_R$ are not required by the endpoint constraints, and they remain disfavored as independent fit knobs until a finite branch derives the corresponding pressure-side entries.
 

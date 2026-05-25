@@ -121,7 +121,7 @@ with $\Theta_{\mathrm{clk}}^{(q)}$ extracted from branch periods. The clean tran
 
 ### 2.6 History-Dressed Conservation
 
-**Source signal.** A same-level branch needs an action and event ledger that tracks energy, momentum, angular momentum, charge, source provenance, recoil, and Noether-Sea update.
+**Source signal.** A same-level branch needs an action and event ledger that tracks energy, momentum, angular momentum, charge, source provenance, recoil, and Noether sea update.
 
 **Converted object.** The branch packet must report $\mathcal{R}_{E}^{(q)}$ and $\mathcal{L}_{E\mathbf{p}\mathbf{J}Q}^{(q)}$ on the same active roots used in force residuals.
 
@@ -191,7 +191,7 @@ $$
 
 **Signal.** Same-level carriers may supply a finite boundary for strong-field continuation.
 
-**Blocker.** The finite-boundary row must be populated with event-ledger closure and observer-level recovery. The Euclidean void does not expand, so any inflation-like language must be translated into Noether-Sea evolution, transport, and clock-rate comparison.
+**Blocker.** The finite-boundary row must be populated with event-ledger closure and observer-level recovery. The Euclidean void does not expand, so any inflation-like language must be translated into Noether sea evolution, transport, and clock-rate comparison.
 
 **Outcome.** `deferred-with-blocker`.
 
@@ -228,7 +228,7 @@ The following source-level claims are not accepted by the architecture packet.
 | Same-level choreography has already proven well-posedness. | No retained root ledger, Jacobian floor, or finite-memory proof has been supplied. | Treat as Theorem target A. |
 | Spin-$1/2$ and $SL(2,\mathbb{C})$ are already derived from history-space ribbons. | The framed-wake parity row and gauge-control residual are not computed. | Treat as spinor holonomy target. |
 | $\mathcal{S}_3$ symmetry generates full $SU(3)$ color. | Discrete slot permutations do not supply continuous generators or curvature. | Require a phase-bundle connection. |
-| Mass is proportional to a mapping-class complexity alone. | The mass map must pass through energy, exposure, and Noether-Sea response. | Use topology only as a branch-family parameter. |
+| Mass is proportional to a mapping-class complexity alone. | The mass map must pass through energy, exposure, and Noether sea response. | Use topology only as a branch-family parameter. |
 | Strong-field singularities and inflation-like behavior are resolved. | No finite-boundary continuation or observer-level recovery row has been populated. | Keep as speculative comparison target. |
 | Architecture is ready for immediate corpus-wide migration. | The decision gate is open. | Keep all new work in this priority directory. |
 

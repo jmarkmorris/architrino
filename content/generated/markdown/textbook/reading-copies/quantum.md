@@ -59,7 +59,7 @@ At the absolute level, any local neighborhood is crowded:
   - Continuously emitting spherically expanding **causal wakes** at speed $c_f$.
 
 - At a given absolute time $t$, the **net potential** at a point is the **vector sum** of:
-  - Local Noether-Sea assembly wakes,
+  - Wakes from local Noether swarm assemblies in the Noether sea,
   - Wakes from bound matter in the vicinity,
   - Wakes from distant assemblies whose emission fronts are just arriving,
   - Self-hit structures from $v>c_f$ inner-binary motion.
@@ -72,7 +72,7 @@ At the absolute level, any local neighborhood is crowded:
 
 At the emergent level:
 
-- Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **Noether swarm assembly** plus its coupling to the surrounding Noether-Sea wake background.
+- Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **Noether swarm assembly** plus its coupling to the surrounding Noether sea wake background.
 - Most of the time, the assembly’s internal state is robust against small variations in the net potential.
 - Occasionally, when the assembly’s configuration is **metastable** (near a threshold boundary; see [Metastability and Threshold Crossings](#metastability-and-threshold-crossings)), a particular combination of incoming wakes pushes it across a threshold:
   - Electron “jumps” orbital
@@ -109,7 +109,7 @@ There is **no backward-in-$t$ influence**. The absolute-time ordering is strictl
 
 From the viewpoint of an embedded assembly:
 
-- The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by some effective $c$ associated with Noether-Sea assemblies and photon-like modes.
+- The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by some effective $c$ associated with Noether sea assemblies and photon-like modes.
 - Two key absolute-level configurations look “stealthy” or acausal at this emergent level:
 
 1. **Near-field-speed assemblies ("Stealth" vs. "Reactive" Modes)**
@@ -172,7 +172,7 @@ The delay-oscillator picture is useful only as an illustration: a control parame
 
 Because:
 
-- The input signal, namely the sum of causal wakes from the Noether Sea and nearby assemblies, is **high-dimensional** and **history-dependent**,
+- The input signal, namely the sum of causal wakes from the Noether sea and nearby assemblies, is **high-dimensional** and **history-dependent**,
 - The local assembly is sitting near a **threshold boundary** (e.g., a resonance-band boundary in the outer binary or a self-hit onset in the middle binary; see [Threshold Structure Guide](#threshold-structure-guide-plain-language-labels)),
 
 we get classic deterministic chaos:
@@ -289,12 +289,12 @@ Concretely:
 - Parameters could include:
   - Effective coupling strengths between sub‑assemblies (tri‑binary networks),
   - Orientation/phase relationships among middle binaries (near $v\approx c_f$),
-  - Local Noether-Sea-coupling “stiffness” (how strongly sub-assemblies respond to given wake amplitudes).
+  - Local Noether sea-coupling “stiffness” (how strongly sub-assemblies respond to given wake amplitudes).
 - These parameters must be **slow variables** relative to the fast threshold dynamics, so that:
   - The assembly can hold a “configuration of sensitivity” over many incoming wake peaks,
   - But can still adjust that configuration over longer time (learning, context).
 
-**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must dissipate entropy into the surrounding Noether Sea to maintain a tuned state.
+**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must dissipate entropy into the surrounding Noether sea to maintain a tuned state.
 
 ---
 
@@ -498,14 +498,14 @@ The framework explicitly separates the **ontic reality** of architrino trajector
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the wavefunction $\psi(\mathbf{x}, t)$ is not a fundamental physical field propagating in a high-dimensional configuration space. Instead, it is an **effective, coarse-grained epistemic tool** utilized by Physical Observers.
 
-The universe at the ontic level, as represented by the $\mathbb{U}_{\text{now}}$ universe-state perspective, consists of point-like architrinos executing definite trajectories $\mathbf{x}_i(t)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether Sea, they must rely on statistical descriptions.
+The universe at the ontic level, as represented by the $\mathbb{U}_{\text{now}}$ universe-state perspective, consists of point-like architrinos executing definite trajectories $\mathbf{x}_i(t)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether sea, they must rely on statistical descriptions.
 
 The wavefunction encodes:
 *   **The superposed potential landscape:** A coarse-grained representation of the ambient causal wake intersections.
 *   **Informational ambiguity:** The integrated ignorance of exact source identities, distances, and path-history emission times.
 *   **Assembly resonance modes:** The allowed stable configuration limits of Noether swarm assemblies.
 
-When standard non-relativistic, fixed-particle-number quantum mechanics uses a unitary evolution equation (the Schrödinger equation), it is tracking the linear, idealized propagation of these coarse-grained potential distributions across the Noether Sea.
+When standard non-relativistic, fixed-particle-number quantum mechanics uses a unitary evolution equation (the Schrödinger equation), it is tracking the linear, idealized propagation of these coarse-grained potential distributions across the Noether sea.
 
 That statement is licensed only after the action-to-envelope handoff supplies a controlled residual. The effective wavefunction chart must name the coarse fields, the phase-amplitude map, and the retained record window; it must pass the action-to-envelope residual $\mathcal{R}_{\mathrm{env}}\le\epsilon_{\mathrm{env}}$ in [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#closure-interface-action-to-envelope-reduction), and any later update must pass the record-autonomy tests in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md#what-makes-an-interaction-a-record). Otherwise $\psi$ remains a useful fitting envelope, not a promoted quantum closure.
 
@@ -629,7 +629,7 @@ When an architrino intersects a causal wake surface, it receives an instantaneou
 1.  The unoriented line of action.
 2.  The net force magnitude.
 
-The receiver cannot intrinsically distinguish between the attractive pull of an opposite polarity and the repulsive push of a like polarity located on the diametrically opposite side of the line of action. Furthermore, because the local potential is a dense superposition of hits from countless Noether-Sea swarms, the exact origin and path-history of any single perturbation is irretrievable.
+The receiver cannot intrinsically distinguish between the attractive pull of an opposite polarity and the repulsive push of a like polarity located on the diametrically opposite side of the line of action. Furthermore, because the local potential is a dense superposition of hits from countless Noether sea swarms, the exact origin and path-history of any single perturbation is irretrievable.
 
 #### Measurement Back-Action and the $h$-Bracket
 Any attempt by a Physical Observer to resolve the microstate of an assembly requires an interaction (e.g., scattering a photon assembly modeled as a coaxial contra-rotating pro/anti planar pair). This interaction injects a discrete, minimum action increment (scaling with $h$) into the target assembly's causal history. This back-action continuously alters the boundary conditions of the state, placing a hard limit on simultaneously resolvable conjugate variables. The uncertainty principle brackets the physical action step associated with assembly transitions.
@@ -733,7 +733,7 @@ For spin measurements, the corresponding basin program is the Stern-Gerlach-like
 
 The probability of finding a system in a particular state, given by the Born rule $P \propto |\psi|^2$, should map to the statistical measure of phase-space basins under the master equation.
 
-Because the local Noether Sea supplies high-dimensional, coarse-grained irregular driving through continuous causal-wake intersections, the exact trajectory of an assembly approaching a threshold is highly sensitive to initial conditions. The closure target is to show that the phase-space basin volume leading to a specific transition scales with the coherent potential gradients that drive that transition, and that the Born rule emerges as the statistical equilibrium limit of those deterministic threshold dynamics.
+Because the local Noether sea supplies high-dimensional, coarse-grained irregular driving through continuous causal-wake intersections, the exact trajectory of an assembly approaching a threshold is highly sensitive to initial conditions. The closure target is to show that the phase-space basin volume leading to a specific transition scales with the coherent potential gradients that drive that transition, and that the Born rule emerges as the statistical equilibrium limit of those deterministic threshold dynamics.
 
 External relational or configuration-space probability measures are useful only as comparison mathematics. A geometry may carry a natural area, volume, or contour measure and may even produce a Born-like distribution over recorded shapes, but that does not by itself close this chapter. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is stricter: the measure must be a pushforward of deterministic assembly dynamics and apparatus coupling. In schematic form, if
 $$
@@ -843,14 +843,14 @@ The disappearance of interference is then attributed to a completed record and a
 If the wavefunction is an effective description of threshold dynamics rather than a fundamental field, then the theory must identify regimes where finite-time branch selection or non-Markovian history effects can in principle depart from ideal instantaneous projection.
 
 **Failure Modes and Experimental Signatures:**
-*   **Ultrafast Decoherence Deviations:** At timescales shorter than the local Lyapunov time of the Noether-Sea interactions, the statistical assumptions yielding the Born rule should weaken. Very high-frequency, weak-measurement probes may reveal non-Markovian hysteresis in the state transition process, violating strictly predicted QM transition rates.
+*   **Ultrafast Decoherence Deviations:** At timescales shorter than the local Lyapunov time of the Noether sea interactions, the statistical assumptions yielding the Born rule should weaken. Very high-frequency, weak-measurement probes may reveal non-Markovian hysteresis in the state transition process, violating strictly predicted QM transition rates.
 *   **Strict instantaneous projection:** If experiments force strictly zero-duration physical branch selection, rather than an effective instantaneous update at the observer level, this ontology is falsified.
 
 ### Closure Interface: Basin-Measure Formalization
 
 For integration with the quantum closure program, formalize Born emergence through a finite-window transfer-operator framework rather than a global ergodicity assumption.
 
-For a declared setup $\theta=(\mathcal{K}_A,\mathcal{Q},W,T)$, let $\Gamma_{\text{eff}}^{(T)}$ be the retained record-window section of the reduced metastable coordinates, with the target, apparatus, local Noether-Sea state, and causal-wake history included to the resolution kept by $\mathcal{Q}$. Let $\Phi_T$ be the deterministic coarse-grained flow across that same window. The required measure is a local finite-window measure $\mu_{*,T}$ satisfying approximate invariance on the retained section:
+For a declared setup $\theta=(\mathcal{K}_A,\mathcal{Q},W,T)$, let $\Gamma_{\text{eff}}^{(T)}$ be the retained record-window section of the reduced metastable coordinates, with the target, apparatus, local Noether sea state, and causal-wake history included to the resolution kept by $\mathcal{Q}$. Let $\Phi_T$ be the deterministic coarse-grained flow across that same window. The required measure is a local finite-window measure $\mu_{*,T}$ satisfying approximate invariance on the retained section:
 $$
 d_{\mathrm{TV}}\!\left((\Phi_T)_*\mu_{*,T},\,\mu_{*,T}\right)\le\varepsilon_\mu,
 \qquad
@@ -1009,7 +1009,7 @@ The ontology is therefore:
 
 - **system:** an assembly or coupled assembly-subsystem with reduced state $X$,
 - **apparatus:** another assembly network engineered so that its wake structure couples strongly to a chosen coordinate of $X$,
-- **environment:** the surrounding Noether Sea plus uncontrolled apparatus degrees of freedom,
+- **environment:** the surrounding Noether sea plus uncontrolled apparatus degrees of freedom,
 - **measurement outcome:** the attractor basin into which the coupled system settles,
 - **record:** a durable asymmetry in apparatus/environment variables that can be re-read without reconstructing the original metastable state.
 
@@ -1029,7 +1029,7 @@ What standard quantum mechanics calls a "measurement" is therefore just a specia
 
 1. strong targeted perturbation of a metastable degree of freedom,
 2. amplification into many apparatus degrees of freedom,
-3. dissipation into the surrounding Noether Sea so that coherent reversal becomes practically inaccessible.
+3. dissipation into the surrounding Noether sea so that coherent reversal becomes practically inaccessible.
 
 This also sets the comparison boundary for path-integral and generalized-quantum-mechanics language. A history-sum formalism can reproduce ordinary pointer-record probabilities and may assign measures to microscopic event statements, but those measures are not automatically $\mathbb{A}\mathbb{A}\mathbb{A}$ records. The native question remains whether the apparatus-target dynamics below produce a separatrix crossing, a durable record variable, and a persistence window without invoking an external classical observer.
 
@@ -1083,7 +1083,7 @@ $$
 \Phi_{\Delta t}^{u,\mathcal{H},\mathcal{W}_{\mathrm{sea}}}
 \right)_*\rho.
 $$
-A reduced Markov kernel is a later compression of this pushforward, not an assumed Born kernel. It is licensed only after unresolved variables receive an explicit occupation measure from a material return map, a record cycle, or the Noether-Sea context used by the same apparatus channel. Otherwise the probability rule has been inserted at the cut rather than derived from the record-forming flow.
+A reduced Markov kernel is a later compression of this pushforward, not an assumed Born kernel. It is licensed only after unresolved variables receive an explicit occupation measure from a material return map, a record cycle, or the Noether sea context used by the same apparatus channel. Otherwise the probability rule has been inserted at the cut rather than derived from the record-forming flow.
 
 The rejection of the cut can be stated as a closure condition on the dynamics. Let
 $$
@@ -1885,7 +1885,7 @@ $$
 $$
 for an interference-preserving branch pair, unless the apparatus-target dynamics explicitly show a record-forming separatrix crossing with finite $\tau_{\text{meas}}$ and a persistent record variable. If $\mathcal{D}_{\mathrm{grav}}\gg1$ while the interference pattern remains intact and no record-autonomy condition is satisfied, the proposed effective-metric response has overproduced observable which-path information.
 
-The covariance $N_{AB}$ is not an ontological randomness postulate in this chapter. It must be derived, or bounded, from unresolved deterministic boundary data, local Noether-Sea state, detector calibration residuals, and ordinary environmental channels. This keeps the useful lesson from classical-quantum gravity comparisons while preserving the native claim that branch selection is finite-time assembly dynamics rather than fundamental metric collapse.
+The covariance $N_{AB}$ is not an ontological randomness postulate in this chapter. It must be derived, or bounded, from unresolved deterministic boundary data, local Noether sea state, detector calibration residuals, and ordinary environmental channels. This keeps the useful lesson from classical-quantum gravity comparisons while preserving the native claim that branch selection is finite-time assembly dynamics rather than fundamental metric collapse.
 
 #### Minimal Massive-Branch Toy Model
 
@@ -1988,7 +1988,7 @@ for real record-forming interactions, even if that time becomes extremely short 
 This note treats quantum algorithmic speedup as a demanding coherence problem for many coupled assemblies. The immediate aim is not to rederive Shor's algorithm from the master equation. It is to identify which physical constraints a future derivation must satisfy if an effective quantum register is to remain coherent across many controlled operations.
 
 - **Ensemble phase-locking:** The closure problem is to maintain non-Markovian path-history coherence across a macroscopic array of Noether swarm assemblies.
-- **Noether-Sea context:** The local Noether Sea supplies the causal-wake background in which register-scale interference must remain stable. Any cavity analogy should be read as an effective description of bounded wake superposition, not as a new substrate ontology.
+- **Noether sea context:** The local Noether sea supplies the causal-wake background in which register-scale interference must remain stable. Any cavity analogy should be read as an effective description of bounded wake superposition, not as a new substrate ontology.
 - **Carrier and apparatus declaration:** An effective qubit is a calibrated two-record channel, not a substrate object by itself. A candidate hardware map must name the carrier assembly, the physical basis being controlled, the apparatus kernel $\mathcal{K}$, the retained access region $W$, and the record window $T$ before circuit notation is translated into dynamics. Photon path, polarization, photon-number, and spin encodings are useful comparison cases only after this carrier and record-channel declaration is fixed.
 
 ### The Quantum Fourier Transform as Physical Interference
@@ -2022,7 +2022,7 @@ The full period-extraction pipeline can be stated as a sequence of closure targe
 
 ### Falsifiability and Scaling Limits
 
-This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ account must state strict bounds on coherent circuit depth before Noether-Sea background coupling, finite propagation at $c_f$, and self-hit interaction kernels produce deterministic decoherence. The useful prediction class is therefore not a vague loss of coherence, but architecture-dependent deviations from ideal unitary behavior in large quantum processors.
+This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ account must state strict bounds on coherent circuit depth before Noether sea background coupling, finite propagation at $c_f$, and self-hit interaction kernels produce deterministic decoherence. The useful prediction class is therefore not a vague loss of coherence, but architecture-dependent deviations from ideal unitary behavior in large quantum processors.
 
 For any newly established two-register coupling, abstract gate identity does not remove finite propagation and settling time. If $d_{\mathrm{ctrl}}$ is the controlled-coupling separation and $\tau_{\mathrm{settle}}$ is the apparatus/assembly settling time needed to enter the calibrated gate channel, the gate-time floor is
 $$
@@ -2044,7 +2044,7 @@ $$
 <
 \tau_{\mathrm{decoh}},
 $$
-with the additional requirement that the correction operation closes its energy, momentum, angular-momentum, and record ledgers. Failure of this inequality in a hardware-dependent but reproducible way would be a useful departure from ideal unitary scaling; success over increasing code distance would constrain how weak the Noether-Sea decoherence channel must be in calibrated laboratory conditions.
+with the additional requirement that the correction operation closes its energy, momentum, angular-momentum, and record ledgers. Failure of this inequality in a hardware-dependent but reproducible way would be a useful departure from ideal unitary scaling; success over increasing code distance would constrain how weak the Noether sea decoherence channel must be in calibrated laboratory conditions.
 
 ## Fermi-Dirac & Bose-Einstein Statistics
 

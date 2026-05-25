@@ -86,9 +86,9 @@ Clarify the **ontological status of spacetime**:
 - **No curved spacetime**, only architrino assemblies in Euclidean void + absolute time.
 
 **In the Effective Theory:**
-- **Emergent metric** $g_{\mu\nu}(x)$ from Noether-Sea assemblies.
+- **Emergent metric** $g_{\mu\nu}(x)$ from Noether sea assemblies.
 - **Curvature**: Is it:
-  - A real physical feature of Noether-Sea density gradients,
+  - A real physical feature of Noether sea density gradients,
   - A convenient mathematical description,
   - Or an operational artifact of how assembly-clocks measure intervals?
 
@@ -98,7 +98,7 @@ Clarify the **ontological status of spacetime**:
 **Stance:**
 - Spacetime is **not fundamental**, but it is **not illusory**. It is an **emergent effective structure** that is as real as temperature in thermodynamics--an indispensable higher-level description grounded in lower-level dynamics.
 
-**Deliverable**: Subsections in **Ch. 31 (Noether Sea, Effective Spacetime, and Ontology)** and **Ch. 47 (Philosophy of the Architrino Framework)** articulating the precise ontological status of "spacetime" in both regimes.
+**Deliverable**: Subsections in **Ch. 31 (Noether sea, Effective Spacetime, and Ontology)** and **Ch. 47 (Philosophy of the Architrino Framework)** articulating the precise ontological status of "spacetime" in both regimes.
 
 ---
 
@@ -113,7 +113,7 @@ Formulate a **precise, defensible concept of absolute time**:
 - It provides an **objective temporal ordering** of all events.
 
 **What It Is Not:**
-- Observable directly; clocks made of assemblies measure **proper time** $\tau$, which depends on their state of motion and position in the Noether Sea.
+- Observable directly; clocks made of assemblies measure **proper time** $\tau$, which depends on their state of motion and position in the Noether sea.
 
 **Simultaneity:**
 - Events simultaneous in $t$ are objectively simultaneous.
@@ -123,11 +123,11 @@ Formulate a **precise, defensible concept of absolute time**:
 **Defense Against Relativistic Objections:**
 
 *"Special relativity disproved absolute time."*
-- **Response**: SR is an effective theory recovered when Noether-Sea gradients are negligible, moving-assembly deformation and clock/ruler retuning close correctly, and preferred-frame leakage is below experimental bounds. Absolute time is the substrate; Lorentz symmetry is a theorem target.
+- **Response**: SR is an effective theory recovered when Noether sea gradients are negligible, moving-assembly deformation and clock/ruler retuning close correctly, and preferred-frame leakage is below experimental bounds. Absolute time is the substrate; Lorentz symmetry is a theorem target.
 - **Analogy**: Sound waves in air obey approximate Galilean relativity at low Mach numbers, but air has a rest frame.
 
 *"How can you have absolute simultaneity and experimental Lorentz invariance?"*
-- **Response**: The **dynamics** (field-speed interactions, self-hit, and Noether-Sea structure) produce Lorentz invariance as an excellent effective symmetry at accessible energies and weak Noether-Sea gradients. Preferred-frame effects are suppressed by the uniformity and high density of the Noether Sea. See Ch. 32 on emergent metric and Ch. 12 on velocity regimes.
+- **Response**: The **dynamics** (field-speed interactions, self-hit, and Noether sea structure) produce Lorentz invariance as an excellent effective symmetry at accessible energies and weak Noether sea gradients. Preferred-frame effects are suppressed by the uniformity and high density of the Noether sea. See Ch. 32 on emergent metric and Ch. 12 on velocity regimes.
 
 **Deliverable**: Dedicated subsections in **Ch. 2 (Absolute Time and Euclidean Space)** and **Ch. 47** defending absolute time and distinguishing $t$ (ontological) from $\tau$ (operational).
 
@@ -143,7 +143,7 @@ Provide a **conceptual explanation** of how Lorentz invariance arises as an effe
 **Comparison with Neo-Lorentzian Interpretations:**
 - **Lorentz Ether Theory (LET)**: operational equivalence to SR, but with preferred frame.
 - **Architrino theory**: similar structure, but:
-  - The Noether Sea is not an all-purpose historical ether; it is the ambient substrate contents made from discrete assemblies.
+  - The Noether sea is not an all-purpose historical ether; it is the ambient substrate contents made from discrete assemblies.
   - Preferred frame (absolute time) is not directly observable at low energies; all local physics respects emergent Lorentz symmetry.
   - Clear predictions for where Lorentz breaking might appear (high energy, strong gradients, black hole event horizons).
 
@@ -194,7 +194,7 @@ Provide **mechanistic interpretations** grounded in architrino dynamics:
 - Measurement/interaction: Disruption of the potential structure -> definite outcome selected by deterministic dynamics, with **meta-stable branching** where multiple attractors are available.
 
 **Interference:**
-- **Double-slit**: The Noether Sea supplies the ambient substrate contents, and particle movement can create a pilot-wave-like causal-wake structure when the relevant motion remains below the channel speed. The **collective causal wake** from the assembly passes through both paths, creating a guiding structure for subsequent particles.
+- **Double-slit**: The Noether sea supplies the ambient substrate contents, and particle movement can create a pilot-wave-like causal-wake structure when the relevant motion remains below the channel speed. The **collective causal wake** from the assembly passes through both paths, creating a guiding structure for subsequent particles.
 - **Self-hit memory**: If assembly speed approaches $c_f$, outgoing potential "catches up" to the assembly -> enhanced self-interaction -> interference effects amplified.
 
 **Entanglement:**
@@ -356,7 +356,7 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
 
 **Weinberg-Witten:**
 - **Hypotheses**: Lorentz-covariant, massless spin-2 particle.
-- **Architrino stance**: Gravity is emergent from Noether-Sea assemblies, not a fundamental Lorentz-covariant particle.
+- **Architrino stance**: Gravity is emergent from Noether sea assemblies, not a fundamental Lorentz-covariant particle.
 - **My job**: Clarify that the emergent metric need not correspond to an elementary particle at the fundamental level.
 - **Deliverable**: Subsection in **Ch. 16** and **Ch. 34**.
 
@@ -391,7 +391,7 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
 
 **Twin Paradox:**
 - **Issue**: Asymmetric aging.
-- **Architrino answer**: Both twins are in definite motion through absolute space; the accelerated twin's clock (assembly oscillations) runs slower due to field-speed interactions and Noether-Sea coupling. Proper time $\tau \neq$ absolute time $t$.
+- **Architrino answer**: Both twins are in definite motion through absolute space; the accelerated twin's clock (assembly oscillations) runs slower due to field-speed interactions and Noether sea coupling. Proper time $\tau \neq$ absolute time $t$.
 - **Deliverable**: Worked example in **Ch. 32** (emergent metric + proper time).
 
 ---
@@ -413,7 +413,7 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
 ### General Relativist & Cosmologist
 
 - Coordinate on the **philosophical status of emergent curved spacetime**:
-  - Is curvature "real" (Noether-Sea density gradient) or "effective" (operational artifact)?
+  - Is curvature "real" (Noether sea density gradient) or "effective" (operational artifact)?
 - Ensure consistency: absolute time $t$ vs proper time $\tau$ vs cosmological time.
 - Clarify: What is "gravitational energy" in a theory with no fundamental spacetime?
 
@@ -506,6 +506,6 @@ Provide context within the history of foundational physics:
   - Ensure those insights are communicated clearly and rigorously for both specialists and skeptics.
 - Maintain **Theory Health Dashboard** (in collaboration with Adversary): track coherence,
 # Foundational Reference
-- The ontology (`foundations/ontology.md`) defines absolute timespace, Architrinos as eternal causal transceivers, and the Noether Sea medium; use it whenever evaluating conceptual claims.
+- The ontology (`foundations/ontology.md`) defines absolute timespace, Architrinos as eternal causal transceivers, and the Noether sea medium; use it whenever evaluating conceptual claims.
 - The Master Equation (`dynamics/master-equation.md`) sums every causal wake surface intersection and enforces path-history determinism, so philosophical arguments should reflect that interactions are continuous and delayed.
 - Keep the ledger (`validation/parameter-ledger.md`) in view: $c_f$, $\epsilon=e/6$, $\kappa$, density/scale setters define the permissible parameter space for any philosophical or explanatory claim.

@@ -4,9 +4,9 @@ This bridge compares the observer-level story of special relativity with the pro
 
 ## Bridge Thesis
 
-Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether swarm account proposes the underlying implementation layer: a moving Noether swarm assembly must preserve finite-speed causal wake closure while translating through the Noether Sea. That requirement deforms the swarm's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
+Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether swarm account proposes the underlying implementation layer: a moving Noether swarm assembly must preserve finite-speed causal wake closure while translating through the Noether sea. That requirement deforms the swarm's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
 
-The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether-Sea dynamics.
+The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether sea dynamics.
 
 The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether swarm assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether swarm realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three binary layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
 
@@ -31,12 +31,12 @@ This chapter does not own:
 
 | Special relativity story | Deformable Noether swarm story |
 | --- | --- |
-| Physical clocks measure proper time $\tau$, and moving clocks satisfy $d\tau/dt = 1/\gamma$. | A physical clock is an assembly with a countable internal cycle. When a Noether swarm clock moves through the Noether Sea, delayed wake paths must still close across the inner, middle, and outer binaries, so fewer stable internal cycles occur per unit absolute time $t$. |
+| Physical clocks measure proper time $\tau$, and moving clocks satisfy $d\tau/dt = 1/\gamma$. | A physical clock is an assembly with a countable internal cycle. When a Noether swarm clock moves through the Noether sea, delayed wake paths must still close across the inner, middle, and outer binaries, so fewer stable internal cycles occur per unit absolute time $t$. |
 | Length contraction follows from Lorentz geometry: $L_{\parallel}=L_0/\gamma$. | The swarm's effective exclusion envelope deforms along the direction of translation. Stable delayed closure requires a longitudinal/transverse retuning of orbital paths, with the Lorentz-compatible target $R_{\parallel}=R_{\perp}/\gamma$ in the weak-field homogeneous limit. |
-| Rest energy is $E_0=m_0c^2$. | Rest energy is the observer-facing value of shielded internal causal history: the part of the trapped Noether swarm energy ledger exposed through far-field coupling and Noether-Sea response. |
-| Momentum is $p=\gamma m_0v$. | Momentum is the medium-dressed response of a moving assembly: the internal path-history ledger must relock under translation, and the Noether Sea supplies the effective response tensor that Physical Observers summarize as relativistic momentum. |
+| Rest energy is $E_0=m_0c^2$. | Rest energy is the observer-facing value of shielded internal causal history: the part of the trapped Noether swarm energy ledger exposed through far-field coupling and Noether sea response. |
+| Momentum is $p=\gamma m_0v$. | Momentum is the medium-dressed response of a moving assembly: the internal path-history ledger must relock under translation, and the Noether sea supplies the effective response tensor that Physical Observers summarize as relativistic momentum. |
 | Energy and momentum obey $E^2=p^2c^2+m_0^2c^4$. | In the weak-field observer limit, center-of-mass energy and momentum should satisfy the same effective mass-shell relation with $c_{\text{eff}}$, while the substrate calculation resolves the internal ledger, shielding coefficient, and medium-response tensor. |
-| The invariant speed $c$ is a postulate of the observer-level theory. | The observed signal speed is the effective propagation speed $c_{\text{eff}}$ of photon-like and clock-synchronization channels in the local Noether Sea, approaching $c_f$ in the homogeneous weak-field limit. |
+| The invariant speed $c$ is a postulate of the observer-level theory. | The observed signal speed is the effective propagation speed $c_{\text{eff}}$ of photon-like and clock-synchronization channels in the local Noether sea, approaching $c_f$ in the homogeneous weak-field limit. |
 | Lorentz symmetry is a spacetime symmetry. | Lorentz symmetry is an emergent operational symmetry of assemblies whose clocks, rulers, and signal channels are all built from the same finite-speed delayed closure dynamics. |
 
 ## Clock Channel
@@ -74,7 +74,7 @@ L_{\perp}(v)=L_{\perp,0}.
 $$
 The standard equation is kinematic. It does not say what a ruler is made of.
 
-In the Noether swarm implementation story, rods are made from bound assemblies whose equilibrium spacings are maintained by finite-speed wake exchange. A moving rod is not merely re-described by a new coordinate system. Its constituent assemblies must preserve stable closure while their center-of-mass state changes relative to the Noether Sea. The local geometric carrier is the deformable exclusion envelope:
+In the Noether swarm implementation story, rods are made from bound assemblies whose equilibrium spacings are maintained by finite-speed wake exchange. A moving rod is not merely re-described by a new coordinate system. Its constituent assemblies must preserve stable closure while their center-of-mass state changes relative to the Noether sea. The local geometric carrier is the deformable exclusion envelope:
 $$
 \mathcal{E}_{\text{excl}}
 =
@@ -95,7 +95,7 @@ In the geometry canon, this contraction is recorded first as the Noether swarm e
 
 ### Closed Return Cycle And Spheroid Map
 
-The shortest derivation of the spheroid map uses the difference between a one-way leg and a closed return cycle. A one-way causal leg in the drift direction exposes the preferred Noether-Sea frame:
+The shortest derivation of the spheroid map uses the difference between a one-way leg and a closed return cycle. A one-way causal leg in the drift direction exposes the preferred Noether sea frame:
 $$
 t_{+}=\frac{R_{\parallel}}{c_{\text{eff}}-v},
 \qquad
@@ -237,7 +237,7 @@ $$
 \equiv
 \frac{R_{\perp,q}(v)}{R_{\parallel,q}(v)}.
 $$
-The Lorentz bridge closes only if, in a homogeneous weak-field Noether-Sea cell,
+The Lorentz bridge closes only if, in a homogeneous weak-field Noether sea cell,
 $$
 \gamma_{\mathrm{clk}}^{(q)}(v)
 =
@@ -277,7 +277,7 @@ The SR-side phrase "mass is energy divided by $c^2$" becomes, in the Noether swa
 $$
 \text{observed rest mass}
 \quad\leftrightarrow\quad
-\text{shielded internal ledger exposed through Noether-Sea response}.
+\text{shielded internal ledger exposed through Noether sea response}.
 $$
 This keeps the force of $E_0=m_0c^2$ while relocating its ontology. The equation remains the observer-level conversion law; the deeper task is to derive the internal ledger, shielding coefficient, and response tensor from Noether swarm dynamics.
 
@@ -303,7 +303,7 @@ E_{\text{CM}}^2
 p_{\text{CM}}^2 c_{\text{eff}}^2
 +M_0^2c_{\text{eff}}^4.
 $$
-The terms are not substrate primitives. They are center-of-mass summaries of a dressed assembly state. The more resolved theorem target should include the internal energy ledger, shielding coefficient, deformation state, and Noether-Sea response tensor:
+The terms are not substrate primitives. They are center-of-mass summaries of a dressed assembly state. The more resolved theorem target should include the internal energy ledger, shielding coefficient, deformation state, and Noether sea response tensor:
 $$
 p_{\text{int}}^a
 \approx
@@ -338,7 +338,7 @@ The branch-quantized version of this statement is stricter. The same branch upda
 
 This bridge is expected to match special relativity only in the regime where:
 
-- the local Noether Sea is approximately homogeneous and isotropic,
+- the local Noether sea is approximately homogeneous and isotropic,
 - the assembly remains in a stable attractor basin,
 - acceleration is weak enough that radiation and irreversible reconfiguration are negligible,
 - photon-like signal channels and material clock channels share the same effective $c_{\text{eff}}$ to tested accuracy,
@@ -355,7 +355,7 @@ To promote this bridge from mapping to derivation, the following targets must cl
 3. Derive the velocity-dependent exclusion-envelope axis ratio $R_{\parallel}/R_{\perp}\to 1/\gamma_{\text{eff}}$.
 4. Compute the internal energy ledger $E_{\text{internal}}(A)$ without assuming the mass being derived.
 5. Derive the shielding factor $\zeta(A)$ from far-field wake cancellation.
-6. Derive the Noether-Sea response tensor $\mathcal{M}_{\text{sea}}^{ab}$ and show its isotropic limit is $h^{ab}/c_{\text{eff}}^2$.
+6. Derive the Noether sea response tensor $\mathcal{M}_{\text{sea}}^{ab}$ and show its isotropic limit is $h^{ab}/c_{\text{eff}}^2$.
 7. Show that clock, ruler, momentum, and energy channels share the same $\gamma_{\text{eff}}$ to the required order.
 8. Bound preferred-frame leakage and identify the leading measurable correction terms.
 9. Derive the branch-quantized Lorentz response: for each stable admissible causal-root ledger class $q$, compute $B_q(v)$, extract $\gamma_{\mathrm{clk}}^{(q)}$ and $\gamma_{\mathrm{rul}}^{(q)}$, and show that all accepted clock/ruler branches collapse to the same effective $\gamma_{\text{eff}}$ within $O(\epsilon_{\mathrm{LV}})$.

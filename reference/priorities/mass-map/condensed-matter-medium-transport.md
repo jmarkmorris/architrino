@@ -4,7 +4,7 @@ This detailed priority file supports [Noether-Core Stability and First Mass Map]
 
 ## Core Opportunity
 
-The condensed-matter note is small, but it protects a crucial distinction: inertia is not ordinary dissipative resistance. A stable assembly moving through the Noether Sea should carry medium-dressed inertial response in the weak regime, while true resistance appears only when transport excites additional medium modes, sheds action, or crosses a stability threshold.
+The condensed-matter note is small, but it protects a crucial distinction: inertia is not ordinary dissipative resistance. A stable assembly moving through the Noether sea should carry medium-dressed inertial response in the weak regime, while true resistance appears only when transport excites additional medium modes, sheds action, or crosses a stability threshold.
 
 The useful threshold object is a transport residual:
 
@@ -167,9 +167,9 @@ The condensed-matter, analogue-gravity, and topological-defect source family sha
 
 | Source signal | Extracted structure | Use in this packet |
 | --- | --- | --- |
-| Analogue gravity in flowing media: [Barcelo/Liberati/Visser](https://arxiv.org/abs/gr-qc/0505065) and [Visser acoustic black holes](https://arxiv.org/abs/gr-qc/9712010) | Linear perturbations see an effective metric algebraically determined by density, flow velocity, and signal speed, while the underlying medium obeys its own non-Einstein dynamics. | Treat $g_{\mu\nu}^{\text{eff}}$ and $\mathcal{M}_{\text{sea}}^{ab}$ as constitutive readouts of one Noether-Sea state record, not as independent metric or drag laws. |
-| Volovik-style emergent-medium examples: [Induced Gravity in Superfluid $^3$He](https://arxiv.org/abs/cond-mat/9806010) and [field theory in $^3$He](https://arxiv.org/abs/cond-mat/9812381) | Gap nodes, order-parameter textures, and quasiparticle spectra can generate effective gauge/metric behavior only after the condensed-matter order parameter is specified. | Use emergent-medium language only when the Noether swarm branch record, orientation record, and stability gap are explicit. Do not import unsupported `superfluid` language into the Noether Sea. |
-| Topological defects and vortices: [Mermin](https://doi.org/10.1103/RevModPhys.51.591), [Kosterlitz-Thouless](https://doi.org/10.1088/0022-3719/6/7/010), and superconducting vortex-pair tests such as [Beasley/Mooij/Orlando](https://doi.org/10.1103/PhysRevLett.42.1165) | Defect stability is controlled by an order-parameter target space, winding or homotopy class, stiffness, and a critical unbinding or branch-opening threshold. | Admit a topological or vortex-like transport claim only as a branch-transition or effective-material recovery target, never as a generic Noether-Sea drag term. |
+| Analogue gravity in flowing media: [Barcelo/Liberati/Visser](https://arxiv.org/abs/gr-qc/0505065) and [Visser acoustic black holes](https://arxiv.org/abs/gr-qc/9712010) | Linear perturbations see an effective metric algebraically determined by density, flow velocity, and signal speed, while the underlying medium obeys its own non-Einstein dynamics. | Treat $g_{\mu\nu}^{\text{eff}}$ and $\mathcal{M}_{\text{sea}}^{ab}$ as constitutive readouts of one Noether sea state record, not as independent metric or drag laws. |
+| Volovik-style emergent-medium examples: [Induced Gravity in Superfluid $^3$He](https://arxiv.org/abs/cond-mat/9806010) and [field theory in $^3$He](https://arxiv.org/abs/cond-mat/9812381) | Gap nodes, order-parameter textures, and quasiparticle spectra can generate effective gauge/metric behavior only after the condensed-matter order parameter is specified. | Use emergent-medium language only when the Noether swarm branch record, orientation record, and stability gap are explicit. Do not import unsupported `superfluid` language into the Noether sea. |
+| Topological defects and vortices: [Mermin](https://doi.org/10.1103/RevModPhys.51.591), [Kosterlitz-Thouless](https://doi.org/10.1088/0022-3719/6/7/010), and superconducting vortex-pair tests such as [Beasley/Mooij/Orlando](https://doi.org/10.1103/PhysRevLett.42.1165) | Defect stability is controlled by an order-parameter target space, winding or homotopy class, stiffness, and a critical unbinding or branch-opening threshold. | Admit a topological or vortex-like transport claim only as a branch-transition or effective-material recovery target, never as a generic Noether sea drag term. |
 
 The safe topological-defect test is therefore not a new medium ontology. It is an admissibility condition for any claimed defect channel. A source-level order-parameter comparison must exhibit a projection from the retained branch record to an effective target space,
 
@@ -190,7 +190,7 @@ $$
 \in\mathbb Z.
 $$
 
-The invariant may change only when the relevant material or Noether-Sea branch ceases to be the same branch. In this packet the conservative routing rule is
+The invariant may change only when the relevant material or Noether sea branch ceases to be the same branch. In this packet the conservative routing rule is
 
 $$
 \Delta\mathcal{I}_\gamma\ne0

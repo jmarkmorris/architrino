@@ -17,7 +17,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ has causal-wake regularization, mollification, 
 ## Task Queue
 
 1. `regularization_dictionary` — Map QED regularization objects to causal-wake mollification and finite ledger observables. Status: `draft`.
-2. `lamb_shift_proxy` — Identify the first atomic spectral shift that can be modeled from material, photon, and Noether-Sea response records. Status: `draft`.
+2. `lamb_shift_proxy` — Identify the first atomic spectral shift that can be modeled from material, photon, and Noether sea response records. Status: `draft`.
 3. `g_minus_2_gate` — Treat anomalous magnetic moment as a downstream angular-momentum and photon-correction benchmark. Status: `draft`.
 
 ## Closure Objects

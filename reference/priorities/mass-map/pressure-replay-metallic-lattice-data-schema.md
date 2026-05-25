@@ -1,17 +1,17 @@
 # Metallic-Lattice Pressure Replay Data Schema
 
-This priority packet is an implementation-ready data schema for a real two-material replay of the pressure-dependent Noether-Sea constitutive response. It is not reader-facing canon and does not report empirical evidence. Its role is to make the first Fe/Cr or Ni/Co replay falsifiable before any material data are inserted.
+This priority packet is an implementation-ready data schema for a real two-material replay of the pressure-dependent Noether sea constitutive response. It is not reader-facing canon and does not report empirical evidence. Its role is to make the first Fe/Cr or Ni/Co replay falsifiable before any material data are inserted.
 
 ## Claim Level
 
 - **Status:** real-data replay schema; no empirical pass claimed.
-- **Main claim:** a valid pressure replay must lock the material state, pressure record, ordinary condensed-matter corrections, residual-channel extractor, covariance model, shared-row fit, and null-sector bounds before interpreting a residual as Noether-Sea response.
+- **Main claim:** a valid pressure replay must lock the material state, pressure record, ordinary condensed-matter corrections, residual-channel extractor, covariance model, shared-row fit, and null-sector bounds before interpreting a residual as Noether sea response.
 - **Open burden:** actual data must still provide pressure steps, phase and magnetic-state continuity, strain tensors, correction ledgers, channel covariance, and null-sector bounds.
 - **Promotion target:** none until a real replay survives the shared-row, split-row, and null-sector tests.
 
 ## Replay Objective
 
-For a heavy material $H$ and a lighter neighboring-metal control $L$, the replay tests whether one matrix $B_P$ maps the corrected pressure record to the retained Noether-Sea residual channels:
+For a heavy material $H$ and a lighter neighboring-metal control $L$, the replay tests whether one matrix $B_P$ maps the corrected pressure record to the retained Noether sea residual channels:
 
 $$
 \widehat{\mathbf{y}}_{M,r}
@@ -142,7 +142,7 @@ $$
 \mathbf{o}_{M,r}^{\mathrm{phase}}.
 $$
 
-The Noether-Sea residual-channel estimate is
+The Noether sea residual-channel estimate is
 
 $$
 \mathbf{y}_{M,r}
@@ -208,7 +208,7 @@ $$
 =0
 $$
 
-within the declared uncertainty. A row with $\mathcal{R}_{\mathrm{tr},M,r}\ge\mathcal{R}_{\mathrm{tr},*,M,r}$ is not automatically invalid physics, but it is no longer a clean pressure-loading row for reversible Noether-Sea response. It must be segmented, masked, or reported as a threshold-event row with the opened excitation, heating, radiation-like shedding, branch-transition, or remnant channel declared.
+within the declared uncertainty. A row with $\mathcal{R}_{\mathrm{tr},M,r}\ge\mathcal{R}_{\mathrm{tr},*,M,r}$ is not automatically invalid physics, but it is no longer a clean pressure-loading row for reversible Noether sea response. It must be segmented, masked, or reported as a threshold-event row with the opened excitation, heating, radiation-like shedding, branch-transition, or remnant channel declared.
 
 ## Channel Mask and Covariance
 

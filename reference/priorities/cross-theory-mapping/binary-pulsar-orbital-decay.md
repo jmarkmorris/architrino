@@ -18,7 +18,7 @@ This is an event-ledger and radiation-reaction gate. $\mathbb{A}\mathbb{A}\mathb
 ## Closure Objects
 
 - Orbital ledger: $(E_{\mathrm{orb}},\mathbf{J}_{\mathrm{orb}},P_b,\dot P_b,e)$.
-- Radiation event ledger: $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ for emitted effective gravitational radiation or Noether-Sea disturbance.
+- Radiation event ledger: $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ for emitted effective gravitational radiation or Noether sea disturbance.
 - Effective benchmark map: $\mathcal{B}_{\mathrm{pulsar}}(\Theta_{\mathrm{map}})=(\dot P_b,\dot\omega,\gamma_{\mathrm{timing}},r,s)$.
 - Kinematic correction record for proper motion and Galactic acceleration.
 - Shared radiation-limit residual:

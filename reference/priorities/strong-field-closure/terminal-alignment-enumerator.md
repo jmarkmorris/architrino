@@ -127,4 +127,4 @@ The script explicitly leaves these proof obligations unresolved:
 
 ## Failure Interpretation
 
-If the action-complete rerun still produces only self-loops or a spectral radius too close to `1`, the terminal-alignment label-count route does not carry enough entropy density. In that case the black-hole entropy route must either find the coefficient in release-channel ledgers, Noether-Sea boundary-wake storage, or a stronger observer quotient, or it must mark the horizon entropy recovery as failed rather than importing the area law as ontology.
+If the action-complete rerun still produces only self-loops or a spectral radius too close to `1`, the terminal-alignment label-count route does not carry enough entropy density. In that case the black-hole entropy route must either find the coefficient in release-channel ledgers, Noether sea boundary-wake storage, or a stronger observer quotient, or it must mark the horizon entropy recovery as failed rather than importing the area law as ontology.

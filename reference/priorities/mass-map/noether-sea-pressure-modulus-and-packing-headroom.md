@@ -1,6 +1,6 @@
-# Noether-Sea Pressure Modulus and Packing Headroom
+# Noether Sea Pressure Modulus and Packing Headroom
 
-This priority packet derives a branch-conditional pressure modulus and packing-headroom law for the pressure-dependent Noether-Sea response. It is report material, not reader-facing canon. Its role is to replace the purely named scale $K_{\text{sea}}$ with a computable branch target tied to the Noether swarm exclusion envelope, support-function packing cell, and envelope stiffness.
+This priority packet derives a branch-conditional pressure modulus and packing-headroom law for the pressure-dependent Noether sea response. It is report material, not reader-facing canon. Its role is to replace the purely named scale $K_{\text{sea}}$ with a computable branch target tied to the Noether swarm exclusion envelope, support-function packing cell, and envelope stiffness.
 
 ## Claim Level
 
@@ -11,7 +11,7 @@ This priority packet derives a branch-conditional pressure modulus and packing-h
 
 ## Source Anchors
 
-- [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) defines $\Pi_\ell=P_\ell/K_{\text{sea}}$ and the packing-limited density law.
+- [Pressure-Dependent Noether sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) defines $\Pi_\ell=P_\ell/K_{\text{sea}}$ and the packing-limited density law.
 - [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) shows that pressure tests constrain coefficient combinations, not observable-local rows.
 - [Noether Swarm Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) supplies $R_{\mathrm{excl}}$, $V_{\mathrm{cell}}^{\mathrm{sf}}$, $n_{\max}^{\mathrm{obl}}$, the support-function contact condition, and the packing-compliance diagnostic.
 - [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) supplies the homogeneous tensor target that the modulus must not contradict.
@@ -367,7 +367,7 @@ Q_{H,X}=q_{R,X}A_{H,X}+q_{\xi,X}B_{H,X}.
 }
 $$
 
-The positive scalar $\kappa_{n,X}$ sets the magnitude while the branch Hessian and readout fix the direction. A replay that improves by choosing $\kappa_n^P$, $\kappa_\lambda^P$, and $\kappa_R^P$ outside this branch-derived form has introduced independent fit knobs. Such a fit is acceptable only as a failure diagnostic: the branch must split, change readout, or supply a different finite Hessian before the pressure row can be interpreted as a Noether-Sea response.
+The positive scalar $\kappa_{n,X}$ sets the magnitude while the branch Hessian and readout fix the direction. A replay that improves by choosing $\kappa_n^P$, $\kappa_\lambda^P$, and $\kappa_R^P$ outside this branch-derived form has introduced independent fit knobs. Such a fit is acceptable only as a failure diagnostic: the branch must split, change readout, or supply a different finite Hessian before the pressure row can be interpreted as a Noether sea response.
 
 The finite-branch source-status boundary in [Noether Swarm Envelope Hessian Toy Branch](noether-swarm-envelope-hessian-toy-branch.md) also applies here: branch-derived pressure slopes remain blocked when the only upstream artifact is an $A_0$ scanner, Fourier carrier-correction packet, or waveform replay rather than accepted finite-branch Hessian output.
 

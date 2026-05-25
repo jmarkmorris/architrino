@@ -9,7 +9,7 @@
 
 ## Target Advance
 
-This packet supplies the missing intermediate geometry object between branch-local response and full observer-level metric recovery. A retained branch response does not need to reconstruct $N$, $u^i_{\text{sea}}$, $e^a{}_i$, or $\gamma_{ij}$ before it can move an assembly boundary. It only needs the branch response of the clock-period row, shape row, exposure row, Noether-Sea response row, preferred-frame leakage row, and ledger residual row.
+This packet supplies the missing intermediate geometry object between branch-local response and full observer-level metric recovery. A retained branch response does not need to reconstruct $N$, $u^i_{\text{sea}}$, $e^a{}_i$, or $\gamma_{ij}$ before it can move an assembly boundary. It only needs the branch response of the clock-period row, shape row, exposure row, Noether sea response row, preferred-frame leakage row, and ledger residual row.
 
 The advance is therefore:
 
@@ -30,7 +30,7 @@ $$
 \delta s_X .
 $$
 
-Here $\delta s_X$ is the signed normal displacement of the assembly-Noether-Sea interface level set in channel $X$. This is a geometry object in substrate space and absolute time. It is not yet an effective metric, but it is already enough to compute first-order interface motion from branch-response data.
+Here $\delta s_X$ is the signed normal displacement of the assembly-Noether sea interface level set in channel $X$. This is a geometry object in substrate space and absolute time. It is not yet an effective metric, but it is already enough to compute first-order interface motion from branch-response data.
 
 ## Branch-Local Response Input
 
@@ -64,7 +64,7 @@ $$
 \mathcal{G}_B D_\theta\mathcal{R}_B,
 $$
 
-where $\mathcal{G}_B$ is the bordered inverse or generalized inverse of $D_z\mathcal{R}_B$ on the retained non-gauge subspace. The domain of $\mathcal{L}_B$ is the environment/Noether-Sea perturbation space for the declared branch chart. Its output includes perturbations of causal-root times, root Jacobians, branch labels after admissible quotienting, cycle variables, shape tensor, exposure tensor, medium-response tensor, and ledger residuals.
+where $\mathcal{G}_B$ is the bordered inverse or generalized inverse of $D_z\mathcal{R}_B$ on the retained non-gauge subspace. The domain of $\mathcal{L}_B$ is the environment/Noether sea perturbation space for the declared branch chart. Its output includes perturbations of causal-root times, root Jacobians, branch labels after admissible quotienting, cycle variables, shape tensor, exposure tensor, medium-response tensor, and ledger residuals.
 
 ## Geometry Export Map
 
@@ -100,7 +100,7 @@ The row meanings are:
 | $\delta\ln T_B$ | first response of the absolute-time branch period or declared composite phase period |
 | $\delta Q_{ab}$ | first response of the cycle-averaged assembly shape tensor |
 | $\delta\mathcal{Z}^{ab}$ | first response of the geometry-facing exposure tensor or quotient-visible exposure tensor |
-| $\delta\mathcal{M}_{\mathrm{sea}}^{ab}$ | first response of the Noether-Sea medium-response tensor on the same branch ledger |
+| $\delta\mathcal{M}_{\mathrm{sea}}^{ab}$ | first response of the Noether sea medium-response tensor on the same branch ledger |
 | $\delta\mathcal{R}_{\mathrm{pf}}$ | preferred-frame leakage induced by branch drift, anisotropy, non-reciprocal root weights, or frame-sensitive quotient residue |
 | $\delta\mathcal{R}_{\mathrm{ledger}}$ | residual change in root identity, energy, momentum, angular momentum, provenance, and event-ledger closure rows |
 
@@ -300,7 +300,7 @@ $$
 
 where $\mathcal{R}_{Z,Q}^{ab}$ is the quotient-compatibility residue. It must vanish or remain below the declared tolerance; otherwise the geometry exposure is not a well-defined quotient-visible tensor.
 
-The Noether-Sea response tensor is a constitutive response of the local medium record to the exposed branch ledger:
+The Noether sea response tensor is a constitutive response of the local medium record to the exposed branch ledger:
 
 $$
 \mathcal{M}_{\mathrm{sea}}^{ab}
@@ -377,7 +377,7 @@ The geometry export is branch-admissible only when these residuals remain within
 
 ## Interface Diagnostic Variation
 
-Use the assembly-Noether-Sea interface diagnostic from [Nested Shell Swarm Geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). Write
+Use the assembly-Noether sea interface diagnostic from [Nested Shell Swarm Geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md#assembly-noether-sea-interface-diagnostic). Write
 
 $$
 L_X(\mathbf{x},t)

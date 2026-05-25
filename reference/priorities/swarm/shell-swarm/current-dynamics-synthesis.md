@@ -166,7 +166,7 @@ The current screens all remain negative.
 | [energy-momentum-orbital-stability-theorem.md](energy-momentum-orbital-stability-theorem.md) | converts conserved currents and the symplectic slice into a conservative orbital-stability test modulo symmetries | current $M=3$ data have no conserved-current leaf, augmented Hessian, or symplectic slice |
 | [history-force-variationality-condition.md](history-force-variationality-condition.md) | turns the action question into a finite-mode one-form curl test on the same active-root stratum | the $M=3$ rows have not computed this curl, so $\Gamma_K$ remains fit-only |
 | [gamma-fit-action-identifiability-lemma.md](gamma-fit-action-identifiability-lemma.md) | proves the projection identity relating fitted $\Gamma_K$, action-derived $\Gamma_B$, force norm, and residual penalty | no current $M=3$ packet emits an action-derived $\Gamma_B$, scalar inertia reduction, or fit uncertainty band |
-| [noether-action-conservation-closure-theorem.md](noether-action-conservation-closure-theorem.md) | derives event conservation rows from invariance of the total branch-plus-event action on one ledger | current $M=3$ rows have no action-derived scale, event window, or Noether-Sea update, so conservation remains open |
+| [noether-action-conservation-closure-theorem.md](noether-action-conservation-closure-theorem.md) | derives event conservation rows from invariance of the total branch-plus-event action on one ledger | current $M=3$ rows have no action-derived scale, event window, or Noether sea update, so conservation remains open |
 
 The important positive signal is that deformation can substantially reduce tangential leakage or curvature mismatch, depending on which deformation axis is opened. The important negative signal is that low-mode improvements tend to trade one residual for another or move toward poor Jacobian floors unless the solver enforces the full intrinsic curve system. The arclength-inverse rescore adds one more caution: reciprocal force-from-curvature diagnostics can look better than the retained intrinsic curvature-from-force row, so future packets must state their $\Gamma$ convention.
 
@@ -334,7 +334,7 @@ The most plausible missing rows are:
 2. antipodal relaxation, so the two partners in a binary are not forced to remain exact negatives when force balance wants a small separation asymmetry;
 3. a bounded speed-factor row, so small speed exchange can absorb tangential force without forcing $\mathbf{T}_i\cdot\widetilde{\mathbf{F}}_i=0$ pointwise;
 4. a controlled self/fold-layer row, if same-source delayed contributions can be regularized with a weak-limit and event ledger, or if a bounded speed factor self-hit mode satisfies the short-duration and action/event rows;
-5. a declared Noether-Sea medium-response term, but only with a constitutive row and event/action closure.
+5. a declared Noether sea medium-response term, but only with a constitutive row and event/action closure.
 
 The first three are preferable before a new medium-response channel because they keep the dynamics inside the carrier/root ledger. The speed-factor row is not free proof slack: it changes the root map, period row, tail certificates, action ledger, and same-source event policy.
 
@@ -472,9 +472,9 @@ Even after dynamics closure, branch retention still needs stability on the same 
 
 The $\Gamma$ row is likewise not just a scalar fit. The fit/action identifiability identity shows that if an action-derived $\Gamma_B$ differs from the fitted $\Gamma_K^{\mathrm{fit}}$, the curvature residual grows by the mismatch times $\|P^\perp\widetilde{\mathbf{F}}\|$. A future branch packet must therefore emit the force-norm floor, fit uncertainty band, one-form curl status, scalar inertia reduction, and action-derived $\Gamma_B$ before a fitted scale can become a physical scale row.
 
-The Noether/action theorem then connects the dynamics to conservation. Energy, momentum, angular momentum, charge, and source provenance are not independent badges; they close when the same support-complete action, event interval, central inventory, and Noether-Sea update are invariant under the corresponding generators. Until that theorem row passes, event conservation remains `event-action-not-computed`.
+The Noether/action theorem then connects the dynamics to conservation. Energy, momentum, angular momentum, charge, and source provenance are not independent badges; they close when the same support-complete action, event interval, central inventory, and Noether sea update are invariant under the corresponding generators. Until that theorem row passes, event conservation remains `event-action-not-computed`.
 
-The $M=3$ Noether/event handoff now makes that row executable. After a support-complete exact-antipodal dynamics/action candidate, the next packet must emit a total action, generator currents, a closed-period current test, source-provenance equations, Noether-Sea and boundary exchange rows, and the event residual vector $(\mathcal{R}_E,\mathcal{R}_{\mathbf{p}},\mathcal{R}_{\mathbf{J}},\mathcal{R}_Q,\mathcal{R}_{\mathrm{src}})$ on the same ledger. A branch with good force residuals but no Noether currents is still not retained.
+The $M=3$ Noether/event handoff now makes that row executable. After a support-complete exact-antipodal dynamics/action candidate, the next packet must emit a total action, generator currents, a closed-period current test, source-provenance equations, Noether sea state and boundary exchange rows, and the event residual vector $(\mathcal{R}_E,\mathcal{R}_{\mathbf{p}},\mathcal{R}_{\mathbf{J}},\mathcal{R}_Q,\mathcal{R}_{\mathrm{src}})$ on the same ledger. A branch with good force residuals but no Noether currents is still not retained.
 
 The $M=3$ stability handoff now closes the other non-promotion label. After dynamics/action and Noether/event closure, stability is not just "multipliers inside the unit disk." The branch must use root-dependent monodromy, Noether neutral-mode reduction, a fixed-current leaf, a conservative boundary two-form audit, Krein or energy-momentum classification, and nonlinear perturbation recovery. If the ledger is conservative, strict attraction is invalid unless a declared exchange or dissipation row supplies the contraction mechanism.
 
@@ -488,7 +488,7 @@ The same-source lemma removes a tempting but invalid fixed-speed escape route. I
 
 The fold-layer theorem keeps that route honest. A fold-layer can enter only as a regulated action term with bounded force and derivative rows, a weak-limit or finite-regulator convention, combined one-form curl, and event-ledger conservation. It is not a hidden way to add an untracked force.
 
-The medium-response theorem applies the same discipline to Noether-Sea response. A response force must come from a constitutive object with compatible memory, bounded derivative, exchange ledgers, isotropy or preferred-orientation residual, combined curl, and Noether conservation. It cannot be used as an empirical correction term.
+The medium-response theorem applies the same discipline to Noether sea response. A response force must come from a constitutive object with compatible memory, bounded derivative, exchange ledgers, isotropy or preferred-orientation residual, combined curl, and Noether conservation. It cannot be used as an empirical correction term.
 
 Until such a curve solve closes, the correct status remains:
 

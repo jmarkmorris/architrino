@@ -2,7 +2,7 @@
 
 This chapter states the molecular-geometry closure target within the assembly framework. Its purpose is to identify what molecular shape depends on in this ontology so the eventual detailed derivation has a stable launch point.
 
-It should be connected to [Atomic Structure](atomic-structure.md), [Atomic Spectra](atomic-spectra.md), [Condensed Matter](condensed-matter.md), and [Molecular Exclusion and Noether-Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md), which together supply the atomic constituents, resonance behavior, medium response, and exclusion geometry that molecular shapes must reconcile.
+It should be connected to [Atomic Structure](atomic-structure.md), [Atomic Spectra](atomic-spectra.md), [Condensed Matter](condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md), which together supply the atomic constituents, resonance behavior, medium response, and exclusion geometry that molecular shapes must reconcile.
 
 Spin and Pauli language in this chapter is downstream of [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md) and [Fermi-Dirac and Bose-Einstein Statistics](../quantum/quantum-statistics.md). Molecular singlet/triplet labels, bonding selection rules, electron-pair exclusion, and orbital-hybridization language should be treated as validation targets for those lower proofs, not as separate explanations.
 
@@ -18,18 +18,18 @@ At the constituent level this points back to [Electron](../assemblies/fermions/e
 
 ## Binding Corridors and Angle Selection
 
-The molecular-bonding problem is not only an electron-sharing problem. In this framework, a bond is an effective corridor in which two or more atomic assemblies lower their combined energy by sharing wake structure, exclusion geometry, and local Noether-Sea response. Bond length is the radial equilibrium of that corridor; bond angle is the angular equilibrium after neighboring corridors compete for exclusion volume and phase compatibility.
+The molecular-bonding problem is not only an electron-sharing problem. In this framework, a bond is an effective corridor in which two or more atomic assemblies lower their combined energy by sharing wake structure, exclusion geometry, and local Noether sea response. Bond length is the radial equilibrium of that corridor; bond angle is the angular equilibrium after neighboring corridors compete for exclusion volume and phase compatibility.
 
 A first useful decomposition is:
 
 - **corridor attraction:** the energy decrease from shared wake and resonance structure,
 - **exclusion cost:** the rise in energy when electron assemblies or nucleon envelopes over-compress,
 - **phase compatibility:** the condition that coupled electron resonances remain stable over repeated cycles,
-- **medium response:** the local Noether-Sea density and delay contribution to stiffness and shielding.
+- **medium response:** the local Noether sea density and delay contribution to stiffness and shielding.
 
 This decomposition can organize molecular shape before the spin proof is complete, but it cannot close molecular occupancy by itself. The exclusion-cost term must eventually inherit Pauli/statistics closure, while phase compatibility must eventually be connected to the completed atomic spin and orbital ledger.
 
-The first mathematical object should be an effective corridor functional on nuclear positions, electron-envelope branch data, and local Noether-Sea response:
+The first mathematical object should be an effective corridor functional on nuclear positions, electron-envelope branch data, and local Noether sea response:
 
 $$
 \mathcal E_{\mathrm{mol}}
@@ -72,6 +72,6 @@ where $M$ is the observer-level mass-response matrix of the participating nuclei
 
 A completed molecular-geometry derivation should recover, at minimum, the familiar qualitative sequence of linear, trigonal, tetrahedral, and bent arrangements from assembly geometry rather than imposing them as orbital templates. The first practical benchmark should be a small set of molecules whose standard geometries are sharply constrained: $\mathrm{H}_2$, $\mathrm{H}_2\mathrm{O}$, $\mathrm{CO}_2$, $\mathrm{NH}_3$, and $\mathrm{CH}_4$.
 
-The immediate derivation target is therefore a corridor-plus-exclusion functional that predicts equilibrium bond length and angle for those cases while remaining compatible with [Atomic Spectra](atomic-spectra.md), [Condensed Matter](condensed-matter.md), and [Molecular Exclusion and Noether-Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md).
+The immediate derivation target is therefore a corridor-plus-exclusion functional that predicts equilibrium bond length and angle for those cases while remaining compatible with [Atomic Spectra](atomic-spectra.md), [Condensed Matter](condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md).
 
 For spin-sensitive chemistry, the later derivation should recover singlet/triplet distinctions and bonding selection rules only after the atomic angular-momentum ledger and spin-statistics proof are available. Until then, this chapter should keep molecular geometry as a corridor-plus-exclusion closure target, not a foundation for spin or Pauli behavior.

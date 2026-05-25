@@ -7,7 +7,7 @@
 ## The Mass Hypothesis: Inertia as Medium Interaction
 
 ### Core Thesis
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, **mass is not a fundamental property** of individual architrinos. There is no intrinsic particle-specific "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass, especially **inertial resistance to acceleration**, is treated as an emergent response of stable assemblies embedded in the surrounding [Noether Sea](../spacetime/noether-sea.md), the physical medium composed of neutral Noether swarm assemblies.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, **mass is not a fundamental property** of individual architrinos. There is no intrinsic particle-specific "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass, especially **inertial resistance to acceleration**, is treated as an emergent response of stable assemblies embedded in the surrounding [Noether sea](../spacetime/noether-sea.md), the physical medium composed of neutral Noether swarm assemblies.
 
 The conservative thesis is:
 
@@ -17,7 +17,7 @@ $$
 \text{the externally exposed response of trapped internal causal history.}
 $$
 
-That response is shaped by internal energy storage, shielding, and the medium-dressed way the Noether Sea couples to a moving or accelerated assembly.
+That response is shaped by internal energy storage, shielding, and the medium-dressed way the Noether sea couples to a moving or accelerated assembly.
 
 ### Assembly-Level Reduction
 
@@ -31,7 +31,7 @@ $$
 
 This is the clean scalar form of the thesis. It says that the observer-facing inertial mass is controlled by the shielded part of the internal assembly ledger, with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly in the regime where the effective low-energy closure is being matched. Here $\alpha_{\mathrm{m}}$ denotes the single mass-normalization constant for the declared weak homogeneous regime; it is not the fine-structure constant and not a per-particle fit parameter.
 
-The scalar form is not the whole derivation. In a resolved Noether-Sea environment, the denominator $c_{\text{eff}}^2$ is the isotropic weak-field limit of a medium-response tensor:
+The scalar form is not the whole derivation. In a resolved Noether sea environment, the denominator $c_{\text{eff}}^2$ is the isotropic weak-field limit of a medium-response tensor:
 
 $$
 p_{\text{int}}^a
@@ -44,7 +44,7 @@ p_{\text{int}}^a
 \frac{h^{ab}}{c_{\text{eff}}^2}
 $$
 
-in a homogeneous isotropic Noether-Sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
+in a homogeneous isotropic Noether sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
 
 #### Exposed Inertial-Response Trace
 
@@ -70,7 +70,7 @@ $$
 \mathcal{Z}_{\mathrm{tf}}^{ab}(A).
 $$
 
-For the scalar inertial readout, only the reversible symmetric part of the Noether-Sea response belongs in the mass trace. Define
+For the scalar inertial readout, only the reversible symmetric part of the Noether sea response belongs in the mass trace. Define
 $$
 \mathcal{M}_{+}^{ab}
 \equiv
@@ -104,7 +104,7 @@ In the homogeneous isotropic limit this reduces to the roadmap scalar formula. P
 
 Because $\alpha_{\mathrm{m}}$ is a single normalization for a declared weak homogeneous regime, the first nontrivial mass-map prediction is not an absolute mass. It is a reference-normalized ratio in which $\alpha_{\mathrm{m}}$ cancels.
 
-For two accepted assemblies $A$ and $B$ in the same homogeneous isotropic Noether-Sea response record, if both assemblies are evaluated through the same scalar exposure quotient and share the same low-energy response limit
+For two accepted assemblies $A$ and $B$ in the same homogeneous isotropic Noether sea response record, if both assemblies are evaluated through the same scalar exposure quotient and share the same low-energy response limit
 $$
 \mathcal{M}_{\text{sea}}^{ab}\to\frac{h^{ab}}{c_{\text{eff}}^2},
 $$
@@ -153,7 +153,7 @@ E_{\mathrm{first\,exc}}^\theta(A)
 -
 E_{\mathrm{branch}}^\theta(A),
 $$
-computed from the same causal ledger, shielding, and Noether-Sea response record as the mass map. A compact comparison residual is
+computed from the same causal ledger, shielding, and Noether sea response record as the mass map. A compact comparison residual is
 $$
 \mathcal{R}_{\mathrm{gap}\to m}(A;\theta)
 =
@@ -333,7 +333,7 @@ A Noether swarm can be read as a stable closure of delayed path-history relation
 
 When the swarm moves or is placed under a gradient, the closure does not remain a static set of circular binaries. The inner, middle, and outer binary planes are drawn into a coupled spiral-helical pattern: pitch, radius, phase, and inter-layer timing retune together so delayed wakes still return to the correct partners and layers. This spiral-helical relocking is the geometric carrier of inertia in the present thesis.
 
-In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the swarm is accelerated, perturbed, or placed in a Noether-Sea gradient. Shielding determines how much of the internal closure couples to the far field.
+In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the swarm is accelerated, perturbed, or placed in a Noether sea gradient. Shielding determines how much of the internal closure couples to the far field.
 
 ### Mechanism Stack
 
@@ -349,23 +349,23 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
 - **Generational Hierarchy:** Heavier generations (Gen II, Gen III) have **reduced shielding** because outer or middle shielding tiers are depleted on the branch lifetime window. With fewer coherent support layers, more of the inner high-energy core is exposed, increasing $\zeta$ and thus the apparent mass. This is a shielding-coherence statement, not a deletion of the H/M/L axial frame that carries color and electroweak bookkeeping.
 
 #### Medium-Dressed Inertial Response
-- **The Medium:** The Noether Sea is not empty space; it is a dynamic population of neutral Noether swarm assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to the Noether Sea.
+- **The Medium:** The Noether sea is not empty space; it is a dynamic population of neutral Noether swarm assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to the Noether sea.
 - **The Response:** The assembly resists acceleration because its internal path-history exchange must relock under a biased causal geometry. This should be modeled as a medium-dressed response tensor, not as ordinary dissipative friction.
 - **Velocity Dependence:** In the homogeneous weak-field limit, the same closure geometry should recover the effective relativistic response:
   $$
   m_{\text{eff}}(v) \sim \frac{m_0}{\sqrt{1 - v^2/c_{\text{eff}}^2}}.
   $$
-- **Environment Dependence:** Local variations in Noether-Sea density, compliance, drift, and effective lapse can modulate the response. In dense or strongly graded regions, the effective inertial and gravitational response must be computed from the same medium-dressed closure map.
+- **Environment Dependence:** Local variations in Noether sea density, compliance, drift, and effective lapse can modulate the response. In dense or strongly graded regions, the effective inertial and gravitational response must be computed from the same medium-dressed closure map.
 
 ### Stability Constraint
-A critical requirement: assemblies in **equilibrium** with the Noether Sea (e.g., atoms in stable orbitals) must experience no dissipative drag in the ordinary sense. Otherwise, electron orbitals would lose stability, radiate energy, and collapse into the nucleus (the classical electron catastrophe).
+A critical requirement: assemblies in **equilibrium** with the Noether sea (e.g., atoms in stable orbitals) must experience no dissipative drag in the ordinary sense. Otherwise, electron orbitals would lose stability, radiate energy, and collapse into the nucleus (the classical electron catastrophe).
 
 **Resolution Hypothesis:**
 - Stable configurations are phase-locked causal ledgers whose perturbations remain in an attracting basin.
 - The relevant diagnostic is not a phenomenological friction coefficient but a stability test: nearby phase errors should decay under the return map or Floquet analysis of the closed assembly cycle.
-- The Noether Sea can still shape inertia, but a stable bound state must not leak energy through a dissipative drag channel.
+- The Noether sea can still shape inertia, but a stable bound state must not leak energy through a dissipative drag channel.
 
-The condensed-matter cross-check is the Noether-Sea transport residual in [Condensed Matter](../nuclear-atomic/condensed-matter.md). Stable inertial response belongs to $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$, where the response is reversible retuning rather than ordinary drag. Crossing $\mathcal{R}_{\text{tr},*}$ is a transition or failure condition that must route into excitation, radiation-like transport, medium heating, action shedding, or branch transition; it is not the origin of mass itself.
+The condensed-matter cross-check is the Noether sea transport residual in [Condensed Matter](../nuclear-atomic/condensed-matter.md). Stable inertial response belongs to $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$, where the response is reversible retuning rather than ordinary drag. Crossing $\mathcal{R}_{\text{tr},*}$ is a transition or failure condition that must route into excitation, radiation-like transport, medium heating, action shedding, or branch transition; it is not the origin of mass itself.
 
 ### Ontological Distinctions
 It is crucial to clarify what is **fundamental** versus what is **emergent**:
@@ -374,9 +374,9 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 |:--------|:-------------------------------|
 | **Architrino Position/Velocity** | Fundamental (substrate level) |
 | **Architrino polarity bookkeeping unit ($\epsilon=|e|/6$)** | Fundamental at the polarity-bookkeeping layer; observer-level electric charge is assembly-level inventory |
-| **Noether Sea State** | Emergent density, compliance, drift, and clock-response fields |
+| **Noether sea State** | Emergent density, compliance, drift, and clock-response fields |
 | **Inertial Mass ($m$)** | **Emergent** (shielded internal energy + medium-dressed response) |
-| **Gravitational Mass** | **Emergent** (Noether-Sea gradient response) |
+| **Gravitational Mass** | **Emergent** (Noether sea gradient response) |
 
 ### Status of Mass Claims
 
@@ -392,18 +392,18 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 
 ### Mass-Channel Categories
 
-The mass thesis must keep the particle categories separate. The photon channel is treated as a massless coaxial contra-rotating pro/anti planar-pair transport mode: it carries phase, momentum, source/event-ledger energy, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether-Sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](./bosons/electroweak-bosons.md), and for the spin ledger see [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+The mass thesis must keep the particle categories separate. The photon channel is treated as a massless coaxial contra-rotating pro/anti planar pair transport mode: it carries phase, momentum, source/event-ledger energy, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](./bosons/electroweak-bosons.md), and for the spin ledger see [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 ### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether-Sea response. The benchmark is a neutral scalar-compatible resonance near $125$ GeV with signal-strength normalization near the Standard Model expectation. Exact date-stamped masses, uncertainties, and signal-strength entries belong in validation and parameter ledgers; modeling the resonance as a collective medium excitation is a theorem target, not an established result.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether sea response. The benchmark is a neutral scalar-compatible resonance near $125$ GeV with signal-strength normalization near the Standard Model expectation. Exact date-stamped masses, uncertainties, and signal-strength entries belong in validation and parameter ledgers; modeling the resonance as a collective medium excitation is a theorem target, not an established result.
 
 For the electroweak medium interpretation behind this replacement, see [Gauge Structure Emergence](../interactions/gauge-structure-emergence.md).
 
 ### Higgs and Yukawa Matching Residual
 
-A mass fit alone does not recover the Higgs sector. The same record must also explain why the scalar channel couples to massive assemblies with strengths that, at the effective Standard Model level, are summarized by Yukawa parameters. Let $\varphi$ be a normalized radial perturbation of the local Noether-Sea scalar mode, with $\varphi=0$ on the weak homogeneous branch. The effective scalar coupling to an assembly $A$ should be the response derivative of the same shielding map:
+A mass fit alone does not recover the Higgs sector. The same record must also explain why the scalar channel couples to massive assemblies with strengths that, at the effective Standard Model level, are summarized by Yukawa parameters. Let $\varphi$ be a normalized radial perturbation of the local Noether sea scalar mode, with $\varphi=0$ on the weak homogeneous branch. The effective scalar coupling to an assembly $A$ should be the response derivative of the same shielding map:
 $$
 g_{H,A}^{\mathrm{eff}}(\theta)
 \equiv
@@ -415,7 +415,7 @@ g_{H,A}^{\mathrm{eff}}(\theta)
 M_{\mathrm{sh}}(A;\theta,0)=M_{\mathrm{sh}}(A;\theta).
 $$
 
-If $v_{\mathrm{EW}}^{\mathrm{eff}}(\theta)$ is the electroweak normalization extracted from the same Noether-Sea order-parameter proxy used in the gauge-sector bridge, the Standard Model Yukawa summary is recovered only as
+If $v_{\mathrm{EW}}^{\mathrm{eff}}(\theta)$ is the electroweak normalization extracted from the same Noether sea order-parameter proxy used in the gauge-sector bridge, the Standard Model Yukawa summary is recovered only as
 $$
 y_f^{\mathrm{eff}}(\theta)
 =
@@ -442,7 +442,7 @@ M_H^{\mathrm{breath}}(\theta)-M_H^{\mathrm{obs}}
 \right]^2.
 $$
 
-Here $\mathfrak{F}_{H}$ is the set of fermion channels with measured Higgs-coupling information, $M_H^{\mathrm{obs}}$ is the observed scalar resonance near $125$ GeV, and $M_H^{\mathrm{breath}}(\theta)$ is the predicted radial Noether-Sea breathing-mode mass on the same branch. The benchmark fails if Yukawa-like numbers are inserted as independent per-particle constants, if $v_{\mathrm{EW}}^{\mathrm{eff}}$ is fitted separately from the gauge-sector normalization, or if the $125$ GeV scalar match uses a different Noether-Sea record than the inertial-mass map.
+Here $\mathfrak{F}_{H}$ is the set of fermion channels with measured Higgs-coupling information, $M_H^{\mathrm{obs}}$ is the observed scalar resonance near $125$ GeV, and $M_H^{\mathrm{breath}}(\theta)$ is the predicted radial Noether sea breathing-mode mass on the same branch. The benchmark fails if Yukawa-like numbers are inserted as independent per-particle constants, if $v_{\mathrm{EW}}^{\mathrm{eff}}$ is fitted separately from the gauge-sector normalization, or if the $125$ GeV scalar match uses a different Noether sea record than the inertial-mass map.
 
 The date-stamped LHC scalar validation surface makes the residual sharper than a single mass entry. Let $M_H^{\mathrm{ledger}}$, $\sigma_H^{\mathrm{ledger}}$, $\mu_H^{\mathrm{ledger}}$, and $\sigma_{\mu_H}^{\mathrm{ledger}}$ denote the current parameter-ledger entries for the scalar mass and production-and-branching normalization, with ATLAS and CMS treated as independent benchmark rows; the mass entry is expected to remain near $125$ GeV. A candidate scalar branch must recover the mass, rate normalization, channel pattern, and absence of broad additional scalar signals in the excluded windows:
 $$
@@ -487,7 +487,7 @@ m_{\text{inertial}}(A)
 \alpha_{\mathrm{m}}\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2},
 $$
 
-but a derivation in which $\zeta(A)$ is fixed by the same root ledger, shielding geometry, and Noether-Sea response that also preserves stability and equivalence-principle behavior. If $\zeta(A)$ has to be tuned independently for each particle family, the analogy to QCD naturalness fails and the hierarchy has only been renamed.
+but a derivation in which $\zeta(A)$ is fixed by the same root ledger, shielding geometry, and Noether sea response that also preserves stability and equivalence-principle behavior. If $\zeta(A)$ has to be tuned independently for each particle family, the analogy to QCD naturalness fails and the hierarchy has only been renamed.
 
 ### Generation-Mass Fitting Packet
 
@@ -601,7 +601,7 @@ If a first-principles shielding model naturally lands near the Koide surface for
 
 Even if the charged leptons approximately follow a simple shielding geometry, quarks should not be expected to do so.
 
-The reason is that quark inertial mass is not just bare core exposure. Quarks carry axis-exceptional color structure, induce persistent flux-tube tension, and require continual axis-reconfiguration exchange through the strong sector. In that regime, the measured effective mass is contaminated by confinement energy and Noether-Sea response to the color disturbance.
+The reason is that quark inertial mass is not just bare core exposure. Quarks carry axis-exceptional color structure, induce persistent flux-tube tension, and require continual axis-reconfiguration exchange through the strong sector. In that regime, the measured effective mass is contaminated by confinement energy and Noether sea response to the color disturbance.
 
 So the working distinction is:
 
@@ -624,7 +624,7 @@ To advance from qualitative thesis to quantitative mass prediction, the active m
 
 ### Reference Attractor Gate
 
-The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral, rest-branch nested shell swarm in a weak homogeneous Noether-Sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation.
+The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral, rest-branch nested shell swarm in a weak homogeneous Noether sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation.
 
 This attractor should not be pictured as three independent circular binaries. The inner, middle, and outer binaries occupy different causal-speed regimes: the inner binary is self-hit and super-field-speed on the active branch, the middle binary sits near the $v = c_f$ separator, and the outer binary remains sub-field-speed as the shielding and boundary-coupling interface. Circular or elliptic pictures can still be useful as carrier charts, but only after the coupled root ledger, phase lock, and stability diagnostics are respected.
 

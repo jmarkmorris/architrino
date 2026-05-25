@@ -16,7 +16,7 @@ T(v)=\gamma_\star(v)\,T_0,\qquad
 $$
 with bounded preferred-frame leakage in measurable observables.
 
-Speed convention: primitive delayed-root equations are solved with $c_f$. The declared speed $c_\star$ enters only after the channel has been named: set $c_\star=c_f$ for a primitive wake branch chart, $c_\star=c_{\text{eff}}(\mathbf{x})$ for Noether-Sea dressed clocks and rulers, and $c_\star=c_\gamma(\mathbf{x})$ for photon synchronization. The low-gradient Lorentz limit may identify the measured channel speed with $c_0=c_{\text{eff}}(\infty)$ only after the dressing map is declared.
+Speed convention: primitive delayed-root equations are solved with $c_f$. The declared speed $c_\star$ enters only after the channel has been named: set $c_\star=c_f$ for a primitive wake branch chart, $c_\star=c_{\text{eff}}(\mathbf{x})$ for Noether sea dressed clocks and rulers, and $c_\star=c_\gamma(\mathbf{x})$ for photon synchronization. The low-gradient Lorentz limit may identify the measured channel speed with $c_0=c_{\text{eff}}(\infty)$ only after the dressing map is declared.
 
 A stronger prediction is also available. The Lorentz formulas should not be imported as an independent observer-level rule and then copied onto assemblies. They should be recovered from the same causal-root progression that gives stable assemblies their discrete branch ledgers. In that sense the Lorentz factor is a closure target for the quantum-facing branch structure of the dynamics: the root ledger must generate the contraction, clock-retuning, and residual-leakage coefficients rather than merely coexist with them.
 
@@ -28,7 +28,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate ontology is:
 
 1. Euclidean 3-space represented by a chosen absolute-frame coordinate scaffold.
 2. Global absolute time $t$.
-3. Finite propagation speed $c_f$ for potential transfer through the Noether Sea.
+3. Finite propagation speed $c_f$ for potential transfer through the Noether sea.
 
 To match modern precision constraints, operational observers made from bound assemblies must infer effective Lorentz kinematics even though the substrate itself is not Minkowskian at the fundamental level. We call this required dynamical compensation the Lorentzian conspiracy.
 
@@ -126,7 +126,7 @@ For a primitive benchmark drifting binary with instantaneous separation vector $
 $$
 \tau=\frac{\|\mathbf{r}+\mathbf{v}\tau\|}{c_f}.
 $$
-This subsection is deliberately a $c_f$ branch-chart calculation. For operational clock, ruler, or photon tests, repeat the same budget with the declared $c_\star$ after Noether-Sea dressing. With $\mu\equiv \hat{\mathbf{n}}\cdot\hat{\mathbf{e}}_{\parallel}$ and $\beta=v/c_f$, the two directional roots are
+This subsection is deliberately a $c_f$ branch-chart calculation. For operational clock, ruler, or photon tests, repeat the same budget with the declared $c_\star$ after Noether sea dressing. With $\mu\equiv \hat{\mathbf{n}}\cdot\hat{\mathbf{e}}_{\parallel}$ and $\beta=v/c_f$, the two directional roots are
 $$
 \tau_{\pm}(r,\mu;\beta)
 =\frac{r}{c_f}\,
@@ -191,7 +191,7 @@ $$
 \qquad
 \gamma_\star\equiv\frac{1}{\sqrt{1-\beta_\star^2}}.
 $$
-In a homogeneous Noether-Sea cell, take $R_{\parallel}$ to be the semiaxis along drift and $R_{\perp}$ to be a transverse semiaxis. A longitudinal return cycle has unequal forward and rear legs,
+In a homogeneous Noether sea cell, take $R_{\parallel}$ to be the semiaxis along drift and $R_{\perp}$ to be a transverse semiaxis. A longitudinal return cycle has unequal forward and rear legs,
 $$
 t_{+}=\frac{R_{\parallel}}{c_\star-v},
 \qquad
@@ -600,7 +600,7 @@ Use the declared observer-channel speed for this closure step:
 $$
 R_\parallel=\frac{R_\perp}{\gamma_\star},\qquad \gamma_\star=\frac{1}{\sqrt{1-\beta_\star^2}},\qquad \beta_\star=\frac{v_{\text{tr}}}{c_\star},
 $$
-with $c_\star=c_{\text{eff}}$ for Noether-Sea dressed clock/ruler closure and $c_\star=c_f$ only for a primitive branch-chart calculation. For the scale channel, use
+with $c_\star=c_{\text{eff}}$ for Noether sea dressed clock/ruler closure and $c_\star=c_f$ only for a primitive branch-chart calculation. For the scale channel, use
 $$
 R_\perp=R_\perp(E),\qquad \frac{dR_\perp}{dE}<0
 $$
@@ -612,7 +612,7 @@ V(\beta_\star,E)=\frac{4\pi}{3}R_\perp(E)^2R_\parallel(E,\beta_\star)
 =\frac{4\pi}{3}R_\perp(E)^3\sqrt{1-\beta_\star^2}.
 $$
 
-This gives a direct state-space channel from energy and translation into local Noether-Sea geometry:
+This gives a direct state-space channel from energy and translation into local Noether sea geometry:
 $$
 (\beta_\star,E)\longmapsto (R_\parallel,R_\perp,V).
 $$
@@ -636,7 +636,7 @@ Together with local assembly density $n(x)$ (with $\rho_{\text{NS}}(x)=\rho_{\te
 $$
 (\xi,\lambda,n,\hat{u})_x
 $$
-for constructing effective kinematic and metric responses. The kinematic closure requirement is that observer-built rods/clocks from this Noether Sea recover Lorentz-consistent operational laws to bounded leakage.
+for constructing effective kinematic and metric responses. The kinematic closure requirement is that observer-built rods/clocks from this Noether sea recover Lorentz-consistent operational laws to bounded leakage.
 
 ### Algebraic effective metric map from the handoff tuple
 
@@ -666,7 +666,7 @@ g_{\text{eff}}^{\mu\nu}(x)=
 $$
 Hence microscopic shape closure, when it yields $\xi\to1/\gamma$, is injected directly into $g_{\mu\nu}^{\text{eff}}$.
 
-In the local Noether-Sea rest frame ($\hat{u}^\mu=(1,0,0,0)$), with observer-sector coordinate $x^0=c_0 t$:
+In the local Noether sea rest frame ($\hat{u}^\mu=(1,0,0,0)$), with observer-sector coordinate $x^0=c_0 t$:
 $$
 ds_{\text{eff}}^2=g_{\mu\nu}^{\text{eff}}dx^\mu dx^\nu
 =\Omega^{2}\left[-\xi^{2}(dx^0)^2+d\mathbf{x}^2\right].
@@ -802,7 +802,7 @@ $$
 \frac{dx^\mu}{d\tau}\frac{dx^\nu}{d\tau}=0.
 $$
 
-For weak drift, slowly varying Noether-Sea flow, and quasi-static fields in a local Noether-Sea rest frame, define
+For weak drift, slowly varying Noether sea flow, and quasi-static fields in a local Noether sea rest frame, define
 $$
 \Phi_{\text{eff}}(x)\equiv c_0^2\ln\!\big(\Omega(n,\lambda)\,\xi\big).
 $$
@@ -986,7 +986,7 @@ $$
 q\in\mathcal{Q}_{\mathrm{stable}}(\beta)
 \right\},
 $$
-where $\mathcal{Q}_{\mathrm{stable}}(\beta)$ is the set of stable causal-root ledger classes. The observer-level Lorentz factor is recovered only when the active branch family, hierarchy averaging, and Noether-Sea dressing collapse this set to a universal effective value:
+where $\mathcal{Q}_{\mathrm{stable}}(\beta)$ is the set of stable causal-root ledger classes. The observer-level Lorentz factor is recovered only when the active branch family, hierarchy averaging, and Noether sea dressing collapse this set to a universal effective value:
 $$
 \gamma_{\mathrm{clk}}^{(q)}(\beta)
 =

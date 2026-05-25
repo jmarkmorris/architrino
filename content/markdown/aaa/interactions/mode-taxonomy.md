@@ -15,7 +15,7 @@ This taxonomy records which channel family a reaction uses; it does not derive t
 At assembly level, these terms refer to substrate dynamics in absolute time:
 
 - **Mode-lock event:** a discrete stability transition where a driven nested shell swarm/wake configuration settles into an allowed propagating or bound mode.
-- **Wake-strain threshold:** the local instability boundary in Noether-Sea-coupled transport; below threshold, energy disperses into medium excitations, above threshold, stable mode formation is allowed.
+- **Wake-strain threshold:** the local instability boundary in Noether sea-coupled transport; below threshold, energy disperses into medium excitations, above threshold, stable mode formation is allowed.
 - **Nucleation:** relocking/reorganization of existing substrate content (with provenance-preserving architrino bookkeeping), not creation ex nihilo.
 - **Planar-mode nucleation (photon channels):** lock-in to a stable coaxial contra-rotating pro/anti planar-pair mode carrying Gate A energy-momentum data and Gate B transverse-ledger data.
 - **Corridor-mode nucleation (weak channels):** lock-in to corridor-type interaction modes used for $W^\pm/Z$ channel bookkeeping.
@@ -30,7 +30,7 @@ This section is the canonical stepwise map for low-energy Standard Model channel
 ### Regime Assumptions
 
 - Low-energy means interaction scales where validated SM/QED/QCD effective descriptions already succeed and no beyond-tested deviation is introduced by default.
-- The substrate is modeled as the Noether Sea, which can store, transport, and relock assembly content under local conservation constraints.
+- The substrate is modeled as the Noether sea, which can store, transport, and relock assembly content under local conservation constraints.
 - "Low-energy" here includes laboratory, beamline, plasma, and most astrophysical transport contexts outside unresolved near-horizon/extreme-density limits.
 
 ### Canonical Stepwise Workflow
@@ -47,15 +47,15 @@ Declare the required observer-level closures before ontology mapping:
 
 3. **Initialize assembly state**
 Represent each incoming participant as an assembly state tuple:
-`(identity, provenance path, charge sector, momentum, local Noether-Sea state)`.
+`(identity, provenance path, charge sector, momentum, local Noether sea state)`.
 Path history is part of identity bookkeeping in absolute time.
 
-4. **Characterize local Noether-Sea state**
-Specify Noether-Sea state variables used by mapping, with arguments suppressed only when the local context is clear:
+4. **Characterize local Noether sea state**
+Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear:
 $(\rho_{\text{NS}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
 These variables are mapping handles, not replacement observables.
 
-Magnetic-like observer language belongs at this mapping layer. It is not a substrate force law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether-Sea anisotropy/vorticity dressing.
+Magnetic-like observer language belongs at this mapping layer. It is not a substrate force law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
 
 For an assembly $A$ with $\|\mathbf{v}_A\|>0$, define
 $$
@@ -76,7 +76,7 @@ W_{Ak}\!\left(t;t_0,\mathcal{V}_{\mathrm{NS}},R_A\right)
 \hat r_{Ak,j}(t;t_0).
 $$
 
-The weight $W_{Ak}$ packages the inverse-square causal-wake factor, polarity sign, causal Jacobian, and local Noether-Sea anisotropy/vorticity response. This equation is the allowed bridge to magnetic-like language: transverse force is recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
+The weight $W_{Ak}$ packages the inverse-square causal-wake factor, polarity sign, causal Jacobian, and local Noether sea anisotropy/vorticity response. This equation is the allowed bridge to magnetic-like language: transverse force is recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
 
 In this expression, $\mathcal{C}_{Ak}(t)$ is the causal-root set for source branch $k$ acting on assembly $A$, and $\hat r_{Ak,j}$ is the $j$ component of the delayed line-of-action unit vector. The formula therefore preserves the primitive line-of-action law while naming the observer-level transverse projection.
 
@@ -115,7 +115,7 @@ $$
 =0.
 $$
 
-The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](../reactions/radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether-Sea dynamics.
+The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](../reactions/radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether sea dynamics.
 
 5. **Evaluate wake-strain trigger**
 Compute whether interaction forcing crosses the relevant mode boundary.
@@ -179,7 +179,7 @@ Observer channel: $e^\pm + Z \rightarrow e^\pm + Z + \gamma$.
 
 Step map:
 1. Incoming charged assembly follows a deflected trajectory in target potential.
-2. Deflection induces wake-strain concentration in local Noether-Sea coupling, with received forcing sharpened or diluted by the branch Jacobian during the scattering history.
+2. Deflection induces wake-strain concentration in local Noether sea coupling, with received forcing sharpened or diluted by the branch Jacobian during the scattering history.
 3. If wake-strain crosses planar-mode threshold, a photon mode nucleates as a coaxial contra-rotating pro/anti planar pair.
 4. If not crossed, energy stays in non-radiative channels (heating/collective excitation).
 5. Event closure requires recoil plus emitted-photon momentum balance at vertex level.
@@ -211,7 +211,7 @@ Observer channels:
 - pair channel: $\gamma + \gamma \rightarrow e^+ + e^-$.
 
 Step map:
-1. Directional magnetic state $B$ is represented as observer shorthand for the effective Noether-Sea anisotropy/vorticity map $\mathcal{V}_{\mathrm{NS}}$ together with the delayed branch geometry and Jacobian weighting that generate observer-level transverse forcing.
+1. Directional magnetic state $B$ is represented as observer shorthand for the effective Noether sea anisotropy/vorticity map $\mathcal{V}_{\mathrm{NS}}$ together with the delayed branch geometry and Jacobian weighting that generate observer-level transverse forcing.
 2. Curved charged-assembly transport drives repeated planar-mode opportunities.
 3. Emitted photons propagate and may enter pair threshold windows in dense radiation zones.
 4. Pair nucleation relocks local substrate content into $e^+e^-$ assemblies with provenance updates.
@@ -334,7 +334,7 @@ Each reaction chapter should include three short blocks:
 ## Core Terms
 
 - **Mode-lock event:** generic lock-in transition where transport energy is reorganized into a stable propagating or bound assembly mode.
-- **Wake-strain threshold:** local trigger condition where trajectory forcing and Noether-Sea state exceed stability boundary for a mode-lock event.
+- **Wake-strain threshold:** local trigger condition where trajectory forcing and Noether sea state exceed stability boundary for a mode-lock event.
 - **Nucleation:** formation of a stable assembly mode from local substrate reconfiguration, with conservation/provenance bookkeeping.
 
 ## Channel-Specific Terms

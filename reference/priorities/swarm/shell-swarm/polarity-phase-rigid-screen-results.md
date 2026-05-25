@@ -164,7 +164,7 @@ The live dynamics path remains deformation of the carrier curves or addition of 
 2. plane-normal precession,
 3. antipodal relaxation,
 4. controlled self/fold-layer contribution,
-5. or Noether-Sea medium response with event-ledger closure.
+5. or Noether sea medium response with event-ledger closure.
 
 Failure codes:
 

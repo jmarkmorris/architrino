@@ -1,6 +1,6 @@
 # Noether Swarm
 
-The **Noether swarm** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether-Sea and particle-architecture program. A Noether swarm is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos and three negative-polarity architrinos maintain a persistent causal-return ledger.
+The **Noether swarm** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether sea and particle-architecture program. A Noether swarm is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos and three negative-polarity architrinos maintain a persistent causal-return ledger.
 
 This chapter uses three swarm types:
 
@@ -160,7 +160,7 @@ $$
 \frac{R_+-R_-}{R_*}\leq\varepsilon_{\mathrm{shell}},
 $$
 
-while a broader shell branch keeps only the hollow-band condition. This is still not the nested shell swarm. It is a one-band neutral swarm whose support is spatially organized strongly enough to produce a persistent exclusion envelope, shielding pattern, and Noether-Sea coupling channel.
+while a broader shell branch keeps only the hollow-band condition. This is still not the nested shell swarm. It is a one-band neutral swarm whose support is spatially organized strongly enough to produce a persistent exclusion envelope, shielding pattern, and Noether sea coupling channel.
 
 Near-antipodality is an optional shell swarm constraint, not a definition of the neutral swarm. A shell branch may carry an approximate polarity-reversing matching $\iota$ with $\iota^2=\mathrm{id}$ and $\sigma_{\iota(i)}=-\sigma_i$. Relative to a branch center $C(t)$, define the near-antipodality defect
 
@@ -242,7 +242,7 @@ $$
 
 The integers $k_a$ are winding counts over the closure period. They are not a claim that the layer frequencies are integer-valued at every instant. The surrounding root ledger records which self-hit, partner-hit, and inter-layer branches made the closure admissible.
 
-On this reading, an accepted energy-level change is a one-$h$ closed-cycle action transaction that moves the nested shell swarm from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned swarm should therefore carry information about the swarm's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether-Sea wake environment, not as primitive labels pasted onto the swarm.
+On this reading, an accepted energy-level change is a one-$h$ closed-cycle action transaction that moves the nested shell swarm from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned swarm should therefore carry information about the swarm's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether sea wake environment, not as primitive labels pasted onto the swarm.
 
 The same closure-label machinery is the native carrier for branch-quantized Lorentz response. A moving nested shell swarm should not be assigned a Lorentz factor independently of its internal ledger. Instead, a stable closure label should determine the all-layer retuning of radii, frequencies, characteristic speeds, and wake exchange; the outer envelope then projects the ruler factor seen by Physical Observers. In the homogeneous weak-field limit, the admitted labels must collapse to the usual effective $\gamma(v)$ within the preferred-frame leakage bound.
 
@@ -339,7 +339,7 @@ $$
 \right),
 $$
 
-where $\theta_{\mathrm{env}}$ records the local Noether-Sea and neighboring-assembly conditions. The representative cadence increment is an extraction from the layer increments, for example
+where $\theta_{\mathrm{env}}$ records the local Noether sea state and neighboring-assembly conditions. The representative cadence increment is an extraction from the layer increments, for example
 
 $$
 \Delta\ln\nu_N
@@ -355,7 +355,7 @@ $$
 
 with the weights determined by the same branch and exposure record used for clock and medium coupling. The full nested shell swarm need not put the entire transaction into a single layer. One layer may tighten while another expands, and the outer envelope may change through $\lambda$ or $\xi$, provided the total closure label remains admissible.
 
-This is the local branchwise origin of the smoother Noether-Sea equilibrium-current language: individual retunings are discrete, while many asynchronous accepted retunings can coarse-grain into a continuous cadence-space current.
+This is the local branchwise origin of the smoother Noether sea equilibrium-current language: individual retunings are discrete, while many asynchronous accepted retunings can coarse-grain into a continuous cadence-space current.
 
 ## Rest-Level Scaling Curve
 
@@ -453,7 +453,7 @@ f_O\propto N^{-3}.
 }
 $$
 
-Thus the $Nh$ ledger alone does not canonize a single radius curve. It supplies the product law; the branch speed, delayed-root radial balance, tangential closure, and any Noether-Sea return terms decide the actual rest-level scaling.
+Thus the $Nh$ ledger alone does not canonize a single radius curve. It supplies the product law; the branch speed, delayed-root radial balance, tangential closure, and any Noether sea return terms decide the actual rest-level scaling.
 
 If the outer binary instead carries a declared outer energy projection
 
@@ -478,7 +478,7 @@ $$
 
 This form is the safest way to use any external energy-level equation: insert the branch energy projection $E_O(N)$, then derive the corresponding outer radius and speed.
 
-The same chart also gives a packing readout for the Noether Sea. In a nearly spherical exclusion-envelope approximation, let
+The same chart also gives a packing readout for the Noether sea. In a nearly spherical exclusion-envelope approximation, let
 
 $$
 R_{\mathrm{excl}}
@@ -510,7 +510,7 @@ $$
 
 For example, the fixed-speed branch gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-3}$, while the bare inverse-square branch with approximately constant $\mathcal{B}_O$ gives $\rho_{\mathrm{NS},\max}^{\#}\propto N^{-6}$. These are branch diagnostics, not competing definitions of a Noether swarm.
 
-This packing formula is only the spherical leading estimate. At high relative velocity, high Noether-Sea delay, or high gravitational strain, the branch data cannot be kept constant:
+This packing formula is only the spherical leading estimate. At high relative velocity, high Noether sea delay, or high gravitational strain, the branch data cannot be kept constant:
 
 $$
 p_O^{(q)},\ \mu_O^{\mathrm{rot}},\ \alpha_O^{(q)},\ \mathcal{B}_O(\beta_O;\Lambda_O)
@@ -518,7 +518,7 @@ p_O^{(q)},\ \mu_O^{\mathrm{rot}},\ \alpha_O^{(q)},\ \mathcal{B}_O(\beta_O;\Lambd
 p_O(q,\theta_{\mathrm{env}}),\ \mu_O^{\mathrm{rot}}(q,\theta_{\mathrm{env}}),\ \alpha_O(q,\theta_{\mathrm{env}}),\ \mathcal{B}_O(\beta_O;\Lambda_O,\theta_{\mathrm{env}}).
 $$
 
-The scaling curve is therefore piecewise by branch. Once the branch supplies $\xi$ and $\lambda$, the exclusion envelope must be treated as an oblate spheroid rather than a sphere, and the center-density calculation must inherit orientation, strain, and Noether-Sea delay data from the same branch label.
+The scaling curve is therefore piecewise by branch. Once the branch supplies $\xi$ and $\lambda$, the exclusion envelope must be treated as an oblate spheroid rather than a sphere, and the center-density calculation must inherit orientation, strain, and Noether sea delay data from the same branch label.
 
 ## Reduced Nested Shell Swarm Closure Label
 
@@ -581,7 +581,7 @@ The broader assembly program suggests reading the nested shell swarm hierarchy a
 -   **Two-binary shielding tier:** one shielding tier restored, corresponding to the Generation-II shielding tier.
 -   **Nested shell swarm:** the fully shielded three-tier swarm, corresponding to the Generation-I shielding tier.
 
-On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../assemblies/fermions/electron.md).
+On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../assemblies/fermions/electron.md).
 
 ## Nested Shell Swarm Alignment and Planck-Scale Framing
 

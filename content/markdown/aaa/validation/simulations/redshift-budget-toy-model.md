@@ -2,7 +2,7 @@
 
 This protocol documents the first redshift-budget simulation fixture for the cosmology branch. The fixture is a bookkeeping replay of the factorized redshift record in [Expansion Mechanism](../../cosmology/expansion-mechanism.md#minimal-redshift-budget-toy-model), not an empirical distance-ladder fit.
 
-Its purpose is narrow: verify that endpoint cadence, source-branch state, launch geometry, and Noether-Sea path-history remain separable in a machine-readable packet before any survey-facing cosmology comparison is attempted. The current packet also exposes the continuity-disciplined path-rate law, so source loading, equilibration, frequency-space current, flow divergence, and anisotropic response are not hidden as unrelated fitted terms.
+Its purpose is narrow: verify that endpoint cadence, source-branch state, launch geometry, and Noether sea path-history remain separable in a machine-readable packet before any survey-facing cosmology comparison is attempted. The current packet also exposes the continuity-disciplined path-rate law, so source loading, equilibration, frequency-space current, flow divergence, and anisotropic response are not hidden as unrelated fitted terms.
 
 ## Runtime Artifact
 
@@ -91,8 +91,8 @@ Each scenario supplies:
 | `distance_mpc` | corrected Euclidean path length used for the local transfer slope |
 | `B_X_E` | source-branch factor $B_X(E)$ |
 | `D_v` | launch or relative-motion factor $D_v$ |
-| `Gamma_N_E` | emitter endpoint Noether-Sea cadence factor $\Gamma_{N,E}$ |
-| `Gamma_N_R` | receiver endpoint Noether-Sea cadence factor $\Gamma_{N,R}$ |
+| `Gamma_N_E` | emitter endpoint Noether sea cadence factor $\Gamma_{N,E}$ |
+| `Gamma_N_R` | receiver endpoint Noether sea cadence factor $\Gamma_{N,R}$ |
 | `endpoint_records` | optional endpoint records from which $\Gamma_{N,E}$ and $\Gamma_{N,R}$ are extracted |
 | `launch_record` | optional source/receiver velocity record from which $D_v$ is extracted |
 | `segments` | path segments carrying $\Delta s_j$ and propagation coefficients |
@@ -156,7 +156,7 @@ p_{\sigma,X}\sigma_{X,j}
 \mathcal R_{\mathrm{coh},X,j}.
 $$
 
-In JSON, `continuity_transport_by_line` supplies `p_theta_row`, `D_gamma_theta`, `p_nu`, `f_N`, `S_BH`, `S_GW`, `R_eq`, `partial_nu_J_nu`, `p_u`, `div_u_sea`, `p_sigma`, `sigma_projection`, and `R_coh` as needed. The fixture logs the resulting pieces as `continuity.theta_gradient`, `continuity.cadence_residual`, `continuity.flow_divergence`, `continuity.anisotropic_response`, and `continuity.coherence_residue`. Legacy named `transport_terms_by_line` values are still accepted as explicit additions, but a promotable transport scenario should prefer the continuity packet whenever it is claiming to test Noether-Sea equilibrium transport.
+In JSON, `continuity_transport_by_line` supplies `p_theta_row`, `D_gamma_theta`, `p_nu`, `f_N`, `S_BH`, `S_GW`, `R_eq`, `partial_nu_J_nu`, `p_u`, `div_u_sea`, `p_sigma`, `sigma_projection`, and `R_coh` as needed. The fixture logs the resulting pieces as `continuity.theta_gradient`, `continuity.cadence_residual`, `continuity.flow_divergence`, `continuity.anisotropic_response`, and `continuity.coherence_residue`. Legacy named `transport_terms_by_line` values are still accepted as explicit additions, but a promotable transport scenario should prefer the continuity packet whenever it is claiming to test Noether sea equilibrium transport.
 
 ## Coefficient-Row Validation Notes
 
@@ -278,9 +278,9 @@ The first failure modes are concrete:
 | large `chromaticity_residual` on clean lines | the path law is behaving like a line-dependent loss process rather than a shared transport law |
 | large `image_bundle_variance` | neighboring beams accumulate incompatible $Y$ values, which threatens image sharpness |
 | large `time_dilation_residual` | frequency shift and packet-cadence stretch no longer share one propagation record |
-| large `dark_energy.*` dominance with failed chromaticity or cadence checks | the dark-energy handoff is acting like a fitted redshift source rather than a shared Noether-Sea transport coefficient |
+| large `dark_energy.*` dominance with failed chromaticity or cadence checks | the dark-energy handoff is acting like a fitted redshift source rather than a shared Noether sea transport coefficient |
 | continuity packet replaced by unrelated named source terms | the run is not testing the no-case-switch transport law because $\partial_\nu J_\nu$, source loading, equilibration, and flow response have been separated into free fit parameters |
 | large total $Z_X$ with small $Z_{\mathrm{prop},X}$ | endpoint cadence, source branch, or launch geometry dominate, so distance cannot be inferred from propagation alone |
 | nonzero laboratory residual after local corrections | the factorization leaks local calibration or source-branch effects into the propagation channel |
 
-A promotable redshift-distance packet must keep these diagnostics attached to the same Noether-Sea state record that later feeds supernova, BAO, CMB, growth, and local-ladder comparisons.
+A promotable redshift-distance packet must keep these diagnostics attached to the same Noether sea state record that later feeds supernova, BAO, CMB, growth, and local-ladder comparisons.

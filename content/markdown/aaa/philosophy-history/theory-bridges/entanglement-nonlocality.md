@@ -42,7 +42,7 @@ Despite the correlations, entanglement cannot transmit information faster than l
 
 This note concerns ordinary pair-provenance entanglement: two assemblies are formed, filtered, or jointly selected by a shared event, and their later records remain correlated because the daughter ledgers inherit a common causal past. That is not the same claim as a literal connected geometry between every entangled pair.
 
-The useful black-hole signal is narrower. The thermofield-double construction for two black-hole exteriors gives a convincing case where entanglement is accompanied by an effective connected geometry. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that belongs to the strong-field black-hole regime and the horizon-interface layer, where effective geometry summarizes extreme Noether-Sea alignment and compression. It should not be exported to arbitrary Bell pairs as a settled ER=EPR theorem. For ordinary pairs, connected-geometry language is at most an aspirational closure target unless a separate derivation shows how the pair-provenance ledger induces that effective geometry.
+The useful black-hole signal is narrower. The thermofield-double construction for two black-hole exteriors gives a convincing case where entanglement is accompanied by an effective connected geometry. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that belongs to the strong-field black-hole regime and the horizon-interface layer, where effective geometry summarizes extreme Noether sea alignment and compression. It should not be exported to arbitrary Bell pairs as a settled ER=EPR theorem. For ordinary pairs, connected-geometry language is at most an aspirational closure target unless a separate derivation shows how the pair-provenance ledger induces that effective geometry.
 
 The distinction is important because the black-hole case uses a very special entangled state and a very special strong-field geometry. The safe statement is that some controlled black-hole states make entanglement and connected effective geometry two descriptions of the same coarse-grained structure. The unsafe statement is that every entangled pair carries the same connected-geometry interpretation. Ordinary Bell-pair closure should therefore stay with pair provenance, local apparatus response, and no-signaling statistics until a separate strong-field or continuum-limit derivation earns geometric language.
 
@@ -86,7 +86,7 @@ The crucial point is that the architrino trajectories, wake phases, and internal
 
 ### Correlation Maintenance: Path-History Memory
 
-After separation, the two assemblies propagate through the Noether Sea, each following its own lawful trajectory. No causal wake from $A$ can influence $B$ (or vice versa) faster than $c_f$. Once the assemblies are separated by a distance $d > c_f \Delta t$, they evolve **causally independently** in the sense that no new information passes between them.
+After separation, the two assemblies propagate through the Noether sea, each following its own lawful trajectory. No causal wake from $A$ can influence $B$ (or vice versa) faster than $c_f$. Once the assemblies are separated by a distance $d > c_f \Delta t$, they evolve **causally independently** in the sense that no new information passes between them.
 
 The correlations established at $t_0$ are carried forward in the **internal configuration** of each assembly: the relative phases of its constituent binaries, the orientation of its nested shell swarm, and the detailed structure of its wake history. These internal degrees of freedom are the **hidden variables** of the system. They are:
 
@@ -100,7 +100,7 @@ When a measurement apparatus (itself an assembly of architrinos) interacts with 
 
 1. The internal microstate of $A$ (including binary phases, wake history),
 2. The internal microstate of the apparatus,
-3. The local Noether-Sea configuration.
+3. The local Noether sea configuration.
 
 The outcome is **deterministic** given complete microstate knowledge, but **operationally unpredictable** to the Physical Observer, who lacks access to the relevant hidden variables.
 
@@ -148,7 +148,7 @@ K_{ab}^{AB}\ge0,
 \sum_{a,b=\pm1}K_{ab}^{AB}=1.
 $$
 
-If $\Pi_{AB}^{\mathrm{sing}}$ is the singlet-like pair-provenance record, $P_{\mathrm{src}}^{\mathrm{sing}}$ is the source record, and $\zeta_A,\zeta_B$ collect unresolved local apparatus and Noether-Sea microstates, the observer-level joint response target is
+If $\Pi_{AB}^{\mathrm{sing}}$ is the singlet-like pair-provenance record, $P_{\mathrm{src}}^{\mathrm{sing}}$ is the source record, and $\zeta_A,\zeta_B$ collect unresolved local apparatus and Noether sea microstates, the observer-level joint response target is
 
 $$
 P(a,b|\hat{\mathbf m}_A,\hat{\mathbf m}_B)
@@ -304,7 +304,7 @@ and an admissible model must make this marginal independent of $\hat{\mathbf m}_
 
 1. The source-provenance distribution is set at the source event and does not depend on the distant setting $\hat{\mathbf m}_B$,
 2. No causal wake from the $B$-measurement apparatus reaches $A$ before $A$'s measurement (assuming spacelike separation in the emergent metric),
-3. The local dynamics at $A$ are fully determined by $A$'s microstate plus the local Noether Sea—no input from the distant setting.
+3. The local dynamics at $A$ are fully determined by $A$'s microstate plus the local Noether sea—no input from the distant setting.
 
 The correlations become visible only when outcomes from both sides are **compared** (via a classical, sub-$c_f$ communication channel). This is precisely the no-signaling structure observed experimentally.
 
@@ -354,7 +354,7 @@ The Bell-correlation recovery is admissible only with $\Delta_{\mathrm{screen}}\
 | **Bell inequality violation** ($\lvert S\rvert = 2\sqrt{2}$) | Closure target: the pair-provenance ledger plus both local apparatus-response maps must reproduce the observed Bell correlations while failing Bell locality because $\lambda$ is non-separable; the violation may not be asserted from shared provenance alone. |
 | **No-signaling** | Marginal statistics at each detector are independent of the distant setting; correlations are visible only upon classical comparison of results. |
 | **Black-hole thermofield-double connected geometry** | Special strong-field/horizon-interface effective geometry, not the default ontology of ordinary Bell-pair entanglement. The black-hole case motivates the comparison but does not settle ER=EPR for arbitrary entanglement. |
-| **Decoherence of entanglement** | Progressive loss of phase correlation between the two assemblies as each interacts with its local Noether-Sea environment, randomizing the internal wake phases that carry the correlated information. |
+| **Decoherence of entanglement** | Progressive loss of phase correlation between the two assemblies as each interacts with its local Noether sea environment, randomizing the internal wake phases that carry the correlated information. |
 | **Entanglement monogamy** | Conservation constraints at the source event distribute correlated hidden variables among a finite number of daughter assemblies; sharing a tight correlation with one partner limits the available phase-space for correlation with a third. |
 
 ---
@@ -406,7 +406,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 - Measurement-independence guardrail: report $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ for any pair-provenance simulation or analytic Bell packet, and do not count a correlation fit as successful if it requires setting-dependent hidden-variable preparation.
 - Residual reporting: report $\Delta_{\mathrm{NS}}^{A}$, $\Delta_{\mathrm{NS}}^{B}$, and $\Delta_{\mathrm{Bell}}$ alongside any claimed Bell-pair recovery.
 - Photon-polarization gate: for entangled photon tests, Gate B must recover the transverse analyzer statistics and no-signaling behavior before the note may claim operational equivalence with quantum mechanics.
-- Decoherence timescales for entangled assemblies are expected to scale with the local Noether-Sea density and temperature, but the quantitative law remains a validation target.
+- Decoherence timescales for entangled assemblies are expected to scale with the local Noether sea density and temperature, but the quantitative law remains a validation target.
 - No signaling: no protocol exploiting entanglement can transmit information faster than $c_f$, even in principle.
 
 **Failure Modes:**

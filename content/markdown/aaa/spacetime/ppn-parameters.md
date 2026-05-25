@@ -6,7 +6,7 @@ the spacetime constitutive map.
 ## Canonical Symbols
 
 - $n$: normalized Noether swarm density, with $\rho_{\text{NS}}=\rho_{\text{NS},0}n$.
-- $\chi_{\text{sea}}$: Noether-Sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$.
+- $\chi_{\text{sea}}$: Noether sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field PPN comparisons.
 - $\Phi_N$: Newtonian benchmark potential.
 - $\Phi_{\text{eff}}$: constitutive effective potential from the clock channel.
@@ -15,23 +15,23 @@ the spacetime constitutive map.
 
 ## Mapping to PPN Constraints
 
-1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the $\mathbb{A}\mathbb{A}\mathbb{A}$ time-delay (slower $c_{\text{eff}}$ in the Noether Sea).
-2. **Light Bending**: Calculate Noether-Sea signal propagation through the density gradient around the Sun.
+1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the $\mathbb{A}\mathbb{A}\mathbb{A}$ time-delay (slower $c_{\text{eff}}$ in the Noether sea).
+2. **Light Bending**: Calculate Noether sea signal propagation through the density gradient around the Sun.
 3. **Geodetic Precession**: Match the transport of an assembly's spin-orientation frame through the same weak-field effective metric used for clock, signal, and orbital tests.
 
-Here, geodetic precession means the de Sitter precession of a carried gyroscope: after the gyroscope moves through a weak gravitational field, its spin axis is rotated relative to a distant reference frame. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this should not be introduced as a separate torque law between angular momentum and a potential gradient. It is a closure target for the effective metric: the Noether-Sea-induced clock, ruler, and signal-response map must make transported assembly orientations precess by the same amount that GR predicts in the validated weak-field regime. Frame dragging from a rotating source is a separate test channel.
+Here, geodetic precession means the de Sitter precession of a carried gyroscope: after the gyroscope moves through a weak gravitational field, its spin axis is rotated relative to a distant reference frame. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this should not be introduced as a separate torque law between angular momentum and a potential gradient. It is a closure target for the effective metric: the Noether sea-induced clock, ruler, and signal-response map must make transported assembly orientations precess by the same amount that GR predicts in the validated weak-field regime. Frame dragging from a rotating source is a separate test channel.
 
 
 ## Testing the Euclidean Anchor (Shapiro Delay)
 
 1. **The Test**: Calculate travel time of a signal from Earth to a probe behind the Sun using the Euclidean straight-line anchor supplied by the $\mathbb{U}_{\text{now}}$ state record.
-2. **$\mathbb{A}\mathbb{A}\mathbb{A}$ Model**: Signal follows a straight Euclidean line. Delay is caused by increased Noether-Sea response near the Sun, expressed by the Noether-Sea delay factor $\chi_{\text{sea}}$.
+2. **$\mathbb{A}\mathbb{A}\mathbb{A}$ Model**: Signal follows a straight Euclidean line. Delay is caused by increased Noether sea response near the Sun, expressed by the Noether sea delay factor $\chi_{\text{sea}}$.
 3. **Comparison**: Contrast $\Delta t_{\text{arch}}$ with the GR weak-field form.
 4. **$\mathbb{U}_{\text{now}}$ Role**: $\mathbb{U}_{\text{now}}$ provides the "straight line" benchmark against which the "curved path" of GR is compared.
 
-## Explicit Weak-Field Noether-Sea Delay Map (PPN $\gamma$)
+## Explicit Weak-Field Noether Sea Delay Map (PPN $\gamma$)
 
-Adopt a weak-field PPN-normalized Noether-Sea delay-factor ansatz for signal propagation in the Noether swarm medium:
+Adopt a weak-field PPN-normalized Noether sea delay-factor ansatz for signal propagation in the Noether swarm medium:
 $$
 \bar{\chi}_{\text{sea}}(\mathbf{x})
 \equiv
@@ -98,13 +98,13 @@ a_\chi-a_\chi^{\mathrm{sig}}
 =0.
 $$
 
-When this residual vanishes, Shapiro delay and gravitational clock redshift are using the same first-order Noether-Sea delay response. When it does not vanish, PPN delay, redshift, lensing, pressure-response, and cosmological redshift comparisons must carry the residual explicitly rather than refitting $\chi_{\text{sea}}$ per observable.
+When this residual vanishes, Shapiro delay and gravitational clock redshift are using the same first-order Noether sea delay response. When it does not vanish, PPN delay, redshift, lensing, pressure-response, and cosmological redshift comparisons must carry the residual explicitly rather than refitting $\chi_{\text{sea}}$ per observable.
 
 ## PPN Parameters and the Euclidean Anchor
 
 ### Parameter $\gamma$ (Space Curvature / Refraction)
 * **GR Context:** Measures the amount of space curvature produced by unit rest mass.
-* **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Measures the refractive response of the [Noether Sea](noether-sea.md). A massive body increases local assembly density, slowing the effective signal speed $c_{\text{eff}}(\mathbf{x})$ relative to the asymptotic observer speed $c_0$, while $c_f$ remains the primitive wake speed.
+* **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Measures the refractive response of the [Noether sea](noether-sea.md). A massive body increases local assembly density, slowing the effective signal speed $c_{\text{eff}}(\mathbf{x})$ relative to the asymptotic observer speed $c_0$, while $c_f$ remains the primitive wake speed.
 * **Observable:** Shapiro-delay coefficient in the explicit refractive integral above.
 
 The light-bending half-test makes the same point numerically. A lapse-only weak-field map gives the Newtonian-scale deflection
@@ -123,7 +123,7 @@ In the forward projection below, the missing half is precisely the $\gamma_{\tex
 
 ### Parameter $\beta$ (Non-linearity of Gravity)
 * **GR Context:** Measures the non-linearity in the superposition of gravitational fields.
-* **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether-Sea constitutive nonlinearity.
+* **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether sea constitutive nonlinearity.
 * **Explicit map from constitutive expansion:** Let $U\equiv-\Phi_N>0$ and expand the static clock law
 $$
 \frac{d\tau}{dt}\bigg|_{v=0}
@@ -184,14 +184,14 @@ $$
 $$
 without additional fit freedom.
 
-Here $\Omega\xi$ is the local clock-rate factor $d\tau/dt$ in this subclass. The Noether-Sea cadence-stretch factor used in redshift bookkeeping is its inverse, $\Gamma_N=(\Omega\xi)^{-1}$, when the same local clock channel is being compared.
+Here $\Omega\xi$ is the local clock-rate factor $d\tau/dt$ in this subclass. The Noether sea cadence-stretch factor used in redshift bookkeeping is its inverse, $\Gamma_N=(\Omega\xi)^{-1}$, when the same local clock channel is being compared.
 
 The general $C_2(a,k)$ map above remains the umbrella constitutive form; the exponential channel is the closure-special case where it collapses to GR's $\beta=1$ exactly.
 When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2)$, one has $U_{\Phi}=U+O(U^2/c_0^2)$ at weak field.
 
 ### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
 * **Crucial test:** In the effective relativistic limit these must vanish (no measurable preferred-frame leakage).
-* **Constitutive leakage ansatz:** Let $\mathbf{w}$ be the Noether-Sea drift velocity relative to the barycentric frame. Write the lowest-order drift terms as
+* **Constitutive leakage ansatz:** Let $\mathbf{w}$ be the Noether sea drift velocity relative to the barycentric frame. Write the lowest-order drift terms as
 $$
 g_{0i}^{\text{leak}}
 =
@@ -241,7 +241,7 @@ The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakag
 
 ## Preferred-Motion Null-Test Bundle
 
-Historical clock, interferometer, Zeeman-splitting, and gravimeter tests show how many different apparatus types can search for the same preferred-frame leakage without sharing the same dominant nuisance. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a bundle test on the same drift coefficients, not a set of independent fit parameters. For an apparatus channel $A$ with orientation $\hat{\mathbf{n}}_A(t)$ and laboratory velocity $\mathbf{w}(t)$ relative to the Noether-Sea rest comparison frame, write the leading fractional readout as
+Historical clock, interferometer, Zeeman-splitting, and gravimeter tests show how many different apparatus types can search for the same preferred-frame leakage without sharing the same dominant nuisance. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a bundle test on the same drift coefficients, not a set of independent fit parameters. For an apparatus channel $A$ with orientation $\hat{\mathbf{n}}_A(t)$ and laboratory velocity $\mathbf{w}(t)$ relative to the Noether sea rest comparison frame, write the leading fractional readout as
 $$
 y_A(t)
 =
@@ -391,7 +391,7 @@ g_{0i}^{\mathrm{eff}}
 g_{ij}^{\mathrm{eff}}=\gamma_{ij}.
 $$
 
-In the local Noether-Sea rest weak-field row, write
+In the local Noether sea rest weak-field row, write
 $$
 N
 =
@@ -806,4 +806,4 @@ $$
 \nabla_{\boldsymbol{\Xi}}\dot e,\qquad
 \nabla_{\boldsymbol{\Xi}}\dot P
 $$
-from Noether-Sea continuum simulations before final numerical acceptance testing.
+from Noether sea continuum simulations before final numerical acceptance testing.

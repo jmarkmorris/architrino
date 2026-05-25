@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet closes the row-level gap between bounded speed factor dynamics, Euler-Lagrange rows, speed-factor storage/exchange, and Noether currents. It refines [bounded-speed-factor-action-stability-closure.md](bounded-speed-factor-action-stability-closure.md), [bounded-speed-factor-speed-ode-solvability.md](bounded-speed-factor-speed-ode-solvability.md), [free-support-action-compatibility-theorem.md](free-support-action-compatibility-theorem.md), [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), and [bounded-speed-factor-master-retention-theorem.md](bounded-speed-factor-master-retention-theorem.md).
 
-It does not retain a branch. It states the variational conditions under which the speed-factor Euler-Lagrange row, the tangential speed ODE, the speed-factor exchange ledger, support work, and Noether-Sea/event exchange are one ledger rather than parallel diagnostics.
+It does not retain a branch. It states the variational conditions under which the speed-factor Euler-Lagrange row, the tangential speed ODE, the speed-factor exchange ledger, support work, and Noether sea/event exchange are one ledger rather than parallel diagnostics.
 
 ---
 
@@ -217,7 +217,7 @@ $$
 \right)du,
 $$
 
-with complementarity and endpoint impulses included in $e$ when support contacts are nonsmooth. The event/Noether-Sea row $\mathcal{S}_{\mathrm{sea/event}}^{\nu}$ records coherent medium exchange, event endpoint jumps, and source-provenance changes on the same event window.
+with complementarity and endpoint impulses included in $e$ when support contacts are nonsmooth. The event/Noether sea row $\mathcal{S}_{\mathrm{sea/event}}^{\nu}$ records coherent medium exchange, event endpoint jumps, and source-provenance changes on the same event window.
 
 The first variation has the form
 
@@ -339,7 +339,7 @@ only under all of these rows:
 1. $\Gamma_B^{\nu}$ is action-derived or an inertia operator is supplied on the same ledger;
 2. the history, support, root, and event derivatives include the bounded-speed clock and root-sheet variations;
 3. the period constraint qualification holds or fixed-period variations are explicitly projected;
-4. support work and event/Noether-Sea exchange are assigned in the same action;
+4. support work and event/Noether sea exchange are assigned in the same action;
 5. boundary and event terms in $\mathcal{B}^{\nu}$ vanish, cancel, or are ledgered.
 
 Without the calibrated identity, $R_{\nu}^{\mathrm{EL}}$ and $R_T^{\nu}$ are separate rows. A packet may not claim Noether closure from the speed ODE alone.
@@ -527,7 +527,7 @@ $$
 \right)du.
 $$
 
-Event and Noether-Sea exchange close the current only when
+Event and Noether sea exchange close the current only when
 
 $$
 \mathcal{R}_{\zeta,\mathrm{exch}}^{\nu}
@@ -576,10 +576,10 @@ This is the conservation row consumed by bounded-speed energy, momentum, angular
 
 1. the positive speed band makes each $\chi_i$ invertible and the period row satisfies the declared fixed-period or period-constrained convention;
 2. active roots satisfy $G_r^{\nu}=0$ with positive delay and Jacobian floors, and root variations are computed on the same bounded-speed ledger;
-3. the action $\mathcal{S}_{\mathrm{VN}}^{\nu}$ includes carrier, history, speed, root, support, period, constraint, and event/Noether-Sea rows on the same variables;
+3. the action $\mathcal{S}_{\mathrm{VN}}^{\nu}$ includes carrier, history, speed, root, support, period, constraint, and event/Noether sea rows on the same variables;
 4. the period multiplier row is present or the fixed-period projection is explicitly applied;
 5. the speed-factor Euler-Lagrange row is calibrated to the tangential speed ODE by $\Pi_H^{\nu,*}R_{\nu}^{\mathrm{EL}}=\mathcal{M}_{\nu}R_T^{\nu}$;
-6. support multiplier work, period/band/gauge work, and event/Noether-Sea exchange are included in $R_{\mathrm{exch}}^{\nu}$;
+6. support multiplier work, period/band/gauge work, and event/Noether sea exchange are included in $R_{\mathrm{exch}}^{\nu}$;
 7. the action is invariant under the declared symmetry generator $\zeta$ up to the named support, exchange, event, boundary, tail, root, and discretization residuals.
 
 Then bounded-speed variational stationarity implies the coupled dynamics rows
@@ -614,7 +614,7 @@ Proof route:
 3. convert fixed-period stationarity to a period-multiplier row by the period constraint qualification;
 4. identify the projected speed-factor Euler-Lagrange row with the tangential speed ODE through the calibrated operator $\mathcal{M}_{\nu}$;
 5. multiply the tangential row by $m_{\mathrm{car}}c_f^2\nu_i$ to obtain the speed-factor storage identity;
-6. assign all remaining period, band, support, event, and Noether-Sea powers to $R_{\mathrm{exch}}^{\nu}$;
+6. assign all remaining period, band, support, event, and Noether sea powers to $R_{\mathrm{exch}}^{\nu}$;
 7. apply Noether's identity on the same root/action/support/event ledger;
 8. bound residual current leakage by the Euler-Lagrange, exchange, support, curl, root, tail, discretization, and endpoint errors.
 
@@ -633,8 +633,8 @@ A variational Noether packet must emit:
 | `root_support_event_rows` | $G_r^{\nu}$, $\eta_r$, $J_r^{\nu}$ floors, support barriers, support multipliers or variational inequality, and event endpoint rows |
 | `speed_factor_el` | $R_{\nu}^{\mathrm{EL}}$, period projection, boundary terms, and derivative columns through clocks, roots, support, and events |
 | `speed_ode_equivalence` | $R_T^{\nu}$, calibrated identity $\Pi_H^{\nu,*}R_{\nu}^{\mathrm{EL}}=\mathcal{M}_{\nu}R_T^{\nu}$, injectivity domain, and failure status |
-| `storage_exchange` | $E_{\mathrm{spd}}^{\nu}$, $R_{\mathrm{exch}}^{\nu}$, period/band/gauge power, support power, Noether-Sea/event power, and window residual |
-| `noether_identity` | symmetry generators, current split, speed-factor current, support residual, event/Noether-Sea exchange, and conservation envelope |
+| `storage_exchange` | $E_{\mathrm{spd}}^{\nu}$, $R_{\mathrm{exch}}^{\nu}$, period/band/gauge power, support power, Noether sea/event power, and window residual |
+| `noether_identity` | symmetry generators, current split, speed-factor current, support residual, event/Noether sea exchange, and conservation envelope |
 | `fixed_speed_special_case` | explicit $\nu_i\equiv1$ declaration, vanished period/speed/exchange rows, and fixed-speed tangent row recovery |
 | `status` | first failed row or `bounded-speed-factor-variational-noether-candidate` |
 

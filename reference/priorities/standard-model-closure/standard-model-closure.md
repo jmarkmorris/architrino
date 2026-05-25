@@ -16,8 +16,8 @@
 3. `confinement_energetics` — Derive confinement-scale behavior from topological or strain energetics. Status: `pending`. Depends on: `overlap_integrals`.
 4. `weak_sector_gauge_closure` — Unify weak axial-frame exposure, `V-A`, CKM/PMNS overlap, weak-corridor provenance, and effective gauge covariance into one closure packet. Status: `review`. Depends on: `overlap_integrals`.
 5. `scalar_boson_acceptance` — Add the ATLAS Higgs discovery benchmark as a Standard Model closure target: scalar mass $126.0\pm0.4\text{ (stat)}\pm0.4\text{ (sys)}\,\mathrm{GeV}$, signal strength $\hat{\mu}=1.4\pm0.3$, channel-rate compatibility for $ZZ^{(*)}4\ell$, $\gamma\gamma$, and $WW^{(*)}\ell\nu\ell\nu$, and excluded-scalar-window pressure. Status: `pending`. Depends on: `weak_sector_gauge_closure`, mass-map scalar-response handoff.
-6. `nuclear_potential_derivation` — Consume the promoted nuclear benchmark ladder and derive or constrain the signs, ranges, and saturation behavior of $V_{\text{excl}}$, $V_{\text{Coul}}$, $V_{\pi/\text{corr}}$, and $V_{\text{sea-pol}}$ from hadronic geometry, meson-like corridors, and Noether-Sea polarization. Status: `derivation-pending`; benchmark gates already promoted. Depends on: `confinement_energetics`.
-7. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether-Sea coarse-graining boundaries. Status: `tolerance-rule-scaffolded`. Depends on: `confinement_energetics`, `nuclear_potential_derivation`.
+6. `nuclear_potential_derivation` — Consume the promoted nuclear benchmark ladder and derive or constrain the signs, ranges, and saturation behavior of $V_{\text{excl}}$, $V_{\text{Coul}}$, $V_{\pi/\text{corr}}$, and $V_{\text{sea-pol}}$ from hadronic geometry, meson-like corridors, and Noether sea polarization. Status: `derivation-pending`; benchmark gates already promoted. Depends on: `confinement_energetics`.
+7. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether sea coarse-graining boundaries. Status: `tolerance-rule-scaffolded`. Depends on: `confinement_energetics`, `nuclear_potential_derivation`.
 
 ## Scope
 
@@ -25,7 +25,7 @@ This workstream owns the remaining Standard Model-facing closure tasks that are 
 
 The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in place. The remaining leverage is mass prediction, explicit overlap-integral flavor mixing, confinement energetics, weak-sector exposure/gauge closure, and nuclear coarse-graining. Weak `V-A` chirality and weak-reaction provenance are preserved as subgates of `weak_sector_gauge_closure`, not as separate top-level queue items.
 
-The hydrogen boundary question is now a staged standard-model-to-atomic bridge. Its value is not another validation gate; it is the first clean local map between four charged fermion assemblies, the proton's color-singlet closure, the electron resonance envelope, and the ambient Noether-Sea coarse-graining used as local spacetime.
+The hydrogen boundary question is now a staged standard-model-to-atomic bridge. Its value is not another validation gate; it is the first clean local map between four charged fermion assemblies, the proton's color-singlet closure, the electron resonance envelope, and the ambient Noether sea coarse-graining used as local spacetime.
 
 ## Scalar-Boson Acceptance Target
 
@@ -192,7 +192,7 @@ D_{f,X}(\mathbf{x},t)=D_X
 \right\}.
 $$
 
-Here $\mathcal{A}_{\mathrm{H}}$ is the exact hydrogen matter-assembly ledger, $S_{\mathrm{sea}}^{\Omega_{\mathrm{H}}}$ is the local Noether-Sea complement, and $\partial\Omega_f(D_X,t)$ is the effective spatial interface extracted from locked-assembly wake dominance in channel $X$. The closure target is to derive $D_{f,X}$ from the same Noether swarm geometry and causal-wake ledgers used for mass, confinement, and atomic orbital recovery.
+Here $\mathcal{A}_{\mathrm{H}}$ is the exact hydrogen matter-assembly ledger, $S_{\mathrm{sea}}^{\Omega_{\mathrm{H}}}$ is the local Noether sea complement, and $\partial\Omega_f(D_X,t)$ is the effective spatial interface extracted from locked-assembly wake dominance in channel $X$. The closure target is to derive $D_{f,X}$ from the same Noether swarm geometry and causal-wake ledgers used for mass, confinement, and atomic orbital recovery.
 
 The current kernel scaffold now derives the two wake terms from the Master-Equation causal-root flux. In a declared channel $X$, the locked numerator keeps the simple-root branch weight
 
@@ -292,7 +292,7 @@ $$
 \right].
 $$
 
-Here $\Delta_{\mathrm{cad}}$ compares the branch cadence with the local smoothed neutral-core cadence $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance after resolved assembly ledgers have been removed. Exact assembly-locked branches are rejected by $\chi_{\mathrm{comp}}^{(\ell)}$; neutral Noether-Sea branches in the same coarse window are retained when they remain outside all resolved matter/corridor ledgers and agree with the ambient equilibrium record.
+Here $\Delta_{\mathrm{cad}}$ compares the branch cadence with the local smoothed neutral-core cadence $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance after resolved assembly ledgers have been removed. Exact assembly-locked branches are rejected by $\chi_{\mathrm{comp}}^{(\ell)}$; neutral Noether sea branches in the same coarse window are retained when they remain outside all resolved matter/corridor ledgers and agree with the ambient equilibrium record.
 
 The channel intensity is the exposure norm
 
@@ -462,13 +462,13 @@ d_{\mathrm{disc}}^2
 \frac{\left\|\Delta\mathcal{N}\right\|_{\mathrm{cons}}^2}{\epsilon_{\mathrm{cons}}^2}.
 $$
 
-The next proof burden is to compute the tolerance scales and retained branch entries from completed confinement, electron resonance, clock-coupling, and Noether-Sea cadence ledgers rather than assigning channel thresholds by fit. The neutral-equilibrium projector also has to be tested against refinement of $\ell$: changing resolution may change the retained window population, but it must not let an assembly-locked branch re-enter the ambient denominator by relabeling.
+The next proof burden is to compute the tolerance scales and retained branch entries from completed confinement, electron resonance, clock-coupling, and Noether sea cadence ledgers rather than assigning channel thresholds by fit. The neutral-equilibrium projector also has to be tested against refinement of $\ell$: changing resolution may change the retained window population, but it must not let an assembly-locked branch re-enter the ambient denominator by relabeling.
 
 Failure modes:
 
 - `hydrogen.ledger_surface_blend`: exact assembly membership is mistaken for a literal hard spatial surface.
 - `hydrogen.orbital_body_blend`: the electron resonance envelope is treated as the electron's Noether swarm boundary.
-- `hydrogen.sea_core_count_blend`: the four matter Noether swarms are counted as the local spacetime medium rather than as assemblies embedded in the ambient Noether Sea.
+- `hydrogen.sea_core_count_blend`: the four matter Noether swarms are counted as the local spacetime medium rather than as assemblies embedded in the ambient Noether sea.
 - `hydrogen.proton_quark_split`: the three quark assemblies are treated as free Noether swarms rather than as a color-singlet proton closure.
 - `hydrogen.kernel_split`: the locked numerator and ambient denominator are computed with different wake kernels, windows, or causal-width rules.
 - `hydrogen.threshold_fit`: $D_X$ is tuned separately per observable instead of being tied to the declared stability criterion.
@@ -550,7 +550,7 @@ This extension creates benchmark classes without adding a new top-level validati
 
 Failure modes:
 
-- `element.label_boundary_blend`: a periodic-table family name is treated as a Noether-Sea boundary condition without an explicit assembly record.
+- `element.label_boundary_blend`: a periodic-table family name is treated as a Noether sea boundary condition without an explicit assembly record.
 - `element.chemistry_source_blend`: oxidation state, electronegativity, or atomic radius is used as an input rather than a recovered observer-level summary.
 - `element.lattice_isolated_blend`: lattice, bonding, or magnetic response is assigned to an isolated atom without a realized material branch.
 
@@ -573,7 +573,7 @@ Failure modes:
 | `weak_sector_gauge_closure` | [weak-sector-gauge-closure.md](weak-sector-gauge-closure.md) | [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [weak-mixing-ckm](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md), [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), [gauge-symmetries](../../../content/markdown/aaa/interactions/gauge-symmetries.md), and [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md) | One weak-exposure domain supports `V-A`, CKM/PMNS overlap, weak-reaction provenance, and effective gauge covariance without leading-order preferred-frame leakage. |
 | `scalar_boson_acceptance` | [atlas-higgs-scalar-benchmark.md](atlas-higgs-scalar-benchmark.md) and [mass-map](../mass-map/mass-map.md) | [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md) and [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | The ATLAS Higgs scalar benchmark is recovered as one mass, coupling, production, branching, and excluded-window residual rather than as a mass-only fit. |
 | `nuclear_potential_derivation` | [nuclear-binding-closure.md](nuclear-binding-closure.md) | [nuclear-binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md), [nucleon-structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md), and [mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md) | The promoted benchmark gates gain a derived or constrained $V_{NN}$ whose signs, ranges, saturation behavior, and residual-channel provenance bind $p+n$, avoid an unphysical $p+p$ bound state, explain alpha-like enhancement, and keep beta stability in one ledger. |
-| `hydrogen_fermion_sea_boundary` | This file | [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) and [nested-shell-swarm-geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md) | The hydrogen atom is used to derive the distinction between exact fermion assembly membership, dynamic exclusion envelope, electron resonance envelope, and ambient Noether-Sea coarse-graining. |
+| `hydrogen_fermion_sea_boundary` | This file | [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) and [nested-shell-swarm-geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md) | The hydrogen atom is used to derive the distinction between exact fermion assembly membership, dynamic exclusion envelope, electron resonance envelope, and ambient Noether sea coarse-graining. |
 
 ## Related Priorities
 

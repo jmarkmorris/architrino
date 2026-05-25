@@ -15,7 +15,7 @@ up to convention-dependent endpoint factors, where $b$ is impact parameter. In P
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-The relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ signal is a Noether-Sea delay map: null-like observer paths are effective propagation records through $\mathcal{M}_{\mathrm{sea}}^{ab}$ and $\chi_{\text{sea}}(\mathbf{x},t)$. The gate is strong because the same response object must also support redshift, lensing, and orbital precession.
+The relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ signal is a Noether sea delay map: null-like observer paths are effective propagation records through $\mathcal{M}_{\mathrm{sea}}^{ab}$ and $\chi_{\text{sea}}(\mathbf{x},t)$. The gate is strong because the same response object must also support redshift, lensing, and orbital precession.
 
 ## Task Queue
 
@@ -42,5 +42,5 @@ The relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ signal is a Noether-Sea delay map:
 
 - `shapiro.gamma_split`: Shapiro delay needs a $\gamma_{\text{PPN}}$ inconsistent with lensing.
 - `shapiro.clock_signal_split`: clock-rate redshift and signal-path delay use different medium maps.
-- `shapiro.fit_metric_only`: a GR metric is copied in without a Noether-Sea constitutive derivation.
+- `shapiro.fit_metric_only`: a GR metric is copied in without a Noether sea constitutive derivation.
 - `shapiro.drag_artifact`: stable orbital propagation is described as dissipative drag rather than effective path delay.

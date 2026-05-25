@@ -26,7 +26,7 @@ d\tau_{\mathcal A}
 =
 \frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}.
 $$
-Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether-Sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether-Sea flow. A broad expression such as $d\tau/dt=F(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
+Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether sea flow. A broad expression such as $d\tau/dt=F(\mathbf{v},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
 
 The target is to reproduce, in the appropriate regime,
 $$
@@ -35,8 +35,8 @@ $$
 and generalizes to strong-field and high-velocity conditions.
 
 Notation convention used in this chapter: $n(\mathbf{x})\equiv \rho_{\text{NS}}(\mathbf{x})/\rho_{\text{NS},0}$ is the canonical medium-density variable.
-The Noether-Sea delay factor is $\chi_{\text{sea}}(\mathbf{x})\equiv c_f/c_{\text{eff}}(\mathbf{x})$; use it for refractive-delay language so $n$ remains reserved for density.
-The clock-law derivation imports the [transverse causal budget lemma](../noether-swarm/nested-shell-swarm-dynamics.md#transverse-causal-budget-lemma): primitive branch tests may use $c_f$, but observer-level clock comparison uses the declared dressed speed $c_\star$, usually $c_\star=c_{\text{eff}}(\mathbf{x})$ in a local Noether-Sea cell.
+The Noether sea delay factor is $\chi_{\text{sea}}(\mathbf{x})\equiv c_f/c_{\text{eff}}(\mathbf{x})$; use it for refractive-delay language so $n$ remains reserved for density.
+The clock-law derivation imports the [transverse causal budget lemma](../noether-swarm/nested-shell-swarm-dynamics.md#transverse-causal-budget-lemma): primitive branch tests may use $c_f$, but observer-level clock comparison uses the declared dressed speed $c_\star$, usually $c_\star=c_{\text{eff}}(\mathbf{x})$ in a local Noether sea cell.
 
 ---
 
@@ -50,7 +50,7 @@ The clock-law derivation imports the [transverse causal budget lemma](../noether
   - All worldlines are parametrized directly by $t$.
 
 - **Proper time $\tau$**
-  - Time read by a **physical clock**: a bound Noether swarm assembly, such as an atomic transition or binary oscillation, interacting with the Noether Sea.
+  - Time read by a **physical clock**: a bound Noether swarm assembly, such as an atomic transition or binary oscillation, interacting with the Noether sea.
   - Encodes how many internal oscillation cycles occur per unit $dt$.
 
 The fundamental claim is:
@@ -64,7 +64,7 @@ A clock is any assembly with a **stable, countable internal cycle**:
 - Minimal model: a Noether swarm where one shell binary, typically the middle binary, supplies the counted cycle.
 - Base frequency $\omega_0$ (or period $T_0 = 2\pi/\omega_0$) is defined for:
   - Clock **at rest** in the absolute frame.
-  - In a region of homogeneous Noether-Sea density $n=1$ and negligible external gradients.
+  - In a region of homogeneous Noether sea density $n=1$ and negligible external gradients.
 
 Proper time is then defined operationally as:
 $$
@@ -82,7 +82,7 @@ $$
 =
 c_f(t-t_0).
 $$
-The dressed observer-channel speed $c_\star$ is declared only after the clock/ruler channel is chosen: $c_\star=c_f$ for a primitive branch scan and usually $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether-Sea dressed clock comparison. Thus
+The dressed observer-channel speed $c_\star$ is declared only after the clock/ruler channel is chosen: $c_\star=c_f$ for a primitive branch scan and usually $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether sea dressed clock comparison. Thus
 $$
 \beta_\star=\frac{v}{c_\star},
 \qquad
@@ -113,9 +113,9 @@ C_T\epsilon_{\text{LV}}\beta_\star^2
 $$
 uniformly on the drift band, with any surviving preferred-frame sideband reported as a branch-sourced leakage term. This packet fails if the clock phase and ruler geometry come from different branch ledgers, if the residual is suppressed only by fitting a PPN coefficient after the fact, or if $c_f$ is silently identified with $c_\star$ without a dressing map.
 
-### Noether-Sea Swarm Cadence
+### Noether Sea Swarm Cadence
 
-For redshift and cosmology work, the local Noether-Sea swarm cadence can serve as the immediate clock reference before any separate detector clock is introduced. Let $\Omega_N(\mathbf{x},t)$ be a representative cadence extracted from the local Noether-Sea swarm population, with $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$. Relative to the weak homogeneous reference cadence, define
+For redshift and cosmology work, the local Noether sea swarm cadence can serve as the immediate clock reference before any separate detector clock is introduced. Let $\Omega_N(\mathbf{x},t)$ be a representative cadence extracted from the local Noether sea swarm population, with $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$. Relative to the weak homogeneous reference cadence, define
 
 $$
 \Gamma_N(\mathbf{x},t)
@@ -125,9 +125,9 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
 $$
 
-The quantity $\Gamma_N$ records local cadence stretching of the Noether Sea itself. It is therefore a substrate-facing clock diagnostic: $\Gamma_N=1$ marks the weak homogeneous reference, while $\Gamma_N>1$ marks a locally slowed or stretched Noether-Sea cadence. In the homogeneous moving Noether swarm branch, the Lorentz-closure target is to derive the appropriate limit $\Gamma_N\to\gamma$ or, equivalently, $\Omega_N/\Omega_{N0}\to1/\gamma$ for the declared clock channel. In a gravitational or cosmological Noether-Sea state comparison, $\Gamma_N$ must instead be extracted from $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, and clock geometry.
+The quantity $\Gamma_N$ records local cadence stretching of the Noether sea itself. It is therefore a substrate-facing clock diagnostic: $\Gamma_N=1$ marks the weak homogeneous reference, while $\Gamma_N>1$ marks a locally slowed or stretched Noether sea cadence. In the homogeneous moving Noether swarm branch, the Lorentz-closure target is to derive the appropriate limit $\Gamma_N\to\gamma$ or, equivalently, $\Omega_N/\Omega_{N0}\to1/\gamma$ for the declared clock channel. In a gravitational or cosmological Noether sea state comparison, $\Gamma_N$ must instead be extracted from $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\Phi_{\text{eff}}$, and clock geometry.
 
-This diagnostic does not replace $d\tau/dt$. It supplies a more primitive Noether-Sea cadence factor from which clock-rate comparisons, gravitational redshift, and the redshift factorization in [Expansion Mechanism](../cosmology/expansion-mechanism.md#noether-sea-swarm-factorization-target) can be built. The ordinary local clock-rate factor is the inverse:
+This diagnostic does not replace $d\tau/dt$. It supplies a more primitive Noether sea cadence factor from which clock-rate comparisons, gravitational redshift, and the redshift factorization in [Expansion Mechanism](../cosmology/expansion-mechanism.md#noether-sea-swarm-factorization-target) can be built. The ordinary local clock-rate factor is the inverse:
 
 $$
 C_N(\mathbf{x},t)
@@ -151,7 +151,7 @@ $$
 1-\frac{\Phi_N(\mathbf{x},t)}{c_0^2},
 $$
 
-to first order in $\Phi_N/c_0^2$. Since $\Phi_N < 0$ in a deeper potential, this gives $\Gamma_N > 1$ there: the local Noether-Sea swarm cadence is stretched relative to the weak homogeneous reference. For two endpoint cells $E$ and $R$ with no source-branch, launch, or path-history correction, the redshift recovery condition is therefore
+to first order in $\Phi_N/c_0^2$. Since $\Phi_N < 0$ in a deeper potential, this gives $\Gamma_N > 1$ there: the local Noether sea swarm cadence is stretched relative to the weak homogeneous reference. For two endpoint cells $E$ and $R$ with no source-branch, launch, or path-history correction, the redshift recovery condition is therefore
 
 $$
 \ln(1+z)
@@ -161,11 +161,11 @@ $$
 \frac{\Phi_N(R)-\Phi_N(E)}{c_0^2}.
 $$
 
-This is the clock-channel version of the weak gravitational-redshift benchmark. The derivation burden is to obtain the first equation from Noether-Sea constitutive response rather than impose it as an imported metric fact.
+This is the clock-channel version of the weak gravitational-redshift benchmark. The derivation burden is to obtain the first equation from Noether sea constitutive response rather than impose it as an imported metric fact.
 
 ### Proper-Time Functional Benchmark
 
-The same clock map must also reproduce the observer-level proper-time functional that GR uses for timelike records. For a candidate effective metric recovered from the Noether-Sea record,
+The same clock map must also reproduce the observer-level proper-time functional that GR uses for timelike records. For a candidate effective metric recovered from the Noether sea record,
 $$
 d\tau
 =
@@ -180,11 +180,11 @@ g^{\text{eff}}_{\mu\nu}
 =
 -c_0^2.
 $$
-This equation is not a claim that the Euclidean void is a four-dimensional curved substrate. It is the observer-level action benchmark: physical clocks should extremize the same effective interval that the signal, ruler, and orbital modules use when they project the Noether-Sea state into GR comparison language. If a branch recovers endpoint redshift but fails the integrated clock functional along accelerated or orbital records, the proper-time map has not closed.
+This equation is not a claim that the Euclidean void is a four-dimensional curved substrate. It is the observer-level action benchmark: physical clocks should extremize the same effective interval that the signal, ruler, and orbital modules use when they project the Noether sea state into GR comparison language. If a branch recovers endpoint redshift but fails the integrated clock functional along accelerated or orbital records, the proper-time map has not closed.
 
 ### Gamma-N Geometry Extraction Target
 
-The equations above define the endpoint benchmark, but they do not yet derive the Noether-Sea cadence factor from Noether swarm geometry. A first-order extraction scaffold should start from the local variables that already appear in the clock and transport programs: normalized Noether swarm density $n$, Noether-Sea delay factor $\chi_{\text{sea}}$, envelope scale $\lambda$, envelope shape ratio $\xi$, and a representative Noether swarm scale $R_{\text{core}}$. Around the weak homogeneous reference, collect the logarithmic deformation record
+The equations above define the endpoint benchmark, but they do not yet derive the Noether sea cadence factor from Noether swarm geometry. A first-order extraction scaffold should start from the local variables that already appear in the clock and transport programs: normalized Noether swarm density $n$, Noether sea delay factor $\chi_{\text{sea}}$, envelope scale $\lambda$, envelope shape ratio $\xi$, and a representative Noether swarm scale $R_{\text{core}}$. Around the weak homogeneous reference, collect the logarithmic deformation record
 
 $$
 \mathbf{g}_N
@@ -256,7 +256,7 @@ b_R
 \right),
 $$
 
-with the remaining coefficients belonging to the isotropic Noether-Sea constitutive response rather than to Lorentz geometry.
+with the remaining coefficients belonging to the isotropic Noether sea constitutive response rather than to Lorentz geometry.
 
 This is also the convention bridge to the effective metric subclass. If the local metric clock-rate factor is written as an isotropic factor times the envelope shape ratio,
 
@@ -337,7 +337,7 @@ $$
 \omega_n a_n+\omega_\chi a_\chi+\omega_\lambda a_\lambda+\omega_R a_R=-1.
 $$
 
-This is the first useful reduction of the proof burden. The Lorentz branch fixes the shape coefficient $b_\xi$, while static weak-field redshift fixes one isotropic coefficient combination. Individual values of $b_n$, $b_\chi$, $b_\lambda$, and $b_R$, or equivalently of the $\omega$ row, require a constitutive calculation or simulation that extracts how a mass source changes $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{core}}$ in the same Noether-Sea cell.
+This is the first useful reduction of the proof burden. The Lorentz branch fixes the shape coefficient $b_\xi$, while static weak-field redshift fixes one isotropic coefficient combination. Individual values of $b_n$, $b_\chi$, $b_\lambda$, and $b_R$, or equivalently of the $\omega$ row, require a constitutive calculation or simulation that extracts how a mass source changes $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{core}}$ in the same Noether sea cell.
 
 Existing weak-field signal tests constrain one neighboring component of this vector. The PPN Shapiro-delay map uses the observer-normalized delay factor
 
@@ -375,7 +375,7 @@ a_\chi-(1+\gamma_{\text{eff}}),
 \Delta_\chi^{\mathrm{clk\text{-}sig}}=0.
 $$
 
-A branch may impose this condition only when the same first-order Noether-Sea delay factor retimes assembly clocks and signal propagation, the photon or signal channel has no separate $\chi_\gamma$ response at $O(U/c_0^2)$, the asymptotic normalization $c_0/c_f$ is spatially constant in the comparison, and the weak cell is isotropic enough that first-order birefringent or stress-anisotropic delay terms are absent.
+A branch may impose this condition only when the same first-order Noether sea delay factor retimes assembly clocks and signal propagation, the photon or signal channel has no separate $\chi_\gamma$ response at $O(U/c_0^2)$, the asymptotic normalization $c_0/c_f$ is spatially constant in the comparison, and the weak cell is isotropic enough that first-order birefringent or stress-anisotropic delay terms are absent.
 
 Under this shared-delay closure, the static endpoint constraint becomes
 
@@ -602,11 +602,11 @@ $$
 -\ln B_X(E).
 $$
 
-Here $B_X(E)$ is the source-branch factor, $D_v$ is the launch or relative-motion phase-compression factor, and $Y_{X,E\to R}=\ln\mathcal P_{E\to R,X}$ is the path-history propagation integral through the Noether Sea. This chapter owns the extraction of $\Gamma_N$ and $C_N=\Gamma_N^{-1}$. The other factors are routed through the absolute-record transport map in [Noether Sea](noether-sea.md#equilibrium-transport-hypothesis) and must not be folded into $\Gamma_N$ unless a derivation proves the reduction in a declared limit.
+Here $B_X(E)$ is the source-branch factor, $D_v$ is the launch or relative-motion phase-compression factor, and $Y_{X,E\to R}=\ln\mathcal P_{E\to R,X}$ is the path-history propagation integral through the Noether sea. This chapter owns the extraction of $\Gamma_N$ and $C_N=\Gamma_N^{-1}$. The other factors are routed through the absolute-record transport map in [Noether sea](noether-sea.md#equilibrium-transport-hypothesis) and must not be folded into $\Gamma_N$ unless a derivation proves the reduction in a declared limit.
 
 ### Hydrogen Spectral Clock-Rate Conversion Target
 
-Hydrogen spectra give the first atom-local use of the $\Gamma_N$ extraction map. The cadence-stretch factor is not the frequency multiplier itself. In the sign convention above, $\Gamma_N>1$ means the local Noether-Sea cadence is stretched, so the corresponding local clock-rate factor is
+Hydrogen spectra give the first atom-local use of the $\Gamma_N$ extraction map. The cadence-stretch factor is not the frequency multiplier itself. In the sign convention above, $\Gamma_N>1$ means the local Noether sea cadence is stretched, so the corresponding local clock-rate factor is
 
 $$
 C_N(\mathbf{x},t)
@@ -674,7 +674,7 @@ h\nu_{a\to b}^{\mathrm{obs},(\ell)}
 }.
 $$
 
-The first pass condition is that one $\Gamma_{N,\mathrm H}^{(\ell)}$ from the local Noether-Sea response controls the chosen line set:
+The first pass condition is that one $\Gamma_{N,\mathrm H}^{(\ell)}$ from the local Noether sea response controls the chosen line set:
 
 $$
 \max_{(a,b)\in\mathcal L_{\mathrm H}^{0}}
@@ -695,11 +695,11 @@ $$
 \Delta_{\Gamma}^{\mathrm{tol}}.
 $$
 
-This target fails if $\Gamma_N$ is multiplied directly into the line frequency after being defined as cadence stretch, if each transition requires its own clock coefficient row, if $n$ or $\chi_{\text{sea}}$ is used as a substitute for $\Gamma_N$, if recoil or photon-channel propagation is hidden inside $\Gamma_N$, or if the hydrogen spectral map uses a different Noether-Sea response record than the clock, Shapiro-delay, or endpoint-redshift comparisons.
+This target fails if $\Gamma_N$ is multiplied directly into the line frequency after being defined as cadence stretch, if each transition requires its own clock coefficient row, if $n$ or $\chi_{\text{sea}}$ is used as a substitute for $\Gamma_N$, if recoil or photon-channel propagation is hidden inside $\Gamma_N$, or if the hydrogen spectral map uses a different Noether sea response record than the clock, Shapiro-delay, or endpoint-redshift comparisons.
 
 The first proof/simulation packet for this row is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). It treats $\mathbf{b}_{N}^{\mathrm{spec}}$ as a constrained clock-row instance: $b_\xi=1$ is fixed by the homogeneous Lorentz branch, the weak static endpoint row must satisfy $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$, and the observer frequency uses $C_N=\Gamma_N^{-1}$. The packet passes only if a shared row controls the chosen hydrogen line set across admissible refinement; it fails when the scan needs a transition-specific row, a direct $\Gamma_N$ frequency multiplier, a collapsed density/delay variable, or a residual budget that hides recoil, hyperfine structure, photon-channel propagation, or unresolved source-branch effects.
 
-The first executable scaffold keeps the clock proof burden visible. Its accepted spectral row is inherited from the density/scale-compensated static-response packet, not fitted from hydrogen lines alone. Its hydrogen records also keep $n$, $\chi_{\text{sea}}$, $\lambda$, $\xi$, and $R_{\text{core}}$ as separate entries in $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, so a row that matches one line or one record can still fail when the component split changes under admissible refinement. The executable now derives the scaffold line factors, observer frequencies, and replay envelope gaps from recovered principal labels plus one shared line-inferred $\ln\Gamma_N$. A completed theory-bearing record must therefore supply the same four inputs together from one declared hydrogen spectral channel ledger and the same Noether-Sea cell: the hydrogen $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ record, envelope gaps, observer frequencies, and static response vector.
+The first executable scaffold keeps the clock proof burden visible. Its accepted spectral row is inherited from the density/scale-compensated static-response packet, not fitted from hydrogen lines alone. Its hydrogen records also keep $n$, $\chi_{\text{sea}}$, $\lambda$, $\xi$, and $R_{\text{core}}$ as separate entries in $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, so a row that matches one line or one record can still fail when the component split changes under admissible refinement. The executable now derives the scaffold line factors, observer frequencies, and replay envelope gaps from recovered principal labels plus one shared line-inferred $\ln\Gamma_N$. A completed theory-bearing record must therefore supply the same four inputs together from one declared hydrogen spectral channel ledger and the same Noether sea cell: the hydrogen $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ record, envelope gaps, observer frequencies, and static response vector.
 
 ---
 
@@ -709,13 +709,13 @@ Two coupled mechanisms change the internal frequency of a tri‑binary clock:
 
 ### Kinematic Effect (Velocity Dependence)
 
-When the clock moves with velocity $\mathbf{v}$ relative to the Noether Sea:
+When the clock moves with velocity $\mathbf{v}$ relative to the Noether sea:
 
 1. **Path‑length elongation:**
  Internal architrinos must traverse longer spatial paths per cycle because the clock’s center of mass is in motion. Even in the clock’s own rest frame, the underlying wake interactions are evaluated in the absolute frame where the worldline is slanted through absolute timespace.
 
 2. **Finite causal speed:**
- Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether-Sea dressed clock comparison.
+ Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf{x})$ for a Noether sea dressed clock comparison.
 
 3. **Shape deformation (Lorentz‑link hypothesis):**
  To remain dynamically stable under increased $\|\mathbf{v}\|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
@@ -736,14 +736,14 @@ c_\star
 \quad \Rightarrow\quad
 \frac{d\tau}{dt}\bigg|_{\text{kin}} \approx \sqrt{1 - \frac{v^2}{c_\star^2}}
 $$
-in the regime where the clock's motion does not significantly disturb the local Noether Sea. For SI comparison in the weak homogeneous observer branch, $c_\star$ is the measured low-gradient clock/signal speed $c_0=c_{\text{eff}}(\infty)$, not an independent replacement for the primitive wake speed $c_f$.
+in the regime where the clock's motion does not significantly disturb the local Noether sea. For SI comparison in the weak homogeneous observer branch, $c_\star$ is the measured low-gradient clock/signal speed $c_0=c_{\text{eff}}(\infty)$, not an independent replacement for the primitive wake speed $c_f$.
 
 ### Gravitational Effect (Medium Dependence)
 
-Massive assemblies polarize and densify the surrounding Noether Sea. A clock deeper in this polarized region experiences:
+Massive assemblies polarize and densify the surrounding Noether sea. A clock deeper in this polarized region experiences:
 
 1. **Higher local Noether density $n(\mathbf{x})$ (equivalently higher $\rho_{\text{NS}}$):**
- Interaction delays with the Noether Sea (and between internal architrinos through the Noether Sea) increase. This raises the **Noether-Sea delay factor** $\chi_{\text{sea}}$ for internal processes.
+ Interaction delays with the Noether sea (and between internal architrinos through the Noether sea) increase. This raises the **Noether sea delay factor** $\chi_{\text{sea}}$ for internal processes.
 
 2. **Effective field speed reduction $c_{\text{eff}}(\mathbf{x}) < c_f$:**
  - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether swarms).
@@ -771,7 +771,7 @@ $$
 \approx
 \frac{gL}{c_0^2}.
 $$
-Thus $L=1\,\mathrm{mm}$ corresponds to $\Delta\nu/\nu\approx1.1\times10^{-19}$, while $L=33\,\mathrm{cm}$ corresponds to $\Delta\nu/\nu\approx3.6\times10^{-17}$. These numbers are direct weak-field acceptance tests for the extracted clock map: the same Noether-Sea constitutive response that slows separated clocks must also describe an extended clock sample whose lower and upper portions accumulate different proper-time phases.
+Thus $L=1\,\mathrm{mm}$ corresponds to $\Delta\nu/\nu\approx1.1\times10^{-19}$, while $L=33\,\mathrm{cm}$ corresponds to $\Delta\nu/\nu\approx3.6\times10^{-17}$. These numbers are direct weak-field acceptance tests for the extracted clock map: the same Noether sea constitutive response that slows separated clocks must also describe an extended clock sample whose lower and upper portions accumulate different proper-time phases.
 
 For independent atoms this can be corrected pointwise, as in ordinary redshift compensation. For entangled or collective clock states, however, assigning the entire apparatus the proper time at the trap center is only an approximation. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target is to derive the measured clock time from collective phase evolution across the sample, with the center-time prescription emerging only when the gradient-induced phase spread is below the experiment's uncertainty.
 
@@ -787,7 +787,7 @@ This coefficient must be derived from the same weak-field clock and phase map th
 
 ### Combined Dilation
 
-In a region with potential $\Phi_N(\mathbf{x})$ and clock velocity $v$ relative to the Noether Sea, we conjecture:
+In a region with potential $\Phi_N(\mathbf{x})$ and clock velocity $v$ relative to the Noether sea, we conjecture:
 $$
 \frac{d\tau}{dt} 
 = \frac{\omega(v,\Phi_N,n)}{\omega_0}
@@ -893,7 +893,7 @@ J_{\mathbf{x}j},\,
 \right).
 $$
 
-Thus a boundary contribution may affect clock coupling only by changing the same phase increment, measured frequency, Noether-Sea delay factor, or phase-retained wake ledger used to compute $\omega_{\text{clk}}/\omega_0$. A separate clock fit that bypasses this projection would split the clock benchmark from the assembly/Noether-Sea interface diagnostic.
+Thus a boundary contribution may affect clock coupling only by changing the same phase increment, measured frequency, Noether sea delay factor, or phase-retained wake ledger used to compute $\omega_{\text{clk}}/\omega_0$. A separate clock fit that bypasses this projection would split the clock benchmark from the assembly/Noether sea interface diagnostic.
 
 ### Controlled Perturbation Family
 
@@ -998,7 +998,7 @@ Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are ro
 This program fails—and the emergent‑metric project is likely untenable—if any of the following hold:
 
 1. **Incorrect velocity dependence:**
- - If $T(v)$ cannot be made to fit $\propto \gamma(v)$ without fine‑tuning internal clock geometry or Noether-Sea parameters.
+ - If $T(v)$ cannot be made to fit $\propto \gamma(v)$ without fine‑tuning internal clock geometry or Noether sea parameters.
 
 2. **Wrong sign or magnitude of gravitational dilation:**
  - Clocks deeper in a potential must tick slower. Any prediction of faster ticks, or gross magnitude mismatch, is fatal.

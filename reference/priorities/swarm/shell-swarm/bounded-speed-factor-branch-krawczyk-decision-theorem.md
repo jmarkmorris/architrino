@@ -1,6 +1,6 @@
 # Bounded Speed Factor Branch Krawczyk Decision Theorem
 
-Promotion status: `priority-only`. This packet turns the bounded speed factor root-sheet, tail-cover, self-hit exchange, Noether-Sea exchange, and Krawczyk proof-budget rows into one branch-box decision theorem. It refines [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md), [bounded-speed-factor-tail-krawczyk-certificate.md](bounded-speed-factor-tail-krawczyk-certificate.md), [bounded-speed-factor-tail-cover-completeness-lemma.md](bounded-speed-factor-tail-cover-completeness-lemma.md), [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md), [root-jacobian-barrier-lemma.md](root-jacobian-barrier-lemma.md), [tail-interval-root-exclusion-certificate.md](tail-interval-root-exclusion-certificate.md), and [support-complete-m3-krawczyk-proof-budget.md](support-complete-m3-krawczyk-proof-budget.md).
+Promotion status: `priority-only`. This packet turns the bounded speed factor root-sheet, tail-cover, self-hit exchange, Noether sea exchange, and Krawczyk proof-budget rows into one branch-box decision theorem. It refines [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md), [bounded-speed-factor-tail-krawczyk-certificate.md](bounded-speed-factor-tail-krawczyk-certificate.md), [bounded-speed-factor-tail-cover-completeness-lemma.md](bounded-speed-factor-tail-cover-completeness-lemma.md), [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md), [root-jacobian-barrier-lemma.md](root-jacobian-barrier-lemma.md), [tail-interval-root-exclusion-certificate.md](tail-interval-root-exclusion-certificate.md), and [support-complete-m3-krawczyk-proof-budget.md](support-complete-m3-krawczyk-proof-budget.md).
 
 It does not retain a branch. Its purpose is to state a solver-checkable theorem for accepting, rejecting, or refusing to decide a finite bounded-speed branch box without confusing proof-budget failure with a physical obstruction.
 
@@ -196,7 +196,7 @@ DF(B)
 \{DF_B(z):z\in B\}.
 $$
 
-The derivative enclosure must include clock, inverse-clock, root-sheet, force-weight, support, action, self-hit, event, and Noether-Sea columns. In particular, for every speed-factor direction $v$ the packet must account for
+The derivative enclosure must include clock, inverse-clock, root-sheet, force-weight, support, action, self-hit, event, and Noether sea columns. In particular, for every speed-factor direction $v$ the packet must account for
 
 $$
 D_v\chi_i(\lambda)
@@ -412,7 +412,7 @@ $$
 \tau_{\mathrm{exch,hit}}.
 $$
 
-The Noether-Sea row must close the same symmetry and exchange convention as the action row. For each declared generator $\zeta$ the conservation envelope must include
+The Noether sea row must close the same symmetry and exchange convention as the action row. For each declared generator $\zeta$ the conservation envelope must include
 
 $$
 |\mathcal{R}_{\zeta}^{\nu}|
@@ -444,7 +444,7 @@ If any side condition is checked pointwise but not on the whole branch box, it c
 
 ## 5. Decision Theorem
 
-**Theorem target: bounded speed factor branch Krawczyk decision.** Fix a branch box $B$ with center $z_0$, live root-sheet domain box $\mathcal{U}_B^{\nu}$, interval residual enclosure $F(B)$, interval derivative enclosure $DF(B)$, preconditioner $C$, chart radius $\rho_{\mathrm{chart}}^{\nu}$, tail-cover certificate, self-hit/event partition, and Noether-Sea exchange rows as above.
+**Theorem target: bounded speed factor branch Krawczyk decision.** Fix a branch box $B$ with center $z_0$, live root-sheet domain box $\mathcal{U}_B^{\nu}$, interval residual enclosure $F(B)$, interval derivative enclosure $DF(B)$, preconditioner $C$, chart radius $\rho_{\mathrm{chart}}^{\nu}$, tail-cover certificate, self-hit/event partition, and Noether sea exchange rows as above.
 
 Assume:
 
@@ -454,17 +454,17 @@ Assume:
 4. the tail cover is coefficient-box persistent and either excludes tail roots or assimilates them as unique root tubes with fixed sign strata;
 5. every self-hit window has a closed event partition and exchange ledger, or the box explicitly rejects because that partition fails;
 6. the bounded speed factor positivity and band constraints persist throughout $B$;
-7. the action, support, event, and Noether-Sea rows consume the same live ledger as the residual and derivative enclosures;
+7. the action, support, event, and Noether sea rows consume the same live ledger as the residual and derivative enclosures;
 8. $DF(B)$ encloses the derivative of the whole residual map used by the Krawczyk row, including second-root derivative-Lipschitz contributions;
 9. $C$ is a certified inverse or range inverse for the declared decision rows;
 10. $\rho_B\le\rho_{\mathrm{chart}}^{\nu}$.
 
 Then:
 
-- If $K(B)\subset\operatorname{int}B$ for a square row, or $K_R(B)\subset\operatorname{int}B$ together with the cokernel/action/Noether-Sea audit passes for a range row, there exists a unique zero of the declared bounded-speed branch residual in $B$. The solver may emit `bounded-speed-branch-krawczyk-accepted`.
+- If $K(B)\subset\operatorname{int}B$ for a square row, or $K_R(B)\subset\operatorname{int}B$ together with the cokernel/action/Noether sea audit passes for a range row, there exists a unique zero of the declared bounded-speed branch residual in $B$. The solver may emit `bounded-speed-branch-krawczyk-accepted`.
 - If $0\notin F(B)$ for a mandatory row, or a certified separating cokernel or adjoint obstruction excludes zero on the range enclosure, then no zero of the declared branch residual exists in $B$. The solver may emit `bounded-speed-branch-rejected-no-root`.
 - If the interval root-sheet chart proves more than one zero on the same live ledger inside $B$ without a symmetry quotient, event reset, or ledger split, the solver may emit `bounded-speed-branch-rejected-nonunique-root`.
-- If a root-sheet Jacobian floor, tail-cover owner, bounded speed factor band, self-hit exchange row, or Noether-Sea exchange row fails as a mandatory side condition, the solver may reject with the corresponding taxonomy below.
+- If a root-sheet Jacobian floor, tail-cover owner, bounded speed factor band, self-hit exchange row, or Noether sea exchange row fails as a mandatory side condition, the solver may reject with the corresponding taxonomy below.
 - If none of the acceptance or rejection predicates passes, the solver must emit a first-failure open status rather than a retained or rejected branch.
 
 Proof route:
@@ -473,7 +473,7 @@ Proof route:
 2. Apply the root/Jacobian barrier inequalities to preserve the live root count, labels, isolating brackets, and fixed Jacobian sign strata.
 3. Use the coefficient-box tail cover to make every tail point either root-free, assimilated into one differentiable root tube, boundary-owned, or event-reset owned.
 4. Use the self-hit/event partition to remove same-source excursions from ordinary root persistence unless their exchange ledgers close.
-5. Use the Noether Sea and action rows to ensure speed-factor storage, support work, event exchange, and current leakage are part of the same residual.
+5. Use the Noether sea and action rows to ensure speed-factor storage, support work, event exchange, and current leakage are part of the same residual.
 6. Apply the interval Krawczyk theorem to the square residual, or to the certified range residual plus cokernel audit, using $DF(B)$ and $C$.
 7. For rejection, use interval separation of a mandatory residual row, certified obstruction in the cokernel, or failure of a mandatory chart side condition.
 8. Uniqueness follows from the Krawczyk self-map contraction on the declared box and does not extend outside $B$.
@@ -490,7 +490,7 @@ Proof route:
 | `tail-leak` | the tail cover has unowned points, duplicate owners, an uncertified cell, a nonpersistent owner, or a tail root not excluded or assimilated |
 | `speed-band-failure` | $\nu_i$ violates positivity, the declared lower/upper band, inverse-clock admissibility, or period/winding chart persistence on $B$ |
 | `self-hit-exchange-failure` | a self-hit window has finite return without closed speed excursion, endpoint convention, potential-work identity, exchange residual, event ledger, or post-hit ledger |
-| `Noether-exchange-failure` | action, support, event, speed-storage, or Noether-Sea rows fail to close the declared conservation envelope on the same live ledger |
+| `Noether-exchange-failure` | action, support, event, speed-storage, or Noether sea rows fail to close the declared conservation envelope on the same live ledger |
 
 A proof-budget failure is not automatically one of these rejections. Missing derivative envelopes, missing second-root variations, missing row weights, missing preconditioner certification, or missing cokernel audit produce open statuses unless an explicit separating residual or mandatory side-condition failure is certified.
 
@@ -509,7 +509,7 @@ A solver report for this theorem must emit:
 | `root_jacobian_floors` | $G_{\ell}^{\nu}$, $J_{\ell}^{\nu}$, $\zeta_{\ell}$, $\eta_0$, $J_0$, $\gamma_{\mathrm{end}}$, $\gamma_{\mathrm{gap}}$, $\Delta_{\eta}$, $\Lambda_G$, and $\Lambda_J$ |
 | `tail_cover` | $\Omega_{\mathrm{tail}}^{\nu}$, terminal owner list, no-gap residual, overlap consistency, coefficient-box persistence, $\rho_{\mathrm{tail}}^{\nu}$, and tail status |
 | `self_hit_event_partition` | self-hit windows, finite-return rows, endpoint convention, speed excursion, potential-work identity, exchange residuals, event reset owners, and post-hit ledgers |
-| `Noether_Sea_exchange` | action functional identity, speed-storage exchange, support work, event/Noether-Sea powers, symmetry generators, current envelope, and first failed exchange row |
+| `Noether_Sea_exchange` | action functional identity, speed-storage exchange, support work, event/Noether sea powers, symmetry generators, current envelope, and first failed exchange row |
 | `residual_enclosure` | residual row list, row weights, interval vector $F(B)$, center residual $F_B(z_0)$, and mandatory-row flags |
 | `derivative_enclosure` | interval matrix $DF(B)$, derivative method, clock/root/speed/support/action/event columns, second-root derivative-Lipschitz constants, and stale-derivative checks |
 | `preconditioner` | square inverse or range inverse, SVD rank, singular values, cutoff, $\|C\|$, inverse certification, and projector convention |
@@ -574,4 +574,4 @@ $$
 \texttt{promote-after-executable-certificate}
 $$
 
-only after a solver report emits the full schema above with a positive chart radius, coefficient-box tail persistence, self-hit/event exchange closure, Noether-Sea exchange closure, certified derivative enclosure, certified preconditioner, and either a Krawczyk acceptance or a rigorous local rejection.
+only after a solver report emits the full schema above with a positive chart radius, coefficient-box tail persistence, self-hit/event exchange closure, Noether sea exchange closure, certified derivative enclosure, certified preconditioner, and either a Krawczyk acceptance or a rigorous local rejection.

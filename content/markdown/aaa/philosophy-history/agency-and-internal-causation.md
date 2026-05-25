@@ -61,7 +61,7 @@ X_\Omega(t),
 N_{\text{sea}}|_{\Omega}(t)
 \right).
 $$
-The basin geometry and threshold control of the subsystem are therefore functions of internal state plus omitted boundary wakes and Noether-Sea conditions, not of the locally inspected state alone. Local prediction can fail for an open subsystem even when the $\mathbb{U}_{\text{now}}$ universe-state perspective remains globally deterministic, because the global state retains the finite-speed signals and path-history data that the Physical Observer has not resolved.
+The basin geometry and threshold control of the subsystem are therefore functions of internal state plus omitted boundary wakes and Noether sea conditions, not of the locally inspected state alone. Local prediction can fail for an open subsystem even when the $\mathbb{U}_{\text{now}}$ universe-state perspective remains globally deterministic, because the global state retains the finite-speed signals and path-history data that the Physical Observer has not resolved.
 
 A sharper validation condition is to hold the external boundary context fixed and ask whether internal preparation changes the basin weights. Let
 $$

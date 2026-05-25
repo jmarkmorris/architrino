@@ -91,18 +91,18 @@ Keep the fixed 3D container distinct from what occupies it.
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
 | the fixed 3D container | `Euclidean void`, `fixed background`, `absolute background` | `background` used ambiguously | "The Euclidean void is the fixed spatial container." |
-| what occupies that container | `Noether Sea`, `ambient Noether Sea`, `background contents` | `background` if it blurs container and contents | "The Noether Sea occupies the Euclidean void." |
-| a neutral explanatory bridge toward spacetime language | `spacetime medium` | using it as the primary ontological label | "The spacetime medium is a bridge term for the Noether Sea in reader-facing prose." |
+| what occupies that container | `Noether sea`, `ambient Noether sea`, `background contents` | `background` if it blurs container and contents | "The Noether sea occupies the Euclidean void." |
+| a neutral explanatory bridge toward spacetime language | `spacetime medium` | using it as the primary ontological label | "The spacetime medium is a bridge term for the Noether sea in reader-facing prose." |
 | emergent geometry or observer-level closure | `spacetime` | using `spacetime` as the fixed substrate | "Spacetime is emergent, not the ontological container." |
 
 Sentence guidance:
 
-- Prefer: "The fixed background is the Euclidean void; its ambient contents are the Noether Sea."
-- Prefer: "The Noether Sea acts as the constitutive substrate within the void."
-- Avoid by default: "The background is the Noether Sea."
+- Prefer: "The fixed background is the Euclidean void; its ambient contents are the Noether sea."
+- Prefer: "The Noether sea acts as the constitutive substrate within the void."
+- Avoid by default: "The background is the Noether sea."
 - Avoid by default: "Spacetime is filled with..." when the actual meaning is ontological substrate contents.
 
-This separation matters because many inherited phrases silently fuse container and contents. Once that fusion happens, the prose begins to oscillate between talking about geometry, medium, and occupancy as though they were one object. $\mathbb{A}\mathbb{A}\mathbb{A}$ needs the split kept clean: the void is the fixed container, the Noether Sea is what occupies it, and emergent spacetime is a downstream description reconstructed from how assemblies and wakes behave in that occupied background.
+This separation matters because many inherited phrases silently fuse container and contents. Once that fusion happens, the prose begins to oscillate between talking about geometry, medium, and occupancy as though they were one object. $\mathbb{A}\mathbb{A}\mathbb{A}$ needs the split kept clean: the void is the fixed container, the Noether sea is what occupies it, and emergent spacetime is a downstream description reconstructed from how assemblies and wakes behave in that occupied background.
 
 ## Noether Sea, Vacuum, Aether, and Medium
 
@@ -110,19 +110,21 @@ These terms are not interchangeable.
 
 | When you mean... | Prefer | Use with caution | Example |
 | --- | --- | --- | --- |
-| the ontological substrate contents | `Noether Sea` | not applicable | "Clock rates depend on local Noether-Sea density." |
+| the ontological substrate contents | `Noether sea` | not applicable | "Clock rates depend on local Noether sea density." |
 | a neutral transitional bridge term | `spacetime medium` | only as a bridge term, not as the primary ontology word | "The spacetime medium reproduces effective metric behavior." |
 | a generic constitutive statement | `medium` | only if the referent is already clear | "The medium response modifies wake transport." |
 | standard-physics historical or comparative language | `vacuum`, `aether` | only when the comparison is explicit | "In QFT terms this would be described as a vacuum effect." |
 
 Sentence guidance:
 
-- Prefer: "The Noether Sea is the canonical ontological term."
-- Prefer: Use `Noether Sea` as the standalone proper noun, and use `Noether-Sea` only as a compound modifier before another noun: `Noether-Sea density`, `Noether-Sea delay factor`.
+- Prefer: "The Noether sea is the canonical ontological term."
+- Prefer: Use `Noether sea` as the standalone canonical name, and use `Noether sea` as the compound modifier before another noun: `Noether sea density`, `Noether sea delay factor`.
+- Capitalization rule: write `Noether sea` in ordinary prose and link text. Reserve `Noether Sea` for title contexts such as headings, frontmatter titles, scene titles, generated TOC titles, and title-cased chapter names.
+- Avoid: `Noether-Sea`. Do not hyphenate the canonical term in prose or titles.
 - Prefer: "Use `spacetime medium` when easing the reader from effective spacetime language to constitutive substrate language."
 - Avoid by default: "vacuum" as the native $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology term.
 
-Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space or ground-state associations; `aether` imports a historical debate that is not quite the same as the present ontology; `medium` is often too generic to do the constitutive work by itself. `Noether Sea` is therefore valuable not because novelty is desirable, but because it is specific enough to name the ontological substrate contents without silently borrowing the wrong metaphysics from neighboring frameworks.
+Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space or ground-state associations; `aether` imports a historical debate that is not quite the same as the present ontology; `medium` is often too generic to do the constitutive work by itself. `Noether sea` is therefore valuable not because novelty is desirable, but because it is specific enough to name the ontological substrate contents without silently borrowing the wrong metaphysics from neighboring frameworks.
 
 ## Spacetime, Void, and Timespace
 
@@ -133,17 +135,17 @@ The preferred $\mathbb{A}\mathbb{A}\mathbb{A}$ stack is:
 - `Euclidean void` for the fixed 3D spatial container
 - `absolute time` for the universal temporal parameter
 - `absolute timespace` for the formal product background $\mathbb{R}\times\mathbb{R}^3$
-- `Noether Sea` for the ambient substrate contents within that background
+- `Noether sea` for the ambient substrate contents within that background
 - `spacetime medium` only as a bridge term toward effective spacetime language
 - `spacetime` for emergent relativistic or observer-level geometry
 
-The critical discipline is that `spacetime` should not silently absorb the ontology. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the ontological backdrop is not a curved four-dimensional spacetime manifold. The void and absolute time are fundamental; effective spacetime is a downstream description of how assemblies and wakes propagate through the Noether Sea.
+The critical discipline is that `spacetime` should not silently absorb the ontology. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the ontological backdrop is not a curved four-dimensional spacetime manifold. The void and absolute time are fundamental; effective spacetime is a downstream description of how assemblies and wakes propagate through the Noether sea.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
 | fixed ontological container | `Euclidean void` | plain `spacetime` | "The Euclidean void does not curve." |
 | global product background as a formal ontology term | `absolute timespace` | bare `timespace`, vague `spacetime` in ontology-first prose | "Absolute timespace is $\mathbb{R}\times\mathbb{R}^3$." |
-| the ambient contents of that background | `Noether Sea` | `spacetime` when the contents are meant directly | "The Noether Sea occupies the Euclidean void within absolute timespace." |
+| the ambient contents of that background | `Noether sea` | `spacetime` when the contents are meant directly | "The Noether sea occupies the Euclidean void within absolute timespace." |
 | a bridge from ontology to relativistic reader language | `spacetime medium` | using it as the primary ontological term | "The spacetime medium is a bridge term for reader-facing translation." |
 | emergent relativistic geometry | `spacetime`, `effective metric`, `effective geometry` | not applicable | "Spacetime curvature is an emergent refractive effect." |
 
@@ -152,7 +154,7 @@ Sentence guidance:
 - Prefer: "The Euclidean void is the fixed spatial container."
 - Prefer: "Absolute timespace is the formal product of absolute time and the Euclidean void."
 - Prefer: "Spacetime is an emergent effective geometry, not the ontological background."
-- Prefer: "The Noether Sea occupies the void; it is not identical with the void."
+- Prefer: "The Noether sea occupies the void; it is not identical with the void."
 - Avoid by default: "Spacetime is the fundamental container."
 - Avoid by default: "Timespace" as a loose synonym for everything from container to contents to effective geometry.
 
@@ -161,21 +163,21 @@ Usage examples:
 | Instead of... | Prefer... | Why |
 | --- | --- | --- |
 | "Spacetime is filled with Noether swarms." | "The Euclidean void is populated by Noether swarms." | The sentence is about contents occupying the fixed container, not about emergent geometry. |
-| "Spacetime contains the Noether Sea." | "The Noether Sea occupies the Euclidean void." | `Spacetime` should not stand in for the ontological background here. |
+| "Spacetime contains the Noether sea." | "The Noether sea occupies the Euclidean void." | `Spacetime` should not stand in for the ontological background here. |
 | "Timespace bends around matter." | "Effective spacetime curvature appears around matter-rich regions." | The claim is observer-level and geometric, not about the fixed substrate. |
-| "The timespace medium slows clocks." | "The Noether Sea slows physical clocks." | The sentence is about substrate contents, not the formal product background. |
+| "The timespace medium slows clocks." | "The Noether sea slows physical clocks." | The sentence is about substrate contents, not the formal product background. |
 | "Spacetime is the absolute background." | "Absolute time and the Euclidean void form the fixed background." | Splits the temporal and spatial factors cleanly instead of importing relativistic wording. |
-| "Timespace is filled with a dense medium." | "Absolute timespace contains a Euclidean void populated by the Noether Sea." | Use `absolute timespace` only when the full product structure matters, then name the contents separately. |
-| "The medium is spacetime itself." | "The spacetime medium is a bridge term for the Noether Sea." | Keeps the bridge term from becoming the ontology. |
-| "Spacetime expands as the medium evolves." | "Effective spacetime expansion summarizes evolving Noether-Sea structure." | Marks the level shift from constitutive substrate to effective description. |
-| "Matter curves the void." | "Matter changes Noether-Sea density and stress, producing an emergent effective metric." | The void stays fixed; the response belongs to the contents and the effective geometry. |
-| "Timespace redshifts the photon." | "Redshift reflects Noether-Sea evolution and clock-rate comparison across the path." | Replaces vague background-language with the specific constitutive mechanism. |
+| "Timespace is filled with a dense medium." | "Absolute timespace contains a Euclidean void populated by the Noether sea." | Use `absolute timespace` only when the full product structure matters, then name the contents separately. |
+| "The medium is spacetime itself." | "The spacetime medium is a bridge term for the Noether sea." | Keeps the bridge term from becoming the ontology. |
+| "Spacetime expands as the medium evolves." | "Effective spacetime expansion summarizes evolving Noether sea structure." | Marks the level shift from constitutive substrate to effective description. |
+| "Matter curves the void." | "Matter changes Noether sea density and stress, producing an emergent effective metric." | The void stays fixed; the response belongs to the contents and the effective geometry. |
+| "Timespace redshifts the photon." | "Redshift reflects Noether sea evolution and clock-rate comparison across the path." | Replaces vague background-language with the specific constitutive mechanism. |
 
 Bridge examples:
 
-- Good bridge sentence: "For reader-facing translation, one may say that the spacetime medium acquires an effective metric response, but the underlying ontology remains absolute time, Euclidean void, and Noether-Sea contents."
+- Good bridge sentence: "For reader-facing translation, one may say that the spacetime medium acquires an effective metric response, but the underlying ontology remains absolute time, Euclidean void, and Noether sea contents."
 - Good formal sentence: "Absolute timespace is the product background $\mathbb{R}\times\mathbb{R}^3$, while relativistic spacetime is an effective geometry reconstructed from assembly and wake dynamics."
-- Good ontological sentence: "The Euclidean void does not expand; what evolves is the Noether Sea within it."
+- Good ontological sentence: "The Euclidean void does not expand; what evolves is the Noether sea within it."
 - Bad mixed-level sentence: "Spacetime, the medium, and the background are all the same thing."
 
 Editorial rule:
@@ -322,7 +324,7 @@ Use `weak-coupling triad` as the canonical technical term and the only base term
 
 If a sentence needs to describe coupling posture, keep `weak-coupling triad` as the noun and write the posture around it, for example:
 
-- "the weak-coupling triad is exposed to the Noether Sea"
+- "the weak-coupling triad is exposed to the Noether sea"
 - "the weak-coupling triad is rotated into the wake"
 - "the complementary three polar sites carry the remaining bookkeeping"
 

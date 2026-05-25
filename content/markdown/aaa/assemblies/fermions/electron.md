@@ -6,7 +6,7 @@ This chapter defines the current electron-assembly target for $\mathbb{A}\mathbb
 
 ## Current framing
 
-The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Noether Swarm](../../noether-swarm/noether-swarm.md), [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md), and [Weak Mixing Angle](./weak-mixing-angle.md).
+The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Noether Swarm](../../noether-swarm/noether-swarm.md), [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md), and [Weak Mixing Angle](./weak-mixing-angle.md).
 
 ## Axial Inventory and Generation Core
 
@@ -26,7 +26,7 @@ This framing keeps lepton universality disciplined. The charged-lepton side of u
 
 ## Assembly and Detection Map
 
-The electron is not treated as a literal ontic-probability distribution. It is a coherent fermion assembly: a Noether swarm plus axial layer whose internal causal ledger remains localized enough to preserve identity, charge bookkeeping, and spin-statistical behavior. The diffuse object used in ordinary atomic language is an effective detection map for where that coherent assembly can resolve a record under a declared nuclear, apparatus, and Noether-Sea environment.
+The electron is not treated as a literal ontic-probability distribution. It is a coherent fermion assembly: a Noether swarm plus axial layer whose internal causal ledger remains localized enough to preserve identity, charge bookkeeping, and spin-statistical behavior. The diffuse object used in ordinary atomic language is an effective detection map for where that coherent assembly can resolve a record under a declared nuclear, apparatus, and Noether sea environment.
 
 A compact local target is
 
@@ -41,11 +41,11 @@ $$
 \right](\mathbf{x}),
 $$
 
-where $\mathcal{D}_e^{(\ell)}$ is the observer-level electron detection map at coarse window $\ell$, $\mathcal{B}_e$ is the realized electron-envelope branch, $\mathcal{A}_{\mathrm{nuc}}$ is the nuclear assembly ledger, $\theta_{\mathrm{sea}}^{(\ell)}$ is the local Noether-Sea state record, and $\mathcal{W}_{\mathrm{causal}}^{(\ell)}$ is the retained causal-wake history. This map is not the electron itself. It is the statistical readout obtained after unresolved branch data, apparatus coupling, and local medium response have been projected into an observer-level record.
+where $\mathcal{D}_e^{(\ell)}$ is the observer-level electron detection map at coarse window $\ell$, $\mathcal{B}_e$ is the realized electron-envelope branch, $\mathcal{A}_{\mathrm{nuc}}$ is the nuclear assembly ledger, $\theta_{\mathrm{sea}}^{(\ell)}$ is the local Noether sea state record, and $\mathcal{W}_{\mathrm{causal}}^{(\ell)}$ is the retained causal-wake history. This map is not the electron itself. It is the statistical readout obtained after unresolved branch data, apparatus coupling, and local medium response have been projected into an observer-level record.
 
 ## Near-Lossless Atomic Motion
 
-The Euclidean void contributes no viscous resistance. In stable atomic regimes, the electron assembly moves through its resonance envelope by reversible retuning of its internal causal ledger and local Noether-Sea coupling. Ordinary drag would be a separate transport failure: excitation, radiation-like action shedding, heating, or branch transition. The same distinction is required in [Condensed Matter](../../nuclear-atomic/condensed-matter.md), where stable transport must remain below the threshold that opens dissipative ledgers.
+The Euclidean void contributes no viscous resistance. In stable atomic regimes, the electron assembly moves through its resonance envelope by reversible retuning of its internal causal ledger and local Noether sea coupling. Ordinary drag would be a separate transport failure: excitation, radiation-like action shedding, heating, or branch transition. The same distinction is required in [Condensed Matter](../../nuclear-atomic/condensed-matter.md), where stable transport must remain below the threshold that opens dissipative ledgers.
 
 Atomic orbitals are therefore recovery targets for coherent electron resonance, not primitive probability blobs. The immediate derivation burden is to show that the same branch data $\mathcal{B}_e$ and medium record $\theta_{\mathrm{sea}}^{(\ell)}$ recover the observer-level orbital labels, spectral gaps, and detection statistics described in [Atomic Structure](../../nuclear-atomic/atomic-structure.md) and [Wavefunction Ontology](../../quantum/wavefunction-ontology.md).
 
@@ -55,7 +55,7 @@ An electron-level calculation should not begin with a fitted orbital probability
 
 - the electron internal branch record $\mathcal{B}_e$, including Noether swarm geometry and axial-layer state;
 - the nuclear source ledger $\mathcal{A}_{\mathrm{nuc}}$ and its causal-wake envelope;
-- the local Noether-Sea record $\theta_{\mathrm{sea}}^{(\ell)}$, including density, delay, cadence, and medium-response data at the chosen atomic window;
+- the local Noether sea record $\theta_{\mathrm{sea}}^{(\ell)}$, including density, delay, cadence, and medium-response data at the chosen atomic window;
 - the apparatus or environmental projection $\Pi_{\mathrm{det}}$ that turns the branch ensemble into a finite record;
 - the transport residual that separates reversible retuning from excitation, radiation-like transport, heating, or branch transition.
 
@@ -65,7 +65,7 @@ In weak reactions the electron is an outgoing or incoming charged assembly whose
 
 A closed event record must therefore state:
 
-- which incoming assembly, local Noether-Sea content, or recruited neutral swarm material supplies the electron's Noether swarm provenance;
+- which incoming assembly, local Noether sea content, or recruited neutral swarm material supplies the electron's Noether swarm provenance;
 - how the $6E$ axial inventory is routed without violating charge, energy, momentum, angular momentum, or identity bookkeeping;
 - how the associated antineutrino branch inherits the neutral near-photon weak ledger rather than a charged-fermion axial layer;
 - and whether the observer-level beta rate and nuclear form factors are recovered without redefining the weak-coupling-triad exposure domain.
@@ -94,7 +94,7 @@ F(s)=1-\frac{sR_L^2}{4},
 \sigma_{\text{SM}}(s)\,|F(s)|^2.
 $$
 
-For the electron branch, the gate is conservative: any finite-size or Noether-Sea response correction large enough to explain a heavier-lepton magnetic-moment residual must still leave $a_e$, precision scattering, and lepton-pair production within their observed limits. If the same $R_L$, shielding map, and response projection cannot serve $e$, $\mu$, and $\tau$, the charged-lepton universality claim has not closed.
+For the electron branch, the gate is conservative: any finite-size or Noether sea response correction large enough to explain a heavier-lepton magnetic-moment residual must still leave $a_e$, precision scattering, and lepton-pair production within their observed limits. If the same $R_L$, shielding map, and response projection cannot serve $e$, $\mu$, and $\tau$, the charged-lepton universality claim has not closed.
 
 ## Related Chapters
 

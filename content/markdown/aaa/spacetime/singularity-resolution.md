@@ -12,7 +12,7 @@ v_M=c_f,\qquad v_O\to c_f,
 $$
 with middle/outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
 
-This condition is a constitutive boundary condition on Noether-Sea state, not an isolated metric ansatz imported from an asymptotically flat solution. In schematic form, the horizon-interface closure problem is
+This condition is a constitutive boundary condition on Noether sea state, not an isolated metric ansatz imported from an asymptotically flat solution. In schematic form, the horizon-interface closure problem is
 $$
 F_H\!\left[
 \rho_{\text{NS}}(\mathbf{x},t),
@@ -25,7 +25,7 @@ F_H\!\left[
 \qquad
 v_M=c_f,\quad v_O\to c_f.
 $$
-The boundary data $\partial\Omega$ record the surrounding Noether-Sea and effective exterior state. A viable singularity replacement must solve the alignment condition with finite boundary data in embedded, non-isolated settings, rather than relying on asymptotic flatness as an implicit support.
+The boundary data $\partial\Omega$ record the surrounding Noether sea state and effective exterior state. A viable singularity replacement must solve the alignment condition with finite boundary data in embedded, non-isolated settings, rather than relying on asymptotic flatness as an implicit support.
 
 ### Trapped-Surface Comparison Pressure
 
@@ -55,7 +55,7 @@ $$
 \quad\Longrightarrow\quad
 F_H=0,\qquad \mathcal{R}_H(\Omega)<\infty
 $$
-for the corresponding compact strong-field region $\Omega$, after the effective variables are translated into native Noether-Sea boundary data. In plain terms, whenever the observer-level GR description says collapse has passed the generic trapped-surface threshold, the native model must enter a finite maximum-curvature or horizon-interface regime rather than requiring symmetry, a zero-volume endpoint, or an arbitrary branch choice.
+for the corresponding compact strong-field region $\Omega$, after the effective variables are translated into native Noether sea boundary data. In plain terms, whenever the observer-level GR description says collapse has passed the generic trapped-surface threshold, the native model must enter a finite maximum-curvature or horizon-interface regime rather than requiring symmetry, a zero-volume endpoint, or an arbitrary branch choice.
 
 Equivalently, the finite-boundary-data closure target is the residual
 $$
@@ -76,7 +76,7 @@ F_H=0,\,
 0<\left|\mathcal{B}_{H}\right|<\infty
 \right).
 $$
-The theorem burden is not to deny the trapped-surface comparison result. It is to show exactly which effective global-completeness assumption is superseded by compact Noether-Sea boundary data, while preserving the non-negative local energy comparison and producing a finite, labeled strong-field continuation.
+The theorem burden is not to deny the trapped-surface comparison result. It is to show exactly which effective global-completeness assumption is superseded by compact Noether sea boundary data, while preserving the non-negative local energy comparison and producing a finite, labeled strong-field continuation.
 
 ### Finite-Boundary-Data Regularity
 
@@ -140,7 +140,7 @@ $$
 $$
 with every element carrying a closure label, finite horizon-interface ledger, and event-ledger accounting. An empty family means no native continuation has been supplied. An infinite or unlabeled family means the endpoint remains arbitrary. A finite labeled family is admissible only if later observer-level release, entropy, and exterior $(M,\mathbf{J},Q)$ records are computed from those same finite boundary data.
 
-Stationary regularity is only the first test. A horizon construction may keep curvature invariants finite in an eternal or stationary comparison metric while still failing during collapse, merger, evaporation, or embedding in a time-dependent Noether Sea. The dynamical gate is therefore stronger:
+Stationary regularity is only the first test. A horizon construction may keep curvature invariants finite in an eternal or stationary comparison metric while still failing during collapse, merger, evaporation, or embedding in a time-dependent Noether sea. The dynamical gate is therefore stronger:
 $$
 \theta_+^{\mathrm{eff}}<0,\quad \theta_-^{\mathrm{eff}}<0
 \quad\Longrightarrow\quad

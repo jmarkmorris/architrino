@@ -14,9 +14,9 @@ At the substrate level:
 
 - space remains Euclidean,
 - time remains absolute,
-- and the [Noether Sea](noether-sea.md) is the dynamical medium.
+- and the [Noether sea](noether-sea.md) is the dynamical medium.
 
-At the observer level, the same Noether Sea must generate the effective metric behavior usually attributed to curved spacetime. Therefore the phenomenology requirement is:
+At the observer level, the same Noether sea must generate the effective metric behavior usually attributed to curved spacetime. Therefore the phenomenology requirement is:
 
 $$
 \text{medium response}
@@ -60,7 +60,7 @@ The causal-order term tests the effective light-cone structure, the clock term s
 
 ### Global continuation and cosmic-censorship comparison
 
-Global hyperbolicity, Cauchy surfaces, Cauchy horizons, and cosmic censorship are standard GR comparison tools for asking when initial data determine a maximal observer-level spacetime. They are not substrate assumptions in $\mathbb{A}\mathbb{A}\mathbb{A}$, because the native dynamics live in absolute timespace with path-history records. Their retained value is as an extension discipline: when the effective metric comparison would treat a region as losing unique continuation, the native account must identify which finite boundary wake data, Noether-Sea state, and closure-label ensemble determine the continuation.
+Global hyperbolicity, Cauchy surfaces, Cauchy horizons, and cosmic censorship are standard GR comparison tools for asking when initial data determine a maximal observer-level spacetime. They are not substrate assumptions in $\mathbb{A}\mathbb{A}\mathbb{A}$, because the native dynamics live in absolute timespace with path-history records. Their retained value is as an extension discipline: when the effective metric comparison would treat a region as losing unique continuation, the native account must identify which finite boundary wake data, Noether sea state, and closure-label ensemble determine the continuation.
 
 The comparison burden can be stated as a finite-access residual rather than as an imported global axiom. For a compact comparison region $\Omega$ and window $W=[t_i,t_f]$, the strong-field or cosmology packet must specify a continuation map from the same record class used by the weak-field observables,
 $$
@@ -149,7 +149,7 @@ The effective metric subclass must also reproduce the standard 1PN orbital corre
 
 must all be reproduced by the same $(\gamma_{\text{eff}},\beta_{\text{eff}},\alpha_i)$ package already used for light and clock observables.
 
-For the classical weak-field suite, the comparison record can be made explicit. On an observation window $W$, let $\theta_W$ denote the retained Noether-Sea state, source assembly record, observer clock/ruler state, signal-channel data, boundary wake data, and the ADM/Cartan projection
+For the classical weak-field suite, the comparison record can be made explicit. On an observation window $W$, let $\theta_W$ denote the retained Noether sea state, source assembly record, observer clock/ruler state, signal-channel data, boundary wake data, and the ADM/Cartan projection
 $$
 \theta_W
 \longmapsto
@@ -240,7 +240,7 @@ G_N m_1 m_2/r
 \right|.
 $$
 
-This residual is not a demand that the Noether Sea be rewritten as a graviton field. It is a demand that the same weak-field constitutive record that yields redshift, lensing, and wave propagation also recover the long-distance quantum correction in the regime where the effective theory is predictive.
+This residual is not a demand that the Noether sea be rewritten as a graviton field. It is a demand that the same weak-field constitutive record that yields redshift, lensing, and wave propagation also recover the long-distance quantum correction in the regime where the effective theory is predictive.
 
 Massive-superposition entanglement experiments add a second low-energy quantum-gravity benchmark. If two isolated massive probes acquire an entanglement witness through gravity alone, the retained data product is the branch-dependent interaction phase, not a decision between graviton-field ontology and quantized-geometry ontology. The corresponding validation packet in [Massive-Superposition Gravity Validation Packet](../validation/massive-superposition-gravity.md) requires the same effective-metric record $\theta$ to generate the mediated-entanglement phase while keeping non-gravitational coupling residuals bounded and preventing the gravity-side response from becoming an unmodeled which-path record.
 
@@ -288,16 +288,16 @@ That means the effective PPN drift parameters
 $$
 \alpha_1,\alpha_2,\alpha_3
 $$
-must be observationally negligible in validated regimes. This is not optional. If the Noether Sea leaves a measurable preferred-frame residue in the solar-system and pulsar regimes, the spacetime branch fails regardless of its conceptual elegance.
+must be observationally negligible in validated regimes. This is not optional. If the Noether sea leaves a measurable preferred-frame residue in the solar-system and pulsar regimes, the spacetime branch fails regardless of its conceptual elegance.
 
 ## Gravitational-Wave Channel
 
-The Noether-Sea picture must recover the observed near-luminal propagation of gravitational disturbances:
+The Noether sea picture must recover the observed near-luminal propagation of gravitational disturbances:
 $$
 \left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right| \ll 1.
 $$
 
-In this framework, gravitational waves are propagating collective disturbances of the Noether Sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
+In this framework, gravitational waves are propagating collective disturbances of the Noether sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
 
 ## Strong-Field Regime
 

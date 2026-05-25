@@ -172,7 +172,7 @@ $$
 {\epsilon_J^{\mathrm{Noether}}}.
 $$
 
-The source-provenance ledger must also report which architrinos, roots, support events, self-hit intervals, fold-layer regulators, and Noether-Sea exchange terms carry each current update.
+The source-provenance ledger must also report which architrinos, roots, support events, self-hit intervals, fold-layer regulators, and Noether sea exchange terms carry each current update.
 
 ---
 
@@ -200,7 +200,7 @@ $$
 =0
 $$
 
-after including all declared outgoing branch rows, support impulses, self-hit exchange, fold-layer work, regulator endpoint terms, and Noether-Sea updates.
+after including all declared outgoing branch rows, support impulses, self-hit exchange, fold-layer work, regulator endpoint terms, and Noether sea updates.
 
 If a missing channel is inserted after the fact, the packet must mark the original branch as
 

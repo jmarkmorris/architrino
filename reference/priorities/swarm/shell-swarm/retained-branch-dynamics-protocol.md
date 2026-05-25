@@ -403,7 +403,7 @@ The required search residuals are:
 | $\mathcal{R}_{\mathrm{inventory}}$ | $(N_+,N_-;C_{\mathrm{cent}},S_{\mathrm{chor}},Q)$ consistency |
 | $\mathcal{R}_{E}$ | history-dressed energy/action conservation using the retained active roots |
 | $\mathcal{R}_{\mathrm{top}}$ | carrier label, winding, framed-wake, node-clearance, and parity rows |
-| $\mathcal{R}_{\mathrm{exposure}}$ | exposure and Noether-Sea medium-response extraction, or `not_computed` |
+| $\mathcal{R}_{\mathrm{exposure}}$ | exposure and Noether sea medium-response extraction, or `not_computed` |
 | $\mathcal{R}_{\mathrm{Lorentz}}$ | moving-branch observer export, or `not_computed` |
 | $\mathcal{R}_{\mathrm{event}}$ | event ledger for $E$, $\mathbf{p}$, $\mathbf{J}$, $Q$, source provenance, recoil, and medium update |
 
@@ -464,7 +464,7 @@ The force row, energy row, angular-momentum row, and event row must read the sam
 | --- | --- |
 | `energy_action` | $E_{\mathrm{hist}}^{(q)}(t)$, action increments, regulator $\eta$, active roots, and endpoint convention |
 | `angular_momentum` | $\mathbf{J}_{\mathrm{mech}}$, $\mathbf{J}_{\mathrm{wake}}$, $\mathbf{J}_{\mathrm{sea}}$, boundary torque if any, and $\mathcal{R}_{\mathbf{J}}^{(q)}$ |
-| `event_ledger` | $\mathcal{L}_{E\mathbf{p}\mathbf{J}Q}^{(q)}$, source provenance, recoil, Noether-Sea update, and heat-channel status |
+| `event_ledger` | $\mathcal{L}_{E\mathbf{p}\mathbf{J}Q}^{(q)}$, source provenance, recoil, Noether sea update, and heat-channel status |
 | `branch_identity` | label set, polarity set, $\mathcal{I}_q$, and root-ledger version |
 
 For an isolated periodic branch, the event/action row is evaluated over one candidate return interval:
@@ -588,7 +588,7 @@ The minimal continuation coordinates are:
 | $\omega$ or $T$ | carrier frequency or return time |
 | $\mathsf{root\_policy}$ | required partner, self, and cross-binary root rows |
 | $\mathcal{I}$ | neutral or charged central-inventory row |
-| $\mathsf{medium\_response}$ | Noether-Sea update extraction status, if computed |
+| $\mathsf{medium\_response}$ | Noether sea update extraction status, if computed |
 
 A continuation step is accepted only if the previous active root labels can be continued or a branch event is explicitly recorded. If root counts change without a declared regularized transition, the step terminates and a new branch label is required.
 
@@ -768,11 +768,11 @@ The protocol uses existing same-level failure vocabulary. A failed run must repo
 | `period-length-mismatch` | deformed curves lack a common period length or declared rational winding relation |
 | `energy-ledger-open` | $E_{\mathrm{hist}}$ fails the history-energy tolerance |
 | `momentum-ledger-open` | momentum ledger is absent or fails the event-conservation tolerance |
-| `angular-momentum-ledger-open` | $\mathcal{R}_{\mathbf{J}}^{(q)} > 1$ after wake and Noether-Sea updates |
+| `angular-momentum-ledger-open` | $\mathcal{R}_{\mathbf{J}}^{(q)} > 1$ after wake and Noether sea updates |
 | `torque-closure-open` | boundary torque row is absent or fails when boundary exchange is declared |
-| `source-provenance-open` | outgoing labels lack incoming or Noether-Sea source provenance |
+| `source-provenance-open` | outgoing labels lack incoming or Noether sea source provenance |
 | `recoil-open` | recoil entries do not match named receiving objects or branches |
-| `medium-update-open` | Noether-Sea update extraction is required but not computed |
+| `medium-update-open` | Noether sea update extraction is required but not computed |
 | `medium-update-root-mismatch` | medium update uses different roots or event interval than the branch |
 | `heat-channel-unjustified` | heat is named before nonheat channels are populated or ruled out |
 | `nhim-domination-fail` | Lyapunov spectrum fails the claimed stability or SRB target |
@@ -843,7 +843,7 @@ Exit criterion: $g_P^{(q)}\le1$ and the Lyapunov row supports the claimed class.
 
 ### Stage 6: Event, Action, Exposure, And Export Rows
 
-1. Compute $E_{\mathrm{hist}}$, action increments, $\mathbf{p}$, $\mathbf{J}$, $Q$, source provenance, recoil, and Noether-Sea update rows on the retained root convention.
+1. Compute $E_{\mathrm{hist}}$, action increments, $\mathbf{p}$, $\mathbf{J}$, $Q$, source provenance, recoil, and Noether sea update rows on the retained root convention.
 2. Mark exposure, Lorentz, photon, color, and strong-field rows as `passed`, `failed`, or `not_computed`.
 3. Reject any observer export promoted by implication.
 4. Emit an NTB comparison row before any migration decision.

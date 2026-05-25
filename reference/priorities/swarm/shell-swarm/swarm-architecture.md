@@ -21,7 +21,7 @@ The current mathematical status is:
 | DDE well-posedness | theorem target | shell swarm branch certificate with finite active roots, positive Jacobian floors, finite memory depth, and either fixed-speed tangent closure or bounded-speed speed-ODE/support closure |
 | Spinor holonomy | theorem target | retained framed-wake row with $2\pi$ / $4\pi$ parity, gauge-control residual, and angular-momentum ledger closure |
 | Lorentz recovery | theorem target | moving-branch export showing clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage |
-| Mass and generation hierarchy | theorem target | history-dressed energy, exposure quotient, and Noether-Sea medium-response tensor; topological complexity may index branch families but does not replace the mass formula |
+| Mass and generation hierarchy | theorem target | history-dressed energy, exposure quotient, and Noether sea medium-response tensor; topological complexity may index branch families but does not replace the mass formula |
 | Color / $SU(3)$ | theorem target | continuous phase-bundle connection and generator recovery; $\mathcal{S}_3$ is only a discrete color-slot scaffold |
 | Strong-field and cosmology claims | speculative comparison targets | finite-boundary continuation, event-ledger closure, and observer-level recovery gates |
 
@@ -162,7 +162,7 @@ The shell swarm architecture now has the following priority-side companion packe
 | [root-jacobian-barrier-lemma.md](root-jacobian-barrier-lemma.md) | Sufficient perturbation and barrier conditions preserving active root labels, Jacobian floor, and finite memory in intrinsic collocation searches. |
 | [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md) | Chord-arclength lemma excluding ordinary same-curve positive-delay self roots with positive Jacobian floor. |
 | [fold-layer-regularization-action-theorem.md](fold-layer-regularization-action-theorem.md) | Regulated fold-layer action theorem for any admissible self/fold force contribution and event ledger. |
-| [medium-response-constitutive-closure-theorem.md](medium-response-constitutive-closure-theorem.md) | Constitutive closure theorem for admissible Noether-Sea medium-response force, action, and exchange rows. |
+| [medium-response-constitutive-closure-theorem.md](medium-response-constitutive-closure-theorem.md) | Constitutive closure theorem for admissible Noether sea medium-response force, action, and exchange rows. |
 | [delayed-force-lipschitz-envelope.md](delayed-force-lipschitz-envelope.md) | Per-root delayed-force derivative envelope supplying Lipschitz constants for trust, refinement, Newton, and variationality certificates. |
 | [root-ledger-floquet-stability-certificate.md](root-ledger-floquet-stability-certificate.md) | Root-ledger-preserving Floquet and perturbation-recovery certificate for local stability after dynamics closure. |
 | [root-dependent-variational-equation.md](root-dependent-variational-equation.md) | Root-dependent variational equation and monodromy construction for stability on a retained support-complete branch. |
@@ -277,7 +277,7 @@ The entries are:
 | $\Delta_{\mathbf{k}}^{(q)}$ | non-gauge stability or return-map gap |
 | $\mathcal{E}_{\mathrm{hist}}^{(q)}$ | history-dressed energy/action ledger |
 | $\mathcal{Z}_q^{ab}$ | exposed wake-response tensor and scalar exposure quotient |
-| $\mathcal{M}_{\mathrm{sea},q}^{ab}$ | Noether-Sea medium-response tensor |
+| $\mathcal{M}_{\mathrm{sea},q}^{ab}$ | Noether sea medium-response tensor |
 | $\mathcal{R}_{\mathrm{tri}}^{(q)}$ | residual vector for branch promotion |
 | $\mathcal{L}_{E\mathbf{p}\mathbf{J}Q}^{(q)}$ | event ledger for energy, momentum, angular momentum, and charge provenance |
 
@@ -602,7 +602,7 @@ m_{\mathrm{tr}}(A)
 \frac{1}{3}h_{ab}\mathsf{I}_A^{ab},
 $$
 
-where $\mathsf{I}_A^{ab}$ is built from history-dressed internal energy, exposure, and Noether-Sea response. A mapping-class or Dehn-surgery complexity $\lambda_\phi(A)$ can enter only through derived branch data such as
+where $\mathsf{I}_A^{ab}$ is built from history-dressed internal energy, exposure, and Noether sea response. A mapping-class or Dehn-surgery complexity $\lambda_\phi(A)$ can enter only through derived branch data such as
 
 $$
 E_{\mathrm{internal}}(A;\lambda_\phi),
@@ -661,7 +661,7 @@ F_H=0,
 \quad\text{within tolerance}.
 $$
 
-The black-hole and inflation-like claims should be read as speculative comparison programs until this gate is populated. The Euclidean void does not expand; any $R\propto e^{Ht}$ or inflation-like language must be translated into effective observer variables, Noether-Sea evolution, transport, and clock-rate comparison before promotion.
+The black-hole and inflation-like claims should be read as speculative comparison programs until this gate is populated. The Euclidean void does not expand; any $R\propto e^{Ht}$ or inflation-like language must be translated into effective observer variables, Noether sea evolution, transport, and clock-rate comparison before promotion.
 
 ---
 

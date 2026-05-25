@@ -33,13 +33,13 @@ $$
 \zeta_{\delta Z}\approx-0.000680152657812,
 $$
 
-but it does not supply a retained Noether-Sea medium-response row.
+but it does not supply a retained Noether sea medium-response row.
 
 ## Source-Only Export Convention
 
 The current fixed-speed rigid octahedral row is a source-side root-ledger geometry calculation. It includes the causal-root exposure tensor $\delta\mathcal Z_{\mathrm{oct,tf}}^{ab}$ and the scalar rows $\delta\ln T_{\mathrm{oct,root}}$ and $\langle1/J\rangle_{\mathrm{oct}}$. It does not emit a declared response object for $\mathcal M_{\mathrm{sea}}^{ab}$.
 
-The medium-response admissibility rule is stricter than a fit convention: a Noether-Sea response term may enter only through a declared response object, memory row, energy and momentum exchange ledger, isotropy or preferred-orientation residual, and combined action/Noether accounting. The current $M=3$ exact-antipodal rows are explicitly medium-response-open and do not include such a row.
+The medium-response admissibility rule is stricter than a fit convention: a Noether sea response term may enter only through a declared response object, memory row, energy and momentum exchange ledger, isotropy or preferred-orientation residual, and combined action/Noether accounting. The current $M=3$ exact-antipodal rows are explicitly medium-response-open and do not include such a row.
 
 Therefore there are two honest interpretations:
 
@@ -219,7 +219,7 @@ $$
 
 It is not an isotropic metric branch by itself. It becomes compatible with isotropic observer geometry only by one of two explicit routes:
 
-1. a retained Noether-Sea tensor response emits
+1. a retained Noether sea tensor response emits
 
    $$
    \mu_K=0.000680152657812\,r_{ZM};

@@ -138,7 +138,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 - Exact analytic forms for d0 and t0 in the symmetric binary with the canonical modulation.
 - Rigorous conditions for uniqueness/multiplicity of causal roots in accelerated motion and their contribution to stability.
-- Statistical mechanics of many-body wake structures: when and how do coherent, Lorentz-consistent effective cones emerge from moving-assembly deformation, clock/ruler retuning, and Noether-Sea response, and with what characteristic speed relative to the declared branch speed $c_\star$?
+- Statistical mechanics of many-body wake structures: when and how do coherent, Lorentz-consistent effective cones emerge from moving-assembly deformation, clock/ruler retuning, and Noether sea response, and with what characteristic speed relative to the declared branch speed $c_\star$?
 
 Plain language summary: radial hits, time delay, constant per-wavefront amplitude, and self-hit for fast movers are enough to produce stable orbits, natural rulers and clocks, shielding that looks like inertia, and “magnetic-like” structures without right-hand-rule magnetism.
 

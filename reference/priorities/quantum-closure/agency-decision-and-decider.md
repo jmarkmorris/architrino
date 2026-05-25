@@ -277,7 +277,7 @@ This row format turns "the most primitive assembly that can make a decision" int
 | $\Delta W_u$ | Work required to move or hold the bias configuration. |
 | $\tau_{\text{hold}}$ | Time for which the bias remains stable before perturbation. |
 | $\tau_{\text{lat}}$ | Latency until the tested perturbation class reaches the threshold slot. |
-| $\Delta E_{\text{dump}}$ | Energy exported to the Noether Sea or local environment while maintaining or changing the bias. |
+| $\Delta E_{\text{dump}}$ | Energy exported to the Noether sea or local environment while maintaining or changing the bias. |
 
 ## Minimality Gate
 

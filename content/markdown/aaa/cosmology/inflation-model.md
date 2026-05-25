@@ -31,7 +31,7 @@ This keeps conceptual overlap with cyclical-universe intuitions while preserving
 In the broader recycling picture, SMBH-core dynamics provide the persistent source architecture:
 
 - high-curvature interior dynamics load energy into middle-layer/horizon channels,
-- outbound disturbances seed expansion-like phases in the surrounding Noether Sea,
+- outbound disturbances seed expansion-like phases in the surrounding Noether sea,
 - inflation-like behavior is therefore a regime of core-driven release and relaxation, not a separate scalar field ontology.
 
 ## Effective Inflaton Reinterpretation
@@ -54,7 +54,7 @@ $$
 \Delta \rho_{\mathrm{locked}},
 $$
 
-with each term tied to the same Noether-Sea response variables used by the CMB, BBN, and expansion modules. This preserves the perturbation-success target of inflationary models while rejecting a free "use it, then lose it" vacuum-energy channel.
+with each term tied to the same Noether sea response variables used by the CMB, BBN, and expansion modules. This preserves the perturbation-success target of inflationary models while rejecting a free "use it, then lose it" vacuum-energy channel.
 
 ## Scalar and Tensor Benchmark
 
@@ -73,7 +73,7 @@ $$
 
 The scalar/tensor gate should be read as a closure burden on the high-curvature transfer channel. If $\mathbb{A}\mathbb{A}\mathbb{A}$ uses SMBH-core or horizon-interface dynamics to explain inflation-like behavior, those dynamics must supply the same near-Gaussian scalar spectrum and allowed tensor sector without retuning the CMB, BBN, and expansion interfaces separately.
 
-Smoothness is a separate benchmark from scalar amplitude and tensor suppression. Inflationary language is often credited with explaining why the early effective record has low gravitational free-mode content, while generic strong-field collapse is expected to develop complicated anisotropic curvature. In this framework that pressure becomes a medium-history constraint, not an inflaton ontology. The high-curvature release channel must therefore deliver the CMB-facing smoothness residual defined in [CMB](./CMB.md) using the same Noether-Sea variables that supply $\left(A_s^{\theta},n_s^{\theta},\alpha_s^{\theta},r^{\theta}\right)$.
+Smoothness is a separate benchmark from scalar amplitude and tensor suppression. Inflationary language is often credited with explaining why the early effective record has low gravitational free-mode content, while generic strong-field collapse is expected to develop complicated anisotropic curvature. In this framework that pressure becomes a medium-history constraint, not an inflaton ontology. The high-curvature release channel must therefore deliver the CMB-facing smoothness residual defined in [CMB](./CMB.md) using the same Noether sea variables that supply $\left(A_s^{\theta},n_s^{\theta},\alpha_s^{\theta},r^{\theta}\right)$.
 
 ### Slow-Roll Comparison Dictionary
 
@@ -227,4 +227,4 @@ In the modular cosmology map, this page contributes:
 
 ## Coherent Reading
 
-Inflation language in $\mathbb{A}\mathbb{A}\mathbb{A}$ is an effective description of high-curvature release-and-relaxation dynamics in the Noether Sea, not an added standalone scalar ontology.
+Inflation language in $\mathbb{A}\mathbb{A}\mathbb{A}$ is an effective description of high-curvature release-and-relaxation dynamics in the Noether sea, not an added standalone scalar ontology.

@@ -1,6 +1,6 @@
 # Fe/Cr Empirical Pressure Replay Skeleton
 
-This priority packet is the first empirical replay skeleton for the pressure-dependent Noether-Sea constitutive response. It is not reader-facing canon and does not report a data pass. It freezes the Fe/Cr replay contract so real material rows can later be inserted without changing the fit rule after seeing residuals.
+This priority packet is the first empirical replay skeleton for the pressure-dependent Noether sea constitutive response. It is not reader-facing canon and does not report a data pass. It freezes the Fe/Cr replay contract so real material rows can later be inserted without changing the fit rule after seeing residuals.
 
 ## Claim Level
 

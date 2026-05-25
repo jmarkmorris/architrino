@@ -171,7 +171,7 @@ $$
 
 ## 6. Mass-Map Export
 
-The mass-map export consumes internal history energy, shielding/exposure, and Noether-Sea medium response:
+The mass-map export consumes internal history energy, shielding/exposure, and Noether sea medium response:
 
 $$
 m_{\mathrm{tr}}
@@ -218,7 +218,7 @@ $$
 \right).
 $$
 
-These rows must preserve the ontology distinction: the Euclidean void does not expand; observer variables are effective summaries of Noether-Sea evolution, transport, and clock-rate comparison.
+These rows must preserve the ontology distinction: the Euclidean void does not expand; observer variables are effective summaries of Noether sea evolution, transport, and clock-rate comparison.
 
 ---
 

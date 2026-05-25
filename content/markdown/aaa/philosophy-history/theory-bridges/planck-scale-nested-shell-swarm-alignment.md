@@ -10,7 +10,7 @@ The opening sections state the working thesis and the immediate kinematic map; l
 
 This chapter maps the Planck scale into nested shell swarm geometry and dynamics. The inherited Planck formulas are used as constraints and comparison targets, not as settled ontology. The immediate aim is to identify which geometric quantities, delay-feedback conditions, and alignment variables would have to be derived before the Planck scale can be claimed as a nested shell swarm closure result.
 
-We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of nested shell swarm assemblies in the Noether Sea:
+We propose that the Planck scale corresponds, in the architrino architecture, to a specific **alignment-lock state** of nested shell swarm assemblies in the Noether sea:
 
 > 
 > **Working Thesis (Planck Alignment Horizon).**
@@ -103,7 +103,7 @@ We keep these as open threads while we test whether alignment alone can lock the
 | Radius $R_{\text{align}}$ | $R_{\text{align}} = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the outer binary. |
 | Alignment geometry $A_{\text{align}}$ | $A_{\text{align}} = R_{\text{align}}^2$ | Square of the alignment radius | Planar alignment area scale. |
 | Gravitation $G$ | $G \propto c_f^3 A_{\text{align}} / h$ | Express in terms of $A_{\text{align}}$ and $h$ | Medium compliance tied to the alignment geometry scale ($A_{\text{align}}$). |
-| Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether Sea. |
+| Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether sea. |
 | Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
 | Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Corner case: an energy-equivalent scale for alignment, not a rest-mass of the planar, field-speed state. |
 | Time $t_P$ | $t_P = 1/f_P$ | Invert the cadence to get period | One orbital **period** at alignment if $f_{\text{align}} = f_P$. |
@@ -189,7 +189,7 @@ In this causal-wake framing:
 ### Field-Speed Regimes in the Causal-Wake View
 
 - **At $v = c_f$:** The architrino rides the edge of its causal cone. Forward-sector updates cannot arrive faster than it moves, so the experienced gradient becomes anisotropic (ahead starves, behind dominates). Phase-locking becomes delicate; alignment effects intensify.  
-- **At $v > c_f$:** It outruns newly emitted causal-wake propagation. The only gradients it can receive are from delayed emissions and the Noether Sea behind or sideways, which leads to self-hit dynamics. This creates a strong inward or centripetal feedback candidate that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
+- **At $v > c_f$:** It outruns newly emitted causal-wake propagation. The only gradients it can receive are from delayed emissions and the Noether sea behind or sideways, which leads to self-hit dynamics. This creates a strong inward or centripetal feedback candidate that stabilizes maximal-curvature orbits and drives the self-hit regime behavior.
 
 ---
 
@@ -356,10 +356,10 @@ Our program is to compute $\mathcal{A}_{\text{align}}^{\text{cycle}}$, $I_{\text
 
 ### $G$ as Noether Sea Compliance
 
-Qualitatively, gravitational coupling strength reflects the **elastic response of the Noether Sea**:
+Qualitatively, gravitational coupling strength reflects the **elastic response of the Noether sea**:
 
 > **Heuristic View:**  
-> $G$ is inversely related to the **stiffness** of nested shell swarm assemblies in the Noether Sea against being driven toward the alignment phase. High energy density in aligned swarms deforms the surrounding Noether Sea, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
+> $G$ is inversely related to the **stiffness** of nested shell swarm assemblies in the Noether sea against being driven toward the alignment phase. High energy density in aligned swarms deforms the surrounding Noether sea, inducing an effective metric (refractive gradient) that reproduces GR-like behavior.
 
 A full derivation of $G$ from medium compliance is still to be done; the formula above gives a target relationship.
 

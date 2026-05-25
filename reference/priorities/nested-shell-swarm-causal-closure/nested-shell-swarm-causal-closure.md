@@ -133,7 +133,7 @@ R_{\mathrm{Pois}}^{(q)}
 \left\|4\pi G_{\mathrm{eff}}\rho_{\mathrm{exp}}\right\|_W+\varepsilon
 }.
 $$
-Here $\rho_{\mathrm{exp}}$ is the externally exposed mass-energy response after shielding and Noether-Sea coupling, not raw internal ledger energy. The curvature/source residual is
+Here $\rho_{\mathrm{exp}}$ is the externally exposed mass-energy response after shielding and Noether sea coupling, not raw internal ledger energy. The curvature/source residual is
 $$
 R_{\mathrm{EFE}}^{(q)}
 =
@@ -143,7 +143,7 @@ R_{\mathrm{EFE}}^{(q)}
 \left\|8\pi G_{\mathrm{eff}}T_{\mu\nu}^{\mathrm{eff}}\right\|_W+\varepsilon
 }.
 $$
-This row is observer-level: $g_{\mu\nu}^{\mathrm{eff}}$ is the emergent metric comparison object, while the substrate remains absolute time plus Euclidean void plus Noether Sea.
+This row is observer-level: $g_{\mu\nu}^{\mathrm{eff}}$ is the emergent metric comparison object, while the substrate remains absolute time plus Euclidean void plus Noether sea.
 
 The action check is a separate closure target because the same effective equation can otherwise be copied as a fit. Let
 $$
@@ -196,7 +196,7 @@ $$
 \right)
 +R_{a,\theta}.
 $$
-The pass condition is not exact FLRW ontology; it is that $(R_{H,\theta},R_{\rho,\theta},R_{a,\theta})$ are either below tolerance in the benchmark regime or are routed to named Noether-Sea evolution, clock-rate, redshift, and CMB rows. This records the Guth/Hughes cosmology signal while preserving the canon rule that $a(t)$ and $H(t)$ are effective observer variables.
+The pass condition is not exact FLRW ontology; it is that $(R_{H,\theta},R_{\rho,\theta},R_{a,\theta})$ are either below tolerance in the benchmark regime or are routed to named Noether sea evolution, clock-rate, redshift, and CMB rows. This records the Guth/Hughes cosmology signal while preserving the canon rule that $a(t)$ and $H(t)$ are effective observer variables.
 
 ## Shared Branch Certificate Contract
 
@@ -244,7 +244,7 @@ $$
 \longrightarrow
 \frac{h^{ab}}{c_{\text{eff}}^2}
 $$
-in a homogeneous isotropic Noether-Sea cell. If this limit fails or leaves unsuppressed composition-dependent or direction-dependent residue, the scalar rest-mass readout $m_0(A)\to\alpha\zeta(A)E_{\mathrm{internal}}(A)/c_{\text{eff}}^2$ is only a fitted average rather than a branch consequence.
+in a homogeneous isotropic Noether sea cell. If this limit fails or leaves unsuppressed composition-dependent or direction-dependent residue, the scalar rest-mass readout $m_0(A)\to\alpha\zeta(A)E_{\mathrm{internal}}(A)/c_{\text{eff}}^2$ is only a fitted average rather than a branch consequence.
 
 The branch-identity residual is
 $$
@@ -325,7 +325,7 @@ Failure modes:
 - `certificate.stability_gap_failure`: integer closure holds but $\Delta_{\mathbf{k}}^{(q)}\le0$ in the promoted benchmark regime.
 - `certificate.mass_dressing_failure`: $\mathcal{M}_{\mathrm{sea},q}^{ab}$ fails to reduce to $h^{ab}/c_{\text{eff}}^2$ in the homogeneous isotropic limit or leaves unsuppressed composition-dependent or direction-dependent residue.
 - `certificate.clock_not_branch_period`: the clock ratio is asserted without phase return, causal-root ledger return, and positive stability gap on the same branch.
-- `residual.speed_conflation`: $c_f$, $c_{\text{eff}}$, $c_\gamma$, and locally measured light speed are identified without the required Noether-Sea dressing map.
+- `residual.speed_conflation`: $c_f$, $c_{\text{eff}}$, $c_\gamma$, and locally measured light speed are identified without the required Noether sea dressing map.
 - `residual.observable_refit`: the normalized closure residual is made acceptable only by changing coefficients between clock, ruler, photon, metric, mass-response, or event rows.
 - `event.ledger_residual`: a residual is hidden as recoil, medium update, radiation, remnant state, or product inventory instead of closing $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$.
 
@@ -344,7 +344,7 @@ This is a source-status population row, not a passed certificate. The $A_0$ pack
 | Certificate component | $A_0$ source status | Certificate consequence |
 | --- | --- | --- |
 | $q$, $W$, $\mathcal{G}_{A,q}$ | Defined as diagnostic reduced branch row `1`, branch label $\Lambda$, one closed-cycle window $T_{\mathbf{k}}$, and finite causal-root ledger $\mathcal{G}_{A_0}$ required by the reduced certificate packet. | Populatable as a schema row only, with fail-closed source status. |
-| $c_f$, $c_{\text{eff}}$, $c_\gamma$, $c_0$ | $c_f$ is declared for speed-ordering tests in the weak homogeneous Noether-Sea cell; $c_{\text{eff}}$, $c_\gamma$, and $c_0$ remain unresolved dressing / observer-speed slots. | Do not identify primitive and dressed speeds in the $A_0$ seed row. |
+| $c_f$, $c_{\text{eff}}$, $c_\gamma$, $c_0$ | $c_f$ is declared for speed-ordering tests in the weak homogeneous Noether sea cell; $c_{\text{eff}}$, $c_\gamma$, and $c_0$ remain unresolved dressing / observer-speed slots. | Do not identify primitive and dressed speeds in the $A_0$ seed row. |
 | $\mathcal{A}_q$, $\nu_J^{(q)}$, $g_{\mathrm{inactive}}^{(q)}$, $h_{\mathrm{mem}}^{(q)}$ | Allowed Tier 0 / Tier 1 inputs from a certified branch-chart object $\mathfrak{B}$, but the current compact $A_0$ candidate does not pass the residual rows needed to accept them. | Keep as `blocked_pending_accepted_branch_chart`. |
 | $\Delta_{\mathbf{k}}^{(q)}$ | The quotient monodromy and $\eta$ ladder remain not computed because the corrected one-period residuals fail. | Keep as `not_computed`; do not infer stability from integer closure. |
 | $\mathcal{D}_{\beta,q}^{\mathrm{mov}}$, $T_q(\mathbf{w})$, $R_{\mathrm{coeff}}^{(q)}$, $\mathcal{R}_{\mathrm{Lor},q}$ | The reduced $A_0$ row is a rest-branch seed with $\mathcal{D}_{\beta}=\{0\}$; it does not supply a moving drift band or coefficient extraction. | Keep the Lorentz and moving-coefficient rows blocked until a moving continuation preserves the same finite ledger. |

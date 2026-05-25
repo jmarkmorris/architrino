@@ -8,7 +8,7 @@ $$
 2q_{\chi A}+m_Ss_A+\rho_A
 $$
 
-explains possible mechanisms inside the Noether-Sea tensor response, but the geometry bridge does not need those mechanism coefficients separately to test observer-geometry closure. It needs the branch-exported axial coefficient of $\delta\mathcal M_{\mathrm{sea,tf}}^{ab}$.
+explains possible mechanisms inside the Noether sea tensor response, but the geometry bridge does not need those mechanism coefficients separately to test observer-geometry closure. It needs the branch-exported axial coefficient of $\delta\mathcal M_{\mathrm{sea,tf}}^{ab}$.
 
 ## Direct Extraction From The Geometry Export
 
@@ -51,7 +51,7 @@ Thus $\mu_K$ is the only medium-response scalar the axial ADM/Cartan closure row
 
 ## Mechanism Decomposition
 
-If the Noether-Sea tensor response is supplied through the pressure/strain scaffold, then [axial-medium-response-realization](axial-medium-response-realization.md) gives
+If the Noether sea tensor response is supplied through the pressure/strain scaffold, then [axial-medium-response-realization](axial-medium-response-realization.md) gives
 
 $$
 \mu_K
@@ -203,4 +203,4 @@ $$
 A_{ab}\Pi_{\mathrm{tf}}\delta\mathcal M_{\mathrm{sea}}^{ab}.
 $$
 
-It turns the remaining geometry-bridge question into one branch-local tensor coefficient. Future work should populate that coefficient from a retained Noether-Sea response row or explicitly classify the octahedral axial exposure as nonmetric branch data.
+It turns the remaining geometry-bridge question into one branch-local tensor coefficient. Future work should populate that coefficient from a retained Noether sea response row or explicitly classify the octahedral axial exposure as nonmetric branch data.

@@ -273,7 +273,7 @@ d_{\mathrm{obs}}\!\left(
 $$
 Here $\mathcal{Q}^{\mathbb{A}\mathbb{A}\mathbb{A}}_{\mathrm{wake}}$ is only the sector label extracted from the retained causal-wake/action record. It is not an independent topological charge assigned after the effective gauge description has already been fitted.
 
-The global gauge-topology target passes only if $\Delta_{\mathrm{gauge,glob}}$ and any declared $\Delta_{\mathrm{sector}}$ stay below tolerance while charge continuity, local force recovery, AB holonomy, and flux/charge compatibility are all read from one shared record. It fails if a chart-dependent potential must be promoted to ontology, if the topological charge is inserted separately from the wake/action ledger, or if the same sector requires different Noether-Sea variables for force, phase, and charge recovery.
+The global gauge-topology target passes only if $\Delta_{\mathrm{gauge,glob}}$ and any declared $\Delta_{\mathrm{sector}}$ stay below tolerance while charge continuity, local force recovery, AB holonomy, and flux/charge compatibility are all read from one shared record. It fails if a chart-dependent potential must be promoted to ontology, if the topological charge is inserted separately from the wake/action ledger, or if the same sector requires different Noether sea variables for force, phase, and charge recovery.
 
 ## SU(2) Weak Sector
 
@@ -322,7 +322,7 @@ $$
 +\bar\Psi\,i\gamma^\mu D_\mu\Psi
 +\cdots
 $$
-where omitted terms are higher-order constitutive corrections from the Noether Sea.
+where omitted terms are higher-order constitutive corrections from the Noether sea.
 
 This is an emergent effective description, not a claim that gauge fields are ontologically fundamental.
 

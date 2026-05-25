@@ -263,7 +263,7 @@ Each toy packet supplies one weak-homogeneous hydrogen line set $\mathcal L_{\ma
 
 | Variable | Meaning |
 | --- | --- |
-| $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ | shared hydrogen channel ledger used to extract the envelope gaps and local Noether-Sea response |
+| $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ | shared hydrogen channel ledger used to extract the envelope gaps and local Noether sea response |
 | $\mathcal L_{\mathrm H}^{0}$ | chosen isolated hydrogen transitions $a\to b$ with recovered labels |
 | $E_{\text{env}}^{(\ell)}(a)-E_{\text{env}}^{(\ell)}(b)$ | envelope gap from the same spectral channel record |
 | $\nu_{a\to b}^{\mathrm{obs},(\ell)}$ | observer-level frequency used only after the clock-rate conversion is declared |
@@ -450,7 +450,7 @@ $$
 
 The stronger extraction claim requires the diameter of $\mathcal B_{\mathrm H}^{\mathrm{spec}}$ to shrink under additional independent hydrogen records or under a constitutive response calculation for $(a_n,a_\chi,a_\lambda,a_R)$. The first packet does not require that stronger claim; it only requires that a shared constrained row survive the line set.
 
-This is not yet the full promotion gate. That gate requires $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, $E_{\text{env}}^{(\ell)}(a)-E_{\text{env}}^{(\ell)}(b)$, $\nu_{a\to b}^{\mathrm{obs},(\ell)}$, and $(a_n,a_\chi,a_\lambda,a_R)$ to be extracted from one declared hydrogen spectral channel record and the same Noether-Sea cell, with recoil, hyperfine structure, photon-channel propagation, and source-branch effects carried outside $\Gamma_N$ unless they are in the declared residual budget.
+This is not yet the full promotion gate. That gate requires $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, $E_{\text{env}}^{(\ell)}(a)-E_{\text{env}}^{(\ell)}(b)$, $\nu_{a\to b}^{\mathrm{obs},(\ell)}$, and $(a_n,a_\chi,a_\lambda,a_R)$ to be extracted from one declared hydrogen spectral channel record and the same Noether sea cell, with recoil, hyperfine structure, photon-channel propagation, and source-branch effects carried outside $\Gamma_N$ unless they are in the declared residual budget.
 
 ## Hydrogen $\Gamma_N$ Certificate Boundary
 
@@ -469,7 +469,7 @@ $$
 \boldsymbol{\tau}
 \right),
 $$
-where $\mathbf a^{G}=(a_n,a_\chi,a_\lambda,a_R)$ is the static Noether-Sea response row for the same cell and $\boldsymbol{\tau}$ collects the declared tolerances.
+where $\mathbf a^{G}=(a_n,a_\chi,a_\lambda,a_R)$ is the static Noether sea response row for the same cell and $\boldsymbol{\tau}$ collects the declared tolerances.
 
 The certificate residual vector is
 $$
@@ -516,7 +516,7 @@ $$
 \left|\mathbf b_{N}^{\mathrm{spec}}\cdot\mathbf g_{N,\mathrm H}^{(\ell)}\right|+\varepsilon_{\mathrm{row}}
 }.
 $$
-Here $\mathbf b_{N,\mathrm{stat}}^{\mathrm{spec}}=(b_n^{\mathrm{spec}},b_\chi^{\mathrm{spec}},b_\lambda^{\mathrm{spec}},b_R^{\mathrm{spec}})$ is the four-entry static endpoint subrow. The packet passes only if every component of $\mathcal R_{\mathrm H}^{\Gamma}$ is within its declared tolerance and all packet inputs share the same provenance ledger $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ and the same static Noether-Sea cell. Otherwise it fails with the first violated row: provenance, $b_\xi$, endpoint, line-set, refinement, or residual separation.
+Here $\mathbf b_{N,\mathrm{stat}}^{\mathrm{spec}}=(b_n^{\mathrm{spec}},b_\chi^{\mathrm{spec}},b_\lambda^{\mathrm{spec}},b_R^{\mathrm{spec}})$ is the four-entry static endpoint subrow. The packet passes only if every component of $\mathcal R_{\mathrm H}^{\Gamma}$ is within its declared tolerance and all packet inputs share the same provenance ledger $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ and the same static Noether sea cell. Otherwise it fails with the first violated row: provenance, $b_\xi$, endpoint, line-set, refinement, or residual separation.
 
 ## Failure Tests
 
