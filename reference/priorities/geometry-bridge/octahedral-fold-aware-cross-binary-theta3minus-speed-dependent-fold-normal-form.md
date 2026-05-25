@@ -255,6 +255,56 @@ $$
 \texttt{directed-rounded-theta3minus-fold-limit-interval-certified}.
 $$
 
+The sampled remainder-budget successor status is
+
+$$
+\texttt{sampled-theta3minus-remainder-budget-feasibility-certified}.
+$$
+
+The sampled fold-pair scaled-stencil successor status is
+
+$$
+\texttt{sampled-theta3minus-fold-pair-scaled-stencil-certified}.
+$$
+
+The directed-rounded sampled-node fold-pair successor status is
+
+$$
+\texttt{directed-rounded-sampled-node-theta3minus-fold-pair-scaled-interval-certified}.
+$$
+
+The directed-rounded fold-pair root-tube cell-cover successor status is
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-scaled-root-tube-cell-cover-certified}.
+$$
+
+The sampled regular-root stencil successor status is
+
+$$
+\texttt{sampled-theta3minus-regular-root-stencil-certified}.
+$$
+
+The directed-rounded sampled-node regular-root successor status is
+
+$$
+\texttt{directed-rounded-sampled-node-theta3minus-regular-root-interval-certified}.
+$$
+
+The directed-rounded regular-root cell-cover successor status is
+
+$$
+\texttt{directed-rounded-theta3minus-regular-root-cell-cover-certified}.
+$$
+
+The directed-rounded regular-root complement-slab successor status is
+
+$$
+\texttt{directed-rounded-theta3minus-regular-root-complement-slab-exclusion-certified}.
+$$
+
+These successors sharpen the theorem target: on the sampled collar, the fold-pair residual is $O(y^2)$, while the regular-root residual is $R_G^{\mathrm{reg}}=O(y)$ and $R_D^{\mathrm{reg}}=O(y^3)$. The fold-pair side now has a directed-rounded speed/y cell cover for the Taylor-cancelled $K_\varepsilon$ endpoint signs, the $h$-coordinate root graph, and $J_\varepsilon$ signs, with minimum endpoint $K_\varepsilon$ clearance $0.0255177449896$, minimum endpoint $H_\varepsilon$ clearance $0.43543435566$, and minimum $|J_\varepsilon|$ clearance $0.742965436$ on the $h$ graph. The regular-root side now has a directed-rounded speed/y cell cover for the four named regular-sheet quotient rows, with minimum endpoint $F$ clearance $0.0000290544619118$, minimum $|F_\delta|$ clearance $0.581059952407$, $\max |R_G^{\mathrm{reg}}|/y\le0.0880368563612$, and $\max |R_D^{\mathrm{reg}}|/y^3\le0.602156573611$. The hybrid raw-$F$/fold-$p$ complement-slab packet closes the regular-root complement with minimum raw $F$ clearance $0.0000273284209642$ and minimum scaled fold-$p$ $F/y^2$ clearance $0.000252834825122$. The directed-rounded successor should close the fold-pair $G,D$ quotient remainder over the certified $h$ root graph.
+
 The successor row is
 
 $$

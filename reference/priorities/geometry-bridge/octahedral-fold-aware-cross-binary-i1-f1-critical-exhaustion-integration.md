@@ -154,10 +154,52 @@ $$
 \texttt{directed-rounded-theta3minus-fold-limit-interval-certified}.
 $$
 
+The current sampled remainder-budget successor is
+
+$$
+\texttt{sampled-theta3minus-remainder-budget-feasibility-certified}.
+$$
+
+The current fold-pair scaled-stencil successor is
+
+$$
+\texttt{sampled-theta3minus-fold-pair-scaled-stencil-certified}.
+$$
+
+The current fold-pair sampled-node interval successor is
+
+$$
+\texttt{directed-rounded-sampled-node-theta3minus-fold-pair-scaled-interval-certified}.
+$$
+
+The current fold-pair root-tube cell-cover successor is
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-scaled-root-tube-cell-cover-certified}.
+$$
+
+The current regular-root stencil successor is
+
+$$
+\texttt{sampled-theta3minus-regular-root-stencil-certified}.
+$$
+
+The current regular-root sampled-node interval successor is
+
+$$
+\texttt{directed-rounded-sampled-node-theta3minus-regular-root-interval-certified}.
+$$
+
+The current regular-root cell-cover successor is
+
+$$
+\texttt{directed-rounded-theta3minus-regular-root-cell-cover-certified}.
+$$
+
 The next theorem-grade successor row is
 
 $$
 \texttt{theta\_3minus.left-fold-collar-directed-rounded-normal-form-remainder-required}.
 $$
 
-This successor is not another broad gate. It is the precise mathematical place where the proof now stands: the sampled speed-dependent square-coordinate normal form already has $G<0$ and $D<0$ in the chart $\theta=\theta_{3-}(\nu)-y^2$, and the interval packet has certified the negative limit $L(\nu)$. The remaining task is the directed-rounded remainder proof that upgrades those sampled signs to the whole collar. Then the `I1` regular-cell contribution to critical exhaustion can be composed.
+This successor is not another broad gate. It is the precise mathematical place where the proof now stands: the sampled speed-dependent square-coordinate normal form already has $G<0$ and $D<0$ in the chart $\theta=\theta_{3-}(\nu)-y^2$, the interval packet has certified the negative limit $L(\nu)$, and the sampled remainder-budget scan shows the remaining residuals use only about $5.6\%$ of the certified margin. The same scan also exposes the proof geometry: the fold-pair residual is sampled as $O(y^2)$, while the regular-root residual is sampled as $R_G^{\mathrm{reg}}=O(y)$ and $R_D^{\mathrm{reg}}=O(y^3)$. The fold-pair scaled-stencil packet bounds the singular pair in sampled $p,z,J$ variables, the sampled-node interval packet upgrades those fold-pair nodes to directed-rounded $z_\pm$ brackets and pair $G,D$ quotient intervals, and the root-tube cell-cover packet proves the Taylor-cancelled fold-pair root tubes, the $h$-coordinate root graph, and $J_\varepsilon$ signs on a finite speed/y cell cover. The regular-root cell-cover packet proves the four named regular-sheet quotient rows on a finite speed/y cell cover, and the complement-slab packet closes the full regular-root complement with a hybrid raw-$F$/fold-$p$ cover. The remaining task is the continuous directed-rounded $G,D$ quotient-remainder proof over the certified fold-pair $h$ root graph. Then the `I1` regular-cell contribution to critical exhaustion can be composed.

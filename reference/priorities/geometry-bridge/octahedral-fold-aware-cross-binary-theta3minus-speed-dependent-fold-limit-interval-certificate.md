@@ -128,6 +128,20 @@ on the moving collar. The remaining proof must split the remainders into:
 
 The important improvement is that the negative margin no longer comes from a sampled endpoint replay. The certificate supplies the interval target that the $R_G,R_D$ proof must beat.
 
+The sampled successor [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-remainder-budget-scan](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-remainder-budget-scan.md) now measures that target. On its $95$-row speed/collar grid, the worst total residual is
+
+$$
+\max |R_G^{\mathrm{tot}}|\approx0.010702388525,
+$$
+
+which uses about $5.6\%$ of the certified margin, while
+
+$$
+\max |R_D^{\mathrm{tot}}|\approx0.00016917145.
+$$
+
+It also identifies the sampled bottleneck as the regular-root part of $R_G$ at $y=0.115$, not the coalescing fold pair. The successor scaling split gives fold-pair $O(y^2)$ rows and regular-root $O(y)$/$O(y^3)$ rows, so the directed-rounded proof can be separated into a scaled fold-pair normal form and an ordinary regular-root continuation estimate. The fold-pair scaled-stencil successor supplies the sampled $p,z,J$ chart rows, the sampled-node interval successor certifies directed-rounded $z_\pm$ brackets, $J_\pm$ signs, and pair $G,D$ quotient intervals at those nodes, and the root-tube cell-cover successor certifies the Taylor-cancelled $K_\varepsilon$ endpoint signs and $J_\varepsilon$ signs on a finite speed/y cell cover. The remaining fold-pair proof is now the $G,D$ quotient-remainder bound over those certified root tubes. The regular-root sampled-node successor brackets all $768$ finite-node regular roots, and the regular-root cell-cover successor extends the four named regular-sheet quotient rows to a directed-rounded speed/y cell cover with $\max |R_G^{\mathrm{reg}}|/y\le0.0880368563612$ and $\max |R_D^{\mathrm{reg}}|/y^3\le0.602156573611$. The remaining regular-root proof is the complement-slab exclusion row if the collar proof must also rule out every non-named regular sheet.
+
 ## Claim Boundary
 
 This packet may claim:
@@ -166,6 +180,48 @@ $$
 \boxed{
 \texttt{directed-rounded-theta3minus-fold-limit-interval-certified}.
 }
+$$
+
+The sampled remainder-budget successor status is
+
+$$
+\texttt{sampled-theta3minus-remainder-budget-feasibility-certified}.
+$$
+
+The sampled fold-pair scaled-stencil successor status is
+
+$$
+\texttt{sampled-theta3minus-fold-pair-scaled-stencil-certified}.
+$$
+
+The directed-rounded sampled-node fold-pair successor status is
+
+$$
+\texttt{directed-rounded-sampled-node-theta3minus-fold-pair-scaled-interval-certified}.
+$$
+
+The directed-rounded fold-pair root-tube cell-cover successor status is
+
+$$
+\texttt{directed-rounded-theta3minus-fold-pair-scaled-root-tube-cell-cover-certified}.
+$$
+
+The sampled regular-root stencil successor status is
+
+$$
+\texttt{sampled-theta3minus-regular-root-stencil-certified}.
+$$
+
+The directed-rounded sampled-node regular-root successor status is
+
+$$
+\texttt{directed-rounded-sampled-node-theta3minus-regular-root-interval-certified}.
+$$
+
+The directed-rounded regular-root cell-cover successor status is
+
+$$
+\texttt{directed-rounded-theta3minus-regular-root-cell-cover-certified}.
 $$
 
 The successor row remains
