@@ -2,7 +2,7 @@
 
 Promotion status: `defer-with-blocker`.
 
-The h27 through h37 successor coefficient packets expose a repeatable
+The h27 through h38 successor coefficient packets expose a repeatable
 coefficient mechanism. This packet proves the formal recurrence and the formal
 $G,D$ coefficient identity that the executable certificates witness. It is not
 yet an analytic all-order closure theorem: convergence, continuous tail bounds,
@@ -112,7 +112,7 @@ h_{n,\varepsilon}(\nu)
 -\frac{C_{n,\varepsilon}(\nu)}{S_{n,\varepsilon}(\nu)}.
 $$
 
-This is the formal recurrence implemented by the finite h27 through h37
+This is the formal recurrence implemented by the finite h27 through h38
 successor certificates. Since $S_{n,\varepsilon}=\varepsilon\beta
 F_{\eta\eta}$ is independent of $n$, slope separation is not a new burden at
 each successor row. One certified interval proof that $\beta F_{\eta\eta}$ is
@@ -271,6 +271,6 @@ finished retention proof must still show:
 - the resulting first-y enclosure composes with the scaled remainder, `I1`
   regular critical exhaustion, interval quadrature, and retained branch tests.
 
-Until those burdens are discharged, the h27 through h37 packets remain
+Until those burdens are discharged, the h27 through h38 packets remain
 finite-order analytic certificates, while this packet supplies the formal
 all-order recurrence and identity behind them.
