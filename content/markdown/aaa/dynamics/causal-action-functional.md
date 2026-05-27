@@ -5,7 +5,7 @@ This chapter develops the action-counting complement to the master-equation trea
 The current scope is mixed. Some statements are theorem-backed in the regularized setting, while the larger closure program remains open. The chapter therefore begins with the problem statement and core functional definitions, then separates the controlled theorem spine from benchmarks, implementation notes, and longer-range closure targets.
 
 ## Problem Statement and Goal
-The broad objective is to explain why only certain assemblies are stable and discrete, and to treat observer-level mass as an exposed response of trapped causal history, shielding, and Noether sea coupling rather than an externally assigned input. The target in this chapter is narrower: a geometric causal-locus statistic derived from the causal-wake kernel that can be evaluated on periodic orbits, compared across topological classes, and tested against dynamical stability.
+The broad objective is to explain why only certain assemblies are stable and discrete, and to treat observer-level mass as an exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling rather than an externally assigned input. The target in this chapter is narrower: a geometric causal-locus statistic derived from the causal-wake kernel that can be evaluated on periodic orbits, compared across topological classes, and tested against dynamical stability.
 Canonical dynamics are defined in [The Master Equation (Canonical Form)](master-equation.md#the-master-equation-canonical-form); this chapter provides the complementary action-functional lens.
 
 The level separation is essential:

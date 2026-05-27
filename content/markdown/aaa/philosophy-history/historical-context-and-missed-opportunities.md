@@ -389,7 +389,7 @@ Transition relevance is high. The project should not inherit Wheeler's particles
 
 ### Recovery Target
 
-The long-term relevance of this episode is permanent until the field/particle distinction is closed at the constitutive level. Recovery would require deriving effective fields from causal-wake superposition, deriving inertial response from trapped internal causal history and Noether sea coupling, and replacing singular point-particle idealization with finite stable assembly branches that still reproduce the tested point-particle and field-theory limits. Wheeler's historical sequence then becomes a near-miss benchmark: $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds only if it can keep the particles-first pressure without losing the field-level successes that Wheeler eventually had to recover.
+The long-term relevance of this episode is permanent until the field/particle distinction is closed at the constitutive level. Recovery would require deriving effective fields from causal-wake superposition, deriving inertial response from a closed internal causal-history ledger and Noether sea coupling, and replacing singular point-particle idealization with finite stable assembly branches that still reproduce the tested point-particle and field-theory limits. Wheeler's historical sequence then becomes a near-miss benchmark: $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds only if it can keep the particles-first pressure without losing the field-level successes that Wheeler eventually had to recover.
 
 ---
 

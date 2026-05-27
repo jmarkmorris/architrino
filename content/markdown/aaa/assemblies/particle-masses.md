@@ -14,7 +14,7 @@ The conservative thesis is:
 $$
 \text{observed mass}
 \quad\leftrightarrow\quad
-\text{the externally exposed response of trapped internal causal history.}
+\text{the externally exposed response of a closed internal causal-history ledger.}
 $$
 
 That response is shaped by internal energy storage, shielding, and the medium-dressed way the Noether sea couples to a moving or accelerated assembly.

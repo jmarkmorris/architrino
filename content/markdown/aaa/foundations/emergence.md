@@ -165,7 +165,7 @@ The most useful observer-level quantities enter only after assemblies have forme
 
 -   **Angular momentum:** derivation target. The mechanism is organized binary circulation and ordered orientation data; the mapping is through the return-period phase and angular-momentum ledger; the regime is stable or metastable closed cycles; the breakdown occurs at separator crossings, root-ledger changes, or dissociation.
 -   **Chirality:** derivation target. The mechanism is ordered-frame precession and causal-writhe parity; the mapping is through the Noether swarm closure label; the regime is branch-preserving deformation; the breakdown occurs when a causal-root bifurcation or reconnection changes the handed branch.
--   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is trapped internal causal history, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
+-   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is a closed internal causal-history ledger, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
 In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
 

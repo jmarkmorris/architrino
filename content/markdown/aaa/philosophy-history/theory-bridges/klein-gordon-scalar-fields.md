@@ -185,7 +185,7 @@ with the appropriate branch value subtracted on each side. For this bridge, such
 
 $\phi$ should be treated as a coarse-grained scalar amplitude of Noether sea density, compression, or radial-breathing response, not as a fundamental continuous substance.
 
-The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether sea. Particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling.
+The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether sea. Particle rest mass itself remains the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling.
 
 The metric wave operator $\nabla^\mu\nabla_\mu$ belongs to emergent metric closure, not to the substrate-level Euclidean void. The curvature-coupling term $\xi R\phi^2$ is therefore read as a bridge term: scalar-mode behavior changes with effective medium curvature, density, or stress.
 

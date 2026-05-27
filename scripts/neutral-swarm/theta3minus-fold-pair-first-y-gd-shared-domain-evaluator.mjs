@@ -8158,6 +8158,42 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
   const nGRows = cells.map((cell) => cell.n_g_row);
   const centerSolves = cells.flatMap((cell) => cell.h39_center_solves);
   const finitePrefixSummaries = cells.map((cell) => cell.finite_prefix_summary);
+  const hRowProviderReports = rows
+    .map((row) =>
+      row.h39_coefficient_cell?.h_row_provider_report
+        ? {
+            cell_id: row.cell_id ?? null,
+            ...row.h39_coefficient_cell.h_row_provider_report,
+          }
+        : null
+    )
+    .filter(Boolean);
+  const hRowProviderBranchReports = hRowProviderReports.flatMap((report) =>
+    (report.branch_reports ?? []).map((branchReport) => ({
+      cell_id: report.cell_id,
+      ...branchReport,
+    }))
+  );
+  const hRowProviderKinds = [
+    ...new Set(
+      hRowProviderBranchReports
+        .map((report) => report.provider_kind)
+        .filter(Boolean)
+    ),
+  ];
+  const hRowProviderSourceCellIds = [
+    ...new Set(
+      hRowProviderBranchReports
+        .map((report) => report.source_cell_id)
+        .filter(Boolean)
+    ),
+  ];
+  const hRowProviderBackedBranchCount = hRowProviderBranchReports.filter(
+    (report) => report.preserves_dependencies === true
+  ).length;
+  const hRowProviderBackedCellCount = hRowProviderReports.filter(
+    (report) => report.provider_backed_all_branches === true
+  ).length;
   const candidateR43OuterBoundSources = [
     ...new Set(
       finitePrefixSummaries
@@ -8355,6 +8391,23 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
       : null,
     coefficient_row_count: rows.length,
     branch_coefficient_row_count: r43Rows.length,
+    h_row_provider_report_count: hRowProviderReports.length,
+    h_row_provider_backed_branch_count: hRowProviderBackedBranchCount,
+    h_row_provider_backed_cell_count: hRowProviderBackedCellCount,
+    h_row_provider_backed_all_cells:
+      rows.length > 0 && hRowProviderBackedCellCount === rows.length,
+    h_row_provider_kinds: hRowProviderKinds,
+    h_row_provider_source_cell_ids: hRowProviderSourceCellIds,
+    h_row_provider_dependency_trace_count: hRowProviderBranchReports.reduce(
+      (sum, report) => sum + Number(report.dependency_trace_count ?? 0),
+      0
+    ),
+    h_row_provider_dependency_state:
+      hRowProviderBackedCellCount === rows.length && rows.length > 0
+        ? "dependency-preserving-provider-backed-replay"
+        : hRowProviderBackedBranchCount > 0
+          ? "mixed-provider-and-snapshot-replay"
+          : "independent-interval-snapshot-replay",
     source_certificate_obstruction_count:
       sourceCertificateObstructions.length,
     source_certificate_obstructions: sourceCertificateObstructions,
@@ -8817,6 +8870,7 @@ export function buildH39SharedDomainCoefficientArtifact({
   denominatorSourceCoefficientAbs = 1,
   rhoX = null,
   rX = null,
+  hRowProvider = null,
 } = {}) {
   const sourceRows = h38Rows ?? h38RowsFromArtifact(h38Artifact);
   const h38ValidationErrors =
@@ -8861,6 +8915,7 @@ export function buildH39SharedDomainCoefficientArtifact({
     denominatorSourceCoefficientAbs,
     rhoX,
     rX,
+    hRowProvider,
   });
   const summary = summarizeH39CoefficientRows({
     rows,
@@ -8925,6 +8980,7 @@ export function buildH39SharedDomainCoefficientArtifact({
         denominatorSourceCoefficientAbs,
       rho_X: rhoX,
       r_X: rX,
+      h_row_provider_hook_supplied: typeof hRowProvider === "function",
       h38_rows_available: sourceRows.length,
       h38_rows_evaluated: rows.length,
       series_order: context.seriesOrder,
@@ -8945,6 +9001,8 @@ export function buildH39SharedDomainCoefficientArtifact({
         true,
       emits_graph_radii_witness:
         graphRadiiWitness?.result?.h39_graph_radii_witness === true,
+      h_row_provider_backed_replay:
+        summary.h_row_provider_backed_all_cells === true,
       certifies_directed_rounded_shared_domain: false,
       certifies_directed_rounded_h39_polydisc_M_G_bound: false,
       certifies_directed_rounded_h39_root_tangent_numerator_M_R_bound: false,
@@ -9192,6 +9250,71 @@ export function validateH39SharedDomainCoefficientArtifact(artifact) {
   );
 
   if (rows.length > 0) {
+    const hRowProviderReports = rows
+      .map((row) => row.h39_coefficient_cell?.h_row_provider_report)
+      .filter(Boolean);
+    const hRowProviderBranchReports = hRowProviderReports.flatMap(
+      (report) => report.branch_reports ?? []
+    );
+    const providerBackedBranchCount = hRowProviderBranchReports.filter(
+      (report) => report.preserves_dependencies === true
+    ).length;
+    const providerBackedCellCount = hRowProviderReports.filter(
+      (report) => report.provider_backed_all_branches === true
+    ).length;
+    assertValidationField(
+      hRowProviderReports.every(
+        (report) =>
+          report.certifies_shifted_R43_outer_bound === false &&
+          report.certifies_directed_rounded_shared_domain === false &&
+          report.certifies_continuous_polydisc_primitives === false &&
+          report.retained_branch === false
+      ),
+      "h39 h-row provider reports must remain candidate-only and not retained",
+      errors
+    );
+    assertValidationField(
+      rows.every((row) => {
+        const report = row.h39_coefficient_cell?.h_row_provider_report;
+        return (
+          !report ||
+          row.h39_coefficient_cell?.claim_boundary
+            ?.h_row_provider_backed_replay ===
+            (report.provider_backed_all_branches === true)
+        );
+      }),
+      "h39 h-row provider replay claim boundary must match provider report",
+      errors
+    );
+    assertValidationField(
+      hRowProviderBranchReports.every(
+        (report) =>
+          report.preserves_dependencies !== true ||
+          (Number(report.dependency_trace_count) > 0 &&
+            report.provenance_present === true &&
+            report.dependency_witness_present === true &&
+            report.provider_claim_boundary_candidate_only === true)
+      ),
+      "h39 h-row provider-backed branch reports must carry trace, provenance, witness, and candidate-only boundary",
+      errors
+    );
+    assertValidationField(
+      summary.h_row_provider_report_count === hRowProviderReports.length &&
+        summary.h_row_provider_backed_branch_count ===
+          providerBackedBranchCount &&
+        summary.h_row_provider_backed_cell_count ===
+          providerBackedCellCount &&
+        summary.h_row_provider_backed_all_cells ===
+          (providerBackedCellCount === rows.length),
+      "h39 h-row provider summary must match emitted provider reports",
+      errors
+    );
+    assertValidationField(
+      artifact?.claim_boundary?.h_row_provider_backed_replay ===
+        (summary.h_row_provider_backed_all_cells === true),
+      "h39 h-row provider artifact claim boundary must match provider summary",
+      errors
+    );
     assertValidationField(
       summary.coefficient_row_count === rows.length,
       "summary coefficient row count must equal emitted row count",

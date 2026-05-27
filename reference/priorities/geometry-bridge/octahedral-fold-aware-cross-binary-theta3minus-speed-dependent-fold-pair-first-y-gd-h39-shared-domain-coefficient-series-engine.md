@@ -1403,15 +1403,18 @@ recurrence dependencies into the row-$1$ replay rather than subdividing all
 exported h-coordinates as independent variables.
 \texttt{computeH39PredecessorHRowProviderBoundaryCandidate} now records that
 boundary explicitly. Given an h38 row, it counts the exported h-interval,
-solve-slope, and residual fields and reports whether parent, recurrence, or
-transport keys are present. The current boundary is
-`independent-interval-snapshot-only`. `branchInputsFromH38Row` now accepts an
-opt-in h-row provider. The provider must return a derived h-interval replay
-view together with a nonempty dependency trace and an explicit
-`preservesDependencies` flag; interval-only providers are rejected. Evaluated
-cells record the provider-backed replay in `h_row_provider_report` but keep the
-shifted $R_{\varepsilon,43}$, shared-domain, continuous primitive, and
-retained-branch claims false.
+solve-slope, and residual fields and reports whether a complete
+dependency-preserving provider record is present. The current boundary is
+`independent-interval-snapshot-only`, while flag-only provider metadata is
+classified as `incomplete-provider-metadata-rejected`. `branchInputsFromH38Row`
+now accepts an opt-in h-row provider. The provider must return a derived
+h-interval replay view together with a nonempty dependency trace, provider
+provenance, a dependency witness, a candidate-only claim boundary, and an
+explicit `preservesDependencies` flag; interval-only providers are rejected.
+Evaluated cells and artifact summaries record the provider-backed replay in
+`h_row_provider_report` and h-row provider summary fields, but keep the shifted
+$R_{\varepsilon,43}$, shared-domain, continuous primitive, and retained-branch
+claims false.
 
 The same mechanism now has a primitive-profile inlet rather than only a row
 diagnostic. \texttt{computeH39AffineCenterShiftedR43SourceProfileCandidate}

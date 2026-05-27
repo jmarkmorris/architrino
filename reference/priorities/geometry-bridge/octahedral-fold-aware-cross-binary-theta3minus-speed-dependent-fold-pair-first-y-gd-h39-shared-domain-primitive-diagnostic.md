@@ -603,9 +603,13 @@ dependency-preserving h-row provider. A primitive witness may not treat the
 row-$1$ source as transported until branch inputs carry a predecessor-recurrence
 transport or certified h-row subdivision witness through the evaluator boundary.
 That boundary is now executable: row evaluation accepts an opt-in h-row provider
-only when it supplies a dependency trace and explicitly preserves dependencies,
-then records provider-backed replay in `h_row_provider_report` while keeping all
-primitive and retained-branch promotion flags false.
+only when it supplies derived h-intervals, a nonempty dependency trace,
+provider provenance, a dependency witness, a candidate-only claim boundary, and
+an explicit dependency-preservation flag. The evaluator rejects interval-only
+and flag-only providers, then records provider-backed replay in
+`h_row_provider_report` and the artifact provider summary while keeping all
+shifted source, primitive, shared-domain, and retained-branch promotion flags
+false.
 
 ## Candidate Provenance No-Go Report
 

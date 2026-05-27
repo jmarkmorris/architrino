@@ -1305,7 +1305,7 @@ Forces cause accelerations in the Euclidean void. Time supplies the universal ev
 
 The same distinction applies to momentum and inertia: the kinematic variables live on the substrate, while the coefficients that make them measurable are effective assembly responses.
 
-The scalar $m$ in the low-velocity observer formula is not a primitive rigid-body constant of the substrate. A rigid-body inertia tensor is a useful foil: in ordinary mechanics it maps a fixed body's angular velocity to angular momentum after a mass distribution has already been supplied. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding observer-level inertial response must be derived from the assembly's trapped causal history, shielding state, coupling to the Noether sea, and orientation.
+The scalar $m$ in the low-velocity observer formula is not a primitive rigid-body constant of the substrate. A rigid-body inertia tensor is a useful foil: in ordinary mechanics it maps a fixed body's angular velocity to angular momentum after a mass distribution has already been supplied. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding observer-level inertial response must be derived from the assembly's closed internal causal-history ledger, shielding state, coupling to the Noether sea, and orientation.
 
 For a coarse-grained assembly $A$, the local linear response may be written as a pair of response maps
 $$
@@ -1322,7 +1322,7 @@ $$
 \delta\Omega^j.
 $$
 
-Here $\mathcal{H}_A$ denotes the trapped path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
+Here $\mathcal{H}_A$ denotes the closed internal path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
 
 ### Galilean Kinematic Structure
 
@@ -2540,7 +2540,7 @@ The most useful observer-level quantities enter only after assemblies have forme
 
 -   **Angular momentum:** derivation target. The mechanism is organized binary circulation and ordered orientation data; the mapping is through the return-period phase and angular-momentum ledger; the regime is stable or metastable closed cycles; the breakdown occurs at separator crossings, root-ledger changes, or dissociation.
 -   **Chirality:** derivation target. The mechanism is ordered-frame precession and causal-writhe parity; the mapping is through the Noether swarm closure label; the regime is branch-preserving deformation; the breakdown occurs when a causal-root bifurcation or reconnection changes the handed branch.
--   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is trapped internal causal history, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
+-   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is a closed internal causal-history ledger, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
 In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
 

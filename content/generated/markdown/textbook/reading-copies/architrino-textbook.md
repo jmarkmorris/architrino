@@ -1307,7 +1307,7 @@ Forces cause accelerations in the Euclidean void. Time supplies the universal ev
 
 The same distinction applies to momentum and inertia: the kinematic variables live on the substrate, while the coefficients that make them measurable are effective assembly responses.
 
-The scalar $m$ in the low-velocity observer formula is not a primitive rigid-body constant of the substrate. A rigid-body inertia tensor is a useful foil: in ordinary mechanics it maps a fixed body's angular velocity to angular momentum after a mass distribution has already been supplied. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding observer-level inertial response must be derived from the assembly's trapped causal history, shielding state, coupling to the Noether sea, and orientation.
+The scalar $m$ in the low-velocity observer formula is not a primitive rigid-body constant of the substrate. A rigid-body inertia tensor is a useful foil: in ordinary mechanics it maps a fixed body's angular velocity to angular momentum after a mass distribution has already been supplied. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding observer-level inertial response must be derived from the assembly's closed internal causal-history ledger, shielding state, coupling to the Noether sea, and orientation.
 
 For a coarse-grained assembly $A$, the local linear response may be written as a pair of response maps
 $$
@@ -1324,7 +1324,7 @@ $$
 \delta\Omega^j.
 $$
 
-Here $\mathcal{H}_A$ denotes the trapped path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
+Here $\mathcal{H}_A$ denotes the closed internal path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
 
 #### Galilean Kinematic Structure
 
@@ -2542,7 +2542,7 @@ The most useful observer-level quantities enter only after assemblies have forme
 
 -   **Angular momentum:** derivation target. The mechanism is organized binary circulation and ordered orientation data; the mapping is through the return-period phase and angular-momentum ledger; the regime is stable or metastable closed cycles; the breakdown occurs at separator crossings, root-ledger changes, or dissociation.
 -   **Chirality:** derivation target. The mechanism is ordered-frame precession and causal-writhe parity; the mapping is through the Noether swarm closure label; the regime is branch-preserving deformation; the breakdown occurs when a causal-root bifurcation or reconnection changes the handed branch.
--   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is trapped internal causal history, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
+-   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is a closed internal causal-history ledger, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
 In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
 
@@ -6463,6 +6463,28 @@ and is constant in time for exact isolated solutions of the causal action. In mo
 
 Consistency rule: either use $E_{\text{wake}}$ alone for all interaction energy, or, if a $U_{\text{int}}$ pairwise term is retained as an effective decomposition inside assemblies, then $E_{\text{wake}}$ must explicitly omit the corresponding near-field content to prevent double counting.
 
+##### Conservation Status
+
+The conservation claim is a level-specific statement. For an isolated branch whose force law comes from a time-translation-invariant causal action,
+
+$$
+\frac{d}{dt}E_{\text{total}}(t)=0,
+\qquad
+E_{\text{total}}(t)
+=
+\sum_a E_{k,a}(t)
++
+U_{\text{int}}(t)
++
+E_{\text{wake}}(t).
+$$
+
+This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_t$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
+
+In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the force row and the energy row, and when the energy residual in this section vanishes under refinement.
+
+For reaction or radiation events, energy can leave the source assembly as photon output, recoil, medium excitation, remnant excitation, wake-carried exchange, or handoff terms, but those are named outputs rather than hidden losses. The event-level version is the componentwise ledger closure in [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md#residual-routing-event-ledger-contract).
+
 ##### Wake Escapement
 
 For a finite local window $W\subset\Sigma_t$, **wake escapement** is the subset of emitted causal isochrons that exit the retained window without intersecting any retained receiver inside that window. More explicitly, if architrino $a$ emits at $t_0$, define the causal isochron at later time $t$ by
@@ -6753,7 +6775,7 @@ This is a roadmap relation, not a substrate identity; proportionality constants 
 
 #### Emergent Inertia (Mass) from Shielded Energy
 
-**Inertia** is not fundamental; it is the externally exposed response of an assembly's trapped internal causal history, shielding factor, and Noether sea coupling to changes in bulk motion.
+**Inertia** is not fundamental; it is the externally exposed response of an assembly's closed internal causal-history ledger, shielding factor, and Noether sea coupling to changes in bulk motion.
 
 ##### Operational Definition of Inertial Mass
 
@@ -6870,7 +6892,7 @@ with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{se
 
 This is the same shielding-based logic developed more directly in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md). The matching factor $\alpha_{\mathrm{m}}$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species.
 
-Thermodynamic or entropic derivations of gravitational force are therefore comparison benchmarks for this chapter, not replacements for the mass mechanism. They may sharpen the observer-level equation-of-state target for gravity, but $m_{\text{inertial}}(A)$ is not closed until the same assembly ledger supplies its trapped internal causal history, shielding extraction, Noether sea response tensor, and acceleration response.
+Thermodynamic or entropic derivations of gravitational force are therefore comparison benchmarks for this chapter, not replacements for the mass mechanism. They may sharpen the observer-level equation-of-state target for gravity, but $m_{\text{inertial}}(A)$ is not closed until the same assembly ledger supplies its closed internal causal-history record, shielding extraction, Noether sea response tensor, and acceleration response.
 
 The immediate hand-off is the $A_0$ reference attractor gate. The energy chapter owns the internal-energy and apparent-energy definitions that $A_0$ must report: layer energies, interaction and wake terms, total $E_{\text{internal}}(A_0)$, far-field wake coefficients, and the exposed-energy combination $\zeta(A_0)E_{\text{internal}}(A_0)$. Those outputs are still closure targets until a stable branch, shielding extraction, and response tensor are computed. Compact finite-coordinate no-go records and branch-chart checker results cannot be consumed as energy-accounting inputs: a rejection blocks the chart path, and a clearance authorizes only a rerun candidate until Tier 2 shielding exists on an accepted branch.
 
@@ -8534,7 +8556,7 @@ This chapter develops the action-counting complement to the master-equation trea
 The current scope is mixed. Some statements are theorem-backed in the regularized setting, while the larger closure program remains open. The chapter therefore begins with the problem statement and core functional definitions, then separates the controlled theorem spine from benchmarks, implementation notes, and longer-range closure targets.
 
 #### Problem Statement and Goal
-The broad objective is to explain why only certain assemblies are stable and discrete, and to treat observer-level mass as an exposed response of trapped causal history, shielding, and Noether sea coupling rather than an externally assigned input. The target in this chapter is narrower: a geometric causal-locus statistic derived from the causal-wake kernel that can be evaluated on periodic orbits, compared across topological classes, and tested against dynamical stability.
+The broad objective is to explain why only certain assemblies are stable and discrete, and to treat observer-level mass as an exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling rather than an externally assigned input. The target in this chapter is narrower: a geometric causal-locus statistic derived from the causal-wake kernel that can be evaluated on periodic orbits, compared across topological classes, and tested against dynamical stability.
 Canonical dynamics are defined in [The Master Equation (Canonical Form)](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form); this chapter provides the complementary action-functional lens.
 
 The level separation is essential:
@@ -32861,7 +32883,7 @@ m_0(A)c_{\text{eff}}^2
 \zeta(A)E_{\text{internal}}(A),
 $$
 
-where $E_{\text{internal}}(A)$ is the trapped internal causal-history ledger of assembly $A$, and $\zeta(A)$ is the shielding or leakage factor that controls how much of that ledger couples to external probes. This is not yet a derived mass formula. It becomes a theorem only after the shielding factor, the internal energy ledger, and the first-order momentum-skew response are derived from the closed nested shell swarm dynamics.
+where $E_{\text{internal}}(A)$ is the closed internal causal-history energy ledger of assembly $A$, and $\zeta(A)$ is the shielding or leakage factor that controls how much of that ledger couples to external probes. This is not yet a derived mass formula. It becomes a theorem only after the shielding factor, the internal energy ledger, and the first-order momentum-skew response are derived from the closed nested shell swarm dynamics.
 
 #### Spiral-Helical Motion Picture
 
@@ -43899,7 +43921,7 @@ The conservative thesis is:
 $$
 \text{observed mass}
 \quad\leftrightarrow\quad
-\text{the externally exposed response of trapped internal causal history.}
+\text{the externally exposed response of a closed internal causal-history ledger.}
 $$
 
 That response is shaped by internal energy storage, shielding, and the medium-dressed way the Noether sea couples to a moving or accelerated assembly.
@@ -43930,6 +43952,55 @@ p_{\text{int}}^a
 $$
 
 in a homogeneous isotropic Noether sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
+
+###### Rest Energy and Moving Energy
+
+The mass-energy relation is retained as an effective observer-level closure, but it is not a substrate axiom. At rest, the native object is not a bare particle mass. It is the accepted assembly branch together with its internal energy ledger, exposure quotient, and Noether sea response record:
+
+$$
+\left(
+E_{\text{internal}}(A),
+\zeta(A),
+\mathcal{M}_{\text{sea}}^{ab}
+\right).
+$$
+
+In a locally homogeneous isotropic Noether sea cell, the scalar rest/internal readout is the branch invariant
+
+$$
+M_0(A)
+\equiv
+m_{\mathrm{tr}}(A)\big|_{v_{\text{CM}}=0}
+\approx
+\alpha_{\mathrm{m}}
+\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
+$$
+
+Equivalently, the exposed rest-energy channel is
+
+$$
+M_0(A)c_{\text{eff}}^2
+\approx
+\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A).
+$$
+
+This equation is the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading of $E_0=m_0c^2$: Physical Observers measure a scalar rest mass because they couple to the exposed part of the closed causal ledger, not because every unit of internal circulation is visible at long range. The rest/internal invariant is therefore downstream of branch stability, shielding extraction, and the same medium-response tensor used by the acceleration response.
+
+For a moving assembly in the same weak homogeneous regime, the effective energy-momentum closure is instead
+
+$$
+E_{\text{CM}}^2
+=
+p_{\text{CM}}^2c_{\text{eff}}^2
++
+M_0^2c_{\text{eff}}^4,
+\qquad
+E_{\text{CM}}
+=
+\gamma_{\text{eff}}M_0c_{\text{eff}}^2.
+$$
+
+Here $M_0$ remains the rest/internal invariant of the accepted branch, while $\gamma_{\text{eff}}$ belongs to the moving center-of-mass readout. Thus the theory does not need a velocity-dependent rest mass. It needs a proof that translating assemblies retune their causal-root ledger, shielding, clock channel, and Noether sea response so that the same $\gamma_{\text{eff}}$ controls energy, momentum, clock, and ruler channels. The detailed energy statement is the effective closure test in [Kinetic and Potential Energy](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure), and the clock-side cross-check is in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#effective-energy-momentum-closure-test).
 
 ###### Exposed Inertial-Response Trace
 
@@ -44236,10 +44307,13 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
 ###### Medium-Dressed Inertial Response
 - **The Medium:** The Noether sea is not empty space; it is a dynamic population of neutral Noether swarm assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to the Noether sea.
 - **The Response:** The assembly resists acceleration because its internal path-history exchange must relock under a biased causal geometry. This should be modeled as a medium-dressed response tensor, not as ordinary dissipative friction.
-- **Velocity Dependence:** In the homogeneous weak-field limit, the same closure geometry should recover the effective relativistic response:
+- **Velocity Dependence:** In the homogeneous weak-field limit, the same closure geometry should recover the effective relativistic response without changing the rest/internal invariant $M_0$:
   $$
-  m_{\text{eff}}(v) \sim \frac{m_0}{\sqrt{1 - v^2/c_{\text{eff}}^2}}.
+  E_{\text{CM}}=\gamma_{\text{eff}}M_0c_{\text{eff}}^2,
+  \qquad
+  p_{\text{CM}}=\gamma_{\text{eff}}M_0v_{\text{CM}}.
   $$
+  Language about velocity-dependent inertia should therefore be read as the moving center-of-mass response of the dressed assembly ledger, not as a change in scalar rest mass.
 - **Environment Dependence:** Local variations in Noether sea density, compliance, drift, and effective lapse can modulate the response. In dense or strongly graded regions, the effective inertial and gravitational response must be computed from the same medium-dressed closure map.
 
 ##### Stability Constraint
@@ -46176,7 +46250,7 @@ with $Z_e$ fixed by canonical field normalization when mapping to observer-level
 
 ###### Inertial response and magnetic-moment interface
 
-Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from trapped causal history, shielding, Noether sea coupling, and the orientation of the Noether swarm plus axial layer.
+Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from a closed internal causal-history ledger, shielding, Noether sea coupling, and the orientation of the Noether swarm plus axial layer.
 
 For a fermion assembly $A$, write the local response maps as
 $$
@@ -65479,7 +65553,7 @@ This chapter is a multi-level split: `##` thematic buckets and `###` issue entri
 
 **Standard Repairs:** Standard repairs include WIMPs, axions, sterile neutrinos, primordial black holes, self-interacting dark sectors, and modified-gravity alternatives such as MOND-like responses. Each explains part of the evidence, but none yet provides decisive closure across all scales.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The working $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation treats dark-sector evidence as a possible mixture of neutral Noether swarm assemblies and scale-dependent Noether sea response. Stable neutral clusters could supply collisionless-matter-like behavior, with apparent mass understood as the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling. A separate elastic-response channel could supply MOND-like behavior at low accelerations without replacing the assembly picture. The closure target is to calibrate three regimes without parameter rescue: neutral assemblies, elastic-response modification, and a constrained hybrid able to meet Bullet-Cluster, CMB, lensing, and small-scale-structure tests. The proposed falsifier should therefore be stated as a scale-dependent transition test: if lensing tomography and structure probes exclude the predicted transition pattern under the same parameter ledger, this dark-matter interpretation fails. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
+**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The working $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation treats dark-sector evidence as a possible mixture of neutral Noether swarm assemblies and scale-dependent Noether sea response. Stable neutral clusters could supply collisionless-matter-like behavior, with apparent mass understood as the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling. A separate elastic-response channel could supply MOND-like behavior at low accelerations without replacing the assembly picture. The closure target is to calibrate three regimes without parameter rescue: neutral assemblies, elastic-response modification, and a constrained hybrid able to meet Bullet-Cluster, CMB, lensing, and small-scale-structure tests. The proposed falsifier should therefore be stated as a scale-dependent transition test: if lensing tomography and structure probes exclude the predicted transition pattern under the same parameter ledger, this dark-matter interpretation fails. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
 
 **What Would Count As Resolution:** Resolution would require either direct identification of the dark component, or a cross-scale demonstration that a non-particle mechanism reproduces rotation curves, lensing, cluster dynamics, and CMB structure without hidden parameter rescue.
 
@@ -66067,7 +66141,7 @@ $$
 \Box = -\frac{1}{c^2}\frac{\partial^2}{\partial t^2}+\nabla^2
 $$
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi$ should be treated as a coarse-grained scalar amplitude of Noether sea density, compression, or radial-breathing response, not as a fundamental continuous substance. The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether sea; particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling. For the detailed bridge, including mode operators, curved-spacetime coupling, source terms, and closure targets, see [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\phi$ should be treated as a coarse-grained scalar amplitude of Noether sea density, compression, or radial-breathing response, not as a fundamental continuous substance. The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether sea; particle rest mass itself remains the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling. For the detailed bridge, including mode operators, curved-spacetime coupling, source terms, and closure targets, see [Relativistic Scalar Fields and the Klein-Gordon Equation](../../../../markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md).
 
 **What Still Works:** Relativistic scalar-field equations remain indispensable for spin-0 sectors, scalar perturbations, effective field theory, cosmology, and curved-spacetime comparison work. They provide a compact target for any substrate theory that claims to recover continuum field behavior.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the scalar field, mass parameter, potential $V(\phi)$, and curvature coupling $\xi R\phi^2$ are reclassified as effective descriptors of collective assembly response, medium stiffness, nonlinear relaxation, and emergent-metric feedback.
@@ -66152,7 +66226,7 @@ $$
 \mathrm{SU(2)}_L \times \mathrm{U(1)}_Y \xrightarrow{\langle H\rangle\neq 0}
 \mathrm{U(1)}_{\mathrm{EM}}.
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform nested shell swarm configuration in the Noether sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in the Noether sea, which distinguishes the massless photon channel, described canonically as a coaxial contra-rotating pro/anti planar pair, from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform nested shell swarm configuration in the Noether sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in the Noether sea, which distinguishes the massless photon channel, described canonically as a coaxial contra-rotating pro/anti planar pair, from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
 
 **What Still Works:** Electroweak Theory (EW) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether swarm assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -74389,7 +74463,7 @@ This chapter does not own:
 | --- | --- |
 | Physical clocks measure proper time $\tau$, and moving clocks satisfy $d\tau/dt = 1/\gamma$. | A physical clock is an assembly with a countable internal cycle. When a Noether swarm clock moves through the Noether sea, delayed wake paths must still close across the inner, middle, and outer binaries, so fewer stable internal cycles occur per unit absolute time $t$. |
 | Length contraction follows from Lorentz geometry: $L_{\parallel}=L_0/\gamma$. | The swarm's effective exclusion envelope deforms along the direction of translation. Stable delayed closure requires a longitudinal/transverse retuning of orbital paths, with the Lorentz-compatible target $R_{\parallel}=R_{\perp}/\gamma$ in the weak-field homogeneous limit. |
-| Rest energy is $E_0=m_0c^2$. | Rest energy is the observer-facing value of shielded internal causal history: the part of the trapped Noether swarm energy ledger exposed through far-field coupling and Noether sea response. |
+| Rest energy is $E_0=m_0c^2$. | Rest energy is the observer-facing value of shielded internal causal history: the part of the closed Noether swarm energy ledger exposed through far-field coupling and Noether sea response. |
 | Momentum is $p=\gamma m_0v$. | Momentum is the medium-dressed response of a moving assembly: the internal path-history ledger must relock under translation, and the Noether sea supplies the effective response tensor that Physical Observers summarize as relativistic momentum. |
 | Energy and momentum obey $E^2=p^2c^2+m_0^2c^4$. | In the weak-field observer limit, center-of-mass energy and momentum should satisfy the same effective mass-shell relation with $c_{\text{eff}}$, while the substrate calculation resolves the internal ledger, shielding coefficient, and medium-response tensor. |
 | The invariant speed $c$ is a postulate of the observer-level theory. | The observed signal speed is the effective propagation speed $c_{\text{eff}}$ of photon-like and clock-synchronization channels in the local Noether sea, approaching $c_f$ in the homogeneous weak-field limit. |
@@ -74621,7 +74695,7 @@ E_0=m_0c^2.
 $$
 That equation is extremely successful as observer-level bookkeeping. The bridge question is what implements $m_0$.
 
-The Noether swarm mass thesis is that observed mass is not a primitive property of individual architrinos. It is the externally exposed response of trapped internal causal history. A compact scalar roadmap formula is
+The Noether swarm mass thesis is that observed mass is not a primitive property of individual architrinos. It is the externally exposed response of a closed internal causal-history ledger. A compact scalar roadmap formula is
 $$
 m_{\text{inertial}}(A)
 \approx
@@ -75547,7 +75621,7 @@ with the appropriate branch value subtracted on each side. For this bridge, such
 
 $\phi$ should be treated as a coarse-grained scalar amplitude of Noether sea density, compression, or radial-breathing response, not as a fundamental continuous substance.
 
-The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether sea. Particle rest mass itself remains the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling.
+The Klein-Gordon mass term maps naturally to an effective restoring stiffness or mode gap of the Noether sea. Particle rest mass itself remains the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling.
 
 The metric wave operator $\nabla^\mu\nabla_\mu$ belongs to emergent metric closure, not to the substrate-level Euclidean void. The curvature-coupling term $\xi R\phi^2$ is therefore read as a bridge term: scalar-mode behavior changes with effective medium curvature, density, or stress.
 
@@ -75660,7 +75734,7 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these thr
 ###### Minimal premises
 - **Generations = shielding level:** Gen I nested shell swarm (u,d), Gen II bi-binary (c,s), Gen III uni-binary (t,b).
 - **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
-- **Mass basis = shielding eigenstates:** Noether swarm shielding, trapped internal causal history, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
+- **Mass basis = shielding eigenstates:** Noether swarm shielding, a closed internal causal-history ledger, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 
 Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
 Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether sea ahead of the translating quark group, where cores are unshadowed and available to couple.
@@ -77141,7 +77215,7 @@ Transition relevance is high. The project should not inherit Wheeler's particles
 
 ##### Recovery Target
 
-The long-term relevance of this episode is permanent until the field/particle distinction is closed at the constitutive level. Recovery would require deriving effective fields from causal-wake superposition, deriving inertial response from trapped internal causal history and Noether sea coupling, and replacing singular point-particle idealization with finite stable assembly branches that still reproduce the tested point-particle and field-theory limits. Wheeler's historical sequence then becomes a near-miss benchmark: $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds only if it can keep the particles-first pressure without losing the field-level successes that Wheeler eventually had to recover.
+The long-term relevance of this episode is permanent until the field/particle distinction is closed at the constitutive level. Recovery would require deriving effective fields from causal-wake superposition, deriving inertial response from a closed internal causal-history ledger and Noether sea coupling, and replacing singular point-particle idealization with finite stable assembly branches that still reproduce the tested point-particle and field-theory limits. Wheeler's historical sequence then becomes a near-miss benchmark: $\mathbb{A}\mathbb{A}\mathbb{A}$ succeeds only if it can keep the particles-first pressure without losing the field-level successes that Wheeler eventually had to recover.
 
 ---
 

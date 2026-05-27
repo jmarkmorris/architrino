@@ -115,6 +115,85 @@ function h38Row() {
   };
 }
 
+function h39ProviderClaimBoundary() {
+  return {
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    certifies_continuous_polydisc_primitives: false,
+    retained_branch: false,
+  };
+}
+
+function dependencyPreservingProviderOutput({
+  branch,
+  branchRow,
+  cellId,
+  replayKind = "h39-row-1",
+}) {
+  return {
+    branch,
+    hIntervals: hIntervals(),
+    solveSlopeInterval: branchRow.h38_solve_slope_interval,
+    providerKind: "fixture-predecessor-recurrence-transport",
+    preservesDependencies: true,
+    sourceCellId: cellId,
+    replayKind,
+    hRowProviderProvenance: {
+      provider: "fixture-predecessor-recurrence-transport",
+      source_cell_id: cellId,
+      branch,
+    },
+    dependencyTrace: [
+      {
+        hIndex: 38,
+        source: "successor-recurrence",
+        predecessorHIndex: 37,
+        predecessorCellId: cellId,
+        branch,
+      },
+    ],
+    hRowDependencyWitness: {
+      parent_row_identity: "fixture-h37-to-h38-recurrence",
+      transported_parameter_cell: cellId,
+      branch,
+      coverage: "fixture-equality-cover",
+    },
+    hRowProviderClaimBoundary: h39ProviderClaimBoundary(),
+  };
+}
+
+function h38RowWithProviderBranchMetadata() {
+  const row = h38Row();
+  row.branch_rows = row.branch_rows.map((branchRow) => ({
+    ...branchRow,
+    dependency_preserving_h_row_provider: true,
+    provider_kind: "fixture-predecessor-recurrence-transport",
+    source_cell_id: row.cell_id,
+    h_row_provider_provenance: {
+      provider: "fixture-predecessor-recurrence-transport",
+      source_cell_id: row.cell_id,
+      branch: branchRow.branch,
+    },
+    h_row_dependency_trace: [
+      {
+        hIndex: 38,
+        source: "successor-recurrence",
+        predecessorHIndex: 37,
+        predecessorCellId: row.cell_id,
+        branch: branchRow.branch,
+      },
+    ],
+    h_row_dependency_witness: {
+      parent_row_identity: "fixture-h37-to-h38-recurrence",
+      transported_parameter_cell: row.cell_id,
+      branch: branchRow.branch,
+      coverage: "fixture-equality-cover",
+    },
+    h_row_provider_claim_boundary: h39ProviderClaimBoundary(),
+  }));
+  return row;
+}
+
 function h39PrimitiveDomainSignature() {
   return {
     branch_pair: "theta3minus-fold-pair-3minus",
@@ -1227,12 +1306,109 @@ test("h39 predecessor h-row provider boundary distinguishes interval snapshots f
     false
   );
   assert.equal(
+    diagnostic.branch_summaries[0].provider_metadata_status,
+    "interval-snapshot-no-provider-metadata"
+  );
+  assert.equal(
     diagnostic.required_provider_shape.dependency_preserving_h_row_provider,
     true
+  );
+  assert.equal(
+    diagnostic.required_provider_shape.h_row_provider_claim_boundary
+      .certifies_shifted_R43_outer_bound,
+    false
   );
   assert.equal(diagnostic.certifies_shifted_R43_outer_bound, false);
   assert.equal(diagnostic.certifies_directed_rounded_shared_domain, false);
   assert.equal(diagnostic.certifies_continuous_polydisc_primitives, false);
+  assert.equal(diagnostic.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 predecessor h-row provider boundary rejects flag-only provider metadata", () => {
+  const flagged = h38Row();
+  flagged.branch_rows = flagged.branch_rows.map((branchRow) => ({
+    ...branchRow,
+    dependency_preserving_h_row_provider: true,
+    provider_kind: "fixture-predecessor-recurrence-transport",
+    source_cell_id: flagged.cell_id,
+  }));
+  const diagnostic = computeH39PredecessorHRowProviderBoundaryCandidate({
+    h38Row: flagged,
+  });
+
+  assert.equal(
+    diagnostic.dependency_preserving_h_row_provider_present,
+    false
+  );
+  assert.equal(
+    diagnostic.exported_h_row_dependency_state,
+    "incomplete-provider-metadata-rejected"
+  );
+  assert.equal(
+    diagnostic.branch_summaries[0].provider_metadata_status,
+    "incomplete-provider-metadata-rejected"
+  );
+  assert.equal(
+    diagnostic.branch_summaries[0].h_row_dependency_trace_count,
+    0
+  );
+  assert.equal(
+    diagnostic.branch_summaries[0].h_row_dependency_witness_present,
+    false
+  );
+  assert.equal(
+    diagnostic.branch_summaries[0]
+      .h_row_provider_claim_boundary_candidate_only,
+    false
+  );
+  assert.equal(diagnostic.certifies_shifted_R43_outer_bound, false);
+  assert.equal(diagnostic.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 predecessor h-row provider boundary accepts traced dependency-preserving metadata", () => {
+  const diagnostic = computeH39PredecessorHRowProviderBoundaryCandidate({
+    h38Row: h38RowWithProviderBranchMetadata(),
+  });
+
+  assert.equal(
+    diagnostic.dependency_preserving_h_row_provider_present,
+    true
+  );
+  assert.equal(
+    diagnostic.exported_h_row_dependency_state,
+    "dependency-preserving-provider-present"
+  );
+  assert.equal(
+    diagnostic.branch_summaries[0].provider_metadata_status,
+    "dependency-preserving-provider-present"
+  );
+  assert.equal(
+    diagnostic.branch_summaries[0].h_row_provider_provenance_present,
+    true
+  );
+  assert.equal(
+    diagnostic.branch_summaries[0].h_row_dependency_trace_count,
+    1
+  );
+  assert.equal(
+    diagnostic.branch_summaries[0].h_row_dependency_witness_present,
+    true
+  );
+  assert.equal(
+    diagnostic.branch_summaries[0]
+      .h_row_provider_claim_boundary_candidate_only,
+    true
+  );
+  assert.equal(diagnostic.certifies_shifted_R43_outer_bound, false);
+  assert.equal(diagnostic.certifies_directed_rounded_shared_domain, false);
   assert.equal(diagnostic.retained_branch, false);
   assert.deepEqual(
     collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
@@ -1256,24 +1432,12 @@ test("h39 coefficient rows accept dependency-preserving h-row provider metadata 
       replayKind,
     }) => {
       calls.push({ cellId, branch, targetIndex, replayKind });
-      return {
+      return dependencyPreservingProviderOutput({
         branch,
-        hIntervals: hIntervals(),
-        solveSlopeInterval: branchRow.h38_solve_slope_interval,
-        providerKind: "fixture-predecessor-recurrence-transport",
-        preservesDependencies: true,
-        sourceCellId: cellId,
+        branchRow,
+        cellId,
         replayKind,
-        dependencyTrace: [
-          {
-            hIndex: 38,
-            source: "successor-recurrence",
-            predecessorHIndex: 37,
-            predecessorCellId: cellId,
-            branch,
-          },
-        ],
-      };
+      });
     },
   });
   const cell = rows[0].h39_coefficient_cell;
@@ -1297,6 +1461,15 @@ test("h39 coefficient rows accept dependency-preserving h-row provider metadata 
     providerReport.branch_reports[0].dependency_trace_count,
     1
   );
+  assert.equal(providerReport.branch_reports[0].provenance_present, true);
+  assert.equal(
+    providerReport.branch_reports[0].dependency_witness_present,
+    true
+  );
+  assert.equal(
+    providerReport.branch_reports[0].provider_claim_boundary_candidate_only,
+    true
+  );
   assert.equal(
     cell.claim_boundary.h_row_provider_backed_replay,
     true
@@ -1313,6 +1486,30 @@ test("h39 coefficient rows accept dependency-preserving h-row provider metadata 
   assert.deepEqual(
     collectExactKeys(cell, FORBIDDEN_FIXED_SPEED_KEYS),
     []
+  );
+});
+
+test("h39 coefficient rows reject provider metadata without dependency witness", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
+
+  assert.throws(
+    () =>
+      evaluateH39SharedDomainCoefficientRows({
+        context,
+        h38Rows: [h38Row()],
+        shiftedOrder: 1,
+        rho: 0.001,
+        hRowProvider: ({ branch, branchRow, cellId }) => {
+          const output = dependencyPreservingProviderOutput({
+            branch,
+            branchRow,
+            cellId,
+          });
+          delete output.hRowDependencyWitness;
+          return output;
+        },
+      }),
+    /dependency witness/
   );
 });
 
@@ -3850,6 +4047,17 @@ test("h39 coefficient artifact summarizes supplied h38 rows without closure clai
     summary.coefficient_row_count,
     1
   );
+  assert.equal(summary.h_row_provider_report_count, 1);
+  assert.equal(summary.h_row_provider_backed_branch_count, 0);
+  assert.equal(summary.h_row_provider_backed_cell_count, 0);
+  assert.equal(summary.h_row_provider_backed_all_cells, false);
+  assert.equal(
+    summary.h_row_provider_dependency_state,
+    "independent-interval-snapshot-replay"
+  );
+  assert.deepEqual(summary.h_row_provider_kinds, [
+    "exported-independent-interval-snapshot",
+  ]);
   assert.equal(
     summary.all_centered_leading_R43_coefficients_contain_zero,
     true
@@ -4004,6 +4212,108 @@ test("h39 coefficient artifact summarizes supplied h38 rows without closure clai
   );
   assert.equal(artifact.result.retained_branch, false);
   assert.equal(JSON.stringify(artifact).includes("speed_band"), false);
+});
+
+test("h39 coefficient artifact summarizes provider-backed replay without closure promotion", () => {
+  const artifact = buildH39SharedDomainCoefficientArtifact({
+    h38Rows: [h38Row()],
+    validateH38: false,
+    shiftedOrder: 1,
+    rho: 0.001,
+    hRowProvider: ({ branch, branchRow, cellId, replayKind }) =>
+      dependencyPreservingProviderOutput({
+        branch,
+        branchRow,
+        cellId,
+        replayKind,
+      }),
+  });
+  const errors = validateH39SharedDomainCoefficientArtifact(artifact);
+  const summary = artifact.h39_shared_domain_coefficient_summary;
+  const providerReport =
+    artifact.h39_shared_domain_coefficient_rows[0].h39_coefficient_cell
+      .h_row_provider_report;
+
+  assert.deepEqual(errors, []);
+  assert.equal(
+    artifact.coefficient_artifact_parameters.h_row_provider_hook_supplied,
+    true
+  );
+  assert.equal(summary.h_row_provider_report_count, 1);
+  assert.equal(summary.h_row_provider_backed_branch_count, 2);
+  assert.equal(summary.h_row_provider_backed_cell_count, 1);
+  assert.equal(summary.h_row_provider_backed_all_cells, true);
+  assert.equal(
+    summary.h_row_provider_dependency_state,
+    "dependency-preserving-provider-backed-replay"
+  );
+  assert.deepEqual(summary.h_row_provider_kinds, [
+    "fixture-predecessor-recurrence-transport",
+  ]);
+  assert.deepEqual(summary.h_row_provider_source_cell_ids, [
+    "speed.test.first-y",
+  ]);
+  assert.equal(summary.h_row_provider_dependency_trace_count, 2);
+  assert.equal(providerReport.provider_backed_all_branches, true);
+  assert.equal(
+    providerReport.branch_reports[0].provider_claim_boundary_candidate_only,
+    true
+  );
+  assert.equal(
+    artifact.claim_boundary.h_row_provider_backed_replay,
+    true
+  );
+  assert.equal(
+    artifact.h39_primitive_vector_backend_artifact.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    artifact.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(artifact.result.retained_branch, false);
+
+  const mutatedProviderClaim = JSON.parse(JSON.stringify(artifact));
+  mutatedProviderClaim.h39_shared_domain_coefficient_rows[0]
+    .h39_coefficient_cell.h_row_provider_report
+    .certifies_directed_rounded_shared_domain = true;
+  assert.ok(
+    validateH39SharedDomainCoefficientArtifact(mutatedProviderClaim).some(
+      (error) =>
+        error.includes(
+          "h39 h-row provider reports must remain candidate-only"
+        )
+    )
+  );
+
+  const mutatedProviderWitness = JSON.parse(JSON.stringify(artifact));
+  mutatedProviderWitness.h39_shared_domain_coefficient_rows[0]
+    .h39_coefficient_cell.h_row_provider_report.branch_reports[0]
+    .dependency_witness_present = false;
+  assert.ok(
+    validateH39SharedDomainCoefficientArtifact(mutatedProviderWitness).some(
+      (error) =>
+        error.includes(
+          "h39 h-row provider-backed branch reports must carry trace"
+        )
+    )
+  );
+
+  const mutatedProviderBoundary = JSON.parse(JSON.stringify(artifact));
+  mutatedProviderBoundary.claim_boundary.h_row_provider_backed_replay = false;
+  assert.ok(
+    validateH39SharedDomainCoefficientArtifact(mutatedProviderBoundary).some(
+      (error) =>
+        error.includes(
+          "h39 h-row provider artifact claim boundary must match"
+        )
+    )
+  );
+  assert.deepEqual(
+    collectExactKeys(artifact, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
 });
 
 test("h39 coefficient artifact summarizes source-certificate obstructions", () => {
