@@ -46,6 +46,55 @@ $$
 
 in a homogeneous isotropic Noether sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
 
+#### Rest Energy and Moving Energy
+
+The mass-energy relation is retained as an effective observer-level closure, but it is not a substrate axiom. At rest, the native object is not a bare particle mass. It is the accepted assembly branch together with its internal energy ledger, exposure quotient, and Noether sea response record:
+
+$$
+\left(
+E_{\text{internal}}(A),
+\zeta(A),
+\mathcal{M}_{\text{sea}}^{ab}
+\right).
+$$
+
+In a locally homogeneous isotropic Noether sea cell, the scalar rest/internal readout is the branch invariant
+
+$$
+M_0(A)
+\equiv
+m_{\mathrm{tr}}(A)\big|_{v_{\text{CM}}=0}
+\approx
+\alpha_{\mathrm{m}}
+\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
+$$
+
+Equivalently, the exposed rest-energy channel is
+
+$$
+M_0(A)c_{\text{eff}}^2
+\approx
+\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A).
+$$
+
+This equation is the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading of $E_0=m_0c^2$: Physical Observers measure a scalar rest mass because they couple to the exposed part of the closed causal ledger, not because every unit of internal circulation is visible at long range. The rest/internal invariant is therefore downstream of branch stability, shielding extraction, and the same medium-response tensor used by the acceleration response.
+
+For a moving assembly in the same weak homogeneous regime, the effective energy-momentum closure is instead
+
+$$
+E_{\text{CM}}^2
+=
+p_{\text{CM}}^2c_{\text{eff}}^2
++
+M_0^2c_{\text{eff}}^4,
+\qquad
+E_{\text{CM}}
+=
+\gamma_{\text{eff}}M_0c_{\text{eff}}^2.
+$$
+
+Here $M_0$ remains the rest/internal invariant of the accepted branch, while $\gamma_{\text{eff}}$ belongs to the moving center-of-mass readout. Thus the theory does not need a velocity-dependent rest mass. It needs a proof that translating assemblies retune their causal-root ledger, shielding, clock channel, and Noether sea response so that the same $\gamma_{\text{eff}}$ controls energy, momentum, clock, and ruler channels. The detailed energy statement is the effective closure test in [Kinetic and Potential Energy](../dynamics/energy.md#effective-energy-momentum-closure), and the clock-side cross-check is in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#effective-energy-momentum-closure-test).
+
 #### Exposed Inertial-Response Trace
 
 The scalar shielding coefficient $\zeta(A)$ should be read as the isotropic trace part of a larger exposed response. For an accepted assembly branch $A$, let $\mathcal{L}_A(\hat R)$ denote the mass-facing scalar angular far-field ledger over extraction direction $\hat R$, and let $\|\mathcal{L}_{\text{naive}}\|$ denote the corresponding unshielded constituent-sum norm. The trace-free exposed leakage is
@@ -351,10 +400,13 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
 #### Medium-Dressed Inertial Response
 - **The Medium:** The Noether sea is not empty space; it is a dynamic population of neutral Noether swarm assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to the Noether sea.
 - **The Response:** The assembly resists acceleration because its internal path-history exchange must relock under a biased causal geometry. This should be modeled as a medium-dressed response tensor, not as ordinary dissipative friction.
-- **Velocity Dependence:** In the homogeneous weak-field limit, the same closure geometry should recover the effective relativistic response:
+- **Velocity Dependence:** In the homogeneous weak-field limit, the same closure geometry should recover the effective relativistic response without changing the rest/internal invariant $M_0$:
   $$
-  m_{\text{eff}}(v) \sim \frac{m_0}{\sqrt{1 - v^2/c_{\text{eff}}^2}}.
+  E_{\text{CM}}=\gamma_{\text{eff}}M_0c_{\text{eff}}^2,
+  \qquad
+  p_{\text{CM}}=\gamma_{\text{eff}}M_0v_{\text{CM}}.
   $$
+  Language about velocity-dependent inertia should therefore be read as the moving center-of-mass response of the dressed assembly ledger, not as a change in scalar rest mass.
 - **Environment Dependence:** Local variations in Noether sea density, compliance, drift, and effective lapse can modulate the response. In dense or strongly graded regions, the effective inertial and gravitational response must be computed from the same medium-dressed closure map.
 
 ### Stability Constraint

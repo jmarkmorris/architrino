@@ -1285,3 +1285,161 @@ $E_R\approx6.16\times10^{-7}$ and
 $M_R\approx1.92\times10^{-7}$ and the complete profile-vector candidate
 closes. The remaining full-cover proof burden is the directed-rounded shifted
 $R_{\varepsilon,43}$ outer-bound certificate itself, not the reducer interface.
+A full-cover diagnostic scan at shifted order $10$ and source radius $0.01$
+found maximum shifted-prefix pressure about $2.92\times10^{25}$, so a naive
+uniform shifted bound does not certify the live cover. The corrected evaluator
+now rejects such under-covering shifted candidates before they can feed
+$E_R,M_R$. The live mathematical target is a sharper shifted envelope, likely
+using smaller certified subdomains or an additional cancellation identity.
+
+The follow-up pressure decomposition narrows the target again. The dominant
+full-cover pressure is not spread through the shifted tail: it occurs on
+`speed.0.first-y`, branch `-`, shifted index $k=0$. At source radius $0.01$,
+the shifted-order $10$ pressure is about $2.9185\times10^{25}$, with about
+$2.8650\times10^{25}$ coming from the solved leading coefficient itself. The
+diagnostic therefore treats the present bound as a graph-center correlation
+loss. For shifted indices below the $y^{41}$ second-$X$ row, the source
+coefficient has affine form
+$R_{\varepsilon,43,k}(X)=C_k+S_kX$,
+so the next certificate should preserve the center solve
+$X_c=-C_0/S_0$ through the eliminated coefficients
+$A_0=0$ and
+$A_k=(S_0C_k-S_kC_0)/S_0$ for $k\ge 1$. Direct independent-interval products
+in that formula are too crude on the worst cell, inflating the center-eliminated
+pressure to about $4.15\times10^{48}$. The live route is therefore a
+correlated symbolic elimination or certified subdivision of the same affine
+identity, followed by a separate bound for the center-eliminated coefficients
+and the $y^{41}$ second-$X$ remainder.
+
+The next executable refinement is now in the coefficient engine. The evaluator
+emits an `R43_affine_center_form_candidate` for each centered branch row. This
+candidate records the affine data $C_k,S_k,C_0,S_0$, verifies that the requested
+shifted prefix stays below the $y^{41}$ second-$X$ row, verifies that the
+center interval contains the solve $X_c=-C_0/S_0$, and records that no
+independent Schur products are used for the finite-prefix bound. The coefficient
+row also exposes `R43_affine_center_shifted_coefficients`: these are the
+ordinary actual-center replay coefficients, except that the leading shifted
+coefficient is replaced by exact $0$ only when the affine-center certificate
+proves the symbolic center cancellation. Thus the raw shifted-pressure
+diagnostic remains visible as a localization tool, while the finite-prefix
+$E_R$ candidate no longer charges the solved leading row as though the center
+graph correlation had been lost.
+
+The first full-cover replay of that refinement exposed and removed a concrete
+certificate artifact. The h39 center solve was already computed as a numeric
+interval, but the centered branch replay was consuming the formatted display
+interval. On the largest cells that display-roundtrip was enough to
+make `center_interval_contains_solve` fail, leaving $198$ of $256$ branch rows
+open even though their printed intervals appeared to match. The evaluator now
+keeps `h39_center_numeric_interval` for internal branch replay and reserves the
+formatted `h39_center_interval` for reports. With that correction, a live h38
+full-cover probe at shifted order $10$, $\rho=0.001$, and source radius $0.01$
+reports $256/256$ certified affine-center leading zeros, no open leading-zero
+rows, raw shifted-prefix maximum about $2.87\times10^{25}$, and affine-center
+finite-prefix maximum about $5.25\times10^{22}$. The primitive vector still
+remains incomplete because no full-cover shifted outer Cauchy tail is supplied
+and the $y^{41}K_\varepsilon$ second-$X$ remainder is still separated.
+The dominant remaining affine-center row is still localized to
+`speed.0.first-y`, branch `-`, but it has moved from the solved leading row to
+shifted index $1$ ($y$-order $44$). Its actual-center replay coefficient has
+absolute upper bound about $5.24\times10^{25}$, giving about
+$5.24\times10^{22}$ of finite-prefix pressure at $\rho=0.001$. The independent
+interval Schur replay of the same row is about $4.06\times10^{47}$, so the
+next executable proof cannot be an independent-interval evaluation of
+$A_1=(S_0C_1-S_1C_0)/S_0$; it must preserve the row-$1$ correlation by a
+correlated arithmetic witness or by certified subdivision on the same domain.
+
+The row-$1$ follow-up diagnostic now makes that route testable without
+promoting a certificate. \texttt{computeH39AffineCenterRowCorrelationDiagnosticCandidate}
+evaluates one shifted row under the full center interval, uniform $X$
+partitions, the center midpoint, and an input-midpoint replay, and reports the
+source-term pressure triangle for the same row. On the live dominant row,
+splitting the center interval into $2$ pieces lowers the row pressure only to
+about $3.78\times10^{22}$, splitting into $4$ pieces lowers it only to about
+$3.05\times10^{22}$, and center-midpoint replay with the full h38 intervals
+remains about $1.83\times10^{22}$. But when the h38 cell and inherited $h$
+intervals are collapsed to their midpoints, the row pressure falls to about
+$1.08\times10^{13}$, a factor of about $4.8\times10^9$. The term triangle is
+nearly tight rather than cancellation-heavy, with `sin_delta` the largest term.
+This rules out shallow $X$ subdivision as a closure mechanism by itself and
+points to inherited h38 input-cell width as the next executable target. The next
+certificate route should test certified h38 input subdivision for row $1$, or
+identify a stronger row-$1$ cancellation before trying to absorb the global
+$y^{44}$ coefficient in one shifted outer envelope.
+
+A grouped sensitivity probe then separates the inherited inputs. Replaying the
+dominant row with only the live cell variables collapsed to midpoints barely
+changes the pressure, by a factor of about $1.000001$. Replaying it with only
+the inherited center-slope interval collapsed barely changes the pressure, by
+about $1.00000023$. Replaying it with the inherited $h$ row collapsed gives the
+full $\approx4.8\times10^9$ pressure collapse. Freezing only the high-order
+tail shows that the pressure is distributed: $h_{38}$ alone gives a
+$2.86$-fold reduction, $h_{37}\ldots h_{38}$ gives $8.57$, $h_{34}\ldots h_{38}$
+gives $184$, and $h_{27}\ldots h_{38}$ gives about $7.2\times10^4$. Thus the
+next coefficient-engine target is not a single endpoint correction. It is a
+dependency-preserving h-row transport or subdivision certificate that keeps the
+inherited $h_0,\ldots,h_{38}$ correlations visible when row $1$ is replayed.
+\texttt{computeH39AffineCenterHRowSensitivityDiagnosticCandidate} now makes
+that statement executable. It re-solves the affine center after selectively
+midpointing the live cell, inherited h-row, solve slope, and contiguous top
+h-row ranges, then reports the shifted-index-$1$ row pressure with all
+promotion flags false. The companion fixture verifies that wide h-row boxes
+are isolated from cell and slope width. On the live dominant row the helper
+reproduces the pressure $5.239383640054425\times10^{22}$, the h-row midpoint
+reduction factor $4.835860325251657\times10^9$, the cell-only factor
+$1.0000010197237037$, the slope-only factor $1.0000002309283613$, and the
+best tested top-freeze factor $71897.68136115719$ for $h_{27}\ldots h_{38}$.
+The next certificate can therefore target the predecessor h-row transport
+rather than another global shifted-prefix majorant.
+The same helper now includes a uniform h-row width-compression replay. On the
+live dominant row, h-width compression factors $1,1/2,1/4,1/8,1/16,1/32$ give
+pressure ratios approximately $1,2,4,8,16,32$, and only the zero-width midpoint
+replay reaches the $4.835860325251657\times10^9$ collapse. This shows that the
+current coordinate pressure is essentially width-linear in the exported
+independent h-row box. A naive independent subdivision route would need about
+thirty-two binary halvings of the active h-width before it resembles the
+midpoint replay, so the executable closure route should carry predecessor
+recurrence dependencies into the row-$1$ replay rather than subdividing all
+exported h-coordinates as independent variables.
+\texttt{computeH39PredecessorHRowProviderBoundaryCandidate} now records that
+boundary explicitly. Given an h38 row, it counts the exported h-interval,
+solve-slope, and residual fields and reports whether parent, recurrence, or
+transport keys are present. The current boundary is
+`independent-interval-snapshot-only`. `branchInputsFromH38Row` now accepts an
+opt-in h-row provider. The provider must return a derived h-interval replay
+view together with a nonempty dependency trace and an explicit
+`preservesDependencies` flag; interval-only providers are rejected. Evaluated
+cells record the provider-backed replay in `h_row_provider_report` but keep the
+shifted $R_{\varepsilon,43}$, shared-domain, continuous primitive, and
+retained-branch claims false.
+
+The same mechanism now has a primitive-profile inlet rather than only a row
+diagnostic. \texttt{computeH39AffineCenterShiftedR43SourceProfileCandidate}
+consumes the certified affine-center shifted coefficients and emits finite
+$E_R,M_R$ prefix profiles. If no shifted outer Cauchy pair is supplied, the
+profile remains diagnostic: the prefix-plus-tail fields stay null and cannot
+complete the primitive vector. If a same-domain shifted outer bound and radius
+are supplied, the helper attaches the Cauchy tail with shift power $0$ and
+feeds the same $E_R,M_R$ profile route used by the seven-input primitive
+summary. The source-certificate report now recognizes this affine-center
+shifted source candidate as the same provenance family as the older shifted
+removable source candidate, while still rejecting under-covering bounds before
+they can enter the primitive replay. The $y^{41}K_\varepsilon$ second-$X$
+term is emitted as a separate remainder profile and is not folded into
+$E_R$ or $M_R$ without a graph-centered $X$ radius and a same-domain
+$K_\varepsilon$ majorant.
+
+This is a genuine narrowing of the obstruction. The huge full-cover shifted
+pressure is still an executable warning about single-disc interval replay, but
+the solved leading row is no longer an obstruction after numeric-center replay.
+The remaining hard step is to certify a same-domain shifted outer Cauchy bound
+for the affine-center actual replay coefficients that remain after $A_0=0$,
+starting with shifted index $1$, then add the separate continuous
+$y^{41}K_\varepsilon$ second-$X$ remainder term. The latest diagnostic shows
+that row-$1$ is a genuine current-cover local-coordinate pressure, not merely a
+replay-formatting artifact; it also shows that h38 input subdivision is a
+plausible sharper route because input-midpoint replay collapses the row by
+about $4.8\times10^9$. The sharper statement is that the inherited h-row
+widths, not the live cell variables or inherited slope interval, are the
+dominant source. The engine still does not claim a retained branch, scaled
+remainder, $I_1$, quadrature, or full first-y closure.

@@ -524,6 +524,89 @@ boundary remains unchanged: the path is a cancellation-aware primitive-profile
 inlet, not retained branch status and not a proof of the shifted bound across
 the full h38 cover.
 
+The full h38 cover now shows why that proof burden is substantial. A diagnostic
+prefix scan at shifted order $10$ and source radius $0.01$ found a maximum
+shifted $R_{\varepsilon,43}$ prefix majorant of about
+$2.92\times10^{25}$ across the cover. The evaluator therefore rejects any
+under-covering shifted bound before the primitive profile consumes it. The next
+certificate must either prove a much sharper shifted envelope on smaller
+subdomains, carry a certified partition/aggregation theorem for those
+subdomains, or derive a stronger cancellation mechanism than the current
+single-disc shifted-prefix majorant.
+
+The pressure decomposition now identifies the first stronger mechanism to try.
+The worst full-cover pressure is localized to `speed.0.first-y`, branch `-`,
+shifted index $k=0$. That is the coefficient killed by the h39 center solve, so
+the huge shifted-prefix number is primarily a loss of correlation between the
+center graph $X_c$ and the affine leading row. The diagnostic keeps the
+candidate boundary intact, but it changes the next primitive route: produce a
+same-domain graph-centered affine-elimination witness for the coefficients
+$R_{\varepsilon,43,k}(X)=C_k+S_kX$ below the $y^{41}$ second-$X$ row, then feed
+the resulting center-eliminated $E_R,M_R$ bounds into the existing seven-input
+primitive profile.
+The first replay of this idea also rules out a tempting shortcut: evaluating
+the eliminated coefficients with independent interval products makes the worst
+cell larger, not smaller. The proof must retain the affine correlation
+symbolically or introduce certified subdivisions fine enough to keep the
+correlation visible.
+
+The next replay removes one source of false uncertainty. The evaluator now
+uses the numeric h39 center interval internally and leaves the formatted center
+interval as display-only. On the live h38 cover, this changes the affine-center
+leading-zero status from partially open to complete: all $256$ branch rows
+certify the solved leading row, and the first-open witness is null. The raw
+shifted-prefix maximum is still about $2.87\times10^{25}$, but the
+affine-center finite-prefix maximum is about $5.25\times10^{22}$. The primitive
+diagnostic therefore no longer treats the solved leading shifted coefficient as
+the blocker. The next blocker is the same-domain shifted outer Cauchy
+certificate for the shifted-index-$1$ actual-center replay coefficient at
+`speed.0.first-y`, branch `-`, $y$-order $44$, plus the separate
+graph-centered $y^{41}K_\varepsilon$ second-$X$ remainder. The row-$1$
+coefficient contributes about $5.24\times10^{22}$ at $\rho=0.001$, while
+independent Schur elimination of the same row remains about
+$4.06\times10^{47}$ and therefore cannot serve as the certificate route.
+The row-$1$ diagnostic now compares full center replay, $X$-partition replay,
+center-midpoint replay, input-midpoint replay, and the source-term triangle for
+that same row. A $4$-piece center partition still leaves about
+$3.05\times10^{22}$ pressure, and the center midpoint with full h38 intervals
+is still about $1.83\times10^{22}$. Collapsing the h38 cell and inherited $h$
+intervals to midpoints lowers the row pressure to about $1.08\times10^{13}$.
+Thus the primitive profile cannot be closed by a shallow $X$ subdivision alone;
+the remaining $E_R,M_R$ inlet most likely needs certified h38 input subdivision
+or a stronger row-level cancellation before a global shifted outer envelope can
+be useful.
+Grouped sensitivity probes sharpen that subdivision target: live cell midpoint
+replay and inherited-slope midpoint replay do almost nothing, while inherited
+$h$-row midpoint replay gives the full $\approx4.8\times10^9$ collapse. The
+high-order tail matters but does not explain all of it: freezing $h_{27}\ldots
+h_{38}$ gives only about $7.2\times10^4$ improvement. The primitive diagnostic
+therefore needs a dependency-preserving h-row replay certificate for the row-$1$
+$E_R,M_R$ source, not merely a smaller speed cell or an $X$ partition.
+\texttt{computeH39AffineCenterHRowSensitivityDiagnosticCandidate} records this
+route as an executable candidate-only diagnostic. It replays the same
+shifted-index-$1$ row after re-solving the h39 center under selected midpoint
+families and top-h-row freezes, so the primitive inlet can distinguish
+cell-width, solve-slope-width, and inherited h-row-width pressure before any
+shifted $R_{\varepsilon,43}$ outer bound is promoted. On the live dominant row
+it reports the same full pressure $5.239383640054425\times10^{22}$ and the
+same h-row midpoint collapse factor $4.835860325251657\times10^9$ while cell
+and slope midpoint factors remain essentially $1$.
+The width-compression replay adds the primitive-side interpretation: halving
+the inherited h-row widths halves the live row pressure to first order, so a
+brute independent subdivision would need roughly $2^{-32}$ width scale before
+it approached the midpoint-level pressure. The primitive inlet therefore needs
+predecessor h-row transport or a low-dimensional recurrence parameterization,
+not a direct cover of the exported independent h-row box.
+The companion provider-boundary diagnostic now records this as a proof-boundary
+fact: the h38 row supplies complete interval-snapshot data but no
+dependency-preserving h-row provider. A primitive witness may not treat the
+row-$1$ source as transported until branch inputs carry a predecessor-recurrence
+transport or certified h-row subdivision witness through the evaluator boundary.
+That boundary is now executable: row evaluation accepts an opt-in h-row provider
+only when it supplies a dependency trace and explicitly preserves dependencies,
+then records provider-backed replay in `h_row_provider_report` while keeping all
+primitive and retained-branch promotion flags false.
+
 ## Candidate Provenance No-Go Report
 
 The current primitive-vector backend now has an executable non-promotion
@@ -1156,6 +1239,35 @@ $\sinh$ envelope provenance. It now also verifies that the evaluator emits
 same-domain coordinate-Cauchy and denominator-Cauchy source certificates, with
 positive-Taylor $\sinh$ envelope provenance, and emits the exact graph-radii
 witness, while keeping retained-branch and full first-y claims false.
+The evaluator companion test now also verifies the affine-center
+$R_{\varepsilon,43}$ finite-prefix route: below the $y^{41}$ second-$X$ row,
+the row records $R_{\varepsilon,43,k}(X)=C_k+S_kX$, verifies the center
+relation $X_c=-C_0/S_0$, replaces only the solved leading shifted coefficient
+by exact $0$, and records that independent Schur products are not used for the
+bound. This gives the primitive diagnostic a cleaner candidate $E_R$ source
+without promoting directed-rounded shared-domain provenance or any downstream
+closure claim.
+The evaluator companion test now also checks the primitive-profile boundary of
+that route. The affine-center shifted source profile stays finite-prefix-only
+when no shifted outer Cauchy pair is present, so the full primitive vector
+remains incomplete. When an explicit shifted outer bound and radius are present,
+the profile attaches a shift-power-zero tail and can feed the candidate
+$E_R,M_R$ inputs. The separate second-$X$ profile records
+$\partial_X^2R_{\varepsilon,43}=y^{41}K_\varepsilon$ but remains outside the
+$E_R,M_R$ prefix-plus-tail totals until the graph-centered $X$ remainder and
+the needed $K_\varepsilon$ bounds are certified on the same domain.
+The artifact summary now aggregates those facts across a cover: affine-center
+leading-zero counts, first open affine-zero witness, maximum affine-center
+prefix, affine-center source-profile counts, tail-bearing counts, and
+second-$X$ separation counts are top-level fields rather than row-only
+diagnostics. A live full-cover probe confirms that these aggregates report
+$256/256$ affine-center leading-zero certifications and no open leading-zero
+rows after the numeric-center replay correction.
+The evaluator companion test also covers the opt-in row-correlation diagnostic:
+it targets shifted index $1$ ($y$-order $44$), records the row's $C_k,S_k$
+affine data, compares full center replay with partition, center-midpoint, and
+input-midpoint replay, and verifies that the artifact remains candidate-only
+with no fixed speed-band fields.
 
 ## Claim Boundary
 

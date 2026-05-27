@@ -117,6 +117,195 @@ export function cellFromCertificateRow(row) {
   };
 }
 
+export function computeH39PredecessorHRowProviderBoundaryCandidate({
+  h38Row,
+  hCount = 39,
+} = {}) {
+  if (!Array.isArray(h38Row?.branch_rows) || h38Row.branch_rows.length !== 2) {
+    throw new Error("h38Row must contain exactly two branch_rows");
+  }
+  const resolvedHCount = Number(hCount);
+  if (!Number.isInteger(resolvedHCount) || resolvedHCount < 1) {
+    throw new Error("hCount must be a positive integer");
+  }
+  const parentKeyPattern =
+    /^(parent|predecessor|lineage|dependency|transport|provider)/;
+  const recurrenceKeyPattern =
+    /^(recurrence|transport|dependency|parent|predecessor).*h/i;
+  const providerFlagPresent = (branchRow) =>
+    branchRow?.dependency_preserving_h_row_provider === true ||
+    branchRow?.h_row_provider_preserves_dependencies === true ||
+    branchRow?.preserves_dependencies === true ||
+    branchRow?.preservesDependencies === true;
+  const providerDependencyTrace = (branchRow) =>
+    branchRow?.h_row_dependency_trace ??
+    branchRow?.dependency_trace ??
+    branchRow?.dependencyTrace ??
+    null;
+  const providerClaimBoundary = (branchRow) =>
+    branchRow?.h_row_provider_claim_boundary ??
+    branchRow?.claim_boundary ??
+    branchRow?.claimBoundary ??
+    null;
+  const providerClaimBoundaryCandidateOnly = (branchRow) => {
+    const boundary = providerClaimBoundary(branchRow);
+    return (
+      boundary !== null &&
+      typeof boundary === "object" &&
+      boundary.certifies_shifted_R43_outer_bound === false &&
+      boundary.certifies_directed_rounded_shared_domain === false &&
+      boundary.certifies_continuous_polydisc_primitives === false &&
+      boundary.retained_branch === false
+    );
+  };
+  const branchSummaries = h38Row.branch_rows.map((branchRow) => {
+    const keys = Object.keys(branchRow);
+    const hIntervalFieldCount = keys.filter((key) =>
+      /^h\d+_interval$/.test(key)
+    ).length;
+    const hSolveSlopeFieldCount = keys.filter((key) =>
+      /^h\d+_solve_slope_interval$/.test(key)
+    ).length;
+    const residualFieldCount = keys.filter((key) =>
+      /^h\d+_residual_before_solve$/.test(key)
+    ).length;
+    const parentOrDependencyKeys = keys.filter((key) =>
+      parentKeyPattern.test(key)
+    );
+    const recurrenceKeys = keys.filter((key) =>
+      recurrenceKeyPattern.test(key)
+    );
+    const dependencyTrace = providerDependencyTrace(branchRow);
+    const dependencyTraceCount = Array.isArray(dependencyTrace)
+      ? dependencyTrace.length
+      : 0;
+    const providerKind =
+      branchRow.h_row_provider_kind ??
+      branchRow.provider_kind ??
+      branchRow.providerKind ??
+      null;
+    const providerProvenance =
+      branchRow.h_row_provider_provenance ??
+      branchRow.provider_provenance ??
+      branchRow.providerProvenance ??
+      null;
+    const sourceCellId =
+      branchRow.h_row_provider_source_cell_id ??
+      branchRow.source_cell_id ??
+      branchRow.sourceCellId ??
+      null;
+    const dependencyWitness =
+      branchRow.h_row_dependency_witness ??
+      branchRow.dependency_witness ??
+      branchRow.dependencyWitness ??
+      null;
+    const providerMetadataKeyPresent =
+      providerFlagPresent(branchRow) ||
+      providerKind !== null ||
+      providerProvenance !== null ||
+      sourceCellId !== null ||
+      dependencyTraceCount > 0 ||
+      dependencyWitness !== null ||
+      providerClaimBoundary(branchRow) !== null;
+    const dependencyProviderPresent =
+      providerFlagPresent(branchRow) &&
+      typeof providerKind === "string" &&
+      providerKind.length > 0 &&
+      providerProvenance !== null &&
+      typeof sourceCellId === "string" &&
+      sourceCellId.length > 0 &&
+      dependencyTraceCount > 0 &&
+      dependencyWitness !== null &&
+      providerClaimBoundaryCandidateOnly(branchRow);
+    return {
+      branch: branchRow.branch,
+      h_interval_field_count: hIntervalFieldCount,
+      h_solve_slope_field_count: hSolveSlopeFieldCount,
+      residual_before_solve_field_count: residualFieldCount,
+      has_h38_solve_slope_interval: Array.isArray(
+        branchRow.h38_solve_slope_interval
+      ),
+      has_h38_residual_before_solve: Array.isArray(
+        branchRow.h38_residual_before_solve
+      ),
+      parent_or_dependency_keys: parentOrDependencyKeys,
+      recurrence_keys: recurrenceKeys,
+      provider_metadata_key_present: providerMetadataKeyPresent,
+      provider_kind: providerKind,
+      provider_source_cell_id: sourceCellId,
+      h_row_provider_provenance_present: providerProvenance !== null,
+      h_row_dependency_trace_count: dependencyTraceCount,
+      h_row_dependency_witness_present: dependencyWitness !== null,
+      h_row_provider_claim_boundary_candidate_only:
+        providerClaimBoundaryCandidateOnly(branchRow),
+      dependency_preserving_h_row_provider_present:
+        dependencyProviderPresent,
+      provider_metadata_status: dependencyProviderPresent
+        ? "dependency-preserving-provider-present"
+        : providerMetadataKeyPresent
+          ? "incomplete-provider-metadata-rejected"
+          : "interval-snapshot-no-provider-metadata",
+    };
+  });
+  const dependencyProviderPresent = branchSummaries.every(
+    (summary) => summary.dependency_preserving_h_row_provider_present
+  );
+  const incompleteProviderMetadataPresent = branchSummaries.some(
+    (summary) =>
+      summary.provider_metadata_key_present &&
+      summary.dependency_preserving_h_row_provider_present !== true
+  );
+  const intervalSnapshotComplete = branchSummaries.every(
+    (summary) =>
+      summary.h_interval_field_count >= resolvedHCount &&
+      summary.has_h38_solve_slope_interval
+  );
+
+  return {
+    schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
+    status: "h39-predecessor-h-row-provider-boundary-candidate-emitted",
+    evaluation_level: "candidate-predecessor-h-row-provider-boundary",
+    cell_id: h38Row.cell_id ?? null,
+    h_count: resolvedHCount,
+    branch_summaries: branchSummaries,
+    exported_h_row_interval_snapshot_complete: intervalSnapshotComplete,
+    dependency_preserving_h_row_provider_present:
+      dependencyProviderPresent,
+    exported_h_row_dependency_state: dependencyProviderPresent
+      ? "dependency-preserving-provider-present"
+      : incompleteProviderMetadataPresent
+        ? "incomplete-provider-metadata-rejected"
+      : "independent-interval-snapshot-only",
+    smallest_evaluator_entry_point: "branchInputsFromH38Row",
+    required_provider_shape: {
+      branch: "<branch label>",
+      dependency_preserving_h_row_provider: true,
+      provider_kind:
+        "predecessor-recurrence-transport | certified-h-row-subdivision",
+      source_cell_id: "<h38 cell id>",
+      h_intervals: "same h0..h38 intervals or transported subcell intervals",
+      solve_slope_interval: "same branch h38 solve slope interval",
+      h_row_provider_provenance:
+        "machine-readable provider construction record",
+      h_row_dependency_trace: "nonempty dependency trace for replayed h rows",
+      h_row_dependency_witness:
+        "parent row identity, recurrence equation, transported parameter cell, and coverage proof for the h-row replay",
+      h_row_provider_claim_boundary: {
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        certifies_continuous_polydisc_primitives: false,
+        retained_branch: false,
+      },
+    },
+    candidate_certificate_route:
+      "Feed branchInputsFromH38Row through a dependency-preserving h-row provider before H39 row-1 replay; reject provider-free exported h-row boxes as interval snapshots for the closure proof.",
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    certifies_continuous_polydisc_primitives: false,
+    retained_branch: false,
+  };
+}
+
 function finiteMax(values) {
   const finiteValues = values
     .map((value) => (value === null || value === undefined ? null : Number(value)))
@@ -164,6 +353,11 @@ function coordinateSourceEnvelopeCandidateFromValue(candidate, index) {
     null;
   const explicitSourceEnvelopeKind =
     candidate?.sourceEnvelopeKind ?? candidate?.source_envelope_kind ?? null;
+  const useAffineCenterR43Prefix =
+    explicitSourceEnvelopeKind ===
+      "affine-center-shifted-removable-r43-cauchy-outer-bound" ||
+    (candidate?.useAffineCenterR43Prefix ??
+      candidate?.use_affine_center_r43_prefix) === true;
   const r43CauchyOuterRadius =
     candidate?.r43CauchyOuterRadius ??
     candidate?.coordinateCauchyOuterRadius ??
@@ -189,7 +383,9 @@ function coordinateSourceEnvelopeCandidateFromValue(candidate, index) {
       explicitSourceEnvelopeKind ??
       (isProvided(r43ShiftedCauchyOuterBound) ||
       isProvided(r43ShiftedCauchyOuterRadius)
-        ? "shifted-removable-r43-cauchy-outer-bound"
+        ? useAffineCenterR43Prefix
+          ? "affine-center-shifted-removable-r43-cauchy-outer-bound"
+          : "shifted-removable-r43-cauchy-outer-bound"
         : "raw-coordinate-cauchy-outer-bound"),
     r43_cauchy_outer_radius: isProvided(r43CauchyOuterRadius)
       ? Number(r43CauchyOuterRadius)
@@ -206,6 +402,7 @@ function coordinateSourceEnvelopeCandidateFromValue(candidate, index) {
     certifies_shifted_r43_zero_prefix:
       (candidate?.certifiesShiftedR43ZeroPrefix ??
         candidate?.certifies_shifted_r43_zero_prefix) === true,
+    use_affine_center_r43_prefix: useAffineCenterR43Prefix,
     jacobian_cauchy_outer_radius: isProvided(jacobianCauchyOuterRadius)
       ? Number(jacobianCauchyOuterRadius)
       : null,
@@ -346,6 +543,11 @@ function buildCoordinateCauchySourceCertification({
     "h39-source-residual-coordinate-cauchy-outer-bound-candidate-emitted";
   const shiftedSourceCandidateStatus =
     "h39-shifted-r43-removable-cauchy-outer-bound-candidate-emitted";
+  const affineCenterShiftedSourceCandidateStatus =
+    "h39-affine-center-shifted-r43-removable-cauchy-outer-bound-candidate-emitted";
+  const isShiftedSourceCandidate = (candidate) =>
+    candidate?.status === shiftedSourceCandidateStatus ||
+    candidate?.status === affineCenterShiftedSourceCandidateStatus;
   const sourceResidualBranchCandidateValid = (candidate) => {
     const bound = Number(
       candidate?.r43_cauchy_outer_bound ??
@@ -357,7 +559,7 @@ function buildCoordinateCauchySourceCertification({
     if (candidate?.status === rawSourceCandidateStatus) {
       return true;
     }
-    if (candidate?.status !== shiftedSourceCandidateStatus) {
+    if (!isShiftedSourceCandidate(candidate)) {
       return false;
     }
     return (
@@ -376,7 +578,7 @@ function buildCoordinateCauchySourceCertification({
           ?.certifies_outward_rounded_transcendental_upper_bound === true
       );
     }
-    if (candidate?.status === shiftedSourceCandidateStatus) {
+    if (isShiftedSourceCandidate(candidate)) {
       return (
         candidate?.directed_rounded_shifted_R43_provenance === true &&
         candidate?.source_zero_prefix_certified === true &&
@@ -1001,6 +1203,23 @@ function intervalClearanceFromZero(interval) {
     return -right;
   }
   return 0;
+}
+
+function intervalContainsInterval(container, inner) {
+  const [containerLeft, containerRight] = numericInterval(container);
+  const [innerLeft, innerRight] = numericInterval(inner);
+  const scale = Math.max(
+    1,
+    Math.abs(containerLeft),
+    Math.abs(containerRight),
+    Math.abs(innerLeft),
+    Math.abs(innerRight)
+  );
+  const tolerance = Number.EPSILON * 64 * scale;
+  return (
+    containerLeft <= innerLeft + tolerance &&
+    containerRight >= innerRight - tolerance
+  );
 }
 
 function assertFiniteNonnegativeNumber(name, value) {
@@ -2072,6 +2291,142 @@ export function computeH39R43AnalyticRemainderProfileCandidate({
   };
 }
 
+export function computeH39AffineCenterShiftedR43SourceProfileCandidate({
+  coefficients,
+  affineCenterCertificate,
+  targetRadius,
+  r43ShiftedCauchyOuterBound = null,
+  r43ShiftedCauchyOuterRadius = null,
+} = {}) {
+  if (!Array.isArray(coefficients) || coefficients.length === 0) {
+    throw new Error("coefficients must be a nonempty coefficient list");
+  }
+  if (
+    affineCenterCertificate?.leading_affine_center_zero_certified !== true ||
+    affineCenterCertificate?.independent_interval_schur_products_used !== false
+  ) {
+    throw new Error(
+      "affine-center shifted R43 source profile requires the certified leading affine-center zero and no Schur-product bound"
+    );
+  }
+  const rho = assertFiniteNonnegativeNumber("targetRadius", targetRadius);
+  const finitePrefix = computeCoefficientPrefixMajorant(coefficients, rho);
+  const yDerivativeFinitePrefix = coefficients.reduce(
+    (sum, coefficient, index) =>
+      sum + index * intervalAbsUpper(coefficient) * rho ** index,
+    0
+  );
+  const hasShiftedCauchyInputs = hasCompleteCauchyOuterPair(
+    "affine-center shifted R43",
+    r43ShiftedCauchyOuterBound,
+    r43ShiftedCauchyOuterRadius,
+    rho
+  );
+  const cauchyDiagnostic = hasShiftedCauchyInputs
+    ? computeCauchyShiftedPrefixTailMajorant({
+        coefficients,
+        outerBound: r43ShiftedCauchyOuterBound,
+        outerRadius: r43ShiftedCauchyOuterRadius,
+        targetRadius: rho,
+        shiftPower: 0,
+      })
+    : null;
+
+  return {
+    status:
+      "h39-affine-center-shifted-r43-source-profile-candidate-emitted",
+    evaluation_level: "candidate-affine-center-shifted-r43-source-profile",
+    source_profile_kind: "affine-center-actual-replay-shifted-r43",
+    r43_cauchy_tail_shift_power: 0,
+    retained_shifted_prefix_order: coefficients.length - 1,
+    target_radius: rho,
+    shifted_outer_bound_supplied: hasShiftedCauchyInputs,
+    outer_bound: cauchyDiagnostic?.outer_bound ?? null,
+    outer_radius: cauchyDiagnostic?.outer_radius ?? null,
+    q: cauchyDiagnostic?.q ?? null,
+    candidate_E_R_finite_prefix: finitePrefix,
+    candidate_E_R_finite_prefix_coefficient_source:
+      "affine-center-actual-replay-leading-zero",
+    candidate_E_R_cauchy_tail_after_prefix_profile:
+      cauchyDiagnostic?.cauchy_tail_after_prefix_majorant ?? null,
+    candidate_E_R_prefix_plus_tail_bound:
+      cauchyDiagnostic?.shifted_function_prefix_plus_tail_majorant ?? null,
+    candidate_M_R_finite_prefix: yDerivativeFinitePrefix,
+    candidate_M_R_cauchy_tail_after_prefix_profile:
+      cauchyDiagnostic?.y_derivative_cauchy_tail_after_prefix_majorant ??
+      null,
+    candidate_M_R_prefix_plus_tail_bound:
+      cauchyDiagnostic?.y_derivative_prefix_plus_tail_majorant ?? null,
+    centerResidualRemainderProfile:
+      cauchyDiagnostic?.cauchy_tail_after_prefix_majorant ?? null,
+    rootTangentNumeratorRemainderProfile:
+      cauchyDiagnostic?.y_derivative_cauchy_tail_after_prefix_majorant ??
+      null,
+    cauchy_diagnostic: cauchyDiagnostic,
+    affine_center_certificate: affineCenterCertificate,
+    candidate_bound_source: hasShiftedCauchyInputs
+      ? "affine-center actual replay prefix plus directed-rounded shifted R43 Cauchy tail"
+      : "affine-center actual replay finite prefix only; shifted Cauchy tail missing",
+    certifies_continuous_polydisc_primitives: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function computeH39R43SecondXKepsilonRemainderProfileCandidate({
+  secondXKernelYPower =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS
+      .second_x_derivative_y_power,
+  candidateMKContinuousMajorant = null,
+  targetRadius = null,
+  xRemainderRadius = null,
+} = {}) {
+  const resolvedPower = Number(secondXKernelYPower);
+  if (!Number.isInteger(resolvedPower) || resolvedPower < 0) {
+    throw new Error("secondXKernelYPower must be a nonnegative integer");
+  }
+  const hasKernelMajorant = Number.isFinite(
+    Number(candidateMKContinuousMajorant)
+  );
+  const hasTargetRadius = isProvided(targetRadius);
+  const hasXRemainderRadius = isProvided(xRemainderRadius);
+  const canComputeERemainder =
+    hasKernelMajorant && hasTargetRadius && hasXRemainderRadius;
+  const resolvedTargetRadius = hasTargetRadius
+    ? assertFiniteNonnegativeNumber("targetRadius", targetRadius)
+    : null;
+  const resolvedXRemainderRadius = hasXRemainderRadius
+    ? assertFiniteNonnegativeNumber("xRemainderRadius", xRemainderRadius)
+    : null;
+
+  return {
+    status:
+      "h39-r43-second-x-y41-K-epsilon-remainder-profile-candidate-emitted",
+    evaluation_level: "candidate-second-x-remainder-profile",
+    identity: "partial_X^2 R43 = y^41 K_epsilon",
+    second_x_kernel_y_power: resolvedPower,
+    target_radius: resolvedTargetRadius,
+    x_remainder_radius: resolvedXRemainderRadius,
+    candidate_M_K_continuous_majorant: hasKernelMajorant
+      ? Number(candidateMKContinuousMajorant)
+      : null,
+    candidate_E_R_second_x_remainder_profile: canComputeERemainder
+      ? 0.5 *
+        resolvedXRemainderRadius ** 2 *
+        resolvedTargetRadius ** resolvedPower *
+        Number(candidateMKContinuousMajorant)
+      : null,
+    candidate_M_R_second_x_remainder_profile: null,
+    missing_second_x_y_derivative_majorant: true,
+    missing_graph_centered_x_remainder_radius: !hasXRemainderRadius,
+    included_in_candidate_E_R_prefix_plus_tail_bound: false,
+    included_in_candidate_M_R_prefix_plus_tail_bound: false,
+    certifies_continuous_polydisc_primitives: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
 export function computeCauchyCoefficientPrefixMajorant({
   coefficients,
   outerBound,
@@ -3119,8 +3474,10 @@ export function computeH39ShiftedR43RemovableOuterBoundCandidate({
   xInterval = [0, 0],
   outerBound,
   outerRadius,
+  solveSlopeInterval = null,
   directedRoundedShiftedR43Provenance = false,
   certifiesShiftedR43ZeroPrefix = false,
+  useAffineCenterR43Prefix = false,
 } = {}) {
   const resolvedOuterBound = assertFiniteNonnegativeNumber(
     "outerBound",
@@ -3141,7 +3498,40 @@ export function computeH39ShiftedR43RemovableOuterBoundCandidate({
   const shift =
     THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift;
   const zeroPrefix = source.slice(0, shift);
-  const shiftedCoefficients = source.slice(shift);
+  const rawShiftedCoefficients = source.slice(shift);
+  const rawShiftedPrefixMajorant = computeCoefficientPrefixMajorant(
+    rawShiftedCoefficients,
+    resolvedOuterRadius
+  );
+  const affineCenterFormCandidate = useAffineCenterR43Prefix
+    ? computeH39ShiftedR43AffineCenterFormCandidate({
+        context,
+        cell,
+        branch,
+        branchSign,
+        hIntervals,
+        xInterval,
+        solveSlopeInterval,
+        outerRadius: resolvedOuterRadius,
+        shiftedOrder: rawShiftedCoefficients.length - 1,
+      })
+    : null;
+  if (
+    useAffineCenterR43Prefix &&
+    affineCenterFormCandidate?.R43_affine_center_certificate
+      ?.leading_affine_center_zero_certified !== true
+  ) {
+    throw new Error(
+      "affine-center shifted R43 source bound requires a certified leading affine-center zero"
+    );
+  }
+  const affineCenterShiftedCoefficients =
+    affineCenterFormCandidate?.R43_affine_center_shifted_coefficients?.map(
+      numericInterval
+    ) ?? null;
+  const shiftedCoefficients = useAffineCenterR43Prefix
+    ? affineCenterShiftedCoefficients
+    : rawShiftedCoefficients;
   const zeroPrefixContainsZero = zeroPrefix.every(
     ([left, right]) => left <= 0 && right >= 0
   );
@@ -3154,15 +3544,34 @@ export function computeH39ShiftedR43RemovableOuterBoundCandidate({
   const coversFinitePrefix =
     resolvedOuterBound >= shiftedPrefixMajorant ||
     numericClose(resolvedOuterBound, shiftedPrefixMajorant);
+  if (directedRoundedShiftedR43Provenance !== true) {
+    throw new Error(
+      "shifted R43 source bound requires directedRoundedShiftedR43Provenance"
+    );
+  }
+  if (!zeroPrefixCertified) {
+    throw new Error(
+      "shifted R43 source bound requires source zero-prefix certification through y^42"
+    );
+  }
+  if (!coversFinitePrefix) {
+    throw new Error(
+      `shifted R43 source bound ${resolvedOuterBound} does not cover shifted coefficient prefix ${shiftedPrefixMajorant}`
+    );
+  }
 
   return {
     schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
     status:
-      "h39-shifted-r43-removable-cauchy-outer-bound-candidate-emitted",
+      useAffineCenterR43Prefix
+        ? "h39-affine-center-shifted-r43-removable-cauchy-outer-bound-candidate-emitted"
+        : "h39-shifted-r43-removable-cauchy-outer-bound-candidate-emitted",
     evaluation_level:
       "candidate-shifted-removable-r43-cauchy-outer-bound",
     branch: branch ?? branchSign,
-    source_envelope_kind: "shifted-removable-r43-cauchy-outer-bound",
+    source_envelope_kind: useAffineCenterR43Prefix
+      ? "affine-center-shifted-removable-r43-cauchy-outer-bound"
+      : "shifted-removable-r43-cauchy-outer-bound",
     r43_source_shift: shift,
     r43_cauchy_tail_shift_power: 0,
     outer_radius: resolvedOuterRadius,
@@ -3175,6 +3584,13 @@ export function computeH39ShiftedR43RemovableOuterBoundCandidate({
     r43_shifted_cauchy_outer_bound: resolvedOuterBound,
     shifted_R43_finite_prefix_majorant_outer_radius:
       shiftedPrefixMajorant,
+    raw_shifted_R43_finite_prefix_majorant_outer_radius:
+      rawShiftedPrefixMajorant,
+    affine_center_shifted_R43_finite_prefix_majorant_outer_radius:
+      useAffineCenterR43Prefix ? shiftedPrefixMajorant : null,
+    shifted_R43_prefix_bound_source: useAffineCenterR43Prefix
+      ? "affine-center-actual-replay-leading-zero"
+      : "center-interval-replay",
     shifted_R43_bound_covers_finite_prefix: coversFinitePrefix,
     source_zero_prefix_contains_zero: zeroPrefixContainsZero,
     source_zero_prefix_certified: zeroPrefixCertified,
@@ -3187,6 +3603,13 @@ export function computeH39ShiftedR43RemovableOuterBoundCandidate({
     source_zero_prefix_witnesses: zeroPrefix.map(root.formatInterval),
     shifted_R43_coefficient_prefix_length: shiftedCoefficients.length,
     shifted_R43_coefficients: shiftedCoefficients.map(root.formatInterval),
+    raw_shifted_R43_coefficients:
+      rawShiftedCoefficients.map(root.formatInterval),
+    R43_affine_center_certificate:
+      affineCenterFormCandidate?.R43_affine_center_certificate ?? null,
+    R43_affine_center_shifted_coefficients:
+      affineCenterFormCandidate?.R43_affine_center_shifted_coefficients ??
+      null,
     directed_rounded_shifted_R43_provenance:
       directedRoundedShiftedR43Provenance === true,
     outward_rounded_transcendental_provenance:
@@ -3194,7 +3617,9 @@ export function computeH39ShiftedR43RemovableOuterBoundCandidate({
     cancellation_certificate:
       "The source coefficients through y^42 contain zero, so the supplied outer bound is consumed as a direct bound for the removable shifted function R43=F/y^43 rather than as a raw F bound divided by R^43.",
     candidate_bound_source:
-      "direct shifted removable R43 Cauchy outer bound with zero-prefix cancellation witness",
+      useAffineCenterR43Prefix
+        ? "direct shifted removable R43 Cauchy outer bound checked against affine-center actual replay with certified leading zero"
+        : "direct shifted removable R43 Cauchy outer bound with zero-prefix cancellation witness",
     certifies_continuous_polydisc_primitives: false,
     certifies_directed_rounded_shared_domain: false,
     retained_branch: false,
@@ -3311,6 +3736,7 @@ export function computeH39CoordinateCauchyOuterBoundsProfileCandidate({
   r43ShiftedCauchyOuterRadius = null,
   directedRoundedShiftedR43Provenance = false,
   certifiesShiftedR43ZeroPrefix = false,
+  useAffineCenterR43Prefix = false,
   jacobianCauchyOuterRadius = null,
   jacobianNumeratorCauchyOuterRadius = null,
   xOuterRadius = 0,
@@ -3360,8 +3786,10 @@ export function computeH39CoordinateCauchyOuterBoundsProfileCandidate({
             xInterval: input.xInterval ?? [0, 0],
             outerBound: r43ShiftedCauchyOuterBound,
             outerRadius: r43ShiftedCauchyOuterRadius,
+            solveSlopeInterval: input.solveSlopeInterval,
             directedRoundedShiftedR43Provenance,
             certifiesShiftedR43ZeroPrefix,
+            useAffineCenterR43Prefix,
           })
         )
       : [];
@@ -3409,7 +3837,9 @@ export function computeH39CoordinateCauchyOuterBoundsProfileCandidate({
       "h39-coordinate-cauchy-outer-bounds-profile-candidate-emitted",
     evaluation_level: "candidate-coordinate-seminorm-cauchy-outer-bound",
     source_envelope_kind: wantsShiftedR43OuterBound
-      ? "shifted-removable-r43-cauchy-outer-bound"
+      ? useAffineCenterR43Prefix
+        ? "affine-center-shifted-removable-r43-cauchy-outer-bound"
+        : "shifted-removable-r43-cauchy-outer-bound"
       : wantsRawR43OuterBound
         ? "raw-coordinate-cauchy-outer-bound"
         : null,
@@ -3431,6 +3861,8 @@ export function computeH39CoordinateCauchyOuterBoundsProfileCandidate({
     r43_shifted_cauchy_outer_bound: wantsShiftedR43OuterBound
       ? sourceResidualOuterBound
       : null,
+    use_affine_center_r43_prefix:
+      wantsShiftedR43OuterBound && useAffineCenterR43Prefix,
     jacobian_numerator_cauchy_outer_radius: wantsJacobianOuterBound
       ? Number(jacobianNumeratorCauchyOuterRadius)
       : null,
@@ -3473,6 +3905,8 @@ function computeH39CoordinateCauchyOuterBoundsProfileFromEnvelopeCandidates({
           candidate.directed_rounded_shifted_r43_provenance,
         certifiesShiftedR43ZeroPrefix:
           candidate.certifies_shifted_r43_zero_prefix,
+        useAffineCenterR43Prefix:
+          candidate.use_affine_center_r43_prefix,
         jacobianCauchyOuterRadius: candidate.jacobian_cauchy_outer_radius,
         jacobianNumeratorCauchyOuterRadius:
           candidate.jacobian_numerator_cauchy_outer_radius,
@@ -3504,6 +3938,8 @@ function computeH39CoordinateCauchyOuterBoundsProfileFromEnvelopeCandidates({
           candidate.r43_shifted_cauchy_outer_radius,
         certifies_shifted_r43_zero_prefix:
           candidate.certifies_shifted_r43_zero_prefix,
+        use_affine_center_r43_prefix:
+          candidate.use_affine_center_r43_prefix,
         jacobian_cauchy_outer_radius: candidate.jacobian_cauchy_outer_radius,
         jacobian_numerator_cauchy_outer_radius:
           candidate.jacobian_numerator_cauchy_outer_radius,
@@ -4819,6 +5255,24 @@ export function sourceEquationSeries({
   hIntervals,
   xInterval = [0, 0],
 } = {}) {
+  return sourceEquationSeriesTermDecomposition({
+    context,
+    cell,
+    branch,
+    branchSign,
+    hIntervals,
+    xInterval,
+  }).source;
+}
+
+export function sourceEquationSeriesTermDecomposition({
+  context = makeTheta3minusFirstYGdSeriesContext(),
+  cell,
+  branch,
+  branchSign,
+  hIntervals,
+  xInterval = [0, 0],
+} = {}) {
   const { delta, phi } = branchSeriesCoordinates({
     context,
     cell,
@@ -4827,16 +5281,1180 @@ export function sourceEquationSeries({
     hIntervals,
     xInterval,
   });
-  return context.add(
-    context.add(
-      context.scaleByInterval(
-        context.power(delta, 2),
-        root.inverseSpeedSquaredInterval(cell.speed_interval)
-      ),
-      context.constant(-2)
-    ),
-    context.add(context.sinSeries(phi), context.sinSeries(delta))
+  const inverseSpeedSquared = root.inverseSpeedSquaredInterval(
+    cell.speed_interval
   );
+  const deltaSquaredSpeed = context.scaleByInterval(
+    context.power(delta, 2),
+    inverseSpeedSquared
+  );
+  const constantMinusTwo = context.constant(-2);
+  const sinDelta = context.sinSeries(delta);
+  const sinPhi = context.sinSeries(phi);
+  const source = context.add(
+    context.add(
+      deltaSquaredSpeed,
+      constantMinusTwo
+    ),
+    context.add(sinPhi, sinDelta)
+  );
+  return {
+    delta,
+    phi,
+    inverse_speed_squared_interval: root.formatInterval(inverseSpeedSquared),
+    terms: {
+      delta_squared_speed: deltaSquaredSpeed,
+      constant_minus_two: constantMinusTwo,
+      sin_phi: sinPhi,
+      sin_delta: sinDelta,
+    },
+    source,
+  };
+}
+
+function coefficientPressureEntries(coefficients, {
+  outerRadius,
+  sourceShift = 0,
+  shiftPower = 0,
+} = {}) {
+  const resolvedOuterRadius = assertFiniteNonnegativeNumber(
+    "outerRadius",
+    outerRadius
+  );
+  return coefficients.map((coefficient, index) => {
+    const radiusPower = index + shiftPower;
+    const coefficientAbsUpper = intervalAbsUpper(coefficient);
+    return {
+      shifted_index: index,
+      y_order: sourceShift + index,
+      coefficient: root.formatInterval(coefficient),
+      coefficient_abs_upper: coefficientAbsUpper,
+      outer_radius: resolvedOuterRadius,
+      radius_power: radiusPower,
+      pressure_contribution:
+        coefficientAbsUpper * resolvedOuterRadius ** radiusPower,
+    };
+  });
+}
+
+function splitIntervalUniform(interval, partitionCount) {
+  const [left, right] = numericInterval(interval);
+  const resolvedPartitionCount = Number(partitionCount);
+  if (
+    !Number.isInteger(resolvedPartitionCount) ||
+    resolvedPartitionCount < 1
+  ) {
+    throw new Error("partitionCount must be a positive integer");
+  }
+  const width = (right - left) / resolvedPartitionCount;
+  return Array.from({ length: resolvedPartitionCount }, (_, index) => [
+    left + index * width,
+    index === resolvedPartitionCount - 1
+      ? right
+      : left + (index + 1) * width,
+  ]);
+}
+
+function intervalMidpoint(interval) {
+  const [left, right] = numericInterval(interval);
+  return left + (right - left) / 2;
+}
+
+function pointIntervalAtMidpoint(interval) {
+  const midpoint = intervalMidpoint(interval);
+  return [midpoint, midpoint];
+}
+
+function pointCellAtMidpoint(cell) {
+  return {
+    speed_interval: pointIntervalAtMidpoint(cell.speed_interval),
+    delta_fold_interval: pointIntervalAtMidpoint(cell.delta_fold_interval),
+    phi_fold_interval: pointIntervalAtMidpoint(cell.phi_fold_interval),
+    beta_interval: pointIntervalAtMidpoint(cell.beta_interval),
+    gamma_interval: pointIntervalAtMidpoint(cell.gamma_interval),
+    L_interval: pointIntervalAtMidpoint(cell.L_interval),
+  };
+}
+
+function pointIntervalsAtMidpoints(intervals) {
+  return intervals.map(pointIntervalAtMidpoint);
+}
+
+function scaleIntervalAboutMidpoint(interval, widthScale) {
+  const resolvedWidthScale = assertFiniteNonnegativeNumber(
+    "widthScale",
+    widthScale
+  );
+  const [left, right] = numericInterval(interval);
+  const midpoint = left + (right - left) / 2;
+  const halfWidth = ((right - left) / 2) * resolvedWidthScale;
+  return [midpoint - halfWidth, midpoint + halfWidth];
+}
+
+function scaleIntervalsAboutMidpoints(intervals, widthScale) {
+  return intervals.map((interval) =>
+    scaleIntervalAboutMidpoint(interval, widthScale)
+  );
+}
+
+function sumPressure(entries) {
+  return entries.reduce(
+    (sum, entry) => sum + Number(entry.pressure_contribution),
+    0
+  );
+}
+
+function dominantPressureEntry(entries) {
+  if (!Array.isArray(entries) || entries.length === 0) {
+    return null;
+  }
+  return entries.reduce((best, entry) =>
+    Number(entry.pressure_contribution) >
+    Number(best.pressure_contribution)
+      ? entry
+      : best
+  );
+}
+
+function pressureDiagnosticValue(diagnostic, field) {
+  const value = Number(diagnostic?.[field]);
+  return Number.isFinite(value) ? value : null;
+}
+
+function dominantPressureDiagnostic(diagnostics, field) {
+  const finiteDiagnostics = diagnostics.filter(
+    (diagnostic) => pressureDiagnosticValue(diagnostic, field) !== null
+  );
+  if (finiteDiagnostics.length === 0) {
+    return null;
+  }
+  return finiteDiagnostics.reduce((best, diagnostic) =>
+    pressureDiagnosticValue(diagnostic, field) >
+    pressureDiagnosticValue(best, field)
+      ? diagnostic
+      : best
+  );
+}
+
+function shiftedTermPressureByCoefficient({
+  decomposed,
+  sourceShift,
+  shiftedIndex,
+  outerRadius,
+}) {
+  const absoluteIndex = sourceShift + shiftedIndex;
+  const sourceCoefficient = decomposed.source[absoluteIndex];
+  const sourceCoefficientAbsUpper = intervalAbsUpper(sourceCoefficient);
+  const sourcePressureContribution =
+    sourceCoefficientAbsUpper * outerRadius ** shiftedIndex;
+  const termPressures = Object.entries(decomposed.terms).map(
+    ([term, series]) => {
+      const termCoefficient = series[absoluteIndex];
+      const coefficientAbsUpper = intervalAbsUpper(termCoefficient);
+      return {
+        term,
+        coefficient: root.formatInterval(termCoefficient),
+        coefficient_abs_upper: coefficientAbsUpper,
+        pressure_contribution:
+          coefficientAbsUpper * outerRadius ** shiftedIndex,
+      };
+    }
+  );
+  const termPressureSum = sumPressure(termPressures);
+  return {
+    shifted_index: shiftedIndex,
+    y_order: absoluteIndex,
+    source_coefficient: root.formatInterval(sourceCoefficient),
+    source_coefficient_abs_upper: sourceCoefficientAbsUpper,
+    source_pressure_contribution: sourcePressureContribution,
+    term_pressure_sum: termPressureSum,
+    term_triangle_over_source_pressure_ratio:
+      sourcePressureContribution > 0
+        ? termPressureSum / sourcePressureContribution
+        : null,
+    dominant_term: dominantPressureEntry(termPressures),
+    terms: termPressures,
+  };
+}
+
+export function computeH39ShiftedR43PressureDecompositionCandidate({
+  context = makeTheta3minusFirstYGdSeriesContext(),
+  cell,
+  branch,
+  branchSign = branchSignValue(branch),
+  hIntervals,
+  xInterval = [0, 0],
+  solveSlopeInterval = null,
+  outerRadius,
+  shiftedOrder = 10,
+} = {}) {
+  const resolvedOuterRadius = assertFinitePositiveNumber(
+    "outerRadius",
+    outerRadius
+  );
+  if (!Number.isInteger(shiftedOrder) || shiftedOrder < 0) {
+    throw new Error("shiftedOrder must be a nonnegative integer");
+  }
+  const shift =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift;
+  if (shift + shiftedOrder > context.seriesOrder) {
+    throw new Error(
+      "seriesOrder is too small for the requested shifted R43 pressure decomposition"
+    );
+  }
+
+  const decomposed = sourceEquationSeriesTermDecomposition({
+    context,
+    cell,
+    branch,
+    branchSign,
+    hIntervals,
+    xInterval,
+  });
+  const shiftedCoefficients = Array.from(
+    { length: shiftedOrder + 1 },
+    (_, index) => decomposed.source[shift + index]
+  );
+  const shiftedCoefficientPressure = coefficientPressureEntries(
+    shiftedCoefficients,
+    {
+      outerRadius: resolvedOuterRadius,
+      sourceShift: shift,
+    }
+  );
+  const sourceAtZero = sourceEquationSeries({
+    context,
+    cell,
+    branch,
+    branchSign,
+    hIntervals,
+    xInterval: [0, 0],
+  });
+  const sourceAtOne = sourceEquationSeries({
+    context,
+    cell,
+    branch,
+    branchSign,
+    hIntervals,
+    xInterval: [1, 1],
+  });
+  const leadingRecomputedSlope = root.subtractIntervals(
+    sourceAtOne[shift],
+    sourceAtZero[shift]
+  );
+  const leadingSlope = isProvided(solveSlopeInterval)
+    ? numericInterval(solveSlopeInterval)
+    : leadingRecomputedSlope;
+  const leadingSourceAtZero = sourceAtZero[shift];
+  const affineDependenceValidThroughShiftedIndex =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS
+      .second_x_derivative_y_power - 1;
+  const affineDependenceValidThroughRequestedOrder =
+    shiftedOrder <= affineDependenceValidThroughShiftedIndex;
+  const centerEliminatedShiftedCoefficients = shiftedCoefficients.map(
+    (_, index) => {
+      if (index === 0) {
+        return [0, 0];
+      }
+      const coefficientAtZero = sourceAtZero[shift + index];
+      const coefficientSlope = root.subtractIntervals(
+        sourceAtOne[shift + index],
+        sourceAtZero[shift + index]
+      );
+      return root.divideIntervals(
+        root.subtractIntervals(
+          root.multiplyIntervals(leadingSlope, coefficientAtZero),
+          root.multiplyIntervals(coefficientSlope, leadingSourceAtZero)
+        ),
+        leadingSlope
+      );
+    }
+  );
+  const centerEliminatedPressure = coefficientPressureEntries(
+    centerEliminatedShiftedCoefficients,
+    {
+      outerRadius: resolvedOuterRadius,
+      sourceShift: shift,
+    }
+  );
+  const termPressureByCoefficient = shiftedCoefficients.map((coefficient, index) => {
+    const termPressures = Object.entries(decomposed.terms).map(
+      ([term, series]) => {
+        const termCoefficient = series[shift + index];
+        const coefficientAbsUpper = intervalAbsUpper(termCoefficient);
+        return {
+          term,
+          coefficient: root.formatInterval(termCoefficient),
+          coefficient_abs_upper: coefficientAbsUpper,
+          pressure_contribution:
+            coefficientAbsUpper * resolvedOuterRadius ** index,
+        };
+      }
+    );
+    const dominantTerm = dominantPressureEntry(termPressures);
+    const totalPressure =
+      shiftedCoefficientPressure[index].pressure_contribution;
+    const termPressureSum = sumPressure(termPressures);
+    return {
+      shifted_index: index,
+      y_order: shift + index,
+      source_coefficient: root.formatInterval(coefficient),
+      source_pressure_contribution: totalPressure,
+      term_pressure_sum: termPressureSum,
+      term_triangle_over_source_pressure_ratio:
+        totalPressure > 0 ? termPressureSum / totalPressure : null,
+      dominant_term: dominantTerm,
+      terms: termPressures,
+    };
+  });
+  const unreducedPrefixMajorant = sumPressure(shiftedCoefficientPressure);
+  const centerEliminatedPrefixMajorant = sumPressure(
+    centerEliminatedPressure
+  );
+  const centerEliminationReducesPressure =
+    centerEliminatedPrefixMajorant <= unreducedPrefixMajorant ||
+    numericClose(centerEliminatedPrefixMajorant, unreducedPrefixMajorant);
+  const dominantUnreduced = dominantPressureEntry(shiftedCoefficientPressure);
+  const dominantCenterEliminated =
+    dominantPressureEntry(centerEliminatedPressure);
+  const leadingIntervalContainsZero =
+    shiftedCoefficients[0][0] <= 0 && shiftedCoefficients[0][1] >= 0;
+
+  return {
+    schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
+    status: "h39-shifted-r43-pressure-decomposition-candidate-emitted",
+    evaluation_level: "diagnostic-coefficient-normal-form",
+    branch: branch ?? branchSign,
+    x_interval: root.formatInterval(numericInterval(xInterval)),
+    r43_source_shift: shift,
+    shifted_order: shiftedOrder,
+    outer_radius: resolvedOuterRadius,
+    affine_dependence_valid_through_shifted_index:
+      affineDependenceValidThroughShiftedIndex,
+    affine_dependence_valid_through_requested_order:
+      affineDependenceValidThroughRequestedOrder,
+    leading_affine_identity:
+      "For shifted indices k <= 40, R43_k(X)=C_k+S_k X because partial_X^2 R43 starts at shifted index 41.",
+    center_eliminated_affine_formula:
+      "A_0=0 and A_k=(S_0 C_k - S_k C_0)/S_0 for k>=1, preserving the h39 center-solve correlation X_c=-C_0/S_0.",
+    leading_source_at_zero: root.formatInterval(leadingSourceAtZero),
+    leading_recomputed_slope: root.formatInterval(leadingRecomputedSlope),
+    leading_slope_used: root.formatInterval(leadingSlope),
+    leading_slope_source: isProvided(solveSlopeInterval)
+      ? "inherited-formal-recurrence-slope"
+      : "recomputed-interval-series-slope",
+    leading_centered_coefficient: root.formatInterval(shiftedCoefficients[0]),
+    leading_centered_coefficient_contains_zero: leadingIntervalContainsZero,
+    unreduced_shifted_prefix_majorant_outer_radius:
+      unreducedPrefixMajorant,
+    center_eliminated_shifted_prefix_majorant_outer_radius:
+      centerEliminatedPrefixMajorant,
+    center_elimination_improvement_factor:
+      centerEliminatedPrefixMajorant > 0
+        ? unreducedPrefixMajorant / centerEliminatedPrefixMajorant
+        : null,
+    center_elimination_reduces_pressure:
+      centerEliminationReducesPressure,
+    center_elimination_interval_warning:
+      centerEliminationReducesPressure
+        ? null
+        : "independent interval products in the affine elimination increase the pressure; the certificate must preserve C_k,S_k,C_0,S_0 correlations symbolically or by certified subdivision",
+    dominant_unreduced_shifted_pressure: dominantUnreduced,
+    dominant_center_eliminated_shifted_pressure:
+      dominantCenterEliminated,
+    shifted_coefficient_pressures: shiftedCoefficientPressure,
+    center_eliminated_shifted_coefficients:
+      centerEliminatedShiftedCoefficients.map(root.formatInterval),
+    center_eliminated_shifted_pressures: centerEliminatedPressure,
+    term_pressure_by_coefficient: termPressureByCoefficient,
+    pressure_interpretation:
+      dominantUnreduced?.shifted_index === 0 &&
+      leadingIntervalContainsZero
+        ? "dominant pressure is the solved leading affine coefficient; this is a center-correlation loss in the interval replay, not evidence of a nonzero leading source term"
+        : "dominant pressure is not confined to the solved leading coefficient; inspect the term and center-eliminated rows before claiming a center-correlation artifact",
+    candidate_certificate_route:
+      "Replace absolute-X shifted-prefix replay with a graph-centered affine center-elimination certificate for shifted indices below 41, preserving C_k,S_k,C_0,S_0 correlations symbolically or by certified subdivision, then bound the remaining center-eliminated coefficients and the y^41 second-X remainder on the same domain.",
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function computeH39AffineCenterRowCorrelationDiagnosticCandidate({
+  context = makeTheta3minusFirstYGdSeriesContext(),
+  cell,
+  branch,
+  branchSign = branchSignValue(branch),
+  hIntervals,
+  xInterval,
+  solveSlopeInterval = null,
+  outerRadius,
+  shiftedIndex = 1,
+  partitionCount = 2,
+} = {}) {
+  const resolvedOuterRadius = assertFinitePositiveNumber(
+    "outerRadius",
+    outerRadius
+  );
+  const resolvedShiftedIndex = Number(shiftedIndex);
+  if (!Number.isInteger(resolvedShiftedIndex) || resolvedShiftedIndex < 1) {
+    throw new Error("shiftedIndex must be a positive integer");
+  }
+  const shift =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift;
+  if (shift + resolvedShiftedIndex > context.seriesOrder) {
+    throw new Error(
+      "seriesOrder is too small for the requested affine-center row diagnostic"
+    );
+  }
+  const affineDependenceValidThroughShiftedIndex =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS
+      .second_x_derivative_y_power - 1;
+  const affineDependenceValidForRow =
+    resolvedShiftedIndex <= affineDependenceValidThroughShiftedIndex;
+  const resolvedXInterval = numericInterval(xInterval);
+
+  const sourceAtZero = sourceEquationSeries({
+    context,
+    cell,
+    branch,
+    branchSign,
+    hIntervals,
+    xInterval: [0, 0],
+  });
+  const sourceAtOne = sourceEquationSeries({
+    context,
+    cell,
+    branch,
+    branchSign,
+    hIntervals,
+    xInterval: [1, 1],
+  });
+  const leadingSourceAtZero = sourceAtZero[shift];
+  const leadingRecomputedSlope = root.subtractIntervals(
+    sourceAtOne[shift],
+    leadingSourceAtZero
+  );
+  const leadingSlope = isProvided(solveSlopeInterval)
+    ? numericInterval(solveSlopeInterval)
+    : leadingRecomputedSlope;
+  const rowSourceAtZero = sourceAtZero[shift + resolvedShiftedIndex];
+  const rowSlope = root.subtractIntervals(
+    sourceAtOne[shift + resolvedShiftedIndex],
+    rowSourceAtZero
+  );
+  const independentIntervalCenterEliminatedCoefficient =
+    root.divideIntervals(
+      root.subtractIntervals(
+        root.multiplyIntervals(leadingSlope, rowSourceAtZero),
+        root.multiplyIntervals(rowSlope, leadingSourceAtZero)
+      ),
+      leadingSlope
+    );
+  const independentIntervalPressure =
+    intervalAbsUpper(independentIntervalCenterEliminatedCoefficient) *
+    resolvedOuterRadius ** resolvedShiftedIndex;
+
+  const replayForXInterval = ({
+    interval,
+    replayKind,
+    replayCell = cell,
+    replayHIntervals = hIntervals,
+  }) => {
+    const decomposed = sourceEquationSeriesTermDecomposition({
+      context,
+      cell: replayCell,
+      branch,
+      branchSign,
+      hIntervals: replayHIntervals,
+      xInterval: interval,
+    });
+    return {
+      replay_kind: replayKind,
+      x_interval: root.formatInterval(numericInterval(interval)),
+      row_pressure: shiftedTermPressureByCoefficient({
+        decomposed,
+        sourceShift: shift,
+        shiftedIndex: resolvedShiftedIndex,
+        outerRadius: resolvedOuterRadius,
+      }),
+    };
+  };
+
+  const fullCenterReplay = replayForXInterval({
+    interval: resolvedXInterval,
+    replayKind: "full-center-interval",
+  });
+  const partitionReplays = splitIntervalUniform(
+    resolvedXInterval,
+    partitionCount
+  ).map((interval, index) =>
+    replayForXInterval({
+      interval,
+      replayKind: `center-partition-${index}`,
+    })
+  );
+  const maxPartitionReplay = partitionReplays.reduce((best, replay) =>
+    Number(replay.row_pressure.source_pressure_contribution) >
+    Number(best.row_pressure.source_pressure_contribution)
+      ? replay
+      : best
+  );
+  const midpoint = intervalMidpoint(resolvedXInterval);
+  const midpointReplay = replayForXInterval({
+    interval: [midpoint, midpoint],
+    replayKind: "center-midpoint",
+  });
+  const midpointCell = {
+    speed_interval: pointIntervalAtMidpoint(cell.speed_interval),
+    delta_fold_interval: pointIntervalAtMidpoint(cell.delta_fold_interval),
+    phi_fold_interval: pointIntervalAtMidpoint(cell.phi_fold_interval),
+    beta_interval: pointIntervalAtMidpoint(cell.beta_interval),
+    gamma_interval: pointIntervalAtMidpoint(cell.gamma_interval),
+    L_interval: pointIntervalAtMidpoint(cell.L_interval),
+  };
+  const midpointHIntervals = hIntervals.map(pointIntervalAtMidpoint);
+  const midpointSolveSlopeInterval = isProvided(solveSlopeInterval)
+    ? pointIntervalAtMidpoint(solveSlopeInterval)
+    : null;
+  const inputMidpointSolve = solveH39CenterCoefficientRow({
+    context,
+    cell: midpointCell,
+    branch,
+    branchSign,
+    hIntervals: midpointHIntervals,
+    solveSlopeInterval: midpointSolveSlopeInterval,
+  });
+  const inputMidpointReplay = replayForXInterval({
+    interval: inputMidpointSolve.h39_center_numeric_interval,
+    replayKind: "input-midpoint-center",
+    replayCell: midpointCell,
+    replayHIntervals: midpointHIntervals,
+  });
+  const fullPressure =
+    fullCenterReplay.row_pressure.source_pressure_contribution;
+  const maxPartitionPressure =
+    maxPartitionReplay.row_pressure.source_pressure_contribution;
+  const midpointPressure =
+    midpointReplay.row_pressure.source_pressure_contribution;
+  const inputMidpointPressure =
+    inputMidpointReplay.row_pressure.source_pressure_contribution;
+
+  return {
+    schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
+    status: "h39-affine-center-row-correlation-diagnostic-candidate-emitted",
+    evaluation_level: "candidate-affine-center-row-correlation-diagnostic",
+    branch: branch ?? branchSign,
+    r43_source_shift: shift,
+    shifted_index: resolvedShiftedIndex,
+    y_order: shift + resolvedShiftedIndex,
+    outer_radius: resolvedOuterRadius,
+    center_replay_x_interval: root.formatInterval(resolvedXInterval),
+    partition_count: Number(partitionCount),
+    affine_dependence_valid_through_shifted_index:
+      affineDependenceValidThroughShiftedIndex,
+    affine_dependence_valid_for_row: affineDependenceValidForRow,
+    affine_row_formula: "R43_k(X)=C_k+S_k X",
+    center_eliminated_formula:
+      "A_k=(S_0 C_k - S_k C_0)/S_0 with k>=1; independent interval replay is diagnostic only.",
+    leading_source_at_zero_C_0: root.formatInterval(leadingSourceAtZero),
+    leading_recomputed_slope_S_0: root.formatInterval(leadingRecomputedSlope),
+    leading_slope_used_S_0: root.formatInterval(leadingSlope),
+    leading_slope_source: isProvided(solveSlopeInterval)
+      ? "inherited-formal-recurrence-slope"
+      : "recomputed-interval-series-slope",
+    row_source_at_zero_C_k: root.formatInterval(rowSourceAtZero),
+    row_source_slope_S_k: root.formatInterval(rowSlope),
+    independent_interval_center_eliminated_coefficient:
+      root.formatInterval(independentIntervalCenterEliminatedCoefficient),
+    independent_interval_center_eliminated_pressure:
+      independentIntervalPressure,
+    full_center_replay: fullCenterReplay,
+    partition_replays: partitionReplays,
+    max_partition_replay: maxPartitionReplay,
+    max_partition_pressure: maxPartitionPressure,
+    partition_reduces_full_center_pressure:
+      maxPartitionPressure <= fullPressure ||
+      numericClose(maxPartitionPressure, fullPressure),
+    full_to_max_partition_pressure_ratio:
+      maxPartitionPressure > 0 ? fullPressure / maxPartitionPressure : null,
+    midpoint_replay: midpointReplay,
+    midpoint_pressure: midpointPressure,
+    full_to_midpoint_pressure_ratio:
+      midpointPressure > 0 ? fullPressure / midpointPressure : null,
+    input_midpoint_center_interval:
+      inputMidpointSolve.h39_center_interval,
+    input_midpoint_replay: inputMidpointReplay,
+    input_midpoint_pressure: inputMidpointPressure,
+    full_to_input_midpoint_pressure_ratio:
+      inputMidpointPressure > 0 ? fullPressure / inputMidpointPressure : null,
+    row_correlation_diagnostic:
+      "Compares actual center-interval replay, uniform X subinterval replay, center midpoint replay, input midpoint replay, and independent affine elimination for one shifted row. It is a diagnostic for width/decorrelation, not a directed-rounded certificate.",
+    candidate_certificate_route:
+      "If X partition replay lowers the row pressure, certify the row by a same-domain X-subdivision theorem; if only input midpoint replay collapses the row, refine the upstream h38 cell/input intervals; if midpoint replay is already large, search for an additional row-level cancellation or outer Cauchy envelope.",
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    certifies_continuous_polydisc_primitives: false,
+    retained_branch: false,
+  };
+}
+
+export function computeH39AffineCenterHRowSensitivityDiagnosticCandidate({
+  context = makeTheta3minusFirstYGdSeriesContext(),
+  cell,
+  branch,
+  branchSign = branchSignValue(branch),
+  hIntervals,
+  solveSlopeInterval = null,
+  outerRadius,
+  shiftedIndex = 1,
+  hFreezeStartIndexes = null,
+  hRowWidthCompressionFactors = null,
+  targetPressure = null,
+} = {}) {
+  const resolvedOuterRadius = assertFinitePositiveNumber(
+    "outerRadius",
+    outerRadius
+  );
+  const resolvedShiftedIndex = Number(shiftedIndex);
+  if (!Number.isInteger(resolvedShiftedIndex) || resolvedShiftedIndex < 1) {
+    throw new Error("shiftedIndex must be a positive integer");
+  }
+  if (!Array.isArray(hIntervals) || hIntervals.length === 0) {
+    throw new Error("hIntervals must be a nonempty array");
+  }
+  const shift =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift;
+  if (shift + resolvedShiftedIndex > context.seriesOrder) {
+    throw new Error(
+      "seriesOrder is too small for the requested h-row sensitivity diagnostic"
+    );
+  }
+  const affineDependenceValidThroughShiftedIndex =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS
+      .second_x_derivative_y_power - 1;
+  const midpointCell = pointCellAtMidpoint(cell);
+  const midpointHIntervals = pointIntervalsAtMidpoints(hIntervals);
+  const midpointSolveSlopeInterval = isProvided(solveSlopeInterval)
+    ? pointIntervalAtMidpoint(solveSlopeInterval)
+    : null;
+  const resolvedTargetPressure = isProvided(targetPressure)
+    ? assertFiniteNonnegativeNumber("targetPressure", targetPressure)
+    : null;
+
+  const replayForInputs = ({
+    inputFamily,
+    replayCell,
+    replayHIntervals,
+    replaySolveSlopeInterval,
+    changedInputs,
+    freezeStartIndex = null,
+    freezeEndIndex = null,
+  }) => {
+    const solve = solveH39CenterCoefficientRow({
+      context,
+      cell: replayCell,
+      branch,
+      branchSign,
+      hIntervals: replayHIntervals,
+      solveSlopeInterval: replaySolveSlopeInterval,
+    });
+    const decomposed = sourceEquationSeriesTermDecomposition({
+      context,
+      cell: replayCell,
+      branch,
+      branchSign,
+      hIntervals: replayHIntervals,
+      xInterval: solve.h39_center_numeric_interval,
+    });
+    const rowPressure = shiftedTermPressureByCoefficient({
+      decomposed,
+      sourceShift: shift,
+      shiftedIndex: resolvedShiftedIndex,
+      outerRadius: resolvedOuterRadius,
+    });
+    return {
+      input_family: inputFamily,
+      changed_inputs: changedInputs,
+      freeze_start_index: freezeStartIndex,
+      freeze_end_index: freezeEndIndex,
+      center_interval: solve.h39_center_interval,
+      center_numeric_interval: root.formatInterval(
+        solve.h39_center_numeric_interval
+      ),
+      solve_slope_interval: solve.h39_solve_slope_interval,
+      row_pressure: rowPressure,
+      pressure: rowPressure.source_pressure_contribution,
+    };
+  };
+
+  const fullReplay = replayForInputs({
+    inputFamily: "full-input-box",
+    replayCell: cell,
+    replayHIntervals: hIntervals,
+    replaySolveSlopeInterval: solveSlopeInterval,
+    changedInputs: [],
+  });
+  const fullPressure = Number(fullReplay.pressure);
+  const withRatio = (replay) => ({
+    ...replay,
+    full_to_pressure_ratio:
+      Number(replay.pressure) > 0 ? fullPressure / Number(replay.pressure) : null,
+  });
+  const inputFamilyReplays = [
+    fullReplay,
+    replayForInputs({
+      inputFamily: "cell-midpoint",
+      replayCell: midpointCell,
+      replayHIntervals: hIntervals,
+      replaySolveSlopeInterval: solveSlopeInterval,
+      changedInputs: ["cell"],
+    }),
+    replayForInputs({
+      inputFamily: "h-row-midpoint",
+      replayCell: cell,
+      replayHIntervals: midpointHIntervals,
+      replaySolveSlopeInterval: solveSlopeInterval,
+      changedInputs: ["h-row"],
+    }),
+    ...(isProvided(solveSlopeInterval)
+      ? [
+          replayForInputs({
+            inputFamily: "slope-midpoint",
+            replayCell: cell,
+            replayHIntervals: hIntervals,
+            replaySolveSlopeInterval: midpointSolveSlopeInterval,
+            changedInputs: ["solve-slope"],
+          }),
+        ]
+      : []),
+    replayForInputs({
+      inputFamily: "cell-and-h-row-midpoint",
+      replayCell: midpointCell,
+      replayHIntervals: midpointHIntervals,
+      replaySolveSlopeInterval: solveSlopeInterval,
+      changedInputs: ["cell", "h-row"],
+    }),
+    replayForInputs({
+      inputFamily: "all-input-midpoint",
+      replayCell: midpointCell,
+      replayHIntervals: midpointHIntervals,
+      replaySolveSlopeInterval: midpointSolveSlopeInterval,
+      changedInputs: isProvided(solveSlopeInterval)
+        ? ["cell", "h-row", "solve-slope"]
+        : ["cell", "h-row"],
+    }),
+  ].map(withRatio);
+
+  const defaultFreezeStartIndexes = [38, 37, 36, 35, 34, 27].filter(
+    (index) => index >= 0 && index < hIntervals.length
+  );
+  const resolvedFreezeStartIndexes = (
+    hFreezeStartIndexes ?? defaultFreezeStartIndexes
+  ).map((index) => {
+    const resolvedIndex = Number(index);
+    if (
+      !Number.isInteger(resolvedIndex) ||
+      resolvedIndex < 0 ||
+      resolvedIndex >= hIntervals.length
+    ) {
+      throw new Error("hFreezeStartIndexes must contain valid h-row indexes");
+    }
+    return resolvedIndex;
+  });
+  const freezeEndIndex = hIntervals.length - 1;
+  const hRowFreezeReplays = resolvedFreezeStartIndexes.map((startIndex) => {
+    const frozenHIntervals = hIntervals.map((interval, index) =>
+      index >= startIndex && index <= freezeEndIndex
+        ? pointIntervalAtMidpoint(interval)
+        : interval
+    );
+    return withRatio(
+      replayForInputs({
+        inputFamily: `freeze-h${startIndex}-through-h${freezeEndIndex}`,
+        replayCell: cell,
+        replayHIntervals: frozenHIntervals,
+        replaySolveSlopeInterval: solveSlopeInterval,
+        changedInputs: ["h-row-range"],
+        freezeStartIndex: startIndex,
+        freezeEndIndex,
+      })
+    );
+  });
+
+  const replayByFamily = Object.fromEntries(
+    inputFamilyReplays.map((replay) => [replay.input_family, replay])
+  );
+  const hRowReduction =
+    replayByFamily["h-row-midpoint"]?.full_to_pressure_ratio ?? null;
+  const cellReduction =
+    replayByFamily["cell-midpoint"]?.full_to_pressure_ratio ?? null;
+  const slopeReduction =
+    replayByFamily["slope-midpoint"]?.full_to_pressure_ratio ?? null;
+  const strongestNonHReduction = Math.max(
+    1,
+    Number(cellReduction) || 1,
+    Number(slopeReduction) || 1
+  );
+  const hRowWidthDominatesInputWidth =
+    hRowReduction !== null &&
+    Number(hRowReduction) >= 10 &&
+    Number(hRowReduction) >= 10 * strongestNonHReduction;
+  const bestHRowFreezeReplay = hRowFreezeReplays.reduce(
+    (best, replay) =>
+      Number(replay.full_to_pressure_ratio ?? -1) >
+      Number(best?.full_to_pressure_ratio ?? -1)
+        ? replay
+        : best,
+    null
+  );
+  const defaultCompressionFactors = [1, 0.5, 0.25, 0.125, 0.0625, 0];
+  const resolvedCompressionFactors = [
+    ...new Set(
+      (hRowWidthCompressionFactors ?? defaultCompressionFactors).map(
+        (factor) => {
+          const resolvedFactor = Number(factor);
+          if (
+            !Number.isFinite(resolvedFactor) ||
+            resolvedFactor < 0 ||
+            resolvedFactor > 1
+          ) {
+            throw new Error(
+              "hRowWidthCompressionFactors must contain finite values in [0,1]"
+            );
+          }
+          return resolvedFactor;
+        }
+      )
+    ),
+  ];
+  const hRowWidthCompressionReplays = resolvedCompressionFactors.map(
+    (factor) => {
+      const compressedHIntervals = scaleIntervalsAboutMidpoints(
+        hIntervals,
+        factor
+      );
+      return withRatio(
+        replayForInputs({
+          inputFamily: `h-row-width-compression-${factor}`,
+          replayCell: cell,
+          replayHIntervals: compressedHIntervals,
+          replaySolveSlopeInterval: solveSlopeInterval,
+          changedInputs: ["h-row-width"],
+        })
+      );
+    }
+  );
+  const firstHRowWidthCompressionMeetingTarget =
+    resolvedTargetPressure === null
+      ? null
+      : hRowWidthCompressionReplays.find(
+          (replay) => Number(replay.pressure) <= resolvedTargetPressure
+        ) ?? null;
+
+  return {
+    schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
+    status: "h39-affine-center-h-row-sensitivity-diagnostic-candidate-emitted",
+    evaluation_level: "candidate-affine-center-h-row-sensitivity-diagnostic",
+    branch: branch ?? branchSign,
+    r43_source_shift: shift,
+    shifted_index: resolvedShiftedIndex,
+    y_order: shift + resolvedShiftedIndex,
+    outer_radius: resolvedOuterRadius,
+    affine_dependence_valid_through_shifted_index:
+      affineDependenceValidThroughShiftedIndex,
+    affine_dependence_valid_for_row:
+      resolvedShiftedIndex <= affineDependenceValidThroughShiftedIndex,
+    full_input_replay: withRatio(fullReplay),
+    input_family_replays: inputFamilyReplays,
+    h_row_freeze_replays: hRowFreezeReplays,
+    best_h_row_freeze_replay: bestHRowFreezeReplay,
+    h_row_width_compression_replays: hRowWidthCompressionReplays,
+    target_pressure: resolvedTargetPressure,
+    first_h_row_width_compression_meeting_target:
+      firstHRowWidthCompressionMeetingTarget,
+    h_row_midpoint_reduction_factor: hRowReduction,
+    cell_midpoint_reduction_factor: cellReduction,
+    slope_midpoint_reduction_factor: slopeReduction,
+    strongest_non_h_row_reduction_factor: strongestNonHReduction,
+    h_row_width_dominates_input_width: hRowWidthDominatesInputWidth,
+    h_row_sensitivity_diagnostic:
+      "Re-solves the affine center after selectively midpointing the live cell, inherited h-row intervals, solve slope, or contiguous top h-row ranges. It diagnoses dependency loss in the inherited h-row box and is not a directed-rounded certificate.",
+    candidate_certificate_route: hRowWidthDominatesInputWidth
+      ? "Replace the independent inherited h-row interval box with a dependency-preserving h-row transport or subdivision certificate before applying the shifted R43 outer Cauchy bound."
+      : "Use the replay table to choose between h-row transport, cell subdivision, solve-slope refinement, or a different row-level cancellation proof before promoting any shifted R43 bound.",
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    certifies_continuous_polydisc_primitives: false,
+    retained_branch: false,
+  };
+}
+
+export function computeH39ShiftedR43AffineCenterFormCandidate({
+  context = makeTheta3minusFirstYGdSeriesContext(),
+  cell,
+  branch,
+  branchSign = branchSignValue(branch),
+  hIntervals,
+  xInterval = null,
+  solveSlopeInterval = null,
+  outerRadius = null,
+  shiftedOrder = 10,
+} = {}) {
+  if (!Number.isInteger(shiftedOrder) || shiftedOrder < 0) {
+    throw new Error("shiftedOrder must be a nonnegative integer");
+  }
+  const shift =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift;
+  if (shift + shiftedOrder > context.seriesOrder) {
+    throw new Error(
+      "seriesOrder is too small for the requested shifted R43 affine center form"
+    );
+  }
+  const hasOuterRadius = outerRadius !== null && outerRadius !== undefined;
+  const resolvedOuterRadius = hasOuterRadius
+    ? assertFinitePositiveNumber("outerRadius", outerRadius)
+    : null;
+
+  const sourceAtZero = sourceEquationSeries({
+    context,
+    cell,
+    branch,
+    branchSign,
+    hIntervals,
+    xInterval: [0, 0],
+  });
+  const sourceAtOne = sourceEquationSeries({
+    context,
+    cell,
+    branch,
+    branchSign,
+    hIntervals,
+    xInterval: [1, 1],
+  });
+  const leadingSourceAtZero = sourceAtZero[shift];
+  const leadingRecomputedSlope = root.subtractIntervals(
+    sourceAtOne[shift],
+    leadingSourceAtZero
+  );
+  const leadingSlope = isProvided(solveSlopeInterval)
+    ? numericInterval(solveSlopeInterval)
+    : leadingRecomputedSlope;
+  const centerRelationInterval = root.divideIntervals(
+    root.scaleInterval(leadingSourceAtZero, -1),
+    leadingSlope
+  );
+  const centerReplayAvailable = xInterval !== null && xInterval !== undefined;
+  const centerReplaySource = centerReplayAvailable
+    ? sourceEquationSeries({
+        context,
+        cell,
+        branch,
+        branchSign,
+        hIntervals,
+        xInterval,
+      })
+    : null;
+  const affineDependenceValidThroughShiftedIndex =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS
+      .second_x_derivative_y_power - 1;
+  const affineDependenceValidThroughRequestedOrder =
+    shiftedOrder <= affineDependenceValidThroughShiftedIndex;
+  const secondXZeroPrefixCoefficients =
+    r43SecondXDerivativeShiftedCoefficients({
+      context,
+      cell,
+      branch,
+      branchSign,
+      hIntervals,
+      xInterval: centerReplayAvailable ? xInterval : [0, 0],
+      shiftedOrder: Math.min(
+        shiftedOrder,
+        affineDependenceValidThroughShiftedIndex
+      ),
+    });
+  const secondXZeroPrefixCertified = secondXZeroPrefixCoefficients.every(
+    (coefficient) => coefficient[0] === 0 && coefficient[1] === 0
+  );
+  const leadingSlopeClearancePositive =
+    intervalClearanceFromZero(leadingSlope) > 0;
+  const centerIntervalContainsSolve = centerReplayAvailable
+    ? intervalContainsInterval(xInterval, centerRelationInterval)
+    : false;
+  const leadingAffineCenterZeroCertified =
+    affineDependenceValidThroughRequestedOrder &&
+    leadingSlopeClearancePositive &&
+    centerIntervalContainsSolve &&
+    secondXZeroPrefixCertified;
+  const affineRowCount =
+    Math.min(shiftedOrder, affineDependenceValidThroughShiftedIndex) + 1;
+  const affineCenterRows = Array.from(
+    { length: affineRowCount },
+    (_, index) => {
+      const coefficientAtZero = sourceAtZero[shift + index];
+      const coefficientSlope = root.subtractIntervals(
+        sourceAtOne[shift + index],
+        coefficientAtZero
+      );
+      const independentIntervalCenterEliminatedCoefficient =
+        index === 0
+          ? [0, 0]
+          : root.divideIntervals(
+              root.subtractIntervals(
+                root.multiplyIntervals(leadingSlope, coefficientAtZero),
+                root.multiplyIntervals(
+                  coefficientSlope,
+                  leadingSourceAtZero
+                )
+              ),
+              leadingSlope
+            );
+      const independentIntervalCenterEliminatedPressure =
+        resolvedOuterRadius === null
+          ? null
+          : intervalAbsUpper(independentIntervalCenterEliminatedCoefficient) *
+            resolvedOuterRadius ** index;
+      const centerReplayCoefficient =
+        centerReplaySource === null ? null : centerReplaySource[shift + index];
+      const affineCenterCoefficient =
+        index === 0 && leadingAffineCenterZeroCertified
+          ? [0, 0]
+          : centerReplayCoefficient;
+      return {
+        shifted_index: index,
+        y_order: shift + index,
+        source_at_zero_C_k: root.formatInterval(coefficientAtZero),
+        source_slope_S_k: root.formatInterval(coefficientSlope),
+        affine_coefficient_formula: "R43_k(X)=C_k+S_k X",
+        symbolic_center_eliminated_coefficient_formula:
+          index === 0 ? "A_0=0" : "A_k=(S_0 C_k - S_k C_0)/S_0",
+        symbolic_center_elimination_status:
+          index === 0
+            ? "leading-row-zeroed-by-center-relation"
+            : "correlation-preserved-symbolically",
+        independent_interval_center_eliminated_coefficient:
+          root.formatInterval(independentIntervalCenterEliminatedCoefficient),
+        independent_interval_center_eliminated_abs_upper: intervalAbsUpper(
+          independentIntervalCenterEliminatedCoefficient
+        ),
+        independent_interval_center_eliminated_pressure:
+          independentIntervalCenterEliminatedPressure,
+        actual_center_replay_coefficient:
+          centerReplayCoefficient === null
+            ? null
+            : root.formatInterval(centerReplayCoefficient),
+        affine_center_coefficient:
+          affineCenterCoefficient === null
+            ? null
+            : root.formatInterval(affineCenterCoefficient),
+        numeric_interval_replay_certified: false,
+      };
+    }
+  );
+  const pressureRows = affineCenterRows
+    .map((row) => row.independent_interval_center_eliminated_pressure)
+    .filter((value) => Number.isFinite(Number(value)));
+  const independentIntervalCenterEliminatedPrefixMajorant =
+    pressureRows.length === 0
+      ? null
+      : pressureRows.reduce((sum, value) => sum + Number(value), 0);
+  const dominantIndependentIntervalRow =
+    resolvedOuterRadius === null
+      ? null
+      : affineCenterRows.reduce(
+          (best, row) =>
+            Number(row.independent_interval_center_eliminated_pressure) >
+            Number(best?.independent_interval_center_eliminated_pressure ?? -1)
+              ? row
+              : best,
+          null
+        );
+  const affineCenterShiftedCoefficients =
+    centerReplaySource === null
+      ? null
+      : Array.from({ length: shiftedOrder + 1 }, (_, index) =>
+          index === 0 && leadingAffineCenterZeroCertified
+            ? [0, 0]
+            : centerReplaySource[shift + index]
+        );
+  const affineCenterShiftedPressures =
+    resolvedOuterRadius === null || affineCenterShiftedCoefficients === null
+      ? []
+      : coefficientPressureEntries(affineCenterShiftedCoefficients, {
+          outerRadius: resolvedOuterRadius,
+          sourceShift: shift,
+        });
+  const affineCenterShiftedPrefixMajorant =
+    affineCenterShiftedPressures.length === 0
+      ? null
+      : sumPressure(affineCenterShiftedPressures);
+  const dominantAffineCenterShiftedPressure = dominantPressureEntry(
+    affineCenterShiftedPressures
+  );
+
+  return {
+    schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
+    status: "h39-shifted-r43-affine-center-form-candidate-emitted",
+    evaluation_level: "symbolic-affine-center-normal-form",
+    branch: branch ?? branchSign,
+    center_replay_x_interval:
+      xInterval === null || xInterval === undefined
+        ? null
+        : root.formatInterval(numericInterval(xInterval)),
+    r43_source_shift: shift,
+    shifted_order: shiftedOrder,
+    outer_radius: resolvedOuterRadius,
+    affine_dependence_valid_through_shifted_index:
+      affineDependenceValidThroughShiftedIndex,
+    affine_dependence_valid_through_requested_order:
+      affineDependenceValidThroughRequestedOrder,
+    affine_row_count: affineRowCount,
+    leading_source_at_zero_C_0: root.formatInterval(leadingSourceAtZero),
+    leading_recomputed_slope_S_0: root.formatInterval(leadingRecomputedSlope),
+    leading_slope_used_S_0: root.formatInterval(leadingSlope),
+    leading_slope_source: isProvided(solveSlopeInterval)
+      ? "inherited-formal-recurrence-slope"
+      : "recomputed-interval-series-slope",
+    center_relation: "X_c=-C_0/S_0",
+    center_relation_interval: root.formatInterval(centerRelationInterval),
+    center_relation_zeroes_leading_coefficient_symbolically:
+      leadingAffineCenterZeroCertified,
+    R43_affine_center_shifted_coefficients:
+      affineCenterShiftedCoefficients?.map(root.formatInterval) ?? null,
+    R43_affine_center_shifted_pressures: affineCenterShiftedPressures,
+    R43_affine_center_shifted_prefix_majorant_outer_radius:
+      affineCenterShiftedPrefixMajorant,
+    dominant_R43_affine_center_shifted_pressure:
+      dominantAffineCenterShiftedPressure,
+    R43_affine_center_certificate: {
+      affine_valid_through_shifted_index:
+        affineDependenceValidThroughShiftedIndex,
+      requested_shifted_order_below_second_x_row:
+        affineDependenceValidThroughRequestedOrder,
+      leading_slope_clearance_positive: leadingSlopeClearancePositive,
+      center_interval_contains_solve: centerIntervalContainsSolve,
+      leading_affine_center_zero_certified:
+        leadingAffineCenterZeroCertified,
+      second_x_zero_prefix_certified: secondXZeroPrefixCertified,
+      independent_interval_schur_products_used: false,
+      schur_elimination_used_for_bound: false,
+    },
+    affine_center_eliminated_formula:
+      "A_0=0 and A_k=(S_0 C_k - S_k C_0)/S_0 for shifted indices k>=1 before interval decorrelation.",
+    affine_center_rows: affineCenterRows,
+    independent_interval_center_eliminated_prefix_majorant_outer_radius:
+      independentIntervalCenterEliminatedPrefixMajorant,
+    dominant_independent_interval_center_eliminated_row:
+      dominantIndependentIntervalRow,
+    correlation_preserved_symbolically: true,
+    independent_interval_numeric_replay_warning:
+      "The displayed independent-interval A_k replay is diagnostic only; it does not preserve C_k,S_k,C_0,S_0 correlations and cannot certify the shifted R43 bound by itself.",
+    first_uncertified_numeric_step:
+      "Bound A_k=(S_0 C_k-S_k C_0)/S_0 with directed-rounded correlated arithmetic or certified subdivision on the same domain.",
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
 }
 
 export function r43JacobianShiftedCoefficients({
@@ -5035,6 +6653,7 @@ export function solveH39CenterCoefficientRow({
       ? "inherited-formal-recurrence-slope"
       : "recomputed-interval-series-slope",
     h39_center_interval: root.formatInterval(h39),
+    h39_center_numeric_interval: h39,
     coefficient_only_claim:
       "Solves only the leading shifted h39 center coefficient. A finite X39 root tube and continuous primitive bounds remain open.",
     certifies_continuous_polydisc_primitives: false,
@@ -5211,6 +6830,32 @@ export function evaluateR43CoefficientRows({
           xInterval,
           rho: Number(rho),
         });
+  const shiftedPressureDiagnostic =
+    rho === null || rho === undefined
+      ? null
+      : computeH39ShiftedR43PressureDecompositionCandidate({
+          context,
+          cell,
+          branch,
+          branchSign,
+          hIntervals,
+          xInterval,
+          solveSlopeInterval,
+          outerRadius: Number(rho),
+          shiftedOrder,
+        });
+  const affineCenterFormCandidate =
+    computeH39ShiftedR43AffineCenterFormCandidate({
+      context,
+      cell,
+      branch,
+      branchSign,
+      hIntervals,
+      xInterval,
+      solveSlopeInterval,
+      outerRadius: rho === null || rho === undefined ? null : Number(rho),
+      shiftedOrder,
+    });
 
   return {
     schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
@@ -5279,6 +6924,18 @@ export function evaluateR43CoefficientRows({
       secondXDerivativeShiftedCoefficients.map(root.formatInterval),
     y_partial_y_R43_shifted_coefficients:
       rootTangentShiftedCoefficients.map(root.formatInterval),
+    R43_shifted_prefix_pressure_diagnostic:
+      shiftedPressureDiagnostic,
+    R43_affine_center_form_candidate: affineCenterFormCandidate,
+    R43_affine_center_shifted_coefficients:
+      affineCenterFormCandidate.R43_affine_center_shifted_coefficients,
+    R43_affine_center_shifted_pressures:
+      affineCenterFormCandidate.R43_affine_center_shifted_pressures,
+    R43_affine_center_shifted_prefix_majorant_outer_radius:
+      affineCenterFormCandidate
+        .R43_affine_center_shifted_prefix_majorant_outer_radius,
+    R43_affine_center_certificate:
+      affineCenterFormCandidate.R43_affine_center_certificate,
     coefficient_only_claim:
       "The h39 leading shifted source coefficient is affine in X at this order, the removable X-Jacobian row is explicit, and the second-X row starts at y^41. Continuous E_R, nu_J, L_J, and M_R still require a graph-centered polydisc evaluator with remainders.",
     certifies_continuous_polydisc_primitives: false,
@@ -5389,8 +7046,50 @@ export function evaluateH39SharedDomainCoefficientCell({
   );
   const centeredBranchInputs = branchInputs.map((input, index) => ({
     ...input,
-    xInterval: centerSolves[index].h39_center_interval,
+    xInterval:
+      centerSolves[index].h39_center_numeric_interval ??
+      centerSolves[index].h39_center_interval,
   }));
+  const hRowProviderBranchReports = centeredBranchInputs.map((input) => ({
+    branch: input.branch,
+    provider_kind:
+      input.h_row_provider_kind ?? "direct-branch-input-no-provider-metadata",
+    preserves_dependencies:
+      input.h_row_provider_preserves_dependencies === true,
+    dependency_trace_count: Array.isArray(
+      input.h_row_provider_dependency_trace
+    )
+      ? input.h_row_provider_dependency_trace.length
+      : 0,
+    source_cell_id: input.h_row_provider_source_cell_id ?? null,
+    provenance_present: input.h_row_provider_provenance !== undefined,
+    dependency_witness_present: input.h_row_dependency_witness !== undefined,
+    provider_claim_boundary_candidate_only:
+      input.h_row_provider_claim_boundary
+        ?.certifies_shifted_R43_outer_bound === false &&
+      input.h_row_provider_claim_boundary
+        ?.certifies_directed_rounded_shared_domain === false &&
+      input.h_row_provider_claim_boundary
+        ?.certifies_continuous_polydisc_primitives === false &&
+      input.h_row_provider_claim_boundary?.retained_branch === false,
+    replay_kind: input.h_row_provider_replay_kind ?? null,
+  }));
+  const providerBackedBranchCount = hRowProviderBranchReports.filter(
+    (report) => report.preserves_dependencies === true
+  ).length;
+  const hRowProviderReport = {
+    status: "h39-h-row-provider-replay-boundary-report-emitted",
+    provider_backed_branch_count: providerBackedBranchCount,
+    provider_backed_all_branches:
+      providerBackedBranchCount === centeredBranchInputs.length,
+    branch_reports: hRowProviderBranchReports,
+    provider_replay_claim:
+      "Provider metadata is recorded as a dependency-preserving replay boundary only. It does not certify the shifted R43 outer bound, continuous primitive bounds, or retained branch status.",
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    certifies_continuous_polydisc_primitives: false,
+    retained_branch: false,
+  };
   const sourceCertificateObstructions = [];
   let normalizedCoordinateSourceEnvelopeCandidates = [];
   try {
@@ -5562,9 +7261,12 @@ export function evaluateH39SharedDomainCoefficientCell({
     r43CauchyOuterBoundSource:
       !hasExplicitR43CauchyInput && coordinateCauchyOuterBounds
         ? coordinateCauchyOuterBounds.source_envelope_kind ===
-          "shifted-removable-r43-cauchy-outer-bound"
-          ? "coordinate-shifted-removable-r43-cauchy-outer-bound"
-          : "coordinate-source-residual-cauchy-outer-bound"
+          "affine-center-shifted-removable-r43-cauchy-outer-bound"
+          ? "coordinate-affine-center-shifted-removable-r43-cauchy-outer-bound"
+          : coordinateCauchyOuterBounds.source_envelope_kind ===
+              "shifted-removable-r43-cauchy-outer-bound"
+            ? "coordinate-shifted-removable-r43-cauchy-outer-bound"
+            : "coordinate-source-residual-cauchy-outer-bound"
         : null,
     r43CauchyTailShiftPower: resolvedR43CauchyTailShiftPower,
     nGCauchyOuterBound: resolvedNGCauchyOuterBound,
@@ -5601,6 +7303,7 @@ export function evaluateH39SharedDomainCoefficientCell({
     h39_K_epsilon_branch_coordinate_witness_set:
       kEpsilonBranchCoordinateWitnessSet,
     graph_radii_witness: graphRadiiWitness,
+    h_row_provider_report: hRowProviderReport,
     finite_prefix_summary: finitePrefixSummary,
     claim_boundary: {
       computes_h39_shared_domain_coefficient_prefixes: true,
@@ -5612,6 +7315,8 @@ export function evaluateH39SharedDomainCoefficientCell({
           ?.h39_K_epsilon_branch_coordinate_witness_set === true,
       emits_graph_radii_witness:
         graphRadiiWitness?.result?.h39_graph_radii_witness === true,
+      h_row_provider_backed_replay:
+        hRowProviderReport.provider_backed_all_branches === true,
       certifies_directed_rounded_shared_domain: false,
       certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
         false,
@@ -5654,8 +7359,59 @@ export function summarizeSharedDomainPrimitiveBounds({
     .flatMap((row) => row.N_G_shifted_coefficients ?? [])
     .filter(Boolean);
   const r43CoefficientLists = r43Rows
-    .map((row) => row.R43_shifted_coefficients ?? [])
+    .map((row) =>
+      row.R43_affine_center_certificate
+        ?.leading_affine_center_zero_certified === true &&
+      Array.isArray(row.R43_affine_center_shifted_coefficients) &&
+      row.R43_affine_center_shifted_coefficients.length > 0
+        ? row.R43_affine_center_shifted_coefficients
+        : row.R43_shifted_coefficients ?? []
+    )
     .filter((row) => row.length > 0);
+  const r43FinitePrefixCoefficientSource =
+    r43Rows.length > 0 &&
+    r43Rows.every(
+      (row) =>
+        row.R43_affine_center_certificate
+          ?.leading_affine_center_zero_certified === true &&
+        Array.isArray(row.R43_affine_center_shifted_coefficients) &&
+        row.R43_affine_center_shifted_coefficients.length > 0
+    )
+      ? "affine-center-actual-replay-leading-zero"
+      : "center-interval-replay";
+  const rhoProvided = rho !== null && rho !== undefined;
+  const hasShiftedR43CauchyInputs =
+    Number(r43CauchyTailShiftPower) === 0 &&
+    hasCompleteCauchyOuterPair(
+      "R43",
+      r43CauchyOuterBound,
+      r43CauchyOuterRadius,
+      rho
+    );
+  const affineCenterSourceProfileCandidates =
+    rhoProvided && r43Rows.length > 0
+      ? r43Rows
+          .filter(
+            (row) =>
+              row.R43_affine_center_certificate
+                ?.leading_affine_center_zero_certified === true &&
+              Array.isArray(row.R43_affine_center_shifted_coefficients) &&
+              row.R43_affine_center_shifted_coefficients.length > 0
+          )
+          .map((row) =>
+            computeH39AffineCenterShiftedR43SourceProfileCandidate({
+              coefficients: row.R43_affine_center_shifted_coefficients,
+              affineCenterCertificate: row.R43_affine_center_certificate,
+              targetRadius: rho,
+              r43ShiftedCauchyOuterBound: hasShiftedR43CauchyInputs
+                ? r43CauchyOuterBound
+                : null,
+              r43ShiftedCauchyOuterRadius: hasShiftedR43CauchyInputs
+                ? r43CauchyOuterRadius
+                : null,
+            })
+          )
+      : [];
   const yPartialCoefficientLists = r43Rows
     .map((row) => row.y_partial_y_R43_shifted_coefficients ?? [])
     .filter((row) => row.length > 0);
@@ -5684,7 +7440,17 @@ export function summarizeSharedDomainPrimitiveBounds({
   const secondXKernelFactorPower =
     THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS
       .second_x_derivative_y_power;
-  const rhoProvided = rho !== null && rho !== undefined;
+  const secondXRemainderProfileCandidates = r43Rows.map((row) =>
+    computeH39R43SecondXKepsilonRemainderProfileCandidate({
+      secondXKernelYPower:
+        row.R43_second_x_kernel_y_power ??
+        row.R43_second_x_derivative_kernel_factor_y_power ??
+        secondXKernelFactorPower,
+      candidateMKContinuousMajorant:
+        row.R43_second_x_kernel_continuous_majorant,
+      targetRadius: rho,
+    })
+  );
   const hasR43CauchyInputs = hasCompleteCauchyOuterPair(
     "R43",
     r43CauchyOuterBound,
@@ -5777,15 +7543,18 @@ export function summarizeSharedDomainPrimitiveBounds({
       : null;
   const r43AnalyticRemainderProfileCandidates =
     hasR43CauchyInputs && r43CoefficientLists.length > 0
-      ? r43CoefficientLists.map((coefficients) =>
-          computeH39R43AnalyticRemainderProfileCandidate({
-            coefficients,
-            outerBound: r43CauchyOuterBound,
-            outerRadius: r43CauchyOuterRadius,
-            targetRadius: rho,
-            shiftPower: r43CauchyTailShiftPower,
-          })
-        )
+      ? hasShiftedR43CauchyInputs &&
+        affineCenterSourceProfileCandidates.length === r43Rows.length
+        ? affineCenterSourceProfileCandidates
+        : r43CoefficientLists.map((coefficients) =>
+            computeH39R43AnalyticRemainderProfileCandidate({
+              coefficients,
+              outerBound: r43CauchyOuterBound,
+              outerRadius: r43CauchyOuterRadius,
+              targetRadius: rho,
+              shiftPower: r43CauchyTailShiftPower,
+            })
+          )
       : [];
   const nGAnalyticRemainderProfileCandidates =
     hasNGCauchyInputs && nGRows.length > 0
@@ -5927,6 +7696,18 @@ export function summarizeSharedDomainPrimitiveBounds({
         ? null
         : Math.max(...nGCoefficients.map(maxAbsFormattedInterval)),
     candidate_E_R_finite_prefix: candidateERFinitePrefix,
+    candidate_E_R_finite_prefix_coefficient_source:
+      r43FinitePrefixCoefficientSource,
+    R43_affine_center_source_profile_candidate_count:
+      affineCenterSourceProfileCandidates.length,
+    R43_affine_center_source_profile_tail_candidate_count:
+      affineCenterSourceProfileCandidates.filter(
+        (candidate) => candidate.shifted_outer_bound_supplied === true
+      ).length,
+    R43_affine_center_source_profile_candidates:
+      affineCenterSourceProfileCandidates,
+    R43_second_x_remainder_profile_candidates:
+      secondXRemainderProfileCandidates,
     candidate_E_R_cauchy_tail_after_prefix_profile:
       candidateERCauchyTailProfile,
     candidate_E_R_prefix_plus_tail_bound:
@@ -6079,15 +7860,209 @@ function h38RowsFromArtifact(artifact) {
   return rows;
 }
 
-function branchInputsFromH38Row(row) {
+function hRowProviderDependencyTrace(output) {
+  return (
+    output?.hRowDependencyTrace ??
+    output?.h_row_dependency_trace ??
+    output?.dependencyTrace ??
+    output?.dependency_trace ??
+    null
+  );
+}
+
+function hRowProviderPreservesDependencies(output) {
+  return (
+    output?.hRowProviderPreservesDependencies === true ||
+    output?.preservesDependencies === true ||
+    output?.preserves_dependencies === true ||
+    output?.h_row_provider_preserves_dependencies === true ||
+    output?.dependency_preserving_h_row_provider === true
+  );
+}
+
+function hRowProviderProvenance(output) {
+  return (
+    output?.hRowProviderProvenance ??
+    output?.h_row_provider_provenance ??
+    output?.providerProvenance ??
+    output?.provider_provenance ??
+    null
+  );
+}
+
+function hRowProviderDependencyWitness(output) {
+  return (
+    output?.hRowDependencyWitness ??
+    output?.h_row_dependency_witness ??
+    output?.dependencyWitness ??
+    output?.dependency_witness ??
+    null
+  );
+}
+
+function hRowProviderClaimBoundary(output) {
+  return (
+    output?.hRowProviderClaimBoundary ??
+    output?.h_row_provider_claim_boundary ??
+    output?.claimBoundary ??
+    output?.claim_boundary ??
+    null
+  );
+}
+
+function normalizedHRowProviderClaimBoundary(boundary) {
+  if (!boundary || typeof boundary !== "object") {
+    throw new Error("hRowProvider must provide a candidate-only claim boundary");
+  }
+  const normalized = {
+    certifies_shifted_R43_outer_bound:
+      boundary.certifies_shifted_R43_outer_bound,
+    certifies_directed_rounded_shared_domain:
+      boundary.certifies_directed_rounded_shared_domain,
+    certifies_continuous_polydisc_primitives:
+      boundary.certifies_continuous_polydisc_primitives,
+    retained_branch: boundary.retained_branch,
+  };
+  if (
+    normalized.certifies_shifted_R43_outer_bound !== false ||
+    normalized.certifies_directed_rounded_shared_domain !== false ||
+    normalized.certifies_continuous_polydisc_primitives !== false ||
+    normalized.retained_branch !== false
+  ) {
+    throw new Error("hRowProvider claim boundary must remain candidate-only");
+  }
+  return normalized;
+}
+
+function normalizeHRowProviderBranchInput({
+  providerOutput,
+  row,
+  branchRow,
+  branch,
+  hCount,
+}) {
+  if (!providerOutput || typeof providerOutput !== "object") {
+    throw new Error("hRowProvider must return a branch input object");
+  }
+  const dependencyTrace = hRowProviderDependencyTrace(providerOutput);
+  if (
+    !hRowProviderPreservesDependencies(providerOutput) ||
+    !Array.isArray(dependencyTrace) ||
+    dependencyTrace.length === 0
+  ) {
+    throw new Error(
+      "hRowProvider must provide a nonempty dependency trace and preserve dependencies"
+    );
+  }
+  const hIntervals = providerOutput.hIntervals ?? providerOutput.h_intervals;
+  if (!Array.isArray(hIntervals) || hIntervals.length < hCount) {
+    throw new Error(
+      "hRowProvider must provide a derived hIntervals view for replay"
+    );
+  }
+  const providerProvenance = hRowProviderProvenance(providerOutput);
+  if (providerProvenance === null || providerProvenance === undefined) {
+    throw new Error("hRowProvider must provide provider provenance");
+  }
+  const dependencyWitness = hRowProviderDependencyWitness(providerOutput);
+  if (dependencyWitness === null || dependencyWitness === undefined) {
+    throw new Error("hRowProvider must provide a dependency witness");
+  }
+  const providerClaimBoundary = normalizedHRowProviderClaimBoundary(
+    hRowProviderClaimBoundary(providerOutput)
+  );
+  const solveSlopeInterval =
+    providerOutput.solveSlopeInterval ??
+    providerOutput.solve_slope_interval ??
+    branchRow.h38_solve_slope_interval;
+  const providerKind =
+    providerOutput.providerKind ??
+    providerOutput.provider_kind ??
+    "dependency-preserving-h-row-provider";
+  return {
+    branch: providerOutput.branch ?? branch,
+    branchSign: providerOutput.branchSign ?? providerOutput.branch_sign,
+    hIntervals: hIntervals.slice(0, hCount).map(numericInterval),
+    solveSlopeInterval: numericInterval(solveSlopeInterval),
+    dependency_preserving_h_row_provider: true,
+    provider_kind: providerKind,
+    source_cell_id:
+      providerOutput.sourceCellId ??
+      providerOutput.source_cell_id ??
+      row.cell_id ??
+      null,
+    h_row_provider_kind: providerKind,
+    h_row_provider_preserves_dependencies: true,
+    h_row_provider_dependency_trace: dependencyTrace,
+    h_row_provider_source_cell_id:
+      providerOutput.sourceCellId ??
+      providerOutput.source_cell_id ??
+      row.cell_id ??
+      null,
+    h_row_provider_provenance: providerProvenance,
+    h_row_dependency_trace: dependencyTrace,
+    h_row_dependency_witness: dependencyWitness,
+    h_row_provider_claim_boundary: providerClaimBoundary,
+    h_row_provider_replay_kind:
+      providerOutput.replayKind ??
+      providerOutput.replay_kind ??
+      "h39-row-replay",
+  };
+}
+
+function branchInputsFromH38Row(row, { hRowProvider = null } = {}) {
   if (!Array.isArray(row?.branch_rows) || row.branch_rows.length !== 2) {
     throw new Error("h38 row must contain exactly two branch_rows");
   }
-  return row.branch_rows.map((branchRow) => ({
-    branch: branchRow.branch,
-    hIntervals: hIntervalsFromBranchRow(branchRow, { hCount: 39 }),
-    solveSlopeInterval: numericInterval(branchRow.h38_solve_slope_interval),
-  }));
+  return row.branch_rows.map((branchRow) => {
+    const branch = branchRow.branch;
+    if (typeof hRowProvider === "function") {
+      const providerOutput = hRowProvider({
+        cellId: row.cell_id ?? null,
+        cell_id: row.cell_id ?? null,
+        h38Row: row,
+        h38_row: row,
+        branchRow,
+        branch_row: branchRow,
+        branch,
+        targetIndex: THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h39_index,
+        target_index: THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h39_index,
+        neededRows: [0, THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index],
+        needed_rows: [0, THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index],
+        replayKind: "h39-row-1",
+        replay_kind: "h39-row-1",
+      });
+      return normalizeHRowProviderBranchInput({
+        providerOutput,
+        row,
+        branchRow,
+        branch,
+        hCount: 39,
+      });
+    }
+    return {
+      branch,
+      hIntervals: hIntervalsFromBranchRow(branchRow, { hCount: 39 }),
+      solveSlopeInterval: numericInterval(branchRow.h38_solve_slope_interval),
+      dependency_preserving_h_row_provider: false,
+      provider_kind: "exported-independent-interval-snapshot",
+      source_cell_id: row.cell_id ?? null,
+      h_row_provider_kind: "exported-independent-interval-snapshot",
+      h_row_provider_preserves_dependencies: false,
+      h_row_provider_dependency_trace: [],
+      h_row_provider_source_cell_id: row.cell_id ?? null,
+      h_row_provider_provenance: "exported-h38-interval-snapshot",
+      h_row_dependency_trace: [],
+      h_row_dependency_witness: null,
+      h_row_provider_claim_boundary: {
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        certifies_continuous_polydisc_primitives: false,
+        retained_branch: false,
+      },
+      h_row_provider_replay_kind: "h39-row-replay",
+    };
+  });
 }
 
 export function evaluateH39SharedDomainCoefficientRows({
@@ -6117,6 +8092,7 @@ export function evaluateH39SharedDomainCoefficientRows({
   denominatorSourceCoefficientAbs = 1,
   rhoX = null,
   rX = null,
+  hRowProvider = null,
 } = {}) {
   if (!Array.isArray(h38Rows) || h38Rows.length === 0) {
     throw new Error("h38Rows must be a nonempty array");
@@ -6130,7 +8106,7 @@ export function evaluateH39SharedDomainCoefficientRows({
     const coefficientCell = evaluateH39SharedDomainCoefficientCell({
       context,
       cell: cellFromCertificateRow(row),
-      branchInputs: branchInputsFromH38Row(row),
+      branchInputs: branchInputsFromH38Row(row, { hRowProvider }),
       shiftedOrder,
       rho,
       sharedDomainSignature,
@@ -6182,6 +8158,85 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
   const nGRows = cells.map((cell) => cell.n_g_row);
   const centerSolves = cells.flatMap((cell) => cell.h39_center_solves);
   const finitePrefixSummaries = cells.map((cell) => cell.finite_prefix_summary);
+  const candidateR43OuterBoundSources = [
+    ...new Set(
+      finitePrefixSummaries
+        .map((summary) => summary.candidate_R43_outer_bound_source)
+        .filter(Boolean)
+    ),
+  ];
+  const candidateR43CauchyTailShiftPowers = [
+    ...new Set(
+      finitePrefixSummaries
+        .map((summary) => summary.candidate_R43_cauchy_tail_shift_power)
+        .filter((value) => value !== null && value !== undefined)
+        .map(Number)
+    ),
+  ];
+  const shiftedPressureDiagnostics = rows.flatMap((row) =>
+    (row.h39_coefficient_cell?.r43_rows ?? [])
+      .map((r43Row) => r43Row.R43_shifted_prefix_pressure_diagnostic)
+      .filter(Boolean)
+      .map((diagnostic) => ({
+        cell_id: row.cell_id ?? null,
+        ...diagnostic,
+      }))
+  );
+  const affineCenterForms = rows.flatMap((row) =>
+    (row.h39_coefficient_cell?.r43_rows ?? [])
+      .map((r43Row) => r43Row.R43_affine_center_form_candidate)
+      .filter(Boolean)
+      .map((candidate) => ({
+        cell_id: row.cell_id ?? null,
+        ...candidate,
+      }))
+  );
+  const affineCenterSourceProfiles = rows.flatMap((row) =>
+    (
+      row.h39_coefficient_cell?.finite_prefix_summary
+        ?.R43_affine_center_source_profile_candidates ?? []
+    ).map((candidate) => ({
+      cell_id: row.cell_id ?? null,
+      ...candidate,
+    }))
+  );
+  const secondXRemainderProfiles = rows.flatMap((row) =>
+    (
+      row.h39_coefficient_cell?.finite_prefix_summary
+        ?.R43_second_x_remainder_profile_candidates ?? []
+    ).map((candidate) => ({
+      cell_id: row.cell_id ?? null,
+      ...candidate,
+    }))
+  );
+  const dominantShiftedPressure = dominantPressureDiagnostic(
+    shiftedPressureDiagnostics,
+    "unreduced_shifted_prefix_majorant_outer_radius"
+  );
+  const dominantCenterEliminatedPressure = dominantPressureDiagnostic(
+    shiftedPressureDiagnostics,
+    "center_eliminated_shifted_prefix_majorant_outer_radius"
+  );
+  const dominantAffineIndependentIntervalPressure =
+    dominantPressureDiagnostic(
+      affineCenterForms,
+      "independent_interval_center_eliminated_prefix_majorant_outer_radius"
+    );
+  const dominantAffineCenterShiftedPrefix =
+    dominantPressureDiagnostic(
+      affineCenterForms,
+      "R43_affine_center_shifted_prefix_majorant_outer_radius"
+    );
+  const dominantAffineCenterSourceProfile =
+    dominantPressureDiagnostic(
+      affineCenterSourceProfiles,
+      "candidate_E_R_finite_prefix"
+    );
+  const affineCenterLeadingZeroOpenForms = affineCenterForms.filter(
+    (candidate) =>
+      candidate.R43_affine_center_certificate
+        ?.leading_affine_center_zero_certified !== true
+  );
   const allDIdentityWitnessesContainZero = nGRows.every(
     (row) => row.all_D_plus_40_plus_k_G_identity_witnesses_contain_zero === true
   );
@@ -6305,6 +8360,21 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
     source_certificate_obstructions: sourceCertificateObstructions,
     first_source_certificate_obstruction:
       sourceCertificateObstructions[0] ?? null,
+    candidate_R43_outer_bound_sources: candidateR43OuterBoundSources,
+    candidate_R43_outer_bound_source:
+      candidateR43OuterBoundSources.length === 1
+        ? candidateR43OuterBoundSources[0]
+        : candidateR43OuterBoundSources.length === 0
+          ? null
+          : "mixed-r43-outer-bound-sources",
+    candidate_R43_cauchy_tail_shift_powers:
+      candidateR43CauchyTailShiftPowers,
+    candidate_R43_cauchy_tail_shift_power:
+      candidateR43CauchyTailShiftPowers.length === 1
+        ? candidateR43CauchyTailShiftPowers[0]
+        : candidateR43CauchyTailShiftPowers.length === 0
+          ? null
+          : "mixed-r43-cauchy-tail-shift-powers",
     all_centered_leading_R43_coefficients_contain_zero:
       allCenteredLeadingR43ContainsZero,
     all_shifted_D_identity_witnesses_contain_zero:
@@ -6328,7 +8398,254 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
         (summary) => summary.max_abs_N_G_shifted_coefficient
       )
     ),
+    R43_shifted_prefix_pressure_diagnostic_count:
+      shiftedPressureDiagnostics.length,
+    R43_affine_center_form_candidate_count: affineCenterForms.length,
+    all_R43_affine_center_forms_valid_through_requested_order:
+      affineCenterForms.length > 0
+        ? affineCenterForms.every(
+            (candidate) =>
+              candidate.affine_dependence_valid_through_requested_order ===
+              true
+          )
+        : null,
+    all_R43_affine_center_forms_zero_leading_symbolically:
+      affineCenterForms.length > 0
+        ? affineCenterForms.every(
+            (candidate) =>
+              candidate.center_relation_zeroes_leading_coefficient_symbolically ===
+              true
+          )
+        : null,
+    R43_affine_center_leading_zero_certified_count:
+      affineCenterForms.filter(
+        (candidate) =>
+          candidate.R43_affine_center_certificate
+            ?.leading_affine_center_zero_certified === true
+      ).length,
+    R43_affine_center_leading_zero_open_count:
+      affineCenterLeadingZeroOpenForms.length,
+    first_R43_affine_center_leading_zero_open:
+      affineCenterLeadingZeroOpenForms.length > 0
+        ? {
+            cell_id: affineCenterLeadingZeroOpenForms[0].cell_id,
+            branch: affineCenterLeadingZeroOpenForms[0].branch,
+            center_relation: affineCenterLeadingZeroOpenForms[0]
+              .center_relation,
+            center_relation_interval:
+              affineCenterLeadingZeroOpenForms[0]
+                .center_relation_interval,
+            center_replay_x_interval:
+              affineCenterLeadingZeroOpenForms[0]
+                .center_replay_x_interval,
+            leading_source_at_zero_C_0:
+              affineCenterLeadingZeroOpenForms[0]
+                .leading_source_at_zero_C_0,
+            leading_slope_used_S_0:
+              affineCenterLeadingZeroOpenForms[0].leading_slope_used_S_0,
+            leading_slope_source:
+              affineCenterLeadingZeroOpenForms[0].leading_slope_source,
+            leading_slope_clearance_positive:
+              affineCenterLeadingZeroOpenForms[0]
+                .R43_affine_center_certificate
+                ?.leading_slope_clearance_positive,
+            center_interval_contains_solve:
+              affineCenterLeadingZeroOpenForms[0]
+                .R43_affine_center_certificate
+                ?.center_interval_contains_solve,
+            requested_shifted_order_below_second_x_row:
+              affineCenterLeadingZeroOpenForms[0]
+                .R43_affine_center_certificate
+                ?.requested_shifted_order_below_second_x_row,
+            first_uncertified_numeric_step:
+              affineCenterLeadingZeroOpenForms[0]
+                .first_uncertified_numeric_step,
+          }
+        : null,
+    R43_affine_center_form_numeric_bound_certified:
+      affineCenterForms.length > 0
+        ? affineCenterForms.every(
+            (candidate) =>
+              candidate.certifies_shifted_R43_outer_bound === true
+          )
+        : null,
+    max_R43_affine_center_shifted_prefix_majorant_outer_radius:
+      pressureDiagnosticValue(
+        dominantAffineCenterShiftedPrefix,
+        "R43_affine_center_shifted_prefix_majorant_outer_radius"
+      ),
+    dominant_R43_affine_center_shifted_prefix:
+      dominantAffineCenterShiftedPrefix
+        ? {
+            cell_id: dominantAffineCenterShiftedPrefix.cell_id,
+            branch: dominantAffineCenterShiftedPrefix.branch,
+            outer_radius: dominantAffineCenterShiftedPrefix.outer_radius,
+            shifted_order: dominantAffineCenterShiftedPrefix.shifted_order,
+            R43_affine_center_shifted_prefix_majorant_outer_radius:
+              dominantAffineCenterShiftedPrefix
+                .R43_affine_center_shifted_prefix_majorant_outer_radius,
+            dominant_R43_affine_center_shifted_pressure:
+              dominantAffineCenterShiftedPrefix
+                .dominant_R43_affine_center_shifted_pressure,
+            candidate_bound_source:
+              "affine-center actual replay finite prefix with certified leading zero",
+            certifies_shifted_R43_outer_bound:
+              dominantAffineCenterShiftedPrefix
+                .certifies_shifted_R43_outer_bound,
+          }
+        : null,
+    dominant_R43_affine_center_independent_interval_pressure:
+      dominantAffineIndependentIntervalPressure
+        ? {
+            cell_id: dominantAffineIndependentIntervalPressure.cell_id,
+            branch: dominantAffineIndependentIntervalPressure.branch,
+            outer_radius: dominantAffineIndependentIntervalPressure.outer_radius,
+            shifted_order:
+              dominantAffineIndependentIntervalPressure.shifted_order,
+            affine_dependence_valid_through_requested_order:
+              dominantAffineIndependentIntervalPressure
+                .affine_dependence_valid_through_requested_order,
+            independent_interval_center_eliminated_prefix_majorant_outer_radius:
+              dominantAffineIndependentIntervalPressure
+                .independent_interval_center_eliminated_prefix_majorant_outer_radius,
+            dominant_independent_interval_center_eliminated_row:
+              dominantAffineIndependentIntervalPressure
+                .dominant_independent_interval_center_eliminated_row,
+            first_uncertified_numeric_step:
+              dominantAffineIndependentIntervalPressure
+                .first_uncertified_numeric_step,
+          }
+        : null,
+    max_R43_shifted_prefix_pressure_outer_radius:
+      pressureDiagnosticValue(
+        dominantShiftedPressure,
+        "unreduced_shifted_prefix_majorant_outer_radius"
+      ),
+    dominant_R43_shifted_prefix_pressure: dominantShiftedPressure
+      ? {
+          cell_id: dominantShiftedPressure.cell_id,
+          branch: dominantShiftedPressure.branch,
+          outer_radius: dominantShiftedPressure.outer_radius,
+          shifted_order: dominantShiftedPressure.shifted_order,
+          pressure_interpretation:
+            dominantShiftedPressure.pressure_interpretation,
+          leading_centered_coefficient_contains_zero:
+            dominantShiftedPressure
+              .leading_centered_coefficient_contains_zero,
+          dominant_unreduced_shifted_pressure:
+            dominantShiftedPressure.dominant_unreduced_shifted_pressure,
+        }
+      : null,
+    max_R43_center_eliminated_shifted_prefix_pressure_outer_radius:
+      pressureDiagnosticValue(
+        dominantCenterEliminatedPressure,
+        "center_eliminated_shifted_prefix_majorant_outer_radius"
+      ),
+    dominant_R43_center_eliminated_shifted_prefix_pressure:
+      dominantCenterEliminatedPressure
+        ? {
+            cell_id: dominantCenterEliminatedPressure.cell_id,
+            branch: dominantCenterEliminatedPressure.branch,
+            outer_radius: dominantCenterEliminatedPressure.outer_radius,
+            shifted_order: dominantCenterEliminatedPressure.shifted_order,
+            center_elimination_improvement_factor:
+              dominantCenterEliminatedPressure
+                .center_elimination_improvement_factor,
+            center_elimination_reduces_pressure:
+              dominantCenterEliminatedPressure
+                .center_elimination_reduces_pressure,
+            center_elimination_interval_warning:
+              dominantCenterEliminatedPressure
+                .center_elimination_interval_warning,
+            dominant_center_eliminated_shifted_pressure:
+              dominantCenterEliminatedPressure
+                .dominant_center_eliminated_shifted_pressure,
+          }
+        : null,
     max_candidate_E_R_finite_prefix: aggregateCandidateERFinitePrefix,
+    R43_affine_center_source_profile_candidate_count:
+      affineCenterSourceProfiles.length,
+    R43_affine_center_source_profile_tail_candidate_count:
+      affineCenterSourceProfiles.filter(
+        (candidate) => candidate.shifted_outer_bound_supplied === true
+      ).length,
+    all_R43_affine_center_source_profiles_tail_bearing:
+      affineCenterSourceProfiles.length > 0
+        ? affineCenterSourceProfiles.every(
+            (candidate) => candidate.shifted_outer_bound_supplied === true
+          )
+        : null,
+    max_R43_affine_center_source_profile_E_R_finite_prefix:
+      finiteMax(
+        affineCenterSourceProfiles.map(
+          (candidate) => candidate.candidate_E_R_finite_prefix
+        )
+      ),
+    max_R43_affine_center_source_profile_M_R_finite_prefix:
+      finiteMax(
+        affineCenterSourceProfiles.map(
+          (candidate) => candidate.candidate_M_R_finite_prefix
+        )
+      ),
+    max_R43_affine_center_source_profile_E_R_prefix_plus_tail_bound:
+      finiteMax(
+        affineCenterSourceProfiles.map(
+          (candidate) => candidate.candidate_E_R_prefix_plus_tail_bound
+        )
+      ),
+    max_R43_affine_center_source_profile_M_R_prefix_plus_tail_bound:
+      finiteMax(
+        affineCenterSourceProfiles.map(
+          (candidate) => candidate.candidate_M_R_prefix_plus_tail_bound
+        )
+      ),
+    dominant_R43_affine_center_source_profile:
+      dominantAffineCenterSourceProfile
+        ? {
+            cell_id: dominantAffineCenterSourceProfile.cell_id,
+            source_profile_kind:
+              dominantAffineCenterSourceProfile.source_profile_kind,
+            shifted_outer_bound_supplied:
+              dominantAffineCenterSourceProfile.shifted_outer_bound_supplied,
+            r43_cauchy_tail_shift_power:
+              dominantAffineCenterSourceProfile.r43_cauchy_tail_shift_power,
+            candidate_E_R_finite_prefix:
+              dominantAffineCenterSourceProfile.candidate_E_R_finite_prefix,
+            candidate_M_R_finite_prefix:
+              dominantAffineCenterSourceProfile.candidate_M_R_finite_prefix,
+            candidate_E_R_prefix_plus_tail_bound:
+              dominantAffineCenterSourceProfile
+                .candidate_E_R_prefix_plus_tail_bound,
+            candidate_M_R_prefix_plus_tail_bound:
+              dominantAffineCenterSourceProfile
+                .candidate_M_R_prefix_plus_tail_bound,
+            candidate_bound_source:
+              dominantAffineCenterSourceProfile.candidate_bound_source,
+          }
+        : null,
+    R43_second_x_remainder_profile_candidate_count:
+      secondXRemainderProfiles.length,
+    all_R43_second_x_remainder_profiles_separate_from_E_R_M_R:
+      secondXRemainderProfiles.length > 0
+        ? secondXRemainderProfiles.every(
+            (candidate) =>
+              candidate.included_in_candidate_E_R_prefix_plus_tail_bound ===
+                false &&
+              candidate.included_in_candidate_M_R_prefix_plus_tail_bound ===
+                false
+          )
+        : null,
+    max_R43_second_x_E_R_remainder_profile:
+      finiteMax(
+        secondXRemainderProfiles.map(
+          (candidate) => candidate.candidate_E_R_second_x_remainder_profile
+        )
+      ),
+    R43_second_x_remainder_profiles_with_missing_y_derivative_majorant_count:
+      secondXRemainderProfiles.filter(
+        (candidate) =>
+          candidate.missing_second_x_y_derivative_majorant === true
+      ).length,
     max_candidate_E_R_cauchy_tail_after_prefix_profile:
       aggregateCandidateERCauchyTailProfile,
     max_candidate_E_R_prefix_plus_tail_bound:

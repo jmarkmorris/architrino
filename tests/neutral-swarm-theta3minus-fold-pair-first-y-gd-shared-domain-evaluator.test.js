@@ -38,9 +38,16 @@ import {
   computeH39DenominatorCauchyNGOuterBoundCandidate,
   computeH39NGOuterBoundCandidateMG,
   computeH39NGOuterBoundPrimitiveReplay,
+  computeH39PredecessorHRowProviderBoundaryCandidate,
+  computeH39AffineCenterShiftedR43SourceProfileCandidate,
   computeH39R43AnalyticRemainderProfileCandidate,
+  computeH39R43SecondXKepsilonRemainderProfileCandidate,
   computeH39KernelContinuousMajorant,
   computeSinhTaylorMajorant,
+  computeH39AffineCenterRowCorrelationDiagnosticCandidate,
+  computeH39AffineCenterHRowSensitivityDiagnosticCandidate,
+  computeH39ShiftedR43AffineCenterFormCandidate,
+  computeH39ShiftedR43PressureDecompositionCandidate,
   computeH39ShiftedR43RemovableOuterBoundCandidate,
   computeH39SourceResidualCoordinateOuterBoundCandidate,
   computeMultivariateCoefficientPrefixFloor,
@@ -145,6 +152,37 @@ function parseInterval(text) {
     .map(Number);
 }
 
+function numberClose(left, right, tolerance = 1e-9) {
+  const scale = Math.max(1, Math.abs(left), Math.abs(right));
+  assert.ok(Math.abs(left - right) <= tolerance * scale);
+}
+
+const FORBIDDEN_FIXED_SPEED_KEYS = [
+  "speed_band",
+  "speed_window",
+  "speed_min",
+  "speed_max",
+];
+
+function collectExactKeys(value, forbiddenKeys, path = [], found = []) {
+  if (Array.isArray(value)) {
+    value.forEach((entry, index) =>
+      collectExactKeys(entry, forbiddenKeys, [...path, String(index)], found)
+    );
+    return found;
+  }
+  if (value && typeof value === "object") {
+    Object.keys(value).forEach((key) => {
+      const nextPath = [...path, key];
+      if (forbiddenKeys.includes(key)) {
+        found.push(nextPath.join("."));
+      }
+      collectExactKeys(value[key], forbiddenKeys, nextPath, found);
+    });
+  }
+  return found;
+}
+
 test("h39 shared-domain series context builds branch coordinates through X39", () => {
   const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 44 });
   const { delta, phi } = branchSeriesCoordinates({
@@ -233,6 +271,10 @@ test("h39 center coefficient solve zeroes the leading R43 source row", () => {
   const solvedCoefficient = parseInterval(row.R43_center_coefficient_interval);
 
   assert.equal(solve.status, "h39-center-coefficient-row-solved");
+  intervalClose(
+    solve.h39_center_interval,
+    solve.h39_center_numeric_interval
+  );
   assert.ok(solvedCoefficient[0] <= 0);
   assert.ok(solvedCoefficient[1] >= 0);
   assert.equal(solve.certifies_continuous_polydisc_primitives, false);
@@ -347,6 +389,42 @@ test("h39 second-X row factors as y41 times the explicit kernel prefix", () => {
   assert.equal(
     computeCoefficientPrefixMajorant(shifted, rho),
     computeYPowerFactoredCoefficientPrefixMajorant(kernel, rho, 41)
+  );
+});
+
+test("h39 second-X y41 K_epsilon remainder profile stays separate from R43 tails", () => {
+  const profile = computeH39R43SecondXKepsilonRemainderProfileCandidate({
+    secondXKernelYPower: 41,
+    candidateMKContinuousMajorant: 3,
+    targetRadius: 0.5,
+    xRemainderRadius: 0.2,
+  });
+  const expected = 0.5 * 0.2 ** 2 * 0.5 ** 41 * 3;
+
+  assert.equal(
+    profile.status,
+    "h39-r43-second-x-y41-K-epsilon-remainder-profile-candidate-emitted"
+  );
+  assert.equal(profile.identity, "partial_X^2 R43 = y^41 K_epsilon");
+  assert.equal(profile.second_x_kernel_y_power, 41);
+  assert.equal(profile.candidate_M_K_continuous_majorant, 3);
+  numberClose(profile.candidate_E_R_second_x_remainder_profile, expected);
+  assert.equal(profile.candidate_M_R_second_x_remainder_profile, null);
+  assert.equal(profile.missing_second_x_y_derivative_majorant, true);
+  assert.equal(
+    profile.included_in_candidate_E_R_prefix_plus_tail_bound,
+    false
+  );
+  assert.equal(
+    profile.included_in_candidate_M_R_prefix_plus_tail_bound,
+    false
+  );
+  assert.equal(profile.certifies_continuous_polydisc_primitives, false);
+  assert.equal(profile.certifies_directed_rounded_shared_domain, false);
+  assert.equal(profile.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(profile, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
   );
 });
 
@@ -742,6 +820,694 @@ test("h39 shifted R43 source envelope consumes the removable cancellation witnes
   );
   assert.equal(shiftedSource.retained_branch, false);
   assert.equal(JSON.stringify(shiftedSource).includes("speed_band"), false);
+});
+
+test("h39 shifted R43 prefix pressure diagnostic decomposes branch coefficient pressure without speed bands", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 53 });
+  const minusSolve = solveH39CenterCoefficientRow({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    solveSlopeInterval: [0.15, 0.152],
+  });
+  const minusDiagnostic = computeH39ShiftedR43PressureDecompositionCandidate({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    xInterval: minusSolve.h39_center_interval,
+    solveSlopeInterval: [0.15, 0.152],
+    outerRadius: 0.01,
+    shiftedOrder: 10,
+  });
+  const shiftedSource = computeH39ShiftedR43RemovableOuterBoundCandidate({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    xInterval: minusSolve.h39_center_interval,
+    outerBound: 1e-3,
+    outerRadius: 0.01,
+    directedRoundedShiftedR43Provenance: true,
+    certifiesShiftedR43ZeroPrefix: true,
+  });
+  const cell = evaluateH39SharedDomainCoefficientCell({
+    context,
+    cell: CELL,
+    branchInputs: [
+      {
+        branch: "-",
+        hIntervals: hIntervals(),
+        solveSlopeInterval: [0.15, 0.152],
+      },
+      {
+        branch: "+",
+        hIntervals: hIntervals(),
+        solveSlopeInterval: [-0.152, -0.15],
+      },
+    ],
+    shiftedOrder: 10,
+    rho: 0.001,
+  });
+  const rowDiagnostics = cell.r43_rows.map(
+    (row) => row.R43_shifted_prefix_pressure_diagnostic
+  );
+  const summary = cell.finite_prefix_summary;
+  const maxDiagnosticER = Math.max(
+    ...rowDiagnostics.map(
+      (diagnostic) =>
+        diagnostic.unreduced_shifted_prefix_majorant_outer_radius
+    )
+  );
+
+  assert.equal(
+    minusDiagnostic.status,
+    "h39-shifted-r43-pressure-decomposition-candidate-emitted"
+  );
+  assert.equal(
+    minusDiagnostic.affine_dependence_valid_through_requested_order,
+    true
+  );
+  assert.ok(maxDiagnosticER >= summary.candidate_E_R_finite_prefix);
+  assert.equal(
+    summary.candidate_E_R_finite_prefix_coefficient_source,
+    "affine-center-actual-replay-leading-zero"
+  );
+  numberClose(
+    minusDiagnostic.unreduced_shifted_prefix_majorant_outer_radius,
+    shiftedSource.shifted_R43_finite_prefix_majorant_outer_radius,
+    1e-12
+  );
+  assert.deepEqual(
+    minusDiagnostic.term_pressure_by_coefficient[0].terms.map(
+      (entry) => entry.term
+    ),
+    [
+      "delta_squared_speed",
+      "constant_minus_two",
+      "sin_phi",
+      "sin_delta",
+    ]
+  );
+  assert.equal(
+    rowDiagnostics.every(
+      (diagnostic) =>
+        diagnostic.center_eliminated_shifted_pressures[0]
+          .pressure_contribution === 0
+    ),
+    true
+  );
+  assert.equal(JSON.stringify(minusDiagnostic).includes("speed_band"), false);
+  assert.equal(JSON.stringify(cell).includes("speed_band"), false);
+});
+
+test("h39 shifted R43 affine center form preserves the solved leading relation symbolically", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 53 });
+  const minusSolve = solveH39CenterCoefficientRow({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    solveSlopeInterval: [0.15, 0.152],
+  });
+  const candidate = computeH39ShiftedR43AffineCenterFormCandidate({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    xInterval: minusSolve.h39_center_interval,
+    solveSlopeInterval: [0.15, 0.152],
+    outerRadius: 0.01,
+    shiftedOrder: 10,
+  });
+  const cell = evaluateH39SharedDomainCoefficientCell({
+    context,
+    cell: CELL,
+    branchInputs: [
+      {
+        branch: "-",
+        hIntervals: hIntervals(),
+        solveSlopeInterval: [0.15, 0.152],
+      },
+      {
+        branch: "+",
+        hIntervals: hIntervals(),
+        solveSlopeInterval: [-0.152, -0.15],
+      },
+    ],
+    shiftedOrder: 10,
+    rho: 0.001,
+  });
+  const rowCandidate = cell.r43_rows[0].R43_affine_center_form_candidate;
+
+  assert.equal(
+    candidate.status,
+    "h39-shifted-r43-affine-center-form-candidate-emitted"
+  );
+  assert.equal(
+    candidate.evaluation_level,
+    "symbolic-affine-center-normal-form"
+  );
+  assert.equal(
+    candidate.affine_dependence_valid_through_requested_order,
+    true
+  );
+  assert.equal(
+    candidate.center_relation_zeroes_leading_coefficient_symbolically,
+    true
+  );
+  assert.equal(candidate.affine_center_rows.length, 11);
+  assert.equal(
+    candidate.affine_center_rows[0]
+      .symbolic_center_eliminated_coefficient_formula,
+    "A_0=0"
+  );
+  assert.deepEqual(
+    candidate.affine_center_rows[0]
+      .independent_interval_center_eliminated_coefficient,
+    [0, 0]
+  );
+  assert.equal(
+    candidate.affine_center_rows[1]
+      .symbolic_center_eliminated_coefficient_formula,
+    "A_k=(S_0 C_k - S_k C_0)/S_0"
+  );
+  assert.equal(candidate.correlation_preserved_symbolically, true);
+  assert.equal(candidate.certifies_shifted_R43_outer_bound, false);
+  assert.equal(rowCandidate.correlation_preserved_symbolically, true);
+  assert.equal(
+    rowCandidate.R43_affine_center_certificate
+      .leading_affine_center_zero_certified,
+    true
+  );
+  assert.equal(
+    rowCandidate.R43_affine_center_certificate
+      .independent_interval_schur_products_used,
+    false
+  );
+  assert.deepEqual(
+    rowCandidate.R43_affine_center_shifted_coefficients[0],
+    [0, 0]
+  );
+  assert.ok(
+    rowCandidate.independent_interval_center_eliminated_prefix_majorant_outer_radius >
+      0
+  );
+  assert.ok(
+    rowCandidate.R43_affine_center_shifted_prefix_majorant_outer_radius <
+      rowCandidate.independent_interval_center_eliminated_prefix_majorant_outer_radius
+  );
+  assert.equal(
+    cell.finite_prefix_summary.candidate_E_R_finite_prefix_coefficient_source,
+    "affine-center-actual-replay-leading-zero"
+  );
+  assert.equal(JSON.stringify(candidate).includes("speed_band"), false);
+  assert.equal(JSON.stringify(cell).includes("speed_band"), false);
+});
+
+test("h39 affine-center row correlation diagnostic isolates shifted index one without promotion", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
+  const minusSolve = solveH39CenterCoefficientRow({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    solveSlopeInterval: [0.15, 0.152],
+  });
+  const diagnostic = computeH39AffineCenterRowCorrelationDiagnosticCandidate({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    xInterval: minusSolve.h39_center_interval,
+    solveSlopeInterval: [0.15, 0.152],
+    outerRadius: 0.01,
+    shiftedIndex: 1,
+    partitionCount: 2,
+  });
+
+  assert.equal(
+    diagnostic.status,
+    "h39-affine-center-row-correlation-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-affine-center-row-correlation-diagnostic"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.equal(diagnostic.affine_dependence_valid_for_row, true);
+  assert.equal(diagnostic.partition_count, 2);
+  assert.equal(diagnostic.partition_replays.length, 2);
+  assert.equal(
+    diagnostic.full_center_replay.row_pressure.shifted_index,
+    1
+  );
+  assert.deepEqual(
+    diagnostic.full_center_replay.row_pressure.terms.map(
+      (entry) => entry.term
+    ),
+    [
+      "delta_squared_speed",
+      "constant_minus_two",
+      "sin_phi",
+      "sin_delta",
+    ]
+  );
+  assert.equal(
+    diagnostic.max_partition_replay.row_pressure.y_order,
+    44
+  );
+  assert.ok(diagnostic.max_partition_pressure > 0);
+  assert.ok(diagnostic.midpoint_pressure >= 0);
+  assert.ok(diagnostic.input_midpoint_pressure >= 0);
+  assert.equal(
+    diagnostic.input_midpoint_replay.replay_kind,
+    "input-midpoint-center"
+  );
+  assert.equal(
+    diagnostic.input_midpoint_replay.row_pressure.shifted_index,
+    1
+  );
+  assert.ok(
+    diagnostic.independent_interval_center_eliminated_pressure >=
+      diagnostic.full_center_replay.row_pressure.source_pressure_contribution
+  );
+  assert.equal(diagnostic.certifies_shifted_R43_outer_bound, false);
+  assert.equal(diagnostic.certifies_directed_rounded_shared_domain, false);
+  assert.equal(diagnostic.certifies_continuous_polydisc_primitives, false);
+  assert.equal(diagnostic.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 affine-center h-row sensitivity diagnostic isolates inherited h-row width", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
+  const wideHIntervals = Array.from({ length: 39 }, (_, index) => [
+    (index + 1) * 1e-6 - (index + 1) * 1e-5,
+    (index + 1) * 1e-6 + (index + 1) * 1e-5,
+  ]);
+  const diagnostic =
+    computeH39AffineCenterHRowSensitivityDiagnosticCandidate({
+      context,
+      cell: CELL,
+      branch: "-",
+      hIntervals: wideHIntervals,
+      solveSlopeInterval: [0.15, 0.152],
+      outerRadius: 0.01,
+      shiftedIndex: 1,
+    });
+
+  assert.equal(
+    diagnostic.status,
+    "h39-affine-center-h-row-sensitivity-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-affine-center-h-row-sensitivity-diagnostic"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.equal(diagnostic.affine_dependence_valid_for_row, true);
+  assert.ok(diagnostic.full_input_replay.pressure > 0);
+  assert.deepEqual(
+    diagnostic.input_family_replays.map((replay) => replay.input_family),
+    [
+      "full-input-box",
+      "cell-midpoint",
+      "h-row-midpoint",
+      "slope-midpoint",
+      "cell-and-h-row-midpoint",
+      "all-input-midpoint",
+    ]
+  );
+  assert.ok(diagnostic.h_row_midpoint_reduction_factor > 10);
+  assert.ok(diagnostic.cell_midpoint_reduction_factor < 2);
+  assert.ok(diagnostic.slope_midpoint_reduction_factor < 2);
+  assert.equal(diagnostic.h_row_width_dominates_input_width, true);
+  assert.equal(diagnostic.h_row_freeze_replays.length, 6);
+  assert.equal(
+    diagnostic.h_row_freeze_replays[0].input_family,
+    "freeze-h38-through-h38"
+  );
+  assert.ok(
+    diagnostic.best_h_row_freeze_replay.full_to_pressure_ratio > 10
+  );
+  assert.deepEqual(
+    diagnostic.h_row_width_compression_replays.map(
+      (replay) => replay.input_family
+    ),
+    [
+      "h-row-width-compression-1",
+      "h-row-width-compression-0.5",
+      "h-row-width-compression-0.25",
+      "h-row-width-compression-0.125",
+      "h-row-width-compression-0.0625",
+      "h-row-width-compression-0",
+    ]
+  );
+  numberClose(
+    diagnostic.h_row_width_compression_replays[0].pressure,
+    diagnostic.full_input_replay.pressure
+  );
+  numberClose(
+    diagnostic.h_row_width_compression_replays.at(-1).pressure,
+    diagnostic.input_family_replays.find(
+      (replay) => replay.input_family === "h-row-midpoint"
+    ).pressure
+  );
+  assert.equal(
+    diagnostic.first_h_row_width_compression_meeting_target,
+    null
+  );
+  assert.equal(diagnostic.certifies_shifted_R43_outer_bound, false);
+  assert.equal(diagnostic.certifies_directed_rounded_shared_domain, false);
+  assert.equal(diagnostic.certifies_continuous_polydisc_primitives, false);
+  assert.equal(diagnostic.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 predecessor h-row provider boundary distinguishes interval snapshots from transport", () => {
+  const diagnostic = computeH39PredecessorHRowProviderBoundaryCandidate({
+    h38Row: h38Row(),
+  });
+
+  assert.equal(
+    diagnostic.status,
+    "h39-predecessor-h-row-provider-boundary-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-predecessor-h-row-provider-boundary"
+  );
+  assert.equal(diagnostic.cell_id, "speed.test.first-y");
+  assert.equal(diagnostic.exported_h_row_interval_snapshot_complete, true);
+  assert.equal(
+    diagnostic.dependency_preserving_h_row_provider_present,
+    false
+  );
+  assert.equal(
+    diagnostic.exported_h_row_dependency_state,
+    "independent-interval-snapshot-only"
+  );
+  assert.equal(
+    diagnostic.smallest_evaluator_entry_point,
+    "branchInputsFromH38Row"
+  );
+  assert.equal(diagnostic.branch_summaries.length, 2);
+  assert.equal(diagnostic.branch_summaries[0].h_interval_field_count, 39);
+  assert.equal(
+    diagnostic.branch_summaries[0].dependency_preserving_h_row_provider_present,
+    false
+  );
+  assert.equal(
+    diagnostic.required_provider_shape.dependency_preserving_h_row_provider,
+    true
+  );
+  assert.equal(diagnostic.certifies_shifted_R43_outer_bound, false);
+  assert.equal(diagnostic.certifies_directed_rounded_shared_domain, false);
+  assert.equal(diagnostic.certifies_continuous_polydisc_primitives, false);
+  assert.equal(diagnostic.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 coefficient rows accept dependency-preserving h-row provider metadata without promotion", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
+  const calls = [];
+  const rows = evaluateH39SharedDomainCoefficientRows({
+    context,
+    h38Rows: [h38Row()],
+    shiftedOrder: 1,
+    rho: 0.001,
+    hRowProvider: ({
+      cellId,
+      branch,
+      branchRow,
+      targetIndex,
+      replayKind,
+    }) => {
+      calls.push({ cellId, branch, targetIndex, replayKind });
+      return {
+        branch,
+        hIntervals: hIntervals(),
+        solveSlopeInterval: branchRow.h38_solve_slope_interval,
+        providerKind: "fixture-predecessor-recurrence-transport",
+        preservesDependencies: true,
+        sourceCellId: cellId,
+        replayKind,
+        dependencyTrace: [
+          {
+            hIndex: 38,
+            source: "successor-recurrence",
+            predecessorHIndex: 37,
+            predecessorCellId: cellId,
+            branch,
+          },
+        ],
+      };
+    },
+  });
+  const cell = rows[0].h39_coefficient_cell;
+  const providerReport = cell.h_row_provider_report;
+
+  assert.equal(calls.length, 2);
+  assert.deepEqual(
+    calls.map((call) => call.branch),
+    ["-", "+"]
+  );
+  assert.equal(providerReport.provider_backed_branch_count, 2);
+  assert.equal(providerReport.provider_backed_all_branches, true);
+  assert.deepEqual(
+    providerReport.branch_reports.map((report) => report.provider_kind),
+    [
+      "fixture-predecessor-recurrence-transport",
+      "fixture-predecessor-recurrence-transport",
+    ]
+  );
+  assert.equal(
+    providerReport.branch_reports[0].dependency_trace_count,
+    1
+  );
+  assert.equal(
+    cell.claim_boundary.h_row_provider_backed_replay,
+    true
+  );
+  assert.equal(providerReport.certifies_shifted_R43_outer_bound, false);
+  assert.equal(providerReport.certifies_directed_rounded_shared_domain, false);
+  assert.equal(
+    providerReport.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(providerReport.retained_branch, false);
+  assert.equal(cell.claim_boundary.certifies_directed_rounded_shared_domain, false);
+  assert.equal(cell.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(cell, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 coefficient rows reject interval-only h-row providers", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
+
+  assert.throws(
+    () =>
+      evaluateH39SharedDomainCoefficientRows({
+        context,
+        h38Rows: [h38Row()],
+        shiftedOrder: 1,
+        rho: 0.001,
+        hRowProvider: ({ branch, branchRow }) => ({
+          branch,
+          hIntervals: hIntervals(),
+          solveSlopeInterval: branchRow.h38_solve_slope_interval,
+        }),
+      }),
+    /nonempty dependency trace/
+  );
+});
+
+test("h39 shifted R43 source envelope can cover the affine-center prefix instead of raw center replay", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
+  const minusSolve = solveH39CenterCoefficientRow({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    solveSlopeInterval: [0.15, 0.152],
+  });
+  const outerBound = 2e-6;
+
+  assert.throws(
+    () =>
+      computeH39ShiftedR43RemovableOuterBoundCandidate({
+        context,
+        cell: CELL,
+        branch: "-",
+        hIntervals: hIntervals(),
+        xInterval: minusSolve.h39_center_interval,
+        outerBound,
+        outerRadius: 0.01,
+        directedRoundedShiftedR43Provenance: true,
+        certifiesShiftedR43ZeroPrefix: true,
+      }),
+    /does not cover shifted coefficient prefix/
+  );
+
+  const affineSource = computeH39ShiftedR43RemovableOuterBoundCandidate({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    xInterval: minusSolve.h39_center_interval,
+    solveSlopeInterval: [0.15, 0.152],
+    outerBound,
+    outerRadius: 0.01,
+    directedRoundedShiftedR43Provenance: true,
+    certifiesShiftedR43ZeroPrefix: true,
+    useAffineCenterR43Prefix: true,
+  });
+
+  assert.equal(
+    affineSource.status,
+    "h39-affine-center-shifted-r43-removable-cauchy-outer-bound-candidate-emitted"
+  );
+  assert.equal(
+    affineSource.source_envelope_kind,
+    "affine-center-shifted-removable-r43-cauchy-outer-bound"
+  );
+  assert.equal(
+    affineSource.shifted_R43_prefix_bound_source,
+    "affine-center-actual-replay-leading-zero"
+  );
+  assert.ok(
+    affineSource.raw_shifted_R43_finite_prefix_majorant_outer_radius >
+      outerBound
+  );
+  assert.ok(
+    affineSource.shifted_R43_finite_prefix_majorant_outer_radius <=
+      outerBound
+  );
+  assert.deepEqual(affineSource.shifted_R43_coefficients[0], [0, 0]);
+  assert.equal(
+    affineSource.R43_affine_center_certificate
+      .independent_interval_schur_products_used,
+    false
+  );
+  assert.equal(affineSource.certifies_directed_rounded_shared_domain, false);
+  assert.equal(JSON.stringify(affineSource).includes("speed_band"), false);
+});
+
+test("h39 affine-center shifted R43 source profile stays diagnostic without shifted Cauchy tail", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
+  const minusSolve = solveH39CenterCoefficientRow({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    solveSlopeInterval: [0.15, 0.152],
+  });
+  const affineCenter = computeH39ShiftedR43AffineCenterFormCandidate({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    xInterval: minusSolve.h39_center_interval,
+    solveSlopeInterval: [0.15, 0.152],
+    outerRadius: 0.01,
+    shiftedOrder: 10,
+  });
+
+  const profile = computeH39AffineCenterShiftedR43SourceProfileCandidate({
+    coefficients: affineCenter.R43_affine_center_shifted_coefficients,
+    affineCenterCertificate: affineCenter.R43_affine_center_certificate,
+    targetRadius: 0.001,
+  });
+
+  assert.equal(
+    profile.status,
+    "h39-affine-center-shifted-r43-source-profile-candidate-emitted"
+  );
+  assert.equal(
+    profile.source_profile_kind,
+    "affine-center-actual-replay-shifted-r43"
+  );
+  assert.equal(profile.shifted_outer_bound_supplied, false);
+  assert.ok(profile.candidate_E_R_finite_prefix > 0);
+  assert.ok(profile.candidate_M_R_finite_prefix > 0);
+  assert.equal(profile.candidate_E_R_prefix_plus_tail_bound, null);
+  assert.equal(profile.candidate_M_R_prefix_plus_tail_bound, null);
+  assert.equal(profile.cauchy_diagnostic, null);
+  assert.equal(profile.certifies_continuous_polydisc_primitives, false);
+  assert.equal(profile.certifies_directed_rounded_shared_domain, false);
+  assert.equal(profile.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(profile, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 affine-center shifted R43 source profile uses shift-power-zero tail when supplied", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
+  const minusSolve = solveH39CenterCoefficientRow({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    solveSlopeInterval: [0.15, 0.152],
+  });
+  const affineCenter = computeH39ShiftedR43AffineCenterFormCandidate({
+    context,
+    cell: CELL,
+    branch: "-",
+    hIntervals: hIntervals(),
+    xInterval: minusSolve.h39_center_interval,
+    solveSlopeInterval: [0.15, 0.152],
+    outerRadius: 0.01,
+    shiftedOrder: 10,
+  });
+
+  const profile = computeH39AffineCenterShiftedR43SourceProfileCandidate({
+    coefficients: affineCenter.R43_affine_center_shifted_coefficients,
+    affineCenterCertificate: affineCenter.R43_affine_center_certificate,
+    targetRadius: 0.001,
+    r43ShiftedCauchyOuterBound: 2e-6,
+    r43ShiftedCauchyOuterRadius: 0.01,
+  });
+
+  assert.equal(profile.shifted_outer_bound_supplied, true);
+  assert.equal(profile.r43_cauchy_tail_shift_power, 0);
+  assert.equal(profile.cauchy_diagnostic.shift_power, 0);
+  assert.ok(profile.candidate_E_R_cauchy_tail_after_prefix_profile > 0);
+  assert.ok(profile.candidate_M_R_cauchy_tail_after_prefix_profile > 0);
+  numberClose(
+    profile.candidate_E_R_prefix_plus_tail_bound,
+    profile.candidate_E_R_finite_prefix +
+      profile.candidate_E_R_cauchy_tail_after_prefix_profile,
+    1e-12
+  );
+  numberClose(
+    profile.candidate_M_R_prefix_plus_tail_bound,
+    profile.candidate_M_R_finite_prefix +
+      profile.candidate_M_R_cauchy_tail_after_prefix_profile,
+    1e-12
+  );
+  assert.equal(profile.certifies_continuous_polydisc_primitives, false);
+  assert.equal(profile.certifies_directed_rounded_shared_domain, false);
+  assert.equal(profile.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(profile, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
 });
 
 test("h39 branch G denominator ingredients emit candidate floors only", () => {
@@ -2653,6 +3419,68 @@ test("h39 coordinate source envelope candidates fall back to certified radius", 
   assert.equal(JSON.stringify(cell).includes("speed_band"), false);
 });
 
+test("h39 summary records affine-center source profiles without completing vector absent outer pair", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
+  const cell = evaluateH39SharedDomainCoefficientCell({
+    context,
+    cell: CELL,
+    branchInputs: [
+      {
+        branch: "-",
+        hIntervals: hIntervals(),
+        solveSlopeInterval: [0.15, 0.152],
+      },
+      {
+        branch: "+",
+        hIntervals: hIntervals(),
+        solveSlopeInterval: [-0.152, -0.15],
+      },
+    ],
+    shiftedOrder: 10,
+    rho: 0.001,
+  });
+  const summary = cell.finite_prefix_summary;
+
+  assert.equal(summary.R43_affine_center_source_profile_candidate_count, 2);
+  assert.equal(
+    summary.R43_affine_center_source_profile_tail_candidate_count,
+    0
+  );
+  assert.equal(
+    summary.R43_affine_center_source_profile_candidates.every(
+      (candidate) =>
+        candidate.shifted_outer_bound_supplied === false &&
+        candidate.candidate_E_R_prefix_plus_tail_bound === null &&
+        candidate.candidate_M_R_prefix_plus_tail_bound === null
+    ),
+    true
+  );
+  assert.equal(summary.candidate_E_R_prefix_plus_tail_bound, null);
+  assert.equal(summary.candidate_M_R_prefix_plus_tail_bound, null);
+  assert.equal(
+    summary.candidate_h39_full_cauchy_primitive_profile_vector_status,
+    "h39-full-cauchy-primitive-profile-vector-candidate-incomplete"
+  );
+  assert.ok(
+    summary.candidate_h39_full_cauchy_primitive_profile_vector_missing_components.includes(
+      "E_R"
+    )
+  );
+  assert.equal(summary.R43_second_x_remainder_profile_candidates.length, 2);
+  assert.equal(
+    summary.R43_second_x_remainder_profile_candidates.every(
+      (candidate) =>
+        candidate.second_x_kernel_y_power === 41 &&
+        candidate.included_in_candidate_E_R_prefix_plus_tail_bound === false
+    ),
+    true
+  );
+  assert.deepEqual(
+    collectExactKeys(summary, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
 test("h39 shifted R43 source envelope feeds a cancellation-aware primitive profile", () => {
   const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
   const domainSignature = h39PrimitiveDomainSignature();
@@ -2742,6 +3570,166 @@ test("h39 shifted R43 source envelope feeds a cancellation-aware primitive profi
   assert.equal(JSON.stringify(cell).includes("speed_band"), false);
 });
 
+test("h39 affine-center shifted R43 source envelope feeds the primitive profile below raw prefix pressure", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
+  const domainSignature = h39PrimitiveDomainSignature();
+  const cell = evaluateH39SharedDomainCoefficientCell({
+    context,
+    cell: CELL,
+    branchInputs: [
+      {
+        branch: "-",
+        hIntervals: hIntervals(),
+        solveSlopeInterval: [0.15, 0.152],
+      },
+      {
+        branch: "+",
+        hIntervals: hIntervals(),
+        solveSlopeInterval: [-0.152, -0.15],
+      },
+    ],
+    shiftedOrder: 10,
+    rho: 0.001,
+    sharedDomainSignature: domainSignature,
+    coordinateSourceEnvelopeCandidates: [
+      {
+        r43ShiftedCauchyOuterBound: 2e-6,
+        r43ShiftedCauchyOuterRadius: 0.01,
+        directedRoundedShiftedR43Provenance: true,
+        certifiesShiftedR43ZeroPrefix: true,
+        useAffineCenterR43Prefix: true,
+        coordinateJacobianNumeratorOuterRadius: 0.02,
+        coordinateJacobianOuterRadius: 0.01,
+      },
+    ],
+    coordinateXOuterRadius: 1e-6,
+    denominatorCauchyOuterRadius: 0.01,
+    denominatorDeltaCauchyOuterBound: 100,
+    denominatorPhiCauchyOuterBound: 100,
+    denominatorJacobianAbsCauchyOuterBound: 100,
+    denominatorLMajorant: 2,
+    denominatorLowerPolynomialMajorant: 3,
+    rhoX: 0.01,
+    rX: 0.008,
+  });
+  const coordinateSource =
+    cell.coordinate_cauchy_outer_bounds_profile_candidate;
+  const summary = cell.finite_prefix_summary;
+  const sourceCandidate =
+    coordinateSource.source_residual_outer_bound_candidates[0];
+
+  assert.deepEqual(cell.source_certificate_obstructions, []);
+  assert.equal(
+    coordinateSource.source_envelope_kind,
+    "affine-center-shifted-removable-r43-cauchy-outer-bound"
+  );
+  assert.equal(coordinateSource.use_affine_center_r43_prefix, true);
+  assert.equal(
+    sourceCandidate.shifted_R43_prefix_bound_source,
+    "affine-center-actual-replay-leading-zero"
+  );
+  assert.ok(
+    sourceCandidate.raw_shifted_R43_finite_prefix_majorant_outer_radius >
+      2e-6
+  );
+  assert.ok(
+    sourceCandidate.shifted_R43_finite_prefix_majorant_outer_radius <=
+      2e-6
+  );
+  assert.equal(
+    summary.candidate_R43_outer_bound_source,
+    "coordinate-affine-center-shifted-removable-r43-cauchy-outer-bound"
+  );
+  assert.equal(summary.R43_affine_center_source_profile_candidate_count, 2);
+  assert.equal(
+    summary.R43_affine_center_source_profile_tail_candidate_count,
+    2
+  );
+  assert.equal(summary.candidate_E_R_prefix_plus_tail_bound < 1e-5, true);
+  assert.equal(summary.candidate_M_R_prefix_plus_tail_bound < 1e-5, true);
+  assert.equal(
+    summary.R43_affine_center_source_profile_candidates.every(
+      (candidate) =>
+        candidate.r43_cauchy_tail_shift_power === 0 &&
+        candidate.shifted_outer_bound_supplied === true
+    ),
+    true
+  );
+  assert.equal(
+    cell.claim_boundary.emits_directed_rounded_source_handoffs,
+    true
+  );
+  assert.deepEqual(
+    collectExactKeys(cell, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 shifted R43 source envelope rejects under-covering bounds", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
+  const domainSignature = h39PrimitiveDomainSignature();
+  const cell = evaluateH39SharedDomainCoefficientCell({
+    context,
+    cell: CELL,
+    branchInputs: [
+      {
+        branch: "-",
+        hIntervals: hIntervals(),
+        solveSlopeInterval: [0.15, 0.152],
+      },
+      {
+        branch: "+",
+        hIntervals: hIntervals(),
+        solveSlopeInterval: [-0.152, -0.15],
+      },
+    ],
+    shiftedOrder: 10,
+    rho: 0.001,
+    sharedDomainSignature: domainSignature,
+    coordinateSourceEnvelopeCandidates: [
+      {
+        r43ShiftedCauchyOuterBound: 1e-12,
+        r43ShiftedCauchyOuterRadius: 0.01,
+        directedRoundedShiftedR43Provenance: true,
+        certifiesShiftedR43ZeroPrefix: true,
+        coordinateJacobianNumeratorOuterRadius: 0.02,
+        coordinateJacobianOuterRadius: 0.01,
+      },
+    ],
+    coordinateXOuterRadius: 1e-6,
+    denominatorCauchyOuterRadius: 0.01,
+    denominatorDeltaCauchyOuterBound: 100,
+    denominatorPhiCauchyOuterBound: 100,
+    denominatorJacobianAbsCauchyOuterBound: 100,
+    denominatorLMajorant: 2,
+    denominatorLowerPolynomialMajorant: 3,
+    rhoX: 0.01,
+    rX: 0.008,
+  });
+
+  assert.equal(cell.coordinate_cauchy_outer_bounds_profile_candidate, null);
+  assert.equal(cell.evaluator_source_certificate_report, null);
+  assert.equal(cell.source_certificate_obstructions.length, 1);
+  assert.match(
+    cell.source_certificate_obstructions[0].message,
+    /shifted R43 source bound .* does not cover shifted coefficient prefix/
+  );
+  assert.equal(
+    cell.source_certificate_obstructions[0].candidate_obstructions[0]
+      .candidate_index,
+    0
+  );
+  assert.equal(
+    cell.finite_prefix_summary.candidate_h39_full_cauchy_primitive_profile_vector_status,
+    "h39-full-cauchy-primitive-profile-vector-candidate-incomplete"
+  );
+  assert.equal(
+    cell.claim_boundary.emits_directed_rounded_source_handoffs,
+    false
+  );
+  assert.equal(JSON.stringify(cell).includes("speed_band"), false);
+});
+
 test("h39 explicit N_G Cauchy input overrides denominator candidate", () => {
   const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 44 });
   const cell = evaluateH39SharedDomainCoefficientCell({
@@ -2826,6 +3814,7 @@ test("h39 coefficient artifact summarizes supplied h38 rows without closure clai
     rho: 0.001,
   });
   const errors = validateH39SharedDomainCoefficientArtifact(artifact);
+  const summary = artifact.h39_shared_domain_coefficient_summary;
 
   assert.equal(
     artifact.schema,
@@ -2858,26 +3847,93 @@ test("h39 coefficient artifact summarizes supplied h38 rows without closure clai
     )
   );
   assert.equal(
-    artifact.h39_shared_domain_coefficient_summary.coefficient_row_count,
+    summary.coefficient_row_count,
     1
   );
   assert.equal(
-    artifact.h39_shared_domain_coefficient_summary
-      .all_centered_leading_R43_coefficients_contain_zero,
+    summary.all_centered_leading_R43_coefficients_contain_zero,
     true
   );
   assert.ok(
-    artifact.h39_shared_domain_coefficient_summary
-      .min_h39_jacobian_coefficient_clearance > 0
+    summary.min_h39_jacobian_coefficient_clearance > 0
   );
   assert.equal(
-    artifact.h39_shared_domain_coefficient_summary
-      .second_x_derivative_lowest_y_power,
+    summary.second_x_derivative_lowest_y_power,
     41
   );
+  assert.equal(summary.R43_shifted_prefix_pressure_diagnostic_count, 2);
   assert.ok(
-    artifact.h39_shared_domain_coefficient_summary
-      .max_candidate_L_J_finite_prefix > 0
+    summary.max_R43_shifted_prefix_pressure_outer_radius >=
+      summary.max_candidate_E_R_finite_prefix
+  );
+  assert.equal(summary.R43_affine_center_form_candidate_count, 2);
+  assert.equal(
+    summary.all_R43_affine_center_forms_zero_leading_symbolically,
+    true
+  );
+  assert.equal(
+    summary.R43_affine_center_leading_zero_certified_count,
+    2
+  );
+  assert.equal(summary.R43_affine_center_leading_zero_open_count, 0);
+  assert.equal(summary.first_R43_affine_center_leading_zero_open, null);
+  assert.equal(
+    summary.R43_affine_center_form_numeric_bound_certified,
+    false
+  );
+  assert.ok(
+    summary.max_R43_affine_center_shifted_prefix_majorant_outer_radius >
+      0
+  );
+  assert.ok(
+    summary.max_R43_affine_center_shifted_prefix_majorant_outer_radius <
+      summary.max_R43_shifted_prefix_pressure_outer_radius
+  );
+  assert.equal(
+    summary.dominant_R43_affine_center_shifted_prefix
+      .candidate_bound_source,
+    "affine-center actual replay finite prefix with certified leading zero"
+  );
+  assert.equal(
+    summary.R43_affine_center_source_profile_candidate_count,
+    2
+  );
+  assert.equal(
+    summary.R43_affine_center_source_profile_tail_candidate_count,
+    0
+  );
+  assert.equal(
+    summary.all_R43_affine_center_source_profiles_tail_bearing,
+    false
+  );
+  numberClose(
+    summary.max_R43_affine_center_source_profile_E_R_finite_prefix,
+    summary.max_candidate_E_R_finite_prefix
+  );
+  assert.equal(
+    summary.max_R43_affine_center_source_profile_E_R_prefix_plus_tail_bound,
+    null
+  );
+  assert.equal(
+    summary.R43_second_x_remainder_profile_candidate_count,
+    2
+  );
+  assert.equal(
+    summary.all_R43_second_x_remainder_profiles_separate_from_E_R_M_R,
+    true
+  );
+  assert.equal(summary.max_R43_second_x_E_R_remainder_profile, null);
+  assert.equal(
+    summary.R43_second_x_remainder_profiles_with_missing_y_derivative_majorant_count,
+    2
+  );
+  assert.equal(
+    summary.dominant_R43_shifted_prefix_pressure
+      .leading_centered_coefficient_contains_zero,
+    true
+  );
+  assert.ok(
+    summary.max_candidate_L_J_finite_prefix > 0
   );
   assert.equal(
     artifact.h39_shared_domain_coefficient_summary.second_x_kernel_y_power,
@@ -3128,6 +4184,170 @@ test("h39 coefficient artifact records shifted R43 source envelope closure candi
     false
   );
   assert.equal(JSON.stringify(artifact).includes("speed_band"), false);
+});
+
+test("h39 coefficient artifact aggregates affine-center shifted source profiles", () => {
+  const domainSignature = h39PrimitiveDomainSignature();
+  const artifact = buildH39SharedDomainCoefficientArtifact({
+    h38Rows: [h38Row()],
+    validateH38: false,
+    shiftedOrder: 10,
+    seriesOrder: 60,
+    rho: 0.001,
+    sharedDomainSignature: domainSignature,
+    coordinateSourceEnvelopeCandidates: [
+      {
+        r43ShiftedCauchyOuterBound: 2e-6,
+        r43ShiftedCauchyOuterRadius: 0.01,
+        directedRoundedShiftedR43Provenance: true,
+        certifiesShiftedR43ZeroPrefix: true,
+        useAffineCenterR43Prefix: true,
+        coordinateJacobianNumeratorOuterRadius: 0.02,
+        coordinateJacobianOuterRadius: 0.01,
+      },
+    ],
+    coordinateXOuterRadius: 1e-6,
+    denominatorCauchyOuterRadius: 0.01,
+    denominatorDeltaCauchyOuterBound: 100,
+    denominatorPhiCauchyOuterBound: 100,
+    denominatorJacobianAbsCauchyOuterBound: 100,
+    denominatorLMajorant: 2,
+    denominatorLowerPolynomialMajorant: 3,
+    rhoX: 0.01,
+    rX: 0.008,
+  });
+  const errors = validateH39SharedDomainCoefficientArtifact(artifact);
+  const summary = artifact.h39_shared_domain_coefficient_summary;
+  const coordinateSource =
+    artifact.h39_shared_domain_coefficient_rows[0].h39_coefficient_cell
+      .coordinate_cauchy_outer_bounds_profile_candidate;
+
+  assert.deepEqual(errors, []);
+  assert.equal(
+    coordinateSource.source_envelope_kind,
+    "affine-center-shifted-removable-r43-cauchy-outer-bound"
+  );
+  assert.equal(coordinateSource.use_affine_center_r43_prefix, true);
+  assert.ok(
+    coordinateSource.source_residual_outer_bound_candidates[0]
+      .raw_shifted_R43_finite_prefix_majorant_outer_radius >
+      2e-6
+  );
+  assert.ok(
+    summary.max_R43_affine_center_shifted_prefix_majorant_outer_radius <=
+      2e-6
+  );
+  assert.equal(
+    summary.R43_affine_center_source_profile_candidate_count,
+    2
+  );
+  assert.equal(
+    summary.R43_affine_center_source_profile_tail_candidate_count,
+    2
+  );
+  assert.equal(
+    summary.all_R43_affine_center_source_profiles_tail_bearing,
+    true
+  );
+  assert.equal(
+    summary.dominant_R43_affine_center_source_profile
+      .r43_cauchy_tail_shift_power,
+    0
+  );
+  assert.equal(
+    summary.max_R43_affine_center_source_profile_E_R_prefix_plus_tail_bound,
+    summary.max_candidate_E_R_prefix_plus_tail_bound
+  );
+  assert.equal(
+    summary.max_R43_affine_center_source_profile_M_R_prefix_plus_tail_bound,
+    summary.max_candidate_M_R_prefix_plus_tail_bound
+  );
+  assert.equal(summary.max_candidate_E_R_prefix_plus_tail_bound < 1e-5, true);
+  assert.equal(summary.max_candidate_M_R_prefix_plus_tail_bound < 1e-5, true);
+  assert.equal(
+    summary.R43_second_x_remainder_profile_candidate_count,
+    2
+  );
+  assert.equal(
+    summary.all_R43_second_x_remainder_profiles_separate_from_E_R_M_R,
+    true
+  );
+  assert.equal(
+    summary.candidate_R43_outer_bound_source,
+    "coordinate-affine-center-shifted-removable-r43-cauchy-outer-bound"
+  );
+  assert.equal(
+    artifact.h39_primitive_vector_backend_artifact.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.deepEqual(
+    collectExactKeys(artifact, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 coefficient artifact rejects under-covering affine-center shifted source profiles", () => {
+  const domainSignature = h39PrimitiveDomainSignature();
+  const artifact = buildH39SharedDomainCoefficientArtifact({
+    h38Rows: [h38Row()],
+    validateH38: false,
+    shiftedOrder: 10,
+    seriesOrder: 60,
+    rho: 0.001,
+    sharedDomainSignature: domainSignature,
+    coordinateSourceEnvelopeCandidates: [
+      {
+        r43ShiftedCauchyOuterBound: 1e-12,
+        r43ShiftedCauchyOuterRadius: 0.01,
+        directedRoundedShiftedR43Provenance: true,
+        certifiesShiftedR43ZeroPrefix: true,
+        useAffineCenterR43Prefix: true,
+        coordinateJacobianNumeratorOuterRadius: 0.02,
+        coordinateJacobianOuterRadius: 0.01,
+      },
+    ],
+    coordinateXOuterRadius: 1e-6,
+    denominatorCauchyOuterRadius: 0.01,
+    denominatorDeltaCauchyOuterBound: 100,
+    denominatorPhiCauchyOuterBound: 100,
+    denominatorJacobianAbsCauchyOuterBound: 100,
+    denominatorLMajorant: 2,
+    denominatorLowerPolynomialMajorant: 3,
+    rhoX: 0.01,
+    rX: 0.008,
+  });
+  const errors = validateH39SharedDomainCoefficientArtifact(artifact);
+  const summary = artifact.h39_shared_domain_coefficient_summary;
+
+  assert.deepEqual(errors, []);
+  assert.equal(summary.source_certificate_obstruction_count, 1);
+  assert.equal(
+    summary.first_source_certificate_obstruction.source_family,
+    "coordinate_cauchy_outer_bounds"
+  );
+  assert.match(
+    summary.first_source_certificate_obstruction.message,
+    /does not cover shifted coefficient prefix/
+  );
+  assert.equal(summary.max_candidate_E_R_prefix_plus_tail_bound, null);
+  assert.equal(summary.max_candidate_M_R_prefix_plus_tail_bound, null);
+  assert.equal(
+    summary.candidate_h39_full_cauchy_primitive_profile_vector_status,
+    "h39-full-cauchy-primitive-profile-vector-candidate-incomplete"
+  );
+  assert.equal(
+    summary.R43_affine_center_source_profile_tail_candidate_count,
+    0
+  );
+  assert.equal(
+    summary.all_R43_affine_center_source_profiles_tail_bearing,
+    false
+  );
+  assert.deepEqual(
+    collectExactKeys(artifact, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
 });
 
 test("h39 coefficient artifact emits evaluator graph-radii witness", () => {
