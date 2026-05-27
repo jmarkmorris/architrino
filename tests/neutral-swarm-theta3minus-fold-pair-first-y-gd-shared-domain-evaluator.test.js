@@ -2,6 +2,16 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  buildH39AffineHRowGraphSubdivisionDiagnosticCandidate,
+  buildH39OneNoiseAffineHRowTransportDiagnosticCandidate,
+  buildH39PolynomialHRowGraphResidualDiagnosticCandidate,
+  buildH39RecurrenceRefinedSubcoverPressureDiagnostic,
+  validateH39AffineHRowGraphSubdivisionDiagnostic,
+  validateH39OneNoiseAffineHRowTransportDiagnostic,
+  validateH39PolynomialHRowGraphResidualDiagnostic,
+  validateH39RecurrenceRefinedSubcoverPressureDiagnostic,
+} from "../scripts/neutral-swarm/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs";
+import {
   THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_COEFFICIENT_ARTIFACT_SCHEMA,
   THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
   THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_PRIMITIVE_VECTOR_BACKEND_ARTIFACT_SCHEMA,
@@ -1227,13 +1237,70 @@ test("h39 affine-center h-row sensitivity diagnostic isolates inherited h-row wi
   assert.ok(diagnostic.cell_midpoint_reduction_factor < 2);
   assert.ok(diagnostic.slope_midpoint_reduction_factor < 2);
   assert.equal(diagnostic.h_row_width_dominates_input_width, true);
-  assert.equal(diagnostic.h_row_freeze_replays.length, 6);
+  assert.equal(diagnostic.h_row_freeze_replays.length, 39);
   assert.equal(
     diagnostic.h_row_freeze_replays[0].input_family,
     "freeze-h38-through-h38"
   );
+  assert.equal(
+    diagnostic.h_row_freeze_replays.at(-1).input_family,
+    "freeze-h0-through-h38"
+  );
   assert.ok(
     diagnostic.best_h_row_freeze_replay.full_to_pressure_ratio > 10
+  );
+  assert.equal(diagnostic.h_row_transport_depth_scan.length, 39);
+  assert.deepEqual(diagnostic.h_row_transport_depth_scan[0], {
+    input_family: "freeze-h38-through-h38",
+    freeze_start_index: 38,
+    freeze_end_index: 38,
+    transported_h_row_count: 1,
+    pressure: diagnostic.h_row_freeze_replays[0].pressure,
+    full_to_pressure_ratio:
+      diagnostic.h_row_freeze_replays[0].full_to_pressure_ratio,
+  });
+  assert.equal(
+    diagnostic.h_row_transport_depth_scan.at(-1).transported_h_row_count,
+    39
+  );
+  assert.equal(
+    diagnostic.h_row_transport_depth_summary.suffix_scan_complete,
+    true
+  );
+  assert.equal(
+    diagnostic.h_row_transport_depth_summary.tested_suffix_count,
+    39
+  );
+  assert.equal(
+    diagnostic.h_row_transport_depth_summary.max_tested_transport_depth,
+    39
+  );
+  numberClose(
+    diagnostic.h_row_transport_depth_summary
+      .full_chain_midpoint_reduction_factor,
+    diagnostic.h_row_midpoint_reduction_factor
+  );
+  assert.equal(
+    diagnostic.h_row_transport_depth_summary.best_freeze_start_index,
+    diagnostic.best_h_row_freeze_replay.freeze_start_index
+  );
+  assert.equal(
+    diagnostic.h_row_transport_depth_summary.threshold_crossings[0]
+      .target_full_to_pressure_ratio,
+    10
+  );
+  assert.ok(
+    diagnostic.h_row_transport_depth_summary.threshold_crossings[0]
+      .transported_h_row_count >= 1
+  );
+  assert.equal(
+    diagnostic.h_row_transport_depth_summary.threshold_crossings.at(-1)
+      .target_full_to_pressure_ratio,
+    1e6
+  );
+  assert.equal(
+    diagnostic.first_h_row_suffix_freeze_meeting_target,
+    null
   );
   assert.deepEqual(
     diagnostic.h_row_width_compression_replays.map(
@@ -1266,6 +1333,359 @@ test("h39 affine-center h-row sensitivity diagnostic isolates inherited h-row wi
   assert.equal(diagnostic.certifies_directed_rounded_shared_domain, false);
   assert.equal(diagnostic.certifies_continuous_polydisc_primitives, false);
   assert.equal(diagnostic.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 recurrence-refined predecessor subcover scaling stays candidate-only", () => {
+  const diagnostic = buildH39RecurrenceRefinedSubcoverPressureDiagnostic({
+    targetSpeedInterval: [3.02156, 3.02156007813],
+    subcellCounts: [1, 2, 4],
+    rootSubdivisions: 100,
+    outerRadius: 0.001,
+    shiftedIndex: 1,
+  });
+
+  assert.deepEqual(
+    validateH39RecurrenceRefinedSubcoverPressureDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-recurrence-refined-subcover-pressure-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-recurrence-refined-predecessor-subcover-pressure-diagnostic"
+  );
+  assert.deepEqual(diagnostic.subcell_counts, [1, 2, 4]);
+  assert.equal(diagnostic.subcover_replays[0].local_row_count, 1);
+  assert.equal(diagnostic.subcover_replays[1].local_row_count, 2);
+  assert.equal(diagnostic.subcover_replays[2].local_row_count, 4);
+  assert.ok(diagnostic.subcover_replays[1].max_pressure < diagnostic.coarse_pressure);
+  assert.ok(diagnostic.subcover_replays[2].max_pressure < diagnostic.subcover_replays[1].max_pressure);
+  assert.ok(
+    diagnostic.subcover_replays[1].coarse_to_max_pressure_ratio > 1.9
+  );
+  assert.ok(
+    diagnostic.subcover_replays[1].coarse_to_max_pressure_ratio < 2.1
+  );
+  assert.ok(
+    diagnostic.subcover_replays[2].coarse_to_max_pressure_ratio > 3.8
+  );
+  assert.ok(
+    diagnostic.subcover_replays[2].coarse_to_max_pressure_ratio < 4.2
+  );
+  assert.ok(diagnostic.observed_scaling_exponent > 0.95);
+  assert.ok(diagnostic.observed_scaling_exponent < 1.05);
+  assert.equal(diagnostic.h_row_width_transport_profile.length, 39);
+  assert.ok(
+    diagnostic.h_row_width_transport_summary
+      .min_observed_width_scaling_exponent > 0.95
+  );
+  assert.ok(
+    diagnostic.h_row_width_transport_summary
+      .max_observed_width_scaling_exponent < 1.05
+  );
+  assert.ok(
+    diagnostic.h_row_width_transport_summary.pressure_width_exponent_gap <
+      1e-3
+  );
+  assert.ok(
+    diagnostic.h_row_width_transport_profile[0]
+      .coarse_to_best_width_ratio > 3.9
+  );
+  assert.ok(
+    diagnostic.h_row_width_transport_profile[38]
+      .coarse_to_best_width_ratio > 3.9
+  );
+  assert.ok(
+    diagnostic.estimated_local_subcells_for_h_row_midpoint_collapse > 1e9
+  );
+  assert.equal(diagnostic.brute_subcover_route_likely_impractical, true);
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 one-noise affine h-row transport diagnostic collapses exported pressure candidate-only", () => {
+  const diagnostic = buildH39OneNoiseAffineHRowTransportDiagnosticCandidate({
+    targetSpeedInterval: [3.02156, 3.02156007813],
+    branch: "-",
+    rootSubdivisions: 100,
+    outerRadius: 0.001,
+    shiftedIndex: 1,
+  });
+
+  assert.deepEqual(
+    validateH39OneNoiseAffineHRowTransportDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-one-noise-affine-h-row-transport-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-one-noise-affine-h-row-transport-diagnostic"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.equal(
+    diagnostic.transport_source,
+    "two-refined-H38-subcell-midpoint-affine-fit"
+  );
+  assert.equal(diagnostic.one_noise_sample_replays.length, 5);
+  assert.ok(diagnostic.max_one_noise_sample_pressure > 0);
+  assert.ok(
+    diagnostic.max_one_noise_sample_pressure <
+      diagnostic.baseline_independent_interval_pressure
+  );
+  assert.ok(
+    diagnostic.independent_to_one_noise_sample_pressure_ratio > 1e6
+  );
+  assert.ok(
+    diagnostic.max_one_noise_sample_pressure <=
+      2 * diagnostic.baseline_h_row_midpoint_pressure
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 affine h-row graph subdivision stays small candidate-only", () => {
+  const diagnostic = buildH39AffineHRowGraphSubdivisionDiagnosticCandidate({
+    targetSpeedInterval: [3.02156, 3.02156007813],
+    branch: "-",
+    rootSubdivisions: 100,
+    outerRadius: 0.001,
+    shiftedIndex: 1,
+    xiPartitionCounts: [1, 2, 4, 8],
+    residualSubcellCounts: [4, 8],
+  });
+
+  assert.deepEqual(
+    validateH39AffineHRowGraphSubdivisionDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-affine-h-row-graph-subdivision-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-affine-h-row-graph-subdivision-diagnostic"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.deepEqual(diagnostic.xi_domain, [-1, 1]);
+  assert.deepEqual(diagnostic.xi_partition_counts, [1, 2, 4, 8]);
+  assert.equal(
+    diagnostic.graph_source,
+    "two-refined-H38-subcell-midpoint-affine-fit"
+  );
+  assert.equal(diagnostic.graph_partition_replays.length, 4);
+  assert.ok(diagnostic.best_graph_pressure > 0);
+  assert.ok(
+    diagnostic.best_graph_pressure <
+      diagnostic.baseline_independent_interval_pressure
+  );
+  assert.ok(
+    diagnostic.independent_to_best_graph_pressure_ratio > 1e6
+  );
+  assert.ok(
+    diagnostic.best_graph_pressure <=
+      2 * diagnostic.baseline_h_row_midpoint_pressure
+  );
+  assert.ok(diagnostic.best_graph_to_sample_pressure_ratio < 1.01);
+  assert.ok(diagnostic.coarsest_graph_to_sample_pressure_ratio < 1.01);
+  assert.deepEqual(diagnostic.residual_subcell_counts, [4, 8]);
+  assert.equal(diagnostic.producer_residual_diagnostics.length, 2);
+  assert.ok(diagnostic.max_graph_plus_residual_pressure > 0);
+  assert.ok(
+    diagnostic.max_graph_plus_residual_pressure <
+      diagnostic.baseline_independent_interval_pressure
+  );
+  assert.ok(
+    diagnostic.independent_to_max_graph_plus_residual_pressure_ratio > 1e6
+  );
+  assert.ok(
+    diagnostic.max_graph_plus_residual_pressure <=
+      5 * diagnostic.baseline_h_row_midpoint_pressure
+  );
+  assert.equal(
+    diagnostic.shared_domain_replay_artifact.claim_boundary
+      .h_row_provider_backed_replay,
+    true
+  );
+  assert.equal(
+    diagnostic.shared_domain_replay_artifact
+      .h39_shared_domain_coefficient_summary
+      .h_row_provider_dependency_state,
+    "dependency-preserving-provider-backed-replay"
+  );
+  assert.deepEqual(
+    diagnostic.shared_domain_replay_artifact
+      .h39_shared_domain_coefficient_summary.h_row_provider_kinds,
+    ["candidate-affine-h-row-graph-provider"]
+  );
+  assert.equal(
+    diagnostic.shared_domain_replay_artifact.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_affine_h_row_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 polynomial h-row graph residual resolves affine residual curvature candidate-only", () => {
+  const diagnostic = buildH39PolynomialHRowGraphResidualDiagnosticCandidate({
+    targetSpeedInterval: [3.02156, 3.02156007813],
+    branch: "-",
+    rootSubdivisions: 100,
+    outerRadius: 0.001,
+    shiftedIndex: 1,
+    xiDomain: [-2, 2],
+    polynomialDegree: 2,
+    polynomialSourceSubcellCount: 4,
+    xiPartitionCounts: [1, 2, 4, 8],
+    residualSubcellCounts: [4, 8],
+  });
+
+  assert.deepEqual(
+    validateH39PolynomialHRowGraphResidualDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-polynomial-h-row-graph-residual-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-polynomial-h-row-graph-residual-diagnostic"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.deepEqual(diagnostic.xi_domain, [-2, 2]);
+  assert.equal(diagnostic.polynomial_degree, 2);
+  assert.equal(diagnostic.polynomial_source_subcell_count, 4);
+  assert.equal(diagnostic.h_row_polynomial_transport_profile.length, 39);
+  assert.deepEqual(diagnostic.xi_partition_counts, [1, 2, 4, 8]);
+  assert.equal(diagnostic.polynomial_graph_partition_replays.length, 4);
+  assert.ok(diagnostic.best_polynomial_graph_pressure > 0);
+  assert.ok(
+    diagnostic.best_polynomial_graph_pressure <
+      diagnostic.baseline_independent_interval_pressure
+  );
+  assert.ok(
+    diagnostic.independent_to_best_polynomial_graph_pressure_ratio > 1e9
+  );
+  assert.ok(
+    diagnostic.best_polynomial_graph_pressure <=
+      2 * diagnostic.baseline_h_row_midpoint_pressure
+  );
+  assert.deepEqual(diagnostic.residual_subcell_counts, [4, 8]);
+  assert.equal(diagnostic.polynomial_producer_residual_diagnostics.length, 2);
+  assert.equal(diagnostic.affine_reference_residual_diagnostics.length, 2);
+  assert.ok(diagnostic.max_polynomial_graph_plus_residual_pressure > 0);
+  assert.ok(
+    diagnostic.max_polynomial_graph_plus_residual_pressure <
+      diagnostic.max_affine_reference_graph_plus_residual_pressure
+  );
+  assert.ok(
+    diagnostic.affine_reference_to_polynomial_graph_plus_residual_pressure_ratio >
+      2
+  );
+  assert.ok(
+    diagnostic.independent_to_max_polynomial_graph_plus_residual_pressure_ratio >
+      1e9
+  );
+  assert.equal(
+    diagnostic.shared_domain_replay_artifact.claim_boundary
+      .h_row_provider_backed_replay,
+    true
+  );
+  assert.equal(
+    diagnostic.shared_domain_replay_artifact
+      .h39_shared_domain_coefficient_summary
+      .h_row_provider_dependency_state,
+    "dependency-preserving-provider-backed-replay"
+  );
+  assert.deepEqual(
+    diagnostic.shared_domain_replay_artifact
+      .h39_shared_domain_coefficient_summary.h_row_provider_kinds,
+    ["candidate-polynomial-h-row-graph-provider"]
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_polynomial_h_row_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
   assert.deepEqual(
     collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
     []
@@ -1485,6 +1905,54 @@ test("h39 coefficient rows accept dependency-preserving h-row provider metadata 
   assert.equal(cell.claim_boundary.retained_branch, false);
   assert.deepEqual(
     collectExactKeys(cell, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 coefficient rows consume embedded h38 provider metadata without pressure relief", () => {
+  const context = makeTheta3minusFirstYGdSeriesContext({ seriesOrder: 60 });
+  const snapshotRows = evaluateH39SharedDomainCoefficientRows({
+    context,
+    h38Rows: [h38Row()],
+    shiftedOrder: 1,
+    rho: 0.001,
+  });
+  const providerRows = evaluateH39SharedDomainCoefficientRows({
+    context,
+    h38Rows: [h38RowWithProviderBranchMetadata()],
+    shiftedOrder: 1,
+    rho: 0.001,
+  });
+  const snapshotSummary =
+    snapshotRows[0].h39_coefficient_cell.finite_prefix_summary;
+  const providerCell = providerRows[0].h39_coefficient_cell;
+  const providerSummary = providerCell.finite_prefix_summary;
+  const providerReport = providerCell.h_row_provider_report;
+
+  assert.equal(providerReport.provider_backed_branch_count, 2);
+  assert.equal(providerReport.provider_backed_all_branches, true);
+  assert.equal(
+    providerReport.branch_reports[0].provider_kind,
+    "fixture-predecessor-recurrence-transport"
+  );
+  assert.equal(
+    providerReport.branch_reports[0].dependency_trace_count,
+    1
+  );
+  assert.equal(providerCell.claim_boundary.h_row_provider_backed_replay, true);
+  numberClose(
+    providerSummary.candidate_E_R_finite_prefix,
+    snapshotSummary.candidate_E_R_finite_prefix
+  );
+  numberClose(
+    providerSummary.candidate_M_R_finite_prefix,
+    snapshotSummary.candidate_M_R_finite_prefix
+  );
+  assert.equal(providerReport.certifies_shifted_R43_outer_bound, false);
+  assert.equal(providerReport.certifies_directed_rounded_shared_domain, false);
+  assert.equal(providerReport.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(providerCell, FORBIDDEN_FIXED_SPEED_KEYS),
     []
   );
 });

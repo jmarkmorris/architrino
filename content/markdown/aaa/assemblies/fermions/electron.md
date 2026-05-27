@@ -24,6 +24,14 @@ $$
 
 This framing keeps lepton universality disciplined. The charged-lepton side of universality says that $e$, $\mu$, and $\tau$ share the same six-site charged-lepton axial pattern and weak-coupling-triad bookkeeping. Their mass hierarchy and lifetime differences must come from shielding coherence, internal causal history, and medium response, not from changing the electric-charge inventory or adding lepton-specific gauge couplings.
 
+The $e^-/e^+$ pair is also the concrete charged-lepton test of charge-conjugate mass equality. In the same neutral Noether sea response record, the mass map must treat the positron as the complete polarity-conjugate electron branch, not as a separately fitted positive-charge particle:
+$$
+m_{\mathrm{tr}}(e^-)=m_{\mathrm{tr}}(e^+),
+\qquad
+Q_{\mathrm{eff}}(e^-)=-Q_{\mathrm{eff}}(e^+).
+$$
+The equality is a constraint on the mass-facing causal ledger: complete polarity inversion preserves the polarity-even internal products, shielding-coherence class, and medium response that feed scalar rest mass, while reversing the exposed electric bookkeeping. A partial polarity replacement inside the axial layer would not be the positron branch; it would generally change the assembly ledger and must be classified as a different or unstable charged-fermion candidate.
+
 ## Assembly and Detection Map
 
 The electron is not treated as a literal ontic-probability distribution. It is a coherent fermion assembly: a Noether swarm plus axial layer whose internal causal ledger remains localized enough to preserve identity, charge bookkeeping, and spin-statistical behavior. The diffuse object used in ordinary atomic language is an effective detection map for where that coherent assembly can resolve a record under a declared nuclear, apparatus, and Noether sea environment.

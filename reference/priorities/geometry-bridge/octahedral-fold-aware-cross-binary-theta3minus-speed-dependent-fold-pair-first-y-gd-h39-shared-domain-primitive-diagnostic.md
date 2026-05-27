@@ -585,12 +585,19 @@ $E_R,M_R$ source, not merely a smaller speed cell or an $X$ partition.
 \texttt{computeH39AffineCenterHRowSensitivityDiagnosticCandidate} records this
 route as an executable candidate-only diagnostic. It replays the same
 shifted-index-$1$ row after re-solving the h39 center under selected midpoint
-families and top-h-row freezes, so the primitive inlet can distinguish
+families and every contiguous top-h-row suffix freeze, so the primitive inlet can distinguish
 cell-width, solve-slope-width, and inherited h-row-width pressure before any
 shifted $R_{\varepsilon,43}$ outer bound is promoted. On the live dominant row
 it reports the same full pressure $5.239383640054425\times10^{22}$ and the
 same h-row midpoint collapse factor $4.835860325251657\times10^9$ while cell
-and slope midpoint factors remain essentially $1$.
+and slope midpoint factors remain essentially $1$. The suffix-depth scan adds
+the primitive-side no-go: freezing $h_{38}$ alone, $h_{37}\ldots h_{38}$, or
+even $h_{27}\ldots h_{38}$ cannot approach the full collapse; the first
+$10^6$-fold reduction appears only when $h_{20}\ldots h_{38}$ are frozen, and
+$h_{10}\ldots h_{38}$ nearly reaches the full midpoint replay. Thus the
+primitive witness needs a mid-chain predecessor transport or recurrence
+parameterization, not a metadata-only h38 provider and not a last-successor
+repair.
 The width-compression replay adds the primitive-side interpretation: halving
 the inherited h-row widths halves the live row pressure to first order, so a
 brute independent subdivision would need roughly $2^{-32}$ width scale before
@@ -610,6 +617,79 @@ and flag-only providers, then records provider-backed replay in
 `h_row_provider_report` and the artifact provider summary while keeping all
 shifted source, primitive, shared-domain, and retained-branch promotion flags
 false.
+The h38 certificate now embeds this provider metadata, so the primitive route
+has a real predecessor provenance inlet. A focused H39 replay shows that this
+inlet is necessary but not sufficient: replaying the same exported
+$h_0,\ldots,h_{38}$ interval box with provider metadata gives no $E_R,M_R$
+pressure relief. The remaining primitive obstruction is therefore a recurrence
+transport problem: the provider must either refine the predecessor recurrence
+on covered subcells or carry a low-dimensional dependency parameterization into
+the H39 row, rather than merely relabeling the exported h-row box.
+The first positive recurrence-refined subcover is now executable. A local
+two-piece h24-to-h38 predecessor replay over the live dominant speed cell keeps
+the subcover claim candidate-only, but it lowers the row-$1$ H39 source pressure
+from $5.239383640054425\times10^{22}$ to
+$2.6197784892373247\times10^{22}$ on the refined local maximum. This does not
+close $E_R$ or $M_R$, and it does not certify the full shifted
+$R_{\varepsilon,43}$ tail, but it proves that genuine predecessor recurrence
+transport moves the primitive obstruction in the expected direction.
+The scaling diagnostic then rules out brute local subcovering as the primitive
+closure mechanism. Local subcell counts $1,2,4$ give pressure ratios
+$1$, $2.0000638779$, and $4.0001959916$ against the coarse replay, with
+observed exponent $1.0000353436$. The h-row midpoint collapse would require
+about $4.83\times10^9$ local subcells at that rate. The primitive route should
+therefore carry the deterministic recurrence graph
+$(\nu,\delta_f,\phi_f,\beta,\gamma,L,\varepsilon)\mapsto
+(h_0,\ldots,h_{38})$ into the H39 source replay, rather than trying to cover
+the exported independent h-row box.
+The h-row width-normal-form check sharpens that primitive route further. All
+$39$ inherited h-row widths scale with exponent essentially $1$ under the same
+local recurrence refinement, and the median h-width exponent differs from the
+H39 pressure exponent by only about $3.8\times10^{-5}$. Thus the primitive
+$E_R,M_R$ source pressure is not merely correlated with the h-row box; it is
+tracking the same local recurrence-width coordinate. A primitive witness should
+therefore consume an affine/transport h-row provider, not another finite-prefix
+majorant over independent h-coordinates.
+The one-noise affine h-row diagnostic now supplies the primitive-side shape of
+that provider. It fits $h_i(\xi)=c_i+\xi d_i$ from two refined H38 subcell
+midpoint rows and replays the H39 shifted-index-$1$ source along that single
+transport coordinate. On the live target interval, the independent h-row box
+pressure $5.239724324430226\times10^{22}$ collapses to a maximum sampled
+one-noise pressure $6.978672999045361\times10^{12}$, while the h-row midpoint
+pressure is $1.0845153545500555\times10^{13}$. The primitive route has
+therefore moved from "find some h-row dependency" to a concrete certificate
+target: enclose the affine recurrence graph and any residual directions on the
+same domain before forming the $E_R,M_R$ primitive vector.
+The affine graph subdivision diagnostic then checks that this is a viable
+primitive enclosure target, not just a point-sample artifact. The full graph
+interval $\xi\in[-1,1]$ has pressure $6.998682228480771\times10^{12}$, and an
+$8$-piece graph subdivision has maximum pressure
+$6.981174153149333\times10^{12}$. Both stay within about one percent of the
+sampled one-noise maximum. The primitive blocker is therefore producer-side
+coverage of the affine graph plus residual directions, not the H39 source
+variation along the affine coordinate. The full graph interval also now enters
+the H39 shared-domain evaluator as a dependency-preserving h-row provider
+replay, which proves the primitive vector path can consume the graph-shaped
+h-row view once the producer-side enclosure is certified. Finer H38 midpoint
+rows show that this enclosure must include residual directions: the worst
+residual is carried by $h_{38}$. With residual boxes from the $8$-subcell
+producer replay, the H39 row pressure is still only
+$3.996425126569277\times10^{13}$, far below the independent-box pressure. The
+primitive route should therefore consume a graph-plus-residual h-row provider,
+not a pure one-coordinate graph and not the original independent h-row box.
+The polynomial h-row graph residual diagnostic narrows that provider target.
+Over the full fold-coordinate range $\xi\in[-2,2]$, a quadratic fit from four
+H38 midpoint rows gives best graph pressure $5.043803779445108\times10^{12}$
+and graph-plus-residual pressure $1.5919512026398383\times10^{13}$ against the
+$4$- and $8$-subcell producer midpoint checks. The same-domain affine
+graph-plus-residual reference is $3.9986141541875766\times10^{13}$, so the
+quadratic graph removes a factor $2.511769297675024$ of the residual pressure.
+A cubic comparison gives essentially the same residual pressure, so the simpler
+quadratic target is enough for the next certificate attempt. The
+primitive source burden is therefore partly producer-image curvature in
+$\xi$, not an unavoidable independent h-row residual. A primitive witness
+should wait for a directed-rounded polynomial graph provider before treating
+the remaining residual as a full source direction.
 
 ## Candidate Provenance No-Go Report
 

@@ -1381,16 +1381,21 @@ dependency-preserving h-row transport or subdivision certificate that keeps the
 inherited $h_0,\ldots,h_{38}$ correlations visible when row $1$ is replayed.
 \texttt{computeH39AffineCenterHRowSensitivityDiagnosticCandidate} now makes
 that statement executable. It re-solves the affine center after selectively
-midpointing the live cell, inherited h-row, solve slope, and contiguous top
-h-row ranges, then reports the shifted-index-$1$ row pressure with all
+midpointing the live cell, inherited h-row, solve slope, and every contiguous
+top h-row suffix, then reports the shifted-index-$1$ row pressure with all
 promotion flags false. The companion fixture verifies that wide h-row boxes
 are isolated from cell and slope width. On the live dominant row the helper
 reproduces the pressure $5.239383640054425\times10^{22}$, the h-row midpoint
 reduction factor $4.835860325251657\times10^9$, the cell-only factor
-$1.0000010197237037$, the slope-only factor $1.0000002309283613$, and the
-best tested top-freeze factor $71897.68136115719$ for $h_{27}\ldots h_{38}$.
-The next certificate can therefore target the predecessor h-row transport
-rather than another global shifted-prefix majorant.
+$1.0000010197237037$, and the slope-only factor $1.0000002309283613$. The
+complete suffix scan shows the first $10$-fold reduction at $h_{36}\ldots
+h_{38}$, the first $10^2$-fold reduction at $h_{34}\ldots h_{38}$, the first
+$10^3$-fold reduction at $h_{32}\ldots h_{38}$, and the first $10^6$-fold
+reduction only at $h_{20}\ldots h_{38}$. Freezing $h_{10}\ldots h_{38}$
+already gives about $4.73\times10^9$, close to the full
+$h_0,\ldots,h_{38}$ midpoint factor. The next certificate can therefore target
+a mid-chain predecessor h-row transport rather than another global
+shifted-prefix majorant or a local h38-only correction.
 The same helper now includes a uniform h-row width-compression replay. On the
 live dominant row, h-width compression factors $1,1/2,1/4,1/8,1/16,1/32$ give
 pressure ratios approximately $1,2,4,8,16,32$, and only the zero-width midpoint
@@ -1401,6 +1406,83 @@ thirty-two binary halvings of the active h-width before it resembles the
 midpoint replay, so the executable closure route should carry predecessor
 recurrence dependencies into the row-$1$ replay rather than subdividing all
 exported h-coordinates as independent variables.
+That route now has a first executable transport step. The h24 coefficient
+builder can accept explicit speed samples, and h25 through h38 can accept a
+supplied predecessor artifact. A two-piece local predecessor subcover over the
+dominant live speed cell recomputes $h_0,\ldots,h_{38}$ through the recurrence
+chain and lowers the H39 shifted-index-$1$ pressure from
+$5.239383640054425\times10^{22}$ to a refined local maximum
+$2.6197784892373247\times10^{22}$, a factor $1.9999338347$ reduction. The
+test keeps the refined artifact claim false because the local subcover is not
+the standard full 128-cell h38 certificate. The mathematical status has
+therefore advanced from "metadata cannot help" to "recurrence transport reduces
+the live pressure at the expected width-linear rate."
+The scaling follow-up makes the certificate route sharper. The dedicated
+\texttt{buildH39RecurrenceRefinedSubcoverPressureDiagnostic} replays $1,2,$ and
+$4$ local subcells on the same dominant speed cell and obtains maximum
+pressures $5.239724324430226\times10^{22}$,
+$2.6197784892373247\times10^{22}$, and
+$1.3098669003931344\times10^{22}$. The observed exponent is
+$1.0000353436$, so the recurrence-refined cover is behaving almost exactly
+linearly in local speed width. Matching the h-row midpoint collapse by brute
+local subcells would require about $4.83\times10^9$ subcells. The next
+coefficient-engine proof should therefore build a low-dimensional h-row
+transport normal form in the producer variables, not attempt a literal
+subcover to midpoint scale.
+The same diagnostic now measures per-row h-width scaling, giving the concrete
+normal-form target. Across $h_0,\ldots,h_{38}$, the observed width exponents
+range from $0.9999948830$ to $1.0000300898$, with median
+$0.9999972227$. The H39 pressure exponent differs from this median by only
+$3.8\times10^{-5}$. Thus the coefficient-engine obstruction behaves like the
+image of one local recurrence-width coordinate through the h-row producer and
+then through the H39 affine-center row. The next executable proof object should
+replace independent h-row interval arithmetic by affine/transport arithmetic in
+that shared width coordinate.
+That executable proof object now has a first candidate witness:
+\texttt{buildH39OneNoiseAffineHRowTransportDiagnosticCandidate}. It fits
+$h_i(\xi)=c_i+\xi d_i$ from the two refined H38 subcell midpoint rows, where
+$c_i=(h_i^-+h_i^+)/2$ and $d_i=(h_i^+-h_i^-)/2$, then re-solves the H39 center
+and shifted-index-$1$ source on sampled $\xi\in[-1,1]$. On the live target
+interval `[3.02156, 3.02156007813]`, branch `-`, the independent interval
+pressure is $5.239724324430226\times10^{22}$, but the maximum sampled
+one-noise pressure is $6.978672999045361\times10^{12}$, a factor
+$7.5081957919\times10^9$ collapse. The coefficient-engine blocker is now
+sharper: certify a same-domain affine h-row graph enclosure, not a deeper raw
+prefix or literal brute subcover.
+\texttt{buildH39AffineHRowGraphSubdivisionDiagnosticCandidate} takes the next
+step by replaying $\xi$ intervals on that same affine graph. The full interval
+$\xi\in[-1,1]$ gives pressure $6.998682228480771\times10^{12}$, and an $8$-way
+$\xi$ subdivision gives $6.981174153149333\times10^{12}$. These are only
+factors $1.0029$ and $1.00036$ above the worst sampled one-noise replay,
+respectively. The coefficient-engine proof route should therefore not spend
+effort controlling nonlinear variation along the affine coordinate; it should
+certify the producer-side affine graph and any residual directions needed to
+cover the H38 recurrence image. The same diagnostic now threads the full
+$\xi$ graph interval through the H39 h-row provider boundary as a
+dependency-preserving replay, so the existing evaluator seam can consume this
+graph-shaped h-row view. That replay remains candidate-only and does not
+certify the directed-rounded shared domain. A residual check against finer H38
+producer midpoint rows shows why residual directions are not optional: the
+affine graph alone misses the producer image, with the worst residual appearing
+at $h_{38}$. Adding the measured residual boxes still leaves the shifted row
+at $3.996425126569277\times10^{13}$, about $1.31\times10^9$ below the
+independent h-row box. The coefficient engine should next turn this
+graph-plus-residual replay into a directed-rounded provider certificate.
+\texttt{buildH39PolynomialHRowGraphResidualDiagnosticCandidate} then tests the
+same producer-image problem in a sharper local coordinate. It fits
+$h_i(\xi)=\sum_{j=0}^2a_{i,j}\xi^j$ from the four local H38 midpoint rows and
+replays the full fold-coordinate range $\xi\in[-2,2]$ through the existing H39
+h-row provider boundary. The best $8$-piece polynomial graph replay is
+$5.043803779445108\times10^{12}$, while the measured graph-plus-residual replay
+against the $4$- and $8$-subcell producer midpoint checks is
+$1.5919512026398383\times10^{13}$. The same-domain affine graph-plus-residual
+reference on that comparison is $3.9986141541875766\times10^{13}$, so the
+quadratic graph removes a factor $2.511769297675024$ of the residual pressure
+without changing any closure claim. A cubic comparison gives essentially the
+same graph-plus-residual pressure, so the lower-degree target is sufficient for
+the next certificate attempt. This changes the coefficient-engine target:
+the H38 producer image should be certified as a low-degree polynomial graph in
+$\xi$ plus a residual term, not as a wide independent h-row box.
 \texttt{computeH39PredecessorHRowProviderBoundaryCandidate} now records that
 boundary explicitly. Given an h38 row, it counts the exported h-interval,
 solve-slope, and residual fields and reports whether a complete
@@ -1415,6 +1497,14 @@ Evaluated cells and artifact summaries record the provider-backed replay in
 `h_row_provider_report` and h-row provider summary fields, but keep the shifted
 $R_{\varepsilon,43}$, shared-domain, continuous primitive, and retained-branch
 claims false.
+The thirty-eighth-order post-$U$ successor rows now embed that provider record,
+and the H39 evaluator consumes it without an external hook. This proves the
+provenance boundary is wired into the live predecessor artifact. A focused
+replay also proves the negative half of the result: when the embedded provider
+passes through the same $h_0,\ldots,h_{38}$ interval box, the row-$1$
+$E_R,M_R$ finite-prefix pressure is unchanged. Provider metadata alone does not
+preserve the missing dependencies inside interval arithmetic; the next pressure
+advance must refine or transport the predecessor recurrence itself.
 
 The same mechanism now has a primitive-profile inlet rather than only a row
 diagnostic. \texttt{computeH39AffineCenterShiftedR43SourceProfileCandidate}

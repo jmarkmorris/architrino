@@ -2334,7 +2334,7 @@ P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
 \lambda_{\mathrm{hel}}\in\{+1,-1\},
 $$
 
-where $P_{\perp}$ projects transverse to the propagation axis. Linear polarization is then a real transverse-axis state, while circular polarization is a quarter-cycle phase relation between the two transverse axes. The scalar summary $\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar$ is allowed only after Gate A, the substrate planar-pair rows, and the event-balance rows pass. The proof burden is to show that the coaxial contra-rotating pro/anti planar pair carries this spin-$1$ transverse ledger and not a scalar, spinor, or longitudinal free mode.
+where $P_{\perp}$ projects transverse to the propagation axis. Linear polarization is then a real transverse-axis state, while circular polarization is a quarter-cycle phase relation between the two transverse axes. The generic coherent case is elliptical polarization: both transverse components are retained with a stable relative phase, with linear and circular polarization as limiting cases. Unpolarized and partially polarized light are ensemble or source-window summaries over retained transverse ledgers, not separate single-photon substrate objects. The scalar summary $\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar$ is allowed only after Gate A, the substrate planar-pair rows, and the event-balance rows pass. The proof burden is to show that the coaxial contra-rotating pro/anti planar pair carries this spin-$1$ transverse ledger and not a scalar, spinor, or longitudinal free mode.
 
 The useful algebraic consequence is an event-window helicity projection lemma. For a finite radiative event window,
 

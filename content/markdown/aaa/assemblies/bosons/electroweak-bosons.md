@@ -215,6 +215,32 @@ $$
 \lambda_{\mathrm{hel}}\in\{+1,-1\}.
 $$
 
+The standard polarization kinds are observer-level summaries of this same transverse ledger, not separate photon species. After removing an irrelevant common phase, write
+$$
+a_u=A_u e^{i\phi_u},
+\qquad
+a_v=A_v e^{i\phi_v},
+\qquad
+A_u^2+A_v^2=1,
+\qquad
+\delta=\phi_v-\phi_u.
+$$
+Then linear polarization is the phase-aligned case $\delta=0$ or $\pi$, so the ledger can be represented by a real transverse axis. Circular polarization is the equal-amplitude quarter-cycle case $A_u=A_v=1/\sqrt2$ and $\delta=\pm\pi/2$. Elliptical polarization is the remaining coherent case: both transverse components are retained with a stable relative phase, with linear and circular polarization appearing as limiting cases of the same ledger.
+
+Unpolarized and partially polarized light are ensemble or source-window summaries. For a distribution $\rho$ over retained transverse photon ledgers, define the normalized ensemble transverse record
+$$
+C_{\rho}^{ab}
+=
+\frac{
+\left\langle a_\perp^a\overline{a_\perp^b}\right\rangle_{\rho}
+}{
+\left\langle h_{cd}\overline{a_\perp^c}a_\perp^d\right\rangle_{\rho}
+},
+\qquad
+h_{ab}C_{\rho}^{ab}=1.
+$$
+A pure polarization record is rank one inside $\operatorname{im}P_{\perp}$. An unpolarized record has $C_{\rho}^{ab}=\frac12P_{\perp}^{ab}$, so no analyzer axis is preferred. A partially polarized record lies between these cases. Gate B must derive the underlying transverse ledgers, source or material averaging window, and analyzer response before these effective summaries are treated as recovered optical behavior.
+
 The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-frame spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
 
 $$

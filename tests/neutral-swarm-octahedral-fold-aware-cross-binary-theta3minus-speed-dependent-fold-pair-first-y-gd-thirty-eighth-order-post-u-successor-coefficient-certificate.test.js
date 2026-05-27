@@ -130,6 +130,59 @@ test("thirty-eighth-order post-U successor coefficient intervals certify h38 and
   );
 });
 
+test("thirty-eighth-order post-U successor rows expose dependency-preserving h-row provider metadata", () => {
+  const packet = artifact();
+  const firstRow =
+    packet.thirty_eighth_order_post_u_successor_coefficient_rows[0];
+  const branchRow = firstRow.branch_rows[0];
+
+  assert.equal(branchRow.dependency_preserving_h_row_provider, true);
+  assert.equal(branchRow.h_row_provider_preserves_dependencies, true);
+  assert.equal(
+    branchRow.provider_kind,
+    "thirty-eighth-successor-recurrence-provider"
+  );
+  assert.equal(branchRow.source_cell_id, firstRow.cell_id);
+  assert.equal(
+    branchRow.h_row_provider_provenance.target_h_index,
+    38
+  );
+  assert.equal(
+    branchRow.h_row_provider_provenance.inherited_h_count,
+    38
+  );
+  assert.equal(branchRow.h_row_dependency_trace.length, 39);
+  assert.equal(branchRow.h_row_dependency_trace.at(-1).h_index, 38);
+  assert.equal(
+    branchRow.h_row_dependency_trace.at(-1).source,
+    "current-successor-recurrence-solve"
+  );
+  assert.equal(
+    branchRow.h_row_dependency_witness.source_coefficients_contain_zero_y0_to_y42,
+    true
+  );
+  assert.equal(
+    branchRow.h_row_dependency_witness.solved_h_interval[0],
+    branchRow.h38_interval[0]
+  );
+  assert.equal(
+    branchRow.h_row_provider_claim_boundary
+      .certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    branchRow.h_row_provider_claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    branchRow.h_row_provider_claim_boundary
+      .certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(branchRow.h_row_provider_claim_boundary.retained_branch, false);
+});
+
 test("thirty-eighth-order post-U successor coefficient certificate keeps tube, continuous tail, and retention open", () => {
   const packet = artifact();
 

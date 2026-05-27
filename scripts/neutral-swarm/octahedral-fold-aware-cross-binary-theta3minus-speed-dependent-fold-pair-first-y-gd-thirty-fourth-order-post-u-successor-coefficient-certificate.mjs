@@ -594,9 +594,10 @@ function summarizeRows({ rows, predecessorArtifact }) {
   return summary;
 }
 
-export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdThirtyFourthOrderPostUSuccessorCoefficientCertificate() {
+export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdThirtyFourthOrderPostUSuccessorCoefficientCertificate(options = {}) {
   const predecessorArtifact =
-    buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdThirtyThirdOrderPostUSuccessorCoefficientCertificate();
+    options.predecessorArtifact ??
+    buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdThirtyThirdOrderPostUSuccessorCoefficientCertificate(options.predecessorOptions ?? options);
   const rows =
     predecessorArtifact.thirty_third_order_post_u_successor_coefficient_rows.map(
       (predecessorRow, speedIndex) =>

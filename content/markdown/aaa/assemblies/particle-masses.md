@@ -194,6 +194,30 @@ In the reversible below-threshold regime, $\mathsf{I}_{A}^{ab}$ is built from th
 
 This ratio form is a sharper anti-fitting invariant than the absolute scalar formula. Changing $\alpha_{\mathrm{m}}$ cannot improve one particle without changing all particles in the same regime. Changing $\zeta(A)$ is admissible only when it is produced by the branch ledger and exposure quotient for $A$, not when it is selected from the observed mass table. Failure of the tensor replacement in anisotropic or pressure-dependent cells is evidence that the scalar mass map is being used outside its regime.
 
+#### Charge-Conjugate Mass Equality
+
+The equality of a particle's rest mass with the rest mass of its antiparticle is a mass-map constraint, not a separate fitted fact. Let $\bar A$ denote the charge-conjugate branch obtained from an accepted assembly $A$ by reversing all intrinsic polarity signs and pro/anti orientation while preserving the shielding-coherence class, causal-root ledger, branch geometry, and Noether sea response record:
+$$
+q_a(\bar A)=-q_a(A).
+$$
+If the mass-facing ledger depends on polarity through even data such as $q_aq_b$, $|q_a|$, causal-root topology, shielding, and polarity-neutral medium response, then complete conjugation leaves the scalar mass trace invariant:
+$$
+E_{\text{internal}}(\bar A)=E_{\text{internal}}(A),
+\qquad
+\zeta(\bar A)=\zeta(A),
+\qquad
+\mathsf{I}_{\bar A}^{ab}=\mathsf{I}_{A}^{ab},
+\qquad
+m_{\mathrm{tr}}(\bar A)=m_{\mathrm{tr}}(A).
+$$
+The odd channel is the exposed charge-like projection,
+$$
+Q_{\mathrm{eff}}(\bar A)=-Q_{\mathrm{eff}}(A),
+$$
+not the rest-mass response. This is why the electron and positron can have opposite electric bookkeeping while sharing the same mass-facing causal buildup: the full polarity inversion preserves every internal pair product and every polarity-even exposure term. The constraint does not permit arbitrary partial polarity replacement. Flipping only part of an axial inventory or only one internal component can change $q_aq_b$, branch stability, shielding leakage, and the causal-root ledger, so it is generally a different assembly rather than the antiparticle of $A$.
+
+Thus a candidate mass map fails if an accepted matter branch and its complete anti-branch receive different scalar rest masses in the same neutral Noether sea environment, unless the model explicitly supplies a conjugation-odd medium or branch-asymmetry term and keeps the resulting mass splitting within the declared particle-antiparticle bounds.
+
 Superfluid-vacuum and Nambu-Jona-Lasinio-style comparisons add a useful caution: an excitation gap can look like a rest-energy term without being the ontology of mass. For an accepted assembly branch $A$, the native analogue would be a branch gap
 $$
 \Delta_A^\theta

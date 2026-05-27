@@ -351,7 +351,100 @@ function branchRowsCertified(branchRows) {
   );
 }
 
+function hRowProviderClaimBoundary() {
+  return {
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    certifies_continuous_polydisc_primitives: false,
+    retained_branch: false,
+  };
+}
+
+function hRowDependencyTrace({ cellId, branch, predecessorRow }) {
+  const inheritedRows = Array.from(
+    { length: PREDECESSOR_H_COUNT },
+    (_, index) => ({
+      h_index: index,
+      source: "predecessor-directed-rounded-successor-row",
+      predecessor_packet:
+        "thirty-seventh-order post-U successor coefficient certificate",
+      predecessor_cell_id: predecessorRow.cell_id,
+      current_cell_id: cellId,
+      branch,
+      inherited_interval_field: hFieldName(index),
+      inherited_solve_slope_field: hFieldName(index, "solve_slope_interval"),
+    })
+  );
+  return [
+    ...inheritedRows,
+    {
+      h_index: TARGET_INDEX,
+      source: "current-successor-recurrence-solve",
+      predecessor_packet:
+        "thirty-seventh-order post-U successor coefficient certificate",
+      current_packet:
+        "thirty-eighth-order post-U successor coefficient certificate",
+      predecessor_cell_id: predecessorRow.cell_id,
+      current_cell_id: cellId,
+      branch,
+      residual_field: "h38_residual_before_solve",
+      solve_slope_field: "h38_solve_slope_interval",
+      solved_interval_field: "h38_interval",
+      recurrence_equation:
+        "h38_interval=-Shift_42(F_epsilon(y,h_{<=37}+y^38*0,nu))/h37_solve_slope_interval",
+    },
+  ];
+}
+
+function hRowProviderProvenance({ cellId, branch, predecessorRow }) {
+  return {
+    provider_kind: "thirty-eighth-successor-recurrence-provider",
+    current_packet:
+      "thirty-eighth-order post-U successor coefficient certificate",
+    predecessor_packet:
+      "thirty-seventh-order post-U successor coefficient certificate",
+    predecessor_cell_id: predecessorRow.cell_id,
+    source_cell_id: cellId,
+    branch,
+    h_count: H_COUNT,
+    inherited_h_count: PREDECESSOR_H_COUNT,
+    target_h_index: TARGET_INDEX,
+    recurrence_source_field: "h38_residual_before_solve",
+    recurrence_slope_field: "h37_solve_slope_interval",
+    generated_interval_field: "h38_interval",
+    provider_claim:
+      "dependency-preserving provider metadata for replaying the certified h0..h38 row; it does not certify the H39 shifted source or primitive bounds",
+  };
+}
+
+function hRowDependencyWitness({
+  cellId,
+  branch,
+  predecessorRow,
+  solve,
+  sourceSeries,
+}) {
+  return {
+    parent_row_identity: predecessorRow.row_status,
+    parent_cell_id: predecessorRow.cell_id,
+    current_cell_id: cellId,
+    branch,
+    target_h_index: TARGET_INDEX,
+    recurrence_equation:
+      "Shift_42(F_epsilon(y,h_{<=37}+y^38*X38,nu))=C38+S38*X38+O(y)",
+    residual_before_solve: root.formatInterval(solve.hResidualBeforeSolve),
+    solve_slope_interval: root.formatInterval(solve.hSlopeInterval),
+    solved_h_interval: root.formatInterval(solve.hInterval),
+    source_coefficients_contain_zero_y0_to_y42:
+      sourceSeries.every(containsZero),
+    coverage:
+      "current h38 interval is computed from the predecessor row on the same speed/first-y cell; inherited h0..h37 intervals are copied from the validated h37 artifact",
+    claim_boundary: hRowProviderClaimBoundary(),
+  };
+}
+
 function intervalRowForPredecessorRow({ speedIndex, predecessorRow }) {
+  const cellId = `speed.${speedIndex}.first-y`;
   const cell = cellFromPredecessorRow(predecessorRow);
   const branchSolves = predecessorRow.branch_rows.map((predecessorBranchRow) => {
     const branch = predecessorBranchRow.branch;
@@ -381,6 +474,31 @@ function intervalRowForPredecessorRow({ speedIndex, predecessorRow }) {
       h38_residual_before_solve: root.formatInterval(
         solve.hResidualBeforeSolve
       ),
+      dependency_preserving_h_row_provider: true,
+      h_row_provider_preserves_dependencies: true,
+      provider_kind: "thirty-eighth-successor-recurrence-provider",
+      h_row_provider_kind: "thirty-eighth-successor-recurrence-provider",
+      source_cell_id: cellId,
+      h_row_provider_source_cell_id: cellId,
+      h_row_provider_replay_kind: "h39-embedded-h38-provider-replay",
+      h_row_provider_provenance: hRowProviderProvenance({
+        cellId,
+        branch,
+        predecessorRow,
+      }),
+      h_row_dependency_trace: hRowDependencyTrace({
+        cellId,
+        branch,
+        predecessorRow,
+      }),
+      h_row_dependency_witness: hRowDependencyWitness({
+        cellId,
+        branch,
+        predecessorRow,
+        solve,
+        sourceSeries,
+      }),
+      h_row_provider_claim_boundary: hRowProviderClaimBoundary(),
       [SOURCE_FIELD]: sourceSeries.map(root.formatInterval),
       [SOURCE_CONTAINS_ZERO_FIELD]: sourceSeries.every(containsZero),
       [MAX_SOURCE_FIELD]: root.formatSmallNumber(
@@ -444,7 +562,7 @@ function intervalRowForPredecessorRow({ speedIndex, predecessorRow }) {
     root.addIntervals(interval, root.scaleInterval(qG[index], index + 1))
   );
   const row = {
-    cell_id: `speed.${speedIndex}.first-y`,
+    cell_id: cellId,
     speed_interval: predecessorRow.speed_interval,
     first_y_cell: [0, root.formatSmallNumber(FIRST_Y_CELL_UPPER)],
     delta_fold_interval: predecessorRow.delta_fold_interval,
@@ -594,9 +712,10 @@ function summarizeRows({ rows, predecessorArtifact }) {
   return summary;
 }
 
-export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdThirtyEighthOrderPostUSuccessorCoefficientCertificate() {
+export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdThirtyEighthOrderPostUSuccessorCoefficientCertificate(options = {}) {
   const predecessorArtifact =
-    buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdThirtySeventhOrderPostUSuccessorCoefficientCertificate();
+    options.predecessorArtifact ??
+    buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdThirtySeventhOrderPostUSuccessorCoefficientCertificate(options.predecessorOptions ?? options);
   const rows =
     predecessorArtifact.thirty_seventh_order_post_u_successor_coefficient_rows.map(
       (predecessorRow, speedIndex) =>

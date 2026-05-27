@@ -6046,8 +6046,9 @@ export function computeH39AffineCenterHRowSensitivityDiagnosticCandidate({
     }),
   ].map(withRatio);
 
-  const defaultFreezeStartIndexes = [38, 37, 36, 35, 34, 27].filter(
-    (index) => index >= 0 && index < hIntervals.length
+  const defaultFreezeStartIndexes = Array.from(
+    { length: hIntervals.length },
+    (_, index) => hIntervals.length - 1 - index
   );
   const resolvedFreezeStartIndexes = (
     hFreezeStartIndexes ?? defaultFreezeStartIndexes
@@ -6108,6 +6109,81 @@ export function computeH39AffineCenterHRowSensitivityDiagnosticCandidate({
         : best,
     null
   );
+  const hRowSuffixFreezeScanComplete =
+    hRowFreezeReplays.length === hIntervals.length &&
+    new Set(hRowFreezeReplays.map((replay) => replay.freeze_start_index))
+      .size === hIntervals.length &&
+    hRowFreezeReplays.every(
+      (replay) =>
+        Number.isInteger(replay.freeze_start_index) &&
+        replay.freeze_start_index >= 0 &&
+        replay.freeze_start_index < hIntervals.length
+    );
+  const suffixReplayForStartIndex = (startIndex) =>
+    hRowFreezeReplays.find((replay) => replay.freeze_start_index === startIndex) ??
+    null;
+  const lastSuccessorSuffixReplay =
+    suffixReplayForStartIndex(hIntervals.length - 1);
+  const topTwelveSuffixStartIndex = Math.max(0, hIntervals.length - 12);
+  const topTwelveSuffixReplay =
+    suffixReplayForStartIndex(topTwelveSuffixStartIndex);
+  const fullChainSuffixReplay = suffixReplayForStartIndex(0);
+  const hRowTransportDepthThresholdRatios = [10, 100, 1000, 1e6].map(
+    (ratio) => {
+      const firstReplay =
+        hRowFreezeReplays.find(
+          (replay) => Number(replay.full_to_pressure_ratio ?? 0) >= ratio
+        ) ?? null;
+      return {
+        target_full_to_pressure_ratio: ratio,
+        first_freeze_start_index: firstReplay?.freeze_start_index ?? null,
+        transported_h_row_count: firstReplay
+          ? freezeEndIndex - firstReplay.freeze_start_index + 1
+          : null,
+        pressure: firstReplay?.pressure ?? null,
+        full_to_pressure_ratio: firstReplay?.full_to_pressure_ratio ?? null,
+      };
+    }
+  );
+  const hRowTransportDepthScan = hRowFreezeReplays.map((replay) => ({
+    input_family: replay.input_family,
+    freeze_start_index: replay.freeze_start_index,
+    freeze_end_index: replay.freeze_end_index,
+    transported_h_row_count:
+      freezeEndIndex - replay.freeze_start_index + 1,
+    pressure: replay.pressure,
+    full_to_pressure_ratio: replay.full_to_pressure_ratio,
+  }));
+  const firstHRowSuffixFreezeMeetingTarget =
+    resolvedTargetPressure === null
+      ? null
+      : hRowFreezeReplays.find(
+          (replay) => Number(replay.pressure) <= resolvedTargetPressure
+        ) ?? null;
+  const fullChainReduction =
+    fullChainSuffixReplay?.full_to_pressure_ratio ?? null;
+  const lastSuccessorReduction =
+    lastSuccessorSuffixReplay?.full_to_pressure_ratio ?? null;
+  const topTwelveReduction =
+    topTwelveSuffixReplay?.full_to_pressure_ratio ?? null;
+  const fullChainOutrunsTopSuccessorRows =
+    Number(fullChainReduction ?? 0) >=
+    10 * Math.max(1, Number(topTwelveReduction ?? 1));
+  const hRowTransportDepthSummary = {
+    suffix_scan_complete: hRowSuffixFreezeScanComplete,
+    tested_suffix_count: hRowFreezeReplays.length,
+    max_tested_transport_depth: hIntervals.length,
+    last_successor_only_reduction_factor: lastSuccessorReduction,
+    top_twelve_successor_reduction_factor: topTwelveReduction,
+    full_chain_midpoint_reduction_factor: fullChainReduction,
+    full_chain_outruns_top_successor_rows: fullChainOutrunsTopSuccessorRows,
+    best_freeze_start_index:
+      bestHRowFreezeReplay?.freeze_start_index ?? null,
+    best_transport_depth: bestHRowFreezeReplay
+      ? freezeEndIndex - bestHRowFreezeReplay.freeze_start_index + 1
+      : null,
+    threshold_crossings: hRowTransportDepthThresholdRatios,
+  };
   const defaultCompressionFactors = [1, 0.5, 0.25, 0.125, 0.0625, 0];
   const resolvedCompressionFactors = [
     ...new Set(
@@ -6169,6 +6245,10 @@ export function computeH39AffineCenterHRowSensitivityDiagnosticCandidate({
     input_family_replays: inputFamilyReplays,
     h_row_freeze_replays: hRowFreezeReplays,
     best_h_row_freeze_replay: bestHRowFreezeReplay,
+    h_row_transport_depth_scan: hRowTransportDepthScan,
+    h_row_transport_depth_summary: hRowTransportDepthSummary,
+    first_h_row_suffix_freeze_meeting_target:
+      firstHRowSuffixFreezeMeetingTarget,
     h_row_width_compression_replays: hRowWidthCompressionReplays,
     target_pressure: resolvedTargetPressure,
     first_h_row_width_compression_meeting_target:
@@ -6179,7 +6259,7 @@ export function computeH39AffineCenterHRowSensitivityDiagnosticCandidate({
     strongest_non_h_row_reduction_factor: strongestNonHReduction,
     h_row_width_dominates_input_width: hRowWidthDominatesInputWidth,
     h_row_sensitivity_diagnostic:
-      "Re-solves the affine center after selectively midpointing the live cell, inherited h-row intervals, solve slope, or contiguous top h-row ranges. It diagnoses dependency loss in the inherited h-row box and is not a directed-rounded certificate.",
+      "Re-solves the affine center after selectively midpointing the live cell, inherited h-row intervals, solve slope, or every contiguous top h-row suffix. It diagnoses dependency loss and transport depth in the inherited h-row box and is not a directed-rounded certificate.",
     candidate_certificate_route: hRowWidthDominatesInputWidth
       ? "Replace the independent inherited h-row interval box with a dependency-preserving h-row transport or subdivision certificate before applying the shifted R43 outer Cauchy bound."
       : "Use the replay table to choose between h-row transport, cell subdivision, solve-slope refinement, or a different row-level cancellation proof before promoting any shifted R43 bound.",
@@ -7934,6 +8014,45 @@ function normalizedHRowProviderClaimBoundary(boundary) {
   return normalized;
 }
 
+function embeddedHRowProviderMetadataPresent(branchRow) {
+  return [
+    "dependency_preserving_h_row_provider",
+    "h_row_provider_preserves_dependencies",
+    "provider_kind",
+    "h_row_provider_kind",
+    "source_cell_id",
+    "h_row_provider_source_cell_id",
+    "h_row_provider_provenance",
+    "h_row_dependency_trace",
+    "h_row_dependency_witness",
+    "h_row_provider_claim_boundary",
+  ].some((key) => branchRow?.[key] !== undefined);
+}
+
+function embeddedHRowProviderOutput({ row, branchRow, branch, hCount }) {
+  return {
+    branch,
+    hIntervals: hIntervalsFromBranchRow(branchRow, { hCount }),
+    solveSlopeInterval: branchRow.h38_solve_slope_interval,
+    providerKind: branchRow.h_row_provider_kind ?? branchRow.provider_kind,
+    preservesDependencies:
+      branchRow.h_row_provider_preserves_dependencies === true ||
+      branchRow.dependency_preserving_h_row_provider === true,
+    sourceCellId:
+      branchRow.h_row_provider_source_cell_id ??
+      branchRow.source_cell_id ??
+      row.cell_id ??
+      null,
+    replayKind:
+      branchRow.h_row_provider_replay_kind ??
+      "h39-embedded-h-row-provider-replay",
+    hRowProviderProvenance: branchRow.h_row_provider_provenance,
+    hRowDependencyTrace: branchRow.h_row_dependency_trace,
+    hRowDependencyWitness: branchRow.h_row_dependency_witness,
+    hRowProviderClaimBoundary: branchRow.h_row_provider_claim_boundary,
+  };
+}
+
 function normalizeHRowProviderBranchInput({
   providerOutput,
   row,
@@ -8034,6 +8153,20 @@ function branchInputsFromH38Row(row, { hRowProvider = null } = {}) {
       });
       return normalizeHRowProviderBranchInput({
         providerOutput,
+        row,
+        branchRow,
+        branch,
+        hCount: 39,
+      });
+    }
+    if (embeddedHRowProviderMetadataPresent(branchRow)) {
+      return normalizeHRowProviderBranchInput({
+        providerOutput: embeddedHRowProviderOutput({
+          row,
+          branchRow,
+          branch,
+          hCount: 39,
+        }),
         row,
         branchRow,
         branch,

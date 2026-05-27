@@ -107,6 +107,75 @@ Q_{D,k}+(k+1)Q_{G,k}\ni0,
 0\le k\le38.
 $$
 
+For H39 replay, each branch row now also carries a dependency-preserving h-row
+provider record. The record lists the inherited $h_0,\ldots,h_{37}$ predecessor
+fields, the current $h_{38}$ recurrence solve, provider provenance, a dependency
+witness, and a candidate-only claim boundary. This is provenance for the
+certified h-row replay, not a new H39 closure claim.
+
+## Refined-Subcover Candidate Seam
+
+The h38 producer can now be run as a local candidate subcover by supplying a
+predecessor artifact through the h25-to-h38 successor chain. The h24 producer
+accepts explicit speed samples, while each successor builder can consume the
+artifact emitted by the previous row. This does not change the standard
+128-cell certificate above: nonstandard local subcovers keep the h38 artifact
+claim false, because their predecessor artifacts do not satisfy the fixed
+standard full-cover validator.
+
+The seam is nevertheless executable and mathematically useful for H39. On the
+dominant first H39 row, a two-piece local predecessor replay over the original
+`speed.0.first-y` cell recomputes $h_0,\ldots,h_{38}$ on the two narrower cells.
+The local h38 rows remain row-certified, and H39 row-$1$ pressure falls from
+$5.239383640054425\times10^{22}$ to a refined local maximum
+$2.6197784892373247\times10^{22}$. The pressure change is therefore produced
+by actual predecessor recurrence transport, not by provider metadata over the
+same interval box. The open burden is to turn this candidate seam into a
+certified full-cover refinement or a lower-dimensional recurrence-transport
+certificate.
+
+The follow-up H39 scaling diagnostic uses this seam on $1,2,$ and $4$ local
+subcells of the same dominant speed cell. The resulting H39 pressures scale
+almost exactly as the local speed-cell width, with observed exponent
+$1.0000353436$. This is useful evidence for the h38 packet: the recurrence
+chain is the right producer-side object, but brute subcovering is not the
+certificate strategy. A successful H39 handoff should expose the deterministic
+h-row recurrence graph, or a certified low-dimensional enclosure of that graph,
+through the h-row provider boundary.
+The first low-dimensional handoff candidate is now explicit. The one-noise
+affine h-row diagnostic takes the two refined H38 subcell midpoint rows and
+forms $h_i(\xi)=c_i+\xi d_i$ for $h_0,\ldots,h_{38}$. On the live H39 row this
+reduces the sampled shifted-index-$1$ pressure from the independent-box value
+$5.239724324430226\times10^{22}$ to $6.978672999045361\times10^{12}$. The h38
+successor packet should therefore treat the exported intervals as a lossy
+view: the H39 handoff needs a certified affine graph or graph-plus-residual
+provider, not just wider provenance metadata over the same interval box.
+The follow-up affine graph subdivision replay confirms that the graph itself is
+stable under interval replay: the full $\xi\in[-1,1]$ graph interval gives
+$6.998682228480771\times10^{12}$, only about $1.0029$ times the worst sampled
+one-noise value. It also passes through the H39 dependency-preserving h-row
+provider seam. The h38-side certificate burden is now specifically to certify
+that the recurrence image is enclosed by this affine graph with bounded
+residual coordinates, rather than to emit only independent h-row intervals.
+Finer midpoint residual checks show the pure affine graph misses the producer
+image most strongly in $h_{38}$, but graph-plus-residual replay still stays at
+$3.996425126569277\times10^{13}$ against the independent-box pressure
+$5.239724324430226\times10^{22}$. That makes the h38-side handoff concrete:
+export a directed-rounded affine graph-plus-residual provider.
+The next handoff candidate is sharper: a quadratic h-row graph in the same fold
+coordinate $\xi$ fitted from four local H38 midpoint rows over
+$\xi\in[-2,2]$. Its H39 graph-only replay reaches
+$5.043803779445108\times10^{12}$, and the graph-plus-residual replay against
+$4$- and $8$-subcell producer midpoint checks reaches
+$1.5919512026398383\times10^{13}$. Compared with the affine
+graph-plus-residual reference $3.9986141541875766\times10^{13}$, this shows the
+producer residual is partly curvature of the h38 recurrence image. The h38-side
+handoff target is therefore upgraded from affine graph-plus-residual to
+polynomial graph-plus-residual. A cubic comparison does not materially improve
+the pressure, so the directed-rounded producer-image enclosure should target
+the lower-degree quadratic graph first. This remains candidate-only until that
+enclosure is proved.
+
 It does not claim:
 
 $$
@@ -215,6 +284,7 @@ It emits:
 - induced $Q_{G,38}$ and $Q_{D,38}$ coefficient intervals;
 - the correlated coefficient identity interval $Q_{D,38}+39Q_{G,38}\ni0$;
 - inherited $h_{37}$, $Q_{G,37}$, and $Q_{D,37}$ provenance;
+- dependency-preserving h-row provider metadata for the H39 evaluator boundary;
 - explicit open continuous tail, full quotient, scaled-remainder, `I1`, and
   retention rows.
 
@@ -222,4 +292,4 @@ The companion test
 [neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-eighth-order-post-u-successor-coefficient-certificate.test.js](../../../tests/neutral-swarm-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-eighth-order-post-u-successor-coefficient-certificate.test.js)
 validates schema, no-fixed-speed-window discipline, $h_{38}$ and
 $Q_{G,38},Q_{D,38}$ intervals, the $Q_D+39Q_G$ identity interval, overclaim
-rejection, and CLI write/validate behavior.
+rejection, H39 h-row provider metadata, and CLI write/validate behavior.
