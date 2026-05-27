@@ -11,6 +11,8 @@ import {
   theta3minusFoldPairScaledRootTubeCellInternals as root,
 } from "./octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.mjs";
 import {
+  computeH39PrimitiveRemainderProfileScaleCandidate,
+  computeH39PrimitiveSlackTolerancesCandidate,
   computeH39RouchePrimitiveClosure,
 } from "./octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-root-tangent-cauchy-majorant-tail-budget.mjs";
 
@@ -20,6 +22,12 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator/v1";
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_COEFFICIENT_ARTIFACT_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-shared-domain-coefficient-artifact/v1";
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_PRIMITIVE_VECTOR_BACKEND_ARTIFACT_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-primitive-vector-backend-artifact/v1";
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_KEPSILON_BRANCH_COORDINATE_WITNESS_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-K_epsilon-branch-coordinate-witness/v1";
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_GRAPH_RADII_WITNESS_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-graph-radii-witness/v1";
 
 export const THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS = {
   no_speed_window:
@@ -121,6 +129,644 @@ function finiteMin(values) {
     .map((value) => (value === null || value === undefined ? null : Number(value)))
     .filter((value) => Number.isFinite(value));
   return finiteValues.length === 0 ? null : Math.min(...finiteValues);
+}
+
+function numericClose(left, right, tolerance = Number.EPSILON * 64) {
+  const resolvedLeft = Number(left);
+  const resolvedRight = Number(right);
+  if (!Number.isFinite(resolvedLeft) || !Number.isFinite(resolvedRight)) {
+    return false;
+  }
+  const scale = Math.max(1, Math.abs(resolvedLeft), Math.abs(resolvedRight));
+  return Math.abs(resolvedLeft - resolvedRight) <= tolerance * scale;
+}
+
+function coordinateSourceEnvelopeCandidateFromValue(candidate, index) {
+  const forbiddenSpeedFields = noForbiddenSpeedFields(candidate);
+  if (forbiddenSpeedFields.length > 0) {
+    throw new Error(
+      `coordinate source envelope candidate ${index} must not contain speed-band fields: ${forbiddenSpeedFields.join(
+        ", "
+      )}`
+    );
+  }
+  const r43ShiftedCauchyOuterBound =
+    candidate?.r43ShiftedCauchyOuterBound ??
+    candidate?.shiftedR43CauchyOuterBound ??
+    candidate?.r43_shifted_cauchy_outer_bound ??
+    candidate?.shifted_r43_cauchy_outer_bound ??
+    null;
+  const r43ShiftedCauchyOuterRadius =
+    candidate?.r43ShiftedCauchyOuterRadius ??
+    candidate?.shiftedR43CauchyOuterRadius ??
+    candidate?.r43_shifted_cauchy_outer_radius ??
+    candidate?.shifted_r43_cauchy_outer_radius ??
+    null;
+  const explicitSourceEnvelopeKind =
+    candidate?.sourceEnvelopeKind ?? candidate?.source_envelope_kind ?? null;
+  const r43CauchyOuterRadius =
+    candidate?.r43CauchyOuterRadius ??
+    candidate?.coordinateCauchyOuterRadius ??
+    candidate?.r43_cauchy_outer_radius ??
+    candidate?.coordinate_cauchy_outer_radius ??
+    null;
+  const jacobianCauchyOuterRadius =
+    candidate?.jacobianCauchyOuterRadius ??
+    candidate?.coordinateJacobianOuterRadius ??
+    candidate?.jacobian_cauchy_outer_radius ??
+    candidate?.coordinate_jacobian_outer_radius ??
+    null;
+  const jacobianNumeratorCauchyOuterRadius =
+    candidate?.jacobianNumeratorCauchyOuterRadius ??
+    candidate?.coordinateJacobianNumeratorOuterRadius ??
+    candidate?.jacobian_numerator_cauchy_outer_radius ??
+    candidate?.coordinate_jacobian_numerator_outer_radius ??
+    null;
+
+  return {
+    candidate_index: index,
+    source_envelope_kind:
+      explicitSourceEnvelopeKind ??
+      (isProvided(r43ShiftedCauchyOuterBound) ||
+      isProvided(r43ShiftedCauchyOuterRadius)
+        ? "shifted-removable-r43-cauchy-outer-bound"
+        : "raw-coordinate-cauchy-outer-bound"),
+    r43_cauchy_outer_radius: isProvided(r43CauchyOuterRadius)
+      ? Number(r43CauchyOuterRadius)
+      : null,
+    r43_shifted_cauchy_outer_bound: isProvided(r43ShiftedCauchyOuterBound)
+      ? Number(r43ShiftedCauchyOuterBound)
+      : null,
+    r43_shifted_cauchy_outer_radius: isProvided(r43ShiftedCauchyOuterRadius)
+      ? Number(r43ShiftedCauchyOuterRadius)
+      : null,
+    directed_rounded_shifted_r43_provenance:
+      (candidate?.directedRoundedShiftedR43Provenance ??
+        candidate?.directed_rounded_shifted_r43_provenance) === true,
+    certifies_shifted_r43_zero_prefix:
+      (candidate?.certifiesShiftedR43ZeroPrefix ??
+        candidate?.certifies_shifted_r43_zero_prefix) === true,
+    jacobian_cauchy_outer_radius: isProvided(jacobianCauchyOuterRadius)
+      ? Number(jacobianCauchyOuterRadius)
+      : null,
+    jacobian_numerator_cauchy_outer_radius: isProvided(
+      jacobianNumeratorCauchyOuterRadius
+    )
+      ? Number(jacobianNumeratorCauchyOuterRadius)
+      : null,
+  };
+}
+
+function normalizeCoordinateSourceEnvelopeCandidates({
+  coordinateCauchyOuterRadius,
+  coordinateJacobianOuterRadius,
+  coordinateJacobianNumeratorOuterRadius,
+  coordinateSourceEnvelopeCandidates = null,
+} = {}) {
+  if (isProvided(coordinateSourceEnvelopeCandidates)) {
+    if (
+      !Array.isArray(coordinateSourceEnvelopeCandidates) ||
+      coordinateSourceEnvelopeCandidates.length === 0
+    ) {
+      throw new Error(
+        "coordinateSourceEnvelopeCandidates must be a nonempty array when provided"
+      );
+    }
+    return coordinateSourceEnvelopeCandidates.map((candidate, index) =>
+      coordinateSourceEnvelopeCandidateFromValue(candidate, index)
+    );
+  }
+
+  if (
+    isProvided(coordinateCauchyOuterRadius) ||
+    isProvided(coordinateJacobianOuterRadius) ||
+    isProvided(coordinateJacobianNumeratorOuterRadius)
+  ) {
+    return [
+      {
+        candidate_index: 0,
+        r43_cauchy_outer_radius: isProvided(coordinateCauchyOuterRadius)
+          ? Number(coordinateCauchyOuterRadius)
+          : null,
+        jacobian_cauchy_outer_radius: isProvided(
+          coordinateJacobianOuterRadius
+        )
+          ? Number(coordinateJacobianOuterRadius)
+          : null,
+        jacobian_numerator_cauchy_outer_radius: isProvided(
+          coordinateJacobianNumeratorOuterRadius
+        )
+          ? Number(coordinateJacobianNumeratorOuterRadius)
+          : null,
+      },
+    ];
+  }
+
+  return [];
+}
+
+function sourceBranchLabels(candidates) {
+  return Array.isArray(candidates)
+    ? candidates.map((candidate) => String(candidate?.branch))
+    : [];
+}
+
+function sourceHasFoldPairBranches(candidates) {
+  const labels = sourceBranchLabels(candidates);
+  return (
+    Array.isArray(candidates) &&
+    candidates.length === 2 &&
+    labels.includes("-") &&
+    labels.includes("+")
+  );
+}
+
+function noForbiddenSpeedFields(value, found = []) {
+  if (value === null || value === undefined) {
+    return found;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item) => noForbiddenSpeedFields(item, found));
+    return found;
+  }
+  if (typeof value === "object") {
+    for (const [key, nested] of Object.entries(value)) {
+      if (
+        key === "speed_band" ||
+        key === "speed_window" ||
+        key === "speed_min" ||
+        key === "speed_max"
+      ) {
+        found.push(key);
+      }
+      noForbiddenSpeedFields(nested, found);
+    }
+  }
+  return found;
+}
+
+function annotateCertifiedSource(source, fields) {
+  if (source === null || source === undefined) {
+    return null;
+  }
+  Object.assign(source, fields);
+  return source;
+}
+
+function buildCoordinateCauchySourceCertification({
+  source,
+  sharedDomainSignature,
+}) {
+  const sourceResidualCandidates = Array.isArray(
+    source?.source_residual_outer_bound_candidates
+  )
+    ? source.source_residual_outer_bound_candidates
+    : [];
+  const jacobianCandidates = Array.isArray(
+    source?.jacobian_outer_bound_candidates
+  )
+    ? source.jacobian_outer_bound_candidates
+    : [];
+  const sourceResidualMax = finiteMax(
+    sourceResidualCandidates.map(
+      (candidate) =>
+        candidate?.r43_cauchy_outer_bound ??
+        candidate?.candidate_R43_source_outer_bound
+    )
+  );
+  const jacobianMax = finiteMax(
+    jacobianCandidates.map(
+      (candidate) =>
+        candidate?.jacobian_cauchy_outer_bound ??
+        candidate?.candidate_R43_jacobian_outer_bound
+    )
+  );
+  const forbiddenSpeedFields = noForbiddenSpeedFields(source);
+  const rawSourceCandidateStatus =
+    "h39-source-residual-coordinate-cauchy-outer-bound-candidate-emitted";
+  const shiftedSourceCandidateStatus =
+    "h39-shifted-r43-removable-cauchy-outer-bound-candidate-emitted";
+  const sourceResidualBranchCandidateValid = (candidate) => {
+    const bound = Number(
+      candidate?.r43_cauchy_outer_bound ??
+        candidate?.candidate_R43_source_outer_bound
+    );
+    if (!Number.isFinite(bound)) {
+      return false;
+    }
+    if (candidate?.status === rawSourceCandidateStatus) {
+      return true;
+    }
+    if (candidate?.status !== shiftedSourceCandidateStatus) {
+      return false;
+    }
+    return (
+      candidate?.source_zero_prefix_certified === true &&
+      candidate?.shifted_R43_bound_covers_finite_prefix === true &&
+      candidate?.r43_cauchy_tail_shift_power === 0
+    );
+  };
+  const sourceResidualBranchCandidateProvenanceCertified = (candidate) => {
+    if (candidate?.status === rawSourceCandidateStatus) {
+      return (
+        candidate?.outward_rounded_transcendental_provenance === true &&
+        candidate?.sinh_delta_taylor_majorant
+          ?.certifies_outward_rounded_transcendental_upper_bound === true &&
+        candidate?.sinh_phi_taylor_majorant
+          ?.certifies_outward_rounded_transcendental_upper_bound === true
+      );
+    }
+    if (candidate?.status === shiftedSourceCandidateStatus) {
+      return (
+        candidate?.directed_rounded_shifted_R43_provenance === true &&
+        candidate?.source_zero_prefix_certified === true &&
+        candidate?.shifted_R43_bound_covers_finite_prefix === true &&
+        candidate?.r43_cauchy_tail_shift_power === 0
+      );
+    }
+    return false;
+  };
+  const sourceResidualTailShiftPowers = sourceResidualCandidates
+    .map((candidate) => candidate?.r43_cauchy_tail_shift_power)
+    .filter((value) => isProvided(value))
+    .map(Number);
+  const checks = {
+    source_present: source !== null && source !== undefined,
+    source_status_valid:
+      source?.status ===
+      "h39-coordinate-cauchy-outer-bounds-profile-candidate-emitted",
+    shared_domain_signature_present:
+      sharedDomainSignature !== null && sharedDomainSignature !== undefined,
+    source_residual_branch_candidates_present:
+      sourceHasFoldPairBranches(sourceResidualCandidates),
+    jacobian_branch_candidates_present:
+      sourceHasFoldPairBranches(jacobianCandidates),
+    source_residual_branch_statuses_valid:
+      sourceResidualCandidates.length === 2 &&
+      sourceResidualCandidates.every(sourceResidualBranchCandidateValid),
+    source_residual_transcendental_envelopes_certified:
+      sourceResidualCandidates.length === 2 &&
+      sourceResidualCandidates.every(
+        sourceResidualBranchCandidateProvenanceCertified
+      ),
+    source_residual_tail_shift_power_consistent:
+      sourceResidualTailShiftPowers.length === 0 ||
+      sourceResidualTailShiftPowers.every((value) =>
+        numericClose(value, sourceResidualTailShiftPowers[0])
+      ),
+    jacobian_branch_statuses_valid:
+      jacobianCandidates.length === 2 &&
+      jacobianCandidates.every(
+        (candidate) =>
+          candidate?.status ===
+            "h39-jacobian-coordinate-cauchy-outer-bound-candidate-emitted" &&
+          Number.isFinite(
+            Number(
+              candidate?.jacobian_cauchy_outer_bound ??
+                candidate?.candidate_R43_jacobian_outer_bound
+            )
+          )
+      ),
+    jacobian_transcendental_envelopes_certified:
+      jacobianCandidates.length === 2 &&
+      jacobianCandidates.every(
+        (candidate) =>
+          candidate?.outward_rounded_transcendental_provenance === true &&
+          candidate?.sinh_delta_taylor_majorant
+            ?.certifies_outward_rounded_transcendental_upper_bound === true &&
+          candidate?.sinh_phi_taylor_majorant
+            ?.certifies_outward_rounded_transcendental_upper_bound === true
+      ),
+    source_R43_outer_bound_matches_branch_max:
+      sourceResidualMax !== null &&
+      numericClose(sourceResidualMax, source?.r43_cauchy_outer_bound) &&
+      numericClose(
+        sourceResidualMax,
+        source?.candidate_R43_source_outer_bound
+      ),
+    source_jacobian_outer_bound_matches_branch_max:
+      jacobianMax !== null &&
+      numericClose(jacobianMax, source?.jacobian_cauchy_outer_bound) &&
+      numericClose(
+        jacobianMax,
+        source?.candidate_R43_jacobian_outer_bound
+      ),
+    source_R43_outer_radius_positive:
+      Number(source?.r43_cauchy_outer_radius) > 0,
+    source_jacobian_outer_radius_positive:
+      Number(source?.jacobian_cauchy_outer_radius) > 0,
+    source_jacobian_removable_gap_positive:
+      Number(source?.jacobian_numerator_cauchy_outer_radius) >
+      Number(source?.jacobian_cauchy_outer_radius),
+    no_fixed_speed_window: forbiddenSpeedFields.length === 0,
+  };
+  const failedPredicates = Object.entries(checks)
+    .filter(([, passes]) => passes !== true)
+    .map(([key]) => key);
+  const certifies = failedPredicates.length === 0;
+
+  annotateCertifiedSource(source, {
+    domain_signature: sharedDomainSignature,
+    certifies_directed_rounded: certifies,
+    directed_rounded: certifies,
+    certifies_directed_rounded_shared_domain: certifies,
+    certifies_directed_rounded_coordinate_cauchy_outer_bounds:
+      certifies,
+    certificate_status: certifies
+      ? "directed-rounded-certified"
+      : "witness-required",
+    includes_coordinate_cauchy_tails: certifies,
+    includes_analytic_tail: certifies,
+    assumes_fixed_speed_window: false,
+  });
+
+  return {
+    source_kind: "coordinate-cauchy-R43-jacobian-source",
+    certificate_status: certifies
+      ? "directed-rounded-certified"
+      : "witness-required",
+    predicate_check: {
+      checks,
+      failed_predicates: failedPredicates,
+      forbidden_speed_fields: forbiddenSpeedFields,
+      source_R43_branch_outer_bound_max: sourceResidualMax,
+      source_jacobian_branch_outer_bound_max: jacobianMax,
+      certifies_directed_rounded_source: certifies,
+    },
+  };
+}
+
+function buildDenominatorCauchySourceCertification({
+  source,
+  sharedDomainSignature,
+}) {
+  const branchCandidates = Array.isArray(
+    source?.branch_denominator_candidates
+  )
+    ? source.branch_denominator_candidates
+    : [];
+  const branchMajorants = Array.isArray(source?.branch_g_outer_majorants)
+    ? source.branch_g_outer_majorants
+    : [];
+  const branchMajorantSum = branchMajorants.reduce(
+    (sum, value) => sum + Number(value),
+    0
+  );
+  const computedNGOuterBound =
+    Number(source?.l_majorant) +
+    Number(source?.outer_radius ?? source?.n_g_cauchy_outer_radius) ** 2 *
+      Number(source?.lower_polynomial_majorant) +
+    branchMajorantSum;
+  const diagnostic = source?.n_g_outer_bound_diagnostic ?? null;
+  const forbiddenSpeedFields = noForbiddenSpeedFields(source);
+  const checks = {
+    source_present: source !== null && source !== undefined,
+    source_status_valid:
+      source?.status ===
+      "h39-denominator-cauchy-n-g-outer-bound-candidate-emitted",
+    shared_domain_signature_present:
+      sharedDomainSignature !== null && sharedDomainSignature !== undefined,
+    required_fold_pair_branches_present:
+      sourceHasFoldPairBranches(branchCandidates),
+    branch_denominator_candidates_positive:
+      branchCandidates.length === 2 &&
+      branchCandidates.every(
+        (candidate) =>
+          candidate?.status ===
+            "h39-branch-g-denominator-cauchy-ingredient-candidate-emitted" &&
+          candidate?.candidate_denominator_clearance_status ===
+            "candidate-denominator-clearance-positive" &&
+          Number(candidate?.speed_lower_bound) > 0 &&
+          Number(candidate?.delta_clearance_prefix_plus_tail_floor) > 0 &&
+          Number(candidate?.jacobian_abs_prefix_plus_tail_floor) > 0 &&
+          Number(candidate?.branch_g_outer_majorant) >= 0
+      ),
+    branch_transcendental_envelopes_certified:
+      branchCandidates.length === 2 &&
+      branchCandidates.every(
+        (candidate) =>
+          candidate?.outward_rounded_transcendental_provenance === true &&
+          candidate?.sinh_delta_taylor_majorant
+            ?.certifies_outward_rounded_transcendental_upper_bound === true &&
+          candidate?.sinh_phi_taylor_majorant
+            ?.certifies_outward_rounded_transcendental_upper_bound === true
+      ),
+    branch_majorants_match_source:
+      branchMajorants.length === branchCandidates.length &&
+      branchCandidates.every((candidate, index) =>
+        numericClose(
+          candidate?.branch_g_outer_majorant,
+          branchMajorants[index]
+        )
+      ),
+    n_g_outer_bound_formula_matches:
+      diagnostic?.status ===
+        "h39-n-g-denominator-clearance-outer-majorant-emitted" &&
+      numericClose(diagnostic?.pair_g_outer_majorant, branchMajorantSum) &&
+      numericClose(
+        diagnostic?.n_g_outer_bound,
+        source?.n_g_cauchy_outer_bound
+      ) &&
+      numericClose(
+        source?.candidate_N_G_outer_bound,
+        source?.n_g_cauchy_outer_bound
+      ) &&
+      numericClose(computedNGOuterBound, source?.n_g_cauchy_outer_bound),
+    n_g_outer_radius_positive:
+      Number(source?.n_g_cauchy_outer_radius) > 0,
+    no_fixed_speed_window: forbiddenSpeedFields.length === 0,
+  };
+  const failedPredicates = Object.entries(checks)
+    .filter(([, passes]) => passes !== true)
+    .map(([key]) => key);
+  const certifies = failedPredicates.length === 0;
+
+  annotateCertifiedSource(source, {
+    domain_signature: sharedDomainSignature,
+    certifies_directed_rounded: certifies,
+    directed_rounded: certifies,
+    certifies_directed_rounded_shared_domain: certifies,
+    certifies_directed_rounded_denominator_cauchy_N_G_outer_bound:
+      certifies,
+    certificate_status: certifies
+      ? "directed-rounded-certified"
+      : "witness-required",
+    includes_denominator_cauchy_tails: certifies,
+    includes_analytic_tail: certifies,
+    assumes_fixed_speed_window: false,
+  });
+
+  return {
+    source_kind: "denominator-cauchy-N_G-source",
+    certificate_status: certifies
+      ? "directed-rounded-certified"
+      : "witness-required",
+    predicate_check: {
+      checks,
+      failed_predicates: failedPredicates,
+      forbidden_speed_fields: forbiddenSpeedFields,
+      branch_g_outer_majorant_sum: Number.isFinite(branchMajorantSum)
+        ? branchMajorantSum
+        : null,
+      computed_N_G_outer_bound: Number.isFinite(computedNGOuterBound)
+        ? computedNGOuterBound
+        : null,
+      certifies_directed_rounded_source: certifies,
+    },
+  };
+}
+
+function buildH39EvaluatorSourceCertificateReport({
+  coordinateCauchyOuterBounds,
+  denominatorCauchyNGOuterBound,
+  sharedDomainSignature,
+}) {
+  const coordinateReport = buildCoordinateCauchySourceCertification({
+    source: coordinateCauchyOuterBounds,
+    sharedDomainSignature,
+  });
+  const denominatorReport = buildDenominatorCauchySourceCertification({
+    source: denominatorCauchyNGOuterBound,
+    sharedDomainSignature,
+  });
+  const failedPredicates = [
+    ...coordinateReport.predicate_check.failed_predicates.map(
+      (predicate) => `coordinate_cauchy:${predicate}`
+    ),
+    ...denominatorReport.predicate_check.failed_predicates.map(
+      (predicate) => `denominator_cauchy:${predicate}`
+    ),
+  ];
+  const certifies = failedPredicates.length === 0;
+
+  return {
+    schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
+    status: certifies
+      ? "h39-evaluator-source-certificates-emitted"
+      : "h39-evaluator-source-certificates-open",
+    evaluation_level: "directed-rounded-source-certificate-report",
+    shared_domain_signature: sharedDomainSignature,
+    coordinate_cauchy_source_certificate: coordinateReport,
+    denominator_cauchy_source_certificate: denominatorReport,
+    predicate_check: {
+      failed_predicates: failedPredicates,
+      certifies_evaluator_source_handoffs: certifies,
+    },
+    claim_boundary: {
+      assumes_fixed_speed_window: false,
+      certifies_directed_rounded_coordinate_cauchy_outer_bounds:
+        coordinateReport.predicate_check.certifies_directed_rounded_source ===
+        true,
+      certifies_directed_rounded_denominator_cauchy_N_G_outer_bound:
+        denominatorReport.predicate_check.certifies_directed_rounded_source ===
+        true,
+      certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
+        false,
+      retained_branch: false,
+    },
+    result: {
+      h39_evaluator_source_handoffs_certified: certifies,
+      h39_continuous_tail_certificate: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function buildH39EvaluatorGraphRadiiWitness({
+  rhoX,
+  rX,
+  sharedDomainSignature = null,
+} = {}) {
+  if (isProvided(rhoX) !== isProvided(rX)) {
+    throw new Error("graph radii witness requires both rhoX and rX");
+  }
+  const resolvedRhoX = Number(rhoX);
+  const resolvedRX = Number(rX);
+  const forbiddenSpeedFields = noForbiddenSpeedFields({
+    rho_X: rhoX,
+    r_X: rX,
+    domain_signature: sharedDomainSignature,
+  });
+  const checks = {
+    shared_domain_signature_present:
+      sharedDomainSignature !== null && sharedDomainSignature !== undefined,
+    rho_X_finite_positive:
+      Number.isFinite(resolvedRhoX) && resolvedRhoX > 0,
+    r_X_finite_positive:
+      Number.isFinite(resolvedRX) && resolvedRX > 0,
+    r_X_inside_rho_X:
+      Number.isFinite(resolvedRX) &&
+      Number.isFinite(resolvedRhoX) &&
+      resolvedRX < resolvedRhoX,
+    no_fixed_speed_window: forbiddenSpeedFields.length === 0,
+  };
+  const failedPredicates = Object.entries(checks)
+    .filter(([, passes]) => passes !== true)
+    .map(([key]) => key);
+  const certifies = failedPredicates.length === 0;
+
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_GRAPH_RADII_WITNESS_SCHEMA,
+    packet_id:
+      "theta3minus_fold_pair_first_y_gd_h39_graph_radii_witness",
+    promotion_status:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.promotion_status,
+    witness_status: certifies
+      ? "directed-rounded-same-domain-graph-radii-witness-certified"
+      : "open-graph-radii-witness-unverified",
+    component_family: "graph_radii",
+    rho_X: Number.isFinite(resolvedRhoX) ? resolvedRhoX : null,
+    r_X: Number.isFinite(resolvedRX) ? resolvedRX : null,
+    domain_signature: sharedDomainSignature,
+    certifies_directed_rounded: certifies,
+    directed_rounded: certifies,
+    certifies_directed_rounded_shared_domain: certifies,
+    certificate_status: certifies
+      ? "directed-rounded-certified"
+      : "witness-required",
+    assumes_fixed_speed_window: false,
+    predicate_check: {
+      checks,
+      failed_predicates: failedPredicates,
+      forbidden_speed_fields: forbiddenSpeedFields,
+      certifies_graph_radii_witness: certifies,
+    },
+    claim_boundary: {
+      assumes_fixed_speed_window: false,
+      emits_graph_radii_witness: true,
+      certifies_directed_rounded_h39_graph_rho_X_radius: certifies,
+      certifies_directed_rounded_h39_graph_r_X_radius: certifies,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
+        false,
+      retained_branch: false,
+    },
+    result: {
+      theory_status: certifies
+        ? "h39-evaluator-graph-radii-witness-certified"
+        : "h39-evaluator-graph-radii-witness-open",
+      h39_graph_radii_witness: certifies,
+      h39_rho_X_component_witness: certifies,
+      h39_r_X_component_witness: certifies,
+      h39_continuous_tail_certificate: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function hasCompleteCauchyOuterPair(name, outerBound, outerRadius, rho) {
+  const hasBound = isProvided(outerBound);
+  const hasRadius = isProvided(outerRadius);
+  if (hasBound !== hasRadius) {
+    throw new Error(
+      `${name} Cauchy inputs require both outerBound and outerRadius`
+    );
+  }
+  if ((hasBound || hasRadius) && !isProvided(rho)) {
+    throw new Error(`${name} Cauchy inputs require rho`);
+  }
+  return hasBound && hasRadius && isProvided(rho);
 }
 
 function intervalHullFromFormatted(intervals) {
@@ -335,6 +981,12 @@ function hIntervalsWithX(hIntervals, xInterval) {
   return extended;
 }
 
+function expandInterval(interval, radius) {
+  const [left, right] = numericInterval(interval);
+  const resolvedRadius = assertFiniteNonnegativeNumber("radius", radius);
+  return [left - resolvedRadius, right + resolvedRadius];
+}
+
 function intervalAbsUpper(interval) {
   const [left, right] = numericInterval(interval);
   return Math.max(Math.abs(left), Math.abs(right));
@@ -365,6 +1017,101 @@ function assertFinitePositiveNumber(name, value) {
     throw new Error(`${name} must be a finite positive number`);
   }
   return resolved;
+}
+
+export function computeSinhTaylorMajorant({
+  argument,
+  minOddTermCount = 8,
+  maxOddTermCount = 200,
+  tailRatioCeiling = 0.5,
+} = {}) {
+  const x = Number(argument);
+  if (!Number.isFinite(x) || x < 0) {
+    throw new Error("argument must be a finite nonnegative number");
+  }
+  if (
+    !Number.isInteger(minOddTermCount) ||
+    minOddTermCount < 1 ||
+    !Number.isInteger(maxOddTermCount) ||
+    maxOddTermCount < minOddTermCount
+  ) {
+    throw new Error(
+      "minOddTermCount and maxOddTermCount must be positive integers with min <= max"
+    );
+  }
+  const ratioCeiling = Number(tailRatioCeiling);
+  if (!Number.isFinite(ratioCeiling) || ratioCeiling <= 0 || ratioCeiling >= 1) {
+    throw new Error("tailRatioCeiling must satisfy 0 < tailRatioCeiling < 1");
+  }
+
+  let term = root.nextUp(x);
+  let sum = 0;
+  let includedOddTermCount = 0;
+  let firstOmittedTerm = null;
+  let tailRatioBound = null;
+
+  for (let n = 0; n < maxOddTermCount; n += 1) {
+    sum = root.nextUp(sum + term);
+    includedOddTermCount = n + 1;
+    const nextTermRatio = root.nextUp((x * x) / ((2 * n + 2) * (2 * n + 3)));
+    const nextTerm = root.nextUp(term * nextTermRatio);
+    const nextTailRatio = root.nextUp(
+      (x * x) / ((2 * n + 4) * (2 * n + 5))
+    );
+    firstOmittedTerm = nextTerm;
+    tailRatioBound = nextTailRatio;
+    if (
+      includedOddTermCount >= minOddTermCount &&
+      nextTailRatio < ratioCeiling
+    ) {
+      break;
+    }
+    term = nextTerm;
+  }
+
+  if (!Number.isFinite(firstOmittedTerm) || !Number.isFinite(tailRatioBound)) {
+    throw new Error("sinh Taylor majorant overflowed before the tail bound");
+  }
+  if (tailRatioBound >= 1) {
+    throw new Error(
+      "sinh Taylor majorant failed to make the geometric tail ratio less than one"
+    );
+  }
+
+  const tailMajorant = root.nextUp(firstOmittedTerm / (1 - tailRatioBound));
+  const majorant = root.nextUp(sum + tailMajorant);
+
+  return {
+    status: "sinh-taylor-tail-majorant-emitted",
+    certificate_type:
+      "sinh-positive-taylor-geometric-tail-upper-envelope",
+    argument: x,
+    argument_bound: x,
+    included_odd_term_count: includedOddTermCount,
+    included_odd_terms: includedOddTermCount,
+    tail_ratio_ceiling: ratioCeiling,
+    first_omitted_term: firstOmittedTerm,
+    tail_ratio_bound: tailRatioBound,
+    finite_prefix_majorant: sum,
+    finite_prefix_sum: sum,
+    taylor_tail_majorant: tailMajorant,
+    tail_majorant: tailMajorant,
+    sinh_majorant: majorant,
+    sinh_upper_majorant: majorant,
+    dominates_math_sinh: majorant >= Math.sinh(x),
+    certifies_outward_rounded_transcendental_upper_bound:
+      Number.isFinite(majorant) && majorant >= Math.sinh(x),
+    proof_inequality:
+      "sinh(A) <= sum_{j=0}^N A^(2j+1)/(2j+1)! + first_omitted/(1-q_N)",
+    arithmetic: "directed-rounded-floating-upper-envelope",
+    predicates: {
+      argument_bound_finite_nonnegative: true,
+      tail_ratio_strictly_below_one: tailRatioBound < 1,
+      partial_sum_outward_rounded: true,
+      tail_bound_outward_rounded: true,
+      no_math_sinh_oracle: true,
+    },
+  };
 }
 
 export function computeCoefficientPrefixMajorant(
@@ -635,8 +1382,12 @@ export function computeH39NGOuterBoundCandidateMG({
       cauchyDiagnostic.unshifted_finite_prefix_majorant,
     candidate_M_G_cauchy_tail_after_prefix:
       cauchyDiagnostic.unshifted_cauchy_tail_after_prefix_majorant,
+    candidate_M_G_cauchy_tail_remainder_profile:
+      cauchyDiagnostic.unshifted_cauchy_tail_after_prefix_majorant,
     candidate_M_G_prefix_plus_tail_bound:
       cauchyDiagnostic.unshifted_function_prefix_plus_tail_majorant,
+    mGRemainderProfile:
+      cauchyDiagnostic.unshifted_cauchy_tail_after_prefix_majorant,
     shifted_T_G_prefix_plus_tail_majorant:
       cauchyDiagnostic.shifted_function_prefix_plus_tail_majorant,
     cauchy_diagnostic: cauchyDiagnostic,
@@ -1073,6 +1824,53 @@ export function computeH39DenominatorCauchyPrimitiveClosureCandidate({
     rhoXMultiplier,
     rXFraction,
   });
+  const ceilingDiagnostic =
+    computeH39DenominatorCauchyOuterBoundCeilingCandidate({
+      nGShiftedCoefficients,
+      rho,
+      nGOuterRadius,
+      nGShift,
+      lMajorant,
+      lowerPolynomialMajorant,
+      outerRadius,
+      candidate_E_R_bound,
+      candidate_nu_J_bound,
+      candidate_L_J_reduced_continuous_majorant,
+      candidate_M_R_bound,
+      radiusMultiple,
+      rhoXMultiplier,
+      rXFraction,
+    });
+  const actualBranchGOuterMajorantSum =
+    nGOuterBoundDiagnostic.pair_g_outer_majorant;
+  const branchGSumBudgetCeiling =
+    ceilingDiagnostic.branch_g_sum_budget_ceiling;
+  const branchGSumBudgetMargin =
+    Number.isFinite(branchGSumBudgetCeiling)
+      ? branchGSumBudgetCeiling - actualBranchGOuterMajorantSum
+      : null;
+  const branchGSumBudgetRatio =
+    Number.isFinite(branchGSumBudgetCeiling) && branchGSumBudgetCeiling > 0
+      ? actualBranchGOuterMajorantSum / branchGSumBudgetCeiling
+      : null;
+  const denominatorBudgetStatus =
+    !Number.isFinite(branchGSumBudgetCeiling) || branchGSumBudgetCeiling <= 0
+      ? "h39-denominator-budget-no-positive-branch-g-ceiling"
+      : branchGSumBudgetMargin > 0
+        ? "h39-denominator-budget-candidate-below-ceiling"
+        : "h39-denominator-budget-candidate-exceeds-ceiling";
+  const canEmitAllocationTargets =
+    Number.isFinite(branchGSumBudgetCeiling) &&
+    branchGSumBudgetCeiling > 0 &&
+    branchDenominatorCandidates.every(
+      (candidate) => candidate !== null && typeof candidate === "object"
+    );
+  const branchDenominatorAllocationTargets = canEmitAllocationTargets
+    ? computeBranchGDenominatorAllocationTargetsCandidate({
+        branchGSumBudgetCeiling,
+        branchInputs: branchDenominatorCandidates,
+      })
+    : null;
 
   return {
     schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
@@ -1091,6 +1889,20 @@ export function computeH39DenominatorCauchyPrimitiveClosureCandidate({
       primitiveReplay.candidate_scalar_replay_closes ?? false,
     candidate_rouche_primitive_closure_ratio:
       primitiveReplay.candidate_rouche_primitive_closure_ratio ?? null,
+    denominator_budget_status: denominatorBudgetStatus,
+    n_g_outer_bound_ceiling:
+      ceilingDiagnostic.n_g_outer_bound_ceiling ?? null,
+    branch_g_sum_budget_ceiling: branchGSumBudgetCeiling ?? null,
+    actual_branch_g_outer_majorant_sum:
+      actualBranchGOuterMajorantSum,
+    branch_g_sum_budget_margin: branchGSumBudgetMargin,
+    branch_g_sum_budget_ratio: branchGSumBudgetRatio,
+    branch_g_sum_shrink_factor_to_ceiling:
+      branchGSumBudgetRatio === null ? null : Math.max(1, branchGSumBudgetRatio),
+    denominator_cauchy_outer_bound_ceiling_diagnostic:
+      ceilingDiagnostic,
+    branch_denominator_allocation_targets:
+      branchDenominatorAllocationTargets,
     n_g_outer_bound_diagnostic: nGOuterBoundDiagnostic,
     primitive_replay: primitiveReplay,
     candidate_bound_source:
@@ -1211,6 +2023,55 @@ export function computeCauchyShiftedPrefixTailMajorant({
   };
 }
 
+export function computeH39R43AnalyticRemainderProfileCandidate({
+  coefficients,
+  outerBound,
+  outerRadius,
+  targetRadius,
+  shiftPower =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift,
+} = {}) {
+  const cauchyDiagnostic = computeCauchyShiftedPrefixTailMajorant({
+    coefficients,
+    outerBound,
+    outerRadius,
+    targetRadius,
+    shiftPower,
+  });
+  return {
+    status: "h39-r43-analytic-remainder-profile-candidate-emitted",
+    evaluation_level: "candidate-cauchy-analytic-remainder-profile",
+    r43_shift_power: cauchyDiagnostic.shift_power,
+    outer_bound: cauchyDiagnostic.outer_bound,
+    outer_radius: cauchyDiagnostic.outer_radius,
+    target_radius: cauchyDiagnostic.target_radius,
+    q: cauchyDiagnostic.q,
+    retained_shifted_prefix_order: cauchyDiagnostic.finite_prefix_order,
+    candidate_E_R_finite_prefix:
+      cauchyDiagnostic.finite_prefix_majorant,
+    candidate_E_R_cauchy_tail_after_prefix_profile:
+      cauchyDiagnostic.cauchy_tail_after_prefix_majorant,
+    candidate_E_R_prefix_plus_tail_bound:
+      cauchyDiagnostic.shifted_function_prefix_plus_tail_majorant,
+    candidate_M_R_finite_prefix:
+      cauchyDiagnostic.y_derivative_finite_prefix_majorant,
+    candidate_M_R_cauchy_tail_after_prefix_profile:
+      cauchyDiagnostic.y_derivative_cauchy_tail_after_prefix_majorant,
+    candidate_M_R_prefix_plus_tail_bound:
+      cauchyDiagnostic.y_derivative_prefix_plus_tail_majorant,
+    centerResidualRemainderProfile:
+      cauchyDiagnostic.cauchy_tail_after_prefix_majorant,
+    rootTangentNumeratorRemainderProfile:
+      cauchyDiagnostic.y_derivative_cauchy_tail_after_prefix_majorant,
+    cauchy_diagnostic: cauchyDiagnostic,
+    candidate_bound_source:
+      "shifted R43 retained prefix plus shifted R43 Cauchy tail",
+    certifies_continuous_polydisc_primitives: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
 export function computeCauchyCoefficientPrefixMajorant({
   coefficients,
   outerBound,
@@ -1226,10 +2087,12 @@ export function computeCauchyCoefficientPrefixMajorant({
   });
   return {
     status: "cauchy-coefficient-prefix-majorant-emitted",
+    certificate_type: "cauchy-coefficient-prefix-geometric-tail-majorant",
     outer_bound: diagnostic.outer_bound,
     outer_radius: diagnostic.outer_radius,
     target_radius: diagnostic.target_radius,
     q: diagnostic.q,
+    tail_ratio_bound: diagnostic.q,
     finite_prefix_order: diagnostic.finite_prefix_order,
     finite_prefix_majorant: diagnostic.finite_prefix_majorant,
     cauchy_tail_after_prefix_majorant:
@@ -1237,7 +2100,99 @@ export function computeCauchyCoefficientPrefixMajorant({
     prefix_plus_tail_majorant:
       diagnostic.shifted_function_prefix_plus_tail_majorant,
     cauchy_diagnostic: diagnostic,
+    proof_inequality:
+      "sup_{|y|<=rho} |f(y)| <= finite prefix majorant + B q^(N+1)/(1-q)",
+    predicates: {
+      target_radius_inside_outer_radius:
+        diagnostic.target_radius >= 0 &&
+        diagnostic.target_radius < diagnostic.outer_radius,
+      tail_ratio_strictly_below_one:
+        diagnostic.q >= 0 && diagnostic.q < 1,
+      finite_prefix_outward_rounded: true,
+      cauchy_tail_outward_rounded: true,
+      no_fixed_speed_window: true,
+    },
     certifies_continuous_polydisc_primitives: false,
+  };
+}
+
+export function buildCoordinateCauchyEnvelopeCertificate({
+  coordinate,
+  diagnostic,
+  domainSignature = null,
+  suppliedCoordinateMajorant = null,
+} = {}) {
+  const prefix = Number(diagnostic?.finite_prefix_majorant);
+  const tail = Number(diagnostic?.cauchy_tail_after_prefix_majorant);
+  const prefixPlusTail = Number(diagnostic?.prefix_plus_tail_majorant);
+  const q = Number(diagnostic?.q ?? diagnostic?.tail_ratio_bound);
+  const target = Number(diagnostic?.target_radius);
+  const outer = Number(diagnostic?.outer_radius);
+  const supplied = isProvided(suppliedCoordinateMajorant)
+    ? Number(suppliedCoordinateMajorant)
+    : prefixPlusTail;
+  const checks = {
+    diagnostic_status_valid:
+      diagnostic?.status === "cauchy-coefficient-prefix-majorant-emitted",
+    coordinate_label_present:
+      coordinate !== null && coordinate !== undefined,
+    domain_signature_present:
+      domainSignature !== null && domainSignature !== undefined,
+    target_radius_inside_outer_radius:
+      Number.isFinite(target) && Number.isFinite(outer) && target >= 0 && target < outer,
+    tail_ratio_strictly_below_one:
+      Number.isFinite(q) && q >= 0 && q < 1,
+    finite_prefix_nonnegative:
+      Number.isFinite(prefix) && prefix >= 0,
+    cauchy_tail_nonnegative:
+      Number.isFinite(tail) && tail >= 0,
+    prefix_plus_tail_covers_parts:
+      Number.isFinite(prefixPlusTail) &&
+      Number.isFinite(prefix) &&
+      Number.isFinite(tail) &&
+      prefixPlusTail >= prefix + tail,
+    supplied_majorant_matches_envelope:
+      Number.isFinite(supplied) && supplied === prefixPlusTail,
+    no_fixed_speed_window: true,
+  };
+  const failedPredicates = Object.entries(checks)
+    .filter(([, passes]) => passes !== true)
+    .map(([key]) => key);
+  const certifiesEnvelope = failedPredicates.length === 0;
+
+  return {
+    status: certifiesEnvelope
+      ? "coordinate-cauchy-envelope-certified"
+      : "coordinate-cauchy-envelope-open",
+    certificate_type:
+      "coordinate-cauchy-prefix-geometric-tail-upper-envelope",
+    coordinate_label: coordinate ?? null,
+    domain_signature: domainSignature,
+    outer_bound: Number.isFinite(Number(diagnostic?.outer_bound))
+      ? Number(diagnostic.outer_bound)
+      : null,
+    outer_radius: Number.isFinite(outer) ? outer : null,
+    target_radius: Number.isFinite(target) ? target : null,
+    tail_ratio_bound: Number.isFinite(q) ? q : null,
+    finite_prefix_order: Number.isInteger(diagnostic?.finite_prefix_order)
+      ? diagnostic.finite_prefix_order
+      : null,
+    finite_prefix_majorant: Number.isFinite(prefix) ? prefix : null,
+    cauchy_tail_after_prefix_majorant: Number.isFinite(tail)
+      ? tail
+      : null,
+    prefix_plus_tail_majorant: Number.isFinite(prefixPlusTail)
+      ? prefixPlusTail
+      : null,
+    supplied_coordinate_majorant: Number.isFinite(supplied)
+      ? supplied
+      : null,
+    proof_inequality:
+      "sup_{|y|<=rho} |coordinate(y)| <= finite prefix majorant + B q^(N+1)/(1-q)",
+    predicates: checks,
+    failed_predicates: failedPredicates,
+    certifies_coordinate_cauchy_envelope: certifiesEnvelope,
+    assumes_fixed_speed_window: false,
   };
 }
 
@@ -1277,6 +2232,43 @@ export function computeCauchyCoefficientPrefixFloor({
     cauchy_tail_after_prefix_majorant: tailAfterPrefixMajorant,
     prefix_plus_tail_floor: finitePrefixFloor - tailAfterPrefixMajorant,
     certifies_continuous_polydisc_primitives: false,
+  };
+}
+
+export function computeH39JacobianAnalyticRemainderProfileCandidate({
+  coefficients,
+  outerBound,
+  outerRadius,
+  targetRadius,
+} = {}) {
+  const cauchyDiagnostic = computeCauchyCoefficientPrefixFloor({
+    coefficients,
+    outerBound,
+    outerRadius,
+    targetRadius,
+  });
+  return {
+    status: "h39-jacobian-analytic-remainder-profile-candidate-emitted",
+    evaluation_level: "candidate-cauchy-analytic-remainder-profile",
+    outer_bound: cauchyDiagnostic.outer_bound,
+    outer_radius: cauchyDiagnostic.outer_radius,
+    target_radius: cauchyDiagnostic.target_radius,
+    q: cauchyDiagnostic.q,
+    retained_shifted_prefix_order: cauchyDiagnostic.finite_prefix_order,
+    candidate_nu_J_finite_prefix:
+      cauchyDiagnostic.finite_prefix_floor,
+    candidate_nu_J_cauchy_tail_loss_profile:
+      cauchyDiagnostic.cauchy_tail_after_prefix_majorant,
+    candidate_nu_J_prefix_plus_tail_floor:
+      cauchyDiagnostic.prefix_plus_tail_floor,
+    centerJacobianLowerRemainderProfile:
+      cauchyDiagnostic.cauchy_tail_after_prefix_majorant,
+    cauchy_diagnostic: cauchyDiagnostic,
+    candidate_bound_source:
+      "R43 X-Jacobian retained floor plus explicit Jacobian Cauchy tail loss",
+    certifies_continuous_polydisc_primitives: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
   };
 }
 
@@ -1647,6 +2639,890 @@ export function computeH39KernelContinuousMajorant({
   };
 }
 
+function positiveSpeedRatioLowerBound(cell) {
+  const speedInterval = numericInterval(cell?.speed_interval);
+  return speedInterval[0] > 0 ? speedInterval[0] : null;
+}
+
+function buildH39KepsilonBranchCoordinateWitnessClaimBoundary(certifiesBranch) {
+  return {
+    assumes_fixed_speed_window: false,
+    computes_branch_coordinate_bounds: true,
+    consumes_cauchy_coordinate_tails: true,
+    certifies_directed_rounded_K_epsilon_branch_coordinate_witness:
+      certifiesBranch,
+    certifies_directed_rounded_K_epsilon_majorant: false,
+    certifies_directed_rounded_L_J_component_witness: false,
+    certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
+      false,
+    retained_branch: false,
+    strongest_claim: certifiesBranch
+      ? "Certifies only one same-domain h39 K_epsilon branch-coordinate witness; the M_K branch maximum and L_J subset remain downstream checks."
+      : "Computes the h39 K_epsilon branch-coordinate witness fields and records which directed-rounded or analytic-tail predicate is still missing.",
+  };
+}
+
+export function buildH39KepsilonBranchCoordinateWitness({
+  context = makeTheta3minusFirstYGdSeriesContext(),
+  cell,
+  branch,
+  branchSign = branchSignValue(branch),
+  hIntervals,
+  xInterval = [0, 0],
+  rho,
+  outerRadius = null,
+  deltaOuterBound = null,
+  phiOuterBound = null,
+  sharedDomainSignature = null,
+  directedRoundedCoordinateProvenance = false,
+  outwardRoundedTranscendentalProvenance = false,
+  useSinhTaylorEnvelope = true,
+  sinhTaylorOptions = {},
+} = {}) {
+  const resolvedRho = Number(rho);
+  if (!Number.isFinite(resolvedRho) || resolvedRho < 0) {
+    throw new Error("rho must be a finite nonnegative number");
+  }
+  const { delta, phi } = branchSeriesCoordinates({
+    context,
+    cell,
+    branch,
+    branchSign,
+    hIntervals,
+    xInterval,
+  });
+  const hasCauchyInputs =
+    isProvided(outerRadius) &&
+    isProvided(deltaOuterBound) &&
+    isProvided(phiOuterBound);
+  const deltaDiagnostic = hasCauchyInputs
+    ? computeCauchyCoefficientPrefixMajorant({
+        coefficients: delta,
+        outerBound: deltaOuterBound,
+        outerRadius,
+        targetRadius: resolvedRho,
+      })
+    : null;
+  const phiDiagnostic = hasCauchyInputs
+    ? computeCauchyCoefficientPrefixMajorant({
+        coefficients: phi,
+        outerBound: phiOuterBound,
+        outerRadius,
+        targetRadius: resolvedRho,
+      })
+    : null;
+  const deltaMajorant = hasCauchyInputs
+    ? deltaDiagnostic.prefix_plus_tail_majorant
+    : computeSeriesCoordinateMajorant(delta, resolvedRho);
+  const phiMajorant = hasCauchyInputs
+    ? phiDiagnostic.prefix_plus_tail_majorant
+    : computeSeriesCoordinateMajorant(phi, resolvedRho);
+  const deltaCoordinateCauchyEnvelope = hasCauchyInputs
+    ? buildCoordinateCauchyEnvelopeCertificate({
+        coordinate: "delta_epsilon",
+        diagnostic: deltaDiagnostic,
+        domainSignature: sharedDomainSignature,
+        suppliedCoordinateMajorant: deltaMajorant,
+      })
+    : null;
+  const phiCoordinateCauchyEnvelope = hasCauchyInputs
+    ? buildCoordinateCauchyEnvelopeCertificate({
+        coordinate: "phi_epsilon",
+        diagnostic: phiDiagnostic,
+        domainSignature: sharedDomainSignature,
+        suppliedCoordinateMajorant: phiMajorant,
+      })
+    : null;
+  const deltaCoordinateEnvelopeCertified =
+    deltaCoordinateCauchyEnvelope
+      ?.certifies_coordinate_cauchy_envelope === true;
+  const phiCoordinateEnvelopeCertified =
+    phiCoordinateCauchyEnvelope
+      ?.certifies_coordinate_cauchy_envelope === true;
+  const hasCertifiedCoordinateEnvelopes =
+    deltaCoordinateEnvelopeCertified && phiCoordinateEnvelopeCertified;
+  const nuLowerBound = positiveSpeedRatioLowerBound(cell);
+  const speedTermUpper =
+    nuLowerBound === null
+      ? null
+      : root.nextUp(2 / (nuLowerBound * nuLowerBound));
+  const deltaSinhTaylorMajorant = useSinhTaylorEnvelope
+    ? computeSinhTaylorMajorant({
+        argument: deltaMajorant,
+        ...sinhTaylorOptions,
+      })
+    : null;
+  const phiSinhTaylorMajorant = useSinhTaylorEnvelope
+    ? computeSinhTaylorMajorant({
+        argument: phiMajorant,
+        ...sinhTaylorOptions,
+      })
+    : null;
+  const deltaSinhEnvelopeCertified =
+    deltaSinhTaylorMajorant
+      ?.certifies_outward_rounded_transcendental_upper_bound === true &&
+    deltaSinhTaylorMajorant.predicates
+      ?.tail_ratio_strictly_below_one === true &&
+    Number(deltaSinhTaylorMajorant.argument_bound) >= deltaMajorant;
+  const phiSinhEnvelopeCertified =
+    phiSinhTaylorMajorant
+      ?.certifies_outward_rounded_transcendental_upper_bound === true &&
+    phiSinhTaylorMajorant.predicates
+      ?.tail_ratio_strictly_below_one === true &&
+    Number(phiSinhTaylorMajorant.argument_bound) >= phiMajorant;
+  const sinhDeltaUpper =
+    deltaSinhTaylorMajorant?.sinh_upper_majorant ??
+    root.nextUp(Math.sinh(deltaMajorant));
+  const sinhPhiUpper =
+    phiSinhTaylorMajorant?.sinh_upper_majorant ??
+    root.nextUp(Math.sinh(phiMajorant));
+  const hasCertifiedSinhEnvelopes =
+    deltaSinhEnvelopeCertified && phiSinhEnvelopeCertified;
+  const transcendentalProvenanceSource = hasCertifiedSinhEnvelopes
+    ? "sinh-positive-taylor-geometric-tail-upper-envelope"
+    : outwardRoundedTranscendentalProvenance === true
+      ? "external-outward-rounded-transcendental-claim-unaccepted-without-envelope"
+      : null;
+  const coordinateProvenanceSource = hasCertifiedCoordinateEnvelopes
+    ? "coordinate-cauchy-prefix-geometric-tail-upper-envelope"
+    : directedRoundedCoordinateProvenance === true
+      ? "external-directed-rounded-coordinate-claim-unaccepted-without-envelope"
+      : null;
+  const branchMajorant =
+    speedTermUpper === null
+      ? null
+      : root.nextUp(speedTermUpper + sinhDeltaUpper + sinhPhiUpper);
+  const checks = {
+    branch_label_present: branch !== null && branch !== undefined,
+    shared_domain_signature_present:
+      sharedDomainSignature !== null && sharedDomainSignature !== undefined,
+    positive_speed_ratio_lower_bound: nuLowerBound !== null,
+    coordinate_cauchy_tail_majorants_present: hasCauchyInputs,
+    directed_rounded_coordinate_provenance:
+      hasCertifiedCoordinateEnvelopes,
+    delta_coordinate_cauchy_envelope_certified:
+      deltaCoordinateEnvelopeCertified,
+    phi_coordinate_cauchy_envelope_certified:
+      phiCoordinateEnvelopeCertified,
+    outward_rounded_transcendental_provenance:
+      hasCertifiedSinhEnvelopes,
+    delta_sinh_upper_envelope_certified: deltaSinhEnvelopeCertified,
+    phi_sinh_upper_envelope_certified: phiSinhEnvelopeCertified,
+  };
+  const failedPredicates = Object.entries(checks)
+    .filter(([, passes]) => passes !== true)
+    .map(([key]) => key);
+  const certifiesBranch =
+    failedPredicates.length === 0 &&
+    Number.isFinite(branchMajorant) &&
+    Number.isFinite(deltaMajorant) &&
+    Number.isFinite(phiMajorant);
+
+  const branchCoordinateWitness = {
+    branch: branch ?? branchSign,
+    domain_signature: sharedDomainSignature,
+    certifies_directed_rounded: certifiesBranch,
+    directed_rounded: certifiesBranch,
+    certificate_status: certifiesBranch
+      ? "directed-rounded-certified"
+      : "witness-required",
+    nu_lower_bound: nuLowerBound,
+    delta_abs_bound_D: deltaMajorant,
+    phi_abs_bound_Phi: phiMajorant,
+    speed_term_upper: speedTermUpper,
+    delta_coordinate_cauchy_envelope: deltaCoordinateCauchyEnvelope,
+    phi_coordinate_cauchy_envelope: phiCoordinateCauchyEnvelope,
+    delta_coordinate_bound_source: deltaCoordinateCauchyEnvelope
+      ? "coordinate-cauchy-prefix-geometric-tail-upper-envelope"
+      : null,
+    phi_coordinate_bound_source: phiCoordinateCauchyEnvelope
+      ? "coordinate-cauchy-prefix-geometric-tail-upper-envelope"
+      : null,
+    sinh_delta_upper: sinhDeltaUpper,
+    sinh_phi_upper: sinhPhiUpper,
+    sinh_delta_taylor_majorant: deltaSinhTaylorMajorant,
+    sinh_phi_taylor_majorant: phiSinhTaylorMajorant,
+    sinh_delta_upper_source: deltaSinhTaylorMajorant
+      ? "sinh-positive-taylor-geometric-tail-upper-envelope"
+      : null,
+    sinh_phi_upper_source: phiSinhTaylorMajorant
+      ? "sinh-positive-taylor-geometric-tail-upper-envelope"
+      : null,
+    coordinate_bounds_same_domain: hasCertifiedCoordinateEnvelopes,
+    outward_rounded_transcendentals: hasCertifiedSinhEnvelopes,
+    includes_analytic_tail: hasCertifiedCoordinateEnvelopes,
+    assumes_fixed_speed_window: false,
+  };
+
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_KEPSILON_BRANCH_COORDINATE_WITNESS_SCHEMA,
+    packet_id:
+      "theta3minus_fold_pair_first_y_gd_h39_K_epsilon_branch_coordinate_witness",
+    promotion_status:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.promotion_status,
+    witness_status: certifiesBranch
+      ? "directed-rounded-same-domain-K_epsilon-branch-coordinate-witness-certified"
+      : "open-K_epsilon-branch-coordinate-witness-unverified",
+    branch: branch ?? branchSign,
+    rho: resolvedRho,
+    outer_radius: hasCauchyInputs ? Number(outerRadius) : null,
+    shared_domain_signature: sharedDomainSignature,
+    coordinate_diagnostics: {
+      delta_coordinate_majorant: deltaMajorant,
+      phi_coordinate_majorant: phiMajorant,
+      delta_cauchy_diagnostic: deltaDiagnostic,
+      phi_cauchy_diagnostic: phiDiagnostic,
+      delta_coordinate_cauchy_envelope: deltaCoordinateCauchyEnvelope,
+      phi_coordinate_cauchy_envelope: phiCoordinateCauchyEnvelope,
+      coordinate_provenance_source: coordinateProvenanceSource,
+      speed_ratio_lower_bound: nuLowerBound,
+      speed_term_upper: speedTermUpper,
+      sinh_delta_upper: sinhDeltaUpper,
+      sinh_phi_upper: sinhPhiUpper,
+      sinh_delta_taylor_majorant: deltaSinhTaylorMajorant,
+      sinh_phi_taylor_majorant: phiSinhTaylorMajorant,
+      transcendental_provenance_source: transcendentalProvenanceSource,
+      branch_K_epsilon_majorant: branchMajorant,
+    },
+    predicate_check: {
+      checks,
+      failed_predicates: failedPredicates,
+      certifies_K_epsilon_branch_coordinate_witness: certifiesBranch,
+    },
+    branch_coordinate_witness: branchCoordinateWitness,
+    no_go_theorem: certifiesBranch
+      ? null
+      : {
+          hypothesis:
+            "The branch coordinate row supplies only finite coordinate seminorms or incomplete Cauchy/provenance inputs.",
+          conclusion:
+            "The branch cannot feed a directed-rounded K_epsilon majorant witness until the failed predicates list is empty on the same graph-centered signature.",
+          promotion_obstruction:
+            failedPredicates[0] ??
+            "open-K_epsilon-branch-coordinate-witness-unverified",
+        },
+    conditional_theorem: {
+      hypothesis:
+        "Same-domain coordinate Cauchy envelopes give |delta_epsilon| <= D_epsilon and |phi_epsilon| <= Phi_epsilon, the speed interval gives nu >= nu_- > 0, and the sinh enclosures are supplied by positive Taylor series prefixes with geometric omitted-tail bounds.",
+      conclusion:
+        "The emitted branch witness supplies the fields needed for B_nu + sinh(D_epsilon) + sinh(Phi_epsilon) to contribute to the h39 K_epsilon majorant M_K.",
+    },
+    claim_boundary:
+      buildH39KepsilonBranchCoordinateWitnessClaimBoundary(certifiesBranch),
+    result: {
+      theory_status: certifiesBranch
+        ? "h39-K_epsilon-branch-coordinate-witness-certified"
+        : "h39-K_epsilon-branch-coordinate-witness-open",
+      h39_K_epsilon_branch_coordinate_witness: certifiesBranch,
+      h39_K_epsilon_majorant_witness: false,
+      h39_L_J_component_witness: false,
+      h39_continuous_tail_certificate: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function buildH39KepsilonBranchCoordinateWitnessSet({
+  context = makeTheta3minusFirstYGdSeriesContext(),
+  cell,
+  branchInputs,
+  rho,
+  outerRadius = null,
+  deltaOuterBound = null,
+  phiOuterBound = null,
+  sharedDomainSignature = null,
+  directedRoundedCoordinateProvenance = false,
+  outwardRoundedTranscendentalProvenance = false,
+  useSinhTaylorEnvelope = true,
+  sinhTaylorOptions = {},
+} = {}) {
+  if (!Array.isArray(branchInputs) || branchInputs.length !== 2) {
+    throw new Error("branchInputs must contain the two fold-pair branches");
+  }
+  const branchPackets = branchInputs.map((input) =>
+    buildH39KepsilonBranchCoordinateWitness({
+      context,
+      cell,
+      branch: input.branch,
+      branchSign: input.branchSign,
+      hIntervals: input.hIntervals,
+      xInterval: input.xInterval ?? [0, 0],
+      rho,
+      outerRadius,
+      deltaOuterBound,
+      phiOuterBound,
+      sharedDomainSignature,
+      directedRoundedCoordinateProvenance,
+      outwardRoundedTranscendentalProvenance,
+      useSinhTaylorEnvelope,
+      sinhTaylorOptions,
+    })
+  );
+  const failedPredicates = branchPackets.flatMap((packet) =>
+    packet.predicate_check.failed_predicates.map(
+      (predicate) => `${packet.branch}:${predicate}`
+    )
+  );
+  const branchLabels = new Set(branchPackets.map((packet) => packet.branch));
+  for (const requiredBranch of ["-", "+"]) {
+    if (!branchLabels.has(requiredBranch)) {
+      failedPredicates.push(`branch-cover-missing:${requiredBranch}`);
+    }
+  }
+  for (const label of branchLabels) {
+    if (!["-", "+"].includes(label)) {
+      failedPredicates.push(`branch-cover-unrecognized:${label}`);
+    }
+  }
+  const certifiesWitnessSet =
+    branchPackets.length === 2 &&
+    failedPredicates.length === 0 &&
+    branchPackets.every(
+      (packet) =>
+        packet.result.h39_K_epsilon_branch_coordinate_witness === true
+    );
+
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_KEPSILON_BRANCH_COORDINATE_WITNESS_SCHEMA,
+    packet_id:
+      "theta3minus_fold_pair_first_y_gd_h39_K_epsilon_branch_coordinate_witness_set",
+    promotion_status:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.promotion_status,
+    witness_status: certifiesWitnessSet
+      ? "directed-rounded-same-domain-K_epsilon-branch-coordinate-witness-set-certified"
+      : "open-K_epsilon-branch-coordinate-witness-set-unverified",
+    rho: Number(rho),
+    outer_radius: isProvided(outerRadius) ? Number(outerRadius) : null,
+    shared_domain_signature: sharedDomainSignature,
+    branch_coordinate_witness_packets: branchPackets,
+    branch_coordinate_witnesses: branchPackets.map(
+      (packet) => packet.branch_coordinate_witness
+    ),
+    predicate_check: {
+      branch_count: branchPackets.length,
+      failed_predicates: failedPredicates,
+      certifies_K_epsilon_branch_coordinate_witness_set:
+        certifiesWitnessSet,
+    },
+    claim_boundary: {
+      assumes_fixed_speed_window: false,
+      certifies_directed_rounded_K_epsilon_branch_coordinate_witness_set:
+        certifiesWitnessSet,
+      certifies_directed_rounded_K_epsilon_majorant: false,
+      certifies_directed_rounded_L_J_component_witness: false,
+      certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
+        false,
+      retained_branch: false,
+    },
+    result: {
+      theory_status: certifiesWitnessSet
+        ? "h39-K_epsilon-branch-coordinate-witness-set-certified"
+        : "h39-K_epsilon-branch-coordinate-witness-set-open",
+      h39_K_epsilon_branch_coordinate_witness_set: certifiesWitnessSet,
+      h39_K_epsilon_majorant_witness: false,
+      h39_L_J_component_witness: false,
+      h39_continuous_tail_certificate: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function computeH39SourceResidualCoordinateOuterBoundCandidate({
+  context = makeTheta3minusFirstYGdSeriesContext(),
+  cell,
+  branch,
+  branchSign = branchSignValue(branch),
+  hIntervals,
+  xInterval = [0, 0],
+  outerRadius,
+  xOuterRadius = 0,
+} = {}) {
+  const resolvedOuterRadius = assertFinitePositiveNumber(
+    "outerRadius",
+    outerRadius
+  );
+  const resolvedXOuterRadius = assertFiniteNonnegativeNumber(
+    "xOuterRadius",
+    xOuterRadius
+  );
+  const xOuterInterval = expandInterval(xInterval, resolvedXOuterRadius);
+  const { delta, phi } = branchSeriesCoordinates({
+    context,
+    cell,
+    branch,
+    branchSign,
+    hIntervals,
+    xInterval: xOuterInterval,
+  });
+  const deltaMajorant = computeSeriesCoordinateMajorant(
+    delta,
+    resolvedOuterRadius
+  );
+  const phiMajorant = computeSeriesCoordinateMajorant(
+    phi,
+    resolvedOuterRadius
+  );
+  const inverseSpeedSquaredMajorant = intervalAbsUpper(
+    root.inverseSpeedSquaredInterval(cell.speed_interval)
+  );
+  const deltaSinhTaylorMajorant = computeSinhTaylorMajorant({
+    argument: deltaMajorant,
+  });
+  const phiSinhTaylorMajorant = computeSinhTaylorMajorant({
+    argument: phiMajorant,
+  });
+  const sourceOuterBound = root.nextUp(
+    inverseSpeedSquaredMajorant * deltaMajorant ** 2 +
+      2 +
+      deltaSinhTaylorMajorant.sinh_upper_majorant +
+      phiSinhTaylorMajorant.sinh_upper_majorant
+  );
+
+  return {
+    schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
+    status:
+      "h39-source-residual-coordinate-cauchy-outer-bound-candidate-emitted",
+    evaluation_level: "candidate-coordinate-seminorm-cauchy-outer-bound",
+    branch: branch ?? branchSign,
+    outer_radius: resolvedOuterRadius,
+    x_outer_radius: resolvedXOuterRadius,
+    x_outer_interval: xOuterInterval,
+    delta_coordinate_majorant_outer_radius: deltaMajorant,
+    phi_coordinate_majorant_outer_radius: phiMajorant,
+    inverse_speed_squared_majorant: inverseSpeedSquaredMajorant,
+    sinh_delta_taylor_majorant: deltaSinhTaylorMajorant,
+    sinh_phi_taylor_majorant: phiSinhTaylorMajorant,
+    sinh_delta_upper: deltaSinhTaylorMajorant.sinh_upper_majorant,
+    sinh_phi_upper: phiSinhTaylorMajorant.sinh_upper_majorant,
+    outward_rounded_transcendental_provenance: true,
+    source_residual_outer_bound_formula:
+      "B_F^out = S_nu D^2 + 2 + S_delta + S_phi with certified sinh upper envelopes",
+    candidate_R43_source_outer_bound: sourceOuterBound,
+    r43_cauchy_outer_bound: sourceOuterBound,
+    r43_cauchy_outer_radius: resolvedOuterRadius,
+    r43_cauchy_tail_shift_power:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift,
+    certifies_continuous_polydisc_primitives: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function computeH39ShiftedR43RemovableOuterBoundCandidate({
+  context = makeTheta3minusFirstYGdSeriesContext(),
+  cell,
+  branch,
+  branchSign = branchSignValue(branch),
+  hIntervals,
+  xInterval = [0, 0],
+  outerBound,
+  outerRadius,
+  directedRoundedShiftedR43Provenance = false,
+  certifiesShiftedR43ZeroPrefix = false,
+} = {}) {
+  const resolvedOuterBound = assertFiniteNonnegativeNumber(
+    "outerBound",
+    outerBound
+  );
+  const resolvedOuterRadius = assertFinitePositiveNumber(
+    "outerRadius",
+    outerRadius
+  );
+  const source = sourceEquationSeries({
+    context,
+    cell,
+    branch,
+    branchSign,
+    hIntervals,
+    xInterval,
+  });
+  const shift =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift;
+  const zeroPrefix = source.slice(0, shift);
+  const shiftedCoefficients = source.slice(shift);
+  const zeroPrefixContainsZero = zeroPrefix.every(
+    ([left, right]) => left <= 0 && right >= 0
+  );
+  const zeroPrefixCertified =
+    zeroPrefixContainsZero || certifiesShiftedR43ZeroPrefix === true;
+  const shiftedPrefixMajorant = computeCoefficientPrefixMajorant(
+    shiftedCoefficients,
+    resolvedOuterRadius
+  );
+  const coversFinitePrefix =
+    resolvedOuterBound >= shiftedPrefixMajorant ||
+    numericClose(resolvedOuterBound, shiftedPrefixMajorant);
+
+  return {
+    schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
+    status:
+      "h39-shifted-r43-removable-cauchy-outer-bound-candidate-emitted",
+    evaluation_level:
+      "candidate-shifted-removable-r43-cauchy-outer-bound",
+    branch: branch ?? branchSign,
+    source_envelope_kind: "shifted-removable-r43-cauchy-outer-bound",
+    r43_source_shift: shift,
+    r43_cauchy_tail_shift_power: 0,
+    outer_radius: resolvedOuterRadius,
+    r43_cauchy_outer_radius: resolvedOuterRadius,
+    shifted_R43_outer_radius: resolvedOuterRadius,
+    r43_shifted_cauchy_outer_radius: resolvedOuterRadius,
+    candidate_R43_source_outer_bound: resolvedOuterBound,
+    r43_cauchy_outer_bound: resolvedOuterBound,
+    shifted_R43_outer_bound: resolvedOuterBound,
+    r43_shifted_cauchy_outer_bound: resolvedOuterBound,
+    shifted_R43_finite_prefix_majorant_outer_radius:
+      shiftedPrefixMajorant,
+    shifted_R43_bound_covers_finite_prefix: coversFinitePrefix,
+    source_zero_prefix_contains_zero: zeroPrefixContainsZero,
+    source_zero_prefix_certified: zeroPrefixCertified,
+    source_zero_prefix_certification_source: zeroPrefixContainsZero
+      ? "coefficient-interval-zero-containment"
+      : certifiesShiftedR43ZeroPrefix === true
+        ? "external-directed-rounded-zero-prefix-certificate"
+        : "missing-zero-prefix-certificate",
+    source_zero_prefix_order: shift - 1,
+    source_zero_prefix_witnesses: zeroPrefix.map(root.formatInterval),
+    shifted_R43_coefficient_prefix_length: shiftedCoefficients.length,
+    shifted_R43_coefficients: shiftedCoefficients.map(root.formatInterval),
+    directed_rounded_shifted_R43_provenance:
+      directedRoundedShiftedR43Provenance === true,
+    outward_rounded_transcendental_provenance:
+      directedRoundedShiftedR43Provenance === true,
+    cancellation_certificate:
+      "The source coefficients through y^42 contain zero, so the supplied outer bound is consumed as a direct bound for the removable shifted function R43=F/y^43 rather than as a raw F bound divided by R^43.",
+    candidate_bound_source:
+      "direct shifted removable R43 Cauchy outer bound with zero-prefix cancellation witness",
+    certifies_continuous_polydisc_primitives: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function computeH39JacobianCoordinateOuterBoundCandidate({
+  context = makeTheta3minusFirstYGdSeriesContext(),
+  cell,
+  branch,
+  branchSign = branchSignValue(branch),
+  hIntervals,
+  xInterval = [0, 0],
+  numeratorOuterRadius,
+  jacobianOuterRadius,
+  xOuterRadius = 0,
+} = {}) {
+  const resolvedNumeratorOuterRadius = assertFinitePositiveNumber(
+    "numeratorOuterRadius",
+    numeratorOuterRadius
+  );
+  const resolvedJacobianOuterRadius = assertFinitePositiveNumber(
+    "jacobianOuterRadius",
+    jacobianOuterRadius
+  );
+  if (resolvedJacobianOuterRadius >= resolvedNumeratorOuterRadius) {
+    throw new Error(
+      "jacobianOuterRadius must be smaller than numeratorOuterRadius"
+    );
+  }
+  const resolvedXOuterRadius = assertFiniteNonnegativeNumber(
+    "xOuterRadius",
+    xOuterRadius
+  );
+  const xOuterInterval = expandInterval(xInterval, resolvedXOuterRadius);
+  const { delta, phi } = branchSeriesCoordinates({
+    context,
+    cell,
+    branch,
+    branchSign,
+    hIntervals,
+    xInterval: xOuterInterval,
+  });
+  const deltaMajorant = computeSeriesCoordinateMajorant(
+    delta,
+    resolvedNumeratorOuterRadius
+  );
+  const phiMajorant = computeSeriesCoordinateMajorant(
+    phi,
+    resolvedNumeratorOuterRadius
+  );
+  const inverseSpeedSquaredMajorant = intervalAbsUpper(
+    root.inverseSpeedSquaredInterval(cell.speed_interval)
+  );
+  const deltaSinhTaylorMajorant = computeSinhTaylorMajorant({
+    argument: deltaMajorant,
+  });
+  const phiSinhTaylorMajorant = computeSinhTaylorMajorant({
+    argument: phiMajorant,
+  });
+  const coshDeltaUpper = root.nextUp(
+    1 + deltaSinhTaylorMajorant.sinh_upper_majorant
+  );
+  const coshPhiUpper = root.nextUp(
+    1 + phiSinhTaylorMajorant.sinh_upper_majorant
+  );
+  const numeratorOuterBound = root.nextUp(
+    2 * inverseSpeedSquaredMajorant * deltaMajorant +
+      coshDeltaUpper +
+      coshPhiUpper
+  );
+  const quotientGap =
+    resolvedNumeratorOuterRadius - resolvedJacobianOuterRadius;
+  const jacobianOuterBound = root.nextUp(numeratorOuterBound / quotientGap);
+
+  return {
+    schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
+    status: "h39-jacobian-coordinate-cauchy-outer-bound-candidate-emitted",
+    evaluation_level: "candidate-coordinate-seminorm-cauchy-outer-bound",
+    branch: branch ?? branchSign,
+    jacobian_numerator_cauchy_outer_radius: resolvedNumeratorOuterRadius,
+    jacobian_cauchy_outer_radius: resolvedJacobianOuterRadius,
+    x_outer_radius: resolvedXOuterRadius,
+    x_outer_interval: xOuterInterval,
+    delta_coordinate_majorant_numerator_outer_radius: deltaMajorant,
+    phi_coordinate_majorant_numerator_outer_radius: phiMajorant,
+    inverse_speed_squared_majorant: inverseSpeedSquaredMajorant,
+    sinh_delta_taylor_majorant: deltaSinhTaylorMajorant,
+    sinh_phi_taylor_majorant: phiSinhTaylorMajorant,
+    cosh_delta_upper: coshDeltaUpper,
+    cosh_phi_upper: coshPhiUpper,
+    cosh_upper_bound_source:
+      "cosh(A) <= 1 + sinh(A) for A >= 0, with certified sinh upper envelope",
+    outward_rounded_transcendental_provenance: true,
+    jacobian_numerator_outer_bound_formula:
+      "B_H = 2 S_nu D + C_delta + C_phi with C <= 1+sinh(A) certified by sinh envelopes",
+    jacobian_outer_bound_formula: "B_J = B_H / (R_H - R_J)",
+    removable_quotient_cauchy_gap: quotientGap,
+    candidate_R43_jacobian_numerator_outer_bound: numeratorOuterBound,
+    candidate_R43_jacobian_outer_bound: jacobianOuterBound,
+    jacobian_cauchy_outer_bound: jacobianOuterBound,
+    certifies_continuous_polydisc_primitives: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function computeH39CoordinateCauchyOuterBoundsProfileCandidate({
+  context = makeTheta3minusFirstYGdSeriesContext(),
+  cell,
+  branchInputs,
+  r43CauchyOuterRadius = null,
+  r43ShiftedCauchyOuterBound = null,
+  r43ShiftedCauchyOuterRadius = null,
+  directedRoundedShiftedR43Provenance = false,
+  certifiesShiftedR43ZeroPrefix = false,
+  jacobianCauchyOuterRadius = null,
+  jacobianNumeratorCauchyOuterRadius = null,
+  xOuterRadius = 0,
+} = {}) {
+  if (!Array.isArray(branchInputs) || branchInputs.length === 0) {
+    throw new Error("branchInputs must be a nonempty array");
+  }
+  const wantsRawR43OuterBound = isProvided(r43CauchyOuterRadius);
+  const wantsShiftedR43OuterBound =
+    isProvided(r43ShiftedCauchyOuterBound) ||
+    isProvided(r43ShiftedCauchyOuterRadius);
+  if (wantsRawR43OuterBound && wantsShiftedR43OuterBound) {
+    throw new Error(
+      "coordinate source envelope candidate must not mix raw F and shifted R43 source bounds"
+    );
+  }
+  if (
+    wantsShiftedR43OuterBound &&
+    (!isProvided(r43ShiftedCauchyOuterBound) ||
+      !isProvided(r43ShiftedCauchyOuterRadius))
+  ) {
+    throw new Error(
+      "shifted R43 source inputs require both r43ShiftedCauchyOuterBound and r43ShiftedCauchyOuterRadius"
+    );
+  }
+  const sourceResidualOuterBoundCandidates = wantsRawR43OuterBound
+    ? branchInputs.map((input) =>
+        computeH39SourceResidualCoordinateOuterBoundCandidate({
+          context,
+          cell,
+          branch: input.branch,
+          branchSign: input.branchSign,
+          hIntervals: input.hIntervals,
+          xInterval: input.xInterval ?? [0, 0],
+          outerRadius: r43CauchyOuterRadius,
+          xOuterRadius,
+        })
+      )
+    : wantsShiftedR43OuterBound
+      ? branchInputs.map((input) =>
+          computeH39ShiftedR43RemovableOuterBoundCandidate({
+            context,
+            cell,
+            branch: input.branch,
+            branchSign: input.branchSign,
+            hIntervals: input.hIntervals,
+            xInterval: input.xInterval ?? [0, 0],
+            outerBound: r43ShiftedCauchyOuterBound,
+            outerRadius: r43ShiftedCauchyOuterRadius,
+            directedRoundedShiftedR43Provenance,
+            certifiesShiftedR43ZeroPrefix,
+          })
+        )
+      : [];
+  const wantsJacobianOuterBound =
+    isProvided(jacobianCauchyOuterRadius) ||
+    isProvided(jacobianNumeratorCauchyOuterRadius);
+  if (
+    wantsJacobianOuterBound &&
+    (!isProvided(jacobianCauchyOuterRadius) ||
+      !isProvided(jacobianNumeratorCauchyOuterRadius))
+  ) {
+    throw new Error(
+      "coordinate Jacobian Cauchy inputs require both jacobianCauchyOuterRadius and jacobianNumeratorCauchyOuterRadius"
+    );
+  }
+  const jacobianOuterBoundCandidates = wantsJacobianOuterBound
+    ? branchInputs.map((input) =>
+        computeH39JacobianCoordinateOuterBoundCandidate({
+          context,
+          cell,
+          branch: input.branch,
+          branchSign: input.branchSign,
+          hIntervals: input.hIntervals,
+          xInterval: input.xInterval ?? [0, 0],
+          numeratorOuterRadius: jacobianNumeratorCauchyOuterRadius,
+          jacobianOuterRadius: jacobianCauchyOuterRadius,
+          xOuterRadius,
+        })
+      )
+    : [];
+  const sourceResidualOuterBound = finiteMax(
+    sourceResidualOuterBoundCandidates.map(
+      (candidate) => candidate.r43_cauchy_outer_bound
+    )
+  );
+  const jacobianOuterBound = finiteMax(
+    jacobianOuterBoundCandidates.map(
+      (candidate) => candidate.jacobian_cauchy_outer_bound
+    )
+  );
+
+  return {
+    schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
+    status:
+      "h39-coordinate-cauchy-outer-bounds-profile-candidate-emitted",
+    evaluation_level: "candidate-coordinate-seminorm-cauchy-outer-bound",
+    source_envelope_kind: wantsShiftedR43OuterBound
+      ? "shifted-removable-r43-cauchy-outer-bound"
+      : wantsRawR43OuterBound
+        ? "raw-coordinate-cauchy-outer-bound"
+        : null,
+    r43_cauchy_tail_shift_power: wantsShiftedR43OuterBound
+      ? 0
+      : wantsRawR43OuterBound
+        ? THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift
+        : null,
+    r43_cauchy_outer_radius: wantsShiftedR43OuterBound
+      ? Number(r43ShiftedCauchyOuterRadius)
+      : isProvided(r43CauchyOuterRadius)
+        ? Number(r43CauchyOuterRadius)
+        : null,
+    r43_shifted_cauchy_outer_radius: wantsShiftedR43OuterBound
+      ? Number(r43ShiftedCauchyOuterRadius)
+      : null,
+    candidate_R43_source_outer_bound: sourceResidualOuterBound,
+    r43_cauchy_outer_bound: sourceResidualOuterBound,
+    r43_shifted_cauchy_outer_bound: wantsShiftedR43OuterBound
+      ? sourceResidualOuterBound
+      : null,
+    jacobian_numerator_cauchy_outer_radius: wantsJacobianOuterBound
+      ? Number(jacobianNumeratorCauchyOuterRadius)
+      : null,
+    jacobian_cauchy_outer_radius: wantsJacobianOuterBound
+      ? Number(jacobianCauchyOuterRadius)
+      : null,
+    candidate_R43_jacobian_outer_bound: jacobianOuterBound,
+    jacobian_cauchy_outer_bound: jacobianOuterBound,
+    source_residual_outer_bound_candidates:
+      sourceResidualOuterBoundCandidates,
+    jacobian_outer_bound_candidates: jacobianOuterBoundCandidates,
+    x_outer_radius: Number(xOuterRadius),
+    certifies_continuous_polydisc_primitives: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+function computeH39CoordinateCauchyOuterBoundsProfileFromEnvelopeCandidates({
+  context,
+  cell,
+  branchInputs,
+  coordinateSourceEnvelopeCandidates,
+  xOuterRadius = 0,
+} = {}) {
+  const failedCandidateObstructions = [];
+
+  for (const candidate of coordinateSourceEnvelopeCandidates) {
+    try {
+      const profile = computeH39CoordinateCauchyOuterBoundsProfileCandidate({
+        context,
+        cell,
+        branchInputs,
+        r43CauchyOuterRadius: candidate.r43_cauchy_outer_radius,
+        r43ShiftedCauchyOuterBound:
+          candidate.r43_shifted_cauchy_outer_bound,
+        r43ShiftedCauchyOuterRadius:
+          candidate.r43_shifted_cauchy_outer_radius,
+        directedRoundedShiftedR43Provenance:
+          candidate.directed_rounded_shifted_r43_provenance,
+        certifiesShiftedR43ZeroPrefix:
+          candidate.certifies_shifted_r43_zero_prefix,
+        jacobianCauchyOuterRadius: candidate.jacobian_cauchy_outer_radius,
+        jacobianNumeratorCauchyOuterRadius:
+          candidate.jacobian_numerator_cauchy_outer_radius,
+        xOuterRadius,
+      });
+
+      return {
+        ...profile,
+        coordinate_source_envelope_selection: {
+          status:
+            failedCandidateObstructions.length === 0
+              ? "coordinate-source-envelope-first-candidate-certified"
+              : "coordinate-source-envelope-fallback-candidate-certified",
+          candidate_count: coordinateSourceEnvelopeCandidates.length,
+          selected_candidate_index: candidate.candidate_index,
+          selected_candidate: candidate,
+          failed_candidate_count: failedCandidateObstructions.length,
+          failed_candidate_obstructions: failedCandidateObstructions,
+        },
+      };
+    } catch (error) {
+      failedCandidateObstructions.push({
+        candidate_index: candidate.candidate_index,
+        source_envelope_kind: candidate.source_envelope_kind,
+        r43_cauchy_outer_radius: candidate.r43_cauchy_outer_radius,
+        r43_shifted_cauchy_outer_bound:
+          candidate.r43_shifted_cauchy_outer_bound,
+        r43_shifted_cauchy_outer_radius:
+          candidate.r43_shifted_cauchy_outer_radius,
+        certifies_shifted_r43_zero_prefix:
+          candidate.certifies_shifted_r43_zero_prefix,
+        jacobian_cauchy_outer_radius: candidate.jacobian_cauchy_outer_radius,
+        jacobian_numerator_cauchy_outer_radius:
+          candidate.jacobian_numerator_cauchy_outer_radius,
+        status: "open-source-certificate-computation-error",
+        message: error.message,
+      });
+    }
+  }
+
+  const error = new Error(
+    `no coordinate source envelope candidate certified: ${
+      failedCandidateObstructions[0]?.message ?? "no candidates supplied"
+    }`
+  );
+  error.coordinateSourceEnvelopeObstructions =
+    failedCandidateObstructions;
+  throw error;
+}
+
 export function computeBranchGDenominatorIngredientCandidate({
   context = makeTheta3minusFirstYGdSeriesContext(),
   cell,
@@ -1671,8 +3547,20 @@ export function computeBranchGDenominatorIngredientCandidate({
   });
   const deltaMajorant = computeSeriesCoordinateMajorant(delta, resolvedRho);
   const phiMajorant = computeSeriesCoordinateMajorant(phi, resolvedRho);
+  const deltaSinhTaylorMajorant = computeSinhTaylorMajorant({
+    argument: deltaMajorant,
+  });
+  const phiSinhTaylorMajorant = computeSinhTaylorMajorant({
+    argument: phiMajorant,
+  });
+  const coshDeltaUpper = root.nextUp(
+    1 + deltaSinhTaylorMajorant.sinh_upper_majorant
+  );
+  const coshPhiUpper = root.nextUp(
+    1 + phiSinhTaylorMajorant.sinh_upper_majorant
+  );
   const branchKernelMajorant = root.nextUp(
-    0.5 * (Math.cosh(deltaMajorant) + Math.cosh(phiMajorant))
+    0.5 * (coshDeltaUpper + coshPhiUpper)
   );
   const deltaClearanceFloor = computeCoefficientPrefixFloor(delta, resolvedRho);
   const fDelta = context.add(
@@ -1720,7 +3608,12 @@ export function computeBranchGDenominatorIngredientCandidate({
     phi_coordinate_majorant: phiMajorant,
     branch_kernel_majorant: branchKernelMajorant,
     branch_kernel_majorant_formula:
-      "K_epsilon <= 0.5*(cosh(||delta||_rho)+cosh(||phi||_rho))",
+      "K_epsilon <= 0.5*(C_delta+C_phi), C <= 1+sinh(A) certified by sinh envelopes",
+    sinh_delta_taylor_majorant: deltaSinhTaylorMajorant,
+    sinh_phi_taylor_majorant: phiSinhTaylorMajorant,
+    cosh_delta_upper: coshDeltaUpper,
+    cosh_phi_upper: coshPhiUpper,
+    outward_rounded_transcendental_provenance: true,
     delta_clearance_floor: deltaClearanceFloor,
     jacobian_abs_floor: jacobianAbsFloor,
     speed_lower_bound: speedLowerBound,
@@ -1782,10 +3675,20 @@ export function computeBranchGDenominatorCauchyIngredientCandidate({
     outerRadius,
     targetRadius: resolvedRho,
   });
+  const deltaSinhTaylorMajorant = computeSinhTaylorMajorant({
+    argument: deltaMajorantDiagnostic.prefix_plus_tail_majorant,
+  });
+  const phiSinhTaylorMajorant = computeSinhTaylorMajorant({
+    argument: phiMajorantDiagnostic.prefix_plus_tail_majorant,
+  });
+  const coshDeltaUpper = root.nextUp(
+    1 + deltaSinhTaylorMajorant.sinh_upper_majorant
+  );
+  const coshPhiUpper = root.nextUp(
+    1 + phiSinhTaylorMajorant.sinh_upper_majorant
+  );
   const branchKernelMajorant = root.nextUp(
-    0.5 *
-      (Math.cosh(deltaMajorantDiagnostic.prefix_plus_tail_majorant) +
-        Math.cosh(phiMajorantDiagnostic.prefix_plus_tail_majorant))
+    0.5 * (coshDeltaUpper + coshPhiUpper)
   );
   const deltaFloorDiagnostic = computeCauchyCoefficientPrefixFloor({
     coefficients: delta,
@@ -1848,7 +3751,12 @@ export function computeBranchGDenominatorCauchyIngredientCandidate({
       phiMajorantDiagnostic.prefix_plus_tail_majorant,
     branch_kernel_majorant: branchKernelMajorant,
     branch_kernel_majorant_formula:
-      "K_epsilon <= 0.5*(cosh(delta prefix+Cauchy tail)+cosh(phi prefix+Cauchy tail))",
+      "K_epsilon <= 0.5*(C_delta+C_phi), C <= 1+sinh(A) certified by sinh envelopes after coordinate Cauchy tails",
+    sinh_delta_taylor_majorant: deltaSinhTaylorMajorant,
+    sinh_phi_taylor_majorant: phiSinhTaylorMajorant,
+    cosh_delta_upper: coshDeltaUpper,
+    cosh_phi_upper: coshPhiUpper,
+    outward_rounded_transcendental_provenance: true,
     delta_clearance_prefix_plus_tail_floor: deltaClearanceFloor,
     jacobian_abs_prefix_plus_tail_floor: jacobianAbsFloor,
     speed_lower_bound: speedLowerBound,
@@ -1874,9 +3782,116 @@ export function computeBranchGDenominatorCauchyIngredientCandidate({
   };
 }
 
+export function computeH39DenominatorCauchyNGOuterBoundCandidate({
+  context = makeTheta3minusFirstYGdSeriesContext(),
+  cell,
+  branchInputs,
+  rho,
+  outerRadius,
+  deltaOuterBound,
+  phiOuterBound,
+  jacobianAbsOuterBound,
+  lMajorant,
+  lowerPolynomialMajorant,
+  sourceCoefficientAbs = 1,
+} = {}) {
+  assertCell(cell);
+  const requiredInputs = {
+    rho,
+    outerRadius,
+    deltaOuterBound,
+    phiOuterBound,
+    jacobianAbsOuterBound,
+    lMajorant,
+    lowerPolynomialMajorant,
+  };
+  const missingInputs = Object.entries(requiredInputs)
+    .filter(([, value]) => !isProvided(value))
+    .map(([key]) => key);
+  if (missingInputs.length > 0) {
+    throw new Error(
+      `complete denominator Cauchy inputs required: ${missingInputs.join(", ")}`
+    );
+  }
+  if (!Array.isArray(branchInputs) || branchInputs.length === 0) {
+    throw new Error("branchInputs must be a nonempty array");
+  }
+  const branchDenominatorCandidates = branchInputs.map((input) =>
+    computeBranchGDenominatorCauchyIngredientCandidate({
+      context,
+      cell,
+      branch: input.branch,
+      branchSign: input.branchSign,
+      hIntervals: input.hIntervals,
+      xInterval: input.xInterval ?? [0, 0],
+      rho,
+      outerRadius,
+      deltaOuterBound,
+      phiOuterBound,
+      jacobianAbsOuterBound,
+      sourceCoefficientAbs,
+    })
+  );
+  const branchGOuterMajorants = branchDenominatorCandidates.map(
+    (candidate) => candidate.branch_g_outer_majorant
+  );
+  const canEmitNGOuterBound = branchGOuterMajorants.every((value) =>
+    Number.isFinite(Number(value))
+  );
+  const nGOuterBoundDiagnostic = canEmitNGOuterBound
+    ? computeNGOuterBoundFromDenominatorClearance({
+        branchGOuterMajorants,
+        lMajorant,
+        lowerPolynomialMajorant,
+        outerRadius,
+      })
+    : null;
+
+  return {
+    schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
+    status: canEmitNGOuterBound
+      ? "h39-denominator-cauchy-n-g-outer-bound-candidate-emitted"
+      : "h39-denominator-cauchy-n-g-outer-bound-candidate-open",
+    evaluation_level:
+      "candidate-branch-denominator-cauchy-n-g-outer-bound",
+    rho: Number(rho),
+    n_g_cauchy_outer_radius: Number(outerRadius),
+    candidate_N_G_outer_bound: nGOuterBoundDiagnostic?.n_g_outer_bound ?? null,
+    n_g_cauchy_outer_bound: nGOuterBoundDiagnostic?.n_g_outer_bound ?? null,
+    branch_g_outer_majorants: branchGOuterMajorants,
+    branch_denominator_candidates: branchDenominatorCandidates,
+    l_majorant: nGOuterBoundDiagnostic?.l_majorant ?? Number(lMajorant),
+    lower_polynomial_majorant:
+      nGOuterBoundDiagnostic?.lower_polynomial_majorant ??
+      Number(lowerPolynomialMajorant),
+    n_g_outer_bound_diagnostic: nGOuterBoundDiagnostic,
+    candidate_bound_source:
+      "branch denominator Cauchy outer bounds plus L and lower-polynomial majorants",
+    certifies_continuous_polydisc_primitives: false,
+    certifies_directed_rounded_h39_polydisc_M_G_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
 function primitiveCandidateNumber(value) {
   const resolved = Number(value);
   return Number.isFinite(resolved) ? resolved : null;
+}
+
+function providedPrimitiveCandidateNumber(value) {
+  if (!isProvided(value)) {
+    return null;
+  }
+  const resolved = Number(value);
+  return Number.isFinite(resolved) ? resolved : null;
+}
+
+function optionalPrimitiveProfileNumber(name, value, fallback = 0) {
+  if (!isProvided(value)) {
+    return fallback;
+  }
+  return assertFiniteNonnegativeNumber(name, value);
 }
 
 function computeRoucheLowerBoundary({
@@ -2033,6 +4048,19 @@ export function computeH39FinitePrefixPrimitiveScalarReplay({
     rhoX,
     rX,
   });
+  const primitiveSlack = computeH39PrimitiveSlackTolerancesCandidate({
+    radiusMultiple: resolvedRadiusMultiple,
+    mGBound: primitiveCandidates.candidate_M_G_bound,
+    rootTangentNumeratorBound:
+      primitiveCandidates.candidate_root_tangent_numerator_bound_M_R,
+    centerResidualBound: primitiveCandidates.center_residual_bound_E_R,
+    centerJacobianLowerBound:
+      primitiveCandidates.center_jacobian_lower_bound_nu_J,
+    jacobianLipschitzBound:
+      primitiveCandidates.jacobian_lipschitz_bound_L_J,
+    rhoX,
+    rX,
+  });
 
   return {
     status: "h39-finite-prefix-primitive-scalar-replay-emitted",
@@ -2060,6 +4088,15 @@ export function computeH39FinitePrefixPrimitiveScalarReplay({
       replay.candidate_rouche_primitive_h39_closure_ratio_margin_to_one,
     candidate_rouche_form_M_R_margin:
       replay.candidate_rouche_form_M_R_margin,
+    candidate_primitive_slack_tolerances_status:
+      primitiveSlack.primitive_slack_tolerances_status,
+    candidate_primitive_slack_all_current_margins_positive:
+      primitiveSlack.primitive_slack_all_current_margins_positive,
+    candidate_primitive_slack_current_J_min_sigma_X:
+      primitiveSlack.primitive_slack_current_J_min_sigma_X,
+    candidate_primitive_slack_required_J_min_sigma_X_from_closure:
+      primitiveSlack.primitive_slack_required_J_min_sigma_X_from_closure,
+    candidate_primitive_slack_tolerances: primitiveSlack,
     derived_jacobian_lower_bound_J_min:
       primitiveCandidates.center_jacobian_lower_bound_nu_J -
       primitiveCandidates.jacobian_lipschitz_bound_L_J * rhoX,
@@ -2067,6 +4104,710 @@ export function computeH39FinitePrefixPrimitiveScalarReplay({
     certifies_continuous_polydisc_primitives: false,
     certifies_directed_rounded_shared_domain: false,
     retained_branch: false,
+  };
+}
+
+export function computeH39FinitePrefixPrimitiveProfileScaleReplay({
+  candidate_E_R_finite_prefix,
+  candidate_nu_J_finite_prefix,
+  candidate_L_J_finite_prefix,
+  candidate_L_J_reduced_continuous_majorant,
+  candidate_M_G_finite_prefix,
+  candidate_M_R_finite_prefix,
+  centerResidualRemainderProfile,
+  centerJacobianLowerRemainderProfile,
+  jacobianLipschitzRemainderProfile,
+  rhoXLowerRemainderProfile,
+  rhoXUpperRemainderProfile,
+  rXLowerRemainderProfile,
+  rXUpperRemainderProfile,
+  mGRemainderProfile,
+  rootTangentNumeratorRemainderProfile,
+  radiusMultiple =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS
+      .finite_prefix_scalar_replay_radius_multiple,
+  rhoXMultiplier =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS
+      .finite_prefix_scalar_replay_rho_x_multiplier,
+  rXFraction =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS
+      .finite_prefix_scalar_replay_r_x_fraction,
+  profileScaleUpperBound,
+  profileScaleTolerance,
+  profileScaleMaxIterations,
+} = {}) {
+  const profileVectorMissingComponents = [
+    [centerResidualRemainderProfile, "E_R"],
+    [rootTangentNumeratorRemainderProfile, "M_R"],
+    [mGRemainderProfile, "M_G"],
+    [centerJacobianLowerRemainderProfile, "nu_J"],
+    [
+      isProvided(jacobianLipschitzRemainderProfile) ||
+      isProvided(candidate_L_J_reduced_continuous_majorant)
+        ? 0
+        : null,
+      "L_J",
+    ],
+  ]
+    .filter(([value]) => !isProvided(value))
+    .map(([, component]) => component);
+  const profileVectorComplete =
+    profileVectorMissingComponents.length === 0;
+  const primitiveCandidates = {
+    center_residual_bound_E_R: primitiveCandidateNumber(
+      candidate_E_R_finite_prefix
+    ),
+    center_jacobian_lower_bound_nu_J: primitiveCandidateNumber(
+      candidate_nu_J_finite_prefix
+    ),
+    jacobian_lipschitz_bound_L_J: primitiveCandidateNumber(
+      candidate_L_J_finite_prefix
+    ),
+    candidate_M_G_bound: primitiveCandidateNumber(
+      candidate_M_G_finite_prefix
+    ),
+    candidate_root_tangent_numerator_bound_M_R: primitiveCandidateNumber(
+      candidate_M_R_finite_prefix
+    ),
+  };
+  const missing = Object.entries(primitiveCandidates)
+    .filter(([, value]) => value === null)
+    .map(([key]) => key);
+  if (missing.length > 0) {
+    return {
+      status: "h39-finite-prefix-primitive-profile-scale-replay-open",
+      replay_status: "missing-finite-prefix-candidates",
+      missing_finite_prefix_candidates: missing,
+      candidate_h39_full_cauchy_primitive_profile_vector_status:
+        "h39-full-cauchy-primitive-profile-vector-candidate-incomplete",
+      candidate_h39_full_cauchy_primitive_profile_vector_complete: false,
+      candidate_h39_full_cauchy_primitive_profile_vector_missing_components:
+        Array.from(new Set([...profileVectorMissingComponents, ...missing])),
+      candidate_h39_full_cauchy_primitive_profile_vector_required_scale: 1,
+      candidate_h39_full_cauchy_primitive_profile_vector_scale_candidate:
+        null,
+      candidate_h39_full_cauchy_primitive_profile_vector_scale_status:
+        null,
+      candidate_profile_bounds_status:
+        "finite-prefix-plus-profile-candidate-not-certificate",
+      certifies_continuous_polydisc_primitives: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    };
+  }
+
+  const lowerBoundary = computeRoucheLowerBoundary({
+    centerResidualBound: primitiveCandidates.center_residual_bound_E_R,
+    centerJacobianLowerBound:
+      primitiveCandidates.center_jacobian_lower_bound_nu_J,
+    jacobianLipschitzBound:
+      primitiveCandidates.jacobian_lipschitz_bound_L_J,
+  });
+  if (lowerBoundary.rouche_radius_lower_boundary === null) {
+    return {
+      status: "h39-finite-prefix-primitive-profile-scale-replay-open",
+      replay_status: lowerBoundary.rouche_lower_boundary_status,
+      ...primitiveCandidates,
+      ...lowerBoundary,
+      candidate_h39_full_cauchy_primitive_profile_vector_status:
+        "h39-full-cauchy-primitive-profile-vector-candidate-incomplete",
+      candidate_h39_full_cauchy_primitive_profile_vector_complete: false,
+      candidate_h39_full_cauchy_primitive_profile_vector_missing_components:
+        profileVectorMissingComponents,
+      candidate_h39_full_cauchy_primitive_profile_vector_required_scale: 1,
+      candidate_h39_full_cauchy_primitive_profile_vector_scale_candidate:
+        null,
+      candidate_h39_full_cauchy_primitive_profile_vector_scale_status:
+        null,
+      candidate_profile_bounds_status:
+        "finite-prefix-plus-profile-candidate-not-certificate",
+      certifies_continuous_polydisc_primitives: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    };
+  }
+
+  const reducedLJ = primitiveCandidateNumber(
+    candidate_L_J_reduced_continuous_majorant
+  );
+  const derivedLJProfile =
+    reducedLJ === null
+      ? 0
+      : Math.max(
+          0,
+          reducedLJ - primitiveCandidates.jacobian_lipschitz_bound_L_J
+        );
+  const profile = {
+    centerResidualRemainderProfile: optionalPrimitiveProfileNumber(
+      "centerResidualRemainderProfile",
+      centerResidualRemainderProfile
+    ),
+    centerJacobianLowerRemainderProfile: optionalPrimitiveProfileNumber(
+      "centerJacobianLowerRemainderProfile",
+      centerJacobianLowerRemainderProfile
+    ),
+    jacobianLipschitzRemainderProfile: optionalPrimitiveProfileNumber(
+      "jacobianLipschitzRemainderProfile",
+      jacobianLipschitzRemainderProfile,
+      derivedLJProfile
+    ),
+    rhoXLowerRemainderProfile: optionalPrimitiveProfileNumber(
+      "rhoXLowerRemainderProfile",
+      rhoXLowerRemainderProfile
+    ),
+    rhoXUpperRemainderProfile: optionalPrimitiveProfileNumber(
+      "rhoXUpperRemainderProfile",
+      rhoXUpperRemainderProfile
+    ),
+    rXLowerRemainderProfile: optionalPrimitiveProfileNumber(
+      "rXLowerRemainderProfile",
+      rXLowerRemainderProfile
+    ),
+    rXUpperRemainderProfile: optionalPrimitiveProfileNumber(
+      "rXUpperRemainderProfile",
+      rXUpperRemainderProfile
+    ),
+    mGRemainderProfile: optionalPrimitiveProfileNumber(
+      "mGRemainderProfile",
+      mGRemainderProfile
+    ),
+    rootTangentNumeratorRemainderProfile:
+      optionalPrimitiveProfileNumber(
+        "rootTangentNumeratorRemainderProfile",
+        rootTangentNumeratorRemainderProfile
+      ),
+  };
+
+  const resolvedRadiusMultiple = Number(radiusMultiple);
+  const resolvedRhoXMultiplier = Number(rhoXMultiplier);
+  const resolvedRXFraction = Number(rXFraction);
+  if (
+    !Number.isFinite(resolvedRadiusMultiple) ||
+    resolvedRadiusMultiple <= 1 ||
+    !Number.isFinite(resolvedRhoXMultiplier) ||
+    resolvedRhoXMultiplier <= 1 ||
+    !Number.isFinite(resolvedRXFraction) ||
+    resolvedRXFraction <= 0 ||
+    resolvedRXFraction >= 1
+  ) {
+    throw new Error(
+      "radiusMultiple must exceed 1, rhoXMultiplier must exceed 1, and rXFraction must lie in (0,1)"
+    );
+  }
+
+  const baseRadius =
+    lowerBoundary.rouche_radius_lower_boundary > 0
+      ? lowerBoundary.rouche_radius_lower_boundary
+      : 1;
+  const rhoX = resolvedRhoXMultiplier * baseRadius;
+  const rX =
+    lowerBoundary.rouche_radius_lower_boundary +
+    resolvedRXFraction *
+      (rhoX - lowerBoundary.rouche_radius_lower_boundary);
+  const profileScale = computeH39PrimitiveRemainderProfileScaleCandidate({
+    radiusMultiple: resolvedRadiusMultiple,
+    mGBound: primitiveCandidates.candidate_M_G_bound,
+    rootTangentNumeratorBound:
+      primitiveCandidates.candidate_root_tangent_numerator_bound_M_R,
+    centerResidualBound: primitiveCandidates.center_residual_bound_E_R,
+    centerJacobianLowerBound:
+      primitiveCandidates.center_jacobian_lower_bound_nu_J,
+    jacobianLipschitzBound:
+      primitiveCandidates.jacobian_lipschitz_bound_L_J,
+    rhoX,
+    rX,
+    ...profile,
+    profileScaleUpperBound,
+    profileScaleTolerance,
+    profileScaleMaxIterations,
+  });
+  const scaleCandidate =
+    profileScale.primitive_remainder_profile_scale_candidate;
+  const exactBoundary =
+    profileScale.primitive_remainder_profile_scale_exact_multi_profile_boundary ??
+    null;
+  const exactBoundaryStatus =
+    exactBoundary
+      ?.primitive_analytic_remainder_multi_profile_boundary_status ?? null;
+  const exactBoundaryLambda =
+    exactBoundary
+      ?.primitive_analytic_remainder_multi_profile_lambda_supremum ?? null;
+  const exactBoundaryFinite = Number.isFinite(exactBoundaryLambda);
+  const exactBoundaryUnbounded =
+    exactBoundaryStatus ===
+      "h39-primitive-analytic-remainder-multi-profile-unbounded-for-zero-profile" ||
+    exactBoundaryStatus ===
+      "h39-primitive-analytic-remainder-multi-profile-unbounded";
+  const exactBoundaryRequiredScale = 1;
+  const exactBoundaryStrictHeadroom =
+    exactBoundaryFinite
+      ? exactBoundaryLambda - exactBoundaryRequiredScale
+      : null;
+  const exactBoundaryClosesRequiredScale = exactBoundaryFinite
+    ? exactBoundaryStrictHeadroom > 0
+    : exactBoundaryUnbounded
+      ? true
+      : null;
+  const exactBoundaryNotApplicableReason =
+    exactBoundaryStatus === "not-applicable-nonzero-graph-radius-profile"
+      ? exactBoundaryStatus
+      : null;
+  const scaleRequiredCloses =
+    profileScale.primitive_remainder_profile_scale_status ===
+      "h39-primitive-remainder-profile-scale-unbounded-for-zero-profile" ||
+    profileScale.primitive_remainder_profile_scale_closed_through_upper_bound ===
+      true ||
+    (Number.isFinite(scaleCandidate) && scaleCandidate >= 1);
+  const positiveProfileComponents = Object.entries(profile)
+    .filter(([, value]) => value > 0)
+    .map(([key]) => key);
+  const profileVectorStatus = !profileVectorComplete
+    ? "h39-full-cauchy-primitive-profile-vector-candidate-incomplete"
+    : scaleRequiredCloses
+      ? "h39-full-cauchy-primitive-profile-vector-candidate-closes"
+      : "h39-full-cauchy-primitive-profile-vector-candidate-scale-inequalities-open";
+
+  return {
+    status: "h39-finite-prefix-primitive-profile-scale-replay-emitted",
+    replay_status: profileScale.primitive_remainder_profile_scale_status,
+    candidate_profile_bounds_status:
+      "finite-prefix-plus-profile-candidate-not-certificate",
+    finite_prefix_profile_scale_claim:
+      "finite-prefix primitive candidates plus a nonnegative analytic-remainder profile are replayed through the h39 safe-product profile scale; this is a profile budget contract, not a shared-domain primitive certificate",
+    radius_multiple: resolvedRadiusMultiple,
+    candidate_rho_X_policy:
+      "rho_X = rhoXMultiplier * r_R^-; r_X = r_R^- + rXFraction*(rho_X-r_R^-)",
+    candidate_rho_X_multiplier: resolvedRhoXMultiplier,
+    candidate_r_X_fraction: resolvedRXFraction,
+    candidate_rho_X: rhoX,
+    candidate_r_X: rX,
+    ...primitiveCandidates,
+    ...lowerBoundary,
+    center_residual_remainder_profile_E_R:
+      profile.centerResidualRemainderProfile,
+    center_jacobian_lower_remainder_profile_nu_J:
+      profile.centerJacobianLowerRemainderProfile,
+    jacobian_lipschitz_remainder_profile_L_J:
+      profile.jacobianLipschitzRemainderProfile,
+    rho_X_lower_remainder_profile:
+      profile.rhoXLowerRemainderProfile,
+    rho_X_upper_remainder_profile:
+      profile.rhoXUpperRemainderProfile,
+    r_X_lower_remainder_profile: profile.rXLowerRemainderProfile,
+    r_X_upper_remainder_profile: profile.rXUpperRemainderProfile,
+    M_G_remainder_profile: profile.mGRemainderProfile,
+    M_R_remainder_profile:
+      profile.rootTangentNumeratorRemainderProfile,
+    candidate_L_J_reduced_continuous_majorant: reducedLJ,
+    candidate_L_J_reduced_minus_finite_prefix_profile:
+      derivedLJProfile,
+    positive_profile_components: positiveProfileComponents,
+    candidate_profile_direction_source:
+      profile.jacobianLipschitzRemainderProfile === derivedLJProfile &&
+      derivedLJProfile > 0 &&
+      !isProvided(jacobianLipschitzRemainderProfile)
+        ? "finite-prefix-to-kernel-reduced-L_J-continuous-majorant"
+        : "explicit-or-zero-profile-components",
+    candidate_profile_direction_complete_for_shared_domain_closure:
+      profileVectorComplete,
+    candidate_profile_known_L_J_continuous_remainder_only:
+      positiveProfileComponents.length === 1 &&
+      positiveProfileComponents[0] === "jacobianLipschitzRemainderProfile",
+    candidate_h39_full_cauchy_primitive_profile_vector_status:
+      profileVectorStatus,
+    candidate_h39_full_cauchy_primitive_profile_vector_complete:
+      profileVectorComplete,
+    candidate_h39_full_cauchy_primitive_profile_vector_missing_components:
+      profileVectorMissingComponents,
+    candidate_h39_full_cauchy_primitive_profile_vector_required_scale: 1,
+    candidate_h39_full_cauchy_primitive_profile_vector_scale_candidate:
+      scaleCandidate,
+    candidate_h39_full_cauchy_primitive_profile_vector_scale_status:
+      profileScale.primitive_remainder_profile_scale_status,
+    candidate_profile_scale_required_scale: 1,
+    candidate_profile_scale_required_closes: scaleRequiredCloses,
+    candidate_profile_scale_status:
+      profileScale.primitive_remainder_profile_scale_status,
+    candidate_profile_scale_candidate: scaleCandidate,
+    candidate_profile_scale_first_failing_upper:
+      profileScale.primitive_remainder_profile_scale_first_failing_upper,
+    candidate_profile_scale_closed_through_upper_bound:
+      profileScale.primitive_remainder_profile_scale_closed_through_upper_bound,
+    candidate_profile_scale_limiting_margin_name:
+      profileScale.primitive_remainder_profile_scale_limiting_margin_name,
+    candidate_profile_scale_limiting_margin_value:
+      profileScale.primitive_remainder_profile_scale_limiting_margin_value,
+    candidate_profile_scale_exact_fixed_radii_lambda_supremum:
+      exactBoundaryLambda,
+    candidate_profile_scale_exact_fixed_radii_bottleneck_name:
+      exactBoundary
+        ?.primitive_analytic_remainder_multi_profile_bottleneck_name ?? null,
+    candidate_profile_scale_exact_fixed_radii_required_scale:
+      exactBoundaryRequiredScale,
+    candidate_profile_scale_exact_fixed_radii_strict_headroom:
+      exactBoundaryStrictHeadroom,
+    candidate_profile_scale_exact_fixed_radii_closes_required_scale:
+      exactBoundaryClosesRequiredScale,
+    candidate_profile_scale_exact_fixed_radii_not_applicable_reason:
+      exactBoundaryNotApplicableReason,
+    candidate_profile_scale_exact_fixed_radii_J_min_at_required_scale:
+      exactBoundary
+        ?.primitive_analytic_remainder_multi_profile_J_min_at_required_scale ??
+      null,
+    candidate_profile_scale_exact_fixed_radii_rouche_margin_at_required_scale:
+      exactBoundary
+        ?.primitive_analytic_remainder_multi_profile_rouche_margin_at_required_scale ??
+      null,
+    candidate_profile_scale_exact_fixed_radii_scalar_polynomial_at_required_scale:
+      exactBoundary
+        ?.primitive_analytic_remainder_multi_profile_scalar_polynomial_at_required_scale ??
+      null,
+    candidate_profile_scale_exact_fixed_radii_required_scale_margin_closes:
+      exactBoundary
+        ?.primitive_analytic_remainder_multi_profile_required_scale_closes ??
+      null,
+    candidate_profile_scale_exact_fixed_radii_required_scale_failed_margin_names:
+      exactBoundary
+        ?.primitive_analytic_remainder_multi_profile_required_scale_failed_margin_names ??
+      [],
+    candidate_profile_scale_replay: profileScale,
+    certifies_continuous_polydisc_primitives: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+export function computeH39FullCauchyPrimitiveVectorCandidate({
+  candidate_E_R_prefix_plus_tail_bound,
+  candidate_M_R_prefix_plus_tail_bound,
+  candidate_M_G_prefix_plus_tail_bound,
+  candidate_nu_J_prefix_plus_tail_floor,
+  candidate_L_J_reduced_continuous_majorant,
+  finitePrefixPrimitiveProfileScaleReplay = null,
+  componentSources = {},
+} = {}) {
+  const components = {
+    E_R: providedPrimitiveCandidateNumber(
+      candidate_E_R_prefix_plus_tail_bound
+    ),
+    M_R: providedPrimitiveCandidateNumber(
+      candidate_M_R_prefix_plus_tail_bound
+    ),
+    M_G: providedPrimitiveCandidateNumber(
+      candidate_M_G_prefix_plus_tail_bound
+    ),
+    nu_J: providedPrimitiveCandidateNumber(
+      candidate_nu_J_prefix_plus_tail_floor
+    ),
+    L_J: providedPrimitiveCandidateNumber(
+      candidate_L_J_reduced_continuous_majorant
+    ),
+  };
+  const missing = Object.entries(components)
+    .filter(([, value]) => value === null)
+    .map(([key]) => key);
+  const complete = missing.length === 0;
+  const invalidComponents = complete
+    ? Object.entries(components)
+        .filter(([key, value]) =>
+          key === "nu_J" ? value <= 0 : value < 0
+        )
+        .map(([key]) => key)
+    : [];
+  const invalid = invalidComponents.length > 0;
+  const replayStatus =
+    finitePrefixPrimitiveProfileScaleReplay
+      ?.candidate_h39_full_cauchy_primitive_profile_vector_status ??
+    "h39-full-cauchy-primitive-profile-vector-candidate-incomplete";
+  const status = !complete
+    ? "h39-full-cauchy-primitive-vector-candidate-incomplete"
+    : invalid
+      ? "h39-full-cauchy-primitive-vector-candidate-invalid-jacobian-floor"
+      : replayStatus ===
+          "h39-full-cauchy-primitive-profile-vector-candidate-closes"
+        ? "h39-full-cauchy-primitive-vector-candidate-closes"
+        : "h39-full-cauchy-primitive-vector-candidate-scale-inequalities-open";
+  const rhoX =
+    finitePrefixPrimitiveProfileScaleReplay?.candidate_rho_X ?? null;
+  const rX = finitePrefixPrimitiveProfileScaleReplay?.candidate_r_X ?? null;
+  const radiusMultiple =
+    finitePrefixPrimitiveProfileScaleReplay?.radius_multiple ?? null;
+
+  return {
+    schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
+    status,
+    evaluation_level:
+      "candidate-full-cauchy-primitive-vector-backend",
+    candidate_primitive_vector_claim:
+      "packages candidate E_R, M_R, M_G, nu_J, and L_J values from one coefficient-domain Cauchy replay for downstream h39 primitive diagnostic input; this is not a directed-rounded shared-domain certificate",
+    candidate_h39_full_cauchy_primitive_vector_complete: complete,
+    candidate_h39_full_cauchy_primitive_vector_missing_components: missing,
+    candidate_h39_full_cauchy_primitive_vector_invalid_components:
+      invalidComponents,
+    candidate_h39_full_cauchy_primitive_vector_components: components,
+    candidate_primitive_vector_E_R_bound: components.E_R,
+    candidate_primitive_vector_M_R_bound: components.M_R,
+    candidate_primitive_vector_M_G_bound: components.M_G,
+    candidate_primitive_vector_nu_J_floor: components.nu_J,
+    candidate_primitive_vector_L_J_bound: components.L_J,
+    candidate_primitive_vector_component_sources: {
+      E_R: componentSources.E_R ?? null,
+      M_R: componentSources.M_R ?? null,
+      M_G: componentSources.M_G ?? null,
+      nu_J: componentSources.nu_J ?? null,
+      L_J: componentSources.L_J ?? null,
+    },
+    candidate_profile_replay_status:
+      finitePrefixPrimitiveProfileScaleReplay?.candidate_profile_scale_status ??
+      null,
+    candidate_profile_scale_required_closes:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_required_closes ?? null,
+    candidate_profile_scale_candidate:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_candidate ?? null,
+    candidate_profile_scale_limiting_margin_name:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_limiting_margin_name ?? null,
+    candidate_profile_scale_limiting_margin_value:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_limiting_margin_value ?? null,
+    candidate_profile_scale_exact_fixed_radii_lambda_supremum:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_lambda_supremum ?? null,
+    candidate_profile_scale_exact_fixed_radii_bottleneck_name:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_bottleneck_name ?? null,
+    candidate_profile_scale_exact_fixed_radii_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_required_scale ?? null,
+    candidate_profile_scale_exact_fixed_radii_strict_headroom:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_strict_headroom ?? null,
+    candidate_profile_scale_exact_fixed_radii_closes_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_closes_required_scale ??
+      null,
+    candidate_profile_scale_exact_fixed_radii_not_applicable_reason:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_not_applicable_reason ??
+      null,
+    candidate_profile_scale_exact_fixed_radii_J_min_at_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_J_min_at_required_scale ??
+      null,
+    candidate_profile_scale_exact_fixed_radii_rouche_margin_at_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_rouche_margin_at_required_scale ??
+      null,
+    candidate_profile_scale_exact_fixed_radii_scalar_polynomial_at_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_scalar_polynomial_at_required_scale ??
+      null,
+    candidate_profile_scale_exact_fixed_radii_required_scale_margin_closes:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_required_scale_margin_closes ??
+      null,
+    candidate_profile_scale_exact_fixed_radii_required_scale_failed_margin_names:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_required_scale_failed_margin_names ??
+      [],
+    primitive_diagnostic_input:
+      complete && !invalid && Number.isFinite(rhoX) && Number.isFinite(rX)
+        ? {
+            center_residual_bound_E_R: components.E_R,
+            center_jacobian_lower_bound_nu_J: components.nu_J,
+            jacobian_lipschitz_bound_L_J: components.L_J,
+            candidate_M_G_bound: components.M_G,
+            candidate_root_tangent_numerator_bound_M_R: components.M_R,
+            rho_X: rhoX,
+            r_X: rX,
+            radius_multiple: radiusMultiple,
+            primitive_bounds_source:
+              "h39-full-cauchy-primitive-vector-candidate",
+            primitive_bounds_status: "provided-unverified",
+          }
+        : null,
+    primitive_diagnostic_input_ready:
+      complete && !invalid && Number.isFinite(rhoX) && Number.isFinite(rX),
+    claim_boundary: {
+      verifies_primitive_bounds_provenance: false,
+      certifies_continuous_polydisc_primitives: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_directed_rounded_h39_polydisc_M_G_bound: false,
+      certifies_directed_rounded_h39_root_tangent_numerator_M_R_bound:
+        false,
+      certifies_directed_rounded_h39_jacobian_lower_bound: false,
+      certifies_directed_rounded_h39_jacobian_lipschitz_bound: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function summaryValue(summary, cellField, aggregateField) {
+  return summary?.[cellField] ?? summary?.[aggregateField] ?? null;
+}
+
+export function buildH39PrimitiveVectorBackendArtifactFromSummary(
+  summary,
+  {
+    sourceSummaryKind = "h39-shared-domain-coefficient-summary",
+    primitiveBoundsStatus = "provided-unverified",
+  } = {}
+) {
+  const finitePrefixPrimitiveProfileScaleReplay =
+    summary?.candidate_finite_prefix_primitive_profile_scale_replay ?? null;
+  const vector = computeH39FullCauchyPrimitiveVectorCandidate({
+    candidate_E_R_prefix_plus_tail_bound: summaryValue(
+      summary,
+      "candidate_E_R_prefix_plus_tail_bound",
+      "max_candidate_E_R_prefix_plus_tail_bound"
+    ),
+    candidate_M_R_prefix_plus_tail_bound: summaryValue(
+      summary,
+      "candidate_M_R_prefix_plus_tail_bound",
+      "max_candidate_M_R_prefix_plus_tail_bound"
+    ),
+    candidate_M_G_prefix_plus_tail_bound: summaryValue(
+      summary,
+      "candidate_M_G_prefix_plus_tail_bound",
+      "max_candidate_M_G_prefix_plus_tail_bound"
+    ),
+    candidate_nu_J_prefix_plus_tail_floor: summaryValue(
+      summary,
+      "candidate_nu_J_prefix_plus_tail_floor",
+      "min_candidate_nu_J_prefix_plus_tail_floor"
+    ),
+    candidate_L_J_reduced_continuous_majorant: summaryValue(
+      summary,
+      "candidate_L_J_reduced_continuous_majorant",
+      "max_candidate_L_J_reduced_continuous_majorant"
+    ),
+    finitePrefixPrimitiveProfileScaleReplay,
+    componentSources: {
+      E_R: summary?.candidate_R43_outer_bound_source ?? null,
+      M_R: summary?.candidate_R43_outer_bound_source ?? null,
+      M_G: summary?.candidate_N_G_outer_bound_source ?? null,
+      nu_J: summary?.candidate_nu_J_outer_bound_source ?? null,
+      L_J: summary?.candidate_L_J_reduced_continuous_majorant_source ?? null,
+    },
+  });
+
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_PRIMITIVE_VECTOR_BACKEND_ARTIFACT_SCHEMA,
+    packet_id:
+      "theta3minus_fold_pair_first_y_gd_h39_primitive_vector_backend_artifact",
+    promotion_status:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.promotion_status,
+    backend_scope: {
+      source_summary_kind: sourceSummaryKind,
+      candidate_only: true,
+      primitive_bounds_status: primitiveBoundsStatus,
+      shared_domain_requirement:
+        "E_R, M_R, M_G, nu_J, and L_J must be certified by one directed-rounded graph-centered backend before this candidate vector can be promoted",
+    },
+    candidate_primitive_vector: {
+      center_residual_bound_E_R:
+        vector.candidate_primitive_vector_E_R_bound,
+      candidate_root_tangent_numerator_bound_M_R:
+        vector.candidate_primitive_vector_M_R_bound,
+      candidate_M_G_bound: vector.candidate_primitive_vector_M_G_bound,
+      center_jacobian_lower_bound_nu_J:
+        vector.candidate_primitive_vector_nu_J_floor,
+      jacobian_lipschitz_bound_L_J:
+        vector.candidate_primitive_vector_L_J_bound,
+    },
+    missing_candidate_components:
+      vector.candidate_h39_full_cauchy_primitive_vector_missing_components,
+    invalid_candidate_components:
+      vector.candidate_h39_full_cauchy_primitive_vector_invalid_components,
+    profile_vector_backend_status: vector.status,
+    profile_vector_status:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_h39_full_cauchy_primitive_profile_vector_status ??
+      summary?.candidate_h39_full_cauchy_primitive_profile_vector_status ??
+      null,
+    profile_vector_complete:
+      vector.candidate_h39_full_cauchy_primitive_vector_complete,
+    replay_status:
+      finitePrefixPrimitiveProfileScaleReplay?.replay_status ?? null,
+    profile_scale_status:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_status ?? null,
+    profile_scale_required_closes:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_required_closes ?? null,
+    profile_scale_candidate:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_candidate ?? null,
+    profile_scale_exact_fixed_radii_lambda_supremum:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_lambda_supremum ?? null,
+    profile_scale_exact_fixed_radii_bottleneck_name:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_bottleneck_name ?? null,
+    profile_scale_exact_fixed_radii_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_required_scale ?? null,
+    profile_scale_exact_fixed_radii_strict_headroom:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_strict_headroom ?? null,
+    profile_scale_exact_fixed_radii_closes_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_closes_required_scale ??
+      null,
+    profile_scale_exact_fixed_radii_not_applicable_reason:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_not_applicable_reason ??
+      null,
+    profile_scale_exact_fixed_radii_J_min_at_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_J_min_at_required_scale ??
+      null,
+    profile_scale_exact_fixed_radii_rouche_margin_at_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_rouche_margin_at_required_scale ??
+      null,
+    profile_scale_exact_fixed_radii_scalar_polynomial_at_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_scalar_polynomial_at_required_scale ??
+      null,
+    profile_scale_exact_fixed_radii_required_scale_margin_closes:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_required_scale_margin_closes ??
+      null,
+    profile_scale_exact_fixed_radii_required_scale_failed_margin_names:
+      finitePrefixPrimitiveProfileScaleReplay
+        ?.candidate_profile_scale_exact_fixed_radii_required_scale_failed_margin_names ??
+      [],
+    primitive_diagnostic_input: vector.primitive_diagnostic_input,
+    primitive_diagnostic_input_ready:
+      vector.primitive_diagnostic_input_ready,
+    source_vector_candidate: vector,
+    claim_boundary: {
+      constructs_h39_primitive_vector_backend_artifact: true,
+      verifies_primitive_bounds_provenance: false,
+      certifies_continuous_polydisc_primitives: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_directed_rounded_h39_polydisc_M_G_bound: false,
+      certifies_directed_rounded_h39_root_tangent_numerator_M_R_bound:
+        false,
+      certifies_directed_rounded_h39_jacobian_lower_bound: false,
+      certifies_directed_rounded_h39_jacobian_lipschitz_bound: false,
+      certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
+        false,
+      certifies_directed_rounded_fold_pair_scaled_remainder: false,
+      certifies_I1_regular_critical_exhaustion: false,
+      retained_branch: false,
+    },
+    result: {
+      theory_status: "h39-primitive-vector-backend-artifact-emitted",
+      retention: "not_retained",
+      retained_branch: false,
+      status_note:
+        "The primitive vector backend packages candidate E_R, M_R, M_G, nu_J, and L_J values for h39 reducer input, but it does not certify directed-rounded shared-domain provenance.",
+    },
   };
 }
 
@@ -2610,6 +5351,27 @@ export function evaluateH39SharedDomainCoefficientCell({
   branchInputs,
   shiftedOrder = 1,
   rho = null,
+  sharedDomainSignature = null,
+  r43CauchyOuterBound = null,
+  r43CauchyOuterRadius = null,
+  nGCauchyOuterBound = null,
+  nGCauchyOuterRadius = null,
+  jacobianCauchyOuterBound = null,
+  jacobianCauchyOuterRadius = null,
+  coordinateCauchyOuterRadius = null,
+  coordinateJacobianOuterRadius = null,
+  coordinateJacobianNumeratorOuterRadius = null,
+  coordinateSourceEnvelopeCandidates = null,
+  coordinateXOuterRadius = 0,
+  denominatorCauchyOuterRadius = null,
+  denominatorDeltaCauchyOuterBound = null,
+  denominatorPhiCauchyOuterBound = null,
+  denominatorJacobianAbsCauchyOuterBound = null,
+  denominatorLMajorant = null,
+  denominatorLowerPolynomialMajorant = null,
+  denominatorSourceCoefficientAbs = 1,
+  rhoX = null,
+  rX = null,
 } = {}) {
   if (!Array.isArray(branchInputs) || branchInputs.length !== 2) {
     throw new Error("branchInputs must contain the two fold-pair branches");
@@ -2629,6 +5391,149 @@ export function evaluateH39SharedDomainCoefficientCell({
     ...input,
     xInterval: centerSolves[index].h39_center_interval,
   }));
+  const sourceCertificateObstructions = [];
+  let normalizedCoordinateSourceEnvelopeCandidates = [];
+  try {
+    normalizedCoordinateSourceEnvelopeCandidates =
+      normalizeCoordinateSourceEnvelopeCandidates({
+        coordinateCauchyOuterRadius,
+        coordinateJacobianOuterRadius,
+        coordinateJacobianNumeratorOuterRadius,
+        coordinateSourceEnvelopeCandidates,
+      });
+  } catch (error) {
+    sourceCertificateObstructions.push({
+      source_family: "coordinate_cauchy_outer_bounds",
+      status: "open-source-certificate-computation-error",
+      message: error.message,
+      candidate_obstructions: null,
+    });
+  }
+  const wantsCoordinateCauchyOuterBounds =
+    normalizedCoordinateSourceEnvelopeCandidates.length > 0;
+  let coordinateCauchyOuterBounds = null;
+  if (wantsCoordinateCauchyOuterBounds) {
+    try {
+      coordinateCauchyOuterBounds =
+        computeH39CoordinateCauchyOuterBoundsProfileFromEnvelopeCandidates({
+          context,
+          cell,
+          branchInputs: centeredBranchInputs,
+          coordinateSourceEnvelopeCandidates:
+            normalizedCoordinateSourceEnvelopeCandidates,
+          xOuterRadius: coordinateXOuterRadius,
+        });
+    } catch (error) {
+      sourceCertificateObstructions.push({
+        source_family: "coordinate_cauchy_outer_bounds",
+        status: "open-source-certificate-computation-error",
+        message: error.message,
+        candidate_obstructions:
+          error.coordinateSourceEnvelopeObstructions ?? null,
+      });
+    }
+  }
+  const wantsDenominatorCauchyNGOuterBound =
+    isProvided(denominatorCauchyOuterRadius) ||
+    isProvided(denominatorDeltaCauchyOuterBound) ||
+    isProvided(denominatorPhiCauchyOuterBound) ||
+    isProvided(denominatorJacobianAbsCauchyOuterBound) ||
+    isProvided(denominatorLMajorant) ||
+    isProvided(denominatorLowerPolynomialMajorant);
+  const denominatorCauchyNGOuterBound = wantsDenominatorCauchyNGOuterBound
+    ? computeH39DenominatorCauchyNGOuterBoundCandidate({
+        context,
+        cell,
+        branchInputs: centeredBranchInputs,
+        rho,
+        outerRadius: denominatorCauchyOuterRadius,
+        deltaOuterBound: denominatorDeltaCauchyOuterBound,
+        phiOuterBound: denominatorPhiCauchyOuterBound,
+        jacobianAbsOuterBound: denominatorJacobianAbsCauchyOuterBound,
+        lMajorant: denominatorLMajorant,
+        lowerPolynomialMajorant: denominatorLowerPolynomialMajorant,
+        sourceCoefficientAbs: denominatorSourceCoefficientAbs,
+      })
+    : null;
+  const sourceCertificateReport =
+    sharedDomainSignature !== null &&
+    sharedDomainSignature !== undefined &&
+    coordinateCauchyOuterBounds !== null &&
+    denominatorCauchyNGOuterBound !== null
+      ? buildH39EvaluatorSourceCertificateReport({
+          coordinateCauchyOuterBounds,
+          denominatorCauchyNGOuterBound,
+          sharedDomainSignature,
+        })
+      : null;
+  let kEpsilonBranchCoordinateWitnessSet = null;
+  if (
+    sharedDomainSignature !== null &&
+    sharedDomainSignature !== undefined &&
+    isProvided(rho) &&
+    isProvided(denominatorCauchyOuterRadius) &&
+    isProvided(denominatorDeltaCauchyOuterBound) &&
+    isProvided(denominatorPhiCauchyOuterBound)
+  ) {
+    try {
+      kEpsilonBranchCoordinateWitnessSet =
+        buildH39KepsilonBranchCoordinateWitnessSet({
+          context,
+          cell,
+          branchInputs: centeredBranchInputs,
+          rho,
+          outerRadius: denominatorCauchyOuterRadius,
+          deltaOuterBound: denominatorDeltaCauchyOuterBound,
+          phiOuterBound: denominatorPhiCauchyOuterBound,
+          sharedDomainSignature,
+        });
+    } catch (error) {
+      sourceCertificateObstructions.push({
+        source_family: "K_epsilon_branch_coordinate_witness_set",
+        status: "open-source-certificate-computation-error",
+        message: error.message,
+      });
+    }
+  }
+  const graphRadiiWitness =
+    isProvided(rhoX) || isProvided(rX)
+      ? buildH39EvaluatorGraphRadiiWitness({
+          rhoX,
+          rX,
+          sharedDomainSignature,
+        })
+      : null;
+  const hasExplicitR43CauchyInput =
+    isProvided(r43CauchyOuterBound) || isProvided(r43CauchyOuterRadius);
+  const hasExplicitNGCauchyInput =
+    isProvided(nGCauchyOuterBound) || isProvided(nGCauchyOuterRadius);
+  const hasExplicitJacobianCauchyInput =
+    isProvided(jacobianCauchyOuterBound) ||
+    isProvided(jacobianCauchyOuterRadius);
+  const resolvedR43CauchyOuterBound = hasExplicitR43CauchyInput
+    ? r43CauchyOuterBound
+    : coordinateCauchyOuterBounds?.r43_cauchy_outer_bound ?? null;
+  const resolvedR43CauchyOuterRadius = hasExplicitR43CauchyInput
+    ? r43CauchyOuterRadius
+    : coordinateCauchyOuterBounds?.r43_cauchy_outer_radius ?? null;
+  const resolvedR43CauchyTailShiftPower = hasExplicitR43CauchyInput
+    ? THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift
+    : (coordinateCauchyOuterBounds?.r43_cauchy_tail_shift_power ??
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift);
+  const resolvedNGCauchyOuterBound = hasExplicitNGCauchyInput
+    ? nGCauchyOuterBound
+    : denominatorCauchyNGOuterBound?.n_g_cauchy_outer_bound ?? null;
+  const resolvedNGCauchyOuterRadius = hasExplicitNGCauchyInput
+    ? nGCauchyOuterRadius
+    : isProvided(denominatorCauchyNGOuterBound?.n_g_cauchy_outer_bound)
+      ? denominatorCauchyNGOuterBound?.n_g_cauchy_outer_radius
+      : null;
+  const resolvedJacobianCauchyOuterBound = hasExplicitJacobianCauchyInput
+    ? jacobianCauchyOuterBound
+    : coordinateCauchyOuterBounds?.jacobian_cauchy_outer_bound ?? null;
+  const resolvedJacobianCauchyOuterRadius = hasExplicitJacobianCauchyInput
+    ? jacobianCauchyOuterRadius
+    : coordinateCauchyOuterBounds?.jacobian_cauchy_outer_radius ?? null;
   const r43Rows = centeredBranchInputs.map((input) =>
     evaluateR43CoefficientRows({
       context,
@@ -2652,6 +5557,29 @@ export function evaluateH39SharedDomainCoefficientCell({
     r43Rows,
     nGRows: [nGRow],
     rho,
+    r43CauchyOuterBound: resolvedR43CauchyOuterBound,
+    r43CauchyOuterRadius: resolvedR43CauchyOuterRadius,
+    r43CauchyOuterBoundSource:
+      !hasExplicitR43CauchyInput && coordinateCauchyOuterBounds
+        ? coordinateCauchyOuterBounds.source_envelope_kind ===
+          "shifted-removable-r43-cauchy-outer-bound"
+          ? "coordinate-shifted-removable-r43-cauchy-outer-bound"
+          : "coordinate-source-residual-cauchy-outer-bound"
+        : null,
+    r43CauchyTailShiftPower: resolvedR43CauchyTailShiftPower,
+    nGCauchyOuterBound: resolvedNGCauchyOuterBound,
+    nGCauchyOuterRadius: resolvedNGCauchyOuterRadius,
+    nGCauchyOuterBoundSource:
+      !hasExplicitNGCauchyInput &&
+      isProvided(denominatorCauchyNGOuterBound?.n_g_cauchy_outer_bound)
+        ? "branch-denominator-cauchy-outer-bound"
+        : null,
+    jacobianCauchyOuterBound: resolvedJacobianCauchyOuterBound,
+    jacobianCauchyOuterRadius: resolvedJacobianCauchyOuterRadius,
+    jacobianCauchyOuterBoundSource:
+      !hasExplicitJacobianCauchyInput && coordinateCauchyOuterBounds
+        ? "coordinate-removable-jacobian-cauchy-outer-bound"
+        : null,
   });
 
   return {
@@ -2660,12 +5588,30 @@ export function evaluateH39SharedDomainCoefficientCell({
     evaluation_level: "coefficient-only",
     rho,
     shifted_order: shiftedOrder,
+    shared_domain_signature: sharedDomainSignature,
     h39_center_solves: centerSolves,
     r43_rows: r43Rows,
     n_g_row: nGRow,
+    coordinate_cauchy_outer_bounds_profile_candidate:
+      coordinateCauchyOuterBounds,
+    denominator_cauchy_n_g_outer_bound_candidate:
+      denominatorCauchyNGOuterBound,
+    source_certificate_obstructions: sourceCertificateObstructions,
+    evaluator_source_certificate_report: sourceCertificateReport,
+    h39_K_epsilon_branch_coordinate_witness_set:
+      kEpsilonBranchCoordinateWitnessSet,
+    graph_radii_witness: graphRadiiWitness,
     finite_prefix_summary: finitePrefixSummary,
     claim_boundary: {
       computes_h39_shared_domain_coefficient_prefixes: true,
+      emits_directed_rounded_source_handoffs:
+        sourceCertificateReport?.result
+          ?.h39_evaluator_source_handoffs_certified === true,
+      emits_K_epsilon_branch_coordinate_witness_set:
+        kEpsilonBranchCoordinateWitnessSet?.result
+          ?.h39_K_epsilon_branch_coordinate_witness_set === true,
+      emits_graph_radii_witness:
+        graphRadiiWitness?.result?.h39_graph_radii_witness === true,
       certifies_directed_rounded_shared_domain: false,
       certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
         false,
@@ -2689,6 +5635,17 @@ export function summarizeSharedDomainPrimitiveBounds({
   r43Rows = [],
   nGRows = [],
   rho = null,
+  r43CauchyOuterBound = null,
+  r43CauchyOuterRadius = null,
+  r43CauchyOuterBoundSource = null,
+  r43CauchyTailShiftPower =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift,
+  nGCauchyOuterBound = null,
+  nGCauchyOuterRadius = null,
+  nGCauchyOuterBoundSource = null,
+  jacobianCauchyOuterBound = null,
+  jacobianCauchyOuterRadius = null,
+  jacobianCauchyOuterBoundSource = null,
 } = {}) {
   const r43CenterCoefficients = r43Rows
     .map((row) => row.R43_center_coefficient_interval)
@@ -2728,6 +5685,24 @@ export function summarizeSharedDomainPrimitiveBounds({
     THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS
       .second_x_derivative_y_power;
   const rhoProvided = rho !== null && rho !== undefined;
+  const hasR43CauchyInputs = hasCompleteCauchyOuterPair(
+    "R43",
+    r43CauchyOuterBound,
+    r43CauchyOuterRadius,
+    rho
+  );
+  const hasNGCauchyInputs = hasCompleteCauchyOuterPair(
+    "N_G",
+    nGCauchyOuterBound,
+    nGCauchyOuterRadius,
+    rho
+  );
+  const hasJacobianCauchyInputs = hasCompleteCauchyOuterPair(
+    "R43 Jacobian",
+    jacobianCauchyOuterBound,
+    jacobianCauchyOuterRadius,
+    rho
+  );
   const candidateLJFinitePrefix =
     rhoProvided && secondXCoefficientLists.length > 0
       ? Math.max(
@@ -2800,6 +5775,84 @@ export function summarizeSharedDomainPrimitiveBounds({
           )
         )
       : null;
+  const r43AnalyticRemainderProfileCandidates =
+    hasR43CauchyInputs && r43CoefficientLists.length > 0
+      ? r43CoefficientLists.map((coefficients) =>
+          computeH39R43AnalyticRemainderProfileCandidate({
+            coefficients,
+            outerBound: r43CauchyOuterBound,
+            outerRadius: r43CauchyOuterRadius,
+            targetRadius: rho,
+            shiftPower: r43CauchyTailShiftPower,
+          })
+        )
+      : [];
+  const nGAnalyticRemainderProfileCandidates =
+    hasNGCauchyInputs && nGRows.length > 0
+      ? nGRows
+          .filter((row) => (row.N_G_shifted_coefficients ?? []).length > 0)
+          .map((row) =>
+            computeH39NGOuterBoundCandidateMG({
+              nGShiftedCoefficients: row.N_G_shifted_coefficients,
+              nGOuterBound: nGCauchyOuterBound,
+              nGOuterRadius: nGCauchyOuterRadius,
+              rho,
+            })
+          )
+      : [];
+  const jacobianAnalyticRemainderProfileCandidates =
+    hasJacobianCauchyInputs && jacobianCoefficientLists.length > 0
+      ? jacobianCoefficientLists.map((coefficients) =>
+          computeH39JacobianAnalyticRemainderProfileCandidate({
+            coefficients,
+            outerBound: jacobianCauchyOuterBound,
+            outerRadius: jacobianCauchyOuterRadius,
+            targetRadius: rho,
+          })
+        )
+      : [];
+  const candidateERCauchyTailProfile = finiteMax(
+    r43AnalyticRemainderProfileCandidates.map(
+      (candidate) =>
+        candidate.candidate_E_R_cauchy_tail_after_prefix_profile
+    )
+  );
+  const candidateERPrefixPlusTailBound = finiteMax(
+    r43AnalyticRemainderProfileCandidates.map(
+      (candidate) => candidate.candidate_E_R_prefix_plus_tail_bound
+    )
+  );
+  const candidateMRCauchyTailProfile = finiteMax(
+    r43AnalyticRemainderProfileCandidates.map(
+      (candidate) =>
+        candidate.candidate_M_R_cauchy_tail_after_prefix_profile
+    )
+  );
+  const candidateMRPrefixPlusTailBound = finiteMax(
+    r43AnalyticRemainderProfileCandidates.map(
+      (candidate) => candidate.candidate_M_R_prefix_plus_tail_bound
+    )
+  );
+  const candidateMGCauchyTailProfile = finiteMax(
+    nGAnalyticRemainderProfileCandidates.map(
+      (candidate) => candidate.candidate_M_G_cauchy_tail_after_prefix
+    )
+  );
+  const candidateMGPrefixPlusTailBound = finiteMax(
+    nGAnalyticRemainderProfileCandidates.map(
+      (candidate) => candidate.candidate_M_G_prefix_plus_tail_bound
+    )
+  );
+  const candidateNuJCauchyTailLossProfile = finiteMax(
+    jacobianAnalyticRemainderProfileCandidates.map(
+      (candidate) => candidate.candidate_nu_J_cauchy_tail_loss_profile
+    )
+  );
+  const candidateNuJPrefixPlusTailFloor = finiteMin(
+    jacobianAnalyticRemainderProfileCandidates.map(
+      (candidate) => candidate.candidate_nu_J_prefix_plus_tail_floor
+    )
+  );
   const finitePrefixPrimitiveScalarReplay =
     computeH39FinitePrefixPrimitiveScalarReplay({
       candidate_E_R_finite_prefix: candidateERFinitePrefix,
@@ -2808,6 +5861,56 @@ export function summarizeSharedDomainPrimitiveBounds({
         candidateLJReducedContinuousMajorant,
       candidate_M_G_finite_prefix: candidateMGFinitePrefix,
       candidate_M_R_finite_prefix: candidateMRFinitePrefix,
+    });
+  const finitePrefixPrimitiveProfileScaleReplay =
+    computeH39FinitePrefixPrimitiveProfileScaleReplay({
+      candidate_E_R_finite_prefix: candidateERFinitePrefix,
+      candidate_nu_J_finite_prefix: candidateNuJFinitePrefix,
+      candidate_L_J_finite_prefix: candidateLJFactoredFinitePrefix,
+      candidate_L_J_reduced_continuous_majorant:
+        candidateLJReducedContinuousMajorant,
+      candidate_M_G_finite_prefix: candidateMGFinitePrefix,
+      candidate_M_R_finite_prefix: candidateMRFinitePrefix,
+      centerResidualRemainderProfile: candidateERCauchyTailProfile,
+      centerJacobianLowerRemainderProfile:
+        candidateNuJCauchyTailLossProfile,
+      mGRemainderProfile: candidateMGCauchyTailProfile,
+      rootTangentNumeratorRemainderProfile:
+        candidateMRCauchyTailProfile,
+    });
+  const fullCauchyPrimitiveVectorCandidate =
+    computeH39FullCauchyPrimitiveVectorCandidate({
+      candidate_E_R_prefix_plus_tail_bound:
+        candidateERPrefixPlusTailBound,
+      candidate_M_R_prefix_plus_tail_bound:
+        candidateMRPrefixPlusTailBound,
+      candidate_M_G_prefix_plus_tail_bound:
+        candidateMGPrefixPlusTailBound,
+      candidate_nu_J_prefix_plus_tail_floor:
+        candidateNuJPrefixPlusTailFloor,
+      candidate_L_J_reduced_continuous_majorant:
+        candidateLJReducedContinuousMajorant,
+      finitePrefixPrimitiveProfileScaleReplay,
+      componentSources: {
+        E_R: hasR43CauchyInputs
+          ? r43CauchyOuterBoundSource ?? "explicit-r43-cauchy-outer-bound"
+          : null,
+        M_R: hasR43CauchyInputs
+          ? r43CauchyOuterBoundSource ?? "explicit-r43-cauchy-outer-bound"
+          : null,
+        M_G: hasNGCauchyInputs
+          ? nGCauchyOuterBoundSource ??
+            "explicit-n-g-cauchy-outer-bound"
+          : null,
+        nu_J: hasJacobianCauchyInputs
+          ? jacobianCauchyOuterBoundSource ??
+            "explicit-jacobian-cauchy-outer-bound"
+          : null,
+        L_J:
+          reducedLJContinuousMajorants.length > 0
+            ? "kernel-continuous-majorant"
+            : null,
+      },
     });
 
   return {
@@ -2824,8 +5927,30 @@ export function summarizeSharedDomainPrimitiveBounds({
         ? null
         : Math.max(...nGCoefficients.map(maxAbsFormattedInterval)),
     candidate_E_R_finite_prefix: candidateERFinitePrefix,
+    candidate_E_R_cauchy_tail_after_prefix_profile:
+      candidateERCauchyTailProfile,
+    candidate_E_R_prefix_plus_tail_bound:
+      candidateERPrefixPlusTailBound,
+    candidate_R43_outer_bound_source: hasR43CauchyInputs
+      ? r43CauchyOuterBoundSource ?? "explicit-r43-cauchy-outer-bound"
+      : "missing-r43-cauchy-outer-bound",
+    candidate_R43_cauchy_tail_shift_power: hasR43CauchyInputs
+      ? Number(r43CauchyTailShiftPower)
+      : null,
     candidate_M_R_finite_prefix: candidateMRFinitePrefix,
+    candidate_M_R_cauchy_tail_after_prefix_profile:
+      candidateMRCauchyTailProfile,
+    candidate_M_R_prefix_plus_tail_bound:
+      candidateMRPrefixPlusTailBound,
     candidate_nu_J_finite_prefix: candidateNuJFinitePrefix,
+    candidate_nu_J_cauchy_tail_loss_profile:
+      candidateNuJCauchyTailLossProfile,
+    candidate_nu_J_prefix_plus_tail_floor:
+      candidateNuJPrefixPlusTailFloor,
+    candidate_nu_J_outer_bound_source: hasJacobianCauchyInputs
+      ? jacobianCauchyOuterBoundSource ??
+        "explicit-jacobian-cauchy-outer-bound"
+      : "missing-jacobian-cauchy-outer-bound",
     candidate_L_J_finite_prefix: candidateLJFinitePrefix,
     second_x_kernel_y_power: secondXKernelFactorPower,
     candidate_M_K_finite_prefix: candidateMKFinitePrefix,
@@ -2853,8 +5978,85 @@ export function summarizeSharedDomainPrimitiveBounds({
         ? "kernel-continuous-majorant"
         : null,
     candidate_M_G_finite_prefix: candidateMGFinitePrefix,
+    candidate_M_G_cauchy_tail_after_prefix_profile:
+      candidateMGCauchyTailProfile,
+    candidate_M_G_prefix_plus_tail_bound:
+      candidateMGPrefixPlusTailBound,
+    candidate_N_G_outer_bound_source: hasNGCauchyInputs
+      ? nGCauchyOuterBoundSource ?? "explicit-n-g-cauchy-outer-bound"
+      : "missing-n-g-cauchy-outer-bound",
+    candidate_R43_analytic_remainder_profile_candidates:
+      r43AnalyticRemainderProfileCandidates,
+    candidate_N_G_analytic_remainder_profile_candidates:
+      nGAnalyticRemainderProfileCandidates,
+    candidate_jacobian_analytic_remainder_profile_candidates:
+      jacobianAnalyticRemainderProfileCandidates,
     candidate_finite_prefix_primitive_scalar_replay:
       finitePrefixPrimitiveScalarReplay,
+    candidate_L_J_reduced_minus_finite_prefix_profile:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_L_J_reduced_minus_finite_prefix_profile,
+    candidate_finite_prefix_primitive_profile_scale_replay:
+      finitePrefixPrimitiveProfileScaleReplay,
+    candidate_profile_scale_required_closes:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_required_closes,
+    candidate_profile_scale_exact_fixed_radii_lambda_supremum:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_lambda_supremum,
+    candidate_profile_scale_exact_fixed_radii_bottleneck_name:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_bottleneck_name,
+    candidate_profile_scale_exact_fixed_radii_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_required_scale,
+    candidate_profile_scale_exact_fixed_radii_strict_headroom:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_strict_headroom,
+    candidate_profile_scale_exact_fixed_radii_closes_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_closes_required_scale,
+    candidate_profile_scale_exact_fixed_radii_not_applicable_reason:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_not_applicable_reason,
+    candidate_profile_scale_exact_fixed_radii_J_min_at_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_J_min_at_required_scale,
+    candidate_profile_scale_exact_fixed_radii_rouche_margin_at_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_rouche_margin_at_required_scale,
+    candidate_profile_scale_exact_fixed_radii_scalar_polynomial_at_required_scale:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_scalar_polynomial_at_required_scale,
+    candidate_profile_scale_exact_fixed_radii_required_scale_margin_closes:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_required_scale_margin_closes,
+    candidate_profile_scale_exact_fixed_radii_required_scale_failed_margin_names:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_required_scale_failed_margin_names,
+    candidate_h39_full_cauchy_primitive_profile_vector_status:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_h39_full_cauchy_primitive_profile_vector_status,
+    candidate_h39_full_cauchy_primitive_profile_vector_complete:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_h39_full_cauchy_primitive_profile_vector_complete,
+    candidate_h39_full_cauchy_primitive_profile_vector_missing_components:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_h39_full_cauchy_primitive_profile_vector_missing_components,
+    candidate_h39_full_cauchy_primitive_vector_backend:
+      fullCauchyPrimitiveVectorCandidate,
+    candidate_h39_full_cauchy_primitive_vector_backend_status:
+      fullCauchyPrimitiveVectorCandidate.status,
+    candidate_h39_full_cauchy_primitive_vector_backend_ready:
+      fullCauchyPrimitiveVectorCandidate.primitive_diagnostic_input_ready,
+    candidate_h39_full_cauchy_primitive_vector_components:
+      fullCauchyPrimitiveVectorCandidate
+        .candidate_h39_full_cauchy_primitive_vector_components,
+    candidate_h39_full_cauchy_primitive_vector_diagnostic_input:
+      fullCauchyPrimitiveVectorCandidate.primitive_diagnostic_input,
+    candidate_profile_direction_complete_for_shared_domain_closure:
+      finitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_direction_complete_for_shared_domain_closure,
     E_R: null,
     nu_J: null,
     L_J: null,
@@ -2893,7 +6095,28 @@ export function evaluateH39SharedDomainCoefficientRows({
   h38Rows,
   shiftedOrder = 1,
   rho = null,
+  sharedDomainSignature = null,
   rowLimit = null,
+  r43CauchyOuterBound = null,
+  r43CauchyOuterRadius = null,
+  nGCauchyOuterBound = null,
+  nGCauchyOuterRadius = null,
+  jacobianCauchyOuterBound = null,
+  jacobianCauchyOuterRadius = null,
+  coordinateCauchyOuterRadius = null,
+  coordinateJacobianOuterRadius = null,
+  coordinateJacobianNumeratorOuterRadius = null,
+  coordinateSourceEnvelopeCandidates = null,
+  coordinateXOuterRadius = 0,
+  denominatorCauchyOuterRadius = null,
+  denominatorDeltaCauchyOuterBound = null,
+  denominatorPhiCauchyOuterBound = null,
+  denominatorJacobianAbsCauchyOuterBound = null,
+  denominatorLMajorant = null,
+  denominatorLowerPolynomialMajorant = null,
+  denominatorSourceCoefficientAbs = 1,
+  rhoX = null,
+  rX = null,
 } = {}) {
   if (!Array.isArray(h38Rows) || h38Rows.length === 0) {
     throw new Error("h38Rows must be a nonempty array");
@@ -2910,6 +6133,27 @@ export function evaluateH39SharedDomainCoefficientRows({
       branchInputs: branchInputsFromH38Row(row),
       shiftedOrder,
       rho,
+      sharedDomainSignature,
+      r43CauchyOuterBound,
+      r43CauchyOuterRadius,
+      nGCauchyOuterBound,
+      nGCauchyOuterRadius,
+      jacobianCauchyOuterBound,
+      jacobianCauchyOuterRadius,
+      coordinateCauchyOuterRadius,
+      coordinateJacobianOuterRadius,
+      coordinateJacobianNumeratorOuterRadius,
+      coordinateSourceEnvelopeCandidates,
+      coordinateXOuterRadius,
+      denominatorCauchyOuterRadius,
+      denominatorDeltaCauchyOuterBound,
+      denominatorPhiCauchyOuterBound,
+      denominatorJacobianAbsCauchyOuterBound,
+      denominatorLMajorant,
+      denominatorLowerPolynomialMajorant,
+      denominatorSourceCoefficientAbs,
+      rhoX,
+      rX,
     });
     return {
       cell_id: row.cell_id ?? `h38-row.${index}`,
@@ -2924,6 +6168,16 @@ export function evaluateH39SharedDomainCoefficientRows({
 
 function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
   const cells = rows.map((row) => row.h39_coefficient_cell);
+  const sourceCertificateObstructions = rows.flatMap((row) =>
+    Array.isArray(row.h39_coefficient_cell?.source_certificate_obstructions)
+      ? row.h39_coefficient_cell.source_certificate_obstructions.map(
+          (obstruction) => ({
+            cell_id: row.cell_id ?? null,
+            ...obstruction,
+          })
+        )
+      : []
+  );
   const r43Rows = cells.flatMap((cell) => cell.r43_rows);
   const nGRows = cells.map((cell) => cell.n_g_row);
   const centerSolves = cells.flatMap((cell) => cell.h39_center_solves);
@@ -2965,6 +6219,46 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
       (summary) => summary.candidate_M_G_finite_prefix
     )
   );
+  const aggregateCandidateERCauchyTailProfile = finiteMax(
+    finitePrefixSummaries.map(
+      (summary) => summary.candidate_E_R_cauchy_tail_after_prefix_profile
+    )
+  );
+  const aggregateCandidateERPrefixPlusTailBound = finiteMax(
+    finitePrefixSummaries.map(
+      (summary) => summary.candidate_E_R_prefix_plus_tail_bound
+    )
+  );
+  const aggregateCandidateMRCauchyTailProfile = finiteMax(
+    finitePrefixSummaries.map(
+      (summary) => summary.candidate_M_R_cauchy_tail_after_prefix_profile
+    )
+  );
+  const aggregateCandidateMRPrefixPlusTailBound = finiteMax(
+    finitePrefixSummaries.map(
+      (summary) => summary.candidate_M_R_prefix_plus_tail_bound
+    )
+  );
+  const aggregateCandidateMGCauchyTailProfile = finiteMax(
+    finitePrefixSummaries.map(
+      (summary) => summary.candidate_M_G_cauchy_tail_after_prefix_profile
+    )
+  );
+  const aggregateCandidateMGPrefixPlusTailBound = finiteMax(
+    finitePrefixSummaries.map(
+      (summary) => summary.candidate_M_G_prefix_plus_tail_bound
+    )
+  );
+  const aggregateCandidateNuJCauchyTailLossProfile = finiteMax(
+    finitePrefixSummaries.map(
+      (summary) => summary.candidate_nu_J_cauchy_tail_loss_profile
+    )
+  );
+  const aggregateCandidateNuJPrefixPlusTailFloor = finiteMin(
+    finitePrefixSummaries.map(
+      (summary) => summary.candidate_nu_J_prefix_plus_tail_floor
+    )
+  );
   const aggregateFinitePrefixPrimitiveScalarReplay =
     computeH39FinitePrefixPrimitiveScalarReplay({
       candidate_E_R_finite_prefix: aggregateCandidateERFinitePrefix,
@@ -2973,6 +6267,28 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
         aggregateCandidateLJReducedContinuousMajorant,
       candidate_M_G_finite_prefix: aggregateCandidateMGFinitePrefix,
       candidate_M_R_finite_prefix: aggregateCandidateMRFinitePrefix,
+    });
+  const aggregateCandidateLJFactoredFinitePrefix = finiteMax(
+    finitePrefixSummaries.map(
+      (summary) => summary.candidate_L_J_factored_finite_prefix
+    )
+  );
+  const aggregateFinitePrefixPrimitiveProfileScaleReplay =
+    computeH39FinitePrefixPrimitiveProfileScaleReplay({
+      candidate_E_R_finite_prefix: aggregateCandidateERFinitePrefix,
+      candidate_nu_J_finite_prefix: aggregateCandidateNuJFinitePrefix,
+      candidate_L_J_finite_prefix:
+        aggregateCandidateLJFactoredFinitePrefix,
+      candidate_L_J_reduced_continuous_majorant:
+        aggregateCandidateLJReducedContinuousMajorant,
+      candidate_M_G_finite_prefix: aggregateCandidateMGFinitePrefix,
+      candidate_M_R_finite_prefix: aggregateCandidateMRFinitePrefix,
+      centerResidualRemainderProfile: aggregateCandidateERCauchyTailProfile,
+      centerJacobianLowerRemainderProfile:
+        aggregateCandidateNuJCauchyTailLossProfile,
+      mGRemainderProfile: aggregateCandidateMGCauchyTailProfile,
+      rootTangentNumeratorRemainderProfile:
+        aggregateCandidateMRCauchyTailProfile,
     });
 
   return {
@@ -2984,6 +6300,11 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
       : null,
     coefficient_row_count: rows.length,
     branch_coefficient_row_count: r43Rows.length,
+    source_certificate_obstruction_count:
+      sourceCertificateObstructions.length,
+    source_certificate_obstructions: sourceCertificateObstructions,
+    first_source_certificate_obstruction:
+      sourceCertificateObstructions[0] ?? null,
     all_centered_leading_R43_coefficients_contain_zero:
       allCenteredLeadingR43ContainsZero,
     all_shifted_D_identity_witnesses_contain_zero:
@@ -3008,8 +6329,20 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
       )
     ),
     max_candidate_E_R_finite_prefix: aggregateCandidateERFinitePrefix,
+    max_candidate_E_R_cauchy_tail_after_prefix_profile:
+      aggregateCandidateERCauchyTailProfile,
+    max_candidate_E_R_prefix_plus_tail_bound:
+      aggregateCandidateERPrefixPlusTailBound,
     max_candidate_M_R_finite_prefix: aggregateCandidateMRFinitePrefix,
+    max_candidate_M_R_cauchy_tail_after_prefix_profile:
+      aggregateCandidateMRCauchyTailProfile,
+    max_candidate_M_R_prefix_plus_tail_bound:
+      aggregateCandidateMRPrefixPlusTailBound,
     min_candidate_nu_J_finite_prefix: aggregateCandidateNuJFinitePrefix,
+    max_candidate_nu_J_cauchy_tail_loss_profile:
+      aggregateCandidateNuJCauchyTailLossProfile,
+    min_candidate_nu_J_prefix_plus_tail_floor:
+      aggregateCandidateNuJPrefixPlusTailFloor,
     max_candidate_L_J_finite_prefix: finiteMax(
       finitePrefixSummaries.map(
         (summary) => summary.candidate_L_J_finite_prefix
@@ -3020,11 +6353,8 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
         (summary) => summary.candidate_M_K_finite_prefix
       )
     ),
-    max_candidate_L_J_factored_finite_prefix: finiteMax(
-      finitePrefixSummaries.map(
-        (summary) => summary.candidate_L_J_factored_finite_prefix
-      )
-    ),
+    max_candidate_L_J_factored_finite_prefix:
+      aggregateCandidateLJFactoredFinitePrefix,
     max_candidate_L_J_from_kernel_factor_finite_prefix: finiteMax(
       finitePrefixSummaries.map(
         (summary) => summary.candidate_L_J_factored_finite_prefix
@@ -3057,8 +6387,68 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
           )
         : null,
     max_candidate_M_G_finite_prefix: aggregateCandidateMGFinitePrefix,
+    max_candidate_M_G_cauchy_tail_after_prefix_profile:
+      aggregateCandidateMGCauchyTailProfile,
+    max_candidate_M_G_prefix_plus_tail_bound:
+      aggregateCandidateMGPrefixPlusTailBound,
     candidate_finite_prefix_primitive_scalar_replay:
       aggregateFinitePrefixPrimitiveScalarReplay,
+    candidate_L_J_reduced_minus_finite_prefix_profile:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_L_J_reduced_minus_finite_prefix_profile,
+    candidate_finite_prefix_primitive_profile_scale_replay:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay,
+    candidate_profile_scale_required_closes:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_required_closes,
+    candidate_profile_scale_status:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_status,
+    candidate_profile_scale_exact_fixed_radii_lambda_supremum:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_lambda_supremum,
+    candidate_profile_scale_exact_fixed_radii_bottleneck_name:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_bottleneck_name,
+    candidate_profile_scale_exact_fixed_radii_required_scale:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_required_scale,
+    candidate_profile_scale_exact_fixed_radii_strict_headroom:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_strict_headroom,
+    candidate_profile_scale_exact_fixed_radii_closes_required_scale:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_closes_required_scale,
+    candidate_profile_scale_exact_fixed_radii_not_applicable_reason:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_not_applicable_reason,
+    candidate_profile_scale_exact_fixed_radii_J_min_at_required_scale:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_J_min_at_required_scale,
+    candidate_profile_scale_exact_fixed_radii_rouche_margin_at_required_scale:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_rouche_margin_at_required_scale,
+    candidate_profile_scale_exact_fixed_radii_scalar_polynomial_at_required_scale:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_scalar_polynomial_at_required_scale,
+    candidate_profile_scale_exact_fixed_radii_required_scale_margin_closes:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_required_scale_margin_closes,
+    candidate_profile_scale_exact_fixed_radii_required_scale_failed_margin_names:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_scale_exact_fixed_radii_required_scale_failed_margin_names,
+    candidate_h39_full_cauchy_primitive_profile_vector_status:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_h39_full_cauchy_primitive_profile_vector_status,
+    candidate_h39_full_cauchy_primitive_profile_vector_complete:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_h39_full_cauchy_primitive_profile_vector_complete,
+    candidate_h39_full_cauchy_primitive_profile_vector_missing_components:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_h39_full_cauchy_primitive_profile_vector_missing_components,
+    candidate_profile_direction_complete_for_shared_domain_closure:
+      aggregateFinitePrefixPrimitiveProfileScaleReplay
+        .candidate_profile_direction_complete_for_shared_domain_closure,
     candidate_finite_prefix_scalar_replay_closes:
       aggregateFinitePrefixPrimitiveScalarReplay.candidate_scalar_replay_closes,
     candidate_finite_prefix_scalar_replay_ratio:
@@ -3087,8 +6477,29 @@ export function buildH39SharedDomainCoefficientArtifact({
   shiftedOrder = 1,
   seriesOrder = null,
   rho = null,
+  sharedDomainSignature = null,
   rowLimit = null,
   includeRows = true,
+  r43CauchyOuterBound = null,
+  r43CauchyOuterRadius = null,
+  nGCauchyOuterBound = null,
+  nGCauchyOuterRadius = null,
+  jacobianCauchyOuterBound = null,
+  jacobianCauchyOuterRadius = null,
+  coordinateCauchyOuterRadius = null,
+  coordinateJacobianOuterRadius = null,
+  coordinateJacobianNumeratorOuterRadius = null,
+  coordinateSourceEnvelopeCandidates = null,
+  coordinateXOuterRadius = 0,
+  denominatorCauchyOuterRadius = null,
+  denominatorDeltaCauchyOuterBound = null,
+  denominatorPhiCauchyOuterBound = null,
+  denominatorJacobianAbsCauchyOuterBound = null,
+  denominatorLMajorant = null,
+  denominatorLowerPolynomialMajorant = null,
+  denominatorSourceCoefficientAbs = 1,
+  rhoX = null,
+  rX = null,
 } = {}) {
   const sourceRows = h38Rows ?? h38RowsFromArtifact(h38Artifact);
   const h38ValidationErrors =
@@ -3111,12 +6522,45 @@ export function buildH39SharedDomainCoefficientArtifact({
     h38Rows: sourceRows,
     shiftedOrder,
     rho,
+    sharedDomainSignature,
     rowLimit,
+    r43CauchyOuterBound,
+    r43CauchyOuterRadius,
+    nGCauchyOuterBound,
+    nGCauchyOuterRadius,
+    jacobianCauchyOuterBound,
+    jacobianCauchyOuterRadius,
+    coordinateCauchyOuterRadius,
+    coordinateJacobianOuterRadius,
+    coordinateJacobianNumeratorOuterRadius,
+    coordinateSourceEnvelopeCandidates,
+    coordinateXOuterRadius,
+    denominatorCauchyOuterRadius,
+    denominatorDeltaCauchyOuterBound,
+    denominatorPhiCauchyOuterBound,
+    denominatorJacobianAbsCauchyOuterBound,
+    denominatorLMajorant,
+    denominatorLowerPolynomialMajorant,
+    denominatorSourceCoefficientAbs,
+    rhoX,
+    rX,
   });
   const summary = summarizeH39CoefficientRows({
     rows,
     h38ValidationErrors,
   });
+  const primitiveVectorBackendArtifact =
+    buildH39PrimitiveVectorBackendArtifactFromSummary(summary, {
+      sourceSummaryKind: "h39-shared-domain-coefficient-summary",
+    });
+  const graphRadiiWitness =
+    isProvided(rhoX) || isProvided(rX)
+      ? buildH39EvaluatorGraphRadiiWitness({
+          rhoX,
+          rX,
+          sharedDomainSignature,
+        })
+      : null;
 
   return {
     schema:
@@ -3135,7 +6579,35 @@ export function buildH39SharedDomainCoefficientArtifact({
       shifted_order: shiftedOrder,
       requested_series_order: seriesOrder,
       rho,
+      shared_domain_signature: sharedDomainSignature,
       row_limit: rowLimit,
+      r43_cauchy_outer_bound: r43CauchyOuterBound,
+      r43_cauchy_outer_radius: r43CauchyOuterRadius,
+      n_g_cauchy_outer_bound: nGCauchyOuterBound,
+      n_g_cauchy_outer_radius: nGCauchyOuterRadius,
+      jacobian_cauchy_outer_bound: jacobianCauchyOuterBound,
+      jacobian_cauchy_outer_radius: jacobianCauchyOuterRadius,
+      coordinate_cauchy_outer_radius: coordinateCauchyOuterRadius,
+      coordinate_jacobian_outer_radius: coordinateJacobianOuterRadius,
+      coordinate_jacobian_numerator_outer_radius:
+        coordinateJacobianNumeratorOuterRadius,
+      coordinate_source_envelope_candidates:
+        coordinateSourceEnvelopeCandidates,
+      coordinate_x_outer_radius: coordinateXOuterRadius,
+      denominator_cauchy_outer_radius: denominatorCauchyOuterRadius,
+      denominator_delta_cauchy_outer_bound:
+        denominatorDeltaCauchyOuterBound,
+      denominator_phi_cauchy_outer_bound:
+        denominatorPhiCauchyOuterBound,
+      denominator_jacobian_abs_cauchy_outer_bound:
+        denominatorJacobianAbsCauchyOuterBound,
+      denominator_l_majorant: denominatorLMajorant,
+      denominator_lower_polynomial_majorant:
+        denominatorLowerPolynomialMajorant,
+      denominator_source_coefficient_abs:
+        denominatorSourceCoefficientAbs,
+      rho_X: rhoX,
+      r_X: rX,
       h38_rows_available: sourceRows.length,
       h38_rows_evaluated: rows.length,
       series_order: context.seriesOrder,
@@ -3145,12 +6617,17 @@ export function buildH39SharedDomainCoefficientArtifact({
     },
     h39_shared_domain_coefficient_rows: includeRows ? rows : [],
     h39_shared_domain_coefficient_summary: summary,
+    h39_primitive_vector_backend_artifact:
+      primitiveVectorBackendArtifact,
+    graph_radii_witness: graphRadiiWitness,
     claim_boundary: {
       assumes_fixed_speed_window: false,
       consumes_h38_successor_rows: true,
       computes_h39_shared_domain_coefficient_prefixes: true,
       certifies_h39_primitive_series_provenance_on_one_declared_coefficient_domain:
         true,
+      emits_graph_radii_witness:
+        graphRadiiWitness?.result?.h39_graph_radii_witness === true,
       certifies_directed_rounded_shared_domain: false,
       certifies_directed_rounded_h39_polydisc_M_G_bound: false,
       certifies_directed_rounded_h39_root_tangent_numerator_M_R_bound: false,
@@ -3274,6 +6751,126 @@ export function validateH39SharedDomainCoefficientArtifact(artifact) {
       artifact?.result?.retention === "not_retained" &&
       artifact?.result?.retained_branch === false,
     "h39 coefficient summary and result must remain not retained and not continuous",
+    errors
+  );
+  assertValidationField(
+    summary.candidate_finite_prefix_primitive_profile_scale_replay ===
+      undefined ||
+      (summary.candidate_finite_prefix_primitive_profile_scale_replay
+        ?.certifies_continuous_polydisc_primitives === false &&
+        summary.candidate_finite_prefix_primitive_profile_scale_replay
+          ?.certifies_directed_rounded_shared_domain === false &&
+        summary.candidate_finite_prefix_primitive_profile_scale_replay
+          ?.retained_branch === false),
+    "h39 profile-scale replay must remain candidate-only and not retained",
+    errors
+  );
+  assertValidationField(
+    summary.candidate_h39_full_cauchy_primitive_profile_vector_status ===
+      undefined ||
+      [
+        "h39-full-cauchy-primitive-profile-vector-candidate-incomplete",
+        "h39-full-cauchy-primitive-profile-vector-candidate-scale-inequalities-open",
+        "h39-full-cauchy-primitive-profile-vector-candidate-closes",
+      ].includes(
+        summary.candidate_h39_full_cauchy_primitive_profile_vector_status
+      ),
+    "h39 profile vector status must be a candidate-only status",
+    errors
+  );
+  const primitiveVectorBackend =
+    artifact?.h39_primitive_vector_backend_artifact;
+  const expectedPrimitiveVectorBackend =
+    buildH39PrimitiveVectorBackendArtifactFromSummary(summary, {
+      sourceSummaryKind: "h39-shared-domain-coefficient-summary",
+    });
+  assertValidationField(
+    primitiveVectorBackend?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_PRIMITIVE_VECTOR_BACKEND_ARTIFACT_SCHEMA &&
+      primitiveVectorBackend?.promotion_status ===
+        THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.promotion_status,
+    "h39 primitive vector backend artifact must have the expected schema and priority-only status",
+    errors
+  );
+  assertValidationField(
+    JSON.stringify(primitiveVectorBackend?.candidate_primitive_vector) ===
+      JSON.stringify(expectedPrimitiveVectorBackend.candidate_primitive_vector) &&
+      JSON.stringify(primitiveVectorBackend?.missing_candidate_components) ===
+        JSON.stringify(
+          expectedPrimitiveVectorBackend.missing_candidate_components
+        ) &&
+      primitiveVectorBackend?.profile_vector_backend_status ===
+        expectedPrimitiveVectorBackend.profile_vector_backend_status &&
+      primitiveVectorBackend?.profile_vector_status ===
+        expectedPrimitiveVectorBackend.profile_vector_status,
+    "h39 primitive vector backend artifact must match the coefficient summary vector fields",
+    errors
+  );
+  const primitiveVectorClaim =
+    primitiveVectorBackend?.claim_boundary ?? {};
+  assertValidationField(
+    primitiveVectorClaim.constructs_h39_primitive_vector_backend_artifact ===
+      true &&
+      primitiveVectorClaim.verifies_primitive_bounds_provenance === false &&
+      primitiveVectorClaim.certifies_continuous_polydisc_primitives ===
+        false &&
+      primitiveVectorClaim.certifies_directed_rounded_shared_domain ===
+        false &&
+      primitiveVectorClaim.certifies_directed_rounded_h39_polydisc_M_G_bound ===
+        false &&
+      primitiveVectorClaim.certifies_directed_rounded_h39_root_tangent_numerator_M_R_bound ===
+        false &&
+      primitiveVectorClaim.certifies_directed_rounded_h39_jacobian_lower_bound ===
+        false &&
+      primitiveVectorClaim.certifies_directed_rounded_h39_jacobian_lipschitz_bound ===
+        false &&
+      primitiveVectorClaim.certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound ===
+        false &&
+      primitiveVectorClaim.certifies_directed_rounded_fold_pair_scaled_remainder ===
+        false &&
+      primitiveVectorClaim.certifies_I1_regular_critical_exhaustion ===
+        false &&
+      primitiveVectorClaim.retained_branch === false &&
+      primitiveVectorBackend?.result?.retention === "not_retained" &&
+      primitiveVectorBackend?.result?.retained_branch === false,
+    "h39 primitive vector backend artifact must remain candidate-only and not retained",
+    errors
+  );
+  const coefficientParameters =
+    artifact?.coefficient_artifact_parameters ?? {};
+  const graphRadiiWitness = artifact?.graph_radii_witness ?? null;
+  const hasGraphRadiiParameters =
+    isProvided(coefficientParameters.rho_X) ||
+    isProvided(coefficientParameters.r_X);
+  let expectedGraphRadiiWitness = null;
+  if (hasGraphRadiiParameters) {
+    try {
+      expectedGraphRadiiWitness = buildH39EvaluatorGraphRadiiWitness({
+        rhoX: coefficientParameters.rho_X,
+        rX: coefficientParameters.r_X,
+        sharedDomainSignature:
+          coefficientParameters.shared_domain_signature,
+      });
+    } catch (error) {
+      errors.push(
+        `h39 graph-radii witness could not be rebuilt: ${error.message}`
+      );
+    }
+  }
+  assertValidationField(
+    hasGraphRadiiParameters
+      ? JSON.stringify(graphRadiiWitness) ===
+          JSON.stringify(expectedGraphRadiiWitness)
+      : graphRadiiWitness === null,
+    "h39 coefficient artifact graph-radii witness must match the declared rho_X and r_X parameters",
+    errors
+  );
+  assertValidationField(
+    hasGraphRadiiParameters
+      ? artifact?.claim_boundary?.emits_graph_radii_witness ===
+          (graphRadiiWitness?.result?.h39_graph_radii_witness === true)
+      : artifact?.claim_boundary?.emits_graph_radii_witness === false,
+    "h39 coefficient artifact graph-radii witness claim boundary must match the witness result",
     errors
   );
 

@@ -1151,6 +1151,73 @@ turn the next backend obligation into a precise provenance problem: produce
 continuous shared-domain $E_R,\nu_J,M_G,$ and $M_R$ values close enough to the
 candidate tuple, then replay the same strict $\rho_X,r_X$ construction.
 
+The analytic-remainder profile replay sharpens that provenance problem without
+changing the target. If the evaluator emits a profile direction
+
+$$
+(e_R,n_J,\ell_J,m_G,m_R)
+$$
+
+and a scale $\lambda$, the continuous candidate tuple is
+
+$$
+(E_R,\nu_J,L_J,M_G,M_R)(\lambda)
+=
+(E_R^0+\lambda e_R,\,
+\nu_J^0-\lambda n_J,\,
+L_J^0+\lambda\ell_J,\,
+M_G^0+\lambda m_G,\,
+M_R^0+\lambda m_R).
+$$
+
+For the fixed replayed $\rho_X,r_X$, it must satisfy
+
+$$
+J_{\mathrm{rob}}(\lambda)
+=
+\nu_J(\lambda)-L_J(\lambda)\rho_X>0,
+\qquad
+\Gamma_R(\lambda)>0,
+\qquad
+\Lambda_{39}^{\mathrm{prof}}(\lambda)<1.
+$$
+
+The current evaluator emits this replay for the known kernel-reduced
+$L_J$ pressure
+$\ell_J=\max(0,L_J^{\mathrm{red}}-L_J^0)$ and reports that the required
+scale $\lambda=1$ is absorbed. With explicit Cauchy outer bounds, the same
+replay now also accepts concrete candidate profiles for $E_R$ and $M_R$ from
+the shifted $R_{\varepsilon,43}$ prefix-tail formula and for $M_G$ from the
+corrected unshifted $N_G$ prefix-tail formula. The $\nu_J$ profile is emitted
+when a Jacobian outer bound is supplied.
+
+The newest source of those outer bounds is coordinate-native rather than a
+separate manual input. For each centered fold branch, the evaluator bounds the
+source residual by
+
+$$
+B_F^{\mathrm{out}}
+=
+S_\nu D^2+2+\sinh D+\sinh\Phi,
+$$
+
+where $D=\|\delta_\varepsilon\|_{R_y}$,
+$\Phi=\|\phi_\varepsilon\|_{R_y}$, and
+$S_\nu=\sup|\nu^{-2}|$ on the row speed interval. For the removable Jacobian
+numerator, nested radii $R_J<R_H$ give
+
+$$
+B_J^{\mathrm{out}}
+=
+\frac{2S_\nu D_H+\cosh D_H+\cosh\Phi_H}{R_H-R_J}.
+$$
+
+The evaluator takes the branch-pair maxima and threads those candidate
+$B_F^{\mathrm{out}}$ and $B_J^{\mathrm{out}}$ values into the same profile
+replay. It still marks the profile incomplete for shared-domain closure
+because these Cauchy profiles remain candidate provenance until proven on one
+directed-rounded graph-centered polydisc.
+
 The non-ladder h39 route is now narrowed to a specific analytic bridge:
 coefficient-series provenance, then shared-domain analytic remainders, then
 primitive diagnostic replay. A raw Cauchy shifted-tail theorem is available:
@@ -1304,6 +1371,11 @@ $\delta_\varepsilon$, $\phi_\varepsilon$, and
 $J_\varepsilon^{\mathrm{abs}}$ on the same outer radius, feed their hybrid
 $\mathcal M^{\mathrm C}$ and $\mathcal F^{\mathrm C}$ values into the branch
 denominator inequality, and only then form $B_{N_G}^{\mathrm{out}}$.
+This is now executable as a candidate resolver: it requires complete
+denominator Cauchy data $(R_y,B_\delta,B_\phi,B_{J^{\mathrm{abs}}},L_*,A_*)$,
+forms $B_{N_G}^{\mathrm{out}}$, and threads that value into the existing
+$M_G$ analytic-remainder profile. Partial denominator data are rejected rather
+than interpreted as a zero lower-polynomial or zero $L$ contribution.
 
 After that substitution, the closure test is one strict scalar inequality.
 For the resulting $B_{N_G,K}^{\mathrm{denC}}$, set
@@ -1377,6 +1449,31 @@ $$
 This is the current quantitative closure target for the non-ladder h39 route.
 It is deliberately a two-branch sum ceiling, because any per-branch allocation
 is an additional backend policy, not part of the theorem.
+
+The executable denominator diagnostic now reports this target directly. It
+emits the actual branch-sum majorant, the branch-sum budget ceiling, the
+margin, the ratio, and a status that distinguishes a below-ceiling candidate
+from a candidate that must shrink or a primitive tuple with no positive
+denominator budget. This gives a practical estimate of remaining work without
+adding a new proof gate: the ratio is a work gauge for the existing h39
+Rouché-primitive inequality.
+
+The closure target has also sharpened from isolated candidate tails to a full
+h39 Cauchy primitive profile vector
+
+$$
+\mathfrak P_{39}^{\mathrm{cand}}
+=
+(E_R,\ M_R,\ M_G,\ \nu_J,\ L_J).
+$$
+
+The executable status now distinguishes three cases: a missing component list,
+a complete vector whose strict h39 profile-scale inequalities remain open, and
+a complete vector that closes at scale $\lambda=1$. This turns the immediate
+post-seed task into a single compatibility problem: put the source,
+root-tangent numerator, $N_G$, Jacobian floor, and Lipschitz majorant on one
+shared graph-centered Cauchy domain, then make the coupled vector pass the
+h39 Rouché-primitive inequalities.
 
 For executable planning, the sum ceiling can still be translated into
 branch-local target floors under an explicit allocation policy. With
@@ -1482,6 +1579,61 @@ $$
 Thus the backend no longer needs to report an abstract slope budget. It needs
 the seven values $E_R,\nu_J,L_J,r_X,\rho_X,M_G,M_R$ on one graph-centered
 polydisc and a strict margin below $\Lambda_{39}^{\mathrm R}=1$.
+
+The same scalar inequality now supplies the directed-rounded tolerance targets
+for those seven values. With
+$K_D=B_{D,39}Y^{41}s^{40}(s-1)$,
+$A_D=40+1/(s-1)$, and
+$C_D=K_D/M_G-A_D$, closure for $M_G>0$ requires $C_D>0$ and
+
+$$
+(\nu_J-L_J\rho_X)(\rho_X-r_X)>\frac{M_R}{C_D}.
+$$
+
+Therefore the backend can test each proposed shared-domain enclosure against
+an explicit strict boundary: $E_R<\nu_Jr_X-\frac12L_Jr_X^2$, $\nu_J$ above the
+Rouché and product floors, $L_J$ below the Rouché and product ceilings,
+$\rho_X$ inside the product-root interval, $r_X$ inside the Rouché/product
+radius interval, and $M_G,M_R$ below their scalar ceilings. This is a real
+closure advance because it converts the remaining backend job from searching
+for admissible primitive values into a finite list of strict inequality margins to be
+proved on one shared polydisc.
+
+The tolerance targets now extend to analytic remainders. If the backend
+supplies nonnegative outward-rounded allowances for $E_R$, $\nu_J$, $L_J$,
+$\rho_X$, $r_X$, $M_G$, and $M_R$, the h39 reducer forms the pessimistic
+rectangle, checks the endpoint Rouché margins, takes the endpoint lower bound
+for $(\nu_J-L_J\rho_X)(\rho_X-r_X)$, and replays the scalar inequality with
+$M_G$ and $M_R$ increased. This gives the continuous-tail backend a direct
+pass/fail budget for its analytic remainder terms without changing the
+Rouché-primitive theorem.
+
+The same reducer now accepts an analytic-remainder profile direction and
+solves for a candidate scale $\lambda$. Along that ray the safe monotone floor
+is
+
+$$
+X_{\mathrm{safe}}(\lambda)
+=
+(\nu^-(\lambda)-L^+(\lambda)\rho^+(\lambda))
+(\rho^-(\lambda)-r^+(\lambda)),
+$$
+
+and closure requires
+
+$$
+M_G^+(\lambda)
+\left(
+40+\frac{1}{s-1}
++\frac{M_R^+(\lambda)}{X_{\mathrm{safe}}(\lambda)}
+\right)
+<
+B_{D,39}Y^{41}s^{40}(s-1).
+$$
+
+This turns "how much analytic remainder can the backend afford?" into the
+single scalar question $\lambda<\lambda_*^{\mathrm{safe}}$, with equality
+treated as a strict-boundary failure rather than a retained branch.
 
 The $r_X$ choice can also be reduced before the backend commits to a concrete
 strict radius. For $M_G>0$, set
@@ -1590,10 +1742,71 @@ consumes supplied
 $E_R,\nu_J,L_J,\rho_X,r_X,M_G,M_R$ values, replays the h39 reducer, and refuses
 to report a replay pass unless the values are explicitly labelled as coming
 from an external directed-rounded shared-domain source. It still does not
-certify those values. The live mathematical successor is therefore no longer a
-generic "find the next check" task; it is the construction of the actual
-shared-domain evaluator that computes $E_R$, $\nu_J$, $L_J$, $M_G$, and $M_R$
-on one graph-centered domain and feeds this diagnostic.
+certify those values. It now also consumes the primitive-vector backend
+artifact directly and reports whether promotion is blocked by missing vector
+input, a failed Rouché-primitive replay, or unverified same-domain provenance.
+The primitive provenance certificate supplies the corresponding positive path:
+if a directed-rounded provenance report proves $E_R$, $M_R$, $M_G$, $\nu_J$,
+$L_J$, $\rho_X$, and $r_X$ on one graph-centered domain and the same diagnostic
+replay closes, then the h39 primitive continuous-tail row is certified while
+the scaled-remainder, `I1`, quadrature, and retained-branch claims remain open.
+The current candidate-vector backend has also been replayed in the negative
+direction: its derived provenance report returns
+\texttt{open-candidate-only-primitive-provenance}, because the backend is
+\texttt{provided-unverified} and does not certify the seven component
+provenances. The blocker is therefore not another coefficient row and not a
+new scalar inequality. It is the missing directed-rounded same-domain
+primitive provenance report for the already identified seven inputs.
+The next executable artifact now refines that blocker into a minimal witness
+set:
+
+$$
+(E_R,M_R,M_G,\nu_J,L_J,\rho_X,r_X;\mathfrak S).
+$$
+
+The immediately isolated subset is the reduced Lipschitz row
+
+$$
+L_J=\rho^{41}M_K
+$$
+
+once $M_K$ is certified on the same graph-centered domain. The hardest
+remaining numerator component is $M_G$, now narrowed by the denominator-Cauchy
+witness
+
+$$
+(K_\varepsilon,d_\varepsilon,j_\varepsilon,\nu_-,L_*,A_*,R_y,\rho,K,
+g_0,\ldots,g_K;\mathfrak S).
+$$
+
+Thus the backend target is finite: either the entries share one signature and
+promote through the existing reducer, or a named missing component, failed
+floor, failed ceiling, or domain-signature mismatch is the obstruction.
+The $L_J$ subset now has its own executable component-witness reducer: a
+directed-rounded same-domain $M_K$ certificate with analytic tails and
+positive-Taylor/geometric-tail $\sinh$ bounds promotes exactly the $L_J$ primitive
+component through $L_J\ge\rho^{41}M_K$. The current coordinate-seminorm
+majorant remains open because it is candidate-only, but the proof burden is no
+longer ambiguous: the next $L_J$ backend must supply the certified
+$K_\varepsilon$ majorant on the same $\mathfrak S$.
+That upstream $K_\varepsilon$ burden has also been reduced to a finite
+two-branch witness. On each branch, the backend must certify the same
+$\mathfrak S$, a positive lower bound $\nu_-$, coordinate bounds
+$|\delta_\varepsilon|\le D_\varepsilon$ and
+$|\phi_\varepsilon|\le\Phi_\varepsilon$, analytic-tail coverage, and
+outward-rounded enclosures of $2/\nu_-^2$, $\sinh(D_\varepsilon)$, and
+$\sinh(\Phi_\varepsilon)$. Their branch maximum emits only $M_K$; the
+separate $L_J$ replay handles the multiplication by $\rho^{41}$.
+The shared-domain evaluator now prepares this two-branch witness handoff:
+finite-only coordinate seminorms remain open, while same-domain coordinate
+Cauchy prefix-plus-geometric-tail envelopes and the positive-Taylor/geometric-tail
+$\sinh$ envelope certificates emit the branch witnesses consumed by the
+$K_\varepsilon$ majorant artifact. This removes the former bare coordinate and
+transcendental provenance flags from the certified route.
+The live mathematical successor is therefore no longer a generic "find the
+next check" task; it is the construction of the actual shared-domain evaluator
+that computes $E_R$, $\nu_J$, $L_J$, $M_G$, and $M_R$ on one graph-centered
+domain and feeds this diagnostic.
 
 ## Certificate Requirements
 

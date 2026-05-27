@@ -21,6 +21,9 @@ const H39_SHIFT_POWER = 41;
 const D_IDENTITY_COEFFICIENT = 40;
 const B_G_39 = 1.01837521179e106;
 const B_D_39 = 1.01830785559e106;
+const DEFAULT_PROFILE_SCALE_TOLERANCE = 1e-10;
+const DEFAULT_PROFILE_SCALE_MAX_ITERATIONS = 80;
+const DEFAULT_PROFILE_SCALE_SEARCH_LIMIT = 1e12;
 
 function isProvided(value) {
   return value !== undefined && value !== null;
@@ -629,6 +632,1407 @@ export function computeH39RouchePrimitiveClosure({
       "M_R < (nu_J-L_J*rho_X)*(rho_X-r_X)*((1-q)*B_D_39*rho^41/M_G - 40 - q/(1-q))",
     candidate_rouche_root_tangent_numerator_bound_M_R_margin: numeratorMargin,
     candidate_rouche_form_M_R_margin: numeratorMargin,
+  };
+}
+
+function emptyPrimitiveSlackTolerances(status) {
+  return {
+    primitive_slack_tolerances_status: status,
+    primitive_slack_tolerances_formula:
+      "at fixed s, rho_X, r_X: require E_R+0.5*L_J*r_X^2 < nu_J*r_X, J_min=nu_J-L_J*rho_X>0, and M_G*(40+M_R/(J_min*sigma_X)+1/(s-1)) < B_D_39*Y^41*s^40*(s-1)",
+    primitive_slack_tolerances_strict_inequalities: true,
+    primitive_slack_tolerances_candidate_only: true,
+    primitive_slack_right_scalar: null,
+    primitive_slack_constant_term: null,
+    primitive_slack_current_J_min: null,
+    primitive_slack_current_sigma_X: null,
+    primitive_slack_current_J_min_sigma_X: null,
+    primitive_slack_required_J_min_sigma_X_from_closure: null,
+    primitive_slack_required_J_min_from_closure: null,
+    primitive_slack_slope_budget_for_M_R: null,
+    primitive_slack_maximum_E_R: null,
+    primitive_slack_E_R_margin: null,
+    primitive_slack_minimum_nu_J: null,
+    primitive_slack_nu_J_margin: null,
+    primitive_slack_maximum_L_J: null,
+    primitive_slack_L_J_margin: null,
+    primitive_slack_rho_X_admissible_lower_bound: null,
+    primitive_slack_rho_X_admissible_upper_bound: null,
+    primitive_slack_rho_X_lower_margin: null,
+    primitive_slack_rho_X_upper_margin: null,
+    primitive_slack_r_X_admissible_lower_bound: null,
+    primitive_slack_r_X_admissible_upper_bound: null,
+    primitive_slack_r_X_lower_margin: null,
+    primitive_slack_r_X_upper_margin: null,
+    primitive_slack_maximum_M_G: null,
+    primitive_slack_M_G_margin: null,
+    primitive_slack_maximum_M_R: null,
+    primitive_slack_M_R_margin: null,
+    primitive_slack_all_current_margins_positive: null,
+    certifies_directed_rounded_h39_polydisc_bounds: false,
+    certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
+      false,
+    retained_branch: false,
+  };
+}
+
+function allowanceNumber(name, value) {
+  if (!isProvided(value)) {
+    return 0;
+  }
+  const resolved = Number(value);
+  assertFiniteNonnegative(name, resolved);
+  return resolved;
+}
+
+export function computeH39PrimitiveSlackTolerancesCandidate({
+  radiusMultiple = DEFAULT_RADIUS_MULTIPLE,
+  mGBound,
+  rootTangentNumeratorBound,
+  centerResidualBound,
+  centerJacobianLowerBound,
+  jacobianLipschitzBound,
+  rhoX,
+  rX,
+} = {}) {
+  const inputs = [
+    mGBound,
+    rootTangentNumeratorBound,
+    centerResidualBound,
+    centerJacobianLowerBound,
+    jacobianLipschitzBound,
+    rhoX,
+    rX,
+  ];
+  if (!inputs.some(isProvided)) {
+    return emptyPrimitiveSlackTolerances("not-provided");
+  }
+  if (!inputs.every(isProvided)) {
+    return emptyPrimitiveSlackTolerances(
+      "missing-primitive-slack-inputs"
+    );
+  }
+
+  const candidateMGBound = Number(mGBound);
+  const numeratorBound = Number(rootTangentNumeratorBound);
+  const residualBound = Number(centerResidualBound);
+  const centerJacobianBound = Number(centerJacobianLowerBound);
+  const lipschitzBound = Number(jacobianLipschitzBound);
+  const resolvedRhoX = Number(rhoX);
+  const resolvedRX = Number(rX);
+
+  if (!Number.isFinite(candidateMGBound) || candidateMGBound < 0) {
+    throw new Error("mGBound must be a finite nonnegative number");
+  }
+  assertFiniteNonnegative("rootTangentNumeratorBound", numeratorBound);
+  assertFiniteNonnegative("centerResidualBound", residualBound);
+  assertFinitePositive("centerJacobianLowerBound", centerJacobianBound);
+  assertFiniteNonnegative("jacobianLipschitzBound", lipschitzBound);
+  assertFinitePositive("rhoX", resolvedRhoX);
+  assertFiniteNonnegative("rX", resolvedRX);
+  if (!(resolvedRhoX > resolvedRX)) {
+    throw new Error("rhoX must be greater than rX");
+  }
+  if (!(resolvedRX > 0)) {
+    throw new Error("rX must be positive for primitive slack tolerances");
+  }
+
+  const rootGraphLift = computeH39RootGraphRoucheLift({
+    centerResidualBound: residualBound,
+    centerJacobianLowerBound: centerJacobianBound,
+    jacobianLipschitzBound: lipschitzBound,
+    rhoX: resolvedRhoX,
+    rX: resolvedRX,
+  });
+  const budget = computeH39RootTangentCauchyMajorantBudget({
+    radiusMultiple,
+    xiOverSigmaX: 0,
+  });
+  const sigmaX = resolvedRhoX - resolvedRX;
+  const jMin = centerJacobianBound - lipschitzBound * resolvedRhoX;
+  const rightScalar = B_D_39 * budget.rho_power_41 * budget.one_minus_q;
+  const constantTerm =
+    D_IDENTITY_COEFFICIENT + 1 / (budget.radius_multiple - 1);
+  const slopeBudgetForMR =
+    candidateMGBound === 0
+      ? null
+      : rightScalar / candidateMGBound - constantTerm;
+  const requiredJMinFromClosure =
+    candidateMGBound === 0
+      ? 0
+      : slopeBudgetForMR > 0
+        ? numeratorBound / (sigmaX * slopeBudgetForMR)
+        : null;
+
+  const maximumER =
+    centerJacobianBound * resolvedRX -
+    0.5 * lipschitzBound * resolvedRX * resolvedRX;
+  const roucheNuFloor =
+    (residualBound + 0.5 * lipschitzBound * resolvedRX * resolvedRX) /
+    resolvedRX;
+  const closureNuFloor =
+    requiredJMinFromClosure === null
+      ? null
+      : lipschitzBound * resolvedRhoX + requiredJMinFromClosure;
+  const minimumNuJ =
+    closureNuFloor === null
+      ? null
+      : Math.max(roucheNuFloor, closureNuFloor);
+  const roucheLJCeiling =
+    (2 * (centerJacobianBound * resolvedRX - residualBound)) /
+    (resolvedRX * resolvedRX);
+  const closureLJCeiling =
+    requiredJMinFromClosure === null
+      ? null
+      : (centerJacobianBound - requiredJMinFromClosure) / resolvedRhoX;
+  const maximumLJ =
+    closureLJCeiling === null
+      ? null
+      : Math.min(roucheLJCeiling, closureLJCeiling);
+  const primitiveXMinimum =
+    candidateMGBound === 0
+      ? 0
+      : slopeBudgetForMR > 0
+        ? numeratorBound / slopeBudgetForMR
+        : null;
+  const currentPrimitiveX = jMin * sigmaX;
+  let rhoXLowerBound = null;
+  let rhoXUpperBound = null;
+  if (primitiveXMinimum !== null) {
+    if (lipschitzBound === 0) {
+      rhoXLowerBound =
+        resolvedRX + primitiveXMinimum / centerJacobianBound;
+      rhoXUpperBound = null;
+    } else {
+      const rhoDiscriminant =
+        (centerJacobianBound + lipschitzBound * resolvedRX) ** 2 -
+        4 *
+          lipschitzBound *
+          (centerJacobianBound * resolvedRX + primitiveXMinimum);
+      if (rhoDiscriminant > 0) {
+        const sqrtRhoDiscriminant = Math.sqrt(rhoDiscriminant);
+        rhoXLowerBound =
+          (centerJacobianBound +
+            lipschitzBound * resolvedRX -
+            sqrtRhoDiscriminant) /
+          (2 * lipschitzBound);
+        rhoXUpperBound =
+          (centerJacobianBound +
+            lipschitzBound * resolvedRX +
+            sqrtRhoDiscriminant) /
+          (2 * lipschitzBound);
+      }
+    }
+  }
+  let rXLowerBound = null;
+  let rXUpperBound = null;
+  if (primitiveXMinimum !== null && jMin > 0) {
+    let roucheLower = null;
+    let roucheUpper = null;
+    if (lipschitzBound === 0) {
+      roucheLower = residualBound / centerJacobianBound;
+      roucheUpper = null;
+    } else {
+      const rDiscriminant =
+        centerJacobianBound * centerJacobianBound -
+        2 * lipschitzBound * residualBound;
+      if (rDiscriminant > 0) {
+        const sqrtRDiscriminant = Math.sqrt(rDiscriminant);
+        roucheLower =
+          (2 * residualBound) /
+          (centerJacobianBound + sqrtRDiscriminant);
+        roucheUpper =
+          (centerJacobianBound + sqrtRDiscriminant) /
+          lipschitzBound;
+      }
+    }
+    if (roucheLower !== null) {
+      rXLowerBound = Math.max(0, roucheLower);
+      const tailUpper = resolvedRhoX - primitiveXMinimum / jMin;
+      rXUpperBound = Math.min(
+        resolvedRhoX,
+        tailUpper,
+        roucheUpper === null ? Number.POSITIVE_INFINITY : roucheUpper
+      );
+    }
+  }
+  const maximumMG =
+    jMin > 0 && sigmaX > 0
+      ? rightScalar /
+        (constantTerm + numeratorBound / (jMin * sigmaX))
+      : null;
+  const maximumMR =
+    candidateMGBound === 0
+      ? null
+      : slopeBudgetForMR > 0 && jMin > 0 && sigmaX > 0
+        ? jMin * sigmaX * slopeBudgetForMR
+        : null;
+
+  const eRMargin = maximumER - residualBound;
+  const nuJMargin =
+    minimumNuJ === null ? null : centerJacobianBound - minimumNuJ;
+  const lJMargin =
+    maximumLJ === null ? null : maximumLJ - lipschitzBound;
+  const rhoXLowerMargin =
+    rhoXLowerBound === null ? null : resolvedRhoX - rhoXLowerBound;
+  const rhoXUpperMargin =
+    rhoXUpperBound === null ? null : rhoXUpperBound - resolvedRhoX;
+  const rXLowerMargin =
+    rXLowerBound === null ? null : resolvedRX - rXLowerBound;
+  const rXUpperMargin =
+    rXUpperBound === null ? null : rXUpperBound - resolvedRX;
+  const mGMargin =
+    maximumMG === null ? null : maximumMG - candidateMGBound;
+  const mRMargin =
+    maximumMR === null ? null : maximumMR - numeratorBound;
+  const allMarginsPositive =
+    eRMargin > 0 &&
+    nuJMargin > 0 &&
+    lJMargin > 0 &&
+    rhoXLowerMargin > 0 &&
+    (rhoXUpperMargin === null || rhoXUpperMargin > 0) &&
+    rXLowerMargin > 0 &&
+    rXUpperMargin > 0 &&
+    mGMargin > 0 &&
+    mRMargin > 0 &&
+    rootGraphLift.certifies_unique_root_in_X_disc === true;
+
+  return {
+    schema:
+      OCTAHEDRAL_FOLD_AWARE_CROSS_BINARY_THETA3MINUS_SPEED_DEPENDENT_FOLD_PAIR_FIRST_Y_GD_ROOT_TANGENT_CAUCHY_MAJORANT_TAIL_BUDGET_SCHEMA,
+    primitive_slack_tolerances_status:
+      allMarginsPositive
+        ? "h39-primitive-slack-tolerances-candidate-emitted"
+        : "h39-primitive-slack-tolerances-candidate-open",
+    primitive_slack_tolerances_formula:
+      "at fixed s, rho_X, r_X: require E_R+0.5*L_J*r_X^2 < nu_J*r_X, J_min=nu_J-L_J*rho_X>0, and M_G*(40+M_R/(J_min*sigma_X)+1/(s-1)) < B_D_39*Y^41*s^40*(s-1)",
+    primitive_slack_tolerances_strict_inequalities: true,
+    primitive_slack_tolerances_candidate_only: true,
+    radius_multiple: budget.radius_multiple,
+    rho: budget.rho,
+    q: budget.q,
+    primitive_slack_right_scalar: rightScalar,
+    primitive_slack_constant_term: constantTerm,
+    primitive_slack_current_E_R: residualBound,
+    primitive_slack_current_nu_J: centerJacobianBound,
+    primitive_slack_current_L_J: lipschitzBound,
+    primitive_slack_current_rho_X: resolvedRhoX,
+    primitive_slack_current_r_X: resolvedRX,
+    primitive_slack_current_M_G: candidateMGBound,
+    primitive_slack_current_M_R: numeratorBound,
+    primitive_slack_current_J_min: jMin,
+    primitive_slack_current_sigma_X: sigmaX,
+    primitive_slack_current_J_min_sigma_X: currentPrimitiveX,
+    primitive_slack_required_J_min_sigma_X_from_closure:
+      primitiveXMinimum,
+    primitive_slack_required_J_min_from_closure:
+      requiredJMinFromClosure,
+    primitive_slack_slope_budget_for_M_R: slopeBudgetForMR,
+    primitive_slack_maximum_E_R: maximumER,
+    primitive_slack_E_R_margin: eRMargin,
+    primitive_slack_minimum_nu_J: minimumNuJ,
+    primitive_slack_nu_J_margin: nuJMargin,
+    primitive_slack_maximum_L_J: maximumLJ,
+    primitive_slack_L_J_margin: lJMargin,
+    primitive_slack_rho_X_admissible_lower_bound: rhoXLowerBound,
+    primitive_slack_rho_X_admissible_upper_bound: rhoXUpperBound,
+    primitive_slack_rho_X_lower_margin: rhoXLowerMargin,
+    primitive_slack_rho_X_upper_margin: rhoXUpperMargin,
+    primitive_slack_r_X_admissible_lower_bound: rXLowerBound,
+    primitive_slack_r_X_admissible_upper_bound:
+      Number.isFinite(rXUpperBound) ? rXUpperBound : null,
+    primitive_slack_r_X_lower_margin: rXLowerMargin,
+    primitive_slack_r_X_upper_margin:
+      Number.isFinite(rXUpperMargin) ? rXUpperMargin : null,
+    primitive_slack_maximum_M_G: maximumMG,
+    primitive_slack_M_G_margin: mGMargin,
+    primitive_slack_maximum_M_R: maximumMR,
+    primitive_slack_M_R_margin: mRMargin,
+    primitive_slack_all_current_margins_positive: allMarginsPositive,
+    root_graph_lift_status: rootGraphLift.root_graph_lift_status,
+    certifies_directed_rounded_h39_polydisc_bounds: false,
+    certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
+      false,
+    retained_branch: false,
+  };
+}
+
+function emptyPrimitiveRemainderBudget(status) {
+  return {
+    primitive_remainder_budget_status: status,
+    primitive_remainder_budget_formula:
+      "robust candidate: replace E_R, nu_J, L_J, rho_X, r_X, M_G, and M_R by their pessimistic remainder rectangle and require positive Rouché margin, positive J_min*sigma_X, and the h39 scalar inequality",
+    primitive_remainder_budget_strict_inequalities: true,
+    primitive_remainder_budget_candidate_only: true,
+    primitive_remainder_budget_E_R_allowance: null,
+    primitive_remainder_budget_nu_J_loss_allowance: null,
+    primitive_remainder_budget_L_J_allowance: null,
+    primitive_remainder_budget_rho_X_lower_allowance: null,
+    primitive_remainder_budget_rho_X_upper_allowance: null,
+    primitive_remainder_budget_r_X_lower_allowance: null,
+    primitive_remainder_budget_r_X_upper_allowance: null,
+    primitive_remainder_budget_M_G_allowance: null,
+    primitive_remainder_budget_M_R_allowance: null,
+    primitive_remainder_budget_worst_E_R: null,
+    primitive_remainder_budget_worst_nu_J: null,
+    primitive_remainder_budget_worst_L_J: null,
+    primitive_remainder_budget_rho_X_lower: null,
+    primitive_remainder_budget_rho_X_upper: null,
+    primitive_remainder_budget_r_X_lower: null,
+    primitive_remainder_budget_r_X_upper: null,
+    primitive_remainder_budget_worst_M_G: null,
+    primitive_remainder_budget_worst_M_R: null,
+    primitive_remainder_budget_min_J_min: null,
+    primitive_remainder_budget_min_sigma_X: null,
+    primitive_remainder_budget_min_J_min_sigma_X: null,
+    primitive_remainder_budget_required_J_min_sigma_X: null,
+    primitive_remainder_budget_min_rouche_margin: null,
+    primitive_remainder_budget_scalar_left: null,
+    primitive_remainder_budget_scalar_right: null,
+    primitive_remainder_budget_scalar_margin: null,
+    primitive_remainder_budget_closes_candidate: null,
+    certifies_directed_rounded_h39_polydisc_bounds: false,
+    certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
+      false,
+    retained_branch: false,
+  };
+}
+
+export function computeH39PrimitiveRemainderBudgetCandidate({
+  radiusMultiple = DEFAULT_RADIUS_MULTIPLE,
+  mGBound,
+  rootTangentNumeratorBound,
+  centerResidualBound,
+  centerJacobianLowerBound,
+  jacobianLipschitzBound,
+  rhoX,
+  rX,
+  centerResidualRemainderBound,
+  centerJacobianLowerRemainderBound,
+  jacobianLipschitzRemainderBound,
+  rhoXLowerRemainderBound,
+  rhoXUpperRemainderBound,
+  rXLowerRemainderBound,
+  rXUpperRemainderBound,
+  mGRemainderBound,
+  rootTangentNumeratorRemainderBound,
+} = {}) {
+  const primitiveInputs = [
+    mGBound,
+    rootTangentNumeratorBound,
+    centerResidualBound,
+    centerJacobianLowerBound,
+    jacobianLipschitzBound,
+    rhoX,
+    rX,
+  ];
+  const remainderInputs = [
+    centerResidualRemainderBound,
+    centerJacobianLowerRemainderBound,
+    jacobianLipschitzRemainderBound,
+    rhoXLowerRemainderBound,
+    rhoXUpperRemainderBound,
+    rXLowerRemainderBound,
+    rXUpperRemainderBound,
+    mGRemainderBound,
+    rootTangentNumeratorRemainderBound,
+  ];
+  if (!primitiveInputs.some(isProvided) && !remainderInputs.some(isProvided)) {
+    return emptyPrimitiveRemainderBudget("not-provided");
+  }
+  if (!primitiveInputs.every(isProvided)) {
+    return emptyPrimitiveRemainderBudget(
+      "missing-primitive-remainder-budget-inputs"
+    );
+  }
+
+  const candidateMGBound = Number(mGBound);
+  const numeratorBound = Number(rootTangentNumeratorBound);
+  const residualBound = Number(centerResidualBound);
+  const centerJacobianBound = Number(centerJacobianLowerBound);
+  const lipschitzBound = Number(jacobianLipschitzBound);
+  const resolvedRhoX = Number(rhoX);
+  const resolvedRX = Number(rX);
+  if (!Number.isFinite(candidateMGBound) || candidateMGBound < 0) {
+    throw new Error("mGBound must be a finite nonnegative number");
+  }
+  assertFiniteNonnegative("rootTangentNumeratorBound", numeratorBound);
+  assertFiniteNonnegative("centerResidualBound", residualBound);
+  assertFinitePositive("centerJacobianLowerBound", centerJacobianBound);
+  assertFiniteNonnegative("jacobianLipschitzBound", lipschitzBound);
+  assertFinitePositive("rhoX", resolvedRhoX);
+  assertFinitePositive("rX", resolvedRX);
+  if (!(resolvedRhoX > resolvedRX)) {
+    throw new Error("rhoX must be greater than rX");
+  }
+
+  const residualAllowance = allowanceNumber(
+    "centerResidualRemainderBound",
+    centerResidualRemainderBound
+  );
+  const jacobianLossAllowance = allowanceNumber(
+    "centerJacobianLowerRemainderBound",
+    centerJacobianLowerRemainderBound
+  );
+  const lipschitzAllowance = allowanceNumber(
+    "jacobianLipschitzRemainderBound",
+    jacobianLipschitzRemainderBound
+  );
+  const rhoXLowerAllowance = allowanceNumber(
+    "rhoXLowerRemainderBound",
+    rhoXLowerRemainderBound
+  );
+  const rhoXUpperAllowance = allowanceNumber(
+    "rhoXUpperRemainderBound",
+    rhoXUpperRemainderBound
+  );
+  const rXLowerAllowance = allowanceNumber(
+    "rXLowerRemainderBound",
+    rXLowerRemainderBound
+  );
+  const rXUpperAllowance = allowanceNumber(
+    "rXUpperRemainderBound",
+    rXUpperRemainderBound
+  );
+  const mGAllowance = allowanceNumber("mGRemainderBound", mGRemainderBound);
+  const numeratorAllowance = allowanceNumber(
+    "rootTangentNumeratorRemainderBound",
+    rootTangentNumeratorRemainderBound
+  );
+
+  const worstResidual = residualBound + residualAllowance;
+  const worstJacobian = centerJacobianBound - jacobianLossAllowance;
+  const worstLipschitz = lipschitzBound + lipschitzAllowance;
+  const rhoXLower = resolvedRhoX - rhoXLowerAllowance;
+  const rhoXUpper = resolvedRhoX + rhoXUpperAllowance;
+  const rXLower = resolvedRX - rXLowerAllowance;
+  const rXUpper = resolvedRX + rXUpperAllowance;
+  const worstMG = candidateMGBound + mGAllowance;
+  const worstMR = numeratorBound + numeratorAllowance;
+
+  const intervalsValid =
+    worstJacobian > 0 &&
+    rhoXLower > 0 &&
+    rhoXUpper >= rhoXLower &&
+    rXLower > 0 &&
+    rXUpper >= rXLower &&
+    rhoXLower > rXUpper;
+  const minJMin = intervalsValid
+    ? worstJacobian - worstLipschitz * rhoXUpper
+    : null;
+  const minSigmaX = intervalsValid ? rhoXLower - rXUpper : null;
+  const jSigmaAtRhoLower =
+    intervalsValid
+      ? (worstJacobian - worstLipschitz * rhoXLower) *
+        (rhoXLower - rXUpper)
+      : null;
+  const jSigmaAtRhoUpper =
+    intervalsValid
+      ? (worstJacobian - worstLipschitz * rhoXUpper) *
+        (rhoXUpper - rXUpper)
+      : null;
+  const minJMinSigmaX =
+    intervalsValid && minJMin > 0 && minSigmaX > 0
+      ? Math.min(jSigmaAtRhoLower, jSigmaAtRhoUpper)
+      : null;
+  const roucheMarginAtLower =
+    intervalsValid
+      ? worstJacobian * rXLower -
+        worstResidual -
+        0.5 * worstLipschitz * rXLower * rXLower
+      : null;
+  const roucheMarginAtUpper =
+    intervalsValid
+      ? worstJacobian * rXUpper -
+        worstResidual -
+        0.5 * worstLipschitz * rXUpper * rXUpper
+      : null;
+  const minRoucheMargin =
+    intervalsValid
+      ? Math.min(roucheMarginAtLower, roucheMarginAtUpper)
+      : null;
+  const budget = computeH39RootTangentCauchyMajorantBudget({
+    radiusMultiple,
+    xiOverSigmaX: 0,
+  });
+  const rightScalar = B_D_39 * budget.rho_power_41 * budget.one_minus_q;
+  const constantTerm =
+    D_IDENTITY_COEFFICIENT + 1 / (budget.radius_multiple - 1);
+  const slopeBudgetForMR =
+    worstMG === 0 ? null : rightScalar / worstMG - constantTerm;
+  const requiredJMinSigmaX =
+    worstMG === 0
+      ? 0
+      : slopeBudgetForMR > 0
+        ? worstMR / slopeBudgetForMR
+        : null;
+  const scalarLeft =
+    minJMinSigmaX === null || !(minJMinSigmaX > 0)
+      ? null
+      : worstMG * (constantTerm + worstMR / minJMinSigmaX);
+  const scalarMargin =
+    scalarLeft === null ? null : rightScalar - scalarLeft;
+  const closes =
+    intervalsValid &&
+    minJMin > 0 &&
+    minSigmaX > 0 &&
+    minJMinSigmaX > 0 &&
+    minRoucheMargin > 0 &&
+    scalarMargin > 0;
+
+  return {
+    schema:
+      OCTAHEDRAL_FOLD_AWARE_CROSS_BINARY_THETA3MINUS_SPEED_DEPENDENT_FOLD_PAIR_FIRST_Y_GD_ROOT_TANGENT_CAUCHY_MAJORANT_TAIL_BUDGET_SCHEMA,
+    primitive_remainder_budget_status: closes
+      ? "h39-primitive-remainder-budget-candidate-emitted"
+      : "h39-primitive-remainder-budget-candidate-open",
+    primitive_remainder_budget_formula:
+      "robust candidate: E_R increases, nu_J decreases, L_J increases, rho_X and r_X vary over the supplied rectangle, M_G and M_R increase; endpoint checks certify the strict Rouché margin and h39 scalar inequality",
+    primitive_remainder_budget_strict_inequalities: true,
+    primitive_remainder_budget_candidate_only: true,
+    radius_multiple: budget.radius_multiple,
+    rho: budget.rho,
+    q: budget.q,
+    primitive_remainder_budget_E_R_allowance: residualAllowance,
+    primitive_remainder_budget_nu_J_loss_allowance:
+      jacobianLossAllowance,
+    primitive_remainder_budget_L_J_allowance: lipschitzAllowance,
+    primitive_remainder_budget_rho_X_lower_allowance:
+      rhoXLowerAllowance,
+    primitive_remainder_budget_rho_X_upper_allowance:
+      rhoXUpperAllowance,
+    primitive_remainder_budget_r_X_lower_allowance: rXLowerAllowance,
+    primitive_remainder_budget_r_X_upper_allowance: rXUpperAllowance,
+    primitive_remainder_budget_M_G_allowance: mGAllowance,
+    primitive_remainder_budget_M_R_allowance: numeratorAllowance,
+    primitive_remainder_budget_worst_E_R: worstResidual,
+    primitive_remainder_budget_worst_nu_J: worstJacobian,
+    primitive_remainder_budget_worst_L_J: worstLipschitz,
+    primitive_remainder_budget_rho_X_lower: rhoXLower,
+    primitive_remainder_budget_rho_X_upper: rhoXUpper,
+    primitive_remainder_budget_r_X_lower: rXLower,
+    primitive_remainder_budget_r_X_upper: rXUpper,
+    primitive_remainder_budget_worst_M_G: worstMG,
+    primitive_remainder_budget_worst_M_R: worstMR,
+    primitive_remainder_budget_min_J_min: minJMin,
+    primitive_remainder_budget_min_sigma_X: minSigmaX,
+    primitive_remainder_budget_min_J_min_sigma_X: minJMinSigmaX,
+    primitive_remainder_budget_required_J_min_sigma_X:
+      requiredJMinSigmaX,
+    primitive_remainder_budget_min_rouche_margin: minRoucheMargin,
+    primitive_remainder_budget_scalar_left: scalarLeft,
+    primitive_remainder_budget_scalar_right: rightScalar,
+    primitive_remainder_budget_scalar_margin: scalarMargin,
+    primitive_remainder_budget_closes_candidate: closes,
+    certifies_directed_rounded_h39_polydisc_bounds: false,
+    certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
+      false,
+    retained_branch: false,
+  };
+}
+
+function finiteBoundary(value) {
+  return Number.isFinite(value) ? value : null;
+}
+
+function firstPositiveQuadraticRoot(constant, linear, quadratic) {
+  if (
+    !Number.isFinite(constant) ||
+    !Number.isFinite(linear) ||
+    !Number.isFinite(quadratic) ||
+    !(constant > 0)
+  ) {
+    return null;
+  }
+  const scale = Math.max(
+    1,
+    Math.abs(constant),
+    Math.abs(linear),
+    Math.abs(quadratic)
+  );
+  const tolerance = 1e-14 * scale;
+  if (Math.abs(quadratic) <= tolerance) {
+    if (linear < 0) {
+      const root = -constant / linear;
+      return root > 0 ? root : null;
+    }
+    return null;
+  }
+
+  const discriminant = linear * linear - 4 * quadratic * constant;
+  if (discriminant < -tolerance) {
+    return null;
+  }
+  const sqrtDiscriminant = Math.sqrt(Math.max(0, discriminant));
+  const roots = [
+    (-linear - sqrtDiscriminant) / (2 * quadratic),
+    (-linear + sqrtDiscriminant) / (2 * quadratic),
+  ].filter((root) => Number.isFinite(root) && root > 0);
+  if (roots.length === 0) {
+    return null;
+  }
+  return Math.min(...roots);
+}
+
+function emptyPrimitiveAnalyticRemainderMultiProfileBoundary(status) {
+  return {
+    primitive_analytic_remainder_multi_profile_boundary_status: status,
+    primitive_analytic_remainder_multi_profile_boundary_formula:
+      "fixed-radii primitive-pressure profile: scale E_R, nu_J loss, L_J, M_G, and M_R by lambda; the strict supremum is the first boundary among J_min, the Rouché margin, and the h39 scalar polynomial",
+    primitive_analytic_remainder_multi_profile_boundary_candidate_only: true,
+    primitive_analytic_remainder_multi_profile_boundary_strict_inequalities:
+      true,
+    primitive_analytic_remainder_multi_profile_lambda_supremum: null,
+    primitive_analytic_remainder_multi_profile_lambda_supremum_attained:
+      false,
+    primitive_analytic_remainder_multi_profile_bottleneck_name: null,
+    primitive_analytic_remainder_multi_profile_active_bottleneck_names: [],
+    primitive_analytic_remainder_multi_profile_J_min_boundary: null,
+    primitive_analytic_remainder_multi_profile_rouche_margin_boundary:
+      null,
+    primitive_analytic_remainder_multi_profile_h39_scalar_boundary: null,
+    primitive_analytic_remainder_multi_profile_base_sigma_X: null,
+    primitive_analytic_remainder_multi_profile_base_J_min: null,
+    primitive_analytic_remainder_multi_profile_base_rouche_margin: null,
+    primitive_analytic_remainder_multi_profile_base_scalar_margin: null,
+    primitive_analytic_remainder_multi_profile_required_scale: null,
+    primitive_analytic_remainder_multi_profile_J_min_at_required_scale:
+      null,
+    primitive_analytic_remainder_multi_profile_rouche_margin_at_required_scale:
+      null,
+    primitive_analytic_remainder_multi_profile_scalar_polynomial_at_required_scale:
+      null,
+    primitive_analytic_remainder_multi_profile_required_scale_closes:
+      null,
+    primitive_analytic_remainder_multi_profile_required_scale_failed_margin_names:
+      [],
+    primitive_analytic_remainder_multi_profile_scalar_polynomial_constant:
+      null,
+    primitive_analytic_remainder_multi_profile_scalar_polynomial_linear:
+      null,
+    primitive_analytic_remainder_multi_profile_scalar_polynomial_quadratic:
+      null,
+    primitive_analytic_remainder_multi_profile_E_R_profile: null,
+    primitive_analytic_remainder_multi_profile_nu_J_loss_profile: null,
+    primitive_analytic_remainder_multi_profile_L_J_profile: null,
+    primitive_analytic_remainder_multi_profile_M_G_profile: null,
+    primitive_analytic_remainder_multi_profile_M_R_profile: null,
+    primitive_analytic_remainder_multi_profile_J_min_profile_slope:
+      null,
+    primitive_analytic_remainder_multi_profile_rouche_margin_profile_slope:
+      null,
+    certifies_directed_rounded_h39_polydisc_bounds: false,
+    certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
+      false,
+    retained_branch: false,
+  };
+}
+
+export function computeH39PrimitiveAnalyticRemainderMultiProfileBoundaryCandidate({
+  radiusMultiple = DEFAULT_RADIUS_MULTIPLE,
+  mGBound,
+  rootTangentNumeratorBound,
+  centerResidualBound,
+  centerJacobianLowerBound,
+  jacobianLipschitzBound,
+  rhoX,
+  rX,
+  centerResidualRemainderProfile,
+  centerJacobianLowerRemainderProfile,
+  jacobianLipschitzRemainderProfile,
+  mGRemainderProfile,
+  rootTangentNumeratorRemainderProfile,
+} = {}) {
+  const primitiveInputs = [
+    mGBound,
+    rootTangentNumeratorBound,
+    centerResidualBound,
+    centerJacobianLowerBound,
+    jacobianLipschitzBound,
+    rhoX,
+    rX,
+  ];
+  const profileInputs = [
+    centerResidualRemainderProfile,
+    centerJacobianLowerRemainderProfile,
+    jacobianLipschitzRemainderProfile,
+    mGRemainderProfile,
+    rootTangentNumeratorRemainderProfile,
+  ];
+  if (!primitiveInputs.some(isProvided) && !profileInputs.some(isProvided)) {
+    return emptyPrimitiveAnalyticRemainderMultiProfileBoundary(
+      "not-provided"
+    );
+  }
+  if (!primitiveInputs.every(isProvided)) {
+    return emptyPrimitiveAnalyticRemainderMultiProfileBoundary(
+      "missing-primitive-analytic-remainder-multi-profile-boundary-inputs"
+    );
+  }
+
+  const candidateMGBound = Number(mGBound);
+  const numeratorBound = Number(rootTangentNumeratorBound);
+  const residualBound = Number(centerResidualBound);
+  const centerJacobianBound = Number(centerJacobianLowerBound);
+  const lipschitzBound = Number(jacobianLipschitzBound);
+  const resolvedRhoX = Number(rhoX);
+  const resolvedRX = Number(rX);
+  if (!Number.isFinite(candidateMGBound) || candidateMGBound < 0) {
+    throw new Error("mGBound must be a finite nonnegative number");
+  }
+  assertFiniteNonnegative("rootTangentNumeratorBound", numeratorBound);
+  assertFiniteNonnegative("centerResidualBound", residualBound);
+  assertFinitePositive("centerJacobianLowerBound", centerJacobianBound);
+  assertFiniteNonnegative("jacobianLipschitzBound", lipschitzBound);
+  assertFinitePositive("rhoX", resolvedRhoX);
+  assertFinitePositive("rX", resolvedRX);
+  if (!(resolvedRhoX > resolvedRX)) {
+    throw new Error("rhoX must be greater than rX");
+  }
+
+  const residualProfile = allowanceNumber(
+    "centerResidualRemainderProfile",
+    centerResidualRemainderProfile
+  );
+  const jacobianLossProfile = allowanceNumber(
+    "centerJacobianLowerRemainderProfile",
+    centerJacobianLowerRemainderProfile
+  );
+  const lipschitzProfile = allowanceNumber(
+    "jacobianLipschitzRemainderProfile",
+    jacobianLipschitzRemainderProfile
+  );
+  const mGProfile = allowanceNumber("mGRemainderProfile", mGRemainderProfile);
+  const numeratorProfile = allowanceNumber(
+    "rootTangentNumeratorRemainderProfile",
+    rootTangentNumeratorRemainderProfile
+  );
+  const hasPositiveProfile = [
+    residualProfile,
+    jacobianLossProfile,
+    lipschitzProfile,
+    mGProfile,
+    numeratorProfile,
+  ].some((value) => value > 0);
+
+  const budget = computeH39RootTangentCauchyMajorantBudget({
+    radiusMultiple,
+    xiOverSigmaX: 0,
+  });
+  const rightScalar = B_D_39 * budget.rho_power_41 * budget.one_minus_q;
+  const constantTerm =
+    D_IDENTITY_COEFFICIENT + 1 / (budget.radius_multiple - 1);
+  const sigmaX = resolvedRhoX - resolvedRX;
+  const baseJMin = centerJacobianBound - lipschitzBound * resolvedRhoX;
+  const jMinProfileSlope =
+    jacobianLossProfile + lipschitzProfile * resolvedRhoX;
+  const baseRoucheMargin =
+    centerJacobianBound * resolvedRX -
+    residualBound -
+    0.5 * lipschitzBound * resolvedRX * resolvedRX;
+  const roucheMarginProfileSlope =
+    jacobianLossProfile * resolvedRX +
+    residualProfile +
+    0.5 * lipschitzProfile * resolvedRX * resolvedRX;
+  const scalarAffineConstant =
+    constantTerm * sigmaX * baseJMin + numeratorBound;
+  const scalarAffineLinear =
+    numeratorProfile - constantTerm * sigmaX * jMinProfileSlope;
+  const polynomialConstant =
+    rightScalar * sigmaX * baseJMin -
+    candidateMGBound * scalarAffineConstant;
+  const polynomialLinear =
+    -rightScalar * sigmaX * jMinProfileSlope -
+    candidateMGBound * scalarAffineLinear -
+    mGProfile * scalarAffineConstant;
+  const polynomialQuadratic = -mGProfile * scalarAffineLinear;
+  const baseScalarMargin =
+    baseJMin > 0 && sigmaX > 0
+      ? rightScalar -
+        candidateMGBound *
+          (constantTerm + numeratorBound / (baseJMin * sigmaX))
+      : null;
+  const baseCloses =
+    sigmaX > 0 &&
+    baseJMin > 0 &&
+    baseRoucheMargin > 0 &&
+    polynomialConstant > 0;
+  const requiredScale = 1;
+  const requiredScaleJMin =
+    baseJMin - requiredScale * jMinProfileSlope;
+  const requiredScaleRoucheMargin =
+    baseRoucheMargin - requiredScale * roucheMarginProfileSlope;
+  const requiredScaleScalarPolynomial =
+    polynomialConstant +
+    polynomialLinear * requiredScale +
+    polynomialQuadratic * requiredScale * requiredScale;
+  const requiredScaleFailedMarginNames = [
+    ["J_min", requiredScaleJMin],
+    ["rouche_margin", requiredScaleRoucheMargin],
+    ["h39_scalar_margin", requiredScaleScalarPolynomial],
+  ]
+    .filter(([, value]) => !(Number.isFinite(value) && value > 0))
+    .map(([name]) => name);
+  const baseFields = {
+    primitive_analytic_remainder_multi_profile_base_sigma_X: sigmaX,
+    primitive_analytic_remainder_multi_profile_base_J_min: baseJMin,
+    primitive_analytic_remainder_multi_profile_base_rouche_margin:
+      baseRoucheMargin,
+    primitive_analytic_remainder_multi_profile_base_scalar_margin:
+      baseScalarMargin,
+    primitive_analytic_remainder_multi_profile_required_scale:
+      requiredScale,
+    primitive_analytic_remainder_multi_profile_J_min_at_required_scale:
+      requiredScaleJMin,
+    primitive_analytic_remainder_multi_profile_rouche_margin_at_required_scale:
+      requiredScaleRoucheMargin,
+    primitive_analytic_remainder_multi_profile_scalar_polynomial_at_required_scale:
+      requiredScaleScalarPolynomial,
+    primitive_analytic_remainder_multi_profile_required_scale_closes:
+      requiredScaleFailedMarginNames.length === 0,
+    primitive_analytic_remainder_multi_profile_required_scale_failed_margin_names:
+      requiredScaleFailedMarginNames,
+    primitive_analytic_remainder_multi_profile_scalar_polynomial_constant:
+      polynomialConstant,
+    primitive_analytic_remainder_multi_profile_scalar_polynomial_linear:
+      polynomialLinear,
+    primitive_analytic_remainder_multi_profile_scalar_polynomial_quadratic:
+      polynomialQuadratic,
+    primitive_analytic_remainder_multi_profile_E_R_profile:
+      residualProfile,
+    primitive_analytic_remainder_multi_profile_nu_J_loss_profile:
+      jacobianLossProfile,
+    primitive_analytic_remainder_multi_profile_L_J_profile:
+      lipschitzProfile,
+    primitive_analytic_remainder_multi_profile_M_G_profile: mGProfile,
+    primitive_analytic_remainder_multi_profile_M_R_profile:
+      numeratorProfile,
+    primitive_analytic_remainder_multi_profile_J_min_profile_slope:
+      jMinProfileSlope,
+    primitive_analytic_remainder_multi_profile_rouche_margin_profile_slope:
+      roucheMarginProfileSlope,
+  };
+  if (!baseCloses) {
+    return {
+      ...emptyPrimitiveAnalyticRemainderMultiProfileBoundary(
+        "h39-primitive-analytic-remainder-multi-profile-base-open"
+      ),
+      ...baseFields,
+    };
+  }
+  if (!hasPositiveProfile) {
+    return {
+      ...emptyPrimitiveAnalyticRemainderMultiProfileBoundary(
+        "h39-primitive-analytic-remainder-multi-profile-unbounded-for-zero-profile"
+      ),
+      ...baseFields,
+    };
+  }
+
+  const jBoundary =
+    jMinProfileSlope > 0 ? baseJMin / jMinProfileSlope : Infinity;
+  const roucheBoundary =
+    roucheMarginProfileSlope > 0
+      ? baseRoucheMargin / roucheMarginProfileSlope
+      : Infinity;
+  const scalarBoundary =
+    firstPositiveQuadraticRoot(
+      polynomialConstant,
+      polynomialLinear,
+      polynomialQuadratic
+    ) ?? Infinity;
+  const finiteBoundaries = [
+    ["J_min", jBoundary],
+    ["rouche_margin", roucheBoundary],
+    ["h39_scalar_margin", scalarBoundary],
+  ].filter(([, value]) => Number.isFinite(value) && value > 0);
+
+  if (finiteBoundaries.length === 0) {
+    return {
+      ...emptyPrimitiveAnalyticRemainderMultiProfileBoundary(
+        "h39-primitive-analytic-remainder-multi-profile-unbounded"
+      ),
+      ...baseFields,
+      primitive_analytic_remainder_multi_profile_J_min_boundary:
+        finiteBoundary(jBoundary),
+      primitive_analytic_remainder_multi_profile_rouche_margin_boundary:
+        finiteBoundary(roucheBoundary),
+      primitive_analytic_remainder_multi_profile_h39_scalar_boundary:
+        finiteBoundary(scalarBoundary),
+    };
+  }
+
+  const [bottleneckName, supremum] = finiteBoundaries.reduce((best, entry) =>
+    entry[1] < best[1] ? entry : best
+  );
+  const activeBottlenecks = finiteBoundaries
+    .filter(([, value]) => approximatelyEqual(value, supremum, 1e-10))
+    .map(([name]) => name);
+
+  return {
+    schema:
+      OCTAHEDRAL_FOLD_AWARE_CROSS_BINARY_THETA3MINUS_SPEED_DEPENDENT_FOLD_PAIR_FIRST_Y_GD_ROOT_TANGENT_CAUCHY_MAJORANT_TAIL_BUDGET_SCHEMA,
+    ...emptyPrimitiveAnalyticRemainderMultiProfileBoundary(
+      "h39-primitive-analytic-remainder-multi-profile-boundary-emitted"
+    ),
+    ...baseFields,
+    primitive_analytic_remainder_multi_profile_lambda_supremum:
+      supremum,
+    primitive_analytic_remainder_multi_profile_bottleneck_name:
+      bottleneckName,
+    primitive_analytic_remainder_multi_profile_active_bottleneck_names:
+      activeBottlenecks,
+    primitive_analytic_remainder_multi_profile_J_min_boundary:
+      finiteBoundary(jBoundary),
+    primitive_analytic_remainder_multi_profile_rouche_margin_boundary:
+      finiteBoundary(roucheBoundary),
+    primitive_analytic_remainder_multi_profile_h39_scalar_boundary:
+      finiteBoundary(scalarBoundary),
+  };
+}
+
+function emptyPrimitiveRemainderProfileScale(status) {
+  return {
+    primitive_remainder_profile_scale_status: status,
+    primitive_remainder_profile_scale_formula:
+      "lambda profile: scale nonnegative primitive remainder directions by lambda and find the largest candidate scale that preserves the robust h39 primitive remainder budget",
+    primitive_remainder_profile_scale_candidate_only: true,
+    primitive_remainder_profile_scale_strict_inequalities: true,
+    primitive_remainder_profile_scale_candidate: null,
+    primitive_remainder_profile_scale_first_failing_upper: null,
+    primitive_remainder_profile_scale_closed_through_upper_bound: null,
+    primitive_remainder_profile_scale_iterations: null,
+    primitive_remainder_profile_scale_tolerance: null,
+    primitive_remainder_profile_scale_limiting_margin_name: null,
+    primitive_remainder_profile_scale_limiting_margin_value: null,
+    primitive_remainder_profile_scale_E_R_profile: null,
+    primitive_remainder_profile_scale_nu_J_loss_profile: null,
+    primitive_remainder_profile_scale_L_J_profile: null,
+    primitive_remainder_profile_scale_rho_X_lower_profile: null,
+    primitive_remainder_profile_scale_rho_X_upper_profile: null,
+    primitive_remainder_profile_scale_r_X_lower_profile: null,
+    primitive_remainder_profile_scale_r_X_upper_profile: null,
+    primitive_remainder_profile_scale_M_G_profile: null,
+    primitive_remainder_profile_scale_M_R_profile: null,
+    primitive_remainder_profile_scale_scaled_E_R_allowance: null,
+    primitive_remainder_profile_scale_scaled_nu_J_loss_allowance: null,
+    primitive_remainder_profile_scale_scaled_L_J_allowance: null,
+    primitive_remainder_profile_scale_scaled_rho_X_lower_allowance: null,
+    primitive_remainder_profile_scale_scaled_rho_X_upper_allowance: null,
+    primitive_remainder_profile_scale_scaled_r_X_lower_allowance: null,
+    primitive_remainder_profile_scale_scaled_r_X_upper_allowance: null,
+    primitive_remainder_profile_scale_scaled_M_G_allowance: null,
+    primitive_remainder_profile_scale_scaled_M_R_allowance: null,
+    primitive_remainder_profile_scale_budget_at_candidate: null,
+    primitive_remainder_profile_scale_exact_multi_profile_boundary: null,
+    certifies_directed_rounded_h39_polydisc_bounds: false,
+    certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
+      false,
+    retained_branch: false,
+  };
+}
+
+function limitingPrimitiveRemainderMargin(budget) {
+  const margins = [
+    [
+      "primitive_remainder_budget_min_J_min",
+      budget.primitive_remainder_budget_min_J_min,
+    ],
+    [
+      "primitive_remainder_budget_min_sigma_X",
+      budget.primitive_remainder_budget_min_sigma_X,
+    ],
+    [
+      "primitive_remainder_budget_min_J_min_sigma_X_margin",
+      budget.primitive_remainder_budget_min_J_min_sigma_X === null ||
+      budget.primitive_remainder_budget_required_J_min_sigma_X === null
+        ? null
+        : budget.primitive_remainder_budget_min_J_min_sigma_X -
+          budget.primitive_remainder_budget_required_J_min_sigma_X,
+    ],
+    [
+      "primitive_remainder_budget_min_rouche_margin",
+      budget.primitive_remainder_budget_min_rouche_margin,
+    ],
+    [
+      "primitive_remainder_budget_scalar_margin",
+      budget.primitive_remainder_budget_scalar_margin,
+    ],
+    [
+      "primitive_remainder_profile_scale_safe_scalar_margin",
+      budget.primitive_remainder_profile_scale_safe_scalar_margin,
+    ],
+  ].filter(([, value]) => Number.isFinite(value));
+  if (margins.length === 0) {
+    return [null, null];
+  }
+  return margins.reduce((best, entry) =>
+    entry[1] < best[1] ? entry : best
+  );
+}
+
+export function computeH39PrimitiveRemainderProfileScaleCandidate({
+  profileScaleUpperBound,
+  profileScaleTolerance = DEFAULT_PROFILE_SCALE_TOLERANCE,
+  profileScaleMaxIterations = DEFAULT_PROFILE_SCALE_MAX_ITERATIONS,
+  radiusMultiple = DEFAULT_RADIUS_MULTIPLE,
+  mGBound,
+  rootTangentNumeratorBound,
+  centerResidualBound,
+  centerJacobianLowerBound,
+  jacobianLipschitzBound,
+  rhoX,
+  rX,
+  centerResidualRemainderProfile,
+  centerJacobianLowerRemainderProfile,
+  jacobianLipschitzRemainderProfile,
+  rhoXLowerRemainderProfile,
+  rhoXUpperRemainderProfile,
+  rXLowerRemainderProfile,
+  rXUpperRemainderProfile,
+  mGRemainderProfile,
+  rootTangentNumeratorRemainderProfile,
+} = {}) {
+  const primitiveInputs = [
+    mGBound,
+    rootTangentNumeratorBound,
+    centerResidualBound,
+    centerJacobianLowerBound,
+    jacobianLipschitzBound,
+    rhoX,
+    rX,
+  ];
+  const profileInputs = [
+    centerResidualRemainderProfile,
+    centerJacobianLowerRemainderProfile,
+    jacobianLipschitzRemainderProfile,
+    rhoXLowerRemainderProfile,
+    rhoXUpperRemainderProfile,
+    rXLowerRemainderProfile,
+    rXUpperRemainderProfile,
+    mGRemainderProfile,
+    rootTangentNumeratorRemainderProfile,
+  ];
+  if (!primitiveInputs.some(isProvided) && !profileInputs.some(isProvided)) {
+    return emptyPrimitiveRemainderProfileScale("not-provided");
+  }
+  if (!primitiveInputs.every(isProvided)) {
+    return emptyPrimitiveRemainderProfileScale(
+      "missing-primitive-remainder-profile-scale-inputs"
+    );
+  }
+
+  assertFinitePositive("profileScaleTolerance", Number(profileScaleTolerance));
+  const maxIterations = Number(profileScaleMaxIterations);
+  if (
+    !Number.isInteger(maxIterations) ||
+    maxIterations <= 0 ||
+    maxIterations > 1000
+  ) {
+    throw new Error("profileScaleMaxIterations must be an integer in [1,1000]");
+  }
+
+  const profile = {
+    centerResidualRemainderBound: allowanceNumber(
+      "centerResidualRemainderProfile",
+      centerResidualRemainderProfile
+    ),
+    centerJacobianLowerRemainderBound: allowanceNumber(
+      "centerJacobianLowerRemainderProfile",
+      centerJacobianLowerRemainderProfile
+    ),
+    jacobianLipschitzRemainderBound: allowanceNumber(
+      "jacobianLipschitzRemainderProfile",
+      jacobianLipschitzRemainderProfile
+    ),
+    rhoXLowerRemainderBound: allowanceNumber(
+      "rhoXLowerRemainderProfile",
+      rhoXLowerRemainderProfile
+    ),
+    rhoXUpperRemainderBound: allowanceNumber(
+      "rhoXUpperRemainderProfile",
+      rhoXUpperRemainderProfile
+    ),
+    rXLowerRemainderBound: allowanceNumber(
+      "rXLowerRemainderProfile",
+      rXLowerRemainderProfile
+    ),
+    rXUpperRemainderBound: allowanceNumber(
+      "rXUpperRemainderProfile",
+      rXUpperRemainderProfile
+    ),
+    mGRemainderBound: allowanceNumber("mGRemainderProfile", mGRemainderProfile),
+    rootTangentNumeratorRemainderBound: allowanceNumber(
+      "rootTangentNumeratorRemainderProfile",
+      rootTangentNumeratorRemainderProfile
+    ),
+  };
+  const hasPositiveProfile = Object.values(profile).some((value) => value > 0);
+  const exactMultiProfileBoundary =
+    profile.rhoXLowerRemainderBound === 0 &&
+    profile.rhoXUpperRemainderBound === 0 &&
+    profile.rXLowerRemainderBound === 0 &&
+    profile.rXUpperRemainderBound === 0
+      ? computeH39PrimitiveAnalyticRemainderMultiProfileBoundaryCandidate({
+          radiusMultiple,
+          mGBound,
+          rootTangentNumeratorBound,
+          centerResidualBound,
+          centerJacobianLowerBound,
+          jacobianLipschitzBound,
+          rhoX,
+          rX,
+          centerResidualRemainderProfile:
+            profile.centerResidualRemainderBound,
+          centerJacobianLowerRemainderProfile:
+            profile.centerJacobianLowerRemainderBound,
+          jacobianLipschitzRemainderProfile:
+            profile.jacobianLipschitzRemainderBound,
+          mGRemainderProfile: profile.mGRemainderBound,
+          rootTangentNumeratorRemainderProfile:
+            profile.rootTangentNumeratorRemainderBound,
+        })
+      : emptyPrimitiveAnalyticRemainderMultiProfileBoundary(
+          "not-applicable-nonzero-graph-radius-profile"
+        );
+  const profileCauchyBudget = computeH39RootTangentCauchyMajorantBudget({
+    radiusMultiple,
+    xiOverSigmaX: 0,
+  });
+  const profileRightScalar =
+    B_D_39 *
+    profileCauchyBudget.rho_power_41 *
+    profileCauchyBudget.one_minus_q;
+  const profileConstantTerm =
+    D_IDENTITY_COEFFICIENT +
+    1 / (profileCauchyBudget.radius_multiple - 1);
+  const scaledBudget = (scale) =>
+    computeH39PrimitiveRemainderBudgetCandidate({
+      radiusMultiple,
+      mGBound,
+      rootTangentNumeratorBound,
+      centerResidualBound,
+      centerJacobianLowerBound,
+      jacobianLipschitzBound,
+      rhoX,
+      rX,
+      centerResidualRemainderBound:
+        scale * profile.centerResidualRemainderBound,
+      centerJacobianLowerRemainderBound:
+        scale * profile.centerJacobianLowerRemainderBound,
+      jacobianLipschitzRemainderBound:
+        scale * profile.jacobianLipschitzRemainderBound,
+      rhoXLowerRemainderBound:
+        scale * profile.rhoXLowerRemainderBound,
+      rhoXUpperRemainderBound:
+        scale * profile.rhoXUpperRemainderBound,
+      rXLowerRemainderBound: scale * profile.rXLowerRemainderBound,
+      rXUpperRemainderBound: scale * profile.rXUpperRemainderBound,
+      mGRemainderBound: scale * profile.mGRemainderBound,
+      rootTangentNumeratorRemainderBound:
+        scale * profile.rootTangentNumeratorRemainderBound,
+    });
+  const profileBudget = (scale) => {
+    const budget = scaledBudget(scale);
+    const safeProduct =
+      budget.primitive_remainder_budget_min_J_min !== null &&
+      budget.primitive_remainder_budget_min_sigma_X !== null
+        ? budget.primitive_remainder_budget_min_J_min *
+          budget.primitive_remainder_budget_min_sigma_X
+        : null;
+    const safeScalarLeft =
+      safeProduct === null || !(safeProduct > 0)
+        ? null
+        : budget.primitive_remainder_budget_worst_M_G *
+          (profileConstantTerm +
+            budget.primitive_remainder_budget_worst_M_R / safeProduct);
+    const safeScalarMargin =
+      safeScalarLeft === null
+        ? null
+        : profileRightScalar - safeScalarLeft;
+    return {
+      ...budget,
+      primitive_remainder_profile_scale_monotone_mode:
+        "safe-product-floor",
+      primitive_remainder_profile_scale_safe_J_min_sigma_X:
+        safeProduct,
+      primitive_remainder_profile_scale_safe_scalar_left:
+        safeScalarLeft,
+      primitive_remainder_profile_scale_safe_scalar_margin:
+        safeScalarMargin,
+      primitive_remainder_profile_scale_safe_closes_candidate:
+        budget.primitive_remainder_budget_min_J_min > 0 &&
+        budget.primitive_remainder_budget_min_sigma_X > 0 &&
+        budget.primitive_remainder_budget_min_rouche_margin > 0 &&
+        safeScalarMargin > 0,
+    };
+  };
+
+  const zeroBudget = profileBudget(0);
+  if (
+    zeroBudget.primitive_remainder_profile_scale_safe_closes_candidate !== true
+  ) {
+    return {
+      ...emptyPrimitiveRemainderProfileScale(
+        "h39-primitive-remainder-profile-scale-base-open"
+      ),
+      primitive_remainder_profile_scale_budget_at_candidate: zeroBudget,
+      primitive_remainder_profile_scale_exact_multi_profile_boundary:
+        exactMultiProfileBoundary,
+    };
+  }
+  if (!hasPositiveProfile) {
+    const [limitingName, limitingValue] =
+      limitingPrimitiveRemainderMargin(zeroBudget);
+    return {
+      ...emptyPrimitiveRemainderProfileScale(
+        "h39-primitive-remainder-profile-scale-unbounded-for-zero-profile"
+      ),
+      primitive_remainder_profile_scale_candidate: null,
+      primitive_remainder_profile_scale_closed_through_upper_bound: null,
+      primitive_remainder_profile_scale_iterations: 0,
+      primitive_remainder_profile_scale_tolerance: Number(profileScaleTolerance),
+      primitive_remainder_profile_scale_limiting_margin_name: limitingName,
+      primitive_remainder_profile_scale_limiting_margin_value: limitingValue,
+      primitive_remainder_profile_scale_budget_at_candidate: zeroBudget,
+      primitive_remainder_profile_scale_exact_multi_profile_boundary:
+        exactMultiProfileBoundary,
+    };
+  }
+
+  const hasProvidedUpper = isProvided(profileScaleUpperBound);
+  let upper = hasProvidedUpper ? Number(profileScaleUpperBound) : 1;
+  assertFinitePositive("profileScaleUpperBound", upper);
+  let lower = 0;
+  let upperBudget = profileBudget(upper);
+  let bracketIterations = 0;
+  if (!hasProvidedUpper) {
+    while (
+      upperBudget.primitive_remainder_profile_scale_safe_closes_candidate ===
+        true &&
+      upper < DEFAULT_PROFILE_SCALE_SEARCH_LIMIT
+    ) {
+      lower = upper;
+      upper *= 2;
+      upperBudget = profileBudget(upper);
+      bracketIterations += 1;
+    }
+  }
+
+  if (
+    upperBudget.primitive_remainder_profile_scale_safe_closes_candidate ===
+    true
+  ) {
+    const [limitingName, limitingValue] =
+      limitingPrimitiveRemainderMargin(upperBudget);
+    return {
+      ...emptyPrimitiveRemainderProfileScale(
+        hasProvidedUpper
+          ? "h39-primitive-remainder-profile-scale-closed-through-upper-bound"
+          : "h39-primitive-remainder-profile-scale-closed-through-search-limit"
+      ),
+      primitive_remainder_profile_scale_candidate: upper,
+      primitive_remainder_profile_scale_closed_through_upper_bound: true,
+      primitive_remainder_profile_scale_iterations: bracketIterations,
+      primitive_remainder_profile_scale_tolerance: Number(profileScaleTolerance),
+      primitive_remainder_profile_scale_limiting_margin_name: limitingName,
+      primitive_remainder_profile_scale_limiting_margin_value: limitingValue,
+      primitive_remainder_profile_scale_budget_at_candidate: upperBudget,
+      primitive_remainder_profile_scale_exact_multi_profile_boundary:
+        exactMultiProfileBoundary,
+    };
+  }
+
+  let candidateBudget = lower === 0 ? zeroBudget : profileBudget(lower);
+  let iterations = bracketIterations;
+  for (let i = 0; i < maxIterations; i += 1) {
+    const mid = 0.5 * (lower + upper);
+    const midBudget = profileBudget(mid);
+    iterations += 1;
+    if (
+      midBudget.primitive_remainder_profile_scale_safe_closes_candidate === true
+    ) {
+      lower = mid;
+      candidateBudget = midBudget;
+    } else {
+      upper = mid;
+      upperBudget = midBudget;
+    }
+    if (upper - lower <= Number(profileScaleTolerance) * Math.max(1, upper)) {
+      break;
+    }
+  }
+
+  const [limitingName, limitingValue] =
+    limitingPrimitiveRemainderMargin(candidateBudget);
+  const scaled = {
+    E: lower * profile.centerResidualRemainderBound,
+    nu: lower * profile.centerJacobianLowerRemainderBound,
+    L: lower * profile.jacobianLipschitzRemainderBound,
+    rhoLower: lower * profile.rhoXLowerRemainderBound,
+    rhoUpper: lower * profile.rhoXUpperRemainderBound,
+    rLower: lower * profile.rXLowerRemainderBound,
+    rUpper: lower * profile.rXUpperRemainderBound,
+    G: lower * profile.mGRemainderBound,
+    R: lower * profile.rootTangentNumeratorRemainderBound,
+  };
+
+  return {
+    schema:
+      OCTAHEDRAL_FOLD_AWARE_CROSS_BINARY_THETA3MINUS_SPEED_DEPENDENT_FOLD_PAIR_FIRST_Y_GD_ROOT_TANGENT_CAUCHY_MAJORANT_TAIL_BUDGET_SCHEMA,
+    primitive_remainder_profile_scale_status:
+      "h39-primitive-remainder-profile-scale-candidate-emitted",
+    primitive_remainder_profile_scale_formula:
+      "lambda profile: scale nonnegative primitive remainder directions by lambda and find the largest candidate scale that preserves the robust h39 primitive remainder budget",
+    primitive_remainder_profile_scale_candidate_only: true,
+    primitive_remainder_profile_scale_strict_inequalities: true,
+    primitive_remainder_profile_scale_candidate: lower,
+    primitive_remainder_profile_scale_first_failing_upper: upper,
+    primitive_remainder_profile_scale_closed_through_upper_bound: false,
+    primitive_remainder_profile_scale_iterations: iterations,
+    primitive_remainder_profile_scale_tolerance: Number(profileScaleTolerance),
+    primitive_remainder_profile_scale_limiting_margin_name: limitingName,
+    primitive_remainder_profile_scale_limiting_margin_value: limitingValue,
+    primitive_remainder_profile_scale_E_R_profile:
+      profile.centerResidualRemainderBound,
+    primitive_remainder_profile_scale_nu_J_loss_profile:
+      profile.centerJacobianLowerRemainderBound,
+    primitive_remainder_profile_scale_L_J_profile:
+      profile.jacobianLipschitzRemainderBound,
+    primitive_remainder_profile_scale_rho_X_lower_profile:
+      profile.rhoXLowerRemainderBound,
+    primitive_remainder_profile_scale_rho_X_upper_profile:
+      profile.rhoXUpperRemainderBound,
+    primitive_remainder_profile_scale_r_X_lower_profile:
+      profile.rXLowerRemainderBound,
+    primitive_remainder_profile_scale_r_X_upper_profile:
+      profile.rXUpperRemainderBound,
+    primitive_remainder_profile_scale_M_G_profile:
+      profile.mGRemainderBound,
+    primitive_remainder_profile_scale_M_R_profile:
+      profile.rootTangentNumeratorRemainderBound,
+    primitive_remainder_profile_scale_scaled_E_R_allowance: scaled.E,
+    primitive_remainder_profile_scale_scaled_nu_J_loss_allowance: scaled.nu,
+    primitive_remainder_profile_scale_scaled_L_J_allowance: scaled.L,
+    primitive_remainder_profile_scale_scaled_rho_X_lower_allowance:
+      scaled.rhoLower,
+    primitive_remainder_profile_scale_scaled_rho_X_upper_allowance:
+      scaled.rhoUpper,
+    primitive_remainder_profile_scale_scaled_r_X_lower_allowance:
+      scaled.rLower,
+    primitive_remainder_profile_scale_scaled_r_X_upper_allowance:
+      scaled.rUpper,
+    primitive_remainder_profile_scale_scaled_M_G_allowance: scaled.G,
+    primitive_remainder_profile_scale_scaled_M_R_allowance: scaled.R,
+    primitive_remainder_profile_scale_budget_at_candidate: candidateBudget,
+    primitive_remainder_profile_scale_budget_at_first_failing_upper:
+      upperBudget,
+    primitive_remainder_profile_scale_exact_multi_profile_boundary:
+      exactMultiProfileBoundary,
+    certifies_directed_rounded_h39_polydisc_bounds: false,
+    certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound:
+      false,
+    retained_branch: false,
   };
 }
 
@@ -1385,6 +2789,12 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
   const slopeEnvelope = computeH39RootTangentSlopeEnvelope(effectiveOptions);
   const rouchePrimitiveClosure =
     computeH39RouchePrimitiveClosure(options);
+  const primitiveSlackTolerances =
+    computeH39PrimitiveSlackTolerancesCandidate(options);
+  const primitiveRemainderBudget =
+    computeH39PrimitiveRemainderBudgetCandidate(options);
+  const primitiveRemainderProfileScale =
+    computeH39PrimitiveRemainderProfileScaleCandidate(options);
   const roucheRadiusSupremum =
     computeH39RoucheRadiusSupremumCeiling(options);
   const roucheRhoXOptimum =
@@ -1467,6 +2877,99 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
       rho_X_upper_bound: isProvided(options.rhoXUpperBound)
         ? Number(options.rhoXUpperBound)
         : null,
+      center_residual_remainder_bound_E_R: isProvided(
+        options.centerResidualRemainderBound
+      )
+        ? Number(options.centerResidualRemainderBound)
+        : null,
+      center_jacobian_lower_remainder_bound_nu_J: isProvided(
+        options.centerJacobianLowerRemainderBound
+      )
+        ? Number(options.centerJacobianLowerRemainderBound)
+        : null,
+      jacobian_lipschitz_remainder_bound_L_J: isProvided(
+        options.jacobianLipschitzRemainderBound
+      )
+        ? Number(options.jacobianLipschitzRemainderBound)
+        : null,
+      rho_X_lower_remainder_bound: isProvided(
+        options.rhoXLowerRemainderBound
+      )
+        ? Number(options.rhoXLowerRemainderBound)
+        : null,
+      rho_X_upper_remainder_bound: isProvided(
+        options.rhoXUpperRemainderBound
+      )
+        ? Number(options.rhoXUpperRemainderBound)
+        : null,
+      r_X_lower_remainder_bound: isProvided(options.rXLowerRemainderBound)
+        ? Number(options.rXLowerRemainderBound)
+        : null,
+      r_X_upper_remainder_bound: isProvided(options.rXUpperRemainderBound)
+        ? Number(options.rXUpperRemainderBound)
+        : null,
+      M_G_remainder_bound: isProvided(options.mGRemainderBound)
+        ? Number(options.mGRemainderBound)
+        : null,
+      M_R_remainder_bound: isProvided(
+        options.rootTangentNumeratorRemainderBound
+      )
+        ? Number(options.rootTangentNumeratorRemainderBound)
+        : null,
+      primitive_remainder_profile_scale_upper_bound: isProvided(
+        options.profileScaleUpperBound
+      )
+        ? Number(options.profileScaleUpperBound)
+        : null,
+      primitive_remainder_profile_scale_tolerance: isProvided(
+        options.profileScaleTolerance
+      )
+        ? Number(options.profileScaleTolerance)
+        : DEFAULT_PROFILE_SCALE_TOLERANCE,
+      primitive_remainder_profile_scale_max_iterations: isProvided(
+        options.profileScaleMaxIterations
+      )
+        ? Number(options.profileScaleMaxIterations)
+        : DEFAULT_PROFILE_SCALE_MAX_ITERATIONS,
+      center_residual_remainder_profile_E_R: isProvided(
+        options.centerResidualRemainderProfile
+      )
+        ? Number(options.centerResidualRemainderProfile)
+        : null,
+      center_jacobian_lower_remainder_profile_nu_J: isProvided(
+        options.centerJacobianLowerRemainderProfile
+      )
+        ? Number(options.centerJacobianLowerRemainderProfile)
+        : null,
+      jacobian_lipschitz_remainder_profile_L_J: isProvided(
+        options.jacobianLipschitzRemainderProfile
+      )
+        ? Number(options.jacobianLipschitzRemainderProfile)
+        : null,
+      rho_X_lower_remainder_profile: isProvided(
+        options.rhoXLowerRemainderProfile
+      )
+        ? Number(options.rhoXLowerRemainderProfile)
+        : null,
+      rho_X_upper_remainder_profile: isProvided(
+        options.rhoXUpperRemainderProfile
+      )
+        ? Number(options.rhoXUpperRemainderProfile)
+        : null,
+      r_X_lower_remainder_profile: isProvided(options.rXLowerRemainderProfile)
+        ? Number(options.rXLowerRemainderProfile)
+        : null,
+      r_X_upper_remainder_profile: isProvided(options.rXUpperRemainderProfile)
+        ? Number(options.rXUpperRemainderProfile)
+        : null,
+      M_G_remainder_profile: isProvided(options.mGRemainderProfile)
+        ? Number(options.mGRemainderProfile)
+        : null,
+      M_R_remainder_profile: isProvided(
+        options.rootTangentNumeratorRemainderProfile
+      )
+        ? Number(options.rootTangentNumeratorRemainderProfile)
+        : null,
       rho: budget.rho,
       q: budget.q,
       xi_over_sigma_X: budget.xi_over_sigma_X,
@@ -1511,6 +3014,9 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
       ...derivedSlopeRatio,
       ...slopeEnvelope,
       ...rouchePrimitiveClosure,
+      ...primitiveSlackTolerances,
+      ...primitiveRemainderBudget,
+      ...primitiveRemainderProfileScale,
       ...roucheRadiusSupremum,
       ...roucheRhoXOptimum,
       ...roucheYRadiusOptimum,
@@ -1623,7 +3129,7 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
       certifies_I1_regular_critical_exhaustion: false,
       retained_branch: false,
       claim_level:
-        "Executable analytic budget reduction for the h39 root-tangent Cauchy-majorant route. It computes the M_G threshold implied by rho, Xi_*/sigma_X, and the h39 G/D budgets after the certified h38 coefficient row, records that the thresholds strictly increase with s=rho/Y for fixed Xi_*/sigma_X>=0, proves that the D threshold is the active bottleneck, inverts the D inequality into a maximum admissible Xi_*/sigma_X for a provided M_G bound, derives Xi_*/sigma_X from a root-tangent numerator bound, a Jacobian lower bound, and an X-Cauchy margin, computes the maximum admissible primitive numerator M_R when J_min and sigma_X are supplied, derives J_min and sigma_X from Rouché graph-lift inputs, solves the Rouché radius window to expose the best attainable Cauchy-margin target, emits the named Rouché-primitive closure ratio Lambda_39^R in the seven backend variables E_R, nu_J, L_J, rho_X, r_X, M_G, and M_R, computes the unattained supremal admissible M_R ceiling obtained as r_X approaches the lower strict Rouché boundary from above, reduces the rho_X choice to a concave quadratic or capped linear optimum when one shared-domain rho_X upper bound is supplied, and proves that under fixed shared-domain constants the y-radius budget C_D(s) has positive derivative for s>1, so a finite certified y-radius cap is optimized at the largest admissible s while an uncapped scalar y-radius family is unbounded; it does not certify the missing directed-rounded polydisc numerator or root-tangent bounds, and it does not claim that E_R, nu_J, L_J, or M_G remain fixed when an interval backend enlarges the shared domain.",
+        "Executable analytic budget reduction for the h39 root-tangent Cauchy-majorant route. It computes the M_G threshold implied by rho, Xi_*/sigma_X, and the h39 G/D budgets after the certified h38 coefficient row, records that the thresholds strictly increase with s=rho/Y for fixed Xi_*/sigma_X>=0, proves that the D threshold is the active bottleneck, inverts the D inequality into a maximum admissible Xi_*/sigma_X for a provided M_G bound, derives Xi_*/sigma_X from a root-tangent numerator bound, a Jacobian lower bound, and an X-Cauchy margin, computes the maximum admissible primitive numerator M_R when J_min and sigma_X are supplied, derives J_min and sigma_X from Rouché graph-lift inputs, solves the Rouché radius window to expose the best attainable Cauchy-margin target, emits the named Rouché-primitive closure ratio Lambda_39^R in the seven backend variables E_R, nu_J, L_J, rho_X, r_X, M_G, and M_R, computes the unattained supremal admissible M_R ceiling obtained as r_X approaches the lower strict Rouché boundary from above, reduces the rho_X choice to a concave quadratic or capped linear optimum when one shared-domain rho_X upper bound is supplied, proves that under fixed shared-domain constants the y-radius budget C_D(s) has positive derivative for s>1, so a finite certified y-radius cap is optimized at the largest admissible s while an uncapped scalar y-radius family is unbounded, forms pessimistic analytic-remainder rectangles, and inverts a nonnegative analytic-remainder profile into a candidate maximum scale using the monotone safe product floor J_rob*sigma_rob; it does not certify the missing directed-rounded polydisc numerator or root-tangent bounds, and it does not claim that E_R, nu_J, L_J, or M_G remain fixed when an interval backend enlarges the shared domain.",
     },
     result: {
       theory_status:
@@ -1633,7 +3139,7 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
       retention: "not_retained",
       retained_branch: false,
       status_note:
-        "The infinite h39 tail is now reduced to a numeric polydisc target: at rho=4Y and zero slope cost, the D tail requires M_G below the computed threshold. For fixed slope ratio, larger certified analytic radius improves both thresholds. If a candidate M_G bound is provided, this artifact computes the maximum admissible Xi_*/sigma_X slope ratio and decides the active D-threshold inequality. If Rouché graph-lift, root-tangent numerator, and M_G inputs are provided, it derives J_min, sigma_X, and Xi_*/sigma_X, reports the admissible r_X window, reports the remaining admissible M_R numerator margin, can optimize rho_X under fixed shared-domain constants, and can optimize the y-radius scalar budget at a finite certified s upper cap while reporting the uncapped y-radius family as unbounded under fixed constants.",
+        "The infinite h39 tail is now reduced to a numeric polydisc target: at rho=4Y and zero slope cost, the D tail requires M_G below the computed threshold. For fixed slope ratio, larger certified analytic radius improves both thresholds. If a candidate M_G bound is provided, this artifact computes the maximum admissible Xi_*/sigma_X slope ratio and decides the active D-threshold inequality. If Rouché graph-lift, root-tangent numerator, and M_G inputs are provided, it derives J_min, sigma_X, and Xi_*/sigma_X, reports the admissible r_X window, reports the remaining admissible M_R numerator margin, can optimize rho_X under fixed shared-domain constants, can optimize the y-radius scalar budget at a finite certified s upper cap while reporting the uncapped y-radius family as unbounded under fixed constants, and can invert a nonnegative analytic-remainder profile into the largest candidate scale that preserves the monotone safe-product h39 primitive budget.",
     },
   };
 }
@@ -1657,6 +3163,9 @@ export function validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentF
   let expectedDerivedSlopeRatio = null;
   let expectedRootGraphLift = null;
   let expectedRouchePrimitiveClosure = null;
+  let expectedPrimitiveSlackTolerances = null;
+  let expectedPrimitiveRemainderBudget = null;
+  let expectedPrimitiveRemainderProfileScale = null;
   let expectedRoucheRadiusSupremum = null;
   let expectedRoucheRhoXOptimum = null;
   let expectedRoucheYRadiusOptimum = null;
@@ -1697,6 +3206,72 @@ export function validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentF
       rhoX: params?.rho_X,
       rX: params?.r_X,
     });
+    expectedPrimitiveSlackTolerances =
+      computeH39PrimitiveSlackTolerancesCandidate({
+        radiusMultiple: Number(params?.radius_multiple),
+        mGBound: candidateMGBound,
+        rootTangentNumeratorBound: params?.root_tangent_numerator_bound,
+        centerResidualBound: params?.center_residual_bound_E_R,
+        centerJacobianLowerBound: params?.center_jacobian_lower_bound_nu_J,
+        jacobianLipschitzBound: params?.jacobian_lipschitz_bound_L_J,
+        rhoX: params?.rho_X,
+        rX: params?.r_X,
+      });
+    expectedPrimitiveRemainderBudget =
+      computeH39PrimitiveRemainderBudgetCandidate({
+        radiusMultiple: Number(params?.radius_multiple),
+        mGBound: candidateMGBound,
+        rootTangentNumeratorBound: params?.root_tangent_numerator_bound,
+        centerResidualBound: params?.center_residual_bound_E_R,
+        centerJacobianLowerBound: params?.center_jacobian_lower_bound_nu_J,
+        jacobianLipschitzBound: params?.jacobian_lipschitz_bound_L_J,
+        rhoX: params?.rho_X,
+        rX: params?.r_X,
+        centerResidualRemainderBound:
+          params?.center_residual_remainder_bound_E_R,
+        centerJacobianLowerRemainderBound:
+          params?.center_jacobian_lower_remainder_bound_nu_J,
+        jacobianLipschitzRemainderBound:
+          params?.jacobian_lipschitz_remainder_bound_L_J,
+        rhoXLowerRemainderBound: params?.rho_X_lower_remainder_bound,
+        rhoXUpperRemainderBound: params?.rho_X_upper_remainder_bound,
+        rXLowerRemainderBound: params?.r_X_lower_remainder_bound,
+        rXUpperRemainderBound: params?.r_X_upper_remainder_bound,
+        mGRemainderBound: params?.M_G_remainder_bound,
+        rootTangentNumeratorRemainderBound: params?.M_R_remainder_bound,
+      });
+    expectedPrimitiveRemainderProfileScale =
+      computeH39PrimitiveRemainderProfileScaleCandidate({
+        profileScaleUpperBound:
+          params?.primitive_remainder_profile_scale_upper_bound,
+        profileScaleTolerance:
+          params?.primitive_remainder_profile_scale_tolerance,
+        profileScaleMaxIterations:
+          params?.primitive_remainder_profile_scale_max_iterations,
+        radiusMultiple: Number(params?.radius_multiple),
+        mGBound: candidateMGBound,
+        rootTangentNumeratorBound: params?.root_tangent_numerator_bound,
+        centerResidualBound: params?.center_residual_bound_E_R,
+        centerJacobianLowerBound: params?.center_jacobian_lower_bound_nu_J,
+        jacobianLipschitzBound: params?.jacobian_lipschitz_bound_L_J,
+        rhoX: params?.rho_X,
+        rX: params?.r_X,
+        centerResidualRemainderProfile:
+          params?.center_residual_remainder_profile_E_R,
+        centerJacobianLowerRemainderProfile:
+          params?.center_jacobian_lower_remainder_profile_nu_J,
+        jacobianLipschitzRemainderProfile:
+          params?.jacobian_lipschitz_remainder_profile_L_J,
+        rhoXLowerRemainderProfile:
+          params?.rho_X_lower_remainder_profile,
+        rhoXUpperRemainderProfile:
+          params?.rho_X_upper_remainder_profile,
+        rXLowerRemainderProfile: params?.r_X_lower_remainder_profile,
+        rXUpperRemainderProfile: params?.r_X_upper_remainder_profile,
+        mGRemainderProfile: params?.M_G_remainder_profile,
+        rootTangentNumeratorRemainderProfile:
+          params?.M_R_remainder_profile,
+      });
     expectedRoucheRadiusSupremum = computeH39RoucheRadiusSupremumCeiling({
       radiusMultiple: Number(params?.radius_multiple),
       mGBound: candidateMGBound,
@@ -1732,6 +3307,9 @@ export function validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentF
     expectedDerivedSlopeRatio = null;
     expectedRootGraphLift = null;
     expectedRouchePrimitiveClosure = null;
+    expectedPrimitiveSlackTolerances = null;
+    expectedPrimitiveRemainderBudget = null;
+    expectedPrimitiveRemainderProfileScale = null;
     expectedRoucheRadiusSupremum = null;
     expectedRoucheRhoXOptimum = null;
     expectedRoucheYRadiusOptimum = null;
@@ -2194,6 +3772,211 @@ export function validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentF
           (summary?.candidate_rouche_primitive_h39_closure_ratio_below_one ===
             (Number(summary?.candidate_rouche_form_M_R_margin) > 0))),
     "h39 Rouché primitive closure fields must match the seven-input closure ratio and M_R ceiling",
+    errors
+  );
+  assertField(
+    expectedPrimitiveSlackTolerances !== null &&
+      summary?.primitive_slack_tolerances_status ===
+        expectedPrimitiveSlackTolerances.primitive_slack_tolerances_status &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_current_J_min_sigma_X,
+        expectedPrimitiveSlackTolerances.primitive_slack_current_J_min_sigma_X
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_required_J_min_sigma_X_from_closure,
+        expectedPrimitiveSlackTolerances.primitive_slack_required_J_min_sigma_X_from_closure
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_maximum_E_R,
+        expectedPrimitiveSlackTolerances.primitive_slack_maximum_E_R
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_minimum_nu_J,
+        expectedPrimitiveSlackTolerances.primitive_slack_minimum_nu_J
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_maximum_L_J,
+        expectedPrimitiveSlackTolerances.primitive_slack_maximum_L_J
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_rho_X_admissible_lower_bound,
+        expectedPrimitiveSlackTolerances.primitive_slack_rho_X_admissible_lower_bound
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_rho_X_admissible_upper_bound,
+        expectedPrimitiveSlackTolerances.primitive_slack_rho_X_admissible_upper_bound
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_rho_X_lower_margin,
+        expectedPrimitiveSlackTolerances.primitive_slack_rho_X_lower_margin
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_rho_X_upper_margin,
+        expectedPrimitiveSlackTolerances.primitive_slack_rho_X_upper_margin
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_r_X_admissible_lower_bound,
+        expectedPrimitiveSlackTolerances.primitive_slack_r_X_admissible_lower_bound
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_r_X_admissible_upper_bound,
+        expectedPrimitiveSlackTolerances.primitive_slack_r_X_admissible_upper_bound
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_r_X_lower_margin,
+        expectedPrimitiveSlackTolerances.primitive_slack_r_X_lower_margin
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_r_X_upper_margin,
+        expectedPrimitiveSlackTolerances.primitive_slack_r_X_upper_margin
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_maximum_M_G,
+        expectedPrimitiveSlackTolerances.primitive_slack_maximum_M_G
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_slack_maximum_M_R,
+        expectedPrimitiveSlackTolerances.primitive_slack_maximum_M_R
+      ) &&
+      summary?.primitive_slack_all_current_margins_positive ===
+        expectedPrimitiveSlackTolerances.primitive_slack_all_current_margins_positive,
+    "h39 primitive slack tolerance fields must match the one-at-a-time E_R, nu_J, L_J, rho_X, r_X, M_G, and M_R thresholds",
+    errors
+  );
+  assertField(
+    expectedPrimitiveRemainderBudget !== null &&
+      summary?.primitive_remainder_budget_status ===
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_status &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_worst_E_R,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_worst_E_R
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_worst_nu_J,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_worst_nu_J
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_worst_L_J,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_worst_L_J
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_rho_X_lower,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_rho_X_lower
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_rho_X_upper,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_rho_X_upper
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_r_X_lower,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_r_X_lower
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_r_X_upper,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_r_X_upper
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_worst_M_G,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_worst_M_G
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_worst_M_R,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_worst_M_R
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_min_J_min,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_min_J_min
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_min_sigma_X,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_min_sigma_X
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_min_J_min_sigma_X,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_min_J_min_sigma_X
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_required_J_min_sigma_X,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_required_J_min_sigma_X
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_min_rouche_margin,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_min_rouche_margin
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_scalar_left,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_scalar_left
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_scalar_right,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_scalar_right
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_budget_scalar_margin,
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_scalar_margin
+      ) &&
+      summary?.primitive_remainder_budget_closes_candidate ===
+        expectedPrimitiveRemainderBudget.primitive_remainder_budget_closes_candidate,
+    "h39 primitive remainder budget fields must match the robust pessimistic primitive rectangle",
+    errors
+  );
+  assertField(
+    expectedPrimitiveRemainderProfileScale !== null &&
+      summary?.primitive_remainder_profile_scale_status ===
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_status &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_profile_scale_candidate,
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_candidate
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_profile_scale_first_failing_upper,
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_first_failing_upper
+      ) &&
+      summary?.primitive_remainder_profile_scale_closed_through_upper_bound ===
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_closed_through_upper_bound &&
+      summary?.primitive_remainder_profile_scale_limiting_margin_name ===
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_limiting_margin_name &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_profile_scale_limiting_margin_value,
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_limiting_margin_value
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_profile_scale_scaled_E_R_allowance,
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_scaled_E_R_allowance
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_profile_scale_scaled_nu_J_loss_allowance,
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_scaled_nu_J_loss_allowance
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_profile_scale_scaled_L_J_allowance,
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_scaled_L_J_allowance
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_profile_scale_scaled_rho_X_lower_allowance,
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_scaled_rho_X_lower_allowance
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_profile_scale_scaled_rho_X_upper_allowance,
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_scaled_rho_X_upper_allowance
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_profile_scale_scaled_r_X_lower_allowance,
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_scaled_r_X_lower_allowance
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_profile_scale_scaled_r_X_upper_allowance,
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_scaled_r_X_upper_allowance
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_profile_scale_scaled_M_G_allowance,
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_scaled_M_G_allowance
+      ) &&
+      nullableApproximatelyEqual(
+        summary?.primitive_remainder_profile_scale_scaled_M_R_allowance,
+        expectedPrimitiveRemainderProfileScale.primitive_remainder_profile_scale_scaled_M_R_allowance
+      ),
+    "h39 primitive remainder profile-scale fields must match the monotone safe-product budget inversion",
     errors
   );
   assertField(

@@ -308,6 +308,66 @@ h39 closure to branch denominator floors, one corrected $N_G$ outer bound, an
 admissible Rouché graph lift, and one primitive Rouché replay on a shared
 domain.
 
+For the shared-domain evaluator contract, the same theorem can be replayed
+along a finite-prefix-plus-remainder profile. Write
+
+$$
+E_R(\lambda)=E_R^0+\lambda e_R,\qquad
+\nu_J(\lambda)=\nu_J^0-\lambda n_J,\qquad
+L_J(\lambda)=L_J^0+\lambda \ell_J,
+$$
+
+and
+
+$$
+M_G(\lambda)=M_G^0+\lambda m_G,\qquad
+M_R(\lambda)=M_R^0+\lambda m_R,
+$$
+
+where the profile components are nonnegative and are interpreted as outward
+remainder pressure on majorants and inward pressure on floors. For the fixed
+replayed $\rho_X,r_X$,
+
+$$
+J_{\mathrm{rob}}(\lambda)
+=\nu_J(\lambda)-L_J(\lambda)\rho_X,
+\qquad
+\sigma_{\mathrm{rob}}=\rho_X-r_X,
+$$
+
+and
+
+$$
+\Gamma_R(\lambda)
+=
+\nu_J(\lambda)r_X
+-E_R(\lambda)
+-\frac12L_J(\lambda)r_X^2 .
+$$
+
+The profile replay is admissible only while
+$J_{\mathrm{rob}}(\lambda)>0$, $\Gamma_R(\lambda)>0$, and
+
+$$
+\Lambda_{39}^{\mathrm{prof}}(\lambda)
+=
+\frac{
+M_G(\lambda)
+\left(
+40+
+\frac{M_R(\lambda)}{J_{\mathrm{rob}}(\lambda)\sigma_{\mathrm{rob}}}
++\frac{1}{s-1}
+\right)
+}
+{B_{D,39}Y^{41}s^{40}(s-1)}
+<1 .
+$$
+
+This profile replay is not a new closure condition. It is the executable form
+of the same h39 Rouché-primitive theorem when a backend reports a nonnegative
+analytic-remainder direction and asks how much of that direction the strict
+certificate can absorb.
+
 Equivalently, the theorem gives a direct target for the missing
 $B_{N_G}^{\mathrm{out}}$ certificate. Let
 
@@ -1018,6 +1078,47 @@ primitive inputs from different domains, and cannot certify the h39 continuous
 tail unless the resulting seven primitive inputs are directed-rounded on the
 same graph-centered polydisc and satisfy $\Lambda_{39}^{\mathrm R}<1$.
 
+The executable h39 denominator path now implements this interface for the
+$N_G/M_G$ direction with an explicit completeness rule. A derived
+$B_{N_G}^{\mathrm{out}}$ is emitted only when the backend supplies
+$R_y$, outer bounds for $\delta_\varepsilon$, $\phi_\varepsilon$, and
+$J_\varepsilon^{\mathrm{abs}}$, plus $L_*$ and the lower-polynomial majorant
+$A_*$. Missing one of these inputs leaves no derived $N_G$ Cauchy bound; the
+implementation rejects partial data instead of assuming a zero contribution.
+When the data are complete, the two branch denominator candidates give
+
+$$
+B_{N_G}^{\mathrm{denC}}
+=
+\sum_\varepsilon
+\frac{4|c|K_{\varepsilon,K}^{\mathrm C}}
+{\nu_- (d_{\varepsilon,K}^{\mathrm C})^2j_{\varepsilon,K}^{\mathrm C}}
++
+L_*+R_y^2A_*.
+$$
+
+The same diagnostic compares this value to the h39-implied ceiling
+
+$$
+\frac{C_M-P_{G,K}}{\alpha_K}
+$$
+
+and records the remaining branch-sum budget
+
+$$
+W_G=
+\frac{C_M-P_{G,K}}{\alpha_K}-L_*-R_y^2A_*.
+$$
+
+If $W_G\le0$, the current retained order, radius choice, and primitive tuple
+leave no positive branch-denominator budget. If $W_G>0$, the branch-sum ratio
+\[
+\frac{\sum_\varepsilon G_{\varepsilon,*}}{W_G}
+\]
+is a direct work-remaining measure: values below $1$ pass this candidate
+budget, and values above $1$ state the required shrink factor before the
+denominator route can close.
+
 ## Rouché-Primitive Closure Theorem
 
 Combining the graph lift with the primitive h39 theorem gives one scalar
@@ -1128,6 +1229,677 @@ supply $E_R$, $\nu_J$, $L_J$, $r_X$, $\rho_X$, $M_G$, and $M_R$ on one shared
 domain, with strict Rouché and h39 scalar margins. It keeps the speed input
 fixed to the certified speed-ratio enclosure rather than introducing any fixed
 speed band.
+
+### Primitive-Vector Artifact Promotion Corollary
+
+The primitive-vector backend artifact promotes to this h39 continuous-tail
+certificate exactly when its vector
+
+$$
+\mathfrak P_{39}=(E_R,\ M_R,\ M_G,\ \nu_J,\ L_J)
+$$
+
+and the declared radii $(\rho_X,r_X)$ are supplied by one directed-rounded
+graph-centered provenance backend and the displayed Rouché-primitive
+inequalities are strict. A complete vector whose status is only
+\texttt{provided-unverified} is a reducer-ready candidate, not a proof. A
+complete vector labelled by an external directed-rounded source is still only
+a replay pass unless the receiving artifact verifies the same-domain
+provenance. Thus the theorem closes exactly the h39 correlated $G,D$
+Cauchy-majorant tail; it does not by itself certify scaled remainder,
+quadrature, `I1` regular critical exhaustion, or retained branch status.
+
+The same statement now has an executable proof-object form. A primitive
+same-domain provenance certificate must verify that $E_R$, $M_R$, $M_G$,
+$\nu_J$, $L_J$, $\rho_X$, and $r_X$ all share one graph-centered domain
+signature and have the correct directed-rounded bound relation. The certificate
+passes exactly when each witness covers the primitive reducer input in the
+proper direction, the graph radii match exactly, and the Rouché-primitive
+replay gives $\Lambda_{39}^{\mathrm R}<1$ with the strict graph-lift margins
+above. This is not a new gate: it is the proof-object form of the displayed
+theorem, with a built-in no-go result for domain mismatch, failed value
+coverage, missing components, wrong bound direction, or unverified provenance.
+The first source-family subset is now factored out: a directed-rounded
+same-domain shifted $R_{\varepsilon,43}$ Cauchy prefix-tail witness certifies
+exactly the $E_R$ and $M_R$ primitive components, while leaving $M_G$,
+$\nu_J$, $L_J$, $\rho_X$, $r_X$, scaled remainder, `I1`, and retention open.
+The remaining primitive entries now have matching component witness routes:
+a shifted $N_G$ prefix-tail witness certifies only $M_G$, a positive
+center-Jacobian Cauchy floor certifies only $\nu_J$, a same-domain
+$K_\varepsilon$ majorant followed by the $y^{41}$ reduction certifies only
+$L_J$, and a graph-radii declaration certifies exactly $\rho_X,r_X$. Together
+these subsets cover the seven primitive inputs of the h39 reducer without
+changing the claim boundary: a full h39 continuous-tail certificate still
+requires all seven component witnesses to share one graph-centered signature
+and to replay through the strict scalar inequality.
+The executable component-subset composition artifact is the proof-object form
+of this sentence: it assembles the five subset packets into the same primitive
+provenance report consumed by the existing certificate, then leaves
+scaled-remainder, `I1`, quadrature, and retained-branch claims outside the
+theorem.
+
+The current candidate-vector backend now emits that no-go direction explicitly.
+If the only available source is the candidate primitive vector, the derived
+provenance report has status
+\texttt{open-candidate-only-primitive-provenance}. This status is decisive for
+the artifact claim level: it prevents
+\texttt{certifies\_directed\_rounded\_first\_y\_GD\_continuous\_successor\_tail\_bound=true}
+even when the scalar h39 replay reports $\Lambda_{39}^{\mathrm R}<1$. The
+obstruction is missing same-domain proof provenance, not a failure of the
+Rouché-primitive inequality itself.
+
+## Minimal Denominator-Cauchy Witness Corollary
+
+For the denominator-Cauchy route to the $M_G$ primitive, the finite witness is
+the same domain signature $\mathfrak S$ together with
+
+$$
+K_\varepsilon,\quad d_\varepsilon,\quad j_\varepsilon,\quad \nu_-,
+\quad L_*,\quad A_*,\quad R_y,\quad \rho,\quad K,
+\quad \{g_0,\ldots,g_K\}.
+$$
+
+If
+
+$$
+|B_\varepsilon|\le K_\varepsilon,\qquad
+|\delta_\varepsilon|\ge d_\varepsilon>0,\qquad
+|J_\varepsilon^{\mathrm{abs}}|\ge j_\varepsilon>0,
+\qquad
+\nu\ge\nu_-,
+$$
+
+all hold on $\mathfrak S$, then
+
+$$
+B_{N_G,K}^{\mathrm{denC}}
+=
+\sum_{\varepsilon\in\{-,+\}}
+\frac{4|c|K_\varepsilon}
+{\nu_-d_\varepsilon^2j_\varepsilon}
++L_*+R_y^2A_*
+$$
+
+is a same-domain outer source for the unshifted numerator tail, and
+
+$$
+M_{G,K}^{\mathrm{denC}}
+=
+\sum_{m=0}^{K}|g_m|\rho^{41+m}
++B_{N_G,K}^{\mathrm{denC}}
+\frac{(\rho/R_y)^{41+K+1}}{1-\rho/R_y}
+$$
+
+is an admissible $M_G$ primitive entry. Therefore the $M_G$ backend is narrowed
+to a finite denominator witness: any missing branch floor, nonpositive
+$d_\varepsilon$ or $j_\varepsilon$, or domain-signature mismatch blocks the
+$M_G$ primitive independently of the scalar h39 replay.
+
+The executable form of this corollary is a denominator-Cauchy $M_G$ witness,
+not a new primitive-closure artifact. It verifies the two branch
+denominator-Cauchy candidates, checks that their branch majorants compose
+$B_{N_G,K}^{\mathrm{denC}}$ on one graph-centered signature, restores the
+$y^{41}$ unshifted scaling, and then feeds the existing $N_G$ numerator subset
+replay. Its strongest positive claim is exactly the $M_G$ component witness;
+the component-subset composition still needs the other four source families
+and the strict h39 scalar replay before the continuous-tail row can certify.
+
+## Primitive Slack Tolerance Corollary
+
+The same Rouché-primitive inequality also gives a one-at-a-time tolerance map
+for the seven primitive bounds. This is useful because it turns the remaining
+shared-domain backend problem into explicit directed-rounded targets rather
+than another qualitative requirement.
+
+Let
+
+$$
+K_D=B_{D,39}Y^{41}s^{40}(s-1),
+\qquad
+A_D=40+\frac{1}{s-1},
+\qquad
+X_R=J_R\sigma_R.
+$$
+
+For $M_G>0$, define
+
+$$
+C_D=\frac{K_D}{M_G}-A_D.
+$$
+
+If $C_D\le0$, no nonnegative $M_R$ can satisfy the sufficient h39 scalar
+majorant for that $M_G$. If $C_D>0$, the primitive closure condition is
+equivalent to the strict product floor
+
+$$
+X_R>\frac{M_R}{C_D}.
+$$
+
+Holding the other primitive values fixed, the corresponding strict admissible
+one-at-a-time boundaries are
+
+$$
+E_R<\nu_Jr_X-\frac12L_Jr_X^2,
+$$
+
+$$
+\nu_J>
+\max\left(
+L_J\rho_X,\,
+\frac{E_R+\frac12L_Jr_X^2}{r_X},\,
+L_J\rho_X+\frac{M_R}{\sigma_RC_D}
+\right),
+$$
+
+$$
+L_J<
+\min\left(
+\frac{\nu_J}{\rho_X},\,
+\frac{2(\nu_Jr_X-E_R)}{r_X^2},\,
+\frac{\nu_J-\frac{M_R}{\sigma_RC_D}}{\rho_X}
+\right),
+$$
+
+$$
+M_G<
+\frac{K_D}{A_D+\frac{M_R}{J_R\sigma_R}},
+\qquad
+M_R<J_R\sigma_RC_D.
+$$
+
+The $X$-polydisc radius and graph radius can also be inverted. Write
+$X_{\min}=M_R/C_D$. For $L_J>0$, admissible $\rho_X$ values lie strictly
+between the two roots
+
+$$
+\rho_X^\pm=
+\frac{
+\nu_J+L_Jr_X
+\pm
+\sqrt{(\nu_J-L_Jr_X)^2-4L_JX_{\min}}
+}{2L_J},
+$$
+
+provided the discriminant is positive. For $L_J=0$, the lower condition is
+$\rho_X>r_X+X_{\min}/\nu_J$. With $\rho_X$ fixed and $J_R>0$, admissible
+$r_X$ lies strictly above the Rouché lower boundary and below
+
+$$
+\min\left(\rho_X,\ r_R^+,\ \rho_X-\frac{X_{\min}}{J_R}\right),
+$$
+
+where $r_R^+$ is omitted when $L_J=0$. All these boundaries are strict:
+equality describes the edge of the sufficient certificate, not a retained h39
+branch.
+
+## Primitive Remainder Budget Corollary
+
+The slack map can be made robust against analytic remainders without changing
+the h39 theorem. Start with a candidate tuple
+$(E_R,\nu_J,L_J,\rho_X,r_X,M_G,M_R)$ and nonnegative remainder allowances
+
+$$
+\delta_E,\quad \delta_\nu,\quad \delta_L,\quad
+\delta_{\rho,-},\quad \delta_{\rho,+},\quad
+\delta_{r,-},\quad \delta_{r,+},\quad
+\delta_G,\quad \delta_R .
+$$
+
+Use the pessimistic replacements
+
+$$
+E^+=E_R+\delta_E,\quad
+\nu^-=\nu_J-\delta_\nu,\quad
+L^+=L_J+\delta_L,
+$$
+
+$$
+\rho^-\le\rho'\le\rho^+,
+\qquad
+\rho^-=\rho_X-\delta_{\rho,-},
+\qquad
+\rho^+=\rho_X+\delta_{\rho,+},
+$$
+
+$$
+r^-\le r'\le r^+,
+\qquad
+r^-=r_X-\delta_{r,-},
+\qquad
+r^+=r_X+\delta_{r,+},
+$$
+
+and $M_G^+=M_G+\delta_G$, $M_R^+=M_R+\delta_R$. If
+$0<r^-\le r^+<\rho^-\le\rho^+$, then the robust Jacobian and Cauchy margins are
+
+$$
+J_{\mathrm{rob}}=\nu^- - L^+\rho^+,
+\qquad
+\sigma_{\mathrm{rob}}=\rho^- - r^+.
+$$
+
+The Rouché margin
+
+$$
+\Gamma(r)=\nu^- r-E^+-\frac12L^+r^2
+$$
+
+is concave in $r$, so its minimum on $[r^-,r^+]$ occurs at an endpoint. The
+product
+
+$$
+X(\rho,r)=(\nu^- - L^+\rho)(\rho-r)
+$$
+
+is concave in $\rho$ for fixed $r$ and decreases with $r$ when
+$\nu^- - L^+\rho>0$, so a sufficient robust product floor is
+
+$$
+X_{\mathrm{rob}}
+=
+\min\left(
+(\nu^- - L^+\rho^-)(\rho^- - r^+),\,
+(\nu^- - L^+\rho^+)(\rho^+ - r^+)
+\right).
+$$
+
+The whole rectangle remains inside the h39 Rouché-primitive certificate if
+
+$$
+J_{\mathrm{rob}}>0,\qquad
+\sigma_{\mathrm{rob}}>0,\qquad
+\min(\Gamma(r^-),\Gamma(r^+))>0,
+$$
+
+and
+
+$$
+M_G^+
+\left(
+A_D+\frac{M_R^+}{X_{\mathrm{rob}}}
+\right)
+<K_D.
+$$
+
+This is the first h39 analytic-remainder budget theorem: a continuous backend
+does not need to recompute the h39 algebra after each primitive tail estimate.
+It only has to prove that its outward-rounded primitive remainders fit inside
+this rectangle with positive strict margins.
+
+## Primitive Remainder Profile-Scale Corollary
+
+The preceding robust rectangle also gives a one-dimensional closure target for
+analytic-remainder profiles. Fix nonnegative profile directions
+
+$$
+d_E,\quad d_\nu,\quad d_L,\quad
+d_{\rho,-},\quad d_{\rho,+},\quad
+d_{r,-},\quad d_{r,+},\quad d_G,\quad d_R .
+$$
+
+For $\lambda\ge0$, replace the allowances in the primitive remainder budget by
+
+$$
+\delta_E=\lambda d_E,\quad
+\delta_\nu=\lambda d_\nu,\quad
+\delta_L=\lambda d_L,\quad
+\delta_{\rho,\pm}=\lambda d_{\rho,\pm},\quad
+\delta_{r,\pm}=\lambda d_{r,\pm},\quad
+\delta_G=\lambda d_G,\quad
+\delta_R=\lambda d_R .
+$$
+
+The sharp fixed-rectangle lower product $X_{\mathrm{rob}}$ is valid at each
+chosen $\lambda$, but it is not the cleanest bisection predicate because the
+endpoint minimum can switch. A monotone sufficient predicate is obtained by the
+safe product floor
+
+$$
+X_{\mathrm{safe}}(\lambda)
+=J_{\mathrm{rob}}(\lambda)\sigma_{\mathrm{rob}}(\lambda)
+=
+(\nu^-(\lambda)-L^+(\lambda)\rho^+(\lambda))
+(\rho^-(\lambda)-r^+(\lambda)).
+$$
+
+Define $P_{\mathrm{safe}}(\lambda)$ to be the conjunction of
+$0<r^-(\lambda)\le r^+(\lambda)<\rho^-(\lambda)\le\rho^+(\lambda)$, positive
+endpoint Rouché margins, $X_{\mathrm{safe}}(\lambda)>0$, and
+
+$$
+M_G^+(\lambda)
+\left(
+A_D+\frac{M_R^+(\lambda)}{X_{\mathrm{safe}}(\lambda)}
+\right)
+<K_D .
+$$
+
+Then the safe profile scale
+
+$$
+\lambda_*^{\mathrm{safe}}
+=
+\sup\{\lambda\ge0:\ P_{\mathrm{safe}}(\lambda)\}
+$$
+
+is an executable scalar target for the continuous backend. Because the
+inequalities are strict, a certified backend must choose
+$\lambda<\lambda_*^{\mathrm{safe}}$; equality is the edge of the sufficient
+certificate, not a retained branch. This converts a vector of analytic-tail
+remainder pressures into one candidate maximum scale while preserving the
+same h39 Rouché-primitive theorem.
+
+### Fixed-Radii Primitive-Profile Boundary
+
+The live h39 analytic-remainder obstruction has a sharper closed form when
+$\rho_X,r_X$ are fixed and the primitive pressures vary through declared
+nonnegative profile directions. Fix the primitive base vector
+
+$$
+(E_R^0,\nu_J^0,L_J^0,M_G^0,M_R^0)
+$$
+
+on one graph-centered signature, and fix nonnegative profile directions
+$e_R,n_J,\ell_J,m_G,m_R$. For $\lambda\ge0$, set
+
+$$
+E_R(\lambda)=E_R^0+\lambda e_R,\qquad
+\nu_J(\lambda)=\nu_J^0-\lambda n_J,
+$$
+
+$$
+L_J(\lambda)=L_J^0+\lambda\ell_J,\qquad
+M_G(\lambda)=M_G^0+\lambda m_G,\qquad
+M_R(\lambda)=M_R^0+\lambda m_R .
+$$
+
+Let
+
+$$
+\sigma_X=\rho_X-r_X,\qquad
+J_\lambda
+=\nu_J(\lambda)-L_J(\lambda)\rho_X
+=J_0-\lambda(n_J+\ell_J\rho_X),
+$$
+
+and
+
+$$
+\Gamma_\lambda
+=\nu_J(\lambda)r_X-E_R(\lambda)-\frac12L_J(\lambda)r_X^2
+=\Gamma_0-\lambda\left(n_Jr_X+e_R+\frac12\ell_Jr_X^2\right).
+$$
+
+For the h39 scalar budget, write
+
+$$
+K_D=B_{D,39}Y^{41}s^{40}(s-1),\qquad
+C_D=40+\frac{1}{s-1}.
+$$
+
+The fixed-radii primitive profile closes exactly when
+
+$$
+\sigma_X>0,\qquad J_\lambda>0,\qquad \Gamma_\lambda>0,
+$$
+
+and
+
+$$
+\Lambda_{39}^{\mathrm{multi}}(\lambda)
+=
+\frac{
+M_G(\lambda)
+\left(
+C_D+\dfrac{M_R(\lambda)}{J_\lambda\sigma_X}
+\right)
+}{K_D}
+<1 .
+$$
+
+Equivalently, while $J_\lambda\sigma_X>0$, the scalar boundary is the first
+positive failure of the quadratic inequality $P(\lambda)>0$, where
+
+$$
+P(\lambda)
+=
+K_D\sigma_X(J_0-a_J\lambda)
+-
+(M_G^0+m_G\lambda)
+\left(
+C_D\sigma_X(J_0-a_J\lambda)+M_R^0+m_R\lambda
+\right)
+$$
+
+with $J_0=\nu_J^0-L_J^0\rho_X$ and
+$a_J=n_J+\ell_J\rho_X$. Thus the unattained strict scale is
+
+$$
+\lambda_*^{\mathrm{multi}}
+=
+\min\{\lambda_J,\lambda_\Gamma,\lambda_\Lambda\},
+$$
+
+with
+
+$$
+\lambda_J=
+\begin{cases}
+J_0/a_J,& a_J>0,\\
+\infty,& a_J=0,
+\end{cases}
+\qquad
+\lambda_\Gamma=
+\begin{cases}
+\Gamma_0/a_\Gamma,& a_\Gamma>0,\\
+\infty,& a_\Gamma=0,
+\end{cases}
+$$
+
+where
+
+$$
+a_\Gamma=n_Jr_X+e_R+\frac12\ell_Jr_X^2,
+\qquad
+\Gamma_0=\nu_J^0r_X-E_R^0-\frac12L_J^0r_X^2.
+$$
+
+The value $\lambda_\Lambda$ is the first positive root of $P(\lambda)$. The
+bottleneck is whichever of $J_\lambda$, $\Gamma_\lambda$, or
+$\Lambda_{39}^{\mathrm{multi}}$ attains the minimum. This is a candidate
+budget reducer, not a new closure gate: a certified backend must still choose
+some $\lambda<\lambda_*^{\mathrm{multi}}$ and provide same-domain
+directed-rounded witnesses for every primitive component it uses.
+
+The required-scale margin vector is the boundary replay evaluated at
+$\lambda=1$:
+
+$$
+\mathbf M_1^{\mathrm{multi}}
+=
+\bigl(J_1,\Gamma_1,P(1)\bigr),
+$$
+
+where
+
+$$
+J_1=J_0-a_J,
+\qquad
+\Gamma_1=\Gamma_0-a_\Gamma,
+$$
+
+and
+
+$$
+P(1)
+=
+K_D\sigma_XJ_1
+-(M_G^0+m_G)\bigl(C_D\sigma_XJ_1+M_R^0+m_R\bigr).
+$$
+
+At fixed $\rho_X,r_X$, the required scale is candidate-admissible exactly when
+$\sigma_X>0$ and all three displayed margins are strictly positive. Equality
+is the strict boundary, not closure. The vector records which candidate margin
+blocks $\lambda=1$ when $H_{\lambda=1}\le0$.
+
+Candidate success marker: define
+$H_{\lambda=1}:=\lambda_*^{\mathrm{multi}}-1$ for this exact fixed-radii
+primitive-profile boundary. If $H_{\lambda=1}>0$, the declared analytic
+remainder direction has candidate headroom through the required scale
+$\lambda=1$; if $H_{\lambda=1}\le0$, the value $-H_{\lambda=1}$ is the
+candidate deficit or strict-boundary shortfall. This marker records scalar
+replay feasibility only: it does not certify directed-rounded shared-domain
+provenance, continuous-tail closure, or retained branch status.
+
+The current shared-domain evaluator now supplies concrete candidate sources
+for most of that profile vector when explicit Cauchy outer bounds are
+available. A shifted $R_{\varepsilon,43}$ retained prefix with outer bound
+$B_R$ on radius $R_y$ contributes
+
+$$
+d_E=
+\frac{B_R}{R_y^{43}}\frac{q^{K+1}}{1-q},
+\qquad
+d_R=
+\frac{B_R}{R_y^{43}}
+\frac{q^{K+1}\big((K+1)-Kq\big)}{(1-q)^2},
+\qquad
+q=\frac{\rho}{R_y}.
+$$
+
+The shifted $N_G=y^{41}T_G^{(39)}$ retained prefix contributes the unshifted
+$M_G$ profile
+
+$$
+d_G=
+B_{N_G}^{\mathrm{out}}
+\frac{q^{41+K+1}}{1-q}.
+$$
+
+Finally, an explicit $\partial_XR_{\varepsilon,43}$ outer bound contributes
+the optional floor-loss profile $d_\nu$ by subtracting the post-prefix Cauchy
+tail from the coefficient floor. If that Jacobian outer bound is absent, the
+evaluator leaves $d_\nu$ absent instead of promoting a coefficient-only floor
+to a continuous $\nu_J$ certificate.
+
+The evaluator can now also manufacture the source and Jacobian outer inputs
+from branch-coordinate seminorms, still only as candidate data. Let
+$D_\varepsilon(R)=\|\delta_\varepsilon\|_R$,
+$\Phi_\varepsilon(R)=\|\phi_\varepsilon\|_R$, and
+$S_\nu=\sup_{\nu\in I_\nu}|\nu^{-2}|$. On a source outer radius $R_y$, the
+source residual
+$F_\varepsilon=\delta_\varepsilon^2/\nu^2-2+\sin\phi_\varepsilon+\sin\delta_\varepsilon$
+obeys the elementary entire-function bound
+
+$$
+B_{F,\varepsilon}^{\mathrm{out}}
+=
+S_\nu D_\varepsilon(R_y)^2
++2
++\sinh D_\varepsilon(R_y)
++\sinh \Phi_\varepsilon(R_y).
+$$
+
+For the removable Jacobian numerator
+$H_\varepsilon=y\,\partial_XR_{\varepsilon,43}$, choose nested radii
+$R_J<R_H$. Then
+
+$$
+B_{H,\varepsilon}
+=
+2S_\nu D_\varepsilon(R_H)
++\cosh D_\varepsilon(R_H)
++\cosh \Phi_\varepsilon(R_H),
+\qquad
+B_{J,\varepsilon}^{\mathrm{out}}
+=
+\frac{B_{H,\varepsilon}}{R_H-R_J}.
+$$
+
+The strict gap $R_H-R_J$ is the removable-quotient Cauchy margin; the route is
+invalid if the intended $y$ domain touches the division point. The branch-pair
+candidate takes the maximum over $\varepsilon\in\{-,+\}$ and passes those
+$B_F^{\mathrm{out}}$ and $B_J^{\mathrm{out}}$ values into the existing profile
+replay. This is a theory advance because it connects the h39 profile vector to
+the actual branch coordinates, but it is not yet closure because the resulting
+bounds are intentionally broad and still need directed-rounded shared-domain
+provenance.
+That provenance boundary is now executable in the primitive diagnostic. A
+coordinate-Cauchy witness may turn the branch-pair maxima
+$B_F^{\mathrm{out}}$ and $B_J^{\mathrm{out}}$ into the existing shifted
+$R_{\varepsilon,43}$ source-family replay and center-Jacobian floor replay
+only when those maxima, the profile outer radii, and the graph-centered
+signature agree. Its positive theorem claim is limited to $E_R,M_R,\nu_J$;
+the $M_G$ numerator, the $L_J$ kernel route, graph radii, and the final h39
+scalar replay remain separate proof obligations.
+
+The corresponding full Cauchy primitive profile-vector diagnostic packages the
+five quantities that must become mutually compatible on one graph-centered
+Cauchy domain:
+
+$$
+\mathfrak P_{39}
+=
+(E_R,\ M_R,\ M_G,\ \nu_J,\ L_J).
+$$
+
+Its role is not merely to ask whether each entry has some bound. The vector
+must survive the same h39 graph-lift and correlated $G,D$ tail inequalities:
+
+$$
+J_{39}=\nu_J-L_J\rho_X,
+\qquad
+\sigma_X=\rho_X-r_X,
+\qquad
+\Gamma_{39}=\nu_Jr_X-E_R-\frac12L_Jr_X^2,
+$$
+
+and
+
+$$
+\Lambda_{39}^{\mathrm{prof}}
+=
+\frac{
+M_G
+\left(
+40+\frac{M_R}{J_{39}\sigma_X}+\frac{1}{s-1}
+\right)
+}{
+B_{D,39}Y^{41}s^{40}(s-1)
+}.
+$$
+
+The certificate-readiness inequalities are
+
+$$
+0<r_X<\rho_X,
+\qquad
+J_{39}>0,
+\qquad
+\Gamma_{39}>0,
+\qquad
+\Lambda_{39}^{\mathrm{prof}}<1.
+$$
+
+For replayed analytic-tail pressure, the executable vector path is
+
+$$
+\mathfrak P_{39}(\lambda)
+=
+\bigl(
+E_R^0+\lambda e_R,\,
+M_R^0+\lambda m_R,\,
+M_G^0+\lambda m_G,\,
+\nu_J^0-\lambda n_J,\,
+L_J^0+\lambda \ell_J
+\bigr),
+$$
+
+with all increments nonnegative. The current evaluator therefore reports
+whether the vector is incomplete, complete but scale-open, or complete and
+closed at $\lambda=1$. This is a stronger mathematical object than separate
+component bounds because it rejects mutually unusable estimates drawn from
+different Cauchy domains or remainder models.
 
 ## Rouché Radius Supremum Reduction Corollary
 
@@ -1414,9 +2186,21 @@ scalar test, and with $M_G$, $J_{\min}$, and $\sigma_X$ supplied it computes
 the maximum admissible primitive numerator $M_R$. With the Rouché inputs
 $E_R$, $\nu_J$, $L_J$, $r_X$, and $\rho_X$ supplied, it emits the fully expanded
 seven-input ratio $\Lambda_{39}^{\mathrm R}$ and the matching Rouché-form
-$M_R$ ceiling. It also reports the unattained Rouché-window supremal $M_R$
-ceiling over admissible $r_X$, so the backend can decide whether a strict
-radius slack exists before selecting a concrete $r_X$. With fixed
+$M_R$ ceiling. It now also emits candidate primitive slack tolerances: the
+current $J_R\sigma_R$ product, the required product floor, and strict
+one-at-a-time admissible boundaries for $E_R$, $\nu_J$, $L_J$, $\rho_X$,
+$r_X$, $M_G$, and $M_R$. It also emits a primitive remainder-budget candidate:
+given nonnegative allowances in the pessimistic directions for the seven
+primitive values, it forms the robust $\rho_X,r_X$ rectangle, checks endpoint
+Rouché margins, computes the endpoint lower bound for $J_R\sigma_R$, and
+replays the h39 scalar inequality against $M_G^+$ and $M_R^+$. It also inverts
+a nonnegative analytic-remainder profile into the largest candidate
+$\lambda$ scale that preserves the monotone safe-product floor
+$J_{\mathrm{rob}}\sigma_{\mathrm{rob}}$, so the backend can turn a vector of
+continuous-tail pressures into one strict scalar margin. It also reports the
+unattained Rouché-window supremal $M_R$ ceiling over admissible $r_X$, so the
+backend can decide whether a strict radius slack exists before selecting a
+concrete $r_X$. With fixed
 $E_R,\nu_J,L_J,M_G$ and an optional shared-domain $\rho_X$ upper bound, it also
 reports the scalar $\rho_X$ optimum: a concave quadratic optimum for $L_J>0$
 and a capped linear optimum, or unbounded status, for $L_J=0$. With a finite

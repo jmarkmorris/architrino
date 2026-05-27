@@ -9,6 +9,10 @@ import { fileURLToPath } from "node:url";
 import {
   OCTAHEDRAL_FOLD_AWARE_CROSS_BINARY_THETA3MINUS_SPEED_DEPENDENT_FOLD_PAIR_FIRST_Y_GD_ROOT_TANGENT_CAUCHY_MAJORANT_TAIL_BUDGET_SCHEMA,
   buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdRootTangentCauchyMajorantTailBudget,
+  computeH39PrimitiveAnalyticRemainderMultiProfileBoundaryCandidate,
+  computeH39PrimitiveRemainderBudgetCandidate,
+  computeH39PrimitiveRemainderProfileScaleCandidate,
+  computeH39PrimitiveSlackTolerancesCandidate,
   computeH39RouchePrimitiveClosure,
   computeH39RoucheRadiusSupremumCeiling,
   computeH39RoucheRhoXOptimumCeiling,
@@ -472,6 +476,620 @@ test("h39 Rouché primitive closure ratio combines graph lift with M_G and M_R",
     ),
     []
   );
+});
+
+test("h39 primitive slack tolerances invert each supplied primitive bound", () => {
+  const budget = computeH39RootTangentCauchyMajorantBudget();
+  const mGBound = budget.D_tail_M_G_threshold / 2;
+  const slack = computeH39PrimitiveSlackTolerancesCandidate({
+    radiusMultiple: 4,
+    mGBound,
+    rootTangentNumeratorBound: 0,
+    centerResidualBound: 1,
+    centerJacobianLowerBound: 5,
+    jacobianLipschitzBound: 1,
+    rhoX: 2,
+    rX: 1,
+  });
+
+  const sigmaX = 1;
+  const jMin = 3;
+  const constantTerm = 40 + 1 / 3;
+  const slopeBudget =
+    slack.primitive_slack_right_scalar / mGBound - constantTerm;
+  const roucheLower = 5 - Math.sqrt(23);
+
+  assert.equal(
+    slack.primitive_slack_tolerances_status,
+    "h39-primitive-slack-tolerances-candidate-emitted"
+  );
+  assert.ok(Math.abs(slopeBudget - constantTerm) < 1e-12);
+  assert.equal(slack.primitive_slack_current_J_min, jMin);
+  assert.equal(slack.primitive_slack_current_sigma_X, sigmaX);
+  assert.equal(slack.primitive_slack_current_J_min_sigma_X, 3);
+  assert.equal(slack.primitive_slack_required_J_min_sigma_X_from_closure, 0);
+  assert.equal(slack.primitive_slack_maximum_E_R, 4.5);
+  assert.equal(slack.primitive_slack_E_R_margin, 3.5);
+  assert.equal(slack.primitive_slack_minimum_nu_J, 2);
+  assert.equal(slack.primitive_slack_nu_J_margin, 3);
+  assert.equal(slack.primitive_slack_maximum_L_J, 2.5);
+  assert.equal(slack.primitive_slack_L_J_margin, 1.5);
+  assert.equal(slack.primitive_slack_rho_X_admissible_lower_bound, 1);
+  assert.equal(slack.primitive_slack_rho_X_admissible_upper_bound, 5);
+  assert.equal(slack.primitive_slack_rho_X_lower_margin, 1);
+  assert.equal(slack.primitive_slack_rho_X_upper_margin, 3);
+  assert.ok(
+    Math.abs(slack.primitive_slack_r_X_admissible_lower_bound - roucheLower) <
+      1e-12
+  );
+  assert.equal(slack.primitive_slack_r_X_admissible_upper_bound, 2);
+  assert.ok(
+    Math.abs(slack.primitive_slack_r_X_lower_margin - (1 - roucheLower)) <
+      1e-12
+  );
+  assert.equal(slack.primitive_slack_r_X_upper_margin, 1);
+  assert.ok(
+    Math.abs(
+      slack.primitive_slack_maximum_M_G -
+        budget.D_tail_M_G_threshold
+    ) < 1e4
+  );
+  assert.ok(
+    Math.abs(slack.primitive_slack_M_G_margin - mGBound) < 1e4
+  );
+  assert.ok(
+    Math.abs(
+      slack.primitive_slack_maximum_M_R -
+        jMin * sigmaX * slopeBudget
+    ) < 1e-9
+  );
+  assert.ok(Math.abs(slack.primitive_slack_maximum_M_R - 121) < 1e-9);
+  assert.ok(Math.abs(slack.primitive_slack_M_R_margin - 121) < 1e-9);
+  assert.ok(
+    Math.abs(
+      slack.primitive_slack_maximum_M_G -
+        slack.primitive_slack_right_scalar / constantTerm
+    ) < 1e4
+  );
+  assert.equal(slack.primitive_slack_all_current_margins_positive, true);
+  assert.equal(slack.certifies_directed_rounded_h39_polydisc_bounds, false);
+  assert.equal(slack.retained_branch, false);
+});
+
+test("h39 primitive remainder budget certifies a pessimistic allowance rectangle", () => {
+  const threshold =
+    computeH39RootTangentCauchyMajorantBudget().D_tail_M_G_threshold;
+  const mGBound = threshold / 2;
+  const remainder = computeH39PrimitiveRemainderBudgetCandidate({
+    radiusMultiple: 4,
+    mGBound,
+    rootTangentNumeratorBound: 0,
+    centerResidualBound: 1,
+    centerJacobianLowerBound: 5,
+    jacobianLipschitzBound: 1,
+    rhoX: 2,
+    rX: 1,
+    centerResidualRemainderBound: 0.5,
+    centerJacobianLowerRemainderBound: 1,
+    jacobianLipschitzRemainderBound: 0.5,
+    rhoXLowerRemainderBound: 0.25,
+    rhoXUpperRemainderBound: 0.5,
+    rXLowerRemainderBound: 0.1,
+    rXUpperRemainderBound: 0.25,
+    mGRemainderBound: threshold / 4,
+    rootTangentNumeratorRemainderBound: 1,
+  });
+  const packet =
+    buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdRootTangentCauchyMajorantTailBudget(
+      {
+        radiusMultiple: 4,
+        mGBound,
+        rootTangentNumeratorBound: 0,
+        centerResidualBound: 1,
+        centerJacobianLowerBound: 5,
+        jacobianLipschitzBound: 1,
+        rhoX: 2,
+        rX: 1,
+        centerResidualRemainderBound: 0.5,
+        centerJacobianLowerRemainderBound: 1,
+        jacobianLipschitzRemainderBound: 0.5,
+        rhoXLowerRemainderBound: 0.25,
+        rhoXUpperRemainderBound: 0.5,
+        rXLowerRemainderBound: 0.1,
+        rXUpperRemainderBound: 0.25,
+        mGRemainderBound: threshold / 4,
+        rootTangentNumeratorRemainderBound: 1,
+      }
+    );
+
+  assert.equal(
+    remainder.primitive_remainder_budget_status,
+    "h39-primitive-remainder-budget-candidate-emitted"
+  );
+  assert.equal(remainder.primitive_remainder_budget_worst_E_R, 1.5);
+  assert.equal(remainder.primitive_remainder_budget_worst_nu_J, 4);
+  assert.equal(remainder.primitive_remainder_budget_worst_L_J, 1.5);
+  assert.equal(remainder.primitive_remainder_budget_rho_X_lower, 1.75);
+  assert.equal(remainder.primitive_remainder_budget_rho_X_upper, 2.5);
+  assert.equal(remainder.primitive_remainder_budget_r_X_lower, 0.9);
+  assert.equal(remainder.primitive_remainder_budget_r_X_upper, 1.25);
+  assert.equal(remainder.primitive_remainder_budget_worst_M_G, threshold * 0.75);
+  assert.equal(remainder.primitive_remainder_budget_worst_M_R, 1);
+  assert.equal(remainder.primitive_remainder_budget_min_J_min, 0.25);
+  assert.equal(remainder.primitive_remainder_budget_min_sigma_X, 0.5);
+  assert.equal(remainder.primitive_remainder_budget_min_J_min_sigma_X, 0.3125);
+  assert.ok(
+    Math.abs(remainder.primitive_remainder_budget_min_rouche_margin - 1.4925) <
+      1e-12
+  );
+  assert.ok(remainder.primitive_remainder_budget_scalar_margin > 0);
+  assert.equal(remainder.primitive_remainder_budget_closes_candidate, true);
+  assert.equal(
+    packet.root_tangent_cauchy_majorant_tail_budget_summary
+      .primitive_remainder_budget_closes_candidate,
+    true
+  );
+  assert.deepEqual(
+    validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdRootTangentCauchyMajorantTailBudget(
+      packet
+    ),
+    []
+  );
+  assert.equal(remainder.certifies_directed_rounded_h39_polydisc_bounds, false);
+  assert.equal(remainder.retained_branch, false);
+});
+
+test("h39 primitive remainder profile scale finds the admissible M_G profile multiplier", () => {
+  const threshold =
+    computeH39RootTangentCauchyMajorantBudget().D_tail_M_G_threshold;
+  const scale = computeH39PrimitiveRemainderProfileScaleCandidate({
+    radiusMultiple: 4,
+    mGBound: threshold / 2,
+    rootTangentNumeratorBound: 0,
+    centerResidualBound: 1,
+    centerJacobianLowerBound: 5,
+    jacobianLipschitzBound: 1,
+    rhoX: 2,
+    rX: 1,
+    mGRemainderProfile: threshold / 4,
+    profileScaleUpperBound: 4,
+    profileScaleTolerance: 1e-12,
+  });
+  const packet =
+    buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdRootTangentCauchyMajorantTailBudget(
+      {
+        radiusMultiple: 4,
+        mGBound: threshold / 2,
+        rootTangentNumeratorBound: 0,
+        centerResidualBound: 1,
+        centerJacobianLowerBound: 5,
+        jacobianLipschitzBound: 1,
+        rhoX: 2,
+        rX: 1,
+        mGRemainderProfile: threshold / 4,
+        profileScaleUpperBound: 4,
+        profileScaleTolerance: 1e-12,
+      }
+    );
+  const summary = packet.root_tangent_cauchy_majorant_tail_budget_summary;
+
+  assert.equal(
+    scale.primitive_remainder_profile_scale_status,
+    "h39-primitive-remainder-profile-scale-candidate-emitted"
+  );
+  assert.equal(
+    scale.primitive_remainder_profile_scale_budget_at_candidate
+      .primitive_remainder_profile_scale_safe_closes_candidate,
+    true
+  );
+  assert.equal(
+    scale.primitive_remainder_profile_scale_budget_at_first_failing_upper
+      .primitive_remainder_profile_scale_safe_closes_candidate,
+    false
+  );
+  assert.equal(
+    summary.primitive_remainder_profile_scale_status,
+    scale.primitive_remainder_profile_scale_status
+  );
+  assert.ok(
+    Math.abs(summary.primitive_remainder_profile_scale_candidate - 2) < 1e-9
+  );
+  assert.equal(
+    summary.primitive_remainder_profile_scale_budget_at_candidate
+      .primitive_remainder_profile_scale_safe_closes_candidate,
+    true
+  );
+  assert.ok(
+    Math.abs(scale.primitive_remainder_profile_scale_candidate - 2) < 1e-9
+  );
+  assert.ok(scale.primitive_remainder_profile_scale_candidate < 2);
+  assert.ok(
+    Math.abs(
+      scale.primitive_remainder_profile_scale_first_failing_upper - 2
+    ) < 1e-9
+  );
+  assert.ok(
+    scale.primitive_remainder_profile_scale_first_failing_upper >=
+      scale.primitive_remainder_profile_scale_candidate
+  );
+  assert.ok(
+    Math.abs(
+      scale.primitive_remainder_profile_scale_scaled_M_G_allowance -
+        threshold / 2
+    ) < 1e5
+  );
+  assert.equal(
+    scale.primitive_remainder_profile_scale_budget_at_candidate
+      .primitive_remainder_budget_worst_M_G <
+      threshold,
+    true
+  );
+  assert.deepEqual(
+    validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdRootTangentCauchyMajorantTailBudget(
+      packet
+    ),
+    []
+  );
+  assert.equal(scale.certifies_directed_rounded_h39_polydisc_bounds, false);
+  assert.equal(
+    scale.certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound,
+    false
+  );
+  assert.equal(scale.retained_branch, false);
+});
+
+test("h39 primitive analytic remainder multi-profile boundary matches the safe profile replay", () => {
+  const threshold =
+    computeH39RootTangentCauchyMajorantBudget().D_tail_M_G_threshold;
+  const params = {
+    radiusMultiple: 4,
+    mGBound: threshold / 2,
+    rootTangentNumeratorBound: 0,
+    centerResidualBound: 1,
+    centerJacobianLowerBound: 5,
+    jacobianLipschitzBound: 1,
+    rhoX: 2,
+    rX: 1,
+    centerResidualRemainderProfile: 0.125,
+    centerJacobianLowerRemainderProfile: 0.25,
+    mGRemainderProfile: threshold / 4,
+    rootTangentNumeratorRemainderProfile: 0.5,
+    profileScaleUpperBound: 4,
+    profileScaleTolerance: 1e-12,
+  };
+  const exact =
+    computeH39PrimitiveAnalyticRemainderMultiProfileBoundaryCandidate(params);
+  const scale = computeH39PrimitiveRemainderProfileScaleCandidate(params);
+  const packet =
+    buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdRootTangentCauchyMajorantTailBudget(
+      params
+    );
+  const summary = packet.root_tangent_cauchy_majorant_tail_budget_summary;
+  const embedded =
+    summary.primitive_remainder_profile_scale_exact_multi_profile_boundary;
+
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_boundary_status,
+    "h39-primitive-analytic-remainder-multi-profile-boundary-emitted"
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_bottleneck_name,
+    "h39_scalar_margin"
+  );
+  assert.deepEqual(
+    exact.primitive_analytic_remainder_multi_profile_active_bottleneck_names,
+    ["h39_scalar_margin"]
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_lambda_supremum_attained,
+    false
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_J_min_boundary,
+    12
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_required_scale,
+    1
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_J_min_at_required_scale,
+    2.75
+  );
+  assert.equal(
+    exact
+      .primitive_analytic_remainder_multi_profile_rouche_margin_at_required_scale,
+    3.125
+  );
+  assert.equal(
+    exact
+      .primitive_analytic_remainder_multi_profile_scalar_polynomial_at_required_scale,
+    exact.primitive_analytic_remainder_multi_profile_scalar_polynomial_constant +
+      exact.primitive_analytic_remainder_multi_profile_scalar_polynomial_linear +
+      exact.primitive_analytic_remainder_multi_profile_scalar_polynomial_quadratic
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_required_scale_closes,
+    true
+  );
+  assert.deepEqual(
+    exact
+      .primitive_analytic_remainder_multi_profile_required_scale_failed_margin_names,
+    []
+  );
+  assert.ok(
+    Math.abs(
+      exact.primitive_analytic_remainder_multi_profile_rouche_margin_boundary -
+        28 / 3
+    ) < 1e-12
+  );
+  assert.ok(
+    Math.abs(
+      exact.primitive_analytic_remainder_multi_profile_lambda_supremum -
+        1.9616127303245676
+    ) < 1e-12
+  );
+  assert.ok(
+    scale.primitive_remainder_profile_scale_candidate <
+      exact.primitive_analytic_remainder_multi_profile_lambda_supremum
+  );
+  assert.ok(
+    scale.primitive_remainder_profile_scale_first_failing_upper >=
+      exact.primitive_analytic_remainder_multi_profile_lambda_supremum
+  );
+  assert.ok(
+    Math.abs(
+      scale.primitive_remainder_profile_scale_candidate -
+        exact.primitive_analytic_remainder_multi_profile_lambda_supremum
+    ) < 1e-9
+  );
+  assert.equal(
+    scale.primitive_remainder_profile_scale_budget_at_candidate
+      .primitive_remainder_profile_scale_safe_closes_candidate,
+    true
+  );
+  assert.equal(
+    scale.primitive_remainder_profile_scale_budget_at_first_failing_upper
+      .primitive_remainder_profile_scale_safe_closes_candidate,
+    false
+  );
+  assert.ok(scale.primitive_remainder_profile_scale_scaled_E_R_allowance > 0);
+  assert.ok(
+    scale.primitive_remainder_profile_scale_scaled_nu_J_loss_allowance > 0
+  );
+  assert.ok(scale.primitive_remainder_profile_scale_scaled_M_G_allowance > 0);
+  assert.ok(scale.primitive_remainder_profile_scale_scaled_M_R_allowance > 0);
+  assert.equal(
+    embedded.primitive_analytic_remainder_multi_profile_boundary_status,
+    exact.primitive_analytic_remainder_multi_profile_boundary_status
+  );
+  assert.equal(
+    embedded.primitive_analytic_remainder_multi_profile_lambda_supremum,
+    exact.primitive_analytic_remainder_multi_profile_lambda_supremum
+  );
+  assert.deepEqual(
+    validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdRootTangentCauchyMajorantTailBudget(
+      packet
+    ),
+    []
+  );
+  assert.equal(exact.certifies_directed_rounded_h39_polydisc_bounds, false);
+  assert.equal(
+    exact.certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound,
+    false
+  );
+  assert.equal(exact.retained_branch, false);
+});
+
+test("h39 primitive analytic remainder multi-profile boundary absorbs fixed-radii L_J pressure", () => {
+  const threshold =
+    computeH39RootTangentCauchyMajorantBudget().D_tail_M_G_threshold;
+  const params = {
+    radiusMultiple: 4,
+    mGBound: threshold / 2,
+    rootTangentNumeratorBound: 0,
+    centerResidualBound: 1,
+    centerJacobianLowerBound: 5,
+    jacobianLipschitzBound: 1,
+    rhoX: 2,
+    rX: 1,
+    centerResidualRemainderProfile: 0.125,
+    centerJacobianLowerRemainderProfile: 0.25,
+    jacobianLipschitzRemainderProfile: 0.125,
+    mGRemainderProfile: threshold / 4,
+    rootTangentNumeratorRemainderProfile: 0.5,
+    profileScaleUpperBound: 4,
+    profileScaleTolerance: 1e-12,
+  };
+  const exact =
+    computeH39PrimitiveAnalyticRemainderMultiProfileBoundaryCandidate(params);
+  const scale = computeH39PrimitiveRemainderProfileScaleCandidate(params);
+  const embedded =
+    scale.primitive_remainder_profile_scale_exact_multi_profile_boundary;
+
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_boundary_status,
+    "h39-primitive-analytic-remainder-multi-profile-boundary-emitted"
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_L_J_profile,
+    0.125
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_J_min_profile_slope,
+    0.5
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_rouche_margin_profile_slope,
+    0.4375
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_J_min_boundary,
+    6
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_J_min_at_required_scale,
+    2.5
+  );
+  assert.equal(
+    exact
+      .primitive_analytic_remainder_multi_profile_rouche_margin_at_required_scale,
+    3.0625
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_required_scale_closes,
+    true
+  );
+  assert.deepEqual(
+    exact
+      .primitive_analytic_remainder_multi_profile_required_scale_failed_margin_names,
+    []
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_rouche_margin_boundary,
+    8
+  );
+  assert.equal(
+    exact.primitive_analytic_remainder_multi_profile_bottleneck_name,
+    "h39_scalar_margin"
+  );
+  assert.ok(
+    Math.abs(
+      exact.primitive_analytic_remainder_multi_profile_lambda_supremum -
+        1.9527167593074624
+    ) < 1e-12
+  );
+  assert.ok(
+    scale.primitive_remainder_profile_scale_candidate <
+      exact.primitive_analytic_remainder_multi_profile_lambda_supremum
+  );
+  assert.ok(
+    scale.primitive_remainder_profile_scale_first_failing_upper >=
+      exact.primitive_analytic_remainder_multi_profile_lambda_supremum
+  );
+  assert.ok(
+    Math.abs(
+      scale.primitive_remainder_profile_scale_candidate -
+        exact.primitive_analytic_remainder_multi_profile_lambda_supremum
+    ) < 1e-9
+  );
+  assert.equal(
+    embedded.primitive_analytic_remainder_multi_profile_L_J_profile,
+    exact.primitive_analytic_remainder_multi_profile_L_J_profile
+  );
+  assert.equal(
+    embedded.primitive_analytic_remainder_multi_profile_lambda_supremum,
+    exact.primitive_analytic_remainder_multi_profile_lambda_supremum
+  );
+  assert.equal(exact.certifies_directed_rounded_h39_polydisc_bounds, false);
+  assert.equal(
+    exact.certifies_directed_rounded_first_y_GD_continuous_successor_tail_bound,
+    false
+  );
+  assert.equal(exact.retained_branch, false);
+});
+
+test("h39 primitive analytic remainder multi-profile boundary reports J_min and Rouché bottlenecks", () => {
+  const jMinBottleneck =
+    computeH39PrimitiveAnalyticRemainderMultiProfileBoundaryCandidate({
+      radiusMultiple: 4,
+      mGBound: 0,
+      rootTangentNumeratorBound: 0,
+      centerResidualBound: 1,
+      centerJacobianLowerBound: 5,
+      jacobianLipschitzBound: 1,
+      rhoX: 2,
+      rX: 1,
+      centerJacobianLowerRemainderProfile: 0.1,
+      jacobianLipschitzRemainderProfile: 10,
+    });
+  const roucheBottleneck =
+    computeH39PrimitiveAnalyticRemainderMultiProfileBoundaryCandidate({
+      radiusMultiple: 4,
+      mGBound: 0,
+      rootTangentNumeratorBound: 0,
+      centerResidualBound: 1,
+      centerJacobianLowerBound: 5,
+      jacobianLipschitzBound: 1,
+      rhoX: 2,
+      rX: 1,
+      centerResidualRemainderProfile: 10,
+      jacobianLipschitzRemainderProfile: 0.1,
+    });
+
+  assert.equal(
+    jMinBottleneck.primitive_analytic_remainder_multi_profile_bottleneck_name,
+    "J_min"
+  );
+  assert.ok(
+    jMinBottleneck.primitive_analytic_remainder_multi_profile_active_bottleneck_names.includes(
+      "J_min"
+    )
+  );
+  assert.ok(
+    Math.abs(
+      jMinBottleneck.primitive_analytic_remainder_multi_profile_J_min_boundary -
+        3 / 20.1
+    ) < 1e-14
+  );
+  assert.equal(
+    jMinBottleneck.primitive_analytic_remainder_multi_profile_J_min_profile_slope,
+    20.1
+  );
+  assert.equal(
+    jMinBottleneck
+      .primitive_analytic_remainder_multi_profile_required_scale_closes,
+    false
+  );
+  assert.ok(
+    jMinBottleneck
+      .primitive_analytic_remainder_multi_profile_J_min_at_required_scale < 0
+  );
+  assert.ok(
+    jMinBottleneck
+      .primitive_analytic_remainder_multi_profile_required_scale_failed_margin_names.includes(
+        "J_min"
+      )
+  );
+  assert.equal(
+    roucheBottleneck.primitive_analytic_remainder_multi_profile_bottleneck_name,
+    "rouche_margin"
+  );
+  assert.deepEqual(
+    roucheBottleneck.primitive_analytic_remainder_multi_profile_active_bottleneck_names,
+    ["rouche_margin"]
+  );
+  assert.ok(
+    Math.abs(
+      roucheBottleneck.primitive_analytic_remainder_multi_profile_rouche_margin_boundary -
+        3.5 / 10.05
+    ) < 1e-14
+  );
+  assert.equal(
+    roucheBottleneck.primitive_analytic_remainder_multi_profile_rouche_margin_profile_slope,
+    10.05
+  );
+  assert.equal(
+    roucheBottleneck
+      .primitive_analytic_remainder_multi_profile_required_scale_closes,
+    false
+  );
+  assert.ok(
+    roucheBottleneck
+      .primitive_analytic_remainder_multi_profile_rouche_margin_at_required_scale <
+      0
+  );
+  assert.ok(
+    roucheBottleneck
+      .primitive_analytic_remainder_multi_profile_required_scale_failed_margin_names.includes(
+        "rouche_margin"
+      )
+  );
+  assert.equal(
+    jMinBottleneck.certifies_directed_rounded_h39_polydisc_bounds,
+    false
+  );
+  assert.equal(roucheBottleneck.retained_branch, false);
 });
 
 test("h39 Rouché radius supremum computes the unattained best M_R ceiling", () => {

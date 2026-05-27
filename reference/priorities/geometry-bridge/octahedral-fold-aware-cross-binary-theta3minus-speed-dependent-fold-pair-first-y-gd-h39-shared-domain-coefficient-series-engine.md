@@ -28,8 +28,10 @@ $$
 N_G=P-L-y^2A_{G,38}.
 $$
 
-The engine is not yet a continuous polydisc certificate. It is the exact
-coefficient-series layer from which the continuous certificate must be built.
+The engine is not itself a retained branch certificate. It is the exact
+coefficient-series layer from which the continuous h39 primitive witness is
+built, and it now records source-certificate obstructions when an optional
+source certificate cannot be computed on the requested envelope.
 
 ## Coefficient-Series Construction
 
@@ -180,6 +182,22 @@ $$
 Thus the Lipschitz input may be supplied by the sufficient choice
 $L_J^{\mathrm{red}}=\rho^{41}M_K$, or by any sharper certified shared-domain
 bound for $\partial_X^2R_{\varepsilon,43}$.
+
+The evaluator now has the finite branch-coordinate witness producer that
+prepares this handoff. For each centered branch it can form the tuple
+
+$$
+(\nu_-,D_\varepsilon,\Phi_\varepsilon,B_\nu,
+S_{\delta,\varepsilon},S_{\phi,\varepsilon};\mathfrak S),
+$$
+
+where $D_\varepsilon$ and $\Phi_\varepsilon$ are coordinate majorants with
+Cauchy prefix-plus-geometric-tail envelope certificates, $B_\nu\ge 2/\nu_-^2$,
+and $S_{\delta,\varepsilon},S_{\phi,\varepsilon}$ are
+positive-Taylor/geometric-tail $\sinh$ envelope certificates. The finite-only
+coordinate seminorm row remains open; the witness producer certifies a branch
+only when the coordinate Cauchy envelopes and the $\sinh$ envelope
+certificates are both supplied on the same $\mathfrak S$.
 
 The engine also solves the h39 center coefficient:
 
@@ -358,6 +376,76 @@ know how to consume them. The current executable helper now includes
 multivariate coefficient-prefix majorant and floor functions implementing
 $\mathcal M_{\rho,\rho_X}$ and $\mathcal F_{\rho,\rho_X}$ for any finite
 coefficient list plus an explicit tail majorant.
+
+The h39 scalar reducer now also exposes primitive slack tolerances for the
+same interface. Once a candidate tuple
+$E_R,\nu_J,L_J,\rho_X,r_X,M_G,M_R$ is supplied, it computes the current
+product $(\nu_J-L_J\rho_X)(\rho_X-r_X)$, the required product floor
+$M_R/C_D$, and the strict one-at-a-time admissible intervals or ceilings for
+each primitive value. The coefficient-series engine still does not certify
+continuous primitive bounds by itself, but it can now report whether its
+candidate finite-prefix and kernel-continuous values sit inside the exact
+Rouché-primitive slack region that a directed-rounded backend must prove.
+The scalar reducer also accepts candidate analytic-remainder allowances and
+tests the resulting pessimistic rectangle, giving the coefficient-series route
+a concrete measure of how much continuous tail can be added before the h39
+primitive certificate fails.
+It now also accepts an analytic-remainder profile direction and returns a
+candidate maximum scale using the monotone safe floor
+$J_{\mathrm{rob}}\sigma_{\mathrm{rob}}$, so the coefficient-series route can
+compare finite-prefix values plus a whole continuous-tail pressure profile
+against one scalar h39 margin.
+The shared-domain evaluator now emits the first such concrete profile replay:
+`computeH39FinitePrefixPrimitiveProfileScaleReplay` starts from the
+finite-prefix tuple
+$(E_R^0,\nu_J^0,L_J^0,M_G^0,M_R^0)$, derives the known
+$L_J$ pressure
+$\ell_J=\max(0,L_J^{\mathrm{red}}-L_J^0)$ from the kernel-reduced continuous
+majorant, and calls the profile-scale reducer on the same replayed
+$\rho_X,r_X$. With no extra Cauchy data, this proves that the known $L_J$
+continuous pressure is not the current h39 bottleneck.
+With explicit same-domain Cauchy outer inputs, the evaluator now also emits
+candidate profile components for three formerly missing primitive directions:
+the $R_{\varepsilon,43}$ shifted prefix-tail helper supplies
+$e_R$ and $m_R$, and the $N_G=y^{41}T_G^{(39)}$ helper supplies the corrected
+unshifted $m_G$ component. The optional $\nu_J$ profile component $n_J$ is
+emitted only when a Jacobian Cauchy outer bound is supplied; without that
+input, the evaluator leaves the $\nu_J$ tail-loss field null rather than
+turning a coefficient floor into a continuous Jacobian floor.
+
+The newest bridge removes one manual input layer for the source and Jacobian
+directions. On an outer first-y radius $R_y$ with branch coordinate seminorms
+$D_\varepsilon=\|\delta_\varepsilon\|_{R_y}$ and
+$\Phi_\varepsilon=\|\phi_\varepsilon\|_{R_y}$, and with
+$S_\nu=\sup_{\nu\in I_\nu}|\nu^{-2}|$, the source residual satisfies the
+candidate outer bound
+
+$$
+B_{F,\varepsilon}^{\mathrm{out}}
+=
+S_\nu D_\varepsilon^2+2+\sinh D_\varepsilon+\sinh\Phi_\varepsilon.
+$$
+
+For the removable Jacobian numerator
+$H_\varepsilon=y\,\partial_XR_{\varepsilon,43}$, a larger numerator radius
+$R_H$ and smaller Jacobian radius $R_J<R_H$ give
+
+$$
+B_{H,\varepsilon}
+=
+2S_\nu D_\varepsilon+\cosh D_\varepsilon+\cosh\Phi_\varepsilon,
+\qquad
+B_{J,\varepsilon}^{\mathrm{out}}
+=
+\frac{B_{H,\varepsilon}}{R_H-R_J}.
+$$
+
+The evaluator takes the maximum over the two centered fold branches and feeds
+these coordinate-derived $B_F^{\mathrm{out}}$ and
+$B_J^{\mathrm{out}}$ into the same analytic-remainder profile replay. These
+profile replays remain candidate-only and explicitly mark shared-domain
+closure incomplete because the coordinate seminorms are still broad and are
+not yet a retained directed-rounded polydisc certificate.
 
 The finite-prefix candidates already show that the scalar Rouché reducer is
 not the apparent bottleneck once $L_J^{\mathrm{red}}$ is used. Let
@@ -614,6 +702,33 @@ unshifted $N_G=y^{41}T_G^{(39)}$ Cauchy scale to produce $M_G$, and evaluates
 the same strict Rouché-primitive ratio used by the h39 tail lemma. The output
 is a conditional closure ratio, not a retained branch certificate.
 
+The cell evaluator now has a safe denominator-Cauchy resolver for the
+$N_G/M_G$ direction. It requires the complete same-domain input tuple
+$(R_y,B_\delta,B_\phi,B_{J^{\mathrm{abs}}},L_*,A_*)$ before it will emit
+\texttt{n\_g\_cauchy\_outer\_bound}; partial denominator data throws rather
+than silently setting $L_*$ or $A_*$ to zero. Explicit
+\texttt{nGCauchyOuterBound} inputs still override the derived candidate. When
+the derived path is used, the summary labels the source as
+\texttt{branch-denominator-cauchy-outer-bound} and threads it into the
+existing $M_G$ profile replay.
+The corresponding proof claim remains downstream of this coefficient engine:
+after a directed-rounded same-domain provenance upgrade, the primitive
+diagnostic's denominator-Cauchy $M_G$ witness wrapper can replay that source
+through the existing $N_G$ numerator subset. The coefficient engine itself
+still emits candidate/handoff data and does not certify the $M_G$ component.
+
+The denominator closure diagnostic also now reports how much h39 work remains
+in the $N_G$ channel. It computes the h39-implied branch-sum budget
+$W_G$ by inverting the current $M_G$ ceiling, subtracts the actual branch
+$G$ outer-majorant sum, and emits one of three statuses:
+\texttt{h39-denominator-budget-candidate-below-ceiling},
+\texttt{h39-denominator-budget-candidate-exceeds-ceiling}, or
+\texttt{h39-denominator-budget-no-positive-branch-g-ceiling}. This turns the
+open $M_G$ route into a quantitative target: either the current denominator
+candidate is already below the scalar h39 ceiling, it must shrink by the
+reported branch-sum ratio, or the current retained order/radius/primitive
+tuple leaves no positive denominator budget.
+
 ## Executable Artifact
 
 The executable helper is
@@ -643,7 +758,8 @@ It exports:
 - `computeH39FinitePrefixPrimitiveScalarReplay`, which feeds the finite-prefix
   $E_R,\nu_J,M_G,M_R$ candidates and the reduced continuous $L_J$ candidate
   through the Rouché-primitive scalar algebra with the displayed $\rho_X,r_X$
-  policy, while explicitly refusing primitive-certificate status;
+  policy, reports the candidate primitive slack tolerances, and explicitly
+  refuses primitive-certificate status;
 - `computeCauchyShiftedTailMajorants` and
   `computeCauchyRemovableQuotientFloor`, which expose the sufficient raw
   Cauchy shifted-tail and removable-Jacobian floor formulas while explicitly
@@ -664,6 +780,7 @@ It exports:
 - `computeBranchGDenominatorClearanceMajorant`,
   `computeBranchGDenominatorIngredientCandidate`,
   `computeBranchGDenominatorCauchyIngredientCandidate`,
+  `computeH39DenominatorCauchyNGOuterBoundCandidate`,
   `computeH39PrimitiveMGClosureCeilingCandidate`,
   `computeH39DenominatorCauchyOuterBoundCeilingCandidate`,
   `computeBranchGDenominatorAllocationTargetsCandidate`,
@@ -672,7 +789,8 @@ It exports:
   `computeH39NGOuterBoundCandidateMG`, and
   `computeH39NGOuterBoundPrimitiveReplay`, which make the denominator-floor
   $B_{N_G}^{\mathrm{out}}$ route executable, restore the unshifted
-  $N_G/M_G$ scale, translate the branch-sum ceiling into optional
+  $N_G/M_G$ scale, require complete denominator Cauchy inputs before deriving
+  the $N_G$ outer bound, translate the branch-sum ceiling into optional
   branch-local $d_\varepsilon^2j_\varepsilon$ clearance targets under an
   explicit allocation policy, expose the pressure-balanced minimax allocation
   weights proportional to $4|c|K_\varepsilon/\nu_-$, and replay the scalar h39
@@ -697,9 +815,25 @@ It exports:
 - `computeMultivariateCoefficientPrefixMajorant` and
   `computeMultivariateCoefficientPrefixFloor`, which implement the shared
   $y,X$ polydisc coefficient-prefix functionals above;
+- `computeH39FinitePrefixPrimitiveProfileScaleReplay`, which turns the
+  finite-prefix primitive tuple plus the kernel-reduced $L_J$ pressure into a
+  candidate profile-scale replay through the h39 safe-product reducer;
+- `computeH39R43AnalyticRemainderProfileCandidate`, which converts a shifted
+  $R_{\varepsilon,43}$ retained prefix plus an explicit Cauchy outer bound into
+  candidate $E_R$ and $M_R$ tail-profile components;
+- `computeH39JacobianAnalyticRemainderProfileCandidate`, which converts an
+  explicit $\partial_XR_{\varepsilon,43}$ Cauchy outer bound into the optional
+  inward $\nu_J$ tail-loss profile;
+- `computeH39SourceResidualCoordinateOuterBoundCandidate`,
+  `computeH39JacobianCoordinateOuterBoundCandidate`, and
+  `computeH39CoordinateCauchyOuterBoundsProfileCandidate`, which derive
+  candidate source and removable-Jacobian Cauchy outer bounds from the branch
+  coordinate seminorms, aggregate them across the centered fold pair, and feed
+  them into the same profile replay without imposing a fixed speed band;
 - `summarizeSharedDomainPrimitiveBounds`, which intentionally leaves
   $E_R,\nu_J,L_J,M_R,M_G$ null until a continuous interval backend supplies
-  them.
+  them, while threading any supplied Cauchy profile components into the
+  candidate profile-scale replay.
 
 Against the full 128-row h38 successor artifact, the h39 coefficient artifact
 validates as a coefficient-only summary with 128 coefficient cells and 256
@@ -730,6 +864,283 @@ and
 and reports
 \texttt{candidate\_finite\_prefix\_scalar\_replay\_closes=true} with
 \texttt{candidate\_finite\_prefix\_scalar\_replay\_ratio=3.796256065292518e-115}.
+The same artifact now computes
+\texttt{candidate\_L\_J\_reduced\_minus\_finite\_prefix\_profile} and replays
+that nonnegative $L_J$ profile through the h39 profile-scale reducer. The
+field \texttt{candidate\_profile\_scale\_required\_closes=true} says the
+known kernel-reduced $L_J$ pressure fits the strict h39 scalar contract at
+scale $\lambda=1$; the companion field
+\texttt{candidate\_profile\_direction\_complete\_for\_shared\_domain\_closure=false}
+keeps the remaining $E_R,\nu_J,M_G,$ and $M_R$ analytic-remainder provenance
+open.
+The executable path has now been sharpened when explicit or coordinate-derived
+Cauchy outer bounds are supplied. The helper
+\texttt{computeH39R43AnalyticRemainderProfileCandidate} attaches the
+post-prefix Cauchy tail of $R_{\varepsilon,43}$ as an $E_R$ profile component
+and the corresponding $y\partial_yR_{\varepsilon,43}$ tail as an $M_R$ profile
+component. The existing $N_G$ prefix-tail helper now exposes the unshifted
+$M_G$ tail as an analytic-remainder profile, and
+\texttt{computeH39JacobianAnalyticRemainderProfileCandidate} emits an optional
+$\nu_J$ loss profile from either an explicit Jacobian outer bound or the
+coordinate removable-numerator outer-bound candidate. Thus the profile vector
+can now be populated in the $E_R,M_R,M_G$ directions and, when proper data is
+supplied, in the $\nu_J$ direction, while all closure flags remain false until
+those bounds are proven on the same directed-rounded graph-centered domain.
+The primitive diagnostic now has component-level consumers for these profile
+routes: the $R_{\varepsilon,43}$ profile may certify only $E_R,M_R$, the
+$N_G$ profile may certify only $M_G$, and the center-Jacobian profile may
+certify only $\nu_J$. The evaluator now emits the exact graph-radii witness
+for $\rho_X,r_X$ when those radii are declared on the same $\mathfrak S$, and
+the coefficient artifact exposes the same witness at top level so downstream
+composition can consume one evaluator artifact without a sidecar radii object.
+The artifact validator rebuilds that witness from the declared
+$\rho_X,r_X;\mathfrak S$ parameters and rejects value or claim-boundary drift.
+The $K_\varepsilon$/$L_J$ route certifies only $L_J$ after a same-domain
+$M_K$ majorant. Therefore the coefficient-series engine no longer has a
+generic primitive-vector gap; it has explicit component witness handoffs plus
+the exact radius declaration, all of which must carry the same graph-centered
+signature before the primitive provenance certificate can promote the h39
+continuous-tail row.
+The coordinate-Cauchy profile now has a matching upstream wrapper in the
+primitive diagnostic: when the branch-derived $B_F^{\mathrm{out}}$ and
+$B_J^{\mathrm{out}}$ values are directed-rounded on one $\mathfrak S$ and
+match the shifted $R_{\varepsilon,43}$ and center-Jacobian profile inputs, the
+wrapper can replay the existing $E_R,M_R$ and $\nu_J$ subsets. It still
+certifies no $M_G$, no $L_J$, no graph radii, and no retained branch.
+The downstream consumer is now explicit: the primitive diagnostic's
+upstream-source composition artifact consumes these raw handoffs, rebuilds the
+coordinate-Cauchy, denominator-Cauchy, $L_J$, and graph-radii wrapper replays,
+passes only their extracted subsets to the component-subset composition, and
+then replays the existing primitive provenance certificate. The
+coefficient-series engine remains a constructor of component candidates and
+cannot promote the h39 continuous-tail row by itself. The consumer can now
+take the coefficient artifact directly. With one emitted
+\texttt{h39\_coefficient\_cell}, it unwraps that cell. With multiple emitted
+cells, it uses same-domain, same-radius per-branch maxima for the coordinate
+source, selects one whole denominator source row with maximal certified $N_G$
+outer bound, canonicalizes the $K_\varepsilon$ source back to one witness per
+branch, uses the artifact-level graph-radii witness, and refuses fixed
+speed-band fields.
+The evaluator now also reports the h39 full Cauchy primitive profile-vector
+status instead of leaving profile readiness implicit. The candidate vector is
+
+$$
+\mathfrak P_{39}^{\mathrm{cand}}
+=
+(E_R,\ M_R,\ M_G,\ \nu_J,\ L_J),
+$$
+
+where each entry is the finite-prefix primitive plus its declared analytic
+remainder pressure on the same coefficient-domain replay. The status
+\texttt{h39-full-cauchy-primitive-profile-vector-candidate-incomplete} names
+the missing components, so an absent Cauchy tail can no longer be mistaken for
+a zero tail. When all components are present, the same replay reports either
+\texttt{h39-full-cauchy-primitive-profile-vector-candidate-scale-inequalities-open}
+or \texttt{h39-full-cauchy-primitive-profile-vector-candidate-closes}. This is
+still a candidate-only readiness result: it tests the coupled vector against
+the h39 profile-scale inequalities but does not certify a directed-rounded
+shared-domain primitive bound or retained branch.
+
+When $\rho_X,r_X$ are fixed and $L_J$ is either fixed or varied only through a
+declared nonnegative profile pressure, the same profile-vector replay now has
+an exact fixed-radii primitive-profile boundary for the simultaneous
+$E_R,\nu_J,L_J,M_G,M_R$ analytic-remainder direction. The boundary is the
+minimum of the $J_{\min}$ boundary, the graph Rouché-margin boundary, and the
+first positive root of the h39 scalar quadratic. This replaces a blind search
+for the next profile scale with a named candidate bottleneck, while leaving the
+shared-domain provenance requirement unchanged.
+
+The evaluator records the same marker as
+`candidate_profile_scale_exact_fixed_radii_strict_headroom`, with
+`candidate_profile_scale_exact_fixed_radii_required_scale` fixed at
+$\lambda=1$. A positive value is a candidate success marker for scalar replay
+feasibility; a nonpositive value is the candidate deficit. The backend mirrors
+the same quantity as `profile_scale_exact_fixed_radii_strict_headroom`. These
+fields are deliberately not provenance flags and cannot promote candidate-only
+primitive inputs.
+
+The evaluator also threads the required-scale margin vector
+$(J_1,\Gamma_1,P(1))$ from the exact-boundary replay. The corresponding fields
+are
+`candidate_profile_scale_exact_fixed_radii_J_min_at_required_scale`,
+`candidate_profile_scale_exact_fixed_radii_rouche_margin_at_required_scale`,
+and
+`candidate_profile_scale_exact_fixed_radii_scalar_polynomial_at_required_scale`;
+the backend mirrors them under `profile_scale_exact_fixed_radii_*`. These
+margins explain the success or deficit reported by
+`candidate_profile_scale_exact_fixed_radii_strict_headroom` and remain
+diagnostic candidate data, not provenance flags.
+
+The executable backend artifact now packages that readiness result as a single
+primitive-vector interface. Let
+
+$$
+\Delta\mathfrak P_{39}
+=
+(e_R,\ m_R,\ m_G,\ n_J,\ \ell_J)
+$$
+
+be the adverse analytic-remainder profile and let
+
+$$
+\mathfrak P_{39}^{0}
+=
+(E_R^0,\ M_R^0,\ M_G^0,\ \nu_J^0,\ L_J^0)
+$$
+
+be the finite-prefix primitive vector. The replayed backend path is
+
+$$
+\mathfrak P_{39}(\lambda)
+=
+\left(
+E_R^0+\lambda e_R,\,
+M_R^0+\lambda m_R,\,
+M_G^0+\lambda m_G,\,
+\nu_J^0-\lambda n_J,\,
+L_J^0+\lambda\ell_J
+\right),
+\qquad 0\le\lambda\le1.
+$$
+
+For fixed same-domain radii $\rho_X$ and $r_X$, the backend computes
+$J_\lambda=(\nu_J^0-\lambda n_J)-(L_J^0+\lambda\ell_J)\rho_X$ and
+
+$$
+\Gamma_\lambda
+=
+(\nu_J^0-\lambda n_J)r_X
+-
+(E_R^0+\lambda e_R)
+-
+\frac12(L_J^0+\lambda\ell_J)r_X^2.
+$$
+
+It then packages the candidate vector for the existing h39 reducer by requiring
+$0<r_X<\rho_X$, $J_\lambda>0$, $\Gamma_\lambda>0$, and
+
+$$
+\Lambda_{39}^{\mathrm R}(\lambda)
+=
+\frac{
+(M_G^0+\lambda m_G)
+\left(
+40+
+\frac{M_R^0+\lambda m_R}{J_\lambda(\rho_X-r_X)}
++
+\frac{1}{s-1}
+\right)
+}{
+B_{D,39}Y^{41}s^{40}(s-1)
+}
+<1.
+$$
+
+When provenance is coefficient-only, supplied-unverified, coordinate-derived,
+or Cauchy-candidate, the strongest allowed claim is
+\texttt{constructs\_h39\_primitive\_vector\_backend\_artifact=true}; all
+directed-rounded shared-domain, continuous-tail, scaled-remainder, `I1`, and
+retained-branch flags remain false. If a future backend supplies the whole
+vector with directed-rounded same-domain provenance, this same artifact can
+promote the h39 primitive-vector input to the existing Rouché reducer without
+also claiming scaled remainder, quadrature, or retained-branch closure.
+The companion primitive diagnostic now exposes this as an explicit
+promotion-theorem bridge: it consumes the primitive-vector backend artifact,
+replays the h39 Rouché-primitive reducer, and reports whether promotion is
+blocked by missing vector input, an open reducer inequality, or unverified
+same-domain provenance. This keeps the coefficient engine as a constructor of
+the primitive-vector interface, while assigning any true certificate claim to a
+future directed-rounded provenance backend.
+That backend now has an exact verifier contract. A separate primitive
+provenance certificate must supply directed-rounded reports for
+$E_R,M_R,M_G,\nu_J,L_J,\rho_X,$ and $r_X$ with one shared graph-centered domain
+signature and relation-aware coverage of the primitive-vector artifact: upper
+bounds may be stronger than the primitive reducer input, the $\nu_J$ lower
+bound may be stronger, and the graph radii must match exactly. Only after that
+verifier and the Rouché-primitive replay both pass can the h39 primitive
+continuous-tail row promote. The coefficient engine still remains
+constructor-only and cannot promote itself by producing a candidate vector.
+The first two-component subset is now explicit: a directed-rounded same-domain
+shifted $R_{\varepsilon,43}$ Cauchy prefix-tail witness can certify $E_R$ and
+$M_R$ together, using the same prefix-plus-geometric-tail formulas already
+emitted by \texttt{computeH39R43AnalyticRemainderProfileCandidate}. This
+subset is useful because it can feed the relation-aware primitive verifier as
+stronger upper-bound provenance without pretending to certify $M_G$,
+$\nu_J$, $L_J$, or the graph radii.
+The candidate provenance report makes this boundary executable in the
+opposite direction: when the coefficient engine is the only source, the report
+returns \texttt{open-candidate-only-primitive-provenance}. That status is a
+proof of non-promotion for this artifact, not a proof that the h39 tail fails.
+It says that coefficient construction plus a strict scalar replay is still
+short of same-domain directed-rounded provenance.
+The minimal witness-set artifact sharpens the next backend object. The h39
+coefficient identities isolate one reusable subset:
+
+$$
+\partial_X^2R_{\varepsilon,43}=y^{41}K_\varepsilon,
+\qquad
+K_\varepsilon=
+\frac{2}{\nu^2}-\sin\delta_\varepsilon-\sin\phi_\varepsilon.
+$$
+
+Thus a same-signature directed-rounded majorant
+
+$$
+M_K\ge\max_\varepsilon\sup_{\mathfrak S}|K_\varepsilon|
+$$
+
+would supply the primitive Lipschitz entry
+
+$$
+L_J=\rho^{41}M_K.
+$$
+
+This is a subset reduction, not a certificate claim for the present artifact:
+the current $L_J$ row remains candidate-only until the $K_\varepsilon$
+majorant is certified on the same graph-centered signature as
+$E_R,M_R,M_G,\nu_J,\rho_X,$ and $r_X$.
+The primitive diagnostic now makes this subset executable. Its
+\texttt{L\_J} kernel witness subset accepts the current
+\texttt{kernel-continuous-majorant} row as an open candidate, but promotes the
+$L_J$ component if and only if a directed-rounded same-domain $M_K$ witness is
+supplied with the identity
+$\partial_X^2R_{\varepsilon,43}=y^{41}K_\varepsilon$, the relation
+$M_K\ge\max_\varepsilon\sup_{\mathfrak S}|K_\varepsilon|$, the reduction
+$L_J\ge\rho^{41}M_K$, analytic-tail coverage, outward-rounded
+transcendental bounds, and no fixed speed window. This certifies only one
+primitive component; the coefficient engine still cannot certify the full
+primitive vector.
+The upstream $K_\varepsilon$ majorant witness is now executable as its own
+conditional theorem. For both branches $\varepsilon\in\{-,+\}$, the witness
+must supply the same $\mathfrak S$, directed-rounded bounds
+$\nu\ge\nu_->0$, $|\delta_\varepsilon|\le D_\varepsilon$, and
+$|\phi_\varepsilon|\le\Phi_\varepsilon$, analytic-tail coverage, an
+outward-rounded $2/\nu_-^2$ majorant, and outward-rounded
+$\sinh(D_\varepsilon)$ and $\sinh(\Phi_\varepsilon)$ enclosures. It then
+emits only the $M_K$ component witness; the $L_J$ claim is checked by the
+separate $L_J$ subset replay. The current coordinate-seminorm row remains
+candidate-only because it does not yet carry those same-domain branch
+witnesses.
+The evaluator now produces that exact branch-coordinate witness set as a
+handoff artifact. With only finite coordinate seminorms it returns
+\texttt{open-K\_epsilon-branch-coordinate-witness-unverified}. With Cauchy
+coordinate tails, a shared $\mathfrak S$, directed-rounded coordinate
+provenance, and positive-Taylor/geometric-tail certificates for the
+$\sinh(D_\varepsilon)$ and $\sinh(\Phi_\varepsilon)$ enclosures, it emits the
+two branch witnesses for \texttt{buildH39KepsilonMajorantWitness}. A bare
+transcendental-provenance flag no longer certifies this step. That downstream
+artifact can then certify $M_K$, while still leaving $L_J$ to the separate
+subset replay and all full h39 primitive-vector claims open.
+The primitive diagnostic's upstream-source composition is the only current
+downstream consumer that may combine this $M_K\to L_J$ route with the
+$R_{\varepsilon,43}$, $N_G$, center-Jacobian, and graph-radii source handoffs.
+It now accepts the evaluator's branch-coordinate witness-set artifact directly
+when no external $M_K$ witness is supplied: the composition replays the
+$K_\varepsilon$ majorant, extracts the generated $M_K$ witness, feeds it into
+the $L_J$ subset, and only then rebuilds the wrappers and component-subset
+composition. The promoted claim is still only the h39 continuous-tail row after
+a strict primitive-certificate replay; failed branch-coordinate, $\sinh$
+envelope, domain, or value-coverage predicates remain explicit blockers.
 The deeper shifted-prefix diagnostic also runs on the full h38 sweep:
 \texttt{shifted\_order=20} lifts the internal
 \texttt{series\_order} to $63$, validates all $128$ coefficient cells, and
@@ -757,8 +1168,9 @@ $\partial_X^2R_{\varepsilon,43}$ identity, the $K_\varepsilon$ factorization,
 the h39 center coefficient solve, one-variable and multivariate
 coefficient-prefix seminorm helpers, the shifted $D$ identity, h38-row artifact
 consumption, the coordinate-seminorm continuous $K_\varepsilon$ majorant, the
-finite-prefix scalar feasibility replay, the two-branch coefficient-cell
-evaluator, and the refusal to emit full continuous primitive bounds.
+finite-prefix scalar feasibility replay with primitive slack tolerances, the
+two-branch coefficient-cell evaluator, and the refusal to emit full continuous
+primitive bounds.
 It also verifies that deeper shifted-prefix requests raise the internal series
 order instead of silently truncating at the default h39 depth, and that the
 Cauchy shifted-tail and hybrid order helpers compute only sufficient candidate
@@ -824,7 +1236,52 @@ $$
 
 The coefficient-only engine is a provenance and evaluator-construction
 advance: it prevents the h39 primitive quantities from being assembled from
-different symbolic expansions. The remaining certificate burden is an
-outward-rounded shared-domain interval backend that turns those coefficient
-series into certified $E_R$, $\nu_J$, $L_J$, $\rho_X$, $r_X$, $M_G$, and
-$M_R$ bounds and then passes the existing h39 diagnostic.
+different symbolic expansions. With passing source certificates, including
+the safe multi-row aggregation rules above, the downstream primitive diagnostic
+can now turn the coefficient artifact into the certified seven-input
+continuous-tail row
+$(E_R,M_R,M_G,\nu_J,L_J,\rho_X,r_X;\mathfrak S)$. The remaining certificate
+burden is not another primitive-source handoff; it is the larger branch
+closure: the full first-y quotient enclosure, scaled remainder, `I1`
+composition, quadrature, and retained branch status.
+
+The evaluator now accepts ordered
+\texttt{coordinateSourceEnvelopeCandidates}. A wide coordinate-source candidate
+can fail with `sinh Taylor majorant overflowed before the tail bound`, be
+recorded as a rejected source-certificate candidate, and then fall back to a
+smaller candidate on the same declared domain. A read-only full-cover h38 probe
+with \texttt{coordinateCauchyOuterRadius=0.01},
+\texttt{coordinateJacobianOuterRadius=0.01},
+\texttt{coordinateJacobianNumeratorOuterRadius=0.02}, and
+\texttt{denominatorCauchyOuterRadius=0.01} produces no
+\texttt{source\_certificate\_obstructions}; the centered
+$R_{\varepsilon,43}$ rows, shifted $D$ identities, graph-radii source, and
+upstream-source composer input are all present.
+
+This advances the obstruction from source-certificate existence to source
+sharpness. A same-row radius scan shows the finite coordinate certificates are
+too pessimistic after the unshifted Cauchy division by the small coordinate
+radius: $R=0.01$ gives
+$E_R\approx2.22\times10^{85}$ and
+$M_R\approx4.69\times10^{85}$, while larger radii improve those pressures
+until the coordinate $\sinh$ envelopes overflow around the next tested range.
+The next mathematical task is therefore not another primitive handoff layer;
+it is a shifted or cancellation-aware source envelope for
+$R_{\varepsilon,43}=F_\varepsilon/y^{43}$ and
+$y\,\partial_yR_{\varepsilon,43}$ on the same graph-centered domain.
+
+That inlet now exists in the evaluator. A coordinate-source envelope candidate
+can be explicitly marked as a shifted removable $R_{\varepsilon,43}$ source
+bound. The engine checks the zero-prefix cancellation witness for the raw
+$F_\varepsilon$ coefficients through $y^{42}$, accepts an external
+directed-rounded zero-prefix certificate when the current coefficient fixture
+does not itself close that prefix, verifies that the supplied shifted bound
+dominates the shifted coefficient prefix at the declared source radius, and
+then passes \texttt{candidate\_R43\_cauchy\_tail\_shift\_power=0} into the
+primitive-profile replay. This is the first executable route that avoids the
+raw $R^{-43}$ Cauchy pressure. With a supplied shifted bound $10^{-3}$ at
+radius $0.01$ on the focused fixture, the resulting profile reports
+$E_R\approx6.16\times10^{-7}$ and
+$M_R\approx1.92\times10^{-7}$ and the complete profile-vector candidate
+closes. The remaining full-cover proof burden is the directed-rounded shifted
+$R_{\varepsilon,43}$ outer-bound certificate itself, not the reducer interface.
