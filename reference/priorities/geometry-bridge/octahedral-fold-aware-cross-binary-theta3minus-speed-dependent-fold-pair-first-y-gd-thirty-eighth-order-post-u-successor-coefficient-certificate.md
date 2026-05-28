@@ -240,6 +240,18 @@ midpoint residual width is at most $0.00011864454815927154$ of the allowed
 budget. The H38 successor certificate should next export a directed-rounded
 $N_{38}$ Taylor remainder or local normal form that proves this budget before
 the solve $h_{38}=-N_{38}/S_{37}$ is applied.
+The local-partition replay shows that the required fix must occur before
+row-field export. A $16$-subcell H38 producer cover with local quadratic
+$N_{38}$ graphs over $1$, $2$, and $4$ $\xi$ partitions keeps midpoint residual
+pressure below h-row-midpoint scale, but every raw interval-residual replay
+remains near $2.5013444686\times10^{20}$. The best raw-hull pressure is still
+$6.970749744386734\times10^7$ above the best midpoint-residual replay. Thus a
+piecewise graph built after \texttt{h38\_residual\_before\_solve} has already
+become an interval field cannot close the handoff. The H38 successor needs an
+expression-level $N_{38}$ provider: set $h_{38}=0$, evaluate the
+\texttt{sourceEquationSeries} coefficient used as the recurrence numerator,
+and certify a directed-rounded local Taylor remainder before division by the
+inherited slope.
 
 It does not claim:
 

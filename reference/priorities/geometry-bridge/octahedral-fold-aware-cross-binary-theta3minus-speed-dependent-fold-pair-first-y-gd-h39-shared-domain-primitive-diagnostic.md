@@ -763,6 +763,17 @@ midpoint residual width stays below this budget by at least a factor of about
 $8428$. The primitive proof target is therefore a directed-rounded Taylor or
 normal-form remainder for $N_{38}$ below this budget, not exact cancellation of
 every sampled numerator residual.
+The local-partition diagnostic then tests whether a piecewise graph over the
+exported H38 row fields is enough. It is not. With a $16$-subcell producer
+cover, local quadratic $N_{38}$ graphs over $1$, $2$, and $4$ $\xi$ partitions
+keep midpoint-residual H39 replay below h-row-midpoint scale; the best ratio is
+$0.3308706978209664$. But the raw interval residual remains essentially the
+full exported row-field hull, with best pressure near
+$2.5013444686\times10^{20}$ and a factor $6.970749744386734\times10^7$ above
+the best midpoint-residual replay. The primitive proof route therefore cannot
+be a post-export row-field partition alone. It must evaluate the H38 recurrence
+source expression that generates $N_{38}$ and certify a local Taylor remainder
+there, before the numerator is turned into an interval field.
 
 ## Candidate Provenance No-Go Report
 

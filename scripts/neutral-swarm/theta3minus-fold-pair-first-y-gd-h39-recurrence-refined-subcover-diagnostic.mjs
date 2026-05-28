@@ -44,6 +44,9 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_NUMERATOR_GRAPH_SOLVE_DIAG
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_NUMERATOR_GRAPH_RESIDUAL_BUDGET_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-numerator-graph-residual-budget-diagnostic/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_NUMERATOR_GRAPH_LOCAL_PARTITION_DIAGNOSTIC_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-numerator-graph-local-partition-diagnostic/v1";
+
 function assertFinitePositiveInteger(name, value) {
   const resolved = Number(value);
   if (!Number.isInteger(resolved) || resolved < 1) {
@@ -4219,6 +4222,401 @@ export function buildH39H38NumeratorGraphResidualBudgetDiagnosticCandidate({
   };
 }
 
+function localN38PartitionRows({
+  rows,
+  partitionCount,
+  partitionIndex,
+}) {
+  const sortedRows = rows
+    .slice()
+    .sort(
+      (left, right) =>
+        Number(left.speed_interval?.[0] ?? 0) -
+        Number(right.speed_interval?.[0] ?? 0)
+    );
+  if (sortedRows.length % partitionCount !== 0) {
+    throw new Error("fineSubcellCount must be divisible by partitionCount");
+  }
+  const partitionSize = sortedRows.length / partitionCount;
+  return sortedRows.slice(
+    partitionIndex * partitionSize,
+    (partitionIndex + 1) * partitionSize
+  );
+}
+
+function localN38PartitionDiagnostic({
+  context,
+  coarseCell,
+  coarseBranchRow,
+  targetSpeedInterval,
+  rows,
+  branch,
+  partitionCount,
+  partitionIndex,
+  polynomialDegree,
+  outerRadius,
+  shiftedIndex,
+  noiseSamplesPerPartition,
+  numeratorNoiseSamples,
+}) {
+  const partitionRows = localN38PartitionRows({
+    rows,
+    partitionCount,
+    partitionIndex,
+  });
+  if (partitionRows.length < polynomialDegree + 1) {
+    throw new Error("local N38 partition requires at least polynomialDegree + 1 rows");
+  }
+  const partitionXiInterval = intervalHull(
+    partitionRows.map((row) =>
+      speedIntervalXiInterval({ row, targetSpeedInterval })
+    )
+  );
+  const localTransportProfile = hRowPolynomialTransportProfileForRows({
+    rows: partitionRows,
+    branch,
+    targetSpeedInterval,
+    degree: polynomialDegree,
+  });
+  const localResidualProfile =
+    polynomialGraphProducerIntervalResidualProfileForRows({
+      targetSpeedInterval,
+      rows: partitionRows,
+      branch,
+      transportProfile: localTransportProfile,
+    });
+  const solveWidthProfile = h38SolveWidthFactorizationProfileForRows({
+    targetSpeedInterval,
+    rows: partitionRows,
+    branch,
+    transportProfile: localTransportProfile,
+  });
+  const numeratorPolynomialDiagnostic =
+    h38NumeratorPolynomialDegreeDiagnostics({
+      solveWidthProfile,
+      degrees: [polynomialDegree],
+    })[0];
+  const numeratorResidualProfile = h38NumeratorGraphResidualProfile({
+    solveWidthProfile,
+    numeratorPolynomialDiagnostic,
+  });
+  const localNoiseSamples = uniqueIncreasingSamples([
+    partitionXiInterval[0],
+    intervalMidpoint(partitionXiInterval),
+    partitionXiInterval[1],
+    ...noiseSamplesPerPartition,
+  ]).filter(
+    (sample) =>
+      sample >= partitionXiInterval[0] - 1e-12 &&
+      sample <= partitionXiInterval[1] + 1e-12
+  );
+  const replayVariants = [
+    {
+      variant: "local-n38-graph-only-slope-interval",
+      residual_interval: [0, 0],
+    },
+    {
+      variant: "local-n38-graph-midpoint-residual-slope-interval",
+      residual_interval: numeratorResidualProfile.midpoint_residual_hull,
+    },
+    {
+      variant: "local-n38-graph-interval-residual-slope-interval",
+      residual_interval: numeratorResidualProfile.interval_residual_hull,
+    },
+  ];
+  const variantReplays = replayVariants.map((variant) => {
+    const sampleReplays = localNoiseSamples.flatMap((noise) =>
+      numeratorNoiseSamples.map((numeratorNoise) =>
+        shiftedPressureReplayForNumeratorGraphPoint({
+          context,
+          cell: coarseCell,
+          branch,
+          transportProfile: localTransportProfile,
+          noise,
+          residualProfile: localResidualProfile,
+          numeratorCoefficients: numeratorPolynomialDiagnostic.coefficients,
+          numeratorResidualInterval: variant.residual_interval,
+          numeratorNoise,
+          slopeInterval: coarseBranchRow.h38_solve_slope_interval,
+          slopeMode: "interval",
+          solveSlopeInterval: coarseBranchRow.h38_solve_slope_interval,
+          outerRadius,
+          shiftedIndex,
+          variant: variant.variant,
+        })
+      )
+    );
+    const maxReplay = maxPressureReplay(sampleReplays);
+    const minReplay = minPressureReplay(sampleReplays);
+    return {
+      variant: variant.variant,
+      numerator_residual_interval: variant.residual_interval,
+      numerator_residual_width: intervalWidth(variant.residual_interval),
+      sample_replays: sampleReplays,
+      max_replay: maxReplay,
+      min_replay: minReplay,
+      max_pressure: maxReplay?.pressure ?? null,
+      min_pressure: minReplay?.pressure ?? null,
+    };
+  });
+  const variantByName = Object.fromEntries(
+    variantReplays.map((variant) => [variant.variant, variant])
+  );
+  const graphPressure =
+    variantByName["local-n38-graph-only-slope-interval"]?.max_pressure ?? null;
+  const midpointPressure =
+    variantByName["local-n38-graph-midpoint-residual-slope-interval"]
+      ?.max_pressure ?? null;
+  const intervalPressure =
+    variantByName["local-n38-graph-interval-residual-slope-interval"]
+      ?.max_pressure ?? null;
+  return {
+    partition_index: partitionIndex,
+    partition_count: partitionCount,
+    row_count: partitionRows.length,
+    cell_ids: partitionRows.map((row) => row.cell_id),
+    xi_interval: partitionXiInterval,
+    noise_samples: localNoiseSamples,
+    numerator_noise_samples: numeratorNoiseSamples,
+    h38_numerator_polynomial_diagnostic: numeratorPolynomialDiagnostic,
+    h38_numerator_graph_residual_profile: numeratorResidualProfile,
+    numerator_graph_variant_replays: variantReplays,
+    max_graph_pressure: graphPressure,
+    max_midpoint_residual_pressure: midpointPressure,
+    max_interval_residual_pressure: intervalPressure,
+    interval_to_midpoint_pressure_ratio:
+      finitePositive(intervalPressure) && finitePositive(midpointPressure)
+        ? Number(intervalPressure) / Number(midpointPressure)
+        : null,
+    midpoint_residual_width:
+      numeratorResidualProfile.midpoint_residual_width,
+    interval_residual_width:
+      numeratorResidualProfile.interval_residual_width,
+    midpoint_residual_width_to_numerator_width_ratio:
+      numeratorResidualProfile.midpoint_residual_hull_to_numerator_width_ratio,
+    interval_residual_width_to_numerator_width_ratio:
+      numeratorResidualProfile.interval_residual_hull_to_numerator_width_ratio,
+  };
+}
+
+export function buildH39H38NumeratorGraphLocalPartitionDiagnosticCandidate({
+  targetSpeedInterval = [3.02156, 3.02156007813],
+  branch = "-",
+  rootSubdivisions = 100,
+  outerRadius = 0.001,
+  shiftedIndex = 1,
+  seriesOrder = 60,
+  xiDomain = [-2, 2],
+  polynomialDegree = 2,
+  fineSubcellCount = 16,
+  partitionCounts = [1, 2, 4],
+  noiseSamplesPerPartition = [],
+  numeratorNoiseSamples = [-1, 0, 1],
+  hFreezeStartIndexes = [38, 20, 10, 0],
+} = {}) {
+  const resolvedTargetSpeedInterval = numericInterval(
+    "targetSpeedInterval",
+    targetSpeedInterval
+  );
+  const resolvedXiDomain = numericInterval("xiDomain", xiDomain);
+  const resolvedPolynomialDegree = assertFinitePositiveInteger(
+    "polynomialDegree",
+    polynomialDegree
+  );
+  if (resolvedPolynomialDegree > 3) {
+    throw new Error("polynomialDegree must be at most 3");
+  }
+  const resolvedFineSubcellCount = assertFinitePositiveInteger(
+    "fineSubcellCount",
+    fineSubcellCount
+  );
+  const resolvedPartitionCounts = [...new Set(partitionCounts)].map((count) =>
+    assertFinitePositiveInteger("partitionCounts", count)
+  );
+  resolvedPartitionCounts.sort((left, right) => left - right);
+  if (
+    resolvedPartitionCounts.length === 0 ||
+    resolvedPartitionCounts.some(
+      (count) =>
+        resolvedFineSubcellCount % count !== 0 ||
+        resolvedFineSubcellCount / count < resolvedPolynomialDegree + 1
+    )
+  ) {
+    throw new Error("partitionCounts must divide fineSubcellCount and leave enough local rows");
+  }
+  const resolvedOuterRadius = assertFinitePositiveNumber(
+    "outerRadius",
+    outerRadius
+  );
+  const resolvedShiftedIndex = assertFinitePositiveInteger(
+    "shiftedIndex",
+    shiftedIndex
+  );
+  const context = makeTheta3minusFirstYGdSeriesContext({
+    seriesOrder: assertFinitePositiveInteger("seriesOrder", seriesOrder),
+  });
+  const coarseRows = targetRowsForSubcellCount({
+    targetSpeedInterval: resolvedTargetSpeedInterval,
+    subcellCount: 1,
+    rootSubdivisions,
+  });
+  const fineRows = targetRowsForSubcellCount({
+    targetSpeedInterval: resolvedTargetSpeedInterval,
+    subcellCount: resolvedFineSubcellCount,
+    rootSubdivisions,
+  });
+  if (coarseRows.length !== 1) {
+    throw new Error("local N38 partition diagnostic requires exactly one coarse target row");
+  }
+  if (fineRows.length !== resolvedFineSubcellCount) {
+    throw new Error("local N38 partition diagnostic requires a complete fine subcover");
+  }
+  const coarseRow = coarseRows[0];
+  const coarseBranchRow = branchRowFor(coarseRow, branch);
+  const coarseCell = cellFromCertificateRow(coarseRow);
+  const baselineDiagnostic = pressureDiagnosticForRow({
+    context,
+    row: coarseRow,
+    branch,
+    outerRadius: resolvedOuterRadius,
+    shiftedIndex: resolvedShiftedIndex,
+    hFreezeStartIndexes,
+  });
+  const baselineHRowMidpointReplay =
+    baselineDiagnostic.input_family_replays.find(
+      (replay) => replay.input_family === "h-row-midpoint"
+    ) ?? null;
+  const partitionSummaries = resolvedPartitionCounts.map((partitionCount) => {
+    const partitions = Array.from({ length: partitionCount }, (_, index) =>
+      localN38PartitionDiagnostic({
+        context,
+        coarseCell,
+        coarseBranchRow,
+        targetSpeedInterval: resolvedTargetSpeedInterval,
+        rows: fineRows,
+        branch,
+        partitionCount,
+        partitionIndex: index,
+        polynomialDegree: resolvedPolynomialDegree,
+        outerRadius: resolvedOuterRadius,
+        shiftedIndex: resolvedShiftedIndex,
+        noiseSamplesPerPartition,
+        numeratorNoiseSamples,
+      })
+    );
+    const maxByKey = (key) =>
+      partitions.reduce(
+        (best, partition) =>
+          Number(partition[key]) > Number(best?.[key] ?? -1)
+            ? partition
+            : best,
+        null
+      );
+    const worstGraphPartition = maxByKey("max_graph_pressure");
+    const worstMidpointPartition = maxByKey(
+      "max_midpoint_residual_pressure"
+    );
+    const worstIntervalPartition = maxByKey(
+      "max_interval_residual_pressure"
+    );
+    return {
+      partition_count: partitionCount,
+      local_partition_count: partitions.length,
+      partitions,
+      max_graph_pressure: worstGraphPartition?.max_graph_pressure ?? null,
+      max_midpoint_residual_pressure:
+        worstMidpointPartition?.max_midpoint_residual_pressure ?? null,
+      max_interval_residual_pressure:
+        worstIntervalPartition?.max_interval_residual_pressure ?? null,
+      worst_graph_partition: worstGraphPartition,
+      worst_midpoint_partition: worstMidpointPartition,
+      worst_interval_partition: worstIntervalPartition,
+      interval_to_midpoint_pressure_ratio:
+        finitePositive(worstIntervalPartition?.max_interval_residual_pressure) &&
+        finitePositive(worstMidpointPartition?.max_midpoint_residual_pressure)
+          ? Number(worstIntervalPartition.max_interval_residual_pressure) /
+            Number(worstMidpointPartition.max_midpoint_residual_pressure)
+          : null,
+    };
+  });
+  const bestMidpointPartitionSummary = partitionSummaries.reduce(
+    (best, summary) =>
+      Number(summary.max_midpoint_residual_pressure) <
+      Number(best?.max_midpoint_residual_pressure ?? Infinity)
+        ? summary
+        : best,
+    null
+  );
+  const bestIntervalPartitionSummary = partitionSummaries.reduce(
+    (best, summary) =>
+      Number(summary.max_interval_residual_pressure) <
+      Number(best?.max_interval_residual_pressure ?? Infinity)
+        ? summary
+        : best,
+    null
+  );
+  const hRowMidpointPressure = baselineHRowMidpointReplay?.pressure ?? null;
+  const diagnosis =
+    finitePositive(bestMidpointPartitionSummary?.max_midpoint_residual_pressure) &&
+    finitePositive(bestIntervalPartitionSummary?.max_interval_residual_pressure) &&
+    finitePositive(hRowMidpointPressure) &&
+    Number(bestMidpointPartitionSummary.max_midpoint_residual_pressure) <
+      Number(hRowMidpointPressure) &&
+    Number(bestIntervalPartitionSummary.max_interval_residual_pressure) >
+      1e6 * Number(bestMidpointPartitionSummary.max_midpoint_residual_pressure)
+      ? "local-n38-midpoint-good-raw-hull-artifact"
+      : "local-n38-partition-mixed";
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_NUMERATOR_GRAPH_LOCAL_PARTITION_DIAGNOSTIC_SCHEMA,
+    status:
+      "h39-h38-numerator-graph-local-partition-diagnostic-candidate-emitted",
+    evaluation_level:
+      "candidate-h38-numerator-graph-local-partition-diagnostic",
+    target_speed_interval: resolvedTargetSpeedInterval,
+    branch,
+    shifted_index: resolvedShiftedIndex,
+    y_order:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+      resolvedShiftedIndex,
+    outer_radius: resolvedOuterRadius,
+    xi_domain: resolvedXiDomain,
+    polynomial_degree: resolvedPolynomialDegree,
+    fine_subcell_count: resolvedFineSubcellCount,
+    partition_counts: resolvedPartitionCounts,
+    baseline_independent_interval_pressure:
+      baselineDiagnostic.full_input_replay.pressure,
+    baseline_h_row_midpoint_pressure: hRowMidpointPressure,
+    partition_summaries: partitionSummaries,
+    best_midpoint_partition_summary: bestMidpointPartitionSummary,
+    best_interval_partition_summary: bestIntervalPartitionSummary,
+    best_midpoint_to_h_row_midpoint_pressure_ratio:
+      finitePositive(bestMidpointPartitionSummary?.max_midpoint_residual_pressure) &&
+      finitePositive(hRowMidpointPressure)
+        ? Number(bestMidpointPartitionSummary.max_midpoint_residual_pressure) /
+          Number(hRowMidpointPressure)
+        : null,
+    best_interval_to_best_midpoint_pressure_ratio:
+      finitePositive(bestIntervalPartitionSummary?.max_interval_residual_pressure) &&
+      finitePositive(bestMidpointPartitionSummary?.max_midpoint_residual_pressure)
+        ? Number(bestIntervalPartitionSummary.max_interval_residual_pressure) /
+          Number(bestMidpointPartitionSummary.max_midpoint_residual_pressure)
+        : null,
+    local_partition_diagnosis: diagnosis,
+    candidate_certificate_route:
+      "Local N38 graph partitions keep midpoint residual replay below the h-row-midpoint target, but a raw interval residual hull still reintroduces the obstruction; the next certificate must evaluate the H38 recurrence numerator expression itself and prove a local Taylor remainder.",
+    claim_boundary: {
+      certifies_standard_h38_cover: false,
+      certifies_h38_numerator_graph_enclosure: false,
+      certifies_n38_taylor_remainder_bound: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
 export function buildH39RecurrenceRefinedSubcoverPressureDiagnostic({
   targetSpeedInterval = [3.02156, 3.02156007813],
   branch = "-",
@@ -5638,6 +6036,125 @@ export function validateH39H38NumeratorGraphResidualBudgetDiagnostic(
     diagnostic?.claim_boundary?.retained_branch !== false
   ) {
     errors.push("claim boundary must keep n38 Taylor, shifted source, primitive, and retention closure open");
+  }
+  return errors;
+}
+
+export function validateH39H38NumeratorGraphLocalPartitionDiagnostic(
+  diagnostic
+) {
+  const errors = [];
+  if (
+    diagnostic?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_NUMERATOR_GRAPH_LOCAL_PARTITION_DIAGNOSTIC_SCHEMA
+  ) {
+    errors.push("schema must match h39 h38 numerator graph local partition diagnostic");
+  }
+  if (
+    diagnostic?.status !==
+    "h39-h38-numerator-graph-local-partition-diagnostic-candidate-emitted"
+  ) {
+    errors.push("status must identify a candidate h38 numerator graph local partition diagnostic");
+  }
+  if (
+    diagnostic?.evaluation_level !==
+    "candidate-h38-numerator-graph-local-partition-diagnostic"
+  ) {
+    errors.push("evaluation level must identify candidate h38 numerator graph local partition");
+  }
+  if (
+    !Number.isInteger(diagnostic?.polynomial_degree) ||
+    diagnostic.polynomial_degree < 1 ||
+    diagnostic.polynomial_degree > 3
+  ) {
+    errors.push("polynomial degree must be an integer from 1 through 3");
+  }
+  if (
+    !Number.isInteger(diagnostic?.fine_subcell_count) ||
+    diagnostic.fine_subcell_count < diagnostic.polynomial_degree + 1 ||
+    !Array.isArray(diagnostic?.partition_counts) ||
+    diagnostic.partition_counts.length === 0 ||
+    !diagnostic.partition_counts.every(
+      (count) =>
+        Number.isInteger(count) &&
+        diagnostic.fine_subcell_count % count === 0 &&
+        diagnostic.fine_subcell_count / count >=
+          diagnostic.polynomial_degree + 1
+    )
+  ) {
+    errors.push("fine subcell and partition counts must leave enough local rows");
+  }
+  if (
+    !Number.isInteger(diagnostic?.shifted_index) ||
+    diagnostic.shifted_index < 1 ||
+    diagnostic?.y_order !==
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+        diagnostic.shifted_index
+  ) {
+    errors.push("shifted index and y order must be consistent");
+  }
+  if (
+    !Array.isArray(diagnostic?.partition_summaries) ||
+    diagnostic.partition_summaries.length !==
+      diagnostic.partition_counts.length ||
+    !diagnostic.partition_summaries.every(
+      (summary, index) =>
+        summary.partition_count === diagnostic.partition_counts[index] &&
+        Array.isArray(summary.partitions) &&
+        summary.partitions.length === summary.partition_count &&
+        finitePositive(summary.max_graph_pressure) &&
+        finitePositive(summary.max_midpoint_residual_pressure) &&
+        finitePositive(summary.max_interval_residual_pressure) &&
+        finitePositive(summary.interval_to_midpoint_pressure_ratio) &&
+        summary.partitions.every(
+          (partition) =>
+            Number.isInteger(partition.partition_index) &&
+            partition.partition_count === summary.partition_count &&
+            partition.row_count >= diagnostic.polynomial_degree + 1 &&
+            Array.isArray(partition.xi_interval) &&
+            Array.isArray(partition.numerator_graph_variant_replays) &&
+            partition.numerator_graph_variant_replays.length === 3 &&
+            finitePositive(partition.max_graph_pressure) &&
+            finitePositive(partition.max_midpoint_residual_pressure) &&
+            finitePositive(partition.max_interval_residual_pressure) &&
+            finitePositive(partition.interval_to_midpoint_pressure_ratio) &&
+            finitePositive(partition.midpoint_residual_width_to_numerator_width_ratio) &&
+            finitePositive(partition.interval_residual_width_to_numerator_width_ratio)
+        )
+    )
+  ) {
+    errors.push("partition summaries must report positive local graph, midpoint, and interval pressures");
+  }
+  if (
+    !diagnostic?.best_midpoint_partition_summary ||
+    !diagnostic?.best_interval_partition_summary ||
+    !finitePositive(diagnostic?.best_midpoint_to_h_row_midpoint_pressure_ratio) ||
+    !finitePositive(diagnostic?.best_interval_to_best_midpoint_pressure_ratio)
+  ) {
+    errors.push("best partition summaries and ratios must be positive");
+  }
+  if (
+    ![
+      "local-n38-midpoint-good-raw-hull-artifact",
+      "local-n38-partition-mixed",
+    ].includes(diagnostic?.local_partition_diagnosis)
+  ) {
+    errors.push("local partition diagnosis must be classified");
+  }
+  if (
+    diagnostic?.claim_boundary?.certifies_standard_h38_cover !== false ||
+    diagnostic?.claim_boundary?.certifies_h38_numerator_graph_enclosure !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_n38_taylor_remainder_bound !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    diagnostic?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_continuous_polydisc_primitives !==
+      false ||
+    diagnostic?.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("claim boundary must keep local N38 graph, Taylor, shifted source, primitive, and retention closure open");
   }
   return errors;
 }

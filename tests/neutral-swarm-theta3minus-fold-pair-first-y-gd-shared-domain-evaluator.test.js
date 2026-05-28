@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   buildH39CorrelatedResidualWidthDiagnosticCandidate,
+  buildH39H38NumeratorGraphLocalPartitionDiagnosticCandidate,
   buildH39H38NumeratorGraphResidualBudgetDiagnosticCandidate,
   buildH39H38NumeratorGraphSolveDiagnosticCandidate,
   buildH39H38SolveWidthFactorizationDiagnosticCandidate,
@@ -12,6 +13,7 @@ import {
   buildH39PolynomialHRowGraphResidualDiagnosticCandidate,
   buildH39RecurrenceRefinedSubcoverPressureDiagnostic,
   validateH39CorrelatedResidualWidthDiagnostic,
+  validateH39H38NumeratorGraphLocalPartitionDiagnostic,
   validateH39H38NumeratorGraphResidualBudgetDiagnostic,
   validateH39H38NumeratorGraphSolveDiagnostic,
   validateH39H38SolveWidthFactorizationDiagnostic,
@@ -2247,6 +2249,99 @@ test("h39 h38 numerator graph residual budget gives n38 Taylor target candidate-
       summary.allowed_numerator_residual_width_for_h_row_midpoint_scale >
         summary.midpoint_numerator_residual_width
     );
+  }
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_h38_numerator_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 numerator graph local partitions isolate row-hull failure candidate-only", () => {
+  const diagnostic =
+    buildH39H38NumeratorGraphLocalPartitionDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      outerRadius: 0.001,
+      shiftedIndex: 1,
+      xiDomain: [-2, 2],
+      polynomialDegree: 2,
+      fineSubcellCount: 16,
+      partitionCounts: [1, 2, 4],
+      numeratorNoiseSamples: [-1, 0, 1],
+    });
+
+  assert.deepEqual(
+    validateH39H38NumeratorGraphLocalPartitionDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-numerator-graph-local-partition-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-h38-numerator-graph-local-partition-diagnostic"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.deepEqual(diagnostic.partition_counts, [1, 2, 4]);
+  assert.equal(diagnostic.fine_subcell_count, 16);
+  assert.equal(
+    diagnostic.local_partition_diagnosis,
+    "local-n38-midpoint-good-raw-hull-artifact"
+  );
+  assert.ok(
+    diagnostic.best_midpoint_to_h_row_midpoint_pressure_ratio < 0.5
+  );
+  assert.ok(diagnostic.best_interval_to_best_midpoint_pressure_ratio > 1e7);
+  for (const summary of diagnostic.partition_summaries) {
+    assert.equal(summary.local_partition_count, summary.partition_count);
+    assert.ok(
+      summary.max_midpoint_residual_pressure <
+        diagnostic.baseline_h_row_midpoint_pressure
+    );
+    assert.ok(summary.max_interval_residual_pressure > 1e20);
+    assert.ok(summary.interval_to_midpoint_pressure_ratio > 1e7);
+    for (const partition of summary.partitions) {
+      assert.ok(partition.max_graph_pressure > 0);
+      assert.ok(partition.max_midpoint_residual_pressure > 0);
+      assert.ok(partition.max_interval_residual_pressure > 1e20);
+      assert.ok(
+        partition.midpoint_residual_width_to_numerator_width_ratio < 1e-8
+      );
+      assert.ok(
+        partition.interval_residual_width_to_numerator_width_ratio > 0.99
+      );
+      assert.ok(
+        partition.interval_residual_width_to_numerator_width_ratio < 1.01
+      );
+    }
   }
   assert.equal(
     diagnostic.claim_boundary.certifies_standard_h38_cover,

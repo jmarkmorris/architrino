@@ -1557,6 +1557,20 @@ only $0.00011864454815927154$ of the allowed budget. The coefficient engine
 therefore has a concrete next target: prove an $N_{38}$ Taylor or local
 normal-form remainder below the h-row-midpoint residual budget before applying
 the solve $h_{38}=-N_{38}/S_{37}$.
+\texttt{buildH39H38NumeratorGraphLocalPartitionDiagnosticCandidate} checks
+whether that target can be reached by local partitioning of the already
+exported H38 row fields. On a $16$-subcell producer cover, local quadratic
+$N_{38}$ graphs over $1$, $2$, and $4$ $\xi$ partitions all keep midpoint
+residual replay below the h-row-midpoint target; the best ratio is
+$0.3308706978209664$. The raw interval-residual replay, however, remains near
+$2.5013444686\times10^{20}$ and is $6.970749744386734\times10^7$ above the best
+midpoint-residual replay. This separates two tasks. Local partitioning is
+useful for the graph center, but it cannot repair the row-field interval hull.
+The coefficient engine needs an expression-level provider for the H38
+recurrence numerator: set $h_{38}=0$, evaluate the `sourceEquationSeries`
+coefficient that becomes \texttt{h38\_residual\_before\_solve}, and enclose
+that expression by a directed-rounded Taylor remainder before division by
+$S_{37}$.
 \texttt{computeH39PredecessorHRowProviderBoundaryCandidate} now records that
 boundary explicitly. Given an h38 row, it counts the exported h-interval,
 solve-slope, and residual fields and reports whether a complete
