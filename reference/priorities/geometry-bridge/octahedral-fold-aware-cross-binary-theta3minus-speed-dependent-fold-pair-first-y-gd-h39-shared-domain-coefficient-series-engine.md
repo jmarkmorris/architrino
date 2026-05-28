@@ -1571,6 +1571,140 @@ recurrence numerator: set $h_{38}=0$, evaluate the `sourceEquationSeries`
 coefficient that becomes \texttt{h38\_residual\_before\_solve}, and enclose
 that expression by a directed-rounded Taylor remainder before division by
 $S_{37}$.
+\texttt{evaluateH38RecurrenceNumeratorBeforeSolve} now exposes that numerator
+from the H38 successor itself. It returns the $y^{42}$ coefficient of
+$\delta^2/\nu^2-2+\sin\phi+\sin\delta$ with $h_{38}=0$, together with term
+decomposition, before any division by $S_{37}$.
+\texttt{buildH39H38ExpressionN38DecompositionDiagnosticCandidate} consumes that
+H38-owned helper and verifies that the recomputed expression-level numerator
+matches the exported \texttt{h38\_residual\_before\_solve} row interval up to
+formatted artifact precision. On the live dominant row, the direct numerator
+width scales from $2.9419491126351116\times10^{24}$ on one subcell to
+$1.8386372459721104\times10^{23}$ on sixteen subcells, with observed exponent
+$1.0000158789836409$. The largest term-width contribution is the
+$\sin\delta$ term, with width $1.4301330176653544\times10^{24}$ on the one-piece
+row. The diagnosis is therefore
+\texttt{expression-level-n38-export-confirmed-row-hull-artifact}: the exported
+row interval is faithful to the current expression interval, but that expression
+interval is still a dependency-losing hull. The same diagnostic also evaluates
+the expression on point midpoint rows: the largest midpoint term width is only
+$236$ on the one-piece row, so the raw expression width is about
+$1.2465886070487762\times10^{22}$ times the point-evaluated local term width.
+The next certificate must Taylor enclose the shared $\delta,\phi$ recurrence
+expression itself, especially the high-order sine-term contribution, rather than
+fitting another exported numerator interval field.
+\texttt{buildH39H38ExpressionN38TaylorBudgetDiagnosticCandidate} now makes that
+route quantitative. On the same live target with $1,4,8$ subcells and an
+$8$-sample midpoint fit, the one-piece raw expression width is
+$2.9419491126351116\times10^{24}$ while the point-local term-width scale is only
+$236$, so a uniform width-linear subcover would require about
+$1.245071482894444\times10^{22}$ local cells to reach point scale. The term
+shares on the one-piece worst row are $48.6117523761\%$ from $\sin\delta$,
+$35.9913177414\%$ from $\sin\phi$, and $15.3969298825\%$ from
+$\delta^2/\nu^2$; the sine terms therefore carry $84.6030701175\%$ of the raw
+interval width. A cubic point-midpoint fit for the direct expression has
+maximum residual $4.71369097121875\times10^9$, only
+$1.6022340260660338\times10^{-15}$ of the raw interval width but still far
+above the final point-width scale. Interpreted only as a fourth-order local
+Taylor-scaling estimate, this residual suggests finite local $\xi$ tiling rather
+than brute subcovering: about $67$ tiles for the direct expression, $93$ for
+$\sin\phi$, and $86$ for $\sin\delta$. The closure route is therefore not deeper
+raw partitioning. It is a directed-rounded local Taylor or normal-form provider
+that keeps the shared sine-term dependency through the $y^{42}$ coefficient
+before $h_{38}=-N_{38}/S_{37}$ is formed.
+\texttt{buildH39H38ExpressionN38TaylorEnclosurePrototypeCandidate} now turns
+that estimate into explicit candidate tile rows. For the direct expression plus
+the two sine components, it emits $246$ component-tile rows over the same
+$\xi$ domain, with maximum tile count $93$. Under the candidate fourth-order
+scaling law, the local prototype remainders are $233.91705956302627$ for the
+direct expression, $232.1086233629665$ for $\sin\phi$, and
+$228.95202748895008$ for $\sin\delta$, all below the point-local scale $236$.
+This replaces the impossible $1.245071482894444\times10^{22}$ width-linear
+subcover with a concrete finite derivative-bound target. It still does not
+certify a directed-rounded Taylor remainder; it provides the rows and component
+budgets the directed-rounded certificate must prove.
+\texttt{buildH39H38ExpressionN38TaylorDerivativeBoundPrototypeCandidate} now
+translates those rows into the exact fourth-derivative target form
+$R\le M_4 h^4/24$. The sampled parent-residual proxy reports required-vs-proxy
+headroom below one on every tile: the direct expression uses proxy
+$M_4=7.070536456828125\times10^9$ against required
+$7.133496834\times10^9$, $\sin\phi$ uses
+$2.604439833675\times10^{10}$ against
+$2.6481041153999992\times10^{10}$, and $\sin\delta$ uses
+$1.878579409275\times10^{10}$ against $1.9364088864\times10^{10}$.
+Across all $246$ derivative rows, the worst headroom ratio is
+$0.9911739811992639$ and the prototype-remainder reconstruction gap is only
+$1.2245003661909943\times10^{-16}$ relative. The claim boundary remains
+candidate-only: the next proof step is a directed-rounded same-domain bound on
+these fourth derivatives, not a promoted $R_{\varepsilon,43}$ certificate.
+\texttt{buildH39H38ExpressionN38TaylorFourthDifferenceDiagnosticCandidate} now
+performs the required sanity check against live producer-row fourth differences.
+That check corrects the previous route: the sampled parent-residual proxy is
+not strong enough to serve as a certificate. Across the $8$- and $16$-subcell
+stencils, the maximum finite fourth-derivative estimate is
+$4.300955531321041\times10^{13}$, the maximum ratio against the existing tile
+bound is $4580.928151229552$, and the maximum ratio against the sampled parent
+proxy is $4621.719534734851$. The fourth-difference scale still implies a
+finite path: at the $16$-subcell level the observed retile counts are $552$ for
+the direct expression, $591$ for $\sin\phi$, and $582$ for $\sin\delta$. Thus
+the obstruction is no longer the raw interval box or the impossible brute
+subcover. It is the missing derivative-capable expression-level producer
+normal form: either certify fourth derivatives at the observed finite-difference
+scale, or remove the row-sample fourth variation analytically before applying
+Taylor bounds.
+\texttt{buildH39H38ExpressionN38TaylorCorrectedRetilePrototypeCandidate} now
+turns that correction into an explicit finite retile prototype. With the
+observed fourth-difference $M_4$ scale inflated by a factor of $2$, the
+candidate emits $2051$ corrected rows: $656$ direct-expression rows, $703$
+$\sin\phi$ rows, and $692$ $\sin\delta$ rows. The maximum corrected
+remainder-to-point-width ratio is $0.9993542425323698$, so all corrected rows
+remain below the point-local term-width scale $236$. The artifact remains
+candidate-only and does not certify a directed-rounded Taylor remainder or
+$R_{\varepsilon,43}$ closure. Its value is that the obstruction is now a
+specific directed-rounded $M_4$ enclosure or analytic normal-form proof on
+about two thousand same-domain $\xi$ rows, not an unbounded brute row-hull
+subcover.
+\texttt{buildH39H38ExpressionN38TaylorM4RefinementDiagnosticCandidate} now
+tests whether that base corrected-retile row set is stable under a finer
+$32$-subcell producer-row fourth-difference stencil. It is not stable: the
+refined observed $M_4$ scale grows by as much as $11.480891969090306$, and the
+old base corrected rows would overshoot the point-local scale by as much as
+$11.473478097366211$ under the refined observed derivative. The route remains
+finite. Applying the same observed-$M_4$ inflation factor $2$ to the refined
+$32$-stencil scale gives $3576$ corrected rows: $1162$ direct-expression rows,
+$1140$ $\sin\phi$ rows, and $1274$ $\sin\delta$ rows, with maximum corrected
+remainder-to-point-width ratio $0.9987550516507323$. The corrected blocker is
+therefore not the $2051$ base rows but either a directed-rounded $M_4$ enclosure
+on the refined same-domain rows or an analytic normal form that explains and
+removes the fourth-difference growth before the H38 solve.
+The same diagnostic now replays those fourth-difference rows as fourth divided
+differences on the actual $\xi$ midpoints. That check rejects the simplest
+coordinate-error explanation: on the compared $16$- and $32$-subcell rows, the
+largest nonuniform-to-uniform fourth-derivative relative correction is
+$0.024053174217917833$, while the correction-to-growth-excess ratio is only
+$0.0022949548844558446$. Thus the continued fourth-difference growth is not an
+equal-spacing stencil artifact; the remaining target is producer-image
+smoothness, a local fold-coordinate normal form, or a source-level cancellation
+before a directed-rounded $M_4$ enclosure can close.
+The same refinement path now localizes the growth. The refined worst stencils
+are disjoint from the base worst stencils in all three components, with zero
+overlap fraction. At the $32$-subcell level the worst stencils form one
+contiguous positive-$\xi$ region with hull
+$[0.9376679896182594,1.9375400034828008]$. The maximum growth ratio is still
+the $\sin\delta$ row, $11.480891969090306$, and its growth-increment share is
+$0.43824215565670466$, but the direct expression and $\sin\phi$ rows carry the
+rest of the growth. The obstruction is therefore a shared positive-$\xi$
+producer-image variation, not a single-component nested stencil defect.
+A non-default $64$-stencil probe confirms that the $32$-stencil target is not
+yet stable. Over $16/32/64$ stencils the largest observed fourth-derivative
+estimate rises to $2.1162902030980995\times10^{15}$, with observed retile
+counts $1474$ for the direct expression, $1564$ for $\sin\phi$, and $1563$ for
+$\sin\delta$. This is priority-only evidence rather than a default regression
+test because of runtime cost. Mathematically, it suggests that deeper raw
+stencils are exposing unresolved producer-image curvature or nonsmooth
+coordinate dependence. The next closure step should be a local normal form or
+stencil-convergence argument before another directed-rounded $M_4$ backend is
+treated as final.
 \texttt{computeH39PredecessorHRowProviderBoundaryCandidate} now records that
 boundary explicitly. Given an h38 row, it counts the exported h-interval,
 solve-slope, and residual fields and reports whether a complete

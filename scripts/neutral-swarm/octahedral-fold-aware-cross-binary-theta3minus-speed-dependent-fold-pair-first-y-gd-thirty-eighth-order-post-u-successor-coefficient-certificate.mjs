@@ -267,22 +267,80 @@ function branchSeriesCoordinates({ cell, branchSign, hIntervals }) {
   return { delta, phi };
 }
 
-function sourceEquationSeries({ cell, branchSign, hIntervals }) {
+function sourceEquationSeriesTermDecomposition({ cell, branchSign, hIntervals }) {
   const { delta, phi } = branchSeriesCoordinates({
     cell,
     branchSign,
     hIntervals,
   });
-  return add(
-    add(
-      scaleByInterval(
-        power(delta, 2),
-        root.inverseSpeedSquaredInterval(cell.speed_interval)
-      ),
-      constant(-2)
-    ),
-    add(sinSeries(phi), sinSeries(delta))
+  const inverseSpeedSquared = root.inverseSpeedSquaredInterval(cell.speed_interval);
+  const deltaSquaredSpeed = scaleByInterval(
+    power(delta, 2),
+    inverseSpeedSquared
   );
+  const constantMinusTwo = constant(-2);
+  const sinPhi = sinSeries(phi);
+  const sinDelta = sinSeries(delta);
+  const source = add(
+    add(
+      deltaSquaredSpeed,
+      constantMinusTwo
+    ),
+    add(sinPhi, sinDelta)
+  );
+  return {
+    delta,
+    phi,
+    inverse_speed_squared_interval: root.formatInterval(inverseSpeedSquared),
+    terms: {
+      delta_squared_speed: deltaSquaredSpeed,
+      constant_minus_two: constantMinusTwo,
+      sin_phi: sinPhi,
+      sin_delta: sinDelta,
+    },
+    source,
+  };
+}
+
+function sourceEquationSeries({ cell, branchSign, hIntervals }) {
+  return sourceEquationSeriesTermDecomposition({
+    cell,
+    branchSign,
+    hIntervals,
+  }).source;
+}
+
+export function evaluateH38RecurrenceNumeratorBeforeSolve({
+  cell,
+  branch,
+  branchSign = root.branchSign(branch),
+  hIntervals,
+  includeSourceSeries = false,
+  includeTermDecomposition = true,
+} = {}) {
+  if (!Array.isArray(hIntervals)) {
+    throw new Error("hIntervals must be supplied");
+  }
+  const zeroHIntervals = Array.from({ length: H_COUNT }, (_, index) =>
+    Array.isArray(hIntervals[index]) ? numericInterval(hIntervals[index]) : [0, 0]
+  );
+  zeroHIntervals[TARGET_INDEX] = [0, 0];
+  const decomposed = sourceEquationSeriesTermDecomposition({
+    cell,
+    branchSign,
+    hIntervals: zeroHIntervals,
+  });
+  const numeratorInterval = decomposed.source[TARGET_INDEX + 4];
+  return {
+    branch: branch ?? branchSign,
+    branch_sign: branchSign,
+    target_h_index: TARGET_INDEX,
+    source_y_order: TARGET_INDEX + 4,
+    numerator_interval: numeratorInterval,
+    h38_residual_before_solve: numeratorInterval,
+    source_series: includeSourceSeries ? decomposed.source : undefined,
+    term_decomposition: includeTermDecomposition ? decomposed.terms : undefined,
+  };
 }
 
 function solveH38Interval({ cell, branchSign, branchRow, hIntervals }) {

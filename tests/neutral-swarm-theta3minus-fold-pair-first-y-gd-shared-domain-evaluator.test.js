@@ -7,6 +7,13 @@ import {
   buildH39H38NumeratorGraphResidualBudgetDiagnosticCandidate,
   buildH39H38NumeratorGraphSolveDiagnosticCandidate,
   buildH39H38SolveWidthFactorizationDiagnosticCandidate,
+  buildH39H38ExpressionN38DecompositionDiagnosticCandidate,
+  buildH39H38ExpressionN38TaylorDerivativeBoundPrototypeCandidate,
+  buildH39H38ExpressionN38TaylorEnclosurePrototypeCandidate,
+  buildH39H38ExpressionN38TaylorCorrectedRetilePrototypeCandidate,
+  buildH39H38ExpressionN38TaylorFourthDifferenceDiagnosticCandidate,
+  buildH39H38ExpressionN38TaylorM4RefinementDiagnosticCandidate,
+  buildH39H38ExpressionN38TaylorBudgetDiagnosticCandidate,
   buildH39AffineHRowGraphSubdivisionDiagnosticCandidate,
   buildH39OneNoiseAffineHRowTransportDiagnosticCandidate,
   buildH39PolynomialHRowGraphIntervalResidualDiagnosticCandidate,
@@ -17,6 +24,13 @@ import {
   validateH39H38NumeratorGraphResidualBudgetDiagnostic,
   validateH39H38NumeratorGraphSolveDiagnostic,
   validateH39H38SolveWidthFactorizationDiagnostic,
+  validateH39H38ExpressionN38DecompositionDiagnostic,
+  validateH39H38ExpressionN38TaylorDerivativeBoundPrototype,
+  validateH39H38ExpressionN38TaylorEnclosurePrototype,
+  validateH39H38ExpressionN38TaylorCorrectedRetilePrototype,
+  validateH39H38ExpressionN38TaylorFourthDifferenceDiagnostic,
+  validateH39H38ExpressionN38TaylorM4RefinementDiagnostic,
+  validateH39H38ExpressionN38TaylorBudgetDiagnostic,
   validateH39AffineHRowGraphSubdivisionDiagnostic,
   validateH39OneNoiseAffineHRowTransportDiagnostic,
   validateH39PolynomialHRowGraphIntervalResidualDiagnostic,
@@ -2349,6 +2363,869 @@ test("h39 h38 numerator graph local partitions isolate row-hull failure candidat
   );
   assert.equal(
     diagnostic.claim_boundary.certifies_h38_numerator_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 expression-level N38 diagnostic confirms row export boundary candidate-only", () => {
+  const diagnostic =
+    buildH39H38ExpressionN38DecompositionDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      subcellCounts: [1, 4, 8],
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38ExpressionN38DecompositionDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-expression-n38-decomposition-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-h38-expression-n38-decomposition-diagnostic"
+  );
+  assert.equal(diagnostic.h38_numerator_y_order, 42);
+  assert.deepEqual(diagnostic.subcell_counts, [1, 4, 8]);
+  assert.equal(
+    diagnostic.n38_expression_diagnosis,
+    "expression-level-n38-export-confirmed-row-hull-artifact"
+  );
+  assert.ok(diagnostic.max_direct_export_relative_gap < 1e-10);
+  assert.ok(
+    diagnostic.n38_expression_width_scaling_summary
+      .observed_pressure_scaling_exponent > 0.99
+  );
+  assert.ok(
+    diagnostic.n38_expression_width_scaling_summary
+      .observed_pressure_scaling_exponent < 1.01
+  );
+  assert.ok(
+    diagnostic.dominant_expression_term_by_width.coefficient_width > 1e23
+  );
+  for (const summary of diagnostic.subcell_summaries) {
+    assert.equal(
+      summary.all_direct_recomputations_match_exported_residual,
+      true
+    );
+    assert.ok(summary.max_direct_n38_expression_width > 1e23);
+    assert.equal(summary.row_diagnostics.length, summary.row_count);
+    assert.ok(summary.max_midpoint_expression_term_width < 1e4);
+    assert.ok(summary.direct_width_to_midpoint_term_width_ratio > 1e19);
+    for (const row of summary.row_diagnostics) {
+      assert.equal(row.direct_matches_exported_residual, true);
+      assert.equal(row.expression_terms.length, 4);
+      assert.ok(row.source_width_to_term_width_sum_ratio > 0.1);
+      assert.ok(row.source_width_to_term_width_sum_ratio <= 1.0000000001);
+      assert.ok(row.max_midpoint_expression_term_width < 1e4);
+      assert.ok(row.source_width_to_midpoint_term_width_sum_ratio > 1e19);
+    }
+  }
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_expression_level_n38_provider,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 expression-level N38 Taylor budget identifies local normal-form route", () => {
+  const diagnostic =
+    buildH39H38ExpressionN38TaylorBudgetDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      subcellCounts: [1, 4, 8],
+      fitSubcellCount: 8,
+      polynomialDegrees: [1, 2, 3],
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38ExpressionN38TaylorBudgetDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-expression-n38-taylor-budget-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-h38-expression-n38-local-taylor-budget"
+  );
+  assert.equal(diagnostic.h38_numerator_y_order, 42);
+  assert.deepEqual(diagnostic.subcell_counts, [1, 4, 8]);
+  assert.equal(diagnostic.fit_subcell_count, 8);
+  assert.equal(
+    diagnostic.source_expression_decomposition.n38_expression_diagnosis,
+    "expression-level-n38-export-confirmed-row-hull-artifact"
+  );
+  assert.equal(
+    diagnostic.n38_taylor_budget_diagnosis,
+    "expression-level-n38-local-taylor-route-required"
+  );
+  assert.ok(
+    diagnostic.local_taylor_budget
+      .required_width_shrink_factor_to_point_term_scale > 1e19
+  );
+  assert.ok(
+    diagnostic.local_taylor_budget
+      .estimated_uniform_subcell_count_for_point_term_scale > 1e12
+  );
+  assert.equal(
+    diagnostic.local_taylor_budget.baseline_term_width_shares[0].term,
+    "sin_delta"
+  );
+  assert.ok(diagnostic.local_taylor_budget.sine_term_width_share > 0.8);
+  assert.equal(diagnostic.fit_samples.length, 8);
+  const directFit = diagnostic.component_taylor_fit_diagnostics.find(
+    (component) => component.component === "direct_n38_expression"
+  );
+  assert.ok(directFit);
+  assert.equal(directFit.sample_count, 8);
+  assert.equal(directFit.polynomial_fit_by_degree.length, 3);
+  assert.ok(directFit.best_degree_by_max_abs_residual >= 1);
+  assert.ok(directFit.best_degree_by_max_abs_residual <= 3);
+  assert.ok(Number.isFinite(directFit.best_max_abs_midpoint_residual));
+  assert.ok(
+    directFit.best_estimated_taylor_partition_count_to_point_scale > 1
+  );
+  assert.ok(
+    directFit.best_estimated_taylor_partition_count_to_point_scale < 200
+  );
+  assert.ok(
+    diagnostic.direct_expression_best_fit
+      .best_estimated_taylor_partition_count_to_point_scale < 200
+  );
+  for (const fit of diagnostic.sine_term_best_fits) {
+    assert.ok(fit.best_estimated_taylor_partition_count_to_point_scale > 1);
+    assert.ok(fit.best_estimated_taylor_partition_count_to_point_scale < 200);
+  }
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_expression_level_n38_provider,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 expression-level N38 Taylor enclosure prototype emits finite xi tile rows candidate-only", () => {
+  const diagnostic =
+    buildH39H38ExpressionN38TaylorEnclosurePrototypeCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      subcellCounts: [1, 4, 8],
+      fitSubcellCount: 8,
+      polynomialDegrees: [1, 2, 3],
+      components: ["direct_n38_expression", "sin_phi", "sin_delta"],
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38ExpressionN38TaylorEnclosurePrototype(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-expression-n38-taylor-enclosure-prototype-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-h38-expression-n38-local-taylor-enclosure-prototype"
+  );
+  assert.equal(
+    diagnostic.n38_taylor_enclosure_prototype_diagnosis,
+    "candidate-local-taylor-prototype-replaces-brute-subcover"
+  );
+  assert.equal(diagnostic.component_prototypes.length, 3);
+  assert.ok(diagnostic.prototype_summary.max_tile_count > 50);
+  assert.ok(diagnostic.prototype_summary.max_tile_count < 100);
+  assert.ok(
+    diagnostic.prototype_summary.brute_to_prototype_tile_count_ratio > 1e19
+  );
+  assert.ok(
+    diagnostic.prototype_summary.max_tile_remainder_to_point_width_ratio <= 1
+  );
+  assert.equal(
+    diagnostic.prototype_summary.all_components_pass_point_width_scale,
+    true
+  );
+  const directPrototype = diagnostic.component_prototypes.find(
+    (component) => component.component === "direct_n38_expression"
+  );
+  assert.ok(directPrototype);
+  assert.equal(directPrototype.polynomial_degree, 3);
+  assert.ok(directPrototype.tile_count > 50);
+  assert.ok(directPrototype.tile_count < 80);
+  assert.equal(
+    directPrototype.prototype_tile_rows.length,
+    directPrototype.tile_count
+  );
+  assert.equal(
+    directPrototype.prototype_tile_rows[0].passes_point_width_scale,
+    true
+  );
+  assert.equal(
+    directPrototype.all_tiles_pass_point_width_scale,
+    true
+  );
+  for (const prototype of diagnostic.component_prototypes) {
+    assert.equal(prototype.polynomial_degree, 3);
+    assert.equal(prototype.all_tiles_pass_point_width_scale, true);
+    assert.ok(prototype.inflated_prototype_remainder_to_point_width_ratio <= 1);
+  }
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_expression_level_n38_provider,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 expression-level N38 Taylor derivative-bound prototype emits fourth-derivative targets candidate-only", () => {
+  const diagnostic =
+    buildH39H38ExpressionN38TaylorDerivativeBoundPrototypeCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      subcellCounts: [1, 4, 8],
+      fitSubcellCount: 8,
+      polynomialDegrees: [1, 2, 3],
+      components: ["direct_n38_expression", "sin_phi", "sin_delta"],
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38ExpressionN38TaylorDerivativeBoundPrototype(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-expression-n38-taylor-derivative-bound-prototype-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-h38-expression-n38-local-taylor-derivative-bound-prototype"
+  );
+  assert.equal(
+    diagnostic.n38_taylor_derivative_bound_prototype_diagnosis,
+    "candidate-fourth-derivative-bound-target-finite"
+  );
+  assert.equal(diagnostic.h38_numerator_y_order, 42);
+  assert.equal(
+    diagnostic.derivative_bound_parameters.proof_status,
+    "sampled-proxy-only-not-directed-rounded"
+  );
+  assert.equal(
+    diagnostic.source_taylor_enclosure_prototype.total_component_tile_rows,
+    246
+  );
+  assert.equal(
+    diagnostic.derivative_bound_summary.total_derivative_tile_rows,
+    246
+  );
+  assert.equal(
+    diagnostic.derivative_bound_summary.max_tile_count,
+    diagnostic.source_taylor_enclosure_prototype.max_tile_count
+  );
+  assert.ok(
+    diagnostic.derivative_bound_summary.max_derivative_bound_headroom_ratio <= 1
+  );
+  assert.ok(
+    diagnostic.derivative_bound_summary
+      .max_predicted_tile_remainder_to_point_width_ratio <= 1
+  );
+  assert.ok(
+    diagnostic.derivative_bound_summary.max_prototype_remainder_relative_gap <
+      1e-9
+  );
+  assert.equal(
+    diagnostic.derivative_bound_summary
+      .all_components_derivative_proxy_below_required_bound,
+    true
+  );
+  const directPrototype =
+    diagnostic.component_derivative_bound_prototypes.find(
+      (component) => component.component === "direct_n38_expression"
+    );
+  assert.ok(directPrototype);
+  assert.equal(directPrototype.polynomial_degree, 3);
+  assert.equal(directPrototype.taylor_remainder_order, 4);
+  assert.ok(
+    directPrototype.sampled_parent_residual_implied_fourth_derivative_upper > 0
+  );
+  assert.ok(
+    directPrototype.min_required_fourth_derivative_upper_for_point_scale > 0
+  );
+  assert.ok(directPrototype.max_derivative_bound_headroom_ratio <= 1);
+  assert.equal(
+    directPrototype.all_tiles_derivative_proxy_below_required_bound,
+    true
+  );
+  for (const component of diagnostic.component_derivative_bound_prototypes) {
+    assert.equal(component.polynomial_degree, 3);
+    assert.equal(component.taylor_remainder_order, 4);
+    assert.equal(
+      component.derivative_tile_rows.length,
+      component.tile_count
+    );
+    assert.equal(
+      component.all_tiles_derivative_proxy_below_required_bound,
+      true
+    );
+  }
+  assert.equal(
+    diagnostic.prototype_tile_derivative_rows[0].derivative_bound_status,
+    "sampled-fourth-derivative-proxy-below-required-bound"
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_expression_level_n38_provider,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 expression-level N38 fourth-difference diagnostic rejects optimistic derivative proxy candidate-only", () => {
+  const diagnostic =
+    buildH39H38ExpressionN38TaylorFourthDifferenceDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      stencilSubcellCounts: [8, 16],
+      derivativePrototypeFitSubcellCount: 8,
+      polynomialDegrees: [1, 2, 3],
+      components: ["direct_n38_expression", "sin_phi", "sin_delta"],
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38ExpressionN38TaylorFourthDifferenceDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-expression-n38-taylor-fourth-difference-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-h38-expression-n38-local-taylor-fourth-difference-diagnostic"
+  );
+  assert.equal(
+    diagnostic.n38_taylor_fourth_difference_diagnosis,
+    "finite-fourth-difference-rejects-parent-residual-proxy-as-certificate"
+  );
+  assert.equal(diagnostic.h38_numerator_y_order, 42);
+  assert.equal(
+    diagnostic.fourth_difference_parameters.proof_status,
+    "finite-difference-sanity-check-not-directed-rounded-enclosure"
+  );
+  assert.deepEqual(
+    diagnostic.fourth_difference_parameters.stencil_subcell_counts,
+    [8, 16]
+  );
+  assert.ok(
+    diagnostic.fourth_difference_summary
+      .max_fourth_derivative_to_required_ratio > 1
+  );
+  assert.ok(
+    diagnostic.fourth_difference_summary
+      .max_fourth_derivative_to_sampled_proxy_ratio > 1
+  );
+  assert.ok(
+    diagnostic.fourth_difference_summary
+      .max_nonuniform_fourth_derivative_estimate > 0
+  );
+  assert.ok(
+    diagnostic.fourth_difference_summary
+      .max_nonuniform_to_uniform_fourth_derivative_relative_gap < 0.01
+  );
+  assert.ok(
+    diagnostic.fourth_difference_summary
+      .max_retile_count_required_for_observed_fourth_difference >
+      diagnostic.source_derivative_bound_prototype.max_tile_count
+  );
+  assert.equal(
+    diagnostic.fourth_difference_summary
+      .all_stencils_compatible_with_existing_tile_bound,
+    false
+  );
+  const sixteenSummary = diagnostic.stencil_summaries.find(
+    (summary) => summary.stencil_subcell_count === 16
+  );
+  assert.ok(sixteenSummary);
+  assert.ok(sixteenSummary.summary.max_fourth_derivative_to_required_ratio > 1);
+  assert.equal(sixteenSummary.component_fourth_difference_rows.length, 3);
+  for (const component of sixteenSummary.component_fourth_difference_rows) {
+    assert.equal(component.stencil_subcell_count, 16);
+    assert.equal(component.fourth_difference_rows.length, 12);
+    assert.ok(
+      component.fourth_difference_summary
+        .max_retile_count_required_for_observed_fourth_difference >
+        component.derivative_target_tile_count
+    );
+  }
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_expression_level_n38_provider,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 expression-level N38 corrected-retile prototype emits finite inflated M4 rows candidate-only", () => {
+  const diagnostic =
+    buildH39H38ExpressionN38TaylorCorrectedRetilePrototypeCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      stencilSubcellCounts: [8, 16],
+      derivativePrototypeFitSubcellCount: 8,
+      polynomialDegrees: [1, 2, 3],
+      components: ["direct_n38_expression", "sin_phi", "sin_delta"],
+      observedM4InflationFactor: 2,
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38ExpressionN38TaylorCorrectedRetilePrototype(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-expression-n38-taylor-corrected-retile-prototype-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-h38-expression-n38-local-taylor-corrected-retile-prototype"
+  );
+  assert.equal(
+    diagnostic.n38_taylor_corrected_retile_prototype_diagnosis,
+    "candidate-corrected-retile-restores-finite-point-scale-target"
+  );
+  assert.equal(diagnostic.h38_numerator_y_order, 42);
+  assert.equal(
+    diagnostic.corrected_retile_parameters.proof_status,
+    "observed-fourth-difference-retile-not-directed-rounded"
+  );
+  assert.equal(
+    diagnostic.source_fourth_difference_diagnostic.diagnosis,
+    "finite-fourth-difference-rejects-parent-residual-proxy-as-certificate"
+  );
+  assert.equal(diagnostic.corrected_retile_summary.component_count, 3);
+  assert.ok(
+    diagnostic.corrected_retile_summary.total_corrected_tile_rows >
+      diagnostic.source_fourth_difference_diagnostic
+        .original_derivative_tile_rows
+  );
+  assert.ok(
+    diagnostic.corrected_retile_summary.max_corrected_tile_count >
+      diagnostic.corrected_retile_summary
+        .max_observed_retile_count_from_fourth_difference
+  );
+  assert.ok(diagnostic.corrected_retile_summary.max_corrected_tile_count < 1000);
+  assert.equal(
+    diagnostic.corrected_retile_summary.all_components_pass_point_width_scale,
+    true
+  );
+  assert.ok(
+    diagnostic.corrected_retile_summary
+      .max_corrected_remainder_to_point_width_ratio <= 1
+  );
+  assert.deepEqual(
+    diagnostic.component_corrected_retile_prototypes.map((component) => [
+      component.component,
+      component.observed_retile_count_from_fourth_difference,
+      component.corrected_tile_count,
+    ]),
+    [
+      ["direct_n38_expression", 552, 656],
+      ["sin_phi", 591, 703],
+      ["sin_delta", 582, 692],
+    ]
+  );
+  for (const component of diagnostic.component_corrected_retile_prototypes) {
+    assert.ok(
+      component.corrected_tile_count >
+        component.source_derivative_target_tile_count
+    );
+    assert.ok(
+      component.corrected_tile_count >
+        component.observed_retile_count_from_fourth_difference
+    );
+    assert.equal(
+      component.all_corrected_tiles_pass_point_width_scale,
+      true
+    );
+  }
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_expression_level_n38_provider,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 expression-level N38 M4 refinement rejects base inflation but keeps finite row target", () => {
+  const diagnostic =
+    buildH39H38ExpressionN38TaylorM4RefinementDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      baseStencilSubcellCounts: [8, 16],
+      refinementStencilSubcellCounts: [8, 16, 32],
+      derivativePrototypeFitSubcellCount: 8,
+      polynomialDegrees: [1, 2, 3],
+      components: ["direct_n38_expression", "sin_phi", "sin_delta"],
+      observedM4InflationFactor: 2,
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38ExpressionN38TaylorM4RefinementDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-expression-n38-taylor-m4-refinement-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-h38-expression-n38-local-taylor-m4-refinement-diagnostic"
+  );
+  assert.equal(
+    diagnostic.n38_taylor_m4_refinement_diagnosis,
+    "finer-stencil-rejects-base-m4-inflation-but-refined-retile-remains-finite"
+  );
+  assert.equal(diagnostic.h38_numerator_y_order, 42);
+  assert.deepEqual(
+    diagnostic.m4_refinement_parameters.base_stencil_subcell_counts,
+    [8, 16]
+  );
+  assert.deepEqual(
+    diagnostic.m4_refinement_parameters.refinement_stencil_subcell_counts,
+    [8, 16, 32]
+  );
+  assert.equal(
+    diagnostic.m4_refinement_parameters.proof_status,
+    "finite-difference-refinement-not-directed-rounded-enclosure"
+  );
+  assert.equal(
+    diagnostic.source_fourth_difference_diagnostic
+      .max_retile_count_required_for_observed_fourth_difference,
+    1071
+  );
+  assert.equal(
+    diagnostic.m4_refinement_summary.base_total_corrected_tile_rows,
+    2051
+  );
+  assert.equal(
+    diagnostic.m4_refinement_summary.refined_total_corrected_tile_rows,
+    3576
+  );
+  assert.equal(
+    diagnostic.m4_refinement_summary.max_refined_corrected_tile_count,
+    1274
+  );
+  assert.equal(
+    diagnostic.m4_refinement_summary
+      .baseline_inflation_covers_refined_stencils,
+    false
+  );
+  assert.equal(
+    diagnostic.m4_refinement_summary
+      .all_refined_corrected_rows_pass_point_scale,
+    true
+  );
+  assert.equal(
+    diagnostic.m4_refinement_summary
+      .nonuniform_stencil_correction_explains_growth,
+    false
+  );
+  assert.equal(
+    diagnostic.m4_refinement_summary.fourth_difference_growth_interpretation,
+    "growth-not-explained-by-nonuniform-xi-spacing"
+  );
+  assert.ok(
+    diagnostic.m4_refinement_summary
+      .max_compared_stencil_nonuniform_to_uniform_fourth_derivative_relative_gap <
+      0.05
+  );
+  assert.ok(
+    diagnostic.m4_refinement_summary
+      .nonuniform_correction_to_growth_excess_ratio < 0.01
+  );
+  const growthLocalization =
+    diagnostic.m4_refinement_summary
+      .fourth_difference_growth_localization_summary;
+  assert.equal(growthLocalization.dominant_growth_component, "sin_delta");
+  assert.equal(
+    growthLocalization.max_refined_to_base_observed_m4_ratio_component,
+    "sin_delta"
+  );
+  assert.equal(
+    growthLocalization.growth_distribution_status,
+    "multi-component-fourth-variation-growth"
+  );
+  assert.equal(
+    growthLocalization.localization_interpretation,
+    "growth-shifts-to-contiguous-positive-xi-region-under-refinement"
+  );
+  assert.equal(
+    growthLocalization.refined_worst_stencil_region_status,
+    "refined-worst-stencils-collapse-to-contiguous-positive-xi-region"
+  );
+  assert.equal(
+    growthLocalization.all_refined_worst_stencils_nest_inside_base_worst_spans,
+    false
+  );
+  assert.equal(
+    growthLocalization.refined_worst_stencils_positive_xi_only,
+    true
+  );
+  assert.equal(
+    growthLocalization.refined_worst_stencils_form_contiguous_xi_region,
+    true
+  );
+  assert.equal(growthLocalization.min_refined_worst_stencil_overlap_fraction, 0);
+  assert.deepEqual(growthLocalization.refined_worst_stencil_span_hull, [
+    0.9376679896182594,
+    1.9375400034828008,
+  ]);
+  assert.ok(
+    growthLocalization.dominant_growth_component_increment_share > 0.43
+  );
+  assert.ok(
+    growthLocalization.dominant_growth_component_increment_share < 0.44
+  );
+  assert.ok(
+    diagnostic.m4_refinement_summary.max_refined_to_base_observed_m4_ratio > 10
+  );
+  assert.ok(
+    diagnostic.m4_refinement_summary
+      .max_base_corrected_rows_remainder_ratio_under_refined_observed_m4 > 5
+  );
+  assert.deepEqual(
+    diagnostic.component_m4_refinement_rows.map((row) => [
+      row.component,
+      row.base_corrected_tile_count,
+      row.refined_corrected_tile_count,
+      row.base_corrected_rows_cover_refined_observed_m4_point_scale,
+    ]),
+    [
+      ["direct_n38_expression", 656, 1162, false],
+      ["sin_phi", 703, 1140, false],
+      ["sin_delta", 692, 1274, false],
+    ]
+  );
+  assert.deepEqual(
+    diagnostic.component_m4_refinement_rows.map((row) => [
+      row.component,
+      row.fourth_difference_growth_localization.base_worst_stencil
+        .stencil_index,
+      row.fourth_difference_growth_localization.refined_worst_stencil
+        .stencil_index,
+      row.fourth_difference_growth_localization.growth_localization_status,
+    ]),
+    [
+      [
+        "direct_n38_expression",
+        3,
+        27,
+        "refined-worst-stencil-disjoint-from-base-worst-region",
+      ],
+      [
+        "sin_phi",
+        3,
+        23,
+        "refined-worst-stencil-disjoint-from-base-worst-region",
+      ],
+      [
+        "sin_delta",
+        8,
+        27,
+        "refined-worst-stencil-disjoint-from-base-worst-region",
+      ],
+    ]
+  );
+  for (const row of diagnostic.component_m4_refinement_rows) {
+    assert.equal(
+      row.m4_refinement_status,
+      "base-inflation-undercovers-refined-stencil"
+    );
+    assert.equal(row.refined_corrected_rows_pass_point_scale, true);
+    assert.ok(row.refined_corrected_tile_count > row.base_corrected_tile_count);
+  }
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_expression_level_n38_provider,
     false
   );
   assert.equal(
