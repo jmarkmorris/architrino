@@ -46,6 +46,6 @@ Each mature bridge should include:
 - [Quantum Operator Mapping](./quantum-operator-mapping.md)
 - [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md)
 - [Special Relativity and Deformable Noether Swarms](./special-relativity-noether-swarm.md)
-- [Spacetime Models and the Noether Sea](./spacetime-models-and-noether-sea.md)
+- [Spacetime Models and the Noether sea](./spacetime-models-and-noether-sea.md)
 - [Superposition Mechanism](./superposition-mechanism.md)
 - [Weak Mixing and CKM](./weak-mixing-ckm.md)

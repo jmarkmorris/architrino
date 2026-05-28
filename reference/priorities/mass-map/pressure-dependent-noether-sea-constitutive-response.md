@@ -1,17 +1,17 @@
-# Pressure-Dependent Noether-Sea Constitutive Response Near Atoms
+# Pressure-Dependent Noether Sea Constitutive Response Near Atoms
 
-This priority packet is a report and derivation scaffold, not reader-facing canon. It captures a pressure-dependent Noether-Sea constitutive response near atoms, with heavy atoms in metallic lattices, especially iron and nickel under core pressure, as the first strong test case.
+This priority packet is a report and derivation scaffold, not reader-facing canon. It captures a pressure-dependent Noether sea constitutive response near atoms, with heavy atoms in metallic lattices, especially iron and nickel under core pressure, as the first strong test case.
 
 ## Claim Level
 
 - **Status:** candidate constitutive law with two-material replay scaffold.
-- **Main claim:** local atomic and lattice pressure should retune the surrounding Noether Sea through one shared record for normalized Noether swarm density $n(\mathbf{x},t)$, delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, effective speed $c_{\text{eff}}(\mathbf{x},t)$, Noether-Sea cadence factor $\Gamma_N(\mathbf{x},t)$, and assembly strain.
-- **Open burden:** coefficients must be derived from an accepted Noether swarm branch, pressure-sensitive packing geometry, and the medium-response tensor probe. The first density-side modulus target is staged in [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md). Until then this packet supplies a falsifiable ansatz, not a promoted theorem.
-- **Promotion targets:** [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [Nested Shell Swarm Geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Parameter Ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) after branch and validation support exists.
+- **Main claim:** local atomic and lattice pressure should retune the surrounding Noether sea through one shared record for normalized Noether swarm density $n(\mathbf{x},t)$, delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, effective speed $c_{\text{eff}}(\mathbf{x},t)$, Noether sea cadence factor $\Gamma_N(\mathbf{x},t)$, and assembly strain.
+- **Open burden:** coefficients must be derived from an accepted Noether swarm branch, pressure-sensitive packing geometry, and the medium-response tensor probe. The first density-side modulus target is staged in [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md). Until then this packet supplies a falsifiable ansatz, not a promoted theorem.
+- **Promotion targets:** [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [Nested Shell Swarm Geometry](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-geometry.md), [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Parameter Ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) after branch and validation support exists.
 
 ## Source Signals
 
-- [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md) already fixes $n(\mathbf{x},t)=\rho_{\text{NS}}(\mathbf{x},t)/\rho_{\text{NS},0}$, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$, and the Noether swarm cadence distribution $f_N(\nu,\mathbf{x},t)$.
+- [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md) already fixes $n(\mathbf{x},t)=\rho_{\text{NS}}(\mathbf{x},t)/\rho_{\text{NS},0}$, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$, and the Noether swarm cadence distribution $f_N(\nu,\mathbf{x},t)$.
 - [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) already gives the geometry extraction target
   $$
   \ln\Gamma_N
@@ -22,7 +22,7 @@ This priority packet is a report and derivation scaffold, not reader-facing cano
   \right)^T
   +\mathcal{R}_{\Gamma}.
   $$
-- [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) already requires atomic calculations to distinguish resolved matter assemblies from the complementary local Noether-Sea record inside the same atomic window.
+- [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) already requires atomic calculations to distinguish resolved matter assemblies from the complementary local Noether sea record inside the same atomic window.
 - [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) and [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) already separate reversible medium-dressed inertial response from dissipative resistance through $\mathcal{R}_{\text{tr}}$, and carry the Earth-core iron guardrail that ordinary planetary differentiation has no iron-nucleus source term.
 - [Noether Swarm Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) supplies the current priority-side packing estimate, including packing-limited center density and oblate-envelope support-function contact conditions.
 
@@ -31,7 +31,7 @@ This priority packet is a report and derivation scaffold, not reader-facing cano
 The Tier 2 condensed-matter and analogue-gravity sources do not add a new pressure ontology. They constrain how the candidate law may be written.
 
 1. Analogue-gravity reviews and Visser's acoustic-metric derivation show that an effective metric for perturbations can be a constitutive object built algebraically from medium density, flow, and signal speed. The pressure packet should mirror this discipline: $n$, $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, $S_{ij}$, and $\mathcal{M}_{\text{sea}}^{ab}$ must come from one local pressure-state record, not from observable-local coefficient rows.
-2. Volovik-style $^3$He-A examples are useful only because they carry explicit gap nodes, quasiparticle spectra, and order-parameter textures. The Noether-Sea pressure law may use emergent-medium comparison language only when the Noether swarm branch record and stability gaps are declared.
+2. Volovik-style $^3$He-A examples are useful only because they carry explicit gap nodes, quasiparticle spectra, and order-parameter textures. The Noether sea pressure law may use emergent-medium comparison language only when the Noether swarm branch record and stability gaps are declared.
 3. Topological-defect and vortex-unbinding sources convert pressure-induced structural changes into a threshold statement: a winding, defect, dislocation, edge, or branch invariant can change only when the effective order-parameter map is declared and the branch passes through a gap-closing or transport-threshold event.
 
 The last point adds a guardrail to the pressure law. Let $\mathcal{I}_{\mathrm{def}}$ denote any retained effective defect or topological branch label extracted from a declared projection of $\theta_{\mathrm{sea}}$ or $\mathcal{B}_{\mathrm{lat}}$. A smooth branch-preserving pressure replay must keep
@@ -56,20 +56,20 @@ $$
 \mathcal{R}_{\text{tr}}\ge\mathcal{R}_{\text{tr},*}.
 $$
 
-This keeps Noether-Sea response separate from ordinary dissipative drag and prevents pressure coefficients from hiding a topological or structural phase change.
+This keeps Noether sea response separate from ordinary dissipative drag and prevents pressure coefficients from hiding a topological or structural phase change.
 
 ## Claim Map
 
 | Bucket | Candidate claim |
 | --- | --- |
-| Ontology | Atoms and lattices are matter assemblies embedded in the Noether Sea, not sources of fundamental void deformation. |
+| Ontology | Atoms and lattices are matter assemblies embedded in the Noether sea, not sources of fundamental void deformation. |
 | Derivation/closure target | One pressure response record should determine $n$, $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, strain, and $\mathcal{M}_{\text{sea}}^{ab}$ without separate coefficients per observable. |
 | Effective summary | Heavy metallic lattices are useful high-pressure probes because they combine large local atomic loading, close coordination, and anisotropic strain channels. |
 | Speculation | Iron and nickel may be unusually sensitive because their dense cores and metallic coordination produce a large local pressure-loading functional; this is a test hypothesis, not canon. |
 
 ## Local Pressure-Loading Variable
 
-Work on a coarse-graining scale $\ell$ satisfying the atomic-window logic in [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md): large enough to average many ambient Noether-Sea cores, but small enough not to erase the atomic or lattice environment being tested.
+Work on a coarse-graining scale $\ell$ satisfying the atomic-window logic in [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md): large enough to average many ambient Noether sea cores, but small enough not to erase the atomic or lattice environment being tested.
 
 Define a dimensionless pressure-loading record
 
@@ -79,7 +79,7 @@ $$
 \frac{P_\ell(\mathbf{x},t)}{K_{\text{sea}}},
 $$
 
-where $K_{\text{sea}}$ is the pressure scale of the Noether-Sea compressive response to be derived. A minimal atomic-lattice source model is
+where $K_{\text{sea}}$ is the pressure scale of the Noether sea compressive response to be derived. A minimal atomic-lattice source model is
 
 $$
 P_\ell(\mathbf{x},t)
@@ -94,7 +94,7 @@ $$
 
 Here $A$ labels atoms or nuclei in the local material cell, $Z_A$ is nuclear charge, $C_A$ is a dimensionless local coordination/compression factor, $K_\ell$ is a normalized smoothing kernel, $P_{\text{ext}}^{(\ell)}$ is externally applied pressure or lattice stress resolved at scale $\ell$, and $\eta_Z$ is a scaling exponent to be derived or falsified. Iron and nickel are first-test cases because $Z_A$ is high enough to amplify the local term while metallic coordination keeps $C_A$ large and structured.
 
-This pressure-loading variable is not a new substance. It is a compact way to feed local matter assembly loading into the existing Noether-Sea response variables.
+This pressure-loading variable is not a new substance. It is a compact way to feed local matter assembly loading into the existing Noether sea response variables.
 
 ## Candidate Constitutive Law
 
@@ -157,7 +157,7 @@ $$
 -\kappa_\xi\Pi_\ell^{\parallel-\perp},
 $$
 
-where $\Pi_\ell^{\parallel-\perp}$ is the anisotropic pressure component along the local principal-strain axes. The Noether-Sea delay factor then has the shared-record form
+where $\Pi_\ell^{\parallel-\perp}$ is the anisotropic pressure component along the local principal-strain axes. The Noether sea delay factor then has the shared-record form
 
 $$
 \ln\chi_{\text{sea}}(\mathbf{x},t;\hat{\mathbf{k}})
@@ -181,7 +181,7 @@ In an isotropic weak cell, $S_{ij}^{\mathrm{dev}}\to0$ and the direction label d
 
 ### 3. Local Cadence Shift
 
-The local Noether-Sea cadence factor should consume the same density, delay, and geometry record:
+The local Noether sea cadence factor should consume the same density, delay, and geometry record:
 
 $$
 \ln\Gamma_N
@@ -212,7 +212,7 @@ $$
 -\ln\Gamma_N
 $$
 
-to first order. The expected sign in dense, delay-dominated cells is $\ln\Gamma_N>0$, meaning the local Noether-Sea cadence is stretched and $\Omega_N$ is lowered relative to the weak homogeneous reference. If a fixed-speed compression branch dominates instead, the sign may reverse locally; that reversal must be logged as a branch distinction, not absorbed into a free coefficient.
+to first order. The expected sign in dense, delay-dominated cells is $\ln\Gamma_N>0$, meaning the local Noether sea cadence is stretched and $\Omega_N$ is lowered relative to the weak homogeneous reference. If a fixed-speed compression branch dominates instead, the sign may reverse locally; that reversal must be logged as a branch distinction, not absorbed into a free coefficient.
 
 ### 4. Medium-Response Tensor Handoff
 
@@ -282,7 +282,7 @@ C_A
 \delta P_{\text{ext}}/K_{\text{sea}}.
 $$
 
-The useful comparison is not merely "high pressure changes spectra." Standard condensed-matter physics already expects many pressure shifts. The $\mathbb{A}\mathbb{A}\mathbb{A}$ claim is narrower: after ordinary electronic, magnetic, thermal, and elastic corrections, any remaining Noether-Sea residual must follow one shared pressure-loading record across cadence, signal-delay, strain, and inertial-response channels.
+The useful comparison is not merely "high pressure changes spectra." Standard condensed-matter physics already expects many pressure shifts. The $\mathbb{A}\mathbb{A}\mathbb{A}$ claim is narrower: after ordinary electronic, magnetic, thermal, and elastic corrections, any remaining Noether sea residual must follow one shared pressure-loading record across cadence, signal-delay, strain, and inertial-response channels.
 
 ## Earth-Core Iron Residual Packet
 
@@ -397,7 +397,7 @@ $$
 \right)^T.
 $$
 
-The source term enforces the no-new-iron guardrail. The segregation term tests whether existing iron-bearing assemblies follow the density-sorting functional. The phase term tests whether the metallic branch is favored over a silicate comparison after standard condensed-matter corrections. The cadence term tests whether the same Noether-Sea record that drives pressure response also supplies $\Gamma_N$. The transport term blocks ordinary drag below threshold and requires any above-threshold loss to be logged as excitation, heating, radiation-like shedding, or branch transition.
+The source term enforces the no-new-iron guardrail. The segregation term tests whether existing iron-bearing assemblies follow the density-sorting functional. The phase term tests whether the metallic branch is favored over a silicate comparison after standard condensed-matter corrections. The cadence term tests whether the same Noether sea record that drives pressure response also supplies $\Gamma_N$. The transport term blocks ordinary drag below threshold and requires any above-threshold loss to be logged as excitation, heating, radiation-like shedding, or branch transition.
 
 | Residual component | Already constrained by the corpus | Requires simulation or data bridge |
 | --- | --- | --- |
@@ -414,7 +414,7 @@ The Fe/Cr replay below tests only the shared pressure-response row for a heavy/c
 ## Assumptions
 
 1. The response is branch-preserving below the transport threshold $\mathcal{R}_{\text{tr},*}$.
-2. The coarse-graining scale $\ell$ resolves the atomic or lattice environment while averaging enough ambient Noether-Sea cores to define $n$, $\chi_{\text{sea}}$, and $S_{ij}$.
+2. The coarse-graining scale $\ell$ resolves the atomic or lattice environment while averaging enough ambient Noether sea cores to define $n$, $\chi_{\text{sea}}$, and $S_{ij}$.
 3. The same pressure record feeds the clock/cadence channel, signal-speed channel, strain channel, and mass-response tensor.
 4. The coefficients are environment-local but not observable-local: a coefficient may depend on branch class and material state, but it may not be refit separately for spectral, clock, propagation, and transport tests.
 5. Below threshold, no ordinary dissipative drag term is allowed. Irreversible heating, radiation, or branch transitions must be routed through $\mathcal{R}_{\text{tr}}$ and the event ledger.
@@ -474,7 +474,7 @@ $$
 -\mathbf{y}_{M,r}^{\mathrm{std}},
 $$
 
-where $\mathbf{y}^{\mathrm{std}}$ contains ordinary electronic, magnetic, thermal, and elastic corrections. The retained Noether-Sea residual channels are
+where $\mathbf{y}^{\mathrm{std}}$ contains ordinary electronic, magnetic, thermal, and elastic corrections. The retained Noether sea residual channels are
 
 $$
 \mathbf{y}_{M,r}
@@ -589,7 +589,7 @@ C_L Z_L^{\eta_Z}
 \frac{K_{\text{sea},L}}{K_{\text{sea},H}},
 $$
 
-up to the shared coefficient combination multiplying $\delta\ln\Gamma_N$. The same inferred $\eta_Z$ and packing factor must also work for the $\chi_{\text{sea}}$, $c_{\text{eff}}$, strain, and tensor-response channels. If Fe/Cr or Ni/Co needs a different $\eta_Z$ per channel, the Noether-Sea pressure law fails as a shared constitutive response.
+up to the shared coefficient combination multiplying $\delta\ln\Gamma_N$. The same inferred $\eta_Z$ and packing factor must also work for the $\chi_{\text{sea}}$, $c_{\text{eff}}$, strain, and tensor-response channels. If Fe/Cr or Ni/Co needs a different $\eta_Z$ per channel, the Noether sea pressure law fails as a shared constitutive response.
 
 ### Replay Packet Fields
 
@@ -608,7 +608,7 @@ up to the shared coefficient combination multiplying $\delta\ln\Gamma_N$. The sa
 
 ### Replay Reading
 
-- **Pass:** $\mathcal{R}_{\mathrm{row}}\le\epsilon_{\mathrm{row}}$, $\mathcal{R}_{\mathrm{split}}=0$, and $\mathcal{R}_{\mathrm{null}}^{P}\le\epsilon_P$. The pressure law remains a viable Noether-Sea constitutive candidate.
+- **Pass:** $\mathcal{R}_{\mathrm{row}}\le\epsilon_{\mathrm{row}}$, $\mathcal{R}_{\mathrm{split}}=0$, and $\mathcal{R}_{\mathrm{null}}^{P}\le\epsilon_P$. The pressure law remains a viable Noether sea constitutive candidate.
 - **Demote:** the residual channels can be fit only by material-specific rows $B_H$ and $B_L$. The effect should be treated as ordinary material-specific condensed-matter correction unless a branch transition explains the split.
 - **Fail:** any fit that passes pressure residuals by violating birefringence, dispersion, preferred-frame, clock/signal, or transport-threshold bounds is rejected by the shared closure record.
 - **Bound-only result:** if the residual channels are consistent with zero, the replay still gives upper bounds on $a_S$, $m_S$, $\eta_Z$, and the pressure sensitivity of $\Gamma_N$.
@@ -623,4 +623,4 @@ The first empty empirical packet is [Fe/Cr Empirical Pressure Replay Skeleton](p
 
 The coefficient-side closure packet is [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md). It derives the branch-conditional isotropic and anisotropic pressure combinations for $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, and $\mathcal{M}_{\text{sea}}^{ab}$, and records the null-sector bounds that prevent the replay from fitting separate observable-local pressure rows.
 
-The density-modulus packet is [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md). It derives $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, $s_n=1-n/n_{\max}^{\mathrm{obl}}$, a packing-limited pressure law, and support-function scaling targets for dense metallic replay rows.
+The density-modulus packet is [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md). It derives $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, $s_n=1-n/n_{\max}^{\mathrm{obl}}$, a packing-limited pressure law, and support-function scaling targets for dense metallic replay rows.

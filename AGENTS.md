@@ -47,9 +47,16 @@ This document distinguishes three audience scopes:
 
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 
+#### Generated Markdown
+
+- Do not manually edit generated markdown under `content/generated/markdown/` unless the generator is missing, stale, or broken and the manual edit is explicitly called out.
+- Prefer editing canonical source files under `content/markdown/aaa/`, then regenerate derived markdown with `node scripts/build-textbook-md-pdf.mjs --write`.
+- If scene graph, markdown index, or textbook TOC artifacts drift, regenerate them with `node scripts/build-scene-graph.mjs --write --strict`.
+- After regeneration, run the corresponding `--check` commands before reporting the work complete.
+
 ### Current Core Theory Focus
 
-- Default high-value work is now core geometrical theory closure: master-equation closure, potential/action proof programs, certified branch geometry, executable simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell swarm causal closure, Lorentz/effective-metric recovery, photon closure, and Noether-Sea constitutive response.
+- Default high-value work is now core geometrical theory closure: master-equation closure, potential/action proof programs, certified branch geometry, executable simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell swarm causal closure, Lorentz/effective-metric recovery, photon closure, and Noether sea constitutive response.
 - Bias substantial theory sessions toward one hard mathematical artifact: a definition, equation, lemma, invariant, proof route, branch certificate, simulation target with variables, or falsifiable closure condition.
 - Treat broad prose coverage, cross-linking, app/UI work, presentation work, and new infrastructure as secondary unless the operator/developer explicitly selects them or they directly unblock the current core geometry target.
 - When multiple possible improvements compete, choose the one that most reduces mathematical uncertainty in the current proof stack rather than the one that merely improves organization or presentation.

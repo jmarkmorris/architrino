@@ -42,7 +42,7 @@
   "theta_sea_records": [
     {
       "theta_sea_id": "theta_core_mock_v1",
-      "rho_core": 1.18,
+      "rho_NS": 1.18,
       "n": 1.18,
       "chi_sea": 1.12,
       "ln_Gamma_N": 0.095,

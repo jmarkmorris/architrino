@@ -35,7 +35,7 @@ Q_{ab},\mathcal{Z}^{ab},\mathcal{M}_{\mathrm{sea}}^{ab}
 \right)
 $$
 
-be the retained branch state over a local Noether-Sea/environment record $\theta$. Root-regular means that the active causal-root ledger
+be the retained branch state over a local Noether sea/environment record $\theta$. Root-regular means that the active causal-root ledger
 
 $$
 \mathcal{A}_B(a;\theta)
@@ -86,7 +86,7 @@ P^\perp\widetilde{\mathbf{F}}_i,\,
 \right),
 $$
 
-where the entries are, respectively, the transverse delayed-force row, speed-clock work row if $\nu$ is retained, support-work row, event-endpoint row, and Noether-Sea exchange row. The finite-mode virtual-work one-form is
+where the entries are, respectively, the transverse delayed-force row, speed-clock work row if $\nu$ is retained, support-work row, event-endpoint row, and Noether sea exchange row. The finite-mode virtual-work one-form is
 
 $$
 \omega_B
@@ -128,7 +128,7 @@ $$
 \right\rangle .
 $$
 
-The last four pairings are zero only when the corresponding variables are not retained by the branch chart. They must not be silently omitted when speed factors, support endpoints, event variables, or Noether-Sea exchange terms participate in the residual. Otherwise the curl test is testing a truncated one-form rather than the branch response.
+The last four pairings are zero only when the corresponding variables are not retained by the branch chart. They must not be silently omitted when speed factors, support endpoints, event variables, or Noether sea exchange terms participate in the residual. Otherwise the curl test is testing a truncated one-form rather than the branch response.
 
 Dimensionful normalization may multiply $\omega_B$ by the same scale used by the action row, for example $R_*E_\epsilon(R_*)/c_f$. The curl test is unchanged by a nonzero constant normalization, but the reported branch action must state the chosen normalization.
 
@@ -226,7 +226,7 @@ The curl result changes the permitted claim level.
 | `response-geometry-open` | $\mathcal{K}_{B}^{\mathrm{geom}}$ is computed but $\mathcal{R}_{\mathrm{curl}}^{B}$ is not computed | Branch-local kinematic/response geometry only |
 | `response-geometry-curl-open` | $\mathcal{R}_{\mathrm{curl}}^{B}>\epsilon_{\mathrm{curl}}$ on the retained root stratum | Geometry export may remain response-level, but no scalar branch action, action-derived scale, or Noether closure is claimed |
 | `action-compatible-response` | $\mathcal{R}_{\mathrm{curl}}^{B}\le\epsilon_{\mathrm{curl}}$ on one shared root ledger | A local scalar action $S_B$ may be reconstructed up to a constant on a simply connected chart |
-| `action-noether-export-ready` | curl passes and the charge, energy, momentum, angular-momentum, event, source, and Noether-Sea rows close on the same ledger | The response can feed observer-level ADM/Cartan projection |
+| `action-noether-export-ready` | curl passes and the charge, energy, momentum, angular-momentum, event, source, and Noether sea rows close on the same ledger | The response can feed observer-level ADM/Cartan projection |
 
 Equivalently, curl failure implies
 

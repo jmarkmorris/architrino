@@ -259,13 +259,13 @@ The universe does not require a coordinate frame; theory and simulation use one 
 
 ## Complete-State and Physical-Observer Access
 
-This final distinction separates substrate ontology, complete-state reconstruction, and effective observer inference. The substrate contains architrinos, causal wakes, absolute time, the Euclidean void, and contents of the Noether Sea. The coordinate frame is inferred from that complete record. Physical Observers access only effective records through assembly clocks, rulers, signals, and retained apparatus states.
+This final distinction separates substrate ontology, complete-state reconstruction, and effective observer inference. The substrate contains architrinos, causal wakes, absolute time, the Euclidean void, and contents of the Noether sea. The coordinate frame is inferred from that complete record. Physical Observers access only effective records through assembly clocks, rulers, signals, and retained apparatus states.
 
 **Complete-state reconstruction:**
 The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
 
 **Physical Observer access:**
-Physical Observers cannot directly measure the complete source-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether Sea. They measure:
+Physical Observers cannot directly measure the complete source-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether sea. They measure:
 - **Proper time** $\tau$, not absolute time $t$
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration

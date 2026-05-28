@@ -203,7 +203,7 @@ Branching accounts also face a representation discipline that is easy to underst
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**, though not yet fully solved. The project's proposed move is to treat measurement not as a primitive discontinuity but as finite-time threshold resolution in a deterministic, path-history-dependent substrate. On that picture, the measured system and the apparatus are assemblies governed by the same underlying microdynamics. What standard quantum language calls collapse is reinterpreted as the crossing of a metastable separatrix into one attractor basin under structured causal interaction, with macroscopic irreversibility arising from dissipation into the surrounding Noether Sea.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**, though not yet fully solved. The project's proposed move is to treat measurement not as a primitive discontinuity but as finite-time threshold resolution in a deterministic, path-history-dependent substrate. On that picture, the measured system and the apparatus are assemblies governed by the same underlying microdynamics. What standard quantum language calls collapse is reinterpreted as the crossing of a metastable separatrix into one attractor basin under structured causal interaction, with macroscopic irreversibility arising from dissipation into the surrounding Noether sea.
 
 This makes transition relevance extremely high. If a substrate account can derive effective quantum statistics while explaining outcome fixation as a causal process, eliminate the Heisenberg cut as a fundamental division, and show how apparent collapse emerges from one continuous dynamics, it would address one of the central foundational crises.
 
@@ -351,7 +351,7 @@ The repair space also reveals a methodological danger. A theory can be mathemati
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted as a comparison problem**, not as an imported ontology. The Euclidean void does not expand, and there is no native boundary CFT living at spatial infinity. What observers summarize as de Sitter-like behavior must instead be recovered from Noether-Sea evolution, clock-rate comparison, redshift transport, horizon-limited access, and finite observer records.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted as a comparison problem**, not as an imported ontology. The Euclidean void does not expand, and there is no native boundary CFT living at spatial infinity. What observers summarize as de Sitter-like behavior must instead be recovered from Noether sea evolution, clock-rate comparison, redshift transport, horizon-limited access, and finite observer records.
 
 A compact closure target is an observer-accessible de Sitter comparison ledger. For a Physical Observer $O$, let the relevant coarse state be written schematically as
 
@@ -367,7 +367,7 @@ S_{\mathrm{out}}^{(O)}(t)
 \right),
 $$
 
-where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf{x},t)$ is physical Noether swarm density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether-Sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether-Sea state map
+where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf{x},t)$ is physical Noether swarm density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether sea state map
 
 $$
 \mathcal{F}_{\mathrm{sea}}\!\left[\mathcal{Q}_{\mathrm{dS}}^{(O)}(t)\right]
@@ -383,7 +383,7 @@ that matches late-time expansion, horizon entropy, CMB/BAO/SN/growth benchmarks,
 
 ### What Would Count As Resolution
 
-Resolution would require a quantum-gravity account of late-time cosmological horizons that preserves the consistency lessons of AdS/CFT while working in the observed de Sitter-like regime. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that means deriving the observer-level $H_{\mathrm{eff}}(t)$, $w_{\mathrm{eff}}(t)$, horizon-access entropy, and structure-growth behavior from the same Noether-Sea variables used in local gravity, radiation, and reaction ledgers. The long-term relevance of this crisis is as a gate against false confidence: mathematical control in a comparison spacetime is not yet ontological closure of the observed universe.
+Resolution would require a quantum-gravity account of late-time cosmological horizons that preserves the consistency lessons of AdS/CFT while working in the observed de Sitter-like regime. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that means deriving the observer-level $H_{\mathrm{eff}}(t)$, $w_{\mathrm{eff}}(t)$, horizon-access entropy, and structure-growth behavior from the same Noether sea variables used in local gravity, radiation, and reaction ledgers. The long-term relevance of this crisis is as a gate against false confidence: mathematical control in a comparison spacetime is not yet ontological closure of the observed universe.
 
 ---
 
@@ -463,11 +463,11 @@ Standard repairs include treating vacuum properties as field-theoretic state str
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether Sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. The companion bridge [Substance, Structure, and the Plenum of Potential](substance-structure-and-potential.md) adds the further distinction between primitive architrino substance and causal wake structure. This does not recover an older medium theory by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, causal wake history, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted**. The theory distinguishes the fixed Euclidean void from the physical medium that occupies it. In that vocabulary, the void is the geometric container, the Noether sea is the constitutive medium whose organized state is summarized as spacetime behavior at the observer level, and matter assemblies are higher-order organizations within the same constitutive world. The companion bridge [Substance, Structure, and the Plenum of Potential](substance-structure-and-potential.md) adds the further distinction between primitive architrino substance and causal wake structure. This does not recover an older medium theory by simple relabeling. It instead proposes a disciplined separation between geometry, occupancy, dynamical medium response, causal wake history, and effective observer-level metric behavior. Transition relevance is high because this crisis exposes a recurring hesitation in modern physics: admitting effective structure while refusing the corresponding substrate language.
 
 ### What Would Count As Resolution
 
-Resolution would require a concrete derivation showing how vacuum-like behavior, effective metric phenomena, and at least some dark-sector-like residuals arise from a shared substrate rather than from an unexplained emptiness. It would also need to distinguish clearly between geometric void, Noether-Sea organization, and matter assembly, and to specify when observed anomalies should be attributed to additional occupants versus constitutive response of the Noether Sea itself. The long-term relevance is likely as a signpost to correct ontological language. Once clarified, "empty space" would survive only as an effective description of a particular regime, not as literal absence.
+Resolution would require a concrete derivation showing how vacuum-like behavior, effective metric phenomena, and at least some dark-sector-like residuals arise from a shared substrate rather than from an unexplained emptiness. It would also need to distinguish clearly between geometric void, Noether sea organization, and matter assembly, and to specify when observed anomalies should be attributed to additional occupants versus constitutive response of the Noether sea itself. The long-term relevance is likely as a signpost to correct ontological language. Once clarified, "empty space" would survive only as an effective description of a particular regime, not as literal absence.
 
 ---
 

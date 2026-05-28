@@ -114,7 +114,7 @@ The required predicates are:
 | $P_{\mathrm{tail}}$ | support-complete tail exclusion or assimilation for every source pair and every retained node |
 | $P_{\mathrm{dyn}}$ | coupled bounded-speed dynamics or fixed-speed special-slice dynamics on the same root ledger |
 | $P_{\Gamma}$ | action-derived branch scale $\Gamma_B$ or rejected fit-only scale with no retention |
-| $P_{\mathrm{Noether}}$ | energy, momentum, angular momentum, charge, source provenance, and Noether-Sea exchange rows from one action/event ledger |
+| $P_{\mathrm{Noether}}$ | energy, momentum, angular momentum, charge, source provenance, and Noether sea exchange rows from one action/event ledger |
 | $P_{\mathrm{event}}$ | self-hit, support-boundary, root-fold, topology-change, central-hollow, and endpoint exchange events statused |
 | $P_{\mathrm{stab}}$ | root-ledger-preserving variational equation, monodromy or return-map row, neutral-mode quotient, and stability status |
 | $P_{\mathrm{conv}}$ | finite-mode convergence, mesh-refinement proof, or direct curve-level certificate |

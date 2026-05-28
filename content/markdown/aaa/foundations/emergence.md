@@ -28,7 +28,7 @@ The stability of an assembly is therefore dynamic rather than static. It depends
 
 ### Context as Constraint on Basin Selection
 
-Higher-level context does not add a rival ontology to the lower-level dynamics. It selects boundary conditions, admissible branch charts, finite memory windows, and effective constraints for the same architrino-level flow. In this section, context means a physical surrounding state that restricts which histories are available, not an independent causal agent. For a regularized chart, fix $\eta>0$, a memory horizon $h$, and a record window $W=[0,T]$. Let $\mathcal{H}_{\eta,h}$ be a path-history phase space compatible with the regularized master-equation assumptions, let $\Phi_t^c$ denote the resulting delayed flow under context $c$, let $\Pi_L$ expose the lower-level data used by a higher-level description, and let $\Gamma_{\mathrm{adm}}(c)$ collect the branch charts admitted by the surrounding assembly or Noether-Sea context. The context-restricted history set is then
+Higher-level context does not add a rival ontology to the lower-level dynamics. It selects boundary conditions, admissible branch charts, finite memory windows, and effective constraints for the same architrino-level flow. In this section, context means a physical surrounding state that restricts which histories are available, not an independent causal agent. For a regularized chart, fix $\eta>0$, a memory horizon $h$, and a record window $W=[0,T]$. Let $\mathcal{H}_{\eta,h}$ be a path-history phase space compatible with the regularized master-equation assumptions, let $\Phi_t^c$ denote the resulting delayed flow under context $c$, let $\Pi_L$ expose the lower-level data used by a higher-level description, and let $\Gamma_{\mathrm{adm}}(c)$ collect the branch charts admitted by the surrounding assembly or Noether sea context. The context-restricted history set is then
 
 $$
 \mathcal K_c
@@ -55,7 +55,7 @@ B_k^W(c)
 \{\phi\in\mathcal K_c\mid \Pi_{\mathrm{br}}\Phi_T^c(\phi)=k,\ \Phi_s^c(\phi)\in\mathcal K_c\ \text{for }0\le s\le T\}.
 $$
 
-The measure $\mu_c$ must come from a declared preparation, return section, coarse-graining, or unresolved Noether-Sea occupation rule; it is not an external probability assigned after the outcome. With that rule fixed, the context-conditioned branch weight is
+The measure $\mu_c$ must come from a declared preparation, return section, coarse-graining, or unresolved Noether sea occupation rule; it is not an external probability assigned after the outcome. With that rule fixed, the context-conditioned branch weight is
 
 $$
 P_c(k)=\mu_c(B_k^W(c)).
@@ -73,7 +73,7 @@ Changing $c$ can shift the inferred branch weights $P_c(k)$ by moving basin boun
 
 ### Context Changes and Energy Ledger
 
-A change in context is not a free semantic relabeling. If a surrounding assembly or Noether-Sea state changes from $c$ to $c'$, the emergence claim is admissible only when the changed constraints alter the accessible basin support and the change can be accounted for by the same energy and provenance bookkeeping used elsewhere in the theory. The ontology-level rule remains architrino motion plus causal wakes; the effective level records which assembly branches become available.
+A change in context is not a free semantic relabeling. If a surrounding assembly or Noether sea state changes from $c$ to $c'$, the emergence claim is admissible only when the changed constraints alter the accessible basin support and the change can be accounted for by the same energy and provenance bookkeeping used elsewhere in the theory. The ontology-level rule remains architrino motion plus causal wakes; the effective level records which assembly branches become available.
 
 For a candidate assembly branch $B_k^W$, a clean opening criterion is
 
@@ -91,7 +91,7 @@ $$
 \mathsf e=(X,I_{\mathsf e},Y_{\mathsf e}),
 $$
 
-where $X$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether-Sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law; it is the energy component of the event ledger,
+where $X$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law; it is the energy component of the event ledger,
 
 $$
 \Delta_E(\mathsf e)
@@ -111,7 +111,7 @@ W_{\partial\Omega}
 =0.
 $$
 
-Here $K_{\mathrm{mech}}$ is the mechanical kinetic energy of the retained architrino or assembly degrees of freedom, the subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is work crossing the retained subsystem boundary. The term $E_{\mathrm{sea}}$ records retained Noether-Sea energy changes. The no-double-counting rule is explicit: a Noether-Sea update included in retained $E_{\mathrm{sea}}$ must not also appear as an outgoing row in $Y_{\mathsf e}$, while a Noether-Sea change exported outside the retained subsystem belongs in $Y_{\mathsf e}$ rather than in retained $E_{\mathrm{sea}}$. If a local potential reconstruction is used, it may replace $E_{\text{wake}}$ as an equivalent work-integral account on the declared window; it must not be added as a second independent energy store without a crosswalk. Radiation, recoil, reaction products, remnant excitation, and unresolved medium updates must be named inside $Y_{\mathsf e}$ and closed through [Reaction Ledger and Channel Closure](../validation/reaction-ledger.md) rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
+Here $K_{\mathrm{mech}}$ is the mechanical kinetic energy of the retained architrino or assembly degrees of freedom, the subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is work crossing the retained subsystem boundary. The term $E_{\mathrm{sea}}$ records retained Noether sea energy changes. The no-double-counting rule is explicit: a Noether sea update included in retained $E_{\mathrm{sea}}$ must not also appear as an outgoing row in $Y_{\mathsf e}$, while a Noether sea change exported outside the retained subsystem belongs in $Y_{\mathsf e}$ rather than in retained $E_{\mathrm{sea}}$. If a local potential reconstruction is used, it may replace $E_{\text{wake}}$ as an equivalent work-integral account on the declared window; it must not be added as a second independent energy store without a crosswalk. Radiation, recoil, reaction products, remnant excitation, and unresolved medium updates must be named inside $Y_{\mathsf e}$ and closed through [Reaction Ledger and Channel Closure](../validation/reaction-ledger.md) rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
 
 ### Assembly Theory and Recursion
 
@@ -131,8 +131,8 @@ The recursive picture is easiest to read as a bottom-up construction ladder. The
 3. **First bound assembly candidate:** a stable orbiting electrino:positrino binary is the first bound assembly once its branch stability certificate is supplied.
 4. **Nested shell swarms:** binaries can capture into larger nested systems, giving isolated binaries, shell swarms, and nested shell swarms with progressively stronger shielding structure.
 5. **Noether swarm stabilization:** the nested shell swarm is the first fully three-dimensional shielded Noether swarm scaffold; see [Noether Swarm](../noether-swarm/noether-swarm.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
-6. **Fermions with axial layers:** a nested shell swarm plus a six-site axial layer is the working map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same swarm architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether Sea](../assemblies/particle-masses.md).
-7. **Collective medium:** larger balanced populations of neutral swarms organize into the [Noether Sea](../spacetime/noether-sea.md), so the Noether Sea is a higher-order collective state of neutral swarms rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Spacetime Assemblies](../spacetime/spacetime-assemblies.md).
+6. **Fermions with axial layers:** a nested shell swarm plus a six-site axial layer is the working map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same swarm architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md).
+7. **Collective medium:** larger balanced populations of neutral swarms organize into the [Noether sea](../spacetime/noether-sea.md), so the Noether sea is a higher-order collective state of neutral swarms rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md).
 8. **Bosonic channels:** propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating pro/anti planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../interactions/gauge-structure-emergence.md).
 9. **Composite matter and reactions:** nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
 
@@ -147,17 +147,17 @@ When this corpus says that something "emerges," the claim should identify four p
 3. **Regime:** where the emergent description is expected to hold.
 4. **Breakdown:** what changes outside that regime.
 
-For example, Lorentz-like behavior is an emergence claim only when the text names the moving-assembly deformation law, the clock-period renormalization law, the Noether-Sea response mechanism, and the coefficient or theorem target that would suppress preferred-frame leakage. The claim should also state the weak-gradient or low-energy regime where the effective law is expected to hold, and identify the self-hit, separator, or strong-field conditions where the approximation can fail.
+For example, Lorentz-like behavior is an emergence claim only when the text names the moving-assembly deformation law, the clock-period renormalization law, the Noether sea response mechanism, and the coefficient or theorem target that would suppress preferred-frame leakage. The claim should also state the weak-gradient or low-energy regime where the effective law is expected to hold, and identify the self-hit, separator, or strong-field conditions where the approximation can fail.
 
 This rule keeps emergence from becoming a placeholder. It is acceptable to use emergence as a programmatic claim, but the surrounding prose must say whether the mechanism is derived, simulated, conjectural, or only a routing target.
 
 Just as important, the ladder should not be read as a single unbranched stack after the Noether swarm appears. Once stable swarms exist, three descriptive branches open at once:
 
 -   **Matter branch:** Noether swarms carrying axial layers yield fermions and then larger composites.
--   **Medium branch:** dense balanced populations of neutral swarms yield the Noether Sea.
+-   **Medium branch:** dense balanced populations of neutral swarms yield the Noether sea.
 -   **Interaction branch:** phase-locked disturbances and exchange corridors yield effective bosonic behavior.
 
-This separation of branches helps keep levels distinct. The theory does not place a photon, a fermion axial layer, and the Noether Sea on the same explanatory rung; they are different organizations of the same underlying ingredients.
+This separation of branches helps keep levels distinct. The theory does not place a photon, a fermion axial layer, and the Noether sea on the same explanatory rung; they are different organizations of the same underlying ingredients.
 
 ### Emergent Measures and Stability Markers
 
@@ -165,7 +165,7 @@ The most useful observer-level quantities enter only after assemblies have forme
 
 -   **Angular momentum:** derivation target. The mechanism is organized binary circulation and ordered orientation data; the mapping is through the return-period phase and angular-momentum ledger; the regime is stable or metastable closed cycles; the breakdown occurs at separator crossings, root-ledger changes, or dissociation.
 -   **Chirality:** derivation target. The mechanism is ordered-frame precession and causal-writhe parity; the mapping is through the Noether swarm closure label; the regime is branch-preserving deformation; the breakdown occurs when a causal-root bifurcation or reconnection changes the handed branch.
--   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is trapped internal causal history, shielding, and Noether-Sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether-Sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
+-   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is a closed internal causal-history ledger, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
 In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
 

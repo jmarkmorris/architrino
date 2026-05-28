@@ -40,7 +40,7 @@ The reader-facing Bell chapter should stop at the closure target, obstruction, a
 | Ontology | A pair-creation event leaves a definite pair-provenance ledger in the substrate history. The ledger is part of the same absolute-time causal-wake evolution as the daughter assemblies and apparatus records. |
 | Derivation / closure target | Derive a source measure $\rho_{\mathrm{src}}(\Pi_{AB}|P_{\mathrm{src}})$ and joint record basins $B_{ab}^{\hat{\mathbf{m}}_A,\hat{\mathbf{m}}_B}$ from the angular-momentum ledger, detector kernels, and finite record window. |
 | Effective summary | The observer-level singlet ket and Bell probability table are target summaries. They may be used as benchmarks, not as source-measure definitions. |
-| Speculation | Any claim that pair provenance has a second Noether-Sea compliance coarse-graining remains discussion-scoped until a local statistic is derived and passes the no-signaling guardrail. |
+| Speculation | Any claim that pair provenance has a second Noether sea compliance coarse-graining remains discussion-scoped until a local statistic is derived and passes the no-signaling guardrail. |
 
 ## Source Measure Object
 
@@ -85,7 +85,7 @@ This is the first object a future Bell simulation must emit. It is invalid if $\
 
 ## Joint Record Measure
 
-For local detector settings $\hat{\mathbf{m}}_A$ and $\hat{\mathbf{m}}_B$, unresolved apparatus and local Noether-Sea variables live in spaces $\Theta_A(\hat{\mathbf{m}}_A)$ and $\Theta_B(\hat{\mathbf{m}}_B)$ with local measures $d\nu_A$ and $d\nu_B$. The finite-window joint state space for one record trial is
+For local detector settings $\hat{\mathbf{m}}_A$ and $\hat{\mathbf{m}}_B$, unresolved apparatus and local Noether sea variables live in spaces $\Theta_A(\hat{\mathbf{m}}_A)$ and $\Theta_B(\hat{\mathbf{m}}_B)$ with local measures $d\nu_A$ and $d\nu_B$. The finite-window joint state space for one record trial is
 
 $$
 \Gamma_{AB}^{\mathrm{rec}}

@@ -650,7 +650,7 @@ r_{\mathbf p,o}^{\mathrm{event}},
 \right).
 $$
 
-The event row passes only when every finite component of $\mathcal R_{\mathrm{event},o}^{\mathrm{SG}}$ is $\le 1$ and no required row is missing. A candidate that accounts for the core deflection but omits apparatus recoil, wake angular momentum, Noether-Sea recoil, or record-cycle calibration is blocked or fails; it is not a substrate Stern-Gerlach response.
+The event row passes only when every finite component of $\mathcal R_{\mathrm{event},o}^{\mathrm{SG}}$ is $\le 1$ and no required row is missing. A candidate that accounts for the core deflection but omits apparatus recoil, wake angular momentum, Noether sea recoil, or record-cycle calibration is blocked or fails; it is not a substrate Stern-Gerlach response.
 
 ## Handoff To Pair Provenance And Bell
 
@@ -703,7 +703,7 @@ That inequality is a later Bell-family test requiring a populated source measure
 | Full separatrix normal | $\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}$, $\mathcal N_{\hat{\mathbf m}}^{\mathrm{SG}}$ | ready formula, blocked pass | No substrate flow or separatrix has been computed from the apparatus model. |
 | Record-cycle measure | $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$, $\Delta_{\mathrm{rec}}^{\mathrm{SG}}$ | ready formula, blocked pass | No record-window quotient or invariant return measure has been emitted. |
 | Plus/reject basin | $\Delta_{+/\mathrm{rej}}^{\mathrm{SG}}$ | ready formula, blocked pass | No plus/reject basin filtration or null-boundary certificate exists. |
-| Event recoil/wake ledger | $\mathcal R_{\mathrm{event},o}^{\mathrm{SG}}$ | ready formula, blocked pass | No same-window event ledgers for core, apparatus, wake, and Noether-Sea recoil. |
+| Event recoil/wake ledger | $\mathcal R_{\mathrm{event},o}^{\mathrm{SG}}$ | ready formula, blocked pass | No same-window event ledgers for core, apparatus, wake, and Noether sea recoil. |
 | Effective spinor coordinate | $\psi(Z)$, $p_+(Z;\hat{\mathbf m})$ | not supplied | Ordered Noether swarm spinor closure is still pending. |
 | Half-angle residual | $\Delta_{\mathrm{half}}^{\mathrm{SG}}(\alpha)$ | consumer formula, blocked pass | Needs $\psi(Z)$, $\mu_\alpha$, record measure, basin rows, and branch-sum impulse from the same substrate model. |
 | Pair provenance | $\rho_{\mathrm{src}}$, $\Pi_{AB}^{\mathrm{sing}}$ | not supplied | Source-event and daughter-ledger rows belong to the pair-provenance packet. |

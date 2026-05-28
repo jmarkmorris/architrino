@@ -6,11 +6,11 @@ Gravitational waves in GR are propagating metric perturbations. Compact-binary d
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, gravitational waves are not fundamental ripples of the Euclidean void. They must be effective propagating disturbances in the Noether-Sea / effective-metric response, with source energy and angular momentum closed through the event ledger. Their speed and polarization content must also share the Lorentz and effective metric gates.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, gravitational waves are not fundamental ripples of the Euclidean void. They must be effective propagating disturbances in the Noether sea / effective-metric response, with source energy and angular momentum closed through the event ledger. Their speed and polarization content must also share the Lorentz and effective metric gates.
 
 ## MIT 8.962 Radiation Scaffold
 
-The MIT 8.962 typed notes sharpen the minimum wave-recovery burden. Lecture 15 starts from the linearized equation $\Box \bar{h}_{\alpha\beta}=-16\pi G T_{\alpha\beta}$ and solves it by Green-function superposition with finite propagation delay (`https://web.mit.edu/sahughes/www/8.962/lec15.pdf`). Lecture 16 separates the gauge-invariant transverse-traceless part, shows that freely falling detectors respond through geodesic deviation, and gives the quadrupole amplitude formula (`https://web.mit.edu/sahughes/www/8.962/lec16.pdf`). Lecture 17 gives the scale-separated wave-energy tensor and the quadrupole power formula (`https://web.mit.edu/sahughes/www/8.962/lec17.pdf`). The safe extraction is a benchmark packet: the Noether-Sea disturbance must recover the same TT strain, tidal detector response, causal-delay source map, and quadratic energy flux without treating the effective metric perturbation as substrate ontology.
+The MIT 8.962 typed notes sharpen the minimum wave-recovery burden. Lecture 15 starts from the linearized equation $\Box \bar{h}_{\alpha\beta}=-16\pi G T_{\alpha\beta}$ and solves it by Green-function superposition with finite propagation delay (`https://web.mit.edu/sahughes/www/8.962/lec15.pdf`). Lecture 16 separates the gauge-invariant transverse-traceless part, shows that freely falling detectors respond through geodesic deviation, and gives the quadrupole amplitude formula (`https://web.mit.edu/sahughes/www/8.962/lec16.pdf`). Lecture 17 gives the scale-separated wave-energy tensor and the quadrupole power formula (`https://web.mit.edu/sahughes/www/8.962/lec17.pdf`). The safe extraction is a benchmark packet: the Noether sea disturbance must recover the same TT strain, tidal detector response, causal-delay source map, and quadratic energy flux without treating the effective metric perturbation as substrate ontology.
 
 For a benchmark source record $\theta$, define the causal-delay time
 $$
@@ -44,7 +44,7 @@ R_{\mathrm{lin}}(\theta)
 \left\|16\pi G_{\mathrm{eff}}T_{\mu\nu}^{\mathrm{eff}}/c_0^4\right\|_W+\varepsilon
 }.
 $$
-This row fails if the waveform is fit by an unversioned template while the Noether-Sea source ledger cannot reproduce the finite-delay field.
+This row fails if the waveform is fit by an unversioned template while the Noether sea source ledger cannot reproduce the finite-delay field.
 
 The TT and detector rows are
 $$
@@ -197,7 +197,7 @@ Doc manifest status: the three first benchmark rows are currently document-level
 
 ## Failure Modes
 
-- `gw.metric_copy`: GR waveform formulas are imported without a Noether-Sea response derivation.
+- `gw.metric_copy`: GR waveform formulas are imported without a Noether sea response derivation.
 - `gw.energy_ledger_gap`: source energy and angular momentum loss do not balance the emitted disturbance and remnant.
 - `gw.speed_split`: gravitational-wave and photon timing require incompatible causal-speed maps.
 - `gw.extra_mode`: unsupported scalar or vector modes appear in regimes where observations require tensor-like behavior.

@@ -1,6 +1,6 @@
-# Molecular Exclusion and Noether-Sea Response
+# Molecular Exclusion and Noether Sea Response
 
-This chapter analyzes volume exclusion across ordinary matter and medium-level propagation. It complements [Condensed Matter](../nuclear-atomic/condensed-matter.md), [Molecular Geometry](../nuclear-atomic/molecular-geometry.md), [Spacetime Assemblies](./spacetime-assemblies.md), and [Gravitational Waves](./gravitational-waves.md) by asking how ordinary exclusion boundaries coexist with deeper Noether-Sea response.
+This chapter analyzes volume exclusion across ordinary matter and medium-level propagation. It complements [Condensed Matter](../nuclear-atomic/condensed-matter.md), [Molecular Geometry](../nuclear-atomic/molecular-geometry.md), [Noether Sea Pro/Anti Coupling](./noether-sea-pro-anti-coupling.md), and [Gravitational Waves](./gravitational-waves.md) by asking how ordinary exclusion boundaries coexist with deeper Noether sea response.
 
 When chemists use the **van der Waals (VdW) volume** of a molecule, they mean the space excluded by its electron distribution: the effective hard-core volume a molecule presents to its neighbors. This is estimated from atomic van der Waals radii (Bondi, 1964) and corrected for bond overlaps. For example:
 
@@ -48,7 +48,7 @@ Using the ideal gas law, dry air at 1 atm and 298 K contains about $2.46 \times 
 Notes:
 - “Dry air” omits water vapor. At 25°C and 50% RH, H₂O is ~1.6% by volume (about $3.9 \times 10^{17}$ per $\mathrm{cm}^3$), reducing the dry-air constituents by the same fraction. At 100% RH (25°C), H₂O is ~3.1% (about $7.7 \times 10^{17}$ per $\mathrm{cm}^3$).
 - At STP (0°C, 1 atm), total density is about $2.69 \times 10^{19}$ per $\mathrm{cm}^3$; scale species accordingly.
-- Despite these high number densities, the “hard-core” geometric occupancy is only ~0.08–0.1% of the volume (see VdW estimate above). In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, ordinary molecular exclusion occupies only a small fraction of the available Euclidean volume, while deeper Noether-Sea implementation layers remain available for medium-level propagation.
+- Despite these high number densities, the “hard-core” geometric occupancy is only ~0.08–0.1% of the volume (see VdW estimate above). In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, ordinary molecular exclusion occupies only a small fraction of the available Euclidean volume, while deeper Noether sea implementation layers remain available for medium-level propagation.
 
 This gives a **geometric baseline** for how much space a molecule excludes. In real matter, the effective boundary is also affected by bonding, compression, temperature, pressure, and the channel being probed.
 
@@ -67,7 +67,7 @@ $$
 $$
 When $\mathrm{Kn}_m$ is not small, a molecular continuum pressure or viscosity description is a poor model even if the geometric occupancy is tiny.
 
-This distinction is useful for $\mathbb{A}\mathbb{A}\mathbb{A}$ because molecular exclusion and Noether-Sea response answer different questions. Molecular packing fraction estimates what ordinary matter blocks geometrically. Mean-free-path and Knudsen estimates say whether a gas can be treated as a continuum at the scale of the probe. Neither estimate determines whether a photon, neutrino, gravitational-wave channel, or clock-rate comparison couples strongly to the Noether Sea. Those channels require their own coupling and propagation records.
+This distinction is useful for $\mathbb{A}\mathbb{A}\mathbb{A}$ because molecular exclusion and Noether sea response answer different questions. Molecular packing fraction estimates what ordinary matter blocks geometrically. Mean-free-path and Knudsen estimates say whether a gas can be treated as a continuum at the scale of the probe. Neither estimate determines whether a photon, neutrino, gravitational-wave channel, or clock-rate comparison couples strongly to the Noether sea. Those channels require their own coupling and propagation records.
 
 For any simulation or synthetic-observable packet that compares ordinary matter with medium-level propagation, the minimal separation is
 $$
@@ -127,16 +127,16 @@ Maximally packed van der Waals volumes define exclusion domains for ordinary ato
   Compare [Dark Matter](../cosmology/dark-matter.md) for the cosmological inference side.
 * **Gravitons (hypothetical)**: in standard language, gravity-channel quanta would be weakly blocked by ordinary molecular exclusion.
   Compare [Gravitational Waves](./gravitational-waves.md) for the effective propagation layer.
-* **Effective spacetime description**: in standard GR language, matter changes the metric rather than blocking spacetime as a substance. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Euclidean void remains fixed; the relevant implementation layer is Noether-Sea response and effective metric reconstruction.
+* **Effective spacetime description**: in standard GR language, matter changes the metric rather than blocking spacetime as a substance. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Euclidean void remains fixed; the relevant implementation layer is Noether sea response and effective metric reconstruction.
 
 ---
 
 ## Background Timespace vs. Implemented Medium
 
 - Background: the mathematical arena in this project is absolute timespace (one global time × Euclidean 3-space). It is fixed, non-dynamical, and does not curve.
-- Implemented “spacetime”: the effective medium that carries corridors and supports propagation is realized by coherent assembly architecture at scales far smaller than molecules (a Noether-Sea implementation layer, or in bridge prose a spacetime medium layer, not a separate substrate inventory). Its microstructure can modulate effective propagation, boundaries, and coherence without altering the background kinematics.
+- Implemented “spacetime”: the effective medium that carries corridors and supports propagation is realized by coherent assembly architecture at scales far smaller than molecules (a Noether sea implementation layer, or in bridge prose a spacetime medium layer, not a separate substrate inventory). Its microstructure can modulate effective propagation, boundaries, and coherence without altering the background kinematics.
 
-This is the same implementation layer developed in [Emergent Metric](./emergent-metric.md) and [Spacetime Assemblies](./spacetime-assemblies.md).
+This is the same implementation layer developed in [Emergent Metric](./emergent-metric.md) and [Noether Sea Pro/Anti Coupling](./noether-sea-pro-anti-coupling.md).
 
 ## Big Picture
 

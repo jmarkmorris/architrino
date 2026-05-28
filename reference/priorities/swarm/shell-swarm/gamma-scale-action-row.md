@@ -208,7 +208,7 @@ This derivation has three non-negotiable obligations. The first obligation is sh
 | --- | --- | --- |
 | Exact action or virtual-work row | $\delta\mathcal{S}_{\mathrm{hist}}^\perp$ computed from the same active roots as the force and passing the one-form curl test | a force fit is not an action derivation |
 | Carrier inertia | $m_{\mathrm{car}}(B)$ or an inertia operator whose scalar reduction is proven | $\Gamma$ remains a fitted parameter |
-| Ledger compatibility | energy, momentum, angular momentum, charge, source provenance, and Noether-Sea updates use the same history and root convention | dynamics-only row cannot support mass or observer export |
+| Ledger compatibility | energy, momentum, angular momentum, charge, source provenance, and Noether sea updates use the same history and root convention | dynamics-only row cannot support mass or observer export |
 
 The scalar row is a special case. A more general action may produce a normal inertia operator
 
@@ -464,7 +464,7 @@ $$
 \right),
 $$
 
-under the same root, regulator, endpoint, history, and Noether-Sea convention. If these rows are omitted, $\Gamma_K$ can support at most a dynamics-only diagnostic.
+under the same root, regulator, endpoint, history, and Noether sea convention. If these rows are omitted, $\Gamma_K$ can support at most a dynamics-only diagnostic.
 
 ---
 
@@ -506,7 +506,7 @@ $$
 \mathbf{K}_i-\Gamma_KP_i^\perp\widetilde{\mathbf{F}}_i.
 $$
 
-Fifth, a fitted $\Gamma$ does not close source provenance, branch energy, momentum, angular momentum, charge, Noether-Sea response, or observer export. Those rows are separate obligations.
+Fifth, a fitted $\Gamma$ does not close source provenance, branch energy, momentum, angular momentum, charge, Noether sea response, or observer export. Those rows are separate obligations.
 
 Therefore the correct status of any run with only a fitted $\Gamma$ is
 

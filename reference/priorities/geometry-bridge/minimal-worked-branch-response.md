@@ -18,7 +18,7 @@ $$
 |\varepsilon|\ll1,
 $$
 
-with no change to branch labels, source identities, channel projectors, lock weights, or ambient Noether-Sea rows unless stated. For a root row $\rho=(i,j,n,\alpha,\ell_\rho)$, write
+with no change to branch labels, source identities, channel projectors, lock weights, or ambient Noether sea rows unless stated. For a root row $\rho=(i,j,n,\alpha,\ell_\rho)$, write
 
 $$
 \mathbf{R}_\rho

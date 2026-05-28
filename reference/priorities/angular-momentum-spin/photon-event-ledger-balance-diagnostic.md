@@ -41,7 +41,7 @@ i\lambda_{\mathrm{hel}}\hat{\mathbf v}
 A_\gamma>\varepsilon_{\mathrm{amp}}.
 $$
 
-This diagnostic does not reprove those rows. It asks whether the declared photon ledger can be embedded in one physical event ledger with source depletion, material/Noether-Sea recoil, retained wake angular momentum, and downstream analyzer handoff.
+This diagnostic does not reprove those rows. It asks whether the declared photon ledger can be embedded in one physical event ledger with source depletion, material/Noether sea recoil, retained wake angular momentum, and downstream analyzer handoff.
 
 The event record must supply
 
@@ -60,7 +60,7 @@ $$
 \right).
 $$
 
-Here $\mathbf J_{\mathrm{src}}^-$ and $\mathbf J_{\mathrm{src}}^+$ are the source angular-momentum ledgers before and after the event, $\mathbf J_{\mathrm{recoil}}^{0}$ is the local material or Noether-Sea recoil ledger, $\mathbf J_{\mathrm{wake}}^{0}$ is the retained causal-wake angular-momentum contribution across $W_{\gamma}^{0}$, $\mathbf J_{\mathrm{handoff}}^{0}$ is any angular momentum still carried by the outgoing handoff interface rather than by the free photon branch, $\mathcal W_\gamma$ is the retained wake-history record, and $\mathcal H_\gamma$ is the analyzer handoff record.
+Here $\mathbf J_{\mathrm{src}}^-$ and $\mathbf J_{\mathrm{src}}^+$ are the source angular-momentum ledgers before and after the event, $\mathbf J_{\mathrm{recoil}}^{0}$ is the local material or Noether sea recoil ledger, $\mathbf J_{\mathrm{wake}}^{0}$ is the retained causal-wake angular-momentum contribution across $W_{\gamma}^{0}$, $\mathbf J_{\mathrm{handoff}}^{0}$ is any angular momentum still carried by the outgoing handoff interface rather than by the free photon branch, $\mathcal W_\gamma$ is the retained wake-history record, and $\mathcal H_\gamma$ is the analyzer handoff record.
 
 ## Event-Balance Equation
 
@@ -252,7 +252,7 @@ The zero tolerances on $\Delta_{\mathrm{surv}}^\gamma$, $\Delta_{\mathrm{src}}^\
 | `symbolic_rows_pass_event_blocked` | $\Delta_Q^\gamma$, $\Delta_{\mathrm{surv}}^\gamma$, $\Delta_{\parallel}^{\mathrm{sub}}$, $\Delta_{\mathrm{hel}}^\gamma$, and $\Delta_{\epsilon}^{\gamma}$ pass by declaration, but at least one event-ledger residual is blocked. | Do not declare a physical Gate B candidate. |
 | `event_balance_pass` | All substrate and event residuals are populated from the same event window and below tolerance. | The branch may be reviewed as a physical Gate B candidate and may hand off to analyzer and no-signaling packets. |
 | `source_fail` | $\Delta_{\mathrm{src}}^\gamma>0$ because source depletion is missing or not derived from $W_{\gamma}^{0}$. | The photon ledger is unsourced. |
-| `recoil_fail` | $\Delta_{\mathrm{recoil}}^\gamma>\varepsilon_{\mathrm{recoil}}$ or recoil is hidden in the photon helicity row. | Route the missing material or Noether-Sea angular momentum before Gate B review. |
+| `recoil_fail` | $\Delta_{\mathrm{recoil}}^\gamma>\varepsilon_{\mathrm{recoil}}$ or recoil is hidden in the photon helicity row. | Route the missing material or Noether sea angular momentum before Gate B review. |
 | `wake_fail` | $\Delta_{\mathrm{wake}}^\gamma>\varepsilon_{\mathrm{wake}}$ or the wake pullback disagrees with $\mathbf J_{\mathrm{wake}}^{0}$. | The causal-wake ledger is not conserved over the event window. |
 | `handoff_fail` | $\Delta_{\mathrm{handoff}}^\gamma>0$ after a claimed handoff. | The analyzer arithmetic remains a reduced chart rather than a substrate response. |
 | `event_ledger_fail` | $\Delta_{\mathrm{bal}}^\gamma>\varepsilon_{\mathbf J}$ with all terms available. | The event violates angular-momentum balance and cannot be promoted. |

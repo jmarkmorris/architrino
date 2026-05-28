@@ -32,7 +32,7 @@ The usual textbook explanation is geometric. Space and time mix in Minkowski spa
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ explanation keeps the tested observer-level formulas but changes the proposed mechanism underneath them. The fundamental background remains Euclidean void plus absolute substrate time. The Lorentz factor appears because real clocks and rulers are made from phase-locked assemblies whose internal causal communications must close at the local signal speed $c_{\text{eff}}$.
 
-The speed in these formulas is the assembly drift relative to the local Noether-Sea rest frame. Write
+The speed in these formulas is the assembly drift relative to the local Noether sea rest frame. Write
 
 $$
 \mathbf{w}
@@ -40,7 +40,7 @@ $$
 \mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}},
 $$
 
-where $\mathbf{u}_{\text{sea}}$ is the local medium drift. In the local Noether-Sea rest frame, $\mathbf{u}_{\text{sea}}=\mathbf{0}$ and $\mathbf{w}=\mathbf{V}_{\text{cm}}$.
+where $\mathbf{u}_{\text{sea}}$ is the local medium drift. In the local Noether sea rest frame, $\mathbf{u}_{\text{sea}}=\mathbf{0}$ and $\mathbf{w}=\mathbf{V}_{\text{cm}}$.
 
 Thus the standard formula is recovered with
 
@@ -50,7 +50,7 @@ $$
 \frac{1}{\sqrt{1-\|\mathbf{w}\|^2/c_{\text{eff}}^2}},
 $$
 
-where $\mathbf{w}$ is the assembly's drift through the local Noether Sea.
+where $\mathbf{w}$ is the assembly's drift through the local Noether sea.
 
 ### Why Time Dilation Occurs
 
@@ -63,7 +63,7 @@ When the core moves, the receiver is no longer where it would have been in the r
 1. keep up with the forward motion of the whole assembly;
 2. still cross sideways enough to close the internal binary and inter-layer communication loops.
 
-In the local Noether-Sea rest frame, the fixed-speed causal budget is therefore split:
+In the local Noether sea rest frame, the fixed-speed causal budget is therefore split:
 
 $$
 c_{\text{eff}}^2
@@ -137,7 +137,7 @@ The equivalence principle has two standard parts. First, inertial mass and gravi
 
 In this document, both statements arise from the same internal causal lock.
 
-Inertial mass measures how much the assembly resists a kinematic push. When an external force tries to accelerate the assembly, the inner, middle, and outer binaries must retune their spiral-helical closure, phase timing, and Noether-Sea coupling. The resistance is controlled by the shielded internal energy ledger:
+Inertial mass measures how much the assembly resists a kinematic push. When an external force tries to accelerate the assembly, the inner, middle, and outer binaries must retune their spiral-helical closure, phase timing, and Noether sea coupling. The resistance is controlled by the shielded internal energy ledger:
 
 $$
 m_{\text{inertial}}(A)
@@ -146,7 +146,7 @@ m_{\text{inertial}}(A)
 \frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
 $$
 
-Gravitational mass measures how strongly the same assembly responds to a Noether-Sea gradient. In a dense or stressed region of the Sea, the local signal speed, compliance, and wake refraction vary across the finite assembly. The Noether swarm must again retune the same internal closure geometry to remain stable.
+Gravitational mass measures how strongly the same assembly responds to a Noether sea gradient. In a dense or stressed region of the Sea, the local signal speed, compliance, and wake refraction vary across the finite assembly. The Noether swarm must again retune the same internal closure geometry to remain stable.
 
 To first order, both responses perturb the same structure: the shielded tri-binary causal lock. Therefore
 
@@ -159,7 +159,7 @@ m_{\text{gravitational}}(A)
 \frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2}.
 $$
 
-This is the proposed mechanical basis for the mass-equality part of the equivalence principle. The local-free-fall part also requires the effective metric and Cartan-connection route: one Noether-Sea response map must give the same clock, ruler, signal, and geodesic rows in the weak-field regime. The open mathematical task is to prove that the shielded-energy perturbation map and the effective-metric perturbation map agree to the precision required by weak-field tests.
+This is the proposed mechanical basis for the mass-equality part of the equivalence principle. The local-free-fall part also requires the effective metric and Cartan-connection route: one Noether sea response map must give the same clock, ruler, signal, and geodesic rows in the weak-field regime. The open mathematical task is to prove that the shielded-energy perturbation map and the effective-metric perturbation map agree to the precision required by weak-field tests.
 
 ### Summary in One Sentence
 

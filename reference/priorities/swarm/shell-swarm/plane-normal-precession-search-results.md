@@ -1,6 +1,6 @@
 # Plane-Normal Precession Search Results
 
-Promotion status: `priority-only`. This packet records the first intrinsic-curve screen that adds a nonplanar plane-normal deformation to the common radial-breathing row. It follows the arclength-clock dynamics in [intrinsic-curve-dynamics-equation.md](intrinsic-curve-dynamics-equation.md) and tests the next direction identified in [current-dynamics-synthesis.md](current-dynamics-synthesis.md): rotate delayed line-of-action geometry before introducing any self/fold-layer or Noether-Sea medium-response channel.
+Promotion status: `priority-only`. This packet records the first intrinsic-curve screen that adds a nonplanar plane-normal deformation to the common radial-breathing row. It follows the arclength-clock dynamics in [intrinsic-curve-dynamics-equation.md](intrinsic-curve-dynamics-equation.md) and tests the next direction identified in [current-dynamics-synthesis.md](current-dynamics-synthesis.md): rotate delayed line-of-action geometry before introducing any self/fold-layer or Noether sea medium-response channel.
 
 No branch is retained.
 

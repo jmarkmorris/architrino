@@ -133,14 +133,14 @@ This is the single-ontology guidance picture behind the pilot-wave comparison: t
 
 The structural correspondence between the dBB pilot wave and the $\mathbb{A}\mathbb{A}\mathbb{A}$ causal wake is systematic:
 
-**Phase gradient → velocity field.** In dBB, $\dot{\mathbf{q}}_k = \nabla_k S / m_k$: the particle velocity is set by the phase gradient of $\psi$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration of an architrino is set by the vector sum of line-of-action forces from intersecting wake surfaces, with magnitudes weighted by the causal Jacobians of the active branches. For a coarse-grained assembly moving slowly through a quasi-homogeneous Noether Sea, the net wake gradient produces an effective velocity field for the assembly's center of mass that can be identified with $\nabla S / m$ in the appropriate continuum limit.
+**Phase gradient → velocity field.** In dBB, $\dot{\mathbf{q}}_k = \nabla_k S / m_k$: the particle velocity is set by the phase gradient of $\psi$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration of an architrino is set by the vector sum of line-of-action forces from intersecting wake surfaces, with magnitudes weighted by the causal Jacobians of the active branches. For a coarse-grained assembly moving slowly through a quasi-homogeneous Noether sea, the net wake gradient produces an effective velocity field for the assembly's center of mass that can be identified with $\nabla S / m$ in the appropriate continuum limit.
 
 **Amplitude → density and basin structure.** In dBB, $R^2 = |\psi|^2$ gives the probability density (in equilibrium). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the local intensity of the superposed wake determines the density of stable attractor basins and the fractional phase-space volume leading to each basin. Regions of high wake amplitude correspond to regions where assemblies are more likely to be found, not because they are "spread out" but because the deterministic dynamics funnel trajectories toward those regions.
 
 **Quantum potential → self-hit and medium feedback.** The dBB quantum potential $Q$ depends on the global shape of $R$ and produces nonlocal, context-dependent forces absent in classical mechanics. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the analogous role is played jointly by:
 
 - **Self-hit dynamics**: an architrino's interaction with its own past emissions, producing non-Markovian forces that depend on path history and trajectory curvature.
-- **Noether-Sea feedback**: the local Noether Sea responds to and modulates the propagation of causal wakes, introducing effective potential gradients that depend on the global density and stress of the Noether Sea.
+- **Noether sea feedback**: the local Noether sea responds to and modulates the propagation of causal wakes, introducing effective potential gradients that depend on the global density and stress of the Noether sea.
 
 Together, these are the candidate trajectory-shaping resources that could recover the qualitative role of $Q$: context dependence, path-history dependence, and forces irreducible to classical pairwise potentials.
 
@@ -169,7 +169,7 @@ In dBB, interference arises because the pilot wave $\psi$ passes through all ava
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the comparison is structurally suggestive, but the mechanism must be derived from causal-wake dynamics rather than borrowed from dBB:
 
-- A translating Noether swarm assembly emits causal wake surfaces continuously. When the assembly approaches a double slit, its wake, propagating at $c_f$ through the Noether Sea, passes through both openings.
+- A translating Noether swarm assembly emits causal wake surfaces continuously. When the assembly approaches a double slit, its wake, propagating at $c_f$ through the Noether sea, passes through both openings.
 - Behind the barrier, the wake contributions from the two slits superpose linearly (the Master Equation is linear in sources). The resulting potential landscape has a modulated spatial structure: regions of constructive reinforcement alternate with regions of cancellation.
 - The assembly, guided by the total wake gradient at its location, is steered toward high-intensity regions. Over many identically prepared trials, the closure target is to recover the standard interference pattern.
 
@@ -179,12 +179,12 @@ The candidate comparison is that the assembly passes through one slit while the 
 
 In dBB, a particle can traverse a classically forbidden barrier because the pilot wave penetrates the barrier (with exponentially decaying amplitude), and the guidance equation can steer particles through the evanescent tail.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding mechanism involves the Noether Sea and the assembly's interaction with the Noether Sea:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding mechanism involves the Noether sea and the assembly's interaction with the Noether sea:
 
 - The "barrier" is a region of high effective potential created by surrounding assemblies or medium configurations.
-- The assembly's causal wake extends into and through the barrier region, attenuated by the Noether-Sea response (analogous to evanescent coupling).
+- The assembly's causal wake extends into and through the barrier region, attenuated by the Noether sea response (analogous to evanescent coupling).
 - If the wake gradient at the assembly's location points into the barrier and the assembly's internal configuration (binary phases, wake history) places it near a basin boundary, the assembly can be driven across the barrier by the residual wake gradient.
-- The tunneling probability depends on the barrier geometry, the local Noether-Sea density, and the assembly's internal phase—all computable from the Master Equation in principle.
+- The tunneling probability depends on the barrier geometry, the local Noether sea density, and the assembly's internal phase—all computable from the Master Equation in principle.
 
 Weak-measurement trajectory reconstructions sharpen this comparison without settling the ontology. If a post-selected weak probe recovers an averaged path, flux, dwell time, or traversal-time response that agrees with a de Broglie--Bohm trajectory calculation, the retained content is the calibrated conditional ensemble observable. That result is useful comparison pressure on the causal-wake proof route, but it is not by itself evidence for a separate pilot wave, a completed intermediate record, or a literal Bohmian trajectory ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is to derive the same averaged response from below-threshold apparatus coupling, path-history data, and the record-forming basin selected at the end of the trial.
 
@@ -192,7 +192,7 @@ Weak-measurement trajectory reconstructions sharpen this comparison without sett
 
 In dBB, energy quantization follows from the requirement that $\psi$ be single-valued and normalizable, which selects discrete eigenvalues.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but equally rigorous mechanism: **phase-locking of the self-consistent response loop**. An assembly in a confining potential (e.g., an electron nested shell swarm bound to an atomic nucleus) must satisfy a closure condition: the wake it generates, after propagating through the surrounding Noether Sea and reflecting off the confining potential, must return to the assembly with the correct phase to sustain its current orbital frequency. Only a discrete set of orbital configurations satisfies this condition—the resonance bands indexed by integer $f$ (see [Superposition Mechanism](./superposition-mechanism.md)). Transitions between bands occur when the action transfer per cycle crosses the $h$-scale threshold.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but equally rigorous mechanism: **phase-locking of the self-consistent response loop**. An assembly in a confining potential (e.g., an electron nested shell swarm bound to an atomic nucleus) must satisfy a closure condition: the wake it generates, after propagating through the surrounding Noether sea and reflecting off the confining potential, must return to the assembly with the correct phase to sustain its current orbital frequency. Only a discrete set of orbital configurations satisfies this condition—the resonance bands indexed by integer $f$ (see [Superposition Mechanism](./superposition-mechanism.md)). Transitions between bands occur when the action transfer per cycle crosses the $h$-scale threshold.
 
 This is the wake-based analog of the Bohr-Sommerfeld quantization condition, derived from the self-consistency of the causal response loop rather than imposed as a boundary condition on an abstract wave.
 
@@ -386,8 +386,8 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizati
 |:---|:---|
 | **Pilot wave $\psi$ on $\mathbb{R}^{3N}$** | Superposed causal wake in physical $\mathbb{R}^3$, generated by all architrinos and experienced by each at its location. No separate ontological entity; wake is produced by and acts on the same architrinos. |
 | **Guidance equation** $\dot{\mathbf{q}}_k = (\hbar/m_k)\operatorname{Im}(\nabla_k\psi/\psi)$ | Master Equation: acceleration is the vector sum of all Jacobian-weighted inverse-square causal wake-surface intersections. In the coarse-grained, slow-assembly limit, the net wake gradient produces an effective velocity field identifiable with $\nabla S/m$. |
-| **Quantum potential** $Q = -(\hbar^2/2m)(\nabla^2 R/R)$ | Jointly: self-hit non-Markovian feedback (path-history-dependent forces from own past emissions) plus Noether-Sea response (context-dependent effective potential from the surrounding Noether Sea). |
-| **Quantum equilibrium** $\rho = |\psi|^2$ | Emergent statistical distribution over attractor basin volumes, mapped from unresolved Noether-Sea boundary and path-history structure. The Born rule is a **target derivation**, not an axiom; it belongs to the statistics gate below. |
+| **Quantum potential** $Q = -(\hbar^2/2m)(\nabla^2 R/R)$ | Jointly: self-hit non-Markovian feedback (path-history-dependent forces from own past emissions) plus Noether sea response (context-dependent effective potential from the surrounding Noether sea). |
+| **Quantum equilibrium** $\rho = |\psi|^2$ | Emergent statistical distribution over attractor basin volumes, mapped from unresolved Noether sea boundary and path-history structure. The Born rule is a **target derivation**, not an axiom; it belongs to the statistics gate below. |
 | **Configuration-space nonlocality** | Non-separable hidden-variable geometry from shared creation events (see [Entanglement and Nonlocality](./entanglement-nonlocality.md)). Correlations are carried in the joint internal configuration, not mediated by a field on $\mathbb{R}^{3N}$. |
 | **Wave passes through both slits** | Candidate causal-wake comparison: the wake remains sensitive to both slits while the assembly follows one path. Guidance through the modulated wake landscape must recover the interference pattern. |
 | **Markovian guidance** (given $\psi$) | Non-Markovian guidance: acceleration depends on full past worldline via causal sets $\mathcal{C}_{ij}(t)$ and self-hit history. Richer dynamics; hysteresis and discrete mode-locking absent in standard dBB. |
@@ -409,7 +409,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizati
 
 ### Open Costs and Challenges
 
-**Born rule derivation.** dBB achieves Born-rule statistics by assuming quantum equilibrium ($\rho = |\psi|^2$) and proving equivariance. $\mathbb{A}\mathbb{A}\mathbb{A}$ must derive the Born rule from the Master Equation dynamics and the statistical properties of the Noether Sea. This is the statistics gate in the closure chain below.
+**Born rule derivation.** dBB achieves Born-rule statistics by assuming quantum equilibrium ($\rho = |\psi|^2$) and proving equivariance. $\mathbb{A}\mathbb{A}\mathbb{A}$ must derive the Born rule from the Master Equation dynamics and the statistical properties of the Noether sea. This is the statistics gate in the closure chain below.
 
 **Effective $\psi$ recovery.** The claim that the coarse-grained wake reproduces $\psi$ in the continuum limit requires explicit construction: define the coarse-graining scale, derive the effective wave equation, and show that it reduces to the Schrödinger equation in the non-relativistic, weak-field limit. This derivation is incomplete.
 
@@ -428,19 +428,19 @@ The comparison warning is that a preferred foliation is not disqualifying by its
 **Assumptions:**
 - Architrinos are the sole fundamental entities; no separate pilot wave is postulated.
 - The superposed wake at each location is the linear sum of all intersecting causal wake surfaces.
-- Self-hit and Noether-Sea feedback jointly play the role of the quantum potential.
+- Self-hit and Noether sea feedback jointly play the role of the quantum potential.
 - Quantization arises from phase-locking of the causal response loop.
 - The Born rule is emergent from attractor basin statistics (to be derived).
 
 **Closure targets and candidate predictions:**
 - Recover standard quantum interference, diffraction, and tunneling phenomena after deriving the effective wave equation.
 - Match observed energy spectra, including the Rydberg constant and hydrogen fine structure, when the phase-locking conditions are solved for atomic-scale assemblies.
-- Derive decoherence timescales with environmental dependence through local Noether-Sea density, a sensitivity absent in bare dBB and potentially testable in precision interferometry.
-- Predict controlled deviations from standard Schrödinger evolution in extreme regimes, such as near Planck-core objects or high Noether-Sea density gradients, after the Noether-Sea nonlinearity and self-hit threshold terms are quantified.
+- Derive decoherence timescales with environmental dependence through local Noether sea density, a sensitivity absent in bare dBB and potentially testable in precision interferometry.
+- Predict controlled deviations from standard Schrödinger evolution in extreme regimes, such as near Planck-core objects or high Noether sea density gradients, after the Noether sea nonlinearity and self-hit threshold terms are quantified.
 
 **Failure Modes:**
 - If the coarse-grained wake does not reduce to the Schrödinger equation in the non-relativistic, weak-field limit, the framework fails to reproduce standard quantum mechanics at the effective level.
-- If the Born rule cannot be derived from the Master Equation dynamics and Noether-Sea statistics—even after accounting for chaotic mixing and attractor basin geometry—the statistical foundations are incomplete and the theory lacks predictive power for individual experiments.
+- If the Born rule cannot be derived from the Master Equation dynamics and Noether sea statistics—even after accounting for chaotic mixing and attractor basin geometry—the statistical foundations are incomplete and the theory lacks predictive power for individual experiments.
 - If the phase-locking quantization condition yields energy levels that deviate from observed atomic spectra by more than the theory's estimated systematic uncertainty, the specific self-consistent loop mechanism is falsified.
 - If emergent Lorentz invariance fails at tested precision ($> 10^{-17}$ anisotropy in assembly dynamics), the substrate ontology is experimentally excluded regardless of the guidance structure.
 

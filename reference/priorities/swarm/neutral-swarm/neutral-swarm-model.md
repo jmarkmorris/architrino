@@ -483,7 +483,7 @@ The word `containment` is not a primitive force law. In this packet it means one
 1. hollow support exclusion for the six neutral-core paths;
 2. support-band viability under the dynamics and support multipliers;
 3. coarse-grained occupancy coverage if cloud-like enclosure is claimed;
-4. Noether-Sea exchange and response rows if the branch claims a medium-supported boundary;
+4. Noether sea exchange and response rows if the branch claims a medium-supported boundary;
 5. central-inventory provenance rows if charged or inner architrinos occupy the hollow region.
 
 Let $\mathcal{I}_{\mathrm{cent}}$ denote any central inventory placed inside the hollow region. Its exclusion from the neutral-core paths is
@@ -549,7 +549,7 @@ The required rows are:
 | $\mathsf{Dynamics}^{\nu}$ | tangential speed ODE, primitive speed band, normal force-curvature balance |
 | $\mathsf{SupportWork}^{\nu}$ | support multipliers, support work, complementarity, hollow-boundary event rows |
 | $\mathsf{Action}^{\nu}$ | action scale, history-work curl, speed storage/exchange, variational rows |
-| $\mathsf{Noether}^{\nu}$ | energy, momentum, angular momentum, charge, source provenance, Noether-Sea exchange |
+| $\mathsf{Noether}^{\nu}$ | energy, momentum, angular momentum, charge, source provenance, Noether sea exchange |
 | $\mathsf{Event}^{\nu}$ | self-hit, root-fold, support-boundary, central-hollow, topology-change, endpoint exchange |
 | $\mathsf{OptionalSlot}$ | binary partition, antipodal, nested shell swarm, or shell swarm reduction rows if claimed |
 | $\mathsf{ObserverExport}$ | Lorentz, photon, mass, generation, color, and strong-field rows as computed or `not_computed` |

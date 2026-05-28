@@ -159,7 +159,7 @@ The key structural rule for **admissible, stable quark‑like Noether swarms** i
 
 > Exactly **two axes share the same axial class**, and the third is **different in kind** (P− vs P+ vs Pm).  
 
-We **forbid** stable states with all three axes in different classes (e.g. H: P+, M: P−, L: Pm). Those “three-different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the Noether Sea and quickly relax or disintegrate.
+We **forbid** stable states with all three axes in different classes (e.g. H: P+, M: P−, L: Pm). Those “three-different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the Noether sea and quickly relax or disintegrate.
 
 Therefore:
 
@@ -264,7 +264,7 @@ The shared branch-selection rule is therefore:
 $$
 F_\star(q,\mathcal{B})\in\{I,II\},\qquad q\in\{d,s,b\},
 $$
-where $\mathcal{B}$ denotes the local branch context: generation tier, hadron boundary conditions, effective forcing window, and Noether-Sea environment. Once $F_\star$ is selected, its three H/M/L permutations form the red/green/blue triplet for that down-type quark. The other family is a competing branch sector, not an additional observed species.
+where $\mathcal{B}$ denotes the local branch context: generation tier, hadron boundary conditions, effective forcing window, and Noether sea environment. Once $F_\star$ is selected, its three H/M/L permutations form the red/green/blue triplet for that down-type quark. The other family is a competing branch sector, not an additional observed species.
 
 ### Rigorous low-energy branch-selection criterion
 
@@ -413,7 +413,7 @@ $$
 3\otimes\bar 3=1\oplus 8,\qquad
 3\otimes 3\otimes 3\supset 1.
 $$
-This does not identify the Eightfold Way flavor octets with color itself. It says that any successful color branch must reproduce the same algebraic fact that eight traceless generators organize an octet-class residual, while native confinement and color-singlet closure still come from axis exceptionality, braid closure, and Noether-Sea energetics.
+This does not identify the Eightfold Way flavor octets with color itself. It says that any successful color branch must reproduce the same algebraic fact that eight traceless generators organize an octet-class residual, while native confinement and color-singlet closure still come from axis exceptionality, braid closure, and Noether sea energetics.
 
 Symmetry breaking is then tested as a residual, not promoted to a second color rule. Let $M_{\mathrm{obs}}$ be the observed hadron mass vector for a chosen baryon or meson octet, and let $M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)$ be the mass vector predicted after projecting a closed color-singlet assembly onto its flavor and axial-layer labels. The admissible branch must support a decomposition
 $$
@@ -470,7 +470,7 @@ In nested shell swarm geometry:
 At large distances, axis‑dependent multipoles from each regime cancel:
 
 - H‑exceptionality from one quark is compensated by M and L exceptionality from others in the composite singlet combination.  
-- Net color flux into the surrounding Noether Sea is zero; only isotropic monopole fields (charge, baryon number, mass) remain.
+- Net color flux into the surrounding Noether sea is zero; only isotropic monopole fields (charge, baryon number, mass) remain.
 
 This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether swarms: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
 
@@ -483,7 +483,7 @@ Even for color‑singlet nucleons:
 
 Heuristic:
 
-- At inter-nucleon separations ~ a few fm, outer L-axes (and to some degree M-axes) from neighboring nucleons begin to overlap and couple through the Noether Sea.
+- At inter-nucleon separations ~ a few fm, outer L-axes (and to some degree M-axes) from neighboring nucleons begin to overlap and couple through the Noether sea.
 - These residual couplings act like **meson exchange** in standard nuclear physics, producing an attractive Yukawa‑like force with a hard‑core repulsion scale tied to H/M structure.
 
 We will exploit:
@@ -537,7 +537,7 @@ d_{\mathrm{gap}}\!\left(M_{\mathrm{glue}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\thet
 +
 d_{\mathrm{free}}\!\left(O_{\mathrm{color}}(\theta),O_{\mathrm{color}}^{\max}\right),
 $$
-where the terms compare the extracted open-sector tension, the lowest closed strong-sector excitation scale, and the predicted free-color signal against the corresponding accepted benchmark or bound. The same branch record must drive all three terms. If $\sigma_{\mathrm{eff}}$, the mass gap, and free-color suppression require independent Noether-Sea variables or separate color-sector fits, the confinement program has reproduced the appearance of QCD rather than deriving its non-perturbative content.
+where the terms compare the extracted open-sector tension, the lowest closed strong-sector excitation scale, and the predicted free-color signal against the corresponding accepted benchmark or bound. The same branch record must drive all three terms. If $\sigma_{\mathrm{eff}}$, the mass gap, and free-color suppression require independent Noether sea variables or separate color-sector fits, the confinement program has reproduced the appearance of QCD rather than deriving its non-perturbative content.
 
 This chapter therefore carries:
 - **already closed:** color Hilbert space, generator construction, and $\mathfrak{su}(3)$ algebra closure;
@@ -547,11 +547,11 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/ca
 
 ## Summary and Interfaces
 
-- A **nested shell swarm** is a three-axis $(H,M,L)$, six-site axial structure: the minimal unit that carries conserved charges via its internal symmetries.
+- A **nested shell swarm** is the current three-axis $(H,M,L)$, six-site axial candidate for carrying conserved charge labels via internal symmetries; delayed-dynamics minimality remains a theorem target.
 - **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two P+ axes, one Pm axis.  
   - Down‑type: either (two P−, one P+) or (two Pm, one P−) families.
 - Color = which axis (H,M,L) is exceptional. This yields a natural triplet color space $\mathbb{C}^3$ on which SU(3) acts via charge‑preserving, det‑1 reconfigurations of axis exceptionality and phase.
-- **Baryon color singlets** = closed 9‑axis braids; **flux tubes** = open braids in the Noether Sea with linear energy cost per unit length → confinement.
+- **Baryon color singlets** = closed 9‑axis braids; **flux tubes** = open braids in the Noether sea with linear energy cost per unit length → confinement.
 - Down‑quark pattern families, H/M/L regime differences, and braid orientation are downstream interfaces for neutrino oscillation modeling, proton-neutron mass and moment differences, residual nuclear forces, and QCD phase-transition or early-universe thermodynamics. Those applications must inherit the same color-exceptionality and confinement ledger rather than introducing separate color rules.

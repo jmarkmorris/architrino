@@ -29,7 +29,7 @@ d\lambda
 \mathcal{B}_{\mathrm{fold}}^{\varepsilon}.
 $$
 
-The boundary/event term $\mathcal{B}_{\mathrm{fold}}^{\varepsilon}$ must be ledgered. It cannot be discarded if it carries energy, momentum, angular momentum, charge, source provenance, or Noether-Sea exchange.
+The boundary/event term $\mathcal{B}_{\mathrm{fold}}^{\varepsilon}$ must be ledgered. It cannot be discarded if it carries energy, momentum, angular momentum, charge, source provenance, or Noether sea exchange.
 
 For a bounded speed factor branch, the fold action must use the causal-time measure
 
@@ -294,7 +294,7 @@ Future fold-layer packets should emit:
 | `uniform_bounds` | $C_F$, $C_{DF}$, $C_B$, and chart on which they hold |
 | `fold_weak_limit` | $\epsilon_{\mathrm{fold}}(\varepsilon)$ or symbolic weak-limit proof |
 | `combined_curl` | $\mathcal{C}_{\mathrm{tot}}^{\varepsilon}$ and exactness status |
-| `fold_event_ledger` | energy, momentum, angular momentum, charge, source-provenance, and Noether-Sea entries |
+| `fold_event_ledger` | energy, momentum, angular momentum, charge, source-provenance, and Noether sea entries |
 | `fold_closure_decision` | `fold-layer-admissible`, `fold-layer-open`, or first failure code |
 
 Failure/status codes:

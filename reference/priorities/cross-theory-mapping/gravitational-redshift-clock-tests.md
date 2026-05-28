@@ -14,9 +14,9 @@ and in a general stationary metric the ratio is read from the time-time metric c
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ treats the Euclidean void and absolute time as substrate ontology while clock-rate differences are effective observer records. The relevant corpus signals are the Noether-Sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, the effective metric $g_{\mu\nu}^{\text{eff}}$, the constitutive potential $\Phi_{\text{eff}}$, and the Lorentz closure ladder that separates clock retuning from fundamental time.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ treats the Euclidean void and absolute time as substrate ontology while clock-rate differences are effective observer records. The relevant corpus signals are the Noether sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, the effective metric $g_{\mu\nu}^{\text{eff}}$, the constitutive potential $\Phi_{\text{eff}}$, and the Lorentz closure ladder that separates clock retuning from fundamental time.
 
-The mapping target is not "gravity slows time" as ontology. The target is a clock-channel theorem: stable assemblies in different Noether-Sea states produce different operational tick rates while sharing one absolute time parameter $t$.
+The mapping target is not "gravity slows time" as ontology. The target is a clock-channel theorem: stable assemblies in different Noether sea states produce different operational tick rates while sharing one absolute time parameter $t$.
 
 ## Canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping
 
@@ -38,13 +38,13 @@ $$
 c_0=c_{\text{eff}}(\infty).
 $$
 
-Thus gravitational redshift is a clock-rate comparison produced by Noether-Sea response, not a change in substrate time. Primitive causal-root calculations may still use $c_f$, but precision clock tests use the dressed asymptotic clock/signal speed $c_0$ unless a closure result proves a special identification. The same coefficient record must also predict Shapiro delay, lensing, PPN parameters, and preferred-frame residuals.
+Thus gravitational redshift is a clock-rate comparison produced by Noether sea response, not a change in substrate time. Primitive causal-root calculations may still use $c_f$, but precision clock tests use the dressed asymptotic clock/signal speed $c_0$ unless a closure result proves a special identification. The same coefficient record must also predict Shapiro delay, lensing, PPN parameters, and preferred-frame residuals.
 
 ## Task Queue
 
 1. `clock_channel` — Define the assembly clock observable $\omega_{\text{clk}}(\Gamma,\mathcal{M}_{\mathrm{sea}})$ and its weak-field expansion. Status: `draft`.
 2. `potential_match` — Prove or bound $\Delta\omega_{\text{clk}}/\omega_0=\Delta\Phi_{\text{eff}}/c_0^2+O(\Phi_{\text{eff}}^2/c_0^4)$ in the observer weak-field branch, while keeping $c_f$ reserved for primitive delayed-root equations. Status: `draft`.
-3. `gps_multi_channel` — Close clock-rate, signal-path, and orbital-dynamics corrections from one Noether-Sea response record. Status: `draft`.
+3. `gps_multi_channel` — Close clock-rate, signal-path, and orbital-dynamics corrections from one Noether sea response record. Status: `draft`.
 4. `finite_height_clock_gate` — Recover $\Delta\nu/\nu\approx gL/c_0^2$ for height-resolved optical-clock comparisons from the same clock observable, including the collective-sample correction when phase spread across the apparatus is not negligible. Status: `draft`.
 
 ## Closure Objects
@@ -61,7 +61,7 @@ Thus gravitational redshift is a clock-rate comparison produced by Noether-Sea r
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | [validation-gates](../validation-gates/validation-gates.md) | Add redshift as a gravity-sector benchmark with no separate clock-only coefficient. |
-| This file | [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Route clock retuning through assembly dynamics and Noether-Sea response. |
+| This file | [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Route clock retuning through assembly dynamics and Noether sea response. |
 | This file | [cosmology-closure](../cosmology-closure/cosmology-closure.md) | Reuse the clock-channel map for cosmological redshift without importing fundamental expansion of the Euclidean void. |
 
 ## Failure Modes

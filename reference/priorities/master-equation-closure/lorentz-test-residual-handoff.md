@@ -22,7 +22,7 @@ The handoff is accepted as a contract only if it prevents three common failures:
 | --- | --- |
 | [master-equation-closure](master-equation-closure.md) | The Lorentz/GR bridge is two-stage: first moving-assembly contraction and clock retuning, then coarse-grained medium response and weak-field PPN closure. The existing control row already names RMS, PPN, and SME-style exports. |
 | [lorentz-invariance-test-suite](../cross-theory-mapping/lorentz-invariance-test-suite.md) | RMS rows separate Michelson-Morley, Kennedy-Thorndike, and Ives-Stilwell residuals, so two-way isotropy cannot hide clock/ruler coefficient splits. |
-| [closure-intersection-ledger](../validation-gates/closure-intersection-ledger.md) | Gravity closure requires one Noether-Sea response map for clock, ruler, effective signal-speed, weak-field metric, PPN, and preferred-frame rows. |
+| [closure-intersection-ledger](../validation-gates/closure-intersection-ledger.md) | Gravity closure requires one Noether sea response map for clock, ruler, effective signal-speed, weak-field metric, PPN, and preferred-frame rows. |
 | [gravitational-redshift-clock-tests](../cross-theory-mapping/gravitational-redshift-clock-tests.md) | Precision clock comparisons use the dressed observer speed $c_0=c_{\text{eff}}(\infty)$ unless a primitive branch calculation proves a special identification with $c_f$. |
 | [shapiro-time-delay](../cross-theory-mapping/shapiro-time-delay.md), [gravitational-lensing](../cross-theory-mapping/gravitational-lensing.md), and [perihelion-precession](../cross-theory-mapping/perihelion-precession.md) | PPN rows must bind redshift, Shapiro delay, lensing, and orbital phase to one effective metric response. |
 
@@ -54,7 +54,7 @@ The handoff may be emitted in `blocked_upstream` state before `lorentz_gr_bridge
 | `clock_channel` | Clock phase $\theta_{\mathrm{clk},q}$, $T_q(v)$ or $\omega_{\mathrm{clk},q}(v)$, and rest reference $T_0$ or $\omega_0$. | Feeds RMS Ives-Stilwell and weak-field redshift rows. | `residual.clock_missing` |
 | `signal_channel` | Round-trip signal time $T_{\circlearrowleft}(\beta,\hat{\mathbf n})$, synchronization convention, channel speed $c_\star$, and photon specialization $c_\gamma$ when used. | Feeds two-way and Michelson-Morley rows. | `residual.signal_missing` |
 | `speed_convention` | Declaration of $c_f$, $c_\star$, $c_\gamma$, and $c_0=c_{\text{eff}}(\infty)$ where applicable. | Prevents primitive/dressed speed conflation. | `residual.speed_conflation` |
-| `medium_response` | One Noether-Sea response record $\mathcal{M}_{\mathrm{sea}}^{ab}$ or bridge equivalent fixing $n$, $\chi_{\text{sea}}$, $\Phi_{\mathrm{eff}}$, stress, lapse, shift, and spatial compliance. | Feeds PPN and SME gravity-sector rows. | `residual.medium_response_missing` |
+| `medium_response` | One Noether sea response record $\mathcal{M}_{\mathrm{sea}}^{ab}$ or bridge equivalent fixing $n$, $\chi_{\text{sea}}$, $\Phi_{\mathrm{eff}}$, stress, lapse, shift, and spatial compliance. | Feeds PPN and SME gravity-sector rows. | `residual.medium_response_missing` |
 | `event_ledger` | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$ row states, selected route identifiers, and legal null rows for any recoil, medium update, remnant deformation, radiation output, or product inventory associated with the same branch. | Ties the Lorentz packet to `G0_branch_admissibility` provenance and lets `G7_null_row_audit` verify that no residual was hidden in an omitted event row. | `event.ledger_residual` or `residual.provenance_gap` |
 | `frame_projection` | Laboratory frame, preferred-frame drift vector, epoch convention, and Sun-centered comparison-frame transform for SME-style coefficients. | Gives coefficient signs, axes, and time harmonics. | `residual.frame_projection_missing` |
 | `bounds` | Declared bound vector or covariance for RMS, PPN, and SME-style rows. | Converts raw residuals into dimensionless normalized residuals. | `residual.bound_missing` |
@@ -200,7 +200,7 @@ and the same medium-response coefficients supply clock redshift, Shapiro delay, 
 | `ppn.alpha2` | $\alpha_2$ | Shift/spatial-compliance cross terms and frame projection. | Only `zero_with_bound` after shift-row cancellation is proved. | `ppn.preferred_frame_alpha2` |
 | `ppn.alpha3` | $\alpha_3$ | Momentum-conservation and preferred-frame acceleration row. | Only `zero_with_bound` after the same conservation ledger proves cancellation. | `ppn.preferred_frame_alpha3` |
 
-A PPN export fails if it copies a GR weak-field metric as a fit template without deriving the lapse, shift, and spatial-compliance rows from the Noether-Sea response record.
+A PPN export fails if it copies a GR weak-field metric as a fit template without deriving the lapse, shift, and spatial-compliance rows from the Noether sea response record.
 
 ## SME-Style Residual Rows
 

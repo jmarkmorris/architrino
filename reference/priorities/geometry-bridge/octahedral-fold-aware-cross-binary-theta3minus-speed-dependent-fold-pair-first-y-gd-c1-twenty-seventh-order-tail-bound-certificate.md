@@ -237,7 +237,8 @@ $$
 | `theta3minus.fold-pair-first-y-GD-C1-twenty-seventh-order-tail-bound` | rigorous obstruction for this evaluator |
 | `theta3minus.fold-pair-first-y-GD-twenty-seventh-order-lower-coefficient-cancellation` | coefficient-preserving cancellation certified |
 | `theta3minus.fold-pair-first-y-GD-twenty-seventh-order-post-U-successor-coefficient` | directed-rounded interval certified |
-| `theta3minus.fold-pair-first-y-GD-directed-rounded-enclosure` | blocked by coefficient-preserving twenty-eighth-order root-tangent Taylor quotient model |
+| `theta3minus.fold-pair-first-y-GD-twenty-eighth-order-post-U-successor-coefficient` | directed-rounded interval certified by successor packet |
+| `theta3minus.fold-pair-first-y-GD-directed-rounded-enclosure` | blocked by coefficient-preserving twenty-ninth-order root-tangent Taylor quotient model |
 | `theta3minus.fold-pair-scaled-remainder-continuous-collar` | blocked by directed-rounded first-y $G,D$ enclosure |
 
 ## Next Theorem Route
@@ -256,10 +257,11 @@ too lossy. The lower-cancellation successor now certifies that the coefficients
 $y^0$ through $y^{28}$ of $P-L-y^2A_{G,26}$ and
 $D_{\mathrm{pair}}-L-y^2A_{D,26}$ contain zero before any $y^{29}$ division.
 The post-$U$ successor coefficient packet then certifies $h_{27}$ and the
-$Q_{G,27},Q_{D,27}$ coefficient row. The remaining model must therefore
-enclose the twenty-eighth-order successor tail through a coefficient-preserving
-Taylor or Taylor-inverse quotient model for $G_\varepsilon(y,W,\nu)$ on the
-certified $W_\varepsilon$ root graph.
+$Q_{G,27},Q_{D,27}$ coefficient row. The next successor coefficient packet
+then certifies $h_{28}$ and the $Q_{G,28},Q_{D,28}$ coefficient row. The
+remaining model must therefore enclose the twenty-ninth-order successor tail
+through a coefficient-preserving Taylor or Taylor-inverse quotient model on the
+successor root graph.
 
 The derivative row must keep
 

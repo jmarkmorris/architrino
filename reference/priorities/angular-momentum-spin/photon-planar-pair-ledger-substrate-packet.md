@@ -23,7 +23,7 @@ d,
 \right),
 $$
 
-where $\hat{\mathbf e}$ is the propagation axis, $c_\gamma$ is the photon-channel speed in the declared Noether-Sea state, $\omega$ is the phase frequency, $d$ is the leading/trailing planar-pair spacing, and $\Delta_{\mathrm{null}}$ records the no-rest-branch and no-rest-proper-time rows. The substrate Gate B packet is admissible only if
+where $\hat{\mathbf e}$ is the propagation axis, $c_\gamma$ is the photon-channel speed in the declared Noether sea state, $\omega$ is the phase frequency, $d$ is the leading/trailing planar-pair spacing, and $\Delta_{\mathrm{null}}$ records the no-rest-branch and no-rest-proper-time rows. The substrate Gate B packet is admissible only if
 
 $$
 \Delta_A
@@ -313,7 +313,7 @@ $$
 }.
 $$
 
-For an isolated emitted photon branch, $\mathbf J_{\mathrm{mat,sea}}^{\mathrm{recoil}}$ is the retained local recoil and Noether-Sea update. For a propagated free branch after source separation, this row is replaced by conservation of $\mathbf J_{\gamma}^{\mathrm{sub}}$ plus the carried wake ledger over the branch window.
+For an isolated emitted photon branch, $\mathbf J_{\mathrm{mat,sea}}^{\mathrm{recoil}}$ is the retained local recoil and Noether sea update. For a propagated free branch after source separation, this row is replaced by conservation of $\mathbf J_{\gamma}^{\mathrm{sub}}$ plus the carried wake ledger over the branch window.
 
 The analyzer handoff residual is
 
@@ -362,7 +362,7 @@ inside the declared two-axis transverse chart. They still do not close material 
 | `neutral_but_dark_fail` | Static exposure cancels but $\Delta_{\mathrm{surv}}^\gamma=1$. | The pro/anti cancellation erased the free oscillatory photon ledger; no free photon branch is certified. |
 | `longitudinal_free_mode_fail` | $\Delta_{\parallel}^{\mathrm{sub}}>\varepsilon_{\parallel}$ for a claimed free photon. | Reclassify as Gate A failure, massive corridor, material recoupling, or bound/medium response. |
 | `helicity_fail` | $\Delta_{\mathrm{hel}}^\gamma$ exceeds tolerance. | The planar pair has not recovered observer-level photon helicity $\pm1$. |
-| `event_ledger_fail` | $\Delta_{\mathbf J}^{\gamma}$ exceeds tolerance. | The branch hides missing source, material, wake, or Noether-Sea angular momentum. |
+| `event_ledger_fail` | $\Delta_{\mathbf J}^{\gamma}$ exceeds tolerance. | The branch hides missing source, material, wake, or Noether sea angular momentum. |
 | `handoff_blocked` | $a_{\perp}^{\mathrm{sub}}$, $\mathbf J_{\gamma}^{\mathrm{sub}}$, or $\mathcal W_\gamma$ is unavailable. | The ideal analyzer arithmetic remains a reduced chart only. |
 
 ## Promotion Decision

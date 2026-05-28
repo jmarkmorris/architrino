@@ -6,7 +6,7 @@ This chapter defines the current heavier charged-lepton branch targets for $\mat
 
 ## Current framing
 
-Muon and tau states are treated as higher-excitation charged lepton assemblies that share the same broad charge pattern as the [electron](./electron.md) while differing in shielding, excitation, and dissociation-accessible relaxation channels. In the present architecture they are the heavier charged-lepton branches of the same shielding ladder used in [Noether Swarm](../../noether-swarm/noether-swarm.md) and [Particle Masses: Emergent Inertia in the Noether Sea](../particle-masses.md).
+Muon and tau states are treated as higher-excitation charged lepton assemblies that share the same broad charge pattern as the [electron](./electron.md) while differing in shielding, excitation, and dissociation-accessible relaxation channels. In the present architecture they are the heavier charged-lepton branches of the same shielding ladder used in [Noether Swarm](../../noether-swarm/noether-swarm.md) and [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md).
 
 ## Axial Inventory and Shielding-Coherence Classes
 
@@ -20,7 +20,7 @@ Muon and tau branches do not introduce new charged-lepton axial inventories. The
 
 The corresponding antileptons use anti-swarm orientation and $6P$ axial inventory. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
 
-This gives the charged-lepton side of lepton universality in a disciplined form. The common axial inventory supplies the shared electromagnetic and weak bookkeeping for $e$, $\mu$, and $\tau$. Differences in observed rates, lifetimes, and response corrections are allowed only after the same weak-coupling-triad exposure rule, shielding map, and Noether-Sea response record have been declared.
+This gives the charged-lepton side of lepton universality in a disciplined form. The common axial inventory supplies the shared electromagnetic and weak bookkeeping for $e$, $\mu$, and $\tau$. Differences in observed rates, lifetimes, and response corrections are allowed only after the same weak-coupling-triad exposure rule, shielding map, and Noether sea response record have been declared.
 
 ## Weak-Reaction Provenance
 
@@ -52,7 +52,7 @@ a_\ell^{\text{SM,ref}}
 +O(R_L^4),
 $$
 
-with $\mathcal{C}_\ell$ extracted from the same mass-response, angular-response, Noether Sea, and orientation maps used for the electron branch. A muon `g-2` residual cannot be accepted as an $\mathbb{A}\mathbb{A}\mathbb{A}$ signal unless the corresponding electron correction remains suppressed and the tau-side scaling is consistent with available bounds.
+with $\mathcal{C}_\ell$ extracted from the same mass-response, angular-response, Noether sea, and orientation maps used for the electron branch. A muon `g-2` residual cannot be accepted as an $\mathbb{A}\mathbb{A}\mathbb{A}$ signal unless the corresponding electron correction remains suppressed and the tau-side scaling is consistent with available bounds.
 
 The paired scattering gate is the lepton form factor:
 

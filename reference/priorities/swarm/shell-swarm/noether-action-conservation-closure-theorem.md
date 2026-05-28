@@ -106,7 +106,7 @@ $$
 \mathcal{J}_{\boldsymbol{\Omega}}=\boldsymbol{\Omega}\cdot\mathbf{J}.
 $$
 
-The event ledger closes only when the Noether-Sea and boundary residuals are also recorded on the same interval and endpoint convention.
+The event ledger closes only when the Noether sea state and boundary residuals are also recorded on the same interval and endpoint convention.
 
 ---
 
@@ -193,7 +193,7 @@ The theorem is invalid if any of the following rows use different conventions:
 | scale/action | same $\Gamma_B$ or inertia operator used in the dynamics row |
 | stability/event window | same return section, event interval, and root-status convention |
 | central inventory | same architrino labels, polarity map, $Q$, and source provenance |
-| Noether-Sea update | same event interval and boundary exchange convention |
+| Noether sea update | same event interval and boundary exchange convention |
 
 If a conservation row is computed on a different root or memory policy, its status is
 
@@ -201,7 +201,7 @@ $$
 \texttt{force-action-ledger-mismatch}.
 $$
 
-If the Noether-Sea update is required but absent, its status is
+If the Noether sea update is required but absent, its status is
 
 $$
 \texttt{medium-update-open}.
@@ -218,7 +218,7 @@ $$
 3. action-derived scale or tensorial inertia row;
 4. root-ledger Floquet or return stability on the same endpoint convention;
 5. central inventory and source-provenance ledger;
-6. Noether-Sea and boundary update rows for the same event interval.
+6. Noether sea state and boundary update rows for the same event interval.
 
 If $\mathcal{S}_{\mathrm{tot}}$ is invariant under time translations, spatial translations, rotations, and the declared inventory/provenance relabeling, then the event ledger conservation residuals obey the quantitative bound in Section 3. In the zero-error limit, the branch/event packet satisfies
 
@@ -255,7 +255,7 @@ The current $M=3$ exact-antipodal rows cannot yet use this theorem. They lack:
 3. a passed work-one-form curl test;
 4. an action-derived $\Gamma_B$ or inertia operator;
 5. a root-ledger Floquet stability row;
-6. a same-window Noether-Sea/event update.
+6. a same-window Noether sea/event update.
 
 Therefore the status is
 

@@ -32,7 +32,7 @@ Work is anchored in the specific architecture already defined in this repo:
 - **Scalable and deformable**:
   - Ellipsoidal/spheroidal -> Fermions (Fermi-Dirac statistics).
   - Planar (flattened) -> Bosons (Bose-Einstein statistics).
-- **Noether Sea**: Ambient substrate contents built from neutral Noether swarm assemblies; Higgs-like and vacuum-language claims are effective comparison statements until derived.
+- **Noether sea**: Ambient substrate contents built from neutral Noether swarm assemblies; Higgs-like and vacuum-language claims are effective comparison statements until derived.
 
 ---
 
@@ -117,7 +117,7 @@ Map tri-binary axial patterns to all SM fermions:
 
 **C.2 Spontaneous Symmetry Breaking**
 
-- Background spacetime assemblies create nonzero VEV.
+- Background Noether sea creates nonzero VEV.
 - Fermion masses from coupling to this medium (Yukawa).
 - W/Z mass acquisition; photon remains massless.
 
@@ -135,7 +135,7 @@ Map tri-binary axial patterns to all SM fermions:
 
 Show SM Lagrangian emerges in low-energy limit:
 - Kinetic terms from binary orbital motion.
-- Mass terms from spacetime assembly coupling.
+- Mass terms from Noether sea coupling.
 - Yukawa couplings from axial-layer / medium interactions.
 - Gauge terms from potential exchange.
 
@@ -228,7 +228,7 @@ Show SM Lagrangian emerges in low-energy limit:
 - **Geometric Topologist**: Receive assembly classifications; provide particle physics requirements; request specific structures matching quantum numbers.
 - **Computational Physicist**: Provide interaction rules, effective vertices, target observables; receive numerical validation of properties and scattering.
 - **Experimental Physics Lead**: Supply precision predictions with uncertainties; receive data constraints and anomalies.
-- **General Relativist**: Coordinate on energy-momentum tensor, Higgs/spacetime assemblies, cosmological particle content.
+- **General Relativist**: Coordinate on energy-momentum tensor, Higgs/Noether sea coupling, cosmological particle content.
 - **Nuclear/Condensed Matter**: Provide confirmed particle structures and effective nuclear force potentials.
 - **Foundations**: Collaborate on ontological interpretation of fields, virtual particles, and measurement.
 - **Adversary**: Defend against no-go theorems, precision test failures, and fine-tuning accusations.

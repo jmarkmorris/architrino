@@ -6,23 +6,23 @@ This priority packet is a proof and replay scaffold, not reader-facing canon. It
 
 - **Status:** candidate sign condition with two-phase replay scaffold.
 - **Main claim:** existing iron-rich metallic assemblies may have lower relative chemical and medium-response cost than silicate assemblies as normalized Noether swarm density increases, after ordinary pressure, temperature, phase, and gravity terms are separated.
-- **Open burden:** the sign must be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether-Sea coupling. Until that is done, the condition is a derivation target, not a theorem.
-- **Promotion targets:** [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) and [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) after a successful proof or replay; [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) supplies the shared pressure-response scaffold.
+- **Open burden:** the sign must be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling. Until that is done, the condition is a derivation target, not a theorem.
+- **Promotion targets:** [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) and [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) after a successful proof or replay; [Pressure-Dependent Noether sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) supplies the shared pressure-response scaffold.
 
 ## Source Signals
 
 - [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) separates Earth-core iron concentration from iron-nucleus creation and states the no-new-iron guardrail $S_{\mathrm{Fe}}^{\mathrm{nuc}}=0$ for ordinary planetary differentiation.
 - [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) frames dense material phases through the local response record $\Theta_E^{(\ell)}$, not through a bare element label.
-- [Molecular Exclusion and Noether-Sea Response](../../../content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md) distinguishes ordinary molecular or atomic exclusion from deeper Noether-Sea implementation layers.
+- [Molecular Exclusion and Noether Sea Response](../../../content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md) distinguishes ordinary molecular or atomic exclusion from deeper Noether sea implementation layers.
 - [Noether Swarm Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) supplies the current priority-side model for packing-limited center density and oblate-envelope support-function contact.
-- [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) supplies the shared variables $n$, $\chi_{\text{sea}}$, $\Gamma_N$, $S_{ij}$, and $\mathcal{M}_{\text{sea}}^{ab}$ for pressure-sensitive matter environments.
+- [Pressure-Dependent Noether sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) supplies the shared variables $n$, $\chi_{\text{sea}}$, $\Gamma_N$, $S_{ij}$, and $\mathcal{M}_{\text{sea}}^{ab}$ for pressure-sensitive matter environments.
 
 ## Claim Map
 
 | Bucket | Candidate claim |
 | --- | --- |
-| Ontology | Iron and silicate phases are matter assemblies embedded in the Noether Sea; the Euclidean void is not compressed and iron nuclei are not created by the core environment. |
-| Derivation/closure target | The sign of $\partial_n\Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}$ should be computed from one assembly and Noether-Sea response record. |
+| Ontology | Iron and silicate phases are matter assemblies embedded in the Noether sea; the Euclidean void is not compressed and iron nuclei are not created by the core environment. |
+| Derivation/closure target | The sign of $\partial_n\Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}$ should be computed from one assembly and Noether sea response record. |
 | Effective summary | In standard language, dense iron-rich metal segregates inward during planetary differentiation because it is denser and energetically favored in the core. |
 | Speculation | Metallic iron may be especially compatible with high normalized Noether swarm density because its packing, bonding, and exposed mass response lower relative medium cost compared with silicate phases. |
 
@@ -43,7 +43,7 @@ Here $\mathcal{N}_{\mathrm{Fe}}$ is the number density of iron nuclei and $\math
 
 ## Chemical-Potential Decomposition
 
-For a material phase $X$, separate the ordinary material contribution, the exposed mass response in the effective potential, and the native Noether-Sea medium term:
+For a material phase $X$, separate the ordinary material contribution, the exposed mass response in the effective potential, and the native Noether sea medium term:
 
 $$
 \mu_X
@@ -176,7 +176,7 @@ G_{\mathrm{Fe}}-G_{\mathrm{sil}}
 \mathcal{R}_{\mathrm{coeff}}.
 $$
 
-**Lemma: packing-coupling dense-medium preference.** If, for every $n\in I$, the metallic branch and the silicate branch use the same Noether-Sea state record and there is an $\epsilon>0$ such that
+**Lemma: packing-coupling dense-medium preference.** If, for every $n\in I$, the metallic branch and the silicate branch use the same Noether sea state record and there is an $\epsilon>0$ such that
 
 $$
 G_{\mathrm{Fe}}-G_{\mathrm{sil}}
@@ -214,7 +214,7 @@ n\frac{\partial}{\partial n}
 \ln n_{\max,X}^{\mathrm{obl}}(n),
 $$
 
-which is the packing-headroom correction. If a branch raises its oblate-envelope packing ceiling as ambient normalized Noether swarm density increases, its marginal exclusion penalty is reduced. If the ceiling rises too slowly, the convex packing penalty grows. The metallic Fe preference is therefore sharpened to a strict margin claim: Fe wins only when the branch-derived metallic coordination and Noether-Sea coupling benefit exceed the Fe-minus-silicate marginal packing, delay, strain, pressure, and coefficient-drift costs.
+which is the packing-headroom correction. If a branch raises its oblate-envelope packing ceiling as ambient normalized Noether swarm density increases, its marginal exclusion penalty is reduced. If the ceiling rises too slowly, the convex packing penalty grows. The metallic Fe preference is therefore sharpened to a strict margin claim: Fe wins only when the branch-derived metallic coordination and Noether sea coupling benefit exceed the Fe-minus-silicate marginal packing, delay, strain, pressure, and coefficient-drift costs.
 
 This is the first proof target. The left side must come from assembly coupling and metallic coordination; the right side must come from support-function packing, exclusion-volume response, delay, strain, pressure response, and coefficient-drift bounds. If either side is inserted as a free phase label, the argument has not been derived.
 
@@ -901,7 +901,7 @@ The first margin says the metallic Fe branch wins the dense-medium chemical-pote
 ## Failure Modes
 
 1. **Transmutation leak:** the replay requires $S_{\mathrm{Fe}}^{\mathrm{nuc}}\ne0$ without a nuclear reaction provenance ledger.
-2. **Ordinary-physics absorption:** standard phase, pressure, temperature, density, and gravity terms explain the segregation with no remaining shared Noether-Sea residual. In that case the dense-medium preference becomes unnecessary.
+2. **Ordinary-physics absorption:** standard phase, pressure, temperature, density, and gravity terms explain the segregation with no remaining shared Noether sea residual. In that case the dense-medium preference becomes unnecessary.
 3. **Coefficient split:** Fe and silicate require separate observable-specific rows instead of one $B_{\mathrm{seg}}$ record or a logged branch transition.
 4. **Wrong sign:** $\mathcal{S}_{\mathrm{Fe/sil}}\ge0$ on the branch where the hypothesis predicts denser-medium compatibility.
 5. **Transport violation:** the branch produces ordinary dissipative drag below $\mathcal{R}_{\text{tr},*}$, satisfies the sign only by using unlogged loss-channel energy, or sheds energy above threshold without a logged event channel.
@@ -957,7 +957,7 @@ This thread leaves four priority items for the next theory-advancement pass:
 
    through $V_{\mathrm{env},X}$, $V_{\mathrm{cell},X}^{\mathrm{sf}}$, $e_X^{\mathrm{sf}}$, $n_{\max,X}^{\mathrm{obl}}$, and the final sign condition $\mathcal{S}_{\mathrm{Fe/sil}}<0$.
 
-2. **Support-function packing fraction derivation.** Replace the mock values $\phi_{\mathrm{Fe}}^{\mathrm{target}}\approx0.716$ and $\phi_{\mathrm{sil}}^{\mathrm{target}}\approx0.599$ with a branch argument or a rigorous bound from $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, wake clearance, and lattice clearance. Promotion requires $0 < \phi_X^{\mathrm{target}} \le \phi_*$ and a stated reason the Fe and silicate contact families are admissible in the same Noether-Sea state record.
+2. **Support-function packing fraction derivation.** Replace the mock values $\phi_{\mathrm{Fe}}^{\mathrm{target}}\approx0.716$ and $\phi_{\mathrm{sil}}^{\mathrm{target}}\approx0.599$ with a branch argument or a rigorous bound from $\mathcal{O}_X$, $\mathcal{L}_X$, $\mathcal{K}_X$, wake clearance, and lattice clearance. Promotion requires $0 < \phi_X^{\mathrm{target}} \le \phi_*$ and a stated reason the Fe and silicate contact families are admissible in the same Noether sea state record.
 
 3. **Packing-compliance stiffness shares.** Derive or bound
 
@@ -983,5 +983,5 @@ This thread leaves four priority items for the next theory-advancement pass:
 
 - **Promote as proof target:** if the sufficient sign inequality can be expressed entirely through branch-derived packing, coupling, delay, strain, and medium-response coefficients.
 - **Promote as simulation target:** if the symbolic replay fields can be populated by a finite branch or material-state fixture with shared rows and declared null bounds.
-- **Demote to standard geophysics:** if ordinary phase and density sorting explain the result with no shared Noether-Sea residual.
+- **Demote to standard geophysics:** if ordinary phase and density sorting explain the result with no shared Noether sea residual.
 - **Reject:** if the explanation requires unlogged iron creation, hidden drag, or independent medium coefficients per observable.

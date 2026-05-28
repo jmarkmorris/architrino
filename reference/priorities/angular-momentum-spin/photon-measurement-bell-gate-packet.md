@@ -269,7 +269,7 @@ Fail criteria:
 
 - The pass kernel assumes $\cos^2\theta$ rather than deriving it as the basin integral above.
 - $A$ is rank zero or rank two while claiming to be a nontrivial ideal linear analyzer.
-- Rejected action is not accounted for in energy, momentum, angular momentum, material-record, wake, and Noether-Sea recoil ledgers.
+- Rejected action is not accounted for in energy, momentum, angular momentum, material-record, wake, and Noether sea recoil ledgers.
 
 ## Detector-Bias Diagnostic
 

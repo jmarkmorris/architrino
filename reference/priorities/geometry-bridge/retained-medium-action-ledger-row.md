@@ -218,7 +218,7 @@ $$
 }
 $$
 
-Thus any remaining curl obstruction must come from the delayed-force row, the retained speed/support/event rows, another Noether-Sea row, endpoint motion, or a failure to retain the variables that the storage density actually varies.
+Thus any remaining curl obstruction must come from the delayed-force row, the retained speed/support/event rows, another Noether sea row, endpoint motion, or a failure to retain the variables that the storage density actually varies.
 
 ## Energy And Passivity Row
 
@@ -322,7 +322,7 @@ It is not yet a retained branch proof. The remaining obstruction is narrower:
 
 1. a branch-local response object must emit $M$ and $Z$ as retained variables over the same event interval;
 2. the root-ledger variation of $Z$ must be paired with the exposure-conjugate row above when the medium tensor is off stationarity;
-3. the rest of the delayed-force, speed, support, event, and Noether-Sea rows must pass the total curl and conservation tests.
+3. the rest of the delayed-force, speed, support, event, and Noether sea rows must pass the total curl and conservation tests.
 
 Thus the previous status
 
@@ -340,4 +340,4 @@ The metric-cancellation route is no longer blocked by tensor symmetry or by a lo
 
 ## Promotion Decision
 
-This packet remains `priority-only`. It is a theorem target for the geometry bridge, not reader-facing corpus prose, because the rigid octahedral branch is still a diagnostic row and the response object has not been derived from the full Noether-Sea dynamics.
+This packet remains `priority-only`. It is a theorem target for the geometry bridge, not reader-facing corpus prose, because the rigid octahedral branch is still a diagnostic row and the response object has not been derived from the full Noether sea dynamics.

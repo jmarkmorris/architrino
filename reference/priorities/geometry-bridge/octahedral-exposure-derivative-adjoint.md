@@ -488,7 +488,7 @@ This is a true theory advancement: the rigid octahedral root-ledger geometry no 
 
 ## What Remains Open
 
-This packet does not prove the rigid octahedral carrier is a retained dynamics branch. It also does not emit the full exposure derivative for arbitrary support, tangent, bounded-speed, event, or Noether-Sea variations. The next hard mathematical target is no longer the axial cancellation coefficient; it is the full finite-coordinate derivative matrix
+This packet does not prove the rigid octahedral carrier is a retained dynamics branch. It also does not emit the full exposure derivative for arbitrary support, tangent, bounded-speed, event, or Noether sea variations. The next hard mathematical target is no longer the axial cancellation coefficient; it is the full finite-coordinate derivative matrix
 
 $$
 Z_p^{ab}

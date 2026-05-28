@@ -414,7 +414,7 @@ $$
 
 or until the chosen $\eta>0$ fold-layer rule changes status.
 
-This row proves only regularized evolution. It does not prove an exact fixed-speed carrier, a stable branch, a Noether-Sea response row, or an observer-export result.
+This row proves only regularized evolution. It does not prove an exact fixed-speed carrier, a stable branch, a Noether sea response row, or an observer-export result.
 
 ### Proposition Target 4: Weak-Limit Obligations As $\eta\to0$
 
@@ -466,7 +466,7 @@ A same-level branch certificate may take $\eta\to0$ only after the following wea
    \text{in the declared residual norms}.
    $$
 
-5. Event-ledger convergence for energy, momentum, angular momentum, charge provenance, recoil, and Noether Sea medium update.
+5. Event-ledger convergence for energy, momentum, angular momentum, charge provenance, recoil, and Noether sea medium update.
 
 If any self row converges into a tangent or near-zero fold without a controlled $\eta>0$ rule, the correct certificate status is `reject`, not promotion.
 
@@ -523,7 +523,7 @@ The intended residual meanings for this packet are:
 | $\mathcal{R}_{\mathrm{inventory}}$ | polarity ledger, central inventory, and charge provenance |
 | $\mathcal{R}_{E}$ | history-dressed energy/action conservation on the retained branch |
 | $\mathcal{R}_{\mathrm{top}}$ | topological carrier and framed-wake consistency |
-| $\mathcal{R}_{\mathrm{exposure}}$ | exposure quotient and Noether-Sea medium-response extraction |
+| $\mathcal{R}_{\mathrm{exposure}}$ | exposure quotient and Noether sea medium-response extraction |
 | $\mathcal{R}_{\mathrm{Lorentz}}$ | moving-branch clock/ruler/signal export residuals |
 | $\mathcal{R}_{\mathrm{event}}$ | event ledger for $E$, $\mathbf{p}$, $\mathbf{J}$, $Q$, recoil, and medium update |
 

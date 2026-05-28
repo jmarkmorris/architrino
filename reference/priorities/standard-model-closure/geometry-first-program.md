@@ -93,7 +93,7 @@ D^{\theta'}(U\Psi)-U D^\theta\Psi
 \left\|D^\theta\Psi\right\|+\varepsilon_{\mathrm{op}}
 }.
 $$
-The branch passes this comparison only if $\mathcal{R}_{\mathrm{cov}}\le\varepsilon_{\mathrm{cov}}$ on the declared low-energy record domain. If covariance is achieved only by changing the underlying Noether-Sea state, axial inventory, or branch ledger while keeping the same observer labels, the map has confused gauge redundancy with physical variation.
+The branch passes this comparison only if $\mathcal{R}_{\mathrm{cov}}\le\varepsilon_{\mathrm{cov}}$ on the declared low-energy record domain. If covariance is achieved only by changing the underlying Noether sea state, axial inventory, or branch ledger while keeping the same observer labels, the map has confused gauge redundancy with physical variation.
 
 ### Amplitude factorization and locality-emergence target
 
@@ -159,7 +159,7 @@ k_\theta
 \inf_{N\in\mathbb{Z}}
 \left|k_\theta-N\right|.
 $$
-This residual belongs to the observer-level gauge recovery map. It should be derived from closed causal-wake provenance, axial-layer holonomy, and Noether-Sea response rather than from an assumed principal-bundle ontology.
+This residual belongs to the observer-level gauge recovery map. It should be derived from closed causal-wake provenance, axial-layer holonomy, and Noether sea response rather than from an assumed principal-bundle ontology.
 
 ## Geometry-First Internal Objects (Provisional)
 
@@ -185,7 +185,7 @@ f(a,\mathbf{x})\,
 A_a(\mathbf{x};R_{\text{rel}})
 \,dV.
 $$
-Here $\eta_a^{(h)}$ is the finite-state weak-exposure score already used by the weak-sector packet, $\rho_{\text{NS}}$ weights available Noether swarm density, $\chi_{\text{sea}}$ weights Noether-Sea delay, and $A_a$ is a provisional polar-site aperture profile localized around the polar-site direction $\hat{\mathbf n}_a(R_{\text{rel}})$. The normalizer $Z_h$ is fixed by $\int 1\,d\mu_W^{(h)}=1$ on the selected branch.
+Here $\eta_a^{(h)}$ is the finite-state weak-exposure score already used by the weak-sector packet, $\rho_{\text{NS}}$ weights available Noether swarm density, $\chi_{\text{sea}}$ weights Noether sea delay, and $A_a$ is a provisional polar-site aperture profile localized around the polar-site direction $\hat{\mathbf n}_a(R_{\text{rel}})$. The normalizer $Z_h$ is fixed by $\int 1\,d\mu_W^{(h)}=1$ on the selected branch.
 
 This measure is the first chirality selector. The weak `V-A` gate is not a separate rule if
 $$
@@ -346,7 +346,7 @@ with $f(0)=1$ and $f(a)=0$. The resulting Euler-Lagrange problem should produce 
 
 ## Exact Next Calculation
 
-Compute one row before attempting the full CKM/PMNS system. Fix one color-sector branch $c$, one down-type family candidate, one axial-frame offset $R_{\text{rel}}$, and one local Noether-Sea state. Build the three shielding envelopes
+Compute one row before attempting the full CKM/PMNS system. Fix one color-sector branch $c$, one down-type family candidate, one axial-frame offset $R_{\text{rel}}$, and one local Noether sea state. Build the three shielding envelopes
 $$
 B_{\mathrm{IMO}},\qquad B_{\mathrm{IM-}},\qquad B_{\mathrm{I--}},
 $$
@@ -371,7 +371,7 @@ The pass condition is that this lands near the Cabibbo scale without CKM input c
 
 ### First $u$-row reduction
 
-For the controlled $u$-row calculation, hold fixed one color-sector branch $c$, one down-type family candidate, one axial-frame offset $R_{\text{rel}}$, and one local Noether-Sea state. The down-type axial inventory is the same across $d,s,b$; the generation label changes only the shielding tier
+For the controlled $u$-row calculation, hold fixed one color-sector branch $c$, one down-type family candidate, one axial-frame offset $R_{\text{rel}}$, and one local Noether sea state. The down-type axial inventory is the same across $d,s,b$; the generation label changes only the shielding tier
 $$
 \Lambda_d=\mathrm{IMO},\qquad
 \Lambda_s=\mathrm{IM-},\qquad
@@ -615,7 +615,7 @@ e^{i\phi_{\Lambda,m}^{(\nu)}}
 \le
 \epsilon_{\phi},
 $$
-for every $\Lambda\in\{\mathrm{IMO},\mathrm{IM-},\mathrm{I--}\}$. The construction may use $z_\Lambda$, $\mathcal{R}_{A_0}$-style residual entries, $\Delta_{\mathbf{k}}$, the weak-exposure scores, and the local Noether-Sea state. It may not use $\lvert V_{ud}\rvert$, $\lvert V_{us}\rvert$, $\lvert V_{ub}\rvert$, or any CKM-derived transport action as input.
+for every $\Lambda\in\{\mathrm{IMO},\mathrm{IM-},\mathrm{I--}\}$. The construction may use $z_\Lambda$, $\mathcal{R}_{A_0}$-style residual entries, $\Delta_{\mathbf{k}}$, the weak-exposure scores, and the local Noether sea state. It may not use $\lvert V_{ud}\rvert$, $\lvert V_{us}\rvert$, $\lvert V_{ub}\rvert$, or any CKM-derived transport action as input.
 
 With these envelopes, the first $u$-row kernel becomes a calculation rather than an ansatz. The exact CKM-blind pass condition for the Cabibbo entry is:
 $$

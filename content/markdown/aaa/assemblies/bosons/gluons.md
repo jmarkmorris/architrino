@@ -9,7 +9,7 @@ In the Standard Model, color is an abstract $SU(3)$ label. In the current $\math
 
 ### The Noether Swarm Substrate
 
-The [Euclidean void](../../foundations/euclidean-void.md) is populated by high-energy, small-scale Noether swarms, often in tightly bound pro/anti groups. These form an ambient Noether Sea of color-singlet swarms.
+The [Euclidean void](../../foundations/euclidean-void.md) is populated by high-energy, small-scale Noether swarms, often in tightly bound pro/anti groups. These form an ambient Noether sea of color-singlet swarms.
 
 A Noether swarm also has three ordered axes $(H,M,L)$, each carrying two polar sites.
 
@@ -50,17 +50,17 @@ In this model, the gluon is not a fundamental point particle but an emergent met
 ### Polar Vortices and Flux Tubes
 
 - **Source:** each circulating binary within the Noether swarm generates a pair of persistent, high-intensity polar vortices along its rotation axis.
-- **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether Sea into a **flux tube**, a coherent bundle of ambient nested shell swarms carrying the open color corridor between exceptional-axis sectors.
-- **The glue:** the strong force is the tension of these coupled vortices trying to shorten and restore the surrounding Noether Sea to its isotropic ground state.
+- **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether sea into a **flux tube**, a coherent bundle of ambient nested shell swarms carrying the open color corridor between exceptional-axis sectors.
+- **The glue:** the strong force is the tension of these coupled vortices trying to shorten and restore the surrounding Noether sea to its isotropic ground state.
 
-This can also be read as the strong-force version of the pole problem. Rotational averaging can blur equatorial structure, but it does not fully hide axial leakage. Colored cores therefore remain open at their poles unless another core accepts the flux. A gluon tube is the Noether Sea's way of routing that exposed axial traffic into a partner assembly rather than letting it radiate away incoherently.
+This can also be read as the strong-force version of the pole problem. Rotational averaging can blur equatorial structure, but it does not fully hide axial leakage. Colored cores therefore remain open at their poles unless another core accepts the flux. A gluon tube is the Noether sea's way of routing that exposed axial traffic into a partner assembly rather than letting it radiate away incoherently.
 
 ### The Gluon as an Axis-Reconfiguration Braid
 
-A gluon is a propagating disturbance in the Noether-Sea assembly network that reconfigures axis exceptionality within the quark color basis.
+A gluon is a propagating disturbance in the Noether swarm assembly network that reconfigures axis exceptionality within the quark color basis.
 
 - **The operator:** when a Red quark $|q_H\rangle$ interacts with a Green quark $|q_M\rangle$, the gluon acts as a bridge that mixes or swaps the exceptional-axis state between $H$ and $M$.
-- **The braid:** geometrically, this is realized as a twisting of the Noether-Sea flux tube: a braid segment that propagates between the cores and carries the topology required to move exceptionality from one axis sector to another.
+- **The braid:** geometrically, this is realized as a twisting of the Noether sea flux tube: a braid segment that propagates between the cores and carries the topology required to move exceptionality from one axis sector to another.
 
 ### The 8 Gluon Modes (Deriving the Octet)
 
@@ -89,12 +89,12 @@ At the Standard Model level, gluons are spin-1 gauge bosons. Because color is co
 
 ## Confinement and Energetics
 
-Quarks are confined because an open color corridor stores energy in the surrounding Noether-Sea assembly network.
+Quarks are confined because an open color corridor stores energy in the surrounding Noether swarm assembly network.
 
 ### Energy Density Calculation
 
-- **Noether-Sea coherence scale:** the confinement scaffold uses a candidate coherence length $L_{\mathrm{coh}}$, provisionally of order $1\;\mathrm{fm}$, rather than a discretization scale of the Euclidean void.
-- **Cost of coherent ordering:** forcing a line of ambient Noether-Sea swarms to align with an open color corridor costs an energy $E_{\mathrm{coh}}$ per coherence length.
+- **Noether sea coherence scale:** the confinement scaffold uses a candidate coherence length $L_{\mathrm{coh}}$, provisionally of order $1\;\mathrm{fm}$, rather than a discretization scale of the Euclidean void.
+- **Cost of coherent ordering:** forcing a line of ambient Noether sea swarms to align with an open color corridor costs an energy $E_{\mathrm{coh}}$ per coherence length.
 - **String tension ($\sigma$):**
   $$
   \sigma \sim \frac{E_{\mathrm{coh}}}{L_{\mathrm{coh}}}.
@@ -105,14 +105,14 @@ Quarks are confined because an open color corridor stores energy in the surround
   $$
 - **Result:** the energy grows approximately linearly with separation, $V \propto r$, until it becomes cheaper to create a new quark-antiquark pair than to keep stretching the corridor.
 
-This is the standard flux-tube observable pressure translated into Noether-Sea language, not an import of perturbative string ontology. The string-tension scale is useful because QCD and lattice calculations already treat the approximately linear static potential as a non-perturbative benchmark. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is to extract $\sigma_{\mathrm{eff}}$ from the same medium shear/torsion record that also suppresses free color and produces a finite closed-braid excitation scale.
+This is the standard flux-tube observable pressure translated into Noether sea language, not an import of perturbative string ontology. The string-tension scale is useful because QCD and lattice calculations already treat the approximately linear static potential as a non-perturbative benchmark. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is to extract $\sigma_{\mathrm{eff}}$ from the same medium shear/torsion record that also suppresses free color and produces a finite closed-braid excitation scale.
 
 The validation gate is therefore:
 
 - **Static-potential recovery:** the open corridor must reproduce the accepted hadronic-scale linear potential within the declared tolerance.
 - **No free color:** an isolated color sector must exceed the free-color bound rather than becoming a long-lived asymptotic object.
 - **Mass-gap recovery:** closed pure strong-sector braids must have a finite lowest excitation scale instead of a continuum of arbitrarily soft color modes.
-- **Shared record:** the same Noether-Sea state variables must control tension, screening, and closed-braid excitation energy; otherwise the model has only matched separate QCD-looking observables by retuning.
+- **Shared record:** the same Noether sea state variables must control tension, screening, and closed-braid excitation energy; otherwise the model has only matched separate QCD-looking observables by retuning.
 
 The compact gauge-invariant diagnostic is inherited from the Wilson-loop test in [Color Charge and SU(3)](../fermions/color-charge-su3.md#closure-interface-confinement-energy-scaling):
 $$
@@ -134,7 +134,7 @@ A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the t
   $$
   3\otimes 3\otimes 3 \supset 1.
   $$
-- **Far field:** at distances larger than the proton radius, the open color corridors close and no net color flux leaks into the surrounding Noether Sea. The composite is therefore transparent in the color channel at large distances.
+- **Far field:** at distances larger than the proton radius, the open color corridors close and no net color flux leaks into the surrounding Noether sea. The composite is therefore transparent in the color channel at large distances.
 
 ---
 
@@ -144,9 +144,9 @@ Unlike photons, gluons carry color structure themselves because they represent r
 
 ### The 3-Gluon Vertex
 
-- **Mechanism:** since a gluon is a polarized distortion of the Noether-Sea assembly network, two gluon braids can interact when they cross or share corridor structure.
-- **Topology:** flux tubes can merge or split. Geometrically, this is the tangling of Noether-Sea vortices, the strong-sector origin of non-Abelian self-interaction.
+- **Mechanism:** since a gluon is a polarized distortion of the Noether swarm assembly network, two gluon braids can interact when they cross or share corridor structure.
+- **Topology:** flux tubes can merge or split. Geometrically, this is the tangling of Noether sea vortices, the strong-sector origin of non-Abelian self-interaction.
 
 ### Glueballs
 
-If these self-interacting braids form a closed loop without quarks at the ends, they produce a glueball: a massive, unstable resonance of pure strong-sector excitation of the Noether Sea.
+If these self-interacting braids form a closed loop without quarks at the ends, they produce a glueball: a massive, unstable resonance of pure strong-sector excitation of the Noether sea.

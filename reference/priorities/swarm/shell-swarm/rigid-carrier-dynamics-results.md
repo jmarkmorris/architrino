@@ -202,7 +202,7 @@ The current evidence supports the following narrow inference:
    - plane-normal precession,
    - antipodal relaxation,
    - controlled self/fold-layer contribution,
-   - or a declared Noether-Sea medium-response term with event-ledger closure.
+   - or a declared Noether sea medium-response term with event-ledger closure.
 5. The next useful computation is a low-order deformed support-band least-squares problem using the projection equations from [force-balance-reduction.md](force-balance-reduction.md) and the ansatz variables from [deformed-carrier-dynamics-ansatz.md](deformed-carrier-dynamics-ansatz.md).
 
 The candidate branch should not be moved toward corpus migration until a deformed row closes $\mathcal{R}_{\mathrm{tan}}$, radial/support-band closure, active-root floors, and event/action rows on the same retained branch convention.

@@ -997,7 +997,7 @@
     },
     {
       "id": "spacetime__molecular_exclusion_and_noether_sea_response",
-      "name": "Molecular Exclusion and Noether-Sea Response",
+      "name": "Molecular Exclusion and Noether Sea Response",
       "path": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json"
     },
     {
@@ -1079,11 +1079,6 @@
       "id": "spacetime__singularity_resolution",
       "name": "Singularity Resolution",
       "path": "content/scenes/spacetime/singularity_resolution.json"
-    },
-    {
-      "id": "spacetime__spacetime_assemblies",
-      "name": "Spacetime Assemblies",
-      "path": "content/scenes/spacetime/spacetime_assemblies.json"
     },
     {
       "id": "validation_action_energy__action_model",
@@ -1619,6 +1614,11 @@
       "id": "noether_swarm__nested_shell_swarm_geometry",
       "name": "Nested Shell Swarm Geometry",
       "path": "content/scenes/noether-swarm/nested_shell_swarm_geometry.json"
+    },
+    {
+      "id": "spacetime__noether_sea_pro_anti_coupling",
+      "name": "Noether Sea Pro/Anti Coupling",
+      "path": "content/scenes/spacetime/noether_sea_pro_anti_coupling.json"
     }
   ]
 }

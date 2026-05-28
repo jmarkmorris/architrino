@@ -46,7 +46,7 @@ The goal is to expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, re
 
 ## Tier 2 Lecture-Note Interfaces
 
-TASI and Les Houches lecture-note material sharpens this priority into a set of equation-level benchmark interfaces. These are comparison contracts, not ontology imports. The native closure question is whether one Noether-Sea and neutral-assembly record can project into all of them without changing state variables between observables.
+TASI and Les Houches lecture-note material sharpens this priority into a set of equation-level benchmark interfaces. These are comparison contracts, not ontology imports. The native closure question is whether one Noether sea state and neutral-assembly record can project into all of them without changing state variables between observables.
 
 ### Inflation and CMB Transfer
 
@@ -97,7 +97,7 @@ P_\theta(k)\,
 S_X^\theta(k,\tau)
 P_{X\ell}^\theta(k[\tau_0^\theta-\tau])\,d\tau.
 $$
-The source and projection terms are observer-level transfer functions. The closure burden is to derive the effective source record from Noether-Sea thermalization, path-history propagation, acoustic calibration, and perturbation seeding rather than importing an inflaton field.
+The source and projection terms are observer-level transfer functions. The closure burden is to derive the effective source record from Noether sea thermalization, path-history propagation, acoustic calibration, and perturbation seeding rather than importing an inflaton field.
 
 ### Component Perturbations and Matter Power
 
@@ -280,7 +280,7 @@ w_a
 \right]^2.
 $$
 
-The first four terms measure ordinary disagreement with survey data products. The final term is the ontology-split witness: it fails a branch that fits Planck, ACT, DESI, SH0ES/Pantheon+, and DES only by assigning incompatible Noether-Sea projections to different observable families.
+The first four terms measure ordinary disagreement with survey data products. The final term is the ontology-split witness: it fails a branch that fits Planck, ACT, DESI, SH0ES/Pantheon+, and DES only by assigning incompatible Noether sea projections to different observable families.
 
 ### Concrete Residual Rows
 
@@ -335,7 +335,7 @@ r_{\mathrm{WL/RSD}}
 \right).
 $$
 
-These rows are benchmark contracts. They do not say that Planck, DESI, SH0ES, Pantheon+, DES, ACT, or Euclid variables are substrate variables. They say which observer-level products a Noether-Sea transfer-function branch must reproduce without splitting its medium-state record.
+These rows are benchmark contracts. They do not say that Planck, DESI, SH0ES, Pantheon+, DES, ACT, or Euclid variables are substrate variables. They say which observer-level products a Noether sea transfer-function branch must reproduce without splitting its medium-state record.
 
 ## Related Priorities
 

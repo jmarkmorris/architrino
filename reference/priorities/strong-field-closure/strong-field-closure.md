@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `embedded_boundary_conditions` — Formulate horizon-interface solutions as Noether-Sea boundary-condition problems with $\rho_{\text{NS}}$, $\Sigma_{\text{medium}}$, $\mathbf{u}_{\text{medium}}$, admissible $\Lambda_{\text{NS}}$ data, and surrounding $\partial\Omega$. Status: `next`. Depends on: none.
+1. `embedded_boundary_conditions` — Formulate horizon-interface solutions as Noether sea boundary-condition problems with $\rho_{\text{NS}}$, $\Sigma_{\text{medium}}$, $\mathbf{u}_{\text{medium}}$, admissible $\Lambda_{\text{NS}}$ data, and surrounding $\partial\Omega$. Status: `next`. Depends on: none.
 2. `observer_predictions` — Derive a stronger observer-level strong-field prediction set from the embedded boundary-condition formulation. Status: `pending`. Depends on: `embedded_boundary_conditions`.
 3. `horizon_entropy_packet` — Define the horizon-interface label ensemble and its local block entropy density from admissible $\Lambda_{\text{NS}}$ states, then use them to state entropy-area and Page-curve recovery targets, including tests of proposed horizon identifications. Status: `kernel-handoff-ready`; terminal enumerator consumption and coefficient derivation pending. Depends on: `observer_predictions`.
 4. `release_channel_selection` — Decide the release-channel selection between jets, diffuse outflow, dark-sector escape, and candidate dark-sector photon-like modes. Status: `pending`. Depends on: `observer_predictions`, `horizon_entropy_packet`.
@@ -30,7 +30,7 @@ Release-channel accounting consumes the shared [residual-routing event-ledger th
 
 | File | Role | Target $\mathbb{A}\mathbb{A}\mathbb{A}$ notes |
 | --- | --- | --- |
-| [hypothesis-bank.md](hypothesis-bank.md) | Watchlist for strong-field and tri-binary hypotheses that should not outrank the derivation spine. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [spacetime-assemblies](../../../content/markdown/aaa/spacetime/spacetime-assemblies.md) |
+| [hypothesis-bank.md](hypothesis-bank.md) | Watchlist for strong-field and tri-binary hypotheses that should not outrank the derivation spine. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [noether-sea-pro-anti-coupling](../../../content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md) |
 | [terminal-alignment-enumerator.md](terminal-alignment-enumerator.md) | Executable reduced terminal-alignment action diagnostic and proof packet for `horizon_entropy_packet`. | [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) |
 | [holographic-entropy-boundary-data-benchmark.md](holographic-entropy-boundary-data-benchmark.md) | Source-mined RT/Maldacena benchmark packet for horizon-wrapping entropy, finite boundary data, and scale-coordinate discipline. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [entropy](../cross-theory-mapping/entropy.md), [spacetime-models-and-noether-sea](../../../content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md) |
 | [dark-sector-photon-like-mode.md](../dark-sector/dark-sector-photon-like-mode.md) | Detailed watchlist packet for candidate dark-sector photon-like release, redshift, reaction, and visible-channel re-entry. | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
@@ -39,7 +39,7 @@ Release-channel accounting consumes the shared [residual-routing event-ledger th
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `embedded_boundary_conditions` | This file | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) and [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) | Horizon-interface solutions are formulated as Noether-Sea boundary-condition problems with named $\rho_{\text{NS}}$, $\Sigma_{\text{medium}}$, $\mathbf{u}_{\text{medium}}$, $\Lambda_{\text{NS}}$, and $\partial\Omega$ data. |
+| `embedded_boundary_conditions` | This file | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) and [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) | Horizon-interface solutions are formulated as Noether sea boundary-condition problems with named $\rho_{\text{NS}}$, $\Sigma_{\text{medium}}$, $\mathbf{u}_{\text{medium}}$, $\Lambda_{\text{NS}}$, and $\partial\Omega$ data. |
 | `observer_predictions` | This file | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [gr-phenomenology](../../../content/markdown/aaa/spacetime/gr-phenomenology.md), and [gravitational-waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md) | The embedded boundary formulation produces observer-level predictions rather than only interpretive prose. |
 | `horizon_entropy_packet` | This file, [terminal-alignment-enumerator.md](terminal-alignment-enumerator.md), and [holographic-entropy-boundary-data-benchmark.md](holographic-entropy-boundary-data-benchmark.md) | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) and [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) | The horizon-interface label ensemble and local block entropy density are defined from admissible $\Lambda_{\text{NS}}$ states and used to state entropy-area and Page-curve recovery targets, including tests of proposed horizon identifications, without importing them as ontology. |
 | `release_channel_selection` | This file and [residual-routing-event-ledger](../nested-shell-swarm-causal-closure/residual-routing-event-ledger.md) | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md) | Jets, diffuse outflow, dark-sector escape, and candidate dark-sector photon-like modes are separated as release channels with event-ledger and information-accounting consequences. |
@@ -48,7 +48,7 @@ Release-channel accounting consumes the shared [residual-routing event-ledger th
 
 ## Scope Boundary
 
-Black-hole entropy and Page-curve recovery are high-value downstream consistency targets, not imported ontology. Holographic, island, replica-wormhole, and proposed horizon-identification results should be used as comparison mathematics after the native strong-field mechanism is specified. Compact or topologically identified comparison settings are boundary-condition stress tests, not extra-dimensional ontology. This workstream now starts by posing the horizon as an embedded Noether-Sea boundary-condition problem; it then tracks a native horizon-interface label ensemble as the bridge between observer-level predictions and release-channel selection. The entropy target is a block entropy density over alignment-compatible label families induced by admissible $\Lambda_{\text{NS}}$ states, Page-curve recovery is a release-channel information-accounting target, and any comparison identification must preserve exterior records, release-ledger balance, finite boundary data, and the standard thermal benchmark before it can count as more than a speculative comparison.
+Black-hole entropy and Page-curve recovery are high-value downstream consistency targets, not imported ontology. Holographic, island, replica-wormhole, and proposed horizon-identification results should be used as comparison mathematics after the native strong-field mechanism is specified. Compact or topologically identified comparison settings are boundary-condition stress tests, not extra-dimensional ontology. This workstream now starts by posing the horizon as an embedded Noether sea boundary-condition problem; it then tracks a native horizon-interface label ensemble as the bridge between observer-level predictions and release-channel selection. The entropy target is a block entropy density over alignment-compatible label families induced by admissible $\Lambda_{\text{NS}}$ states, Page-curve recovery is a release-channel information-accounting target, and any comparison identification must preserve exterior records, release-ledger balance, finite boundary data, and the standard thermal benchmark before it can count as more than a speculative comparison.
 
 ## Current Architecture
 
@@ -128,7 +128,7 @@ P_n(r),
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(\Omega_r,n)}
 \right)
 $$
-such that $\mathcal{R}_{\mathrm{compact}}(\theta_{*,n})\le\epsilon_{\mathrm{compact}}$ until a declared exit surface $g_H(\theta_{*,n})=0$ is reached. The native horizon-interface condition $F_H=0$ then inherits finite boundary wake data, Noether-Sea state, and event-ledger rows from the predecessor sequence rather than beginning as a disconnected black-hole hypothesis.
+such that $\mathcal{R}_{\mathrm{compact}}(\theta_{*,n})\le\epsilon_{\mathrm{compact}}$ until a declared exit surface $g_H(\theta_{*,n})=0$ is reached. The native horizon-interface condition $F_H=0$ then inherits finite boundary wake data, Noether sea state, and event-ledger rows from the predecessor sequence rather than beginning as a disconnected black-hole hypothesis.
 
 ### Event Horizon Telescope Benchmark Packet
 
@@ -198,7 +198,7 @@ Failure modes to retain:
 - `eht.visibility_failure`: a plausible-looking image fails closure phases, closure amplitudes, or visibility minima.
 - `eht.polarization_transport_gap`: the branch matches total intensity while leaving Faraday rotation, sub-beam polarization scrambling, resolved linear polarization, or circular polarization unmodeled.
 - `eht.surface_alternative_leak`: a horizon-free surface comparison survives ring-size fitting but violates the broadband thermal-surface or reflective-surface bounds.
-- `eht.jet_base_split`: near-ring jet-base emission is fitted without sharing the release-channel selector and Noether-Sea loading record.
+- `eht.jet_base_split`: near-ring jet-base emission is fitted without sharing the release-channel selector and Noether sea loading record.
 
 ## Related Priorities
 

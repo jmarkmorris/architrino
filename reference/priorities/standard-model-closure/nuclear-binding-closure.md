@@ -51,7 +51,7 @@ V_{\pi/\text{corr}}(r)
 V_{\text{sea-pol}}(r).
 $$
 
-The proof burden is to derive or constrain the signs, range, and saturation behavior of these terms from hadronic assembly geometry, meson-like corridor formation, and local Noether-Sea polarization. It is not enough to borrow the nuclear-force shape and relabel it.
+The proof burden is to derive or constrain the signs, range, and saturation behavior of these terms from hadronic assembly geometry, meson-like corridor formation, and local Noether sea polarization. It is not enough to borrow the nuclear-force shape and relabel it.
 
 ## Promotion Targets
 

@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`.
 
-This packet consumes [axial-projection-coefficient-ratio](axial-projection-coefficient-ratio.md), the pressure-side Noether-Sea tensor scaffold in [Pressure-Dependent Noether-Sea Constitutive Response Near Atoms](../mass-map/pressure-dependent-noether-sea-constitutive-response.md), and the projected tensor split in [Pressure Response Coefficient Closure](../mass-map/pressure-response-coefficient-closure.md). It derives the first direct realization equation for the axial Noether-Sea response needed by the geometry bridge.
+This packet consumes [axial-projection-coefficient-ratio](axial-projection-coefficient-ratio.md), the pressure-side Noether sea tensor scaffold in [Pressure-Dependent Noether sea Constitutive Response Near Atoms](../mass-map/pressure-dependent-noether-sea-constitutive-response.md), and the projected tensor split in [Pressure Response Coefficient Closure](../mass-map/pressure-response-coefficient-closure.md). It derives the first direct realization equation for the axial Noether sea response needed by the geometry bridge.
 
 The normalized branch-axis target from the projection-ratio packet is
 
@@ -22,7 +22,7 @@ $$
 0.000453435105208\,r_{ZM}\varepsilon.
 $$
 
-The question here is what an existing Noether-Sea constitutive row would have to emit to meet that target.
+The question here is what an existing Noether sea constitutive row would have to emit to meet that target.
 
 ## Input Constitutive Row
 
@@ -200,7 +200,7 @@ This is a real closure reduction. The axial cancellation no longer floats as an 
 
 ## Minimal No-Go Corollaries
 
-If the branch-preserving Noether-Sea response is scalar-only in this scaffold, then
+If the branch-preserving Noether sea response is scalar-only in this scaffold, then
 
 $$
 q_{\chi A}=0,
@@ -234,7 +234,7 @@ $$
 0.000680152657812\,r_{ZM}.
 $$
 
-That is not a closure unless $\mathcal{R}_{\mathcal M,\mathrm{tf}}^{ab}$ is upgraded from an unexplained remainder into a declared Noether-Sea response row with the same ledger discipline as the rest of the medium-response packet.
+That is not a closure unless $\mathcal{R}_{\mathcal M,\mathrm{tf}}^{ab}$ is upgraded from an unexplained remainder into a declared Noether sea response row with the same ledger discipline as the rest of the medium-response packet.
 
 If the residual is controlled below the axial target,
 
@@ -278,7 +278,7 @@ $$
 2q_{\chi A}+m_Ss_A>0.
 $$
 
-If the anisotropic delay component is negligible and the constitutive response derives $m_S>0$, then the branch must produce a positive branch-axis deviatoric strain scalar. If it derives $m_S<0$, the branch must produce a negative one. If a retained Noether-Sea row fixes the opposite sign of the full sum, the axial root-ledger geometry cannot become isotropic observer geometry through this tensor scaffold.
+If the anisotropic delay component is negligible and the constitutive response derives $m_S>0$, then the branch must produce a positive branch-axis deviatoric strain scalar. If it derives $m_S<0$, the branch must produce a negative one. If a retained Noether sea row fixes the opposite sign of the full sum, the axial root-ledger geometry cannot become isotropic observer geometry through this tensor scaffold.
 
 ## Same-Units Reference Value
 
@@ -320,4 +320,4 @@ These are not fitted observer numbers. They are the first branch-axis tensor-res
 
 This packet remains `priority-only`. It depends on priority-side pressure/strain constitutive material and on a root-ledger response that is not yet a retained dynamics branch.
 
-The theory advance is nevertheless concrete: the Noether-Sea cancellation is now expressible as a branch-axis tensor-response equation. The next calculation should extract or bound $q_{\chi A}$ and $s_A$ from the geometry-export/interface variation and $m_S$ from a branch-derived Noether-Sea tensor response, rather than adding another validation gate.
+The theory advance is nevertheless concrete: the Noether sea cancellation is now expressible as a branch-axis tensor-response equation. The next calculation should extract or bound $q_{\chi A}$ and $s_A$ from the geometry-export/interface variation and $m_S$ from a branch-derived Noether sea tensor response, rather than adding another validation gate.

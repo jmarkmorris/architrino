@@ -140,11 +140,11 @@ This packet does not own:
 - particle-label comparisons,
 - electron, muon, tau, proton, or hadron masses,
 - the final $\eta\to0$ theorem,
-- or the full Noether-Sea constitutive map.
+- or the full Noether sea constitutive map.
 
 ## Fixed Inputs
 
-Work in the homogeneous Noether-Sea rest cell used by [mass-map.md](mass-map.md):
+Work in the homogeneous Noether sea rest cell used by [mass-map.md](mass-map.md):
 $$
 u^i_{\text{sea}}=0,
 \qquad
@@ -680,7 +680,7 @@ $$
 \qquad
 \mathcal{I}_{\mathrm{I--}}=\{I\}.
 $$
-For refinement index $\nu$, fixed branch label $\Lambda_{\mathrm{br}}$, fixed shielding tier $\Lambda_{\mathrm{tier}}\in\{\mathrm{IMO},\mathrm{IM-},\mathrm{I--}\}$, fixed weak-sector input tuple $(R_{\text{rel}},c,\sigma_{\text{ax}})$, and fixed local Noether-Sea state, define the row-level weak-retained amplitude candidate by
+For refinement index $\nu$, fixed branch label $\Lambda_{\mathrm{br}}$, fixed shielding tier $\Lambda_{\mathrm{tier}}\in\{\mathrm{IMO},\mathrm{IM-},\mathrm{I--}\}$, fixed weak-sector input tuple $(R_{\text{rel}},c,\sigma_{\text{ax}})$, and fixed local Noether sea state, define the row-level weak-retained amplitude candidate by
 $$
 \mathcal{L}_{\ell}^{W,\Lambda_{\mathrm{tier}},\nu}(a,\mathbf{x};\Lambda_{\mathrm{br}})
 =
@@ -974,7 +974,7 @@ with the same locked keys, relation classes, source coverage, residual tolerance
 
 Assumptions for the first executable attempt:
 
-- the homogeneous Noether-Sea cell remains $u^i_{\text{sea}}=0$, $G_{\text{grad}}=0$, $n=1$, $\chi_{\text{sea}}=1$, and $c_\star=c_f$;
+- the homogeneous Noether sea cell remains $u^i_{\text{sea}}=0$, $G_{\text{grad}}=0$, $n=1$, $\chi_{\text{sea}}=1$, and $c_\star=c_f$;
 - the fold-layer keys $K_L$ are lock-ledger entries only, not new accepted self branches;
 - no observed particle mass, charged-lepton ratio, CKM datum, electron radius, or measured $\alpha$ enters row selection or normalization;
 - the compact fixture must carry a non-null `z_lambda` or an equivalent quotient-row identity before accepted-history emission;
@@ -1224,7 +1224,7 @@ Tier 3 begins only after Tier 2 produces stable energy and shielding outputs.
 
 Probe two perturbation families:
 
-1. Small acceleration probe in a homogeneous Noether-Sea cell:
+1. Small acceleration probe in a homogeneous Noether sea cell:
    $$
    \mathbf{V}_{\text{cm}}\mapsto\mathbf{V}_{\text{cm}}+\delta\mathbf{V}.
    $$

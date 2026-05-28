@@ -212,6 +212,25 @@ function maxIdentityAbs(rows, fieldName) {
   );
 }
 
+function speedSamplesFromOptions(options) {
+  if (!Array.isArray(options.speedSamples)) {
+    return root.makeSpeedBreaks(options.speedCellCount ?? SPEED_CELL_COUNT);
+  }
+  if (options.speedSamples.length < 2) {
+    throw new Error("speedSamples must contain at least two speed breakpoints");
+  }
+  const samples = options.speedSamples.map(Number);
+  samples.forEach((sample, index) => {
+    if (!Number.isFinite(sample)) {
+      throw new Error("speedSamples must contain finite numbers");
+    }
+    if (index > 0 && sample <= samples[index - 1]) {
+      throw new Error("speedSamples must be strictly increasing");
+    }
+  });
+  return samples;
+}
+
 function foldLimitInterval(cell) {
   const foldKernel = root.scaleInterval(
     root.addIntervals(cell.cos_phi_interval, cell.cos_delta_interval),
@@ -599,7 +618,7 @@ function summarizeRows(rows) {
 export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdTwentyFourthOrderPostUCoefficientCertificate(
   options = {}
 ) {
-  const speedBreaks = root.makeSpeedBreaks(options.speedCellCount ?? SPEED_CELL_COUNT);
+  const speedBreaks = speedSamplesFromOptions(options);
   const rootSubdivisions = Number.parseInt(
     options.rootSubdivisions ?? root.DEFAULT_ROOT_SUBDIVISIONS,
     10

@@ -1,8 +1,10 @@
-# Ellipsoidal Deformation of Spacetime Assemblies and the Effective Metric
+# Candidate Ellipsoidal Deformation Map and the Effective Metric
+
+Status note: this packet is a candidate deformation map, not a completed physical theorem. Any usable result must be routed through the current master-equation, Lorentz/GR bridge, and Noether sea constitutive-closure targets before being promoted into corpus prose.
 
 ## Motivation
 
-In the architrino assembly architecture, every Noether swarm (tri-binary) occupies a physical exclusion volume that deforms continuously from nearly spherical (low energy, weak gravity, slow translation) through oblate spheroid (moderate stress) to a planar disk (Planck alignment, event horizon, photon-like states). Crucially, the assembly does not merely change shape - it also changes size, with the transverse radius $R_\perp$ shrinking as energy increases. These two channels of deformation, shape and scale, together define the local state of the spacetime medium, from which the effective metric experienced by propagating signals and assembly-based observers must be extracted.
+In this candidate map, a Noether swarm (tri-binary) is modeled as occupying a physical exclusion volume that may deform from nearly spherical (low energy, weak gravity, slow translation) through oblate spheroid (moderate stress) to a planar disk (Planck alignment, event horizon, photon-like states). The assembly may also change size, with the transverse radius $R_\perp$ shrinking as energy increases. These two channels of deformation, shape and scale, are proposed inputs to the local Noether sea state from which the effective metric experienced by propagating signals and assembly-based observers would have to be extracted.
 
 This section surveys the standard GR constructions where ellipsoidal geometry plays a structural role, identifies what is absent from GR that the architrino framework supplies, and develops the two-parameter effective metric mapping in detail.
 
@@ -38,7 +40,7 @@ The deformation proceeds from sphere through oblate spheroid to thin disk (or se
 
 ### Optical (Gordon) Metric in a Medium
 
-For a medium with 4-velocity $u^\mu$ and Noether-Sea delay factor $\chi_{\text{sea}}$, an effective optical metric governs signal propagation:
+For a medium with 4-velocity $u^\mu$ and Noether sea delay factor $\chi_{\text{sea}}$, an effective optical metric governs signal propagation:
 
 $$
 \tilde{g}^{\mu\nu} = g^{\mu\nu} + \left(1 - \frac{1}{\chi_{\text{sea}}^2}\right) u^\mu u^\nu.
@@ -78,7 +80,7 @@ Recovering the standard weak-field result $d\tau/dt \approx \sqrt{1 + 2\Phi/c^2}
 
 ### Gravitational Lensing
 
-Light bending in a medium arises from spatial gradients of the Noether-Sea delay factor. With two deformation parameters, the bending angle receives contributions from both:
+Light bending in a medium arises from spatial gradients of the Noether sea delay factor. With two deformation parameters, the bending angle receives contributions from both:
 
 $$
 \alpha_{\text{bend}} \propto \int \nabla \chi_{\text{sea}}\,dl, \quad \chi_{\text{sea}} = \chi_{\text{sea}}(\xi, \lambda, n_{\text{cores}}).
@@ -102,7 +104,7 @@ At a black hole horizon or for a photon, $\xi \to 0$ (planar) and $\lambda \to \
 
 ### Cosmological Expansion
 
-As the universe cools and spacetime assemblies lose energy, $R_\perp$ grows (cores expand) and $\xi \to 1$ (cores become more spherical). The expansion of individual cores contributes to the effective expansion of the medium, and the increasing sphericity reduces anisotropy. This is the microscopic picture behind cosmological expansion: relaxation of the Noether swarm medium toward lower-energy, larger, more spherical configurations. The effective scale factor $a(t)$ tracks the average $R_\perp(t)$ and $\xi(t)$ of the assembly population.
+As the universe cools and Noether swarm assemblies lose energy, $R_\perp$ grows (cores expand) and $\xi \to 1$ (cores become more spherical). The expansion of individual cores contributes to the effective expansion of the medium, and the increasing sphericity reduces anisotropy. This is the microscopic picture behind cosmological expansion: relaxation of the Noether swarm medium toward lower-energy, larger, more spherical configurations. The effective scale factor $a(t)$ tracks the average $R_\perp(t)$ and $\xi(t)$ of the assembly population.
 
 ---
 
@@ -115,7 +117,7 @@ As the universe cools and spacetime assemblies lose energy, $R_\perp$ grows (cor
 | Scale change | Set by source mass, not a local medium property | Universal: every core has $\lambda(x)$ |
 | Shape-scale coupling | Independent ($a$ and $M$ are separate parameters) | Locked: both driven by energy through delay-feedback |
 | Proper time | From $g_{00}$ directly | Derived from core oscillation rate depending on $\xi$ and $\lambda$ |
-| Gravitational lensing | From Christoffel symbols / geodesic equation | From Noether-Sea delay-factor gradients $\nabla\xi$, $\nabla\lambda$, $\nabla n$ |
+| Gravitational lensing | From Christoffel symbols / geodesic equation | From Noether sea delay-factor gradients $\nabla\xi$, $\nabla\lambda$, $\nabla n$ |
 | Signal anisotropy | Encoded in off-diagonal metric components | From ellipsoidal packing and axis-dependent transit times |
 | Planck / horizon limit | Singularity or extremal Kerr limit | Co-termination: $\xi \to 0$, $\lambda \to \lambda_{\min}$ simultaneously |
 | Cosmological expansion | Scale factor $a(t)$ of the metric | Core relaxation: $R_\perp(t)$ grows, $\xi(t) \to 1$ |
@@ -131,7 +133,7 @@ Turning this structural mapping into a quantitative effective metric requires fi
 
 **Step 1. Equation of state of a single core.** Derive $R_\perp(E)$ from the outer-binary delay dynamics. This is the constitutive relation of the medium: how the transverse radius of a single tri-binary responds to energy input. The binary dynamics and Planck mapping sections provide the framework; a closed-form or numerical $R_\perp(E)$ curve is needed.
 
-**Step 2. Noether-Sea delay factor.** Define $\chi_{\text{sea}}(\xi, \lambda, n_{\text{cores}})$ for signal propagation through a medium of ellipsoidal cores. This is an effective-medium calculation, requiring averaging over core orientations and packing geometry, likely tractable in a Maxwell-Garnett or Bruggeman-type approximation adapted to the tri-binary medium.
+**Step 2. Noether sea delay factor.** Define $\chi_{\text{sea}}(\xi, \lambda, n_{\text{cores}})$ for signal propagation through a medium of ellipsoidal cores. This is an effective-medium calculation, requiring averaging over core orientations and packing geometry, likely tractable in a Maxwell-Garnett or Bruggeman-type approximation adapted to the tri-binary medium.
 
 **Step 3. Extract the effective metric.** Use the Gordon metric template to obtain $g_{\mu\nu}$ from $\chi_{\text{sea}}$ and the preferred-frame structure $\hat{u}$, specialized to a medium with two deformation parameters. Verify that the metric has Lorentzian signature and reduces to Minkowski in the homogeneous isotropic limit.
 
@@ -148,10 +150,10 @@ The combined shape-plus-scale deformation is the structural feature that disting
 
 ## Pulled-Back Spacetime-Assembly Checks
 
-The reader-facing spacetime-assemblies chapter should state the provisional medium motif and its ownership boundaries. The working checks remain here:
+The reader-facing Noether sea pro/anti coupling chapter should state the provisional medium motif and its ownership boundaries. The working checks remain here:
 
 1. Define an explicit local coupling law for pro/anti Noether swarm exchange and bounded imbalance relaxation. The law should state the variables controlling $\rho_+$, $\rho_-$, and $\Delta\rho_{\text{NS}}$, and should identify the return or damping term that prevents unlimited orientation drift.
-2. Test whether the $2+2$ pro/anti cluster is an energy minimum, a metastable packing motif, or only a useful design intuition. The test should compare candidate cluster energies under the same local Noether-Sea state, not by visual symmetry alone.
+2. Test whether the $2+2$ pro/anti cluster is an energy minimum, a metastable packing motif, or only a useful design intuition. The test should compare candidate cluster energies under the same local Noether sea state, not by visual symmetry alone.
 3. Derive coarse-grained signatures that distinguish a spacetime-assembly medium from a purely metric-first baseline in weak-field, strong-field, and cosmological regimes. The signatures should be expressed through effective-metric variables already used by this workstream: $\xi$, $\lambda$, $n$, $\chi_{\text{sea}}$, and the local orientation distribution.
 
 ## Related Priorities

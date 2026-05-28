@@ -347,7 +347,7 @@ w_\rho
 {\sin^2(\alpha_{s,\rho}/2)\,|J_{s,\rho}|}.
 $$
 
-This equation is the reason the radial scaling curve is not yet a proof of a stable outer binary. In the same-sheet bare kernel all retained roots have positive tangential drive. A true steady branch needs signed-root cancellation or a declared tri-binary / Noether-Sea return term that closes the angular-momentum ledger.
+This equation is the reason the radial scaling curve is not yet a proof of a stable outer binary. In the same-sheet bare kernel all retained roots have positive tangential drive. A true steady branch needs signed-root cancellation or a declared tri-binary / Noether sea return term that closes the angular-momentum ledger.
 
 ### Sub-Field-Speed Outer Estimate
 
@@ -600,7 +600,7 @@ s_a(\hat{\mathbf{n}}_{ab})
 +\delta_{\mathrm{wake}}.
 $$
 
-This is the correct place to study how shape ratio $\xi$ changes packing, anisotropy, and Noether-Sea delay. For an isotropic same-level pool, orientation averaging may make the coarse medium nearly scalar even when each individual core is oblate.
+This is the correct place to study how shape ratio $\xi$ changes packing, anisotropy, and Noether sea delay. For an isotropic same-level pool, orientation averaging may make the coarse medium nearly scalar even when each individual core is oblate.
 
 ### Support-Function Lattice-Cell Bound
 

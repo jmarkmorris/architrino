@@ -11,7 +11,7 @@ For charged fermions and quarks, it adopts the **Noether swarm + axial layer** m
 
 Neutrinos are the current exception to this inventory model. They are treated as near-photon neutral pro/anti swarm pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](./neutrinos.md).
 
-Note: **Mass is derived**, not a quantum number here; it comes from shielded internal causal history and medium-dressed Noether-Sea response. See [Particle Masses](../particle-masses.md) for the mass thesis and [Emergent Metric](../../spacetime/emergent-metric.md) for metric-level translation.
+Note: **Mass is derived**, not a quantum number here; it comes from shielded internal causal history and medium-dressed Noether sea response. See [Particle Masses](../particle-masses.md) for the mass thesis and [Emergent Metric](../../spacetime/emergent-metric.md) for metric-level translation.
 
 ---
 
@@ -77,7 +77,7 @@ Charged Generation I leptons and quarks utilize the full **nested shell swarm** 
 *   **Note:** Antimatter is a geometric inversion of *both* the core braiding and the axial polarity.
 
 **The Electron Neutrino ($\nu_e$)**
-*   **Geometry:** Near-planar pro/anti Noether swarm pairing, close to the fully locked coaxial contra-rotating pro/anti planar-pair photon channel but not fully locked into it.
+*   **Geometry:** Near-planar pro/anti Noether swarm pairing, close to the fully locked photon channel modeled as a coaxial contra-rotating pro/anti planar pair but not fully locked into it.
 *   **Stable Axial Layer:** None in the charged-fermion sense.
 *   **Weak Bookkeeping:** During charged-current coupling, the exposed neutral ledger can be represented as a balanced $3P,3E$ weak-coupling projection.
 *   **Net Charge:** $0$.
@@ -114,7 +114,7 @@ In the Standard Model, the Weak Force only acts on "Left-Handed" particles. It t
 ### The Weak-Coupling Triad Geometry
 For charged leptons and quarks, every charged-fermion axial layer consists of 6 polar sites. We hypothesize that these are organized into two groups based on the nested shell swarm rotation axis:
 1.  **The Shielded Triad (3 sites):** Geometrically locked or obscured by the binary precession. These axial occupancies *cannot* be swapped without destroying the particle.
-2.  **The weak-coupling triad (3 sites):** Exposed to the Noether Sea. These are the "switchable bits."
+2.  **The weak-coupling triad (3 sites):** Exposed to the Noether sea. These are the "switchable bits."
 
 For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon pro/anti swarm pair, not as a literal inventory of six bound axial sites.
 
@@ -208,7 +208,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the sector exposure map is:
 | Strong | color as axis exceptionality | vector-like; mostly left/right symmetric |
 | Charged weak $W^\pm$ | exposed weak-coupling triad, changing $T_3$ | strongly left-selective; blocked when the triad is hidden |
 | Neutral weak $Z^0$ | neutral electroweak phase/bookkeeping mixture of $T_3$ and $Q$ | both sides for charged fermions, but with different weights |
-| Higgs/scalar | derivative of the mass-response map under radial Noether-Sea perturbation | controlled by shielding and mass response, not by a charge swap |
+| Higgs/scalar | derivative of the mass-response map under radial Noether sea perturbation | controlled by shielding and mass response, not by a charge swap |
 
 This table is a bridge statement, not a proof. The closure burden is to derive one assembly record whose projections recover all five readouts without redefining the exposed domain from sector to sector.
 
@@ -243,7 +243,7 @@ $$
 These labels are a basis convention on the quark color triplet, not an additional physical charge layered on top of axis exceptionality.
 
 ### Confinement (The Flux Tube)
-Because a colored quark leaves one axis exceptional, it opens a non-singlet strong-sector corridor into the surrounding Noether Sea.
+Because a colored quark leaves one axis exceptional, it opens a non-singlet strong-sector corridor into the surrounding Noether sea.
 
 - **Single quark:** the open corridor carries a line-like energy cost that grows with separation, so isolated color sectors are excluded.
 - **Meson ($q \bar{q}$):** a triplet and anti-triplet can close the corridor into a singlet flux tube.
@@ -296,7 +296,7 @@ This is not yet a derivation of local gauge dynamics. The remaining closure targ
 
 - derive local corridor/wake update laws that act as the effective covariant derivative on assembly states,
 - recover normalized gauge kinetic terms for the emergent $SU(3)_c$, $SU(2)_L$, and $U(1)_Y$ fields,
-- derive coupling normalization and running for $g_s(\mu)$, $g(\mu)$, and $g'(\mu)$ from Noether-Sea dressing and assembly-scale response,
+- derive coupling normalization and running for $g_s(\mu)$, $g(\mu)$, and $g'(\mu)$ from Noether sea dressing and assembly-scale response,
 - show that the same branch record recovers confinement, electroweak mixing, anomaly cancellation, and precision coupling residuals without adding sector-specific bookkeeping.
 
 **Notation:** We use $Q$ (electric), $T_3$ (weak isospin third component), and $Y$ (weak hypercharge). In this chapter we write weak hypercharge as $Y$ rather than $Y_w$. Relation: $Q = T_3 + Y/2$ for all fields.
@@ -677,7 +677,7 @@ The explicit shared fitting packet lives in [Particle Masses](../particle-masses
 *   **Core readout:** **Bi-binary shielding branch** (Inner, Middle coherently support the branch).
     *   Composition: 2P, 2E (4 architrinos).
 *   **Axial Layer:** 6 axial architrinos (unchanged).
-*   **Physics:** Without coherent outer shielding support, the high-energy inner binaries are more exposed to the Noether Sea, increasing the externally exposed response of the internal causal ledger. The H/M/L axial frame remains defined during the branch lifetime, so the generation change affects mass response and lifetime without changing the gauge representation.
+*   **Physics:** Without coherent outer shielding support, the high-energy inner binaries are more exposed to the Noether sea, increasing the externally exposed response of the internal causal ledger. The H/M/L axial frame remains defined during the branch lifetime, so the generation change affects mass response and lifetime without changing the gauge representation.
 *   **Example: The Muon ($\mu^-$)**
     *   Core: Pro-Bi-Binary (4 architrinos).
     *   Axial Layer: 6E.
@@ -697,7 +697,7 @@ The explicit shared fitting packet lives in [Particle Masses](../particle-masses
 
 ### Core Depletion, Axial Vortices, and Lifetime (plain view)
 
-- **What the binaries do:** Each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether swarm and shares load into the Noether Sea.
+- **What the binaries do:** Each coherent shielding tier supplies axial-vortex support that helps hold the six axial architrinos in phase with the Noether swarm and shares load into the Noether sea.
 - **Gen I (nested shell swarm):** Three coherent shielding tiers give a stiff 3D support scaffold that locks the axial layer, spreads stress, and shields the deeper core layers. Long-lived.
 - **Gen II (bi-binary shielding branch):** The outer support tier is depleted. The H/M/L axial frame persists as a delayed branch record, but small perturbations reach the weakly bound axial layer more easily after causal propagation and relocking cycles. Lifetime drops.
 - **Gen III (uni-binary shielding branch):** Outer and middle support are depleted. The axial layer is metastable around the exposed inner engine, almost no outer screening remains for the deepest core energy, and the reaction corridor opens quickly. Very short-lived.
@@ -732,7 +732,7 @@ Baryons are bound states of 3 quarks held together by shared flux/gluon planar a
 ### Reaction Pathways
 *   **Muon Reaction ($\mu^- \to e^- + \bar{\nu}_e + \nu_\mu$):**
     *   This represents the electron assembly **associating** by acquiring an Outer Binary onto the Muon's Bi-binary core, while neutrino sub-assemblies **dissociate** from the parent weak reaction channel.
-    *   *Alternative View:* The Muon core does not simply break down. The Muon (high mass, exposed) must *acquire* shielding (lower mass, stable) from the Noether Sea to become an Electron, while the excess channel content leaves as neutrino dissociation products. This is a heavy-to-light weak reaction with the ambient Noether-Sea density, not an ontic disappearance.
+    *   *Alternative View:* The Muon core does not simply break down. The Muon (high mass, exposed) must *acquire* shielding (lower mass, stable) from the Noether sea to become an Electron, while the excess channel content leaves as neutrino dissociation products. This is a heavy-to-light weak reaction with the ambient Noether sea density, not an ontic disappearance.
 
 ---
 
@@ -747,7 +747,7 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any core offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which core axis is exceptional relative to the other two. |
 | **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-frame spinor topology.** The nested shell swarm is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
-| **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The same ordered-frame spinor/exposure record exposes the weak-coupling triad to the ambient Noether Sea (interaction allowed).<br>• **Right ($R$):** The same record hides the weak-coupling triad in the particle's wake or shield (interaction blocked). Spin-projection language is observer-level shorthand until the $SU(2)\to SO(3)$ lift and $\Delta_{\mathrm{WCT}}$ row pass. |
+| **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The same ordered-frame spinor/exposure record exposes the weak-coupling triad to the ambient Noether sea (interaction allowed).<br>• **Right ($R$):** The same record hides the weak-coupling triad in the particle's wake or shield (interaction blocked). Spin-projection language is observer-level shorthand until the $SU(2)\to SO(3)$ lift and $\Delta_{\mathrm{WCT}}$ row pass. |
 | **Generation** | I, II, III | Mass hierarchy (Flavor). | **Noether Swarm Shielding Level.**<br>• **Gen I:** Nested Shell Swarm (Full Shielding).<br>• **Gen II:** Bi-Binary (Partial Shielding).<br>• **Gen III:** Uni-Binary (exposed Noether swarm). |
 | **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + core orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-swarm vs anti-swarm orientation. |
 
@@ -808,7 +808,7 @@ The weak-sector handoff now uses one shared exposure problem. The weak-coupling 
 
 - the left-channel selection rule must expose the triad for left-handed charged-current coupling and hide it for right-handed charged-current coupling,
 - CKM and PMNS closure must use the same exposed domain when defining weak-basis states,
-- weak-reaction provenance must record how the charged corridor routes the triad payload and whether final-state Noether swarm provenance is supplied by the corridor or by the local Noether Sea.
+- weak-reaction provenance must record how the charged corridor routes the triad payload and whether final-state Noether swarm provenance is supplied by the corridor or by the local Noether sea.
 
 The first concrete test case is the $d\to u$ beta-reaction exposure operator in [Weak-Mixing CKM](../../philosophy-history/theory-bridges/weak-mixing-ckm.md). It uses the same weak-coupling-triad domain to gate left-handed docking, apply the $3E\to3P$ active-triad change, attach the $V_{ud}$ overlap factor, and hand the opposite $W^-$ transaction to the reaction ledger.
 
@@ -841,7 +841,7 @@ The proof burden is to derive this value from the axial-site quotient and then s
 $$
 \sin^2\theta_W(m_Z)=\sin^2\theta_W^{\text{bare}}+\Delta_{\text{wake}}(m_Z),
 $$
-where $\Delta_{\text{wake}}$ is the causal-wake/polarization correction of the Noether Sea at the electroweak scale.
+where $\Delta_{\text{wake}}$ is the causal-wake/polarization correction of the Noether sea at the electroweak scale.
 
 ### Charge normalization hook
 
@@ -853,7 +853,7 @@ with $Z_e$ fixed by canonical field normalization when mapping to observer-level
 
 ### Inertial response and magnetic-moment interface
 
-Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from trapped causal history, shielding, Noether-Sea coupling, and the orientation of the Noether swarm plus axial layer.
+Mass, inertial response, and magnetic moment are not additional quantum-number rows in this dictionary. A rigid-body inertia tensor is a useful comparison object because it maps angular velocity to angular momentum for a fixed mass distribution. The fermion assembly is not treated as that kind of rigid body. Its observer-level response is derived from a closed internal causal-history ledger, shielding, Noether sea coupling, and the orientation of the Noether swarm plus axial layer.
 
 For a fermion assembly $A$, write the local response maps as
 $$
@@ -880,7 +880,7 @@ I_A^{\mathrm{obs}}(\hat{\mathbf{n}})
 =
 \hat n^i\mathcal{I}^{\mathrm{resp}}_{ij}\hat n^j.
 $$
-Here $\mathcal{H}_A$ is the path-history/causal-root ledger, $\mathcal{S}_A$ is the shielding state, $\mathcal{N}_A$ is the local Noether-Sea state, and $R_A$ records assembly orientation. In an isotropic low-energy branch, $m_A^{\mathrm{obs}}$ reduces to the scalar mass used in Standard Model kinematics; away from that limit, the anisotropic response belongs to the medium-response map, not to a new quantum number.
+Here $\mathcal{H}_A$ is the path-history/causal-root ledger, $\mathcal{S}_A$ is the shielding state, $\mathcal{N}_A$ is the local Noether sea state, and $R_A$ records assembly orientation. In an isotropic low-energy branch, $m_A^{\mathrm{obs}}$ reduces to the scalar mass used in Standard Model kinematics; away from that limit, the anisotropic response belongs to the medium-response map, not to a new quantum number.
 
 The lepton magnetic-moment correction below should be read through the same interface. The coefficient $\mathcal{C}_\ell$ is a channel projection of response data,
 $$
@@ -893,7 +893,7 @@ $$
 R_\ell
 \right],
 $$
-where $\mathcal{P}_\ell$ denotes the observer-channel projection into the measured lepton magnetic-moment observable. This keeps magnetic moment tied to finite-size orientation response and Noether-Sea dressing without treating magnetic language as substrate ontology.
+where $\mathcal{P}_\ell$ denotes the observer-channel projection into the measured lepton magnetic-moment observable. This keeps magnetic moment tied to finite-size orientation response and Noether sea dressing without treating magnetic language as substrate ontology.
 
 ### Lepton magnetic moments
 

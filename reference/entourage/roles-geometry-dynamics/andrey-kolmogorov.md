@@ -25,7 +25,7 @@ Provide the **statistical foundation**: how deterministic, history-dependent mic
      - **Mixing** and approach to equilibrium distributions in assembly configurations.
    - Identify when the system admits **invariant measures** that could underpin:
      - Born-rule-like outcome statistics,
-     - Equilibrium Noether-Sea distributions of Noether swarm assemblies.
+     - Equilibrium Noether sea distributions of Noether swarm assemblies.
 
 3. **Meta-stable branching and probabilities**
    - Provide a rigorous account of **probabilities at self-hit bifurcation thresholds** (meta-stable branching):
@@ -39,8 +39,8 @@ Provide the **statistical foundation**: how deterministic, history-dependent mic
    - Derive **kinetic equations** (Boltzmann-like, Fokker-Planck-like) as:
      - Coarse-grained descriptions of large architrino systems.
    - Address:
-     - Transport properties (diffusion, drift) in the Noether Sea,
-     - Relaxation times to equilibrium (e.g., equilibration of spacetime assemblies after violent events).
+     - Transport properties (diffusion, drift) in the Noether sea,
+     - Relaxation times to equilibrium (e.g., equilibration of Noether swarm assemblies after violent events).
 
 5. **Statistical diagnostics for simulations**
    - Specify statistical observables Sol should compute:

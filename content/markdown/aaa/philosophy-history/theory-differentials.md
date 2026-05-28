@@ -1588,7 +1588,7 @@ General Relativity gets a great deal right operationally: it is part of the inhe
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, General Relativity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The relocation separates fixed Euclidean void, Noether-Sea medium response, and effective metric behavior instead of treating spacetime geometry as the primitive substance.
+In the neutral comparative stack, General Relativity sits at **Effective field / geometry level**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Recovered as Effective Limit; Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The relocation separates fixed Euclidean void, Noether sea medium response, and effective metric behavior instead of treating spacetime geometry as the primitive substance.
 
 #### 5. Transition-Period Relevance
 
@@ -1829,7 +1829,7 @@ The clearest limiting tension for Massive Gravity is that its native variables a
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive a scale-dependent Noether-Sea response that can mimic finite-range weakening in cosmology while recovering the GR limit in validated local and gravitational-wave regimes. The useful target is therefore a constitutive equation for $G_{\text{eff}}(a,k)$ and its local-recovery factor, not a fundamental graviton mass.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive a scale-dependent Noether sea response that can mimic finite-range weakening in cosmology while recovering the GR limit in validated local and gravitational-wave regimes. The useful target is therefore a constitutive equation for $G_{\text{eff}}(a,k)$ and its local-recovery factor, not a fundamental graviton mass.
 
 ---
 
@@ -2324,7 +2324,7 @@ The clearest limiting tension for Holography / AdS-CFT is that its native variab
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the entropy, reconstruction, and unitarity constraints that holographic calculations sharpen while deriving the mechanism from horizon-interface alignment, path-history bookkeeping, Noether-Sea storage, and release-channel selection. The duality is a comparison framework unless those bookkeeping constraints are recovered natively.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to recover the entropy, reconstruction, and unitarity constraints that holographic calculations sharpen while deriving the mechanism from horizon-interface alignment, path-history bookkeeping, Noether sea storage, and release-channel selection. The duality is a comparison framework unless those bookkeeping constraints are recovered natively.
 
 ---
 
@@ -2754,7 +2754,7 @@ The clearest limiting tension for Steady State Cosmology is that its explanatory
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(t)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether-Sea histories, never as matter produced by the Euclidean void.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(t)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether sea histories, never as matter produced by the Euclidean void.
 
 ---
 
@@ -2934,7 +2934,7 @@ The clearest limiting tension for Conformal Cyclic Cosmology is that its native 
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. The concrete reduction target is a single Noether-Sea history that reproduces CMB smoothness, TT/TE/EE, blackbody behavior, scalar/tensor bounds, late-time acceleration, and redshift handoff without importing conformal eons as ontology.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to derive the successful equations or observables from assembly and medium behavior while showing why the inherited variables looked fundamental from within the older framework. The concrete reduction target is a single Noether sea history that reproduces CMB smoothness, TT/TE/EE, blackbody behavior, scalar/tensor bounds, late-time acceleration, and redshift handoff without importing conformal eons as ontology.
 
 ---
 
@@ -4748,7 +4748,7 @@ Spacetime Curvature gets something durable right: it captures a stable regularit
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Spacetime Curvature sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The Euclidean void keeps fixed metric identity; curvature language survives as an observer-level reconstruction of Noether-Sea and assembly behavior.
+In the neutral comparative stack, Spacetime Curvature sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Emergent Effective Closures**. The relation type is **Mislocated Ontology**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. The Euclidean void keeps fixed metric identity; curvature language survives as an observer-level reconstruction of Noether sea and assembly behavior.
 
 #### 5. Transition-Period Relevance
 
@@ -4793,7 +4793,7 @@ Vacuum Energy gets something durable right: it captures a stable regularity that
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
-In the neutral comparative stack, Vacuum Energy sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Medium and Constitutive Regimes**. The relation type is **Mislocated Ontology; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. Energy should be assigned to architrinos, wakes as interaction history, assemblies, and Noether-Sea state, not to the Euclidean void as a substance.
+In the neutral comparative stack, Vacuum Energy sits at **Cross-layer portable construct**. Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained content is relocated to **Medium and Constitutive Regimes**. The relation type is **Mislocated Ontology; Observationally Over-Inferred**: this means the concept is not simply thrown away, but neither is it allowed to keep the same ontological authority it often carries in present discourse. Energy should be assigned to architrinos, wakes as interaction history, assemblies, and Noether sea state, not to the Euclidean void as a substance.
 
 #### 5. Transition-Period Relevance
 

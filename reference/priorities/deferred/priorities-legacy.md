@@ -266,7 +266,7 @@ Scoring system:
 - Keep the maximum-curvature-wall question tied to both tracks: the Jacobian-null boundary amplifies the full self branch, so the tangential contribution also blows up. That is an obstruction, not yet a resolution.
 - Lorentz / GR bridge inside this same stack:
   - treat the bridge as a two-stage theorem program:
-    1. prove that moving tri-binaries in the Noether Sea realize $R_\parallel = R_\perp / \gamma$ and $T(v) = T_0 \gamma$ as a stable delayed-dynamics attractor rather than by tuning,
+    1. prove that moving tri-binaries in the Noether sea realize $R_\parallel = R_\perp / \gamma$ and $T(v) = T_0 \gamma$ as a stable delayed-dynamics attractor rather than by tuning,
     2. coarse-grain the same causal medium into a constitutive response that yields $g_{\mu\nu}^{\mathrm{eff}}$, weak-field PPN closure, and suppressed preferred-frame leakage;
   - make the empirical stakes explicit:
     - the absolute-time / Euclidean-void ontology survives only if the exact compensation works at modern Lorentz-violation bounds below $10^{-17}$,

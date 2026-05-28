@@ -8,7 +8,7 @@ This chapter states the first effective-level nuclear-binding picture for $\math
 
 ## Core Claim
 
-Nuclear binding is the residual strong interaction between color-singlet nucleons. It arises when neighboring proton and neutron assemblies couple through the surrounding Noether Sea and through meson-like exchange channels, lowering the total energy relative to separated nucleons.
+Nuclear binding is the residual strong interaction between color-singlet nucleons. It arises when neighboring proton and neutron assemblies couple through the surrounding Noether sea and through meson-like exchange channels, lowering the total energy relative to separated nucleons.
 
 So the nuclear problem is already coarse-grained one level above quarks:
 
@@ -37,7 +37,7 @@ Here:
 - $E_{\text{Coul}}>0$ is proton-proton electrical repulsion,
 - $E_{\text{excl}}>0$ is short-range core exclusion or over-compression cost,
 - $E_{\text{shell}}$ is the nuclear-structure term associated with filling and pairing patterns,
-- $E_{\text{sea-pol}}<0$ is the energy gain from local Noether-Sea polarization and meson-like corridor formation.
+- $E_{\text{sea-pol}}<0$ is the energy gain from local Noether sea polarization and meson-like corridor formation.
 
 Then the binding energy is
 $$
@@ -83,7 +83,7 @@ at effective level. Nuclear binding must therefore come from the residual strong
 
 ### Sea polarization
 
-Neighboring nucleons polarize the local Noether Sea. This lowers the total energy when the surrounding Noether Sea can support a shared hadronic corridor more cheaply than two isolated hadronic envelopes. That is the current $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement for saying that the ambient Noether Sea participates in nuclear binding.
+Neighboring nucleons polarize the local Noether sea. This lowers the total energy when the surrounding Noether sea can support a shared hadronic corridor more cheaply than two isolated hadronic envelopes. That is the current $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement for saying that the ambient Noether sea participates in nuclear binding.
 
 ## Shape of the Effective Potential
 
@@ -173,7 +173,7 @@ So a realistic nuclear theory here must eventually combine:
 - the nuclear effective potential,
 - the proton-neutron mass difference,
 - the electron and neutrino emission channels,
-- and the local Noether-Sea contribution to the total energy balance.
+- and the local Noether sea contribution to the total energy balance.
 
 ## Minimal Falsification Gates
 

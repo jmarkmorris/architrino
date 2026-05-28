@@ -156,17 +156,17 @@ The points below are collected as a framework-internal research program, not as 
 ### Assumptions
 
 - The $s, p, d, f$ orbitals are treated not as abstract probability distributions, but as emergent volume-exclusion zones of ellipsoidal electron nested shell swarms carrying six axial architrinos.
-- Electron nested shell swarms are assumed to couple to a central nuclear Noether swarm through local Noether-Sea density gradients.
+- Electron nested shell swarms are assumed to couple to a central nuclear Noether swarm through local Noether sea density gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 
 ### Mechanism and Derivation Sketch
 
 - Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether swarm, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
-- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether-Sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell swarms.
+- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell swarms.
 - In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of Noether swarm assemblies under these boundary conditions.
-- Volume-exclusion mechanism: each electron nested shell swarm displaces the local Noether Sea, and overlap of two precessing ellipsoidal exclusion volumes generates a sharply rising displacement-pressure gradient.
+- Volume-exclusion mechanism: each electron nested shell swarm displaces the local Noether sea, and overlap of two precessing ellipsoidal exclusion volumes generates a sharply rising displacement-pressure gradient.
 - Dynamical resolution rule: when exclusion volumes intersect, assemblies must either separate into orthogonal precession phases or move to a larger-radius tier.
-- Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by Noether-Sea displacement pressure rather than only an abstract occupancy postulate.
+- Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by Noether sea displacement pressure rather than only an abstract occupancy postulate.
 - Subshell branching hypothesis ($s, p, d, f$): branching reflects the number and symmetry of available neutral-axis docking geometries permitted by six polar sites.
 - Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in outer nested shell swarms, which controls preferred bonding directions.
 - Carbon-silicon centrality hypothesis: the H-C-Si axis is identified with the first tier permitting a symmetric four-site tetrahedral outer-docking pattern, giving a direct structural basis for group-14 bonding behavior.
@@ -174,7 +174,7 @@ The points below are collected as a framework-internal research program, not as 
 ### Predictions and Observables
 
 - If shell structure is a packing phenomenon, ionization-energy trends along Hyde’s spiral should show systematic high-$Z$ deviations from idealized Dirac-limit expectations.
-- Mechanism for the deviation: increasing nuclear mass steepens the local Noether-Sea density gradient, geometrically compressing inner-shell nested shell swarms and driving middle-binary velocities toward field-speed limits.
+- Mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing inner-shell nested shell swarms and driving middle-binary velocities toward field-speed limits.
 - This inner-shell geometric strain changes the effective shielding potential seen by valence nested shell swarms, producing measurable departures from standard relativistic-correction-only trends.
 
 ### Failure Modes and Falsification Criteria
@@ -191,7 +191,7 @@ The first constrained benchmark should be the Neon core ($Z=10$), with explicit 
 
 - an inner phase-locked pair at maximum curvature,
 - exactly eight outer electron assemblies,
-- a local Noether-Sea density and delay profile fixed before optimization,
+- a local Noether sea density and delay profile fixed before optimization,
 - and a no-overlap exclusion rule for precessing ellipsoidal volumes.
 
 The outer-shell success criterion is that the eight outer assemblies converge to a stable cubic-like or antiprismatic phase-locked lattice that minimizes transport stress without exclusion-volume intersection. The important test is dynamical: this eight-body outer geometry must appear as an attractor of the modeled constraints, not merely as a manually tuned configuration.

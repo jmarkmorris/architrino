@@ -98,7 +98,7 @@ The tri-binary structure, with three nested counter-rotating binaries at radii $
 
 ### Emergent Geometry from Assembly Fields
 
-The fixed Euclidean void plus dynamical Noether Sea enables a clean separation:
+The fixed Euclidean void plus dynamical Noether sea enables a clean separation:
 
 - **Background connection**: trivial
 - **Effective connection**: built from assembly fields
@@ -214,7 +214,7 @@ The architecture operates at three coupled scales:
 
 1. **Micro** ($\sim R_{\text{inner}}$): discrete architrino dynamics, self-hit nonlinearity, delay feedback
 2. **Meso** (tri-binary assemblies): topology and geometry create stable structures
-3. **Macro** (Noether Sea): statistical ensembles yield effective fields and emergent effective spacetime
+3. **Macro** (Noether sea): statistical ensembles yield effective fields and emergent effective spacetime
 
 The mathematical challenge is to rigorously connect these scales:
 

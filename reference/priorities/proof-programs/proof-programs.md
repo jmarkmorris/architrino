@@ -37,7 +37,7 @@ These source-mined targets do not change the queue order above. They are compari
    \qquad
    F_{\mu\nu}^{\theta'}=U F_{\mu\nu}^{\theta}U^{-1}.
    $$
-   The proof input is the same branch ledger used for charge, weak exposure, color exceptionality, and Noether-Sea response. If the result requires changing the physical branch record under a pure gauge relabeling, the effective gauge map has not closed.
+   The proof input is the same branch ledger used for charge, weak exposure, color exceptionality, and Noether sea response. If the result requires changing the physical branch record under a pure gauge relabeling, the effective gauge map has not closed.
 2. **Amplitude-factorization boundary lemma.** For a declared event-window scattering chart, show that every accepted physical pole of $\mathcal{A}_{n,\theta}$ has residue equal to a product of lower-channel amplitudes from the same provenance ledger:
    $$
    (P_I^2-m_h^2)\mathcal{A}_{n,\theta}
@@ -71,7 +71,7 @@ These source-mined targets do not change the queue order above. They are compari
    \le
    \varepsilon_{\mathrm{top}}.
    $$
-   The proof must identify the causal-wake, axial-layer, or Noether-Sea provenance that fixes the sector; otherwise the integer is only imported gauge-bundle bookkeeping.
+   The proof must identify the causal-wake, axial-layer, or Noether sea provenance that fixes the sector; otherwise the integer is only imported gauge-bundle bookkeeping.
 
 ## Promotion Map
 

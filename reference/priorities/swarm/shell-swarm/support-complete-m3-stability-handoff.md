@@ -378,7 +378,7 @@ The conclusion is orbital boundedness on the fixed current leaf, not asymptotic 
 
 ### 6.3 Dissipative Or Exchange Attractor Candidate
 
-If a Noether-Sea, medium-response, or boundary-exchange row is admitted, the packet may test contraction only after it emits a positive dissipation quadratic form
+If a Noether sea, medium-response, or boundary-exchange row is admitted, the packet may test contraction only after it emits a positive dissipation quadratic form
 
 $$
 D_{M3}[\xi,\xi]\ge d_B\|\xi\|_{\mathscr{H}}^2,

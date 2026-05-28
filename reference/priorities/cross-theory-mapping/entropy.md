@@ -14,13 +14,13 @@
 1. `windowed_entropy_functional` - Promote the existing coarse-graining / access-window formula into a reusable entropy closure packet. Status: `draft`. Depends on: none.
 2. `record_locking_entropy` - Connect measurement-record entropy locking to the same coarse-grained entropy grammar. Status: `draft`. Depends on: `windowed_entropy_functional`, [quantum-closure](../quantum-closure/quantum-closure.md).
 3. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, the RT horizon-wrapping ratio $\eta_H(A;\theta)$, and the Page-curve release-channel target. Status: `kernel-handoff-ready`; terminal enumerator consumption, coefficient derivation, and thermal-limit reduction pending. Depends on: [strong-field-closure](../strong-field-closure/strong-field-closure.md), `windowed_entropy_functional`.
-4. `cosmology_entropy_balance` - State when Noether-Sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
+4. `cosmology_entropy_balance` - State when Noether sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
 
 ## Scope
 
 This lane is a draft mapping surface for entropy. It is not a new reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ chapter and it does not replace [strong-field-closure](../strong-field-closure/strong-field-closure.md), [quantum-closure](../quantum-closure/quantum-closure.md), [cosmology-closure](../cosmology-closure/cosmology-closure.md), or [radiation Gate C](../nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks.md).
 
-The purpose is to keep the current theoretical meanings of entropy intact, then identify which parts can be recovered as effective limits of assembly dynamics, Noether-Sea state records, event-ledger routing, and finite observer access windows.
+The purpose is to keep the current theoretical meanings of entropy intact, then identify which parts can be recovered as effective limits of assembly dynamics, Noether sea state records, event-ledger routing, and finite observer access windows.
 
 ## Current Theory Baseline
 
@@ -110,13 +110,13 @@ The local corpus already gives a coherent first map.
 | [Theory Differentials](../../../content/markdown/aaa/philosophy-history/theory-differentials.md#the-laws-of-thermodynamics) | The second-law comparison must include production, boundary flux, and coarse-graining residuals before being extrapolated to cosmology. | derivation-closure target |
 | [Measurement Ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | Environmental locking can be tested by an apparatus/environment entropy increase over a persistence window. | derivation-closure target |
 | [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md#horizon-interface) | Horizon entropy should derive a local block entropy density over admissible horizon-interface Noether swarm closure labels and recover area scaling as a benchmark. | derivation-closure target |
-| [Dark Energy](../../../content/markdown/aaa/cosmology/dark-energy.md#thermodynamic-lambda_mathrmeff-closure-target) | A thermodynamic reading of $\Lambda_{\mathrm{eff}}$ is useful only as an effective-geometry closure target over a shared Noether-Sea state record. | effective summary plus closure target |
+| [Dark Energy](../../../content/markdown/aaa/cosmology/dark-energy.md#thermodynamic-lambda_mathrmeff-closure-target) | A thermodynamic reading of $\Lambda_{\mathrm{eff}}$ is useful only as an effective-geometry closure target over a shared Noether sea state record. | effective summary plus closure target |
 | [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Photon loading, blackbody recovery, thermalization, and CMB handoff must use one provenance ledger rather than separate source stories. | derivation-closure target |
 | [Radiation](../../../content/markdown/aaa/reactions/radiation.md#blackbody-limit) | Blackbody entropy and thermal occupation require detailed balance over an ensemble, not a single excited assembly. | derivation-closure target |
 
 ## Draft $\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping
 
-Entropy is not primitive ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The ontic object is the complete state $\mathbb{U}_{\text{now}}\equiv S(t)$, including architrino positions, velocities, polarities, Noether swarm labels, causal-root ledgers, path-history, and Noether-Sea state variables. Entropy appears only after a finite observer, calculation, or effective theory forgets part of that state.
+Entropy is not primitive ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The ontic object is the complete state $\mathbb{U}_{\text{now}}\equiv S(t)$, including architrino positions, velocities, polarities, Noether swarm labels, causal-root ledgers, path-history, and Noether sea state variables. Entropy appears only after a finite observer, calculation, or effective theory forgets part of that state.
 
 The reusable draft object is a windowed state count. For a coarse-graining $\mathcal{Q}$, retained region $W(t)$, and measure $\mu$ on the compatible reduced state space, the corpus already suggests
 
@@ -126,7 +126,7 @@ S_{\mathcal{Q},W}(t)
 k_B\log\mu\!\left(\Gamma_{\mathcal{Q},W(t)}\right).
 $$
 
-This should be read as a closure target, not as a completed derivation. The unfinished work is to define $\Gamma_{\mathcal{Q},W(t)}$ from native data: causal-root admissibility, path-history compatibility, conserved event-ledger rows, Noether-Sea boundary conditions, and the finite records available to the Physical Observer or model packet.
+This should be read as a closure target, not as a completed derivation. The unfinished work is to define $\Gamma_{\mathcal{Q},W(t)}$ from native data: causal-root admissibility, path-history compatibility, conserved event-ledger rows, Noether sea boundary conditions, and the finite records available to the Physical Observer or model packet.
 
 The natural balance law is the one already sketched in the corpus:
 
@@ -140,23 +140,23 @@ $$
 \mathcal{R}_{\mathcal{Q}}(t).
 $$
 
-Here $\sigma_W$ should be derived from unresolved branch mixing, residual routing, thermalization, record formation, and dissipative medium response. The boundary flux term carries emitted assemblies, radiation, recoil, release channels, and Noether-Sea transport across $\partial W(t)$. The residual $\mathcal{R}_{\mathcal{Q}}$ records coarse-graining error, not an extra physical substance.
+Here $\sigma_W$ should be derived from unresolved branch mixing, residual routing, thermalization, record formation, and dissipative medium response. The boundary flux term carries emitted assemblies, radiation, recoil, release channels, and Noether sea transport across $\partial W(t)$. The residual $\mathcal{R}_{\mathcal{Q}}$ records coarse-graining error, not an extra physical substance.
 
-The Noether swarm equilibrium transport hypothesis supplies a concrete cosmology-facing candidate for part of this entropy balance. If $f_N(\nu,\mathbf{x},t)$ is the distribution of Noether swarm cadence states and $J_\nu$ is its frequency-space current, then entropy production should be tested against the neighbor-equilibration term $R_{\mathrm{eq}}[f_N]$, while boundary flux should carry the source terms $S_{\mathrm{BH}}$ and $S_{\mathrm{GW}}$ only through declared medium-loading and perturbation records. A useful entropy packet must therefore show whether the proposed bulk movement from recycling sites toward lower-energy Noether-Sea states increases coarse-grained entropy, exports entropy through $\partial W(t)$, or merely redistributes an already constrained medium record.
+The Noether swarm equilibrium transport hypothesis supplies a concrete cosmology-facing candidate for part of this entropy balance. If $f_N(\nu,\mathbf{x},t)$ is the distribution of Noether swarm cadence states and $J_\nu$ is its frequency-space current, then entropy production should be tested against the neighbor-equilibration term $R_{\mathrm{eq}}[f_N]$, while boundary flux should carry the source terms $S_{\mathrm{BH}}$ and $S_{\mathrm{GW}}$ only through declared medium-loading and perturbation records. A useful entropy packet must therefore show whether the proposed bulk movement from recycling sites toward lower-energy Noether sea states increases coarse-grained entropy, exports entropy through $\partial W(t)$, or merely redistributes an already constrained medium record.
 
 ## Mapping Table
 
 | Current concept | What survives | $\mathbb{A}\mathbb{A}\mathbb{A}$ draft translation | Required gate |
 | --- | --- | --- | --- |
 | Clausius entropy | Heat and reversible exchange bookkeeping | Effective exchange relation after energy flow has been routed through assembly, radiation, and medium ledgers | Derive the coarse heat channel and the relevant ensemble temperature |
-| Boltzmann entropy | State-counting pressure | Count compatible reduced assembly / Noether-Sea states under declared coarse-graining | Specify $\Gamma_{\mathcal{Q},W}$, measure $\mu$, and boundary data |
+| Boltzmann entropy | State-counting pressure | Count compatible reduced assembly / Noether sea states under declared coarse-graining | Specify $\Gamma_{\mathcal{Q},W}$, measure $\mu$, and boundary data |
 | Gibbs/Shannon entropy | Distributional uncertainty | Measure over unresolved reduced states, basins, or observer records | Derive the invariant or metastable measure rather than assigning it externally |
 | Von Neumann entropy | Quantum reduced-state entropy | Effective observer-level density-operator summary after basin, record, and access restrictions | Recover the standard quantum limit through transfer-operator and measurement-response gates |
 | Available/free energy | Extractable-work pressure under declared operations | Resource value of a record, bath, bias state, or medium state after energy and entropy channels are both routed | State the allowed operations, reference resources, and event ledger before claiming work extraction |
 | Record entropy | Irreversible-looking measurement records | Environmental locking of a durable apparatus branch | Prove $\Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}}>0$ for a declared apparatus class |
 | Reset or memory entropy | Physical cost of cycling a memory-bearing apparatus | Export of unresolved record alternatives into apparatus/environment history, or explicit depletion of a blank-memory resource | For cyclic reset, prove a lower-bound entropy export from the same record channel |
 | Black-hole entropy | Horizon area, generalized entropy, and RT horizon-wrapping benchmarks | Derive the compatible horizon-interface Noether swarm label ensemble, its local block entropy density, region-anchored entropy surfaces, and accessible outgoing channels | Derive $\mathcal{B}_H(M,\mathbf{J},Q)$, the local coefficient $s_{\mathrm{align}}^H(\theta)/a_H(\theta)$, the $\eta_H(A;\theta)\to1$ thermal limit, and Page-curve-compatible release accounting |
-| Cosmological entropy | Thermal history and large-scale arrow | Production, flux, and coarse-graining residuals in a finite Noether-Sea window | Preserve one medium-state record across CMB, BBN, redshift, and growth modules |
+| Cosmological entropy | Thermal history and large-scale arrow | Production, flux, and coarse-graining residuals in a finite Noether sea window | Preserve one medium-state record across CMB, BBN, redshift, and growth modules |
 
 ## Concrete Closure Objects
 
@@ -267,7 +267,7 @@ The proof burden is to derive $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native hori
 | `windowed_entropy_functional` | [theory-differentials](../../../content/markdown/aaa/philosophy-history/theory-differentials.md), [observer-framework](../../../content/markdown/aaa/spacetime/observer-framework.md), and [failure-criteria](../../../content/markdown/aaa/validation/failure-criteria.md) | A finite coarse-graining, access window, state measure, and boundary-flux rule are defined without treating entropy as primitive ontology. |
 | `record_locking_entropy` | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) and [quantum-closure](../quantum-closure/quantum-closure.md) | The entropy-locking diagnostic is tied to a detector-response kernel and persistence window. |
 | `horizon_label_entropy` | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), and [strong-field-closure](../strong-field-closure/strong-field-closure.md) | The horizon-interface label ensemble and local block coefficient are derived from admissible $\Lambda_{\text{NS}}$ states and can be compared to area scaling and Page-curve behavior. |
-| `cosmology_entropy_balance` | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [dark-energy](../../../content/markdown/aaa/cosmology/dark-energy.md), and [reaction-cosmology-provenance-ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Entropy production, thermalization depth, redshift handoff, and observer temperature use one shared Noether-Sea state record. |
+| `cosmology_entropy_balance` | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [dark-energy](../../../content/markdown/aaa/cosmology/dark-energy.md), and [reaction-cosmology-provenance-ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Entropy production, thermalization depth, redshift handoff, and observer temperature use one shared Noether sea state record. |
 
 ## Failure Modes
 
@@ -279,7 +279,7 @@ The proof burden is to derive $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native hori
 | Horizon area imported as ontology | The strong-field packet has treated GR comparison geometry or a one-patch label count as primitive instead of deriving the horizon-interface block-density capacity. |
 | Measurement entropy treated as collapse | The quantum packet has confused record stability with a new fundamental discontinuity. |
 | Apparatus reset without exported cost | A cyclic memory or demon-style device has compressed the retained record alternatives without exporting the missing state count into apparatus/environment entropy or recording consumption of a finite blank-memory resource. |
-| Cosmology entropy fitted per observable | CMB, BBN, redshift, blackbody, and growth claims no longer consume one shared Noether-Sea state record. |
+| Cosmology entropy fitted per observable | CMB, BBN, redshift, blackbody, and growth claims no longer consume one shared Noether sea state record. |
 
 ## Related Priorities
 

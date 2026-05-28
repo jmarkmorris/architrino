@@ -67,7 +67,7 @@ The entries are:
 | $s$ | $N_s$ | support variables: support bands, partition-indexed radii $R_a$, radius-spread variables, transition margins, and radial-support slack variables |
 | $\mu$ | $N_\mu$ | support multipliers or variational-inequality complementarity variables |
 | $h$ | $N_h$ | self-hit windows, endpoint times, endpoint speeds, potential parameters, and event-reset variables |
-| $e$ | $N_e$ | event ledgers for root folds, speed-band contacts, support-boundary contacts, tail assimilation, endpoint jumps, and Noether-Sea exchange |
+| $e$ | $N_e$ | event ledgers for root folds, speed-band contacts, support-boundary contacts, tail assimilation, endpoint jumps, and Noether sea exchange |
 | $\gamma$ | $1$ | action-derived dynamics scale $\Gamma_B^{\nu}$ or diagnostic fitted scale |
 | $\Theta$ | $N_\Theta$ | period multipliers for period-constrained variation |
 | $p$ | $N_p$ | polarity and attraction/repulsion ledger slots, including source-site inventory witnesses |
@@ -218,7 +218,7 @@ F_{i,\mathrm{med}}^\nu
 F_{i,\mathrm{supp}}^\nu,
 $$
 
-where $F_{i,\mathrm{med}}^\nu$ includes coherent response of the Noether Sea and $F_{i,\mathrm{supp}}^\nu$ is present only when support multipliers or variational-inequality support rows are active.
+where $F_{i,\mathrm{med}}^\nu$ includes coherent response of the Noether sea and $F_{i,\mathrm{supp}}^\nu$ is present only when support multipliers or variational-inequality support rows are active.
 
 ### 2.1 Chart, Gauge, And Speed Rows
 
@@ -1055,7 +1055,7 @@ A finite-mode bounded speed factor solver artifact must emit:
 | `clock_period` | $\chi_i$, $\Lambda_i$, $H_i$, $H_*$ or $H_{\mathrm{com}}$, clock derivatives, and period residual |
 | `root_sheet_rows` | $G_\alpha^\nu$, $\eta_\alpha$, $J_\alpha^\nu$, sign labels, sheet slopes, first variations, second variation envelopes, and root floors |
 | `tail_split` | active roots, assimilated tail roots, excluded tail cells, ownership map, terminal predicates, overlap consistency, persistence radius, and $\epsilon_{\mathrm{tail}}^\nu$ |
-| `force_rows` | total force convention, partner/cross force, self-hit force, support force, Noether-Sea force, force projections, and force derivative envelopes |
+| `force_rows` | total force convention, partner/cross force, self-hit force, support force, Noether sea force, force projections, and force derivative envelopes |
 | `dynamics_rows` | $R_T^\nu$, $R_{\mathrm{speedODE}}^\nu$, $R_N^\nu$, normal reconstruction status, and force-balance norms |
 | `radial_support_rows` | support descriptor, support multipliers or variational inequality, partition-indexed radii $R_a$, spread/gap rows, derivative rows, and mixing residual |
 | `inventory_rows` | polarity count, $3$ attractive / $2$ repulsive source-site row for each architrino, weighted attraction/repulsion force-moment split, and live ledger status |
@@ -1187,7 +1187,7 @@ Proof route:
 5. the normal row gives curvature force balance with the $\nu_i^2$ factor required by center-time dynamics;
 6. radial support rows convert visual shell swarm or transition claims into differentiable residuals;
 7. inventory rows separate the structural $3$ attractive / $2$ repulsive source-site count from weighted force closure;
-8. self-hit and event rows prevent speed, source provenance, charge, momentum, angular momentum, or Noether-Sea exchange from being hidden in the force residual;
+8. self-hit and event rows prevent speed, source provenance, charge, momentum, angular momentum, or Noether sea exchange from being hidden in the force residual;
 9. the variational Noether rows decide whether the speed ODE and support work are action-derived rather than fitted diagnostics;
 10. the gauge-reduced Krawczyk row supplies the local finite-mode existence certificate, while the full-stack embedding records the remaining continuum obligations.
 

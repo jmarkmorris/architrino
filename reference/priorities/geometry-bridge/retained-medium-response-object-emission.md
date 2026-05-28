@@ -16,7 +16,7 @@ Z_B^{ab}(Y;\theta;\lambda)
 Z_B(\lambda)\in\mathrm{Sym}^{2}_{0}(h),
 $$
 
-where $Y$ denotes retained branch coordinates and $\theta$ denotes the local Noether-Sea or environment record. Let the retained medium tensor be
+where $Y$ denotes retained branch coordinates and $\theta$ denotes the local Noether sea or environment record. Let the retained medium tensor be
 
 $$
 M_B^{ab}(\lambda)

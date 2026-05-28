@@ -26,11 +26,11 @@ We compare three frameworks: (1) a time-domain PDE/source, (2) an integral/Green
 
 ## Time-based PDE (wave equation with a moving point source)
 
-**Physical idea:** keep the source as “something injected per unit time at the emitter location,” put that into the wave PDE that governs how disturbances travel at speed $c$, and let the PDE produce expanding spherical wavefronts automatically. Numerically this is usually the easiest and most robust approach.
+**Physical idea:** keep the source as “something injected per unit time at the emitter location,” put that into a PDE surrogate for causal wake propagation at speed $c$, and let the PDE produce expanding spherical causal wake surfaces automatically. Numerically this is usually the easiest and most robust approach.
 
 ### PDE model
 
-Use the scalar wave equation (this is the standard PDE for a field that propagates at finite speed $c$):
+Use the scalar wave equation as a continuum comparison surrogate for finite-speed causal-wake reconstruction:
 
 $$
 \boxed{\;\frac{\partial^2 \phi}{\partial t^2}(\mathbf{x},t) - c^2 \,\nabla^2 \phi(\mathbf{x},t) \;=\; S(\mathbf{x},t)\;}
@@ -38,7 +38,7 @@ $$
 
 **Symbols**
 
-* $\phi(\mathbf{x},t)$: scalar field (potential) at position $\mathbf{x}\in\mathbb{R}^3$ and time $t$.
+* $\phi(\mathbf{x},t)$: scalar potential surrogate at position $\mathbf{x}\in\mathbb{R}^3$ and time $t$.
 * $c$: field propagation speed (units length/time).
 * $\nabla^2$: Laplacian operator in space (sums second spatial derivatives).
 * $S(\mathbf{x},t)$: source term (right-hand side) — this is how the emitter injects wake surfaces into the field.
@@ -51,11 +51,11 @@ $$
 S(\mathbf{x},t) \;=\; q(t)\,\delta\!\big(\mathbf{x}-\mathbf{x}_s(t)\big).
 $$
 
-Here $q(t)$ has units “amplitude per unit time.” The finite-speed wave operator then generates outgoing spherical wavefronts automatically; no discrete wake surface count is assumed.
+Here $q(t)$ has units “amplitude per unit time.” The finite-speed wave operator then generates outgoing spherical causal wake surfaces automatically; no discrete wake surface count is assumed.
 
 **How expanding causal wake surfaces appear**
 
-* The source term does not explicitly insert a radius into the right-hand side. Instead, the PDE and the finite speed $c$ cause any instantaneous injection at the point $\mathbf{x}_s(\tau)$ to produce an outgoing spherical wave whose wavefront moves outward at speed $c$. That is the built-in behavior of the wave equation.
+* The source term does not explicitly insert a radius into the right-hand side. Instead, the PDE and the finite speed $c$ cause any instantaneous injection at the point $\mathbf{x}_s(\tau)$ to produce an outgoing spherical causal wake surface whose front moves outward at speed $c$. That is the built-in behavior of the wave-equation surrogate.
 * The Green’s function ensures that, at $(\mathbf{x},t)$, only the path history emission $q(\tau)$ with $\tau = t - r/c$ contributes, producing an outgoing spherical wave with amplitude $q(\tau)/(4\pi r)$ supported on $r=c(t-\tau)$. Thus Method 1 with $S(\mathbf{x},t)=q(t)\delta(\mathbf{x}-\mathbf{x}_s(t))$ naturally yields expanding causal wake surfaces at speed $c$.
 
 **Why $\|\mathbf{v}\|$ (emitter speed) does not cause blow-ups**

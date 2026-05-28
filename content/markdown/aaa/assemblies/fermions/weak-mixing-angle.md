@@ -212,7 +212,7 @@ For $5P,1E$:
 - one axis contains the exceptional mixed or depleted structure,
 - the net axial moment is strongly one-sided.
 
-This suggests a relatively stiff anisotropy with a sharply defined exceptional direction. Such a configuration may favor one discrete nonzero angle, for example a single-step branch $\alpha = 30^\circ$ or a two-step branch $\alpha = 60^\circ$ depending on how the mixed axis loads the surrounding Noether Sea.
+This suggests a relatively stiff anisotropy with a sharply defined exceptional direction. Such a configuration may favor one discrete nonzero angle, for example a single-step branch $\alpha = 30^\circ$ or a two-step branch $\alpha = 60^\circ$ depending on how the mixed axis loads the surrounding Noether sea.
 
 ### Down-type expectation
 
@@ -250,7 +250,7 @@ Here:
 - $E_{\text{polarity}}$ measures internal strain from placing an imbalanced six-architrino axial layer on the fixed scaffold,
 - $E_{\text{color}}$ enforces the threefold azimuthal structure,
 - $E_{\text{cross}}$ captures coupling between exceptional-axis choice and axial tilt,
-- $E_{\text{wake}}$ is the Noether-Sea response to the exposed axial geometry.
+- $E_{\text{wake}}$ is the Noether sea response to the exposed axial geometry.
 
 The discrete-angle hypothesis is the statement that
 $$

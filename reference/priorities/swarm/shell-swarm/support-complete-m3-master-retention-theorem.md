@@ -44,7 +44,7 @@ The rows mean:
 | $\mathsf{Kraw}$ | range Krawczyk, cokernel audit, proof budget, obstruction separation, and post-tail normalized score from [support-complete-m3-post-tail-proof-budget.md](support-complete-m3-post-tail-proof-budget.md) |
 | $\mathsf{Limit}$ | finite-mode convergence to a curve-level dynamics/action candidate |
 | $\mathsf{Noether}$ | total action, generator currents, conservation bounds |
-| $\mathsf{Event}$ | inventory, source provenance, endpoint, boundary, recoil, and Noether-Sea exchange rows |
+| $\mathsf{Event}$ | inventory, source provenance, endpoint, boundary, recoil, and Noether sea exchange rows |
 | $\mathsf{Stability}$ | root-dependent monodromy, neutral quotient, conservative/exchange classification, nonlinear recovery |
 | $\mathsf{Inventory}$ | $N_+$, $N_-$, $Q$, central-inventory status, architrino labels, $3$-$2$ attraction/repulsion source-site inventory when applicable, inventory-bias status, and antipodal inventory parity |
 | $\mathsf{Ledger}$ | one shared root, memory, source-pair, endpoint, action, event, and weighting convention |
@@ -191,7 +191,7 @@ $$
 },
 $$
 
-where $\epsilon_r^{\mathrm{cert}}$ includes the certified tail, root, sheet, mesh, projector, aliasing, action, endpoint, Noether-Sea, and nonlinear-recovery error terms relevant to row $r$.
+where $\epsilon_r^{\mathrm{cert}}$ includes the certified tail, root, sheet, mesh, projector, aliasing, action, endpoint, Noether sea, and nonlinear-recovery error terms relevant to row $r$.
 
 The exact-antipodal $M=3$ branch is a retained shell swarm branch candidate only if
 

@@ -5,7 +5,7 @@ This chapter is the canonical home for the observer framework in $\mathbb{A}\mat
 The key split is:
 
 - The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is a theoretical complete-state perspective on the absolute-time slice.
-- A **Physical Observer** is an assembly inside the Noether Sea, using physical clocks, rulers, detectors, and finite-speed signals.
+- A **Physical Observer** is an assembly inside the Noether sea, using physical clocks, rulers, detectors, and finite-speed signals.
 
 This page owns the level distinction. The clock law itself belongs in [Proper Time and Time Dilation](proper-time-and-time-dilation.md), and the effective metric bridge belongs in [Emergent Metric](emergent-metric.md).
 
@@ -35,7 +35,7 @@ Examples include:
 - humans and biological sensors,
 - planets, stars, and other large assemblies when treated as measurement systems.
 
-Physical Observers are embedded in the Noether Sea. Their clocks, rulers, detector thresholds, records, and synchronization conventions are therefore outputs of assembly dynamics, not external primitives.
+Physical Observers are embedded in the Noether sea. Their clocks, rulers, detector thresholds, records, and synchronization conventions are therefore outputs of assembly dynamics, not external primitives.
 
 A Physical Observer has access only to:
 
@@ -50,7 +50,7 @@ No Physical Observer can be promoted into a global, outside-the-universe vantage
 
 This limitation becomes especially important in strong-gravity and cosmology comparisons. Standard quantum-gravity discussions also run into the fact that an observer cannot be placed outside the entire universe as a massless, energy-free measuring device. A real observer supplies a clock, a location, finite records, and an access region. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this does not make reality observer-created; it means that black-hole entropy, de Sitter thermodynamics, horizon access, and quantum state descriptions must be stated relative to what an embedded Physical Observer can actually clock, probe, and record.
 
-For the same reason, an expectation value, covariance, or correlation function is not automatically an ontic claim about an effective metric, the Noether Sea, or the complete microstate. It is an observer-level summary for a declared observation region, readout channel, and boundary-data model. A comparison packet may use such summaries, but it must say which Physical Observer records and boundary wake data make the summary meaningful.
+For the same reason, an expectation value, covariance, or correlation function is not automatically an ontic claim about an effective metric, the Noether sea, or the complete microstate. It is an observer-level summary for a declared observation region, readout channel, and boundary-data model. A comparison packet may use such summaries, but it must say which Physical Observer records and boundary wake data make the summary meaningful.
 
 Strong-gravity information claims require the same declared-access discipline. A local field-theory expression such as a horizon-crossing correlation, a reduced density matrix, or a fine-grained radiation entropy is not yet a substrate statement. It becomes a legitimate comparison object only after the Physical Observer, reference resources, access region, finite boundary wake data, and record channel have been specified. This keeps black-hole information accounting from smuggling in an external observer at infinity, a literal boundary CFT, or an unrecorded many-copy measurement idealization.
 
@@ -116,7 +116,7 @@ X_\Omega(t),
 N_{\text{sea}}|_{\Omega}(t)
 \right),
 $$
-where $N_{\text{sea}}|_{\Omega}(t)$ denotes the locally resolved Noether-Sea state. A Physical Observer who models only $X_\Omega(t)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
+where $N_{\text{sea}}|_{\Omega}(t)$ denotes the locally resolved Noether sea state. A Physical Observer who models only $X_\Omega(t)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
 
 The same finite-boundary form is the local substitute for placing a hypothetical observer at infinity in compact strong-field comparisons. For black-hole and cosmology problems, $\mathcal{B}_{\partial\Omega}$ is the controlled interface between what a Physical Observer can access and what the complete state must carry for deterministic continuation.
 
@@ -162,7 +162,7 @@ Here $\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)$ denotes the boundary wak
 
 ## Boundary-Wake Covariance Scaffold
 
-The boundary term above also supplies the native home for covariance matrices used by observer-level measurement diagnostics. A covariance is not fundamental randomness. It is a finite-access summary of boundary wake histories, detector states, and Noether-Sea variables not resolved by a Physical Observer.
+The boundary term above also supplies the native home for covariance matrices used by observer-level measurement diagnostics. A covariance is not fundamental randomness. It is a finite-access summary of boundary wake histories, detector states, and Noether sea variables not resolved by a Physical Observer.
 
 With this notation, the unresolved boundary residual is
 $$
@@ -273,9 +273,9 @@ The disagreement is epistemic rather than ontological:
 
 ## Effective Causal-Order Recovery
 
-External causal-order reconstruction theorems provide a useful comparison discipline: effective causal relations can determine much of an observer-level geometry, but not the local scale by themselves. In this framework, that scale is supplied by Physical Observer clocks, rulers, and signal channels, all of which are assembly and Noether-Sea outputs rather than substrate intervals.
+External causal-order reconstruction theorems provide a useful comparison discipline: effective causal relations can determine much of an observer-level geometry, but not the local scale by themselves. In this framework, that scale is supplied by Physical Observer clocks, rulers, and signal channels, all of which are assembly and Noether sea outputs rather than substrate intervals.
 
-For a declared GR comparison metric and a candidate Noether-Sea and observer-state parameter record $\theta$, let $\prec_{\mathrm{eff}}(\theta)$ be the causal order inferred by Physical Observers from photon-channel records and clock synchronization, and let $\prec_{\mathrm{GR}}$ be the causal order of the target effective metric. A compact recovery diagnostic is
+For a declared GR comparison metric and a candidate Noether sea state and observer-state parameter record $\theta$, let $\prec_{\mathrm{eff}}(\theta)$ be the causal order inferred by Physical Observers from photon-channel records and clock synchronization, and let $\prec_{\mathrm{GR}}$ be the causal order of the target effective metric. A compact recovery diagnostic is
 $$
 \mathcal{R}_{\mathrm{causal}}(\theta)
 =
@@ -292,6 +292,15 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 \sum_{i=1}^{3}\alpha_i(\theta)^2.
 $$
 Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN drift coefficients. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
+
+A causal-set comparison adds a useful uniqueness discipline. It is not enough for Physical Observer records to fit one effective metric; the same causal-order, clock, ruler, and preferred-frame data should not also fit macroscopically distinct effective metrics at the same declared coarse-graining scale. For a scale $\ell$ and tolerance $\varepsilon$, let $\mathcal{G}_{\ell,\varepsilon}(\theta)$ be the family of GR comparison metrics on the domain whose coarse-grained causal-order and clock/ruler diagnostics satisfy $\mathcal{R}_{\mathrm{causal}}(\theta;g)\le\varepsilon$, using the same residual above with $g$ supplying the target causal order and proper-time terms. Define the effective reconstruction-uniqueness residual
+$$
+\mathcal{H}_{\mathrm{eff}}(\theta;\ell,\varepsilon)
+=
+\sup_{g_1,g_2\in\mathcal{G}_{\ell,\varepsilon}(\theta)}
+d_{\mathrm{geom},\ell}(g_1,g_2).
+$$
+Small $\mathcal{H}_{\mathrm{eff}}$ says that the observer record determines a unique effective geometry up to the declared coarse-graining scale. Large $\mathcal{H}_{\mathrm{eff}}$ means the observer layer has not supplied enough scale, transport, or preferred-frame information to identify a stable GR comparison geometry. This is an effective-reconstruction test only; it does not promote a Lorentzian metric to substrate ontology.
 
 Process-matrix and indefinite-causal-order formalisms are useful here only as comparison frameworks. They test whether operational records can be represented without assuming a prior observer-level causal order, but their generalized process object is not a substrate replacement for absolute timespace. For settings or interventions $\mathbf{s}$ and records $\mathbf{r}$, let $P_{\mathrm{proc}}(\mathbf{r}|\mathbf{s})$ be the external process-table benchmark and let $P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})$ be the record distribution derived from Physical Observer laboratories, boundary wake data, apparatus kernels, and the candidate observer-state record $\theta$. A compact diagnostic is
 $$
@@ -310,7 +319,7 @@ Small process-table mismatch with large $\mathcal{R}_{\mathrm{causal}}$ is a war
 
 A Physical Observer clock measures **proper time** $\tau$, not the substrate parameter $t$ directly. A ruler is likewise an assembly whose measured length depends on its internal dynamics and medium coupling.
 
-This page does not own the clock law. Once a discussion asks how an internal clock frequency changes with velocity, Noether-Sea density, effective potential, or clock geometry, use [Proper Time and Time Dilation](proper-time-and-time-dilation.md).
+This page does not own the clock law. Once a discussion asks how an internal clock frequency changes with velocity, Noether sea density, effective potential, or clock geometry, use [Proper Time and Time Dilation](proper-time-and-time-dilation.md).
 
 Likewise, this page does not own the full Lorentz comparison. Once a discussion asks whether moving clocks and rulers reproduce Lorentz transformations, use [Lorentz Kinematics](lorentz-kinematics.md).
 
@@ -350,4 +359,4 @@ This chapter does not own:
 
 ## Summary Commitment
 
-> **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete ontic state on an absolute-time slice from the measurements available to embedded Physical Observers. Physical Observers are assemblies inside the Noether Sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate itself.
+> **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete ontic state on an absolute-time slice from the measurements available to embedded Physical Observers. Physical Observers are assemblies inside the Noether sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate itself.

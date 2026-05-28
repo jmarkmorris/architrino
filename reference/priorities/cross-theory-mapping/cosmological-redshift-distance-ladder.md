@@ -12,7 +12,7 @@ with distances inferred through luminosity distance $D_L(z)$, angular-diameter d
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ treats $a(t)$, $H(t)$, redshift, and CMB summaries as effective observer variables for Noether-Sea evolution, transport, and clock-rate comparison. The Euclidean void does not expand. The useful mapping is therefore a transfer-function problem: source state, path transport, thermalization, clock comparison, and observer calibration must all be recorded without creating unbalanced substrate content.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ treats $a(t)$, $H(t)$, redshift, and CMB summaries as effective observer variables for Noether sea evolution, transport, and clock-rate comparison. The Euclidean void does not expand. The useful mapping is therefore a transfer-function problem: source state, path transport, thermalization, clock comparison, and observer calibration must all be recorded without creating unbalanced substrate content.
 
 ## Canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping
 
@@ -32,11 +32,11 @@ with the clock map depending on $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},
 
 - endpoint clock-rate comparison,
 - source/observer relative-motion contribution,
-- propagation through the traversed Noether-Sea state and gradients.
+- propagation through the traversed Noether sea state and gradients.
 
-### Candidate Noether-Sea Core Factorization
+### Candidate Noether Sea Core Factorization
 
-The more substrate-facing version should use the local Noether-Sea core cadence itself as the clock. Let $\Omega_N(\mathbf{x},t)$ be the representative local Noether-Sea core cadence and $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$ its cycle period. Relative to a weak homogeneous reference core, define the candidate endpoint deformation factor
+The more substrate-facing version should use the local Noether sea core cadence itself as the clock. Let $\Omega_N(\mathbf{x},t)$ be the representative local Noether sea core cadence and $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$ its cycle period. Relative to a weak homogeneous reference core, define the candidate endpoint deformation factor
 
 $$
 \Gamma_N(\mathbf{x},t)
@@ -46,13 +46,13 @@ $$
 \frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}.
 $$
 
-Here $\Gamma_N=1$ marks the reference weak-sea cadence, while $\Gamma_N>1$ marks a locally slowed or stretched Noether-Sea core cadence. In a homogeneous Lorentz-closure branch, this factor should reduce to the appropriate moving-core deformation factor only after the Noether swarm geometry and clock extraction have been derived; schematically one expects $\Gamma_N\to(1-\beta_N^2)^{-1/2}$ in the validated limit.
+Here $\Gamma_N=1$ marks the reference weak-sea cadence, while $\Gamma_N>1$ marks a locally slowed or stretched Noether sea core cadence. In a homogeneous Lorentz-closure branch, this factor should reduce to the appropriate moving-core deformation factor only after the Noether swarm geometry and clock extraction have been derived; schematically one expects $\Gamma_N\to(1-\beta_N^2)^{-1/2}$ in the validated limit.
 
 For a spectral transition family $X$, introduce three dimensionless factors:
 
 - $B_X(E)$: source-branch factor, equal to $1$ when the internal transition gap is the clean reference branch and different from $1$ when local source conditions genuinely alter the transition before propagation;
 - $\mathcal{L}_{E\to R}(\hat{\mathbf{k}})$: directional launch factor from source motion and emission direction, normalized so values above $1$ compress the phase train toward the receiver and values below $1$ stretch it;
-- $\mathcal{P}_{E\to R}$: path-history propagation factor through the intervening Noether Sea, normalized so $\mathcal{P}_{E\to R}>1$ is net redward phase stretching.
+- $\mathcal{P}_{E\to R}$: path-history propagation factor through the intervening Noether sea, normalized so $\mathcal{P}_{E\to R}>1$ is net redward phase stretching.
 
 The candidate redshift factorization is then
 
@@ -104,7 +104,7 @@ $$
 \mathbb{U}_{\text{now}}=S(t),
 $$
 
-where $S(t)$ contains the source branch, receiver state, Noether-Sea cadence, medium flow, causal wakes, and photon path-history ledger. The central question is whether one Noether-Sea transport law can compute $\Gamma_N$, $D_v$, and $\mathcal{P}_{E\to R}$ from $S(t)$ without switching explanations case by case.
+where $S(t)$ contains the source branch, receiver state, Noether sea cadence, medium flow, causal wakes, and photon path-history ledger. The central question is whether one Noether sea transport law can compute $\Gamma_N$, $D_v$, and $\mathcal{P}_{E\to R}$ from $S(t)$ without switching explanations case by case.
 
 In this form the recovered observer energy is
 
@@ -212,7 +212,7 @@ This law is falsified if $\mathbf b_N$, $\mathbf p_X$, $D_v$, or $\mathcal R_{\m
 
 ### Noether-Core Equilibrium Transport Hypothesis
 
-A sharper candidate for the deep-space term is an equilibrium transport law over Noether swarm cadence states. The hypothesis is that most Noether-Sea cores interact primarily with neighboring Noether swarms, while photons, neutrinos, and stronger disturbances provide sparse probe or perturbation channels. If a representative core cadence is written as $\nu_N$, the local core energy scale is
+A sharper candidate for the deep-space term is an equilibrium transport law over Noether swarm cadence states. The hypothesis is that most Noether sea cores interact primarily with neighboring Noether swarms, while photons, neutrinos, and stronger disturbances provide sparse probe or perturbation channels. If a representative core cadence is written as $\nu_N$, the local core energy scale is
 
 $$
 E_N=h\nu_N.
@@ -243,7 +243,7 @@ S_{\mathrm{BH}}
 -R_{\mathrm{eq}}[f_N].
 $$
 
-Here $J_\nu$ is the frequency-space current between neighboring cadence states, $S_{\mathrm{BH}}$ records medium loading from strong-field recycling sites, $S_{\mathrm{GW}}$ records gravitational-wave disturbances of the medium state, and $R_{\mathrm{eq}}[f_N]$ records local neighbor equilibration. This equation is not yet canon closure. It is a concrete place to ask whether SMBH recycling can feed a bulk movement from high-energy recycling zones toward lower-energy Noether-Sea states while preserving conservation, image sharpness, line coherence, and supernova time-dilation consistency.
+Here $J_\nu$ is the frequency-space current between neighboring cadence states, $S_{\mathrm{BH}}$ records medium loading from strong-field recycling sites, $S_{\mathrm{GW}}$ records gravitational-wave disturbances of the medium state, and $R_{\mathrm{eq}}[f_N]$ records local neighbor equilibration. This equation is not yet canon closure. It is a concrete place to ask whether SMBH recycling can feed a bulk movement from high-energy recycling zones toward lower-energy Noether sea states while preserving conservation, image sharpness, line coherence, and supernova time-dilation consistency.
 
 The expansionary implication is conditional. If $J_\nu=0$ after coarse-graining, or if the source and equilibration terms cancel without a signed large-scale current, then local equilibrium alone does not create an expansion-like redshift slope. The hypothesis becomes cosmologically relevant only when the same $f_N$ record produces a nonzero path-rate term in $\alpha_{\mathrm{prop},X}$, and hence a nonzero contribution to $\mathcal{P}_{E\to R}$, without being reinterpreted as generic photon energy loss.
 
@@ -257,7 +257,7 @@ O_X^{\mathrm{obs}}(z,\hat{\mathbf{n}})
 O_X^{\mathrm{iso}}(z),
 $$
 
-with monopole, dipole, and higher directional terms tested against the same Noether-Sea variables that determine the clock and transport maps. A residual dipole must not be hidden inside $H(z)$, $w(z)$, or calibration constants.
+with monopole, dipole, and higher directional terms tested against the same Noether sea variables that determine the clock and transport maps. A residual dipole must not be hidden inside $H(z)$, $w(z)$, or calibration constants.
 
 ## Survey Benchmark Translation
 
@@ -374,7 +374,7 @@ P^\theta(k,z),\,
 \right).
 $$
 
-The repeated $C_L^{\phi\phi}$ entry is intentional: it is the overlap between CMB lensing and late-time growth. If the distance ladder prefers one Noether-Sea projection while growth prefers another, the failure belongs to shared-state closure, not to a hidden change of ontology.
+The repeated $C_L^{\phi\phi}$ entry is intentional: it is the overlap between CMB lensing and late-time growth. If the distance ladder prefers one Noether sea projection while growth prefers another, the failure belongs to shared-state closure, not to a hidden change of ontology.
 
 Frame consistency is the directional version of the same rule. CMB dipole correction, matter dipoles, SN residual directionality, BAO anisotropy, and local $H_0$ scatter must be compared as projections of one frame-state record:
 
@@ -389,7 +389,7 @@ The allowed difference between rows is the data-product context $\nu_i$, not a n
 
 ## Task Queue
 
-1. `redshift_factorization_record` — Derive or falsify the candidate map $1+z_X\approx(\Gamma_{N,E}/\Gamma_{N,R})\mathcal{P}_{E\to R}/(B_X\mathcal{L}_{E\to R})$ from the shared Noether-Sea core cadence, source-branch, launch-geometry, and path-history records. Status: `draft`.
+1. `redshift_factorization_record` — Derive or falsify the candidate map $1+z_X\approx(\Gamma_{N,E}/\Gamma_{N,R})\mathcal{P}_{E\to R}/(B_X\mathcal{L}_{E\to R})$ from the shared Noether sea core cadence, source-branch, launch-geometry, and path-history records. Status: `draft`.
 2. `time_dilation_gate` — Require supernova light-curve dilation and spectral redshift to use the same $\mathcal{Z}$ record. Status: `draft`.
 3. `distance_duality_gate` — Test whether $D_L=(1+z)^2D_A$ survives the effective transport map. Status: `draft`.
 4. `cmb_bao_handoff` — Route CMB blackbody, BAO scale, and growth variables through one cosmology closure record. Status: `draft`.
@@ -404,7 +404,7 @@ The allowed difference between rows is the data-product context $\nu_i$, not a n
 
 - Transfer map: $\mathcal{Z}$ from source, path-history, and observer clock records to measured $z$.
 - Channel decomposition: $\mathcal{Z}=\mathcal{Z}_{\mathrm{clock}}\oplus\mathcal{Z}_{\mathrm{motion}}\oplus\mathcal{Z}_{\mathrm{prop}}$ until a derivation proves a lower-dimensional representation.
-- Candidate factor record: endpoint Noether-Sea core deformation factors $\Gamma_{N,E},\Gamma_{N,R}$; source-branch factor $B_X(E)$; directional launch factor $\mathcal{L}_{E\to R}$; and path-history propagation factor $\mathcal{P}_{E\to R}$.
+- Candidate factor record: endpoint Noether sea core deformation factors $\Gamma_{N,E},\Gamma_{N,R}$; source-branch factor $B_X(E)$; directional launch factor $\mathcal{L}_{E\to R}$; and path-history propagation factor $\mathcal{P}_{E\to R}$.
 - Observable frequency and energy record: $\nu_{\mathrm{obs},X}$ and $E_{\mathrm{obs},X}=h\nu_{\mathrm{obs},X}$ after endpoint cadence, source branch, launch, and path-history factors are separated.
 - Endpoint-subtracted propagation residual: $Z_{\mathrm{prop},X}=\ln(1+z_X)-\ln\Gamma_{N,E}+\ln\Gamma_{N,R}+\ln B_X(E)+\ln D_v$.
 - Gamma-N geometry extraction row: $\ln\Gamma_N=\mathbf{b}_N\cdot\mathbf{g}_N+\mathcal{R}_{\Gamma}$, with $\mathbf{g}_N=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,\ln(R_{\text{core}}/R_{\text{core},0}))^T$; the clock-rate factor is $C_N=\Gamma_N^{-1}$, and in the metric subclass $C_N=\Omega_{\mathrm{clk}}\xi$, so $b_\xi=1$ and $b_i=-\omega_i$ for the isotropic clock-rate row. The weak static endpoint branch fixes $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$ for $\ln n=a_nU/c_0^2$, $\ln\chi_{\text{sea}}=a_\chi U/c_0^2$, $\ln\lambda=a_\lambda U/c_0^2$, and $\ln(R_{\text{core}}/R_{\text{core},0})=a_RU/c_0^2$. The signal-delay neighbor is $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$ from $\bar{\chi}_{\text{sea}}=1+(1+\gamma_{\text{eff}})U/c_0^2+\cdots$, but equality $a_\chi=a_\chi^{\mathrm{sig}}$ is a shared-channel closure condition, not a definition.
@@ -417,7 +417,7 @@ The allowed difference between rows is the data-product context $\nu_i$, not a n
 - First-order dark-energy coefficient row: $\boldsymbol{\lambda}_X^T=(a_\chi^X\ a_n^X\ a_R^X)\mathbf{J}_{\mathrm{DE}}$, giving $\alpha_{\mathrm{prop},X}^{\mathrm{DE}}=c_\gamma^{-1}\boldsymbol{\lambda}_X^T\mathbf{q}_{\mathrm{DE}}$ and, in the homogeneous continuity branch, a solved $H_{\mathrm{eff},X}^{\mathrm{DE}}$ transfer slope.
 - Runtime coefficient packet: `dark_energy_transport_by_line` in `scripts/cosmology/redshift-budget-toy-model.mjs`, which converts a declared $\boldsymbol{\lambda}_X$ row and `q_DE_per_s` or `q_DE_per_mpc` record into additive `dark_energy.*` path-rate terms.
 - Effective Hubble slope: $H_{0,\mathbb{A}\mathbb{A}\mathbb{A}}(\hat{\mathbf{k}},X)=c_0\,\partial Z_{\mathrm{prop},X}/\partial D$ in the corrected nearby limit.
-- Absolute-record transport map: $\mathfrak{T}_X[\mathcal{S}_{X,E\to R}]=(\Gamma_{N,E},\Gamma_{N,R},B_X(E),D_v,Y_{X,E\to R})$ from one restricted $S(t)$ record containing the source branch, receiver branch, Noether-Sea cadence, medium flow, causal wakes, and photon path-history ledger relevant to the measured line; the path-rate row must use the same continuity-disciplined $\mathcal C_N[f_N]$ term in gravitational, relative-motion, and deep-space cases.
+- Absolute-record transport map: $\mathfrak{T}_X[\mathcal{S}_{X,E\to R}]=(\Gamma_{N,E},\Gamma_{N,R},B_X(E),D_v,Y_{X,E\to R})$ from one restricted $S(t)$ record containing the source branch, receiver branch, Noether sea cadence, medium flow, causal wakes, and photon path-history ledger relevant to the measured line; the path-rate row must use the same continuity-disciplined $\mathcal C_N[f_N]$ term in gravitational, relative-motion, and deep-space cases.
 - Cadence-scale retuning map: an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction maps one core closure label into another through $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}=(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$, with the ensemble average supplying the candidate current $J_\nu\sim f_N\langle\dot{\nu}_N\rangle_{\Delta A_{\mathrm{cyc}}=\pm h}$ and first estimate $J_\nu=\sum_\sigma f_N r_\sigma\Delta\nu_N^{(q,\sigma)}+O((\Delta\nu_N)^2\partial_\nu f_N)$.
 - Retuning-map toy fixture: `scripts/nested-shell-swarm/retuning-map-toy-model.mjs` with documentation in `content/markdown/aaa/validation/simulations/retuning-map-toy-model.md`; this fixture solves the linearized constrained compliance problem and reports branch speed gates plus net $J_\nu$.
 - Noether swarm equilibrium transport packet: $f_N(\nu,\mathbf{x},t)$, $J_\nu$, $S_{\mathrm{BH}}$, $S_{\mathrm{GW}}$, $R_{\mathrm{eq}}[f_N]$, and the projection from that packet into $\alpha_{\mathrm{prop},X}$ through the fixed row $\Theta_X=(\mathbf b_N,\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$.
@@ -459,7 +459,7 @@ Uncertain claims staged for the next proof packet:
 | $a_\chi=1+\gamma_{\text{eff}}$ | Fixed only inside the shared clock/signal delay branch; otherwise $\Delta_\chi^{\mathrm{clk\text{-}sig}}$ must be carried as a residual. | Clock redshift and Shapiro-delay comparisons require different first-order $\chi_{\text{sea}}$ responses after channel and normalization differences are accounted for. |
 | $\mathbf p_X$ | Free path-gradient row until independent segment records vary $D_\gamma\boldsymbol\theta_{\mathrm{sea}}$. | Clean-line chromaticity or endpoint-subtracted redshift residuals correlate with gradients in a way no single $\mathbf p_X$ can replay across line and cadence records. |
 | $p_{\nu,X}$ | Free cadence-residual coefficient until $\mathcal C_N[f_N]$ is independently derived from the $f_N$ transport packet. | Supernova time-dilation and spectral redshift require different cadence residual rows, or an independently measured $\mathcal C_N[f_N]$ gives the wrong propagation slope. |
-| $p_{u,X}$ | Free flow-divergence coefficient until large-scale Noether-Sea flow is constrained by the same redshift record. | Directional residuals or local-ladder offsets track $\nabla\cdot\mathbf u_{\mathrm{sea}}$ with a sign or amplitude incompatible with the fixed row. |
+| $p_{u,X}$ | Free flow-divergence coefficient until large-scale Noether sea flow is constrained by the same redshift record. | Directional residuals or local-ladder offsets track $\nabla\cdot\mathbf u_{\mathrm{sea}}$ with a sign or amplitude incompatible with the fixed row. |
 | $p_{\sigma,X}$ | Free anisotropic-response coefficient until beam and direction records vary $\Sigma_{\mathrm{sea},X}^{ab}$. | Image-bundle variance, anisotropic redshift residuals, or line-family splits exceed tolerance when the same $p_{\sigma,X}$ is used. |
 
 ## Promotion Map
@@ -487,6 +487,6 @@ Uncertain claims staged for the next proof packet:
 - `cosmology.no_admissible_retuning`: the constrained retuning problem has no branch-admissible solution for $\Delta A_{\mathrm{cyc}}=\pm h$, so the proposed current must be treated as a branch transition, rejection event, or failed closure rather than a smooth equilibrium contribution.
 - `cosmology.gw_transport_overload`: gravitational-wave perturbation terms produce path-rate noise, dispersion, or beam variance above image-sharpness, timing, or gravitational-wave-speed tolerances.
 - `cosmology.frame_split`: CMB, BAO, supernova, and local-Hubble corrections use incompatible rest-frame records.
-- `cosmology.directional_absorption`: dipole or environment residuals are absorbed into $H(z)$, $w(z)$, or calibration constants instead of being derived from the shared Noether-Sea state.
+- `cosmology.directional_absorption`: dipole or environment residuals are absorbed into $H(z)$, $w(z)$, or calibration constants instead of being derived from the shared Noether sea state.
 - `cosmology.thermalization_gap`: CMB blackbody quality is asserted without a thermalization depth and photon-loading ledger.
 - `cosmology.void_expansion_leak`: effective $a(t)$ is described as fundamental expansion of the Euclidean void.

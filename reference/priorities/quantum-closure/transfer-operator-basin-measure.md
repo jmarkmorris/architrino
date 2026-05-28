@@ -35,7 +35,7 @@ U,
 \gamma=(x,\ell,w,z,u)\in\Gamma.
 $$
 
-The factor $\Gamma_{\mathrm{asm}}$ retains assembly variables such as reduced positions, velocities, phase coordinates, resonance-band labels, and action or angular-momentum ledger coordinates. The factor $\Gamma_{\mathrm{wake}}$ retains causal-wake history through active root branches, self-hit status, Jacobian floors, and path-history summaries. The factor $\Gamma_{\mathrm{sea}}$ retains Noether-Sea context, including $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, local stress or compliance summaries, and unresolved causal-wake background variables. The factor $\Gamma_{\mathrm{reg}}$ retains apparatus, detector, register, pointer, record-window, and readout variables. The factor $U$ retains controlled bias variables such as Decider settings, analyzer settings, gate-control settings, or dyadic tuning parameters.
+The factor $\Gamma_{\mathrm{asm}}$ retains assembly variables such as reduced positions, velocities, phase coordinates, resonance-band labels, and action or angular-momentum ledger coordinates. The factor $\Gamma_{\mathrm{wake}}$ retains causal-wake history through active root branches, self-hit status, Jacobian floors, and path-history summaries. The factor $\Gamma_{\mathrm{sea}}$ retains Noether sea context, including $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, local stress or compliance summaries, and unresolved causal-wake background variables. The factor $\Gamma_{\mathrm{reg}}$ retains apparatus, detector, register, pointer, record-window, and readout variables. The factor $U$ retains controlled bias variables such as Decider settings, analyzer settings, gate-control settings, or dyadic tuning parameters.
 
 The coarse-graining map is
 $$
@@ -95,7 +95,7 @@ K_{\Delta t}(\gamma\mid\gamma',\mathcal{H},\mathcal{W}_{\text{sea}})
 \Phi_{\Delta t*}^{u,\mathcal{H},\mathcal{W}_{\text{sea}}}\rho.
 $$
 
-A finite-time Markov kernel is allowed only as a reduced representation after unresolved apparatus or Noether-Sea variables $\zeta$ have been assigned an explicit occupation measure $d\nu(\zeta)$. For every measurable set $A\subseteq\bar\Gamma$, the reduced kernel is
+A finite-time Markov kernel is allowed only as a reduced representation after unresolved apparatus or Noether sea variables $\zeta$ have been assigned an explicit occupation measure $d\nu(\zeta)$. For every measurable set $A\subseteq\bar\Gamma$, the reduced kernel is
 $$
 K_{\Delta t}^{\mathrm{red}}(A\mid\bar\gamma')
 =
@@ -103,7 +103,7 @@ K_{\Delta t}^{\mathrm{red}}(A\mid\bar\gamma')
 \mathbf{1}_{A}\!\left(\bar C(\Phi_{\Delta t}(\gamma',\zeta))\right)
 \,d\nu(\zeta).
 $$
-The kernel is invalid if $d\nu$ is chosen to reproduce the target observer-level law rather than derived from the material return map, record cycle, or Noether-Sea context.
+The kernel is invalid if $d\nu$ is chosen to reproduce the target observer-level law rather than derived from the material return map, record cycle, or Noether sea context.
 
 A reduced return-map operator is the section version of the same deterministic pushforward. If $\Sigma_{\mathrm{return}}\subset\Gamma$ is a measurable return section and $\tau_\Sigma(\gamma)$ is the first return time, then
 $$
@@ -288,7 +288,7 @@ $$
 $$
 If $\Delta p_i=0$ for every $i$, the update $u_0\to u_1$ has shifted labels, coordinates, or narratives but has not changed outcome weights.
 
-For agency and Switch consumers, the comparison must also declare the fixed boundary context $c_\Omega$ held across the bias update. A change in incoming causal-wake class, Noether-Sea context, or unresolved boundary history is an external protocol change, not an internal decision effect. The cost and hold-time ledgers remain consumer-side obligations: $\Delta p_i$ is not a valid Decider claim unless the update $u_0\to u_1$ has a recorded work or dissipation transaction and the prepared state survives through the perturbation and record window.
+For agency and Switch consumers, the comparison must also declare the fixed boundary context $c_\Omega$ held across the bias update. A change in incoming causal-wake class, Noether sea context, or unresolved boundary history is an external protocol change, not an internal decision effect. The cost and hold-time ledgers remain consumer-side obligations: $\Delta p_i$ is not a valid Decider claim unless the update $u_0\to u_1$ has a recorded work or dissipation transaction and the prepared state survives through the perturbation and record window.
 
 A pilot-wave-like guidance reduction is a conditional mean of the same coarse dynamics:
 $$
@@ -438,7 +438,7 @@ This normal form does not prove the dyadic lock; it states the minimum basin-mea
 | Coarse-graining | Declare $C_{\eta,h}$, the retained history variables, and the consumer statistic $O$ whose error is bounded by $\varepsilon_C$. |
 | Master-equation input | If used, consume $\mathfrak{B}$ only as certified causal-wake branch data for $\Gamma_{\mathrm{wake}}$ and the finite-$\eta$ flow or return map. |
 | Transfer operator | Declare deterministic pushforward, reduced Markov kernel, or return-map operator; this packet uses deterministic pushforward as the base interpretation. |
-| Kernel | If a kernel is reduced, derive the unresolved-variable measure $d\nu$ from material, apparatus, or Noether-Sea dynamics. |
+| Kernel | If a kernel is reduced, derive the unresolved-variable measure $d\nu$ from material, apparatus, or Noether sea dynamics. |
 | Basin partition | Define $\mathcal{P}=\{B_i\}$ as pullbacks of outcome windows, and define separatrices $\Sigma_{ij}$. |
 | Measure | Identify $\mu_*$ as invariant, metastable, or finite-window controlled, with its domain and tolerance. |
 | Observable weights | Compute $p_i=\mu_*(B_i)$ or the derived detector, register, decision, or coherence-depth statistic. |
@@ -473,7 +473,7 @@ The theorem can promote into [quantum-summary](../../../content/markdown/aaa/qua
 - Interpretive Born weights: $p_i$ is assigned without computing $\mu_*(B_i)$ or an explicitly equivalent pushforward integral.
 - Decider label shift without weight shift: $u_0\to u_1$ changes names, registers, or thresholds while $\Delta p_i=0$ for every outcome.
 - Dyadic instability: the candidate dyadic return map has $\mu_*(R^{-1}B_{\mathrm{lock}}\triangle B_{\mathrm{lock}})$ above tolerance, lacks a non-symmetry stability gap, or has an attracting claim with spectral radius $\ge1$ after quotienting neutral symmetries.
-- Second pilot ontology: the guidance law requires an independent $\Psi_{\mathrm{pilot}}$ not constructed from assembly variables, causal-wake history, Noether-Sea context, and $\mu_*$.
+- Second pilot ontology: the guidance law requires an independent $\Psi_{\mathrm{pilot}}$ not constructed from assembly variables, causal-wake history, Noether sea context, and $\mu_*$.
 - Algorithmic-resonance overclaim: period extraction is asserted while $D_{\max}(\varepsilon)$ or an equivalent coherence-depth bound is absent or below the claimed operation depth.
 - No-signaling failure: for spacelike-separated detector settings $\alpha,\beta$ before causal-wake contact,
   $$

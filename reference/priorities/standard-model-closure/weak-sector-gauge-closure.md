@@ -61,7 +61,7 @@ The effective gauge chapter supplies a formal connection spine. This packet shou
 
 | Effective structure | $\mathbb{A}\mathbb{A}\mathbb{A}$ closure burden |
 | --- | --- |
-| $U(1)$ local phase covariance | Derive the effective phase/connection from causal-wake and Noether-Sea bookkeeping rather than primitive electromagnetic field ontology. |
+| $U(1)$ local phase covariance | Derive the effective phase/connection from causal-wake and Noether sea bookkeeping rather than primitive electromagnetic field ontology. |
 | $SU(2)$ weak connection | Show that the exposed weak-coupling triad behaves as a two-state channel with the required local-basis covariance. |
 | $SU(3)$ color connection | Preserve the axis-exceptionality algebra already closed in the color chapter. |
 | Gauge-breaking bounds | Ensure preferred-frame or medium-response corrections do not introduce leading-order gauge-breaking operators. |
@@ -215,7 +215,7 @@ with calibration and mistag rates attached. Here $d_0$ is impact-parameter infor
 | [weak-mixing-angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md) | The discrete axial-frame branch claim is stated as a quotient/minimization problem, not a loose angle list. |
 | [weak-mixing-ckm](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md) | CKM/PMNS overlap uses the same weak-exposure domain as `V-A` and weak-reaction provenance. |
 | [gauge-symmetries](../../../content/markdown/aaa/interactions/gauge-symmetries.md) | Gauge covariance records the assembly-level assumptions and failure conditions behind the effective theorem spine. |
-| [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md) | Emergence prose is normalized so Noether-Sea structure is mechanism, while gauge fields remain effective bookkeeping. |
+| [gauge-structure-emergence](../../../content/markdown/aaa/interactions/gauge-structure-emergence.md) | Emergence prose is normalized so Noether sea structure is mechanism, while gauge fields remain effective bookkeeping. |
 
 ## Failure Modes
 

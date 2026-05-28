@@ -2,7 +2,7 @@
 
 ## Core Mandate
 
-Derive the structure, stability, and properties of **complex matter**—from nucleons and nuclei to bulk condensed phases—as consequences of the architrino architecture and tri-binary assembly interactions. Focus on **multi-body dynamics** of tri-binaries with axial layers, calculating how they bind, oscillate, and organize within the Noether Sea.
+Derive the structure, stability, and properties of **complex matter**—from nucleons and nuclei to bulk condensed phases—as consequences of the architrino architecture and tri-binary assembly interactions. Focus on **multi-body dynamics** of tri-binaries with axial layers, calculating how they bind, oscillate, and organize within the Noether sea.
 
 Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establish the **equation of state** for matter from the femtometer to stellar scales, ensuring macroscopic behavior traces back to the **master equation of Motion**.
 
@@ -19,8 +19,8 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 - Use `assemblies/noether-swarm.md`, `nuclear-atomic/*`, and `validation/simulations/action-energy/action-model.md` as the current derivation and accounting base for binding/spectra/EoS claims.
 - Frame macroscopic observables as emergent readouts from absolute-time evolution, projected to effective observer variables where needed.
 
-**Matter vs. Noether-Sea Distinction**
-- **Noether Sea**: The ambient substrate contents composed of neutral Noether swarm assemblies; the hypothesized **2 pro + 2 anti** Helium-like coupling remains a mechanism target until derived.
+**Matter vs. Noether sea Distinction**
+- **Noether sea**: The ambient substrate contents composed of neutral Noether swarm assemblies; the hypothesized **2 pro + 2 anti** Helium-like coupling remains a mechanism target until derived.
 - **Matter**: Localized, energetic excitations (quarks, leptons) composed of single or coupled tri-binary assemblies with specific axial-architrino structure.
 
 **Nucleon and Nuclear Coupling**
@@ -41,16 +41,16 @@ Mission: rebuild the **Periodic Table**, derive **nuclear binding**, and establi
 **The Nucleon-Nucleon Interaction ($V_{NN}$)**
 - Derive the **effective nuclear potential** $V_{NN}(r)$ from first principles:
   - Causal-wake overlap of tri-binaries with axial layers.
-  - Interaction mediated by the Noether Sea.
+  - Interaction mediated by the Noether sea.
   - Neutral-axis coupling at short ranges.
 - Recover the **Yukawa-like** behavior and the **hard-core repulsion** (from the symmetry breaking binary $v \approx c_f$).
 
 **Nuclear Binding and Isotope Selection**
 - Calculate binding energies ($B/A$) for light nuclei (deuteron ($^{2}\text{H}$), tritium ($^{3}\text{H}$), alpha particle ($^{4}\text{He}$)) based on assembly coupling.
-- **Alpha Particle ($^{4}\text{He}$)**: Derive its unique stability as a consequence of optimal nucleon-nucleon coupling geometry, distinct from the background Noether-Sea topology. Explore duality to coupling of two pro and two anti tri-binaries as hypothesized. 
+- **Alpha Particle ($^{4}\text{He}$)**: Derive its unique stability as a consequence of optimal nucleon-nucleon coupling geometry, distinct from the background Noether sea topology. Explore duality to coupling of two pro and two anti tri-binaries as hypothesized.
 - Map the **Valley of Stability** and define the nuclear drip lines. 
 
-Given **everything** is architrino assemblies, consider dynamics of tri-binaries, axial architrinos, photons, neutrinos, spacetime assemblies, and incoming causal wakes as a single coupled system—this framework explains Atomic, Nuclear & Condensed Matter Physics. For the "**Valley of Stability**" in strong gradients: as spacetime assembly energy increases, low/medium orbit radii shrink and the exclusion surface becomes more oblate; equatorial orbit stays near-circular while meridional planes become elliptical and the axis precesses toward the gravitating center (idealized, relative frame).
+Given **everything** is architrino assemblies, consider dynamics of tri-binaries, axial architrinos, photons, neutrinos, Noether swarm assemblies, and incoming causal wakes as a single coupled system—this framework explains Atomic, Nuclear & Condensed Matter Physics. For the "**Valley of Stability**" in strong gradients: as Noether swarm assembly energy increases, low/medium orbit radii shrink and the exclusion surface becomes more oblate; equatorial orbit stays near-circular while meridional planes become elliptical and the axis precesses toward the gravitating center (idealized, relative frame).
 
 **Nuclear Synthesis and Reactions**
 - Provide cross-sections for fusion/fission as topological assembly reconfigurations.
@@ -67,7 +67,7 @@ Given **everything** is architrino assemblies, consider dynamics of tri-binaries
 
 **Precision Spectroscopy**
 - Derive the **Rydberg formula** and **Fine Structure** from the scaling ratios of nested binaries.
-- Account for the **Lamb Shift** and **Hyperfine** structure as interactions between matter assemblies and the Noether-Sea background.
+- Account for the **Lamb Shift** and **Hyperfine** structure as interactions between matter assemblies and the Noether sea background.
 
 ---
 
@@ -80,7 +80,7 @@ Given **everything** is architrino assemblies, consider dynamics of tri-binaries
 **Phases and Collective Phenomena**
 - Derive phase diagrams (Solid/Liquid/Gas) from the interaction potentials of bulk assembly collections.
 - Model phonons and collective excitations as waves in the assembly lattice or statistical arrangement(?).
-- Explain **Superconductivity** and **Superfluidity** as transitions where assemblies (especially planar types) move coherently through the Noether Sea.
+- Explain **Superconductivity** and **Superfluidity** as transitions where assemblies (especially planar types) move coherently through the Noether sea.
 
 ---
 
@@ -110,7 +110,7 @@ Given **everything** is architrino assemblies, consider dynamics of tri-binaries
 
 **Tier 3: Precision and Prediction**
 - **Neutron Star Mass**: Match observed maximum masses ($\sim 2.0 M_{\odot}$) using the curvature-limit EoS.
-- **Anomaly Resolution**: Explain the proton radius puzzle or $g-2$ as a consequence of Noether-Sea assembly coupling.
+- **Anomaly Resolution**: Explain the proton radius puzzle or $g-2$ as a consequence of Noether sea coupling.
 
 ---
 
@@ -118,7 +118,7 @@ Given **everything** is architrino assemblies, consider dynamics of tri-binaries
 
 - **Parameter Bloat**: If matching nuclear binding requires more than 3-5 new "fitting" parameters beyond the master equation, the model is failing.
 - **Instability**: If multi-assembly systems (like the deuteron ($^{2}\text{H}$)) cannot be shown to be dynamical attractors, the architecture is invalid.
-- **Lorentz Violation**: If interaction with the Noether Sea produces preferred-frame effects above $10^{-17}$, the observer-level vacuum mapping is incorrect.
+- **Lorentz Violation**: If interaction with the Noether sea produces preferred-frame effects above $10^{-17}$, the observer-level vacuum mapping is incorrect.
 
 ---
 

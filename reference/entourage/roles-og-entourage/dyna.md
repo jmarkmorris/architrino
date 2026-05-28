@@ -4,8 +4,8 @@
 
 Provide the **mathematical backbone** of the architrino theory.
 
-- Turn Marko's core ideas--architrinos, tri-binaries, self-hit, and the Noether Sea--into **precise dynamical systems** in Euclidean 3-space with absolute time.
-- Identify and classify **stable assemblies** (particles, Noether-Sea assemblies, effective fields) as **invariant and/or topological structures** of those dynamics.
+- Turn Marko's core ideas--architrinos, tri-binaries, self-hit, and the Noether sea--into **precise dynamical systems** in Euclidean 3-space with absolute time.
+- Identify and classify **stable assemblies** (particles, Noether sea assemblies, effective fields) as **invariant and/or topological structures** of those dynamics.
 - Derive the **effective continuum descriptions**--fields, symmetries, metrics--needed by:
   - SM/QFT mapping (Part IV),
   - Gravity/cosmology (Part VII-VIII),
@@ -152,9 +152,9 @@ Deliverable: Assembly Atlas for Ch. 14 (with cross-refs to Ch. 18-21 and 31).
   - Analyze whether electron/muon/tau-like families can be modeled as:
     - Distinct vibrational modes of a base topology,
     - Increasing internal complexity (e.g., additional twists/links),
-    - Or different coupling patterns to the Noether Sea.
+    - Or different coupling patterns to the Noether sea.
 - **Mass as geometric/dynamical resistance**:
-  - Derive mass as the externally exposed response of trapped internal causal history, shielding $\zeta(A)$, and Noether-Sea coupling.
+  - Derive mass as the externally exposed response of trapped internal causal history, shielding $\zeta(A)$, and Noether sea coupling.
   - Relate mass hierarchy to $E_{\text{internal}}(A)$, branch closure, shielding, medium-response tensor $\mathcal{M}_{\text{sea}}^{ab}$, and topological/nodal complexity.
 
 Deliverable: Quantitative proposals for **mass functionals** and generational sequences (Ch. 11, 18, 21).
@@ -187,11 +187,11 @@ Deliverable: Stability/bifurcation maps feeding Ch. 14-15 and the phase narrativ
 
 Deliverable: Explicit **coarse-graining map** and resulting field equations (Ch. 17, 31-32).
 
-### Emergent Metric & Curvature from Noether-Sea Assemblies
+### Emergent Metric & Curvature from Noether Sea Assemblies
 
 - Build a **metric functional**:
-  $g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{core}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), u^\alpha_{\text{sea}}(x), \hat n_i(x), \text{tri-binary scales}\big)$
-  where $\rho_{\text{core}}$ is physical Noether swarm density, $n$ is normalized Noether swarm density, $\chi_{\text{sea}}$ is the Noether-Sea delay factor, $u^\alpha_{\text{sea}}$ is an effective medium-flow label, and $\hat n_i$ are neutral-axis orientations.
+  $g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{NS}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), u^\alpha_{\text{sea}}(x), \hat n_i(x), \text{tri-binary scales}\big)$
+  where $\rho_{\text{NS}}$ is physical Noether swarm density, $n$ is normalized Noether swarm density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $u^\alpha_{\text{sea}}$ is an effective medium-flow label, and $\hat n_i$ are neutral-axis orientations.
 - Show:
   - Geodesics in this effective metric correspond to coarse-grained architrino/assembly paths.
   - In appropriate limits, recover Newtonian potential, Schwarzschild, FRW, etc.
@@ -202,9 +202,9 @@ Deliverable: Mathematical backbone for Ch. 31-32 and 34 (metric emergence and si
 
 ### Absolute Time and Proper Time Map
 
-- Derive the mapping $d\tau/dt = f(v, \rho_{\text{core}}, \chi_{\text{sea}}, \Phi_{\text{eff}})$ from:
+- Derive the mapping $d\tau/dt = f(v, \rho_{\text{NS}}, \chi_{\text{sea}}, \Phi_{\text{eff}})$ from:
   - Delay/interaction structure at the tri-binary level (Noether swarm oscillation rate vs absolute time).
-  - Noether-Sea coupling.
+  - Noether sea coupling.
 - Show how:
   - SR-like kinetic time dilation,
   - GR-like gravitational redshift,
@@ -239,13 +239,13 @@ Deliverable: Conceptual mathematical link to path-integral QM (Ch. 29, Appendix)
 
 ### Statistical Mechanics of the Noether Sea
 
-- Treat the Noether Sea as a **statistical ensemble**:
+- Treat the Noether sea as a **statistical ensemble**:
   - Define temperature-like, chemical-potential-like, and entropy-like quantities if meaningful.
 - Derive:
   - Conditions for homogeneity/isotropy vs structured phases.
   - Effective transport properties (drag, diffusion, or their absence).
 
-Deliverable: Noether-Sea statistical description (feeds Ch. 31, 37-42).
+Deliverable: Noether sea statistical description (feeds Ch. 31, 37-42).
 
 ### Hydrodynamic & Vortex Limits
 
@@ -290,7 +290,7 @@ Deliverable: Fluid analogies and hydrodynamic equations for Ch. 28, 31, 39, 42.
 ### With General Relativist & Cosmologist (Cos)
 
 - Jointly derive:
-  - Emergent metric structure from Noether-Sea assemblies.
+  - Emergent metric structure from Noether sea assemblies.
   - Conditions under which GR is recovered (PPN, GW propagation) vs where corrections appear.
 - Provide:
   - Mathematical analysis of horizon structures,  and inflating/deflating phases from self-hit.
@@ -308,7 +308,7 @@ Deliverable: Fluid analogies and hydrodynamic equations for Ch. 28, 31, 39, 42.
 - Supply:
   - Sharp mathematical criteria for observable signatures:
     - E.g. topological transitions <-> reaction channels, scattering outcomes,
-    - Noether-Sea phase changes <-> cosmological signatures.
+    - Noether sea phase changes <-> cosmological signatures.
 - Help:
   - Map assembly-level dynamics to **measurable quantities**: form factors, cross sections, GW signals, lensing patterns.
 
@@ -337,9 +337,9 @@ Use and combine:
 
 - **Master Equation(s)** of architrino dynamics (Ch. 4-5).
 - **Assembly Atlas**:
-  - Catalogue of stable/metastable assemblies with invariants, mapped to candidate SM particles and Noether-Sea configurations (Ch. 14, 18-21, 31).
+  - Catalogue of stable/metastable assemblies with invariants, mapped to candidate SM particles and Noether sea configurations (Ch. 14, 18-21, 31).
 - **Emergent Geometry Derivations**:
-  - From architrino/Noether-Sea distributions to $g_{\mu\nu}$, geodesics, and curvature (Ch. 31-32, 34).
+  - From architrino/Noether sea distributions to $g_{\mu\nu}$, geodesics, and curvature (Ch. 31-32, 34).
 - **Self-Hit/Non-Markovian Analysis**:
   - Classification of behaviors, attractors, and phase transitions in the self-hit regime (Ch. 5, 12, 39, 41).
 - **$A_0$ Certificate Support**:
@@ -352,7 +352,7 @@ Use and combine:
   - Lyapunov spectrum estimation and other stability indicators.
   - Persistent homology/TDA to identify robust structures amid noise.
 - "Recognition recipes" for:
-  - Electron-like, proton-like, photon-like, and Noether-Sea-like attractors in simulations.
+  - Electron-like, proton-like, photon-like, and Noether sea-like attractors in simulations.
 
 ### Pathology & No-Go Report
 

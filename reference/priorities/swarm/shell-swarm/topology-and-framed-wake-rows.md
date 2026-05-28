@@ -197,7 +197,7 @@ The branch may use this block as:
 | --- | --- |
 | branch classifier | tubular floor plus emitted link/braid/framing row |
 | spinor-holonomy theorem target | framed-wake gauge-control, parity, and angular-momentum rows |
-| generation-family parameter | topology row plus mass-map evidence that the invariant changes $E_{\mathrm{internal}}$, exposure, or Noether-Sea response |
+| generation-family parameter | topology row plus mass-map evidence that the invariant changes $E_{\mathrm{internal}}$, exposure, or Noether sea response |
 | observer export | all upstream dynamics, action, event, stability, and export rows statused |
 
 Thus topology has high upside, but it remains downstream of the retained-branch certificate.

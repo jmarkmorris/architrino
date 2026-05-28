@@ -1,17 +1,17 @@
 # Pressure-Response Coefficient Closure Packet
 
-This priority packet closes the coefficient side of the pressure-dependent Noether-Sea response. It is report material, not reader-facing canon. Its purpose is to turn the pressure ansatz into branch-conditional coefficient identities that can be tested by the Fe/Cr or Ni/Co replay without introducing a separate fit row for every observable.
+This priority packet closes the coefficient side of the pressure-dependent Noether sea response. It is report material, not reader-facing canon. Its purpose is to turn the pressure ansatz into branch-conditional coefficient identities that can be tested by the Fe/Cr or Ni/Co replay without introducing a separate fit row for every observable.
 
 ## Claim Level
 
 - **Status:** branch-conditional coefficient closure; no empirical pass claimed.
 - **Main claim:** in a branch-preserving pressure perturbation, the cadence, delay, effective-speed, strain, and medium-response tensor channels reduce to a small set of shared isotropic and anisotropic pressure coefficients. Individual values of $a_i$, $b_i$, $\kappa_i$, $m_S$, and $K_{\text{sea}}$ are not observable-local fit freedoms.
-- **Open burden:** derive $\kappa_n$, $\kappa_\lambda$, $\kappa_\xi$, $a_i$, $b_i$, $m_S$, $K_{\text{sea}}$, and the packing response from an accepted Noether swarm branch or a certified pressure simulation. The density-side modulus and headroom target is now staged in [Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md).
+- **Open burden:** derive $\kappa_n$, $\kappa_\lambda$, $\kappa_\xi$, $a_i$, $b_i$, $m_S$, $K_{\text{sea}}$, and the packing response from an accepted Noether swarm branch or a certified pressure simulation. The density-side modulus and headroom target is now staged in [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md).
 - **Promotion target:** none until the pressure response survives a shared-row replay and the Lorentz, clock/signal, dispersion, birefringence, and transport null sectors remain below bound.
 
 ## Source Anchors
 
-- [Pressure-Dependent Noether-Sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) defines $\Pi_\ell$, $\Pi_\ell^{\parallel-\perp}$, $\chi_{\text{sea}}$, $\Gamma_N$, and $\mathcal{M}_{\text{sea}}^{ab}$ for atomic and metallic-lattice pressure cells.
+- [Pressure-Dependent Noether sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) defines $\Pi_\ell$, $\Pi_\ell^{\parallel-\perp}$, $\chi_{\text{sea}}$, $\Gamma_N$, and $\mathcal{M}_{\text{sea}}^{ab}$ for atomic and metallic-lattice pressure cells.
 - [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) fixes $b_\xi=1$ on the homogeneous moving-core Lorentz branch and fixes only one static weak-field isotropic combination, $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$.
 - [Noether Swarm Scaling and Packing Scaffold](../dyadic-lock/noether-swarm-scaling-and-packing.md) supplies the current priority-side packing ceiling and exclusion-volume scaffold for $n_{\max}^{\mathrm{obl}}$.
 - [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) fixes the homogeneous tensor target $\mathcal{M}_{\text{sea}}^{ab}\to h^{ab}/c_{\text{eff}}^2$.
@@ -649,4 +649,4 @@ within the $\epsilon_{\mathcal M2}$ budget. This condition is admissible only as
 
 ## Next Closure Target
 
-[Noether-Sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) converts the former open $K_{\text{sea}}$ target into the branch-density modulus relation $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, the support-function headroom $s_n=1-n/n_{\max}^{\mathrm{obl}}$, and the first scaling laws for $K_{\mathrm{pack}}(N)$. [Noether Swarm Envelope Hessian Toy Branch](noether-swarm-envelope-hessian-toy-branch.md) supplies the reduced $H_{\mathrm{env}}$ projection needed to decide whether isotropic pressure also forces $\lambda$ and $\xi$ response.
+[Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md) converts the former open $K_{\text{sea}}$ target into the branch-density modulus relation $K_{\mathrm{pack}}=K_{\text{sea}}/\kappa_n$, the support-function headroom $s_n=1-n/n_{\max}^{\mathrm{obl}}$, and the first scaling laws for $K_{\mathrm{pack}}(N)$. [Noether Swarm Envelope Hessian Toy Branch](noether-swarm-envelope-hessian-toy-branch.md) supplies the reduced $H_{\mathrm{env}}$ projection needed to decide whether isotropic pressure also forces $\lambda$ and $\xi$ response.

@@ -54,7 +54,7 @@ F_{i,\mathrm{constr}}^{\nu}
 F_{i,\mathrm{med/event}}^{\nu}.
 $$
 
-Here `pc` means ordinary partner/cross-binary roots, `self` is the declared self-hit potential row, `supp` is support multiplier work when active, `constr` is speed-band, period, gauge, or same-source constraint work not already counted as support, and `med/event` is coherent Noether-Sea or event exchange.
+Here `pc` means ordinary partner/cross-binary roots, `self` is the declared self-hit potential row, `supp` is support multiplier work when active, `constr` is speed-band, period, gauge, or same-source constraint work not already counted as support, and `med/event` is coherent Noether sea or event exchange.
 
 The speed forcing on the hit ledger is
 
@@ -150,7 +150,7 @@ U_{\mathrm{hit},i}^{\nu}(0,u_+)
 U_{\mathrm{hit},i}^{\nu}(0,u_-).
 $$
 
-If the self-hit potential changes because an event variable, support descriptor, medium-response variable, or normalization row changes across $W$, the endpoint difference is not discarded. It must be assigned to the Noether-Sea/event exchange row.
+If the self-hit potential changes because an event variable, support descriptor, medium-response variable, or normalization row changes across $W$, the endpoint difference is not discarded. It must be assigned to the Noether sea/event exchange row.
 
 ---
 
@@ -470,7 +470,7 @@ A self-hit event is closed only when these rows hold on the same bounded-speed l
 2. The hit-ledger speed ODE is solved on $W$ and satisfies the speed-band excursion row.
 3. The endpoint convention is one of `same-speed-self-hit-exit` or `endpoint-jump-exchange-carried`.
 4. The potential row emits $\Delta U_{\mathrm{hit}}^{\nu}(W)$ and its potential-work remainder.
-5. Partner/cross, support, constraint, and Noether-Sea/event work rows are evaluated in the same causal-time variable.
+5. Partner/cross, support, constraint, and Noether sea/event work rows are evaluated in the same causal-time variable.
 6. The exchange residual satisfies $|\mathcal{R}_{\mathrm{exch,hit}}^{\nu}(W)|\le\tau_{\mathrm{exch,hit}}$.
 7. Momentum, angular momentum, charge, and source-provenance residuals pass their declared tolerances.
 8. The exit ordinary ledger reopens with the emitted post-hit speed, root count, same-source policy, support descriptor, and endpoint convention.
@@ -491,7 +491,7 @@ $$
 2. the speed excursion on $W$ solves the hit-ledger speed ODE with the same force split used by the action row;
 3. either the same-speed exit row holds or the endpoint speed jump is carried by speed-factor storage exchange;
 4. the self-hit potential work identity holds with certified remainder;
-5. partner/cross, support, constraint, and Noether-Sea/event work rows are evaluated on the same causal-time window;
+5. partner/cross, support, constraint, and Noether sea/event work rows are evaluated on the same causal-time window;
 6. $\mathcal{R}_{\mathrm{exch,hit}}^{\nu}(W)$ and the momentum, angular-momentum, charge, and source-provenance residuals pass their tolerances;
 7. the post-hit ordinary ledger is reopened with the emitted endpoint data.
 
@@ -502,7 +502,7 @@ Proof route:
 1. Use the self-hit return lemma to make $W$ finite and to bound the collar penetration.
 2. Integrate the hit-ledger speed ODE over $W$ to compute $\Delta\nu_i(W)$ and $\Delta E_{\mathrm{spd},i}^{\nu}(W)$.
 3. Use the self-hit potential identity to move the self-hit force work into $\Delta U_{\mathrm{hit},i}^{\nu}(W)$ plus a certified event remainder.
-4. Split all remaining work into partner/cross, support, constraint, and Noether-Sea/event rows in causal time.
+4. Split all remaining work into partner/cross, support, constraint, and Noether sea/event rows in causal time.
 5. Form $\mathcal{R}_{\mathrm{exch,hit}}^{\nu}(W)$ and require the declared tolerance.
 6. Apply the same out-minus-in convention to momentum, angular momentum, charge, and source provenance.
 7. Use the endpoint convention to either return to the same ordinary speed or create a ledgered endpoint-speed jump.
@@ -521,11 +521,11 @@ Proof route:
 | `partner_cross_work` | $\mathcal{W}_{\mathrm{pc},i}^{\nu}(W)$ in causal time |
 | `support_work` | $\mathcal{W}_{\mathrm{supp},i}^{\nu}(W)$, support descriptor, multiplier or variational-inequality convention, and exchange assignment |
 | `constraint_work` | $\mathcal{W}_{\mathrm{constr},i}^{\nu}(W)$ for speed-band, period, gauge, or same-source constraints not counted as support |
-| `medium_event_work` | $\mathcal{W}_{\mathrm{med/event},i}^{\nu}(W)$, Noether-Sea/event update, and explicit self-hit potential endpoint exchange |
+| `medium_event_work` | $\mathcal{W}_{\mathrm{med/event},i}^{\nu}(W)$, Noether sea/event update, and explicit self-hit potential endpoint exchange |
 | `exchange_residual` | $\mathcal{R}_{\mathrm{exch,hit}}^{\nu}(W)$ and $\tau_{\mathrm{exch,hit}}$ |
 | `endpoint_exit` | `same-speed-self-hit-exit`, `endpoint-jump-exchange-carried`, or first failed endpoint status |
-| `momentum_ledger` | $\mathcal{R}_{\mathbf{p},\mathrm{hit}}^{\nu}$, recoil, boundary/support, coherent, and Noether-Sea terms |
-| `angular_momentum_ledger` | $\mathcal{R}_{\mathbf{J},\mathrm{hit}}^{\nu}$, torque/support, recoil, boundary, coherent, and Noether-Sea terms |
+| `momentum_ledger` | $\mathcal{R}_{\mathbf{p},\mathrm{hit}}^{\nu}$, recoil, boundary/support, coherent, and Noether sea terms |
+| `angular_momentum_ledger` | $\mathcal{R}_{\mathbf{J},\mathrm{hit}}^{\nu}$, torque/support, recoil, boundary, coherent, and Noether sea terms |
 | `charge_ledger` | $\mathcal{R}_{Q,\mathrm{hit}}^{\nu}$ and explicit zero-inventory-transfer row when applicable |
 | `source_provenance` | $\mathcal{R}_{\mathrm{src},a}^{\nu}$ for every labeled architrino and no-duplication row for same-source self-hit |
 | `post_hit_ledger` | ordinary ledger reopened at $u_+$ with post-hit speed, root count, support descriptor, endpoint convention, and event reset status |

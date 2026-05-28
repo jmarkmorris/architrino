@@ -2,7 +2,7 @@
 
 This priority note converts the same-level tri-binary observer-facing claims into export rows that a retained branch packet must compute before any downstream promotion. It is a priority-only theorem-target document. It does not authorize migration into `content/markdown/aaa`, scene assets, simulation defaults, or end-user language.
 
-Promotion status: `priority-only`. The material below becomes promotion-ready only after a same-level branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, fixed-speed tangent closure or bounded-speed speed-ODE closure, a history-dressed energy/action ledger, exposure and Noether-Sea response rows, and observer exports marked `passed`, `failed`, or `not_computed`.
+Promotion status: `priority-only`. The material below becomes promotion-ready only after a same-level branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, fixed-speed tangent closure or bounded-speed speed-ODE closure, a history-dressed energy/action ledger, exposure and Noether sea response rows, and observer exports marked `passed`, `failed`, or `not_computed`.
 
 If the branch uses the bounded speed factor in [variable-speed-factor-extension.md](variable-speed-factor-extension.md), every observer export below must be recomputed on the bounded-speed ledger. In particular, the moving-assembly clock/ruler row must replace the fixed-speed condition by
 
@@ -21,7 +21,7 @@ Claim discipline:
 | Moving-branch export | theorem target | retained moving branch row with drift, carrier, clock, ruler, and preferred-frame leakage diagnostics |
 | Lorentz recovery | theorem target | derivation from branch existence, carrier retuning, clock extraction, shape extraction, two-way synchronization, and leakage bounds |
 | Photon transition | branch-transition target | planar limit row matching the coaxial contra-rotating pro/anti planar pair requirement |
-| Mass map | theorem target | history-dressed energy, exposure tensor, scalar exposure quotient, and Noether-Sea medium-response tensor on the same branch |
+| Mass map | theorem target | history-dressed energy, exposure tensor, scalar exposure quotient, and Noether sea medium-response tensor on the same branch |
 | Generation hierarchy | theorem target | branch-family rows whose mass ratios come from exposure-dressed energy, not from topological labels alone |
 | Color / $SU(3)$ | theorem target | continuous phase-bundle connection and generators; $\mathcal{S}_3$ remains a discrete scaffold |
 | Strong-field continuation | speculative comparison target | finite-boundary continuation, event-ledger closure, and observer-level recovery residuals |
@@ -319,7 +319,7 @@ $$
 {3\overline{E}_{\mathrm{hist}}^{(A)}}.
 $$
 
-Let $\mathcal{M}_{\mathrm{sea},A}^{ab}$ be the Noether-Sea medium-response tensor, with the same tensor units as $\mathcal{Z}_A^{ab}$. It records the coherent medium update that accompanies the exposed branch response and is not ordinary dissipative drag.
+Let $\mathcal{M}_{\mathrm{sea},A}^{ab}$ be the Noether sea medium-response tensor, with the same tensor units as $\mathcal{Z}_A^{ab}$. It records the coherent medium update that accompanies the exposed branch response and is not ordinary dissipative drag.
 
 The candidate inertial exposure tensor is
 
@@ -380,7 +380,7 @@ The same branch packet should carry observer export rows for generation, color, 
 | `phase_shielding` | theorem target | far-wake cancellation tensor, scalar exposure quotient changes, and event-ledger rows showing how phase slip increases exposed response without changing charge inventory |
 | `color_connection` | theorem target | continuous phase-bundle connection $\nabla_\mu^{\mathrm{color}}=\partial_\mu+A_\mu^AT_A$, generator algebra $[T_A,T_B]=\mathrm{i}f_{AB}{}^CT_C$, curvature, transport, and confinement residuals; $\mathcal{S}_3$ alone is `not_computed` for continuous $SU(3)$ |
 | `strong_field_continuation` | speculative comparison target | finite-boundary continuation, closed event ledger, effective observer-variable recovery, and no promotion of black-hole or inflation-like claims without finite residuals |
-| `cosmology_export` | speculative comparison target | Euclidean void remains fixed; $a(t)$, $H(t)$, redshift, temperature, and horizon language must be translated into Noether-Sea evolution, transport, and clock-rate comparison |
+| `cosmology_export` | speculative comparison target | Euclidean void remains fixed; $a(t)$, $H(t)$, redshift, temperature, and horizon language must be translated into Noether sea evolution, transport, and clock-rate comparison |
 
 For strong fields, a compact region $\Omega$ has a minimum export row
 
@@ -430,7 +430,7 @@ Reserved failure codes for this lane:
 | `photon-ledger-open` | photon transition does not close $E$, $\mathbf{p}$, $\mathbf{J}$, or $Q$ |
 | `topology-mass-shortcut` | generation mass is assigned directly to a mapping-class label without exposure-dressed energy extraction |
 | `exposure-refinement-open` | $\mathcal{Z}^{ab}$, $\zeta$, or $\mathcal{M}_{\mathrm{sea}}^{ab}$ changes under extraction or branch refinement beyond tolerance |
-| `sea-response-as-drag` | Noether-Sea medium response is treated as ordinary dissipative drag rather than a coherent response tensor |
+| `sea-response-as-drag` | Noether sea medium response is treated as ordinary dissipative drag rather than a coherent response tensor |
 | `generation-ratio-fail` | branch-family masses do not reproduce the declared ratio targets within uncertainty |
 | `color-slot-overclaim` | $\mathcal{S}_3$ slots are promoted to continuous $SU(3)$ without connection, generator, and curvature rows |
 | `strong-field-boundary-open` | finite-boundary continuation or event-ledger closure is missing in a strong-field claim |

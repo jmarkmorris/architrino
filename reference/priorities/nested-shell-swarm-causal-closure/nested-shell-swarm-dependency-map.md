@@ -80,7 +80,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: nested binary assemblies, self-hit engine, middle fulcrum, outer shield.
 - Mechanism: three mutually supporting binary layers distribute high-multiplicity internal closure, buffer phase stress, and regulate external coupling.
 - Output: the tri-binary Noether swarm becomes the proposed stable matter unit.
-- Proof burden: prove the slow-fast tri-binary minimality theorem. Show that under simultaneous kinematic stress $\beta>0$ and Noether-Sea gradient stress $G>0$, the stable slow manifold of an $n$-layer nested assembly persists for $n\ge 3$ and loses normal hyperbolicity for $n\le 2$ on a codimension-one set in $(\beta,G)$. Equivalently, derive the corresponding $n$-layer closure law with explicit role-counting in the slow-fast decomposition; universality is a consequence only if the same three-role law covers the admitted matter branches.
+- Proof burden: prove the slow-fast tri-binary minimality theorem. Show that under simultaneous kinematic stress $\beta>0$ and Noether sea gradient stress $G>0$, the stable slow manifold of an $n$-layer nested assembly persists for $n\ge 3$ and loses normal hyperbolicity for $n\le 2$ on a codimension-one set in $(\beta,G)$. Equivalently, derive the corresponding $n$-layer closure law with explicit role-counting in the slow-fast decomposition; universality is a consequence only if the same three-role law covers the admitted matter branches.
 - Priority route: `mass-map`, `master-equation-closure`.
 - Current disposition: `priority`.
 
@@ -97,21 +97,21 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 - Inputs: moving Noether swarm with center-of-mass velocity $\mathbf{V}_{\text{cm}}$.
 - Mechanism: the delayed causal Jacobian skews forward and backward internal wake exchange; expanding $J=J_{\text{rest}}-(\mathbf{V}_{\text{cm}}\cdot\hat{\mathbf{r}})/c_f+O(\|\mathbf{V}_{\text{cm}}\|^2)$ leaves a first-order residual after the resting symmetric loop cancels.
-- Renormalization gap: the primitive Jacobian is written with $c_f$, while the macroscopic inertia coefficient is written with $c_{\text{eff}}^{-2}$. The Noether-Sea dressing of the closed root sum must explicitly convert primitive wake-delay weighting into the effective inverse-speed-squared response.
+- Renormalization gap: the primitive Jacobian is written with $c_f$, while the macroscopic inertia coefficient is written with $c_{\text{eff}}^{-2}$. The Noether sea dressing of the closed root sum must explicitly convert primitive wake-delay weighting into the effective inverse-speed-squared response.
 - Output:
   $$
   \mathbf{p}_{\text{int}}
   \approx
   \frac{E_{\text{internal}}}{c_{\text{eff}}^2}\mathbf{V}_{\text{cm}}.
   $$
-- Proof burden: compute the first-order momentum skew from the full delayed root sum around a closed tri-binary cycle, including the medium response tensor that reduces to $h^{ab}/c_{\text{eff}}^2$ in a homogeneous isotropic Noether-Sea cell, with $h^{ab}$ the inverse Euclidean spatial metric, not by radiation-box analogy alone.
+- Proof burden: compute the first-order momentum skew from the full delayed root sum around a closed tri-binary cycle, including the medium response tensor that reduces to $h^{ab}/c_{\text{eff}}^2$ in a homogeneous isotropic Noether sea cell, with $h^{ab}$ the inverse Euclidean spatial metric, not by radiation-box analogy alone.
 - Priority route: `master-equation-closure`, `mass-map`.
 - Current disposition: `priority`.
 
 ### 7. Shielded Energy To Equivalence Principle
 
 - Inputs: shielded ledger response $\alpha\zeta(A)E_{\text{internal}}(A)$.
-- Mechanism: bulk acceleration and Noether-Sea gradients perturb the same internal causal lock.
+- Mechanism: bulk acceleration and Noether sea gradients perturb the same internal causal lock.
 - Output:
   $$
   m_{\text{inertial}}(A)\approx m_{\text{gravitational}}(A).
@@ -126,7 +126,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 8. Transverse Causal Budget
 
-- Inputs: local Noether-Sea rest frame, effective signal speed $c_{\text{eff}}$, assembly velocity $\mathbf{V}_{\text{cm}}$.
+- Inputs: local Noether sea rest frame, effective signal speed $c_{\text{eff}}$, assembly velocity $\mathbf{V}_{\text{cm}}$.
 - Mechanism: internal wakes must spend axial budget tracking the moving receiver, leaving transverse budget
   $$
   c_{\perp}=c_{\text{eff}}\sqrt{1-\beta^2}.
@@ -238,7 +238,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 10. Effective Lorentz Map
 
-- Inputs: moving assembly clocks, rulers, and photon synchronization in a homogeneous Noether-Sea cell.
+- Inputs: moving assembly clocks, rulers, and photon synchronization in a homogeneous Noether sea cell.
 - Mechanism: operational observers reconstruct Lorentz coordinates from deformed physical clocks and rulers, not by transforming absolute substrate time.
 - Output:
   $$
@@ -259,7 +259,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 11. Coasting And Geodesic Motion
 
-- Inputs: translation invariance, spatial isotropy, and Noether-Sea gradients.
+- Inputs: translation invariance, spatial isotropy, and Noether sea gradients.
 - Mechanism: homogeneous locks coast; graded medium response bends the least-phase-distortion path.
 - Output: Newtonian coasting and effective geodesic motion emerge as observer-level summaries.
 - Proof burden: recover weak-field GR observables, including redshift, Shapiro delay, lensing, and PPN bounds.
@@ -268,7 +268,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 11b. Effective Metric And Cartan Connection
 
-- Inputs: Noether-Sea density, compliance, stress, drift $u^i_{\text{sea}}$, local clock response $N$, spatial frame fields $e^a{}_i$, spatial compliance metric $\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j$, and tri-binary orientation fields.
+- Inputs: Noether sea density, compliance, stress, drift $u^i_{\text{sea}}$, local clock response $N$, spatial frame fields $e^a{}_i$, spatial compliance metric $\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j$, and tri-binary orientation fields.
 - Mechanism: reconstruct the observer-level bookkeeping metric
   $$
   ds_{\rm eff}^2
@@ -281,7 +281,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
   $$
   and derive the Levi-Civita connection in the GR-matching regime, with torsion and nonmetricity tracked as deviation observables.
 - Output: explicit observer-level fields for lapse, medium drift, spatial compliance, frame orientation, geodesics, redshift, lensing, Shapiro delay, horizon null surfaces, and PPN matching.
-- Proof burden: derive $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ from Noether-Sea state variables and tri-binary response; recover $N=1+\Phi_N/c_0^2+O(c_0^{-4})$, $\gamma_{ij}=(1-2\Phi_N/c_0^2)h_{ij}+O(c_0^{-4})$, $u^i_{\text{sea}}=O(c_0^{-3})$, and PPN coefficients within current bounds while suppressing preferred-frame, torsion, nonmetricity, birefringence, and dispersion residuals.
+- Proof burden: derive $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ from Noether sea state variables and tri-binary response; recover $N=1+\Phi_N/c_0^2+O(c_0^{-4})$, $\gamma_{ij}=(1-2\Phi_N/c_0^2)h_{ij}+O(c_0^{-4})$, $u^i_{\text{sea}}=O(c_0^{-3})$, and PPN coefficients within current bounds while suppressing preferred-frame, torsion, nonmetricity, birefringence, and dispersion residuals.
 - Priority route: `master-equation-closure`, `strong-field-closure`, `standard-model-closure`.
 - Current disposition: `priority`.
 
@@ -311,7 +311,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
   $$
   d(\omega,\delta_\gamma)\sim\Lambda_\gamma\frac{c_f-c_\gamma}{\omega},
   $$
-  so fixed free-space photon speed is compatible with $d\propto\lambda$ and the weak homogeneous Noether-Sea limit sends $d\to0$ as $c_\gamma\to c_f$. A strict residual catch-up margin remains a null-test branch.
+  so fixed free-space photon speed is compatible with $d\propto\lambda$ and the weak homogeneous Noether sea limit sends $d\to0$ as $c_\gamma\to c_f$. A strict residual catch-up margin remains a null-test branch.
 - Priority route: `planar-bridge-closure`, `standard-model-closure`.
 - Current disposition: `priority`.
 
@@ -335,7 +335,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 16. Horizon And Strong-Field Interface
 
-- Inputs: $c_{\text{eff}}(\mathbf{x})$, Noether-Sea density, compliance, stress, tidal gradients, and phase-closure variables.
+- Inputs: $c_{\text{eff}}(\mathbf{x})$, Noether sea density, compliance, stress, tidal gradients, and phase-closure variables.
 - Mechanism: observer-level redshift/phase-lock and local assembly failure are distinct; local failure requires a strain or gradient threshold.
 - Output: exterior GR behavior plus a substrate failure condition when transverse closure is locally exhausted.
 - Proof burden: define observer-level horizons as null surfaces of $g^{\rm eff}_{\mu\nu}$, for example $\gamma_{ij}u_\perp^i u_\perp^j=N^2c_0^2$ in stationary flow form, while keeping local structural failure as a separate strain/tidal threshold.
@@ -363,7 +363,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 6. Moving Noether swarm deformation map with the $d_2=s_2=-1/2$ first coefficient test.
 7. Transverse causal budget lemma with Floquet-gap closure at $\beta\to 1$.
 8. Slow-fast tri-binary minimality theorem, with universality only after admitted matter branches share the three-role law.
-9. Momentum skew with Noether-Sea dressing tensor.
+9. Momentum skew with Noether sea dressing tensor.
 10. Effective metric and Cartan connection reconstruction.
 11. Equivalence and weak-field GR matching.
 12. Topological certification and shared branch-certificate population.

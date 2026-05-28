@@ -11,9 +11,9 @@
 
 ## Task Queue
 
-1. `redshift_clock_transport` — Map redshift observations into clock-rate, transport, and Noether-Sea evolution gates. Status: `draft`. Depends on: none.
+1. `redshift_clock_transport` — Map redshift observations into clock-rate, transport, and Noether sea evolution gates. Status: `draft`. Depends on: none.
 2. `lorentz_preferred_frame` — Use Lorentz-invariance experiments as a preferred-frame leakage and two-way synchronization gate. Status: `draft`. Depends on: none.
-3. `rotating_moving_media` — Use Sagnac and Fizeau cases to separate rotation, moving media, drag-like effective language, and Noether-Sea transport. Status: `draft`. Depends on: `lorentz_preferred_frame`.
+3. `rotating_moving_media` — Use Sagnac and Fizeau cases to separate rotation, moving media, drag-like effective language, and Noether sea transport. Status: `draft`. Depends on: `lorentz_preferred_frame`.
 4. `weak_field_metric_ppn` — Use weak-field GR benchmarks to force one effective-metric response object rather than observable-by-observable tuning. Status: `draft`. Depends on: `redshift_clock_transport`.
 5. `radiation_gravity_waves` — Use compact-binary radiation and gravitational-wave propagation as event-ledger and effective-metric stress tests. Status: `draft`. Depends on: `weak_field_metric_ppn`.
 6. `thermal_statistical_radiative_qed` — Use entropy, temperature, blackbody, radiative-correction, and boundary-vacuum cases to discipline statistical emergence, radiation Gate C, and regularization language. Status: `draft`. Depends on: `radiation_gravity_waves`.
@@ -32,10 +32,10 @@ The lane is not authored AAA canon. It is source material for later promotion in
 
 | Lane | Draft cases | Primary AAA pressure |
 | --- | --- | --- |
-| Redshift, clock, and transport | [gravitational-redshift-clock-tests](gravitational-redshift-clock-tests.md), [cosmological-redshift-distance-ladder](cosmological-redshift-distance-ladder.md) | Clock-rate comparison, Noether-Sea delay, cosmology transfer functions, effective observer variables. |
+| Redshift, clock, and transport | [gravitational-redshift-clock-tests](gravitational-redshift-clock-tests.md), [cosmological-redshift-distance-ladder](cosmological-redshift-distance-ladder.md) | Clock-rate comparison, Noether sea delay, cosmology transfer functions, effective observer variables. |
 | Lorentz and preferred-frame tests | [lorentz-invariance-test-suite](lorentz-invariance-test-suite.md) | Moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, preferred-frame leakage. |
 | Rotating and moving media | [sagnac-effect](sagnac-effect.md), [fizeau-moving-medium](fizeau-moving-medium.md) | Path-history phase, rotation, medium transport, moving-medium effective velocity addition. |
-| Weak-field metric and PPN | [shapiro-time-delay](shapiro-time-delay.md), [gravitational-lensing](gravitational-lensing.md), [perihelion-precession](perihelion-precession.md) | Effective metric recovery, PPN coefficients, one Noether-Sea response object across clocks, rulers, and null paths. |
+| Weak-field metric and PPN | [shapiro-time-delay](shapiro-time-delay.md), [gravitational-lensing](gravitational-lensing.md), [perihelion-precession](perihelion-precession.md) | Effective metric recovery, PPN coefficients, one Noether sea response object across clocks, rulers, and null paths. |
 | Compact radiation and gravity waves | [binary-pulsar-orbital-decay](binary-pulsar-orbital-decay.md), [gravitational-waves](gravitational-waves.md) | Radiation reaction, event ledgers, waveform phase, chirp mass, propagation speed, strong-field continuity. |
 | Thermal, statistical, radiative, and QED corrections | [entropy](entropy.md), [temperature](temperature.md), [blackbody-radiation](blackbody-radiation.md), [radiative-corrections-lamb-shift-g-minus-2](radiative-corrections-lamb-shift-g-minus-2.md), [casimir-effect](casimir-effect.md) | Entropy and temperature mapping, ensemble measures, radiation Gate C, continuum excess, regularization, mode sums, boundary-sensitive vacuum or medium response. |
 | Quantum phase and oscillation | [double-slit-mach-zehnder](double-slit-mach-zehnder.md), [aharonov-bohm-effect](aharonov-bohm-effect.md), [neutrino-oscillations](neutrino-oscillations.md) | Path-history phase, gauge-like holonomy, internal-state rotation, basin-measure closure. |
@@ -65,7 +65,7 @@ J_{o'j},
 \right).
 $$
 
-Here $\Gamma$ is the assembly state, $\mathcal{H}$ is the path-history and causal-wake ledger, $\mathcal{C}_{o'j}$ and $J_{o'j}$ are causal-root and Jacobian records, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger, $\mathcal{M}_{\mathrm{sea}}^{ab}$ is the Noether-Sea response object, $\rho_{\text{NS}}(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$ are medium variables, $\mathcal{D}_{\mathrm{det}}$ is the detector-response and reconstruction record when an experimental case depends on reconstructed objects, and $\{B_i\},\mu_*$ are basin and measure objects when quantum or statistical outcomes enter.
+Here $\Gamma$ is the assembly state, $\mathcal{H}$ is the path-history and causal-wake ledger, $\mathcal{C}_{o'j}$ and $J_{o'j}$ are causal-root and Jacobian records, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger, $\mathcal{M}_{\mathrm{sea}}^{ab}$ is the Noether sea response object, $\rho_{\text{NS}}(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$ are medium variables, $\mathcal{D}_{\mathrm{det}}$ is the detector-response and reconstruction record when an experimental case depends on reconstructed objects, and $\{B_i\},\mu_*$ are basin and measure objects when quantum or statistical outcomes enter.
 
 For collider cases, the minimum detector-response projection is
 
@@ -98,7 +98,7 @@ This projection is a provenance channel from detector signals to benchmark varia
 
 | Draft case family | Candidate promotion target | Promotion gate |
 | --- | --- | --- |
-| Redshift and cosmology | [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md) | Redshift, clock, CMB, supernova, BAO, and $H(z)$ records consume the same Noether-Sea variables without tired-light image or time-dilation failure. |
+| Redshift and cosmology | [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md) | Redshift, clock, CMB, supernova, BAO, and $H(z)$ records consume the same Noether sea variables without tired-light image or time-dilation failure. |
 | Lorentz, Sagnac, and Fizeau | [swarm](../swarm/swarm.md), [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Two-way light speed, time dilation, length contraction, rotation, and moving-medium transport recover observer-level formulas while bounding preferred-frame leakage. |
 | Weak-field metric | [validation-gates](../validation-gates/validation-gates.md), [mass-map](../mass-map/mass-map.md) | One $\mathcal{M}_{\mathrm{sea}}^{ab}$ maps to redshift, Shapiro delay, lensing, precession, and PPN coefficients. |
 | Radiation and gravitational waves | [nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks](../nested-shell-swarm-causal-closure/radiation-gate-c-benchmarks.md), [strong-field-closure](../strong-field-closure/strong-field-closure.md) | Energy, momentum, angular momentum, recoil, medium updates, and waveform phase close in one event-ledger grammar. |

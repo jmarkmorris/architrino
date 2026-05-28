@@ -88,7 +88,7 @@ In this framework, the candidate substrate-level quantities are:
 **Everything else** (masses, coupling constants, cosmological parameters) should be **derivable** from these via:
 - Self-hit dynamics (non-Markovian evolution)
 - Nested shell swarm stability conditions (quantization)
-- Noether-Sea coupling (emergent metric, inertia)
+- Noether sea coupling (emergent metric, inertia)
 
 ### Primitive-to-Derived Measure Ladder
 
@@ -121,18 +121,18 @@ This is an atomic-clock validation target, not a closed spin derivation. The ele
 
 **What we must derive:**
 $$
-\Delta \nu_{\text{Cs}} = f(\text{nested shell swarm geometry, } c_f, \epsilon, \text{ Noether-Sea coupling})
+\Delta \nu_{\text{Cs}} = f(\text{nested shell swarm geometry, } c_f, \epsilon, \text{ Noether sea coupling})
 $$
 
 **Challenge:** The frequency is determined by:
 - The Middle Binary's orbital frequency (sets the magnetic moment)
-- The coupling strength between electron and atomic nucleus (mediated by Noether-Sea response, with photon exchange as the observer-level channel)
+- The coupling strength between electron and atomic nucleus (mediated by Noether sea response, with photon exchange as the observer-level channel)
 - The nuclear configuration (133 nucleons = complex assembly)
 
 **Pathway:**
 1. Calculate the electron's Middle Binary orbital frequency $\omega_{\text{MB}}$ for Cs ground state
 2. Calculate the magnetic moment $\mu = \frac{\epsilon \cdot \omega_{\text{MB}} \cdot r_{\text{MB}}}{2}$ (classical analogue)
-3. Calculate the nuclear spin coupling via Noether-Sea-mediated potential exchange
+3. Calculate the nuclear spin coupling via Noether sea-mediated potential exchange
 4. Derive the splitting frequency
 
 
@@ -148,28 +148,28 @@ where $c$ is the speed of light.
 
 **Architrino Interpretation:**
 
-The speed of light $c$ is **not fundamental**. It is the low-gradient operational speed of photon assemblies, modeled as coaxial contra-rotating pro/anti planar pairs, propagating through the Noether Sea.
+The speed of light $c$ is **not fundamental**. It is the low-gradient operational speed of photon assemblies, modeled as coaxial contra-rotating pro/anti planar pairs, propagating through the Noether sea.
 
 **Key relation:**
 $$
 c_\gamma(\mathbf{x},t)=\frac{c_f}{\chi_\gamma(\mathbf{x},t)},
 \qquad
-\chi_\gamma(\mathbf{x},t)=f_\gamma\!\left(\rho_{\text{NS}}(\mathbf{x},t),n(\mathbf{x},t),\text{Noether-Sea state}\right)
+\chi_\gamma(\mathbf{x},t)=f_\gamma\!\left(\rho_{\text{NS}}(\mathbf{x},t),n(\mathbf{x},t),\text{Noether sea state}\right)
 $$
 
-In the low-energy limit (flat spacetime, weak Noether-Sea gradients):
+In the low-energy limit (flat spacetime, weak Noether sea gradients):
 $$
-c \approx c_f \quad (\text{small corrections from Noether-Sea refraction})
+c \approx c_f \quad (\text{small corrections from Noether sea refraction})
 $$
 
 **What we must show:**
 - Photons are coaxial contra-rotating pro/anti planar pairs whose bosonic/statistical behavior is recovered as a downstream closure target
-- Their propagation through the Noether Sea is **not instantaneous** but limited by $c_f$
+- Their propagation through the Noether sea is **not instantaneous** but limited by $c_f$
 - The effective speed $c$ measured by operational observers (made of assemblies) matches $c_f$ within experimental precision (~$10^{-17}$ for Lorentz tests)
 
 **Candidate deviation channels:**
-- In strong gravitational fields (dense Noether Sea): $c_\gamma < c_f$ in the photon channel (gravitational lensing, Shapiro delay)
-- At Planck scales (Noether-Sea microstructure resolves): $c_\gamma \neq c_f$ in the photon channel (Lorentz violation signatures)
+- In strong gravitational fields (dense Noether sea): $c_\gamma < c_f$ in the photon channel (gravitational lensing, Shapiro delay)
+- At Planck scales (Noether sea microstructure resolves): $c_\gamma \neq c_f$ in the photon channel (Lorentz violation signatures)
 
 
 ---
@@ -244,23 +244,23 @@ $$
 Boltzmann's constant $k_B$ is the conversion factor between **energy** and **temperature**. But what **is** temperature in $\mathbb{A}\mathbb{A}\mathbb{A}$?
 
 **Hypothesis:**
-Temperature is the **mean kinetic energy per degree of freedom** in the Noether-Sea bath:
+Temperature is the **mean kinetic energy per degree of freedom** in the Noether sea bath:
 $$
 \langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T
 $$
 
-For a Noether-Sea assembly (neutral 2:2 swarm):
+For a neutral Noether swarm assembly in the Noether sea:
 - 6 degrees of freedom (3 translational + 3 rotational)
 - Mean energy: $\langle E \rangle = 3 k_B T$
 
 **What we must derive:**
 $$
-k_B = f(\text{Noether-Sea assembly mass, } c_f, \text{ thermal equilibrium distribution})
+k_B = f(\text{neutral Noether swarm assembly mass, } c_f, \text{ thermal equilibrium distribution})
 $$
 
 **Pathway:**
-1. Calculate the **effective mass** of a Noether-Sea assembly (from nested shell swarm dynamics)
-2. Assume **thermal equilibrium** (Maxwell-Boltzmann distribution in the Noether Sea)
+1. Calculate the **effective mass** of a neutral Noether swarm assembly (from nested shell swarm dynamics)
+2. Assume **thermal equilibrium** (Maxwell-Boltzmann distribution in the Noether sea)
 3. Relate the width of the velocity distribution to $k_B T$
 
 **Derivation target:**
@@ -288,7 +288,7 @@ N_A = \frac{1 \text{ g}}{1 \text{ amu}} = \frac{1 \text{ g}}{m_{\text{proton}}/1
 $$
 
 **What we must derive:**
-- The proton mass $m_p$ from nested shell swarm geometry (3 quarks = 3 nested shell swarms + gluon wake structure + Noether-Sea coupling)
+- The proton mass $m_p$ from nested shell swarm geometry (3 quarks = 3 nested shell swarms + gluon wake structure + Noether sea coupling)
 
 
 ---
@@ -324,7 +324,7 @@ The frequency 540 THz corresponds to green light ($\lambda \approx 555$ nm), whe
 | $c$ | **Operational limit near $c_f$** | Low-gradient photon-channel speed; deviations are encoded by $\chi_\gamma$ |
 | $h$ | **Derivation target (open)** | Closed-cycle action quantization; equivalent outer-binary rotational-action increments in units of $\hbar$; lower recordable basin-measure scale after quantum closure |
 | $e$ | **Recovered observer benchmark** | $|e|=6\epsilon$ after choosing the observer-level electric bookkeeping normalization |
-| $k_B$ | **Derivation target (open)** | Noether-Sea thermal equilibrium + assembly mass |
+| $k_B$ | **Derivation target (open)** | Noether sea thermal equilibrium + assembly mass |
 | $N_A$ | **Emergent** | Follows from proton mass derivation |
 | $K_{\text{cd}}$ | **Anthropic** | Human biology; not fundamental physics |
 
@@ -338,11 +338,11 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 1. **Architrino polarity-unit magnitude** $\epsilon=|e|/6$ (with observer charge benchmark $|e|=6\epsilon$)
 2. **Field speed** $c_f$ (replaces $c$)
 3. **Nested shell swarm geometry parameter** (e.g., outer radius $r_{\text{outer}}$ or max-curvature radius) (replaces $h$)
-4. **Noether-Sea assembly mass** $m_{\text{NS}}$ (replaces $k_B$ when combined with $c_f$)
+4. **Neutral Noether swarm assembly mass** $m_{\text{NS}}$ (replaces $k_B$ when combined with $c_f$)
 
 **Everything else is intended to be derived after closure:**
 - $|e| = 6\epsilon$
-- $c_{\text{eff}}\to c_f$ in the low-gradient Noether-Sea limit
+- $c_{\text{eff}}\to c_f$ in the low-gradient Noether sea limit
 - $h \stackrel{\text{target}}{=} 2\pi \epsilon \cdot c_f \cdot r_{\text{outer}}$ after the action-closure derivation, not by definition
 - $k_B = f(m_{\text{NS}}, c_f)$
 - $N_A = f(m_p / m_{\text{NS}})$
@@ -360,7 +360,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
    - Predict $h$ and compare to SI value
 
 2. **Confirm $c = c_f$ within bounds**
-   - Show photon propagation through the Noether Sea matches $c$ to $<10^{-17}$
+   - Show photon propagation through the Noether sea matches $c$ to $<10^{-17}$
    - Identify where/how deviations appear (Planck scale, strong gravity)
 
 3. **Derive particle masses**
@@ -374,8 +374,8 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
    - Derive hyperfine coupling strength
    - Compare to 9,192,631,770 Hz
 
-5. **Derive $k_B$ from Noether-Sea thermodynamics**
-   - Calculate Noether-Sea assembly effective mass
+5. **Derive $k_B$ from Noether sea thermodynamics**
+   - Calculate neutral Noether swarm assembly effective mass
    - Show thermal equilibrium reproduces Maxwell-Boltzmann
    - Predict $k_B$ value
 
@@ -386,7 +386,7 @@ If the $\mathbb{A}\mathbb{A}\mathbb{A}$ program succeeds, we can **replace** the
 
 7. **Explain fine-structure constant $\alpha$**
    - $\alpha = \frac{e^2}{4\pi \epsilon_0 \hbar c} \approx 1/137$
-   - In architrino terms: $\alpha = f(\epsilon, c_f, r_{\text{outer}}, \text{Noether Sea})$
+   - In architrino terms: $\alpha = f(\epsilon, c_f, r_{\text{outer}}, \text{Noether sea})$
    - Derive numerically; explain why $\alpha \ll 1$
 
 ---

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "spacetime__spacetime_assemblies",
-    "title": "Spacetime Assemblies",
+    "id": "spacetime__noether_sea_pro_anti_coupling",
+    "title": "Noether Sea Pro/Anti Coupling",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/spacetime/spacetime-assemblies.md"
+      "path": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md"
     },
     "view": {
       "columns": 1,

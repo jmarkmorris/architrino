@@ -14,7 +14,7 @@ where $a$ is plate separation. Standard calculations use boundary-modified mode 
 
 ## Existing $\mathbb{A}\mathbb{A}\mathbb{A}$ Signals
 
-This case is useful but risky. It can sharpen boundary-sensitive Noether-Sea and photon-channel language, but it should not be used as a shortcut to broad vacuum-energy claims. The corpus already says to prefer Noether Sea or medium context over empty-space vacuum ontology. The Casimir mapping should therefore focus on boundary-modified material and photon-channel modes.
+This case is useful but risky. It can sharpen boundary-sensitive Noether sea state and photon-channel language, but it should not be used as a shortcut to broad vacuum-energy claims. The corpus already says to prefer Noether sea or medium context over empty-space vacuum ontology. The Casimir mapping should therefore focus on boundary-modified material and photon-channel modes.
 
 ## Task Queue
 
@@ -39,7 +39,7 @@ This case is useful but risky. It can sharpen boundary-sensitive Noether-Sea and
 
 ## Failure Modes
 
-- `casimir.vacuum_overclaim`: boundary force is promoted into a general Noether-Sea energy proof without the boundary derivation.
+- `casimir.vacuum_overclaim`: boundary force is promoted into a general Noether sea energy proof without the boundary derivation.
 - `casimir.material_omission`: material conductivity, temperature, geometry, or surface corrections are ignored.
 - `casimir.regularization_gap`: divergent mode sums are subtracted without a physical reference record.
 - `casimir.force_no_ledger`: plate force has no recoil or medium-update ledger.

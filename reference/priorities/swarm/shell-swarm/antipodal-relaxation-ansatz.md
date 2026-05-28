@@ -645,7 +645,7 @@ The meanings are:
 | $\mathcal{R}_{\mathrm{tan}}^{\mathrm{even}}$ | pair-even tangential work row vanishes |
 | $\mathcal{R}_{\mathrm{tan}}^{\mathrm{odd}}$ | pair-odd tangential work row vanishes |
 | $\mathcal{R}_{\mathrm{frame},m}$ | framed-wake continuation remains defined after relaxation |
-| $\mathcal{R}_{\mathbf{J},m}$ | mechanical, causal-wake, and Noether-Sea angular-momentum ledger closes on the relaxed row |
+| $\mathcal{R}_{\mathbf{J},m}$ | mechanical, causal-wake, and Noether sea angular-momentum ledger closes on the relaxed row |
 
 Rows already present in the minimal dynamics theorem are not replaced. The added rows only expose how antipodal relaxation modifies them.
 
@@ -745,7 +745,7 @@ $$
 2\mathbf{m}_a\times\mathbf{m}'_a.
 $$
 
-Thus antipodal relaxation may help or spoil the spin target depending on whether this new channel closes with the causal-wake and Noether-Sea angular-momentum ledgers. A small $\mathcal{R}_{\mathrm{anti}}$ does not imply a small spin correction if $\mathbf{m}'_a$ is large or if the midpoint loop changes framed-wake transport.
+Thus antipodal relaxation may help or spoil the spin target depending on whether this new channel closes with the causal-wake and Noether sea angular-momentum ledgers. A small $\mathcal{R}_{\mathrm{anti}}$ does not imply a small spin correction if $\mathbf{m}'_a$ is large or if the midpoint loop changes framed-wake transport.
 
 The main topology risks are:
 

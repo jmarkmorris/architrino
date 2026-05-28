@@ -319,7 +319,7 @@ $$
 \sum_i \mathbf{y}_i(t)\times\mathbf{p}_i(t).
 $$
 
-The total angular-momentum ledger must include mechanical, wake, and Noether-Sea update channels:
+The total angular-momentum ledger must include mechanical, wake, and Noether sea update channels:
 
 $$
 \mathbf{J}_{\mathrm{tot}}(t)
@@ -414,11 +414,11 @@ The connection coefficients $A_\mu^A$ must be extracted from continuous choreogr
 | `near-zero-self-root-unresolved` | A same-source causal root lacks retained-positive-delay, regularized-fold-layer, or reject status. |
 | `tangential-residual-open` | Fixed-speed branch has nonzero tangential force residual above tolerance. |
 | `energy-ledger-open` | $E_{\mathrm{hist}}$ is not conserved within tolerance on the retained row. |
-| `angular-momentum-ledger-open` | $\mathcal{R}_{\mathbf{J}}^{(q)}>1$ after wake and Noether-Sea updates are included. |
+| `angular-momentum-ledger-open` | $\mathcal{R}_{\mathbf{J}}^{(q)}>1$ after wake and Noether sea updates are included. |
 | `torque-closure-open` | $\mathcal{R}_{\tau}^{(q)}>1$ or boundary torque is not computed from the retained roots. |
 | `framed-wake-parity-open` | $\Pi_{\mathcal{W}}^{2\pi}$ / $\Pi_{\mathcal{W}}^{4\pi}$ is asserted without a retained framed-wake continuation row. |
 | `color-connection-missing` | $\mathcal{S}_3$ slots are promoted as continuous $SU(3)$ without generators, connection, and curvature. |
-| `topological-mass-overclaim` | Winding, writhe, or mapping-class data are treated as a mass formula without history-dressed energy, exposure, and Noether-Sea response rows. |
+| `topological-mass-overclaim` | Winding, writhe, or mapping-class data are treated as a mass formula without history-dressed energy, exposure, and Noether sea response rows. |
 
 ---
 

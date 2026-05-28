@@ -11,11 +11,11 @@ It should be read alongside [Philosophy of Science](philosophy-of-science.md), [
 The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
 - **Reductionist**: All complexity derives from one fundamental entity type (architrinos = eternal, equal-and-opposite architrinos) and their interaction rules.
 - **Causal substrate with emergent quantum behavior**: Pilot-wave-like aspects without fundamental randomness in the base interactions, with **deterministic multistability** at self-hit branch points.
-- **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry, clock slowing, ruler contraction, and GR effective behavior emergent through Noether-Sea response.
+- **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry, clock slowing, ruler contraction, and GR effective behavior emergent through Noether sea response.
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
 - **Self-hit regime**: Entirely novel dynamics when sources exceed field propagation speed.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: A conceptual construct (not a physical device) that can, in principle, track the full microstate—position, velocity, and polarity of every architrino—at any (x,y,z,t) in the fixed Euclidean frame. This perspective knows where and when each causal wake surface was emitted as it passes any point.
-- **Noether Sea / spacetime-medium bridge**: What GR calls the "vacuum" is not empty void but the **Noether Sea**: ambient substrate contents made from coupled pro/anti Noether swarms, with `spacetime medium` reserved as bridge language for the effective metric context.
+- **Noether sea / spacetime-medium bridge**: What GR calls the "vacuum" is not empty void but the **Noether sea**: ambient substrate contents made from coupled pro/anti Noether swarms, with `spacetime medium` reserved as bridge language for the effective metric context.
 
 **Terminology note:** In this document, **"branching"** refers to **deterministic multistability** (microstate-sensitive attractor selection), not Many-Worlds splitting or fundamental randomness.
 
@@ -459,7 +459,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Electromagnetic phenomena are governed by a medium-relative dynamics in which observed Lorentz symmetry can emerge despite a preferred rest structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the relevant substrate as Noether-Sea assembly-network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Lorentz's dynamical interpretation and identifies the relevant substrate as Noether sea response-network behavior over Euclidean void and absolute time, with $\mathbb{U}_{\text{now}}$ playing the preferred-frame ideal.
 
 **Legacy Shift**: Lorentz moves from discarded alternative to core interpretive ancestor, with his ontology formalized by explicit causal delayed substrate mechanics.
 
@@ -486,7 +486,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Special relativity treats Lorentz symmetry and relativity of simultaneity as foundational kinematics, while general relativity treats gravity as dynamical spacetime curvature with coordinate-gauge structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from Noether swarm deformation, clock-law retuning, and Noether-Sea response, with GR curvature as effective assembly-network behavior on Euclidean space with absolute time. In this reading, $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ retains relativistic empirical content but interprets SR effects as emergent from Noether swarm deformation, clock-law retuning, and Noether sea response, with GR curvature as effective assembly-network behavior on Euclidean space with absolute time. In this reading, $\mathbb{U}_{\text{now}}$ provides a global causal map not operationally accessible to physical observers.
 
 **Legacy Shift**: Relativity remains indispensable as a high-accuracy effective theory stack, while its primitive geometric ontology is replaced by substrate-first mechanistic emergence.
 
@@ -513,7 +513,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Gravity is not fundamental but induced from deeper microphysical degrees of freedom, so Einstein structure can emerge from lower-level dynamics.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves this orientation by treating gravity as effective hydrodynamics of spacetime assembly-network behavior over a causal delayed substrate.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves this orientation by treating gravity as effective hydrodynamics of Noether sea response-network behavior over a causal delayed substrate.
 
 **Legacy Shift**: Sakharov's idea moves from suggestive proposal to operational reduction target with explicit microphysical realization.
 
@@ -1084,7 +1084,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Weak and electromagnetic interactions are unified through gauge symmetry with mass generation via symmetry-breaking structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves electroweak phenomenology but interprets gauge and Higgs structure as emergent from spacetime assembly-network organization and phase behavior.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves electroweak phenomenology but interprets gauge and Higgs structure as emergent from Noether sea response-network organization and phase behavior.
 
 **Legacy Shift**: Electroweak unification remains a core effective success while its primitives are demoted to emergent descriptors.
 
@@ -1167,7 +1167,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Core Belief**: Reality is fundamentally processual and relational, with enduring substances treated as abstractions over event structure.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration. It relocates Whitehead's metric worry into a constitutive recovery demand: effective geometry is legitimate only when the same record of the Noether Sea and the Physical Observer produces the relevant clocks, rulers, signal paths, and gravitational benchmarks.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves relational emphasis but reverses ontological order, making stable substrate entities primary and process derivative through lawful path-history reconfiguration. It relocates Whitehead's metric worry into a constitutive recovery demand: effective geometry is legitimate only when the same record of the Noether sea and the Physical Observer produces the relevant clocks, rulers, signal paths, and gravitational benchmarks.
 
 **Legacy Shift**: Whitehead remains a relational critic of simplistic substance talk, while final ontology returns to entity-first realism.
 

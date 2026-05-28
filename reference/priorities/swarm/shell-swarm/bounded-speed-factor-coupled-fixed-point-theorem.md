@@ -210,7 +210,7 @@ with the following meanings:
 | $\mathcal{L}_{\mathrm{root}}$ | one retained $\mathcal{A}_{\nu}$ with fixed labels, fixed $\zeta_r$, positive delay and Jacobian floors, inactive gaps, noncollision floors, and a complete tail exclusion or assimilation cover |
 | $\mathcal{L}_{\mathrm{force}}$ | one $F_i^{\nu}$ convention, including active roots, assimilated tail roots, excluded-tail error, self-hit terms, medium response, and support multiplier forces when active |
 | $\mathcal{L}_{\mathrm{support}}$ | one support descriptor, support-band convention, support multipliers or variational inequality, support margins, radial row, and support-work assignment |
-| $\mathcal{L}_{\mathrm{action}}$ | one action scale $\Gamma_B^{\nu}$ or declared fitted-scale status, one history-work row, one speed storage/exchange row, one support-work row, and one Noether-Sea/event exchange convention |
+| $\mathcal{L}_{\mathrm{action}}$ | one action scale $\Gamma_B^{\nu}$ or declared fitted-scale status, one history-work row, one speed storage/exchange row, one support-work row, and one Noether sea/event exchange convention |
 | $\mathcal{L}_{\mathrm{event}}$ | one set of first-event surfaces, endpoint roots, self-hit windows, root folds, speed-band contacts, support-boundary events, tail resets, and endpoint exchange rows |
 | $\mathcal{L}_{\mathrm{der}}$ | derivative columns for every active curve, speed, clock, inverse-clock, root, Jacobian, force, support, action, scale, monodromy, and event variable, or a certified Schur replacement |
 
@@ -586,7 +586,7 @@ The event row contains every declared first-event or event-window equation:
 | self-hit window | entry/exit roots, endpoint speed jump, dwell-time, return crossing, and overspeed budget |
 | tail assimilation | new causal-time root sheet, sign label, delay floor, and ledger reset status |
 | support boundary event | active boundary, multiplier or variational-inequality row, and endpoint impulse if nonsmooth |
-| action/event exchange | storage or Noether-Sea exchange row carrying any nonzero endpoint jump |
+| action/event exchange | storage or Noether sea exchange row carrying any nonzero endpoint jump |
 
 The coupled fixed-point theorem certifies a retained chart only away from unassimilated first events. If an event is reached before the proof ball closes, the correct output is the event status, not a retained coupled fixed point.
 
@@ -909,7 +909,7 @@ A bounded speed factor coupled fixed-point packet must emit:
 | `root_ledger_live` | $G_r^{\nu}$, $\eta_r$, $J_r^{\nu}$, sign labels, active brackets, inactive gaps, root derivatives, tail cover, and noncollision floors |
 | `tail_cover` | finite ownership map, terminal predicates, overlap consistency, no-gap residual, coefficient-box persistence, and event-reset status |
 | `support_rows` | support descriptor, fixed/free sector, support-radial compatibility, support margins, support multipliers or variational inequality, and support-work status |
-| `action_rows` | action-derived or fitted $\Gamma_B^{\nu}$, history-work curl, speed storage/exchange, support work, Noether-Sea/event exchange, and scale status |
+| `action_rows` | action-derived or fitted $\Gamma_B^{\nu}$, history-work curl, speed storage/exchange, support work, Noether sea/event exchange, and scale status |
 | `variational_noether_rows` | period variation mode, speed-factor EL row, speed-ODE equivalence, exchange residual, support work, and Noether-current envelope |
 | `event_rows` | first-event surfaces, self-hit windows, self-hit exchange rows, root folds, band contacts, support-boundary events, endpoint jumps, and ledger-reset status |
 | `block_structure` | row/variable block order, active Schur eliminations, omitted-column audit, and stale-block status |

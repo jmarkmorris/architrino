@@ -46,7 +46,7 @@ Turn the architrino master equations--including delay, self-hit, and nonlinear c
 
 5. **Bridging regimes**
    - Analyze **multi-scale behavior**:
-     - How inner binaries (high frequency) couple to outer binaries and Noether-Sea state variables (low frequency).
+     - How inner binaries (high frequency) couple to outer binaries and Noether sea state variables (low frequency).
    - Provide:
      - Approximation theorems justifying effective decoupling,
      - Conditions under which tri-binary factorization (inner/middle/outer) is mathematically legitimate.

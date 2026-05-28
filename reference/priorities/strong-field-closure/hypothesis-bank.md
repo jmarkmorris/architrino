@@ -32,7 +32,7 @@ This file should not grow into a proof queue. Any hypothesis that becomes action
 - The event horizon may have rough radial depth rather than being a clean sphere.
 - There may be a brief neck to planar motion before returning to 3D motion.
 - The `4:2:1` model idea should be preserved even if it turns out to be wrong.
-- SMBH horizon interfaces may emit **dark-sector photon-like modes**: photon-channel-adjacent release modes that remain initially weakly visible, redshift through the Noether Sea, and later thermalize, convert, or re-enter visible photon channels under specific medium conditions. This is a speculative release-channel hypothesis, not a settled dark-photon ontology.
+- SMBH horizon interfaces may emit **dark-sector photon-like modes**: photon-channel-adjacent release modes that remain initially weakly visible, redshift through the Noether sea, and later thermalize, convert, or re-enter visible photon channels under specific medium conditions. This is a speculative release-channel hypothesis, not a settled dark-photon ontology.
 
 ## Open Strong-Field Questions
 
@@ -70,4 +70,4 @@ The expanded dark-sector photon-like mode brainstorm, candidate assembly registr
 - [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md)
 - [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md)
 - [nested-shell-swarm-dynamics](../../../content/markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md)
-- [spacetime-assemblies](../../../content/markdown/aaa/spacetime/spacetime-assemblies.md)
+- [noether-sea-pro-anti-coupling](../../../content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md)

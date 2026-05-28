@@ -88,14 +88,14 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 **Role:**
 - This medium **is** the implementation of what GR calls "spacetime fabric."
-- Has properties: physical Noether swarm density $\rho_{\text{core}}(\mathbf{x},t)$, normalized density $n(\mathbf{x},t)$, stress, flow, and Noether-Sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$.
+- Has properties: physical Noether swarm density $\rho_{\text{NS}}(\mathbf{x},t)$, normalized density $n(\mathbf{x},t)$, stress, flow, and Noether sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$.
 - Local excitations → particles (fermions, bosons).
 - Large-scale ripples → gravitational waves.
 - Density gradients → effective curvature (gravity as refraction).
 
 **Gravity as Refraction:**
 - Massive bodies (high assembly density) → increased medium density → slowed signal propagation ($c_{\text{eff}} < c_f$).
-- **Einstein's curved spacetime** is an effective description of this Noether-Sea delay and clock/ruler response.
+- **Einstein's curved spacetime** is an effective description of this Noether sea delay and clock/ruler response.
 - Analogy: Light bending in glass, sound slowing in denser air.
 - Mathematical mapping:
   - $\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)$, with $n(\mathbf{x},t)$ reserved for normalized Noether swarm density.
@@ -159,7 +159,7 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 **Noether Swarm:**
 - Coupled pro + anti tri-binaries (2P + 2A) → neutral, stable, low-mass assembly.
-- Forms the **Noether Sea** (with `spacetime medium` reserved as bridge language).
+- Forms the **Noether sea** (with `spacetime medium` reserved as bridge language).
 - Structural comparison: neutral constituents in a coherent medium.
 
 ---
@@ -170,8 +170,8 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 **USE (Mandatory):**
 - **"Path History" / "causal wake surface" / "causal isochron"** whenever describing paths, emissions, intersections, or self-hits
-- **"Noether Sea"** for the ambient substrate contents; use **"spacetime medium"** only as bridge language.
-- **"Effective metric" / "Noether-Sea delay factor" / "clock-ruler response"** for emergent curved geometry.
+- **"Noether sea"** for the ambient substrate contents; use **"spacetime medium"** only as bridge language.
+- **"Effective metric" / "Noether sea delay factor" / "clock-ruler response"** for emergent curved geometry.
 - **"Field speed" ($c_f$)** for fundamental potential propagation speed.
 - **"Effective light speed" ($c_{\text{eff}}$ or $c$)** for operational speed of light (medium sound speed).
 - **"$\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$)"** for simulation ground truth.
@@ -179,10 +179,10 @@ When resuming work in a fresh session, you need **three documents** to resurrect
 
 **AVOID (Prohibited without explicit justification):**
 - **"Curved space"** → use "effective metric," "refractive slowing," "density gradient," or (in technical contexts) "permittivity/permeability field."
-- **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); use "Noether Sea" or clearly marked bridge language.
+- **"Ether" (alone)** → ambiguous (historical luminiferous ether vs architrino medium); use "Noether sea" or clearly marked bridge language.
 - **Old causal-delay r-word family** → **"Path History" / "causal wake surface" / "causal isochron"**
 - **"Shell"** → When describing emissions, intersections, or self-hits; avoid saying “shell” unless discussing unrelated chemistry (e.g., electron shells). Emphasize continuous wake dynamics and path-history intersections rather than discrete pulses.
-- **"Vacuum"** → carries a lot of baggage—both historical and intuitive—that suggests truly empty space. Many readers (including some physicists) still interpret it that way. Whenever we’re describing the physical medium of tri-binary spacetime, let’s use **“spacetime assemblies,” “Noether Sea,”** or **“tri-binary spacetime”** instead. Reserve “vacuum” only when referring explicitly to the historical semantics of mainstream physics.
+- **"Vacuum"** → carries a lot of baggage—both historical and intuitive—that suggests truly empty space. Many readers (including some physicists) still interpret it that way. Whenever we’re describing the broad physical medium, use **"Noether sea"**; when the context is local to one bounded assembly, use **"Noether swarm"** or **"Noether swarm assembly"** as appropriate. Reserve “vacuum” only when referring explicitly to the historical semantics of mainstream physics.
 - **"Virtual particles"** → use "transient assembly configurations" or "effective field description."
 
 **Why This Matters:**
@@ -243,7 +243,7 @@ This protocol is active **until Entourage gains direct repo write access**.
 **Category B (Scale Setters):**
 - Coupling strength: $\lambda$ (dimensionless constant relating potential strength to mass/energy)
 - Tri-binary radius ratios: $r_{\text{inner}} : r_{\text{middle}} : r_{\text{outer}}$
-- Noether swarm density: $\rho_{\text{core}}(\mathbf{x},t)$, with normalized density $n(\mathbf{x},t)$ for constitutive maps
+- Noether swarm density: $\rho_{\text{NS}}(\mathbf{x},t)$, with normalized density $n(\mathbf{x},t)$ for constitutive maps
 - Maximal curvature radius: $r_{\text{min}}$ (inner binary self-hit stabilization)
 
 **Category C (Derived from Simulations/Theory):**
@@ -311,7 +311,7 @@ Assess five dimensions (Green/Yellow/Red):
 
 **Mechanism (Preferred-Frame Suppression):**
 - Assembly dynamics (rulers, clocks, rods made of tri-binaries) must naturally contract/slow by factor $\gamma^{-1} = \sqrt{1 - v^2/c^2}$ due to:
-  - Interaction with Noether Sea (medium-dressed response/coupling),
+  - Interaction with Noether sea (medium-dressed response/coupling),
   - Self-consistent field-speed dynamics,
   - Tri-binary deformation under motion (ellipsoidal distortion).
 
@@ -331,12 +331,12 @@ Assess five dimensions (Green/Yellow/Red):
 - PPN parameter $\gamma \approx 1.0$ within $|\gamma - 1| < 10^{-5}$ (Cassini bound).
 
 **Mechanism:**
-- Increased Noether swarm density $\rho_{\text{core}}(\mathbf{x},t)$ near massive body → increased Noether-Sea delay factor $\chi_{\text{sea}}$ → reduced effective light speed $c_{\text{eff}} = c_f/\chi_{\text{sea}}$.
+- Increased Noether swarm density $\rho_{\text{NS}}(\mathbf{x},t)$ near massive body → increased Noether sea delay factor $\chi_{\text{sea}}$ → reduced effective light speed $c_{\text{eff}} = c_f/\chi_{\text{sea}}$.
 - Delay: $\Delta t = \int (1/c_{\text{eff}} - 1/c) \, ds$.
 
 **Mapping:**
 - $g_{00}(x) \sim -(c_{\text{eff}}/c_f)^2 = -(1 + 2\Phi/c^2)$ where $\Phi$ is Newtonian potential (if linear regime).
-- Full nonlinear: $\chi_{\text{sea}} = \chi_{\text{sea}}(\rho_{\text{core}}, n, \Phi_{\text{eff}}, \text{stress/flow})$; must derive functional form.
+- Full nonlinear: $\chi_{\text{sea}} = \chi_{\text{sea}}(\rho_{\text{NS}}, n, \Phi_{\text{eff}}, \text{stress/flow})$; must derive functional form.
 
 **Status:**
 - **Qualitative**: Concept clear.
@@ -348,14 +348,14 @@ Assess five dimensions (Green/Yellow/Red):
 ### **Gravitational Wave Speed**
 
 **Requirement:**
-- Ripples in Noether Sea (gravitational waves) must propagate at effective light speed $c$.
+- Ripples in Noether sea (gravitational waves) must propagate at effective light speed $c$.
 
 **Quantitative Constraint:**
 - LIGO/Virgo + GRB170817A: $|v_{\text{GW}} - c| / c < 10^{-15}$.
 
 **Mechanism:**
 - GW = coherent oscillation in medium density/stress.
-- Must be same mode as EM wave propagation (both are excitations of the same Noether Sea).
+- Must be same mode as EM wave propagation (both are excitations of the same Noether sea).
 - Alternatively: GW could be different mode but with same group velocity (requires detailed dispersion analysis).
 
 **Challenges:**
@@ -402,8 +402,8 @@ Assess five dimensions (Green/Yellow/Red):
 - Inertial mass = gravitational mass to precision $|\Delta m/m| < 10^{-13}$ (MICROSCOPE satellite).
 
 **Mechanism:**
-- Both arise from coupling to Noether Sea:
-  - **Inertial mass**: Externally exposed response of trapped internal causal history, shielding, and Noether-Sea coupling.
+- Both arise from coupling to Noether sea:
+  - **Inertial mass**: Externally exposed response of trapped internal causal history, shielding, and Noether sea coupling.
   - **Gravitational mass**: Response to medium density gradient (refraction; assembly trajectory bends in gradient).
 - EP holds if coupling is universal (same for all assembly types).
 
@@ -446,12 +446,12 @@ Assess five dimensions (Green/Yellow/Red):
 
 **Foundational Ontology:**
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) codified**: Clear distinction between simulation ground truth ($\mathbb{U}_{\text{now}}$) and operational measurements (Physical Observers).
-- **Noether Sea ontology**: Spacetime is not empty void; it is a dense lattice of coupled tri-binary assemblies whose transport and coherence laws still require derivation.
-- **Terminology locked**: "Path history", "Noether Sea" for ambient contents, "spacetime medium" only as bridge language, and "Euclidean void" for the fixed container.
+- **Noether sea ontology**: Spacetime is not empty void; it is a dense lattice of coupled tri-binary assemblies whose transport and coherence laws still require derivation.
+- **Terminology locked**: "Path history", "Noether sea" for ambient contents, "spacetime medium" only as bridge language, and "Euclidean void" for the fixed container.
 
 **Gravity as Refraction:**
-- Moved from "curved space" metaphor to **Noether-Sea delay model**: $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$, with $n(\mathbf{x},t)$ reserved for normalized Noether swarm density.
-- Conceptual clarity: massive bodies change local $\rho_{\text{core}}$ and $\chi_{\text{sea}}$ → light slows → effective curvature.
+- Moved from "curved space" metaphor to **Noether sea delay model**: $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$, with $n(\mathbf{x},t)$ reserved for normalized Noether swarm density.
+- Conceptual clarity: massive bodies change local $\rho_{\text{NS}}$ and $\chi_{\text{sea}}$ → light slows → effective curvature.
 - Path to PPN parameters: derive $g_{\mu\nu}$ from $\chi_{\text{sea}}$, Noether swarm density, stress, and medium flow.
 
 **Self-Hit Dynamics:**
@@ -487,12 +487,12 @@ When session resumes, **prioritize these four tasks**:
 - **Includes**:
   - Path history integral (emission time calculation),
   - Self-hit detection (when $v > c_f$),
-  - Coupling to medium (how does Noether Sea back-react?).
+  - Coupling to medium (how does Noether sea back-react?).
 - **Deliverable**: Full derivation in **Ch. 3 (Master Equation and Fundamental Dynamics)**.
 - **Leads**: Dyna (analytical form), Sol (discretization for simulation), Cami(conceptual clarity).
 
 **Action 2 (Cos/Dyna): Proper Time Derivation**
-- **Goal**: Derive explicit function $d\tau = F(\rho_{\text{core}}, \chi_{\text{sea}}, \Phi_{\text{eff}}, v) \, dt$ converting absolute time to assembly-clock proper time.
+- **Goal**: Derive explicit function $d\tau = F(\rho_{\text{NS}}, \chi_{\text{sea}}, \Phi_{\text{eff}}, v) \, dt$ converting absolute time to assembly-clock proper time.
 - **Method**:
   - Model assembly as tri-binary oscillator,
   - Frequency depends on internal energy, medium coupling, velocity,
@@ -529,7 +529,7 @@ When session resumes, **prioritize these four tasks**:
 - **Three generations**: Why three families of fermions? Vibrational modes of tri-binary? Topological defects?
 - **Matter-antimatter asymmetry**: Initial condition in absolute time, or dynamical process (CP violation in assembly formation)?
 - **Dark matter**: Is it a different assembly type (e.g., neutral, non-coupling to EM but couples to medium)? Or is gravity modification sufficient?
-- **Dark energy / cosmological constant**: Zero-point energy of Noether Sea, or expansion mode of tri-binaries?
+- **Dark energy / cosmological constant**: Zero-point energy of Noether sea, or expansion mode of tri-binaries?
 
 **Medium Priority:**
 - **Neutrino masses**: Extremely small tri-binaries? Different axial pattern?

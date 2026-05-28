@@ -9,7 +9,7 @@ The opening gives the top-level simulation rule set; the later sections unpack t
 1. **Coordinate Anchor**: All simulations run on a fixed Cartesian grid chosen as the coordinate scaffold for the Euclidean void. `Grid[x][y][z]` is a chart address, not an intrinsic label in the void.
 2. **Clock Rate**: The simulator uses a global `Time` counter (absolute $t$). No relativistic scaling is applied to the integration step itself.
 3. **$\mathbb{U}_{\text{now}}$ universe-state interface**: Every run must instantiate an array of fixed virtual sensors to log $\Phi$ and $\nabla\Phi$ at declared absolute-frame grid addresses.
-4. **Noether Sea Initialization**: Low-excitation Noether-Sea runs must pre-populate the grid with a lattice of coupled pro/anti Noether swarms to simulate Noether-Sea influence on test particles.
+4. **Noether sea Initialization**: Low-excitation Noether sea runs must pre-populate the grid with a lattice of coupled pro/anti Noether swarms to simulate Noether sea influence on test particles.
 5. **Convergence**: $\Delta t$ refinement must be accompanied by "History Resolution" refinement to ensure self-hit calculations are numerically stable.
 6. **Campaign Packet**: Any run used for a proof certificate, branch-certificate gate, or promoted validation claim must emit a machine-checkable packet rather than only plots or summaries.
 
@@ -169,7 +169,7 @@ The first mass-map target has a specialized protocol in [$A_0$ Branch Certificat
 1. Tier 0 algebraic branch search for finite root-ledger candidates.
 2. Tier 1 $\eta > 0$ delayed-dynamics continuation and Floquet diagnostics.
 3. Tier 2 internal-energy and shielding extraction.
-4. Tier 3 Noether-Sea response tensor probes.
+4. Tier 3 Noether sea response tensor probes.
 
 A rerun after a finite-coordinate no-go must include the predeclared branch-chart revision record; residual-selected coordinates, locked keys promoted into branch geometry, or benchmark-derived inputs invalidate the packet as hidden fitting.
 
@@ -185,7 +185,7 @@ No cosmology packet should report a promoted dark-energy, $H_0$, $S_8$, BBN, CMB
 
 ## Public Gravitational-Wave Benchmark Protocol
 
-A public gravitational-wave benchmark packet tests the effective gravitational-radiation limit against versioned open strain and parameter-estimation records. The packet is not evidence for a fundamental metric ripple in the Euclidean void. It is an observer-level validation object: the $\mathbb{A}\mathbb{A}\mathbb{A}$ simulation must predict detector strain, phase, event-ledger energy balance, and any photon/gravity timing residual through its Noether-Sea response map and then compare those predictions to public artifacts.
+A public gravitational-wave benchmark packet tests the effective gravitational-radiation limit against versioned open strain and parameter-estimation records. The packet is not evidence for a fundamental metric ripple in the Euclidean void. It is an observer-level validation object: the $\mathbb{A}\mathbb{A}\mathbb{A}$ simulation must predict detector strain, phase, event-ledger energy balance, and any photon/gravity timing residual through its Noether sea response map and then compare those predictions to public artifacts.
 
 The packet object is
 $$
@@ -282,15 +282,15 @@ All simulations integrate dynamics in the absolute Euclidean frame:
 - Global absolute time $t$ with step $\Delta t$
 - No relativistic time dilation applied to the integration clock (proper time is derived only in post-processing)
 
-### Void and Noether-Sea Terminology (Simulation-Facing)
+### Void and Noether Sea Terminology (Simulation-Facing)
 - "Euclidean void" = the fixed spatial container represented by the chosen coordinate chart / grid indices
-- "Noether Sea" = coupled pro/anti swarms instantiated as objects or response variables in the void
+- "Noether sea" = coupled pro/anti swarms instantiated as objects or response variables in the void
 
 ### Mandatory $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) grid
 Every run must instantiate $\mathbb{U}_{\text{now}}$ sensors:
 - $\mathbb{U}_{\text{now}}$ grid definition: chart points/worldlines, spacing, bounds, boundary conditions
 - Logged channels (minimum): $\Phi$, $\nabla\Phi$
-- Optional: Noether-Sea state variables (for example, $\rho_{\text{NS}}$ and alignment metrics)
+- Optional: Noether sea state variables (for example, $\rho_{\text{NS}}$ and alignment metrics)
 - Provenance tables: `receiver_id`, $t$, `emitter_id`, $t_{\text{emit}}$, `contribution_strength` when feasible
 
 ### Causal wake surface bookkeeping requirement
@@ -315,7 +315,7 @@ No major physical claim is accepted without:
 
 ### $\mathbb{U}_{\text{now}}$ universe-state perspective Implementation & Grid Protocols
 
-1. **Grid Initialization**: All simulations run on a rigid Cartesian grid chosen as the coordinate scaffold for the **Euclidean void**. The grid is pre-loaded with a lattice of coupled Noether swarms to instantiate the Noether Sea.
+1. **Grid Initialization**: All simulations run on a rigid Cartesian grid chosen as the coordinate scaffold for the **Euclidean void**. The grid is pre-loaded with a lattice of coupled Noether swarms to instantiate the Noether sea.
 2. **Fiducial Sensor Array**: Instantiate a grid of virtual sensors at fixed chart locations $(x,y,z)$. Each records $\Phi$ and $\nabla\Phi$.
 3. **Causal Time Lookup**: When a causal isochron intersects a sensor, the simulator uses the grid history to "look back" to the emitter's position at $t_{history}$.
 4. **Logging Standard**: All runs must log $\mathbb{U}_{\text{now}}$ channels ($\Phi$, $\nabla\Phi$, provenance tables) to allow cross-run convergence auditing.
@@ -324,6 +324,6 @@ No major physical claim is accepted without:
 ### $\mathbb{U}_{\text{now}}$ universe-state perspective Grid
 
 * **Grid:** Initialize rigid Cartesian `Grid[x][y][z]` as the chosen chart for the Euclidean void.
-* **Sea Initialization:** Pre-load the grid with coupled Noether swarms for low-excitation Noether-Sea runs.
+* **Sea Initialization:** Pre-load the grid with coupled Noether swarms for low-excitation Noether sea runs.
 * **Logging:** Record $\Phi$ and $\nabla\Phi$ at fixed nodes ($\mathbb{U}_{\text{now}}$ universe-state sensors).
 * **Time:** Global step $\Delta t$ (absolute time).

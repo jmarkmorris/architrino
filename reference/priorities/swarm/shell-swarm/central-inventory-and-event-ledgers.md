@@ -266,7 +266,7 @@ $$
 \sum_{B\in\mathcal{B}_{\mathrm{in}}(e)}X(B;t_-).
 $$
 
-The Noether-Sea update row is
+The Noether sea update row is
 
 $$
 \Delta\mathcal{S}_{\mathrm{sea}}(e)
@@ -305,7 +305,7 @@ where $\Delta A_e$ is the source-provenance row for labeled architrinos, $\Delta
 
 When the heat-channel row is not admitted, set $B_{\mathrm{heat}}(e)=0$ and omit $\mathcal{R}_{\mathrm{heat}}$ from the event certificate.
 
-The convention is out-minus-in. A closed event has zero total residual after all named branch, coherent, recoil, boundary, and Noether-Sea updates are included.
+The convention is out-minus-in. A closed event has zero total residual after all named branch, coherent, recoil, boundary, and Noether sea updates are included.
 
 ---
 
@@ -319,7 +319,7 @@ s_a^{\mathrm{sea}\to\mathrm{branch}}(e),
 s_a^{\mathrm{branch}\to\mathrm{sea}}(e)
 $$
 
-record transfer between branch inventory and the Noether Sea. The source-provenance residual is
+record transfer between branch inventory and the Noether sea. The source-provenance residual is
 
 $$
 \mathcal{R}_{\mathrm{src},a}(e)
@@ -422,7 +422,7 @@ $$
 \mathsf{A}_{\mathrm{incoming\ branches}}(e),
 $$
 
-with equality after the event ledger includes returned, recoil, boundary, and Noether-Sea labels. Here $\dot{\cup}$ denotes disjoint union of labels in the ledger.
+with equality after the event ledger includes returned, recoil, boundary, and Noether sea labels. Here $\dot{\cup}$ denotes disjoint union of labels in the ledger.
 
 The pair-production event target is
 
@@ -584,7 +584,7 @@ $$
 
 under the same active causal-root, regulator, endpoint, and branch-history convention used for the retained branch certificate.
 
-Heat-channel restriction: $B_{\mathrm{heat}}(e)$ may be named only after coherent photon output, recoil, bound-remnant change, reaction products, boundary exchange, and Noether-Sea medium update are either populated or explicitly ruled out. Heat is not a hidden loss term. If $B_{\mathrm{heat}}$ is present, its admissibility residual is
+Heat-channel restriction: $B_{\mathrm{heat}}(e)$ may be named only after coherent photon output, recoil, bound-remnant change, reaction products, boundary exchange, and Noether sea medium update are either populated or explicitly ruled out. Heat is not a hidden loss term. If $B_{\mathrm{heat}}$ is present, its admissibility residual is
 
 $$
 \mathcal{R}_{\mathrm{heat}}(e)
@@ -600,11 +600,11 @@ B_{\mathrm{heat}}(e)
 \right],
 $$
 
-and this row is evaluated only after all bracketed channels have named entries. Momentum and angular-momentum residuals cannot be assigned to heat alone; their carrier must be a branch, coherent output, recoil object, boundary term, or Noether-Sea update.
+and this row is evaluated only after all bracketed channels have named entries. Momentum and angular-momentum residuals cannot be assigned to heat alone; their carrier must be a branch, coherent output, recoil object, boundary term, or Noether sea update.
 
 ---
 
-## 9. Recoil And Noether-Sea Update Rows
+## 9. Recoil And Noether Sea Update Rows
 
 If recoil is invoked, the receiving object or branch set $\mathrm{Rec}(e)$ must be named. The recoil residual is
 
@@ -624,7 +624,7 @@ $$
 \mathcal{R}_{\mathrm{recoil}}(e)=\left(0,\mathbf{0},\mathbf{0}\right).
 $$
 
-The Noether-Sea update must be computed from the same event interval and the same branch histories:
+The Noether sea update must be computed from the same event interval and the same branch histories:
 
 $$
 \mathcal{R}_{\mathrm{sea}}(e)
@@ -640,7 +640,7 @@ e;
 \right),
 $$
 
-where $\mathsf{U}_{\mathrm{sea}}$ is the still-open Noether-Sea update extraction target and $\mathcal{A}_e$ is the event's retained causal-root ledger. Until $\mathsf{U}_{\mathrm{sea}}$ is supplied, event rows that rely on medium exchange must remain `not_computed` or `failed`, not promoted by implication.
+where $\mathsf{U}_{\mathrm{sea}}$ is the still-open Noether sea update extraction target and $\mathcal{A}_e$ is the event's retained causal-root ledger. Until $\mathsf{U}_{\mathrm{sea}}$ is supplied, event rows that rely on medium exchange must remain `not_computed` or `failed`, not promoted by implication.
 
 ---
 
@@ -727,7 +727,7 @@ The central-inventory and event-ledger addition to a same-level branch certifica
 | `central_choreography_split` | resolved split between $C_{\mathrm{cent}}$ and $S_{\mathrm{chor}}$ | central inventory is ledgered and choreography remains neutral where declared | `central-inventory-singularity`, `choreography-not-neutral` |
 | `noncollision` | $d_{\min}^{(B)}>\epsilon_x$ or declared regularized support | no unresolved coincident point representatives | `projection-collision`, `central-inventory-singularity` |
 | `regularization` | $\eta>0$ rule, split-source representative, or absent-by-policy status | no unresolved near-zero self roots; any split-source Jacobian floor stays positive | `near-zero-self-root-unresolved`, `jacobian-floor-violation`, `regularization-unset` |
-| `source_provenance` | label transfer row $\mathcal{R}_{\mathrm{src}}$ | every outgoing architrino has an incoming or Noether-Sea source | `source-provenance-open`, `orphan-outgoing-label` |
+| `source_provenance` | label transfer row $\mathcal{R}_{\mathrm{src}}$ | every outgoing architrino has an incoming or Noether sea source | `source-provenance-open`, `orphan-outgoing-label` |
 | `pair_production` | $B_k+B_{-k}$ pair row | total pair inventory $(12,12)$ and zero net $Q$ with $24$ source labels | `pair-source-provenance-open`, `pair-charge-open` |
 | `reaction_inventory` | $\mathcal{R}_{N_+},\mathcal{R}_{N_-},\mathcal{R}_Q$ | signed inventory and charge rows close | `reaction-inventory-open`, `charge-residual-open` |
 | `event_conservation` | $\mathcal{R}_E,\mathcal{R}_{\mathbf{p}},\mathcal{R}_{\mathbf{J}}$ | energy, momentum, and angular momentum close within tolerance | `energy-ledger-open`, `momentum-ledger-open`, `angular-momentum-ledger-open` |

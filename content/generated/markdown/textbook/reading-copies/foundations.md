@@ -12,14 +12,14 @@ This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\m
 
 1. **The Substrate** ([absolute time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md), and [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md))
 2. **The Fundamental Entity** ([architrino](../../../../markdown/aaa/foundations/architrino.md): point transceiver of potential-bearing causal wakes)
-3. **The Physical Medium** ([Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether swarm assemblies)
+3. **The Physical Medium** ([Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether swarm assemblies)
 4. **The Observer Framework** ([complete-state vs Physical Observer access](../../../../markdown/aaa/spacetime/observer-framework.md))
 5. **Terminology Discipline** ([canonical level-aware terminology](../../../../markdown/aaa/archie/terminology-usage.md))
 6. **Parameter Ledger** ([fundamental postulates vs derived quantities](../../../../markdown/aaa/validation/parameter-ledger.md))
 
 All subsequent dynamical laws, assembly mappings, and emergent phenomena depend on these foundations. A contradiction or ambiguity at this level propagates through the entire $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus; therefore, this document is maintained with maximal rigor and clarity.
 
-The teaching order is controlled by four levels. Substrate ontology names absolute time, the Euclidean void, and architrino identities. Assembly and medium behavior names organized architrino configurations and the Noether Sea. Effective description names the metric, field, particle, and clock language reconstructed from those dynamics. Observer inference names the records available to embedded Physical Observers, not the complete state itself.
+The teaching order is controlled by four levels. Substrate ontology names absolute time, the Euclidean void, and architrino identities. Assembly and medium behavior names organized architrino configurations and the Noether sea. Effective description names the metric, field, particle, and clock language reconstructed from those dynamics. Observer inference names the records available to embedded Physical Observers, not the complete state itself.
 
 Two category distinctions govern the rest of this hub. First, fundamental material is not the same as emergent matter: the architrino is primitive substance, while matter begins only as assembly-level behavior with mass, exclusion, and persistent organization. Second, physical reality is not the same as autonomous material inventory: causal wakes are physically real, finite-speed, potential-bearing causal records, but their substrate-level content is fixed by source identity, polarity, and path history rather than by an additional material ingredient in the void.
 
@@ -33,7 +33,7 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 1 (Absolute Time):** Time is an absolute, universal, one-dimensional continuum $\mathbb{R}$ with fixed orientation, uniform advancement, frame-independent duration, non-dynamical status, and no substrate-level time dilation or relativity of simultaneity. Dynamics occur through finite-speed causal-wake propagation ($c_f$) in absolute time, with all interactions routed through path history rather than instantaneous action-at-a-distance or advanced effects; worldlines are parametrized directly by $t$.
 
-This is a substrate claim, not a claim about what embedded clocks report. Clock slowing, synchronization offsets, and proper-time readings belong to assembly and Noether-Sea dynamics at the observer-accessible level.
+This is a substrate claim, not a claim about what embedded clocks report. Clock slowing, synchronization offsets, and proper-time readings belong to assembly and Noether sea dynamics at the observer-accessible level.
 
 For the argumentative case, see [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md). For observer-level clocks and dilation, see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
@@ -45,7 +45,7 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.
 
-This is a container claim, not a denial that observers can reconstruct curved effective geometry. The Noether Sea is physical content within the void, not the void itself. For the Noether-Sea branch, see [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md), and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+This is a container claim, not a denial that observers can reconstruct curved effective geometry. The Noether sea is physical content within the void, not the void itself. For the Noether sea branch, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
 #### Absolute Timespace (The Product Structure)
 
@@ -93,31 +93,31 @@ For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/fo
 
 ### The Physical Medium (Noether Sea)
 
-[Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether Sea as the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void.
+[Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether sea as the emergent physical medium formed by coupled neutral Noether swarm assemblies occupying the Euclidean void.
 
-This section marks the first step away from primitive ontology. The Noether Sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
+This section marks the first step away from primitive ontology. The Noether sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
 
 In this ontology hub, the key commitment is:
 
-> **Medium Commitment (Noether Sea):** The Noether Sea is physical content inside the Euclidean void, not the void itself. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock and ruler behavior, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether-Sea dynamics and assembly coupling, not from curvature or expansion of the void.
+> **Medium Commitment (Noether sea):** The Noether sea is physical content inside the Euclidean void, not the void itself. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock and ruler behavior, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void.
 
 The routing boundary is:
 
-- [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) owns medium ontology, state variables, and terminology.
-- [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md) owns pro/anti coupling hypotheses and medium assembly motifs.
+- [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) owns medium ontology, state variables, and terminology.
+- [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md) owns pro/anti coupling hypotheses and medium assembly motifs.
 - [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) owns the map from medium variables to effective metric language.
 - [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) owns clock and ruler behavior.
-- [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) owns the cosmology-level interpretation of Noether-Sea evolution.
+- [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) owns the cosmology-level interpretation of Noether sea evolution.
 
 ### The Observer Framework (Ontic vs Epistemic)
 
 [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md) is the canonical page for the $\mathbb{U}_{\text{now}}$ universe-state perspective, Physical Observers, the ontic/epistemic distinction, and absolute-versus-operational simultaneity.
 
-The complete ontic state is the absolute-time slice $\mathbb{U}_{\text{now}}\equiv S(t)$. A Physical Observer samples only a constrained record inside that state, using clocks, rulers, and signals whose behavior is itself produced by the same assembly and Noether-Sea dynamics.
+The complete ontic state is the absolute-time slice $\mathbb{U}_{\text{now}}\equiv S(t)$. A Physical Observer samples only a constrained record inside that state, using clocks, rulers, and signals whose behavior is itself produced by the same assembly and Noether sea dynamics.
 
 In this ontology hub, the key commitment is:
 
-> **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete ontic state on an absolute-time slice from the measurements available to embedded Physical Observers. Physical Observers are assemblies inside the Noether Sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate itself.
+> **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete ontic state on an absolute-time slice from the measurements available to embedded Physical Observers. Physical Observers are assemblies inside the Noether sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate itself.
 
 The resulting observer descriptions can be indispensable without being final ontology. Effective metric reconstruction, wave function transition, and particle records are inferential summaries of accessible interactions, not replacements for the substrate and assembly account.
 
@@ -161,7 +161,7 @@ Terminology discipline is controlled by the Archie canon, not by this hub. The r
 
 This ontology hub keeps only the global rule:
 
-> Use substrate-native terms for substrate ontology, medium terms for Noether-Sea contents, and effective/observer terms for emergent descriptions. Do not let `spacetime`, `field`, `charge`, `vacuum`, or `particle` silently cross levels without saying which level is being described.
+> Use substrate-native terms for substrate ontology, medium terms for Noether sea contents, and effective/observer terms for emergent descriptions. Do not let `spacetime`, `field`, `charge`, `vacuum`, or `particle` silently cross levels without saying which level is being described.
 
 ### Parameter Ledger (Foundation Level)
 
@@ -196,7 +196,7 @@ This Foundational Ontology defines:
 
 1. **The Substrate**: absolute time and Euclidean void organized as absolute timespace, the fixed non-dynamical product background.
 2. **The Fundamental Entity**: architrino as the fixed-identity primitive point transceiver with polarity and persistent identity.
-3. **The Physical Medium**: Noether Sea as emergent physical content formed by coupled neutral Noether swarm assemblies inside the Euclidean void.
+3. **The Physical Medium**: Noether sea as emergent physical content formed by coupled neutral Noether swarm assemblies inside the Euclidean void.
 4. **The Observer Framework**: complete-state bookkeeping versus Physical Observer access.
 5. **Terminology Discipline**: level-aware wording routed to the Archie canon.
 6. **Validation Routing**: parameters, closure burdens, and open questions routed to validation and branch chapters.
@@ -446,7 +446,7 @@ dt
 $$
 on the manifold $T \cong \mathbb{R}$. This 1-form is closed and exact, and its level sets define simultaneity slices when combined with space in the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$. The symbol $\tau$ is reserved for derived observer proper time. Emission times use $s$, and causal delay is written $\Delta_{ij}=t-s$ rather than by reusing the proper-time symbol.
 
-The level distinction is essential. The substrate structure is absolute time together with the Euclidean void, formally the absolute timespace $\mathcal{M}$. Effective spacetime geometry and proper time are later observer-level reconstructions from assembly dynamics, clock behavior, and Noether-Sea response; they are not additional time coordinates at the ontological level.
+The level distinction is essential. The substrate structure is absolute time together with the Euclidean void, formally the absolute timespace $\mathcal{M}$. Effective spacetime geometry and proper time are later observer-level reconstructions from assembly dynamics, clock behavior, and Noether sea response; they are not additional time coordinates at the ontological level.
 
 ### Dimensionalization
 
@@ -632,7 +632,7 @@ The foundation stack keeps the relevant speed symbols distinct:
 | Symbol | Meaning | Status |
 | --- | --- | --- |
 | $c_f$ | Primitive causal-wake propagation speed relative to the Euclidean void | fundamental |
-| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether-Sea state and direction | derived |
+| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether sea state and direction | derived |
 | $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
 | $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
 | $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration |
@@ -717,7 +717,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, time itself has no internal structure or dy
 
 They do **not** arise from any curvature or dynamics of the time coordinate itself.
 
-**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**; any observer-level clock dilation, lapse effect, or effective metric curvature observed in experiments must emerge from assembly dynamics, causal wakes, and Noether-Sea response within this rigid temporal framework. The comparison does not deny relativistic phenomenology; it assigns that phenomenology to an effective recovery layer rather than to fundamental time.
+**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**; any observer-level clock dilation, lapse effect, or effective metric curvature observed in experiments must emerge from assembly dynamics, causal wakes, and Noether sea response within this rigid temporal framework. The comparison does not deny relativistic phenomenology; it assigns that phenomenology to an effective recovery layer rather than to fundamental time.
 
 ### Distinction from Relativistic Time
 
@@ -738,9 +738,9 @@ They do **not** arise from any curvature or dynamics of the time coordinate itse
 
 ## Euclidean Void
 
-This chapter is the canonical substrate-level specification for the Euclidean void in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the fixed spatial container, the Euclidean metric, the coordinate and operator conventions, and the boundary between the void itself and the Noether Sea that occupies it.
+This chapter is the canonical substrate-level specification for the Euclidean void in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the fixed spatial container, the Euclidean metric, the coordinate and operator conventions, and the boundary between the void itself and the Noether sea that occupies it.
 
-The core distinction is simple: the Euclidean void is the fixed spatial container; the Noether Sea is physical content within that container; effective spacetime is an observer-level geometry reconstructed from assembly and wake behavior. The present chapter specifies the first of those three objects.
+The core distinction is simple: the Euclidean void is the fixed spatial container; the Noether sea is physical content within that container; effective spacetime is an observer-level geometry reconstructed from assembly and wake behavior. The present chapter specifies the first of those three objects.
 
 The exposition follows that distinction. First the chapter fixes the substrate geometry. It then explains how coordinate charts, event identity, and spatial operators work inside that geometry. Finally it marks which claims belong instead to medium dynamics, effective metric closure, or observational inference.
 
@@ -753,7 +753,7 @@ Space is **homogeneous** and **isotropic**:
 - Homogeneous: every location is equivalent.
 - Isotropic: every direction is equivalent.
 
-These are claims about the container, not about the distribution of material contents. They imply that cosmological expansion, light bending, orbital precession, and other curvature-like observations must be recovered as dynamics of the Noether Sea and assemblies within the void, not as metric expansion or curvature of the void itself.
+These are claims about the container, not about the distribution of material contents. They imply that cosmological expansion, light bending, orbital precession, and other curvature-like observations must be recovered as dynamics of the Noether sea and assemblies within the void, not as metric expansion or curvature of the void itself.
 
 ### Manifold and Metric
 
@@ -844,7 +844,7 @@ This gives fixed spatial identity:
 
 - The point $(x_0,y_0,z_0)$ is the same spatial location at every absolute time $t$.
 - The events $(t_1,x_0,y_0,z_0)$ and $(t_2,x_0,y_0,z_0)$ occur at the same spatial location at two different instants.
-- Local Noether-Sea density, architrino occupancy, and assembly configuration may change there without changing the identity of the underlying void point.
+- Local Noether sea density, architrino occupancy, and assembly configuration may change there without changing the identity of the underlying void point.
 
 This fixed identity is important for self-hit diagnostics, path-history bookkeeping, and simulations that must track where a wake was emitted and where it is later received.
 
@@ -998,7 +998,7 @@ Homogeneity and isotropy imply:
 - Translation symmetry supplies the kinematic basis for momentum conservation when the delayed action and wake-ledger channels preserve the same symmetry.
 - Rotation symmetry supplies the kinematic basis for angular momentum conservation when the delayed action and wake-ledger channels preserve the same symmetry.
 
-Any preferred-frame effect, anisotropy, or effective Lorentz behavior must arise from dynamics, Noether-Sea response, or observer construction, not from an anisotropy of the Euclidean void.
+Any preferred-frame effect, anisotropy, or effective Lorentz behavior must arise from dynamics, Noether sea response, or observer construction, not from an anisotropy of the Euclidean void.
 
 ### Geodesics and Dynamics
 
@@ -1037,22 +1037,22 @@ Galilean coordinate behavior belongs to the absolute-timespace product structure
 
 ### Boundary With the Noether Sea
 
-The boundary with the Noether Sea is an ontology boundary. The Euclidean void is not the Noether Sea, and neither should be identified with effective spacetime.
+The boundary with the Noether sea is an ontology boundary. The Euclidean void is not the Noether sea, and neither should be identified with effective spacetime.
 
 The distinction is:
 
 1. **Euclidean void:** fixed spatial container $\mathbb{R}^3$ with metric $h_{ij}=\delta_{ij}$.
-2. **Noether Sea:** physical content occupying the void, built from coupled neutral swarms.
+2. **Noether sea:** physical content occupying the void, built from coupled neutral swarms.
 3. **Architrino occupancy:** local presence or absence of point entities and assemblies at a given coordinate location.
-4. **Effective spacetime:** observer-level geometry reconstructed from how clocks, rulers, and signals behave in the Noether Sea.
+4. **Effective spacetime:** observer-level geometry reconstructed from how clocks, rulers, and signals behave in the Noether sea.
 
-At any time $t$, a coordinate point may be occupied by an architrino, traversed by a wake, located inside a Noether-Sea cell, or empty of local architrino content. None of those occupancy states changes the identity or metric of the underlying void point.
+At any time $t$, a coordinate point may be occupied by an architrino, traversed by a wake, located inside a Noether sea cell, or empty of local architrino content. None of those occupancy states changes the identity or metric of the underlying void point.
 
-This gives a direct no-expanding-void criterion for cosmology. Effective cosmology variables such as $a(t)$, $H(t)$, redshift, and CMB temperature summaries are admissible only as functions of Noether-Sea state, transport history, and observer clock comparison:
+This gives a direct no-expanding-void criterion for cosmology. Effective cosmology variables such as $a(t)$, $H(t)$, redshift, and CMB temperature summaries are admissible only as functions of Noether sea state, transport history, and observer clock comparison:
 $$
 a_{\mathrm{eff}}(t)=\mathcal{A}[\mathcal{N}_{\mathrm{sea}}(t),O(t)].
 $$
-Here $\mathcal{N}_{\mathrm{sea}}(t)$ denotes the relevant Noether-Sea state variables, and $O(t)$ denotes observer records and calibration data. The formula is a schematic inference map into the observer-level metric, not a new substrate law.
+Here $\mathcal{N}_{\mathrm{sea}}(t)$ denotes the relevant Noether sea state variables, and $O(t)$ denotes observer records and calibration data. The formula is a schematic inference map into the observer-level metric, not a new substrate law.
 They must not be interpreted as
 $$
 h_{ij}(t)=a_{\mathrm{eff}}^2(t)\delta_{ij}
@@ -1065,9 +1065,9 @@ The Euclidean void is strictly empty of material substance. It is not a material
 
 Nevertheless, a coordinate location in the full universe should not be treated as relationally empty. Because architrinos continuously emit expanding causal isochrons, a location may lie on many geometrical wakes from historical architrino motion. These wakes do not fill the void as material contents; they form the delayed relational ledger through which later architrino intersections can be computed.
 
-In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether Sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population.
+In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population.
 
-Noether-Sea density and response variables belong to the Noether-Sea layer, not the spatial substrate. For the Noether-Sea ontology, see [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md). For Noether-Sea assembly hypotheses, see [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md). For the metric bridge, see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md).
+Noether sea density and response variables belong to the Noether sea layer, not the spatial substrate. For the Noether sea ontology, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). For Noether swarm assembly hypotheses, see [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md).
 
 ### Distinction From Curved Space
 
@@ -1080,19 +1080,19 @@ The comparison with curved space preserves the operational success of curved-spa
 | **Spatial points** | Permanent substrate locations | Coordinate identity may be gauge-dependent |
 | **Curvature source** | None; the void does not respond | Stress-energy sources curvature |
 | **Expansion** | No expansion of the void | Metric scale factor may expand |
-| **Gravity** | Emergent from assembly and Noether-Sea dynamics | Geometric curvature of spacetime |
+| **Gravity** | Emergent from assembly and Noether sea dynamics | Geometric curvature of spacetime |
 
 The phrase `curved space` should not be used for the fundamental ontology. Use `effective metric`, `effective spacetime`, or `refractive gravity` when describing observer-level curvature-like behavior.
 
 ### Summary Postulate
 
-> **Postulate 2 (Euclidean Void):** Three-dimensional space is the Euclidean void: an absolute, static, flat container $\mathbb{R}^3$ equipped with fixed metric $h_{ij}=\delta_{ij}$. It is homogeneous, isotropic, non-dynamical, and does not curve, expand, contract, or respond to matter and energy. All spatial displacements, distances, volumes, and spatial differential operators are defined by the fixed Euclidean metric. Curvature-like observations, effective scale histories, and observer-level redshift summaries arise from trajectories, assemblies, wakes, and Noether-Sea response within the void, not from curvature or expansion of the void itself.
+> **Postulate 2 (Euclidean Void):** Three-dimensional space is the Euclidean void: an absolute, static, flat container $\mathbb{R}^3$ equipped with fixed metric $h_{ij}=\delta_{ij}$. It is homogeneous, isotropic, non-dynamical, and does not curve, expand, contract, or respond to matter and energy. All spatial displacements, distances, volumes, and spatial differential operators are defined by the fixed Euclidean metric. Curvature-like observations, effective scale histories, and observer-level redshift summaries arise from trajectories, assemblies, wakes, and Noether sea response within the void, not from curvature or expansion of the void itself.
 
 ## Absolute Timespace
 
 This chapter is the canonical substrate-level specification for **absolute timespace** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the fixed product background $\mathbb{R}\times\mathbb{R}^3$, its global foliation into simultaneous Euclidean slices, the Newton-Cartan data used to keep time and space separate, and the causal wake geometry used by the microscopic dynamics.
 
-Absolute timespace is not relativistic spacetime. It is the formal product of [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) and the [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md). Effective spacetime geometry is reconstructed later from assembly and Noether-Sea dynamics; it is not the substrate itself.
+Absolute timespace is not relativistic spacetime. It is the formal product of [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) and the [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md). Effective spacetime geometry is reconstructed later from assembly and Noether sea dynamics; it is not the substrate itself.
 
 ### Core Concept
 
@@ -1103,11 +1103,11 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 - Time and space are logically and mathematically separate at the kinematic level.
 - There is absolute simultaneity: all events with the same $t$ belong to the same simultaneity slice.
 - There is no fundamental 4D Lorentzian metric mixing temporal and spatial dimensions.
-- The background is non-dynamical: it does not respond to matter, energy, assemblies, or the Noether Sea.
+- The background is non-dynamical: it does not respond to matter, energy, assemblies, or the Noether sea.
 
-This separation fixes the chapter's sequence: first name the substrate datum, then identify the effective or inferential layer that reads it. The Euclidean void and absolute time are ontology. Clocks, rulers, metric tensors, and relativistic symmetries are treated as recovered behavior of assemblies and the Noether Sea; their detailed laws are closure targets when the derivation is not supplied locally.
+This separation fixes the chapter's sequence: first name the substrate datum, then identify the effective or inferential layer that reads it. The Euclidean void and absolute time are ontology. Clocks, rulers, metric tensors, and relativistic symmetries are treated as recovered behavior of assemblies and the Noether sea; their detailed laws are closure targets when the derivation is not supplied locally.
 
-All curvature, expansion, clock dilation, and relativistic behavior must be recovered as effective descriptions of assemblies and Noether-Sea response within this fixed background.
+All curvature, expansion, clock dilation, and relativistic behavior must be recovered as effective descriptions of assemblies and Noether sea response within this fixed background.
 
 ### Product Manifold
 
@@ -1159,12 +1159,10 @@ $$
 \mathbb{U}_{\text{now}} \equiv S(t).
 $$
 
-This denotes the complete ontic universe state on $\Sigma_t$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether-Sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
+This denotes the complete ontic universe state on $\Sigma_t$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
 
 Because the master equation is path-history dependent, this complete state is not merely an instantaneous Markov list of positions and velocities. A precise slice-state schematic is
 $$
-\mathbb{U}_{\text{now}}(t)
-\equiv
 S(t)
 =
 \big(
@@ -1174,7 +1172,7 @@ H_t,
 \mathcal{B}_t
 \big).
 $$
-Here $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether-Sea state record, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
+Here $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea state record, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
 
 ### Newton-Cartan Data
 
@@ -1307,7 +1305,7 @@ Forces cause accelerations in the Euclidean void. Time supplies the universal ev
 
 The same distinction applies to momentum and inertia: the kinematic variables live on the substrate, while the coefficients that make them measurable are effective assembly responses.
 
-The scalar $m$ in the low-velocity observer formula is not a primitive rigid-body constant of the substrate. A rigid-body inertia tensor is a useful foil: in ordinary mechanics it maps a fixed body's angular velocity to angular momentum after a mass distribution has already been supplied. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding observer-level inertial response must be derived from the assembly's trapped causal history, shielding state, coupling to the Noether Sea, and orientation.
+The scalar $m$ in the low-velocity observer formula is not a primitive rigid-body constant of the substrate. A rigid-body inertia tensor is a useful foil: in ordinary mechanics it maps a fixed body's angular velocity to angular momentum after a mass distribution has already been supplied. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding observer-level inertial response must be derived from the assembly's closed internal causal-history ledger, shielding state, coupling to the Noether sea, and orientation.
 
 For a coarse-grained assembly $A$, the local linear response may be written as a pair of response maps
 $$
@@ -1324,7 +1322,7 @@ $$
 \delta\Omega^j.
 $$
 
-Here $\mathcal{H}_A$ denotes the trapped path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether-Sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
+Here $\mathcal{H}_A$ denotes the closed internal path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
 
 ### Galilean Kinematic Structure
 
@@ -1380,7 +1378,7 @@ s<t.
 $$
 Thus boosts preserve the product foliation and are allowed coordinate descriptions, but they do not preserve the same isotropic wake-law form unless $\mathbf{u}=\mathbf{0}$ relative to the Euclidean-void rest frame. Galilean boosts are therefore kinematic coordinate transformations of the background, not dynamical symmetries of the primitive wake law.
 
-This preferred frame is not curvature of the background. It is a dynamical consequence of finite-speed causal wake propagation, Noether-Sea dynamics, and assembly dynamics built on top of the absolute timespace substrate.
+This preferred frame is not curvature of the background. It is a dynamical consequence of finite-speed causal wake propagation, Noether sea dynamics, and assembly dynamics built on top of the absolute timespace substrate.
 
 The observer-level task is therefore not to remove the absolute frame from the ontology. The task is to derive how physical clocks, rulers, and signals hide preferred-frame leakage to the required experimental precision. See [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
@@ -1391,7 +1389,7 @@ The foundation stack keeps primitive, channel, branch, and calibrated speeds dis
 | Symbol | Meaning | Status |
 | --- | --- | --- |
 | $c_f$ | Primitive causal-wake propagation speed relative to the Euclidean void | fundamental |
-| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether-Sea state and direction | derived |
+| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether sea state and direction | derived |
 | $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
 | $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
 | $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration |
@@ -1563,10 +1561,10 @@ Relativistic spacetime remains the correct comparison target for recovered obser
 | **Metric** | Separate $(dt,h)$ data | Non-degenerate $g_{\mu\nu}$ |
 | **Simultaneity** | Absolute global foliation | Observer/frame dependent |
 | **Causality** | Absolute order plus finite wake speed | Effective metric light cones |
-| **Gravity** | Emergent from assembly and Noether-Sea dynamics | Spacetime curvature |
+| **Gravity** | Emergent from assembly and Noether sea dynamics | Spacetime curvature |
 | **Expansion** | No expansion of the void | Metric expansion possible |
 
-The effective metric used in GR-style recovery is a downstream constitutive object. It must be derived from clocks, rulers, signal transport, and Noether-Sea response. The local handoff is an observer-level clock-and-ruler relation of the form
+The effective metric used in GR-style recovery is a downstream constitutive object. It must be derived from clocks, rulers, signal transport, and Noether sea response. The local handoff is an observer-level clock-and-ruler relation of the form
 $$
 d\tau^2
 =
@@ -1591,7 +1589,7 @@ g^{\mathrm{eff}}_{ij}
 =
 B_{ij}.
 $$
-This is the same observer-level ADM/Cartan map stated in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). This equation is not substrate geometry; it is the required metric handoff from Noether-Sea state and Physical Observer assemblies into effective spacetime language.
+This is the same observer-level ADM/Cartan map stated in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). This equation is not substrate geometry; it is the required metric handoff from Noether sea state and Physical Observer assemblies into effective spacetime language.
 
 ### Role in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -1605,7 +1603,7 @@ Absolute timespace is the formal product background in which all architrino dyna
 
 ### Summary Postulate
 
-> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dt$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law selects a preferred rest frame dynamically. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are emergent descriptions of assemblies and Noether-Sea dynamics within absolute timespace, not properties of the background itself.
+> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dt$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law selects a preferred rest frame dynamically. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are recovery targets: when the assembly and Noether sea closure programs succeed, they are emergent descriptions within absolute timespace, not properties of the background itself.
 
 ## Absolute Time Defense
 
@@ -1624,7 +1622,7 @@ The teaching sequence is deliberately layered. First comes the ontological claim
 4. **Substrate clock form**: The substrate clock form $dt$ is exact, closed, and nowhere vanishing as the pullback from the $\mathbb{R}$ factor. Together with the chosen orientation of increasing $t$, it fixes the tangent planes to the slices $\Sigma_t$; foliation ambiguity is absent at the substrate level rather than removed by coordinate gauge.
 5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of nested shell swarm internal phase dynamics.
 
-The list separates ontology from effective description. Absolute time, the Euclidean void, and the slices $\Sigma_t$ are substrate commitments. Proper time, clock synchronization, and relativistic simultaneity judgments are effective readouts produced by assemblies embedded in the Noether Sea. The defense of absolute time therefore does not deny observed clock dilation; it relocates clock dilation from fundamental temporal ontology to derived assembly dynamics.
+The list separates ontology from effective description. Absolute time, the Euclidean void, and the slices $\Sigma_t$ are substrate commitments. Proper time, clock synchronization, and relativistic simultaneity judgments are effective readouts produced by assemblies embedded in the Noether sea. The defense of absolute time therefore does not deny observed clock dilation; it relocates clock dilation from fundamental temporal ontology to derived assembly dynamics.
 
 ### Absolute Time, Global Foliation, and Proper Time
 
@@ -1637,8 +1635,6 @@ At this level, $\mathbb{U}_{\text{now}}\equiv S(t)$ is not an observer's reconst
 
 Because the master equation is path-history dependent, the complete state on a slice is not merely an instantaneous Markov projection. The precise schematic form is
 $$
-\mathbb{U}_{\text{now}}(t)
-\equiv
 S(t)
 =
 \big(
@@ -1648,7 +1644,7 @@ H_t,
 \mathcal{B}_t
 \big),
 $$
-where $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether-Sea state, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
+where $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
 
 **Deterministic evolution and basin selection**
 - The delay-differential master equation is deterministic: where the declared branch chart or regularization makes the evolution well posed, a fully specified $\mathbb{U}_{\text{now}}\equiv S(t_0)$, including the required path-history and provenance ledger, generates a unique trajectory $S(t)$ for $t>t_0$.
@@ -1687,9 +1683,9 @@ w^i_{\mathcal A}
 -
 u^i_{\text{sea}}
 $$
-is velocity relative to the local Noether-Sea flow in the observer-level bookkeeping map for the clock worldline $X^i_{\mathcal A}(t)$.
+is velocity relative to the local Noether sea flow in the observer-level bookkeeping map for the clock worldline $X^i_{\mathcal A}(t)$.
 
-The full local Noether-Sea state is the retained state record $\mathcal{N}_{\mathrm{sea}}$, for example
+The full local Noether sea state is the retained state record $\mathcal{N}_{\mathrm{sea}}$, for example
 $$
 \mathcal{N}_{\mathrm{sea}}
 =
@@ -1703,7 +1699,7 @@ Q_{ij},
 \ldots
 \right).
 $$
-The scalar $\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)$ is only the Noether-Sea delay factor extracted for a specified channel. It is not the full Noether-Sea state.
+The scalar $\chi_{\text{sea}}(\mathbf{x},t)\equiv c_f/c_{\text{eff}}(\mathbf{x},t)$ is only the Noether sea delay factor extracted for a specified channel. It is not the full Noether sea state.
 
 A broad constitutive expression $d\tau=F(\cdots)dt$ may still be used as a schematic summary after the clock channel has been declared, but the closure target is the extracted phase functional above. Proper time is not a free scalar function assigned independently of assembly dynamics.
 
@@ -1713,7 +1709,7 @@ $$
 \tau(t_1)-\tau(t_0)=\int_{t_0}^{t_1}\frac{\omega_{\text{clk}}(s)}{\omega_0}\,ds,
 $$
 
-where $\omega_{\text{clk}}(s)$ is the phase rate extracted from the declared Noether swarm clock channel and $\omega_0$ is its rest-branch reference frequency. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether-Sea state variables used by the clock/ruler metric handoff.
+where $\omega_{\text{clk}}(s)$ is the phase rate extracted from the declared Noether swarm clock channel and $\omega_0$ is its rest-branch reference frequency. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
 
 The low-energy Lorentz-closure target for a declared clock branch has the form
 $$
@@ -1754,7 +1750,7 @@ $$
 with $\Delta_{\mathcal A}^{\mathrm{PF}}$ projected into the two-way anisotropy and PPN rows below unless a sharper channel-specific bound is declared.
 
 Required emergent limits:
-- Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether-Sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
+- Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../../../../markdown/aaa/noether-swarm/nested-shell-swarm-dynamics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
 - Homogeneous medium, low velocities:
   $$
   \frac{d\tau_{\mathcal A}}{dt} \approx \sqrt{1 - \|\mathbf{w}\|^2/c_\star^2},
@@ -1787,7 +1783,7 @@ Required emergent limits:
 | Symbol | Meaning | Status |
 | --- | --- | --- |
 | $c_f$ | Primitive causal-wake propagation speed relative to the Euclidean void | fundamental |
-| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether-Sea state and direction | derived |
+| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether sea state and direction | derived |
 | $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
 | $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
 | $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration |
@@ -1879,7 +1875,7 @@ g^{\mathrm{eff}}_{ij}
 =
 B_{ij}.
 $$
-Photon-channel closure then reads the null condition of this observer-level quadratic form, with $c_\gamma$ derived from the same Noether-Sea state rather than assigned independently:
+Photon-channel closure then reads the null condition of this observer-level quadratic form, with $c_\gamma$ derived from the same Noether sea state rather than assigned independently:
 $$
 \dot x^i
 =
@@ -2049,7 +2045,7 @@ The concentric-wake diagnostic requires access to full microdynamics: something 
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
 
-Assembly-based measuring devices are themselves distorted by motion and coupling to the Noether Sea. At accessible energies and weak Noether-Sea density gradients, the Lorentz-recovery target is that moving assemblies contract, retune their internal periods, and synchronize photon channels so that preferred-frame signatures remain below experimental detection thresholds. The absolute frame exists as the ontological foundation, but emergent effective geometry shields it from direct operational observation only if that moving-assembly closure is derived, not merely assumed.
+Assembly-based measuring devices are themselves distorted by motion and coupling to the Noether sea. At accessible energies and weak Noether sea density gradients, the Lorentz-recovery target is that moving assemblies contract, retune their internal periods, and synchronize photon channels so that preferred-frame signatures remain below experimental detection thresholds. The absolute frame exists as the ontological foundation, but emergent effective geometry shields it from direct operational observation only if that moving-assembly closure is derived, not merely assumed.
 
 #### The Source-Independence Assumption
 
@@ -2071,11 +2067,11 @@ In the terminology of this chapter, the substantival claim is the reality of the
 
 This places the theory in the tradition of **Lorentz Ether Theory**:
 - Absolute space and time are fundamental
-- Lorentz symmetry is emergent and approximate
+- Operational Lorentz symmetry is a recovery target of the moving-assembly closure ladder, not a primitive substrate symmetry
 - A preferred frame exists but must be operationally hidden at low energies by the moving-assembly closure ladder
 
 **Key distinctions from classical LET:**
-- The Noether Sea is not a continuous classical ether; it is an assembly network rather than a coordinate grid
+- The Noether sea is not a continuous classical ether; it is an assembly network rather than a coordinate grid
 - The preferred frame is hidden by emergent effective geometry
 - The framework states explicit closure targets and failure criteria for where symmetry-breaking signatures would appear
 
@@ -2362,13 +2358,13 @@ The universe does not require a coordinate frame; theory and simulation use one 
 
 ### Complete-State and Physical-Observer Access
 
-This final distinction separates substrate ontology, complete-state reconstruction, and effective observer inference. The substrate contains architrinos, causal wakes, absolute time, the Euclidean void, and contents of the Noether Sea. The coordinate frame is inferred from that complete record. Physical Observers access only effective records through assembly clocks, rulers, signals, and retained apparatus states.
+This final distinction separates substrate ontology, complete-state reconstruction, and effective observer inference. The substrate contains architrinos, causal wakes, absolute time, the Euclidean void, and contents of the Noether sea. The coordinate frame is inferred from that complete record. Physical Observers access only effective records through assembly clocks, rulers, signals, and retained apparatus states.
 
 **Complete-state reconstruction:**
 The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
 
 **Physical Observer access:**
-Physical Observers cannot directly measure the complete source-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether Sea. They measure:
+Physical Observers cannot directly measure the complete source-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether sea. They measure:
 - **Proper time** $\tau$, not absolute time $t$
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
@@ -2407,7 +2403,7 @@ The stability of an assembly is therefore dynamic rather than static. It depends
 
 #### Context as Constraint on Basin Selection
 
-Higher-level context does not add a rival ontology to the lower-level dynamics. It selects boundary conditions, admissible branch charts, finite memory windows, and effective constraints for the same architrino-level flow. In this section, context means a physical surrounding state that restricts which histories are available, not an independent causal agent. For a regularized chart, fix $\eta>0$, a memory horizon $h$, and a record window $W=[0,T]$. Let $\mathcal{H}_{\eta,h}$ be a path-history phase space compatible with the regularized master-equation assumptions, let $\Phi_t^c$ denote the resulting delayed flow under context $c$, let $\Pi_L$ expose the lower-level data used by a higher-level description, and let $\Gamma_{\mathrm{adm}}(c)$ collect the branch charts admitted by the surrounding assembly or Noether-Sea context. The context-restricted history set is then
+Higher-level context does not add a rival ontology to the lower-level dynamics. It selects boundary conditions, admissible branch charts, finite memory windows, and effective constraints for the same architrino-level flow. In this section, context means a physical surrounding state that restricts which histories are available, not an independent causal agent. For a regularized chart, fix $\eta>0$, a memory horizon $h$, and a record window $W=[0,T]$. Let $\mathcal{H}_{\eta,h}$ be a path-history phase space compatible with the regularized master-equation assumptions, let $\Phi_t^c$ denote the resulting delayed flow under context $c$, let $\Pi_L$ expose the lower-level data used by a higher-level description, and let $\Gamma_{\mathrm{adm}}(c)$ collect the branch charts admitted by the surrounding assembly or Noether sea context. The context-restricted history set is then
 
 $$
 \mathcal K_c
@@ -2434,7 +2430,7 @@ B_k^W(c)
 \{\phi\in\mathcal K_c\mid \Pi_{\mathrm{br}}\Phi_T^c(\phi)=k,\ \Phi_s^c(\phi)\in\mathcal K_c\ \text{for }0\le s\le T\}.
 $$
 
-The measure $\mu_c$ must come from a declared preparation, return section, coarse-graining, or unresolved Noether-Sea occupation rule; it is not an external probability assigned after the outcome. With that rule fixed, the context-conditioned branch weight is
+The measure $\mu_c$ must come from a declared preparation, return section, coarse-graining, or unresolved Noether sea occupation rule; it is not an external probability assigned after the outcome. With that rule fixed, the context-conditioned branch weight is
 
 $$
 P_c(k)=\mu_c(B_k^W(c)).
@@ -2452,7 +2448,7 @@ Changing $c$ can shift the inferred branch weights $P_c(k)$ by moving basin boun
 
 #### Context Changes and Energy Ledger
 
-A change in context is not a free semantic relabeling. If a surrounding assembly or Noether-Sea state changes from $c$ to $c'$, the emergence claim is admissible only when the changed constraints alter the accessible basin support and the change can be accounted for by the same energy and provenance bookkeeping used elsewhere in the theory. The ontology-level rule remains architrino motion plus causal wakes; the effective level records which assembly branches become available.
+A change in context is not a free semantic relabeling. If a surrounding assembly or Noether sea state changes from $c$ to $c'$, the emergence claim is admissible only when the changed constraints alter the accessible basin support and the change can be accounted for by the same energy and provenance bookkeeping used elsewhere in the theory. The ontology-level rule remains architrino motion plus causal wakes; the effective level records which assembly branches become available.
 
 For a candidate assembly branch $B_k^W$, a clean opening criterion is
 
@@ -2470,7 +2466,7 @@ $$
 \mathsf e=(X,I_{\mathsf e},Y_{\mathsf e}),
 $$
 
-where $X$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether-Sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law; it is the energy component of the event ledger,
+where $X$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law; it is the energy component of the event ledger,
 
 $$
 \Delta_E(\mathsf e)
@@ -2490,7 +2486,7 @@ W_{\partial\Omega}
 =0.
 $$
 
-Here $K_{\mathrm{mech}}$ is the mechanical kinetic energy of the retained architrino or assembly degrees of freedom, the subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is work crossing the retained subsystem boundary. The term $E_{\mathrm{sea}}$ records retained Noether-Sea energy changes. The no-double-counting rule is explicit: a Noether-Sea update included in retained $E_{\mathrm{sea}}$ must not also appear as an outgoing row in $Y_{\mathsf e}$, while a Noether-Sea change exported outside the retained subsystem belongs in $Y_{\mathsf e}$ rather than in retained $E_{\mathrm{sea}}$. If a local potential reconstruction is used, it may replace $E_{\text{wake}}$ as an equivalent work-integral account on the declared window; it must not be added as a second independent energy store without a crosswalk. Radiation, recoil, reaction products, remnant excitation, and unresolved medium updates must be named inside $Y_{\mathsf e}$ and closed through [Reaction Ledger and Channel Closure](../../../../markdown/aaa/validation/reaction-ledger.md) rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
+Here $K_{\mathrm{mech}}$ is the mechanical kinetic energy of the retained architrino or assembly degrees of freedom, the subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is work crossing the retained subsystem boundary. The term $E_{\mathrm{sea}}$ records retained Noether sea energy changes. The no-double-counting rule is explicit: a Noether sea update included in retained $E_{\mathrm{sea}}$ must not also appear as an outgoing row in $Y_{\mathsf e}$, while a Noether sea change exported outside the retained subsystem belongs in $Y_{\mathsf e}$ rather than in retained $E_{\mathrm{sea}}$. If a local potential reconstruction is used, it may replace $E_{\text{wake}}$ as an equivalent work-integral account on the declared window; it must not be added as a second independent energy store without a crosswalk. Radiation, recoil, reaction products, remnant excitation, and unresolved medium updates must be named inside $Y_{\mathsf e}$ and closed through [Reaction Ledger and Channel Closure](../../../../markdown/aaa/validation/reaction-ledger.md) rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
 
 #### Assembly Theory and Recursion
 
@@ -2510,8 +2506,8 @@ The recursive picture is easiest to read as a bottom-up construction ladder. The
 3. **First bound assembly candidate:** a stable orbiting electrino:positrino binary is the first bound assembly once its branch stability certificate is supplied.
 4. **Nested shell swarms:** binaries can capture into larger nested systems, giving isolated binaries, shell swarms, and nested shell swarms with progressively stronger shielding structure.
 5. **Noether swarm stabilization:** the nested shell swarm is the first fully three-dimensional shielded Noether swarm scaffold; see [Noether Swarm](../../../../markdown/aaa/noether-swarm/noether-swarm.md). Its persistence comes from delayed phase closure, nested energy separation, and reduced external reactivity through superposition.
-6. **Fermions with axial layers:** a nested shell swarm plus a six-site axial layer is the working map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same swarm architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether Sea](../../../../markdown/aaa/assemblies/particle-masses.md).
-7. **Collective medium:** larger balanced populations of neutral swarms organize into the [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md), so the Noether Sea is a higher-order collective state of neutral swarms rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Spacetime Assemblies](../../../../markdown/aaa/spacetime/spacetime-assemblies.md).
+6. **Fermions with axial layers:** a nested shell swarm plus a six-site axial layer is the working map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same swarm architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
+7. **Collective medium:** larger balanced populations of neutral swarms organize into the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), so the Noether sea is a higher-order collective state of neutral swarms rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md).
 8. **Bosonic channels:** propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating pro/anti planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../../../../markdown/aaa/interactions/gauge-structure-emergence.md).
 9. **Composite matter and reactions:** nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
 
@@ -2526,17 +2522,17 @@ When this corpus says that something "emerges," the claim should identify four p
 3. **Regime:** where the emergent description is expected to hold.
 4. **Breakdown:** what changes outside that regime.
 
-For example, Lorentz-like behavior is an emergence claim only when the text names the moving-assembly deformation law, the clock-period renormalization law, the Noether-Sea response mechanism, and the coefficient or theorem target that would suppress preferred-frame leakage. The claim should also state the weak-gradient or low-energy regime where the effective law is expected to hold, and identify the self-hit, separator, or strong-field conditions where the approximation can fail.
+For example, Lorentz-like behavior is an emergence claim only when the text names the moving-assembly deformation law, the clock-period renormalization law, the Noether sea response mechanism, and the coefficient or theorem target that would suppress preferred-frame leakage. The claim should also state the weak-gradient or low-energy regime where the effective law is expected to hold, and identify the self-hit, separator, or strong-field conditions where the approximation can fail.
 
 This rule keeps emergence from becoming a placeholder. It is acceptable to use emergence as a programmatic claim, but the surrounding prose must say whether the mechanism is derived, simulated, conjectural, or only a routing target.
 
 Just as important, the ladder should not be read as a single unbranched stack after the Noether swarm appears. Once stable swarms exist, three descriptive branches open at once:
 
 -   **Matter branch:** Noether swarms carrying axial layers yield fermions and then larger composites.
--   **Medium branch:** dense balanced populations of neutral swarms yield the Noether Sea.
+-   **Medium branch:** dense balanced populations of neutral swarms yield the Noether sea.
 -   **Interaction branch:** phase-locked disturbances and exchange corridors yield effective bosonic behavior.
 
-This separation of branches helps keep levels distinct. The theory does not place a photon, a fermion axial layer, and the Noether Sea on the same explanatory rung; they are different organizations of the same underlying ingredients.
+This separation of branches helps keep levels distinct. The theory does not place a photon, a fermion axial layer, and the Noether sea on the same explanatory rung; they are different organizations of the same underlying ingredients.
 
 #### Emergent Measures and Stability Markers
 
@@ -2544,7 +2540,7 @@ The most useful observer-level quantities enter only after assemblies have forme
 
 -   **Angular momentum:** derivation target. The mechanism is organized binary circulation and ordered orientation data; the mapping is through the return-period phase and angular-momentum ledger; the regime is stable or metastable closed cycles; the breakdown occurs at separator crossings, root-ledger changes, or dissociation.
 -   **Chirality:** derivation target. The mechanism is ordered-frame precession and causal-writhe parity; the mapping is through the Noether swarm closure label; the regime is branch-preserving deformation; the breakdown occurs when a causal-root bifurcation or reconnection changes the handed branch.
--   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is trapped internal causal history, shielding, and Noether-Sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether-Sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
+-   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is a closed internal causal-history ledger, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
 In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
 

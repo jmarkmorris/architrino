@@ -15,7 +15,7 @@ Required inputs:
 - $E_{\text{internal}}(A_0)$;
 - $\zeta(A_0)$;
 - residual anisotropy $\mathcal{L}_{\text{aniso}}$;
-- homogeneous Noether-Sea cell data with $u^i_{\text{sea}}=0$, $G_{\text{grad}}=0$, $n=1$, and $\chi_{\text{sea}}=1$.
+- homogeneous Noether sea cell data with $u^i_{\text{sea}}=0$, $G_{\text{grad}}=0$, $n=1$, and $\chi_{\text{sea}}=1$.
 
 ## Response Target
 
@@ -118,7 +118,7 @@ $$
 +\mathcal{R}_{\mathrm{AG}}.
 $$
 
-The certificate must bound $\mathcal{R}_{\mathrm{AG}}$ and must report whether any trace-free signal is sourced by branch strain, Noether-Sea delay anisotropy, or unresolved leakage. A null directional sector is admissible only when the trace-free projection is below the declared signal, birefringence, dispersion, and preferred-frame residual budgets.
+The certificate must bound $\mathcal{R}_{\mathrm{AG}}$ and must report whether any trace-free signal is sourced by branch strain, Noether sea delay anisotropy, or unresolved leakage. A null directional sector is admissible only when the trace-free projection is below the declared signal, birefringence, dispersion, and preferred-frame residual budgets.
 
 ## Exposed Inertial-Response Trace Invariant
 
@@ -215,7 +215,7 @@ Report the internal relocking work, phase residuals, root-ledger changes, and ex
 
 ### Gradient Probe
 
-Perturb the homogeneous Noether-Sea cell by a small matched gradient:
+Perturb the homogeneous Noether sea cell by a small matched gradient:
 
 $$
 G_{\text{grad}}
