@@ -1695,6 +1695,161 @@ the $\sin\delta$ row, $11.480891969090306$, and its growth-increment share is
 $0.43824215565670466$, but the direct expression and $\sin\phi$ rows carry the
 rest of the growth. The obstruction is therefore a shared positive-$\xi$
 producer-image variation, not a single-component nested stencil defect.
+The same diagnostic now decomposes the direct refined worst stencil into the
+nonconstant $N_{38}$ source terms. At stencil index $27$ on the $\xi$ span
+$[1.4373480185956347,1.9375400034828008]$, $\delta^2/\nu^2$, $\sin\phi$, and
+$\sin\delta$ replay the direct fourth difference with relative gap
+$3.172314916464896\times10^{-12}$. The replay shows partial cancellation, not
+complete cancellation: $\sin\delta$ carries $75.25653319792786\%$ of the
+absolute fourth-difference mass with the direct sign, $\sin\phi$ opposes that
+sign, and $\delta^2/\nu^2$ contributes only $0.7857012766573206\%$. The
+signed-to-absolute source-sum ratio is $0.5208446894917035$. This makes the
+next normal-form target more precise: explain the positive-$\xi$ sine-pair
+curvature balance before Cauchy/Taylor majorants are applied, rather than
+seeking an omitted source term or a complete branch-pair cancellation.
+\texttt{buildH39H38ExpressionN38SinePairNormalFormDiagnosticCandidate} now
+checks that normal form directly. On the same stencil, the identity
+$\sin\delta+\sin\phi=2\sin((\delta+\phi)/2)\cos((\delta-\phi)/2)$ holds on the
+live midpoint producer rows with maximum relative coefficient residual
+$5.940710236511779\times10^{-13}$. The reduced sum coordinate has only orders
+$0$ and $2$: $(\delta+\phi)/2=(\delta_f+\phi_f)/2-y^2$, so it carries no branch
+or h-row dependence, while $(\delta-\phi)/2$ carries the branch and h-row
+transport. The diagnostic also finds the trap that kept the previous bounding
+coordinate lossy: if $\delta+\phi$ is formed after interval h-row substitution,
+outward rounding leaves raw h-tail residue up to $0.25000000000000006$, but
+the explicitly reduced half-sum has zero h-tail. The sine pair accounts for
+$0.9921429872334268$ of the absolute source fourth-difference mass and
+$0.9849148644049466$ of the signed direct fourth difference. Thus the next
+certificate should be built in reduced $(\sigma,\eta)$ coordinates before
+interval h-row substitution, not as two independent sine majorants.
+\texttt{buildH39H38ExpressionN38ReducedSigmaEtaSourceDiagnosticCandidate}
+then tests the same route with the live $h_{38}$ solve target zeroed. The
+explicit $\sigma=(\delta+\phi)/2$ coordinate remains h-row free, and the raw
+post-substitution half-sum still shows h-tail rounding residue, but the naive
+product replay is not a closure certificate. On the five-row positive-$\xi$
+stencil the raw-to-reduced sine width ratio is only
+$[0.8690468744159027,0.8690469333430854]$, so
+$2\sin\sigma\cos\eta$ is wider than the raw sine-pair interval after the live
+$h_{38}$ zeroing. The full reduced source also widens: the
+reduced-full-to-raw-direct width ratio is
+$[1.1274848477512474,1.1274849138532606]$. The next certificate must therefore
+control $\eta$ transport and the $\delta^2/\nu^2$ versus sine-pair correlation
+together inside the reduced chart. A product-substitution interval replay alone
+is now ruled out as the H39 closure route.
+\texttt{buildH39H38ExpressionN38EtaTransportCouplingDiagnosticCandidate} then
+localizes the widened reduced-source width inside that same chart. It freezes
+all transported $\eta$ h rows, replays one active h row at a time, and keeps
+$h_{38}$ zeroed throughout. Frozen $\eta$ h rows collapse the reduced-source
+width to less than $10^{-12}$ of the raw direct width; the live observed ratio
+is about $2.5\times10^{-15}$. The all-active reduced source still widens by the
+same factor as the product no-go, but the one-active replay shows that this is
+not a broad $\eta$-tail effect: $h_{37}$ contributes about $73.84\%$ of the
+all-active width, $h_{36}$ about $16.46\%$, and $h_{35}$ about $6.84\%$, so the
+terminal triple carries more than $97\%$ of the width. The next proof route is
+therefore a coupled terminal-row source enclosure or normal form for
+$h_{37},h_{36},h_{35}$ inside $(\sigma,\eta)$ before applying Cauchy/Taylor
+majorants; an independent reduced-product interval replay is already excluded.
+\texttt{buildH39H38ExpressionN38TerminalEtaGraphDiagnosticCandidate} now tests
+that route directly on the same five-row positive-$\xi$ stencil. The
+terminal-only replay for $h_{37},h_{36},h_{35}$ carries more than $97.13\%$ of
+the all-active reduced-source width, while the nonterminal replay stays below
+$2.87\%$. Replacing only those terminal rows by a local quadratic h-row graph
+collapses the terminal width below $3.15\times10^{-13}$ of terminal-only width,
+and graph-plus-live-nonterminal replay stays below $2.87\%$ of all-active
+width. This is the first positive executable route after the reduced-chart
+product no-go: terminal predecessor transport is smooth enough in the local
+fold coordinate $\xi$ to remove the wall when replayed as a graph. The raw
+interval-residual replay is also a controlled no-go: adding ordinary H38
+producer interval residual hulls back to the same terminal graph recreates
+essentially the full terminal wall, at least $1.0$ times terminal-only width.
+The next certificate must therefore prove a dependency-preserving terminal
+graph remainder for $h_{37},h_{36},h_{35}$, not export raw terminal row
+interval residuals.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now turns that route into an explicit residual target and checks whether the
+current H38 producer intervals fit that target. On the same five-row stencil,
+graph-plus-live-nonterminal replay stays below the $5\%$ all-active width
+target, while both the raw terminal producer interval residual and a symmetric
+scale-$1$ raw residual replay return to essentially $100\%$ of the all-active
+width. The allowed symmetric raw-residual scale for
+$h_{37},h_{36},h_{35}$ is tightly localized between
+$0.02202814627390118$ and $0.022029786299231222$, while the midpoint quadratic
+fit residual scale is below $1.58\times10^{-12}$ of the raw residual scale and
+below $7.18\times10^{-11}$ of the allowed residual radius. The current producer
+intervals do not fit inside graph plus allowed budget: they require essentially
+scale $1$, or about $45.4$ times the allowed scale. This remains
+candidate-only, but it localizes the open certificate target to producer
+interval width rather than terminal graph geometry. The next certificate route
+is a directed-rounded producer-image refinement or dependency-preserving
+terminal graph remainder that shrinks the independent terminal producer hull by
+roughly this factor on the live stencil.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now also emits a bounded terminal producer refinement forecast. Because live
+multi-count refinement probes at $64$ and $128$ subcells were too slow for the
+default regression path, the default forecast uses the measured $32$-subcell
+gap and a conservative linear subcell-width scaling law. It projects about
+$1453$ local subcells, or $45.4\times$ the current stencil, before the
+independent terminal producer hull would fit the already measured terminal
+graph remainder budget. This keeps the result candidate-only and does not
+certify a terminal provider enclosure. It does, however, sharpen the blocker:
+ordinary brute partitioning is a large local job, while the higher-value route
+remains a dependency-preserving terminal graph remainder or directed-rounded
+producer-image enclosure for $h_{37},h_{36},h_{35}$.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now also probes a shared terminal-residual coordinate for
+$h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the
+terminal rows, it samples a common coordinate $\zeta$ in
+$h_i(\xi,\zeta)=q_i(\xi)+c_i+\zeta r_i$ on the same positive-$\xi$ stencil.
+This cuts the independent interval-residual wall by about $5.6\times$: the
+sample-hull width is about $0.1787141938837605$ of all-active width, while
+each fixed-$\zeta$ replay stays below $0.02860030964379187$ of all-active
+width. This is a real dependency signal, but not a closure certificate. The
+full sample hull across $\zeta$ remains above the $5\%$ budget, but a linear
+residual-coordinate partition forecast projects that $8$ $\zeta$ slices would
+reduce the worst partitioned hull to $0.047364538763892544$ of all-active
+width. The next proof object is therefore much sharper than brute speed
+partitioning: certify a small residual-coordinate partition or a coupled
+$\xi$-$\zeta$ terminal normal form before claiming a directed-rounded terminal
+provider enclosure.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now converts that forecast into two executable partition replays. The ordinary
+interval $\zeta$ slice still fails: its worst graph-$\xi$ slice width is about
+$0.15003428732691895$ of all-active width, because the interval form splits one
+shared residual coordinate back into independent terminal h-row residuals. The
+dependency-preserving endpoint replay succeeds at candidate level: it keeps
+$\zeta$ as one coordinate and hulls only the two endpoint replays for each of
+the $8$ slices, giving worst graph-$\xi$ endpoint-slice width about
+$0.047364535153415446$ of all-active width. This does not certify the provider
+yet, but it identifies the next mathematical proof burden precisely: prove that
+each $\zeta$ slice is endpoint-controlled, monotone, convex, or derivative
+bounded in the shared residual coordinate, rather than exporting independent
+terminal residual intervals.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now records the endpoint-control reason as an order-gap diagnostic. The shared
+residual rows $h_{35},h_{36},h_{37}$ enter \texttt{branchSeriesCoordinates} at
+$y^{38},y^{39},y^{40}$, while the live source coefficient is $y^{42}$. Any term
+with two terminal residual factors would begin no earlier than $y^{76}$, so the
+coefficient is affine in the shared coordinate $\zeta$ on this target row. The
+diagnostic reports route
+\texttt{shared-terminal-residual-zeta-affine-by-y-order-gap}, maximum
+shared-residual power $1$, and two-factor gap $34$. This upgrades the candidate
+route: the next closure object is a directed-rounded graph-$\xi$, eight-slice
+affine-$\zeta$ terminal provider, not another independent residual box or raw
+subcell refinement chase.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now makes that affine endpoint route explicit in the emitted data. Each
+endpoint partition records its $\zeta$ interval, endpoint coefficient intervals,
+slope interval, intercept interval, endpoint hull, and endpoint-hull width
+share. On the live graph-$\xi$ stencil the worst affine-envelope width share is
+still $0.047364535153415446$ of all-active width, matching the
+dependency-preserving endpoint hull and staying below the $5\%$ target. The
+worst graph affine slope bound is about $1.963684093411895\times10^{22}$. Each
+partition also emits a midpoint replay against the affine prediction; the worst
+graph midpoint-linearity gap bound is $2.5197683896201337\times10^{22}$ and contains
+zero. This is a sanity check for the order-gap route, not a directed-rounded
+provider certificate. The next proof object is therefore a graph-$\xi$,
+eight-slice affine-$\zeta$ terminal provider whose producer-image residuals are
+bounded with directed rounding on the same domain.
 A non-default $64$-stencil probe confirms that the $32$-stencil target is not
 yet stable. Over $16/32/64$ stencils the largest observed fourth-derivative
 estimate rises to $2.1162902030980995\times10^{15}$, with observed retile
