@@ -11046,6 +11046,8 @@ Causal-set programs are strongest here as a discipline on what causal ordering c
 
 A second comparison lesson is the distinction between a continuum approximation and a continuum limit. For this bridge, the correct project phrase is **continuum approximation**: effective fields, metrics, and volumes become valid when many Noether swarm degrees of freedom are coarse-grained, but the Euclidean void is not being replaced by an actual continuum-limit geometry and the Noether swarm assembly inventory is not erased by taking a regulator to zero.
 
+A third comparison lesson concerns discreteness and symmetry. Causal-set work uses irregular Lorentzian sampling as a way to avoid the preferred directions introduced by regular discrete lattices. The $\mathbb{A}\mathbb{A}\mathbb{A}$ import is not stochastic spacetime ontology, but anisotropy discipline: any Noether swarm sampling rule, causal-root ledger, or numerical grid must be separated from physical discreteness unless the observer-level reconstruction keeps $\epsilon_{\text{LV}}$, $\Delta_{\text{tw}}(\beta)$, and the PPN preferred-frame coefficients within the declared bounds.
+
 ##### Comparison Matrix
 
 | Inherited model | What it preserves | $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer | Forbidden inference | Closure target |

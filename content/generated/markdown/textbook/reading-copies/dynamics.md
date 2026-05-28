@@ -6056,6 +6056,8 @@ $$
 $$
 The force kernel retains direction via $\hat{\mathbf{r}}$, while the scalar statistic kernel keeps only the magnitude. This is the minimal change that turns a vector interaction into a scalar comparison functional while preserving the same causal Jacobian geometry as the master equation. It should not be read as the exact Fokker-type action whose variation derives the force law.
 
+Causal-set action constructions provide a useful external comparison at this point. Their lesson is that interval counts can be arranged so that a discrete causal-order statistic approximates continuum curvature or action in a suitable large-scale regime. The analogous $\mathbb{A}\mathbb{A}\mathbb{A}$ question is whether causal-wake and causal-root statistics built from the master-equation kernel admit a coarse-grained operator or action statistic that matches the required GR and QFT recovery targets. That benchmark does not license importing causal-set dynamics; it only sharpens the test for any proposed scalar action-counting functional.
+
 As a scalar, $\mathcal{A}_{\text{self}}$ summarizes the total strength of causal self‑hits along a worldline. It is derived directly from the interaction structure, but with the directional information removed.
 
 For reference, the self‑interaction term in the master equation uses the same kernel:

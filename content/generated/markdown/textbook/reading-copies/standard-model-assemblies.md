@@ -943,6 +943,30 @@ In the reversible below-threshold regime, $\mathsf{I}_{A}^{ab}$ is built from th
 
 This ratio form is a sharper anti-fitting invariant than the absolute scalar formula. Changing $\alpha_{\mathrm{m}}$ cannot improve one particle without changing all particles in the same regime. Changing $\zeta(A)$ is admissible only when it is produced by the branch ledger and exposure quotient for $A$, not when it is selected from the observed mass table. Failure of the tensor replacement in anisotropic or pressure-dependent cells is evidence that the scalar mass map is being used outside its regime.
 
+##### Charge-Conjugate Mass Equality
+
+The equality of a particle's rest mass with the rest mass of its antiparticle is a mass-map constraint, not a separate fitted fact. Let $\bar A$ denote the charge-conjugate branch obtained from an accepted assembly $A$ by reversing all intrinsic polarity signs and pro/anti orientation while preserving the shielding-coherence class, causal-root ledger, branch geometry, and Noether sea response record:
+$$
+q_a(\bar A)=-q_a(A).
+$$
+If the mass-facing ledger depends on polarity through even data such as $q_aq_b$, $|q_a|$, causal-root topology, shielding, and polarity-neutral medium response, then complete conjugation leaves the scalar mass trace invariant:
+$$
+E_{\text{internal}}(\bar A)=E_{\text{internal}}(A),
+\qquad
+\zeta(\bar A)=\zeta(A),
+\qquad
+\mathsf{I}_{\bar A}^{ab}=\mathsf{I}_{A}^{ab},
+\qquad
+m_{\mathrm{tr}}(\bar A)=m_{\mathrm{tr}}(A).
+$$
+The odd channel is the exposed charge-like projection,
+$$
+Q_{\mathrm{eff}}(\bar A)=-Q_{\mathrm{eff}}(A),
+$$
+not the rest-mass response. This is why the electron and positron can have opposite electric bookkeeping while sharing the same mass-facing causal buildup: the full polarity inversion preserves every internal pair product and every polarity-even exposure term. The constraint does not permit arbitrary partial polarity replacement. Flipping only part of an axial inventory or only one internal component can change $q_aq_b$, branch stability, shielding leakage, and the causal-root ledger, so it is generally a different assembly rather than the antiparticle of $A$.
+
+Thus a candidate mass map fails if an accepted matter branch and its complete anti-branch receive different scalar rest masses in the same neutral Noether sea environment, unless the model explicitly supplies a conjugation-odd medium or branch-asymmetry term and keeps the resulting mass splitting within the declared particle-antiparticle bounds.
+
 Superfluid-vacuum and Nambu-Jona-Lasinio-style comparisons add a useful caution: an excitation gap can look like a rest-energy term without being the ontology of mass. For an accepted assembly branch $A$, the native analogue would be a branch gap
 $$
 \Delta_A^\theta
@@ -2034,6 +2058,14 @@ $$
 $$
 
 This framing keeps lepton universality disciplined. The charged-lepton side of universality says that $e$, $\mu$, and $\tau$ share the same six-site charged-lepton axial pattern and weak-coupling-triad bookkeeping. Their mass hierarchy and lifetime differences must come from shielding coherence, internal causal history, and medium response, not from changing the electric-charge inventory or adding lepton-specific gauge couplings.
+
+The $e^-/e^+$ pair is also the concrete charged-lepton test of charge-conjugate mass equality. In the same neutral Noether sea response record, the mass map must treat the positron as the complete polarity-conjugate electron branch, not as a separately fitted positive-charge particle:
+$$
+m_{\mathrm{tr}}(e^-)=m_{\mathrm{tr}}(e^+),
+\qquad
+Q_{\mathrm{eff}}(e^-)=-Q_{\mathrm{eff}}(e^+).
+$$
+The equality is a constraint on the mass-facing causal ledger: complete polarity inversion preserves the polarity-even internal products, shielding-coherence class, and medium response that feed scalar rest mass, while reversing the exposed electric bookkeeping. A partial polarity replacement inside the axial layer would not be the positron branch; it would generally change the assembly ledger and must be classified as a different or unstable charged-fermion candidate.
 
 #### Assembly and Detection Map
 
@@ -4277,6 +4309,32 @@ $$
 \qquad
 \lambda_{\mathrm{hel}}\in\{+1,-1\}.
 $$
+
+The standard polarization kinds are observer-level summaries of this same transverse ledger, not separate photon species. After removing an irrelevant common phase, write
+$$
+a_u=A_u e^{i\phi_u},
+\qquad
+a_v=A_v e^{i\phi_v},
+\qquad
+A_u^2+A_v^2=1,
+\qquad
+\delta=\phi_v-\phi_u.
+$$
+Then linear polarization is the phase-aligned case $\delta=0$ or $\pi$, so the ledger can be represented by a real transverse axis. Circular polarization is the equal-amplitude quarter-cycle case $A_u=A_v=1/\sqrt2$ and $\delta=\pm\pi/2$. Elliptical polarization is the remaining coherent case: both transverse components are retained with a stable relative phase, with linear and circular polarization appearing as limiting cases of the same ledger.
+
+Unpolarized and partially polarized light are ensemble or source-window summaries. For a distribution $\rho$ over retained transverse photon ledgers, define the normalized ensemble transverse record
+$$
+C_{\rho}^{ab}
+=
+\frac{
+\left\langle a_\perp^a\overline{a_\perp^b}\right\rangle_{\rho}
+}{
+\left\langle h_{cd}\overline{a_\perp^c}a_\perp^d\right\rangle_{\rho}
+},
+\qquad
+h_{ab}C_{\rho}^{ab}=1.
+$$
+A pure polarization record is rank one inside $\operatorname{im}P_{\perp}$. An unpolarized record has $C_{\rho}^{ab}=\frac12P_{\perp}^{ab}$, so no analyzer axis is preferred. A partially polarized record lies between these cases. Gate B must derive the underlying transverse ledgers, source or material averaging window, and analyzer response before these effective summaries are treated as recovered optical behavior.
 
 The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-frame spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
 
