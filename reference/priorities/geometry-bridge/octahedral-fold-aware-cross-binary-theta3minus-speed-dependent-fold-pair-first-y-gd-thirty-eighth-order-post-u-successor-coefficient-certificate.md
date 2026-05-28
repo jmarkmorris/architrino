@@ -175,6 +175,71 @@ polynomial graph-plus-residual. A cubic comparison does not materially improve
 the pressure, so the directed-rounded producer-image enclosure should target
 the lower-degree quadratic graph first. This remains candidate-only until that
 enclosure is proved.
+The interval-residual check tightens the H38-side burden. If the producer image
+is enclosed as the quadratic graph plus ordinary H38 interval residual hulls,
+the H39 handoff pressure is $1.3098672358675488\times10^{22}$, which is only a
+factor $4.000194967056995$ below the independent h-row box. The worst residual
+is again $h_{38}$, and its interval hull is essentially the h38 solve interval
+width rather than the graph error. A $4$-to-$8$ local subcell refinement gives
+pressure exponent $1.000013406731329$, implying that brute interval residual
+refinement would need about $3.290318928\times10^9$ local subcells to recover
+the midpoint-residual scale. The H38 successor handoff should therefore export
+a dependency-preserving residual normal form, or a piecewise residual graph,
+instead of a plain interval residual box.
+The first correlated-width normal form has now been tested at H39. Writing the
+producer handoff as $h_i(\xi,\eta)=q_i(\xi)+c_i+r_i\eta$ improves the H39
+shifted-index-$1$ pressure to $3.7189936065423036\times10^{20}$, a factor
+$17.610343040598536$ below the interval-residual replay and a factor
+$140.89092046871806$ below the independent h-row box. It is still
+$2.336754035638012\times10^7$ above midpoint-residual scale. The dangerous
+suffix is already present when only the $h_{38}$ residual width is active:
+$5.0026463677528906\times10^{20}$. Thus the H38 successor cannot close the
+handoff by exporting a full-width shared $\eta$ coordinate. It must expose a
+sharper dependency in the $h_{38}$ solve itself, such as numerator/slope
+correlation or a piecewise residual graph whose effective width is reduced
+before H39 replay.
+The solve-width factorization identifies which part of that solve must be
+sharpened. Since the H38 row solves
+$h_{38}=-N_{38}/S_{37}$, the diagnostic replays the full interval quotient, the
+quotient with $S_{37}$ fixed at its midpoint, the quotient with $N_{38}$ fixed
+at its midpoint, and the both-midpoint quotient. Full quotient pressure is
+$5.002646364218093\times10^{20}$ and slope-midpoint pressure is
+$5.002646141988511\times10^{20}$, while numerator-midpoint pressure collapses
+to $4.0904191135450396\times10^{12}$. The exported solve width is therefore
+almost entirely numerator width: the numerator-only solve width is
+$0.9999999555775948$ of the full solve width, while the slope-only solve width
+is only $9.990560893381585\times10^{-17}$ of the full solve width. The next
+H38 successor handoff should expose a directed-rounded graph, factorization,
+or subdomain certificate for $N_{38}$ itself; refining the inherited slope
+interval is not the active closure route.
+The numerator midpoint graph confirms that this is not geometric roughness of
+the H38 image. A quadratic graph for $N_{38}$ over $\xi$ has maximum midpoint
+residual $3.6011482546175\times10^{11}$, while the largest numerator interval
+width is $3.67725335756\times10^{23}$. The H38 successor should therefore
+export $N_{38}$ through a directed-rounded graph/Taylor enclosure or
+subdomain-normal-form certificate before forming $h_{38}=-N_{38}/S_{37}$.
+The H39 replay of that numerator graph is now explicit. Graph-only
+$N_{38}(\xi)$ gives shifted-index-$1$ pressure
+$4.0882852984579976\times10^{12}$, and graph plus midpoint residual gives
+$4.0889087889467676\times10^{12}$. The full slope interval changes the
+graph-only pressure by only $1.000000831612749$. But if the H38 successor
+exports the numerator graph plus an ordinary interval-residual hull, H39
+pressure returns to $5.002660154369953\times10^{20}$. Therefore the H38
+successor handoff must preserve the numerator graph dependency itself; a raw
+interval residual at the numerator level is already known to fail.
+The latest residual-budget diagnostic converts this into an H38 successor
+engineering target. On the $4$, $8$, and $16$ local subcell covers, the raw
+$N_{38}$ residual hull remains essentially the full numerator interval width
+and its H39 pressure scales linearly under refinement, with exponent
+$1.0000016614193274$. The width scaling exponent is similarly
+$1.0000016681321142$. A brute interval residual handoff would therefore need
+an impractical refinement factor. The useful target is sharper: to keep the
+H39 replay at h-row-midpoint scale, the worst required shrink factor from the
+raw $N_{38}$ residual hull is $1.7245027326360488\times10^8$, while the sampled
+midpoint residual width is at most $0.00011864454815927154$ of the allowed
+budget. The H38 successor certificate should next export a directed-rounded
+$N_{38}$ Taylor remainder or local normal form that proves this budget before
+the solve $h_{38}=-N_{38}/S_{37}$ is applied.
 
 It does not claim:
 

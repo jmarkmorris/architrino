@@ -1483,6 +1483,80 @@ same graph-plus-residual pressure, so the lower-degree target is sufficient for
 the next certificate attempt. This changes the coefficient-engine target:
 the H38 producer image should be certified as a low-degree polynomial graph in
 $\xi$ plus a residual term, not as a wide independent h-row box.
+\texttt{buildH39PolynomialHRowGraphIntervalResidualDiagnosticCandidate} tests
+the directed-rounded version of that handoff by replacing midpoint residuals
+with H38 producer row interval residuals. The graph-plus-interval-residual
+pressure rises to $1.3098672358675488\times10^{22}$, which is still only a
+factor $4.000194967056995$ below the independent h-row box and is
+$8.228061473840866\times10^8$ times larger than the midpoint residual replay.
+The dominant residual remains $h_{38}$, with residual hull approximately
+$\pm4.6388213974065\times10^{23}$ on the worst producer row; the corresponding
+quadratic graph interval width is only about $2.0008\times10^{11}$. The pressure
+halves under a $4$-to-$8$ producer-subcell refinement with exponent
+$1.000013406731329$, so a brute interval residual route would need about
+$3.290318928\times10^9$ local subcells to recover midpoint-scale pressure. The
+coefficient-engine target is therefore not "quadratic graph plus ordinary
+interval residual hull"; it is a dependency-preserving residual normal form
+that keeps the H38 producer recurrence correlation inside the residual.
+\texttt{buildH39CorrelatedResidualWidthDiagnosticCandidate} tests the first
+dependency-preserving residual normal form with one shared width coordinate,
+$h_i(\xi,\eta)=q_i(\xi)+c_i+r_i\eta$. The maximum sampled pressure is
+$3.7189936065423036\times10^{20}$, a factor $17.610343040598536$ below the
+ordinary interval-residual replay and a factor $140.89092046871806$ below the
+independent h-row box. This confirms that the residual interval hull contains
+real correlation, but the full shared width is still
+$2.336754035638012\times10^7$ above midpoint-residual scale. The
+$h_{38}$-only suffix pressure is $5.0026463677528906\times10^{20}$, so the
+coefficient-engine blocker is the H38 solve-width dependency itself. The next
+executable route should certify a narrower $h_{38}$ solve-width factor,
+numerator/slope correlation, or piecewise residual graph before the source
+coefficient is bounded.
+\texttt{buildH39H38SolveWidthFactorizationDiagnosticCandidate} now splits that
+dependency. It reconstructs $h_{38}=-N_{38}/S_{37}$ from the exported
+\texttt{h38\_residual\_before\_solve} numerator and
+\texttt{h38\_solve\_slope\_interval}, then replays full solve width,
+slope-midpoint width, numerator-midpoint width, and both-midpoint width through
+the H39 shifted-index-$1$ source. Full solve-width pressure is
+$5.002646364218093\times10^{20}$; slope-midpoint pressure is
+$5.002646141988511\times10^{20}$; numerator-midpoint pressure is only
+$4.0904191135450396\times10^{12}$. The corresponding width ratios are
+$0.9999999555775948$ for numerator-only over full solve width and
+$9.990560893381585\times10^{-17}$ for slope-only over full solve width. Thus
+the coefficient-engine target is no longer a generic numerator/slope pairing:
+the next certificate must graph or factor the H38 recurrence numerator
+$N_{38}$ itself before it is divided by the inherited slope.
+The numerator graph check inside the same diagnostic shows why this is a
+promising certificate route rather than just a narrower failure label. A
+quadratic fit to the $N_{38}$ midpoints over the fold coordinate has maximum
+midpoint residual $3.6011482546175\times10^{11}$, while the maximum exported
+numerator interval width is $3.67725335756\times10^{23}$. The ratio is
+$9.793038184910384\times10^{-13}$. Thus the coefficient engine should carry a
+directed-rounded numerator graph or numerator Taylor model into the $h_{38}$
+solve, instead of applying a wide interval hull to $N_{38}$ and then dividing.
+\texttt{buildH39H38NumeratorGraphSolveDiagnosticCandidate} now tests that
+handoff directly. It builds $N_{38}(\xi)$ first, forms
+$h_{38}=-N_{38}(\xi)/S_{37}$, and replays the result through the shifted
+H39 source. The graph-only numerator pressure is
+$4.0882852984579976\times10^{12}$, and graph plus midpoint residual is
+$4.0889087889467676\times10^{12}$. Keeping the full slope interval changes the
+graph-only replay only by $1.000000831612749$. However, graph plus the ordinary
+interval-residual hull gives $5.002660154369953\times10^{20}$, essentially the
+same as the full solved-$h_{38}$ obstruction. The coefficient-engine route is
+therefore a directed-rounded dependency-preserving numerator graph/Taylor
+provider, not a numerator graph plus raw interval residual hull.
+\texttt{buildH39H38NumeratorGraphResidualBudgetDiagnosticCandidate} turns that
+route into a quantitative certificate target. Sweeping $4$, $8$, and $16$
+producer subcells shows that the raw $N_{38}$ interval-residual pressure and
+raw residual width both scale with exponent essentially $1$ under refinement:
+$1.0000016614193274$ for pressure and $1.0000016681321142$ for width. The raw
+residual hull remains the whole numerator interval width, so brute refinement
+is still the wrong certificate mechanism. However, to keep the H39 replay at
+h-row-midpoint scale, the worst required shrink factor is
+$1.7245027326360488\times10^8$, while the sampled midpoint residual width is
+only $0.00011864454815927154$ of the allowed budget. The coefficient engine
+therefore has a concrete next target: prove an $N_{38}$ Taylor or local
+normal-form remainder below the h-row-midpoint residual budget before applying
+the solve $h_{38}=-N_{38}/S_{37}$.
 \texttt{computeH39PredecessorHRowProviderBoundaryCandidate} now records that
 boundary explicitly. Given an h38 row, it counts the exported h-interval,
 solve-slope, and residual fields and reports whether a complete

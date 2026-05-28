@@ -2,12 +2,22 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  buildH39CorrelatedResidualWidthDiagnosticCandidate,
+  buildH39H38NumeratorGraphResidualBudgetDiagnosticCandidate,
+  buildH39H38NumeratorGraphSolveDiagnosticCandidate,
+  buildH39H38SolveWidthFactorizationDiagnosticCandidate,
   buildH39AffineHRowGraphSubdivisionDiagnosticCandidate,
   buildH39OneNoiseAffineHRowTransportDiagnosticCandidate,
+  buildH39PolynomialHRowGraphIntervalResidualDiagnosticCandidate,
   buildH39PolynomialHRowGraphResidualDiagnosticCandidate,
   buildH39RecurrenceRefinedSubcoverPressureDiagnostic,
+  validateH39CorrelatedResidualWidthDiagnostic,
+  validateH39H38NumeratorGraphResidualBudgetDiagnostic,
+  validateH39H38NumeratorGraphSolveDiagnostic,
+  validateH39H38SolveWidthFactorizationDiagnostic,
   validateH39AffineHRowGraphSubdivisionDiagnostic,
   validateH39OneNoiseAffineHRowTransportDiagnostic,
+  validateH39PolynomialHRowGraphIntervalResidualDiagnostic,
   validateH39PolynomialHRowGraphResidualDiagnostic,
   validateH39RecurrenceRefinedSubcoverPressureDiagnostic,
 } from "../scripts/neutral-swarm/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs";
@@ -1671,6 +1681,583 @@ test("h39 polynomial h-row graph residual resolves affine residual curvature can
   );
   assert.equal(
     diagnostic.claim_boundary.certifies_polynomial_h_row_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 polynomial h-row graph interval residual exposes producer-width wall candidate-only", () => {
+  const diagnostic =
+    buildH39PolynomialHRowGraphIntervalResidualDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      outerRadius: 0.001,
+      shiftedIndex: 1,
+      xiDomain: [-2, 2],
+      polynomialDegree: 2,
+      polynomialSourceSubcellCount: 4,
+      xiPartitionCounts: [1, 2, 4, 8],
+      residualSubcellCounts: [4, 8],
+    });
+
+  assert.deepEqual(
+    validateH39PolynomialHRowGraphIntervalResidualDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-polynomial-h-row-graph-interval-residual-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-polynomial-h-row-graph-interval-residual-diagnostic"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.deepEqual(diagnostic.xi_domain, [-2, 2]);
+  assert.equal(diagnostic.polynomial_degree, 2);
+  assert.equal(diagnostic.polynomial_source_subcell_count, 4);
+  assert.equal(diagnostic.provider_interval_residual_subcell_count, 8);
+  assert.equal(diagnostic.h_row_polynomial_transport_profile.length, 39);
+  assert.deepEqual(diagnostic.xi_partition_counts, [1, 2, 4, 8]);
+  assert.deepEqual(diagnostic.residual_subcell_counts, [4, 8]);
+  assert.equal(diagnostic.polynomial_interval_residual_diagnostics.length, 2);
+  assert.ok(diagnostic.max_polynomial_interval_residual_pressure > 0);
+  assert.ok(
+    diagnostic.max_polynomial_interval_residual_pressure <
+      diagnostic.baseline_independent_interval_pressure
+  );
+  assert.ok(
+    diagnostic.independent_to_max_polynomial_interval_residual_pressure_ratio >
+      3.9
+  );
+  assert.ok(
+    diagnostic.independent_to_max_polynomial_interval_residual_pressure_ratio <
+      4.1
+  );
+  assert.ok(
+    diagnostic.max_polynomial_interval_residual_pressure >
+      1e8 * diagnostic.max_polynomial_midpoint_residual_pressure
+  );
+  assert.ok(
+    diagnostic.interval_to_midpoint_residual_pressure_ratio > 1e8
+  );
+  assert.equal(
+    diagnostic.max_polynomial_interval_residual_diagnostic.worst_abs_residual
+      .h_index,
+    38
+  );
+  assert.ok(
+    diagnostic.interval_residual_pressure_scaling_summary
+      .observed_pressure_scaling_exponent > 0.95
+  );
+  assert.ok(
+    diagnostic.interval_residual_pressure_scaling_summary
+      .observed_pressure_scaling_exponent < 1.05
+  );
+  assert.ok(
+    diagnostic.interval_residual_pressure_scaling_summary
+      .estimated_subcell_count_for_target_pressure > 1e9
+  );
+  assert.equal(
+    diagnostic.shared_domain_interval_residual_replay_artifact.claim_boundary
+      .h_row_provider_backed_replay,
+    true
+  );
+  assert.equal(
+    diagnostic.shared_domain_interval_residual_replay_artifact
+      .h39_shared_domain_coefficient_summary
+      .h_row_provider_dependency_state,
+    "dependency-preserving-provider-backed-replay"
+  );
+  assert.deepEqual(
+    diagnostic.shared_domain_interval_residual_replay_artifact
+      .h39_shared_domain_coefficient_summary.h_row_provider_kinds,
+    ["candidate-polynomial-h-row-graph-interval-residual-provider"]
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_polynomial_h_row_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_polynomial_interval_residual_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 correlated residual width isolates h38 solve-width danger candidate-only", () => {
+  const diagnostic = buildH39CorrelatedResidualWidthDiagnosticCandidate({
+    targetSpeedInterval: [3.02156, 3.02156007813],
+    branch: "-",
+    rootSubdivisions: 100,
+    outerRadius: 0.001,
+    shiftedIndex: 1,
+    xiDomain: [-2, 2],
+    polynomialDegree: 2,
+    polynomialSourceSubcellCount: 4,
+    residualSourceSubcellCount: 8,
+    noiseSamples: [-2, -1, 0, 1, 2],
+    residualNoiseSamples: [-1, -0.5, 0, 0.5, 1],
+    residualWidthStartIndexes: [38, 37, 36, 35, 34, 30, 20, 10, 0],
+  });
+
+  assert.deepEqual(
+    validateH39CorrelatedResidualWidthDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-correlated-residual-width-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-correlated-residual-width-diagnostic"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.deepEqual(diagnostic.xi_domain, [-2, 2]);
+  assert.equal(diagnostic.polynomial_degree, 2);
+  assert.equal(diagnostic.polynomial_source_subcell_count, 4);
+  assert.equal(diagnostic.residual_source_subcell_count, 8);
+  assert.equal(diagnostic.correlated_residual_sample_replays.length, 25);
+  assert.ok(
+    diagnostic.max_correlated_residual_sample_pressure <
+      diagnostic.interval_residual_pressure
+  );
+  assert.ok(diagnostic.interval_to_correlated_residual_pressure_ratio > 10);
+  assert.ok(
+    diagnostic.independent_to_correlated_residual_sample_pressure_ratio > 100
+  );
+  assert.ok(
+    diagnostic.correlated_to_midpoint_residual_sample_pressure_ratio > 1e7
+  );
+  assert.ok(
+    diagnostic.estimated_full_width_noise_scale_for_midpoint_pressure < 1e-7
+  );
+  assert.equal(diagnostic.worst_residual_profile.h_index, 38);
+  const h38Only = diagnostic.residual_width_suffix_diagnostics.find(
+    (suffix) => suffix.residual_start_index === 38
+  );
+  assert.ok(h38Only);
+  assert.ok(
+    h38Only.max_suffix_pressure >
+      diagnostic.max_correlated_residual_sample_pressure
+  );
+  assert.ok(h38Only.max_suffix_pressure > 1e20);
+  assert.ok(h38Only.suffix_to_full_correlated_pressure_ratio > 1);
+  const fullResidual = diagnostic.residual_width_suffix_diagnostics.find(
+    (suffix) => suffix.residual_start_index === 0
+  );
+  assert.ok(fullResidual);
+  assert.equal(
+    fullResidual.max_suffix_pressure,
+    diagnostic.max_correlated_residual_sample_pressure
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_correlated_residual_width_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 solve-width factorization isolates numerator width candidate-only", () => {
+  const diagnostic = buildH39H38SolveWidthFactorizationDiagnosticCandidate({
+    targetSpeedInterval: [3.02156, 3.02156007813],
+    branch: "-",
+    rootSubdivisions: 100,
+    outerRadius: 0.001,
+    shiftedIndex: 1,
+    xiDomain: [-2, 2],
+    polynomialDegree: 2,
+    polynomialSourceSubcellCount: 4,
+    residualSourceSubcellCount: 8,
+    noiseSamples: [-2, -1, 0, 1, 2],
+    h38NoiseSamples: [-1, -0.5, 0, 0.5, 1],
+  });
+
+  assert.deepEqual(
+    validateH39H38SolveWidthFactorizationDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-solve-width-factorization-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-h38-solve-width-factorization-diagnostic"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.equal(diagnostic.solve_width_profile.h_index, 38);
+  assert.equal(diagnostic.solve_width_profile.sample_count, 8);
+  assert.equal(diagnostic.h38_residual_variant_replays.length, 4);
+  assert.equal(
+    diagnostic.h38_numerator_polynomial_diagnostic.polynomial_degree,
+    2
+  );
+  assert.equal(
+    diagnostic.h38_numerator_polynomial_degree_diagnostics.length,
+    3
+  );
+  assert.equal(
+    diagnostic.dominant_h38_solve_width_source,
+    "h38-recurrence-numerator-width"
+  );
+  assert.equal(
+    diagnostic.dominant_h38_replay_source,
+    "h38-recurrence-numerator-width"
+  );
+  assert.ok(
+    diagnostic.solve_width_profile.numerator_only_to_full_solve_width_ratio >
+      0.999
+  );
+  assert.ok(
+    diagnostic.solve_width_profile.slope_only_to_full_solve_width_ratio < 1e-12
+  );
+  assert.ok(
+    diagnostic.numerator_only_to_full_solve_h38_pressure_ratio > 0.999
+  );
+  assert.ok(
+    diagnostic.slope_only_to_full_solve_h38_pressure_ratio < 1e-7
+  );
+  assert.ok(
+    diagnostic.baseline_to_numerator_midpoint_pressure_ratio > 1e8
+  );
+  assert.ok(
+    diagnostic.full_solve_to_midpoint_solve_h38_pressure_ratio > 1e8
+  );
+  assert.ok(
+    diagnostic.full_solve_to_midpoint_residual_pressure_ratio > 1e7
+  );
+  assert.ok(
+    diagnostic.h38_numerator_midpoint_residual_to_interval_width_ratio < 1e-11
+  );
+  assert.ok(
+    diagnostic.h38_numerator_polynomial_diagnostic
+      .max_numerator_interval_width > 1e23
+  );
+  assert.ok(
+    diagnostic.h38_numerator_polynomial_diagnostic.max_midpoint_residual <
+      1e12
+  );
+  assert.ok(
+    diagnostic.max_slope_only_h38_residual_pressure <
+      diagnostic.midpoint_residual_pressure
+  );
+  assert.ok(
+    diagnostic.solve_width_profile.max_solve_widths.graph_interval <
+      1e-12 *
+        diagnostic.solve_width_profile.max_solve_widths
+          .reconstructed_full_solve
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_h38_solve_width_factorization,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 numerator graph solve separates smooth numerator from interval hull candidate-only", () => {
+  const diagnostic = buildH39H38NumeratorGraphSolveDiagnosticCandidate({
+    targetSpeedInterval: [3.02156, 3.02156007813],
+    branch: "-",
+    rootSubdivisions: 100,
+    outerRadius: 0.001,
+    shiftedIndex: 1,
+    xiDomain: [-2, 2],
+    polynomialDegree: 2,
+    polynomialSourceSubcellCount: 4,
+    residualSourceSubcellCount: 8,
+    noiseSamples: [-2, -1, 0, 1, 2],
+    numeratorNoiseSamples: [-1, -0.5, 0, 0.5, 1],
+  });
+
+  assert.deepEqual(
+    validateH39H38NumeratorGraphSolveDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-numerator-graph-solve-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-h38-numerator-graph-solve-diagnostic"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.equal(
+    diagnostic.h38_numerator_polynomial_diagnostic.polynomial_degree,
+    2
+  );
+  assert.equal(diagnostic.numerator_graph_variant_replays.length, 5);
+  assert.equal(
+    diagnostic.numerator_graph_diagnosis,
+    "numerator-interval-hull-artifact"
+  );
+  assert.ok(diagnostic.max_numerator_graph_only_pressure < 1e13);
+  assert.ok(
+    diagnostic.max_numerator_graph_midpoint_residual_pressure < 1e13
+  );
+  assert.ok(
+    diagnostic.max_numerator_graph_interval_residual_pressure > 1e20
+  );
+  assert.ok(
+    diagnostic.graph_solve_to_full_solve_h39_pressure_ratio < 1e-7
+  );
+  assert.ok(
+    diagnostic.correlated_residual_to_full_solve_h39_pressure_ratio < 1e-7
+  );
+  assert.ok(
+    diagnostic.graph_plus_residual_hull_to_full_solve_h39_pressure_ratio >
+      0.99
+  );
+  assert.ok(
+    diagnostic.graph_plus_residual_hull_to_full_solve_h39_pressure_ratio <
+      1.01
+  );
+  assert.ok(
+    diagnostic.graph_plus_residual_hull_to_correlated_residual_pressure_ratio >
+      1e8
+  );
+  assert.ok(
+    diagnostic.interval_to_midpoint_numerator_graph_pressure_ratio > 1e8
+  );
+  assert.ok(
+    diagnostic.full_solve_to_midpoint_numerator_graph_pressure_ratio > 1e8
+  );
+  assert.ok(
+    diagnostic.independent_to_midpoint_numerator_graph_pressure_ratio > 1e9
+  );
+  assert.ok(
+    diagnostic.midpoint_residual_to_h39_midpoint_pressure_ratio < 1
+  );
+  assert.ok(
+    diagnostic.graph_full_slope_to_graph_slope_midpoint_pressure_ratio <
+      1.00001
+  );
+  assert.ok(
+    diagnostic.graph_full_slope_to_full_solve_width_ratio < 1e-12
+  );
+  assert.ok(
+    diagnostic.h38_numerator_graph_residual_profile
+      .midpoint_residual_to_numerator_width_ratio < 1e-11
+  );
+  assert.ok(
+    diagnostic.h38_numerator_graph_residual_profile
+      .midpoint_residual_hull_to_numerator_width_ratio < 1e-11
+  );
+  assert.ok(
+    diagnostic.h38_numerator_graph_residual_profile
+      .graph_interval_to_numerator_width_ratio < 1e-12
+  );
+  assert.ok(
+    diagnostic.h38_numerator_graph_residual_profile
+      .interval_residual_hull_to_numerator_width_ratio > 0.99
+  );
+  assert.ok(
+    diagnostic.h38_numerator_graph_residual_profile
+      .interval_residual_hull_to_numerator_width_ratio < 1.01
+  );
+  assert.ok(
+    diagnostic.h38_numerator_graph_residual_profile
+      .interval_residual_width > 1e23
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_h38_numerator_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 numerator graph residual budget gives n38 Taylor target candidate-only", () => {
+  const diagnostic =
+    buildH39H38NumeratorGraphResidualBudgetDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      outerRadius: 0.001,
+      shiftedIndex: 1,
+      xiDomain: [-2, 2],
+      polynomialDegree: 2,
+      subcellCounts: [4, 8, 16],
+      noiseSamples: [-2, 0, 2],
+      numeratorNoiseSamples: [-1, 0, 1],
+    });
+
+  assert.deepEqual(
+    validateH39H38NumeratorGraphResidualBudgetDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-numerator-graph-residual-budget-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-h38-numerator-graph-residual-budget-diagnostic"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.deepEqual(diagnostic.subcell_counts, [4, 8, 16]);
+  assert.equal(
+    diagnostic.numerator_residual_budget_diagnosis,
+    "n38-taylor-remainder-budget-route"
+  );
+  assert.equal(diagnostic.residual_budget_summaries.length, 3);
+  assert.ok(
+    diagnostic.max_required_residual_shrink_factor_for_h_row_midpoint_scale >
+      1e8
+  );
+  assert.ok(
+    diagnostic.max_required_residual_shrink_factor_for_h_row_midpoint_scale <
+      2e8
+  );
+  assert.ok(
+    diagnostic.max_midpoint_residual_width_to_allowed_budget_ratio < 1e-3
+  );
+  assert.ok(
+    diagnostic.interval_pressure_scaling_summary
+      .observed_pressure_scaling_exponent > 0.99
+  );
+  assert.ok(
+    diagnostic.interval_pressure_scaling_summary
+      .observed_pressure_scaling_exponent < 1.01
+  );
+  assert.ok(
+    diagnostic.residual_width_scaling_summary
+      .observed_pressure_scaling_exponent > 0.99
+  );
+  assert.ok(
+    diagnostic.residual_width_scaling_summary
+      .observed_pressure_scaling_exponent < 1.01
+  );
+  for (const summary of diagnostic.residual_budget_summaries) {
+    assert.ok(summary.graph_pressure < summary.h_row_midpoint_target_pressure);
+    assert.ok(
+      summary.midpoint_residual_pressure <
+        summary.h_row_midpoint_target_pressure
+    );
+    assert.ok(
+      summary.raw_interval_residual_pressure >
+        1e7 * summary.h_row_midpoint_target_pressure
+    );
+    assert.ok(
+      summary.raw_interval_residual_width_to_numerator_width_ratio > 0.99
+    );
+    assert.ok(
+      summary.raw_interval_residual_width_to_numerator_width_ratio < 1.01
+    );
+    assert.ok(
+      summary.allowed_numerator_residual_width_for_h_row_midpoint_scale >
+        summary.midpoint_numerator_residual_width
+    );
+  }
+  assert.equal(
+    diagnostic.claim_boundary.certifies_standard_h38_cover,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_h38_numerator_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_n38_taylor_remainder_bound,
     false
   );
   assert.equal(

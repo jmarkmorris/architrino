@@ -690,6 +690,79 @@ primitive source burden is therefore partly producer-image curvature in
 $\xi$, not an unavoidable independent h-row residual. A primitive witness
 should wait for a directed-rounded polynomial graph provider before treating
 the remaining residual as a full source direction.
+The interval-residual diagnostic clarifies what that provider cannot be. If the
+H38 producer exports only interval residual hulls around the quadratic graph,
+the H39 shifted-index-$1$ pressure is
+$1.3098672358675488\times10^{22}$, only a factor $4.000194967056995$ below the
+independent h-row box. The interval residual is not measuring the small
+midpoint graph error; it is dominated by the $h_{38}$ producer interval width,
+with a worst residual hull about $\pm4.6388213974065\times10^{23}$. Its observed
+pressure scaling exponent from $4$ to $8$ producer subcells is
+$1.000013406731329$, which implies about $3.290318928\times10^9$ local subcells
+to reach midpoint-scale pressure. The primitive route should therefore require
+a dependency-preserving residual provider, not a quadratic graph plus ordinary
+independent residual intervals.
+The correlated residual-width diagnostic tests whether one shared residual
+coordinate can carry that provider burden:
+$h_i(\xi,\eta)=q_i(\xi)+c_i+r_i\eta$, where $[c_i-r_i,c_i+r_i]$ is the H38
+producer interval residual hull. The maximum sampled pressure is
+$3.7189936065423036\times10^{20}$, which improves on the interval-residual
+route by a factor $17.610343040598536$ and on the independent h-row box by a
+factor $140.89092046871806$. That proves the residual width is partly
+correlated, but not small enough: it remains
+$2.336754035638012\times10^7$ above the midpoint-residual pressure. The
+$h_{38}$-only width suffix already reaches
+$5.0026463677528906\times10^{20}$, so the primitive obstruction is now
+localized to the H38 solve-width direction, not to a generic low-dimensional
+residual coordinate. The next primitive proof route should factor or certify
+the $h_{38}$ solve numerator/slope dependency, or replace the residual with a
+piecewise graph whose effective $\eta$ amplitude is about
+$4.2805967717700346\times10^{-8}$ of the raw interval width before H39 replay.
+The solve-width factorization diagnostic now removes the slope ambiguity from
+that statement. It replays three $h_{38}$ variants through the same H39
+shifted-index-$1$ source: full numerator and full slope, full numerator with
+the slope fixed at its midpoint, and numerator fixed at its midpoint with the
+full slope interval. The full replay is
+$5.002646364218093\times10^{20}$, and the slope-midpoint replay is
+$5.002646141988511\times10^{20}$. Their pressure ratio is
+$0.9999999555775951$, so fixing the slope does not remove the obstruction. The
+numerator-midpoint replay collapses to $4.0904191135450396\times10^{12}$,
+essentially the both-midpoint replay. The primitive obstruction is therefore
+the H38 recurrence numerator width before division by the inherited slope. A
+primitive witness should wait for a numerator-level graph, factorization, or
+subdomain certificate, not a slope refinement.
+The same diagnostic also checks the numerator midpoints directly. A quadratic
+graph of the H38 numerator has maximum midpoint residual
+$3.6011482546175\times10^{11}$ against numerator interval width
+$3.67725335756\times10^{23}$, so the midpoint residual-to-width ratio is only
+$9.793038184910384\times10^{-13}$. The primitive blocker is therefore an
+interval-enclosure problem for a smooth numerator image, not evidence that the
+underlying H38 numerator trajectory is geometrically rough.
+The numerator-graph solve diagnostic then feeds that graph through the H39
+source replay. The graph-only numerator solve has pressure
+$4.0882852984579976\times10^{12}$; adding the sampled midpoint residual raises
+this only to $4.0889087889467676\times10^{12}$. This is below the h-row
+midpoint replay by a factor $0.3770263622171746$. The full slope interval is
+also harmless here: it changes the graph-only pressure by a factor
+$1.000000831612749$. The failure mode is specifically the raw numerator
+interval-residual hull, which raises pressure back to
+$5.002660154369953\times10^{20}$. Thus the primitive route now needs a
+directed-rounded dependency-preserving numerator graph or Taylor enclosure;
+ordinary interval residuals at the numerator level repeat the full obstruction.
+The residual-budget diagnostic gives the primitive route a concrete target
+instead of an open-ended demand for better precision. Across $4$, $8$, and
+$16$ local producer subcells, the raw $N_{38}$ interval-residual pressure scales
+with exponent $1.0000016614193274$, and the residual width scales with exponent
+$1.0000016681321142$. This confirms that ordinary subcell refinement is only
+linear and cannot practically reach the midpoint-residual regime. But the H39
+primitive replay does not require the midpoint residual itself: the worst
+allowed $N_{38}$ residual width for h-row-midpoint-scale pressure is
+$4.2647459190877425\times10^{15}$ on the $4$-subcell cover, corresponding to a
+shrink factor $1.7245027326360488\times10^8$ from the raw hull. The sampled
+midpoint residual width stays below this budget by at least a factor of about
+$8428$. The primitive proof target is therefore a directed-rounded Taylor or
+normal-form remainder for $N_{38}$ below this budget, not exact cancellation of
+every sampled numerator residual.
 
 ## Candidate Provenance No-Go Report
 
