@@ -94,6 +94,9 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_COEFFICIENT_DEPENDENCE
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SIGNED_AFFINE_TARGET_ENVELOPE_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-y44-signed-affine-target-envelope-diagnostic/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_N38_TERMINAL_ENDPOINT_BRIDGE_DIAGNOSTIC_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-y44-n38-terminal-endpoint-bridge-diagnostic/v1";
+
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_EXPRESSION_N38_TAYLOR_M4_REFINEMENT_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-expression-n38-taylor-m4-refinement-diagnostic/v1";
 
@@ -12355,6 +12358,406 @@ export function buildH39H38Y44SignedAffineTargetEnvelopeDiagnosticCandidate({
   };
 }
 
+function h39H38Y44NumeratorCollarTargetSamples(diagnostic) {
+  return (diagnostic?.pressure_reference_ladder ?? []).flatMap((entry) => {
+    const target = entry.producer_centered_numerator_collar_target;
+    return (target?.samples ?? []).map((sample) => ({
+      ...sample,
+      reference_label: entry.label,
+      target_pressure: entry.target_pressure,
+      target_status: sample.target_status ?? target.target_status,
+      proof_route_interpretation:
+        sample.proof_route_interpretation ??
+        target.proof_route_interpretation,
+      producer_centered_numerator_target_status: target.target_status,
+    }));
+  });
+}
+
+function h39H38Y44SelectControllingNumeratorTarget({
+  route,
+  targetSamples,
+}) {
+  const routeSample = route?.controlling_sample ?? null;
+  if (routeSample) {
+    const matched = targetSamples.find(
+      (sample) =>
+        sample.reference_label === routeSample.reference_label &&
+        sample.cell_id === routeSample.cell_id
+    );
+    if (matched) {
+      return matched;
+    }
+  }
+  return targetSamples.reduce(
+    (best, sample) =>
+      Number(sample.numerator_midpoint_residual_over_conservative_target) >
+      Number(best?.numerator_midpoint_residual_over_conservative_target ?? -1)
+        ? sample
+        : best,
+    null
+  );
+}
+
+export function buildH39H38Y44N38TerminalEndpointBridgeDiagnosticCandidate({
+  targetSpeedInterval = [3.02156, 3.02156007813],
+  branch = "-",
+  rootSubdivisions = 100,
+  outerRadius = 0.001,
+  shiftedIndex = 1,
+  seriesOrder = 60,
+  sourceStencilSubcellCount = 32,
+  comparisonStencilIndex = 27,
+  polynomialDegree = 2,
+  h38NoiseSamples = [-1, 0, 1],
+  referencePressureTargets = [1e13],
+  safetySearchIterations = 8,
+  terminalHIndexes = [37, 36, 35],
+  residualBudgetTargetShareOfAll = 0.05,
+  residualBudgetScales = [0, 0.02, 0.05, 1],
+  residualNoiseSamples = [-1, 0, 1],
+  residualCoordinatePartitionCount = 8,
+  topContributorCount = 8,
+  progressCallback = null,
+} = {}) {
+  const startedAt = Date.now();
+  const emitProgress =
+    typeof progressCallback === "function"
+      ? (progress) =>
+          progressCallback({
+            diagnostic: "h39-h38-y44-n38-terminal-endpoint-bridge",
+            elapsed_ms: Date.now() - startedAt,
+            ...progress,
+          })
+      : null;
+  const resolvedTargetSpeedInterval = numericInterval(
+    "targetSpeedInterval",
+    targetSpeedInterval
+  );
+  const resolvedSourceStencilSubcellCount = assertFinitePositiveInteger(
+    "sourceStencilSubcellCount",
+    sourceStencilSubcellCount
+  );
+  if (resolvedSourceStencilSubcellCount < 5) {
+    throw new Error("sourceStencilSubcellCount must be at least 5");
+  }
+  const resolvedComparisonStencilIndex = Number(comparisonStencilIndex);
+  if (
+    !Number.isInteger(resolvedComparisonStencilIndex) ||
+    resolvedComparisonStencilIndex < 0 ||
+    resolvedComparisonStencilIndex > resolvedSourceStencilSubcellCount - 5
+  ) {
+    throw new Error("comparisonStencilIndex must leave five stencil samples");
+  }
+  const resolvedPolynomialDegree = assertFinitePositiveInteger(
+    "polynomialDegree",
+    polynomialDegree
+  );
+  if (resolvedPolynomialDegree > 3) {
+    throw new Error("polynomialDegree must be at most 3");
+  }
+  const resolvedOuterRadius = assertFinitePositiveNumber(
+    "outerRadius",
+    outerRadius
+  );
+  const resolvedShiftedIndex = assertFinitePositiveInteger(
+    "shiftedIndex",
+    shiftedIndex
+  );
+  const resolvedSeriesOrder = assertFinitePositiveInteger(
+    "seriesOrder",
+    seriesOrder
+  );
+  const resolvedResidualBudgetTargetShare =
+    assertFinitePositiveNumber(
+      "residualBudgetTargetShareOfAll",
+      residualBudgetTargetShareOfAll
+    );
+  if (resolvedResidualBudgetTargetShare >= 1) {
+    throw new Error("residualBudgetTargetShareOfAll must be less than 1");
+  }
+  const resolvedTerminalHIndexes = terminalHIndexes.map((hIndex) => {
+    const resolved = Number(hIndex);
+    if (!Number.isInteger(resolved) || resolved < 0 || resolved > 38) {
+      throw new Error("terminalHIndexes must contain h indexes 0 through 38");
+    }
+    return resolved;
+  });
+  const resolvedResidualBudgetScales = [
+    ...new Set(residualBudgetScales.map(Number)),
+  ].sort((left, right) => left - right);
+  if (
+    resolvedResidualBudgetScales.length < 2 ||
+    resolvedResidualBudgetScales[0] !== 0 ||
+    resolvedResidualBudgetScales[resolvedResidualBudgetScales.length - 1] !==
+      1 ||
+    !resolvedResidualBudgetScales.every(
+      (scale) => Number.isFinite(scale) && scale >= 0 && scale <= 1
+    )
+  ) {
+    throw new Error("residualBudgetScales must include 0 and 1 within [0,1]");
+  }
+  const resolvedResidualNoiseSamples = [
+    ...new Set(residualNoiseSamples.map(Number)),
+  ].sort((left, right) => left - right);
+  if (
+    resolvedResidualNoiseSamples.length < 3 ||
+    resolvedResidualNoiseSamples[0] !== -1 ||
+    resolvedResidualNoiseSamples[resolvedResidualNoiseSamples.length - 1] !==
+      1 ||
+    !resolvedResidualNoiseSamples.every(
+      (sample) => Number.isFinite(sample) && sample >= -1 && sample <= 1
+    )
+  ) {
+    throw new Error("residualNoiseSamples must include -1 and 1 within [-1,1]");
+  }
+  const resolvedResidualCoordinatePartitionCount =
+    assertFinitePositiveInteger(
+      "residualCoordinatePartitionCount",
+      residualCoordinatePartitionCount
+    );
+  const resolvedTopContributorCount = assertFinitePositiveInteger(
+    "topContributorCount",
+    topContributorCount
+  );
+  emitProgress?.({
+    stage: "signed-affine-target-envelope-start",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+  });
+  const y44Diagnostic =
+    buildH39H38Y44SignedAffineTargetEnvelopeDiagnosticCandidate({
+      targetSpeedInterval: resolvedTargetSpeedInterval,
+      branch,
+      rootSubdivisions,
+      outerRadius: resolvedOuterRadius,
+      shiftedIndex: resolvedShiftedIndex,
+      seriesOrder: resolvedSeriesOrder,
+      sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+      comparisonStencilIndex: resolvedComparisonStencilIndex,
+      polynomialDegree: resolvedPolynomialDegree,
+      h38NoiseSamples,
+      referencePressureTargets,
+      safetySearchIterations,
+      progressCallback,
+    });
+  const y44Route = y44Diagnostic.h38_y44_n38_collar_enclosure_route;
+  const targetSamples = h39H38Y44NumeratorCollarTargetSamples(y44Diagnostic);
+  const controllingTarget = h39H38Y44SelectControllingNumeratorTarget({
+    route: y44Route,
+    targetSamples,
+  });
+  const controllingRouteSample = y44Route?.controlling_sample ?? {};
+  if (!controllingTarget) {
+    throw new Error("terminal endpoint bridge requires a controlling y44 target");
+  }
+  emitProgress?.({
+    stage: "controlling-y44-target-selected",
+    cell_id: controllingTarget.cell_id,
+    reference_label: controllingTarget.reference_label,
+    conservative_numerator_width_target:
+      controllingTarget.conservative_numerator_width_target,
+  });
+  const setup = buildH39H38Y44CoefficientReplaySetup({
+    targetSpeedInterval: resolvedTargetSpeedInterval,
+    branch,
+    rootSubdivisions,
+    seriesOrder: resolvedSeriesOrder,
+    sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+    comparisonStencilIndex: resolvedComparisonStencilIndex,
+    polynomialDegree: resolvedPolynomialDegree,
+  });
+  const controllingRow =
+    setup.comparisonRows.find(
+      (row) => row.cell_id === controllingTarget.cell_id
+    ) ?? setup.comparisonRows[0];
+  emitProgress?.({
+    stage: "terminal-normal-form-row-start",
+    cell_id: controllingRow.cell_id,
+    speed_interval: controllingRow.speed_interval,
+  });
+  const terminalRow = terminalGraphRemainderBudgetRow({
+    context: setup.context,
+    row: controllingRow,
+    targetSpeedInterval: resolvedTargetSpeedInterval,
+    branch,
+    transportProfile: setup.transportProfile,
+    residualProfile: setup.residualProfile,
+    terminalHIndexes: resolvedTerminalHIndexes,
+    residualBudgetTargetShareOfAll: resolvedResidualBudgetTargetShare,
+    residualBudgetScales: resolvedResidualBudgetScales,
+    residualNoiseSamples: resolvedResidualNoiseSamples,
+    residualCoordinatePartitionCount:
+      resolvedResidualCoordinatePartitionCount,
+    topContributorCount: resolvedTopContributorCount,
+  });
+  const endpointDiagnostic =
+    terminalRow.terminal_graph_shared_residual_graph_endpoint_partition_diagnostic;
+  const conservativeTarget = Number(
+    controllingTarget.conservative_numerator_width_target
+  );
+  const midpointSlopeTarget = Number.isFinite(
+    Number(controllingTarget.midpoint_slope_numerator_width_target)
+  )
+    ? Number(controllingTarget.midpoint_slope_numerator_width_target)
+    : null;
+  const allActiveWidth = Number(
+    terminalRow.all_active_reduced_source.full_source_width
+  );
+  const graphWithNonterminalWidth = Number(
+    terminalRow.terminal_graph_with_nonterminal_replay.full_source_width
+  );
+  const rawIntervalWidth = Number(
+    terminalRow.terminal_graph_interval_residual_with_nonterminal_replay
+      .full_source_width
+  );
+  const endpointAffineWidth = Number(
+    endpointDiagnostic.max_affine_zeta_envelope_width
+  );
+  const endpointHullWidth = Number(
+    endpointDiagnostic.max_endpoint_partition_hull_width
+  );
+  const ratioToTarget = (value, target) =>
+    finitePositive(value) && finitePositive(target) ? value / target : null;
+  const targetShareOfAll = ratioToTarget(conservativeTarget, allActiveWidth);
+  const endpointShareOfAll = ratioToTarget(endpointAffineWidth, allActiveWidth);
+  const graphWidthToTarget = ratioToTarget(
+    graphWithNonterminalWidth,
+    conservativeTarget
+  );
+  const endpointWidthToTarget = ratioToTarget(
+    endpointAffineWidth,
+    conservativeTarget
+  );
+  const rawIntervalWidthToTarget = ratioToTarget(
+    rawIntervalWidth,
+    conservativeTarget
+  );
+  const endpointWidthToMidpointSlopeTarget = ratioToTarget(
+    endpointAffineWidth,
+    midpointSlopeTarget
+  );
+  const graphFitsLiveTarget =
+    finitePositive(graphWidthToTarget) && graphWidthToTarget <= 1;
+  const endpointFitsLiveTarget =
+    finitePositive(endpointWidthToTarget) && endpointWidthToTarget <= 1;
+  const bridgeDiagnosis =
+    graphFitsLiveTarget && endpointFitsLiveTarget
+      ? "terminal-graph-affine-endpoint-provider-fits-live-h39-collar-candidate"
+      : graphFitsLiveTarget
+        ? "terminal-graph-normal-form-fits-live-h39-collar-but-zeta-envelope-too-wide"
+        : "terminal-graph-normal-form-still-exceeds-live-h39-collar";
+  emitProgress?.({
+    stage: "terminal-normal-form-row-complete",
+    cell_id: controllingRow.cell_id,
+    bridge_diagnosis: bridgeDiagnosis,
+    graph_width_to_target: graphWidthToTarget,
+    endpoint_width_to_target: endpointWidthToTarget,
+  });
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_N38_TERMINAL_ENDPOINT_BRIDGE_DIAGNOSTIC_SCHEMA,
+    status:
+      "h39-h38-y44-n38-terminal-endpoint-bridge-diagnostic-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-h38-y44-n38-terminal-endpoint-bridge-diagnostic",
+    target_speed_interval: resolvedTargetSpeedInterval,
+    branch,
+    shifted_index: resolvedShiftedIndex,
+    y_order:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+      resolvedShiftedIndex,
+    h38_numerator_y_order: H38_NUMERATOR_Y_ORDER,
+    outer_radius: resolvedOuterRadius,
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    comparison_row_count: setup.comparisonRows.length,
+    polynomial_degree: resolvedPolynomialDegree,
+    terminal_provider_h_indexes: resolvedTerminalHIndexes,
+    residual_coordinate_partition_count:
+      resolvedResidualCoordinatePartitionCount,
+    residual_budget_target_share_of_all:
+      resolvedResidualBudgetTargetShare,
+    residual_budget_scales: resolvedResidualBudgetScales,
+    residual_noise_samples: resolvedResidualNoiseSamples,
+    y44_route_diagnosis: y44Route.route_diagnosis,
+    y44_s37_dependency_status: y44Route.s37_dependency_status,
+    controlling_y44_target: {
+      reference_label: controllingTarget.reference_label,
+      cell_id: controllingTarget.cell_id,
+      xi_midpoint: controllingTarget.xi_midpoint,
+      conservative_numerator_width_target: conservativeTarget,
+      midpoint_slope_numerator_width_target: midpointSlopeTarget,
+      numerator_abs_midpoint_residual:
+        controllingTarget.numerator_abs_midpoint_residual,
+      numerator_midpoint_residual_over_conservative_target:
+        controllingTarget.numerator_midpoint_residual_over_conservative_target,
+      target_status:
+        controllingTarget.target_status ??
+        controllingRouteSample.target_status ??
+        controllingTarget.producer_centered_numerator_target_status ??
+        null,
+      proof_route_interpretation:
+        controllingTarget.proof_route_interpretation ??
+        controllingRouteSample.proof_route_interpretation ??
+        null,
+    },
+    terminal_normal_form_bridge: {
+      cell_id: terminalRow.cell_id,
+      speed_interval: terminalRow.speed_interval,
+      xi_interval: terminalRow.xi_interval,
+      xi_midpoint: terminalRow.xi_midpoint,
+      all_active_n38_source_width: allActiveWidth,
+      terminal_graph_with_nonterminal_source_width:
+        graphWithNonterminalWidth,
+      terminal_graph_raw_interval_residual_source_width:
+        rawIntervalWidth,
+      terminal_graph_endpoint_hull_width: endpointHullWidth,
+      terminal_graph_affine_zeta_envelope_width: endpointAffineWidth,
+      h39_required_width_share_of_all_active_n38_source:
+        targetShareOfAll,
+      affine_zeta_envelope_width_share_of_all_active_n38_source:
+        endpointShareOfAll,
+      terminal_graph_width_to_conservative_h39_target:
+        graphWidthToTarget,
+      affine_zeta_envelope_width_to_conservative_h39_target:
+        endpointWidthToTarget,
+      raw_interval_residual_width_to_conservative_h39_target:
+        rawIntervalWidthToTarget,
+      affine_zeta_envelope_width_to_midpoint_slope_h39_target:
+        endpointWidthToMidpointSlopeTarget,
+      terminal_graph_fits_live_h39_target: graphFitsLiveTarget,
+      affine_zeta_envelope_fits_live_h39_target:
+        endpointFitsLiveTarget,
+      endpoint_control_candidate:
+        endpointDiagnostic.endpoint_control_candidate,
+      affine_in_shared_residual_coordinate:
+        endpointDiagnostic.affine_in_shared_residual_coordinate,
+      endpoint_partition_count:
+        endpointDiagnostic.residual_coordinate_partition_count,
+      all_endpoint_partition_hulls_under_internal_budget:
+        endpointDiagnostic.all_endpoint_partition_hulls_under_target,
+      all_affine_zeta_envelopes_under_internal_budget:
+        endpointDiagnostic.all_affine_zeta_envelopes_under_target,
+      endpoint_partition_route_interpretation:
+        endpointDiagnostic.route_interpretation,
+    },
+    n38_terminal_endpoint_bridge_diagnosis: bridgeDiagnosis,
+    candidate_certificate_route:
+      "This diagnostic bridges the live H39/y44 numerator collar target to the terminal N38 sigma-eta graph endpoint route on the controlling row. It decides whether the terminal graph normal form is calibrated to the actual shifted R43 obstruction, not only to an internal source-width share. It remains candidate-only until the endpoint provider is directed-rounded and replayed over the full same-domain cover.",
+    claim_boundary: {
+      certifies_standard_h38_cover: false,
+      certifies_h38_n38_graph_enclosure: false,
+      certifies_terminal_row_provider_enclosure: false,
+      certifies_n38_terminal_endpoint_bridge: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
 export function buildH39CorrelatedResidualWidthDiagnosticCandidate({
   targetSpeedInterval = [3.02156, 3.02156007813],
   branch = "-",
@@ -18212,6 +18615,195 @@ export function validateH39H38Y44SignedAffineTargetEnvelopeDiagnostic(
     diagnostic?.claim_boundary?.retained_branch !== false
   ) {
     errors.push("claim boundary must keep signed affine envelope and shifted closure open");
+  }
+  return errors;
+}
+
+export function validateH39H38Y44N38TerminalEndpointBridgeDiagnostic(
+  diagnostic
+) {
+  const errors = [];
+  const hasFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1]));
+  const target = diagnostic?.controlling_y44_target ?? {};
+  const bridge = diagnostic?.terminal_normal_form_bridge ?? {};
+  if (
+    diagnostic?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_N38_TERMINAL_ENDPOINT_BRIDGE_DIAGNOSTIC_SCHEMA
+  ) {
+    errors.push("schema must match h39 h38 y44 n38 terminal endpoint bridge diagnostic");
+  }
+  if (
+    diagnostic?.status !==
+    "h39-h38-y44-n38-terminal-endpoint-bridge-diagnostic-candidate-emitted"
+  ) {
+    errors.push("status must identify a candidate n38 terminal endpoint bridge diagnostic");
+  }
+  if (
+    diagnostic?.evaluation_level !==
+    "candidate-h39-h38-y44-n38-terminal-endpoint-bridge-diagnostic"
+  ) {
+    errors.push("evaluation level must identify candidate n38 terminal endpoint bridge");
+  }
+  if (
+    !Number.isInteger(diagnostic?.source_stencil_subcell_count) ||
+    diagnostic.source_stencil_subcell_count < 5 ||
+    !Number.isInteger(diagnostic?.comparison_stencil_index) ||
+    diagnostic.comparison_stencil_index < 0 ||
+    diagnostic?.comparison_row_count !== 5 ||
+    !Number.isInteger(diagnostic?.polynomial_degree) ||
+    diagnostic.polynomial_degree < 1 ||
+    diagnostic.polynomial_degree > 3
+  ) {
+    errors.push("terminal endpoint bridge parameters must describe one five-row y44 window");
+  }
+  if (
+    !Number.isInteger(diagnostic?.shifted_index) ||
+    diagnostic.shifted_index < 1 ||
+    diagnostic?.y_order !==
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+        diagnostic.shifted_index ||
+    diagnostic?.h38_numerator_y_order !== H38_NUMERATOR_Y_ORDER
+  ) {
+    errors.push("shifted index, y order, and h38 numerator y order must be consistent");
+  }
+  if (
+    !Array.isArray(diagnostic?.terminal_provider_h_indexes) ||
+    diagnostic.terminal_provider_h_indexes.length !== 3 ||
+    diagnostic.terminal_provider_h_indexes[0] !== 37 ||
+    diagnostic.terminal_provider_h_indexes[1] !== 36 ||
+    diagnostic.terminal_provider_h_indexes[2] !== 35 ||
+    !Number.isInteger(diagnostic?.residual_coordinate_partition_count) ||
+    diagnostic.residual_coordinate_partition_count < 1 ||
+    !finitePositive(diagnostic?.residual_budget_target_share_of_all) ||
+    diagnostic.residual_budget_target_share_of_all >= 1
+  ) {
+    errors.push("terminal endpoint bridge must use the terminal h37,h36,h35 zeta provider setup");
+  }
+  if (
+    !Array.isArray(diagnostic?.residual_budget_scales) ||
+    diagnostic.residual_budget_scales.length < 2 ||
+    diagnostic.residual_budget_scales[0] !== 0 ||
+    diagnostic.residual_budget_scales[
+      diagnostic.residual_budget_scales.length - 1
+    ] !== 1 ||
+    !Array.isArray(diagnostic?.residual_noise_samples) ||
+    diagnostic.residual_noise_samples.length < 3 ||
+    diagnostic.residual_noise_samples[0] !== -1 ||
+    diagnostic.residual_noise_samples[
+      diagnostic.residual_noise_samples.length - 1
+    ] !== 1
+  ) {
+    errors.push("residual scales and noise samples must retain endpoint coverage");
+  }
+  if (
+    ![
+      "n38-quadratic-midpoint-residual-has-directed-rounded-collar-headroom",
+      "s37-lower-bound-dependency-collapse-controls-n38-collar-route",
+      "n38-quadratic-midpoint-residual-has-partial-collar-headroom",
+      "n38-quadratic-midpoint-residual-collar-route-open",
+    ].includes(diagnostic?.y44_route_diagnosis) ||
+    ![
+      "midpoint-slope-collar-fits-but-conservative-s37-lower-bound-collapses",
+      "midpoint-slope-collar-also-fails-n38-graph-residual",
+      "conservative-s37-lower-bound-supports-n38-collar",
+      "s37-dependency-status-open",
+    ].includes(diagnostic?.y44_s37_dependency_status)
+  ) {
+    errors.push("terminal endpoint bridge must carry the live y44 route diagnosis");
+  }
+  if (
+    typeof target.reference_label !== "string" ||
+    typeof target.cell_id !== "string" ||
+    Number.isFinite(Number(target.xi_midpoint)) !== true ||
+    !finitePositive(target.conservative_numerator_width_target) ||
+    (target.midpoint_slope_numerator_width_target !== null &&
+      !finitePositive(target.midpoint_slope_numerator_width_target)) ||
+    !finiteNonnegative(target.numerator_abs_midpoint_residual) ||
+    !finiteNonnegative(
+      target.numerator_midpoint_residual_over_conservative_target
+    ) ||
+    typeof target.proof_route_interpretation !== "string"
+  ) {
+    errors.push("controlling y44 target must expose finite numerator collar data");
+  }
+  if (
+    typeof bridge.cell_id !== "string" ||
+    !hasFiniteInterval(bridge.speed_interval) ||
+    !hasFiniteInterval(bridge.xi_interval) ||
+    !Number.isFinite(Number(bridge.xi_midpoint)) ||
+    !finitePositive(bridge.all_active_n38_source_width) ||
+    !finitePositive(bridge.terminal_graph_with_nonterminal_source_width) ||
+    !finitePositive(
+      bridge.terminal_graph_raw_interval_residual_source_width
+    ) ||
+    !finitePositive(bridge.terminal_graph_endpoint_hull_width) ||
+    !finitePositive(bridge.terminal_graph_affine_zeta_envelope_width) ||
+    !finitePositive(
+      bridge.h39_required_width_share_of_all_active_n38_source
+    ) ||
+    !finitePositive(
+      bridge.affine_zeta_envelope_width_share_of_all_active_n38_source
+    ) ||
+    !finitePositive(
+      bridge.terminal_graph_width_to_conservative_h39_target
+    ) ||
+    !finitePositive(
+      bridge.affine_zeta_envelope_width_to_conservative_h39_target
+    ) ||
+    !finitePositive(
+      bridge.raw_interval_residual_width_to_conservative_h39_target
+    ) ||
+    (bridge.affine_zeta_envelope_width_to_midpoint_slope_h39_target !==
+      null &&
+      !finitePositive(
+        bridge.affine_zeta_envelope_width_to_midpoint_slope_h39_target
+      )) ||
+    typeof bridge.terminal_graph_fits_live_h39_target !== "boolean" ||
+    typeof bridge.affine_zeta_envelope_fits_live_h39_target !== "boolean" ||
+    bridge.endpoint_control_candidate !== true ||
+    bridge.affine_in_shared_residual_coordinate !== true ||
+    bridge.endpoint_partition_count !==
+      diagnostic.residual_coordinate_partition_count ||
+    typeof bridge.all_endpoint_partition_hulls_under_internal_budget !==
+      "boolean" ||
+    typeof bridge.all_affine_zeta_envelopes_under_internal_budget !==
+      "boolean" ||
+    ![
+      "shared-terminal-residual-coordinate-affine-endpoint-partitions-under-target",
+      "shared-terminal-residual-coordinate-endpoint-partitions-under-target",
+      "shared-terminal-residual-coordinate-endpoint-partitions-over-target",
+    ].includes(bridge.endpoint_partition_route_interpretation)
+  ) {
+    errors.push("terminal normal-form bridge must expose finite endpoint and live-target ratios");
+  }
+  if (
+    ![
+      "terminal-graph-affine-endpoint-provider-fits-live-h39-collar-candidate",
+      "terminal-graph-normal-form-fits-live-h39-collar-but-zeta-envelope-too-wide",
+      "terminal-graph-normal-form-still-exceeds-live-h39-collar",
+    ].includes(diagnostic?.n38_terminal_endpoint_bridge_diagnosis)
+  ) {
+    errors.push("terminal endpoint bridge diagnosis must classify live target fit");
+  }
+  if (
+    diagnostic?.claim_boundary?.certifies_standard_h38_cover !== false ||
+    diagnostic?.claim_boundary?.certifies_h38_n38_graph_enclosure !== false ||
+    diagnostic?.claim_boundary
+      ?.certifies_terminal_row_provider_enclosure !== false ||
+    diagnostic?.claim_boundary
+      ?.certifies_n38_terminal_endpoint_bridge !== false ||
+    diagnostic?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    diagnostic?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_continuous_polydisc_primitives !==
+      false ||
+    diagnostic?.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("claim boundary must keep terminal endpoint bridge and shifted closure open");
   }
   return errors;
 }

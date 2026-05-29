@@ -25,6 +25,7 @@ import {
   buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnosticCandidate,
   buildH39PostZetaPressureSourceIsolationDiagnosticCandidate,
   buildH39H38Y44CoefficientDependenceDiagnosticCandidate,
+  buildH39H38Y44N38TerminalEndpointBridgeDiagnosticCandidate,
   buildH39H38Y44SignedAffineTargetEnvelopeDiagnosticCandidate,
   buildH39PolynomialHRowGraphIntervalResidualDiagnosticCandidate,
   buildH39PolynomialHRowGraphResidualDiagnosticCandidate,
@@ -51,6 +52,7 @@ import {
   validateH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic,
   validateH39PostZetaPressureSourceIsolationDiagnostic,
   validateH39H38Y44CoefficientDependenceDiagnostic,
+  validateH39H38Y44N38TerminalEndpointBridgeDiagnostic,
   validateH39H38Y44SignedAffineTargetEnvelopeDiagnostic,
   validateH39PolynomialHRowGraphIntervalResidualDiagnostic,
   validateH39PolynomialHRowGraphResidualDiagnostic,
@@ -4473,6 +4475,96 @@ test("h39 h38 y44 signed affine target envelope replays the cancellation coordin
     false
   );
   assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 y44 N38 terminal endpoint bridge compares normal form to live collar", () => {
+  const diagnostic =
+    buildH39H38Y44N38TerminalEndpointBridgeDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      sourceStencilSubcellCount: 5,
+      comparisonStencilIndex: 0,
+      polynomialDegree: 2,
+      h38NoiseSamples: [-1, 0, 1],
+      referencePressureTargets: [1e13],
+      safetySearchIterations: 4,
+      terminalHIndexes: [37, 36, 35],
+      residualBudgetTargetShareOfAll: 0.05,
+      residualBudgetScales: [0, 0.05, 1],
+      residualNoiseSamples: [-1, 0, 1],
+      residualCoordinatePartitionCount: 4,
+      topContributorCount: 4,
+      outerRadius: 0.001,
+      shiftedIndex: 1,
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38Y44N38TerminalEndpointBridgeDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-y44-n38-terminal-endpoint-bridge-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.evaluation_level,
+    "candidate-h39-h38-y44-n38-terminal-endpoint-bridge-diagnostic"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.equal(diagnostic.h38_numerator_y_order, 42);
+  assert.equal(diagnostic.comparison_row_count, 5);
+  assert.deepEqual(diagnostic.terminal_provider_h_indexes, [37, 36, 35]);
+  assert.equal(diagnostic.residual_coordinate_partition_count, 4);
+  assert.ok(
+    diagnostic.controlling_y44_target.conservative_numerator_width_target > 0
+  );
+  assert.ok(
+    diagnostic.terminal_normal_form_bridge.all_active_n38_source_width > 0
+  );
+  assert.ok(
+    diagnostic.terminal_normal_form_bridge
+      .h39_required_width_share_of_all_active_n38_source > 0
+  );
+  assert.ok(
+    diagnostic.terminal_normal_form_bridge
+      .affine_zeta_envelope_width_to_conservative_h39_target > 0
+  );
+  assert.equal(
+    diagnostic.terminal_normal_form_bridge.endpoint_control_candidate,
+    true
+  );
+  assert.equal(
+    diagnostic.terminal_normal_form_bridge
+      .affine_in_shared_residual_coordinate,
+    true
+  );
+  assert.ok(
+    [
+      "terminal-graph-affine-endpoint-provider-fits-live-h39-collar-candidate",
+      "terminal-graph-normal-form-fits-live-h39-collar-but-zeta-envelope-too-wide",
+      "terminal-graph-normal-form-still-exceeds-live-h39-collar",
+    ].includes(diagnostic.n38_terminal_endpoint_bridge_diagnosis)
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_n38_terminal_endpoint_bridge,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.deepEqual(collectTrueCertifies(diagnostic), []);
   assert.deepEqual(
     collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
     []

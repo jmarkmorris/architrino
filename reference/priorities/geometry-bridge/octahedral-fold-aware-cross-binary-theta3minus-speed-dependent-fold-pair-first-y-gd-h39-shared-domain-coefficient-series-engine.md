@@ -33,6 +33,59 @@ coefficient-series layer from which the continuous h39 primitive witness is
 built, and it now records source-certificate obstructions when an optional
 source certificate cannot be computed on the requested envelope.
 
+## H39/y44 N38 Terminal Endpoint Bridge
+
+The bounded provenance audit found no shifted-index, branch-sign, same-domain,
+same-radius, or fixed speed-band bookkeeping error in the H38-to-H39 join. The
+current obstruction should therefore be treated as a live geometry/source
+problem, not as evidence that the row is being optimized around a wrong
+coefficient.
+
+The new executable bridge diagnostic,
+`buildH39H38Y44N38TerminalEndpointBridgeDiagnosticCandidate`, compares the live
+shifted-index-$1$ H39 numerator collar target with the reduced $N_{38}$
+terminal $\eta$-graph endpoint normal form. On the live $32$-subcell positive
+$\xi$ window, the controlling target remains `speed.28.first-y` with
+
+$$
+\operatorname{width}_{\mathrm{target}}
+=25.069761713185112,
+$$
+
+and the existing quadratic $N_{38}$ graph residual still misses by
+$1.5384433774290903\times10^{9}$. The endpoint bridge shows why the earlier
+terminal endpoint result is not enough for H39 closure: the terminal graph plus
+nonterminal replay has width
+
+$$
+2.9642106707775817\times10^{21},
+$$
+
+and the affine $\zeta$ endpoint envelope has width
+
+$$
+4.908990049944492\times10^{21}.
+$$
+
+Relative to the actual H39 collar, those are over target by
+$1.1823848605703315\times10^{20}$ and
+$1.9581319144978838\times10^{20}$, respectively. In share form, the H39 collar
+requires only
+
+$$
+2.418863346372706\times10^{-22}
+$$
+
+of the all-active reduced $N_{38}$ source width, while the affine endpoint
+envelope still carries about $4.7364535153415446\%$ of that width.
+
+This changes the local normal-form target. The affine $\zeta$ endpoint
+certificate remains mathematically useful, but it is calibrated to an internal
+$5\%$ source-width proxy, not to the live H39 collar. The next route cannot be
+only a sharper terminal-row width enclosure. It must expose a coefficient-level
+zero, signed cancellation, or covariance-preserving replay before the width
+majorant is applied to the shifted $R_{\varepsilon,43}$ coefficient.
+
 ## Coefficient-Series Construction
 
 The exported series context builds the same fold-pair chart used by the h38
