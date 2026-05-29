@@ -27,6 +27,7 @@ import {
   buildH39H38Y44CoefficientDependenceDiagnosticCandidate,
   buildH39H38Y44N38TerminalEndpointBridgeDiagnosticCandidate,
   buildH39H38Y44SourceCovarianceDiagnosticCandidate,
+  buildH39H38Y44SourceCovarianceSplitM4RefinementLadderCandidate,
   buildH39H38Y44SignedAffineTargetEnvelopeDiagnosticCandidate,
   buildH39PolynomialHRowGraphIntervalResidualDiagnosticCandidate,
   buildH39PolynomialHRowGraphResidualDiagnosticCandidate,
@@ -55,6 +56,7 @@ import {
   validateH39H38Y44CoefficientDependenceDiagnostic,
   validateH39H38Y44N38TerminalEndpointBridgeDiagnostic,
   validateH39H38Y44SourceCovarianceDiagnostic,
+  validateH39H38Y44SourceCovarianceSplitM4RefinementLadder,
   validateH39H38Y44SignedAffineTargetEnvelopeDiagnostic,
   validateH39PolynomialHRowGraphIntervalResidualDiagnostic,
   validateH39PolynomialHRowGraphResidualDiagnostic,
@@ -4128,6 +4130,950 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
       diagnostic.source_covariance_producer_centered_route_diagnosis
     )
   );
+  assert.equal(diagnostic.safety_search_iterations, 16);
+  assert.equal(
+    diagnostic.producer_centered_safety_candidate_half_width,
+    Math.max(...diagnostic.collar_half_widths)
+  );
+  assert.equal(
+    diagnostic.source_covariance_producer_centered_safety_search_rows.length,
+    diagnostic.reference_pressure_targets.length
+  );
+  assert.ok(
+    diagnostic.source_covariance_producer_centered_safety_search_rows.every(
+      (row) =>
+        row.safety_search_iterations ===
+          diagnostic.safety_search_iterations &&
+        row.candidate_half_width ===
+          diagnostic.producer_centered_safety_candidate_half_width &&
+        row.producer_centered_safety_search.safety_search_iterations ===
+          diagnostic.safety_search_iterations &&
+        row.producer_centered_collar_target.label.startsWith(
+          "source-covariance-reference-"
+        )
+    )
+  );
+  assert.ok(
+    [
+      "producer-centered-safety-search-finds-positive-source-covariance-collar",
+      "producer-centered-safety-search-center-hull-only",
+      "producer-centered-safety-search-center-exceeds-target",
+    ].includes(
+      diagnostic.source_covariance_producer_centered_safety_search_diagnosis
+    )
+  );
+  assert.ok(
+    diagnostic
+      .max_source_covariance_producer_centered_safety_closing_half_width >= 0
+  );
+  assert.ok(
+    diagnostic
+      .max_source_covariance_producer_centered_safety_bracket_width >= 0
+  );
+  assert.equal(
+    diagnostic.source_covariance_h38_y44_solve_width_profile.sample_count,
+    diagnostic.comparison_row_count
+  );
+  const h38Y44SolveSamples =
+    diagnostic.source_covariance_h38_y44_solve_width_profile.samples;
+  assert.ok(
+    h38Y44SolveSamples.every(
+      (sample) =>
+        Number.isFinite(sample.numerator_expression_midpoint) &&
+        Number.isFinite(sample.numerator_source_term_midpoint_sum) &&
+        sample.numerator_term_midpoints &&
+        Number.isFinite(sample.numerator_term_midpoints.sin_delta) &&
+        Number.isFinite(sample.numerator_term_midpoints.sin_phi) &&
+        Number.isFinite(
+          sample.numerator_term_midpoints.delta_squared_speed
+        ) &&
+        Number.isFinite(sample.numerator_term_midpoints.constant_minus_two)
+    )
+  );
+  assert.equal(
+    diagnostic.source_covariance_h38_y44_numerator_polynomial_diagnostic
+      .polynomial_degree,
+    diagnostic.polynomial_degree
+  );
+  assert.equal(
+    diagnostic
+      .source_covariance_producer_centered_numerator_collar_targets.length,
+    diagnostic.reference_pressure_targets.length
+  );
+  assert.ok(
+    diagnostic.source_covariance_producer_centered_numerator_collar_targets.every(
+      (target) =>
+        target.label.startsWith("source-covariance-reference-") &&
+        target.numerator_polynomial_degree === diagnostic.polynomial_degree &&
+        target.samples.length === diagnostic.comparison_row_count
+    )
+  );
+  assert.ok(
+    diagnostic
+      .source_covariance_positive_producer_centered_numerator_collar_targets
+      .length <= diagnostic.reference_pressure_targets.length
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_producer_centered_numerator_collar_targets.every(
+      (target) =>
+        target.numerator_midpoint_graph_inside_collar_target === true ||
+        target.numerator_midpoint_graph_inside_collar_target === false
+    )
+  );
+  assert.ok(
+    diagnostic
+      .source_covariance_producer_centered_numerator_graph_inside_count >= 0
+  );
+  assert.ok(
+    diagnostic
+      .source_covariance_positive_producer_centered_numerator_graph_inside_count >=
+      0
+  );
+  assert.ok(
+    diagnostic
+      .max_source_covariance_producer_centered_numerator_interval_compression_to_conservative_target ===
+      null ||
+      diagnostic
+        .max_source_covariance_producer_centered_numerator_interval_compression_to_conservative_target >
+        0
+  );
+  assert.ok(
+    diagnostic
+      .max_source_covariance_producer_centered_numerator_midpoint_residual_over_conservative_target ===
+      null ||
+      diagnostic
+        .max_source_covariance_producer_centered_numerator_midpoint_residual_over_conservative_target >=
+        0
+  );
+  assert.ok(
+    diagnostic
+      .min_source_covariance_producer_centered_numerator_midpoint_residual_headroom_factor ===
+      null ||
+      diagnostic
+        .min_source_covariance_producer_centered_numerator_midpoint_residual_headroom_factor >
+        0
+  );
+  assert.ok(
+    diagnostic
+      .max_source_covariance_positive_producer_centered_numerator_interval_compression_to_conservative_target ===
+      null ||
+      diagnostic
+        .max_source_covariance_positive_producer_centered_numerator_interval_compression_to_conservative_target >
+        0
+  );
+  assert.ok(
+    diagnostic
+      .max_source_covariance_positive_producer_centered_numerator_midpoint_residual_over_conservative_target ===
+      null ||
+      diagnostic
+        .max_source_covariance_positive_producer_centered_numerator_midpoint_residual_over_conservative_target >=
+        0
+  );
+  assert.ok(
+    diagnostic
+      .min_source_covariance_positive_producer_centered_numerator_midpoint_residual_headroom_factor ===
+      null ||
+      diagnostic
+        .min_source_covariance_positive_producer_centered_numerator_midpoint_residual_headroom_factor >
+        0
+  );
+  assert.ok(
+    diagnostic.source_covariance_h38_y44_n38_collar_enclosure_route
+  );
+  assert.equal(
+    diagnostic.source_covariance_h38_y44_n38_collar_enclosure_route
+      .status,
+    "h39-h38-y44-n38-collar-enclosure-route-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.source_covariance_h38_y44_n38_collar_enclosure_route
+      .polynomial_degree,
+    diagnostic.polynomial_degree
+  );
+  assert.equal(
+    diagnostic.source_covariance_h38_y44_n38_collar_enclosure_route
+      .reference_target_count,
+    diagnostic.reference_pressure_targets.length
+  );
+  assert.ok(
+    [
+      "n38-quadratic-midpoint-residual-has-directed-rounded-collar-headroom",
+      "s37-lower-bound-dependency-collapse-controls-n38-collar-route",
+      "n38-quadratic-midpoint-residual-has-partial-collar-headroom",
+      "n38-quadratic-midpoint-residual-collar-route-open",
+    ].includes(
+      diagnostic.source_covariance_h38_y44_n38_collar_enclosure_route
+        .route_diagnosis
+    )
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_h38_y44_n38_collar_enclosure_route
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_h38_y44_n38_collar_enclosure_route
+      .reference_target_count,
+    diagnostic
+      .source_covariance_positive_producer_centered_numerator_collar_targets
+      .length
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_h38_y44_n38_collar_enclosure_route
+      .sample_count,
+    diagnostic
+      .source_covariance_positive_producer_centered_numerator_collar_targets
+      .length * diagnostic.comparison_row_count
+  );
+  assert.ok(
+    [
+      "source-covariance-n38-midpoint-graph-fits-measured-collar",
+      "source-covariance-n38-midpoint-graph-partially-fits-measured-collar",
+      "source-covariance-n38-midpoint-graph-open-for-measured-collar",
+      "source-covariance-n38-collar-needs-positive-source-covariance-width",
+    ].includes(diagnostic.source_covariance_n38_collar_interpretation)
+  );
+  assert.ok(
+    [
+      "source-covariance-positive-n38-collar-no-positive-collar-target",
+      "source-covariance-positive-n38-midpoint-graph-fits-measured-collar",
+      "source-covariance-positive-n38-midpoint-graph-partially-fits-measured-collar",
+      "source-covariance-positive-n38-midpoint-graph-open-for-measured-collar",
+    ].includes(
+      diagnostic.source_covariance_positive_n38_collar_interpretation
+    )
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_degree_sweep_rows.length,
+    diagnostic
+      .source_covariance_h38_y44_numerator_polynomial_degree_diagnostics
+      .length
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_degree_sweep_rows.every(
+      (row) =>
+        Number.isInteger(row.polynomial_degree) &&
+        row.polynomial_degree >= 1 &&
+        row.polynomial_degree <= 3 &&
+        row.positive_target_count ===
+          diagnostic
+            .source_covariance_positive_producer_centered_numerator_collar_targets
+            .length &&
+        row.n38_collar_enclosure_route.reference_target_count ===
+          row.positive_target_count
+    )
+  );
+  assert.ok(diagnostic.source_covariance_positive_n38_best_degree_row);
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_degree_sweep_rows.some(
+      (row) =>
+        row.polynomial_degree ===
+        diagnostic.source_covariance_positive_n38_best_degree_row
+          .polynomial_degree
+    )
+  );
+  assert.ok(
+    [
+      "positive-n38-degree-sweep-no-positive-collar-target",
+      "positive-n38-degree-sweep-finds-certificate-headroom",
+      "positive-n38-degree-sweep-fits-collar-with-limited-headroom",
+      "positive-n38-degree-sweep-partial-collar-fit",
+      "positive-n38-degree-sweep-open",
+    ].includes(
+      diagnostic.source_covariance_positive_n38_degree_sweep_diagnosis
+    )
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_taylor_certificate_target
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_taylor_certificate_target
+      .status,
+    "positive-n38-taylor-certificate-target-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_taylor_certificate_target
+      .selected_polynomial_degree,
+    diagnostic.source_covariance_positive_n38_selected_taylor_degree_row
+      .polynomial_degree
+  );
+  assert.ok(diagnostic.source_covariance_positive_n38_best_degree_row);
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_selected_taylor_degree_row
+  );
+  assert.ok(
+    [
+      "positive-n38-cubic-taylor-target-has-headroom",
+      "positive-n38-cubic-taylor-target-open",
+      "positive-n38-certificate-needs-noncubic-taylor-analogue",
+      "positive-n38-taylor-no-positive-collar-target",
+    ].includes(
+      diagnostic.source_covariance_positive_n38_taylor_certificate_target
+        .target_status
+    )
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_taylor_certificate_target
+      .claim_boundary.certifies_h38_n38_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_taylor_certificate_target
+      .claim_boundary.certifies_s37_dependency_preserving_division,
+    false
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+      .status,
+    "positive-n38-cubic-fourth-difference-check-candidate-emitted"
+  );
+  assert.ok(
+    [
+      "positive-n38-sampled-fourth-difference-supports-cubic-target",
+      "positive-n38-sampled-fourth-difference-exceeds-cubic-target",
+      "positive-n38-fourth-difference-no-sampled-stencils",
+      "positive-n38-fourth-difference-no-positive-collar-target",
+      "positive-n38-fourth-difference-needs-cubic-target",
+      "positive-n38-fourth-difference-missing-required-m4-bound",
+    ].includes(
+      diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+        .target_status
+    )
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+      .claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.equal(
+    typeof diagnostic
+      .source_covariance_positive_n38_sampled_fourth_difference_check
+      .m4_split_interpretation,
+    "string"
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+      .max_point_expression_nonuniform_to_required_ratio === null ||
+      diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+        .max_point_expression_nonuniform_to_required_ratio >= 0
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+      .max_interval_center_drift_nonuniform_to_required_ratio === null ||
+      diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+        .max_interval_center_drift_nonuniform_to_required_ratio >= 0
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+      .max_nonuniform_split_replay_relative_gap === null ||
+      diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+        .max_nonuniform_split_replay_relative_gap >= 0
+  );
+  if (
+    diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+      .sampled_m4_pressure_decomposition_summary !== null
+  ) {
+    assert.equal(
+      diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+        .sampled_m4_pressure_decomposition_summary.status,
+      "positive-n38-sampled-m4-pressure-decomposition-emitted"
+    );
+    assert.ok(
+      diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+        .sampled_m4_pressure_decomposition_summary
+        .max_point_expression_source_term_sum_nonuniform_m4 >= 0
+    );
+    assert.ok(
+      diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+        .sampled_m4_pressure_decomposition_summary
+        .max_interval_center_drift_nonuniform_m4 >= 0
+    );
+    assert.ok(
+      diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+        .sampled_m4_pressure_decomposition_summary
+        .max_split_triangle_to_required_ratio >= 0
+    );
+    assert.ok(
+      diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+        .sampled_m4_pressure_decomposition_summary
+        .min_split_triangle_inflation_factor_before_failure >= 0
+    );
+  }
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+      .sampled_fourth_difference_rows.every(
+        (row) =>
+          row.point_expression_nonuniform_fourth_derivative_estimate ===
+            null ||
+          row.point_expression_nonuniform_fourth_derivative_estimate >= 0
+      )
+  );
+  assert.ok(diagnostic.source_covariance_positive_n38_m4_inflation_budget);
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_m4_inflation_budget.status,
+    "positive-n38-cubic-m4-inflation-budget-candidate-emitted"
+  );
+  assert.deepEqual(diagnostic.m4_inflation_factors, [1, 2, 10, 100, 1000, 2000]);
+  assert.deepEqual(
+    diagnostic.source_covariance_positive_n38_m4_inflation_budget
+      .requested_inflation_factors,
+    diagnostic.m4_inflation_factors
+  );
+  assert.deepEqual(
+    diagnostic.source_covariance_positive_n38_m4_inflation_budget
+      .sampled_m4_pressure_decomposition_summary,
+    diagnostic.source_covariance_positive_n38_sampled_fourth_difference_check
+      .sampled_m4_pressure_decomposition_summary
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_m4_inflation_budget
+      .split_triangle_sampled_m4 === null ||
+      diagnostic.source_covariance_positive_n38_m4_inflation_budget
+        .split_triangle_sampled_m4 >= 0
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_m4_inflation_budget
+      .split_triangle_sampled_m4_to_required_ratio === null ||
+      diagnostic.source_covariance_positive_n38_m4_inflation_budget
+        .split_triangle_sampled_m4_to_required_ratio >= 0
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_m4_inflation_budget
+      .max_split_triangle_inflation_factor_before_failure === null ||
+      diagnostic.source_covariance_positive_n38_m4_inflation_budget
+        .max_split_triangle_inflation_factor_before_failure >= 0
+  );
+  if (
+    diagnostic.source_covariance_positive_n38_m4_inflation_budget
+      .split_inflation_rows.length > 0
+  ) {
+    assert.deepEqual(
+      diagnostic.source_covariance_positive_n38_m4_inflation_budget
+        .split_inflation_rows.map((row) => row.inflation_factor),
+      diagnostic.m4_inflation_factors
+    );
+  }
+  assert.ok(
+    [
+      "positive-n38-m4-inflation-budget-closes-all-requested-factors",
+      "positive-n38-m4-inflation-budget-closes-some-requested-factors",
+      "positive-n38-m4-inflation-budget-open",
+      "positive-n38-m4-inflation-budget-needs-cubic-sampled-support",
+      "positive-n38-m4-inflation-budget-missing-finite-inputs",
+    ].includes(
+      diagnostic.source_covariance_positive_n38_m4_inflation_budget
+        .target_status
+    )
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_m4_inflation_budget
+      .claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.ok(
+    [
+      "positive-n38-split-m4-inflation-budget-closes-all-requested-factors",
+      "positive-n38-split-m4-inflation-budget-closes-some-requested-factors",
+      "positive-n38-split-m4-inflation-budget-open",
+      "positive-n38-m4-inflation-budget-needs-cubic-sampled-support",
+      "positive-n38-m4-inflation-budget-missing-finite-inputs",
+    ].includes(
+      diagnostic.source_covariance_positive_n38_m4_inflation_budget
+        .split_budget_status
+    )
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_directed_interval_residual_check
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_directed_interval_residual_check
+      .status,
+    "positive-n38-directed-interval-residual-check-candidate-emitted"
+  );
+  assert.ok(
+    [
+      "positive-n38-directed-interval-residual-fits-collar-target",
+      "positive-n38-directed-interval-residual-exposes-dependency-loss",
+      "positive-n38-directed-interval-residual-open",
+      "positive-n38-directed-interval-residual-no-samples",
+      "positive-n38-directed-interval-residual-no-positive-collar-target",
+      "positive-n38-directed-interval-residual-missing-polynomial",
+    ].includes(
+      diagnostic
+        .source_covariance_positive_n38_directed_interval_residual_check
+        .target_status
+    )
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_directed_interval_residual_check
+      .positive_target_count,
+    diagnostic.source_covariance_positive_n38_selected_taylor_degree_row
+      .positive_target_count
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_directed_interval_residual_check
+      .sample_count,
+    diagnostic.source_covariance_positive_n38_selected_taylor_degree_row
+      .positive_target_count * diagnostic.comparison_row_count
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_directed_interval_residual_check
+      .directed_interval_residual_rows.length ===
+      diagnostic.source_covariance_positive_n38_directed_interval_residual_check
+        .sample_count
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_directed_interval_residual_check
+      .claim_boundary.certifies_h38_n38_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_directed_interval_residual_check
+      .claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_cubic_taylor_remainder_route
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_cubic_taylor_remainder_route
+      .status,
+    "positive-n38-cubic-taylor-remainder-route-candidate-emitted"
+  );
+  assert.ok(
+    [
+      "positive-n38-cubic-taylor-remainder-route-needs-cubic-headroom",
+      "positive-n38-cubic-taylor-remainder-route-raw-directed-interval-fits",
+      "positive-n38-cubic-taylor-remainder-route-has-sampled-lagrange-headroom",
+      "positive-n38-cubic-taylor-remainder-route-has-sampled-parent-headroom",
+      "positive-n38-cubic-taylor-remainder-route-open",
+    ].includes(
+      diagnostic.source_covariance_positive_n38_cubic_taylor_remainder_route
+        .target_status
+    )
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_cubic_taylor_remainder_route
+      .derivative_route_status,
+    "continuous-directed-rounded-fourth-derivative-proof-open"
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_cubic_taylor_remainder_route
+      .same_domain_derivative_provider_target
+  );
+  const derivativeProviderTarget =
+    diagnostic.source_covariance_positive_n38_cubic_taylor_remainder_route
+      .same_domain_derivative_provider_target;
+  assert.ok(
+    [
+      "positive-n38-same-domain-derivative-provider-target-open",
+      "positive-n38-same-domain-derivative-provider-target-unavailable",
+    ].includes(derivativeProviderTarget.status)
+  );
+  assert.equal(
+    derivativeProviderTarget.provider_target_kind,
+    "directed-rounded-continuous-fourth-derivative-bound"
+  );
+  assert.equal(
+    derivativeProviderTarget.claim_boundary
+      .certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.equal(
+    typeof derivativeProviderTarget.parent_acceptance_inequality,
+    "string"
+  );
+  assert.equal(
+    typeof derivativeProviderTarget.split_acceptance_inequality,
+    "string"
+  );
+  assert.equal(
+    typeof derivativeProviderTarget.provider_acceptance_test,
+    "string"
+  );
+  if (
+    derivativeProviderTarget.status ===
+    "positive-n38-same-domain-derivative-provider-target-open"
+  ) {
+    assert.equal(derivativeProviderTarget.selected_polynomial_degree, 3);
+    assert.ok(
+      derivativeProviderTarget.parent_required_fourth_derivative_upper > 0
+    );
+    assert.ok(
+      derivativeProviderTarget.lagrange_required_fourth_derivative_upper > 0
+    );
+    assert.ok(
+      derivativeProviderTarget.equal_stream_point_expression_m4_ceiling > 0
+    );
+    assert.ok(
+      derivativeProviderTarget
+        .equal_stream_interval_center_drift_m4_ceiling > 0
+    );
+    assert.ok(
+      derivativeProviderTarget.raw_interval_rejection_ratio === null ||
+        derivativeProviderTarget.raw_interval_rejection_ratio >= 0
+    );
+    assert.ok(
+      derivativeProviderTarget.same_domain_stream_derivative_witness
+    );
+    assert.ok(
+      [
+        "positive-n38-same-domain-stream-derivative-witness-inside-provider-target",
+        "positive-n38-same-domain-stream-derivative-witness-open",
+        "positive-n38-same-domain-stream-derivative-witness-unavailable",
+      ].includes(
+        derivativeProviderTarget.same_domain_stream_derivative_witness.status
+      )
+    );
+    assert.equal(
+      derivativeProviderTarget.same_domain_stream_derivative_witness
+        .claim_boundary.certifies_n38_taylor_remainder_bound,
+      false
+    );
+    assert.ok(
+      derivativeProviderTarget.same_domain_stream_derivative_witness
+        .point_expression_guarded_to_ceiling_ratio === null ||
+        derivativeProviderTarget.same_domain_stream_derivative_witness
+          .point_expression_guarded_to_ceiling_ratio >= 0
+    );
+    assert.ok(
+      derivativeProviderTarget.same_domain_stream_derivative_witness
+        .interval_center_drift_guarded_to_ceiling_ratio === null ||
+        derivativeProviderTarget.same_domain_stream_derivative_witness
+          .interval_center_drift_guarded_to_ceiling_ratio >= 0
+    );
+    assert.ok(derivativeProviderTarget.removable_quotient_route);
+    assert.equal(
+      derivativeProviderTarget.removable_quotient_route.status,
+      "positive-n38-removable-quotient-route-candidate-emitted"
+    );
+    assert.ok(
+      [
+        "positive-n38-removable-quotient-route-needs-node-factorization",
+        "positive-n38-removable-quotient-route-all-sample-products-separated",
+        "positive-n38-removable-quotient-route-needs-omitted-cell-witness",
+      ].includes(
+        derivativeProviderTarget.removable_quotient_route.target_status
+      )
+    );
+    assert.equal(
+      derivativeProviderTarget.removable_quotient_route.claim_boundary
+        .certifies_n38_taylor_remainder_bound,
+      false
+    );
+    assert.ok(
+      derivativeProviderTarget.removable_quotient_route
+        .product_separated_sample_count >= 0
+    );
+    assert.ok(
+      derivativeProviderTarget.removable_quotient_route
+        .product_crossing_sample_count >= 0
+    );
+    assert.ok(
+      derivativeProviderTarget.removable_quotient_route.sample_product_rows.every(
+        (row) =>
+          [
+            "requires-removable-node-factorization",
+            "product-separated-direct-quotient-allowed",
+          ].includes(row.quotient_interval_policy)
+      )
+    );
+    assert.ok(
+      derivativeProviderTarget.quartic_quotient_consistency_witness
+    );
+    const quarticQuotientWitness =
+      derivativeProviderTarget.quartic_quotient_consistency_witness;
+    assert.ok(
+      [
+        "positive-n38-quartic-quotient-consistency-witness-inside-provider-target",
+        "positive-n38-quartic-quotient-consistency-witness-open",
+        "positive-n38-quartic-quotient-consistency-witness-unavailable",
+      ].includes(quarticQuotientWitness.status)
+    );
+    assert.equal(
+      quarticQuotientWitness.claim_boundary
+        .certifies_n38_taylor_remainder_bound,
+      false
+    );
+    assert.equal(
+      quarticQuotientWitness.finite_data_scope,
+      "five-sample-quartic-normal-form-only"
+    );
+    if (
+      quarticQuotientWitness.status ===
+      "positive-n38-quartic-quotient-consistency-witness-inside-provider-target"
+    ) {
+      assert.equal(
+        quarticQuotientWitness.quotient_consistency_status,
+        "positive-n38-quartic-quotient-consistent"
+      );
+      assert.equal(quarticQuotientWitness.stream_rows.length, 3);
+      assert.equal(
+        quarticQuotientWitness.node_limit_proxy_status,
+        "positive-n38-quartic-node-limit-proxy-inside-provider-target"
+      );
+      assert.equal(
+        quarticQuotientWitness.node_limit_proxy_rows.length,
+        quarticQuotientWitness.selected_sample_indexes.length
+      );
+      assert.ok(
+        quarticQuotientWitness.node_limit_proxy_rows.every(
+          (row) =>
+            row.finite_data_limit_kind ===
+              "quartic-removable-node-limit-proxy" &&
+            row.direct_stream_policy === "diagnostic-only" &&
+            row.split_stream_proxy_status ===
+              "positive-n38-quartic-node-limit-proxy-inside-provider-target"
+        )
+      );
+      assert.ok(
+        quarticQuotientWitness.node_limit_proxy_rows.every(
+          (row) =>
+            row.point_expression_limit_proxy_m4 ===
+              quarticQuotientWitness.point_expression_signed_m4 &&
+            row.interval_center_drift_limit_proxy_m4 ===
+              quarticQuotientWitness.interval_center_drift_signed_m4 &&
+            row.direct_limit_proxy_m4 ===
+              quarticQuotientWitness.direct_signed_m4
+        )
+      );
+      assert.ok(
+        quarticQuotientWitness.max_quotient_consistency_relative_gap <=
+          quarticQuotientWitness.consistency_tolerance
+      );
+      assert.ok(
+        quarticQuotientWitness.split_to_direct_signed_m4_relative_gap <=
+          quarticQuotientWitness.consistency_tolerance
+      );
+      assert.ok(
+        quarticQuotientWitness.point_expression_abs_m4_to_ceiling_ratio <= 1
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .interval_center_drift_abs_m4_to_ceiling_ratio <= 1
+      );
+      assert.ok(
+        quarticQuotientWitness.split_triangle_abs_m4_to_ceiling_ratio <= 1
+      );
+    }
+  }
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_cubic_taylor_remainder_route
+      .claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .status,
+    "positive-n38-lagrange-remainder-target-candidate-emitted"
+  );
+  assert.ok(
+    [
+      "positive-n38-lagrange-remainder-target-has-sampled-m4-headroom",
+      "positive-n38-lagrange-remainder-target-open",
+      "positive-n38-lagrange-no-candidate-stencil",
+      "positive-n38-lagrange-no-positive-collar-target",
+      "positive-n38-lagrange-needs-cubic-target",
+      "positive-n38-lagrange-missing-finite-inputs",
+    ].includes(
+      diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+        .target_status
+    )
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .positive_target_count,
+    diagnostic.source_covariance_positive_n38_best_degree_row
+      .positive_target_count
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .candidate_count >= 0
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .candidate_rows.length,
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .candidate_count
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .best_split_triangle_m4_to_lagrange_required_ratio === null ||
+      diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+        .best_split_triangle_m4_to_lagrange_required_ratio >= 0
+  );
+  assert.ok(
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .best_split_triangle_lagrange_inflation_factor_before_failure === null ||
+      diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+        .best_split_triangle_lagrange_inflation_factor_before_failure >= 0
+  );
+  if (
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .selected_split_m4_allocation_target !== null
+  ) {
+    const allocationTarget =
+      diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+        .selected_split_m4_allocation_target;
+    assert.ok(
+      [
+        "positive-n38-split-m4-allocation-target-candidate-emitted",
+        "positive-n38-split-m4-allocation-target-unavailable",
+      ].includes(allocationTarget.status)
+    );
+    assert.equal(
+      allocationTarget.claim_boundary.certifies_n38_taylor_remainder_bound,
+      false
+    );
+    if (
+      allocationTarget.status ===
+      "positive-n38-split-m4-allocation-target-candidate-emitted"
+    ) {
+      assert.ok(
+        allocationTarget.equal_stream_inflation_factor_before_failure > 0
+      );
+      assert.ok(
+        allocationTarget.point_expression_axis_intercept_inflation_factor >
+          allocationTarget.equal_stream_inflation_factor_before_failure
+      );
+      assert.ok(
+        allocationTarget.interval_center_drift_axis_intercept_inflation_factor >
+          allocationTarget.equal_stream_inflation_factor_before_failure
+      );
+      assert.ok(
+        allocationTarget.equal_stream_point_expression_m4_ceiling > 0
+      );
+      assert.ok(
+        allocationTarget.equal_stream_interval_center_drift_m4_ceiling > 0
+      );
+      assert.ok(
+        allocationTarget.equal_stream_split_triangle_m4_ceiling > 0
+      );
+      assert.ok(
+        allocationTarget.point_expression_m4_ceiling_with_drift_uninflated >
+          allocationTarget.equal_stream_point_expression_m4_ceiling
+      );
+      assert.ok(
+        allocationTarget.interval_center_drift_m4_ceiling_with_point_uninflated >
+          allocationTarget.equal_stream_interval_center_drift_m4_ceiling
+      );
+      assert.equal(
+        allocationTarget.sampled_ceiling_comparison.status,
+        "sampled-split-m4-inside-equal-stream-ceilings"
+      );
+      assert.equal(
+        allocationTarget.sampled_ceiling_comparison
+          .sampled_pair_satisfies_equal_stream_rectangle,
+        true
+      );
+      assert.equal(
+        allocationTarget.sampled_ceiling_comparison
+          .sampled_pair_satisfies_linear_allocation,
+        true
+      );
+      assert.ok(
+        allocationTarget.sampled_ceiling_comparison
+          .split_triangle_sampled_to_equal_split_ceiling_ratio < 1
+      );
+      assert.equal(
+        allocationTarget.sampled_ceiling_comparison
+          .continuous_certificate_status,
+        "continuous-directed-rounded-fourth-derivative-proof-open"
+      );
+      assert.equal(
+        typeof allocationTarget.allocation_certificate_obligation,
+        "string"
+      );
+    }
+  }
+  if (
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .selected_candidate !== null
+  ) {
+    assert.ok(
+      diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+        .selected_candidate
+        .split_triangle_m4_to_lagrange_required_ratio === null ||
+        diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+          .selected_candidate
+          .split_triangle_m4_to_lagrange_required_ratio >= 0
+    );
+  }
+  if (
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .selected_source_residual_decomposition !== null
+  ) {
+    assert.equal(
+      diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+        .selected_source_residual_decomposition.status,
+      "positive-n38-lagrange-source-decomposition-emitted"
+    );
+    assert.deepEqual(
+      diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+        .selected_source_residual_decomposition.source_components,
+      ["delta_squared_speed", "constant_minus_two", "sin_phi", "sin_delta"]
+    );
+    assert.ok(
+      typeof diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+        .selected_source_residual_decomposition
+        .source_sum_replays_direct_residual === "boolean"
+    );
+    assert.ok(
+      diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+        .selected_source_residual_decomposition.component_rows.some(
+          (row) => row.component === "sin_delta"
+        )
+    );
+    assert.ok(
+      Number.isFinite(
+        diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+          .selected_source_residual_decomposition
+          .point_expression_omitted_residual_sum
+      )
+    );
+    assert.ok(
+      diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+        .selected_source_residual_decomposition
+        .max_point_expression_omitted_residual_over_conservative_target >= 0
+    );
+    assert.ok(
+      Number.isFinite(
+        diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+          .selected_source_residual_decomposition
+          .interval_center_drift_omitted_residual_sum
+      )
+    );
+    assert.ok(
+      diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+        .selected_source_residual_decomposition
+        .max_interval_center_drift_omitted_residual_over_conservative_target >=
+        0
+    );
+    assert.ok(
+      diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+        .selected_source_residual_decomposition
+        .direct_split_replay_relative_gap < 1e-6
+    );
+  }
+  assert.equal(
+    typeof diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .source_residual_decomposition_interpretation,
+    "string"
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .claim_boundary.certifies_h38_n38_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+      .claim_boundary.certifies_n38_taylor_remainder_bound,
+    false
+  );
   assert.ok(diagnostic.max_source_covariance_term_triangle_gain > 1);
   assert.ok(
     diagnostic.source_covariance_collar_rows.every(
@@ -4176,6 +5122,61 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
     false
   );
   assert.equal(
+    diagnostic.claim_boundary
+      .certifies_h38_y44_source_covariance_producer_centered_safety_search,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary
+      .certifies_h38_y44_source_covariance_producer_centered_n38_collar_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary
+      .certifies_h38_y44_source_covariance_positive_n38_taylor_certificate,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary
+      .certifies_h38_y44_source_covariance_positive_n38_sampled_fourth_difference,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary
+      .certifies_h38_y44_source_covariance_positive_n38_m4_inflation_budget,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary
+      .certifies_h38_y44_source_covariance_positive_n38_directed_interval_residual,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary
+      .certifies_h38_y44_source_covariance_positive_n38_lagrange_remainder,
+    false
+  );
+  assert.equal(
+    diagnostic.source_covariance_h38_y44_n38_collar_enclosure_route
+      .claim_boundary.certifies_h38_n38_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.source_covariance_h38_y44_n38_collar_enclosure_route
+      .claim_boundary.certifies_s37_dependency_preserving_division,
+    false
+  );
+  assert.equal(
+    diagnostic.source_covariance_h38_y44_n38_collar_enclosure_route
+      .claim_boundary.certifies_producer_collar_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.source_covariance_positive_h38_y44_n38_collar_enclosure_route
+      .claim_boundary.certifies_h38_n38_graph_enclosure,
+    false
+  );
+  assert.equal(
     diagnostic.claim_boundary.certifies_source_level_affine_zero,
     false
   );
@@ -4191,6 +5192,130 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
   assert.deepEqual(
     collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
     []
+  );
+});
+
+test("h39 h38 y44 split M4 refinement ladder keeps sampled claims noncertifying", () => {
+  const diagnostic =
+    buildH39H38Y44SourceCovarianceSplitM4RefinementLadderCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      sourceStencilSubcellCounts: [5, 6],
+      baseSourceStencilSubcellCount: 5,
+      baseComparisonStencilIndex: 0,
+      analysisRowOffset: 2,
+      polynomialDegree: 2,
+      h38NoiseSamples: [-1, 0, 1],
+      outerRadius: 0.001,
+      shiftedIndex: 1,
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38Y44SourceCovarianceSplitM4RefinementLadder(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-y44-source-covariance-split-m4-refinement-ladder-candidate-emitted"
+  );
+  assert.deepEqual(diagnostic.source_stencil_subcell_counts, [5, 6]);
+  assert.equal(diagnostic.sampled_ladder_rows.length, 2);
+  assert.equal(diagnostic.all_rows_validator_clean, true);
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(
+    diagnostic.sampled_ladder_rows.every(
+      (row) =>
+        row.continuous_certificate_status === null ||
+        row.continuous_certificate_status ===
+        "continuous-directed-rounded-fourth-derivative-proof-open"
+    ),
+    true
+  );
+  assert.ok(
+    diagnostic.sampled_ladder_rows.every(
+      (row) =>
+        row.split_triangle_sampled_to_equal_split_ceiling_ratio === null ||
+        row.split_triangle_sampled_to_equal_split_ceiling_ratio >= 0
+    )
+  );
+  assert.equal(
+    typeof diagnostic.all_quartic_quotient_rows_inside_provider_target,
+    "boolean"
+  );
+  assert.equal(
+    diagnostic.all_quartic_quotient_rows_inside_provider_target,
+    true
+  );
+  assert.equal(
+    diagnostic
+      .all_quartic_quotient_node_limit_proxy_rows_inside_provider_target,
+    true
+  );
+  assert.ok(diagnostic.quartic_quotient_inside_row_count >= 0);
+  assert.equal(
+    diagnostic.quartic_quotient_inside_row_count,
+    diagnostic.sampled_ladder_rows.length
+  );
+  assert.equal(
+    diagnostic.quartic_quotient_node_limit_proxy_inside_row_count,
+    diagnostic.sampled_ladder_rows.length
+  );
+  assert.ok(
+    diagnostic.max_quartic_quotient_split_stream_consistency_relative_gap <=
+      1e-6
+  );
+  assert.ok(
+    diagnostic.max_quartic_quotient_split_triangle_abs_m4_to_ceiling_ratio <
+      1
+  );
+  assert.ok(
+    diagnostic.sampled_ladder_rows.every((row) =>
+      [
+        "quartic-quotient-refinement-row-inside-provider-target",
+        "quartic-quotient-refinement-row-open",
+        "quartic-quotient-refinement-row-unavailable",
+      ].includes(row.quartic_quotient_row_status)
+    )
+  );
+  assert.ok(
+    diagnostic.sampled_ladder_rows.every(
+      (row) =>
+        row.quartic_quotient_split_triangle_abs_m4_to_ceiling_ratio ===
+          null ||
+        row.quartic_quotient_split_triangle_abs_m4_to_ceiling_ratio >= 0
+    )
+  );
+  assert.ok(
+    diagnostic.sampled_ladder_rows.some(
+      (row) =>
+        row.quartic_quotient_direct_consistency_status ===
+        "positive-n38-quartic-direct-quotient-diagnostic-open"
+    )
+  );
+  assert.ok(
+    diagnostic.sampled_ladder_rows.every(
+      (row) =>
+        row.quartic_quotient_node_limit_proxy_status ===
+          "positive-n38-quartic-node-limit-proxy-inside-provider-target" &&
+        row.quartic_quotient_node_limit_proxy_row_count === 4
+    )
+  );
+  assert.equal(
+    typeof diagnostic.quotient_refinement_interpretation,
+    "string"
+  );
+  assert.equal(
+    typeof diagnostic.node_limit_proxy_interpretation,
+    "string"
   );
 });
 

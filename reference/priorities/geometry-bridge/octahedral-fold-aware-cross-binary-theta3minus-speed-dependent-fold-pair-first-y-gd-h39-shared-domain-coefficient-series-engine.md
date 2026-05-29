@@ -173,6 +173,318 @@ directed-rounded H38 producer-centered residual-coordinate collar of positive
 width, then feed that signed source enclosure into the shifted
 $R_{\varepsilon,43}$ outer-bound backend.
 
+A producer-centered safety search now measures the width rather than relying
+on the coarse collar ladder. On the live `speed.28.first-y` row, the
+$10^{13}$ reference target closes at half-width
+$6.242338716983796\times10^{-9}$, with replay ratio
+$0.9999999954450799$ and bracket width
+$2.9802322372008686\times10^{-16}$. The lower $10^8$ and $10^{10}$ reference
+targets fail at the producer midpoint hull. The measured collar remains a
+midpoint-hull certificate target only: it requires a full interval-hull
+compression factor $1.6019636955604696\times10^8$ against the current
+producer interval hull. Thus the next route is not another raw pressure
+prefix; it is a directed-rounded local H38 producer-image enclosure inside
+the measured source-covariance collar.
+
+The same measured collar is now tested against the existing H38 recurrence
+numerator route. The diagnostic emits both an all-reference stress route and a
+positive-collar-only route. The all-reference route is intentionally dominated
+by the lower $10^8$ and $10^{10}$ pressure targets, which already fail at the
+producer midpoint hull. The positive route isolates the actual $10^{13}$
+source-covariance collar: `source_covariance_positive_h38_y44_n38_collar_enclosure_route`
+has one positive target, route diagnosis
+`n38-quadratic-midpoint-residual-has-directed-rounded-collar-headroom`, and
+`s37_dependency_status` equal to
+`conservative-s37-lower-bound-supports-n38-collar`. On `speed.28.first-y`, the
+quadratic $N_{38}(\xi)$ midpoint residual is
+$3.8568408881375\times10^{10}$ against conservative numerator target
+$5.73862423531554\times10^{14}$, so the residual-to-target ratio is
+$6.720845850826876\times10^{-5}$ and the headroom is
+$1.4879079541408742\times10^4$. This advances the blocker from "find a local
+producer image" to "make the already isolated positive-collar N38 graph
+residual and $S_{37}$ division directed-rounded on the same domain."
+
+The positive route now also includes a live graph-degree sweep. Linear,
+quadratic, and cubic $N_{38}(\xi)$ graphs all fit the measured positive collar
+with headroom, and the cubic graph is the best local coordinate on the live
+row. Its residual-to-target ratio is
+$2.233649281651077\times10^{-5}$ with headroom
+$4.4769785848421845\times10^4$, compared with
+$6.098345638556299\times10^{-5}$ for the linear graph and
+$6.720845850826876\times10^{-5}$ for the quadratic graph. The emitted
+candidate Taylor target is a cubic graph on
+$\xi\in[1.3748880220784354,2]$, with conservative numerator residual target
+$5.738624107848429\times10^{14}$ and observed controlling midpoint residual
+$1.28180741855625\times10^{10}$. As a Taylor-route target, this translates to
+a required fourth-derivative upper bound
+$1.4431375279595438\times10^{18}$ on the parent window; the midpoint residual
+implies only $3.223463245842429\times10^{13}$, leaving the same
+$4.4769783859669544\times10^4$ scale of headroom. A local sampled
+fourth-difference check on the same positive collar stencil gives nonuniform
+fourth-derivative estimate $6.115956847843226\times10^{14}$, ratio
+$4.237958426935647\times10^{-4}$ against the required bound, and pass status
+`positive-n38-sampled-fourth-difference-supports-cubic-target`. The same
+artifact now emits an inflation budget: sampled $M_4$ can be inflated by
+$2359.6267335804732$ before the cubic target fails, and the requested ladder
+through $2000\times$ sampled $M_4$ still closes with remainder ratio
+$0.8475916853871295$. This is not yet a directed-rounded certificate, but it
+replaces the vague producer-image obstruction with a specific same-domain
+cubic Taylor derivative budget and $S_{37}$-division proof obligation.
+
+The route now also records the negative result that keeps the proof honest:
+raw directed interval enclosure of the same cubic graph residual does not
+close. On the live positive target, `source_covariance_positive_n38_directed_interval_residual_check`
+reports target status
+`positive-n38-directed-interval-residual-exposes-dependency-loss`. The
+selected $q_3(\xi)$ midpoint residual remains tiny, with ratio
+$2.233665171037203\times10^{-5}$ against the conservative numerator target,
+but the outward-rounded interval residual has maximum absolute-upper ratio
+$8.00987545753348\times10^7$. The controlling sample is
+`speed.27.first-y`; the raw numerator interval width there is already
+$1.6019750913581634\times10^8$ times the target, and the
+midpoint-to-directed-interval dependency-loss factor is
+$2.156733711521737\times10^{13}$. This classifies the remaining obstruction as
+dependency loss in the raw interval coordinate. The next closure attempt
+should certify the cubic residual derivative or a dependency-preserving
+normal form on the same producer window, not try to force the raw
+independent interval hull through the collar.
+
+The certificate target is now sharper than the original center-Taylor parent
+window. The diagnostic emits
+`source_covariance_positive_n38_lagrange_remainder_target`, a four-node cubic
+Lagrange scan on the same five positive-collar samples. The best candidate
+uses `speed.27.first-y`, `speed.28.first-y`, `speed.30.first-y`, and
+`speed.31.first-y` as interpolation nodes and omits `speed.29.first-y`. Its
+product envelope has maximum $2.886464445233012\times10^{-3}$ on
+$\xi\in[1.3748880220784354,2]$, so the required fourth-derivative ceiling is
+$4.771442762167798\times10^{18}$, a factor
+$3.306321547371893$ above the parent Taylor requirement. Against the sampled
+nonuniform fourth-derivative estimate
+$6.115956847843226\times10^{14}$, the new sampled-$M_4$ ratio is
+$1.2817835511589747\times10^{-4}$ and the inflation margin is
+$7801.629214977919$. The omitted-node residual remains below the collar, with
+ratio $4.343246822549331\times10^{-5}$. This keeps the claim candidate-only
+but gives the next directed-rounded proof a concrete, less brittle target:
+certify the $q_3$ residual derivative below $4.7714\times10^{18}$ on the same
+producer window, then replay the existing conservative $S_{37}$ lower-bound
+status through the H39 source-covariance path.
+
+The Lagrange route now has a source-level residual decomposition, and it
+changes the next proof target again. The selected omitted sample
+`speed.29.first-y` has direct interval-midpoint residual
+$-2.492408362115625\times10^{10}$, but the recomputed point-source
+point-expression residual is only $-1.313289726678125\times10^{10}$. The
+separate interval-center drift residual is
+$-1.1791186313234375\times10^{10}$, and the point/drift split replays the
+direct residual with relative gap $1.650637416618146\times10^{-9}$. Their
+ratios against the conservative numerator target are
+$2.28852593571814\times10^{-5}$ and
+$2.054720686727435\times10^{-5}$ respectively, so
+$0.4730840362731557$ of the direct omitted residual is an
+interval-midpoint artifact rather than point-source geometry. The point-source
+part remains a real signed balance: the sine pair accounts for
+$0.9920894683344795$ of the absolute source residual mass, and `sin_delta` is
+the dominant component with share $0.752464803608694$ while `sin_phi` opposes
+it. This means the directed-rounded proof should not certify the row-hull
+midpoint residual as if it were the primitive function. The next certificate
+should use the point-expression/source-term midpoint normal form for
+$N_{38}(\xi)-q_3(\xi)$, then separately bound the interval-center drift or
+avoid that drift by choosing a dependency-preserving center before applying
+absolute Cauchy bounds.
+
+The sampled fourth-difference check now carries the same split. The direct
+row-hull sampled nonuniform $M_4$ estimate is
+$6.115956847843226\times10^{14}$, ratio
+$4.2379885742637813\times10^{-4}$ against the parent Taylor requirement. The
+point-expression residual contributes
+$3.2225952407871556\times10^{14}$, ratio
+$2.233063795201403\times10^{-4}$, and interval-center drift contributes
+$2.8933616070560706\times10^{14}$, ratio
+$2.004924779062378\times10^{-4}$. Their signed nonuniform split replays the
+direct estimate with zero reported relative gap. The separate triangle split
+of the two pieces has the same ratio,
+$4.2379885742637813\times10^{-4}$, leaving sampled headroom
+$2359.60994815499$ against the parent Taylor requirement. This sharpens the
+blocker: the sampled $M_4$ pressure is slightly point-expression dominated,
+not purely an interval-center artifact, and both pieces have sampled
+headroom. Closure therefore needs a directed-rounded certificate for the
+split source normal form and drift bound, not another raw row-hull
+subdivision.
+
+The M4 inflation budget now records that sufficient condition explicitly. It
+separately inflates the point-expression and interval-center drift sampled
+$M_4$ estimates, adds them by triangle inequality, and tests the same
+parent-window Taylor remainder target. On the live selected row, every
+requested factor in $1,2,10,100,1000,2000$ closes under the split budget. The
+factor-$2000$ split-triangle remainder ratio is
+$0.8475977148527561$, and the sampled split-triangle inflation factor before
+failure is $2359.60994815499$. The next directed-rounded certificate can
+therefore target a combined fourth-derivative inflation below that number for
+the point-expression source normal form plus interval-center drift, then feed
+the result into the existing positive-collar $N_{38}$ replay.
+
+The Lagrange route carries the same split budget into the sharper selected
+four-node stencil. Its required fourth-derivative bound is
+$4.771442762167798\times10^{18}$, and the split-triangle sampled $M_4$ ratio
+against that Lagrange requirement is
+$1.2817835511589747\times10^{-4}$, giving sampled headroom
+$7801.629214977919$. The immediate proof target is therefore a
+directed-rounded split source/drift fourth-derivative certificate with
+combined inflation below $7801.629214977919$, followed by the existing
+$S_{37}$ dependency and H39 source replay obligations.
+
+The selected Lagrange target now also carries an explicit split-M4 allocation
+region:
+$\lambda_p M_{4,p}+\lambda_d M_{4,d}\le M_{4,\mathrm{Lag}}$. On the live
+stencil, the point-expression source-term stream carries
+$0.5269159546021968$ of the split-triangle sampled $M_4$, and interval-center
+drift carries $0.47308404539780324$. The equal-stream inflation factor is
+$7801.629214977919$. The point-expression and drift axis intercepts are
+$14806.211781664266$ and $16491.000469943443$ respectively; holding the other
+stream at sampled scale gives allowable factors $14805.313945792595$ and
+$16489.88668062899$. This is the current allocation target for a
+directed-rounded split derivative proof.
+
+The same target now records absolute $M_4$ ceilings. Equal-stream allocation
+sets the point-expression ceiling at
+$2.5141493178573875\times10^{18}$ and the interval-center drift ceiling at
+$2.2572934443104102\times10^{18}$, with split ceiling
+$4.771442762167798\times10^{18}$. The point-expression and drift axis
+ceilings are both $4.771442762167798\times10^{18}$. With the other stream
+left at sampled scale, the point-expression stream may reach
+$4.771153426007092\times10^{18}$, while the drift stream may reach
+$4.771120502643719\times10^{18}$. These are candidate certificate targets:
+closure still requires directed-rounded continuous fourth-derivative bounds
+inside one feasible allocation pair, then the $S_{37}$ dependency and H39
+source replay.
+
+The sampled ceiling comparison now confirms the magnitude picture directly.
+The point-expression stream, interval-center drift stream, and split triangle
+each sit at $1.2817835511589747\times10^{-4}$ of the equal-stream ceiling.
+Against one-stream-fixed ceilings, the sampled ratios are
+$6.754331611348114\times10^{-5}$ for the point-expression stream and
+$6.06432305671767\times10^{-5}$ for interval-center drift. This makes the
+next proof step precise: replace the sampled finite-difference $M_4$ estimates
+with directed-rounded continuous fourth-derivative upper bounds for those two
+streams on the same selected Lagrange window.
+
+The sampled split-M4 refinement ladder also removed a selector artifact. The
+degree sweep may still prefer a lower-degree row by midpoint residual, but the
+Taylor/Lagrange route now selects a cubic row whenever cubic headroom exists.
+For counts $32,64,128$ with scaled comparison indexes $27,54,108$, every row
+validates, uses selected Taylor degree $3$, and keeps the same local Lagrange
+node pattern `0|1|3|4`. The sampled split-to-equal-ceiling ratios are
+$1.2817835511589747\times10^{-4}$, $2.2974267404209582\times10^{-5}$, and
+$4.671094237864675\times10^{-4}$; the sampled headroom factors are
+$7801.629214977919$, $43526.959202049235$, and $2140.8260015262204$. This
+clears the sampled selection/magnitude obstruction on the live ladder while
+preserving candidate-only status until the continuous directed-rounded
+fourth-derivative bounds are proved.
+
+The cubic Taylor remainder route is now explicit. For the live
+`speed.28.first-y` row, the parent cubic Taylor target requires
+$M_4\le1.443127262065751\times10^{18}$, while the sampled nonuniform estimate
+is $6.115956847843226\times10^{14}$, ratio
+$4.2379885742637813\times10^{-4}$, headroom $2359.60994815499$. The Lagrange
+split route remains sharper, with required
+$M_4\le4.771442762167798\times10^{18}$ and split-triangle ratio
+$1.2817835511589747\times10^{-4}$. The raw directed interval residual route
+fails as a certificate because it has residual-to-target ratio
+$80098754.5753348$ and midpoint-to-directed dependency loss
+$2.156733711521737\times10^{13}$. The next proof obligation is therefore a
+same-domain directed-rounded bound on
+$d^4(N_{38}(\xi)-q_3(\xi))/d\xi^4$, equivalently $N_{38}^{(4)}$ because
+$q_3$ is cubic, or a split source/drift fourth-derivative proof inside the
+allocation region.
+
+The route now carries that obligation as a validator-covered provider target,
+not as an informal next step. Its live `provider_target_kind` is a
+directed-rounded continuous fourth-derivative bound; it is explicitly
+candidate-only and preserves all false claim-boundary flags. The selected
+same-domain Lagrange pattern is `0|1|3|4`, with nodes `speed.27.first-y`,
+`speed.28.first-y`, `speed.30.first-y`, and `speed.31.first-y`; the omitted
+cell is `speed.29.first-y`. On $\xi\in[1.3748880220784354,2]$, the split
+acceptance test requires
+$\sup_\xi |F_{\text{point}}^{(4)}(\xi)|\le
+2.5141493178573875\times10^{18}$ and
+$\sup_\xi |F_{\text{drift}}^{(4)}(\xi)|\le
+2.2572934443104102\times10^{18}$ for
+$F_{\text{point}}=$ source-term midpoint sum minus $q_3$ and
+$F_{\text{drift}}=$ interval-center drift. This makes the next certificate
+interface concrete: provide those two same-domain directed-rounded derivative
+bounds, then replay the dependency-preserving $S_{37}$ division and signed H39
+source.
+
+A first same-domain stream derivative witness now probes the omitted Lagrange
+cell rather than only the sampled stencil. For `speed.29.first-y`, the
+directed Lagrange product interval stays away from zero, with absolute lower
+bound $1.379151044211313\times10^{-4}$. The resulting guarded fourth-derivative
+witnesses are $2.2853880706227905\times10^{15}$ for the point-expression stream
+and $2.051903398872862\times10^{15}$ for the interval-center drift stream; the
+split guarded value is $4.3372914694956525\times10^{15}$. Those are only
+$9.090104769793259\times10^{-4}$, $9.090104806908285\times10^{-4}$, and
+$9.090104787351786\times10^{-4}$ of the split ceilings. The omitted cell is
+therefore not the active obstruction. The remaining certificate has to control
+the continuous fourth-derivative supremum over the same $\xi$ window, without
+turning the stream data back into independent h-row boxes.
+
+The quotient form is now explicit. For each stream, the diagnostic records the
+candidate identity
+$F_{\text{stream}}(\xi)-p_{3,\text{stream}}(\xi)
+=\prod_i(\xi-\xi_i)Q_{\text{stream}}(\xi)/24$. A raw quotient interval is valid
+only on cells whose Lagrange product interval is separated from zero. The live
+route reports one such separated cell, `speed.29.first-y`, and four
+product-crossing node cells, `speed.27.first-y`, `speed.28.first-y`,
+`speed.30.first-y`, and `speed.31.first-y`. Those four product-zero rows are
+not new failures; they are the expected removable-node limit obligations. The
+next certificate should therefore bound the removable quotient
+$Q_{\text{stream}}$ directly with directed rounding on the same $\xi$ window,
+instead of dividing raw residual intervals near Lagrange nodes.
+
+The finite-data quotient consistency witness now verifies the removable
+normal form on the live five-row stencil before any continuous supremum claim.
+With the same selected node pattern `0|1|3|4` and omitted cell
+`speed.29.first-y`, the live diagnostic reports
+`positive-n38-quartic-quotient-consistency-witness-inside-provider-target`.
+The signed five-point quartic estimates are
+$-3.2225952407829644\times10^{14}$ for $F_{\text{point}}$,
+$-2.8933616070560706\times10^{14}$ for $F_{\text{drift}}$, and
+$-6.115956847839032\times10^{14}$ for $F_{\text{direct}}$; their split replay
+gap is $4.0876678207488184\times10^{-16}$. The omitted residual quotient check
+agrees with the fourth divided-difference form to relative gap at most
+$4.3377600832686915\times10^{-9}$, and the absolute split-M4 ratio against the
+provider ceiling is $1.2817835511580962\times10^{-4}$. This is not a
+directed-rounded certificate. It shows that the apparent node singularity is a
+finite-data bounding artifact, so the live proof obligation is now sharply the
+continuous same-domain bound for $Q_{\text{stream}}$ or equivalently the stream
+fourth derivatives.
+
+The same witness now emits explicit finite-data node-limit proxies for the four
+selected Lagrange nodes. The `node_limit_proxy_rows` entries reuse the
+point-expression, interval-center drift, and diagnostic direct signed $M_4$
+constants as the removable quotient limit proxy of the five-sample quartic
+normal form, without dividing by the zero product at a node. The split-stream
+node-limit proxy status is inside the provider target, and the direct stream is
+kept `diagnostic-only`. The remaining certificate is therefore a
+directed-rounded repeated-node quotient limit for the split streams, not another
+raw product-crossing interval division.
+
+The refinement ladder now carries the quotient witness, and it exposed a
+useful split-stream correction. On the live `[32,64]` ladder, both rows stay
+inside the split-stream provider target on the same local Lagrange pattern
+`0|1|3|4`. The $32$-subcell row keeps the direct quotient consistent, while the
+$64$-subcell row has $F_{\text{direct}}^{(4)}=0$ because
+$F_{\text{point}}^{(4)}=7.00073055386285\times10^{14}$ and
+$F_{\text{drift}}^{(4)}=-7.00073055386285\times10^{14}$ cancel. That direct
+quotient diagnostic is open with relative gap $1$, but it is not the provider
+acceptance test: the split streams themselves have quotient-consistency gap at
+most $2.9663342060118986\times10^{-8}$, split-to-direct replay gap at most
+$4.0876678207488184\times10^{-16}$, and split ceiling ratio at most
+$1.2817835511580962\times10^{-4}$. The mathematical route is therefore not a
+direct-stream quotient certificate; it is a split-stream removable quotient
+certificate that preserves the point/drift cancellation until after the
+same-domain bounds are applied.
+
 ## Coefficient-Series Construction
 
 The exported series context builds the same fold-pair chart used by the h38

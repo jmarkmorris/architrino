@@ -100,6 +100,9 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_N38_TERMINAL_ENDPOINT_
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SOURCE_COVARIANCE_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-y44-source-covariance-diagnostic/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SOURCE_COVARIANCE_SPLIT_M4_REFINEMENT_LADDER_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-y44-source-covariance-split-m4-refinement-ladder/v1";
+
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_EXPRESSION_N38_TAYLOR_M4_REFINEMENT_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-expression-n38-taylor-m4-refinement-diagnostic/v1";
 
@@ -509,6 +512,53 @@ function polynomialValue(coefficients, x) {
   );
 }
 
+function lagrangeInterpolationPolynomialCoefficients(points) {
+  if (!Array.isArray(points) || points.length === 0) {
+    throw new Error("lagrange interpolation requires at least one point");
+  }
+  const coefficients = Array.from({ length: points.length }, () => 0);
+  points.forEach((point, pointIndex) => {
+    const xi = Number(point.x);
+    const yi = Number(point.y);
+    let basis = [1];
+    let denominator = 1;
+    points.forEach((otherPoint, otherIndex) => {
+      if (otherIndex === pointIndex) {
+        return;
+      }
+      const xj = Number(otherPoint.x);
+      const nextBasis = Array.from({ length: basis.length + 1 }, () => 0);
+      basis.forEach((coefficient, basisIndex) => {
+        nextBasis[basisIndex] -= coefficient * xj;
+        nextBasis[basisIndex + 1] += coefficient;
+      });
+      basis = nextBasis;
+      denominator *= xi - xj;
+    });
+    basis.forEach((coefficient, coefficientIndex) => {
+      coefficients[coefficientIndex] += (yi * coefficient) / denominator;
+    });
+  });
+  return coefficients;
+}
+
+function directedIntervalPolynomialValue({ coefficients, interval }) {
+  const resolvedInterval = root.outwardInterval(
+    numericOrderedInterval("interval", interval)
+  );
+  if (!Array.isArray(coefficients) || coefficients.length === 0) {
+    return root.pointInterval(0);
+  }
+  let value = root.pointInterval(Number(coefficients[coefficients.length - 1]));
+  for (let index = coefficients.length - 2; index >= 0; index -= 1) {
+    value = root.addIntervals(
+      root.multiplyIntervals(value, resolvedInterval),
+      root.pointInterval(Number(coefficients[index]))
+    );
+  }
+  return value;
+}
+
 function quadraticRoots({ a, b, c }) {
   if (Math.abs(a) < 1e-300) {
     return Math.abs(b) < 1e-300 ? [] : [-c / b];
@@ -564,6 +614,124 @@ function polynomialRangeOnInterval({ coefficients, interval }) {
     polynomialValue(coefficients, point)
   );
   return [Math.min(...values), Math.max(...values)];
+}
+
+function productValueForNodes(nodes, x) {
+  return nodes.reduce(
+    (product, node) => product * (Number(x) - Number(node)),
+    1
+  );
+}
+
+function lagrangeProductIntervalForNodes({ nodes, interval }) {
+  const xiInterval = root.outwardInterval(
+    numericOrderedInterval("interval", interval)
+  );
+  return nodes.reduce(
+    (productInterval, node) =>
+      root.multiplyIntervals(
+        productInterval,
+        root.subtractIntervals(xiInterval, root.pointInterval(Number(node)))
+      ),
+    root.pointInterval(1)
+  );
+}
+
+function productDerivativeValueForNodes(nodes, x) {
+  return nodes.reduce((sum, _node, omittedIndex) => {
+    const product = nodes.reduce(
+      (factor, node, nodeIndex) =>
+        nodeIndex === omittedIndex
+          ? factor
+          : factor * (Number(x) - Number(node)),
+      1
+    );
+    return sum + product;
+  }, 0);
+}
+
+function derivativeRootBetweenProductNodes({ nodes, left, right }) {
+  let lower = Number(left);
+  let upper = Number(right);
+  let lowerValue = productDerivativeValueForNodes(nodes, lower);
+  let upperValue = productDerivativeValueForNodes(nodes, upper);
+  if (!Number.isFinite(lowerValue) || !Number.isFinite(upperValue)) {
+    return null;
+  }
+  if (lowerValue === 0) {
+    return lower;
+  }
+  if (upperValue === 0) {
+    return upper;
+  }
+  if (lowerValue * upperValue > 0) {
+    return null;
+  }
+  for (let iteration = 0; iteration < 100; iteration += 1) {
+    const midpoint = (lower + upper) / 2;
+    const midpointValue = productDerivativeValueForNodes(nodes, midpoint);
+    if (!Number.isFinite(midpointValue)) {
+      return null;
+    }
+    if (midpointValue === 0) {
+      return midpoint;
+    }
+    if (lowerValue * midpointValue <= 0) {
+      upper = midpoint;
+      upperValue = midpointValue;
+    } else {
+      lower = midpoint;
+      lowerValue = midpointValue;
+    }
+  }
+  return (lower + upper) / 2;
+}
+
+function lagrangeProductEnvelopeOnInterval({ nodes, interval }) {
+  const resolvedInterval = numericOrderedInterval("interval", interval);
+  const sortedNodes = nodes
+    .map(Number)
+    .filter(Number.isFinite)
+    .sort((left, right) => left - right);
+  const samplePoints = [resolvedInterval[0], resolvedInterval[1]];
+  for (let index = 0; index < sortedNodes.length - 1; index += 1) {
+    const left = Math.max(sortedNodes[index], resolvedInterval[0]);
+    const right = Math.min(sortedNodes[index + 1], resolvedInterval[1]);
+    if (left >= right) {
+      continue;
+    }
+    const rootPoint = derivativeRootBetweenProductNodes({
+      nodes: sortedNodes,
+      left,
+      right,
+    });
+    if (
+      Number.isFinite(rootPoint) &&
+      rootPoint >= resolvedInterval[0] &&
+      rootPoint <= resolvedInterval[1]
+    ) {
+      samplePoints.push(rootPoint);
+    }
+  }
+  const rows = samplePoints.map((point) => {
+    const product = productValueForNodes(sortedNodes, point);
+    return {
+      xi: point,
+      product,
+      abs_product: Math.abs(product),
+    };
+  });
+  const maxRow = rows.reduce((best, row) =>
+    Number(row.abs_product) > Number(best?.abs_product ?? -1) ? row : best,
+  null);
+  return {
+    nodes: sortedNodes,
+    interval: resolvedInterval,
+    max_abs_product: maxRow?.abs_product ?? null,
+    max_abs_product_location: maxRow?.xi ?? null,
+    product_at_max_abs: maxRow?.product ?? null,
+    candidate_rows: rows,
+  };
 }
 
 function hRowPolynomialTransportProfileForRows({
@@ -1574,11 +1742,31 @@ function h38SolveWidthFactorizationProfileForRows({
       "h38_solve_slope_interval",
       branchRow.h38_solve_slope_interval
     );
+    const sourceTermSummary = n38ExpressionDecompositionForRow({
+      row,
+      targetSpeedInterval,
+      branch,
+    });
     const exportedSolveInterval = numericInterval(
       "h38_interval",
       branchRow.h38_interval
     );
     const numeratorMidpoint = intervalMidpoint(numeratorInterval);
+    const numeratorTermMidpoints = Object.fromEntries(
+      sourceTermSummary.midpoint_expression_terms.map((term) => [
+        term.term,
+        term.coefficient_midpoint,
+      ])
+    );
+    const numeratorTermWidths = Object.fromEntries(
+      sourceTermSummary.midpoint_expression_terms.map((term) => [
+        term.term,
+        term.coefficient_width,
+      ])
+    );
+    const numeratorSourceTermMidpointSum = Object.values(
+      numeratorTermMidpoints
+    ).reduce((total, value) => total + Number(value), 0);
     const slopeMidpoint = intervalMidpoint(slopeInterval);
     const fullSolveInterval = root.divideIntervals(
       root.scaleInterval(numeratorInterval, -1),
@@ -1607,6 +1795,14 @@ function h38SolveWidthFactorizationProfileForRows({
       h38_numerator_midpoint_ratio_interval: slopeOnlySolveInterval,
       h38_both_midpoint_ratio_point: midpointSolveInterval,
       numerator_interval: numeratorInterval,
+      numerator_expression_midpoint:
+        sourceTermSummary.midpoint_n38_expression_midpoint,
+      numerator_term_midpoints: numeratorTermMidpoints,
+      numerator_term_widths: numeratorTermWidths,
+      numerator_source_term_midpoint_sum: numeratorSourceTermMidpointSum,
+      numerator_source_term_sum_to_interval_midpoint_gap: Math.abs(
+        numeratorSourceTermMidpointSum - numeratorMidpoint
+      ),
       slope_interval: slopeInterval,
       numerator_midpoint: numeratorMidpoint,
       slope_midpoint: slopeMidpoint,
@@ -2195,6 +2391,15 @@ function taylorRemainderUpperFromFourthDerivative({
 }
 
 function fourthDerivativeEstimateFromFourthDividedDifference(xs, values) {
+  const signedEstimate =
+    fourthDerivativeSignedEstimateFromFourthDividedDifference(xs, values);
+  return signedEstimate === null ? null : Math.abs(signedEstimate);
+}
+
+function fourthDerivativeSignedEstimateFromFourthDividedDifference(
+  xs,
+  values
+) {
   const coefficients = values.map(Number);
   for (let order = 1; order < xs.length; order += 1) {
     for (let index = xs.length - 1; index >= order; index -= 1) {
@@ -2208,8 +2413,67 @@ function fourthDerivativeEstimateFromFourthDividedDifference(xs, values) {
   }
   const fourthDividedDifference = coefficients[xs.length - 1];
   return Number.isFinite(fourthDividedDifference)
-    ? 24 * Math.abs(fourthDividedDifference)
+    ? 24 * fourthDividedDifference
     : null;
+}
+
+function fourthDifferenceStencilMetrics({
+  xiMidpoints,
+  values,
+  requiredFourthDerivativeUpper,
+}) {
+  if (
+    !Array.isArray(xiMidpoints) ||
+    xiMidpoints.length !== 5 ||
+    !xiMidpoints.every(Number.isFinite) ||
+    !Array.isArray(values) ||
+    values.length !== 5 ||
+    !values.every(Number.isFinite)
+  ) {
+    return null;
+  }
+  const xiStep = (xiMidpoints[4] - xiMidpoints[0]) / 4;
+  const localSteps = xiMidpoints
+    .slice(1)
+    .map((xi, stepIndex) => xi - xiMidpoints[stepIndex]);
+  const maxStepDeviation = Math.max(
+    ...localSteps.map((step) => Math.abs(step - xiStep))
+  );
+  const fourthDifference =
+    values[0] - 4 * values[1] + 6 * values[2] - 4 * values[3] + values[4];
+  const uniformSignedEstimate = finitePositive(xiStep)
+    ? fourthDifference / Math.pow(xiStep, 4)
+    : null;
+  const uniformEstimate =
+    uniformSignedEstimate === null ? null : Math.abs(uniformSignedEstimate);
+  const nonuniformSignedEstimate =
+    fourthDerivativeSignedEstimateFromFourthDividedDifference(
+      xiMidpoints,
+      values
+    );
+  const nonuniformEstimate =
+    nonuniformSignedEstimate === null
+      ? null
+      : Math.abs(nonuniformSignedEstimate);
+  const uniformRatio = finitePositive(uniformEstimate)
+    ? Number(uniformEstimate) / requiredFourthDerivativeUpper
+    : null;
+  const nonuniformRatio = finitePositive(nonuniformEstimate)
+    ? Number(nonuniformEstimate) / requiredFourthDerivativeUpper
+    : null;
+  return {
+    xi_step: xiStep,
+    max_xi_step_deviation: maxStepDeviation,
+    fourth_difference: fourthDifference,
+    abs_fourth_difference: Math.abs(fourthDifference),
+    uniform_fourth_derivative_signed_estimate: uniformSignedEstimate,
+    uniform_fourth_derivative_estimate: uniformEstimate,
+    nonuniform_fourth_derivative_signed_estimate:
+      nonuniformSignedEstimate,
+    nonuniform_fourth_derivative_estimate: nonuniformEstimate,
+    uniform_fourth_derivative_to_required_ratio: uniformRatio,
+    nonuniform_fourth_derivative_to_required_ratio: nonuniformRatio,
+  };
 }
 
 function n38ExpressionTaylorDerivativeBoundPrototypeForComponent({
@@ -10666,6 +10930,3374 @@ function h39H38Y44SourceCovarianceProducerCenteredRouteDiagnosis(
   return "producer-centered-source-collar-exceeds-reference-target";
 }
 
+function h39H38Y44SourceCovarianceProducerCenteredSafetyRows({
+  setup,
+  branch,
+  coordinateProfile,
+  referencePressureTargets,
+  candidateHalfWidth,
+  outerRadius,
+  shiftedIndex,
+  iterations,
+  sourceStencilSubcellCount,
+}) {
+  return referencePressureTargets.map((targetPressure) => {
+    const safetySearch = h39H38Y44ProducerCenteredSafetySearch({
+      setup,
+      branch,
+      coordinateProfile,
+      candidateHalfWidth,
+      targetPressure,
+      outerRadius,
+      shiftedIndex,
+      iterations,
+      label: `source-covariance-reference-${targetPressure}`,
+    });
+    const collarTarget = h39H38Y44ProducerCenteredCollarTarget({
+      label: `source-covariance-reference-${targetPressure}`,
+      coordinateProfile,
+      safetySearch,
+      sourceStencilSubcellCount,
+    });
+    return {
+      target_pressure: targetPressure,
+      candidate_half_width: candidateHalfWidth,
+      safety_search_iterations: safetySearch.safety_search_iterations,
+      center_hull_replay_pressure:
+        safetySearch.center_hull_replay_pressure,
+      center_hull_replay_over_target_pressure:
+        safetySearch.center_hull_replay_over_target_pressure,
+      target_closing_half_width:
+        safetySearch.target_closing_half_width,
+      target_closing_safety_divisor:
+        safetySearch.target_closing_safety_divisor,
+      target_closing_replay_pressure:
+        safetySearch.target_closing_replay_pressure,
+      target_closing_replay_over_target_pressure:
+        safetySearch.target_closing_replay_over_target_pressure,
+      target_closing_center_eliminated_pressure:
+        safetySearch.target_closing_center_eliminated_pressure,
+      target_closing_center_eliminated_over_target_pressure:
+        safetySearch.target_closing_center_eliminated_over_target_pressure,
+      target_closing_h38_noise_interval:
+        safetySearch.target_closing_h38_noise_interval,
+      clipped_target_closing_h38_noise_interval:
+        safetySearch.clipped_target_closing_h38_noise_interval,
+      target_closing_h38_residual_half_width:
+        safetySearch.target_closing_h38_residual_half_width,
+      target_closing_bracket: safetySearch.target_closing_bracket,
+      target_closing_bracket_width:
+        safetySearch.target_closing_bracket_width,
+      expansion_step_count: safetySearch.expansion_step_count,
+      safety_search_status: safetySearch.safety_search_status,
+      positive_collar_found: collarTarget.positive_collar_found,
+      producer_interval_hull_inside_collar:
+        collarTarget.producer_interval_hull_inside_collar,
+      producer_midpoint_hull_inside_collar:
+        collarTarget.producer_midpoint_hull_inside_collar,
+      interval_inside_collar_row_count:
+        collarTarget.interval_inside_collar_row_count,
+      midpoint_inside_collar_row_count:
+        collarTarget.midpoint_inside_collar_row_count,
+      required_interval_hull_compression_factor:
+        collarTarget.required_interval_hull_compression_factor,
+      required_max_sample_interval_compression_factor:
+        collarTarget.required_max_sample_interval_compression_factor,
+      linear_subcell_refinement_forecast:
+        collarTarget.linear_subcell_refinement_forecast,
+      target_status: collarTarget.target_status,
+      refinement_interpretation:
+        collarTarget.refinement_interpretation,
+      producer_centered_safety_search: safetySearch,
+      producer_centered_collar_target: collarTarget,
+    };
+  });
+}
+
+function h39H38Y44SourceCovarianceProducerCenteredSafetyDiagnosis(rows) {
+  if (rows.some((row) => row.positive_collar_found === true)) {
+    return "producer-centered-safety-search-finds-positive-source-covariance-collar";
+  }
+  if (
+    rows.some(
+      (row) => Number(row.center_hull_replay_over_target_pressure) <= 1
+    )
+  ) {
+    return "producer-centered-safety-search-center-hull-only";
+  }
+  return "producer-centered-safety-search-center-exceeds-target";
+}
+
+function h39H38Y44SourceCovariancePositiveN38DegreeSweepRows({
+  producerCenteredSafetyRows,
+  coordinateProfile,
+  solveWidthProfile,
+  numeratorPolynomialDegreeDiagnosticRows,
+  sourceStencilSubcellCount,
+}) {
+  return numeratorPolynomialDegreeDiagnosticRows.map(
+    (numeratorPolynomialDiagnostic) => {
+      const allTargets = producerCenteredSafetyRows.map((row) =>
+        h39H38Y44ProducerCenteredNumeratorCollarTarget({
+          label: row.producer_centered_collar_target.label,
+          coordinateProfile,
+          collarTarget: row.producer_centered_collar_target,
+          solveWidthProfile,
+          numeratorPolynomialDiagnostic,
+        })
+      );
+      const positiveTargets = allTargets.filter(
+        (_target, targetIndex) =>
+          producerCenteredSafetyRows[targetIndex]?.positive_collar_found ===
+            true &&
+          Number(
+            producerCenteredSafetyRows[targetIndex]
+              ?.target_closing_replay_over_target_pressure
+          ) <= 1
+      );
+      const route = h39H38Y44N38CollarEnclosureRoute({
+        referenceTargets: positiveTargets,
+        numeratorPolynomialDiagnostic,
+        sourceStencilSubcellCount,
+      });
+      const graphInsideCount = positiveTargets.filter(
+        (target) =>
+          target.numerator_midpoint_graph_inside_collar_target === true
+      ).length;
+      const residualRatios = positiveTargets
+        .map((target) =>
+          Number(
+            target.max_numerator_midpoint_residual_over_conservative_target
+          )
+        )
+        .filter((value) => Number.isFinite(value) && value >= 0);
+      const headroomFactors = positiveTargets
+        .map((target) =>
+          Number(target.min_numerator_midpoint_residual_headroom_factor)
+        )
+        .filter((value) => Number.isFinite(value) && value > 0);
+      const compressionFactors = positiveTargets
+        .map((target) =>
+          Number(
+            target.max_numerator_interval_compression_to_conservative_target
+          )
+        )
+        .filter((value) => Number.isFinite(value) && value > 0);
+      const maxResidualRatio =
+        residualRatios.length > 0 ? Math.max(...residualRatios) : null;
+      const minHeadroom =
+        headroomFactors.length > 0 ? Math.min(...headroomFactors) : null;
+      const maxCompression =
+        compressionFactors.length > 0 ? Math.max(...compressionFactors) : null;
+      const targetStatus =
+        positiveTargets.length === 0
+          ? "positive-n38-degree-no-positive-collar-target"
+          : graphInsideCount === positiveTargets.length &&
+              finitePositive(minHeadroom) &&
+              minHeadroom >= 100
+            ? "positive-n38-degree-has-certificate-headroom"
+            : graphInsideCount === positiveTargets.length
+              ? "positive-n38-degree-fits-collar-with-limited-headroom"
+              : graphInsideCount > 0
+                ? "positive-n38-degree-partially-fits-collar"
+                : "positive-n38-degree-open";
+      return {
+        polynomial_degree: numeratorPolynomialDiagnostic.polynomial_degree,
+        positive_target_count: positiveTargets.length,
+        positive_targets: positiveTargets,
+        positive_targets_with_midpoint_graph_inside_count:
+          graphInsideCount,
+        max_positive_numerator_interval_compression_to_conservative_target:
+          maxCompression,
+        max_positive_midpoint_residual_over_conservative_target:
+          maxResidualRatio,
+        min_positive_midpoint_residual_headroom_factor: minHeadroom,
+        route_diagnosis: route.route_diagnosis,
+        s37_dependency_status: route.s37_dependency_status,
+        target_status: targetStatus,
+        n38_collar_enclosure_route: route,
+      };
+    }
+  );
+}
+
+function h39H38Y44SourceCovariancePositiveN38BestDegreeRow(rows) {
+  const candidateRows = rows.filter(
+    (row) =>
+      row.positive_target_count > 0 &&
+      Number.isFinite(
+        Number(row.max_positive_midpoint_residual_over_conservative_target)
+      )
+  );
+  return candidateRows.reduce((best, row) =>
+    Number(row.max_positive_midpoint_residual_over_conservative_target) <
+    Number(
+      best?.max_positive_midpoint_residual_over_conservative_target ??
+        Number.POSITIVE_INFINITY
+    )
+      ? row
+      : best,
+  null);
+}
+
+function h39H38Y44SourceCovariancePositiveN38SelectedTaylorDegreeRow(rows) {
+  const cubicHeadroomRow = rows.find(
+    (row) =>
+      row.polynomial_degree === 3 &&
+      row.positive_target_count > 0 &&
+      row.target_status === "positive-n38-degree-has-certificate-headroom"
+  );
+  return cubicHeadroomRow ?? h39H38Y44SourceCovariancePositiveN38BestDegreeRow(rows);
+}
+
+function h39H38Y44SourceCovariancePositiveN38DegreeSweepDiagnosis(rows) {
+  const bestRow = h39H38Y44SourceCovariancePositiveN38BestDegreeRow(rows);
+  if (!bestRow) {
+    return "positive-n38-degree-sweep-no-positive-collar-target";
+  }
+  if (bestRow.target_status === "positive-n38-degree-has-certificate-headroom") {
+    return "positive-n38-degree-sweep-finds-certificate-headroom";
+  }
+  if (
+    bestRow.target_status ===
+    "positive-n38-degree-fits-collar-with-limited-headroom"
+  ) {
+    return "positive-n38-degree-sweep-fits-collar-with-limited-headroom";
+  }
+  if (bestRow.target_status === "positive-n38-degree-partially-fits-collar") {
+    return "positive-n38-degree-sweep-partial-collar-fit";
+  }
+  return "positive-n38-degree-sweep-open";
+}
+
+function h39H38Y44SourceCovariancePositiveN38TaylorCertificateTarget({
+  bestDegreeRow,
+  sourceStencilSubcellCount,
+}) {
+  if (!bestDegreeRow) {
+    return {
+      status: "positive-n38-taylor-certificate-target-open",
+      target_status: "positive-n38-taylor-no-positive-collar-target",
+      selected_polynomial_degree: null,
+      selected_polynomial_coefficients: null,
+      source_stencil_subcell_count: sourceStencilSubcellCount,
+      positive_target_count: 0,
+      xi_window: null,
+      xi_half_width: null,
+      conservative_numerator_residual_target: null,
+      max_numerator_abs_midpoint_residual: null,
+      max_midpoint_residual_over_conservative_target: null,
+      min_midpoint_residual_headroom_factor: null,
+      max_midpoint_residual_over_midpoint_slope_target: null,
+      min_midpoint_slope_residual_headroom_factor: null,
+      s37_dependency_status: "s37-dependency-status-open",
+      controlling_sample: null,
+      certificate_inequality:
+        "no positive source-covariance producer collar target was available",
+      taylor_remainder_order: null,
+      required_fourth_derivative_upper_for_parent_window: null,
+      observed_midpoint_residual_implied_fourth_derivative_upper: null,
+      fourth_derivative_headroom_factor: null,
+      sufficient_condition:
+        "find a positive source-covariance producer collar before a Taylor target can be stated",
+      claim_boundary: {
+        certifies_h38_n38_graph_enclosure: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_positive_source_covariance_collar: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  }
+  const route = bestDegreeRow.n38_collar_enclosure_route;
+  const xiIntervals = bestDegreeRow.positive_targets.flatMap((target) =>
+    target.samples.map((sample) => sample.xi_interval)
+  );
+  const xiWindow = xiIntervals.length > 0 ? intervalHull(xiIntervals) : null;
+  const xiHalfWidth =
+    xiWindow !== null ? intervalWidth(xiWindow) / 2 : null;
+  const minTarget = route.min_conservative_numerator_width_target;
+  const maxResidual = route.max_numerator_abs_midpoint_residual;
+  const requiredFourthDerivativeUpper =
+    bestDegreeRow.polynomial_degree === 3 &&
+    finitePositive(minTarget) &&
+    finitePositive(xiHalfWidth)
+      ? fourthDerivativeUpperForTaylorRemainder({
+          remainderUpper: minTarget,
+          xiHalfWidth,
+        })
+      : null;
+  const observedResidualImpliedFourthDerivativeUpper =
+    bestDegreeRow.polynomial_degree === 3 &&
+    finitePositive(maxResidual) &&
+    finitePositive(xiHalfWidth)
+      ? fourthDerivativeUpperForTaylorRemainder({
+          remainderUpper: maxResidual,
+          xiHalfWidth,
+        })
+      : null;
+  const fourthDerivativeHeadroom =
+    finitePositive(observedResidualImpliedFourthDerivativeUpper) &&
+    finitePositive(requiredFourthDerivativeUpper)
+      ? requiredFourthDerivativeUpper /
+        observedResidualImpliedFourthDerivativeUpper
+      : null;
+  const targetStatus =
+    bestDegreeRow.polynomial_degree === 3 &&
+    bestDegreeRow.target_status === "positive-n38-degree-has-certificate-headroom"
+      ? "positive-n38-cubic-taylor-target-has-headroom"
+      : bestDegreeRow.polynomial_degree === 3
+        ? "positive-n38-cubic-taylor-target-open"
+        : "positive-n38-certificate-needs-noncubic-taylor-analogue";
+  return {
+    status: "positive-n38-taylor-certificate-target-candidate-emitted",
+    target_status: targetStatus,
+    selected_polynomial_degree: bestDegreeRow.polynomial_degree,
+    selected_polynomial_coefficients:
+      route.numerator_polynomial_coefficients,
+    source_stencil_subcell_count: sourceStencilSubcellCount,
+    positive_target_count: bestDegreeRow.positive_target_count,
+    xi_window: xiWindow,
+    xi_half_width: xiHalfWidth,
+    conservative_numerator_residual_target:
+      route.min_conservative_numerator_width_target,
+    max_numerator_abs_midpoint_residual:
+      route.max_numerator_abs_midpoint_residual,
+    max_midpoint_residual_over_conservative_target:
+      route.max_midpoint_residual_over_conservative_target,
+    min_midpoint_residual_headroom_factor:
+      route.min_midpoint_residual_headroom_factor,
+    max_midpoint_residual_over_midpoint_slope_target:
+      route.max_midpoint_residual_over_midpoint_slope_target,
+    min_midpoint_slope_residual_headroom_factor:
+      route.min_midpoint_slope_residual_headroom_factor,
+    s37_dependency_status: route.s37_dependency_status,
+    controlling_sample: route.controlling_sample,
+    certificate_inequality:
+      "sup_xi |N38(xi)-q_d(xi)| <= conservative_numerator_residual_target on the same positive source-covariance producer window",
+    taylor_remainder_order:
+      bestDegreeRow.polynomial_degree === 3 ? 4 : null,
+    required_fourth_derivative_upper_for_parent_window:
+      requiredFourthDerivativeUpper,
+    observed_midpoint_residual_implied_fourth_derivative_upper:
+      observedResidualImpliedFourthDerivativeUpper,
+    fourth_derivative_headroom_factor: fourthDerivativeHeadroom,
+    sufficient_condition:
+      bestDegreeRow.polynomial_degree === 3
+        ? "directed-rounded cubic graph residual enclosure with fourth-derivative remainder below the conservative numerator target, plus dependency-preserving S37 division"
+        : "directed-rounded graph residual enclosure for the selected noncubic degree, plus dependency-preserving S37 division",
+    claim_boundary: {
+      certifies_h38_n38_graph_enclosure: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_positive_source_covariance_collar: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39H38Y44SourceCovariancePositiveN38FourthDifferenceCheck({
+  bestDegreeRow,
+  taylorTarget,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const unavailable = (targetStatus, reason) => ({
+    status:
+      "positive-n38-cubic-fourth-difference-check-candidate-emitted",
+    target_status: targetStatus,
+    reason,
+    selected_polynomial_degree:
+      bestDegreeRow?.polynomial_degree ?? null,
+    required_fourth_derivative_upper_for_parent_window:
+      taylorTarget?.required_fourth_derivative_upper_for_parent_window ??
+      null,
+    sampled_stencil_count: 0,
+    max_uniform_fourth_derivative_estimate: null,
+    max_nonuniform_fourth_derivative_estimate: null,
+    max_point_expression_nonuniform_fourth_derivative_estimate: null,
+    max_interval_center_drift_nonuniform_fourth_derivative_estimate: null,
+    max_nonuniform_to_required_ratio: null,
+    max_uniform_to_required_ratio: null,
+    max_point_expression_nonuniform_to_required_ratio: null,
+    max_interval_center_drift_nonuniform_to_required_ratio: null,
+    max_nonuniform_split_replay_relative_gap: null,
+    m4_split_interpretation: targetStatus,
+    sampled_m4_pressure_decomposition_summary: null,
+    all_sampled_stencils_inside_required_bound: false,
+    worst_stencil: null,
+    diagnosis: targetStatus,
+    sampled_fourth_difference_rows: [],
+    claim_boundary: claimBoundary,
+  });
+  if (!bestDegreeRow) {
+    return unavailable(
+      "positive-n38-fourth-difference-no-positive-collar-target",
+      "no positive N38 degree row is available"
+    );
+  }
+  if (
+    bestDegreeRow.polynomial_degree !== 3 ||
+    taylorTarget?.target_status !==
+      "positive-n38-cubic-taylor-target-has-headroom"
+  ) {
+    return unavailable(
+      "positive-n38-fourth-difference-needs-cubic-target",
+      "the selected positive-collar N38 graph is not a cubic Taylor target with headroom"
+    );
+  }
+  const requiredFourthDerivativeUpper = Number(
+    taylorTarget.required_fourth_derivative_upper_for_parent_window
+  );
+  if (!finitePositive(requiredFourthDerivativeUpper)) {
+    return unavailable(
+      "positive-n38-fourth-difference-missing-required-m4-bound",
+      "the cubic Taylor target did not provide a finite required fourth-derivative upper bound"
+    );
+  }
+  const rows = [];
+  for (const target of bestDegreeRow.positive_targets) {
+    const samples = Array.isArray(target.samples) ? target.samples : [];
+    for (let index = 0; index <= samples.length - 5; index += 1) {
+      const stencilSamples = samples.slice(index, index + 5);
+      const xiMidpoints = stencilSamples.map((sample) =>
+        Number(sample.xi_midpoint)
+      );
+      const residuals = stencilSamples.map((sample) =>
+        Number(sample.numerator_midpoint_residual)
+      );
+      const pointExpressionResiduals = stencilSamples.map(
+        (sample) =>
+          Number(sample.numerator_source_term_midpoint_sum) -
+          Number(sample.numerator_graph_midpoint)
+      );
+      const intervalCenterDriftResiduals = stencilSamples.map(
+        (sample) =>
+          Number(sample.numerator_midpoint) -
+          Number(sample.numerator_source_term_midpoint_sum)
+      );
+      if (
+        !xiMidpoints.every(Number.isFinite) ||
+        !residuals.every(Number.isFinite) ||
+        !pointExpressionResiduals.every(Number.isFinite) ||
+        !intervalCenterDriftResiduals.every(Number.isFinite)
+      ) {
+        continue;
+      }
+      const directMetrics = fourthDifferenceStencilMetrics({
+        xiMidpoints,
+        values: residuals,
+        requiredFourthDerivativeUpper,
+      });
+      const pointExpressionMetrics = fourthDifferenceStencilMetrics({
+        xiMidpoints,
+        values: pointExpressionResiduals,
+        requiredFourthDerivativeUpper,
+      });
+      const intervalCenterDriftMetrics = fourthDifferenceStencilMetrics({
+        xiMidpoints,
+        values: intervalCenterDriftResiduals,
+        requiredFourthDerivativeUpper,
+      });
+      if (
+        !directMetrics ||
+        !pointExpressionMetrics ||
+        !intervalCenterDriftMetrics
+      ) {
+        continue;
+      }
+      const nonuniformSplitReplayGap = Math.abs(
+        Number(
+          pointExpressionMetrics.nonuniform_fourth_derivative_signed_estimate
+        ) +
+          Number(
+            intervalCenterDriftMetrics
+              .nonuniform_fourth_derivative_signed_estimate
+          ) -
+          Number(directMetrics.nonuniform_fourth_derivative_signed_estimate)
+      );
+      const nonuniformSplitReplayRelativeGap = finitePositive(
+        directMetrics.nonuniform_fourth_derivative_estimate
+      )
+        ? nonuniformSplitReplayGap /
+          Number(directMetrics.nonuniform_fourth_derivative_estimate)
+        : nonuniformSplitReplayGap;
+      const pointExpressionToDirectM4Ratio = finitePositive(
+        directMetrics.nonuniform_fourth_derivative_estimate
+      )
+        ? Number(
+            pointExpressionMetrics.nonuniform_fourth_derivative_estimate
+          ) / Number(directMetrics.nonuniform_fourth_derivative_estimate)
+        : null;
+      const intervalCenterDriftToDirectM4Ratio = finitePositive(
+        directMetrics.nonuniform_fourth_derivative_estimate
+      )
+        ? Number(
+            intervalCenterDriftMetrics.nonuniform_fourth_derivative_estimate
+          ) / Number(directMetrics.nonuniform_fourth_derivative_estimate)
+        : null;
+      const splitTriangleNonuniformM4 =
+        Number(pointExpressionMetrics.nonuniform_fourth_derivative_estimate) +
+        Number(
+          intervalCenterDriftMetrics.nonuniform_fourth_derivative_estimate
+        );
+      const splitTriangleToRequiredRatio = finitePositive(
+        requiredFourthDerivativeUpper
+      )
+        ? splitTriangleNonuniformM4 / requiredFourthDerivativeUpper
+        : null;
+      const splitTriangleInflationFactorBeforeFailure = finitePositive(
+        splitTriangleNonuniformM4
+      )
+        ? requiredFourthDerivativeUpper / splitTriangleNonuniformM4
+        : null;
+      rows.push({
+        reference_label: target.label,
+        stencil_index: index,
+        cell_id_span: [
+          stencilSamples[0]?.cell_id ?? null,
+          stencilSamples[4]?.cell_id ?? null,
+        ],
+        xi_midpoint_span: [xiMidpoints[0], xiMidpoints[4]],
+        xi_step: directMetrics.xi_step,
+        max_xi_step_deviation: directMetrics.max_xi_step_deviation,
+        fourth_difference: directMetrics.fourth_difference,
+        abs_fourth_difference: directMetrics.abs_fourth_difference,
+        uniform_fourth_derivative_estimate:
+          directMetrics.uniform_fourth_derivative_estimate,
+        nonuniform_fourth_derivative_estimate:
+          directMetrics.nonuniform_fourth_derivative_estimate,
+        uniform_fourth_derivative_to_required_ratio:
+          directMetrics.uniform_fourth_derivative_to_required_ratio,
+        nonuniform_fourth_derivative_to_required_ratio:
+          directMetrics.nonuniform_fourth_derivative_to_required_ratio,
+        point_expression_fourth_difference:
+          pointExpressionMetrics.fourth_difference,
+        point_expression_nonuniform_fourth_derivative_estimate:
+          pointExpressionMetrics.nonuniform_fourth_derivative_estimate,
+        point_expression_nonuniform_fourth_derivative_to_required_ratio:
+          pointExpressionMetrics.nonuniform_fourth_derivative_to_required_ratio,
+        interval_center_drift_fourth_difference:
+          intervalCenterDriftMetrics.fourth_difference,
+        interval_center_drift_nonuniform_fourth_derivative_estimate:
+          intervalCenterDriftMetrics.nonuniform_fourth_derivative_estimate,
+        interval_center_drift_nonuniform_fourth_derivative_to_required_ratio:
+          intervalCenterDriftMetrics
+            .nonuniform_fourth_derivative_to_required_ratio,
+        nonuniform_split_replay_absolute_gap:
+          nonuniformSplitReplayGap,
+        nonuniform_split_replay_relative_gap:
+          nonuniformSplitReplayRelativeGap,
+        point_expression_to_direct_nonuniform_m4_ratio:
+          pointExpressionToDirectM4Ratio,
+        interval_center_drift_to_direct_nonuniform_m4_ratio:
+          intervalCenterDriftToDirectM4Ratio,
+        split_triangle_nonuniform_m4: splitTriangleNonuniformM4,
+        split_triangle_to_required_ratio: splitTriangleToRequiredRatio,
+        split_triangle_inflation_factor_before_failure:
+          splitTriangleInflationFactorBeforeFailure,
+        stencil_status:
+          Number(
+            directMetrics.nonuniform_fourth_derivative_to_required_ratio
+          ) <= 1
+            ? "sampled-fourth-difference-inside-cubic-taylor-target"
+            : "sampled-fourth-difference-exceeds-cubic-taylor-target",
+      });
+    }
+  }
+  const maxUniformRow = rows.reduce((best, row) =>
+    Number(row.uniform_fourth_derivative_estimate) >
+    Number(best?.uniform_fourth_derivative_estimate ?? -1)
+      ? row
+      : best,
+  null);
+  const maxNonuniformRow = rows.reduce((best, row) =>
+    Number(row.nonuniform_fourth_derivative_estimate) >
+    Number(best?.nonuniform_fourth_derivative_estimate ?? -1)
+      ? row
+      : best,
+  null);
+  const maxNonuniformRatioRow = rows.reduce((best, row) =>
+    Number(row.nonuniform_fourth_derivative_to_required_ratio) >
+    Number(best?.nonuniform_fourth_derivative_to_required_ratio ?? -1)
+      ? row
+      : best,
+  null);
+  const maxUniformRatioRow = rows.reduce((best, row) =>
+    Number(row.uniform_fourth_derivative_to_required_ratio) >
+    Number(best?.uniform_fourth_derivative_to_required_ratio ?? -1)
+      ? row
+      : best,
+  null);
+  const maxPointExpressionNonuniformRow = rows.reduce((best, row) =>
+    Number(row.point_expression_nonuniform_fourth_derivative_estimate) >
+    Number(best?.point_expression_nonuniform_fourth_derivative_estimate ?? -1)
+      ? row
+      : best,
+  null);
+  const maxIntervalCenterDriftNonuniformRow = rows.reduce((best, row) =>
+    Number(row.interval_center_drift_nonuniform_fourth_derivative_estimate) >
+    Number(
+      best?.interval_center_drift_nonuniform_fourth_derivative_estimate ?? -1
+    )
+      ? row
+      : best,
+  null);
+  const maxPointExpressionRatioRow = rows.reduce((best, row) =>
+    Number(row.point_expression_nonuniform_fourth_derivative_to_required_ratio) >
+    Number(
+      best?.point_expression_nonuniform_fourth_derivative_to_required_ratio ??
+        -1
+    )
+      ? row
+      : best,
+  null);
+  const maxIntervalCenterDriftRatioRow = rows.reduce((best, row) =>
+    Number(
+      row.interval_center_drift_nonuniform_fourth_derivative_to_required_ratio
+    ) >
+    Number(
+      best
+        ?.interval_center_drift_nonuniform_fourth_derivative_to_required_ratio ??
+        -1
+    )
+      ? row
+      : best,
+  null);
+  const maxNonuniformSplitReplayGapRow = rows.reduce((best, row) =>
+    Number(row.nonuniform_split_replay_relative_gap) >
+    Number(best?.nonuniform_split_replay_relative_gap ?? -1)
+      ? row
+      : best,
+  null);
+  const maxPointExpressionToDirectM4RatioRow = rows.reduce((best, row) =>
+    Number(row.point_expression_to_direct_nonuniform_m4_ratio) >
+    Number(best?.point_expression_to_direct_nonuniform_m4_ratio ?? -1)
+      ? row
+      : best,
+  null);
+  const maxIntervalCenterDriftToDirectM4RatioRow = rows.reduce((best, row) =>
+    Number(row.interval_center_drift_to_direct_nonuniform_m4_ratio) >
+    Number(best?.interval_center_drift_to_direct_nonuniform_m4_ratio ?? -1)
+      ? row
+      : best,
+  null);
+  const maxSplitTriangleRatioRow = rows.reduce((best, row) =>
+    Number(row.split_triangle_to_required_ratio) >
+    Number(best?.split_triangle_to_required_ratio ?? -1)
+      ? row
+      : best,
+  null);
+  const minSplitTriangleInflationRow = rows.reduce((best, row) =>
+    Number(row.split_triangle_inflation_factor_before_failure) <
+    Number(best?.split_triangle_inflation_factor_before_failure ?? Infinity)
+      ? row
+      : best,
+  null);
+  const allInside =
+    rows.length > 0 &&
+    rows.every(
+      (row) =>
+        Number(row.nonuniform_fourth_derivative_to_required_ratio) <= 1
+    );
+  const compactStencil = (row) =>
+    row
+      ? {
+          reference_label: row.reference_label,
+          stencil_index: row.stencil_index,
+          cell_id_span: row.cell_id_span,
+          xi_midpoint_span: row.xi_midpoint_span,
+          uniform_fourth_derivative_estimate:
+            row.uniform_fourth_derivative_estimate,
+          nonuniform_fourth_derivative_estimate:
+            row.nonuniform_fourth_derivative_estimate,
+          uniform_fourth_derivative_to_required_ratio:
+            row.uniform_fourth_derivative_to_required_ratio,
+          nonuniform_fourth_derivative_to_required_ratio:
+            row.nonuniform_fourth_derivative_to_required_ratio,
+          point_expression_nonuniform_fourth_derivative_estimate:
+            row.point_expression_nonuniform_fourth_derivative_estimate,
+          point_expression_nonuniform_fourth_derivative_to_required_ratio:
+            row
+              .point_expression_nonuniform_fourth_derivative_to_required_ratio,
+          interval_center_drift_nonuniform_fourth_derivative_estimate:
+            row.interval_center_drift_nonuniform_fourth_derivative_estimate,
+          interval_center_drift_nonuniform_fourth_derivative_to_required_ratio:
+            row
+              .interval_center_drift_nonuniform_fourth_derivative_to_required_ratio,
+          nonuniform_split_replay_relative_gap:
+            row.nonuniform_split_replay_relative_gap,
+          point_expression_to_direct_nonuniform_m4_ratio:
+            row.point_expression_to_direct_nonuniform_m4_ratio,
+          interval_center_drift_to_direct_nonuniform_m4_ratio:
+            row.interval_center_drift_to_direct_nonuniform_m4_ratio,
+          split_triangle_nonuniform_m4: row.split_triangle_nonuniform_m4,
+          split_triangle_to_required_ratio:
+            row.split_triangle_to_required_ratio,
+          split_triangle_inflation_factor_before_failure:
+            row.split_triangle_inflation_factor_before_failure,
+          stencil_status: row.stencil_status,
+        }
+      : null;
+  const targetStatus =
+    rows.length === 0
+      ? "positive-n38-fourth-difference-no-sampled-stencils"
+      : allInside
+        ? "positive-n38-sampled-fourth-difference-supports-cubic-target"
+        : "positive-n38-sampled-fourth-difference-exceeds-cubic-target";
+  const m4SplitInterpretation =
+    rows.length === 0
+      ? targetStatus
+      : Number(
+            maxIntervalCenterDriftNonuniformRow
+              ?.interval_center_drift_nonuniform_fourth_derivative_estimate
+          ) >
+          Number(
+            maxPointExpressionNonuniformRow
+              ?.point_expression_nonuniform_fourth_derivative_estimate
+          )
+        ? "positive-n38-sampled-m4-dominated-by-interval-center-drift"
+        : "positive-n38-sampled-m4-dominated-by-point-expression";
+  const sampledM4PressureDecompositionSummary =
+    rows.length === 0
+      ? null
+      : {
+          status: "positive-n38-sampled-m4-pressure-decomposition-emitted",
+          decomposed_stencil_count: rows.length,
+          max_direct_row_hull_numerator_midpoint_nonuniform_m4:
+            maxNonuniformRow?.nonuniform_fourth_derivative_estimate ?? null,
+          max_point_expression_source_term_sum_nonuniform_m4:
+            maxPointExpressionNonuniformRow
+              ?.point_expression_nonuniform_fourth_derivative_estimate ??
+            null,
+          max_interval_center_drift_nonuniform_m4:
+            maxIntervalCenterDriftNonuniformRow
+              ?.interval_center_drift_nonuniform_fourth_derivative_estimate ??
+            null,
+          max_point_expression_to_direct_nonuniform_m4_ratio:
+            maxPointExpressionToDirectM4RatioRow
+              ?.point_expression_to_direct_nonuniform_m4_ratio ?? null,
+          max_interval_center_drift_to_direct_nonuniform_m4_ratio:
+            maxIntervalCenterDriftToDirectM4RatioRow
+              ?.interval_center_drift_to_direct_nonuniform_m4_ratio ?? null,
+          max_direct_split_fourth_difference_relative_gap:
+            maxNonuniformSplitReplayGapRow
+              ?.nonuniform_split_replay_relative_gap ?? null,
+          max_split_triangle_to_required_ratio:
+            maxSplitTriangleRatioRow?.split_triangle_to_required_ratio ??
+            null,
+          min_split_triangle_inflation_factor_before_failure:
+            minSplitTriangleInflationRow
+              ?.split_triangle_inflation_factor_before_failure ?? null,
+          controlling_stencil: compactStencil(maxNonuniformRatioRow),
+          dominant_m4_pressure_stream:
+            m4SplitInterpretation ===
+            "positive-n38-sampled-m4-dominated-by-interval-center-drift"
+              ? "interval_center_drift"
+              : "point_expression_source_term_sum",
+          m4_pressure_interpretation: m4SplitInterpretation,
+        };
+  return {
+    status:
+      "positive-n38-cubic-fourth-difference-check-candidate-emitted",
+    target_status: targetStatus,
+    reason:
+      rows.length === 0
+        ? "no five-sample positive-collar stencil was available"
+        : allInside
+          ? "all sampled fourth differences are below the required cubic Taylor target"
+          : "at least one sampled fourth difference exceeds the required cubic Taylor target",
+    selected_polynomial_degree: bestDegreeRow.polynomial_degree,
+    required_fourth_derivative_upper_for_parent_window:
+      requiredFourthDerivativeUpper,
+    sampled_stencil_count: rows.length,
+    max_uniform_fourth_derivative_estimate:
+      maxUniformRow?.uniform_fourth_derivative_estimate ?? null,
+    max_nonuniform_fourth_derivative_estimate:
+      maxNonuniformRow?.nonuniform_fourth_derivative_estimate ?? null,
+    max_point_expression_nonuniform_fourth_derivative_estimate:
+      maxPointExpressionNonuniformRow
+        ?.point_expression_nonuniform_fourth_derivative_estimate ?? null,
+    max_interval_center_drift_nonuniform_fourth_derivative_estimate:
+      maxIntervalCenterDriftNonuniformRow
+        ?.interval_center_drift_nonuniform_fourth_derivative_estimate ?? null,
+    max_nonuniform_to_required_ratio:
+      maxNonuniformRatioRow?.nonuniform_fourth_derivative_to_required_ratio ??
+      null,
+    max_uniform_to_required_ratio:
+      maxUniformRatioRow?.uniform_fourth_derivative_to_required_ratio ??
+      null,
+    max_point_expression_nonuniform_to_required_ratio:
+      maxPointExpressionRatioRow
+        ?.point_expression_nonuniform_fourth_derivative_to_required_ratio ??
+      null,
+    max_interval_center_drift_nonuniform_to_required_ratio:
+      maxIntervalCenterDriftRatioRow
+        ?.interval_center_drift_nonuniform_fourth_derivative_to_required_ratio ??
+      null,
+    max_nonuniform_split_replay_relative_gap:
+      maxNonuniformSplitReplayGapRow
+        ?.nonuniform_split_replay_relative_gap ?? null,
+    m4_split_interpretation: m4SplitInterpretation,
+    sampled_m4_pressure_decomposition_summary:
+      sampledM4PressureDecompositionSummary,
+    all_sampled_stencils_inside_required_bound: allInside,
+    worst_stencil: compactStencil(maxNonuniformRatioRow),
+    diagnosis: targetStatus,
+    sampled_fourth_difference_rows: rows.map(compactStencil),
+    claim_boundary: claimBoundary,
+  };
+}
+
+function h39H38Y44SourceCovariancePositiveN38M4InflationBudget({
+  taylorTarget,
+  fourthDifferenceCheck,
+  inflationFactors,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const unavailable = (targetStatus, reason) => ({
+    status: "positive-n38-cubic-m4-inflation-budget-candidate-emitted",
+    target_status: targetStatus,
+    reason,
+    selected_polynomial_degree:
+      taylorTarget?.selected_polynomial_degree ?? null,
+    xi_half_width: taylorTarget?.xi_half_width ?? null,
+    conservative_numerator_residual_target:
+      taylorTarget?.conservative_numerator_residual_target ?? null,
+    required_fourth_derivative_upper_for_parent_window:
+      taylorTarget?.required_fourth_derivative_upper_for_parent_window ??
+      null,
+    sampled_nonuniform_fourth_derivative_upper: null,
+    sampled_m4_to_required_ratio: null,
+    max_sampled_m4_inflation_factor_before_failure: null,
+    sampled_m4_pressure_decomposition_summary:
+      fourthDifferenceCheck?.sampled_m4_pressure_decomposition_summary ??
+      null,
+    split_triangle_sampled_m4: null,
+    split_triangle_sampled_m4_to_required_ratio: null,
+    max_split_triangle_inflation_factor_before_failure: null,
+    max_requested_split_inflation_factor_that_closes: null,
+    split_budget_status: targetStatus,
+    split_inflation_rows: [],
+    requested_inflation_factors: inflationFactors,
+    max_requested_inflation_factor_that_closes: null,
+    inflation_rows: [],
+    diagnosis: targetStatus,
+    claim_boundary: claimBoundary,
+  });
+  if (
+    taylorTarget?.target_status !==
+      "positive-n38-cubic-taylor-target-has-headroom" ||
+    fourthDifferenceCheck?.target_status !==
+      "positive-n38-sampled-fourth-difference-supports-cubic-target"
+  ) {
+    return unavailable(
+      "positive-n38-m4-inflation-budget-needs-cubic-sampled-support",
+      "the cubic Taylor target and sampled fourth-difference support are not both available"
+    );
+  }
+  const xiHalfWidth = Number(taylorTarget.xi_half_width);
+  const conservativeTarget = Number(
+    taylorTarget.conservative_numerator_residual_target
+  );
+  const requiredFourthDerivativeUpper = Number(
+    taylorTarget.required_fourth_derivative_upper_for_parent_window
+  );
+  const sampledM4 = Number(
+    fourthDifferenceCheck.max_nonuniform_fourth_derivative_estimate
+  );
+  const splitSummary =
+    fourthDifferenceCheck.sampled_m4_pressure_decomposition_summary;
+  const splitPointExpressionM4 = Number(
+    splitSummary?.max_point_expression_source_term_sum_nonuniform_m4
+  );
+  const splitIntervalCenterDriftM4 = Number(
+    splitSummary?.max_interval_center_drift_nonuniform_m4
+  );
+  const splitTriangleM4 =
+    splitPointExpressionM4 + splitIntervalCenterDriftM4;
+  if (
+    !finitePositive(xiHalfWidth) ||
+    !finitePositive(conservativeTarget) ||
+    !finitePositive(requiredFourthDerivativeUpper) ||
+    !finitePositive(sampledM4) ||
+    !finitePositive(splitPointExpressionM4) ||
+    !finitePositive(splitIntervalCenterDriftM4) ||
+    !finitePositive(splitTriangleM4)
+  ) {
+    return unavailable(
+      "positive-n38-m4-inflation-budget-missing-finite-inputs",
+      "the cubic Taylor target or sampled M4 estimate did not provide finite positive inputs"
+    );
+  }
+  const sampledRatio = sampledM4 / requiredFourthDerivativeUpper;
+  const maxInflation = requiredFourthDerivativeUpper / sampledM4;
+  const splitTriangleRatio = splitTriangleM4 / requiredFourthDerivativeUpper;
+  const maxSplitTriangleInflation =
+    requiredFourthDerivativeUpper / splitTriangleM4;
+  const rows = inflationFactors.map((factor) => {
+    const inflatedM4 = sampledM4 * factor;
+    const remainderUpper = taylorRemainderUpperFromFourthDerivative({
+      fourthDerivativeUpper: inflatedM4,
+      xiHalfWidth,
+    });
+    const remainderRatio = finitePositive(conservativeTarget)
+      ? Number(remainderUpper) / conservativeTarget
+      : null;
+    return {
+      inflation_factor: factor,
+      inflated_fourth_derivative_upper: inflatedM4,
+      cubic_taylor_remainder_upper: remainderUpper,
+      remainder_over_conservative_target: remainderRatio,
+      closes_conservative_target: Number(remainderRatio) <= 1,
+      row_status:
+        Number(remainderRatio) <= 1
+          ? "inflated-sampled-m4-still-closes-cubic-target"
+          : "inflated-sampled-m4-exceeds-cubic-target",
+    };
+  });
+  const splitRows = inflationFactors.map((factor) => {
+    const pointExpressionInflatedM4 = splitPointExpressionM4 * factor;
+    const intervalCenterDriftInflatedM4 =
+      splitIntervalCenterDriftM4 * factor;
+    const splitTriangleInflatedM4 =
+      pointExpressionInflatedM4 + intervalCenterDriftInflatedM4;
+    const splitTriangleRemainderUpper =
+      taylorRemainderUpperFromFourthDerivative({
+        fourthDerivativeUpper: splitTriangleInflatedM4,
+        xiHalfWidth,
+      });
+    const splitTriangleRemainderRatio = finitePositive(conservativeTarget)
+      ? Number(splitTriangleRemainderUpper) / conservativeTarget
+      : null;
+    return {
+      inflation_factor: factor,
+      point_expression_inflated_fourth_derivative_upper:
+        pointExpressionInflatedM4,
+      interval_center_drift_inflated_fourth_derivative_upper:
+        intervalCenterDriftInflatedM4,
+      split_triangle_inflated_fourth_derivative_upper:
+        splitTriangleInflatedM4,
+      split_triangle_taylor_remainder_upper:
+        splitTriangleRemainderUpper,
+      split_triangle_remainder_over_conservative_target:
+        splitTriangleRemainderRatio,
+      closes_conservative_target:
+        Number(splitTriangleRemainderRatio) <= 1,
+      row_status:
+        Number(splitTriangleRemainderRatio) <= 1
+          ? "split-inflated-sampled-m4-still-closes-cubic-target"
+          : "split-inflated-sampled-m4-exceeds-cubic-target",
+    };
+  });
+  const closingRows = rows.filter(
+    (row) => row.closes_conservative_target === true
+  );
+  const splitClosingRows = splitRows.filter(
+    (row) => row.closes_conservative_target === true
+  );
+  const maxRequestedClosingFactor =
+    closingRows.length > 0
+      ? Math.max(...closingRows.map((row) => Number(row.inflation_factor)))
+      : null;
+  const maxRequestedSplitClosingFactor =
+    splitClosingRows.length > 0
+      ? Math.max(
+          ...splitClosingRows.map((row) => Number(row.inflation_factor))
+        )
+      : null;
+  const targetStatus =
+    rows.length > 0 && rows.every((row) => row.closes_conservative_target)
+      ? "positive-n38-m4-inflation-budget-closes-all-requested-factors"
+      : closingRows.length > 0
+        ? "positive-n38-m4-inflation-budget-closes-some-requested-factors"
+        : "positive-n38-m4-inflation-budget-open";
+  const splitBudgetStatus =
+    splitRows.length > 0 &&
+    splitRows.every((row) => row.closes_conservative_target)
+      ? "positive-n38-split-m4-inflation-budget-closes-all-requested-factors"
+      : splitClosingRows.length > 0
+        ? "positive-n38-split-m4-inflation-budget-closes-some-requested-factors"
+        : "positive-n38-split-m4-inflation-budget-open";
+  return {
+    status: "positive-n38-cubic-m4-inflation-budget-candidate-emitted",
+    target_status: targetStatus,
+    reason:
+      targetStatus ===
+      "positive-n38-m4-inflation-budget-closes-all-requested-factors"
+        ? "every requested sampled-M4 inflation factor remains below the cubic Taylor target"
+        : targetStatus ===
+            "positive-n38-m4-inflation-budget-closes-some-requested-factors"
+          ? "some requested sampled-M4 inflation factors remain below the cubic Taylor target"
+          : "no requested sampled-M4 inflation factor remains below the cubic Taylor target",
+    selected_polynomial_degree: taylorTarget.selected_polynomial_degree,
+    xi_half_width: xiHalfWidth,
+    conservative_numerator_residual_target: conservativeTarget,
+    required_fourth_derivative_upper_for_parent_window:
+      requiredFourthDerivativeUpper,
+    sampled_nonuniform_fourth_derivative_upper: sampledM4,
+    sampled_m4_to_required_ratio: sampledRatio,
+    max_sampled_m4_inflation_factor_before_failure: maxInflation,
+    sampled_m4_pressure_decomposition_summary:
+      fourthDifferenceCheck.sampled_m4_pressure_decomposition_summary ??
+      null,
+    split_triangle_sampled_m4: splitTriangleM4,
+    split_triangle_sampled_m4_to_required_ratio: splitTriangleRatio,
+    max_split_triangle_inflation_factor_before_failure:
+      maxSplitTriangleInflation,
+    max_requested_split_inflation_factor_that_closes:
+      maxRequestedSplitClosingFactor,
+    split_budget_status: splitBudgetStatus,
+    requested_inflation_factors: inflationFactors,
+    max_requested_inflation_factor_that_closes:
+      maxRequestedClosingFactor,
+    inflation_rows: rows,
+    split_inflation_rows: splitRows,
+    diagnosis: targetStatus,
+    claim_boundary: claimBoundary,
+  };
+}
+
+function h39H38Y44SourceCovariancePositiveN38DirectedIntervalResidualCheck({
+  bestDegreeRow,
+  taylorTarget,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const unavailable = (targetStatus, reason) => ({
+    status:
+      "positive-n38-directed-interval-residual-check-candidate-emitted",
+    target_status: targetStatus,
+    reason,
+    selected_polynomial_degree:
+      bestDegreeRow?.polynomial_degree ?? null,
+    positive_target_count: bestDegreeRow?.positive_target_count ?? 0,
+    sample_count: 0,
+    max_directed_interval_residual_abs_upper_over_conservative_target: null,
+    max_directed_interval_residual_width_over_conservative_target: null,
+    max_raw_numerator_interval_width_over_conservative_target: null,
+    max_midpoint_residual_over_conservative_target:
+      bestDegreeRow?.max_positive_midpoint_residual_over_conservative_target ??
+      null,
+    min_midpoint_residual_headroom_factor:
+      bestDegreeRow?.min_positive_midpoint_residual_headroom_factor ?? null,
+    max_dependency_loss_factor_from_midpoint_to_directed_interval: null,
+    controlling_sample: null,
+    directed_interval_residual_rows: [],
+    interval_coordinate_interpretation: targetStatus,
+    diagnosis: targetStatus,
+    claim_boundary: claimBoundary,
+  });
+  if (!bestDegreeRow || bestDegreeRow.positive_target_count === 0) {
+    return unavailable(
+      "positive-n38-directed-interval-residual-no-positive-collar-target",
+      "no positive source-covariance N38 collar target is available"
+    );
+  }
+  const coefficients =
+    taylorTarget?.selected_polynomial_coefficients ??
+    bestDegreeRow?.n38_collar_enclosure_route
+      ?.numerator_polynomial_coefficients;
+  if (!Array.isArray(coefficients) || coefficients.length === 0) {
+    return unavailable(
+      "positive-n38-directed-interval-residual-missing-polynomial",
+      "the selected N38 graph did not provide finite polynomial coefficients"
+    );
+  }
+  const graphSymbol = `q${bestDegreeRow.polynomial_degree}`;
+  const rows = bestDegreeRow.positive_targets.flatMap((target) =>
+    target.samples.map((sample) => {
+      const numeratorInterval = root.outwardInterval(
+        numericOrderedInterval("numerator_interval", sample.numerator_interval)
+      );
+      const graphInterval = directedIntervalPolynomialValue({
+        coefficients,
+        interval: sample.xi_interval,
+      });
+      const directedResidualInterval = root.subtractIntervals(
+        numeratorInterval,
+        graphInterval
+      );
+      const conservativeTarget = Number(
+        sample.conservative_numerator_width_target
+      );
+      const directedResidualAbsUpper = intervalAbsUpper(
+        directedResidualInterval
+      );
+      const directedResidualWidth = intervalWidth(directedResidualInterval);
+      const rawNumeratorWidth = intervalWidth(numeratorInterval);
+      const midpointRatio = Number(
+        sample.numerator_midpoint_residual_over_conservative_target
+      );
+      const directedAbsRatio = finitePositive(conservativeTarget)
+        ? directedResidualAbsUpper / conservativeTarget
+        : null;
+      const directedWidthRatio = finitePositive(conservativeTarget)
+        ? directedResidualWidth / conservativeTarget
+        : null;
+      const rawWidthRatio = finitePositive(conservativeTarget)
+        ? rawNumeratorWidth / conservativeTarget
+        : null;
+      const dependencyLossFactor =
+        finitePositive(midpointRatio) && finitePositive(directedAbsRatio)
+          ? directedAbsRatio / midpointRatio
+          : null;
+      return {
+        reference_label: target.label,
+        cell_id: sample.cell_id,
+        xi_interval: sample.xi_interval,
+        xi_midpoint: sample.xi_midpoint,
+        numerator_interval: sample.numerator_interval,
+        numerator_interval_width: rawNumeratorWidth,
+        directed_graph_interval: graphInterval,
+        directed_graph_interval_width: intervalWidth(graphInterval),
+        directed_interval_residual: directedResidualInterval,
+        directed_interval_residual_abs_upper:
+          directedResidualAbsUpper,
+        directed_interval_residual_width: directedResidualWidth,
+        conservative_numerator_width_target: conservativeTarget,
+        midpoint_residual_over_conservative_target: Number.isFinite(
+          midpointRatio
+        )
+          ? midpointRatio
+          : null,
+        directed_interval_residual_abs_upper_over_conservative_target:
+          directedAbsRatio,
+        directed_interval_residual_width_over_conservative_target:
+          directedWidthRatio,
+        raw_numerator_interval_width_over_conservative_target:
+          rawWidthRatio,
+        dependency_loss_factor_from_midpoint_to_directed_interval:
+          dependencyLossFactor,
+        row_status:
+          Number(directedAbsRatio) <= 1
+            ? "directed-interval-residual-fits-conservative-target"
+            : "directed-interval-residual-exceeds-conservative-target",
+      };
+    })
+  );
+  const maxDirectedAbsRow = rows.reduce((best, row) =>
+    Number(
+      row.directed_interval_residual_abs_upper_over_conservative_target
+    ) >
+    Number(
+      best?.directed_interval_residual_abs_upper_over_conservative_target ??
+        -1
+    )
+      ? row
+      : best,
+  null);
+  const maxDirectedWidthRow = rows.reduce((best, row) =>
+    Number(row.directed_interval_residual_width_over_conservative_target) >
+    Number(
+      best?.directed_interval_residual_width_over_conservative_target ?? -1
+    )
+      ? row
+      : best,
+  null);
+  const maxRawWidthRow = rows.reduce((best, row) =>
+    Number(row.raw_numerator_interval_width_over_conservative_target) >
+    Number(best?.raw_numerator_interval_width_over_conservative_target ?? -1)
+      ? row
+      : best,
+  null);
+  const maxDependencyLossRow = rows.reduce((best, row) =>
+    Number(row.dependency_loss_factor_from_midpoint_to_directed_interval) >
+    Number(best?.dependency_loss_factor_from_midpoint_to_directed_interval ?? -1)
+      ? row
+      : best,
+  null);
+  const allDirectedIntervalsClose =
+    rows.length > 0 &&
+    rows.every(
+      (row) =>
+        Number(
+          row.directed_interval_residual_abs_upper_over_conservative_target
+        ) <= 1
+    );
+  const midpointRouteHasHeadroom =
+    Number(bestDegreeRow.max_positive_midpoint_residual_over_conservative_target) <=
+    1;
+  const targetStatus =
+    rows.length === 0
+      ? "positive-n38-directed-interval-residual-no-samples"
+      : allDirectedIntervalsClose
+        ? "positive-n38-directed-interval-residual-fits-collar-target"
+        : midpointRouteHasHeadroom
+          ? "positive-n38-directed-interval-residual-exposes-dependency-loss"
+          : "positive-n38-directed-interval-residual-open";
+  const compactSample = (row) =>
+    row
+      ? {
+          reference_label: row.reference_label,
+          cell_id: row.cell_id,
+          xi_interval: row.xi_interval,
+          xi_midpoint: row.xi_midpoint,
+          directed_interval_residual_abs_upper_over_conservative_target:
+            row.directed_interval_residual_abs_upper_over_conservative_target,
+          directed_interval_residual_width_over_conservative_target:
+            row.directed_interval_residual_width_over_conservative_target,
+          raw_numerator_interval_width_over_conservative_target:
+            row.raw_numerator_interval_width_over_conservative_target,
+          midpoint_residual_over_conservative_target:
+            row.midpoint_residual_over_conservative_target,
+          dependency_loss_factor_from_midpoint_to_directed_interval:
+            row.dependency_loss_factor_from_midpoint_to_directed_interval,
+          row_status: row.row_status,
+        }
+      : null;
+  return {
+    status:
+      "positive-n38-directed-interval-residual-check-candidate-emitted",
+    target_status: targetStatus,
+    reason:
+      targetStatus ===
+      "positive-n38-directed-interval-residual-fits-collar-target"
+        ? "the raw directed interval residual fits the conservative positive-collar numerator target"
+        : targetStatus ===
+            "positive-n38-directed-interval-residual-exposes-dependency-loss"
+          ? `the midpoint ${graphSymbol} graph has collar headroom, but the raw directed interval residual is too wide`
+          : targetStatus ===
+              "positive-n38-directed-interval-residual-no-samples"
+            ? "the positive-collar N38 route did not provide samples"
+            : "the selected N38 graph residual remains open against the conservative positive-collar numerator target",
+    selected_polynomial_degree: bestDegreeRow.polynomial_degree,
+    positive_target_count: bestDegreeRow.positive_target_count,
+    sample_count: rows.length,
+    max_directed_interval_residual_abs_upper_over_conservative_target:
+      maxDirectedAbsRow
+        ?.directed_interval_residual_abs_upper_over_conservative_target ??
+      null,
+    max_directed_interval_residual_width_over_conservative_target:
+      maxDirectedWidthRow
+        ?.directed_interval_residual_width_over_conservative_target ?? null,
+    max_raw_numerator_interval_width_over_conservative_target:
+      maxRawWidthRow?.raw_numerator_interval_width_over_conservative_target ??
+      null,
+    max_midpoint_residual_over_conservative_target:
+      bestDegreeRow.max_positive_midpoint_residual_over_conservative_target,
+    min_midpoint_residual_headroom_factor:
+      bestDegreeRow.min_positive_midpoint_residual_headroom_factor,
+    max_dependency_loss_factor_from_midpoint_to_directed_interval:
+      maxDependencyLossRow
+        ?.dependency_loss_factor_from_midpoint_to_directed_interval ?? null,
+    controlling_sample: compactSample(maxDirectedAbsRow),
+    directed_interval_residual_rows: rows.map(compactSample),
+    interval_coordinate_interpretation:
+      targetStatus ===
+      "positive-n38-directed-interval-residual-exposes-dependency-loss"
+        ? `raw directed interval enclosure loses xi/N38 dependency; the closure route must certify the ${graphSymbol} residual derivative or another dependency-preserving normal form before absolute Cauchy bounds`
+        : targetStatus ===
+            "positive-n38-directed-interval-residual-fits-collar-target"
+          ? "raw directed interval enclosure is sufficient for the positive N38 collar target"
+          : "directed interval residual route remains open",
+    diagnosis: targetStatus,
+    claim_boundary: claimBoundary,
+  };
+}
+
+function indexCombinations({ itemCount, selectCount }) {
+  const combinations = [];
+  const build = (startIndex, selected) => {
+    if (selected.length === selectCount) {
+      combinations.push(selected.slice());
+      return;
+    }
+    for (
+      let index = startIndex;
+      index <= itemCount - (selectCount - selected.length);
+      index += 1
+    ) {
+      selected.push(index);
+      build(index + 1, selected);
+      selected.pop();
+    }
+  };
+  build(0, []);
+  return combinations;
+}
+
+const H39_H38_Y44_POSITIVE_N38_SOURCE_COMPONENTS = [
+  "delta_squared_speed",
+  "constant_minus_two",
+  "sin_phi",
+  "sin_delta",
+];
+
+function h39H38Y44PositiveN38SourceComponentValue(sample, component) {
+  const termMidpoints = sample?.numerator_term_midpoints;
+  if (
+    termMidpoints &&
+    Object.hasOwn(termMidpoints, component) &&
+    Number.isFinite(Number(termMidpoints[component]))
+  ) {
+    return Number(termMidpoints[component]);
+  }
+  return null;
+}
+
+function h39H38Y44PositiveN38LagrangeSourceResidualDecomposition({
+  samples,
+  selectedIndexes,
+  residualRows,
+  sourceComponents = H39_H38_Y44_POSITIVE_N38_SOURCE_COMPONENTS,
+}) {
+  const unavailable = (reason, extra = {}) => ({
+    status: "positive-n38-lagrange-source-decomposition-unavailable",
+    reason,
+    source_components: sourceComponents,
+    decomposition_interpretation:
+      "positive-n38-lagrange-source-decomposition-unavailable",
+    ...extra,
+  });
+  if (!Array.isArray(samples) || samples.length === 0) {
+    return unavailable("no samples were supplied");
+  }
+  if (
+    !Array.isArray(selectedIndexes) ||
+    selectedIndexes.length === 0 ||
+    !selectedIndexes.every((index) => Number.isInteger(index))
+  ) {
+    return unavailable("no Lagrange interpolation node indexes were supplied");
+  }
+  const missingComponents = sourceComponents.filter((component) =>
+    samples.some(
+      (sample) =>
+        h39H38Y44PositiveN38SourceComponentValue(sample, component) === null
+    )
+  );
+  if (missingComponents.length > 0) {
+    return unavailable("some source component midpoints are unavailable", {
+      missing_components: missingComponents,
+    });
+  }
+  const selectedIndexSet = new Set(selectedIndexes);
+  const sampleRows = samples.map((sample, sampleIndex) => {
+    const sourceTermMidpointSum = sourceComponents.reduce(
+      (sum, component) =>
+        sum + h39H38Y44PositiveN38SourceComponentValue(sample, component),
+      0
+    );
+    const numeratorMidpoint = Number(sample.numerator_midpoint);
+    const expressionMidpoint = Number(sample.numerator_expression_midpoint);
+    return {
+      cell_id: sample.cell_id,
+      xi_midpoint: sample.xi_midpoint,
+      interpolation_node: selectedIndexSet.has(sampleIndex),
+      numerator_midpoint: numeratorMidpoint,
+      numerator_expression_midpoint: Number.isFinite(expressionMidpoint)
+        ? expressionMidpoint
+        : null,
+      source_term_midpoint_sum: sourceTermMidpointSum,
+      source_term_sum_to_numerator_midpoint_gap: Math.abs(
+        sourceTermMidpointSum - numeratorMidpoint
+      ),
+      source_term_sum_to_expression_midpoint_gap: Number.isFinite(
+        expressionMidpoint
+      )
+        ? Math.abs(sourceTermMidpointSum - expressionMidpoint)
+        : null,
+    };
+  });
+  const maxSourceSumToNumeratorGap = Math.max(
+    ...sampleRows.map((row) =>
+      Number(row.source_term_sum_to_numerator_midpoint_gap)
+    )
+  );
+  const maxSourceSumToExpressionGap = Math.max(
+    ...sampleRows
+      .map((row) => Number(row.source_term_sum_to_expression_midpoint_gap))
+      .filter(Number.isFinite)
+  );
+  const directResidualRows = residualRows.map((row, rowIndex) => ({
+    ...row,
+    interpolation_node: selectedIndexSet.has(rowIndex),
+  }));
+  const pointExpressionValues = sampleRows.map((row) =>
+    Number(row.source_term_midpoint_sum)
+  );
+  const intervalCenterDriftValues = samples.map(
+    (sample, sampleIndex) =>
+      Number(sample.numerator_midpoint) - pointExpressionValues[sampleIndex]
+  );
+  const pointExpressionCoefficients =
+    lagrangeInterpolationPolynomialCoefficients(
+      selectedIndexes.map((index) => ({
+        x: samples[index].xi_midpoint,
+        y: pointExpressionValues[index],
+      }))
+    );
+  const intervalCenterDriftCoefficients =
+    lagrangeInterpolationPolynomialCoefficients(
+      selectedIndexes.map((index) => ({
+        x: samples[index].xi_midpoint,
+        y: intervalCenterDriftValues[index],
+      }))
+    );
+  const pointExpressionResidualRows = samples.map((sample, sampleIndex) => {
+    const graphMidpoint = polynomialValue(
+      pointExpressionCoefficients,
+      sample.xi_midpoint
+    );
+    const residual = pointExpressionValues[sampleIndex] - graphMidpoint;
+    const conservativeTarget = Number(
+      sample.conservative_numerator_width_target
+    );
+    return {
+      cell_id: sample.cell_id,
+      xi_midpoint: sample.xi_midpoint,
+      interpolation_node: selectedIndexSet.has(sampleIndex),
+      point_expression_midpoint: pointExpressionValues[sampleIndex],
+      lagrange_graph_midpoint: graphMidpoint,
+      midpoint_residual: residual,
+      abs_midpoint_residual: Math.abs(residual),
+      residual_over_conservative_target: finitePositive(conservativeTarget)
+        ? Math.abs(residual) / conservativeTarget
+        : null,
+    };
+  });
+  const intervalCenterDriftResidualRows = samples.map((sample, sampleIndex) => {
+    const graphMidpoint = polynomialValue(
+      intervalCenterDriftCoefficients,
+      sample.xi_midpoint
+    );
+    const residual = intervalCenterDriftValues[sampleIndex] - graphMidpoint;
+    const conservativeTarget = Number(
+      sample.conservative_numerator_width_target
+    );
+    return {
+      cell_id: sample.cell_id,
+      xi_midpoint: sample.xi_midpoint,
+      interpolation_node: selectedIndexSet.has(sampleIndex),
+      interval_center_drift_midpoint: intervalCenterDriftValues[sampleIndex],
+      lagrange_graph_midpoint: graphMidpoint,
+      midpoint_residual: residual,
+      abs_midpoint_residual: Math.abs(residual),
+      residual_over_conservative_target: finitePositive(conservativeTarget)
+        ? Math.abs(residual) / conservativeTarget
+        : null,
+    };
+  });
+  const omittedDirectRows = directResidualRows.filter(
+    (row) => row.interpolation_node !== true
+  );
+  const omittedPointExpressionRows = pointExpressionResidualRows.filter(
+    (row) => row.interpolation_node !== true
+  );
+  const omittedIntervalCenterDriftRows =
+    intervalCenterDriftResidualRows.filter(
+      (row) => row.interpolation_node !== true
+    );
+  const directOmittedResidualSum = omittedDirectRows.reduce(
+    (sum, row) => sum + Number(row.midpoint_residual),
+    0
+  );
+  const directOmittedAbsResidualSum = omittedDirectRows.reduce(
+    (sum, row) => sum + Math.abs(Number(row.midpoint_residual)),
+    0
+  );
+  const pointExpressionOmittedResidualSum = omittedPointExpressionRows.reduce(
+    (sum, row) => sum + Number(row.midpoint_residual),
+    0
+  );
+  const pointExpressionOmittedAbsResidualSum =
+    omittedPointExpressionRows.reduce(
+      (sum, row) => sum + Math.abs(Number(row.midpoint_residual)),
+      0
+    );
+  const intervalCenterDriftOmittedResidualSum =
+    omittedIntervalCenterDriftRows.reduce(
+      (sum, row) => sum + Number(row.midpoint_residual),
+      0
+    );
+  const intervalCenterDriftOmittedAbsResidualSum =
+    omittedIntervalCenterDriftRows.reduce(
+      (sum, row) => sum + Math.abs(Number(row.midpoint_residual)),
+      0
+    );
+  const maxPointExpressionOmittedRatio = Math.max(
+    ...omittedPointExpressionRows
+      .map((row) => Number(row.residual_over_conservative_target))
+      .filter(Number.isFinite),
+    0
+  );
+  const maxIntervalCenterDriftOmittedRatio = Math.max(
+    ...omittedIntervalCenterDriftRows
+      .map((row) => Number(row.residual_over_conservative_target))
+      .filter(Number.isFinite),
+    0
+  );
+  const directSplitReplayGap = Math.abs(
+    pointExpressionOmittedResidualSum +
+      intervalCenterDriftOmittedResidualSum -
+      directOmittedResidualSum
+  );
+  const directSplitReplayRelativeGap = finitePositive(
+    directOmittedAbsResidualSum
+  )
+    ? directSplitReplayGap / directOmittedAbsResidualSum
+    : directSplitReplayGap;
+  const componentRows = sourceComponents.map((component) => {
+    const selectedPoints = selectedIndexes.map((index) => ({
+      x: samples[index].xi_midpoint,
+      y: h39H38Y44PositiveN38SourceComponentValue(
+        samples[index],
+        component
+      ),
+    }));
+    const coefficients =
+      lagrangeInterpolationPolynomialCoefficients(selectedPoints);
+    const componentResidualRows = samples.map((sample, sampleIndex) => {
+      const componentMidpoint = h39H38Y44PositiveN38SourceComponentValue(
+        sample,
+        component
+      );
+      const graphMidpoint = polynomialValue(
+        coefficients,
+        sample.xi_midpoint
+      );
+      const residual = componentMidpoint - graphMidpoint;
+      return {
+        cell_id: sample.cell_id,
+        xi_midpoint: sample.xi_midpoint,
+        interpolation_node: selectedIndexSet.has(sampleIndex),
+        component_midpoint: componentMidpoint,
+        lagrange_graph_midpoint: graphMidpoint,
+        midpoint_residual: residual,
+        abs_midpoint_residual: Math.abs(residual),
+      };
+    });
+    const omittedRows = componentResidualRows.filter(
+      (row) => row.interpolation_node !== true
+    );
+    const omittedSignedResidualSum = omittedRows.reduce(
+      (sum, row) => sum + Number(row.midpoint_residual),
+      0
+    );
+    const omittedAbsResidualSum = omittedRows.reduce(
+      (sum, row) => sum + Math.abs(Number(row.midpoint_residual)),
+      0
+    );
+    const maxOmittedRow = omittedRows.reduce((best, row) =>
+      Number(row.abs_midpoint_residual) >
+      Number(best?.abs_midpoint_residual ?? -1)
+        ? row
+        : best,
+    null);
+    return {
+      component,
+      lagrange_polynomial_coefficients: coefficients,
+      omitted_signed_residual_sum: omittedSignedResidualSum,
+      omitted_abs_residual_sum: omittedAbsResidualSum,
+      max_omitted_abs_residual:
+        maxOmittedRow?.abs_midpoint_residual ?? null,
+      omitted_residual_sign: signLabel(omittedSignedResidualSum),
+      residual_rows: componentResidualRows,
+    };
+  });
+  const componentSignedResidualSum = componentRows.reduce(
+    (sum, row) => sum + Number(row.omitted_signed_residual_sum),
+    0
+  );
+  const componentAbsResidualSum = componentRows.reduce(
+    (sum, row) => sum + Number(row.omitted_abs_residual_sum),
+    0
+  );
+  const sourceSumToDirectGap = Math.abs(
+    componentSignedResidualSum - directOmittedResidualSum
+  );
+  const intervalMidpointArtifactResidualSum =
+    directOmittedResidualSum - componentSignedResidualSum;
+  const sourceSumToDirectRelativeGap = finitePositive(componentAbsResidualSum)
+    ? sourceSumToDirectGap / componentAbsResidualSum
+    : sourceSumToDirectGap;
+  const sourceComponentSignedToDirectResidualRatio = finitePositive(
+    Math.abs(directOmittedResidualSum)
+  )
+    ? componentSignedResidualSum / directOmittedResidualSum
+    : null;
+  const intervalMidpointArtifactToDirectResidualRatio = finitePositive(
+    Math.abs(directOmittedResidualSum)
+  )
+    ? intervalMidpointArtifactResidualSum / directOmittedResidualSum
+    : null;
+  const signedToAbsRatio = finitePositive(componentAbsResidualSum)
+    ? Math.abs(componentSignedResidualSum) / componentAbsResidualSum
+    : null;
+  const sourceCancellationFraction =
+    signedToAbsRatio === null ? null : 1 - signedToAbsRatio;
+  const componentRowsWithShares = componentRows
+    .map((row) => ({
+      ...row,
+      omitted_abs_residual_share: finitePositive(componentAbsResidualSum)
+        ? Number(row.omitted_abs_residual_sum) / componentAbsResidualSum
+        : null,
+      signed_to_direct_omitted_residual_ratio: finitePositive(
+        Math.abs(directOmittedResidualSum)
+      )
+        ? Number(row.omitted_signed_residual_sum) / directOmittedResidualSum
+        : null,
+    }))
+    .sort(
+      (left, right) =>
+        Number(right.omitted_abs_residual_sum) -
+        Number(left.omitted_abs_residual_sum)
+    );
+  const dominantComponent = componentRowsWithShares[0] ?? null;
+  const sineRows = componentRowsWithShares.filter((row) =>
+    ["sin_phi", "sin_delta"].includes(row.component)
+  );
+  const sinePairSignedResidualSum = sineRows.reduce(
+    (sum, row) => sum + Number(row.omitted_signed_residual_sum),
+    0
+  );
+  const sinePairAbsResidualSum = sineRows.reduce(
+    (sum, row) => sum + Number(row.omitted_abs_residual_sum),
+    0
+  );
+  const sinePairSignedToAbsRatio = finitePositive(sinePairAbsResidualSum)
+    ? Math.abs(sinePairSignedResidualSum) / sinePairAbsResidualSum
+    : null;
+  const sinePairCancellationFraction =
+    sinePairSignedToAbsRatio === null ? null : 1 - sinePairSignedToAbsRatio;
+  const sourceSumReplaysDirect =
+    sourceSumToDirectRelativeGap <= 1e-6 || sourceSumToDirectGap <= 1e-9;
+  let decompositionInterpretation =
+    "positive-n38-lagrange-source-balance-mixed";
+  if (!sourceSumReplaysDirect) {
+    decompositionInterpretation =
+      Math.abs(Number(intervalMidpointArtifactToDirectResidualRatio)) > 0.25
+        ? "positive-n38-lagrange-residual-contains-material-interval-midpoint-artifact"
+        : "positive-n38-lagrange-source-terms-do-not-replay-direct-residual";
+  } else if (
+    Number(sinePairAbsResidualSum) / Number(componentAbsResidualSum) >= 0.5 &&
+    Number(sinePairCancellationFraction) >= 0.5
+  ) {
+    decompositionInterpretation =
+      "positive-n38-lagrange-residual-dominated-by-sine-pair-cancellation";
+  } else if (dominantComponent?.component === "delta_squared_speed") {
+    decompositionInterpretation =
+      "positive-n38-lagrange-residual-dominated-by-delta-squared-speed";
+  }
+  return {
+    status: "positive-n38-lagrange-source-decomposition-emitted",
+    source_components: sourceComponents,
+    selected_sample_indexes: selectedIndexes,
+    omitted_sample_indexes: samples
+      .map((_sample, index) => index)
+      .filter((index) => !selectedIndexSet.has(index)),
+    omitted_sample_cell_ids: samples
+      .filter((_sample, index) => !selectedIndexSet.has(index))
+      .map((sample) => sample.cell_id),
+    sample_rows: sampleRows,
+    direct_omitted_residual_sum: directOmittedResidualSum,
+    direct_omitted_abs_residual_sum: directOmittedAbsResidualSum,
+    point_expression_omitted_residual_sum:
+      pointExpressionOmittedResidualSum,
+    point_expression_omitted_abs_residual_sum:
+      pointExpressionOmittedAbsResidualSum,
+    max_point_expression_omitted_residual_over_conservative_target:
+      maxPointExpressionOmittedRatio,
+    interval_center_drift_omitted_residual_sum:
+      intervalCenterDriftOmittedResidualSum,
+    interval_center_drift_omitted_abs_residual_sum:
+      intervalCenterDriftOmittedAbsResidualSum,
+    max_interval_center_drift_omitted_residual_over_conservative_target:
+      maxIntervalCenterDriftOmittedRatio,
+    direct_split_replay_absolute_gap: directSplitReplayGap,
+    direct_split_replay_relative_gap: directSplitReplayRelativeGap,
+    point_expression_lagrange_residual_rows: pointExpressionResidualRows,
+    interval_center_drift_lagrange_residual_rows:
+      intervalCenterDriftResidualRows,
+    source_component_omitted_signed_residual_sum:
+      componentSignedResidualSum,
+    source_component_omitted_abs_residual_sum:
+      componentAbsResidualSum,
+    source_sum_to_direct_residual_absolute_gap: sourceSumToDirectGap,
+    source_sum_to_direct_residual_relative_gap:
+      sourceSumToDirectRelativeGap,
+    source_sum_replays_direct_residual: sourceSumReplaysDirect,
+    source_component_signed_to_direct_residual_ratio:
+      sourceComponentSignedToDirectResidualRatio,
+    interval_midpoint_artifact_residual_sum:
+      intervalMidpointArtifactResidualSum,
+    interval_midpoint_artifact_to_direct_residual_ratio:
+      intervalMidpointArtifactToDirectResidualRatio,
+    signed_source_sum_to_abs_source_sum_ratio: signedToAbsRatio,
+    source_cancellation_fraction: sourceCancellationFraction,
+    sine_pair_omitted_signed_residual_sum: sinePairSignedResidualSum,
+    sine_pair_omitted_abs_residual_sum: sinePairAbsResidualSum,
+    sine_pair_abs_residual_share: finitePositive(componentAbsResidualSum)
+      ? sinePairAbsResidualSum / componentAbsResidualSum
+      : null,
+    sine_pair_signed_to_direct_residual_ratio: finitePositive(
+      Math.abs(directOmittedResidualSum)
+    )
+      ? sinePairSignedResidualSum / directOmittedResidualSum
+      : null,
+    sine_pair_cancellation_fraction: sinePairCancellationFraction,
+    dominant_source_component_by_abs_omitted_residual:
+      dominantComponent?.component ?? null,
+    dominant_source_component_abs_omitted_residual_share:
+      dominantComponent?.omitted_abs_residual_share ?? null,
+    max_source_term_sum_to_numerator_midpoint_gap:
+      maxSourceSumToNumeratorGap,
+    max_source_term_sum_to_expression_midpoint_gap: Number.isFinite(
+      maxSourceSumToExpressionGap
+    )
+      ? maxSourceSumToExpressionGap
+      : null,
+    component_rows: componentRowsWithShares,
+    decomposition_interpretation: decompositionInterpretation,
+  };
+}
+
+function h39H38Y44PositiveN38StreamDerivativeWitness({
+  samples,
+  selectedIndexes,
+  sourceResidualDecomposition,
+  splitM4AllocationTarget,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const unavailable = (reason) => ({
+    status: "positive-n38-same-domain-stream-derivative-witness-unavailable",
+    reason,
+    selected_sample_indexes: selectedIndexes,
+    selected_node_cell_ids: [],
+    omitted_sample_cell_ids: [],
+    product_interval_status: "lagrange-product-interval-open",
+    max_point_expression_guarded_m4: null,
+    max_interval_center_drift_guarded_m4: null,
+    split_triangle_guarded_m4: null,
+    point_expression_guarded_to_ceiling_ratio: null,
+    interval_center_drift_guarded_to_ceiling_ratio: null,
+    split_triangle_guarded_to_ceiling_ratio: null,
+    witness_interpretation: reason,
+    point_expression_rows: [],
+    interval_center_drift_rows: [],
+    claim_boundary: claimBoundary,
+  });
+  if (
+    !Array.isArray(samples) ||
+    !Array.isArray(selectedIndexes) ||
+    sourceResidualDecomposition?.status !==
+      "positive-n38-lagrange-source-decomposition-emitted"
+  ) {
+    return unavailable("missing selected Lagrange source decomposition");
+  }
+  const selectedIndexSet = new Set(selectedIndexes);
+  const selectedSamples = selectedIndexes.map((index) => samples[index]);
+  if (
+    selectedSamples.length !== 4 ||
+    selectedSamples.some((sample) => !sample)
+  ) {
+    return unavailable("selected Lagrange nodes are not available");
+  }
+  const nodes = selectedSamples.map((sample) => Number(sample.xi_midpoint));
+  if (!nodes.every(Number.isFinite)) {
+    return unavailable("selected Lagrange node xi midpoints are not finite");
+  }
+  const omittedSamples = samples.filter(
+    (_sample, index) => !selectedIndexSet.has(index)
+  );
+  const pointRows =
+    sourceResidualDecomposition.point_expression_lagrange_residual_rows ??
+    [];
+  const driftRows =
+    sourceResidualDecomposition
+      .interval_center_drift_lagrange_residual_rows ?? [];
+  const rowFor = (sourceRows, sample) =>
+    sourceRows.find((row) => row.cell_id === sample.cell_id) ?? null;
+  const witnessRow = ({ row, sample, stream }) => {
+    if (!row || !sample) {
+      return null;
+    }
+    const productMidpoint = productValueForNodes(nodes, row.xi_midpoint);
+    const productInterval = lagrangeProductIntervalForNodes({
+      nodes,
+      interval: sample.xi_interval,
+    });
+    const productIntervalAbsLower = intervalAbsLower(productInterval);
+    const residualAbs = Math.abs(Number(row.midpoint_residual));
+    const midpointImpliedM4 =
+      finitePositive(Math.abs(productMidpoint)) && Number.isFinite(residualAbs)
+        ? (24 * residualAbs) / Math.abs(productMidpoint)
+        : null;
+    const intervalGuardedM4 =
+      finitePositive(productIntervalAbsLower) && Number.isFinite(residualAbs)
+        ? (24 * residualAbs) / productIntervalAbsLower
+        : null;
+    return {
+      stream,
+      cell_id: sample.cell_id,
+      xi_midpoint: row.xi_midpoint,
+      xi_interval: sample.xi_interval,
+      midpoint_residual: row.midpoint_residual,
+      abs_midpoint_residual: residualAbs,
+      lagrange_product_midpoint: productMidpoint,
+      lagrange_product_interval: productInterval,
+      lagrange_product_interval_abs_lower: productIntervalAbsLower,
+      midpoint_implied_m4: midpointImpliedM4,
+      interval_product_guarded_m4: intervalGuardedM4,
+      product_guard_status:
+        finitePositive(productIntervalAbsLower)
+          ? "omitted-cell-lagrange-product-separated-from-zero"
+          : "omitted-cell-lagrange-product-crosses-zero",
+    };
+  };
+  const pointWitnessRows = omittedSamples
+    .map((sample) =>
+      witnessRow({
+        row: rowFor(pointRows, sample),
+        sample,
+        stream: "point_expression",
+      })
+    )
+    .filter(Boolean);
+  const driftWitnessRows = omittedSamples
+    .map((sample) =>
+      witnessRow({
+        row: rowFor(driftRows, sample),
+        sample,
+        stream: "interval_center_drift",
+      })
+    )
+    .filter(Boolean);
+  const maxGuardedM4 = (rows) =>
+    rows.reduce((best, row) =>
+      Number(row.interval_product_guarded_m4) >
+      Number(best?.interval_product_guarded_m4 ?? -1)
+        ? row
+        : best,
+    null)?.interval_product_guarded_m4 ?? null;
+  const maxPointGuardedM4 = maxGuardedM4(pointWitnessRows);
+  const maxDriftGuardedM4 = maxGuardedM4(driftWitnessRows);
+  const splitTriangleGuardedM4 =
+    Number(maxPointGuardedM4) + Number(maxDriftGuardedM4);
+  const pointCeiling = Number(
+    splitM4AllocationTarget?.equal_stream_point_expression_m4_ceiling
+  );
+  const driftCeiling = Number(
+    splitM4AllocationTarget?.equal_stream_interval_center_drift_m4_ceiling
+  );
+  const splitCeiling = Number(
+    splitM4AllocationTarget?.equal_stream_split_triangle_m4_ceiling
+  );
+  const pointRatio =
+    finitePositive(pointCeiling) && finitePositive(maxPointGuardedM4)
+      ? Number(maxPointGuardedM4) / pointCeiling
+      : null;
+  const driftRatio =
+    finitePositive(driftCeiling) && finitePositive(maxDriftGuardedM4)
+      ? Number(maxDriftGuardedM4) / driftCeiling
+      : null;
+  const splitRatio =
+    finitePositive(splitCeiling) && finitePositive(splitTriangleGuardedM4)
+      ? splitTriangleGuardedM4 / splitCeiling
+      : null;
+  const allProductsSeparated = [...pointWitnessRows, ...driftWitnessRows].every(
+    (row) =>
+      row.product_guard_status ===
+      "omitted-cell-lagrange-product-separated-from-zero"
+  );
+  const witnessInside =
+    allProductsSeparated &&
+    Number(pointRatio) <= 1 &&
+    Number(driftRatio) <= 1 &&
+    Number(splitRatio) <= 1;
+  return {
+    status: witnessInside
+      ? "positive-n38-same-domain-stream-derivative-witness-inside-provider-target"
+      : "positive-n38-same-domain-stream-derivative-witness-open",
+    reason: witnessInside
+      ? "the omitted-cell Lagrange residual witness fits the split provider target with directed product separation"
+      : "the omitted-cell Lagrange residual witness does not yet fit all split provider checks",
+    selected_sample_indexes: selectedIndexes,
+    selected_node_cell_ids: selectedSamples.map((sample) => sample.cell_id),
+    omitted_sample_cell_ids: omittedSamples.map((sample) => sample.cell_id),
+    product_interval_status: allProductsSeparated
+      ? "all-omitted-cell-lagrange-products-separated-from-zero"
+      : "some-omitted-cell-lagrange-products-cross-zero",
+    max_point_expression_guarded_m4: finitePositive(maxPointGuardedM4)
+      ? maxPointGuardedM4
+      : null,
+    max_interval_center_drift_guarded_m4: finitePositive(maxDriftGuardedM4)
+      ? maxDriftGuardedM4
+      : null,
+    split_triangle_guarded_m4: finitePositive(splitTriangleGuardedM4)
+      ? splitTriangleGuardedM4
+      : null,
+    point_expression_guarded_to_ceiling_ratio: pointRatio,
+    interval_center_drift_guarded_to_ceiling_ratio: driftRatio,
+    split_triangle_guarded_to_ceiling_ratio: splitRatio,
+    witness_interpretation: witnessInside
+      ? "the selected omitted cell is not the blocker; the remaining burden is the continuous same-domain fourth-derivative supremum between sampled nodes"
+      : "the selected omitted cell or product guard still needs a sharper derivative witness before the continuous supremum route",
+    point_expression_rows: pointWitnessRows,
+    interval_center_drift_rows: driftWitnessRows,
+    claim_boundary: claimBoundary,
+  };
+}
+
+function h39H38Y44PositiveN38RemovableQuotientRoute({
+  samples,
+  selectedIndexes,
+  sourceResidualDecomposition,
+  splitM4AllocationTarget,
+  streamDerivativeWitness,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const unavailable = (reason) => ({
+    status: "positive-n38-removable-quotient-route-unavailable",
+    target_status: "positive-n38-removable-quotient-route-unavailable",
+    reason,
+    selected_sample_indexes: selectedIndexes,
+    selected_node_cell_ids: [],
+    omitted_sample_cell_ids: [],
+    xi_window: null,
+    quotient_identity:
+      "F_stream(xi)-p3_stream(xi)=product_i(xi-node_i)*Q_stream(xi)/24",
+    product_zero_policy:
+      "raw quotient interval hulls that cross selected Lagrange nodes are invalid; factor the removable product before interval hulling",
+    sample_product_rows: [],
+    product_separated_sample_count: 0,
+    product_crossing_sample_count: 0,
+    removable_node_limit_obligation_count: 0,
+    point_expression_omitted_guarded_to_ceiling_ratio: null,
+    interval_center_drift_omitted_guarded_to_ceiling_ratio: null,
+    split_triangle_omitted_guarded_to_ceiling_ratio: null,
+    route_interpretation: reason,
+    claim_boundary: claimBoundary,
+  });
+  if (
+    !Array.isArray(samples) ||
+    !Array.isArray(selectedIndexes) ||
+    sourceResidualDecomposition?.status !==
+      "positive-n38-lagrange-source-decomposition-emitted"
+  ) {
+    return unavailable("missing selected Lagrange source decomposition");
+  }
+  const selectedIndexSet = new Set(selectedIndexes);
+  const selectedSamples = selectedIndexes.map((index) => samples[index]);
+  if (
+    selectedSamples.length !== 4 ||
+    selectedSamples.some((sample) => !sample)
+  ) {
+    return unavailable("selected Lagrange nodes are not available");
+  }
+  const nodes = selectedSamples.map((sample) => Number(sample.xi_midpoint));
+  if (!nodes.every(Number.isFinite)) {
+    return unavailable("selected Lagrange node xi midpoints are not finite");
+  }
+  const xiIntervals = samples
+    .map((sample) => sample.xi_interval)
+    .filter((interval) => Array.isArray(interval) && interval.length === 2);
+  const xiWindow = xiIntervals.length > 0 ? intervalHull(xiIntervals) : null;
+  const sampleProductRows = samples.map((sample, sampleIndex) => {
+    const productInterval = lagrangeProductIntervalForNodes({
+      nodes,
+      interval: sample.xi_interval,
+    });
+    const productAbsLower = intervalAbsLower(productInterval);
+    const interpolationNode = selectedIndexSet.has(sampleIndex);
+    return {
+      cell_id: sample.cell_id,
+      sample_index: sampleIndex,
+      xi_interval: sample.xi_interval,
+      xi_midpoint: sample.xi_midpoint,
+      interpolation_node: interpolationNode,
+      lagrange_product_midpoint: productValueForNodes(
+        nodes,
+        sample.xi_midpoint
+      ),
+      lagrange_product_interval: productInterval,
+      lagrange_product_interval_abs_lower: productAbsLower,
+      quotient_interval_policy:
+        interpolationNode || !finitePositive(productAbsLower)
+          ? "requires-removable-node-factorization"
+          : "product-separated-direct-quotient-allowed",
+    };
+  });
+  const productSeparatedRows = sampleProductRows.filter((row) =>
+    finitePositive(row.lagrange_product_interval_abs_lower)
+  );
+  const productCrossingRows = sampleProductRows.filter(
+    (row) => !finitePositive(row.lagrange_product_interval_abs_lower)
+  );
+  const pointRatio = Number(
+    streamDerivativeWitness?.point_expression_guarded_to_ceiling_ratio
+  );
+  const driftRatio = Number(
+    streamDerivativeWitness?.interval_center_drift_guarded_to_ceiling_ratio
+  );
+  const splitRatio = Number(
+    streamDerivativeWitness?.split_triangle_guarded_to_ceiling_ratio
+  );
+  const omittedWitnessInside =
+    streamDerivativeWitness?.status ===
+    "positive-n38-same-domain-stream-derivative-witness-inside-provider-target";
+  const productCrossingCount = productCrossingRows.length;
+  const targetStatus = omittedWitnessInside
+    ? productCrossingCount > 0
+      ? "positive-n38-removable-quotient-route-needs-node-factorization"
+      : "positive-n38-removable-quotient-route-all-sample-products-separated"
+    : "positive-n38-removable-quotient-route-needs-omitted-cell-witness";
+  return {
+    status: "positive-n38-removable-quotient-route-candidate-emitted",
+    target_status: targetStatus,
+    reason:
+      targetStatus ===
+      "positive-n38-removable-quotient-route-needs-node-factorization"
+        ? "the omitted-cell quotient witness is inside the split target, but selected node cells have product zeros and require removable factorization before continuous interval hulling"
+        : targetStatus ===
+            "positive-n38-removable-quotient-route-all-sample-products-separated"
+          ? "all current sample cells have separated Lagrange products, but this still does not certify the continuous supremum between samples"
+          : "the omitted-cell stream derivative witness is not yet inside the provider target",
+    selected_sample_indexes: selectedIndexes,
+    selected_node_cell_ids: selectedSamples.map((sample) => sample.cell_id),
+    omitted_sample_cell_ids: samples
+      .filter((_sample, index) => !selectedIndexSet.has(index))
+      .map((sample) => sample.cell_id),
+    xi_window: xiWindow,
+    quotient_identity:
+      "F_stream(xi)-p3_stream(xi)=product_i(xi-node_i)*Q_stream(xi)/24",
+    point_expression_quotient_target:
+      "sup_xi |Q_point(xi)| <= equal_stream_point_expression_m4_ceiling",
+    interval_center_drift_quotient_target:
+      "sup_xi |Q_drift(xi)| <= equal_stream_interval_center_drift_m4_ceiling",
+    product_zero_policy:
+      "raw quotient interval hulls that cross selected Lagrange nodes are invalid; factor the removable product before interval hulling",
+    sample_product_rows: sampleProductRows,
+    product_separated_sample_count: productSeparatedRows.length,
+    product_crossing_sample_count: productCrossingRows.length,
+    removable_node_limit_obligation_count: productCrossingRows.filter(
+      (row) => row.interpolation_node === true
+    ).length,
+    point_expression_omitted_guarded_m4:
+      streamDerivativeWitness?.max_point_expression_guarded_m4 ?? null,
+    interval_center_drift_omitted_guarded_m4:
+      streamDerivativeWitness?.max_interval_center_drift_guarded_m4 ?? null,
+    split_triangle_omitted_guarded_m4:
+      streamDerivativeWitness?.split_triangle_guarded_m4 ?? null,
+    point_expression_omitted_guarded_to_ceiling_ratio: Number.isFinite(
+      pointRatio
+    )
+      ? pointRatio
+      : null,
+    interval_center_drift_omitted_guarded_to_ceiling_ratio: Number.isFinite(
+      driftRatio
+    )
+      ? driftRatio
+      : null,
+    split_triangle_omitted_guarded_to_ceiling_ratio: Number.isFinite(
+      splitRatio
+    )
+      ? splitRatio
+      : null,
+    equal_stream_point_expression_m4_ceiling:
+      splitM4AllocationTarget?.equal_stream_point_expression_m4_ceiling ??
+      null,
+    equal_stream_interval_center_drift_m4_ceiling:
+      splitM4AllocationTarget
+        ?.equal_stream_interval_center_drift_m4_ceiling ?? null,
+    equal_stream_split_triangle_m4_ceiling:
+      splitM4AllocationTarget?.equal_stream_split_triangle_m4_ceiling ??
+      null,
+    route_interpretation:
+      targetStatus ===
+      "positive-n38-removable-quotient-route-needs-node-factorization"
+        ? "the continuous certificate should bound the removable quotient Q_stream, not raw residuals divided by product intervals at node cells"
+        : "the removable quotient route remains candidate-only until a directed-rounded continuous stream evaluator supplies quotient bounds over the same xi window",
+    claim_boundary: claimBoundary,
+  };
+}
+
+function h39H38Y44PositiveN38QuarticQuotientConsistencyWitness({
+  samples,
+  selectedIndexes,
+  sourceResidualDecomposition,
+  splitM4AllocationTarget,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const unavailable = (reason) => ({
+    status: "positive-n38-quartic-quotient-consistency-witness-unavailable",
+    reason,
+    selected_sample_indexes: selectedIndexes,
+    selected_node_cell_ids: [],
+    omitted_sample_cell_id: null,
+    finite_data_scope: "five-sample-quartic-normal-form-only",
+    quotient_identity:
+      "F_stream(xi)-p3_stream(xi)=product_i(xi-node_i)*Q_stream(xi)/24",
+    consistency_tolerance: 1e-6,
+    quotient_consistency_status: "positive-n38-quartic-quotient-unavailable",
+    split_stream_quotient_consistency_status:
+      "positive-n38-quartic-split-stream-quotient-unavailable",
+    direct_quotient_consistency_status:
+      "positive-n38-quartic-direct-quotient-unavailable",
+    stream_rows: [],
+    node_limit_proxy_status:
+      "positive-n38-quartic-node-limit-proxy-unavailable",
+    node_limit_proxy_rows: [],
+    point_expression_signed_m4: null,
+    interval_center_drift_signed_m4: null,
+    point_expression_abs_m4: null,
+    interval_center_drift_abs_m4: null,
+    direct_abs_m4: null,
+    split_triangle_abs_m4: null,
+    max_quotient_consistency_relative_gap: null,
+    direct_split_signed_m4: null,
+    direct_signed_m4: null,
+    split_to_direct_signed_m4_relative_gap: null,
+    max_split_stream_quotient_consistency_relative_gap: null,
+    direct_quotient_consistency_relative_gap: null,
+    source_decomposition_direct_split_replay_relative_gap: null,
+    point_expression_abs_m4_to_ceiling_ratio: null,
+    interval_center_drift_abs_m4_to_ceiling_ratio: null,
+    split_triangle_abs_m4_to_ceiling_ratio: null,
+    witness_interpretation: reason,
+    node_limit_proxy_interpretation: reason,
+    claim_boundary: claimBoundary,
+  });
+  if (
+    !Array.isArray(samples) ||
+    samples.length !== 5 ||
+    !Array.isArray(selectedIndexes) ||
+    selectedIndexes.length !== 4 ||
+    sourceResidualDecomposition?.status !==
+      "positive-n38-lagrange-source-decomposition-emitted"
+  ) {
+    return unavailable(
+      "the quartic quotient witness requires exactly five samples, four selected Lagrange nodes, and an emitted source residual decomposition"
+    );
+  }
+  const selectedIndexSet = new Set(selectedIndexes);
+  const selectedSamples = selectedIndexes.map((index) => samples[index]);
+  const omittedSamples = samples
+    .map((sample, index) => ({ sample, index }))
+    .filter((entry) => !selectedIndexSet.has(entry.index));
+  if (
+    selectedSamples.some((sample) => !sample) ||
+    omittedSamples.length !== 1
+  ) {
+    return unavailable("the selected and omitted sample pattern is invalid");
+  }
+  const nodes = selectedSamples.map((sample) => Number(sample.xi_midpoint));
+  const xiMidpoints = samples.map((sample) => Number(sample.xi_midpoint));
+  if (![...nodes, ...xiMidpoints].every(Number.isFinite)) {
+    return unavailable("sample xi midpoints are not finite");
+  }
+  const pointRows =
+    sourceResidualDecomposition.point_expression_lagrange_residual_rows ??
+    [];
+  const driftRows =
+    sourceResidualDecomposition
+      .interval_center_drift_lagrange_residual_rows ?? [];
+  const pointRowsByCell = new Map(
+    pointRows.map((row) => [row.cell_id, row])
+  );
+  const driftRowsByCell = new Map(
+    driftRows.map((row) => [row.cell_id, row])
+  );
+  const pointRowsForSamples = samples.map((sample) =>
+    pointRowsByCell.get(sample.cell_id)
+  );
+  const driftRowsForSamples = samples.map((sample) =>
+    driftRowsByCell.get(sample.cell_id)
+  );
+  if (
+    pointRowsForSamples.some((row) => !row) ||
+    driftRowsForSamples.some((row) => !row)
+  ) {
+    return unavailable("source residual rows do not cover every sample");
+  }
+  const pointValues = pointRowsForSamples.map((row) =>
+    Number(row.point_expression_midpoint)
+  );
+  const driftValues = driftRowsForSamples.map((row) =>
+    Number(row.interval_center_drift_midpoint)
+  );
+  const directValues = samples.map((sample) =>
+    Number(sample.numerator_midpoint)
+  );
+  if (![...pointValues, ...driftValues, ...directValues].every(Number.isFinite)) {
+    return unavailable("stream midpoint values are not finite");
+  }
+  const directCoefficients = lagrangeInterpolationPolynomialCoefficients(
+    selectedIndexes.map((index) => ({
+      x: samples[index].xi_midpoint,
+      y: samples[index].numerator_midpoint,
+    }))
+  );
+  const directResidualRows = samples.map((sample, sampleIndex) => {
+    const graphMidpoint = polynomialValue(
+      directCoefficients,
+      sample.xi_midpoint
+    );
+    const residual = directValues[sampleIndex] - graphMidpoint;
+    return {
+      cell_id: sample.cell_id,
+      xi_midpoint: sample.xi_midpoint,
+      interpolation_node: selectedIndexSet.has(sampleIndex),
+      direct_midpoint: directValues[sampleIndex],
+      lagrange_graph_midpoint: graphMidpoint,
+      midpoint_residual: residual,
+      abs_midpoint_residual: Math.abs(residual),
+    };
+  });
+  const signedM4 = {
+    point_expression: fourthDerivativeSignedEstimateFromFourthDividedDifference(
+      xiMidpoints,
+      pointValues
+    ),
+    interval_center_drift:
+      fourthDerivativeSignedEstimateFromFourthDividedDifference(
+        xiMidpoints,
+        driftValues
+      ),
+    direct: fourthDerivativeSignedEstimateFromFourthDividedDifference(
+      xiMidpoints,
+      directValues
+    ),
+  };
+  if (!Object.values(signedM4).every(Number.isFinite)) {
+    return unavailable("stream fourth divided differences are not finite");
+  }
+  const omitted = omittedSamples[0];
+  const omittedSample = omitted.sample;
+  const productMidpoint = productValueForNodes(
+    nodes,
+    omittedSample.xi_midpoint
+  );
+  if (!finitePositive(Math.abs(productMidpoint))) {
+    return unavailable("omitted Lagrange product midpoint is zero");
+  }
+  const signedQuotientM4 = (residual) =>
+    (24 * Number(residual)) / productMidpoint;
+  const omittedRows = {
+    point_expression: pointRowsForSamples[omitted.index],
+    interval_center_drift: driftRowsForSamples[omitted.index],
+    direct: directResidualRows[omitted.index],
+  };
+  const quotientM4 = {
+    point_expression: signedQuotientM4(
+      omittedRows.point_expression.midpoint_residual
+    ),
+    interval_center_drift: signedQuotientM4(
+      omittedRows.interval_center_drift.midpoint_residual
+    ),
+    direct: signedQuotientM4(omittedRows.direct.midpoint_residual),
+  };
+  const relativeGap = (left, right) => {
+    const leftValue = Number(left);
+    const rightValue = Number(right);
+    if (!Number.isFinite(leftValue) || !Number.isFinite(rightValue)) {
+      return null;
+    }
+    const scale = Math.max(1, Math.abs(leftValue), Math.abs(rightValue));
+    return Math.abs(leftValue - rightValue) / scale;
+  };
+  const streamRow = ({ stream, residualField }) => {
+    const signedEstimate = Number(signedM4[stream]);
+    const omittedRow = omittedRows[stream];
+    const omittedQuotient = Number(quotientM4[stream]);
+    return {
+      stream,
+      selected_sample_indexes: selectedIndexes,
+      omitted_sample_index: omitted.index,
+      omitted_sample_cell_id: omittedSample.cell_id,
+      omitted_midpoint_residual: omittedRow.midpoint_residual,
+      omitted_midpoint_residual_field: residualField,
+      lagrange_product_midpoint: productMidpoint,
+      signed_nonuniform_m4: signedEstimate,
+      abs_nonuniform_m4: Math.abs(signedEstimate),
+      omitted_midpoint_quotient_m4: omittedQuotient,
+      quotient_consistency_relative_gap: relativeGap(
+        signedEstimate,
+        omittedQuotient
+      ),
+    };
+  };
+  const streamRows = [
+    streamRow({
+      stream: "point_expression",
+      residualField: "point_expression_midpoint_minus_p3",
+    }),
+    streamRow({
+      stream: "interval_center_drift",
+      residualField: "interval_center_drift_midpoint_minus_p3",
+    }),
+    streamRow({
+      stream: "direct",
+      residualField: "numerator_midpoint_minus_p3",
+    }),
+  ];
+  const pointAbsM4 = Math.abs(Number(signedM4.point_expression));
+  const driftAbsM4 = Math.abs(Number(signedM4.interval_center_drift));
+  const directAbsM4 = Math.abs(Number(signedM4.direct));
+  const splitTriangleAbsM4 = pointAbsM4 + driftAbsM4;
+  const pointCeiling = Number(
+    splitM4AllocationTarget?.equal_stream_point_expression_m4_ceiling
+  );
+  const driftCeiling = Number(
+    splitM4AllocationTarget?.equal_stream_interval_center_drift_m4_ceiling
+  );
+  const splitCeiling = Number(
+    splitM4AllocationTarget?.equal_stream_split_triangle_m4_ceiling
+  );
+  const pointRatio = finitePositive(pointCeiling)
+    ? pointAbsM4 / pointCeiling
+    : null;
+  const driftRatio = finitePositive(driftCeiling)
+    ? driftAbsM4 / driftCeiling
+    : null;
+  const splitRatio = finitePositive(splitCeiling)
+    ? splitTriangleAbsM4 / splitCeiling
+    : null;
+  const directSplitSignedM4 =
+    Number(signedM4.point_expression) +
+    Number(signedM4.interval_center_drift);
+  const splitToDirectGap = relativeGap(
+    directSplitSignedM4,
+    signedM4.direct
+  );
+  const ratioInside = (ratio) =>
+    Number.isFinite(Number(ratio)) && Number(ratio) <= 1;
+  const nodeLimitProxyRows = selectedSamples.map((sample, selectedIndex) => ({
+    cell_id: sample.cell_id,
+    sample_index: selectedIndexes[selectedIndex],
+    xi_midpoint: sample.xi_midpoint,
+    interpolation_node: true,
+    finite_data_limit_kind: "quartic-removable-node-limit-proxy",
+    point_expression_limit_proxy_m4: signedM4.point_expression,
+    interval_center_drift_limit_proxy_m4:
+      signedM4.interval_center_drift,
+    direct_limit_proxy_m4: signedM4.direct,
+    point_expression_abs_m4_to_ceiling_ratio: pointRatio,
+    interval_center_drift_abs_m4_to_ceiling_ratio: driftRatio,
+    split_triangle_abs_m4_to_ceiling_ratio: splitRatio,
+    split_stream_proxy_status:
+      ratioInside(pointRatio) &&
+      ratioInside(driftRatio) &&
+      ratioInside(splitRatio)
+        ? "positive-n38-quartic-node-limit-proxy-inside-provider-target"
+        : "positive-n38-quartic-node-limit-proxy-open",
+    direct_stream_policy: "diagnostic-only",
+  }));
+  const nodeLimitProxyInside =
+    nodeLimitProxyRows.length === selectedSamples.length &&
+    nodeLimitProxyRows.every(
+      (row) =>
+        row.split_stream_proxy_status ===
+        "positive-n38-quartic-node-limit-proxy-inside-provider-target"
+    );
+  const consistencyTolerance = 1e-6;
+  const splitStreamRows = streamRows.filter(
+    (row) => row.stream !== "direct"
+  );
+  const maxQuotientConsistencyGap = Math.max(
+    ...streamRows.map((row) =>
+      Number(row.quotient_consistency_relative_gap)
+    ),
+    0
+  );
+  const maxSplitStreamQuotientConsistencyGap = Math.max(
+    ...splitStreamRows.map((row) =>
+      Number(row.quotient_consistency_relative_gap)
+    ),
+    0
+  );
+  const directQuotientConsistencyGap =
+    streamRows.find((row) => row.stream === "direct")
+      ?.quotient_consistency_relative_gap ?? null;
+  const splitStreamQuotientConsistent =
+    Number(maxSplitStreamQuotientConsistencyGap) <= consistencyTolerance;
+  const directQuotientConsistent =
+    directQuotientConsistencyGap !== null &&
+    Number(directQuotientConsistencyGap) <= consistencyTolerance;
+  const quotientConsistent =
+    splitStreamQuotientConsistent &&
+    directQuotientConsistent &&
+    Number(splitToDirectGap) <= consistencyTolerance;
+  const insideProviderTarget =
+    splitStreamQuotientConsistent &&
+    Number(splitToDirectGap) <= consistencyTolerance &&
+    nodeLimitProxyInside;
+  return {
+    status: insideProviderTarget
+      ? "positive-n38-quartic-quotient-consistency-witness-inside-provider-target"
+      : "positive-n38-quartic-quotient-consistency-witness-open",
+    reason: insideProviderTarget
+      ? "the five-sample quartic quotient is consistent with the omitted residual quotient and fits the split provider target"
+      : "the finite-data quartic quotient witness does not yet fit all consistency and split target checks",
+    selected_sample_indexes: selectedIndexes,
+    selected_node_cell_ids: selectedSamples.map((sample) => sample.cell_id),
+    omitted_sample_index: omitted.index,
+    omitted_sample_cell_id: omittedSample.cell_id,
+    finite_data_scope: "five-sample-quartic-normal-form-only",
+    quotient_identity:
+      "F_stream(xi)-p3_stream(xi)=product_i(xi-node_i)*Q_stream(xi)/24",
+    consistency_tolerance: consistencyTolerance,
+    quotient_consistency_status: quotientConsistent
+      ? "positive-n38-quartic-quotient-consistent"
+      : splitStreamQuotientConsistent && Number(splitToDirectGap) <= consistencyTolerance
+        ? "positive-n38-quartic-split-stream-quotient-consistent"
+      : "positive-n38-quartic-quotient-open",
+    split_stream_quotient_consistency_status:
+      splitStreamQuotientConsistent
+        ? "positive-n38-quartic-split-stream-quotient-consistent"
+        : "positive-n38-quartic-split-stream-quotient-open",
+    direct_quotient_consistency_status:
+      directQuotientConsistent
+        ? "positive-n38-quartic-direct-quotient-consistent"
+        : "positive-n38-quartic-direct-quotient-diagnostic-open",
+    stream_rows: streamRows,
+    node_limit_proxy_status: nodeLimitProxyInside
+      ? "positive-n38-quartic-node-limit-proxy-inside-provider-target"
+      : "positive-n38-quartic-node-limit-proxy-open",
+    node_limit_proxy_rows: nodeLimitProxyRows,
+    point_expression_signed_m4: signedM4.point_expression,
+    interval_center_drift_signed_m4:
+      signedM4.interval_center_drift,
+    direct_signed_m4: signedM4.direct,
+    point_expression_abs_m4: pointAbsM4,
+    interval_center_drift_abs_m4: driftAbsM4,
+    direct_abs_m4: directAbsM4,
+    split_triangle_abs_m4: splitTriangleAbsM4,
+    direct_split_signed_m4: directSplitSignedM4,
+    split_to_direct_signed_m4_relative_gap: splitToDirectGap,
+    max_quotient_consistency_relative_gap:
+      maxQuotientConsistencyGap,
+    max_split_stream_quotient_consistency_relative_gap:
+      maxSplitStreamQuotientConsistencyGap,
+    direct_quotient_consistency_relative_gap:
+      directQuotientConsistencyGap,
+    point_expression_abs_m4_to_ceiling_ratio: pointRatio,
+    interval_center_drift_abs_m4_to_ceiling_ratio: driftRatio,
+    split_triangle_abs_m4_to_ceiling_ratio: splitRatio,
+    source_decomposition_direct_split_replay_relative_gap:
+      sourceResidualDecomposition.direct_split_replay_relative_gap,
+    witness_interpretation: insideProviderTarget
+      ? "the split-stream node singularity is removable in the finite five-sample quartic normal form; the remaining burden is a directed-rounded continuous quotient or fourth-derivative bound on the same xi window"
+      : "the finite-data quotient route remains open before it can support the continuous same-domain provider target",
+    node_limit_proxy_interpretation: nodeLimitProxyInside
+      ? "at each selected Lagrange node, the finite-data quartic normal form has the same split-stream removable quotient limit proxy as the emitted stream M4 constants; continuous proof still requires directed-rounded repeated-node quotient bounds"
+      : "the finite-data node-limit proxy is open before it can support the continuous repeated-node quotient target",
+    claim_boundary: claimBoundary,
+  };
+}
+
+function h39H38Y44SplitM4AllocationTarget({
+  geometry,
+  requiredFourthDerivativeUpper,
+  pointExpressionM4,
+  intervalCenterDriftM4,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const requiredM4 = Number(requiredFourthDerivativeUpper);
+  const pointM4 = Number(pointExpressionM4);
+  const driftM4 = Number(intervalCenterDriftM4);
+  const splitTriangleM4 = pointM4 + driftM4;
+  if (
+    !finitePositive(requiredM4) ||
+    !finitePositive(pointM4) ||
+    !finitePositive(driftM4) ||
+    !finitePositive(splitTriangleM4)
+  ) {
+    return {
+      status: "positive-n38-split-m4-allocation-target-unavailable",
+      reason: "missing finite positive split M4 inputs",
+      geometry,
+      claim_boundary: claimBoundary,
+    };
+  }
+  const factorWithOtherFixed = (streamM4, otherM4) =>
+    (requiredM4 - otherM4) / streamM4;
+  const equalFactor = requiredM4 / splitTriangleM4;
+  const pointAxisIntercept = requiredM4 / pointM4;
+  const driftAxisIntercept = requiredM4 / driftM4;
+  const pointWithDriftUninflated = factorWithOtherFixed(pointM4, driftM4);
+  const driftWithPointUninflated = factorWithOtherFixed(driftM4, pointM4);
+  const equalStreamPointCeiling = pointM4 * equalFactor;
+  const equalStreamDriftCeiling = driftM4 * equalFactor;
+  const equalStreamSplitTriangleCeiling = splitTriangleM4 * equalFactor;
+  const pointAxisCeiling = pointM4 * pointAxisIntercept;
+  const driftAxisCeiling = driftM4 * driftAxisIntercept;
+  const pointWithDriftUninflatedCeiling =
+    pointM4 * pointWithDriftUninflated;
+  const driftWithPointUninflatedCeiling =
+    driftM4 * driftWithPointUninflated;
+  const sampledCeilingComparison = {
+    status:
+      pointM4 <= equalStreamPointCeiling &&
+      driftM4 <= equalStreamDriftCeiling &&
+      splitTriangleM4 <= equalStreamSplitTriangleCeiling
+        ? "sampled-split-m4-inside-equal-stream-ceilings"
+        : "sampled-split-m4-exceeds-equal-stream-ceilings",
+    selected_feasible_ceiling_pair: "equal-stream-rectangle",
+    point_expression_sampled_to_equal_ceiling_ratio:
+      pointM4 / equalStreamPointCeiling,
+    interval_center_drift_sampled_to_equal_ceiling_ratio:
+      driftM4 / equalStreamDriftCeiling,
+    split_triangle_sampled_to_equal_split_ceiling_ratio:
+      splitTriangleM4 / equalStreamSplitTriangleCeiling,
+    equal_stream_point_expression_m4_headroom_factor:
+      equalStreamPointCeiling / pointM4,
+    equal_stream_interval_center_drift_m4_headroom_factor:
+      equalStreamDriftCeiling / driftM4,
+    equal_stream_split_triangle_m4_headroom_factor:
+      equalStreamSplitTriangleCeiling / splitTriangleM4,
+    point_expression_sampled_to_one_stream_fixed_ceiling_ratio:
+      pointM4 / pointWithDriftUninflatedCeiling,
+    interval_center_drift_sampled_to_one_stream_fixed_ceiling_ratio:
+      driftM4 / driftWithPointUninflatedCeiling,
+    point_expression_sampled_to_axis_ceiling_ratio:
+      pointM4 / pointAxisCeiling,
+    interval_center_drift_sampled_to_axis_ceiling_ratio:
+      driftM4 / driftAxisCeiling,
+    sampled_pair_satisfies_equal_stream_rectangle:
+      pointM4 <= equalStreamPointCeiling &&
+      driftM4 <= equalStreamDriftCeiling,
+    sampled_pair_satisfies_linear_allocation:
+      splitTriangleM4 <= requiredM4,
+    continuous_certificate_status:
+      "continuous-directed-rounded-fourth-derivative-proof-open",
+    missing_proof_ingredient:
+      "replace sampled finite-difference M4 estimates with directed-rounded continuous fourth-derivative upper bounds for the point-expression and interval-center drift streams on the same Lagrange window",
+  };
+  return {
+    status: "positive-n38-split-m4-allocation-target-candidate-emitted",
+    geometry,
+    allocation_inequality:
+      "lambda_point * M4_point_expression + lambda_drift * M4_interval_center_drift <= M4_required",
+    required_fourth_derivative_upper: requiredM4,
+    point_expression_sampled_m4: pointM4,
+    interval_center_drift_sampled_m4: driftM4,
+    split_triangle_sampled_m4: splitTriangleM4,
+    point_expression_sampled_m4_share: pointM4 / splitTriangleM4,
+    interval_center_drift_sampled_m4_share: driftM4 / splitTriangleM4,
+    split_triangle_to_required_ratio: splitTriangleM4 / requiredM4,
+    equal_stream_inflation_factor_before_failure: equalFactor,
+    point_expression_axis_intercept_inflation_factor: pointAxisIntercept,
+    interval_center_drift_axis_intercept_inflation_factor:
+      driftAxisIntercept,
+    point_expression_inflation_factor_with_drift_uninflated:
+      pointWithDriftUninflated,
+    interval_center_drift_inflation_factor_with_point_uninflated:
+      driftWithPointUninflated,
+    symmetric_rectangle_sufficient_factor: equalFactor,
+    equal_stream_point_expression_m4_ceiling: equalStreamPointCeiling,
+    equal_stream_interval_center_drift_m4_ceiling: equalStreamDriftCeiling,
+    equal_stream_split_triangle_m4_ceiling:
+      equalStreamSplitTriangleCeiling,
+    point_expression_axis_intercept_m4_ceiling: pointAxisCeiling,
+    interval_center_drift_axis_intercept_m4_ceiling: driftAxisCeiling,
+    point_expression_m4_ceiling_with_drift_uninflated:
+      pointWithDriftUninflatedCeiling,
+    interval_center_drift_m4_ceiling_with_point_uninflated:
+      driftWithPointUninflatedCeiling,
+    sampled_ceiling_comparison: sampledCeilingComparison,
+    allocation_interpretation:
+      "candidate split-M4 derivative proof may close if the certified point-expression and interval-center drift inflation factors remain inside this linear allocation region",
+    allocation_certificate_obligation:
+      "prove directed-rounded continuous point-expression and interval-center drift fourth-derivative upper bounds inside this allocation region before using the target as a same-domain positive N38 Taylor remainder certificate",
+    claim_boundary: claimBoundary,
+  };
+}
+
+function h39H38Y44SourceCovariancePositiveN38LagrangeRemainderTarget({
+  bestDegreeRow,
+  taylorTarget,
+  fourthDifferenceCheck,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const unavailable = (targetStatus, reason) => ({
+    status: "positive-n38-lagrange-remainder-target-candidate-emitted",
+    target_status: targetStatus,
+    reason,
+    selected_polynomial_degree:
+      bestDegreeRow?.polynomial_degree ?? null,
+    positive_target_count: bestDegreeRow?.positive_target_count ?? 0,
+    candidate_count: 0,
+    selected_candidate: null,
+    selected_source_residual_decomposition: null,
+    candidate_rows: [],
+    conservative_numerator_residual_target:
+      taylorTarget?.conservative_numerator_residual_target ?? null,
+    parent_taylor_required_fourth_derivative_upper:
+      taylorTarget?.required_fourth_derivative_upper_for_parent_window ??
+      null,
+    sampled_nonuniform_fourth_derivative_upper:
+      fourthDifferenceCheck?.max_nonuniform_fourth_derivative_estimate ??
+      null,
+    best_lagrange_required_fourth_derivative_upper: null,
+    best_lagrange_to_parent_taylor_required_m4_factor: null,
+    best_sampled_m4_to_lagrange_required_ratio: null,
+    best_sampled_m4_inflation_factor_before_failure: null,
+    best_split_triangle_m4_to_lagrange_required_ratio: null,
+    best_split_triangle_lagrange_inflation_factor_before_failure: null,
+    selected_split_m4_allocation_target: null,
+    selected_quartic_quotient_consistency_witness: null,
+    source_residual_decomposition_interpretation: targetStatus,
+    lagrange_certificate_interpretation: targetStatus,
+    diagnosis: targetStatus,
+    claim_boundary: claimBoundary,
+  });
+  if (!bestDegreeRow || bestDegreeRow.positive_target_count === 0) {
+    return unavailable(
+      "positive-n38-lagrange-no-positive-collar-target",
+      "no positive source-covariance N38 collar target is available"
+    );
+  }
+  if (
+    bestDegreeRow.polynomial_degree !== 3 ||
+    taylorTarget?.target_status !==
+      "positive-n38-cubic-taylor-target-has-headroom"
+  ) {
+    return unavailable(
+      "positive-n38-lagrange-needs-cubic-target",
+      "the selected positive-collar N38 graph is not a cubic target with headroom"
+    );
+  }
+  const xiWindow = taylorTarget.xi_window;
+  const conservativeTarget = Number(
+    taylorTarget.conservative_numerator_residual_target
+  );
+  const parentRequiredM4 = Number(
+    taylorTarget.required_fourth_derivative_upper_for_parent_window
+  );
+  const sampledM4 = Number(
+    fourthDifferenceCheck?.max_nonuniform_fourth_derivative_estimate
+  );
+  const splitM4Summary =
+    fourthDifferenceCheck?.sampled_m4_pressure_decomposition_summary;
+  const sampledSplitTriangleM4 =
+    Number(splitM4Summary?.max_point_expression_source_term_sum_nonuniform_m4) +
+    Number(splitM4Summary?.max_interval_center_drift_nonuniform_m4);
+  if (
+    !Array.isArray(xiWindow) ||
+    !finitePositive(conservativeTarget) ||
+    !finitePositive(parentRequiredM4) ||
+    !finitePositive(sampledM4) ||
+    !finitePositive(sampledSplitTriangleM4)
+  ) {
+    return unavailable(
+      "positive-n38-lagrange-missing-finite-inputs",
+      "the cubic Taylor target or sampled fourth-difference check did not provide finite positive inputs"
+    );
+  }
+  const candidateRows = bestDegreeRow.positive_targets.flatMap((target) => {
+    const samples = Array.isArray(target.samples) ? target.samples : [];
+    if (samples.length < 4) {
+      return [];
+    }
+    return indexCombinations({
+      itemCount: samples.length,
+      selectCount: 4,
+    }).map((selectedIndexes) => {
+      const selectedSamples = selectedIndexes.map((index) => samples[index]);
+      const omittedSamples = samples.filter(
+        (_sample, index) => !selectedIndexes.includes(index)
+      );
+      const coefficients = lagrangeInterpolationPolynomialCoefficients(
+        selectedSamples.map((sample) => ({
+          x: sample.xi_midpoint,
+          y: sample.numerator_midpoint,
+        }))
+      );
+      const nodes = selectedSamples.map((sample) => sample.xi_midpoint);
+      const productEnvelope = lagrangeProductEnvelopeOnInterval({
+        nodes,
+        interval: xiWindow,
+      });
+      const residualRows = samples.map((sample) => {
+        const graphMidpoint = polynomialValue(
+          coefficients,
+          sample.xi_midpoint
+        );
+        const residual = Number(sample.numerator_midpoint) - graphMidpoint;
+        return {
+          cell_id: sample.cell_id,
+          xi_midpoint: sample.xi_midpoint,
+          numerator_midpoint: sample.numerator_midpoint,
+          lagrange_graph_midpoint: graphMidpoint,
+          midpoint_residual: residual,
+          abs_midpoint_residual: Math.abs(residual),
+          residual_over_conservative_target: finitePositive(
+            sample.conservative_numerator_width_target
+          )
+            ? Math.abs(residual) /
+              Number(sample.conservative_numerator_width_target)
+            : null,
+          interpolation_node: selectedIndexes.includes(
+            samples.indexOf(sample)
+          ),
+        };
+      });
+      const sourceResidualDecomposition =
+        h39H38Y44PositiveN38LagrangeSourceResidualDecomposition({
+          samples,
+          selectedIndexes,
+          residualRows,
+        });
+      const maxResidualRow = residualRows.reduce((best, row) =>
+        Number(row.abs_midpoint_residual) >
+        Number(best?.abs_midpoint_residual ?? -1)
+          ? row
+          : best,
+      null);
+      const productMax = Number(productEnvelope.max_abs_product);
+      const requiredM4 = finitePositive(productMax)
+        ? (24 * conservativeTarget) / productMax
+        : null;
+      const sampledRatio =
+        finitePositive(requiredM4) && finitePositive(sampledM4)
+          ? sampledM4 / requiredM4
+          : null;
+      const inflationBeforeFailure =
+        finitePositive(requiredM4) && finitePositive(sampledM4)
+          ? requiredM4 / sampledM4
+          : null;
+      const splitTriangleRatio =
+        finitePositive(requiredM4) && finitePositive(sampledSplitTriangleM4)
+          ? sampledSplitTriangleM4 / requiredM4
+          : null;
+      const splitTriangleInflationBeforeFailure =
+        finitePositive(requiredM4) && finitePositive(sampledSplitTriangleM4)
+          ? requiredM4 / sampledSplitTriangleM4
+          : null;
+      const splitM4AllocationTarget =
+        h39H38Y44SplitM4AllocationTarget({
+          geometry: "selected-four-node-lagrange-window",
+          requiredFourthDerivativeUpper: requiredM4,
+          pointExpressionM4:
+            splitM4Summary?.max_point_expression_source_term_sum_nonuniform_m4,
+          intervalCenterDriftM4:
+            splitM4Summary?.max_interval_center_drift_nonuniform_m4,
+        });
+      const sameDomainStreamDerivativeWitness =
+        h39H38Y44PositiveN38StreamDerivativeWitness({
+          samples,
+          selectedIndexes,
+          sourceResidualDecomposition,
+          splitM4AllocationTarget,
+        });
+      const removableQuotientRoute =
+        h39H38Y44PositiveN38RemovableQuotientRoute({
+          samples,
+          selectedIndexes,
+          sourceResidualDecomposition,
+          splitM4AllocationTarget,
+          streamDerivativeWitness: sameDomainStreamDerivativeWitness,
+        });
+      const quarticQuotientConsistencyWitness =
+        h39H38Y44PositiveN38QuarticQuotientConsistencyWitness({
+          samples,
+          selectedIndexes,
+          sourceResidualDecomposition,
+          splitM4AllocationTarget,
+        });
+      const parentImprovement =
+        finitePositive(requiredM4) && finitePositive(parentRequiredM4)
+          ? requiredM4 / parentRequiredM4
+          : null;
+      return {
+        reference_label: target.label,
+        selected_sample_indexes: selectedIndexes,
+        selected_node_cell_ids: selectedSamples.map(
+          (sample) => sample.cell_id
+        ),
+        omitted_sample_indexes: omittedSamples.map((sample) =>
+          samples.indexOf(sample)
+        ),
+        omitted_sample_cell_ids: omittedSamples.map(
+          (sample) => sample.cell_id
+        ),
+        lagrange_polynomial_coefficients: coefficients,
+        lagrange_product_max_abs: productEnvelope.max_abs_product,
+        lagrange_product_max_abs_location:
+          productEnvelope.max_abs_product_location,
+        lagrange_product_at_max_abs: productEnvelope.product_at_max_abs,
+        conservative_numerator_residual_target: conservativeTarget,
+        required_fourth_derivative_upper_for_lagrange_window:
+          requiredM4,
+        parent_taylor_required_fourth_derivative_upper: parentRequiredM4,
+        lagrange_to_parent_taylor_required_m4_factor:
+          parentImprovement,
+        sampled_nonuniform_fourth_derivative_upper: sampledM4,
+        sampled_m4_to_lagrange_required_ratio: sampledRatio,
+        sampled_m4_inflation_factor_before_failure:
+          inflationBeforeFailure,
+        split_triangle_sampled_m4_upper: sampledSplitTriangleM4,
+        split_triangle_m4_to_lagrange_required_ratio:
+          splitTriangleRatio,
+        split_triangle_lagrange_inflation_factor_before_failure:
+          splitTriangleInflationBeforeFailure,
+        split_m4_allocation_target: splitM4AllocationTarget,
+        same_domain_stream_derivative_witness:
+          sameDomainStreamDerivativeWitness,
+        removable_quotient_route: removableQuotientRoute,
+        quartic_quotient_consistency_witness:
+          quarticQuotientConsistencyWitness,
+        max_sample_midpoint_residual:
+          maxResidualRow?.abs_midpoint_residual ?? null,
+        max_sample_midpoint_residual_over_conservative_target:
+          finitePositive(maxResidualRow?.abs_midpoint_residual)
+            ? Number(maxResidualRow.abs_midpoint_residual) /
+              conservativeTarget
+            : null,
+        controlling_sample: maxResidualRow
+          ? {
+              cell_id: maxResidualRow.cell_id,
+              xi_midpoint: maxResidualRow.xi_midpoint,
+              abs_midpoint_residual:
+                maxResidualRow.abs_midpoint_residual,
+              residual_over_conservative_target:
+                maxResidualRow.residual_over_conservative_target,
+            }
+          : null,
+        source_residual_decomposition: sourceResidualDecomposition,
+        row_status:
+          Number(sampledRatio) <= 1
+            ? "lagrange-sampled-m4-supports-remainder-target"
+            : "lagrange-sampled-m4-exceeds-remainder-target",
+        residual_rows: residualRows,
+      };
+    });
+  });
+  const selectedCandidate = candidateRows.reduce((best, row) =>
+    Number(row.sampled_m4_inflation_factor_before_failure) >
+    Number(best?.sampled_m4_inflation_factor_before_failure ?? -1)
+      ? row
+      : best,
+  null);
+  const targetStatus =
+    candidateRows.length === 0
+      ? "positive-n38-lagrange-no-candidate-stencil"
+      : selectedCandidate?.row_status ===
+          "lagrange-sampled-m4-supports-remainder-target"
+        ? "positive-n38-lagrange-remainder-target-has-sampled-m4-headroom"
+        : "positive-n38-lagrange-remainder-target-open";
+  const compactCandidate = (row) =>
+    row
+      ? {
+          reference_label: row.reference_label,
+          selected_sample_indexes: row.selected_sample_indexes,
+          selected_node_cell_ids: row.selected_node_cell_ids,
+          omitted_sample_indexes: row.omitted_sample_indexes,
+          omitted_sample_cell_ids: row.omitted_sample_cell_ids,
+          lagrange_product_max_abs: row.lagrange_product_max_abs,
+          lagrange_product_max_abs_location:
+            row.lagrange_product_max_abs_location,
+          required_fourth_derivative_upper_for_lagrange_window:
+            row.required_fourth_derivative_upper_for_lagrange_window,
+          lagrange_to_parent_taylor_required_m4_factor:
+            row.lagrange_to_parent_taylor_required_m4_factor,
+          sampled_m4_to_lagrange_required_ratio:
+            row.sampled_m4_to_lagrange_required_ratio,
+          sampled_m4_inflation_factor_before_failure:
+            row.sampled_m4_inflation_factor_before_failure,
+          split_triangle_sampled_m4_upper:
+            row.split_triangle_sampled_m4_upper,
+          split_triangle_m4_to_lagrange_required_ratio:
+            row.split_triangle_m4_to_lagrange_required_ratio,
+          split_triangle_lagrange_inflation_factor_before_failure:
+            row.split_triangle_lagrange_inflation_factor_before_failure,
+          split_m4_allocation_target: row.split_m4_allocation_target,
+          same_domain_stream_derivative_witness:
+            row.same_domain_stream_derivative_witness,
+          removable_quotient_route: row.removable_quotient_route,
+          quartic_quotient_consistency_witness:
+            row.quartic_quotient_consistency_witness,
+          max_sample_midpoint_residual:
+            row.max_sample_midpoint_residual,
+          max_sample_midpoint_residual_over_conservative_target:
+            row.max_sample_midpoint_residual_over_conservative_target,
+          controlling_sample: row.controlling_sample,
+          source_residual_decomposition:
+            row.source_residual_decomposition?.status ===
+            "positive-n38-lagrange-source-decomposition-emitted"
+              ? {
+                  status: row.source_residual_decomposition.status,
+                  source_components:
+                    row.source_residual_decomposition.source_components,
+                  omitted_sample_indexes:
+                    row.source_residual_decomposition
+                      .omitted_sample_indexes,
+                  omitted_sample_cell_ids:
+                    row.source_residual_decomposition
+                      .omitted_sample_cell_ids,
+                  direct_omitted_residual_sum:
+                    row.source_residual_decomposition
+                      .direct_omitted_residual_sum,
+                  direct_omitted_abs_residual_sum:
+                    row.source_residual_decomposition
+                      .direct_omitted_abs_residual_sum,
+                  point_expression_omitted_residual_sum:
+                    row.source_residual_decomposition
+                      .point_expression_omitted_residual_sum,
+                  point_expression_omitted_abs_residual_sum:
+                    row.source_residual_decomposition
+                      .point_expression_omitted_abs_residual_sum,
+                  max_point_expression_omitted_residual_over_conservative_target:
+                    row.source_residual_decomposition
+                      .max_point_expression_omitted_residual_over_conservative_target,
+                  interval_center_drift_omitted_residual_sum:
+                    row.source_residual_decomposition
+                      .interval_center_drift_omitted_residual_sum,
+                  interval_center_drift_omitted_abs_residual_sum:
+                    row.source_residual_decomposition
+                      .interval_center_drift_omitted_abs_residual_sum,
+                  max_interval_center_drift_omitted_residual_over_conservative_target:
+                    row.source_residual_decomposition
+                      .max_interval_center_drift_omitted_residual_over_conservative_target,
+                  direct_split_replay_relative_gap:
+                    row.source_residual_decomposition
+                      .direct_split_replay_relative_gap,
+                  source_component_omitted_signed_residual_sum:
+                    row.source_residual_decomposition
+                      .source_component_omitted_signed_residual_sum,
+                  source_component_omitted_abs_residual_sum:
+                    row.source_residual_decomposition
+                      .source_component_omitted_abs_residual_sum,
+                  source_sum_to_direct_residual_relative_gap:
+                    row.source_residual_decomposition
+                      .source_sum_to_direct_residual_relative_gap,
+                  source_sum_to_direct_residual_absolute_gap:
+                    row.source_residual_decomposition
+                      .source_sum_to_direct_residual_absolute_gap,
+                  source_sum_replays_direct_residual:
+                    row.source_residual_decomposition
+                      .source_sum_replays_direct_residual,
+                  source_component_signed_to_direct_residual_ratio:
+                    row.source_residual_decomposition
+                      .source_component_signed_to_direct_residual_ratio,
+                  interval_midpoint_artifact_residual_sum:
+                    row.source_residual_decomposition
+                      .interval_midpoint_artifact_residual_sum,
+                  interval_midpoint_artifact_to_direct_residual_ratio:
+                    row.source_residual_decomposition
+                      .interval_midpoint_artifact_to_direct_residual_ratio,
+                  source_cancellation_fraction:
+                    row.source_residual_decomposition
+                      .source_cancellation_fraction,
+                  signed_source_sum_to_abs_source_sum_ratio:
+                    row.source_residual_decomposition
+                      .signed_source_sum_to_abs_source_sum_ratio,
+                  sine_pair_omitted_signed_residual_sum:
+                    row.source_residual_decomposition
+                      .sine_pair_omitted_signed_residual_sum,
+                  sine_pair_omitted_abs_residual_sum:
+                    row.source_residual_decomposition
+                      .sine_pair_omitted_abs_residual_sum,
+                  sine_pair_abs_residual_share:
+                    row.source_residual_decomposition
+                      .sine_pair_abs_residual_share,
+                  sine_pair_cancellation_fraction:
+                    row.source_residual_decomposition
+                      .sine_pair_cancellation_fraction,
+                  sine_pair_signed_to_direct_residual_ratio:
+                    row.source_residual_decomposition
+                      .sine_pair_signed_to_direct_residual_ratio,
+                  dominant_source_component_by_abs_omitted_residual:
+                    row.source_residual_decomposition
+                      .dominant_source_component_by_abs_omitted_residual,
+                  dominant_source_component_abs_omitted_residual_share:
+                    row.source_residual_decomposition
+                      .dominant_source_component_abs_omitted_residual_share,
+                  max_source_term_sum_to_numerator_midpoint_gap:
+                    row.source_residual_decomposition
+                      .max_source_term_sum_to_numerator_midpoint_gap,
+                  component_rows:
+                    row.source_residual_decomposition.component_rows.map(
+                      (componentRow) => ({
+                        component: componentRow.component,
+                        omitted_signed_residual_sum:
+                          componentRow.omitted_signed_residual_sum,
+                        omitted_abs_residual_sum:
+                          componentRow.omitted_abs_residual_sum,
+                        omitted_abs_residual_share:
+                          componentRow.omitted_abs_residual_share,
+                        signed_to_direct_omitted_residual_ratio:
+                          componentRow
+                            .signed_to_direct_omitted_residual_ratio,
+                        omitted_residual_sign:
+                          componentRow.omitted_residual_sign,
+                      })
+                    ),
+                  decomposition_interpretation:
+                    row.source_residual_decomposition
+                      .decomposition_interpretation,
+                }
+              : row.source_residual_decomposition ?? null,
+          row_status: row.row_status,
+        }
+      : null;
+  return {
+    status: "positive-n38-lagrange-remainder-target-candidate-emitted",
+    target_status: targetStatus,
+    reason:
+      targetStatus ===
+      "positive-n38-lagrange-remainder-target-has-sampled-m4-headroom"
+        ? "a four-node cubic Lagrange remainder product gives a larger sampled-M4 inflation margin than the parent-window Taylor target"
+        : targetStatus === "positive-n38-lagrange-no-candidate-stencil"
+          ? "no positive target supplied at least four same-domain samples for a Lagrange cubic"
+          : "the sampled M4 estimate exceeds every four-node Lagrange remainder target",
+    selected_polynomial_degree: bestDegreeRow.polynomial_degree,
+    positive_target_count: bestDegreeRow.positive_target_count,
+    candidate_count: candidateRows.length,
+    selected_candidate: compactCandidate(selectedCandidate),
+    selected_source_residual_decomposition:
+      compactCandidate(selectedCandidate)?.source_residual_decomposition ??
+      null,
+    candidate_rows: candidateRows.map(compactCandidate),
+    conservative_numerator_residual_target: conservativeTarget,
+    parent_taylor_required_fourth_derivative_upper: parentRequiredM4,
+    sampled_nonuniform_fourth_derivative_upper: sampledM4,
+    best_lagrange_required_fourth_derivative_upper:
+      selectedCandidate
+        ?.required_fourth_derivative_upper_for_lagrange_window ?? null,
+    best_lagrange_to_parent_taylor_required_m4_factor:
+      selectedCandidate?.lagrange_to_parent_taylor_required_m4_factor ??
+      null,
+    best_sampled_m4_to_lagrange_required_ratio:
+      selectedCandidate?.sampled_m4_to_lagrange_required_ratio ?? null,
+    best_sampled_m4_inflation_factor_before_failure:
+      selectedCandidate?.sampled_m4_inflation_factor_before_failure ??
+      null,
+    best_split_triangle_m4_to_lagrange_required_ratio:
+      selectedCandidate
+        ?.split_triangle_m4_to_lagrange_required_ratio ?? null,
+    best_split_triangle_lagrange_inflation_factor_before_failure:
+      selectedCandidate
+        ?.split_triangle_lagrange_inflation_factor_before_failure ?? null,
+    selected_split_m4_allocation_target:
+      selectedCandidate?.split_m4_allocation_target ?? null,
+    selected_same_domain_stream_derivative_witness:
+      selectedCandidate?.same_domain_stream_derivative_witness ?? null,
+    selected_removable_quotient_route:
+      selectedCandidate?.removable_quotient_route ?? null,
+    selected_quartic_quotient_consistency_witness:
+      selectedCandidate?.quartic_quotient_consistency_witness ?? null,
+    source_residual_decomposition_interpretation:
+      selectedCandidate?.source_residual_decomposition
+        ?.decomposition_interpretation ?? targetStatus,
+    lagrange_certificate_interpretation:
+      targetStatus ===
+        "positive-n38-lagrange-remainder-target-has-sampled-m4-headroom" &&
+      selectedCandidate?.source_residual_decomposition
+        ?.decomposition_interpretation ===
+        "positive-n38-lagrange-residual-contains-material-interval-midpoint-artifact"
+        ? "use the selected four-node cubic Lagrange product on the point-expression source normal form, and separately bound or avoid interval-center drift before applying absolute Cauchy bounds"
+        : targetStatus ===
+            "positive-n38-lagrange-remainder-target-has-sampled-m4-headroom"
+          ? "use the selected four-node cubic Lagrange product as the next dependency-preserving residual certificate target before applying absolute Cauchy bounds"
+        : "the Lagrange product route remains open",
+    diagnosis: targetStatus,
+    claim_boundary: claimBoundary,
+  };
+}
+
+function h39H38Y44PositiveN38CubicTaylorRemainderRoute({
+  taylorTarget,
+  fourthDifferenceCheck,
+  directedIntervalResidualCheck,
+  lagrangeTarget,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const requiredM4 = Number(
+    taylorTarget?.required_fourth_derivative_upper_for_parent_window
+  );
+  const sampledM4 = Number(
+    fourthDifferenceCheck?.max_nonuniform_fourth_derivative_estimate
+  );
+  const sampledM4Ratio =
+    finitePositive(requiredM4) && finitePositive(sampledM4)
+      ? sampledM4 / requiredM4
+      : null;
+  const sampledM4Headroom =
+    finitePositive(requiredM4) && finitePositive(sampledM4)
+      ? requiredM4 / sampledM4
+      : null;
+  const directedResidualRatio = Number(
+    directedIntervalResidualCheck
+      ?.max_directed_interval_residual_abs_upper_over_conservative_target
+  );
+  const dependencyLossFactor = Number(
+    directedIntervalResidualCheck
+      ?.max_dependency_loss_factor_from_midpoint_to_directed_interval
+  );
+  const lagrangeRatio = Number(
+    lagrangeTarget?.best_sampled_m4_to_lagrange_required_ratio
+  );
+  const splitLagrangeRatio = Number(
+    lagrangeTarget?.best_split_triangle_m4_to_lagrange_required_ratio
+  );
+  const selectedCandidate = lagrangeTarget?.selected_candidate ?? null;
+  const selectedAllocationTarget =
+    lagrangeTarget?.selected_split_m4_allocation_target ?? null;
+  const selectedSourceResidualDecomposition =
+    lagrangeTarget?.selected_source_residual_decomposition ?? null;
+  const selectedStreamDerivativeWitness =
+    lagrangeTarget?.selected_same_domain_stream_derivative_witness ?? null;
+  const selectedRemovableQuotientRoute =
+    lagrangeTarget?.selected_removable_quotient_route ?? null;
+  const selectedQuarticQuotientConsistencyWitness =
+    lagrangeTarget?.selected_quartic_quotient_consistency_witness ?? null;
+  const cubicHeadroom =
+    taylorTarget?.target_status ===
+      "positive-n38-cubic-taylor-target-has-headroom" &&
+    finitePositive(requiredM4);
+  const rawDirectedFits =
+    directedIntervalResidualCheck?.target_status ===
+    "positive-n38-directed-interval-residual-fits-collar-target";
+  const sampledSupportsParent =
+    finitePositive(sampledM4Ratio) && sampledM4Ratio <= 1;
+  const sampledSupportsLagrange =
+    finitePositive(lagrangeRatio) && lagrangeRatio <= 1;
+  const splitSupportsLagrange =
+    finitePositive(splitLagrangeRatio) && splitLagrangeRatio <= 1;
+  const targetStatus = !cubicHeadroom
+    ? "positive-n38-cubic-taylor-remainder-route-needs-cubic-headroom"
+    : rawDirectedFits
+      ? "positive-n38-cubic-taylor-remainder-route-raw-directed-interval-fits"
+      : sampledSupportsLagrange && splitSupportsLagrange
+        ? "positive-n38-cubic-taylor-remainder-route-has-sampled-lagrange-headroom"
+        : sampledSupportsParent
+          ? "positive-n38-cubic-taylor-remainder-route-has-sampled-parent-headroom"
+      : "positive-n38-cubic-taylor-remainder-route-open";
+  const providerTargetStatus =
+    cubicHeadroom && sampledSupportsLagrange && splitSupportsLagrange
+      ? "positive-n38-same-domain-derivative-provider-target-open"
+      : "positive-n38-same-domain-derivative-provider-target-unavailable";
+  const splitM4PointCeiling = Number(
+    selectedAllocationTarget?.equal_stream_point_expression_m4_ceiling
+  );
+  const splitM4DriftCeiling = Number(
+    selectedAllocationTarget?.equal_stream_interval_center_drift_m4_ceiling
+  );
+  const splitM4TriangleCeiling = Number(
+    selectedAllocationTarget?.equal_stream_split_triangle_m4_ceiling
+  );
+  const sampledPointM4 = Number(
+    selectedAllocationTarget?.point_expression_sampled_m4
+  );
+  const sampledDriftM4 = Number(
+    selectedAllocationTarget?.interval_center_drift_sampled_m4
+  );
+  const sampledSplitM4 = Number(
+    selectedAllocationTarget?.split_triangle_sampled_m4
+  );
+  const sameDomainDerivativeProviderTarget = {
+    status: providerTargetStatus,
+    provider_target_kind:
+      "directed-rounded-continuous-fourth-derivative-bound",
+    selected_polynomial_degree:
+      taylorTarget?.selected_polynomial_degree ?? null,
+    selected_polynomial_coefficients:
+      taylorTarget?.selected_polynomial_coefficients ?? null,
+    xi_window: taylorTarget?.xi_window ?? null,
+    xi_half_width: taylorTarget?.xi_half_width ?? null,
+    selected_lagrange_node_pattern:
+      Array.isArray(selectedCandidate?.selected_sample_indexes)
+        ? selectedCandidate.selected_sample_indexes.join("|")
+        : null,
+    selected_lagrange_node_cell_ids:
+      selectedCandidate?.selected_node_cell_ids ?? null,
+    omitted_sample_cell_ids:
+      selectedCandidate?.omitted_sample_cell_ids ?? null,
+    source_components:
+      selectedSourceResidualDecomposition?.source_components ?? null,
+    point_expression_stream:
+      "F_point(xi)=numerator_source_term_midpoint_sum(xi)-q3(xi)",
+    interval_center_drift_stream:
+      "F_drift(xi)=numerator_midpoint(xi)-numerator_source_term_midpoint_sum(xi)",
+    direct_residual_stream:
+      "F_direct(xi)=F_point(xi)+F_drift(xi)=N38(xi)-q3(xi)",
+    parent_required_fourth_derivative_upper: finitePositive(requiredM4)
+      ? requiredM4
+      : null,
+    lagrange_required_fourth_derivative_upper:
+      lagrangeTarget?.best_lagrange_required_fourth_derivative_upper ??
+      null,
+    equal_stream_point_expression_m4_ceiling:
+      finitePositive(splitM4PointCeiling) ? splitM4PointCeiling : null,
+    equal_stream_interval_center_drift_m4_ceiling:
+      finitePositive(splitM4DriftCeiling) ? splitM4DriftCeiling : null,
+    equal_stream_split_triangle_m4_ceiling:
+      finitePositive(splitM4TriangleCeiling)
+        ? splitM4TriangleCeiling
+        : null,
+    sampled_point_expression_m4:
+      finitePositive(sampledPointM4) ? sampledPointM4 : null,
+    sampled_interval_center_drift_m4:
+      finitePositive(sampledDriftM4) ? sampledDriftM4 : null,
+    sampled_split_triangle_m4:
+      finitePositive(sampledSplitM4) ? sampledSplitM4 : null,
+    sampled_split_triangle_m4_to_lagrange_required_ratio:
+      Number.isFinite(splitLagrangeRatio) ? splitLagrangeRatio : null,
+    sampled_ceiling_comparison:
+      selectedAllocationTarget?.sampled_ceiling_comparison ?? null,
+    same_domain_stream_derivative_witness:
+      selectedStreamDerivativeWitness,
+    removable_quotient_route:
+      selectedRemovableQuotientRoute,
+    quartic_quotient_consistency_witness:
+      selectedQuarticQuotientConsistencyWitness,
+    raw_interval_route_status:
+      directedIntervalResidualCheck?.target_status ?? null,
+    raw_interval_rejection_ratio:
+      Number.isFinite(directedResidualRatio) ? directedResidualRatio : null,
+    dependency_loss_factor_from_midpoint_to_directed_interval:
+      Number.isFinite(dependencyLossFactor) ? dependencyLossFactor : null,
+    parent_acceptance_inequality:
+      "accept if sup_xi |F_direct''''(xi)| <= parent_required_fourth_derivative_upper on the same xi window",
+    split_acceptance_inequality:
+      "accept if sup_xi |F_point''''(xi)| <= equal_stream_point_expression_m4_ceiling and sup_xi |F_drift''''(xi)| <= equal_stream_interval_center_drift_m4_ceiling on the same xi window",
+    provider_acceptance_test:
+      "only a directed-rounded same-domain derivative provider may satisfy this target; raw independent interval residual hulls are explicitly rejected",
+    s37_dependency_status:
+      taylorTarget?.s37_dependency_status ?? null,
+    next_certificate_obligation:
+      providerTargetStatus ===
+      "positive-n38-same-domain-derivative-provider-target-open"
+        ? "promote the finite-data removable quotient normal form to directed-rounded continuous quotient or fourth-derivative bounds for F_point and F_drift on the selected same-domain xi window, then replay dependency-preserving S37 division"
+        : "restore cubic Lagrange split-M4 headroom before a same-domain derivative provider can be accepted",
+    claim_boundary: claimBoundary,
+  };
+  return {
+    status:
+      "positive-n38-cubic-taylor-remainder-route-candidate-emitted",
+    target_status: targetStatus,
+    selected_polynomial_degree:
+      taylorTarget?.selected_polynomial_degree ?? null,
+    xi_window: taylorTarget?.xi_window ?? null,
+    xi_half_width: taylorTarget?.xi_half_width ?? null,
+    conservative_numerator_residual_target:
+      taylorTarget?.conservative_numerator_residual_target ?? null,
+    required_fourth_derivative_upper: finitePositive(requiredM4)
+      ? requiredM4
+      : null,
+    sampled_nonuniform_fourth_derivative_upper: finitePositive(sampledM4)
+      ? sampledM4
+      : null,
+    sampled_m4_to_required_ratio: sampledM4Ratio,
+    sampled_m4_headroom_factor: sampledM4Headroom,
+    lagrange_required_fourth_derivative_upper:
+      lagrangeTarget?.best_lagrange_required_fourth_derivative_upper ??
+      null,
+    sampled_m4_to_lagrange_required_ratio:
+      Number.isFinite(lagrangeRatio) ? lagrangeRatio : null,
+    split_triangle_m4_to_lagrange_required_ratio:
+      Number.isFinite(splitLagrangeRatio) ? splitLagrangeRatio : null,
+    selected_split_m4_allocation_target:
+      selectedAllocationTarget,
+    same_domain_derivative_provider_target:
+      sameDomainDerivativeProviderTarget,
+    raw_directed_interval_residual_status:
+      directedIntervalResidualCheck?.target_status ?? null,
+    raw_directed_interval_residual_abs_upper_over_conservative_target:
+      Number.isFinite(directedResidualRatio) ? directedResidualRatio : null,
+    required_raw_interval_dependency_compression_factor:
+      Number.isFinite(directedResidualRatio) && directedResidualRatio > 1
+        ? directedResidualRatio
+        : null,
+    dependency_loss_factor_from_midpoint_to_directed_interval:
+      Number.isFinite(dependencyLossFactor) ? dependencyLossFactor : null,
+    s37_dependency_status:
+      taylorTarget?.s37_dependency_status ?? null,
+    sufficient_parent_taylor_inequality:
+      "prove sup_xi |d^4/dxi^4 (N38(xi)-q3(xi))| <= required_fourth_derivative_upper on the same positive source-covariance window; since q3 is cubic, this is a directed-rounded bound for N38'''' on that window",
+    sufficient_split_lagrange_inequality:
+      "prove directed-rounded fourth-derivative upper bounds for the point-expression and interval-center drift streams whose sum lies inside the selected split-M4 allocation target",
+    derivative_route_status:
+      "continuous-directed-rounded-fourth-derivative-proof-open",
+    route_interpretation:
+      targetStatus ===
+      "positive-n38-cubic-taylor-remainder-route-raw-directed-interval-fits"
+        ? "raw directed interval residual already fits the positive collar; next attach dependency-preserving S37 division"
+        : targetStatus ===
+            "positive-n38-cubic-taylor-remainder-route-has-sampled-lagrange-headroom"
+          ? "sampled cubic and Lagrange evidence has headroom, but raw directed intervals lose dependency; prove the continuous fourth-derivative inequality before claiming a Taylor remainder certificate"
+          : targetStatus ===
+              "positive-n38-cubic-taylor-remainder-route-has-sampled-parent-headroom"
+            ? "sampled parent Taylor evidence has headroom, but the sharper Lagrange split route is not yet available"
+            : "positive N38 cubic Taylor remainder route remains open",
+    claim_boundary: claimBoundary,
+  };
+}
+
 export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
   targetSpeedInterval = [3.02156, 3.02156007813],
   branch = "-",
@@ -10680,6 +14312,8 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
   h38NoiseSamples = [-1, 0, 1],
   collarHalfWidths = [0, 1e-9, 2e-9, 5e-9, 1e-8],
   referencePressureTargets = [1e8, 1e10, 1e13],
+  safetySearchIterations = 16,
+  m4InflationFactors = [1, 2, 10, 100, 1000, 2000],
   progressCallback = null,
 } = {}) {
   const startedAt = Date.now();
@@ -10760,6 +14394,19 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
   }
   const resolvedReferencePressureTargets = referencePressureTargets.map(
     (target) => assertFinitePositiveNumber("referencePressureTargets", target)
+  );
+  const resolvedSafetySearchIterations = assertFinitePositiveInteger(
+    "safetySearchIterations",
+    safetySearchIterations
+  );
+  const resolvedM4InflationFactors = [...new Set(m4InflationFactors)]
+    .map((factor) => assertFinitePositiveNumber("m4InflationFactors", factor))
+    .sort((left, right) => left - right);
+  if (resolvedM4InflationFactors.length === 0) {
+    throw new Error("m4InflationFactors must contain at least one value");
+  }
+  const producerCenteredSafetyCandidateHalfWidth = Math.max(
+    ...resolvedCollarHalfWidths
   );
   emitProgress?.({
     stage: "source-covariance-setup-start",
@@ -10871,6 +14518,22 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
       transportProfile: setup.transportProfile,
       residualInterval: setup.h38ResidualProfile.residual_interval_hull,
     });
+  const h38SolveWidthProfile = h38SolveWidthFactorizationProfileForRows({
+    targetSpeedInterval: resolvedTargetSpeedInterval,
+    rows: setup.comparisonRows,
+    branch,
+    transportProfile: setup.transportProfile,
+  });
+  const h38NumeratorPolynomialDegreeDiagnosticRows =
+    h38NumeratorPolynomialDegreeDiagnostics({
+      solveWidthProfile: h38SolveWidthProfile,
+      degrees: [1, 2, 3],
+    });
+  const h38NumeratorPolynomialDiagnostic =
+    h38NumeratorPolynomialDegreeDiagnosticRows.find(
+      (diagnostic) =>
+        diagnostic.polynomial_degree === resolvedPolynomialDegree
+    ) ?? h38NumeratorPolynomialDegreeDiagnosticRows[0];
   const collarRows =
     Number.isFinite(Number(sourceAffineZeroCoordinate))
       ? h39H38Y44SourceCovarianceCollarRows({
@@ -10922,6 +14585,224 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
     h39H38Y44SourceCovarianceProducerCenteredRouteDiagnosis(
       referenceProducerCenteredSummary
     );
+  const producerCenteredSafetyRows =
+    h39H38Y44SourceCovarianceProducerCenteredSafetyRows({
+      setup,
+      branch,
+      coordinateProfile: h38ProducerResidualCoordinateProfile,
+      referencePressureTargets: resolvedReferencePressureTargets,
+      candidateHalfWidth: producerCenteredSafetyCandidateHalfWidth,
+      outerRadius: resolvedOuterRadius,
+      shiftedIndex: resolvedShiftedIndex,
+      iterations: resolvedSafetySearchIterations,
+      sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+    });
+  const producerCenteredSafetyDiagnosis =
+    h39H38Y44SourceCovarianceProducerCenteredSafetyDiagnosis(
+      producerCenteredSafetyRows
+    );
+  const producerCenteredNumeratorCollarTargets =
+    producerCenteredSafetyRows.map((row) =>
+      h39H38Y44ProducerCenteredNumeratorCollarTarget({
+        label: row.producer_centered_collar_target.label,
+        coordinateProfile: h38ProducerResidualCoordinateProfile,
+        collarTarget: row.producer_centered_collar_target,
+        solveWidthProfile: h38SolveWidthProfile,
+        numeratorPolynomialDiagnostic: h38NumeratorPolynomialDiagnostic,
+      })
+    );
+  const positiveProducerCenteredNumeratorCollarTargets =
+    producerCenteredNumeratorCollarTargets.filter(
+      (_target, targetIndex) =>
+        producerCenteredSafetyRows[targetIndex]?.positive_collar_found ===
+          true &&
+        Number(
+          producerCenteredSafetyRows[targetIndex]
+            ?.target_closing_replay_over_target_pressure
+        ) <= 1
+    );
+  const producerCenteredNumeratorGraphInsideCount =
+    producerCenteredNumeratorCollarTargets.filter(
+      (target) =>
+        target.numerator_midpoint_graph_inside_collar_target === true
+    ).length;
+  const positiveProducerCenteredNumeratorGraphInsideCount =
+    positiveProducerCenteredNumeratorCollarTargets.filter(
+      (target) =>
+        target.numerator_midpoint_graph_inside_collar_target === true
+    ).length;
+  const producerCenteredNumeratorCompressionFactors =
+    producerCenteredNumeratorCollarTargets
+      .map((target) =>
+        Number(
+          target.max_numerator_interval_compression_to_conservative_target
+        )
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxProducerCenteredNumeratorCompressionFactor =
+    producerCenteredNumeratorCompressionFactors.length > 0
+      ? Math.max(...producerCenteredNumeratorCompressionFactors)
+      : null;
+  const producerCenteredNumeratorResidualRatios =
+    producerCenteredNumeratorCollarTargets
+      .map((target) =>
+        Number(
+          target.max_numerator_midpoint_residual_over_conservative_target
+        )
+      )
+      .filter((value) => Number.isFinite(value) && value >= 0);
+  const maxProducerCenteredNumeratorMidpointResidualOverTarget =
+    producerCenteredNumeratorResidualRatios.length > 0
+      ? Math.max(...producerCenteredNumeratorResidualRatios)
+      : null;
+  const producerCenteredNumeratorHeadroomFactors =
+    producerCenteredNumeratorCollarTargets
+      .map((target) =>
+        Number(target.min_numerator_midpoint_residual_headroom_factor)
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const minProducerCenteredNumeratorMidpointHeadroom =
+    producerCenteredNumeratorHeadroomFactors.length > 0
+      ? Math.min(...producerCenteredNumeratorHeadroomFactors)
+      : null;
+  const positiveProducerCenteredNumeratorCompressionFactors =
+    positiveProducerCenteredNumeratorCollarTargets
+      .map((target) =>
+        Number(
+          target.max_numerator_interval_compression_to_conservative_target
+        )
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxPositiveProducerCenteredNumeratorCompressionFactor =
+    positiveProducerCenteredNumeratorCompressionFactors.length > 0
+      ? Math.max(...positiveProducerCenteredNumeratorCompressionFactors)
+      : null;
+  const positiveProducerCenteredNumeratorResidualRatios =
+    positiveProducerCenteredNumeratorCollarTargets
+      .map((target) =>
+        Number(
+          target.max_numerator_midpoint_residual_over_conservative_target
+        )
+      )
+      .filter((value) => Number.isFinite(value) && value >= 0);
+  const maxPositiveProducerCenteredNumeratorMidpointResidualOverTarget =
+    positiveProducerCenteredNumeratorResidualRatios.length > 0
+      ? Math.max(...positiveProducerCenteredNumeratorResidualRatios)
+      : null;
+  const positiveProducerCenteredNumeratorHeadroomFactors =
+    positiveProducerCenteredNumeratorCollarTargets
+      .map((target) =>
+        Number(target.min_numerator_midpoint_residual_headroom_factor)
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const minPositiveProducerCenteredNumeratorMidpointHeadroom =
+    positiveProducerCenteredNumeratorHeadroomFactors.length > 0
+      ? Math.min(...positiveProducerCenteredNumeratorHeadroomFactors)
+      : null;
+  const sourceCovarianceN38CollarEnclosureRoute =
+    h39H38Y44N38CollarEnclosureRoute({
+      referenceTargets: producerCenteredNumeratorCollarTargets,
+      numeratorPolynomialDiagnostic: h38NumeratorPolynomialDiagnostic,
+      sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+    });
+  const sourceCovariancePositiveN38CollarEnclosureRoute =
+    h39H38Y44N38CollarEnclosureRoute({
+      referenceTargets: positiveProducerCenteredNumeratorCollarTargets,
+      numeratorPolynomialDiagnostic: h38NumeratorPolynomialDiagnostic,
+      sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+    });
+  const sourceCovarianceN38CollarInterpretation =
+    producerCenteredNumeratorCollarTargets.length > 0 &&
+    producerCenteredNumeratorGraphInsideCount ===
+      producerCenteredNumeratorCollarTargets.length
+      ? "source-covariance-n38-midpoint-graph-fits-measured-collar"
+      : producerCenteredNumeratorGraphInsideCount > 0
+        ? "source-covariance-n38-midpoint-graph-partially-fits-measured-collar"
+        : producerCenteredSafetyRows.some(
+              (row) => row.positive_collar_found === true
+            )
+          ? "source-covariance-n38-midpoint-graph-open-for-measured-collar"
+          : "source-covariance-n38-collar-needs-positive-source-covariance-width";
+  const sourceCovariancePositiveN38CollarInterpretation =
+    positiveProducerCenteredNumeratorCollarTargets.length === 0
+      ? "source-covariance-positive-n38-collar-no-positive-collar-target"
+      : positiveProducerCenteredNumeratorGraphInsideCount ===
+          positiveProducerCenteredNumeratorCollarTargets.length
+        ? "source-covariance-positive-n38-midpoint-graph-fits-measured-collar"
+        : positiveProducerCenteredNumeratorGraphInsideCount > 0
+          ? "source-covariance-positive-n38-midpoint-graph-partially-fits-measured-collar"
+          : "source-covariance-positive-n38-midpoint-graph-open-for-measured-collar";
+  const positiveN38DegreeSweepRows =
+    h39H38Y44SourceCovariancePositiveN38DegreeSweepRows({
+      producerCenteredSafetyRows,
+      coordinateProfile: h38ProducerResidualCoordinateProfile,
+      solveWidthProfile: h38SolveWidthProfile,
+      numeratorPolynomialDegreeDiagnosticRows:
+        h38NumeratorPolynomialDegreeDiagnosticRows,
+      sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+    });
+  const positiveN38BestDegreeRow =
+    h39H38Y44SourceCovariancePositiveN38BestDegreeRow(
+      positiveN38DegreeSweepRows
+    );
+  const positiveN38SelectedTaylorDegreeRow =
+    h39H38Y44SourceCovariancePositiveN38SelectedTaylorDegreeRow(
+      positiveN38DegreeSweepRows
+    );
+  const positiveN38DegreeSweepDiagnosis =
+    h39H38Y44SourceCovariancePositiveN38DegreeSweepDiagnosis(
+      positiveN38DegreeSweepRows
+    );
+  const positiveN38TaylorCertificateTarget =
+    h39H38Y44SourceCovariancePositiveN38TaylorCertificateTarget({
+      bestDegreeRow: positiveN38SelectedTaylorDegreeRow,
+      sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+    });
+  const positiveN38FourthDifferenceCheck =
+    h39H38Y44SourceCovariancePositiveN38FourthDifferenceCheck({
+      bestDegreeRow: positiveN38SelectedTaylorDegreeRow,
+      taylorTarget: positiveN38TaylorCertificateTarget,
+    });
+  const positiveN38M4InflationBudget =
+    h39H38Y44SourceCovariancePositiveN38M4InflationBudget({
+      taylorTarget: positiveN38TaylorCertificateTarget,
+      fourthDifferenceCheck: positiveN38FourthDifferenceCheck,
+      inflationFactors: resolvedM4InflationFactors,
+    });
+  const positiveN38DirectedIntervalResidualCheck =
+    h39H38Y44SourceCovariancePositiveN38DirectedIntervalResidualCheck({
+      bestDegreeRow: positiveN38SelectedTaylorDegreeRow,
+      taylorTarget: positiveN38TaylorCertificateTarget,
+    });
+  const positiveN38LagrangeRemainderTarget =
+    h39H38Y44SourceCovariancePositiveN38LagrangeRemainderTarget({
+      bestDegreeRow: positiveN38SelectedTaylorDegreeRow,
+      taylorTarget: positiveN38TaylorCertificateTarget,
+      fourthDifferenceCheck: positiveN38FourthDifferenceCheck,
+    });
+  const positiveN38CubicTaylorRemainderRoute =
+    h39H38Y44PositiveN38CubicTaylorRemainderRoute({
+      taylorTarget: positiveN38TaylorCertificateTarget,
+      fourthDifferenceCheck: positiveN38FourthDifferenceCheck,
+      directedIntervalResidualCheck: positiveN38DirectedIntervalResidualCheck,
+      lagrangeTarget: positiveN38LagrangeRemainderTarget,
+    });
+  const producerCenteredSafetyClosingHalfWidths =
+    producerCenteredSafetyRows
+      .map((row) => Number(row.target_closing_half_width))
+      .filter((value) => Number.isFinite(value) && value >= 0);
+  const maxProducerCenteredSafetyClosingHalfWidth =
+    producerCenteredSafetyClosingHalfWidths.length > 0
+      ? Math.max(...producerCenteredSafetyClosingHalfWidths)
+      : null;
+  const producerCenteredSafetyBracketWidths =
+    producerCenteredSafetyRows
+      .map((row) => Number(row.target_closing_bracket_width))
+      .filter((value) => Number.isFinite(value) && value >= 0);
+  const maxProducerCenteredSafetyBracketWidth =
+    producerCenteredSafetyBracketWidths.length > 0
+      ? Math.max(...producerCenteredSafetyBracketWidths)
+      : null;
   const maxCollarTriangleGain =
     collarRows.length > 0
       ? Math.max(
@@ -11015,6 +14896,10 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
     h38_noise_samples: resolvedH38NoiseSamples,
     collar_half_widths: resolvedCollarHalfWidths,
     reference_pressure_targets: resolvedReferencePressureTargets,
+    safety_search_iterations: resolvedSafetySearchIterations,
+    m4_inflation_factors: resolvedM4InflationFactors,
+    producer_centered_safety_candidate_half_width:
+      producerCenteredSafetyCandidateHalfWidth,
     sample_replays: sampleReplays,
     source_coefficient_affine_fit: sourceAffineFit,
     source_coefficient_quadratic_fit: sourceQuadraticFit,
@@ -11036,6 +14921,12 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
     term_pair_cancellation_rows: pairRows,
     h38_producer_residual_coordinate_profile:
       h38ProducerResidualCoordinateProfile,
+    source_covariance_h38_y44_solve_width_profile:
+      h38SolveWidthProfile,
+    source_covariance_h38_y44_numerator_polynomial_degree_diagnostics:
+      h38NumeratorPolynomialDegreeDiagnosticRows,
+    source_covariance_h38_y44_numerator_polynomial_diagnostic:
+      h38NumeratorPolynomialDiagnostic,
     source_covariance_collar_rows: collarRows,
     source_covariance_reference_collar_summary:
       referenceCollarSummary,
@@ -11051,6 +14942,62 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
       referenceProducerCenteredSummary,
     source_covariance_producer_centered_route_diagnosis:
       producerCenteredRouteDiagnosis,
+    source_covariance_producer_centered_safety_search_rows:
+      producerCenteredSafetyRows,
+    source_covariance_producer_centered_safety_search_diagnosis:
+      producerCenteredSafetyDiagnosis,
+    source_covariance_producer_centered_numerator_collar_targets:
+      producerCenteredNumeratorCollarTargets,
+    source_covariance_positive_producer_centered_numerator_collar_targets:
+      positiveProducerCenteredNumeratorCollarTargets,
+    source_covariance_producer_centered_numerator_graph_inside_count:
+      producerCenteredNumeratorGraphInsideCount,
+    source_covariance_positive_producer_centered_numerator_graph_inside_count:
+      positiveProducerCenteredNumeratorGraphInsideCount,
+    max_source_covariance_producer_centered_numerator_interval_compression_to_conservative_target:
+      maxProducerCenteredNumeratorCompressionFactor,
+    max_source_covariance_producer_centered_numerator_midpoint_residual_over_conservative_target:
+      maxProducerCenteredNumeratorMidpointResidualOverTarget,
+    min_source_covariance_producer_centered_numerator_midpoint_residual_headroom_factor:
+      minProducerCenteredNumeratorMidpointHeadroom,
+    max_source_covariance_positive_producer_centered_numerator_interval_compression_to_conservative_target:
+      maxPositiveProducerCenteredNumeratorCompressionFactor,
+    max_source_covariance_positive_producer_centered_numerator_midpoint_residual_over_conservative_target:
+      maxPositiveProducerCenteredNumeratorMidpointResidualOverTarget,
+    min_source_covariance_positive_producer_centered_numerator_midpoint_residual_headroom_factor:
+      minPositiveProducerCenteredNumeratorMidpointHeadroom,
+    source_covariance_h38_y44_n38_collar_enclosure_route:
+      sourceCovarianceN38CollarEnclosureRoute,
+    source_covariance_positive_h38_y44_n38_collar_enclosure_route:
+      sourceCovariancePositiveN38CollarEnclosureRoute,
+    source_covariance_n38_collar_interpretation:
+      sourceCovarianceN38CollarInterpretation,
+    source_covariance_positive_n38_collar_interpretation:
+      sourceCovariancePositiveN38CollarInterpretation,
+    source_covariance_positive_n38_degree_sweep_rows:
+      positiveN38DegreeSweepRows,
+    source_covariance_positive_n38_best_degree_row:
+      positiveN38BestDegreeRow,
+    source_covariance_positive_n38_selected_taylor_degree_row:
+      positiveN38SelectedTaylorDegreeRow,
+    source_covariance_positive_n38_degree_sweep_diagnosis:
+      positiveN38DegreeSweepDiagnosis,
+    source_covariance_positive_n38_taylor_certificate_target:
+      positiveN38TaylorCertificateTarget,
+    source_covariance_positive_n38_sampled_fourth_difference_check:
+      positiveN38FourthDifferenceCheck,
+    source_covariance_positive_n38_m4_inflation_budget:
+      positiveN38M4InflationBudget,
+    source_covariance_positive_n38_directed_interval_residual_check:
+      positiveN38DirectedIntervalResidualCheck,
+    source_covariance_positive_n38_lagrange_remainder_target:
+      positiveN38LagrangeRemainderTarget,
+    source_covariance_positive_n38_cubic_taylor_remainder_route:
+      positiveN38CubicTaylorRemainderRoute,
+    max_source_covariance_producer_centered_safety_closing_half_width:
+      maxProducerCenteredSafetyClosingHalfWidth,
+    max_source_covariance_producer_centered_safety_bracket_width:
+      maxProducerCenteredSafetyBracketWidth,
     max_source_covariance_term_triangle_gain:
       Number.isFinite(maxCollarTriangleGain)
         ? maxCollarTriangleGain
@@ -11060,29 +15007,497 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
     strongest_pair_cancellation: strongestPairCancellation,
     source_covariance_diagnosis: covarianceDiagnosis,
     candidate_certificate_route:
-      producerCenteredRouteDiagnosis ===
-      "producer-centered-source-collar-closes-reference-target"
-        ? "Promote the next proof attempt to a directed-rounded producer-centered source-covariance certificate: keep the H38 producer midpoint hull and residual-coordinate collar signed through the H39 source replay, then attach the shifted outer bound only after source-level cancellation."
-        : producerCenteredRouteDiagnosis ===
-            "producer-midpoint-hull-closes-reference-target"
-          ? "The H38 producer midpoint hull is source-covariance compatible, but no positive residual-coordinate collar closes on the current reference targets. Tighten the directed-rounded producer image or derive a local source identity before widening the collar."
-          : producerImageRouteDiagnosis ===
-              "zero-centered-source-collar-misses-producer-midpoint-hull"
-            ? "Do not force the source-affine-zero collar onto the actual H38 producer image. Search for the missing source-level identity that transports cancellation from the affine-zero coordinate to the H38 producer midpoint hull."
-            : covarianceDiagnosis ===
-                "source-affine-zero-preserves-strong-term-cancellation"
-              ? "Promote the next proof attempt to a directed-rounded source-level affine-zero certificate that keeps the three nonconstant source terms signed until after their cancellation is evaluated."
-              : covarianceDiagnosis ===
-                  "source-affine-zero-dominated-by-pairwise-term-cancellation"
-                ? "Search for a two-term normal form for the dominant signed pair before applying absolute Cauchy bounds."
-                : "Add a higher-order covariance coordinate or source-level identity; independent source-term width control is not expected to close the y44 collar.",
+      positiveN38DegreeSweepDiagnosis ===
+      "positive-n38-degree-sweep-finds-certificate-headroom"
+        ? "Promote the next proof attempt to a directed-rounded positive-collar N38 graph certificate using the best degree from the local degree sweep. The remaining proof burden is an interval Taylor or normal-form residual enclosure for the selected graph and dependency-preserving S37 division on the same producer window, followed by the H39 signed source replay."
+        : sourceCovariancePositiveN38CollarInterpretation ===
+          "source-covariance-positive-n38-midpoint-graph-fits-measured-collar"
+        ? "Promote the next proof attempt to a directed-rounded producer-centered source-covariance certificate whose measured positive collar is pulled back through the H38/N38 numerator graph. The remaining proof burden is a same-domain directed-rounded N38 graph residual enclosure with dependency-preserving S37 division, followed by the H39 signed source replay."
+        : producerCenteredSafetyDiagnosis ===
+      "producer-centered-safety-search-finds-positive-source-covariance-collar"
+        ? "Promote the next proof attempt to a directed-rounded producer-centered source-covariance certificate with a measured residual-coordinate half-width. Keep the H38 producer midpoint hull and local collar signed through the source replay, then attach the shifted outer bound only after source-level cancellation."
+        : producerCenteredSafetyDiagnosis ===
+            "producer-centered-safety-search-center-hull-only"
+          ? "The H38 producer midpoint hull is source-covariance compatible, but the measured positive collar is still open. Tighten the producer image or find the source-level identity that widens the producer-centered collar."
+          : producerCenteredRouteDiagnosis ===
+              "producer-centered-source-collar-closes-reference-target"
+            ? "Promote the next proof attempt to a directed-rounded producer-centered source-covariance certificate: keep the H38 producer midpoint hull and residual-coordinate collar signed through the H39 source replay, then attach the shifted outer bound only after source-level cancellation."
+            : producerCenteredRouteDiagnosis ===
+                "producer-midpoint-hull-closes-reference-target"
+              ? "The H38 producer midpoint hull is source-covariance compatible, but no positive residual-coordinate collar closes on the current reference targets. Tighten the directed-rounded producer image or derive a local source identity before widening the collar."
+              : producerImageRouteDiagnosis ===
+                  "zero-centered-source-collar-misses-producer-midpoint-hull"
+                ? "Do not force the source-affine-zero collar onto the actual H38 producer image. Search for the missing source-level identity that transports cancellation from the affine-zero coordinate to the H38 producer midpoint hull."
+                : covarianceDiagnosis ===
+                    "source-affine-zero-preserves-strong-term-cancellation"
+                  ? "Promote the next proof attempt to a directed-rounded source-level affine-zero certificate that keeps the three nonconstant source terms signed until after their cancellation is evaluated."
+                  : covarianceDiagnosis ===
+                      "source-affine-zero-dominated-by-pairwise-term-cancellation"
+                    ? "Search for a two-term normal form for the dominant signed pair before applying absolute Cauchy bounds."
+                    : "Add a higher-order covariance coordinate or source-level identity; independent source-term width control is not expected to close the y44 collar.",
     claim_boundary: {
       certifies_standard_h38_cover: false,
       certifies_h38_y44_source_covariance: false,
       certifies_h38_y44_source_covariance_collar: false,
       certifies_h38_y44_source_covariance_producer_image_collar: false,
       certifies_h38_y44_source_covariance_producer_centered_collar: false,
+      certifies_h38_y44_source_covariance_producer_centered_safety_search:
+        false,
+      certifies_h38_y44_source_covariance_producer_centered_n38_collar_enclosure:
+        false,
+      certifies_h38_y44_source_covariance_positive_n38_taylor_certificate:
+        false,
+      certifies_h38_y44_source_covariance_positive_n38_sampled_fourth_difference:
+        false,
+      certifies_h38_y44_source_covariance_positive_n38_m4_inflation_budget:
+        false,
+      certifies_h38_y44_source_covariance_positive_n38_directed_interval_residual:
+        false,
+      certifies_h38_y44_source_covariance_positive_n38_lagrange_remainder:
+        false,
       certifies_source_level_affine_zero: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function scaledComparisonStencilIndex({
+  sourceStencilSubcellCount,
+  baseSourceStencilSubcellCount,
+  baseComparisonStencilIndex,
+}) {
+  const maxComparisonIndex = Math.max(0, sourceStencilSubcellCount - 5);
+  return Math.min(
+    maxComparisonIndex,
+    Math.max(
+      0,
+      Math.round(
+        (baseComparisonStencilIndex * sourceStencilSubcellCount) /
+          baseSourceStencilSubcellCount
+      )
+    )
+  );
+}
+
+function h39H38Y44SourceCovarianceSplitM4RefinementLadderRow({
+  diagnostic,
+  validationErrors,
+}) {
+  const lagrangeTarget =
+    diagnostic.source_covariance_positive_n38_lagrange_remainder_target;
+  const selectedCandidate = lagrangeTarget?.selected_candidate ?? null;
+  const allocationTarget =
+    lagrangeTarget?.selected_split_m4_allocation_target ?? null;
+  const comparison = allocationTarget?.sampled_ceiling_comparison ?? null;
+  const quarticQuotientWitness =
+    selectedCandidate?.quartic_quotient_consistency_witness ?? null;
+  const selectedNodeSignature = Array.isArray(
+    selectedCandidate?.selected_node_cell_ids
+  )
+    ? selectedCandidate.selected_node_cell_ids.join("|")
+    : null;
+  const selectedLocalNodePattern = Array.isArray(
+    selectedCandidate?.selected_sample_indexes
+  )
+    ? selectedCandidate.selected_sample_indexes.join("|")
+    : null;
+  return {
+    source_stencil_subcell_count: diagnostic.source_stencil_subcell_count,
+    comparison_stencil_index: diagnostic.comparison_stencil_index,
+    analysis_cell_id: diagnostic.analysis_cell_id,
+    validation_error_count: validationErrors.length,
+    validation_errors: validationErrors,
+    lagrange_target_status: lagrangeTarget?.target_status ?? null,
+    selected_polynomial_degree:
+      lagrangeTarget?.selected_polynomial_degree ?? null,
+    positive_target_count: lagrangeTarget?.positive_target_count ?? null,
+    selected_node_cell_ids:
+      selectedCandidate?.selected_node_cell_ids ?? null,
+    selected_sample_indexes:
+      selectedCandidate?.selected_sample_indexes ?? null,
+    selected_node_signature: selectedNodeSignature,
+    omitted_sample_cell_ids:
+      selectedCandidate?.omitted_sample_cell_ids ?? null,
+    omitted_sample_indexes:
+      selectedCandidate?.omitted_sample_indexes ?? null,
+    selected_local_node_pattern: selectedLocalNodePattern,
+    required_fourth_derivative_upper:
+      allocationTarget?.required_fourth_derivative_upper ?? null,
+    point_expression_sampled_m4:
+      allocationTarget?.point_expression_sampled_m4 ?? null,
+    interval_center_drift_sampled_m4:
+      allocationTarget?.interval_center_drift_sampled_m4 ?? null,
+    split_triangle_sampled_m4:
+      allocationTarget?.split_triangle_sampled_m4 ?? null,
+    equal_stream_point_expression_m4_ceiling:
+      allocationTarget?.equal_stream_point_expression_m4_ceiling ?? null,
+    equal_stream_interval_center_drift_m4_ceiling:
+      allocationTarget?.equal_stream_interval_center_drift_m4_ceiling ?? null,
+    equal_stream_split_triangle_m4_ceiling:
+      allocationTarget?.equal_stream_split_triangle_m4_ceiling ?? null,
+    split_triangle_sampled_to_equal_split_ceiling_ratio:
+      comparison?.split_triangle_sampled_to_equal_split_ceiling_ratio ??
+      null,
+    point_expression_sampled_to_equal_ceiling_ratio:
+      comparison?.point_expression_sampled_to_equal_ceiling_ratio ?? null,
+    interval_center_drift_sampled_to_equal_ceiling_ratio:
+      comparison?.interval_center_drift_sampled_to_equal_ceiling_ratio ??
+      null,
+    equal_stream_split_triangle_m4_headroom_factor:
+      comparison?.equal_stream_split_triangle_m4_headroom_factor ?? null,
+    point_expression_sampled_to_one_stream_fixed_ceiling_ratio:
+      comparison?.point_expression_sampled_to_one_stream_fixed_ceiling_ratio ??
+      null,
+    interval_center_drift_sampled_to_one_stream_fixed_ceiling_ratio:
+      comparison
+        ?.interval_center_drift_sampled_to_one_stream_fixed_ceiling_ratio ??
+      null,
+    sampled_ceiling_comparison_status: comparison?.status ?? null,
+    continuous_certificate_status:
+      comparison?.continuous_certificate_status ?? null,
+    missing_proof_ingredient: comparison?.missing_proof_ingredient ?? null,
+    quartic_quotient_witness_status:
+      quarticQuotientWitness?.status ?? null,
+    quartic_quotient_consistency_status:
+      quarticQuotientWitness?.quotient_consistency_status ?? null,
+    quartic_quotient_split_stream_consistency_status:
+      quarticQuotientWitness
+        ?.split_stream_quotient_consistency_status ?? null,
+    quartic_quotient_direct_consistency_status:
+      quarticQuotientWitness?.direct_quotient_consistency_status ?? null,
+    quartic_quotient_node_limit_proxy_status:
+      quarticQuotientWitness?.node_limit_proxy_status ?? null,
+    quartic_quotient_node_limit_proxy_row_count: Array.isArray(
+      quarticQuotientWitness?.node_limit_proxy_rows
+    )
+      ? quarticQuotientWitness.node_limit_proxy_rows.length
+      : null,
+    quartic_quotient_max_consistency_relative_gap:
+      quarticQuotientWitness?.max_quotient_consistency_relative_gap ?? null,
+    quartic_quotient_max_split_stream_consistency_relative_gap:
+      quarticQuotientWitness
+        ?.max_split_stream_quotient_consistency_relative_gap ?? null,
+    quartic_quotient_direct_consistency_relative_gap:
+      quarticQuotientWitness
+        ?.direct_quotient_consistency_relative_gap ?? null,
+    quartic_quotient_split_to_direct_signed_m4_relative_gap:
+      quarticQuotientWitness?.split_to_direct_signed_m4_relative_gap ??
+      null,
+    quartic_quotient_point_expression_signed_m4:
+      quarticQuotientWitness?.point_expression_signed_m4 ?? null,
+    quartic_quotient_interval_center_drift_signed_m4:
+      quarticQuotientWitness?.interval_center_drift_signed_m4 ?? null,
+    quartic_quotient_direct_signed_m4:
+      quarticQuotientWitness?.direct_signed_m4 ?? null,
+    quartic_quotient_point_expression_abs_m4_to_ceiling_ratio:
+      quarticQuotientWitness
+        ?.point_expression_abs_m4_to_ceiling_ratio ?? null,
+    quartic_quotient_interval_center_drift_abs_m4_to_ceiling_ratio:
+      quarticQuotientWitness
+        ?.interval_center_drift_abs_m4_to_ceiling_ratio ?? null,
+    quartic_quotient_split_triangle_abs_m4_to_ceiling_ratio:
+      quarticQuotientWitness?.split_triangle_abs_m4_to_ceiling_ratio ??
+      null,
+    quartic_quotient_row_status:
+      quarticQuotientWitness?.status ===
+      "positive-n38-quartic-quotient-consistency-witness-inside-provider-target"
+        ? "quartic-quotient-refinement-row-inside-provider-target"
+        : quarticQuotientWitness === null
+          ? "quartic-quotient-refinement-row-unavailable"
+          : "quartic-quotient-refinement-row-open",
+    row_status:
+      validationErrors.length === 0 &&
+      comparison?.status === "sampled-split-m4-inside-equal-stream-ceilings"
+        ? "sampled-refinement-row-inside-equal-stream-ceilings"
+        : validationErrors.length === 0
+          ? "sampled-refinement-row-open"
+          : "sampled-refinement-row-validation-error",
+  };
+}
+
+export function buildH39H38Y44SourceCovarianceSplitM4RefinementLadderCandidate({
+  targetSpeedInterval = [3.02156, 3.02156007813],
+  branch = "-",
+  rootSubdivisions = 100,
+  outerRadius = 0.001,
+  shiftedIndex = 1,
+  seriesOrder = 60,
+  sourceStencilSubcellCounts = [32, 64, 128],
+  baseSourceStencilSubcellCount = 32,
+  baseComparisonStencilIndex = 27,
+  analysisRowOffset = 1,
+  polynomialDegree = 2,
+  h38NoiseSamples = [-1, 0, 1],
+  collarHalfWidths = [0, 1e-9, 2e-9, 5e-9, 1e-8],
+  referencePressureTargets = [1e8, 1e10, 1e13],
+  safetySearchIterations = 16,
+  m4InflationFactors = [1, 2, 10, 100, 1000, 2000],
+  progressCallback = null,
+} = {}) {
+  const startedAt = Date.now();
+  const emitProgress =
+    typeof progressCallback === "function"
+      ? (progress) =>
+          progressCallback({
+            diagnostic:
+              "h39-h38-y44-source-covariance-split-m4-refinement-ladder",
+            elapsed_ms: Date.now() - startedAt,
+            ...progress,
+          })
+      : null;
+  const resolvedCounts = [
+    ...new Set(
+      sourceStencilSubcellCounts.map((count) =>
+        assertFinitePositiveInteger("sourceStencilSubcellCounts", count)
+      )
+    ),
+  ].sort((left, right) => left - right);
+  if (resolvedCounts.length === 0 || resolvedCounts.some((count) => count < 5)) {
+    throw new Error("sourceStencilSubcellCounts must contain counts at least 5");
+  }
+  const resolvedBaseCount = assertFinitePositiveInteger(
+    "baseSourceStencilSubcellCount",
+    baseSourceStencilSubcellCount
+  );
+  if (resolvedBaseCount < 5) {
+    throw new Error("baseSourceStencilSubcellCount must be at least 5");
+  }
+  const resolvedBaseComparisonIndex = Number(baseComparisonStencilIndex);
+  if (
+    !Number.isInteger(resolvedBaseComparisonIndex) ||
+    resolvedBaseComparisonIndex < 0 ||
+    resolvedBaseComparisonIndex > resolvedBaseCount - 5
+  ) {
+    throw new Error("baseComparisonStencilIndex must leave five stencil samples");
+  }
+  const rows = resolvedCounts.map((count, rowIndex) => {
+    const comparisonStencilIndex = scaledComparisonStencilIndex({
+      sourceStencilSubcellCount: count,
+      baseSourceStencilSubcellCount: resolvedBaseCount,
+      baseComparisonStencilIndex: resolvedBaseComparisonIndex,
+    });
+    emitProgress?.({
+      stage: "split-m4-refinement-row-start",
+      row_index: rowIndex,
+      row_count: resolvedCounts.length,
+      source_stencil_subcell_count: count,
+      comparison_stencil_index: comparisonStencilIndex,
+    });
+    const diagnostic = buildH39H38Y44SourceCovarianceDiagnosticCandidate({
+      targetSpeedInterval,
+      branch,
+      rootSubdivisions,
+      outerRadius,
+      shiftedIndex,
+      seriesOrder,
+      sourceStencilSubcellCount: count,
+      comparisonStencilIndex,
+      analysisRowOffset,
+      polynomialDegree,
+      h38NoiseSamples,
+      collarHalfWidths,
+      referencePressureTargets,
+      safetySearchIterations,
+      m4InflationFactors,
+    });
+    const validationErrors =
+      validateH39H38Y44SourceCovarianceDiagnostic(diagnostic);
+    const row = h39H38Y44SourceCovarianceSplitM4RefinementLadderRow({
+      diagnostic,
+      validationErrors,
+    });
+    emitProgress?.({
+      stage: "split-m4-refinement-row-complete",
+      row_index: rowIndex,
+      row_count: resolvedCounts.length,
+      source_stencil_subcell_count: count,
+      comparison_stencil_index: comparisonStencilIndex,
+      validation_error_count: row.validation_error_count,
+      sampled_ceiling_comparison_status:
+        row.sampled_ceiling_comparison_status,
+      split_triangle_sampled_to_equal_split_ceiling_ratio:
+        row.split_triangle_sampled_to_equal_split_ceiling_ratio,
+    });
+    return row;
+  });
+  const baseSignature = rows[0]?.selected_node_signature ?? null;
+  const baseLocalPattern = rows[0]?.selected_local_node_pattern ?? null;
+  const rowsWithStability = rows.map((row) => ({
+    ...row,
+    selected_node_signature_matches_base:
+      baseSignature !== null && row.selected_node_signature === baseSignature,
+    selected_local_node_pattern_matches_base:
+      baseLocalPattern !== null &&
+      row.selected_local_node_pattern === baseLocalPattern,
+  }));
+  const ratios = rowsWithStability
+    .map((row) =>
+      row.split_triangle_sampled_to_equal_split_ceiling_ratio === null
+        ? NaN
+        : Number(row.split_triangle_sampled_to_equal_split_ceiling_ratio)
+    )
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const maxRatio = ratios.length > 0 ? Math.max(...ratios) : null;
+  const minRatio = ratios.length > 0 ? Math.min(...ratios) : null;
+  const allInside = rowsWithStability.every(
+    (row) =>
+      row.validation_error_count === 0 &&
+      row.sampled_ceiling_comparison_status ===
+        "sampled-split-m4-inside-equal-stream-ceilings"
+  );
+  const allSameSignature =
+    baseSignature !== null &&
+    rowsWithStability.every(
+      (row) => row.selected_node_signature === baseSignature
+    );
+  const allSameLocalPattern =
+    baseLocalPattern !== null &&
+    rowsWithStability.every(
+      (row) => row.selected_local_node_pattern === baseLocalPattern
+    );
+  const quotientInsideRows = rowsWithStability.filter(
+    (row) =>
+      row.quartic_quotient_witness_status ===
+      "positive-n38-quartic-quotient-consistency-witness-inside-provider-target"
+  );
+  const allQuarticQuotientRowsInside =
+    rowsWithStability.length > 0 &&
+    rowsWithStability.every(
+      (row) =>
+        row.quartic_quotient_witness_status ===
+        "positive-n38-quartic-quotient-consistency-witness-inside-provider-target"
+    );
+  const nodeLimitProxyInsideRows = rowsWithStability.filter(
+    (row) =>
+      row.quartic_quotient_node_limit_proxy_status ===
+      "positive-n38-quartic-node-limit-proxy-inside-provider-target"
+  );
+  const allQuarticNodeLimitProxyRowsInside =
+    rowsWithStability.length > 0 &&
+    rowsWithStability.every(
+      (row) =>
+        row.quartic_quotient_node_limit_proxy_status ===
+        "positive-n38-quartic-node-limit-proxy-inside-provider-target"
+    );
+  const finiteRowValues = (field) =>
+    rowsWithStability
+      .map((row) => Number(row[field]))
+      .filter(Number.isFinite);
+  const maxFiniteRowValue = (field) => {
+    const values = finiteRowValues(field).filter((value) => value >= 0);
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const signedRelativeSpread = (field) => {
+    const values = finiteRowValues(field);
+    if (values.length < 2) {
+      return null;
+    }
+    const maxValue = Math.max(...values);
+    const minValue = Math.min(...values);
+    const scale = Math.max(1, ...values.map((value) => Math.abs(value)));
+    return (maxValue - minValue) / scale;
+  };
+  const maxQuarticQuotientConsistencyGap = maxFiniteRowValue(
+    "quartic_quotient_max_consistency_relative_gap"
+  );
+  const maxQuarticQuotientSplitStreamConsistencyGap = maxFiniteRowValue(
+    "quartic_quotient_max_split_stream_consistency_relative_gap"
+  );
+  const maxQuarticQuotientDirectConsistencyGap = maxFiniteRowValue(
+    "quartic_quotient_direct_consistency_relative_gap"
+  );
+  const maxQuarticQuotientSplitReplayGap = maxFiniteRowValue(
+    "quartic_quotient_split_to_direct_signed_m4_relative_gap"
+  );
+  const maxQuarticQuotientSplitRatio = maxFiniteRowValue(
+    "quartic_quotient_split_triangle_abs_m4_to_ceiling_ratio"
+  );
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SOURCE_COVARIANCE_SPLIT_M4_REFINEMENT_LADDER_SCHEMA,
+    status:
+      "h39-h38-y44-source-covariance-split-m4-refinement-ladder-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-h38-y44-source-covariance-sampled-split-m4-refinement-ladder",
+    target_speed_interval: targetSpeedInterval,
+    branch,
+    shifted_index: shiftedIndex,
+    outer_radius: outerRadius,
+    source_stencil_subcell_counts: resolvedCounts,
+    base_source_stencil_subcell_count: resolvedBaseCount,
+    base_comparison_stencil_index: resolvedBaseComparisonIndex,
+    scaled_comparison_stencil_indexes: rowsWithStability.map(
+      (row) => row.comparison_stencil_index
+    ),
+    sampled_ladder_rows: rowsWithStability,
+    all_rows_validator_clean: rowsWithStability.every(
+      (row) => row.validation_error_count === 0
+    ),
+    all_sampled_rows_inside_equal_stream_ceiling: allInside,
+    selected_node_signature_stable_across_ladder: allSameSignature,
+    selected_local_node_pattern_stable_across_ladder:
+      allSameLocalPattern,
+    max_split_triangle_sampled_to_equal_split_ceiling_ratio: maxRatio,
+    min_split_triangle_sampled_to_equal_split_ceiling_ratio: minRatio,
+    sampled_ratio_spread:
+      Number.isFinite(maxRatio) && Number.isFinite(minRatio)
+        ? maxRatio - minRatio
+        : null,
+    all_quartic_quotient_rows_inside_provider_target:
+      allQuarticQuotientRowsInside,
+    quartic_quotient_inside_row_count: quotientInsideRows.length,
+    all_quartic_quotient_node_limit_proxy_rows_inside_provider_target:
+      allQuarticNodeLimitProxyRowsInside,
+    quartic_quotient_node_limit_proxy_inside_row_count:
+      nodeLimitProxyInsideRows.length,
+    max_quartic_quotient_consistency_relative_gap:
+      maxQuarticQuotientConsistencyGap,
+    max_quartic_quotient_split_stream_consistency_relative_gap:
+      maxQuarticQuotientSplitStreamConsistencyGap,
+    max_quartic_quotient_direct_consistency_relative_gap:
+      maxQuarticQuotientDirectConsistencyGap,
+    max_quartic_quotient_split_to_direct_signed_m4_relative_gap:
+      maxQuarticQuotientSplitReplayGap,
+    max_quartic_quotient_split_triangle_abs_m4_to_ceiling_ratio:
+      maxQuarticQuotientSplitRatio,
+    quartic_quotient_point_expression_signed_m4_relative_spread:
+      signedRelativeSpread("quartic_quotient_point_expression_signed_m4"),
+    quartic_quotient_interval_center_drift_signed_m4_relative_spread:
+      signedRelativeSpread(
+        "quartic_quotient_interval_center_drift_signed_m4"
+      ),
+    quartic_quotient_direct_signed_m4_relative_spread:
+      signedRelativeSpread("quartic_quotient_direct_signed_m4"),
+    ladder_interpretation:
+      allInside && allSameLocalPattern
+        ? "sampled split-M4 pressure remains inside the equal-stream ceiling on the same selected local Lagrange node pattern across this refinement ladder"
+      : allInside
+          ? "sampled split-M4 pressure remains inside the equal-stream ceiling, but the selected Lagrange node pattern changes across the refinement ladder"
+          : "at least one sampled split-M4 refinement row is not inside the equal-stream ceiling or is not validator-clean",
+    certificate_boundary:
+      "sampled refinement stability only; does not replace directed-rounded continuous fourth-derivative bounds",
+    quotient_refinement_interpretation:
+      allQuarticQuotientRowsInside && allSameLocalPattern
+        ? "the finite-data removable quotient stays inside the provider target on the same selected local Lagrange pattern across this refinement ladder"
+        : allQuarticQuotientRowsInside
+          ? "the finite-data removable quotient stays inside the provider target, but the selected local Lagrange pattern changes across this refinement ladder"
+          : "at least one refinement row lacks an inside-provider finite-data removable quotient witness",
+    node_limit_proxy_interpretation:
+      allQuarticNodeLimitProxyRowsInside && allSameLocalPattern
+        ? "the finite-data removable node-limit proxies stay inside the split-stream provider target on the same selected local Lagrange pattern across this refinement ladder"
+        : allQuarticNodeLimitProxyRowsInside
+          ? "the finite-data removable node-limit proxies stay inside the split-stream provider target, but the selected local Lagrange pattern changes across this refinement ladder"
+          : "at least one refinement row lacks an inside-provider finite-data removable node-limit proxy",
+    missing_proof_ingredient:
+      "prove same-domain directed-rounded continuous removable-quotient or fourth-derivative upper bounds for the point-expression and interval-center drift streams on a selected Lagrange window",
+    claim_boundary: {
+      certifies_h38_y44_source_covariance_positive_n38_lagrange_remainder:
+        false,
+      certifies_n38_taylor_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
       certifies_shifted_R43_outer_bound: false,
       certifies_directed_rounded_shared_domain: false,
       certifies_continuous_polydisc_primitives: false,
@@ -11954,6 +16369,14 @@ function h39H38Y44ProducerCenteredNumeratorCollarTarget({
       numerator_interval: sample.numerator_interval,
       numerator_interval_width: numeratorWidth,
       numerator_midpoint: sample.numerator_midpoint,
+      numerator_expression_midpoint:
+        sample.numerator_expression_midpoint ?? null,
+      numerator_term_midpoints: sample.numerator_term_midpoints ?? null,
+      numerator_term_widths: sample.numerator_term_widths ?? null,
+      numerator_source_term_midpoint_sum:
+        sample.numerator_source_term_midpoint_sum ?? null,
+      numerator_source_term_sum_to_interval_midpoint_gap:
+        sample.numerator_source_term_sum_to_interval_midpoint_gap ?? null,
       numerator_graph_midpoint: graphMidpoint,
       numerator_midpoint_residual: midpointResidual,
       numerator_abs_midpoint_residual: absMidpointResidual,
@@ -12274,6 +16697,7 @@ function h39H38Y44N38CollarEnclosureRoute({
       : referenceGraphInsideCount > 0
         ? "n38-quadratic-midpoint-residual-has-partial-collar-headroom"
         : "n38-quadratic-midpoint-residual-collar-route-open";
+  const graphSymbol = `q${numeratorPolynomialDiagnostic.polynomial_degree}`;
   return {
     status: "h39-h38-y44-n38-collar-enclosure-route-candidate-emitted",
     evaluation_level: "candidate-h38-y44-n38-collar-enclosure-route",
@@ -12311,7 +16735,7 @@ function h39H38Y44N38CollarEnclosureRoute({
     s37_dependency_status: s37DependencyStatus,
     directed_rounded_proof_obligation: {
       target:
-        "prove |N38(xi)-q2(xi)| stays below the conservative numerator collar target on the same producer xi window",
+        `prove |N38(xi)-${graphSymbol}(xi)| stays below the conservative numerator collar target on the same producer xi window`,
       dependency_to_preserve:
         "keep xi, N38, and inherited S37 solve-slope dependency coupled until h38=-N38/S37 is replayed into the H39 collar",
       sufficient_condition:
@@ -18750,6 +23174,29 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
     hasFiniteInterval(row?.coefficient) &&
     finiteNonnegative(row?.coefficient_abs_upper) &&
     finiteNonnegative(row?.pressure_contribution);
+  const numeratorPointFieldsValid = (sample) => {
+    const termMidpoints = sample?.numerator_term_midpoints;
+    const termWidths = sample?.numerator_term_widths;
+    return (
+      Number.isFinite(Number(sample?.numerator_expression_midpoint)) &&
+      termMidpoints !== null &&
+      typeof termMidpoints === "object" &&
+      [...sourceTermNames].every((term) =>
+        Number.isFinite(Number(termMidpoints[term]))
+      ) &&
+      termWidths !== null &&
+      typeof termWidths === "object" &&
+      [...sourceTermNames].every((term) =>
+        finiteNonnegative(termWidths[term])
+      ) &&
+      Number.isFinite(
+        Number(sample?.numerator_source_term_midpoint_sum)
+      ) &&
+      finiteNonnegative(
+        sample?.numerator_source_term_sum_to_interval_midpoint_gap
+      )
+    );
+  };
   const referencePressureResultValid = (row) =>
     finitePositive(row?.target_pressure) &&
     finiteNonnegative(row?.source_over_target) &&
@@ -18898,6 +23345,1698 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
   const producerCenteredCollarRowValid = (row) =>
     collarRowValid(row) &&
     hasFiniteInterval(row?.producer_midpoint_coordinate_hull);
+  const producerCenteredSafetySearchValid = (search) =>
+    Number.isInteger(search?.safety_search_iterations) &&
+    search.safety_search_iterations > 0 &&
+    finiteNonnegative(search?.target_closing_half_width) &&
+    finiteNonnegativeOrNull(search?.target_closing_safety_divisor) &&
+    (search?.target_closing_replay_pressure === null ||
+      finitePositive(search?.target_closing_replay_pressure)) &&
+    (search?.target_closing_replay_over_target_pressure === null ||
+      finitePositive(search?.target_closing_replay_over_target_pressure)) &&
+    (search?.target_closing_center_eliminated_pressure === null ||
+      finitePositive(search?.target_closing_center_eliminated_pressure)) &&
+    (search?.target_closing_center_eliminated_over_target_pressure === null ||
+      finitePositive(
+        search?.target_closing_center_eliminated_over_target_pressure
+      )) &&
+    (search?.center_hull_replay_pressure === null ||
+      finitePositive(search?.center_hull_replay_pressure)) &&
+    (search?.center_hull_replay_over_target_pressure === null ||
+      finitePositive(search?.center_hull_replay_over_target_pressure)) &&
+    hasFiniteInterval(search?.target_closing_h38_noise_interval) &&
+    hasFiniteInterval(search?.clipped_target_closing_h38_noise_interval) &&
+    finiteNonnegative(search?.target_closing_h38_residual_half_width) &&
+    hasFiniteInterval(search?.target_closing_bracket) &&
+    finiteNonnegative(search?.target_closing_bracket_width) &&
+    Number.isInteger(search?.expansion_step_count) &&
+    search.expansion_step_count >= 0 &&
+    [
+      "not-applicable",
+      "producer-center-hull-meets-reference-target",
+      "producer-center-hull-exceeds-reference-target",
+      "producer-centered-full-hull-meets-reference-target",
+      "bisection-found-producer-centered-half-width-meeting-reference-target",
+      "producer-center-hull-meets-reference-target-but-no-positive-width-found",
+      "bisection-did-not-find-producer-centered-half-width-meeting-reference-target",
+    ].includes(search?.safety_search_status);
+  const producerCenteredCollarTargetValid = (target) =>
+    typeof target?.label === "string" &&
+    hasFiniteInterval(target?.collar_center_coordinate_hull) &&
+    hasFiniteInterval(target?.collar_residual_coordinate_interval) &&
+    finiteNonnegative(target?.collar_residual_coordinate_half_width) &&
+    finiteNonnegative(target?.collar_residual_coordinate_width) &&
+    typeof target?.positive_collar_found === "boolean" &&
+    hasFiniteInterval(target?.producer_residual_coordinate_interval_hull) &&
+    hasFiniteInterval(target?.producer_residual_coordinate_midpoint_hull) &&
+    finiteNonnegative(
+      target?.producer_residual_coordinate_interval_hull_width
+    ) &&
+    finiteNonnegative(
+      target?.producer_residual_coordinate_midpoint_hull_width
+    ) &&
+    finiteNonnegative(
+      target?.producer_max_residual_coordinate_interval_width
+    ) &&
+    typeof target?.producer_interval_hull_inside_collar === "boolean" &&
+    typeof target?.producer_midpoint_hull_inside_collar === "boolean" &&
+    boundedCount(
+      target?.interval_inside_collar_row_count,
+      diagnostic?.comparison_row_count
+    ) &&
+    boundedCount(
+      target?.midpoint_inside_collar_row_count,
+      diagnostic?.comparison_row_count
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.required_interval_hull_compression_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.required_max_sample_interval_compression_factor
+    ) &&
+    (target?.linear_subcell_refinement_forecast === null ||
+      (Number.isInteger(target?.linear_subcell_refinement_forecast) &&
+        target.linear_subcell_refinement_forecast >= 0)) &&
+    Number.isInteger(target?.source_stencil_subcell_count) &&
+    finiteNonnegativeOrNull(target?.target_replay_over_target_pressure) &&
+    [
+      "producer-interval-hull-inside-collar",
+      "positive-midpoint-collar-full-interval-open",
+      "midpoint-only-collar-full-interval-open",
+      "producer-midpoint-hull-outside-collar",
+    ].includes(target?.target_status) &&
+    [
+      "current-producer-interval-hull-already-fits-collar",
+      "linear-subcell-refinement-impractical-analytic-covariance-needed",
+      "positive-collar-gives-finite-producer-image-certificate-target",
+      "center-hull-only-collar-needs-positive-width-or-producer-image-proof",
+    ].includes(target?.refinement_interpretation) &&
+    Array.isArray(target?.sample_fits) &&
+    target.sample_fits.length === diagnostic?.comparison_row_count;
+  const producerCenteredSafetyRowValid = (row) =>
+    finitePositive(row?.target_pressure) &&
+    finiteNonnegative(row?.candidate_half_width) &&
+    producerCenteredSafetySearchValid(
+      row?.producer_centered_safety_search
+    ) &&
+    producerCenteredCollarTargetValid(
+      row?.producer_centered_collar_target
+    ) &&
+    row?.safety_search_iterations ===
+      row?.producer_centered_safety_search?.safety_search_iterations &&
+    row?.center_hull_replay_pressure ===
+      row?.producer_centered_safety_search?.center_hull_replay_pressure &&
+    row?.target_closing_half_width ===
+      row?.producer_centered_safety_search?.target_closing_half_width &&
+    typeof row?.positive_collar_found === "boolean" &&
+    typeof row?.producer_interval_hull_inside_collar === "boolean" &&
+    typeof row?.producer_midpoint_hull_inside_collar === "boolean" &&
+    boundedCount(
+      row?.interval_inside_collar_row_count,
+      diagnostic?.comparison_row_count
+    ) &&
+    boundedCount(
+      row?.midpoint_inside_collar_row_count,
+      diagnostic?.comparison_row_count
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.required_interval_hull_compression_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.required_max_sample_interval_compression_factor
+    ) &&
+    (row?.linear_subcell_refinement_forecast === null ||
+      (Number.isInteger(row?.linear_subcell_refinement_forecast) &&
+        row.linear_subcell_refinement_forecast >= 0)) &&
+    [
+      "producer-interval-hull-inside-collar",
+      "positive-midpoint-collar-full-interval-open",
+      "midpoint-only-collar-full-interval-open",
+      "producer-midpoint-hull-outside-collar",
+    ].includes(row?.target_status);
+  const h38Y44SolveWidthProfileValid = (profile) =>
+    profile?.h_index ===
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index &&
+    profile?.sample_count === diagnostic?.comparison_row_count &&
+    Array.isArray(profile?.samples) &&
+    profile.samples.length === diagnostic?.comparison_row_count &&
+    profile.samples.every(numeratorPointFieldsValid) &&
+    hasFiniteInterval(profile?.residual_interval_hulls?.full_solve) &&
+    hasFiniteInterval(profile?.residual_interval_hulls?.numerator_only) &&
+    hasFiniteInterval(profile?.residual_interval_hulls?.slope_only) &&
+    hasFiniteInterval(profile?.residual_interval_hulls?.midpoint_solve) &&
+    finitePositive(profile?.max_solve_widths?.reconstructed_full_solve) &&
+    finitePositive(profile?.max_solve_widths?.numerator_only) &&
+    finiteNonnegative(profile?.max_solve_widths?.slope_only) &&
+    finiteNonnegative(profile?.max_solve_widths?.graph_interval) &&
+    finitePositive(profile?.numerator_only_to_full_solve_width_ratio) &&
+    finiteNonnegative(profile?.slope_only_to_full_solve_width_ratio) &&
+    [
+      "h38-recurrence-numerator-width",
+      "inherited-solve-slope-width",
+      "mixed-numerator-slope-width",
+    ].includes(profile?.dominant_solve_width_source);
+  const h38Y44NumeratorPolynomialDiagnosticValid = (diagnosticRow) =>
+    Number.isInteger(diagnosticRow?.polynomial_degree) &&
+    diagnosticRow.polynomial_degree >= 1 &&
+    diagnosticRow.polynomial_degree <= 3 &&
+    Array.isArray(diagnosticRow?.coefficients) &&
+    diagnosticRow.coefficients.length ===
+      diagnosticRow.polynomial_degree + 1 &&
+    diagnosticRow.coefficients.every((coefficient) =>
+      Number.isFinite(Number(coefficient))
+    ) &&
+    Array.isArray(diagnosticRow?.residuals) &&
+    diagnosticRow.residuals.length === diagnostic?.comparison_row_count &&
+    finiteNonnegative(diagnosticRow?.max_midpoint_residual) &&
+    finitePositive(diagnosticRow?.max_numerator_interval_width) &&
+    finiteNonnegative(
+      diagnosticRow?.midpoint_residual_to_numerator_width_ratio
+    );
+  const numeratorCollarSampleValid = (sample) =>
+    typeof sample?.cell_id === "string" &&
+    hasFiniteInterval(sample?.xi_interval) &&
+    Number.isFinite(Number(sample?.xi_midpoint)) &&
+    hasFiniteInterval(sample?.numerator_interval) &&
+    finiteNonnegative(sample?.numerator_interval_width) &&
+    Number.isFinite(Number(sample?.numerator_midpoint)) &&
+    Number.isFinite(Number(sample?.numerator_graph_midpoint)) &&
+    Number.isFinite(Number(sample?.numerator_midpoint_residual)) &&
+    finiteNonnegative(sample?.numerator_abs_midpoint_residual) &&
+    hasFiniteInterval(sample?.slope_interval) &&
+    finiteNonnegative(sample?.slope_abs_lower) &&
+    finiteNonnegative(sample?.slope_abs_upper) &&
+    finiteNonnegativeOrNull(sample?.slope_abs_lower_to_midpoint_abs_ratio) &&
+    finiteNonnegative(sample?.conservative_numerator_width_target) &&
+    finiteNonnegative(sample?.midpoint_slope_numerator_width_target) &&
+    finiteNonnegativeOrNull(
+      sample?.numerator_interval_compression_to_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(
+      sample?.numerator_midpoint_residual_over_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(
+      sample?.numerator_midpoint_residual_over_midpoint_slope_target
+    ) &&
+    finiteNonnegativeOrNull(
+      sample?.numerator_midpoint_residual_headroom_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      sample?.numerator_midpoint_slope_residual_headroom_factor
+    );
+  const producerCenteredNumeratorCollarTargetValid = (target) =>
+    typeof target?.label === "string" &&
+    Number.isInteger(target?.numerator_polynomial_degree) &&
+    target.numerator_polynomial_degree >= 1 &&
+    target.numerator_polynomial_degree <= 3 &&
+    hasFiniteInterval(target?.h38_residual_collar_interval) &&
+    finiteNonnegative(target?.h38_residual_collar_width) &&
+    finiteNonnegativeOrNull(
+      target?.max_numerator_interval_compression_to_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.max_numerator_midpoint_residual_over_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.min_numerator_midpoint_residual_headroom_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.max_numerator_midpoint_residual_over_midpoint_slope_target
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.min_numerator_midpoint_slope_residual_headroom_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.min_slope_abs_lower_to_midpoint_abs_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.max_slope_abs_lower_to_midpoint_abs_ratio
+    ) &&
+    typeof target?.numerator_interval_hull_open_against_collar ===
+      "boolean" &&
+    typeof target?.numerator_midpoint_graph_inside_collar_target ===
+      "boolean" &&
+    typeof target
+      ?.numerator_midpoint_graph_inside_midpoint_slope_target ===
+      "boolean" &&
+    [
+      "degenerate-collar-no-numerator-target",
+      "numerator-interval-hull-inside-collar-target",
+      "numerator-midpoint-graph-inside-collar-target-interval-open",
+      "numerator-midpoint-graph-exceeds-collar-target",
+    ].includes(target?.target_status) &&
+    [
+      "numerator-graph-residual-certificate-can-target-producer-collar",
+      "current-numerator-interval-hull-already-fits-producer-collar",
+      "s37-lower-bound-dependency-collapse-before-numerator-collar",
+      "numerator-graph-degree-or-local-coordinate-must-tighten",
+      "positive-producer-collar-needed-before-numerator-target",
+    ].includes(target?.proof_route_interpretation) &&
+    Array.isArray(target?.samples) &&
+    target.samples.length === diagnostic?.comparison_row_count &&
+    target.samples.every(
+      (sample) =>
+        numeratorCollarSampleValid(sample) &&
+        numeratorPointFieldsValid(sample)
+    );
+  const n38RouteCompactSampleValid = (sample) =>
+    sample === null ||
+    (typeof sample?.reference_label === "string" &&
+      typeof sample?.cell_id === "string" &&
+      hasFiniteInterval(sample?.xi_interval) &&
+      Number.isFinite(Number(sample?.xi_midpoint)) &&
+      Number.isFinite(Number(sample?.numerator_midpoint_residual)) &&
+      finiteNonnegative(sample?.numerator_abs_midpoint_residual) &&
+      finiteNonnegativeOrNull(sample?.conservative_numerator_width_target) &&
+      finiteNonnegativeOrNull(sample?.midpoint_slope_numerator_width_target) &&
+      hasFiniteInterval(sample?.slope_interval) &&
+      finiteNonnegative(sample?.slope_abs_lower) &&
+      finiteNonnegative(sample?.slope_abs_upper) &&
+      finiteNonnegativeOrNull(sample?.slope_abs_lower_to_midpoint_abs_ratio) &&
+      finiteNonnegativeOrNull(
+        sample?.numerator_midpoint_residual_over_conservative_target
+      ) &&
+      finiteNonnegativeOrNull(
+        sample?.numerator_midpoint_residual_over_midpoint_slope_target
+      ) &&
+      finiteNonnegativeOrNull(
+        sample?.numerator_midpoint_residual_headroom_factor
+      ) &&
+      finiteNonnegativeOrNull(
+        sample?.numerator_midpoint_slope_residual_headroom_factor
+      ));
+  const n38CollarEnclosureRouteValid = (
+    route,
+    expectedReferenceTargetCount = diagnostic?.reference_pressure_targets
+      ?.length
+  ) =>
+    route?.status ===
+      "h39-h38-y44-n38-collar-enclosure-route-candidate-emitted" &&
+    route?.evaluation_level ===
+      "candidate-h38-y44-n38-collar-enclosure-route" &&
+    Number.isInteger(route?.polynomial_degree) &&
+    route.polynomial_degree >= 1 &&
+    route.polynomial_degree <= 3 &&
+    Array.isArray(route?.numerator_polynomial_coefficients) &&
+    route.numerator_polynomial_coefficients.length ===
+      route.polynomial_degree + 1 &&
+    route.numerator_polynomial_coefficients.every((coefficient) =>
+      Number.isFinite(Number(coefficient))
+    ) &&
+    Number.isInteger(route?.source_stencil_subcell_count) &&
+    route.source_stencil_subcell_count >= 5 &&
+    route.reference_target_count === expectedReferenceTargetCount &&
+    route.sample_count ===
+      route.reference_target_count * diagnostic?.comparison_row_count &&
+    boundedCount(
+      route?.reference_targets_with_midpoint_graph_inside_collar_count,
+      route.reference_target_count
+    ) &&
+    boundedCount(
+      route
+        ?.reference_targets_with_midpoint_slope_graph_inside_collar_count,
+      route.reference_target_count
+    ) &&
+    finiteNonnegativeOrNull(
+      route?.min_conservative_numerator_width_target
+    ) &&
+    finiteNonnegativeOrNull(
+      route?.max_conservative_numerator_width_target
+    ) &&
+    finiteNonnegativeOrNull(route?.max_numerator_abs_midpoint_residual) &&
+    finiteNonnegativeOrNull(
+      route?.max_midpoint_residual_over_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(route?.min_midpoint_residual_headroom_factor) &&
+    finiteNonnegativeOrNull(
+      route?.max_midpoint_residual_over_midpoint_slope_target
+    ) &&
+    finiteNonnegativeOrNull(
+      route?.min_midpoint_slope_residual_headroom_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      route?.min_slope_abs_lower_to_midpoint_abs_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      route?.max_numerator_interval_compression_to_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(
+      route?.max_midpoint_residual_to_raw_numerator_interval_width_ratio
+    ) &&
+    n38RouteCompactSampleValid(route?.controlling_sample ?? null) &&
+    n38RouteCompactSampleValid(
+      route?.controlling_midpoint_slope_sample ?? null
+    ) &&
+    [
+      "midpoint-slope-collar-fits-but-conservative-s37-lower-bound-collapses",
+      "midpoint-slope-collar-also-fails-n38-graph-residual",
+      "conservative-s37-lower-bound-supports-n38-collar",
+      "s37-dependency-status-open",
+    ].includes(route?.s37_dependency_status) &&
+    [
+      "n38-quadratic-midpoint-residual-has-directed-rounded-collar-headroom",
+      "s37-lower-bound-dependency-collapse-controls-n38-collar-route",
+      "n38-quadratic-midpoint-residual-has-partial-collar-headroom",
+      "n38-quadratic-midpoint-residual-collar-route-open",
+    ].includes(route?.route_diagnosis) &&
+    route?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    route?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    route?.claim_boundary?.certifies_producer_collar_enclosure === false &&
+    route?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    route?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    route?.claim_boundary?.certifies_continuous_polydisc_primitives ===
+      false &&
+    route?.claim_boundary?.retained_branch === false;
+  const positiveN38DegreeSweepRowValid = (row) =>
+    Number.isInteger(row?.polynomial_degree) &&
+    row.polynomial_degree >= 1 &&
+    row.polynomial_degree <= 3 &&
+    Number.isInteger(row?.positive_target_count) &&
+    row.positive_target_count >= 0 &&
+    row.positive_target_count <= diagnostic?.reference_pressure_targets?.length &&
+    Array.isArray(row?.positive_targets) &&
+    row.positive_targets.length === row.positive_target_count &&
+    row.positive_targets.every(producerCenteredNumeratorCollarTargetValid) &&
+    boundedCount(
+      row?.positive_targets_with_midpoint_graph_inside_count,
+      row.positive_target_count
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.max_positive_numerator_interval_compression_to_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.max_positive_midpoint_residual_over_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.min_positive_midpoint_residual_headroom_factor
+    ) &&
+    [
+      "n38-quadratic-midpoint-residual-has-directed-rounded-collar-headroom",
+      "s37-lower-bound-dependency-collapse-controls-n38-collar-route",
+      "n38-quadratic-midpoint-residual-has-partial-collar-headroom",
+      "n38-quadratic-midpoint-residual-collar-route-open",
+    ].includes(row?.route_diagnosis) &&
+    [
+      "midpoint-slope-collar-fits-but-conservative-s37-lower-bound-collapses",
+      "midpoint-slope-collar-also-fails-n38-graph-residual",
+      "conservative-s37-lower-bound-supports-n38-collar",
+      "s37-dependency-status-open",
+    ].includes(row?.s37_dependency_status) &&
+    [
+      "positive-n38-degree-no-positive-collar-target",
+      "positive-n38-degree-has-certificate-headroom",
+      "positive-n38-degree-fits-collar-with-limited-headroom",
+      "positive-n38-degree-partially-fits-collar",
+      "positive-n38-degree-open",
+    ].includes(row?.target_status) &&
+    n38CollarEnclosureRouteValid(
+      row?.n38_collar_enclosure_route,
+      row.positive_target_count
+    );
+  const positiveN38TaylorCertificateTargetValid = (target) =>
+    [
+      "positive-n38-taylor-certificate-target-candidate-emitted",
+      "positive-n38-taylor-certificate-target-open",
+    ].includes(target?.status) &&
+    [
+      "positive-n38-cubic-taylor-target-has-headroom",
+      "positive-n38-cubic-taylor-target-open",
+      "positive-n38-certificate-needs-noncubic-taylor-analogue",
+      "positive-n38-taylor-no-positive-collar-target",
+    ].includes(target?.target_status) &&
+    (target?.selected_polynomial_degree === null ||
+      (Number.isInteger(target?.selected_polynomial_degree) &&
+        target.selected_polynomial_degree >= 1 &&
+        target.selected_polynomial_degree <= 3)) &&
+    (target?.selected_polynomial_coefficients === undefined ||
+      target?.selected_polynomial_coefficients === null ||
+      Array.isArray(target?.selected_polynomial_coefficients)) &&
+    (target?.source_stencil_subcell_count === undefined ||
+      Number.isInteger(target?.source_stencil_subcell_count)) &&
+    (target?.positive_target_count === undefined ||
+      Number.isInteger(target?.positive_target_count)) &&
+    (target?.xi_window === null ||
+      target?.xi_window === undefined ||
+      hasFiniteInterval(target?.xi_window)) &&
+    finiteNonnegativeOrNull(target?.xi_half_width) &&
+    finiteNonnegativeOrNull(
+      target?.conservative_numerator_residual_target
+    ) &&
+    finiteNonnegativeOrNull(target?.max_numerator_abs_midpoint_residual) &&
+    finiteNonnegativeOrNull(
+      target?.max_midpoint_residual_over_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(target?.min_midpoint_residual_headroom_factor) &&
+    finiteNonnegativeOrNull(
+      target?.max_midpoint_residual_over_midpoint_slope_target
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.min_midpoint_slope_residual_headroom_factor
+    ) &&
+    (target?.s37_dependency_status === undefined ||
+      [
+        "midpoint-slope-collar-fits-but-conservative-s37-lower-bound-collapses",
+        "midpoint-slope-collar-also-fails-n38-graph-residual",
+        "conservative-s37-lower-bound-supports-n38-collar",
+        "s37-dependency-status-open",
+      ].includes(target?.s37_dependency_status)) &&
+    (target?.controlling_sample === undefined ||
+      n38RouteCompactSampleValid(target?.controlling_sample ?? null)) &&
+    (target?.certificate_inequality === undefined ||
+      typeof target?.certificate_inequality === "string") &&
+    (target?.taylor_remainder_order === null ||
+      Number.isInteger(target?.taylor_remainder_order)) &&
+    finiteNonnegativeOrNull(
+      target?.required_fourth_derivative_upper_for_parent_window
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.observed_midpoint_residual_implied_fourth_derivative_upper
+    ) &&
+    finiteNonnegativeOrNull(target?.fourth_derivative_headroom_factor) &&
+    (target?.sufficient_condition === undefined ||
+      typeof target?.sufficient_condition === "string") &&
+    target?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    target?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    target?.claim_boundary?.certifies_positive_source_covariance_collar ===
+      false &&
+    target?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    target?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    target?.claim_boundary?.retained_branch === false;
+  const positiveN38FourthDifferenceCompactStencilValid = (row) =>
+    row === null ||
+    (typeof row?.reference_label === "string" &&
+      Number.isInteger(row?.stencil_index) &&
+      row.stencil_index >= 0 &&
+      Array.isArray(row?.cell_id_span) &&
+      row.cell_id_span.length === 2 &&
+      hasFiniteInterval(row?.xi_midpoint_span) &&
+      finiteNonnegativeOrNull(row?.uniform_fourth_derivative_estimate) &&
+      finiteNonnegativeOrNull(row?.nonuniform_fourth_derivative_estimate) &&
+      finiteNonnegativeOrNull(
+        row?.uniform_fourth_derivative_to_required_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.nonuniform_fourth_derivative_to_required_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.point_expression_nonuniform_fourth_derivative_estimate
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.point_expression_nonuniform_fourth_derivative_to_required_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.interval_center_drift_nonuniform_fourth_derivative_estimate
+      ) &&
+      finiteNonnegativeOrNull(
+        row
+          ?.interval_center_drift_nonuniform_fourth_derivative_to_required_ratio
+      ) &&
+      finiteNonnegativeOrNull(row?.nonuniform_split_replay_relative_gap) &&
+      finiteNonnegativeOrNull(
+        row?.point_expression_to_direct_nonuniform_m4_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.interval_center_drift_to_direct_nonuniform_m4_ratio
+      ) &&
+      finiteNonnegativeOrNull(row?.split_triangle_nonuniform_m4) &&
+      finiteNonnegativeOrNull(row?.split_triangle_to_required_ratio) &&
+      finiteNonnegativeOrNull(
+        row?.split_triangle_inflation_factor_before_failure
+      ) &&
+      [
+        "sampled-fourth-difference-inside-cubic-taylor-target",
+        "sampled-fourth-difference-exceeds-cubic-taylor-target",
+      ].includes(row?.stencil_status));
+  const positiveN38SampledM4PressureDecompositionSummaryValid = (summary) =>
+    summary === null ||
+    (summary?.status ===
+      "positive-n38-sampled-m4-pressure-decomposition-emitted" &&
+      Number.isInteger(summary?.decomposed_stencil_count) &&
+      summary.decomposed_stencil_count >= 1 &&
+      finiteNonnegativeOrNull(
+        summary?.max_direct_row_hull_numerator_midpoint_nonuniform_m4
+      ) &&
+      finiteNonnegativeOrNull(
+        summary?.max_point_expression_source_term_sum_nonuniform_m4
+      ) &&
+      finiteNonnegativeOrNull(
+        summary?.max_interval_center_drift_nonuniform_m4
+      ) &&
+      finiteNonnegativeOrNull(
+        summary?.max_point_expression_to_direct_nonuniform_m4_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        summary?.max_interval_center_drift_to_direct_nonuniform_m4_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        summary?.max_direct_split_fourth_difference_relative_gap
+      ) &&
+      finiteNonnegativeOrNull(
+        summary?.max_split_triangle_to_required_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        summary?.min_split_triangle_inflation_factor_before_failure
+      ) &&
+      positiveN38FourthDifferenceCompactStencilValid(
+        summary?.controlling_stencil ?? null
+      ) &&
+      [
+        "point_expression_source_term_sum",
+        "interval_center_drift",
+      ].includes(summary?.dominant_m4_pressure_stream) &&
+      typeof summary?.m4_pressure_interpretation === "string");
+  const positiveN38SampledFourthDifferenceCheckValid = (check) =>
+    check?.status ===
+      "positive-n38-cubic-fourth-difference-check-candidate-emitted" &&
+    [
+      "positive-n38-sampled-fourth-difference-supports-cubic-target",
+      "positive-n38-sampled-fourth-difference-exceeds-cubic-target",
+      "positive-n38-fourth-difference-no-sampled-stencils",
+      "positive-n38-fourth-difference-no-positive-collar-target",
+      "positive-n38-fourth-difference-needs-cubic-target",
+      "positive-n38-fourth-difference-missing-required-m4-bound",
+    ].includes(check?.target_status) &&
+    typeof check?.reason === "string" &&
+    (check?.selected_polynomial_degree === null ||
+      (Number.isInteger(check?.selected_polynomial_degree) &&
+        check.selected_polynomial_degree >= 1 &&
+        check.selected_polynomial_degree <= 3)) &&
+    finiteNonnegativeOrNull(
+      check?.required_fourth_derivative_upper_for_parent_window
+    ) &&
+    Number.isInteger(check?.sampled_stencil_count) &&
+    check.sampled_stencil_count >= 0 &&
+    finiteNonnegativeOrNull(check?.max_uniform_fourth_derivative_estimate) &&
+    finiteNonnegativeOrNull(
+      check?.max_nonuniform_fourth_derivative_estimate
+    ) &&
+    finiteNonnegativeOrNull(
+      check?.max_point_expression_nonuniform_fourth_derivative_estimate
+    ) &&
+    finiteNonnegativeOrNull(
+      check
+        ?.max_interval_center_drift_nonuniform_fourth_derivative_estimate
+    ) &&
+    finiteNonnegativeOrNull(check?.max_nonuniform_to_required_ratio) &&
+    finiteNonnegativeOrNull(check?.max_uniform_to_required_ratio) &&
+    finiteNonnegativeOrNull(
+      check?.max_point_expression_nonuniform_to_required_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      check?.max_interval_center_drift_nonuniform_to_required_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      check?.max_nonuniform_split_replay_relative_gap
+    ) &&
+    typeof check?.m4_split_interpretation === "string" &&
+    positiveN38SampledM4PressureDecompositionSummaryValid(
+      check?.sampled_m4_pressure_decomposition_summary ?? null
+    ) &&
+    typeof check?.all_sampled_stencils_inside_required_bound ===
+      "boolean" &&
+    positiveN38FourthDifferenceCompactStencilValid(check?.worst_stencil) &&
+    check?.diagnosis === check?.target_status &&
+    Array.isArray(check?.sampled_fourth_difference_rows) &&
+    check.sampled_fourth_difference_rows.length ===
+      check.sampled_stencil_count &&
+    check.sampled_fourth_difference_rows.every(
+      positiveN38FourthDifferenceCompactStencilValid
+    ) &&
+    check?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    check?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+    check?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    check?.claim_boundary?.certifies_positive_source_covariance_collar ===
+      false &&
+    check?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    check?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    check?.claim_boundary?.retained_branch === false;
+  const positiveN38M4InflationRowValid = (row) =>
+    finitePositive(row?.inflation_factor) &&
+    finitePositive(row?.inflated_fourth_derivative_upper) &&
+    finiteNonnegativeOrNull(row?.cubic_taylor_remainder_upper) &&
+    finiteNonnegativeOrNull(row?.remainder_over_conservative_target) &&
+    typeof row?.closes_conservative_target === "boolean" &&
+    [
+      "inflated-sampled-m4-still-closes-cubic-target",
+      "inflated-sampled-m4-exceeds-cubic-target",
+    ].includes(row?.row_status);
+  const positiveN38SplitM4InflationRowValid = (row) =>
+    finitePositive(row?.inflation_factor) &&
+    finitePositive(
+      row?.point_expression_inflated_fourth_derivative_upper
+    ) &&
+    finitePositive(
+      row?.interval_center_drift_inflated_fourth_derivative_upper
+    ) &&
+    finitePositive(row?.split_triangle_inflated_fourth_derivative_upper) &&
+    finiteNonnegativeOrNull(row?.split_triangle_taylor_remainder_upper) &&
+    finiteNonnegativeOrNull(
+      row?.split_triangle_remainder_over_conservative_target
+    ) &&
+    typeof row?.closes_conservative_target === "boolean" &&
+    [
+      "split-inflated-sampled-m4-still-closes-cubic-target",
+      "split-inflated-sampled-m4-exceeds-cubic-target",
+    ].includes(row?.row_status);
+  const positiveN38M4InflationBudgetValid = (budget) =>
+    budget?.status ===
+      "positive-n38-cubic-m4-inflation-budget-candidate-emitted" &&
+    [
+      "positive-n38-m4-inflation-budget-closes-all-requested-factors",
+      "positive-n38-m4-inflation-budget-closes-some-requested-factors",
+      "positive-n38-m4-inflation-budget-open",
+      "positive-n38-m4-inflation-budget-needs-cubic-sampled-support",
+      "positive-n38-m4-inflation-budget-missing-finite-inputs",
+    ].includes(budget?.target_status) &&
+    typeof budget?.reason === "string" &&
+    (budget?.selected_polynomial_degree === null ||
+      (Number.isInteger(budget?.selected_polynomial_degree) &&
+        budget.selected_polynomial_degree >= 1 &&
+        budget.selected_polynomial_degree <= 3)) &&
+    finiteNonnegativeOrNull(budget?.xi_half_width) &&
+    finiteNonnegativeOrNull(
+      budget?.conservative_numerator_residual_target
+    ) &&
+    finiteNonnegativeOrNull(
+      budget?.required_fourth_derivative_upper_for_parent_window
+    ) &&
+    finiteNonnegativeOrNull(
+      budget?.sampled_nonuniform_fourth_derivative_upper
+    ) &&
+    finiteNonnegativeOrNull(budget?.sampled_m4_to_required_ratio) &&
+    finiteNonnegativeOrNull(
+      budget?.max_sampled_m4_inflation_factor_before_failure
+    ) &&
+    positiveN38SampledM4PressureDecompositionSummaryValid(
+      budget?.sampled_m4_pressure_decomposition_summary ?? null
+    ) &&
+    finiteNonnegativeOrNull(budget?.split_triangle_sampled_m4) &&
+    finiteNonnegativeOrNull(
+      budget?.split_triangle_sampled_m4_to_required_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      budget?.max_split_triangle_inflation_factor_before_failure
+    ) &&
+    finiteNonnegativeOrNull(
+      budget?.max_requested_split_inflation_factor_that_closes
+    ) &&
+    [
+      "positive-n38-split-m4-inflation-budget-closes-all-requested-factors",
+      "positive-n38-split-m4-inflation-budget-closes-some-requested-factors",
+      "positive-n38-split-m4-inflation-budget-open",
+      "positive-n38-m4-inflation-budget-needs-cubic-sampled-support",
+      "positive-n38-m4-inflation-budget-missing-finite-inputs",
+    ].includes(budget?.split_budget_status) &&
+    Array.isArray(budget?.requested_inflation_factors) &&
+    budget.requested_inflation_factors.length >= 1 &&
+    budget.requested_inflation_factors.every(finitePositive) &&
+    finiteNonnegativeOrNull(
+      budget?.max_requested_inflation_factor_that_closes
+    ) &&
+    Array.isArray(budget?.inflation_rows) &&
+    budget.inflation_rows.every(positiveN38M4InflationRowValid) &&
+    Array.isArray(budget?.split_inflation_rows) &&
+    budget.split_inflation_rows.every(
+      positiveN38SplitM4InflationRowValid
+    ) &&
+    budget?.diagnosis === budget?.target_status &&
+    budget?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    budget?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+    budget?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    budget?.claim_boundary?.certifies_positive_source_covariance_collar ===
+      false &&
+    budget?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    budget?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    budget?.claim_boundary?.retained_branch === false;
+  const positiveN38DirectedIntervalResidualSampleValid = (row) =>
+    row === null ||
+    (typeof row?.reference_label === "string" &&
+      typeof row?.cell_id === "string" &&
+      hasFiniteInterval(row?.xi_interval) &&
+      Number.isFinite(Number(row?.xi_midpoint)) &&
+      finiteNonnegativeOrNull(
+        row?.directed_interval_residual_abs_upper_over_conservative_target
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.directed_interval_residual_width_over_conservative_target
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.raw_numerator_interval_width_over_conservative_target
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.midpoint_residual_over_conservative_target
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.dependency_loss_factor_from_midpoint_to_directed_interval
+      ) &&
+      [
+        "directed-interval-residual-fits-conservative-target",
+        "directed-interval-residual-exceeds-conservative-target",
+      ].includes(row?.row_status));
+  const positiveN38DirectedIntervalResidualCheckValid = (check) =>
+    check?.status ===
+      "positive-n38-directed-interval-residual-check-candidate-emitted" &&
+    [
+      "positive-n38-directed-interval-residual-fits-collar-target",
+      "positive-n38-directed-interval-residual-exposes-dependency-loss",
+      "positive-n38-directed-interval-residual-open",
+      "positive-n38-directed-interval-residual-no-samples",
+      "positive-n38-directed-interval-residual-no-positive-collar-target",
+      "positive-n38-directed-interval-residual-missing-polynomial",
+    ].includes(check?.target_status) &&
+    typeof check?.reason === "string" &&
+    (check?.selected_polynomial_degree === null ||
+      (Number.isInteger(check?.selected_polynomial_degree) &&
+        check.selected_polynomial_degree >= 1 &&
+        check.selected_polynomial_degree <= 3)) &&
+    Number.isInteger(check?.positive_target_count) &&
+    check.positive_target_count >= 0 &&
+    Number.isInteger(check?.sample_count) &&
+    check.sample_count >= 0 &&
+    finiteNonnegativeOrNull(
+      check
+        ?.max_directed_interval_residual_abs_upper_over_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(
+      check?.max_directed_interval_residual_width_over_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(
+      check?.max_raw_numerator_interval_width_over_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(
+      check?.max_midpoint_residual_over_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(check?.min_midpoint_residual_headroom_factor) &&
+    finiteNonnegativeOrNull(
+      check?.max_dependency_loss_factor_from_midpoint_to_directed_interval
+    ) &&
+    positiveN38DirectedIntervalResidualSampleValid(
+      check?.controlling_sample
+    ) &&
+    Array.isArray(check?.directed_interval_residual_rows) &&
+    check.directed_interval_residual_rows.length === check.sample_count &&
+    check.directed_interval_residual_rows.every(
+      positiveN38DirectedIntervalResidualSampleValid
+    ) &&
+    typeof check?.interval_coordinate_interpretation === "string" &&
+    check?.diagnosis === check?.target_status &&
+    check?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    check?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+    check?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    check?.claim_boundary?.certifies_positive_source_covariance_collar ===
+      false &&
+    check?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    check?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    check?.claim_boundary?.retained_branch === false;
+  const positiveN38StreamDerivativeWitnessRowValid = (row, stream) =>
+    row === null ||
+    (row?.stream === stream &&
+      typeof row?.cell_id === "string" &&
+      Number.isFinite(Number(row?.xi_midpoint)) &&
+      hasFiniteInterval(row?.xi_interval) &&
+      Number.isFinite(Number(row?.midpoint_residual)) &&
+      finiteNonnegative(row?.abs_midpoint_residual) &&
+      Number.isFinite(Number(row?.lagrange_product_midpoint)) &&
+      hasFiniteInterval(row?.lagrange_product_interval) &&
+      finiteNonnegative(row?.lagrange_product_interval_abs_lower) &&
+      finiteNonnegativeOrNull(row?.midpoint_implied_m4) &&
+      finiteNonnegativeOrNull(row?.interval_product_guarded_m4) &&
+      [
+        "omitted-cell-lagrange-product-separated-from-zero",
+        "omitted-cell-lagrange-product-crosses-zero",
+      ].includes(row?.product_guard_status));
+  const positiveN38StreamDerivativeWitnessValid = (witness) =>
+    witness === null ||
+    ([
+      "positive-n38-same-domain-stream-derivative-witness-inside-provider-target",
+      "positive-n38-same-domain-stream-derivative-witness-open",
+      "positive-n38-same-domain-stream-derivative-witness-unavailable",
+    ].includes(witness?.status) &&
+      typeof witness?.reason === "string" &&
+      Array.isArray(witness?.selected_sample_indexes) &&
+      witness.selected_sample_indexes.every(
+        (index) => Number.isInteger(index) && index >= 0
+      ) &&
+      Array.isArray(witness?.selected_node_cell_ids) &&
+      witness.selected_node_cell_ids.every(
+        (cellId) => typeof cellId === "string"
+      ) &&
+      Array.isArray(witness?.omitted_sample_cell_ids) &&
+      witness.omitted_sample_cell_ids.every(
+        (cellId) => typeof cellId === "string"
+      ) &&
+      [
+        "all-omitted-cell-lagrange-products-separated-from-zero",
+        "some-omitted-cell-lagrange-products-cross-zero",
+        "lagrange-product-interval-open",
+      ].includes(witness?.product_interval_status) &&
+      finiteNonnegativeOrNull(witness?.max_point_expression_guarded_m4) &&
+      finiteNonnegativeOrNull(
+        witness?.max_interval_center_drift_guarded_m4
+      ) &&
+      finiteNonnegativeOrNull(witness?.split_triangle_guarded_m4) &&
+      finiteNonnegativeOrNull(
+        witness?.point_expression_guarded_to_ceiling_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        witness?.interval_center_drift_guarded_to_ceiling_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        witness?.split_triangle_guarded_to_ceiling_ratio
+      ) &&
+      typeof witness?.witness_interpretation === "string" &&
+      Array.isArray(witness?.point_expression_rows) &&
+      witness.point_expression_rows.every((row) =>
+        positiveN38StreamDerivativeWitnessRowValid(
+          row,
+          "point_expression"
+        )
+      ) &&
+      Array.isArray(witness?.interval_center_drift_rows) &&
+      witness.interval_center_drift_rows.every((row) =>
+        positiveN38StreamDerivativeWitnessRowValid(
+          row,
+          "interval_center_drift"
+        )
+      ) &&
+      witness?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+      witness?.claim_boundary?.certifies_n38_taylor_remainder_bound ===
+        false &&
+      witness?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division === false &&
+      witness?.claim_boundary?.certifies_positive_source_covariance_collar ===
+        false &&
+      witness?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+      witness?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+        false &&
+      witness?.claim_boundary?.retained_branch === false);
+  const positiveN38RemovableQuotientSampleProductRowValid = (row) =>
+    row === null ||
+    (typeof row?.cell_id === "string" &&
+      Number.isInteger(row?.sample_index) &&
+      row.sample_index >= 0 &&
+      hasFiniteInterval(row?.xi_interval) &&
+      Number.isFinite(Number(row?.xi_midpoint)) &&
+      typeof row?.interpolation_node === "boolean" &&
+      Number.isFinite(Number(row?.lagrange_product_midpoint)) &&
+      hasFiniteInterval(row?.lagrange_product_interval) &&
+      finiteNonnegative(row?.lagrange_product_interval_abs_lower) &&
+      [
+        "requires-removable-node-factorization",
+        "product-separated-direct-quotient-allowed",
+      ].includes(row?.quotient_interval_policy));
+  const positiveN38RemovableQuotientRouteValid = (route) =>
+    route === null ||
+    ([
+      "positive-n38-removable-quotient-route-candidate-emitted",
+      "positive-n38-removable-quotient-route-unavailable",
+    ].includes(route?.status) &&
+      [
+        "positive-n38-removable-quotient-route-needs-node-factorization",
+        "positive-n38-removable-quotient-route-all-sample-products-separated",
+        "positive-n38-removable-quotient-route-needs-omitted-cell-witness",
+        "positive-n38-removable-quotient-route-unavailable",
+      ].includes(route?.target_status) &&
+      typeof route?.reason === "string" &&
+      Array.isArray(route?.selected_sample_indexes) &&
+      route.selected_sample_indexes.every(
+        (index) => Number.isInteger(index) && index >= 0
+      ) &&
+      Array.isArray(route?.selected_node_cell_ids) &&
+      route.selected_node_cell_ids.every(
+        (cellId) => typeof cellId === "string"
+      ) &&
+      Array.isArray(route?.omitted_sample_cell_ids) &&
+      route.omitted_sample_cell_ids.every(
+        (cellId) => typeof cellId === "string"
+      ) &&
+      (route?.xi_window === null || hasFiniteInterval(route?.xi_window)) &&
+      typeof route?.quotient_identity === "string" &&
+      (route?.point_expression_quotient_target === undefined ||
+        typeof route?.point_expression_quotient_target === "string") &&
+      (route?.interval_center_drift_quotient_target === undefined ||
+        typeof route?.interval_center_drift_quotient_target === "string") &&
+      typeof route?.product_zero_policy === "string" &&
+      Array.isArray(route?.sample_product_rows) &&
+      route.sample_product_rows.every(
+        positiveN38RemovableQuotientSampleProductRowValid
+      ) &&
+      Number.isInteger(route?.product_separated_sample_count) &&
+      route.product_separated_sample_count >= 0 &&
+      Number.isInteger(route?.product_crossing_sample_count) &&
+      route.product_crossing_sample_count >= 0 &&
+      Number.isInteger(route?.removable_node_limit_obligation_count) &&
+      route.removable_node_limit_obligation_count >= 0 &&
+      finiteNonnegativeOrNull(route?.point_expression_omitted_guarded_m4) &&
+      finiteNonnegativeOrNull(
+        route?.interval_center_drift_omitted_guarded_m4
+      ) &&
+      finiteNonnegativeOrNull(route?.split_triangle_omitted_guarded_m4) &&
+      finiteNonnegativeOrNull(
+        route?.point_expression_omitted_guarded_to_ceiling_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        route?.interval_center_drift_omitted_guarded_to_ceiling_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        route?.split_triangle_omitted_guarded_to_ceiling_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        route?.equal_stream_point_expression_m4_ceiling
+      ) &&
+      finiteNonnegativeOrNull(
+        route?.equal_stream_interval_center_drift_m4_ceiling
+      ) &&
+      finiteNonnegativeOrNull(
+        route?.equal_stream_split_triangle_m4_ceiling
+      ) &&
+      typeof route?.route_interpretation === "string" &&
+      route?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+      route?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+      route?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division === false &&
+      route?.claim_boundary?.certifies_positive_source_covariance_collar ===
+        false &&
+      route?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+      route?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+        false &&
+      route?.claim_boundary?.retained_branch === false);
+  const positiveN38QuarticQuotientStreamRowValid = (row) =>
+    row === null ||
+    ([
+      "point_expression",
+      "interval_center_drift",
+      "direct",
+    ].includes(row?.stream) &&
+      Array.isArray(row?.selected_sample_indexes) &&
+      row.selected_sample_indexes.length === 4 &&
+      row.selected_sample_indexes.every(
+        (index) => Number.isInteger(index) && index >= 0
+      ) &&
+      Number.isInteger(row?.omitted_sample_index) &&
+      row.omitted_sample_index >= 0 &&
+      typeof row?.omitted_sample_cell_id === "string" &&
+      Number.isFinite(Number(row?.omitted_midpoint_residual)) &&
+      typeof row?.omitted_midpoint_residual_field === "string" &&
+      Number.isFinite(Number(row?.lagrange_product_midpoint)) &&
+      Number.isFinite(Number(row?.signed_nonuniform_m4)) &&
+      finiteNonnegative(row?.abs_nonuniform_m4) &&
+      Number.isFinite(Number(row?.omitted_midpoint_quotient_m4)) &&
+      finiteNonnegative(row?.quotient_consistency_relative_gap));
+  const positiveN38QuarticNodeLimitProxyRowValid = (row) =>
+    row === null ||
+    (typeof row?.cell_id === "string" &&
+      Number.isInteger(row?.sample_index) &&
+      row.sample_index >= 0 &&
+      Number.isFinite(Number(row?.xi_midpoint)) &&
+      row?.interpolation_node === true &&
+      row?.finite_data_limit_kind ===
+        "quartic-removable-node-limit-proxy" &&
+      Number.isFinite(Number(row?.point_expression_limit_proxy_m4)) &&
+      Number.isFinite(
+        Number(row?.interval_center_drift_limit_proxy_m4)
+      ) &&
+      Number.isFinite(Number(row?.direct_limit_proxy_m4)) &&
+      finiteNonnegativeOrNull(
+        row?.point_expression_abs_m4_to_ceiling_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.interval_center_drift_abs_m4_to_ceiling_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.split_triangle_abs_m4_to_ceiling_ratio
+      ) &&
+      [
+        "positive-n38-quartic-node-limit-proxy-inside-provider-target",
+        "positive-n38-quartic-node-limit-proxy-open",
+      ].includes(row?.split_stream_proxy_status) &&
+      row?.direct_stream_policy === "diagnostic-only");
+  const positiveN38QuarticQuotientConsistencyWitnessValid = (witness) =>
+    witness === null ||
+    ([
+      "positive-n38-quartic-quotient-consistency-witness-inside-provider-target",
+      "positive-n38-quartic-quotient-consistency-witness-open",
+      "positive-n38-quartic-quotient-consistency-witness-unavailable",
+    ].includes(witness?.status) &&
+      typeof witness?.reason === "string" &&
+      Array.isArray(witness?.selected_sample_indexes) &&
+      witness.selected_sample_indexes.every(
+        (index) => Number.isInteger(index) && index >= 0
+      ) &&
+      Array.isArray(witness?.selected_node_cell_ids) &&
+      witness.selected_node_cell_ids.every(
+        (cellId) => typeof cellId === "string"
+      ) &&
+      (witness.status ===
+        "positive-n38-quartic-quotient-consistency-witness-unavailable" ||
+        (Number.isInteger(witness?.omitted_sample_index) &&
+          witness.omitted_sample_index >= 0)) &&
+      (witness?.omitted_sample_cell_id === null ||
+        typeof witness?.omitted_sample_cell_id === "string") &&
+      witness?.finite_data_scope ===
+        "five-sample-quartic-normal-form-only" &&
+      typeof witness?.quotient_identity === "string" &&
+      finitePositive(witness?.consistency_tolerance) &&
+      [
+        "positive-n38-quartic-quotient-consistent",
+        "positive-n38-quartic-split-stream-quotient-consistent",
+        "positive-n38-quartic-quotient-open",
+        "positive-n38-quartic-quotient-unavailable",
+      ].includes(witness?.quotient_consistency_status) &&
+      [
+        "positive-n38-quartic-split-stream-quotient-consistent",
+        "positive-n38-quartic-split-stream-quotient-open",
+        "positive-n38-quartic-split-stream-quotient-unavailable",
+      ].includes(witness?.split_stream_quotient_consistency_status) &&
+      [
+        "positive-n38-quartic-direct-quotient-consistent",
+        "positive-n38-quartic-direct-quotient-diagnostic-open",
+        "positive-n38-quartic-direct-quotient-unavailable",
+      ].includes(witness?.direct_quotient_consistency_status) &&
+      Array.isArray(witness?.stream_rows) &&
+      witness.stream_rows.every(
+        positiveN38QuarticQuotientStreamRowValid
+      ) &&
+      [
+        "positive-n38-quartic-node-limit-proxy-inside-provider-target",
+        "positive-n38-quartic-node-limit-proxy-open",
+        "positive-n38-quartic-node-limit-proxy-unavailable",
+      ].includes(witness?.node_limit_proxy_status) &&
+      Array.isArray(witness?.node_limit_proxy_rows) &&
+      witness.node_limit_proxy_rows.every(
+        positiveN38QuarticNodeLimitProxyRowValid
+      ) &&
+      finiteOrNull(witness?.point_expression_signed_m4) &&
+      finiteOrNull(witness?.interval_center_drift_signed_m4) &&
+      finiteOrNull(witness?.direct_signed_m4) &&
+      finiteNonnegativeOrNull(witness?.point_expression_abs_m4) &&
+      finiteNonnegativeOrNull(
+        witness?.interval_center_drift_abs_m4
+      ) &&
+      finiteNonnegativeOrNull(witness?.direct_abs_m4) &&
+      finiteNonnegativeOrNull(witness?.split_triangle_abs_m4) &&
+      finiteOrNull(witness?.direct_split_signed_m4) &&
+      finiteNonnegativeOrNull(
+        witness?.split_to_direct_signed_m4_relative_gap
+      ) &&
+      finiteNonnegativeOrNull(
+        witness?.max_quotient_consistency_relative_gap
+      ) &&
+      finiteNonnegativeOrNull(
+        witness?.max_split_stream_quotient_consistency_relative_gap
+      ) &&
+      finiteNonnegativeOrNull(
+        witness?.direct_quotient_consistency_relative_gap
+      ) &&
+      finiteNonnegativeOrNull(
+        witness?.point_expression_abs_m4_to_ceiling_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        witness?.interval_center_drift_abs_m4_to_ceiling_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        witness?.split_triangle_abs_m4_to_ceiling_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        witness?.source_decomposition_direct_split_replay_relative_gap
+      ) &&
+      typeof witness?.witness_interpretation === "string" &&
+      typeof witness?.node_limit_proxy_interpretation === "string" &&
+      witness?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+      witness?.claim_boundary?.certifies_n38_taylor_remainder_bound ===
+        false &&
+      witness?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division === false &&
+      witness?.claim_boundary?.certifies_positive_source_covariance_collar ===
+        false &&
+      witness?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+      witness?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+        false &&
+      witness?.claim_boundary?.retained_branch === false);
+  const positiveN38SameDomainDerivativeProviderTargetValid = (target) =>
+    target !== null &&
+    [
+      "positive-n38-same-domain-derivative-provider-target-open",
+      "positive-n38-same-domain-derivative-provider-target-unavailable",
+    ].includes(target?.status) &&
+    target?.provider_target_kind ===
+      "directed-rounded-continuous-fourth-derivative-bound" &&
+    (target?.selected_polynomial_degree === null ||
+      (Number.isInteger(target?.selected_polynomial_degree) &&
+        target.selected_polynomial_degree >= 1 &&
+        target.selected_polynomial_degree <= 3)) &&
+    (target?.selected_polynomial_coefficients === null ||
+      (Array.isArray(target?.selected_polynomial_coefficients) &&
+        target.selected_polynomial_coefficients.length ===
+          Number(target.selected_polynomial_degree ?? -1) + 1 &&
+        target.selected_polynomial_coefficients.every((coefficient) =>
+          Number.isFinite(Number(coefficient))
+        ))) &&
+    (target?.xi_window === null || hasFiniteInterval(target?.xi_window)) &&
+    finiteNonnegativeOrNull(target?.xi_half_width) &&
+    (target?.selected_lagrange_node_pattern === null ||
+      typeof target?.selected_lagrange_node_pattern === "string") &&
+    (target?.selected_lagrange_node_cell_ids === null ||
+      (Array.isArray(target?.selected_lagrange_node_cell_ids) &&
+        target.selected_lagrange_node_cell_ids.every(
+          (cellId) => typeof cellId === "string"
+        ))) &&
+    (target?.omitted_sample_cell_ids === null ||
+      (Array.isArray(target?.omitted_sample_cell_ids) &&
+        target.omitted_sample_cell_ids.every(
+          (cellId) => typeof cellId === "string"
+        ))) &&
+    (target?.source_components === null ||
+      (Array.isArray(target?.source_components) &&
+        target.source_components.every((component) =>
+          sourceTermNames.has(component)
+        ))) &&
+    typeof target?.point_expression_stream === "string" &&
+    typeof target?.interval_center_drift_stream === "string" &&
+    typeof target?.direct_residual_stream === "string" &&
+    finiteNonnegativeOrNull(
+      target?.parent_required_fourth_derivative_upper
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.lagrange_required_fourth_derivative_upper
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.equal_stream_point_expression_m4_ceiling
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.equal_stream_interval_center_drift_m4_ceiling
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.equal_stream_split_triangle_m4_ceiling
+    ) &&
+    finiteNonnegativeOrNull(target?.sampled_point_expression_m4) &&
+    finiteNonnegativeOrNull(target?.sampled_interval_center_drift_m4) &&
+    finiteNonnegativeOrNull(target?.sampled_split_triangle_m4) &&
+    finiteNonnegativeOrNull(
+      target?.sampled_split_triangle_m4_to_lagrange_required_ratio
+    ) &&
+    (target?.sampled_ceiling_comparison === null ||
+      positiveN38SplitM4SampledCeilingComparisonValid(
+        target.sampled_ceiling_comparison
+      )) &&
+    positiveN38StreamDerivativeWitnessValid(
+      target?.same_domain_stream_derivative_witness ?? null
+    ) &&
+    positiveN38RemovableQuotientRouteValid(
+      target?.removable_quotient_route ?? null
+    ) &&
+    positiveN38QuarticQuotientConsistencyWitnessValid(
+      target?.quartic_quotient_consistency_witness ?? null
+    ) &&
+    (target?.raw_interval_route_status === null ||
+      [
+        "positive-n38-directed-interval-residual-fits-collar-target",
+        "positive-n38-directed-interval-residual-exposes-dependency-loss",
+        "positive-n38-directed-interval-residual-open",
+        "positive-n38-directed-interval-residual-no-samples",
+        "positive-n38-directed-interval-residual-no-positive-collar-target",
+        "positive-n38-directed-interval-residual-missing-polynomial",
+      ].includes(target.raw_interval_route_status)) &&
+    finiteNonnegativeOrNull(target?.raw_interval_rejection_ratio) &&
+    finiteNonnegativeOrNull(
+      target?.dependency_loss_factor_from_midpoint_to_directed_interval
+    ) &&
+    typeof target?.parent_acceptance_inequality === "string" &&
+    typeof target?.split_acceptance_inequality === "string" &&
+    typeof target?.provider_acceptance_test === "string" &&
+    typeof target?.s37_dependency_status === "string" &&
+    typeof target?.next_certificate_obligation === "string" &&
+    target?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    target?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+    target?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    target?.claim_boundary?.certifies_positive_source_covariance_collar ===
+      false &&
+    target?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    target?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    target?.claim_boundary?.retained_branch === false;
+  const positiveN38CubicTaylorRemainderRouteValid = (route) =>
+    route?.status ===
+      "positive-n38-cubic-taylor-remainder-route-candidate-emitted" &&
+    [
+      "positive-n38-cubic-taylor-remainder-route-needs-cubic-headroom",
+      "positive-n38-cubic-taylor-remainder-route-raw-directed-interval-fits",
+      "positive-n38-cubic-taylor-remainder-route-has-sampled-lagrange-headroom",
+      "positive-n38-cubic-taylor-remainder-route-has-sampled-parent-headroom",
+      "positive-n38-cubic-taylor-remainder-route-open",
+    ].includes(route?.target_status) &&
+    (route?.selected_polynomial_degree === null ||
+      (Number.isInteger(route?.selected_polynomial_degree) &&
+        route.selected_polynomial_degree >= 1 &&
+        route.selected_polynomial_degree <= 3)) &&
+    (route?.xi_window === null || hasFiniteInterval(route?.xi_window)) &&
+    finiteNonnegativeOrNull(route?.xi_half_width) &&
+    finiteNonnegativeOrNull(route?.conservative_numerator_residual_target) &&
+    finiteNonnegativeOrNull(route?.required_fourth_derivative_upper) &&
+    finiteNonnegativeOrNull(
+      route?.sampled_nonuniform_fourth_derivative_upper
+    ) &&
+    finiteNonnegativeOrNull(route?.sampled_m4_to_required_ratio) &&
+    finiteNonnegativeOrNull(route?.sampled_m4_headroom_factor) &&
+    finiteNonnegativeOrNull(
+      route?.lagrange_required_fourth_derivative_upper
+    ) &&
+    finiteNonnegativeOrNull(
+      route?.sampled_m4_to_lagrange_required_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      route?.split_triangle_m4_to_lagrange_required_ratio
+    ) &&
+    positiveN38SplitM4AllocationTargetValid(
+      route?.selected_split_m4_allocation_target ?? null
+    ) &&
+    positiveN38SameDomainDerivativeProviderTargetValid(
+      route?.same_domain_derivative_provider_target ?? null
+    ) &&
+    (route?.raw_directed_interval_residual_status === null ||
+      [
+        "positive-n38-directed-interval-residual-fits-collar-target",
+        "positive-n38-directed-interval-residual-exposes-dependency-loss",
+        "positive-n38-directed-interval-residual-open",
+        "positive-n38-directed-interval-residual-no-samples",
+        "positive-n38-directed-interval-residual-no-positive-collar-target",
+        "positive-n38-directed-interval-residual-missing-polynomial",
+      ].includes(route.raw_directed_interval_residual_status)) &&
+    finiteNonnegativeOrNull(
+      route?.raw_directed_interval_residual_abs_upper_over_conservative_target
+    ) &&
+    finiteNonnegativeOrNull(
+      route?.required_raw_interval_dependency_compression_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      route?.dependency_loss_factor_from_midpoint_to_directed_interval
+    ) &&
+    typeof route?.s37_dependency_status === "string" &&
+    typeof route?.sufficient_parent_taylor_inequality === "string" &&
+    typeof route?.sufficient_split_lagrange_inequality === "string" &&
+    route?.derivative_route_status ===
+      "continuous-directed-rounded-fourth-derivative-proof-open" &&
+    typeof route?.route_interpretation === "string" &&
+    route?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    route?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+    route?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    route?.claim_boundary?.certifies_positive_source_covariance_collar ===
+      false &&
+    route?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    route?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    route?.claim_boundary?.retained_branch === false;
+  const shareOrNull = (value) =>
+    value === null ||
+    (finiteNonnegative(value) && Number(value) <= 1 + 1e-9);
+  const finiteOrNull = (value) =>
+    value === null || Number.isFinite(Number(value));
+  const positiveN38LagrangeSourceResidualComponentValid = (row) =>
+    sourceTermNames.has(row?.component) &&
+    Number.isFinite(Number(row?.omitted_signed_residual_sum)) &&
+    finiteNonnegative(row?.omitted_abs_residual_sum) &&
+    shareOrNull(row?.omitted_abs_residual_share) &&
+    finiteOrNull(row?.signed_to_direct_omitted_residual_ratio) &&
+    ["negative", "zero", "positive"].includes(row?.omitted_residual_sign);
+  const positiveN38LagrangeSourceResidualDecompositionValid = (
+    decomposition
+  ) => {
+    if (decomposition === null) {
+      return true;
+    }
+    const baseValid =
+      [
+        "positive-n38-lagrange-source-decomposition-emitted",
+        "positive-n38-lagrange-source-decomposition-unavailable",
+      ].includes(decomposition?.status) &&
+      Array.isArray(decomposition?.source_components) &&
+      decomposition.source_components.length >= requiredTerms.size &&
+      decomposition.source_components.every((component) =>
+        sourceTermNames.has(component)
+      ) &&
+      typeof decomposition?.decomposition_interpretation === "string";
+    if (!baseValid) {
+      return false;
+    }
+    if (
+      decomposition.status ===
+      "positive-n38-lagrange-source-decomposition-unavailable"
+    ) {
+      return typeof decomposition?.reason === "string";
+    }
+    return (
+      Array.isArray(decomposition?.omitted_sample_indexes) &&
+      decomposition.omitted_sample_indexes.every(
+        (index) => Number.isInteger(index) && index >= 0
+      ) &&
+      Array.isArray(decomposition?.omitted_sample_cell_ids) &&
+      decomposition.omitted_sample_cell_ids.every(
+        (cellId) => typeof cellId === "string"
+      ) &&
+      Number.isFinite(Number(decomposition?.direct_omitted_residual_sum)) &&
+      finiteNonnegative(decomposition?.direct_omitted_abs_residual_sum) &&
+      Number.isFinite(
+        Number(decomposition?.point_expression_omitted_residual_sum)
+      ) &&
+      finiteNonnegative(
+        decomposition?.point_expression_omitted_abs_residual_sum
+      ) &&
+      finiteNonnegative(
+        decomposition
+          ?.max_point_expression_omitted_residual_over_conservative_target
+      ) &&
+      Number.isFinite(
+        Number(decomposition?.interval_center_drift_omitted_residual_sum)
+      ) &&
+      finiteNonnegative(
+        decomposition?.interval_center_drift_omitted_abs_residual_sum
+      ) &&
+      finiteNonnegative(
+        decomposition
+          ?.max_interval_center_drift_omitted_residual_over_conservative_target
+      ) &&
+      finiteNonnegative(decomposition?.direct_split_replay_relative_gap) &&
+      Number.isFinite(
+        Number(decomposition?.source_component_omitted_signed_residual_sum)
+      ) &&
+      finiteNonnegative(
+        decomposition?.source_component_omitted_abs_residual_sum
+      ) &&
+      finiteNonnegative(
+        decomposition?.source_sum_to_direct_residual_relative_gap
+      ) &&
+      typeof decomposition?.source_sum_replays_direct_residual ===
+        "boolean" &&
+      finiteOrNull(
+        decomposition?.source_component_signed_to_direct_residual_ratio
+      ) &&
+      Number.isFinite(
+        Number(decomposition?.interval_midpoint_artifact_residual_sum)
+      ) &&
+      finiteOrNull(
+        decomposition?.interval_midpoint_artifact_to_direct_residual_ratio
+      ) &&
+      shareOrNull(decomposition?.source_cancellation_fraction) &&
+      Number.isFinite(
+        Number(decomposition?.sine_pair_omitted_signed_residual_sum)
+      ) &&
+      finiteNonnegative(decomposition?.sine_pair_omitted_abs_residual_sum) &&
+      shareOrNull(decomposition?.sine_pair_abs_residual_share) &&
+      shareOrNull(decomposition?.sine_pair_cancellation_fraction) &&
+      finiteOrNull(decomposition?.sine_pair_signed_to_direct_residual_ratio) &&
+      sourceTermNames.has(
+        decomposition?.dominant_source_component_by_abs_omitted_residual
+      ) &&
+      shareOrNull(
+        decomposition?.dominant_source_component_abs_omitted_residual_share
+      ) &&
+      finiteNonnegative(
+        decomposition?.max_source_term_sum_to_numerator_midpoint_gap
+      ) &&
+      Array.isArray(decomposition?.component_rows) &&
+      decomposition.component_rows.length ===
+        decomposition.source_components.length &&
+      decomposition.component_rows.every(
+        positiveN38LagrangeSourceResidualComponentValid
+      )
+    );
+  };
+  const positiveN38SplitM4SampledCeilingComparisonValid = (comparison) =>
+    comparison !== null &&
+    [
+      "sampled-split-m4-inside-equal-stream-ceilings",
+      "sampled-split-m4-exceeds-equal-stream-ceilings",
+    ].includes(comparison?.status) &&
+    comparison?.selected_feasible_ceiling_pair ===
+      "equal-stream-rectangle" &&
+    finitePositive(
+      comparison?.point_expression_sampled_to_equal_ceiling_ratio
+    ) &&
+    finitePositive(
+      comparison?.interval_center_drift_sampled_to_equal_ceiling_ratio
+    ) &&
+    finitePositive(
+      comparison?.split_triangle_sampled_to_equal_split_ceiling_ratio
+    ) &&
+    finitePositive(
+      comparison?.equal_stream_point_expression_m4_headroom_factor
+    ) &&
+    finitePositive(
+      comparison?.equal_stream_interval_center_drift_m4_headroom_factor
+    ) &&
+    finitePositive(
+      comparison?.equal_stream_split_triangle_m4_headroom_factor
+    ) &&
+    finitePositive(
+      comparison
+        ?.point_expression_sampled_to_one_stream_fixed_ceiling_ratio
+    ) &&
+    finitePositive(
+      comparison
+        ?.interval_center_drift_sampled_to_one_stream_fixed_ceiling_ratio
+    ) &&
+    finitePositive(comparison?.point_expression_sampled_to_axis_ceiling_ratio) &&
+    finitePositive(
+      comparison?.interval_center_drift_sampled_to_axis_ceiling_ratio
+    ) &&
+    typeof comparison?.sampled_pair_satisfies_equal_stream_rectangle ===
+      "boolean" &&
+    typeof comparison?.sampled_pair_satisfies_linear_allocation ===
+      "boolean" &&
+    comparison?.continuous_certificate_status ===
+      "continuous-directed-rounded-fourth-derivative-proof-open" &&
+    typeof comparison?.missing_proof_ingredient === "string";
+  const positiveN38SplitM4AllocationTargetValid = (target) =>
+    target === null ||
+    ([
+      "positive-n38-split-m4-allocation-target-candidate-emitted",
+      "positive-n38-split-m4-allocation-target-unavailable",
+    ].includes(target?.status) &&
+      typeof target?.geometry === "string" &&
+      target?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+      target?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+      target?.claim_boundary
+        ?.certifies_s37_dependency_preserving_division === false &&
+      target?.claim_boundary?.certifies_positive_source_covariance_collar ===
+        false &&
+      target?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+      target?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+        false &&
+      target?.claim_boundary?.retained_branch === false &&
+      (target.status ===
+        "positive-n38-split-m4-allocation-target-unavailable" ||
+        (typeof target?.allocation_inequality === "string" &&
+          finitePositive(target?.required_fourth_derivative_upper) &&
+          finitePositive(target?.point_expression_sampled_m4) &&
+          finitePositive(target?.interval_center_drift_sampled_m4) &&
+          finitePositive(target?.split_triangle_sampled_m4) &&
+          shareOrNull(target?.point_expression_sampled_m4_share) &&
+          shareOrNull(target?.interval_center_drift_sampled_m4_share) &&
+          finiteNonnegative(target?.split_triangle_to_required_ratio) &&
+          finitePositive(
+            target?.equal_stream_inflation_factor_before_failure
+          ) &&
+          finitePositive(
+            target?.point_expression_axis_intercept_inflation_factor
+          ) &&
+          finitePositive(
+            target?.interval_center_drift_axis_intercept_inflation_factor
+          ) &&
+          finitePositive(
+            target
+              ?.point_expression_inflation_factor_with_drift_uninflated
+          ) &&
+          finitePositive(
+            target
+              ?.interval_center_drift_inflation_factor_with_point_uninflated
+          ) &&
+          finitePositive(target?.symmetric_rectangle_sufficient_factor) &&
+          finitePositive(
+            target?.equal_stream_point_expression_m4_ceiling
+          ) &&
+          finitePositive(
+            target?.equal_stream_interval_center_drift_m4_ceiling
+          ) &&
+          finitePositive(target?.equal_stream_split_triangle_m4_ceiling) &&
+          finitePositive(
+            target?.point_expression_axis_intercept_m4_ceiling
+          ) &&
+          finitePositive(
+            target?.interval_center_drift_axis_intercept_m4_ceiling
+          ) &&
+          finitePositive(
+            target?.point_expression_m4_ceiling_with_drift_uninflated
+          ) &&
+          finitePositive(
+            target?.interval_center_drift_m4_ceiling_with_point_uninflated
+          ) &&
+          positiveN38SplitM4SampledCeilingComparisonValid(
+            target?.sampled_ceiling_comparison ?? null
+          ) &&
+          typeof target?.allocation_interpretation === "string" &&
+          typeof target?.allocation_certificate_obligation === "string")));
+  const positiveN38LagrangeRemainderCandidateValid = (row) =>
+    row === null ||
+    (typeof row?.reference_label === "string" &&
+      Array.isArray(row?.selected_sample_indexes) &&
+      row.selected_sample_indexes.length === 4 &&
+      row.selected_sample_indexes.every(
+        (index) => Number.isInteger(index) && index >= 0
+      ) &&
+      Array.isArray(row?.selected_node_cell_ids) &&
+      row.selected_node_cell_ids.length === 4 &&
+      row.selected_node_cell_ids.every((cellId) => typeof cellId === "string") &&
+      Array.isArray(row?.omitted_sample_indexes) &&
+      row.omitted_sample_indexes.every(
+        (index) => Number.isInteger(index) && index >= 0
+      ) &&
+      Array.isArray(row?.omitted_sample_cell_ids) &&
+      row.omitted_sample_cell_ids.every(
+        (cellId) => typeof cellId === "string"
+      ) &&
+      finitePositive(row?.lagrange_product_max_abs) &&
+      Number.isFinite(Number(row?.lagrange_product_max_abs_location)) &&
+      finitePositive(
+        row?.required_fourth_derivative_upper_for_lagrange_window
+      ) &&
+      finitePositive(row?.lagrange_to_parent_taylor_required_m4_factor) &&
+      finiteNonnegativeOrNull(row?.sampled_m4_to_lagrange_required_ratio) &&
+      finitePositive(row?.sampled_m4_inflation_factor_before_failure) &&
+      finiteNonnegativeOrNull(row?.split_triangle_sampled_m4_upper) &&
+      finiteNonnegativeOrNull(
+        row?.split_triangle_m4_to_lagrange_required_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.split_triangle_lagrange_inflation_factor_before_failure
+      ) &&
+      positiveN38SplitM4AllocationTargetValid(
+        row?.split_m4_allocation_target ?? null
+      ) &&
+      positiveN38StreamDerivativeWitnessValid(
+        row?.same_domain_stream_derivative_witness ?? null
+      ) &&
+      positiveN38RemovableQuotientRouteValid(
+        row?.removable_quotient_route ?? null
+      ) &&
+      positiveN38QuarticQuotientConsistencyWitnessValid(
+        row?.quartic_quotient_consistency_witness ?? null
+      ) &&
+      finiteNonnegativeOrNull(row?.max_sample_midpoint_residual) &&
+      finiteNonnegativeOrNull(
+        row?.max_sample_midpoint_residual_over_conservative_target
+      ) &&
+      (row?.controlling_sample === null ||
+        (typeof row?.controlling_sample?.cell_id === "string" &&
+          Number.isFinite(Number(row.controlling_sample.xi_midpoint)) &&
+          finiteNonnegative(
+            row.controlling_sample.abs_midpoint_residual
+          ) &&
+          finiteNonnegativeOrNull(
+            row.controlling_sample.residual_over_conservative_target
+          ))) &&
+      positiveN38LagrangeSourceResidualDecompositionValid(
+        row?.source_residual_decomposition
+      ) &&
+      [
+        "lagrange-sampled-m4-supports-remainder-target",
+        "lagrange-sampled-m4-exceeds-remainder-target",
+      ].includes(row?.row_status));
+  const positiveN38LagrangeRemainderTargetValid = (target) =>
+    target?.status ===
+      "positive-n38-lagrange-remainder-target-candidate-emitted" &&
+    [
+      "positive-n38-lagrange-remainder-target-has-sampled-m4-headroom",
+      "positive-n38-lagrange-remainder-target-open",
+      "positive-n38-lagrange-no-candidate-stencil",
+      "positive-n38-lagrange-no-positive-collar-target",
+      "positive-n38-lagrange-needs-cubic-target",
+      "positive-n38-lagrange-missing-finite-inputs",
+    ].includes(target?.target_status) &&
+    typeof target?.reason === "string" &&
+    (target?.selected_polynomial_degree === null ||
+      (Number.isInteger(target?.selected_polynomial_degree) &&
+        target.selected_polynomial_degree >= 1 &&
+        target.selected_polynomial_degree <= 3)) &&
+    Number.isInteger(target?.positive_target_count) &&
+    target.positive_target_count >= 0 &&
+    Number.isInteger(target?.candidate_count) &&
+    target.candidate_count >= 0 &&
+    positiveN38LagrangeRemainderCandidateValid(
+      target?.selected_candidate
+    ) &&
+    positiveN38LagrangeSourceResidualDecompositionValid(
+      target?.selected_source_residual_decomposition
+    ) &&
+    Array.isArray(target?.candidate_rows) &&
+    target.candidate_rows.length === target.candidate_count &&
+    target.candidate_rows.every(
+      positiveN38LagrangeRemainderCandidateValid
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.conservative_numerator_residual_target
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.parent_taylor_required_fourth_derivative_upper
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.sampled_nonuniform_fourth_derivative_upper
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.best_lagrange_required_fourth_derivative_upper
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.best_lagrange_to_parent_taylor_required_m4_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.best_sampled_m4_to_lagrange_required_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.best_sampled_m4_inflation_factor_before_failure
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.best_split_triangle_m4_to_lagrange_required_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      target?.best_split_triangle_lagrange_inflation_factor_before_failure
+    ) &&
+    positiveN38SplitM4AllocationTargetValid(
+      target?.selected_split_m4_allocation_target ?? null
+    ) &&
+    positiveN38StreamDerivativeWitnessValid(
+      target?.selected_same_domain_stream_derivative_witness ?? null
+    ) &&
+    positiveN38RemovableQuotientRouteValid(
+      target?.selected_removable_quotient_route ?? null
+    ) &&
+    positiveN38QuarticQuotientConsistencyWitnessValid(
+      target?.selected_quartic_quotient_consistency_witness ?? null
+    ) &&
+    typeof target?.source_residual_decomposition_interpretation ===
+      "string" &&
+    typeof target?.lagrange_certificate_interpretation === "string" &&
+    target?.diagnosis === target?.target_status &&
+    target?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    target?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+    target?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    target?.claim_boundary?.certifies_positive_source_covariance_collar ===
+      false &&
+    target?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    target?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    target?.claim_boundary?.retained_branch === false;
   const referenceProducerImageSummaryValid = (row) =>
     finitePositive(row?.target_pressure) &&
     (row?.best_signed_collar_index === null ||
@@ -18977,6 +25116,14 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
     diagnostic.reference_pressure_targets.length < 1 ||
     !diagnostic.reference_pressure_targets.every((target) =>
       finitePositive(target)
+    ) ||
+    !Number.isInteger(diagnostic?.safety_search_iterations) ||
+    diagnostic.safety_search_iterations < 1 ||
+    !Array.isArray(diagnostic?.m4_inflation_factors) ||
+    diagnostic.m4_inflation_factors.length < 1 ||
+    !diagnostic.m4_inflation_factors.every(finitePositive) ||
+    !finiteNonnegative(
+      diagnostic?.producer_centered_safety_candidate_half_width
     )
   ) {
     errors.push("source covariance parameters must describe one five-row local graph window");
@@ -19120,6 +25267,189 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
     errors.push("source covariance producer-centered replay must compare signed pressure on the H38 producer midpoint hull");
   }
   if (
+    !Array.isArray(
+      diagnostic?.source_covariance_producer_centered_safety_search_rows
+    ) ||
+    diagnostic.source_covariance_producer_centered_safety_search_rows.length !==
+      diagnostic.reference_pressure_targets.length ||
+    !diagnostic.source_covariance_producer_centered_safety_search_rows.every(
+      producerCenteredSafetyRowValid
+    ) ||
+    ![
+      "producer-centered-safety-search-finds-positive-source-covariance-collar",
+      "producer-centered-safety-search-center-hull-only",
+      "producer-centered-safety-search-center-exceeds-target",
+    ].includes(
+      diagnostic
+        ?.source_covariance_producer_centered_safety_search_diagnosis
+    ) ||
+    finiteNonnegativeOrNull(
+      diagnostic
+        ?.max_source_covariance_producer_centered_safety_closing_half_width
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic?.max_source_covariance_producer_centered_safety_bracket_width
+    ) === false
+  ) {
+    errors.push("source covariance producer-centered safety search must measure the target-closing collar");
+  }
+  if (
+    !h38Y44SolveWidthProfileValid(
+      diagnostic?.source_covariance_h38_y44_solve_width_profile
+    ) ||
+    !Array.isArray(
+      diagnostic
+        ?.source_covariance_h38_y44_numerator_polynomial_degree_diagnostics
+    ) ||
+    diagnostic
+      .source_covariance_h38_y44_numerator_polynomial_degree_diagnostics
+      .length < 1 ||
+    !diagnostic.source_covariance_h38_y44_numerator_polynomial_degree_diagnostics.every(
+      h38Y44NumeratorPolynomialDiagnosticValid
+    ) ||
+    !h38Y44NumeratorPolynomialDiagnosticValid(
+      diagnostic?.source_covariance_h38_y44_numerator_polynomial_diagnostic
+    ) ||
+    !Array.isArray(
+      diagnostic
+        ?.source_covariance_producer_centered_numerator_collar_targets
+    ) ||
+    diagnostic.source_covariance_producer_centered_numerator_collar_targets
+      .length !== diagnostic.reference_pressure_targets.length ||
+    !diagnostic.source_covariance_producer_centered_numerator_collar_targets.every(
+      producerCenteredNumeratorCollarTargetValid
+    ) ||
+    !Array.isArray(
+      diagnostic
+        ?.source_covariance_positive_producer_centered_numerator_collar_targets
+    ) ||
+    diagnostic
+      .source_covariance_positive_producer_centered_numerator_collar_targets
+      .length > diagnostic.reference_pressure_targets.length ||
+    !diagnostic.source_covariance_positive_producer_centered_numerator_collar_targets.every(
+      producerCenteredNumeratorCollarTargetValid
+    ) ||
+    !Number.isInteger(
+      diagnostic
+        ?.source_covariance_producer_centered_numerator_graph_inside_count
+    ) ||
+    diagnostic
+      .source_covariance_producer_centered_numerator_graph_inside_count < 0 ||
+    diagnostic
+      .source_covariance_producer_centered_numerator_graph_inside_count >
+      diagnostic.reference_pressure_targets.length ||
+    !Number.isInteger(
+      diagnostic
+        ?.source_covariance_positive_producer_centered_numerator_graph_inside_count
+    ) ||
+    diagnostic
+      .source_covariance_positive_producer_centered_numerator_graph_inside_count <
+      0 ||
+    diagnostic
+      .source_covariance_positive_producer_centered_numerator_graph_inside_count >
+      diagnostic
+        .source_covariance_positive_producer_centered_numerator_collar_targets
+        .length ||
+    finiteNonnegativeOrNull(
+      diagnostic
+        ?.max_source_covariance_producer_centered_numerator_interval_compression_to_conservative_target
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic
+        ?.max_source_covariance_producer_centered_numerator_midpoint_residual_over_conservative_target
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic
+        ?.min_source_covariance_producer_centered_numerator_midpoint_residual_headroom_factor
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic
+        ?.max_source_covariance_positive_producer_centered_numerator_interval_compression_to_conservative_target
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic
+        ?.max_source_covariance_positive_producer_centered_numerator_midpoint_residual_over_conservative_target
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic
+        ?.min_source_covariance_positive_producer_centered_numerator_midpoint_residual_headroom_factor
+    ) === false ||
+    !n38CollarEnclosureRouteValid(
+      diagnostic?.source_covariance_h38_y44_n38_collar_enclosure_route
+    ) ||
+    !n38CollarEnclosureRouteValid(
+      diagnostic?.source_covariance_positive_h38_y44_n38_collar_enclosure_route,
+      diagnostic
+        ?.source_covariance_positive_producer_centered_numerator_collar_targets
+        ?.length
+    ) ||
+    ![
+      "source-covariance-n38-midpoint-graph-fits-measured-collar",
+      "source-covariance-n38-midpoint-graph-partially-fits-measured-collar",
+      "source-covariance-n38-midpoint-graph-open-for-measured-collar",
+      "source-covariance-n38-collar-needs-positive-source-covariance-width",
+    ].includes(diagnostic?.source_covariance_n38_collar_interpretation) ||
+    ![
+      "source-covariance-positive-n38-collar-no-positive-collar-target",
+      "source-covariance-positive-n38-midpoint-graph-fits-measured-collar",
+      "source-covariance-positive-n38-midpoint-graph-partially-fits-measured-collar",
+      "source-covariance-positive-n38-midpoint-graph-open-for-measured-collar",
+    ].includes(
+      diagnostic?.source_covariance_positive_n38_collar_interpretation
+    ) ||
+    !Array.isArray(
+      diagnostic?.source_covariance_positive_n38_degree_sweep_rows
+    ) ||
+    diagnostic.source_covariance_positive_n38_degree_sweep_rows.length !==
+      diagnostic
+        .source_covariance_h38_y44_numerator_polynomial_degree_diagnostics
+        .length ||
+    !diagnostic.source_covariance_positive_n38_degree_sweep_rows.every(
+      positiveN38DegreeSweepRowValid
+    ) ||
+    (diagnostic?.source_covariance_positive_n38_degree_sweep_diagnosis ===
+    "positive-n38-degree-sweep-no-positive-collar-target"
+      ? diagnostic?.source_covariance_positive_n38_best_degree_row !== null
+      : !positiveN38DegreeSweepRowValid(
+          diagnostic?.source_covariance_positive_n38_best_degree_row
+        )) ||
+    !positiveN38DegreeSweepRowValid(
+      diagnostic?.source_covariance_positive_n38_selected_taylor_degree_row
+    ) ||
+    ![
+      "positive-n38-degree-sweep-no-positive-collar-target",
+      "positive-n38-degree-sweep-finds-certificate-headroom",
+      "positive-n38-degree-sweep-fits-collar-with-limited-headroom",
+      "positive-n38-degree-sweep-partial-collar-fit",
+      "positive-n38-degree-sweep-open",
+    ].includes(
+      diagnostic?.source_covariance_positive_n38_degree_sweep_diagnosis
+    ) ||
+    !positiveN38TaylorCertificateTargetValid(
+      diagnostic?.source_covariance_positive_n38_taylor_certificate_target
+    ) ||
+    !positiveN38SampledFourthDifferenceCheckValid(
+      diagnostic
+        ?.source_covariance_positive_n38_sampled_fourth_difference_check
+    ) ||
+    !positiveN38M4InflationBudgetValid(
+      diagnostic?.source_covariance_positive_n38_m4_inflation_budget
+    ) ||
+    !positiveN38DirectedIntervalResidualCheckValid(
+      diagnostic
+        ?.source_covariance_positive_n38_directed_interval_residual_check
+    ) ||
+    !positiveN38LagrangeRemainderTargetValid(
+      diagnostic?.source_covariance_positive_n38_lagrange_remainder_target
+    ) ||
+    !positiveN38CubicTaylorRemainderRouteValid(
+      diagnostic
+        ?.source_covariance_positive_n38_cubic_taylor_remainder_route
+    )
+  ) {
+    errors.push("source covariance N38 collar route must pull the measured producer-centered collar through the recurrence numerator");
+  }
+  if (
     !termRowValid(diagnostic?.dominant_source_zero_term) ||
     !termRowValid(diagnostic?.dominant_affine_slope_term) ||
     !pairRowValid(diagnostic?.strongest_pair_cancellation)
@@ -19148,6 +25478,27 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
     diagnostic?.claim_boundary
       ?.certifies_h38_y44_source_covariance_producer_centered_collar !==
       false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_source_covariance_producer_centered_safety_search !==
+      false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_source_covariance_producer_centered_n38_collar_enclosure !==
+      false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_source_covariance_positive_n38_taylor_certificate !==
+      false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_source_covariance_positive_n38_sampled_fourth_difference !==
+      false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_source_covariance_positive_n38_m4_inflation_budget !==
+      false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_source_covariance_positive_n38_directed_interval_residual !==
+      false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_source_covariance_positive_n38_lagrange_remainder !==
+      false ||
     diagnostic?.claim_boundary?.certifies_source_level_affine_zero !==
       false ||
     diagnostic?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
@@ -19158,6 +25509,288 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
     diagnostic?.claim_boundary?.retained_branch !== false
   ) {
     errors.push("claim boundary must keep source covariance and shifted closure open");
+  }
+  return errors;
+}
+
+export function validateH39H38Y44SourceCovarianceSplitM4RefinementLadder(
+  diagnostic
+) {
+  const errors = [];
+  const finiteNonnegativeOrNull = (value) =>
+    value === null || finiteNonnegative(value);
+  const finiteOrNull = (value) =>
+    value === null || Number.isFinite(Number(value));
+  const rowValid = (row) =>
+    Number.isInteger(row?.source_stencil_subcell_count) &&
+    row.source_stencil_subcell_count >= 5 &&
+    Number.isInteger(row?.comparison_stencil_index) &&
+    row.comparison_stencil_index >= 0 &&
+    row.comparison_stencil_index <= row.source_stencil_subcell_count - 5 &&
+    typeof row?.analysis_cell_id === "string" &&
+    Number.isInteger(row?.validation_error_count) &&
+    row.validation_error_count >= 0 &&
+    Array.isArray(row?.validation_errors) &&
+    row.validation_errors.length === row.validation_error_count &&
+    typeof row?.lagrange_target_status === "string" &&
+    (row?.selected_polynomial_degree === null ||
+      (Number.isInteger(row.selected_polynomial_degree) &&
+        row.selected_polynomial_degree >= 1 &&
+        row.selected_polynomial_degree <= 3)) &&
+    Number.isInteger(row?.positive_target_count) &&
+    row.positive_target_count >= 0 &&
+    (row?.selected_node_cell_ids === null ||
+      (Array.isArray(row.selected_node_cell_ids) &&
+        row.selected_node_cell_ids.every(
+          (cellId) => typeof cellId === "string"
+        ))) &&
+    (row?.selected_sample_indexes === null ||
+      (Array.isArray(row.selected_sample_indexes) &&
+        row.selected_sample_indexes.every(
+          (index) => Number.isInteger(index) && index >= 0
+        ))) &&
+    (row?.omitted_sample_cell_ids === null ||
+      (Array.isArray(row.omitted_sample_cell_ids) &&
+        row.omitted_sample_cell_ids.every(
+          (cellId) => typeof cellId === "string"
+        ))) &&
+    (row?.omitted_sample_indexes === null ||
+      (Array.isArray(row.omitted_sample_indexes) &&
+        row.omitted_sample_indexes.every(
+          (index) => Number.isInteger(index) && index >= 0
+        ))) &&
+    (row?.selected_node_signature === null ||
+      typeof row.selected_node_signature === "string") &&
+    (row?.selected_local_node_pattern === null ||
+      typeof row.selected_local_node_pattern === "string") &&
+    finiteNonnegativeOrNull(row?.required_fourth_derivative_upper) &&
+    finiteNonnegativeOrNull(row?.point_expression_sampled_m4) &&
+    finiteNonnegativeOrNull(row?.interval_center_drift_sampled_m4) &&
+    finiteNonnegativeOrNull(row?.split_triangle_sampled_m4) &&
+    finiteNonnegativeOrNull(
+      row?.equal_stream_point_expression_m4_ceiling
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.equal_stream_interval_center_drift_m4_ceiling
+    ) &&
+    finiteNonnegativeOrNull(row?.equal_stream_split_triangle_m4_ceiling) &&
+    finiteNonnegativeOrNull(
+      row?.split_triangle_sampled_to_equal_split_ceiling_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.point_expression_sampled_to_equal_ceiling_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.interval_center_drift_sampled_to_equal_ceiling_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.equal_stream_split_triangle_m4_headroom_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.point_expression_sampled_to_one_stream_fixed_ceiling_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.interval_center_drift_sampled_to_one_stream_fixed_ceiling_ratio
+    ) &&
+    [
+      "sampled-split-m4-inside-equal-stream-ceilings",
+      "sampled-split-m4-exceeds-equal-stream-ceilings",
+      null,
+    ].includes(row?.sampled_ceiling_comparison_status ?? null) &&
+    [
+      "continuous-directed-rounded-fourth-derivative-proof-open",
+      null,
+    ].includes(row?.continuous_certificate_status ?? null) &&
+    (row?.missing_proof_ingredient === null ||
+      typeof row.missing_proof_ingredient === "string") &&
+    [
+      "positive-n38-quartic-quotient-consistency-witness-inside-provider-target",
+      "positive-n38-quartic-quotient-consistency-witness-open",
+      "positive-n38-quartic-quotient-consistency-witness-unavailable",
+      null,
+    ].includes(row?.quartic_quotient_witness_status ?? null) &&
+    [
+      "positive-n38-quartic-quotient-consistent",
+      "positive-n38-quartic-split-stream-quotient-consistent",
+      "positive-n38-quartic-quotient-open",
+      "positive-n38-quartic-quotient-unavailable",
+      null,
+    ].includes(row?.quartic_quotient_consistency_status ?? null) &&
+    [
+      "positive-n38-quartic-split-stream-quotient-consistent",
+      "positive-n38-quartic-split-stream-quotient-open",
+      "positive-n38-quartic-split-stream-quotient-unavailable",
+      null,
+    ].includes(
+      row?.quartic_quotient_split_stream_consistency_status ?? null
+    ) &&
+    [
+      "positive-n38-quartic-direct-quotient-consistent",
+      "positive-n38-quartic-direct-quotient-diagnostic-open",
+      "positive-n38-quartic-direct-quotient-unavailable",
+      null,
+    ].includes(row?.quartic_quotient_direct_consistency_status ?? null) &&
+    [
+      "positive-n38-quartic-node-limit-proxy-inside-provider-target",
+      "positive-n38-quartic-node-limit-proxy-open",
+      "positive-n38-quartic-node-limit-proxy-unavailable",
+      null,
+    ].includes(row?.quartic_quotient_node_limit_proxy_status ?? null) &&
+    (row?.quartic_quotient_node_limit_proxy_row_count === null ||
+      (Number.isInteger(row?.quartic_quotient_node_limit_proxy_row_count) &&
+        row.quartic_quotient_node_limit_proxy_row_count >= 0)) &&
+    finiteNonnegativeOrNull(
+      row?.quartic_quotient_max_consistency_relative_gap
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.quartic_quotient_max_split_stream_consistency_relative_gap
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.quartic_quotient_direct_consistency_relative_gap
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.quartic_quotient_split_to_direct_signed_m4_relative_gap
+    ) &&
+    finiteOrNull(row?.quartic_quotient_point_expression_signed_m4) &&
+    finiteOrNull(row?.quartic_quotient_interval_center_drift_signed_m4) &&
+    finiteOrNull(row?.quartic_quotient_direct_signed_m4) &&
+    finiteNonnegativeOrNull(
+      row?.quartic_quotient_point_expression_abs_m4_to_ceiling_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.quartic_quotient_interval_center_drift_abs_m4_to_ceiling_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.quartic_quotient_split_triangle_abs_m4_to_ceiling_ratio
+    ) &&
+    [
+      "quartic-quotient-refinement-row-inside-provider-target",
+      "quartic-quotient-refinement-row-open",
+      "quartic-quotient-refinement-row-unavailable",
+    ].includes(row?.quartic_quotient_row_status) &&
+    typeof row?.selected_node_signature_matches_base === "boolean" &&
+    typeof row?.selected_local_node_pattern_matches_base === "boolean" &&
+    [
+      "sampled-refinement-row-inside-equal-stream-ceilings",
+      "sampled-refinement-row-open",
+      "sampled-refinement-row-validation-error",
+    ].includes(row?.row_status);
+  if (
+    diagnostic?.schema !==
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SOURCE_COVARIANCE_SPLIT_M4_REFINEMENT_LADDER_SCHEMA ||
+    diagnostic?.status !==
+      "h39-h38-y44-source-covariance-split-m4-refinement-ladder-candidate-emitted" ||
+    diagnostic?.evaluation_level !==
+      "candidate-h39-h38-y44-source-covariance-sampled-split-m4-refinement-ladder"
+  ) {
+    errors.push("split-M4 refinement ladder must expose the expected schema/status");
+  }
+  if (
+    !Array.isArray(diagnostic?.target_speed_interval) ||
+    diagnostic.target_speed_interval.length !== 2 ||
+    !Number.isFinite(Number(diagnostic.target_speed_interval[0])) ||
+    !Number.isFinite(Number(diagnostic.target_speed_interval[1])) ||
+    Number(diagnostic.target_speed_interval[1]) <=
+      Number(diagnostic.target_speed_interval[0]) ||
+    typeof diagnostic?.branch !== "string" ||
+    !Number.isInteger(diagnostic?.shifted_index) ||
+    diagnostic.shifted_index < 1 ||
+    !finitePositive(diagnostic?.outer_radius)
+  ) {
+    errors.push("split-M4 refinement ladder must expose finite domain parameters");
+  }
+  if (
+    !Array.isArray(diagnostic?.source_stencil_subcell_counts) ||
+    diagnostic.source_stencil_subcell_counts.length === 0 ||
+    !diagnostic.source_stencil_subcell_counts.every(
+      (count) => Number.isInteger(count) && count >= 5
+    ) ||
+    !Array.isArray(diagnostic?.scaled_comparison_stencil_indexes) ||
+    diagnostic.scaled_comparison_stencil_indexes.length !==
+      diagnostic.source_stencil_subcell_counts.length ||
+    !Array.isArray(diagnostic?.sampled_ladder_rows) ||
+    diagnostic.sampled_ladder_rows.length !==
+      diagnostic.source_stencil_subcell_counts.length ||
+    !diagnostic.sampled_ladder_rows.every(rowValid)
+  ) {
+    errors.push("split-M4 refinement ladder rows must be finite and count-aligned");
+  }
+  if (
+    typeof diagnostic?.all_rows_validator_clean !== "boolean" ||
+    typeof diagnostic?.all_sampled_rows_inside_equal_stream_ceiling !==
+      "boolean" ||
+    typeof diagnostic?.selected_node_signature_stable_across_ladder !==
+      "boolean" ||
+    typeof diagnostic?.selected_local_node_pattern_stable_across_ladder !==
+      "boolean" ||
+    typeof diagnostic?.all_quartic_quotient_rows_inside_provider_target !==
+      "boolean" ||
+    !Number.isInteger(diagnostic?.quartic_quotient_inside_row_count) ||
+    diagnostic.quartic_quotient_inside_row_count < 0 ||
+    typeof diagnostic
+      ?.all_quartic_quotient_node_limit_proxy_rows_inside_provider_target !==
+      "boolean" ||
+    !Number.isInteger(
+      diagnostic?.quartic_quotient_node_limit_proxy_inside_row_count
+    ) ||
+    diagnostic.quartic_quotient_node_limit_proxy_inside_row_count < 0 ||
+    finiteNonnegativeOrNull(
+      diagnostic?.max_split_triangle_sampled_to_equal_split_ceiling_ratio
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic?.min_split_triangle_sampled_to_equal_split_ceiling_ratio
+    ) === false ||
+    finiteNonnegativeOrNull(diagnostic?.sampled_ratio_spread) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic?.max_quartic_quotient_consistency_relative_gap
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic?.max_quartic_quotient_split_stream_consistency_relative_gap
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic?.max_quartic_quotient_direct_consistency_relative_gap
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic?.max_quartic_quotient_split_to_direct_signed_m4_relative_gap
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic?.max_quartic_quotient_split_triangle_abs_m4_to_ceiling_ratio
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic
+        ?.quartic_quotient_point_expression_signed_m4_relative_spread
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic
+        ?.quartic_quotient_interval_center_drift_signed_m4_relative_spread
+    ) === false ||
+    finiteNonnegativeOrNull(
+      diagnostic?.quartic_quotient_direct_signed_m4_relative_spread
+    ) === false ||
+    typeof diagnostic?.ladder_interpretation !== "string" ||
+    typeof diagnostic?.certificate_boundary !== "string" ||
+    typeof diagnostic?.quotient_refinement_interpretation !== "string" ||
+    typeof diagnostic?.node_limit_proxy_interpretation !== "string" ||
+    typeof diagnostic?.missing_proof_ingredient !== "string"
+  ) {
+    errors.push("split-M4 refinement ladder summary must classify sampled stability");
+  }
+  if (
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_source_covariance_positive_n38_lagrange_remainder !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_n38_taylor_remainder_bound !==
+      false ||
+    diagnostic?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division !== false ||
+    diagnostic?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    diagnostic?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_continuous_polydisc_primitives !==
+      false ||
+    diagnostic?.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("split-M4 refinement ladder must remain candidate-only");
   }
   return errors;
 }
