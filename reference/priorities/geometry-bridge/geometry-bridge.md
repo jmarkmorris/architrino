@@ -1236,6 +1236,79 @@ the problem; it inflates to maximum over-target ratio
 $1.3394690276662064\times10^{24}$. The next proof target is therefore a
 same-domain signed-affine H38 producer-image certificate with this safety
 divisor, or a stronger covariance-preserving replay that avoids the divisor.
+The current H39/y44 product-segment replay has now ruled out a denominator
+partition escape hatch for the live $3.209141465121827\times$ obstruction. On
+the controlling `speed.4.first-y` product segment, the finite direct normal
+form and paired split-stream replay are already inside target by factors
+$1.539303896293056\times10^{-7}$ and
+$3.246194829834325\times10^{-7}$, respectively. The open H38-coordinate
+residual is sign-stable and center-dominated, with center-to-target ratio
+$3.2089269678139676$ and radius-to-target ratio
+$2.14497307859442\times10^{-4}$. Closing it by denominator partition alone
+would require product denominator lower bound $2.540989484562941$, but the
+segment can supply at most $0.9213641081237944$. The closure target has
+therefore moved from product-target tuning to a same-domain source-provider
+alignment proof that removes the source/direct-graph offset before the
+product-quotient Cauchy bound is applied.
+The source/direct-graph offset has now been checked against the finite direct
+quartic, not only the cubic graph. Adding the finite direct residual to the
+cubic graph changes the controlling `speed.4.first-y` segment only from
+$3.209141465121827$ to $3.209141346609569$ times target. The direct-quartic
+offset remains positive and center-dominated, with center-to-target ratio
+$3.2089268315926427$, radius-to-target ratio
+$2.1451501692603826\times10^{-4}$, and radius-to-center ratio
+$6.684945721232633\times10^{-5}$. This rules out the cubic-vs-quartic graph
+split as the source of the obstruction. The remaining proof object is the
+alignment of the H38-coordinate source provider itself with the finite direct
+quartic, or a replacement source coordinate that makes that alignment
+executable before product-quotient bounding.
+The full residual-vector source replay now rules out the most direct
+replacement-coordinate hypothesis. It fits all $39$ h-row residual midpoints
+over the five producer samples as quartic functions of the shared fold
+coordinate $\xi$, then replays
+$h_i(\xi)=q_i(\xi)+r_i(\xi)$ through the same H38 recurrence source. This does
+not compress the live offset: the full residual-vector source/direct-quartic
+ratio is $3.2093016611215166$ on the same controlling `speed.4.first-y`
+segment $1$, with center-to-target ratio $3.2087291668088085$ and
+radius-to-target ratio $5.724943127080209\times10^{-4}$ on that segment. The
+full-vector/H38-coordinate offset ratio is $1.0000499555783409$. Therefore the
+blocker is not caused by freezing non-H38 residual centers. The next route must
+explain a structural source/direct-quartic normal-form mismatch, including the
+source-term cancellation itself or the solve/divisor normalization, before
+absolute product-quotient bounds are applied. On the controlling segment, the
+full-vector source midpoint decomposes by target units as
+$13.647625870103923$ from $\delta^2/\nu^2$, $-40.20025094519486$ from
+$\sin\phi$, and $22.53423789439216$ from $\sin\delta$, so the exposed
+cancellation structure is now available for the next normal-form check.
+The source-pair normal-form check has now turned that exposed cancellation into
+an executable no-go for denominator repair. The signed pair
+$(\delta^2/\nu^2-2)+(\sin\phi+\sin\delta)$ reproduces the full source on the
+controlling `speed.4.first-y` segment $1$ to relative gap
+$2.678798682741313\times10^{-15}$ and reproduces the full source/direct-quartic
+offset to relative gap $3.3543225839288712\times10^{-15}$. That offset remains
+$3.2091413466095795\times$ target and is about
+$2.0848003791439798\times10^7$ times the finite direct normal-form size. The
+full residual-vector denominator check points the same way: the source/direct
+alignment multiplier is positive, about $0.5560152884612777$, while the live
+product-denominator interval is negative,
+$[-0.9213641081237944,-0.7917972804188858]$; applying the recurrence sign
+$-N_{38}/S_{37}$ still leaves the controlling segment open at
+$2.866392226825057\times$ target. The next closure route must therefore attack
+the signed source-pair numerator normal form directly.
+That numerator target is now localized one layer further. The H39/y44
+diagnostic emits a source-pair/direct-graph normal-form profile in product
+target units. On the controlling `speed.4.first-y` segment $1$, the signed
+source pair is about $-4.0184\times$ target while the direct graph is about
+$-7.2271\times$ target, so their center-dominated difference is the open
+$3.209141465\times$ obstruction. The finite direct normal-form correction is
+only about $1.539\times10^{-7}\times$ target, and replacing the direct graph by
+the direct quartic changes the offset only to $3.209141346\times$ target. The
+remaining H39/y44 blocker is therefore not a finite direct-residual, solve
+normalization, residual-vector freezing, or absolute-envelope artifact. It is
+the signed source-pair/direct-graph alignment itself, and the next proof object
+should decompose that graph mismatch by source component or introduce a
+source-coordinate identity that makes the opposed pair cancellation exact
+before product-quotient bounding.
 The latest producer-coordinate replay sharpens that target. On the same live
 five-row comparison stencil, the H38 producer residual-coordinate interval
 hull is still the full $[-1,1]$, but the producer midpoint hull is essentially
@@ -1878,6 +1951,122 @@ remaining closure burden is now a finite list of same-domain residual and
 residual-derivative enclosure inequalities on the existing hybrid producer
 partition.
 
+The split-stream paired replay now tests the signed point-plus-drift streams
+on that same nine-segment hybrid partition. It evaluates the finite-polynomial
+point-expression residual and interval-center drift residual together on each
+subcell before hulling, using residual coefficients on product-quotient
+segments and residual-derivative coefficients on derivative-quotient segments.
+All nine segments stay inside their targets, with maximum paired-to-target
+ratio $1.318673422133216\times10^{-6}$, maximum split-triangle-to-target ratio
+$1.5966996776715186\times10^{-5}$, minimum paired slack ratio
+$0.9999986813265779$, and minimum paired cancellation fraction
+$0.8882334726988339$. The controlling paired segment moves to
+`speed.1.first-y`, the full-producer-interval derivative quotient on
+$\xi\in[-1.1997952130889011,-0.40010239345554943]$. This is still a
+candidate finite-polynomial replay, not a directed-rounded true-stream
+certificate, but it removes the main uncertainty that the signed covariance
+would fail once the hybrid support was honored.
+
+The same provider target now also carries a raw true-source replay on the
+hybrid partition. Each segment records producer provenance, maps its
+$\xi$-interval back to the live speed interval, and calls the H38 numerator
+source evaluator with the raw independent h-row intervals before subtracting
+the direct cubic graph. The term decomposition replays internally, with
+maximum term-sum-to-source relative gap $3.4219484145129325\times10^{-16}$,
+but the raw independent boxes open all five product-quotient residual-value
+segments: the maximum residual-value-to-target ratio is
+$3.8974824211297927\times10^9$, controlled by `speed.0.first-y` on
+$\xi\in[-1.3999104057263942,-1.1997952130889011]$. The four derivative
+quotient segments are intentionally value-only because they require a
+same-domain residual-derivative true-stream provider. This result localizes
+the remaining blocker: the hybrid partition is no longer the issue; the raw
+independent h-row source replay destroys producer-image dependency before the
+quotient certificate can be promoted.
+
+Two follow-on provider replays now locate the dependency loss more sharply. A
+polynomial h-row graph plus per-h interval residual hull preserves the shared
+$\xi$ graph but gives no useful compression: the maximum product-segment ratio
+is $3.8974853044963255\times10^9$, essentially the raw wall. Preserving the
+shared $\xi$ graph plus the normalized $h_{38}$ residual coordinate instead
+collapses the maximum ratio to $3.209141465121827$, with more than
+$1.214\times10^9$ compression relative to the raw and graph-plus-interval
+replays and minimum signed source cancellation $0.947379206732799$.
+Subdividing the H38 residual coordinate into $16$ subcells leaves that factor
+unchanged, so the remaining obstruction is not ordinary H38-coordinate
+subcell width. The next closure target is a provider that also preserves the
+non-H38 residual covariance, or a source-term identity that removes the
+remaining factor before absolute Cauchy bounds.
+
+The next H39/y44 replay rejects both of those first candidate explanations.
+Giving selected non-H38 residual rows the same normalized coordinate as
+$h_{38}$ does not close the product target; it worsens the best case to
+$4.697752230126054\times10^7$ on the `h35`-only candidate, while terminal,
+suffix, and all-non-$h_{38}$ shared-coordinate variants are still larger. The
+signed source-pair replay
+$(\delta^2/\nu^2-2)+(\sin\phi+\sin\delta)$ is exact enough to diagnose the
+source itself: its maximum source-to-full-source relative gap is only
+$2.678840781450165\times10^{-15}$, with minimum pair cancellation
+$0.8716471687569114$, yet its residual-to-product-target ratio is still
+$3.2091414651218377$. Repeating the replay with a cubic h-row graph leaves the
+factor essentially unchanged at $3.2092292609161452$. The current blocker is
+therefore not a missing terminal covariance or a higher graph degree. It is a
+same-domain residual inequality for the direct graph/product target on the
+hybrid product segment controlled by `speed.4.first-y`, segment $1$.
+That residual inequality has now been tightened to a direct-quartic alignment
+no-go for the current H38-coordinate provider. On the controlling segment, the
+source-to-direct-quartic offset ratio is $3.209141346609569$; its center
+already accounts for $3.2089268315926427$ of the target while the interval
+radius accounts for only $2.1451501692603826\times10^{-4}$. Therefore the
+failure is not the direct finite normal form, not the paired split-stream
+normal form, and not the cubic interpolation residual. The next viable route is
+a source-coordinate provider or source/direct-quartic normal form that removes
+the persistent H38-coordinate offset before the Cauchy quotient step.
+The full residual-vector provider no-go has now sharpened this again. Fitting
+all $39$ h-row residual midpoint streams as quartic functions of $\xi$ and
+replaying them as a coupled residual vector leaves all five product segments
+open. The controlling `speed.4.first-y` segment $1$ has full-vector
+source/direct-quartic ratio $3.2093016611215166$, center-to-target ratio
+$3.2087291668088085$, and radius-to-target ratio
+$5.724943127080209\times10^{-4}$; the full-vector/H38-coordinate offset ratio
+is only $1.0000499555783409$. This makes residual-vector freezing a no-go
+explanation. The remaining object is a structural source/direct-quartic
+alignment proof, most likely at the source-term cancellation or
+solve/divisor-normalization level. The executable packet now also exposes the
+full-vector source term intervals, with the controlling midpoint split
+$13.647625870103923-40.20025094519486+22.53423789439216$ in target units.
+
+The solve/divisor-normalization hypothesis is now an executable no-go. The
+diagnostic carries the inherited $h_{37}$ solve-slope interval through the
+producer samples and compares the live source numerator and the finite direct
+quartic in both numerator units and solved-$h_{38}$ units. On the controlling
+`speed.4.first-y` segment $1$, the numerator-space source/direct-quartic offset
+is $3.209141346609569\times$ target, while the solved-space offset is
+$3.209141917764117\times$ solved target. The solve-normalization invariance
+ratio stays within $[1.0000001779431105,1.0000001780158168]$ across the
+product segments, and the best crossed solved/numerator comparison is still
+$5.508576099660705\times$ target. Therefore the offset is not a hidden
+$h_{38}=-N_{38}/S_{37}$ convention mismatch. The next closure route should
+attack the numerator normal form itself: either a direct source-term
+cancellation identity or a source-coordinate map whose finite direct quartic is
+the same object as `evaluateH38RecurrenceNumeratorBeforeSolve`.
+
+The source-pair split now identifies that numerator normal form more precisely.
+The signed pair $(\delta^2/\nu^2-2)+(\sin\phi+\sin\delta)$ already reproduces
+the full source and the full source/direct-quartic offset on the controlling
+`speed.4.first-y` segment $1$ to relative gaps below
+$3.4\times10^{-15}$. The signed-pair/direct-quartic offset remains
+$3.2091413466095795\times$ target with radius-to-target ratio
+$2.1451501693680277\times10^{-4}$, and it is about
+$2.0848003791439798\times10^7$ times the finite direct normal-form size. A
+full residual-vector solve sanity check also rejects a simple denominator
+repair: the source/direct alignment multiplier is positive
+($0.5560152884612777$), whereas the product denominator is negative
+($[-0.9213641081237944,-0.7917972804188858]$), and the recurrence sign
+$-N_{38}/S_{37}$ still leaves the controlling direct-quartic offset at
+$2.866392226825057\times$ target. Thus the next proof object is a signed
+source-pair numerator identity, not deeper residual-vector fitting or a hidden
+solve convention.
+
 The quotient refinement ladder now shows why the provider must stay split by
 stream. On the live `[32,64]` ladder, both refinement rows are inside the
 provider target on the same local node pattern `0|1|3|4`. At $64$ source
@@ -1891,6 +2080,35 @@ $4.0876678207488184\times10^{-16}$, and maximum split ceiling ratio
 $1.2817835511580962\times10^{-4}$. The next certificate should preserve that
 point/drift split through the directed-rounded quotient or fourth-derivative
 bound, then replay the cancellation after the same-domain estimate.
+
+The component source graph now explains why that point/drift split matters. The
+H39/y44 diagnostic exports the Lagrange graph coefficients for the signed
+source components and for the interval-center drift. On the focused fixture,
+the signed source pair matches its own component graph within
+$7.493324528523494\times10^{-4}$ of target, and the component-plus-drift graph
+matches the direct graph within $2.974033630031388\times10^{-4}$ of target.
+The remaining open offset is therefore the interval-center drift stream, not
+source-pair variation or the finite direct residual. On the default live
+provider replay, the same component-plus-drift source provider closes all five
+product segments at candidate level; the worst h38-coordinate residual is
+$0.4213769304308513\times$ target, with worst source-pair/component graph gap
+$0.0034271425858984146\times$ target and worst
+component-plus-drift/direct-graph gap $0.06817219409516423\times$ target. This
+is still priority-only: the next true blocker is a directed-rounded
+component-plus-drift producer-image certificate, followed by
+dependency-preserving $S_{37}$ division and H39 shifted-source replay.
+
+The candidate $S_{37}$ division part of that route has now been tested. After
+dividing the component-plus-drift/direct-graph gap by the inherited
+$h_{37}$ solve-slope interval, the focused fixture has maximum solved gap
+$2.9740336300313895\times10^{-4}$ of solved target and the default live replay
+has maximum solved gap $0.06817219409516427$ of solved target. The
+solve-normalization invariance stays within
+$[1.0000000000000004,1.0000000000000007]$. This keeps all certification claims
+false, but it removes candidate-level $S_{37}$ division from the blocker list.
+The next true blocker is now the first-class directed-rounded
+component-plus-drift provider contract and its shifted $R_{\varepsilon,43}$
+replay boundary.
 
 ## Current Classification
 

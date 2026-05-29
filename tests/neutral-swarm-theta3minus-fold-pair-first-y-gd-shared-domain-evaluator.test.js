@@ -4070,6 +4070,34 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
     diagnostic.comparison_row_count
   );
   assert.equal(
+    diagnostic.h38_producer_residual_coordinate_profile
+      .target_speed_interval.length,
+    2
+  );
+  assert.equal(
+    diagnostic.h38_producer_residual_coordinate_profile
+      .source_stencil_subcell_count,
+    diagnostic.source_stencil_subcell_count
+  );
+  assert.equal(
+    diagnostic.h38_producer_residual_coordinate_profile
+      .comparison_stencil_index,
+    diagnostic.comparison_stencil_index
+  );
+  assert.ok(
+    diagnostic.h38_producer_residual_coordinate_profile.samples.every(
+      (sample, sampleIndex) =>
+        sample.comparison_row_index === sampleIndex &&
+        sample.source_subcover_row_index ===
+          diagnostic.comparison_stencil_index + sampleIndex &&
+        sample.branch === diagnostic.branch &&
+        sample.h_row_interval_count === 39 &&
+        Array.isArray(sample.cell.speed_interval) &&
+        Array.isArray(sample.h_intervals) &&
+        sample.h_intervals.length === 39
+    )
+  );
+  assert.equal(
     diagnostic.source_covariance_producer_image_collar_rows.length,
     diagnostic.collar_half_widths.length
   );
@@ -4801,8 +4829,32 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
       4
     );
     assert.equal(
+      directResidualDerivativeModel.direct_lagrange_graph_coefficients.length,
+      4
+    );
+    assert.equal(
+      directResidualDerivativeModel.point_expression_residual_coefficients
+        .length,
+      5
+    );
+    assert.equal(
+      directResidualDerivativeModel
+        .interval_center_drift_residual_coefficients.length,
+      5
+    );
+    assert.equal(
       directResidualDerivativeModel.direct_residual_coefficients.length,
       5
+    );
+    assert.equal(
+      directResidualDerivativeModel
+        .point_expression_residual_derivative_coefficients.length,
+      4
+    );
+    assert.equal(
+      directResidualDerivativeModel
+        .interval_center_drift_residual_derivative_coefficients.length,
+      4
     );
     assert.equal(
       directResidualDerivativeModel.direct_residual_derivative_coefficients
@@ -5868,6 +5920,1106 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
             "candidate budget only; no true-stream enclosure is certified"
       )
     );
+    const producerHybridSplitStreamReplay =
+      derivativeProviderTarget
+        .candidate_producer_hybrid_split_stream_paired_replay;
+    assert.ok(producerHybridSplitStreamReplay);
+    assert.deepEqual(
+      collectExactKeys(
+        producerHybridSplitStreamReplay,
+        FORBIDDEN_FIXED_SPEED_KEYS
+      ),
+      []
+    );
+    assert.equal(
+      producerHybridSplitStreamReplay.status,
+      "positive-n38-producer-hybrid-split-stream-paired-replay-candidate-emitted"
+    );
+    assert.equal(
+      producerHybridSplitStreamReplay.diagnostic_kind,
+      "candidate-producer-hybrid-split-stream-paired-replay"
+    );
+    assert.equal(producerHybridSplitStreamReplay.segment_count, 9);
+    assert.equal(producerHybridSplitStreamReplay.residual_segment_count, 5);
+    assert.equal(
+      producerHybridSplitStreamReplay.residual_derivative_segment_count,
+      4
+    );
+    assert.equal(
+      producerHybridSplitStreamReplay.paired_segment_inside_count,
+      9
+    );
+    assert.equal(
+      producerHybridSplitStreamReplay.all_segments_inside_paired_headroom,
+      true
+    );
+    assert.ok(
+      producerHybridSplitStreamReplay.max_paired_to_target_ratio < 2e-6
+    );
+    assert.ok(
+      producerHybridSplitStreamReplay.max_split_triangle_to_target_ratio <
+        2e-5
+    );
+    assert.ok(
+      producerHybridSplitStreamReplay.max_paired_to_direct_abs_loss_factor < 3
+    );
+    assert.ok(
+      producerHybridSplitStreamReplay.max_paired_to_direct_replay_relative_gap <
+        1
+    );
+    assert.ok(
+      producerHybridSplitStreamReplay.min_paired_slack_ratio > 0.999998
+    );
+    assert.ok(
+      producerHybridSplitStreamReplay.min_paired_cancellation_fraction > 0.88
+    );
+    assert.equal(
+      producerHybridSplitStreamReplay.claim_boundary
+        .certifies_n38_taylor_remainder_bound,
+      false
+    );
+    assert.equal(
+      producerHybridSplitStreamReplay.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      producerHybridSplitStreamReplay.claim_boundary.retained_branch,
+      false
+    );
+    assert.equal(producerHybridSplitStreamReplay.segment_rows.length, 9);
+    assert.ok(producerHybridSplitStreamReplay.controlling_segment);
+    assert.equal(
+      producerHybridSplitStreamReplay.controlling_segment.cell_id,
+      "speed.1.first-y"
+    );
+    assert.ok(
+      producerHybridSplitStreamReplay.segment_rows.every(
+        (segment) =>
+          [
+            "same-variable-direct-residual",
+            "same-variable-direct-residual-derivative",
+          ].includes(segment.proof_object_kind) &&
+          segment.segment_status ===
+            "positive-n38-producer-hybrid-split-stream-paired-segment-inside-headroom" &&
+          segment.target_abs_upper > 0 &&
+          Array.isArray(segment.point_interval_hull) &&
+          Array.isArray(segment.drift_interval_hull) &&
+          Array.isArray(segment.paired_interval_hull) &&
+          Array.isArray(segment.direct_interval_hull) &&
+          segment.paired_to_target_ratio < 2e-6 &&
+          segment.split_triangle_to_target_ratio < 2e-5 &&
+          segment.paired_true_stream_excess_abs_budget > 0 &&
+          segment.paired_true_stream_slack_ratio > 0.999998 &&
+          segment.paired_cancellation_fraction > 0.88 &&
+          segment.subcell_count === 16 &&
+          segment.split_stream_policy ===
+            "candidate finite-polynomial paired replay only; no directed-rounded true-stream enclosure is certified"
+      )
+    );
+    const producerHybridRawTrueSourceReplay =
+      derivativeProviderTarget
+        .candidate_producer_hybrid_raw_true_source_replay;
+    assert.ok(producerHybridRawTrueSourceReplay);
+    assert.deepEqual(
+      collectExactKeys(
+        producerHybridRawTrueSourceReplay,
+        FORBIDDEN_FIXED_SPEED_KEYS
+      ),
+      []
+    );
+    assert.equal(
+      producerHybridRawTrueSourceReplay.status,
+      "positive-n38-producer-hybrid-raw-true-source-replay-open"
+    );
+    assert.equal(
+      producerHybridRawTrueSourceReplay.diagnostic_kind,
+      "candidate-producer-hybrid-raw-true-source-replay"
+    );
+    assert.equal(producerHybridRawTrueSourceReplay.segment_count, 9);
+    assert.equal(
+      producerHybridRawTrueSourceReplay.residual_value_segment_count,
+      5
+    );
+    assert.equal(
+      producerHybridRawTrueSourceReplay.derivative_value_only_segment_count,
+      4
+    );
+    assert.equal(
+      producerHybridRawTrueSourceReplay.residual_value_inside_target_count,
+      0
+    );
+    assert.equal(
+      producerHybridRawTrueSourceReplay.all_residual_value_segments_inside_target,
+      false
+    );
+    assert.ok(
+      producerHybridRawTrueSourceReplay
+        .max_raw_true_residual_value_to_product_target_ratio > 1e9
+    );
+    assert.ok(
+      producerHybridRawTrueSourceReplay.max_raw_true_source_abs_upper > 1e23
+    );
+    assert.ok(
+      producerHybridRawTrueSourceReplay.max_term_sum_to_source_relative_gap <
+        1e-12
+    );
+    assert.ok(
+      producerHybridRawTrueSourceReplay
+        .min_raw_true_source_cancellation_fraction < 1e-6
+    );
+    assert.ok(producerHybridRawTrueSourceReplay.controlling_value_segment);
+    assert.equal(
+      producerHybridRawTrueSourceReplay.controlling_value_segment.cell_id,
+      "speed.0.first-y"
+    );
+    assert.equal(
+      producerHybridRawTrueSourceReplay.claim_boundary
+        .certifies_n38_taylor_remainder_bound,
+      false
+    );
+    assert.equal(
+      producerHybridRawTrueSourceReplay.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      producerHybridRawTrueSourceReplay.claim_boundary.retained_branch,
+      false
+    );
+    assert.ok(
+      producerHybridRawTrueSourceReplay.segment_rows.every(
+        (segment) =>
+          Array.isArray(segment.segment_interval) &&
+          Array.isArray(segment.segment_speed_interval) &&
+          segment.source_y_order === 42 &&
+          Array.isArray(segment.raw_true_source_interval) &&
+          Array.isArray(segment.direct_graph_interval) &&
+          Array.isArray(segment.raw_true_residual_interval) &&
+          segment.raw_true_source_abs_upper > 0 &&
+          segment.raw_true_residual_abs_upper > 0 &&
+          segment.term_sum_to_source_relative_gap < 1e-12 &&
+          segment.raw_true_source_cancellation_fraction < 1e-6 &&
+          segment.producer_sample_provenance.h_row_interval_count === 39 &&
+          segment.true_source_policy ===
+            "candidate raw independent h-row source replay only; no dependency-preserving true-stream enclosure is certified"
+      )
+    );
+    assert.ok(
+      producerHybridRawTrueSourceReplay.segment_rows
+        .filter(
+          (segment) =>
+            segment.quotient_kind === "product-quotient-producer-complement"
+        )
+        .every(
+          (segment) =>
+            segment.target_comparison_status ===
+              "positive-n38-producer-hybrid-raw-true-source-product-segment-open" &&
+            segment.raw_true_residual_value_to_product_target_ratio > 1e9
+        )
+    );
+    assert.ok(
+      producerHybridRawTrueSourceReplay.segment_rows
+        .filter((segment) =>
+          segment.quotient_kind.startsWith("derivative-quotient")
+        )
+        .every(
+          (segment) =>
+            segment.target_comparison_status ===
+              "positive-n38-producer-hybrid-raw-true-source-derivative-segment-value-only" &&
+            segment.raw_true_residual_value_to_product_target_ratio === null
+        )
+    );
+    const producerHybridGraphIntervalResidualSourceReplay =
+      derivativeProviderTarget
+        .candidate_producer_hybrid_graph_interval_residual_source_replay;
+    assert.ok(producerHybridGraphIntervalResidualSourceReplay);
+    assert.deepEqual(
+      collectExactKeys(
+        producerHybridGraphIntervalResidualSourceReplay,
+        FORBIDDEN_FIXED_SPEED_KEYS
+      ),
+      []
+    );
+    assert.equal(
+      producerHybridGraphIntervalResidualSourceReplay.status,
+      "positive-n38-producer-hybrid-graph-interval-residual-source-replay-open"
+    );
+    assert.equal(
+      producerHybridGraphIntervalResidualSourceReplay.diagnostic_kind,
+      "candidate-producer-hybrid-graph-interval-residual-source-replay"
+    );
+    assert.equal(
+      producerHybridGraphIntervalResidualSourceReplay.segment_count,
+      9
+    );
+    assert.equal(
+      producerHybridGraphIntervalResidualSourceReplay.residual_value_segment_count,
+      5
+    );
+    assert.equal(
+      producerHybridGraphIntervalResidualSourceReplay.derivative_value_only_segment_count,
+      4
+    );
+    assert.equal(
+      producerHybridGraphIntervalResidualSourceReplay.residual_value_inside_target_count,
+      0
+    );
+    assert.ok(
+      producerHybridGraphIntervalResidualSourceReplay
+        .max_graph_residual_value_to_product_target_ratio > 1e9
+    );
+    assert.ok(
+      producerHybridGraphIntervalResidualSourceReplay
+        .min_raw_to_graph_residual_compression_factor < 1.001
+    );
+    assert.ok(
+      producerHybridGraphIntervalResidualSourceReplay
+        .max_raw_to_graph_residual_compression_factor < 1.001
+    );
+    assert.ok(
+      producerHybridGraphIntervalResidualSourceReplay
+        .max_term_sum_to_source_relative_gap < 1e-12
+    );
+    assert.ok(
+      producerHybridGraphIntervalResidualSourceReplay
+        .min_graph_source_cancellation_fraction < 1e-6
+    );
+    assert.equal(
+      producerHybridGraphIntervalResidualSourceReplay.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.ok(
+      producerHybridGraphIntervalResidualSourceReplay.segment_rows.every(
+        (segment) =>
+          segment.provider_kind ===
+            "candidate-polynomial-h-row-graph-interval-residual-provider" &&
+          segment.provider_preserves_shared_xi_dependency === true &&
+          segment.provider_h_row_interval_count === 39 &&
+          segment.provider_residual_hull_count === 39 &&
+          segment.term_sum_to_source_relative_gap < 1e-12 &&
+          segment.provider_dependency_policy ===
+            "preserves shared xi graph dependence but leaves per-h interval residual hulls independent; candidate-only"
+      )
+    );
+    assert.ok(
+      producerHybridGraphIntervalResidualSourceReplay.segment_rows
+        .filter(
+          (segment) =>
+            segment.quotient_kind === "product-quotient-producer-complement"
+        )
+        .every(
+          (segment) =>
+            segment.target_comparison_status ===
+              "positive-n38-producer-hybrid-graph-interval-residual-source-product-segment-open" &&
+            segment.graph_residual_value_to_product_target_ratio > 1e9
+        )
+    );
+    const producerHybridH38CoordinateSourceReplay =
+      derivativeProviderTarget
+        .candidate_producer_hybrid_h38_coordinate_source_replay;
+    assert.ok(producerHybridH38CoordinateSourceReplay);
+    assert.deepEqual(
+      collectExactKeys(
+        producerHybridH38CoordinateSourceReplay,
+        FORBIDDEN_FIXED_SPEED_KEYS
+      ),
+      []
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.status,
+      "positive-n38-producer-hybrid-h38-coordinate-source-replay-open"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.diagnostic_kind,
+      "candidate-producer-hybrid-h38-coordinate-source-replay"
+    );
+    assert.equal(producerHybridH38CoordinateSourceReplay.segment_count, 9);
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.residual_value_segment_count,
+      5
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.derivative_value_only_segment_count,
+      4
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.residual_value_inside_target_count,
+      0
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_residual_value_to_product_target_ratio > 3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_residual_value_to_product_target_ratio < 4
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .product_segment_residual_inequality_diagnosis_status,
+      "positive-n38-product-segment-residual-inequality-diagnosis-source-graph-offset-mismatch-candidate"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .source_to_direct_quartic_alignment_status,
+      "positive-n38-source-to-direct-quartic-alignment-diagnosis-h38-coordinate-offset-persists"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_source_to_direct_quartic_offset_value_to_product_target_ratio > 3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_source_to_direct_quartic_offset_value_to_product_target_ratio < 4
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_source_to_direct_quartic_offset_center_to_product_target_ratio > 3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_source_to_direct_quartic_offset_center_to_product_target_ratio < 4
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_source_to_direct_quartic_offset_radius_to_product_target_ratio <
+        0.001
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_source_to_direct_quartic_offset_radius_to_center_ratio < 0.001
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .source_direct_normalization_diagnosis_status,
+      "positive-n38-source-direct-normalization-diagnosis-mismatch-ruled-out"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio >
+        3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio <
+        4
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .min_solve_normalization_invariance_ratio > 0.999
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_solve_normalization_invariance_ratio < 1.001
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .min_crossed_solve_normalization_offset_to_product_target_ratio > 5
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_direct_normalization_segment
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_direct_normalization_segment.cell_id,
+      "speed.4.first-y"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_direct_normalization_segment.segment_index,
+      1
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .source_pair_direct_quartic_offset_dominance_diagnosis_status,
+      "positive-n38-source-pair-direct-quartic-offset-dominance-diagnosis-source-pair-offset-dominates"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio >
+        3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio <
+        4
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_signed_pair_direct_quartic_offset_to_full_offset_relative_gap <
+        1e-12
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_source_direct_quartic_offset_to_finite_direct_abs_loss_factor >
+        1e7
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .source_pair_direct_graph_normal_form_diagnosis_status,
+      "positive-n38-source-pair-direct-graph-normal-form-diagnosis-gap-is-direct-graph-offset"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .source_pair_component_graph_diagnosis_status,
+      "positive-n38-source-pair-component-graph-diagnosis-interval-center-drift-offset"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_signed_pair_direct_graph_offset_to_direct_quartic_offset_relative_gap <
+        1e-5
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_finite_direct_normal_form_to_signed_pair_direct_graph_offset_ratio <
+        1e-6
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .min_h38_coordinate_source_pair_opposed_cancellation_fraction > 0.87
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_signed_pair_to_component_graph_offset_to_target_ratio <
+        0.001
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_component_graph_to_direct_graph_gap_to_target_ratio <
+        0.001
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_direct_graph_normal_form_segment
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_direct_graph_normal_form_segment.cell_id,
+      "speed.4.first-y"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_direct_graph_normal_form_segment.segment_index,
+      1
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_component_graph_segment
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_component_graph_segment.cell_id,
+      "speed.2.first-y"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_component_graph_segment.segment_index,
+      0
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_component_graph_segment
+        .h38_coordinate_source_pair_component_graph_status,
+      "positive-n38-source-pair-component-graph-exposes-interval-center-drift-offset"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_component_graph_segment
+        .h38_coordinate_source_component_graph_profile
+        .signed_pair_source_minus_signed_pair_graph.abs_upper_to_target <
+        0.001
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_component_graph_segment
+        .h38_coordinate_source_component_graph_profile
+        .component_plus_drift_graph_minus_direct_graph.abs_upper_to_target <
+        0.001
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_component_graph_segment
+        .h38_coordinate_source_component_graph_profile
+        .interval_center_drift_graph.abs_upper_to_target > 2
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .component_drift_s37_division_diagnosis_status,
+      "positive-n38-component-drift-s37-division-diagnosis-inside-target"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_component_drift_solved_gap_to_solved_target_ratio < 0.001
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .min_component_drift_solve_normalization_invariance_ratio > 0.999
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_component_drift_solve_normalization_invariance_ratio < 1.001
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_s37_division_segment
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_s37_division_segment.cell_id,
+      "speed.0.first-y"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_s37_division_segment.segment_index,
+      2
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_s37_division_segment
+        .component_drift_s37_division_status,
+      "positive-n38-component-drift-s37-division-inside-target"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_direct_quartic_offset_segment
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_direct_quartic_offset_segment.cell_id,
+      "speed.4.first-y"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_source_pair_direct_quartic_offset_segment.segment_index,
+      1
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .full_residual_vector_provider_kind,
+      "candidate-polynomial-h-row-full-residual-vector-xi-graph-provider"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .full_residual_vector_provider_available,
+      true
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .full_residual_vector_polynomial_degree,
+      4
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .full_residual_vector_sample_count,
+      5
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.full_residual_vector_h_count,
+      39
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .full_residual_vector_max_sample_replay_error < 1e-4
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .full_residual_vector_alignment_status,
+      "positive-n38-full-residual-vector-source-alignment-diagnosis-structural-offset-persists"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .full_residual_vector_solve_normalization_status,
+      "positive-n38-full-residual-vector-solve-normalization-diagnosis-open"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio >
+        12
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio <
+        13
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio >
+        7
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio <
+        8
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .full_residual_vector_raw_multiplier_sign_matches_product_denominator_all_product_segments,
+      false
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .full_residual_vector_minus_source_over_denominator_sign_matches_direct_quartic_all_product_segments,
+      false
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_direct_quartic_offset_value_to_product_target_ratio >
+        3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_direct_quartic_offset_value_to_product_target_ratio <
+        4
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_direct_quartic_offset_center_to_product_target_ratio >
+        3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_direct_quartic_offset_center_to_product_target_ratio <
+        4
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_direct_quartic_offset_radius_to_product_target_ratio <
+        0.002
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_offset_to_h38_coordinate_offset_ratio > 1
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_offset_to_h38_coordinate_offset_ratio <
+        1.001
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_to_full_residual_vector_offset_compression_factor >
+        0.999
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_to_full_residual_vector_offset_compression_factor <
+        1.001
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_residual_center_to_product_target_ratio > 3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_residual_center_to_product_target_ratio < 4
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_residual_radius_to_product_target_ratio < 0.001
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_required_denominator_abs_lower_for_h38_coordinate_residual > 2.5
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_required_denominator_abs_lower_for_h38_coordinate_residual < 2.6
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_required_to_available_product_denominator_abs_factor > 2.7
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_required_to_available_product_denominator_abs_factor < 2.8
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .product_denominator_partition_can_close_all_h38_coordinate_residuals,
+      false
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .min_raw_to_h38_coordinate_residual_compression_factor > 1e9
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .min_graph_interval_to_h38_coordinate_residual_compression_factor >
+        1e9
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.h38_coordinate_subcell_count,
+      16
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.max_h38_coordinate_segment_subcell_count,
+      16
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_term_sum_to_source_relative_gap < 1e-12
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_subcell_term_sum_to_source_relative_gap < 1e-12
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .min_h38_coordinate_source_cancellation_fraction > 0.94
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .min_h38_coordinate_subcell_source_cancellation_fraction > 0.94
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_signed_pair_residual_value_to_product_target_ratio >
+        3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_signed_pair_residual_value_to_product_target_ratio <
+        4
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_signed_pair_source_to_full_source_relative_gap <
+        1e-12
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .min_h38_coordinate_signed_pair_cancellation_fraction > 0.87
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.shared_non_h38_coordinate_candidate_count,
+      6
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .shared_non_h38_coordinate_candidate_summaries.length,
+      6
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .best_shared_non_h38_coordinate_candidate.candidate_label,
+      "h35-shared-with-h38-coordinate"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .best_shared_non_h38_coordinate_candidate
+        .max_residual_value_to_product_target_ratio > 4e7
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .best_shared_non_h38_coordinate_candidate
+        .max_residual_value_to_product_target_ratio < 5e7
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .shared_non_h38_coordinate_candidate_summaries.every(
+          (summary) =>
+            summary.candidate_status ===
+              "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-candidate-open" &&
+            summary.residual_value_inside_target_count === 0 &&
+            summary.max_residual_value_to_product_target_ratio > 1e7 &&
+            summary.controlling_value_segment !== null &&
+            summary.controlling_value_segment.term_sum_to_source_relative_gap <
+              1e-12
+        )
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay.controlling_value_segment
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.controlling_value_segment
+        .cell_id,
+      "speed.4.first-y"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.controlling_value_segment
+        .product_segment_residual_inequality_diagnosis,
+      "positive-n38-product-segment-residual-inequality-source-graph-offset-mismatch-candidate"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.controlling_value_segment
+        .denominator_partition_can_close_h38_coordinate_residual,
+      false
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay.controlling_value_segment
+        .required_to_available_product_denominator_abs_factor > 2.7
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay.controlling_value_segment
+        .required_to_available_product_denominator_abs_factor < 2.8
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay.controlling_full_residual_vector_segment
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment.cell_id,
+      "speed.4.first-y"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment.segment_index,
+      1
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment
+        .full_residual_vector_alignment_status,
+      "positive-n38-full-residual-vector-source-alignment-structural-offset-persists"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment
+        .full_residual_vector_direct_quartic_offset_interval_sign,
+      "positive"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment
+        .full_residual_vector_direct_quartic_offset_value_to_product_target_ratio >
+        3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment
+        .full_residual_vector_direct_quartic_offset_radius_to_product_target_ratio <
+        0.001
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment
+        .full_residual_vector_source_to_direct_quartic_implied_multiplier_sign,
+      "positive"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment
+        .full_residual_vector_product_denominator_sign,
+      "negative"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment
+        .full_residual_vector_solve_normalization_status,
+      "positive-n38-full-residual-vector-solve-normalization-raw-denominator-sign-mismatch-and-signed-solve-open"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment
+        .full_residual_vector_source_to_direct_quartic_implied_multiplier_midpoint >
+        0.55
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment
+        .full_residual_vector_source_to_direct_quartic_implied_multiplier_midpoint <
+        0.57
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment
+        .full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio >
+        2
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_full_residual_vector_segment
+        .full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio <
+        3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay.segment_rows.every(
+        (segment) =>
+          segment.provider_kind ===
+            "candidate-polynomial-h-row-graph-h38-residual-coordinate-provider" &&
+          segment.provider_preserves_shared_xi_dependency === true &&
+          segment.provider_preserves_h38_residual_coordinate === true &&
+          segment.provider_freezes_non_h38_residuals_at_centers === true &&
+          segment.provider_h_row_interval_count === 39 &&
+          segment.h38_coordinate_subcell_count === 16 &&
+          segment.term_sum_to_source_relative_gap < 1e-12 &&
+          segment.max_h38_coordinate_subcell_term_sum_to_source_relative_gap <
+            1e-12 &&
+          segment.h38_coordinate_source_cancellation_fraction > 0.94 &&
+          segment.min_h38_coordinate_subcell_source_cancellation_fraction >
+            0.94 &&
+          segment.h38_coordinate_signed_pair_source_to_full_source_relative_gap <
+            1e-12 &&
+          segment.h38_coordinate_signed_pair_cancellation_fraction > 0.87 &&
+          Array.isArray(segment.shared_non_h38_coordinate_candidate_rows) &&
+          segment.shared_non_h38_coordinate_candidate_rows.length === 6 &&
+          segment.worst_h38_coordinate_subcell_source_row !== null &&
+          segment.provider_dependency_policy ===
+            "preserves shared xi graph dependence and the h38 residual coordinate; freezes non-h38 residuals at interval centers; candidate-only directional diagnostic"
+      )
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay.segment_rows
+        .filter(
+          (segment) =>
+            segment.quotient_kind === "product-quotient-producer-complement"
+        )
+        .every(
+          (segment) =>
+            segment.target_comparison_status ===
+              "positive-n38-producer-hybrid-h38-coordinate-source-product-segment-open" &&
+            segment.product_segment_residual_inequality_diagnosis ===
+              "positive-n38-product-segment-residual-inequality-source-graph-offset-mismatch-candidate" &&
+            segment.source_provider_alignment_artifact_candidate === true &&
+            typeof segment.denominator_partition_can_close_h38_coordinate_residual ===
+              "boolean" &&
+            segment.h38_coordinate_residual_interval_sign === "positive" &&
+            segment.h38_coordinate_residual_center_to_product_target_ratio >
+              1 &&
+            segment.h38_coordinate_residual_radius_to_product_target_ratio <
+              0.001 &&
+            segment.finite_direct_normal_form_to_product_target_ratio <
+              1e-6 &&
+            segment.finite_paired_to_product_target_ratio < 1e-6 &&
+            Array.isArray(segment.direct_quartic_interval) &&
+            Array.isArray(segment.source_to_direct_quartic_offset_interval) &&
+            segment.source_to_direct_quartic_alignment_status ===
+              "positive-n38-source-to-direct-quartic-alignment-h38-coordinate-offset-persists" &&
+            segment.source_to_direct_quartic_offset_interval_sign ===
+              "positive" &&
+            segment.source_to_direct_quartic_offset_value_to_product_target_ratio >
+              1 &&
+            segment.source_to_direct_quartic_offset_center_to_product_target_ratio >
+              1 &&
+            segment.source_to_direct_quartic_offset_radius_to_product_target_ratio <
+              0.001 &&
+            segment.source_to_direct_quartic_offset_radius_to_center_ratio <
+              0.001 &&
+            segment.source_direct_normalization_status ===
+              "positive-n38-source-direct-normalization-mismatch-ruled-out" &&
+            segment.source_pair_direct_quartic_offset_dominance_status ===
+              "positive-n38-source-pair-direct-quartic-offset-dominates" &&
+            Array.isArray(
+              segment.h38_coordinate_signed_pair_to_direct_quartic_offset_interval
+            ) &&
+            segment
+              .h38_coordinate_signed_pair_to_direct_quartic_offset_interval_sign ===
+              "positive" &&
+            segment.h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio >
+              1 &&
+            segment.h38_coordinate_signed_pair_to_direct_quartic_offset_radius_to_target_ratio <
+              0.001 &&
+            segment.h38_coordinate_signed_pair_direct_quartic_offset_to_full_offset_relative_gap <
+              1e-12 &&
+            segment.source_direct_quartic_offset_to_finite_direct_abs_loss_factor >
+              1e6 &&
+            segment.source_pair_direct_graph_normal_form_status ===
+              "positive-n38-source-pair-direct-graph-normal-form-gap-is-direct-graph-offset" &&
+            segment.h38_coordinate_source_pair_balance_status ===
+              "positive-n38-source-pair-balance-large-opposed-pairs" &&
+            segment
+              .h38_coordinate_signed_pair_direct_graph_offset_to_direct_quartic_offset_relative_gap <
+              1e-5 &&
+            segment
+              .finite_direct_normal_form_to_signed_pair_direct_graph_offset_ratio <
+              1e-6 &&
+            segment.h38_coordinate_source_pair_target_unit_profile
+              .speed_constant_pair.midpoint_to_target > 1 &&
+            segment.h38_coordinate_source_pair_target_unit_profile.sine_pair
+              .midpoint_to_target < -1 &&
+            segment.h38_coordinate_source_pair_target_unit_profile
+              .signed_pair_source.midpoint_to_target < 0 &&
+            segment.h38_coordinate_source_pair_target_unit_profile
+              .signed_pair_minus_direct_graph.midpoint_to_target > 1 &&
+            Math.abs(
+              segment.h38_coordinate_source_pair_target_unit_profile
+                .finite_direct_normal_form.abs_upper_to_target
+            ) < 1e-6 &&
+            Array.isArray(segment.normalization_slope_interval) &&
+            segment.normalization_slope_abs_lower > 0.79 &&
+            Array.isArray(segment.solved_source_interval) &&
+            Array.isArray(segment.solved_direct_quartic_interval) &&
+            Array.isArray(
+              segment.solved_source_to_solved_direct_quartic_offset_interval
+            ) &&
+            segment.solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio >
+              1 &&
+            segment.solve_normalization_invariance_ratio > 0.999 &&
+            segment.solve_normalization_invariance_ratio < 1.001 &&
+            segment.crossed_solve_normalization_best_offset_to_product_target_ratio >
+              5 &&
+            segment.required_to_available_product_denominator_abs_factor > 0 &&
+            segment.h38_coordinate_residual_value_to_product_target_ratio >
+              1 &&
+            segment.h38_coordinate_signed_pair_residual_value_to_product_target_ratio >
+              1
+        )
+    );
+    const h38SourceReplayProductSegments =
+      producerHybridH38CoordinateSourceReplay.segment_rows.filter(
+        (segment) =>
+          segment.quotient_kind ===
+          "product-quotient-producer-complement"
+      );
+    assert.equal(h38SourceReplayProductSegments.length, 5);
+    assert.deepEqual(
+      [
+        ...new Set(
+          h38SourceReplayProductSegments.map(
+            (segment) => segment.full_residual_vector_alignment_status
+          )
+        ),
+      ],
+      [
+        "positive-n38-full-residual-vector-source-alignment-structural-offset-persists",
+      ]
+    );
+    assert.ok(
+      h38SourceReplayProductSegments.every(
+        (segment) =>
+          segment.full_residual_vector_direct_quartic_offset_interval_sign ===
+            "positive" &&
+          Object.keys(
+            segment.full_residual_vector_source_term_intervals ?? {}
+          ).length === 4 &&
+          segment.full_residual_vector_term_sum_to_source_relative_gap <
+            1e-12 &&
+          segment.finite_direct_normal_form_to_product_target_ratio < 1e-6 &&
+          segment.finite_paired_to_product_target_ratio < 1e-6 &&
+          segment.full_residual_vector_direct_quartic_offset_value_to_product_target_ratio >
+            1 &&
+          segment.full_residual_vector_direct_quartic_offset_center_to_product_target_ratio >
+            1 &&
+          segment.full_residual_vector_direct_quartic_offset_radius_to_product_target_ratio <
+            0.002 &&
+          segment.full_residual_vector_offset_to_h38_coordinate_offset_ratio <
+            1.02 &&
+          segment.h38_coordinate_to_full_residual_vector_offset_compression_factor <
+            1.01 &&
+          segment.full_residual_vector_source_cancellation_fraction > 0.94
+      )
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay.segment_rows
+        .filter((segment) =>
+          segment.quotient_kind.startsWith("derivative-quotient")
+        )
+        .every(
+          (segment) =>
+            segment.target_comparison_status ===
+              "positive-n38-producer-hybrid-h38-coordinate-source-derivative-segment-value-only" &&
+            segment.h38_coordinate_residual_value_to_product_target_ratio ===
+              null
+        )
+    );
   }
   assert.equal(
     diagnostic.source_covariance_positive_n38_cubic_taylor_remainder_route
@@ -6036,8 +7188,25 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
     assert.ok(
       diagnostic.source_covariance_positive_n38_lagrange_remainder_target
         .selected_source_residual_decomposition.component_rows.some(
-          (row) => row.component === "sin_delta"
+          (row) =>
+            row.component === "sin_delta" &&
+            Array.isArray(row.lagrange_polynomial_coefficients) &&
+            row.lagrange_polynomial_coefficients.length > 0
         )
+    );
+    assert.ok(
+      Array.isArray(
+        diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+          .selected_source_residual_decomposition
+          .point_expression_lagrange_graph_coefficients
+      )
+    );
+    assert.ok(
+      Array.isArray(
+        diagnostic.source_covariance_positive_n38_lagrange_remainder_target
+          .selected_source_residual_decomposition
+          .interval_center_drift_lagrange_graph_coefficients
+      )
     );
     assert.ok(
       Number.isFinite(

@@ -263,6 +263,32 @@ function intervalAbsLower([left, right]) {
   return Math.min(Math.abs(resolvedLeft), Math.abs(resolvedRight));
 }
 
+function divideIntervalsIfNonzero(numeratorInterval, denominatorInterval) {
+  if (!Array.isArray(numeratorInterval) || !Array.isArray(denominatorInterval)) {
+    return null;
+  }
+  const numerator = root.outwardInterval(
+    numericOrderedInterval("numerator_interval", numeratorInterval)
+  );
+  const denominator = root.outwardInterval(
+    numericOrderedInterval("denominator_interval", denominatorInterval)
+  );
+  if (intervalAbsLower(denominator) <= 0) {
+    return null;
+  }
+  return root.divideIntervals(numerator, denominator);
+}
+
+function stableIntervalSign(interval) {
+  if (!Array.isArray(interval)) {
+    return null;
+  }
+  if (intervalContainsZero(interval)) {
+    return "contains-zero";
+  }
+  return signLabel(intervalMidpoint(interval));
+}
+
 function intervalEndpointMaxGap(left, right) {
   return Math.max(
     Math.abs(Number(left[0]) - Number(right[0])),
@@ -413,6 +439,15 @@ function speedIntervalXiInterval({ row, targetSpeedInterval }) {
   const targetWidth = targetRight - targetLeft;
   const mapped = row.speed_interval.map((speed) =>
     4 * ((Number(speed) - targetLeft) / targetWidth) - 2
+  );
+  return [Math.min(...mapped), Math.max(...mapped)];
+}
+
+function xiIntervalSpeedInterval({ xiInterval, targetSpeedInterval }) {
+  const [targetLeft, targetRight] = targetSpeedInterval;
+  const targetWidth = targetRight - targetLeft;
+  const mapped = xiInterval.map(
+    (xi) => targetLeft + ((Number(xi) + 2) / 4) * targetWidth
   );
   return [Math.min(...mapped), Math.max(...mapped)];
 }
@@ -1005,6 +1040,222 @@ function hIntervalsForPolynomialGraphResidualCentersWithH38VariantInterval({
       graphCenter + residualCenter + resolvedH38NoiseInterval[0] * residualRadius,
       graphCenter + residualCenter + resolvedH38NoiseInterval[1] * residualRadius,
     ];
+  });
+}
+
+function hIntervalsForPolynomialGraphIntervalResidualCentersWithH38VariantInterval({
+  transportProfile,
+  noiseInterval,
+  residualProfile,
+  h38ResidualInterval,
+  h38NoiseInterval,
+}) {
+  if (!Array.isArray(h38NoiseInterval) || h38NoiseInterval.length !== 2) {
+    throw new Error("h38NoiseInterval must be a two-entry interval");
+  }
+  const resolvedH38NoiseInterval = h38NoiseInterval.map(Number);
+  if (
+    !Number.isFinite(resolvedH38NoiseInterval[0]) ||
+    !Number.isFinite(resolvedH38NoiseInterval[1]) ||
+    resolvedH38NoiseInterval[0] > resolvedH38NoiseInterval[1]
+  ) {
+    throw new Error("h38NoiseInterval must be a finite nondecreasing interval");
+  }
+  return transportProfile.map((profile, hIndex) => {
+    const residualInterval =
+      hIndex === 38
+        ? h38ResidualInterval
+        : residualProfile?.[hIndex]?.residual_interval_hull ?? [0, 0];
+    const residualCenter = intervalMidpoint(residualInterval);
+    const graphInterval = directedIntervalPolynomialValue({
+      coefficients: profile.coefficients,
+      interval: noiseInterval,
+    });
+    if (hIndex !== 38) {
+      return [
+        Number(graphInterval[0]) + residualCenter,
+        Number(graphInterval[1]) + residualCenter,
+      ];
+    }
+    const residualRadius = intervalWidth(residualInterval) / 2;
+    return [
+      Number(graphInterval[0]) +
+        residualCenter +
+        resolvedH38NoiseInterval[0] * residualRadius,
+      Number(graphInterval[1]) +
+        residualCenter +
+      resolvedH38NoiseInterval[1] * residualRadius,
+  ];
+  });
+}
+
+function hIntervalsForPolynomialGraphIntervalResidualCentersWithSharedVariantInterval({
+  transportProfile,
+  noiseInterval,
+  residualProfile,
+  h38ResidualInterval,
+  h38NoiseInterval,
+  sharedVariantHIndexes,
+  sharedNoiseInterval,
+}) {
+  if (!Array.isArray(h38NoiseInterval) || h38NoiseInterval.length !== 2) {
+    throw new Error("h38NoiseInterval must be a two-entry interval");
+  }
+  if (!Array.isArray(sharedNoiseInterval) || sharedNoiseInterval.length !== 2) {
+    throw new Error("sharedNoiseInterval must be a two-entry interval");
+  }
+  const resolvedH38NoiseInterval = h38NoiseInterval.map(Number);
+  const resolvedSharedNoiseInterval = sharedNoiseInterval.map(Number);
+  if (
+    !Number.isFinite(resolvedH38NoiseInterval[0]) ||
+    !Number.isFinite(resolvedH38NoiseInterval[1]) ||
+    resolvedH38NoiseInterval[0] > resolvedH38NoiseInterval[1] ||
+    !Number.isFinite(resolvedSharedNoiseInterval[0]) ||
+    !Number.isFinite(resolvedSharedNoiseInterval[1]) ||
+    resolvedSharedNoiseInterval[0] > resolvedSharedNoiseInterval[1]
+  ) {
+    throw new Error("residual coordinate intervals must be finite nondecreasing intervals");
+  }
+  const sharedVariantHIndexSet = new Set(sharedVariantHIndexes ?? []);
+  return transportProfile.map((profile, hIndex) => {
+    const residualInterval =
+      hIndex === 38
+        ? h38ResidualInterval
+        : residualProfile?.[hIndex]?.residual_interval_hull ?? [0, 0];
+    const residualCenter = intervalMidpoint(residualInterval);
+    const residualRadius = intervalWidth(residualInterval) / 2;
+    const graphInterval = directedIntervalPolynomialValue({
+      coefficients: profile.coefficients,
+      interval: noiseInterval,
+    });
+    const residualNoiseInterval =
+      hIndex === 38
+        ? resolvedH38NoiseInterval
+        : sharedVariantHIndexSet.has(hIndex)
+          ? resolvedSharedNoiseInterval
+          : null;
+    if (residualNoiseInterval === null) {
+      return [
+        Number(graphInterval[0]) + residualCenter,
+        Number(graphInterval[1]) + residualCenter,
+      ];
+    }
+    return [
+      Number(graphInterval[0]) +
+        residualCenter +
+        residualNoiseInterval[0] * residualRadius,
+      Number(graphInterval[1]) +
+        residualCenter +
+        residualNoiseInterval[1] * residualRadius,
+    ];
+  });
+}
+
+function h39H38Y44FullResidualVectorPolynomialProfile({
+  producerSamples,
+  transportProfile,
+}) {
+  if (!Array.isArray(producerSamples) || !Array.isArray(transportProfile)) {
+    return null;
+  }
+  const hCount = transportProfile.length;
+  const samples = producerSamples
+    .map((sample) => ({
+      ...sample,
+      xi_midpoint: Number(sample?.xi_midpoint),
+    }))
+    .filter(
+      (sample) =>
+        Number.isFinite(sample.xi_midpoint) &&
+        Array.isArray(sample.h_intervals) &&
+        sample.h_intervals.length === hCount &&
+        sample.h_intervals.every(
+          (interval) =>
+            Array.isArray(interval) &&
+            interval.length === 2 &&
+            interval.every((value) => Number.isFinite(Number(value)))
+        )
+    );
+  if (samples.length < 2 || hCount === 0) {
+    return null;
+  }
+  const distinctXiValues = new Set(
+    samples.map((sample) => sample.xi_midpoint.toPrecision(17))
+  );
+  if (distinctXiValues.size !== samples.length) {
+    return null;
+  }
+  const residualMidpointRows = samples.map((sample) => ({
+    cell_id: sample.cell_id,
+    row_index: sample.row_index,
+    xi_midpoint: sample.xi_midpoint,
+    residual_midpoints: sample.h_intervals.map((hInterval, hIndex) => {
+      const graphMidpoint = polynomialValue(
+        transportProfile[hIndex].coefficients,
+        sample.xi_midpoint
+      );
+      return intervalMidpoint(hInterval) - graphMidpoint;
+    }),
+  }));
+  const residualCoefficientRows = Array.from({ length: hCount }, (_, hIndex) =>
+    lagrangeInterpolationPolynomialCoefficients(
+      residualMidpointRows.map((row) => ({
+        x: row.xi_midpoint,
+        y: row.residual_midpoints[hIndex],
+      }))
+    )
+  );
+  const sampleReplayResiduals = residualMidpointRows.map((row) => {
+    const maxAbsReplayResidual = Math.max(
+      ...row.residual_midpoints.map((residualMidpoint, hIndex) =>
+        Math.abs(
+          residualMidpoint -
+            polynomialValue(
+              residualCoefficientRows[hIndex],
+              row.xi_midpoint
+            )
+        )
+      )
+    );
+    return {
+      cell_id: row.cell_id,
+      row_index: row.row_index,
+      xi_midpoint: row.xi_midpoint,
+      max_abs_residual_midpoint_replay_error: maxAbsReplayResidual,
+    };
+  });
+  return {
+    provider_kind:
+      "candidate-polynomial-h-row-full-residual-vector-xi-graph-provider",
+    residual_vector_polynomial_degree: samples.length - 1,
+    sample_count: samples.length,
+    h_count: hCount,
+    residual_coefficient_rows: residualCoefficientRows,
+    max_sample_residual_midpoint_replay_error: Math.max(
+      ...sampleReplayResiduals.map(
+        (row) => row.max_abs_residual_midpoint_replay_error
+      )
+    ),
+    sample_replay_residuals: sampleReplayResiduals,
+  };
+}
+
+function hIntervalsForPolynomialGraphIntervalFullResidualVector({
+  transportProfile,
+  noiseInterval,
+  fullResidualVectorProfile,
+}) {
+  return transportProfile.map((profile, hIndex) => {
+    const graphInterval = directedIntervalPolynomialValue({
+      coefficients: profile.coefficients,
+      interval: noiseInterval,
+    });
+    const residualInterval = directedIntervalPolynomialValue({
+      coefficients:
+        fullResidualVectorProfile.residual_coefficient_rows[hIndex],
+      interval: noiseInterval,
+    });
+    return root.addIntervals(graphInterval, residualInterval);
   });
 }
 
@@ -12689,6 +12940,10 @@ function h39H38Y44PositiveN38LagrangeSourceResidualDecomposition({
     point_expression_lagrange_residual_rows: pointExpressionResidualRows,
     interval_center_drift_lagrange_residual_rows:
       intervalCenterDriftResidualRows,
+    point_expression_lagrange_graph_coefficients:
+      pointExpressionCoefficients,
+    interval_center_drift_lagrange_graph_coefficients:
+      intervalCenterDriftCoefficients,
     source_component_omitted_signed_residual_sum:
       componentSignedResidualSum,
     source_component_omitted_abs_residual_sum:
@@ -15443,7 +15698,16 @@ function h39H38Y44PositiveN38QuarticQuotientConsistencyWitness({
       selected_node_xi_midpoints: nodes,
       product_coefficients: productCoefficients,
       product_derivative_coefficients: productDerivativeCoefficients,
+      direct_lagrange_graph_coefficients: directCoefficients,
+      point_expression_residual_coefficients:
+        residualCoefficients.point_expression,
+      interval_center_drift_residual_coefficients:
+        residualCoefficients.interval_center_drift,
       direct_residual_coefficients: residualCoefficients.direct,
+      point_expression_residual_derivative_coefficients:
+        residualDerivativeCoefficients.point_expression,
+      interval_center_drift_residual_derivative_coefficients:
+        residualDerivativeCoefficients.interval_center_drift,
       direct_residual_derivative_coefficients:
         residualDerivativeCoefficients.direct,
       split_stream_m4_ceiling: splitCeiling,
@@ -16041,6 +16305,12 @@ function h39H38Y44SourceCovariancePositiveN38LagrangeRemainderTarget({
                   direct_split_replay_relative_gap:
                     row.source_residual_decomposition
                       .direct_split_replay_relative_gap,
+                  point_expression_lagrange_graph_coefficients:
+                    row.source_residual_decomposition
+                      .point_expression_lagrange_graph_coefficients,
+                  interval_center_drift_lagrange_graph_coefficients:
+                    row.source_residual_decomposition
+                      .interval_center_drift_lagrange_graph_coefficients,
                   source_component_omitted_signed_residual_sum:
                     row.source_residual_decomposition
                       .source_component_omitted_signed_residual_sum,
@@ -16099,6 +16369,8 @@ function h39H38Y44SourceCovariancePositiveN38LagrangeRemainderTarget({
                     row.source_residual_decomposition.component_rows.map(
                       (componentRow) => ({
                         component: componentRow.component,
+                        lagrange_polynomial_coefficients:
+                          componentRow.lagrange_polynomial_coefficients,
                         omitted_signed_residual_sum:
                           componentRow.omitted_signed_residual_sum,
                         omitted_abs_residual_sum:
@@ -17067,6 +17339,11 @@ function h39H38Y44ProducerHybridQuotientDirectReplay({
   const producerSamples = Array.isArray(coordinateProfile?.samples)
     ? coordinateProfile.samples
     : [];
+  const targetSpeedInterval = Array.isArray(
+    coordinateProfile?.target_speed_interval
+  )
+    ? coordinateProfile.target_speed_interval
+    : null;
   const collarRows = Array.isArray(
     quarticWitness?.node_derivative_collar_rows
   )
@@ -17320,7 +17597,26 @@ function h39H38Y44ProducerHybridQuotientDirectReplay({
       ...fullDerivativeSegment,
       ...collarSegment,
       ...productSegments,
-    ];
+    ].map((segment, segmentIndex) => ({
+      ...segment,
+      segment_index: segmentIndex,
+      segment_speed_interval:
+        targetSpeedInterval !== null
+          ? xiIntervalSpeedInterval({
+              xiInterval: segment.segment_interval,
+              targetSpeedInterval,
+            })
+          : null,
+      producer_sample_provenance: {
+        row_index: sample.row_index,
+        comparison_row_index: sample.comparison_row_index ?? sample.row_index,
+        source_subcover_row_index:
+          sample.source_subcover_row_index ?? null,
+        cell_id: sample.cell_id,
+        branch: sample.branch ?? null,
+        h_row_interval_count: sample.h_row_interval_count ?? null,
+      },
+    }));
     const inside = segments.every(
       (segment) =>
         segment.segment_status ===
@@ -17515,10 +17811,13 @@ function h39H38Y44ProducerHybridTrueStreamExcessBudget({
       return {
         cell_id: segment.cell_id,
         row_index: segment.row_index,
-        segment_index: segmentIndex,
+        segment_index: segment.segment_index ?? segmentIndex,
         quotient_kind: segment.quotient_kind,
         proof_object_kind: proofObjectKind(segment.quotient_kind),
         segment_interval: segment.segment_interval,
+        segment_speed_interval: segment.segment_speed_interval ?? null,
+        producer_sample_provenance:
+          segment.producer_sample_provenance ?? null,
         denominator_abs_lower: segment.denominator_abs_lower,
         finite_model_abs_upper: Number.isFinite(finiteAbs) ? finiteAbs : null,
         split_stream_required_direct_normal_form_abs_upper:
@@ -17634,12 +17933,5188 @@ function h39H38Y44ProducerHybridTrueStreamExcessBudget({
   };
 }
 
+function h39H38Y44ProducerHybridSplitStreamPairedReplay({
+  hybridReplay,
+  quarticWitness,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const unavailable = (reason) => ({
+    status:
+      "positive-n38-producer-hybrid-split-stream-paired-replay-unavailable",
+    reason,
+    diagnostic_kind:
+      "candidate-producer-hybrid-split-stream-paired-replay",
+    finite_data_scope:
+      "hybrid-producer-partition-paired-point-drift-finite-polynomial-normal-form-only",
+    segment_count: 0,
+    residual_segment_count: 0,
+    residual_derivative_segment_count: 0,
+    paired_segment_inside_count: 0,
+    all_segments_inside_paired_headroom: false,
+    max_paired_to_target_ratio: null,
+    max_split_triangle_to_target_ratio: null,
+    max_paired_to_direct_abs_loss_factor: null,
+    max_paired_to_direct_replay_relative_gap: null,
+    min_paired_slack_ratio: null,
+    min_paired_cancellation_fraction: null,
+    controlling_segment: null,
+    segment_rows: [],
+    route_interpretation: reason,
+    split_stream_policy:
+      "candidate finite-polynomial paired replay only; no directed-rounded true-stream enclosure is certified",
+    claim_boundary: claimBoundary,
+  });
+  if (
+    hybridReplay?.status !==
+      "positive-n38-producer-hybrid-quotient-direct-replay-candidate-emitted" ||
+    !Array.isArray(hybridReplay?.rows)
+  ) {
+    return unavailable(
+      "the hybrid quotient replay must first cover the producer partition"
+    );
+  }
+  const model =
+    quarticWitness?.same_variable_direct_residual_derivative_model ?? null;
+  const subcellCount = Number.isInteger(
+    model?.directed_finite_polynomial_subcell_count
+  )
+    ? Number(model.directed_finite_polynomial_subcell_count)
+    : 16;
+  const coefficientSet = (quotientKind) =>
+    quotientKind === "product-quotient-producer-complement"
+      ? {
+          proof_object_kind: "same-variable-direct-residual",
+          point:
+            model?.point_expression_residual_coefficients ?? null,
+          drift:
+            model?.interval_center_drift_residual_coefficients ?? null,
+          direct: model?.direct_residual_coefficients ?? null,
+        }
+      : quotientKind?.startsWith("derivative-quotient")
+        ? {
+            proof_object_kind:
+              "same-variable-direct-residual-derivative",
+            point:
+              model?.point_expression_residual_derivative_coefficients ??
+              null,
+            drift:
+              model
+                ?.interval_center_drift_residual_derivative_coefficients ??
+              null,
+            direct: model?.direct_residual_derivative_coefficients ?? null,
+          }
+        : {
+            proof_object_kind: "same-variable-direct-object-unknown",
+            point: null,
+            drift: null,
+            direct: null,
+          };
+  const coefficientsValid = (coefficients) =>
+    Array.isArray(coefficients) &&
+    coefficients.length > 0 &&
+    coefficients.every((value) => Number.isFinite(Number(value)));
+  if (
+    !Number.isInteger(subcellCount) ||
+    subcellCount <= 0 ||
+    !coefficientsValid(model?.point_expression_residual_coefficients) ||
+    !coefficientsValid(
+      model?.interval_center_drift_residual_coefficients
+    ) ||
+    !coefficientsValid(model?.direct_residual_coefficients) ||
+    !coefficientsValid(
+      model?.point_expression_residual_derivative_coefficients
+    ) ||
+    !coefficientsValid(
+      model?.interval_center_drift_residual_derivative_coefficients
+    ) ||
+    !coefficientsValid(model?.direct_residual_derivative_coefficients)
+  ) {
+    return unavailable(
+      "split-stream residual and residual-derivative coefficients are required"
+    );
+  }
+  const directedPairedRangeOnInterval = ({
+    pointCoefficients,
+    driftCoefficients,
+    directCoefficients,
+    interval,
+  }) => {
+    if (!Array.isArray(interval) || intervalWidth(interval) <= 0) {
+      return {
+        point_interval_hull: null,
+        drift_interval_hull: null,
+        paired_interval_hull: null,
+        direct_interval_hull: null,
+        point_abs_upper: null,
+        drift_abs_upper: null,
+        split_triangle_abs_upper: null,
+        paired_abs_upper: null,
+        direct_abs_upper: null,
+        paired_to_direct_replay_relative_gap: null,
+        paired_to_direct_abs_loss_factor: null,
+        paired_to_split_triangle_ratio: null,
+        paired_cancellation_fraction: null,
+        subcell_count: subcellCount,
+      };
+    }
+    const subintervals = splitNumericInterval(interval, subcellCount);
+    const subcellRows = subintervals.map((subinterval) => {
+      const pointInterval = directedIntervalPolynomialValue({
+        coefficients: pointCoefficients,
+        interval: subinterval,
+      });
+      const driftInterval = directedIntervalPolynomialValue({
+        coefficients: driftCoefficients,
+        interval: subinterval,
+      });
+      const pairedInterval = root.addIntervals(pointInterval, driftInterval);
+      const directInterval = directedIntervalPolynomialValue({
+        coefficients: directCoefficients,
+        interval: subinterval,
+      });
+      return {
+        point_interval: pointInterval,
+        drift_interval: driftInterval,
+        paired_interval: pairedInterval,
+        direct_interval: directInterval,
+      };
+    });
+    const pointIntervalHull = intervalHull(
+      subcellRows.map((row) => row.point_interval)
+    );
+    const driftIntervalHull = intervalHull(
+      subcellRows.map((row) => row.drift_interval)
+    );
+    const pairedIntervalHull = intervalHull(
+      subcellRows.map((row) => row.paired_interval)
+    );
+    const directIntervalHull = intervalHull(
+      subcellRows.map((row) => row.direct_interval)
+    );
+    const pointAbsUpper = Math.max(
+      ...subcellRows.map((row) => intervalAbsUpper(row.point_interval))
+    );
+    const driftAbsUpper = Math.max(
+      ...subcellRows.map((row) => intervalAbsUpper(row.drift_interval))
+    );
+    const pairedAbsUpper = Math.max(
+      ...subcellRows.map((row) => intervalAbsUpper(row.paired_interval))
+    );
+    const directAbsUpper = Math.max(
+      ...subcellRows.map((row) => intervalAbsUpper(row.direct_interval))
+    );
+    const splitTriangleAbsUpper = pointAbsUpper + driftAbsUpper;
+    const pairedToDirectAbsLossFactor = finitePositive(directAbsUpper)
+      ? pairedAbsUpper / directAbsUpper
+      : null;
+    const pairedToSplitTriangleRatio = finitePositive(
+      splitTriangleAbsUpper
+    )
+      ? pairedAbsUpper / splitTriangleAbsUpper
+      : null;
+    return {
+      point_interval_hull: pointIntervalHull,
+      drift_interval_hull: driftIntervalHull,
+      paired_interval_hull: pairedIntervalHull,
+      direct_interval_hull: directIntervalHull,
+      point_abs_upper: pointAbsUpper,
+      drift_abs_upper: driftAbsUpper,
+      split_triangle_abs_upper: splitTriangleAbsUpper,
+      paired_abs_upper: pairedAbsUpper,
+      direct_abs_upper: directAbsUpper,
+      paired_to_direct_replay_relative_gap: intervalEndpointRelativeGap(
+        pairedIntervalHull,
+        directIntervalHull
+      ),
+      paired_to_direct_abs_loss_factor: pairedToDirectAbsLossFactor,
+      paired_to_split_triangle_ratio: pairedToSplitTriangleRatio,
+      paired_cancellation_fraction:
+        Number.isFinite(Number(pairedToSplitTriangleRatio))
+          ? 1 - Number(pairedToSplitTriangleRatio)
+          : null,
+      subcell_count: subcellCount,
+    };
+  };
+  const segmentRows = hybridReplay.rows.flatMap((row) =>
+    (row.hybrid_segment_rows ?? []).map((segment, segmentIndex) => {
+      const coefficients = coefficientSet(segment.quotient_kind);
+      const pairedRange = directedPairedRangeOnInterval({
+        pointCoefficients: coefficients.point,
+        driftCoefficients: coefficients.drift,
+        directCoefficients: coefficients.direct,
+        interval: segment.segment_interval,
+      });
+      const target = Number(
+        segment.split_stream_required_direct_normal_form_abs_upper
+      );
+      const pairedAbsUpper = Number(pairedRange.paired_abs_upper);
+      const splitTriangleAbsUpper = Number(
+        pairedRange.split_triangle_abs_upper
+      );
+      const pairedToTargetRatio =
+        Number.isFinite(pairedAbsUpper) && finitePositive(target)
+          ? pairedAbsUpper / target
+          : null;
+      const splitTriangleToTargetRatio =
+        Number.isFinite(splitTriangleAbsUpper) && finitePositive(target)
+          ? splitTriangleAbsUpper / target
+          : null;
+      const pairedSlack =
+        Number.isFinite(pairedAbsUpper) && finitePositive(target)
+          ? target - pairedAbsUpper
+          : null;
+      const pairedSlackRatio =
+        Number.isFinite(Number(pairedSlack)) && finitePositive(target)
+          ? Number(pairedSlack) / target
+          : null;
+      const inside =
+        Number.isFinite(Number(pairedToTargetRatio)) &&
+        Number(pairedToTargetRatio) <= 1 &&
+        finitePositive(pairedSlack);
+      return {
+        cell_id: segment.cell_id,
+        row_index: segment.row_index,
+        segment_index: segment.segment_index ?? segmentIndex,
+        quotient_kind: segment.quotient_kind,
+        proof_object_kind: coefficients.proof_object_kind,
+        segment_interval: segment.segment_interval,
+        segment_speed_interval: segment.segment_speed_interval ?? null,
+        producer_sample_provenance:
+          segment.producer_sample_provenance ?? null,
+        target_abs_upper: Number.isFinite(target) && target >= 0 ? target : null,
+        point_interval_hull: pairedRange.point_interval_hull,
+        drift_interval_hull: pairedRange.drift_interval_hull,
+        paired_interval_hull: pairedRange.paired_interval_hull,
+        direct_interval_hull: pairedRange.direct_interval_hull,
+        point_abs_upper: pairedRange.point_abs_upper,
+        drift_abs_upper: pairedRange.drift_abs_upper,
+        split_triangle_abs_upper: pairedRange.split_triangle_abs_upper,
+        paired_abs_upper: pairedRange.paired_abs_upper,
+        direct_abs_upper: pairedRange.direct_abs_upper,
+        paired_to_target_ratio: pairedToTargetRatio,
+        split_triangle_to_target_ratio: splitTriangleToTargetRatio,
+        paired_true_stream_excess_abs_budget: pairedSlack,
+        paired_true_stream_slack_ratio: pairedSlackRatio,
+        paired_to_direct_replay_relative_gap:
+          pairedRange.paired_to_direct_replay_relative_gap,
+        paired_to_direct_abs_loss_factor:
+          pairedRange.paired_to_direct_abs_loss_factor,
+        paired_to_split_triangle_ratio:
+          pairedRange.paired_to_split_triangle_ratio,
+        paired_cancellation_fraction:
+          pairedRange.paired_cancellation_fraction,
+        subcell_count: pairedRange.subcell_count,
+        segment_status: inside
+          ? "positive-n38-producer-hybrid-split-stream-paired-segment-inside-headroom"
+          : "positive-n38-producer-hybrid-split-stream-paired-segment-open",
+        split_stream_policy:
+          "candidate finite-polynomial paired replay only; no directed-rounded true-stream enclosure is certified",
+      };
+    })
+  );
+  const insideRows = segmentRows.filter(
+    (row) =>
+      row.segment_status ===
+      "positive-n38-producer-hybrid-split-stream-paired-segment-inside-headroom"
+  );
+  const finiteValues = (selector) =>
+    segmentRows
+      .map(selector)
+      .filter(
+        (value) =>
+          value !== null &&
+          value !== undefined &&
+          Number.isFinite(Number(value)) &&
+          Number(value) >= 0
+      );
+  const allInside =
+    segmentRows.length > 0 && segmentRows.length === insideRows.length;
+  const controllingSegment =
+    segmentRows.reduce((best, row) => {
+      if (row.paired_to_target_ratio === null) {
+        return best;
+      }
+      if (
+        best === null ||
+        Number(row.paired_to_target_ratio) >
+          Number(best.paired_to_target_ratio)
+      ) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  return {
+    status: allInside
+      ? "positive-n38-producer-hybrid-split-stream-paired-replay-candidate-emitted"
+      : "positive-n38-producer-hybrid-split-stream-paired-replay-open",
+    reason: allInside
+      ? "paired point-expression plus interval-center-drift finite-polynomial replay stays inside every hybrid segment target"
+      : "paired split-stream finite-polynomial replay remains open on at least one hybrid segment",
+    diagnostic_kind:
+      "candidate-producer-hybrid-split-stream-paired-replay",
+    finite_data_scope:
+      "hybrid-producer-partition-paired-point-drift-finite-polynomial-normal-form-only",
+    segment_count: segmentRows.length,
+    residual_segment_count: segmentRows.filter(
+      (row) => row.proof_object_kind === "same-variable-direct-residual"
+    ).length,
+    residual_derivative_segment_count: segmentRows.filter(
+      (row) =>
+        row.proof_object_kind ===
+        "same-variable-direct-residual-derivative"
+    ).length,
+    paired_segment_inside_count: insideRows.length,
+    all_segments_inside_paired_headroom: allInside,
+    max_paired_to_target_ratio:
+      finiteValues((row) => row.paired_to_target_ratio).length > 0
+        ? Math.max(...finiteValues((row) => row.paired_to_target_ratio))
+        : null,
+    max_split_triangle_to_target_ratio:
+      finiteValues((row) => row.split_triangle_to_target_ratio).length > 0
+        ? Math.max(
+            ...finiteValues((row) => row.split_triangle_to_target_ratio)
+          )
+        : null,
+    max_paired_to_direct_abs_loss_factor:
+      finiteValues((row) => row.paired_to_direct_abs_loss_factor).length > 0
+        ? Math.max(
+            ...finiteValues((row) => row.paired_to_direct_abs_loss_factor)
+          )
+        : null,
+    max_paired_to_direct_replay_relative_gap:
+      finiteValues((row) => row.paired_to_direct_replay_relative_gap).length >
+      0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.paired_to_direct_replay_relative_gap
+            )
+          )
+        : null,
+    min_paired_slack_ratio:
+      finiteValues((row) => row.paired_true_stream_slack_ratio).length > 0
+        ? Math.min(
+            ...finiteValues((row) => row.paired_true_stream_slack_ratio)
+          )
+        : null,
+    min_paired_cancellation_fraction:
+      finiteValues((row) => row.paired_cancellation_fraction).length > 0
+        ? Math.min(...finiteValues((row) => row.paired_cancellation_fraction))
+        : null,
+    controlling_segment: controllingSegment,
+    segment_rows: segmentRows,
+    route_interpretation: allInside
+      ? "the signed split streams survive on the same hybrid producer partition at finite-polynomial level; the remaining promotion burden is to replace these finite-polynomial rows with directed-rounded true-stream residual and residual-derivative enclosures, then perform dependency-preserving S37 replay"
+      : "the signed split streams do not yet stay inside every hybrid producer segment target",
+    split_stream_policy:
+      "candidate finite-polynomial paired replay only; no directed-rounded true-stream enclosure is certified",
+    claim_boundary: claimBoundary,
+  };
+}
+
+function h39H38Y44ProducerHybridRawTrueSourceReplay({
+  coordinateProfile,
+  hybridReplay,
+  quarticWitness,
+  branch,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const unavailable = (reason) => ({
+    status:
+      "positive-n38-producer-hybrid-raw-true-source-replay-unavailable",
+    reason,
+    diagnostic_kind:
+      "candidate-producer-hybrid-raw-true-source-replay",
+    finite_data_scope:
+      "hybrid-producer-partition-raw-independent-h-row-h38-numerator-source-only",
+    segment_count: 0,
+    residual_value_segment_count: 0,
+    derivative_value_only_segment_count: 0,
+    residual_value_inside_target_count: 0,
+    all_residual_value_segments_inside_target: false,
+    max_raw_true_residual_value_to_product_target_ratio: null,
+    max_raw_true_source_abs_upper: null,
+    max_raw_true_residual_abs_upper: null,
+    max_term_triangle_to_source_abs_loss_factor: null,
+    min_raw_true_source_cancellation_fraction: null,
+    max_term_sum_to_source_relative_gap: null,
+    controlling_value_segment: null,
+    segment_rows: [],
+    target_comparison_policy:
+      "product-quotient segments compare raw residual values; derivative-quotient segments are value-only until a same-domain residual-derivative true-stream provider exists",
+    route_interpretation: reason,
+    true_source_policy:
+      "candidate raw independent h-row source replay only; no dependency-preserving true-stream enclosure is certified",
+    claim_boundary: claimBoundary,
+  });
+  if (
+    hybridReplay?.status !==
+      "positive-n38-producer-hybrid-quotient-direct-replay-candidate-emitted" ||
+    !Array.isArray(hybridReplay?.rows)
+  ) {
+    return unavailable(
+      "the hybrid quotient replay must first cover the producer partition"
+    );
+  }
+  const producerSamples = Array.isArray(coordinateProfile?.samples)
+    ? coordinateProfile.samples
+    : [];
+  const model =
+    quarticWitness?.same_variable_direct_residual_derivative_model ?? null;
+  const graphCoefficients = model?.direct_lagrange_graph_coefficients ?? null;
+  const coefficientsValid =
+    Array.isArray(graphCoefficients) &&
+    graphCoefficients.length > 0 &&
+    graphCoefficients.every((value) => Number.isFinite(Number(value)));
+  if (producerSamples.length === 0 || !coefficientsValid) {
+    return unavailable(
+      "producer samples and direct cubic graph coefficients are required"
+    );
+  }
+  const sampleKey = (rowIndex, cellId) => `${rowIndex}:${cellId}`;
+  const samplesByKey = new Map(
+    producerSamples.map((sample) => [
+      sampleKey(sample.row_index, sample.cell_id),
+      sample,
+    ])
+  );
+  const sourceTerms = [
+    "delta_squared_speed",
+    "constant_minus_two",
+    "sin_phi",
+    "sin_delta",
+  ];
+  const coefficientIntervalAt = (series, order) => {
+    const coefficient = series?.[order];
+    return Array.isArray(coefficient) &&
+      coefficient.length === 2 &&
+      coefficient.every((value) => Number.isFinite(Number(value)))
+      ? root.outwardInterval(coefficient)
+      : root.pointInterval(0);
+  };
+  const sumIntervals = (intervals) =>
+    intervals.reduce(
+      (total, interval) => root.addIntervals(total, interval),
+      root.pointInterval(0)
+    );
+  const segmentRows = hybridReplay.rows.flatMap((row) =>
+    (row.hybrid_segment_rows ?? []).map((segment, segmentIndex) => {
+      const sample =
+        samplesByKey.get(sampleKey(segment.row_index, segment.cell_id)) ??
+        null;
+      const segmentSpeedInterval =
+        segment.segment_speed_interval ??
+        (Array.isArray(coordinateProfile?.target_speed_interval)
+          ? xiIntervalSpeedInterval({
+              xiInterval: segment.segment_interval,
+              targetSpeedInterval: coordinateProfile.target_speed_interval,
+            })
+          : sample?.speed_interval ?? null);
+      if (
+        sample === null ||
+        !Array.isArray(sample?.cell?.speed_interval) ||
+        !Array.isArray(sample?.h_intervals) ||
+        !Array.isArray(segmentSpeedInterval)
+      ) {
+        return {
+          cell_id: segment.cell_id,
+          row_index: segment.row_index,
+          segment_index: segment.segment_index ?? segmentIndex,
+          quotient_kind: segment.quotient_kind,
+          proof_object_kind: segment.quotient_kind?.startsWith(
+            "derivative-quotient"
+          )
+            ? "same-variable-direct-residual-derivative"
+            : "same-variable-direct-residual",
+          segment_interval: segment.segment_interval,
+          segment_speed_interval: segmentSpeedInterval,
+          source_y_order: null,
+          target_abs_upper: null,
+          raw_true_source_interval: null,
+          raw_true_source_abs_upper: null,
+          direct_graph_interval: null,
+          raw_true_residual_interval: null,
+          raw_true_residual_abs_upper: null,
+          raw_true_residual_value_to_product_target_ratio: null,
+          raw_true_source_term_interval_sum: null,
+          raw_true_source_term_triangle_abs_upper: null,
+          term_sum_to_source_relative_gap: null,
+          raw_true_source_cancellation_fraction: null,
+          target_comparison_status:
+            "positive-n38-producer-hybrid-raw-true-source-segment-unavailable",
+          reason:
+            "the hybrid segment could not be joined to producer sample cell and h-row provenance",
+          true_source_policy:
+            "candidate raw independent h-row source replay only; no dependency-preserving true-stream enclosure is certified",
+        };
+      }
+      const resolvedBranch = sample.branch ?? branch;
+      const cell = {
+        ...sample.cell,
+        speed_interval: segmentSpeedInterval,
+      };
+      const expression = evaluateH38RecurrenceNumeratorBeforeSolve({
+        cell,
+        branch: resolvedBranch,
+        branchSign: root.branchSign(resolvedBranch),
+        hIntervals: sample.h_intervals,
+        includeTermDecomposition: true,
+      });
+      const sourceYOrder = expression.source_y_order;
+      const sourceInterval = root.outwardInterval(
+        expression.numerator_interval
+      );
+      const termCoefficientIntervals = Object.fromEntries(
+        sourceTerms.map((term) => [
+          term,
+          coefficientIntervalAt(
+            expression.term_decomposition?.[term],
+            sourceYOrder
+          ),
+        ])
+      );
+      const termIntervalSum = sumIntervals(
+        sourceTerms.map((term) => termCoefficientIntervals[term])
+      );
+      const termTriangleAbsUpper = sourceTerms.reduce(
+        (sum, term) =>
+          sum + intervalAbsUpper(termCoefficientIntervals[term]),
+        0
+      );
+      const directGraphInterval = directedIntervalPolynomialValue({
+        coefficients: graphCoefficients,
+        interval: segment.segment_interval,
+      });
+      const rawTrueResidualInterval = root.subtractIntervals(
+        sourceInterval,
+        directGraphInterval
+      );
+      const rawTrueSourceAbsUpper = intervalAbsUpper(sourceInterval);
+      const rawTrueResidualAbsUpper = intervalAbsUpper(
+        rawTrueResidualInterval
+      );
+      const sourceCancellationFraction = finitePositive(
+        termTriangleAbsUpper
+      )
+        ? 1 - rawTrueSourceAbsUpper / termTriangleAbsUpper
+        : null;
+      const termTriangleToSourceAbsLossFactor = finitePositive(
+        rawTrueSourceAbsUpper
+      )
+        ? termTriangleAbsUpper / rawTrueSourceAbsUpper
+        : null;
+      const productValueComparable =
+        segment.quotient_kind === "product-quotient-producer-complement";
+      const target = Number(
+        segment.split_stream_required_direct_normal_form_abs_upper
+      );
+      const ratio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(rawTrueResidualAbsUpper)
+          ? rawTrueResidualAbsUpper / target
+          : null;
+      const inside =
+        productValueComparable &&
+        Number.isFinite(Number(ratio)) &&
+        Number(ratio) <= 1;
+      return {
+        cell_id: segment.cell_id,
+        row_index: segment.row_index,
+        segment_index: segment.segment_index ?? segmentIndex,
+        quotient_kind: segment.quotient_kind,
+        proof_object_kind: productValueComparable
+          ? "same-variable-direct-residual"
+          : "same-variable-direct-residual-derivative",
+        segment_interval: segment.segment_interval,
+        segment_speed_interval: segmentSpeedInterval,
+        producer_sample_provenance:
+          segment.producer_sample_provenance ?? {
+            row_index: sample.row_index,
+            comparison_row_index:
+              sample.comparison_row_index ?? sample.row_index,
+            source_subcover_row_index:
+              sample.source_subcover_row_index ?? null,
+            cell_id: sample.cell_id,
+            branch: resolvedBranch,
+            h_row_interval_count: sample.h_row_interval_count ?? null,
+          },
+        source_y_order: sourceYOrder,
+        target_abs_upper:
+          Number.isFinite(target) && target >= 0 ? target : null,
+        raw_true_source_interval: sourceInterval,
+        raw_true_source_abs_upper: rawTrueSourceAbsUpper,
+        direct_graph_interval: directGraphInterval,
+        raw_true_residual_interval: rawTrueResidualInterval,
+        raw_true_residual_abs_upper: rawTrueResidualAbsUpper,
+        raw_true_residual_value_to_product_target_ratio: ratio,
+        raw_true_source_term_intervals: termCoefficientIntervals,
+        raw_true_source_term_interval_sum: termIntervalSum,
+        raw_true_source_term_triangle_abs_upper: termTriangleAbsUpper,
+        term_sum_to_source_relative_gap: intervalEndpointRelativeGap(
+          termIntervalSum,
+          sourceInterval
+        ),
+        term_triangle_to_source_abs_loss_factor:
+          termTriangleToSourceAbsLossFactor,
+        raw_true_source_cancellation_fraction:
+          sourceCancellationFraction,
+        target_comparison_status: productValueComparable
+          ? inside
+            ? "positive-n38-producer-hybrid-raw-true-source-product-segment-inside-target"
+            : "positive-n38-producer-hybrid-raw-true-source-product-segment-open"
+          : "positive-n38-producer-hybrid-raw-true-source-derivative-segment-value-only",
+        true_source_policy:
+          "candidate raw independent h-row source replay only; no dependency-preserving true-stream enclosure is certified",
+      };
+    })
+  );
+  const finiteValues = (selector) =>
+    segmentRows
+      .map(selector)
+      .filter(
+        (value) =>
+          value !== null &&
+          value !== undefined &&
+          Number.isFinite(Number(value)) &&
+          Number(value) >= 0
+      );
+  const productRows = segmentRows.filter(
+    (row) => row.quotient_kind === "product-quotient-producer-complement"
+  );
+  const derivativeRows = segmentRows.filter((row) =>
+    row.quotient_kind?.startsWith("derivative-quotient")
+  );
+  const insideProductRows = productRows.filter(
+    (row) =>
+      row.target_comparison_status ===
+      "positive-n38-producer-hybrid-raw-true-source-product-segment-inside-target"
+  );
+  const allProductInside =
+    productRows.length > 0 && productRows.length === insideProductRows.length;
+  const controllingValueSegment =
+    productRows.reduce((best, row) => {
+      if (row.raw_true_residual_value_to_product_target_ratio === null) {
+        return best;
+      }
+      if (
+        best === null ||
+        Number(row.raw_true_residual_value_to_product_target_ratio) >
+          Number(best.raw_true_residual_value_to_product_target_ratio)
+      ) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  return {
+    status: allProductInside
+      ? "positive-n38-producer-hybrid-raw-true-source-replay-candidate-emitted"
+      : "positive-n38-producer-hybrid-raw-true-source-replay-open",
+    reason: allProductInside
+      ? "raw independent h-row H38 numerator source intervals fit every product-quotient residual-value segment target; derivative segments remain value-only"
+      : "raw independent h-row H38 numerator source intervals remain too wide on at least one product-quotient residual-value segment",
+    diagnostic_kind:
+      "candidate-producer-hybrid-raw-true-source-replay",
+    finite_data_scope:
+      "hybrid-producer-partition-raw-independent-h-row-h38-numerator-source-only",
+    segment_count: segmentRows.length,
+    residual_value_segment_count: productRows.length,
+    derivative_value_only_segment_count: derivativeRows.length,
+    residual_value_inside_target_count: insideProductRows.length,
+    all_residual_value_segments_inside_target: allProductInside,
+    max_raw_true_residual_value_to_product_target_ratio:
+      finiteValues(
+        (row) => row.raw_true_residual_value_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.raw_true_residual_value_to_product_target_ratio
+            )
+          )
+        : null,
+    max_raw_true_source_abs_upper:
+      finiteValues((row) => row.raw_true_source_abs_upper).length > 0
+        ? Math.max(...finiteValues((row) => row.raw_true_source_abs_upper))
+        : null,
+    max_raw_true_residual_abs_upper:
+      finiteValues((row) => row.raw_true_residual_abs_upper).length > 0
+        ? Math.max(
+            ...finiteValues((row) => row.raw_true_residual_abs_upper)
+          )
+        : null,
+    max_term_triangle_to_source_abs_loss_factor:
+      finiteValues((row) => row.term_triangle_to_source_abs_loss_factor)
+        .length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.term_triangle_to_source_abs_loss_factor
+            )
+          )
+        : null,
+    min_raw_true_source_cancellation_fraction:
+      finiteValues((row) => row.raw_true_source_cancellation_fraction)
+        .length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) => row.raw_true_source_cancellation_fraction
+            )
+          )
+        : null,
+    max_term_sum_to_source_relative_gap:
+      finiteValues((row) => row.term_sum_to_source_relative_gap).length > 0
+        ? Math.max(
+            ...finiteValues((row) => row.term_sum_to_source_relative_gap)
+          )
+        : null,
+    controlling_value_segment: controllingValueSegment,
+    segment_rows: segmentRows,
+    target_comparison_policy:
+      "product-quotient segments compare raw residual values; derivative-quotient segments are value-only until a same-domain residual-derivative true-stream provider exists",
+    route_interpretation: allProductInside
+      ? "the same hybrid support can now replay the raw H38 numerator/source terms directly, but derivative quotient segments still require a directed residual-derivative provider before S37 replay can be promoted"
+      : "the same hybrid support can now replay the raw H38 numerator/source terms directly; the open product rows show that independent h-row boxes still destroy the producer-image dependency before quotient division",
+    true_source_policy:
+      "candidate raw independent h-row source replay only; no dependency-preserving true-stream enclosure is certified",
+    claim_boundary: claimBoundary,
+  };
+}
+
+function h39H38Y44ProducerHybridGraphIntervalResidualSourceReplay({
+  coordinateProfile,
+  hybridReplay,
+  quarticWitness,
+  rawReplay,
+  branch,
+  transportProfile,
+  residualProfile,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const unavailable = (reason) => ({
+    status:
+      "positive-n38-producer-hybrid-graph-interval-residual-source-replay-unavailable",
+    reason,
+    diagnostic_kind:
+      "candidate-producer-hybrid-graph-interval-residual-source-replay",
+    finite_data_scope:
+      "hybrid-producer-partition-polynomial-h-row-graph-plus-interval-residual-source-only",
+    provider_kind:
+      "candidate-polynomial-h-row-graph-interval-residual-provider",
+    segment_count: 0,
+    residual_value_segment_count: 0,
+    derivative_value_only_segment_count: 0,
+    residual_value_inside_target_count: 0,
+    all_residual_value_segments_inside_target: false,
+    max_graph_residual_value_to_product_target_ratio: null,
+    max_graph_source_abs_upper: null,
+    max_graph_residual_abs_upper: null,
+    max_raw_to_graph_residual_compression_factor: null,
+    min_raw_to_graph_residual_compression_factor: null,
+    max_term_sum_to_source_relative_gap: null,
+    min_graph_source_cancellation_fraction: null,
+    controlling_value_segment: null,
+    segment_rows: [],
+    route_interpretation: reason,
+    provider_dependency_policy:
+      "preserves shared xi graph dependence but leaves per-h interval residual hulls independent; candidate-only",
+    true_source_policy:
+      "candidate graph-plus-interval-residual source replay only; no directed-rounded true-stream enclosure is certified",
+    claim_boundary: claimBoundary,
+  });
+  if (
+    hybridReplay?.status !==
+      "positive-n38-producer-hybrid-quotient-direct-replay-candidate-emitted" ||
+    !Array.isArray(hybridReplay?.rows)
+  ) {
+    return unavailable(
+      "the hybrid quotient replay must first cover the producer partition"
+    );
+  }
+  const producerSamples = Array.isArray(coordinateProfile?.samples)
+    ? coordinateProfile.samples
+    : [];
+  const model =
+    quarticWitness?.same_variable_direct_residual_derivative_model ?? null;
+  const graphCoefficients = model?.direct_lagrange_graph_coefficients ?? null;
+  const coefficientsValid =
+    Array.isArray(graphCoefficients) &&
+    graphCoefficients.length > 0 &&
+    graphCoefficients.every((value) => Number.isFinite(Number(value)));
+  if (
+    producerSamples.length === 0 ||
+    !coefficientsValid ||
+    !Array.isArray(transportProfile) ||
+    !Array.isArray(residualProfile)
+  ) {
+    return unavailable(
+      "producer samples, direct cubic graph coefficients, transport profile, and residual profile are required"
+    );
+  }
+  const sampleKey = (rowIndex, cellId) => `${rowIndex}:${cellId}`;
+  const segmentKey = (rowIndex, cellId, segmentIndex) =>
+    `${rowIndex}:${cellId}:${segmentIndex}`;
+  const samplesByKey = new Map(
+    producerSamples.map((sample) => [
+      sampleKey(sample.row_index, sample.cell_id),
+      sample,
+    ])
+  );
+  const rawRowsByKey = new Map(
+    (rawReplay?.segment_rows ?? []).map((row) => [
+      segmentKey(row.row_index, row.cell_id, row.segment_index),
+      row,
+    ])
+  );
+  const sourceTerms = [
+    "delta_squared_speed",
+    "constant_minus_two",
+    "sin_phi",
+    "sin_delta",
+  ];
+  const coefficientIntervalAt = (series, order) => {
+    const coefficient = series?.[order];
+    return Array.isArray(coefficient) &&
+      coefficient.length === 2 &&
+      coefficient.every((value) => Number.isFinite(Number(value)))
+      ? root.outwardInterval(coefficient)
+      : root.pointInterval(0);
+  };
+  const sumIntervals = (intervals) =>
+    intervals.reduce(
+      (total, interval) => root.addIntervals(total, interval),
+      root.pointInterval(0)
+    );
+  const segmentRows = hybridReplay.rows.flatMap((row) =>
+    (row.hybrid_segment_rows ?? []).map((segment, segmentIndex) => {
+      const resolvedSegmentIndex = segment.segment_index ?? segmentIndex;
+      const sample =
+        samplesByKey.get(sampleKey(segment.row_index, segment.cell_id)) ??
+        null;
+      const rawRow =
+        rawRowsByKey.get(
+          segmentKey(segment.row_index, segment.cell_id, resolvedSegmentIndex)
+        ) ?? null;
+      const segmentSpeedInterval =
+        segment.segment_speed_interval ??
+        (Array.isArray(coordinateProfile?.target_speed_interval)
+          ? xiIntervalSpeedInterval({
+              xiInterval: segment.segment_interval,
+              targetSpeedInterval: coordinateProfile.target_speed_interval,
+            })
+          : sample?.speed_interval ?? null);
+      if (
+        sample === null ||
+        !Array.isArray(sample?.cell?.speed_interval) ||
+        !Array.isArray(segmentSpeedInterval)
+      ) {
+        return {
+          cell_id: segment.cell_id,
+          row_index: segment.row_index,
+          segment_index: resolvedSegmentIndex,
+          quotient_kind: segment.quotient_kind,
+          proof_object_kind: segment.quotient_kind?.startsWith(
+            "derivative-quotient"
+          )
+            ? "same-variable-direct-residual-derivative"
+            : "same-variable-direct-residual",
+          segment_interval: segment.segment_interval,
+          segment_speed_interval: segmentSpeedInterval,
+          provider_kind:
+            "candidate-polynomial-h-row-graph-interval-residual-provider",
+          provider_preserves_shared_xi_dependency: true,
+          source_y_order: null,
+          target_abs_upper: null,
+          graph_source_interval: null,
+          graph_source_abs_upper: null,
+          direct_graph_interval: null,
+          graph_residual_interval: null,
+          graph_residual_abs_upper: null,
+          graph_residual_value_to_product_target_ratio: null,
+          raw_residual_abs_upper: null,
+          raw_to_graph_residual_compression_factor: null,
+          graph_source_term_interval_sum: null,
+          graph_source_term_triangle_abs_upper: null,
+          term_sum_to_source_relative_gap: null,
+          graph_source_cancellation_fraction: null,
+          target_comparison_status:
+            "positive-n38-producer-hybrid-graph-interval-residual-source-segment-unavailable",
+          reason:
+            "the hybrid segment could not be joined to producer sample cell provenance",
+          provider_dependency_policy:
+            "preserves shared xi graph dependence but leaves per-h interval residual hulls independent; candidate-only",
+          true_source_policy:
+            "candidate graph-plus-interval-residual source replay only; no directed-rounded true-stream enclosure is certified",
+        };
+      }
+      const hIntervals = hIntervalsForPolynomialGraphPlusIntervalResidual({
+        transportProfile,
+        noiseInterval: segment.segment_interval,
+        residualProfile,
+      });
+      const resolvedBranch = sample.branch ?? branch;
+      const cell = {
+        ...sample.cell,
+        speed_interval: segmentSpeedInterval,
+      };
+      const expression = evaluateH38RecurrenceNumeratorBeforeSolve({
+        cell,
+        branch: resolvedBranch,
+        branchSign: root.branchSign(resolvedBranch),
+        hIntervals,
+        includeTermDecomposition: true,
+      });
+      const sourceYOrder = expression.source_y_order;
+      const sourceInterval = root.outwardInterval(
+        expression.numerator_interval
+      );
+      const termCoefficientIntervals = Object.fromEntries(
+        sourceTerms.map((term) => [
+          term,
+          coefficientIntervalAt(
+            expression.term_decomposition?.[term],
+            sourceYOrder
+          ),
+        ])
+      );
+      const termIntervalSum = sumIntervals(
+        sourceTerms.map((term) => termCoefficientIntervals[term])
+      );
+      const termTriangleAbsUpper = sourceTerms.reduce(
+        (sum, term) =>
+          sum + intervalAbsUpper(termCoefficientIntervals[term]),
+        0
+      );
+      const directGraphInterval = directedIntervalPolynomialValue({
+        coefficients: graphCoefficients,
+        interval: segment.segment_interval,
+      });
+      const graphResidualInterval = root.subtractIntervals(
+        sourceInterval,
+        directGraphInterval
+      );
+      const graphSourceAbsUpper = intervalAbsUpper(sourceInterval);
+      const graphResidualAbsUpper = intervalAbsUpper(graphResidualInterval);
+      const rawResidualAbsUpper = Number(
+        rawRow?.raw_true_residual_abs_upper
+      );
+      const rawToGraphCompression =
+        Number.isFinite(rawResidualAbsUpper) &&
+        finitePositive(graphResidualAbsUpper)
+          ? rawResidualAbsUpper / graphResidualAbsUpper
+          : null;
+      const sourceCancellationFraction = finitePositive(
+        termTriangleAbsUpper
+      )
+        ? 1 - graphSourceAbsUpper / termTriangleAbsUpper
+        : null;
+      const productValueComparable =
+        segment.quotient_kind === "product-quotient-producer-complement";
+      const target = Number(
+        segment.split_stream_required_direct_normal_form_abs_upper
+      );
+      const ratio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(graphResidualAbsUpper)
+          ? graphResidualAbsUpper / target
+          : null;
+      const inside =
+        productValueComparable &&
+        Number.isFinite(Number(ratio)) &&
+        Number(ratio) <= 1;
+      return {
+        cell_id: segment.cell_id,
+        row_index: segment.row_index,
+        segment_index: resolvedSegmentIndex,
+        quotient_kind: segment.quotient_kind,
+        proof_object_kind: productValueComparable
+          ? "same-variable-direct-residual"
+          : "same-variable-direct-residual-derivative",
+        segment_interval: segment.segment_interval,
+        segment_speed_interval: segmentSpeedInterval,
+        producer_sample_provenance:
+          segment.producer_sample_provenance ?? {
+            row_index: sample.row_index,
+            comparison_row_index:
+              sample.comparison_row_index ?? sample.row_index,
+            source_subcover_row_index:
+              sample.source_subcover_row_index ?? null,
+            cell_id: sample.cell_id,
+            branch: resolvedBranch,
+            h_row_interval_count: sample.h_row_interval_count ?? null,
+          },
+        provider_kind:
+          "candidate-polynomial-h-row-graph-interval-residual-provider",
+        provider_preserves_shared_xi_dependency: true,
+        provider_polynomial_degree:
+          transportProfile[0]?.polynomial_degree ?? null,
+        provider_h_row_interval_count: hIntervals.length,
+        provider_residual_hull_count: residualProfile.length,
+        source_y_order: sourceYOrder,
+        target_abs_upper:
+          Number.isFinite(target) && target >= 0 ? target : null,
+        graph_source_interval: sourceInterval,
+        graph_source_abs_upper: graphSourceAbsUpper,
+        direct_graph_interval: directGraphInterval,
+        graph_residual_interval: graphResidualInterval,
+        graph_residual_abs_upper: graphResidualAbsUpper,
+        graph_residual_value_to_product_target_ratio: ratio,
+        raw_residual_abs_upper: Number.isFinite(rawResidualAbsUpper)
+          ? rawResidualAbsUpper
+          : null,
+        raw_to_graph_residual_compression_factor: rawToGraphCompression,
+        graph_source_term_intervals: termCoefficientIntervals,
+        graph_source_term_interval_sum: termIntervalSum,
+        graph_source_term_triangle_abs_upper: termTriangleAbsUpper,
+        term_sum_to_source_relative_gap: intervalEndpointRelativeGap(
+          termIntervalSum,
+          sourceInterval
+        ),
+        graph_source_cancellation_fraction:
+          sourceCancellationFraction,
+        target_comparison_status: productValueComparable
+          ? inside
+            ? "positive-n38-producer-hybrid-graph-interval-residual-source-product-segment-inside-target"
+            : "positive-n38-producer-hybrid-graph-interval-residual-source-product-segment-open"
+          : "positive-n38-producer-hybrid-graph-interval-residual-source-derivative-segment-value-only",
+        provider_dependency_policy:
+          "preserves shared xi graph dependence but leaves per-h interval residual hulls independent; candidate-only",
+        true_source_policy:
+          "candidate graph-plus-interval-residual source replay only; no directed-rounded true-stream enclosure is certified",
+      };
+    })
+  );
+  const finiteValues = (selector) =>
+    segmentRows
+      .map(selector)
+      .filter(
+        (value) =>
+          value !== null &&
+          value !== undefined &&
+          Number.isFinite(Number(value)) &&
+          Number(value) >= 0
+      );
+  const productRows = segmentRows.filter(
+    (row) => row.quotient_kind === "product-quotient-producer-complement"
+  );
+  const derivativeRows = segmentRows.filter((row) =>
+    row.quotient_kind?.startsWith("derivative-quotient")
+  );
+  const insideProductRows = productRows.filter(
+    (row) =>
+      row.target_comparison_status ===
+      "positive-n38-producer-hybrid-graph-interval-residual-source-product-segment-inside-target"
+  );
+  const allProductInside =
+    productRows.length > 0 && productRows.length === insideProductRows.length;
+  const controllingValueSegment =
+    productRows.reduce((best, row) => {
+      if (row.graph_residual_value_to_product_target_ratio === null) {
+        return best;
+      }
+      if (
+        best === null ||
+        Number(row.graph_residual_value_to_product_target_ratio) >
+          Number(best.graph_residual_value_to_product_target_ratio)
+      ) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  return {
+    status: allProductInside
+      ? "positive-n38-producer-hybrid-graph-interval-residual-source-replay-candidate-emitted"
+      : "positive-n38-producer-hybrid-graph-interval-residual-source-replay-open",
+    reason: allProductInside
+      ? "graph-plus-interval-residual h-row source intervals fit every product-quotient residual-value segment target; derivative segments remain value-only"
+      : "graph-plus-interval-residual h-row source intervals remain too wide on at least one product-quotient residual-value segment",
+    diagnostic_kind:
+      "candidate-producer-hybrid-graph-interval-residual-source-replay",
+    finite_data_scope:
+      "hybrid-producer-partition-polynomial-h-row-graph-plus-interval-residual-source-only",
+    provider_kind:
+      "candidate-polynomial-h-row-graph-interval-residual-provider",
+    segment_count: segmentRows.length,
+    residual_value_segment_count: productRows.length,
+    derivative_value_only_segment_count: derivativeRows.length,
+    residual_value_inside_target_count: insideProductRows.length,
+    all_residual_value_segments_inside_target: allProductInside,
+    max_graph_residual_value_to_product_target_ratio:
+      finiteValues(
+        (row) => row.graph_residual_value_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.graph_residual_value_to_product_target_ratio
+            )
+          )
+        : null,
+    max_graph_source_abs_upper:
+      finiteValues((row) => row.graph_source_abs_upper).length > 0
+        ? Math.max(...finiteValues((row) => row.graph_source_abs_upper))
+        : null,
+    max_graph_residual_abs_upper:
+      finiteValues((row) => row.graph_residual_abs_upper).length > 0
+        ? Math.max(
+            ...finiteValues((row) => row.graph_residual_abs_upper)
+          )
+        : null,
+    max_raw_to_graph_residual_compression_factor:
+      finiteValues((row) => row.raw_to_graph_residual_compression_factor)
+        .length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.raw_to_graph_residual_compression_factor
+            )
+          )
+        : null,
+    min_raw_to_graph_residual_compression_factor:
+      finiteValues((row) => row.raw_to_graph_residual_compression_factor)
+        .length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) => row.raw_to_graph_residual_compression_factor
+            )
+          )
+        : null,
+    max_term_sum_to_source_relative_gap:
+      finiteValues((row) => row.term_sum_to_source_relative_gap).length > 0
+        ? Math.max(
+            ...finiteValues((row) => row.term_sum_to_source_relative_gap)
+          )
+        : null,
+    min_graph_source_cancellation_fraction:
+      finiteValues((row) => row.graph_source_cancellation_fraction).length >
+      0
+        ? Math.min(
+            ...finiteValues((row) => row.graph_source_cancellation_fraction)
+          )
+        : null,
+    controlling_value_segment: controllingValueSegment,
+    segment_rows: segmentRows,
+    route_interpretation: allProductInside
+      ? "the polynomial h-row graph plus interval residual provider preserves enough shared xi dependency for residual-value product segments at candidate level; derivative quotient promotion still requires residual-derivative true-stream enclosures and S37 dependency-preserving division"
+      : "the polynomial h-row graph plus interval residual provider improves over raw branch-row boxes but still leaves product residual-value segments open, so residual hull dependency remains the next source-provider bottleneck",
+    provider_dependency_policy:
+      "preserves shared xi graph dependence but leaves per-h interval residual hulls independent; candidate-only",
+    true_source_policy:
+      "candidate graph-plus-interval-residual source replay only; no directed-rounded true-stream enclosure is certified",
+    claim_boundary: claimBoundary,
+  };
+}
+
+function h39H38Y44ProducerHybridH38CoordinateSourceReplay({
+  coordinateProfile,
+  hybridReplay,
+  trueStreamExcessBudget,
+  splitStreamPairedReplay,
+  quarticWitness,
+  rawReplay,
+  graphIntervalResidualReplay,
+  branch,
+  transportProfile,
+  residualProfile,
+  h38ResidualProfile,
+  sourceResidualDecomposition = null,
+}) {
+  const claimBoundary = {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+  const unavailable = (reason) => ({
+    status:
+      "positive-n38-producer-hybrid-h38-coordinate-source-replay-unavailable",
+    reason,
+    diagnostic_kind:
+      "candidate-producer-hybrid-h38-coordinate-source-replay",
+    finite_data_scope:
+      "hybrid-producer-partition-polynomial-h-row-graph-plus-h38-residual-coordinate-source-only",
+    provider_kind:
+      "candidate-polynomial-h-row-graph-h38-residual-coordinate-provider",
+    segment_count: 0,
+    residual_value_segment_count: 0,
+    derivative_value_only_segment_count: 0,
+    residual_value_inside_target_count: 0,
+    all_residual_value_segments_inside_target: false,
+    max_h38_coordinate_residual_value_to_product_target_ratio: null,
+    max_h38_coordinate_source_abs_upper: null,
+    max_h38_coordinate_residual_abs_upper: null,
+    max_raw_to_h38_coordinate_residual_compression_factor: null,
+    min_raw_to_h38_coordinate_residual_compression_factor: null,
+    max_graph_interval_to_h38_coordinate_residual_compression_factor: null,
+    min_graph_interval_to_h38_coordinate_residual_compression_factor: null,
+    h38_coordinate_subcell_count: 0,
+    max_h38_coordinate_segment_subcell_count: null,
+    max_h38_coordinate_subcell_term_sum_to_source_relative_gap: null,
+    max_h38_coordinate_subcell_source_abs_upper: null,
+    min_h38_coordinate_subcell_source_cancellation_fraction: null,
+    max_h38_coordinate_signed_pair_residual_value_to_product_target_ratio:
+      null,
+    max_h38_coordinate_signed_pair_source_to_full_source_relative_gap:
+      null,
+    min_h38_coordinate_signed_pair_cancellation_fraction: null,
+    product_segment_residual_inequality_diagnosis_status:
+      "positive-n38-product-segment-residual-inequality-diagnosis-unavailable",
+    product_segment_residual_inequality_diagnosis: reason,
+    source_to_direct_quartic_alignment_status:
+      "positive-n38-source-to-direct-quartic-alignment-diagnosis-unavailable",
+    source_to_direct_quartic_alignment_diagnosis: reason,
+    max_source_to_direct_quartic_offset_value_to_product_target_ratio: null,
+    max_source_to_direct_quartic_offset_center_to_product_target_ratio: null,
+    max_source_to_direct_quartic_offset_radius_to_product_target_ratio: null,
+    max_source_to_direct_quartic_offset_radius_to_center_ratio: null,
+    source_direct_normalization_diagnosis_status:
+      "positive-n38-source-direct-normalization-diagnosis-unavailable",
+    source_direct_normalization_diagnosis: reason,
+    max_solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio:
+      null,
+    max_solve_normalization_invariance_ratio: null,
+    min_solve_normalization_invariance_ratio: null,
+    min_crossed_solve_normalization_offset_to_product_target_ratio: null,
+    controlling_source_direct_normalization_segment: null,
+    source_pair_direct_quartic_offset_dominance_diagnosis_status:
+      "positive-n38-source-pair-direct-quartic-offset-dominance-diagnosis-unavailable",
+    source_pair_direct_quartic_offset_dominance_diagnosis: reason,
+    max_h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio:
+      null,
+    max_h38_coordinate_signed_pair_direct_quartic_offset_to_full_offset_relative_gap:
+      null,
+    max_source_direct_quartic_offset_to_finite_direct_abs_loss_factor:
+      null,
+    source_pair_direct_graph_normal_form_diagnosis_status:
+      "positive-n38-source-pair-direct-graph-normal-form-diagnosis-unavailable",
+    source_pair_direct_graph_normal_form_diagnosis: reason,
+    max_h38_coordinate_signed_pair_direct_graph_offset_to_direct_quartic_offset_relative_gap:
+      null,
+    max_finite_direct_normal_form_to_signed_pair_direct_graph_offset_ratio:
+      null,
+    min_h38_coordinate_source_pair_opposed_cancellation_fraction: null,
+    source_pair_component_graph_diagnosis_status:
+      "positive-n38-source-pair-component-graph-diagnosis-unavailable",
+    source_pair_component_graph_diagnosis: reason,
+    max_h38_coordinate_signed_pair_to_component_graph_offset_to_target_ratio:
+      null,
+    max_h38_coordinate_component_graph_to_direct_graph_gap_to_target_ratio:
+      null,
+    component_drift_s37_division_diagnosis_status:
+      "positive-n38-component-drift-s37-division-diagnosis-unavailable",
+    component_drift_s37_division_diagnosis: reason,
+    max_component_drift_solved_gap_to_solved_target_ratio: null,
+    max_component_drift_solve_normalization_invariance_ratio: null,
+    min_component_drift_solve_normalization_invariance_ratio: null,
+    controlling_component_drift_s37_division_segment: null,
+    controlling_source_pair_component_graph_segment: null,
+    controlling_source_pair_direct_graph_normal_form_segment: null,
+    controlling_source_pair_direct_quartic_offset_segment: null,
+    full_residual_vector_provider_kind:
+      "candidate-polynomial-h-row-full-residual-vector-xi-graph-provider",
+    full_residual_vector_provider_available: false,
+    full_residual_vector_polynomial_degree: null,
+    full_residual_vector_sample_count: 0,
+    full_residual_vector_h_count: 0,
+    full_residual_vector_max_sample_replay_error: null,
+    full_residual_vector_alignment_status:
+      "positive-n38-full-residual-vector-source-alignment-diagnosis-unavailable",
+    full_residual_vector_alignment_diagnosis: reason,
+    max_full_residual_vector_direct_quartic_offset_value_to_product_target_ratio:
+      null,
+    max_full_residual_vector_direct_quartic_offset_center_to_product_target_ratio:
+      null,
+    max_full_residual_vector_direct_quartic_offset_radius_to_product_target_ratio:
+      null,
+    max_full_residual_vector_offset_to_h38_coordinate_offset_ratio: null,
+    max_h38_coordinate_to_full_residual_vector_offset_compression_factor:
+      null,
+    controlling_full_residual_vector_segment: null,
+    full_residual_vector_solve_normalization_status:
+      "positive-n38-full-residual-vector-solve-normalization-diagnosis-unavailable",
+    full_residual_vector_solve_normalization_diagnosis: reason,
+    max_full_residual_vector_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio:
+      null,
+    max_full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio:
+      null,
+    full_residual_vector_raw_multiplier_sign_matches_product_denominator_all_product_segments:
+      false,
+    full_residual_vector_minus_source_over_denominator_sign_matches_direct_quartic_all_product_segments:
+      false,
+    controlling_full_residual_vector_solve_normalization_segment: null,
+    max_h38_coordinate_residual_excess_over_product_target_abs: null,
+    max_h38_coordinate_residual_center_to_product_target_ratio: null,
+    max_h38_coordinate_residual_radius_to_product_target_ratio: null,
+    max_h38_coordinate_residual_to_direct_normal_form_abs_loss_factor: null,
+    max_h38_coordinate_residual_center_to_direct_normal_form_abs_loss_factor:
+      null,
+    max_h38_coordinate_residual_to_paired_finite_abs_loss_factor: null,
+    min_direct_normal_form_target_headroom_ratio: null,
+    min_paired_finite_target_headroom_ratio: null,
+    max_product_segment_target_to_direct_normal_form_abs_factor: null,
+    max_required_denominator_abs_lower_for_h38_coordinate_residual: null,
+    max_required_to_available_product_denominator_abs_factor: null,
+    product_denominator_partition_can_close_all_h38_coordinate_residuals:
+      false,
+    shared_non_h38_coordinate_candidate_count: 0,
+    shared_non_h38_coordinate_candidate_summaries: [],
+    best_shared_non_h38_coordinate_candidate: null,
+    max_term_sum_to_source_relative_gap: null,
+    min_h38_coordinate_source_cancellation_fraction: null,
+    controlling_value_segment: null,
+    segment_rows: [],
+    route_interpretation: reason,
+    provider_dependency_policy:
+      "preserves shared xi graph dependence and the h38 residual coordinate; freezes non-h38 residuals at interval centers; candidate-only directional diagnostic",
+    true_source_policy:
+      "candidate h38-coordinate source replay only; no directed-rounded true-stream enclosure is certified",
+    claim_boundary: claimBoundary,
+  });
+  if (
+    hybridReplay?.status !==
+      "positive-n38-producer-hybrid-quotient-direct-replay-candidate-emitted" ||
+    !Array.isArray(hybridReplay?.rows)
+  ) {
+    return unavailable(
+      "the hybrid quotient replay must first cover the producer partition"
+    );
+  }
+  const producerSamples = Array.isArray(coordinateProfile?.samples)
+    ? coordinateProfile.samples
+    : [];
+  const model =
+    quarticWitness?.same_variable_direct_residual_derivative_model ?? null;
+  const graphCoefficients = model?.direct_lagrange_graph_coefficients ?? null;
+  const sourceComponentGraphCoefficientMap = new Map(
+    (sourceResidualDecomposition?.component_rows ?? [])
+      .filter(
+        (row) =>
+          typeof row?.component === "string" &&
+          Array.isArray(row?.lagrange_polynomial_coefficients) &&
+          row.lagrange_polynomial_coefficients.every((value) =>
+            Number.isFinite(Number(value))
+          )
+      )
+      .map((row) => [row.component, row.lagrange_polynomial_coefficients])
+  );
+  const intervalCenterDriftGraphCoefficients =
+    Array.isArray(
+      sourceResidualDecomposition?.interval_center_drift_lagrange_graph_coefficients
+    ) &&
+    sourceResidualDecomposition.interval_center_drift_lagrange_graph_coefficients.every(
+      (value) => Number.isFinite(Number(value))
+    )
+      ? sourceResidualDecomposition
+          .interval_center_drift_lagrange_graph_coefficients
+      : null;
+  const splitCeiling = Number(model?.split_stream_m4_ceiling);
+  const coefficientsValid =
+    Array.isArray(graphCoefficients) &&
+    graphCoefficients.length > 0 &&
+    graphCoefficients.every((value) => Number.isFinite(Number(value)));
+  if (
+    producerSamples.length === 0 ||
+    !coefficientsValid ||
+    !finitePositive(splitCeiling) ||
+    !Array.isArray(transportProfile) ||
+    !Array.isArray(residualProfile) ||
+    !Array.isArray(h38ResidualProfile?.residual_interval_hull)
+  ) {
+    return unavailable(
+      "producer samples, direct cubic graph coefficients, transport profile, residual profile, and h38 residual profile are required"
+    );
+  }
+  const sampleKey = (rowIndex, cellId) => `${rowIndex}:${cellId}`;
+  const segmentKey = (rowIndex, cellId, segmentIndex) =>
+    `${rowIndex}:${cellId}:${segmentIndex}`;
+  const samplesByKey = new Map(
+    producerSamples.map((sample) => [
+      sampleKey(sample.row_index, sample.cell_id),
+      sample,
+    ])
+  );
+  const rawRowsByKey = new Map(
+    (rawReplay?.segment_rows ?? []).map((row) => [
+      segmentKey(row.row_index, row.cell_id, row.segment_index),
+      row,
+    ])
+  );
+  const graphRowsByKey = new Map(
+    (graphIntervalResidualReplay?.segment_rows ?? []).map((row) => [
+      segmentKey(row.row_index, row.cell_id, row.segment_index),
+      row,
+    ])
+  );
+  const budgetRowsByKey = new Map(
+    (trueStreamExcessBudget?.segment_rows ?? []).map((row) => [
+      segmentKey(row.row_index, row.cell_id, row.segment_index),
+      row,
+    ])
+  );
+  const pairedRowsByKey = new Map(
+    (splitStreamPairedReplay?.segment_rows ?? []).map((row) => [
+      segmentKey(row.row_index, row.cell_id, row.segment_index),
+      row,
+    ])
+  );
+  const sourceTerms = [
+    "delta_squared_speed",
+    "constant_minus_two",
+    "sin_phi",
+    "sin_delta",
+  ];
+  const h38Index =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index;
+  const sharedNonH38CoordinateCandidateSets = [
+    { label: "h37-shared-with-h38-coordinate", h_indexes: [37] },
+    { label: "h36-shared-with-h38-coordinate", h_indexes: [36] },
+    { label: "h35-shared-with-h38-coordinate", h_indexes: [35] },
+    {
+      label: "terminal-h35-h37-shared-with-h38-coordinate",
+      h_indexes: [35, 36, 37],
+    },
+    {
+      label: "suffix-h30-h37-shared-with-h38-coordinate",
+      h_indexes: Array.from({ length: 8 }, (_, index) => 30 + index),
+    },
+    {
+      label: "all-non-h38-shared-with-h38-coordinate",
+      h_indexes: Array.from({ length: h38Index }, (_, index) => index),
+    },
+  ];
+  const fullResidualVectorProfile =
+    h39H38Y44FullResidualVectorPolynomialProfile({
+      producerSamples,
+      transportProfile,
+    });
+  const coefficientIntervalAt = (series, order) => {
+    const coefficient = series?.[order];
+    return Array.isArray(coefficient) &&
+      coefficient.length === 2 &&
+      coefficient.every((value) => Number.isFinite(Number(value)))
+      ? root.outwardInterval(coefficient)
+      : root.pointInterval(0);
+  };
+  const sumIntervals = (intervals) =>
+    intervals.reduce(
+      (total, interval) => root.addIntervals(total, interval),
+      root.pointInterval(0)
+    );
+  const h38CoordinateSubcellCount =
+    Number.isInteger(model?.directed_finite_polynomial_subcell_count) &&
+    model.directed_finite_polynomial_subcell_count > 0
+      ? model.directed_finite_polynomial_subcell_count
+      : 16;
+  const segmentH38ResidualCoordinateInterval = ({ sample, segment }) => {
+    const h38Index =
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index;
+    const h38Profile = transportProfile[h38Index];
+    const graphInterval = directedIntervalPolynomialValue({
+      coefficients: h38Profile.coefficients,
+      interval: segment.segment_interval,
+    });
+    const residualInterval = [
+      Number(sample.h38_interval[0]) - Number(graphInterval[1]),
+      Number(sample.h38_interval[1]) - Number(graphInterval[0]),
+    ];
+    const residualCenter = intervalMidpoint(
+      h38ResidualProfile.residual_interval_hull
+    );
+    const residualRadius =
+      intervalWidth(h38ResidualProfile.residual_interval_hull) / 2;
+    return finitePositive(residualRadius)
+      ? [
+          (residualInterval[0] - residualCenter) / residualRadius,
+          (residualInterval[1] - residualCenter) / residualRadius,
+        ]
+      : [0, 0];
+  };
+  const segmentRows = hybridReplay.rows.flatMap((row) =>
+    (row.hybrid_segment_rows ?? []).map((segment, segmentIndex) => {
+      const resolvedSegmentIndex = segment.segment_index ?? segmentIndex;
+      const sample =
+        samplesByKey.get(sampleKey(segment.row_index, segment.cell_id)) ??
+        null;
+      const rawRow =
+        rawRowsByKey.get(
+          segmentKey(segment.row_index, segment.cell_id, resolvedSegmentIndex)
+        ) ?? null;
+      const graphRow =
+        graphRowsByKey.get(
+          segmentKey(segment.row_index, segment.cell_id, resolvedSegmentIndex)
+        ) ?? null;
+      const budgetRow =
+        budgetRowsByKey.get(
+          segmentKey(segment.row_index, segment.cell_id, resolvedSegmentIndex)
+        ) ?? null;
+      const pairedRow =
+        pairedRowsByKey.get(
+          segmentKey(segment.row_index, segment.cell_id, resolvedSegmentIndex)
+        ) ?? null;
+      const segmentSpeedInterval =
+        segment.segment_speed_interval ??
+        (Array.isArray(coordinateProfile?.target_speed_interval)
+          ? xiIntervalSpeedInterval({
+              xiInterval: segment.segment_interval,
+              targetSpeedInterval: coordinateProfile.target_speed_interval,
+            })
+          : sample?.speed_interval ?? null);
+      if (
+        sample === null ||
+        !Array.isArray(sample?.cell?.speed_interval) ||
+        !Array.isArray(segmentSpeedInterval) ||
+        !Array.isArray(sample?.residual_coordinate_interval)
+      ) {
+        return {
+          cell_id: segment.cell_id,
+          row_index: segment.row_index,
+          segment_index: resolvedSegmentIndex,
+          quotient_kind: segment.quotient_kind,
+          proof_object_kind: segment.quotient_kind?.startsWith(
+            "derivative-quotient"
+          )
+            ? "same-variable-direct-residual-derivative"
+            : "same-variable-direct-residual",
+          segment_interval: segment.segment_interval,
+          segment_speed_interval: segmentSpeedInterval,
+          h38_residual_coordinate_interval:
+            sample?.residual_coordinate_interval ?? null,
+          provider_kind:
+            "candidate-polynomial-h-row-graph-h38-residual-coordinate-provider",
+          provider_preserves_shared_xi_dependency: true,
+          provider_preserves_h38_residual_coordinate: true,
+          source_y_order: null,
+          target_abs_upper: null,
+          h38_coordinate_source_interval: null,
+          h38_coordinate_source_abs_upper: null,
+          direct_graph_interval: null,
+          h38_coordinate_residual_interval: null,
+          h38_coordinate_residual_abs_upper: null,
+          h38_coordinate_residual_value_to_product_target_ratio: null,
+          raw_residual_abs_upper: null,
+          graph_interval_residual_abs_upper: null,
+          raw_to_h38_coordinate_residual_compression_factor: null,
+          graph_interval_to_h38_coordinate_residual_compression_factor: null,
+          h38_coordinate_source_term_interval_sum: null,
+          h38_coordinate_source_term_triangle_abs_upper: null,
+          h38_coordinate_speed_constant_pair_interval: null,
+          h38_coordinate_sine_pair_interval: null,
+          h38_coordinate_signed_pair_source_interval: null,
+          h38_coordinate_signed_pair_source_abs_upper: null,
+          h38_coordinate_signed_pair_residual_interval: null,
+          h38_coordinate_signed_pair_residual_abs_upper: null,
+          h38_coordinate_signed_pair_residual_value_to_product_target_ratio:
+            null,
+          h38_coordinate_signed_pair_source_to_full_source_relative_gap:
+            null,
+          h38_coordinate_signed_pair_cancellation_fraction: null,
+          h38_coordinate_signed_pair_to_direct_quartic_offset_interval:
+            null,
+          h38_coordinate_signed_pair_to_direct_quartic_offset_interval_sign:
+            null,
+          h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio:
+            null,
+          h38_coordinate_signed_pair_to_direct_quartic_offset_radius_to_target_ratio:
+            null,
+          h38_coordinate_signed_pair_direct_quartic_offset_to_full_offset_relative_gap:
+            null,
+          source_direct_quartic_offset_to_finite_direct_abs_loss_factor:
+            null,
+          source_pair_direct_quartic_offset_dominance_status:
+            "positive-n38-source-pair-direct-quartic-offset-dominance-unavailable",
+          h38_coordinate_source_term_target_unit_profiles: null,
+          h38_coordinate_source_pair_target_unit_profile: null,
+          h38_coordinate_source_pair_balance_status:
+            "positive-n38-source-pair-balance-unavailable",
+          h38_coordinate_source_component_graph_rows: [],
+          h38_coordinate_source_component_graph_profile: null,
+          h38_coordinate_source_pair_component_graph_status:
+            "positive-n38-source-pair-component-graph-unavailable",
+          h38_coordinate_signed_pair_direct_graph_offset_to_direct_quartic_offset_relative_gap:
+            null,
+          finite_direct_normal_form_to_signed_pair_direct_graph_offset_ratio:
+            null,
+          source_pair_direct_graph_normal_form_status:
+            "positive-n38-source-pair-direct-graph-normal-form-unavailable",
+          finite_direct_normal_form_abs_upper: null,
+          finite_direct_normal_form_to_product_target_ratio: null,
+          finite_direct_normal_form_target_headroom_abs: null,
+          finite_direct_normal_form_target_headroom_ratio: null,
+          finite_paired_abs_upper: null,
+          finite_paired_to_product_target_ratio: null,
+          finite_paired_target_headroom_abs: null,
+          finite_paired_target_headroom_ratio: null,
+          h38_coordinate_residual_excess_over_product_target_abs: null,
+          h38_coordinate_residual_interval_midpoint: null,
+          h38_coordinate_residual_interval_radius: null,
+          h38_coordinate_residual_interval_sign: null,
+          h38_coordinate_residual_center_to_product_target_ratio: null,
+          h38_coordinate_residual_radius_to_product_target_ratio: null,
+          h38_coordinate_residual_to_direct_normal_form_abs_loss_factor: null,
+          h38_coordinate_residual_center_to_direct_normal_form_abs_loss_factor:
+            null,
+          h38_coordinate_residual_to_paired_finite_abs_loss_factor: null,
+          product_segment_target_to_direct_normal_form_abs_factor: null,
+          product_denominator_interval: null,
+          product_denominator_abs_lower: null,
+          product_denominator_abs_upper: null,
+          required_denominator_abs_lower_for_h38_coordinate_residual: null,
+          required_to_available_product_denominator_abs_factor: null,
+          denominator_partition_can_close_h38_coordinate_residual: false,
+          source_provider_alignment_artifact_candidate: false,
+          product_segment_residual_inequality_diagnosis:
+            "positive-n38-product-segment-residual-inequality-unavailable",
+          direct_quartic_interval: null,
+          source_to_direct_quartic_offset_interval: null,
+          source_to_direct_quartic_offset_abs_upper: null,
+          source_to_direct_quartic_offset_value_to_product_target_ratio: null,
+          source_to_direct_quartic_offset_interval_midpoint: null,
+          source_to_direct_quartic_offset_interval_radius: null,
+          source_to_direct_quartic_offset_interval_sign: null,
+          source_to_direct_quartic_offset_center_to_product_target_ratio: null,
+          source_to_direct_quartic_offset_radius_to_product_target_ratio: null,
+          source_to_direct_quartic_offset_radius_to_center_ratio: null,
+          source_to_direct_quartic_alignment_status:
+            "positive-n38-source-to-direct-quartic-alignment-unavailable",
+          source_direct_normalization_policy:
+            "both source_interval and direct_quartic_interval are h38-recurrence numerator units; solved-space fields divide both by -h37_solve_slope_interval as an invariance check",
+          normalization_slope_interval: null,
+          normalization_slope_abs_lower: null,
+          normalization_slope_abs_upper: null,
+          solved_product_target_abs_upper: null,
+          solved_source_interval: null,
+          solved_direct_quartic_interval: null,
+          solved_source_to_solved_direct_quartic_offset_interval: null,
+          solved_source_to_solved_direct_quartic_offset_abs_upper: null,
+          solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio:
+            null,
+          solve_normalization_invariance_ratio: null,
+          source_solved_to_direct_quartic_crossed_offset_interval: null,
+          source_solved_to_direct_quartic_crossed_offset_to_product_target_ratio:
+            null,
+          source_to_solved_direct_quartic_crossed_offset_interval: null,
+          source_to_solved_direct_quartic_crossed_offset_to_product_target_ratio:
+            null,
+          crossed_solve_normalization_best_offset_to_product_target_ratio:
+            null,
+          source_direct_normalization_status:
+            "positive-n38-source-direct-normalization-unavailable",
+          full_residual_vector_source_interval: null,
+          full_residual_vector_source_abs_upper: null,
+          full_residual_vector_residual_interval: null,
+          full_residual_vector_residual_abs_upper: null,
+          full_residual_vector_direct_quartic_offset_interval: null,
+          full_residual_vector_direct_quartic_offset_abs_upper: null,
+          full_residual_vector_direct_quartic_offset_value_to_product_target_ratio:
+            null,
+          full_residual_vector_direct_quartic_offset_interval_midpoint: null,
+          full_residual_vector_direct_quartic_offset_interval_radius: null,
+          full_residual_vector_direct_quartic_offset_interval_sign: null,
+          full_residual_vector_direct_quartic_offset_center_to_product_target_ratio:
+            null,
+          full_residual_vector_direct_quartic_offset_radius_to_product_target_ratio:
+            null,
+          full_residual_vector_offset_to_h38_coordinate_offset_ratio: null,
+          h38_coordinate_to_full_residual_vector_offset_compression_factor:
+            null,
+          full_residual_vector_source_to_direct_quartic_implied_multiplier_interval:
+            null,
+          full_residual_vector_source_to_direct_quartic_implied_multiplier_midpoint:
+            null,
+          full_residual_vector_source_to_direct_quartic_implied_multiplier_sign:
+            null,
+          full_residual_vector_product_denominator_sign: null,
+          full_residual_vector_raw_multiplier_sign_matches_product_denominator:
+            false,
+          full_residual_vector_source_over_denominator_interval: null,
+          full_residual_vector_source_over_denominator_sign: null,
+          full_residual_vector_source_over_denominator_sign_matches_direct_quartic:
+            false,
+          full_residual_vector_source_over_denominator_to_direct_quartic_offset_interval:
+            null,
+          full_residual_vector_source_over_denominator_to_direct_quartic_offset_abs_upper:
+            null,
+          full_residual_vector_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio:
+            null,
+          full_residual_vector_minus_source_over_denominator_interval: null,
+          full_residual_vector_minus_source_over_denominator_sign: null,
+          full_residual_vector_minus_source_over_denominator_sign_matches_direct_quartic:
+            false,
+          full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_interval:
+            null,
+          full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_abs_upper:
+            null,
+          full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio:
+            null,
+          full_residual_vector_solve_normalization_status:
+            "positive-n38-full-residual-vector-solve-normalization-unavailable",
+          full_residual_vector_source_term_intervals: null,
+          full_residual_vector_source_term_interval_sum: null,
+          full_residual_vector_source_term_triangle_abs_upper: null,
+          full_residual_vector_term_sum_to_source_relative_gap: null,
+          full_residual_vector_source_cancellation_fraction: null,
+          full_residual_vector_alignment_status:
+            "positive-n38-full-residual-vector-source-alignment-unavailable",
+          term_sum_to_source_relative_gap: null,
+          h38_coordinate_source_cancellation_fraction: null,
+          h38_coordinate_subcell_count: 0,
+          max_h38_coordinate_subcell_term_sum_to_source_relative_gap: null,
+          max_h38_coordinate_subcell_source_abs_upper: null,
+          min_h38_coordinate_subcell_source_cancellation_fraction: null,
+          worst_h38_coordinate_subcell_source_row: null,
+          shared_non_h38_coordinate_candidate_rows: [],
+          target_comparison_status:
+            "positive-n38-producer-hybrid-h38-coordinate-source-segment-unavailable",
+          reason:
+            "the hybrid segment could not be joined to producer sample cell and h38 residual-coordinate provenance",
+          provider_dependency_policy:
+            "preserves shared xi graph dependence and the h38 residual coordinate; freezes non-h38 residuals at interval centers; candidate-only directional diagnostic",
+          true_source_policy:
+            "candidate h38-coordinate source replay only; no directed-rounded true-stream enclosure is certified",
+        };
+      }
+      const h38ResidualCoordinateInterval =
+        segmentH38ResidualCoordinateInterval({ sample, segment });
+      const resolvedBranch = sample.branch ?? branch;
+      const cell = {
+        ...sample.cell,
+        speed_interval: segmentSpeedInterval,
+      };
+      const h38CoordinateSubintervals =
+        intervalWidth(h38ResidualCoordinateInterval) > 0
+          ? splitNumericInterval(
+              h38ResidualCoordinateInterval,
+              h38CoordinateSubcellCount
+            )
+          : [h38ResidualCoordinateInterval];
+      const subcellSourceRows = h38CoordinateSubintervals.map(
+        (h38Subinterval, h38CoordinateSubcellIndex) => {
+          const hIntervals =
+            hIntervalsForPolynomialGraphIntervalResidualCentersWithH38VariantInterval({
+              transportProfile,
+              noiseInterval: segment.segment_interval,
+              residualProfile,
+              h38ResidualInterval: h38ResidualProfile.residual_interval_hull,
+              h38NoiseInterval: h38Subinterval,
+            });
+          const expression = evaluateH38RecurrenceNumeratorBeforeSolve({
+            cell,
+            branch: resolvedBranch,
+            branchSign: root.branchSign(resolvedBranch),
+            hIntervals,
+            includeTermDecomposition: true,
+          });
+          const sourceYOrder = expression.source_y_order;
+          const sourceInterval = root.outwardInterval(
+            expression.numerator_interval
+          );
+          const termCoefficientIntervals = Object.fromEntries(
+            sourceTerms.map((term) => [
+              term,
+              coefficientIntervalAt(
+                expression.term_decomposition?.[term],
+                sourceYOrder
+              ),
+            ])
+          );
+          const termIntervalSum = sumIntervals(
+            sourceTerms.map((term) => termCoefficientIntervals[term])
+          );
+          const termTriangleAbsUpper = sourceTerms.reduce(
+            (sum, term) =>
+              sum + intervalAbsUpper(termCoefficientIntervals[term]),
+            0
+          );
+          const speedConstantPairInterval = root.addIntervals(
+            termCoefficientIntervals.delta_squared_speed,
+            termCoefficientIntervals.constant_minus_two
+          );
+          const sinePairInterval = root.addIntervals(
+            termCoefficientIntervals.sin_phi,
+            termCoefficientIntervals.sin_delta
+          );
+          const signedPairSourceInterval = root.addIntervals(
+            speedConstantPairInterval,
+            sinePairInterval
+          );
+          const signedPairTriangleAbsUpper =
+            intervalAbsUpper(speedConstantPairInterval) +
+            intervalAbsUpper(sinePairInterval);
+          return {
+            h38_coordinate_subcell_index: h38CoordinateSubcellIndex,
+            h38_residual_coordinate_interval: h38Subinterval,
+            source_y_order: sourceYOrder,
+            source_interval: sourceInterval,
+            term_coefficient_intervals: termCoefficientIntervals,
+            term_interval_sum: termIntervalSum,
+            term_triangle_abs_upper: termTriangleAbsUpper,
+            speed_constant_pair_interval: speedConstantPairInterval,
+            sine_pair_interval: sinePairInterval,
+            signed_pair_source_interval: signedPairSourceInterval,
+            signed_pair_triangle_abs_upper: signedPairTriangleAbsUpper,
+          };
+        }
+      );
+      const sourceYOrder = subcellSourceRows.every(
+        (subcell) =>
+          subcell.source_y_order === subcellSourceRows[0]?.source_y_order
+      )
+        ? subcellSourceRows[0]?.source_y_order
+        : null;
+      const sourceInterval = intervalHull(
+        subcellSourceRows.map((subcell) => subcell.source_interval)
+      );
+      const termCoefficientIntervals = Object.fromEntries(
+        sourceTerms.map((term) => [
+          term,
+          intervalHull(
+            subcellSourceRows.map(
+              (subcell) => subcell.term_coefficient_intervals[term]
+            )
+          ),
+        ])
+      );
+      const termIntervalSum = intervalHull(
+        subcellSourceRows.map((subcell) => subcell.term_interval_sum)
+      );
+      const termTriangleAbsUpper = Math.max(
+        ...subcellSourceRows.map(
+          (subcell) => subcell.term_triangle_abs_upper
+        )
+      );
+      const speedConstantPairInterval = intervalHull(
+        subcellSourceRows.map(
+          (subcell) => subcell.speed_constant_pair_interval
+        )
+      );
+      const sinePairInterval = intervalHull(
+        subcellSourceRows.map((subcell) => subcell.sine_pair_interval)
+      );
+      const signedPairSourceInterval = intervalHull(
+        subcellSourceRows.map(
+          (subcell) => subcell.signed_pair_source_interval
+        )
+      );
+      const signedPairSourceAbsUpper = intervalAbsUpper(
+        signedPairSourceInterval
+      );
+      const signedPairTriangleAbsUpper = Math.max(
+        ...subcellSourceRows.map(
+          (subcell) => subcell.signed_pair_triangle_abs_upper
+        )
+      );
+      const maxSubcellTermSumToSourceRelativeGap = Math.max(
+        ...subcellSourceRows.map((subcell) =>
+          intervalEndpointRelativeGap(
+            subcell.term_interval_sum,
+            subcell.source_interval
+          )
+        )
+      );
+      const maxSubcellSourceAbsUpper = Math.max(
+        ...subcellSourceRows.map((subcell) =>
+          intervalAbsUpper(subcell.source_interval)
+        )
+      );
+      const worstSubcellSourceRow =
+        subcellSourceRows.reduce((best, subcell) => {
+          if (
+            best === null ||
+            intervalAbsUpper(subcell.source_interval) >
+              intervalAbsUpper(best.source_interval)
+          ) {
+            return subcell;
+          }
+          return best;
+        }, null) ?? null;
+      const subcellSourceCancellationFractions = subcellSourceRows
+        .map((subcell) =>
+          finitePositive(subcell.term_triangle_abs_upper)
+            ? 1 -
+              intervalAbsUpper(subcell.source_interval) /
+                subcell.term_triangle_abs_upper
+            : null
+        )
+        .filter((value) => Number.isFinite(Number(value)));
+      const minSubcellSourceCancellationFraction =
+        subcellSourceCancellationFractions.length > 0
+          ? Math.min(...subcellSourceCancellationFractions)
+          : null;
+      const directGraphInterval = directedIntervalPolynomialValue({
+        coefficients: graphCoefficients,
+        interval: segment.segment_interval,
+      });
+      const sourceComponentGraphRows = sourceTerms.map((term) => {
+        const coefficients = sourceComponentGraphCoefficientMap.get(term);
+        const graphInterval = Array.isArray(coefficients)
+          ? directedIntervalPolynomialValue({
+              coefficients,
+              interval: segment.segment_interval,
+            })
+          : null;
+        const sourceMinusGraphInterval =
+          graphInterval === null
+            ? null
+            : root.subtractIntervals(
+                termCoefficientIntervals[term],
+                graphInterval
+              );
+        return {
+          component: term,
+          component_source_interval: termCoefficientIntervals[term],
+          component_graph_interval: graphInterval,
+          component_source_minus_graph_interval: sourceMinusGraphInterval,
+        };
+      });
+      const sourceComponentGraphIntervals = sourceComponentGraphRows
+        .map((row) => row.component_graph_interval)
+        .filter(Array.isArray);
+      const allSourceComponentGraphInterval =
+        sourceComponentGraphIntervals.length === sourceTerms.length
+          ? sumIntervals(sourceComponentGraphIntervals)
+          : null;
+      const componentGraphIntervalForTerm = (term) =>
+        sourceComponentGraphRows.find((row) => row.component === term)
+          ?.component_graph_interval ?? null;
+      const speedConstantPairGraphInterval =
+        componentGraphIntervalForTerm("delta_squared_speed") !== null &&
+        componentGraphIntervalForTerm("constant_minus_two") !== null
+          ? root.addIntervals(
+              componentGraphIntervalForTerm("delta_squared_speed"),
+              componentGraphIntervalForTerm("constant_minus_two")
+            )
+          : null;
+      const sinePairGraphInterval =
+        componentGraphIntervalForTerm("sin_phi") !== null &&
+        componentGraphIntervalForTerm("sin_delta") !== null
+          ? root.addIntervals(
+              componentGraphIntervalForTerm("sin_phi"),
+              componentGraphIntervalForTerm("sin_delta")
+            )
+          : null;
+      const signedPairComponentGraphInterval =
+        speedConstantPairGraphInterval !== null &&
+        sinePairGraphInterval !== null
+          ? root.addIntervals(
+              speedConstantPairGraphInterval,
+              sinePairGraphInterval
+            )
+          : null;
+      const intervalCenterDriftGraphInterval =
+        intervalCenterDriftGraphCoefficients === null
+          ? null
+          : directedIntervalPolynomialValue({
+              coefficients: intervalCenterDriftGraphCoefficients,
+              interval: segment.segment_interval,
+            });
+      const sourceComponentPlusDriftGraphInterval =
+        allSourceComponentGraphInterval === null ||
+        intervalCenterDriftGraphInterval === null
+          ? null
+          : root.addIntervals(
+              allSourceComponentGraphInterval,
+              intervalCenterDriftGraphInterval
+            );
+      const signedPairToComponentGraphOffsetInterval =
+        signedPairComponentGraphInterval === null
+          ? null
+          : root.subtractIntervals(
+              signedPairSourceInterval,
+              signedPairComponentGraphInterval
+            );
+      const componentGraphToDirectGraphGapInterval =
+        sourceComponentPlusDriftGraphInterval === null
+          ? null
+          : root.subtractIntervals(
+              sourceComponentPlusDriftGraphInterval,
+              directGraphInterval
+            );
+      const residualInterval = root.subtractIntervals(
+        sourceInterval,
+        directGraphInterval
+      );
+      const signedPairResidualInterval = root.subtractIntervals(
+        signedPairSourceInterval,
+        directGraphInterval
+      );
+      const sourceAbsUpper = intervalAbsUpper(sourceInterval);
+      const residualAbsUpper = intervalAbsUpper(residualInterval);
+      const residualMidpoint = intervalMidpoint(residualInterval);
+      const residualRadius = intervalWidth(residualInterval) / 2;
+      const residualIntervalSign = intervalContainsZero(residualInterval)
+        ? "contains-zero"
+        : signLabel(residualMidpoint);
+      const signedPairResidualAbsUpper = intervalAbsUpper(
+        signedPairResidualInterval
+      );
+      const rawResidualAbsUpper = Number(
+        rawRow?.raw_true_residual_abs_upper
+      );
+      const graphResidualAbsUpper = Number(
+        graphRow?.graph_residual_abs_upper
+      );
+      const rawCompression =
+        Number.isFinite(rawResidualAbsUpper) && finitePositive(residualAbsUpper)
+          ? rawResidualAbsUpper / residualAbsUpper
+          : null;
+      const graphCompression =
+        Number.isFinite(graphResidualAbsUpper) &&
+        finitePositive(residualAbsUpper)
+          ? graphResidualAbsUpper / residualAbsUpper
+          : null;
+      const sourceCancellationFraction = finitePositive(
+        termTriangleAbsUpper
+      )
+        ? 1 - sourceAbsUpper / termTriangleAbsUpper
+        : null;
+      const signedPairCancellationFraction = finitePositive(
+        signedPairTriangleAbsUpper
+      )
+        ? 1 - signedPairSourceAbsUpper / signedPairTriangleAbsUpper
+        : null;
+      const productValueComparable =
+        segment.quotient_kind === "product-quotient-producer-complement";
+      const directNormalFormInterval =
+        productValueComparable &&
+        Array.isArray(segment.direct_normal_form_interval_hull)
+          ? root.outwardInterval(segment.direct_normal_form_interval_hull)
+          : null;
+      const directQuarticInterval =
+        directNormalFormInterval === null
+          ? null
+          : root.addIntervals(directGraphInterval, directNormalFormInterval);
+      const sourceToDirectQuarticOffsetInterval =
+        directQuarticInterval === null
+          ? null
+          : root.subtractIntervals(sourceInterval, directQuarticInterval);
+      const sourceToDirectQuarticOffsetAbsUpper =
+        sourceToDirectQuarticOffsetInterval === null
+          ? null
+          : intervalAbsUpper(sourceToDirectQuarticOffsetInterval);
+      const sourceToDirectQuarticOffsetMidpoint =
+        sourceToDirectQuarticOffsetInterval === null
+          ? null
+          : intervalMidpoint(sourceToDirectQuarticOffsetInterval);
+      const sourceToDirectQuarticOffsetRadius =
+        sourceToDirectQuarticOffsetInterval === null
+          ? null
+          : intervalWidth(sourceToDirectQuarticOffsetInterval) / 2;
+      const sourceToDirectQuarticOffsetSign =
+        sourceToDirectQuarticOffsetInterval === null
+          ? null
+          : intervalContainsZero(sourceToDirectQuarticOffsetInterval)
+            ? "contains-zero"
+            : signLabel(sourceToDirectQuarticOffsetMidpoint);
+      const target = Number(
+        segment.split_stream_required_direct_normal_form_abs_upper
+      );
+      const productDenominatorInterval =
+        productValueComparable && Array.isArray(segment.denominator_interval)
+          ? segment.denominator_interval
+          : null;
+      const productDenominatorAbsLower = productValueComparable
+        ? Number(segment.denominator_abs_lower)
+        : null;
+      const productDenominatorAbsUpper =
+        productDenominatorInterval === null
+          ? null
+          : intervalAbsUpper(productDenominatorInterval);
+      const finiteDirectNormalFormAbsUpper = Number(
+        budgetRow?.finite_model_abs_upper ?? segment.direct_normal_form_abs_upper
+      );
+      const finiteDirectNormalFormRatio = Number(
+        budgetRow?.finite_model_to_target_ratio ??
+          segment.direct_normal_form_to_target_ratio
+      );
+      const finiteDirectHeadroomAbs =
+        finitePositive(target) &&
+        Number.isFinite(finiteDirectNormalFormAbsUpper)
+          ? target - finiteDirectNormalFormAbsUpper
+          : null;
+      const finiteDirectHeadroomRatio =
+        Number.isFinite(Number(finiteDirectHeadroomAbs)) &&
+        finitePositive(target)
+          ? finiteDirectHeadroomAbs / target
+          : null;
+      const finitePairedAbsUpper = Number(pairedRow?.paired_abs_upper);
+      const finitePairedRatio = Number(pairedRow?.paired_to_target_ratio);
+      const finitePairedHeadroomAbs =
+        finitePositive(target) && Number.isFinite(finitePairedAbsUpper)
+          ? target - finitePairedAbsUpper
+          : null;
+      const finitePairedHeadroomRatio =
+        Number.isFinite(Number(finitePairedHeadroomAbs)) &&
+        finitePositive(target)
+          ? finitePairedHeadroomAbs / target
+          : null;
+      const residualExcessOverTargetAbs =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(residualAbsUpper)
+          ? Math.max(0, residualAbsUpper - target)
+          : null;
+      const requiredDenominatorAbsLowerForResidual =
+        productValueComparable &&
+        Number.isFinite(residualAbsUpper) &&
+        finitePositive(splitCeiling)
+          ? (24 * residualAbsUpper) / splitCeiling
+          : null;
+      const requiredToAvailableDenominatorAbsFactor =
+        Number.isFinite(Number(requiredDenominatorAbsLowerForResidual)) &&
+        finitePositive(productDenominatorAbsUpper)
+          ? requiredDenominatorAbsLowerForResidual / productDenominatorAbsUpper
+          : null;
+      const denominatorPartitionCanClose =
+        Number.isFinite(Number(requiredDenominatorAbsLowerForResidual)) &&
+        finitePositive(productDenominatorAbsUpper) &&
+        requiredDenominatorAbsLowerForResidual <= productDenominatorAbsUpper;
+      const residualCenterToTargetRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(residualMidpoint)
+          ? Math.abs(residualMidpoint) / target
+          : null;
+      const residualRadiusToTargetRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(residualRadius)
+          ? Math.abs(residualRadius) / target
+          : null;
+      const residualToDirectNormalFormFactor =
+        productValueComparable &&
+        finitePositive(finiteDirectNormalFormAbsUpper) &&
+        Number.isFinite(residualAbsUpper)
+          ? residualAbsUpper / finiteDirectNormalFormAbsUpper
+          : null;
+      const residualCenterToDirectNormalFormFactor =
+        productValueComparable &&
+        finitePositive(finiteDirectNormalFormAbsUpper) &&
+        Number.isFinite(residualMidpoint)
+          ? Math.abs(residualMidpoint) / finiteDirectNormalFormAbsUpper
+          : null;
+      const residualToPairedFiniteFactor =
+        productValueComparable &&
+        finitePositive(finitePairedAbsUpper) &&
+        Number.isFinite(residualAbsUpper)
+          ? residualAbsUpper / finitePairedAbsUpper
+          : null;
+      const targetToDirectNormalFormFactor =
+        productValueComparable &&
+        finitePositive(finiteDirectNormalFormAbsUpper) &&
+        finitePositive(target)
+          ? target / finiteDirectNormalFormAbsUpper
+          : null;
+      const sourceDirectQuarticOffsetToFiniteDirectAbsLossFactor =
+        productValueComparable &&
+        finitePositive(finiteDirectNormalFormAbsUpper) &&
+        Number.isFinite(Number(sourceToDirectQuarticOffsetAbsUpper))
+          ? sourceToDirectQuarticOffsetAbsUpper /
+            finiteDirectNormalFormAbsUpper
+          : null;
+      const signedPairRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(signedPairResidualAbsUpper)
+          ? signedPairResidualAbsUpper / target
+          : null;
+      const sourceToDirectQuarticOffsetRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(Number(sourceToDirectQuarticOffsetAbsUpper))
+          ? sourceToDirectQuarticOffsetAbsUpper / target
+          : null;
+      const sourceToDirectQuarticOffsetCenterRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(Number(sourceToDirectQuarticOffsetMidpoint))
+          ? Math.abs(sourceToDirectQuarticOffsetMidpoint) / target
+          : null;
+      const sourceToDirectQuarticOffsetRadiusRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(Number(sourceToDirectQuarticOffsetRadius))
+          ? Math.abs(sourceToDirectQuarticOffsetRadius) / target
+          : null;
+      const sourceToDirectQuarticOffsetRadiusToCenterRatio =
+        Number.isFinite(Number(sourceToDirectQuarticOffsetRadius)) &&
+        finitePositive(Math.abs(Number(sourceToDirectQuarticOffsetMidpoint)))
+          ? Math.abs(sourceToDirectQuarticOffsetRadius) /
+            Math.abs(Number(sourceToDirectQuarticOffsetMidpoint))
+          : null;
+      const signedPairToDirectQuarticOffsetInterval =
+        directQuarticInterval === null
+          ? null
+          : root.subtractIntervals(
+              signedPairSourceInterval,
+              directQuarticInterval
+            );
+      const signedPairToDirectQuarticOffsetAbsUpper =
+        signedPairToDirectQuarticOffsetInterval === null
+          ? null
+          : intervalAbsUpper(signedPairToDirectQuarticOffsetInterval);
+      const signedPairToDirectQuarticOffsetRadius =
+        signedPairToDirectQuarticOffsetInterval === null
+          ? null
+          : intervalWidth(signedPairToDirectQuarticOffsetInterval) / 2;
+      const signedPairToDirectQuarticOffsetSign = stableIntervalSign(
+        signedPairToDirectQuarticOffsetInterval
+      );
+      const signedPairToDirectQuarticOffsetRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(Number(signedPairToDirectQuarticOffsetAbsUpper))
+          ? signedPairToDirectQuarticOffsetAbsUpper / target
+          : null;
+      const signedPairToDirectQuarticOffsetRadiusRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(Number(signedPairToDirectQuarticOffsetRadius))
+          ? Math.abs(signedPairToDirectQuarticOffsetRadius) / target
+          : null;
+      const signedPairDirectQuarticOffsetToFullOffsetRelativeGap =
+        signedPairToDirectQuarticOffsetInterval === null ||
+        sourceToDirectQuarticOffsetInterval === null
+          ? null
+          : intervalEndpointRelativeGap(
+              signedPairToDirectQuarticOffsetInterval,
+              sourceToDirectQuarticOffsetInterval
+            );
+      const intervalTargetUnitProfile = (interval) => {
+        if (
+          !productValueComparable ||
+          !finitePositive(target) ||
+          !Array.isArray(interval)
+        ) {
+          return null;
+        }
+        const midpoint = intervalMidpoint(interval);
+        const radius = intervalWidth(interval) / 2;
+        const absUpper = intervalAbsUpper(interval);
+        return {
+          interval,
+          midpoint_to_target: Number.isFinite(Number(midpoint))
+            ? midpoint / target
+            : null,
+          radius_to_target: Number.isFinite(Number(radius))
+            ? Math.abs(radius) / target
+            : null,
+          abs_upper_to_target: Number.isFinite(Number(absUpper))
+            ? absUpper / target
+            : null,
+          sign: stableIntervalSign(interval),
+        };
+      };
+      const sourceTermTargetUnitProfiles = Object.fromEntries(
+        sourceTerms.map((term) => [
+          term,
+          intervalTargetUnitProfile(termCoefficientIntervals[term]),
+        ])
+      );
+      const sourcePairTargetUnitProfile = {
+        speed_constant_pair: intervalTargetUnitProfile(
+          speedConstantPairInterval
+        ),
+        sine_pair: intervalTargetUnitProfile(sinePairInterval),
+        signed_pair_source: intervalTargetUnitProfile(
+          signedPairSourceInterval
+        ),
+        direct_graph: intervalTargetUnitProfile(directGraphInterval),
+        finite_direct_normal_form: intervalTargetUnitProfile(
+          directNormalFormInterval
+        ),
+        direct_quartic: intervalTargetUnitProfile(directQuarticInterval),
+        signed_pair_minus_direct_graph: intervalTargetUnitProfile(
+          signedPairResidualInterval
+        ),
+        signed_pair_minus_direct_quartic: intervalTargetUnitProfile(
+          signedPairToDirectQuarticOffsetInterval
+        ),
+      };
+      const componentGraphTargetUnitRows = sourceComponentGraphRows.map(
+        (row) => ({
+          component: row.component,
+          source: intervalTargetUnitProfile(row.component_source_interval),
+          component_graph: intervalTargetUnitProfile(
+            row.component_graph_interval
+          ),
+          source_minus_component_graph: intervalTargetUnitProfile(
+            row.component_source_minus_graph_interval
+          ),
+        })
+      );
+      const sourceComponentGraphTargetUnitProfile = {
+        speed_constant_pair_graph: intervalTargetUnitProfile(
+          speedConstantPairGraphInterval
+        ),
+        sine_pair_graph: intervalTargetUnitProfile(sinePairGraphInterval),
+        signed_pair_graph: intervalTargetUnitProfile(
+          signedPairComponentGraphInterval
+        ),
+        all_component_graph: intervalTargetUnitProfile(
+          allSourceComponentGraphInterval
+        ),
+        interval_center_drift_graph: intervalTargetUnitProfile(
+          intervalCenterDriftGraphInterval
+        ),
+        component_plus_drift_graph: intervalTargetUnitProfile(
+          sourceComponentPlusDriftGraphInterval
+        ),
+        signed_pair_source_minus_signed_pair_graph:
+          intervalTargetUnitProfile(signedPairToComponentGraphOffsetInterval),
+        component_plus_drift_graph_minus_direct_graph:
+          intervalTargetUnitProfile(componentGraphToDirectGraphGapInterval),
+      };
+      const sourcePairMidpoints = {
+        speed_constant_pair: Number(
+          sourcePairTargetUnitProfile.speed_constant_pair?.midpoint_to_target
+        ),
+        sine_pair: Number(
+          sourcePairTargetUnitProfile.sine_pair?.midpoint_to_target
+        ),
+        signed_pair_source: Number(
+          sourcePairTargetUnitProfile.signed_pair_source?.midpoint_to_target
+        ),
+        direct_graph: Number(
+          sourcePairTargetUnitProfile.direct_graph?.midpoint_to_target
+        ),
+        direct_quartic: Number(
+          sourcePairTargetUnitProfile.direct_quartic?.midpoint_to_target
+        ),
+      };
+      const sourcePairHasOpposedLargeTerms =
+        productValueComparable &&
+        Number.isFinite(sourcePairMidpoints.speed_constant_pair) &&
+        Number.isFinite(sourcePairMidpoints.sine_pair) &&
+        Math.sign(sourcePairMidpoints.speed_constant_pair) !==
+          Math.sign(sourcePairMidpoints.sine_pair) &&
+        Math.abs(sourcePairMidpoints.speed_constant_pair) > 1 &&
+        Math.abs(sourcePairMidpoints.sine_pair) > 1;
+      const sourcePairBalanceStatus = !productValueComparable
+        ? "positive-n38-source-pair-balance-derivative-segment-not-applicable"
+        : !sourcePairHasOpposedLargeTerms
+          ? "positive-n38-source-pair-balance-unavailable"
+          : Number.isFinite(Number(signedPairCancellationFraction)) &&
+              Number(signedPairCancellationFraction) > 0.5
+            ? "positive-n38-source-pair-balance-large-opposed-pairs"
+            : "positive-n38-source-pair-balance-opposed-pairs-with-weak-cancellation";
+      const signedPairDirectGraphOffsetToDirectQuarticOffsetRelativeGap =
+        signedPairToDirectQuarticOffsetInterval === null
+          ? null
+          : intervalEndpointRelativeGap(
+              signedPairResidualInterval,
+              signedPairToDirectQuarticOffsetInterval
+            );
+      const finiteDirectNormalFormToSignedPairDirectGraphOffsetRatio =
+        productValueComparable &&
+        finitePositive(signedPairResidualAbsUpper) &&
+        Number.isFinite(Number(finiteDirectNormalFormAbsUpper))
+          ? finiteDirectNormalFormAbsUpper / signedPairResidualAbsUpper
+          : null;
+      const signedPairToComponentGraphOffsetAbsUpper =
+        signedPairToComponentGraphOffsetInterval === null
+          ? null
+          : intervalAbsUpper(signedPairToComponentGraphOffsetInterval);
+      const componentGraphToDirectGraphGapAbsUpper =
+        componentGraphToDirectGraphGapInterval === null
+          ? null
+          : intervalAbsUpper(componentGraphToDirectGraphGapInterval);
+      const signedPairToComponentGraphOffsetRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(Number(signedPairToComponentGraphOffsetAbsUpper))
+          ? signedPairToComponentGraphOffsetAbsUpper / target
+          : null;
+      const componentGraphToDirectGraphGapRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(Number(componentGraphToDirectGraphGapAbsUpper))
+          ? componentGraphToDirectGraphGapAbsUpper / target
+          : null;
+      const h38CoordinateResidualToTargetRatioForComponentStatus =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(residualAbsUpper)
+          ? residualAbsUpper / target
+          : null;
+      const sourcePairComponentGraphCloses =
+        productValueComparable &&
+        Number.isFinite(Number(signedPairToComponentGraphOffsetRatio)) &&
+        Number(signedPairToComponentGraphOffsetRatio) <= 1 &&
+        Number.isFinite(Number(componentGraphToDirectGraphGapRatio)) &&
+        Number(componentGraphToDirectGraphGapRatio) <= 1 &&
+        Number.isFinite(
+          Number(h38CoordinateResidualToTargetRatioForComponentStatus)
+        ) &&
+        Number(h38CoordinateResidualToTargetRatioForComponentStatus) <= 1;
+      const sourcePairComponentGraphExposesIntervalCenterDrift =
+        productValueComparable &&
+        Number.isFinite(Number(signedPairToComponentGraphOffsetRatio)) &&
+        Number(signedPairToComponentGraphOffsetRatio) <= 1 &&
+        Number.isFinite(Number(componentGraphToDirectGraphGapRatio)) &&
+        Number(componentGraphToDirectGraphGapRatio) <= 1 &&
+        Number.isFinite(
+          Number(
+            sourceComponentGraphTargetUnitProfile.interval_center_drift_graph
+              ?.abs_upper_to_target
+          )
+        ) &&
+        Number(
+          sourceComponentGraphTargetUnitProfile.interval_center_drift_graph
+            .abs_upper_to_target
+        ) > 1 &&
+        Number.isFinite(
+          Number(h38CoordinateResidualToTargetRatioForComponentStatus)
+        ) &&
+        Number(h38CoordinateResidualToTargetRatioForComponentStatus) > 1;
+      const sourcePairComponentGraphStatus = !productValueComparable
+        ? "positive-n38-source-pair-component-graph-derivative-segment-not-applicable"
+        : signedPairToComponentGraphOffsetInterval === null ||
+            sourceComponentPlusDriftGraphInterval === null ||
+            componentGraphToDirectGraphGapInterval === null
+          ? "positive-n38-source-pair-component-graph-unavailable"
+          : sourcePairComponentGraphCloses
+            ? "positive-n38-source-pair-component-graph-closes-direct-graph-gap"
+            : sourcePairComponentGraphExposesIntervalCenterDrift
+              ? "positive-n38-source-pair-component-graph-exposes-interval-center-drift-offset"
+            : Number.isFinite(Number(signedPairToComponentGraphOffsetRatio)) &&
+                Number(signedPairToComponentGraphOffsetRatio) > 1
+              ? "positive-n38-source-pair-component-graph-source-pair-variation-open"
+              : "positive-n38-source-pair-component-graph-open";
+      const normalizationSlopeInterval = Array.isArray(
+        sample.h38_solve_slope_interval
+      )
+        ? sample.h38_solve_slope_interval.map(Number)
+        : null;
+      const normalizationSlopeAbsLower =
+        normalizationSlopeInterval === null
+          ? null
+          : intervalAbsLower(normalizationSlopeInterval);
+      const normalizationSlopeAbsUpper =
+        normalizationSlopeInterval === null
+          ? null
+          : intervalAbsUpper(normalizationSlopeInterval);
+      const solveNormalizeInterval = (interval) =>
+        interval === null ||
+        normalizationSlopeInterval === null ||
+        !finitePositive(normalizationSlopeAbsLower)
+          ? null
+          : root.divideIntervals(
+              root.scaleInterval(interval, -1),
+              normalizationSlopeInterval
+            );
+      const solvedProductTargetAbsUpper =
+        finitePositive(target) && finitePositive(normalizationSlopeAbsLower)
+          ? target / normalizationSlopeAbsLower
+          : null;
+      const solvedSourceInterval = solveNormalizeInterval(sourceInterval);
+      const solvedDirectQuarticInterval =
+        solveNormalizeInterval(directQuarticInterval);
+      const solvedSourceToSolvedDirectQuarticOffsetInterval =
+        solvedSourceInterval === null || solvedDirectQuarticInterval === null
+          ? null
+          : root.subtractIntervals(
+              solvedSourceInterval,
+              solvedDirectQuarticInterval
+            );
+      const solvedSourceToSolvedDirectQuarticOffsetAbsUpper =
+        solvedSourceToSolvedDirectQuarticOffsetInterval === null
+          ? null
+          : intervalAbsUpper(solvedSourceToSolvedDirectQuarticOffsetInterval);
+      const solvedSourceToSolvedDirectQuarticOffsetRatio =
+        productValueComparable &&
+        finitePositive(solvedProductTargetAbsUpper) &&
+        Number.isFinite(
+          Number(solvedSourceToSolvedDirectQuarticOffsetAbsUpper)
+        )
+          ? solvedSourceToSolvedDirectQuarticOffsetAbsUpper /
+            solvedProductTargetAbsUpper
+          : null;
+      const solveNormalizationInvarianceRatio =
+        finitePositive(sourceToDirectQuarticOffsetRatio) &&
+        Number.isFinite(Number(solvedSourceToSolvedDirectQuarticOffsetRatio))
+          ? solvedSourceToSolvedDirectQuarticOffsetRatio /
+            sourceToDirectQuarticOffsetRatio
+          : null;
+      const sourceSolvedToDirectQuarticCrossedOffsetInterval =
+        solvedSourceInterval === null || directQuarticInterval === null
+          ? null
+          : root.subtractIntervals(solvedSourceInterval, directQuarticInterval);
+      const sourceSolvedToDirectQuarticCrossedOffsetRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        sourceSolvedToDirectQuarticCrossedOffsetInterval !== null
+          ? intervalAbsUpper(sourceSolvedToDirectQuarticCrossedOffsetInterval) /
+            target
+          : null;
+      const sourceToSolvedDirectQuarticCrossedOffsetInterval =
+        sourceInterval === null || solvedDirectQuarticInterval === null
+          ? null
+          : root.subtractIntervals(sourceInterval, solvedDirectQuarticInterval);
+      const sourceToSolvedDirectQuarticCrossedOffsetRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        sourceToSolvedDirectQuarticCrossedOffsetInterval !== null
+          ? intervalAbsUpper(sourceToSolvedDirectQuarticCrossedOffsetInterval) /
+            target
+          : null;
+      const crossedSolveNormalizationRatios = [
+        sourceSolvedToDirectQuarticCrossedOffsetRatio,
+        sourceToSolvedDirectQuarticCrossedOffsetRatio,
+      ].filter((value) => Number.isFinite(Number(value)));
+      const crossedSolveNormalizationBestRatio =
+        crossedSolveNormalizationRatios.length > 0
+          ? Math.min(...crossedSolveNormalizationRatios)
+          : null;
+      const solvedComponentDriftToDirectGraphGapInterval =
+        solveNormalizeInterval(componentGraphToDirectGraphGapInterval);
+      const solvedComponentDriftToDirectGraphGapAbsUpper =
+        solvedComponentDriftToDirectGraphGapInterval === null
+          ? null
+          : intervalAbsUpper(solvedComponentDriftToDirectGraphGapInterval);
+      const componentDriftSolvedGapToSolvedTargetRatio =
+        productValueComparable &&
+        finitePositive(solvedProductTargetAbsUpper) &&
+        Number.isFinite(
+          Number(solvedComponentDriftToDirectGraphGapAbsUpper)
+        )
+          ? solvedComponentDriftToDirectGraphGapAbsUpper /
+            solvedProductTargetAbsUpper
+          : null;
+      const componentDriftSolveNormalizationInvarianceRatio =
+        finitePositive(componentGraphToDirectGraphGapRatio) &&
+        Number.isFinite(Number(componentDriftSolvedGapToSolvedTargetRatio))
+          ? componentDriftSolvedGapToSolvedTargetRatio /
+            componentGraphToDirectGraphGapRatio
+          : null;
+      const componentDriftS37DivisionStatus = !productValueComparable
+        ? "positive-n38-component-drift-s37-division-derivative-segment-not-applicable"
+        : solvedComponentDriftToDirectGraphGapInterval === null ||
+            !finitePositive(solvedProductTargetAbsUpper)
+          ? "positive-n38-component-drift-s37-division-unavailable"
+          : Number.isFinite(
+                Number(componentDriftSolvedGapToSolvedTargetRatio)
+              ) && Number(componentDriftSolvedGapToSolvedTargetRatio) <= 1
+            ? "positive-n38-component-drift-s37-division-inside-target"
+            : "positive-n38-component-drift-s37-division-open";
+      const fullResidualVectorExpression =
+        fullResidualVectorProfile === null
+          ? null
+          : evaluateH38RecurrenceNumeratorBeforeSolve({
+              cell,
+              branch: resolvedBranch,
+              branchSign: root.branchSign(resolvedBranch),
+              hIntervals:
+                hIntervalsForPolynomialGraphIntervalFullResidualVector({
+                  transportProfile,
+                  noiseInterval: segment.segment_interval,
+                  fullResidualVectorProfile,
+                }),
+              includeTermDecomposition: true,
+            });
+      const fullResidualVectorSourceYOrder =
+        fullResidualVectorExpression?.source_y_order ?? null;
+      const fullResidualVectorSourceInterval =
+        fullResidualVectorExpression === null
+          ? null
+          : root.outwardInterval(
+              fullResidualVectorExpression.numerator_interval
+            );
+      const fullResidualVectorTermCoefficientIntervals =
+        fullResidualVectorExpression === null
+          ? null
+          : Object.fromEntries(
+              sourceTerms.map((term) => [
+                term,
+                coefficientIntervalAt(
+                  fullResidualVectorExpression.term_decomposition?.[term],
+                  fullResidualVectorSourceYOrder
+                ),
+              ])
+            );
+      const fullResidualVectorTermIntervalSum =
+        fullResidualVectorTermCoefficientIntervals === null
+          ? null
+          : sumIntervals(
+              sourceTerms.map(
+                (term) => fullResidualVectorTermCoefficientIntervals[term]
+              )
+            );
+      const fullResidualVectorTermTriangleAbsUpper =
+        fullResidualVectorTermCoefficientIntervals === null
+          ? null
+          : sourceTerms.reduce(
+              (sum, term) =>
+                sum +
+                intervalAbsUpper(
+                  fullResidualVectorTermCoefficientIntervals[term]
+                ),
+              0
+            );
+      const fullResidualVectorSourceAbsUpper =
+        fullResidualVectorSourceInterval === null
+          ? null
+          : intervalAbsUpper(fullResidualVectorSourceInterval);
+      const fullResidualVectorResidualInterval =
+        fullResidualVectorSourceInterval === null
+          ? null
+          : root.subtractIntervals(
+              fullResidualVectorSourceInterval,
+              directGraphInterval
+            );
+      const fullResidualVectorResidualAbsUpper =
+        fullResidualVectorResidualInterval === null
+          ? null
+          : intervalAbsUpper(fullResidualVectorResidualInterval);
+      const fullResidualVectorDirectQuarticOffsetInterval =
+        fullResidualVectorSourceInterval === null ||
+        directQuarticInterval === null
+          ? null
+          : root.subtractIntervals(
+              fullResidualVectorSourceInterval,
+              directQuarticInterval
+            );
+      const fullResidualVectorDirectQuarticOffsetAbsUpper =
+        fullResidualVectorDirectQuarticOffsetInterval === null
+          ? null
+          : intervalAbsUpper(fullResidualVectorDirectQuarticOffsetInterval);
+      const fullResidualVectorDirectQuarticOffsetMidpoint =
+        fullResidualVectorDirectQuarticOffsetInterval === null
+          ? null
+          : intervalMidpoint(fullResidualVectorDirectQuarticOffsetInterval);
+      const fullResidualVectorDirectQuarticOffsetRadius =
+        fullResidualVectorDirectQuarticOffsetInterval === null
+          ? null
+          : intervalWidth(fullResidualVectorDirectQuarticOffsetInterval) / 2;
+      const fullResidualVectorDirectQuarticOffsetSign =
+        fullResidualVectorDirectQuarticOffsetInterval === null
+          ? null
+          : intervalContainsZero(fullResidualVectorDirectQuarticOffsetInterval)
+            ? "contains-zero"
+            : signLabel(fullResidualVectorDirectQuarticOffsetMidpoint);
+      const fullResidualVectorDirectQuarticOffsetRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(
+          Number(fullResidualVectorDirectQuarticOffsetAbsUpper)
+        )
+          ? fullResidualVectorDirectQuarticOffsetAbsUpper / target
+          : null;
+      const fullResidualVectorDirectQuarticOffsetCenterRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(Number(fullResidualVectorDirectQuarticOffsetMidpoint))
+          ? Math.abs(fullResidualVectorDirectQuarticOffsetMidpoint) / target
+          : null;
+      const fullResidualVectorDirectQuarticOffsetRadiusRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(Number(fullResidualVectorDirectQuarticOffsetRadius))
+          ? Math.abs(fullResidualVectorDirectQuarticOffsetRadius) / target
+          : null;
+      const fullResidualVectorOffsetToH38CoordinateOffsetRatio =
+        Number.isFinite(
+          Number(fullResidualVectorDirectQuarticOffsetAbsUpper)
+        ) &&
+        finitePositive(sourceToDirectQuarticOffsetAbsUpper)
+          ? fullResidualVectorDirectQuarticOffsetAbsUpper /
+            sourceToDirectQuarticOffsetAbsUpper
+          : null;
+      const h38CoordinateToFullResidualVectorOffsetCompressionFactor =
+        finitePositive(fullResidualVectorDirectQuarticOffsetAbsUpper) &&
+        Number.isFinite(Number(sourceToDirectQuarticOffsetAbsUpper))
+          ? sourceToDirectQuarticOffsetAbsUpper /
+            fullResidualVectorDirectQuarticOffsetAbsUpper
+          : null;
+      const fullResidualVectorSourceToDirectQuarticMultiplierInterval =
+        fullResidualVectorSourceInterval === null ||
+        directQuarticInterval === null
+          ? null
+          : divideIntervalsIfNonzero(
+              fullResidualVectorSourceInterval,
+              directQuarticInterval
+            );
+      const fullResidualVectorSourceToDirectQuarticMultiplierMidpoint =
+        fullResidualVectorSourceToDirectQuarticMultiplierInterval === null
+          ? null
+          : intervalMidpoint(
+              fullResidualVectorSourceToDirectQuarticMultiplierInterval
+            );
+      const fullResidualVectorSourceToDirectQuarticMultiplierSign =
+        stableIntervalSign(
+          fullResidualVectorSourceToDirectQuarticMultiplierInterval
+        );
+      const productDenominatorSign = stableIntervalSign(
+        productDenominatorInterval
+      );
+      const fullResidualVectorRawMultiplierSignMatchesDenominator =
+        fullResidualVectorSourceToDirectQuarticMultiplierSign !== null &&
+        productDenominatorSign !== null &&
+        fullResidualVectorSourceToDirectQuarticMultiplierSign ===
+          productDenominatorSign;
+      const fullResidualVectorSourceOverDenominatorInterval =
+        fullResidualVectorSourceInterval === null ||
+        productDenominatorInterval === null
+          ? null
+          : divideIntervalsIfNonzero(
+              fullResidualVectorSourceInterval,
+              productDenominatorInterval
+            );
+      const fullResidualVectorMinusSourceOverDenominatorInterval =
+        fullResidualVectorSourceInterval === null ||
+        productDenominatorInterval === null
+          ? null
+          : divideIntervalsIfNonzero(
+              root.scaleInterval(fullResidualVectorSourceInterval, -1),
+              productDenominatorInterval
+            );
+      const fullResidualVectorSourceOverDenominatorSign = stableIntervalSign(
+        fullResidualVectorSourceOverDenominatorInterval
+      );
+      const fullResidualVectorMinusSourceOverDenominatorSign =
+        stableIntervalSign(
+          fullResidualVectorMinusSourceOverDenominatorInterval
+        );
+      const directQuarticSign = stableIntervalSign(directQuarticInterval);
+      const fullResidualVectorSourceOverDenominatorToDirectQuarticOffsetInterval =
+        fullResidualVectorSourceOverDenominatorInterval === null ||
+        directQuarticInterval === null
+          ? null
+          : root.subtractIntervals(
+              fullResidualVectorSourceOverDenominatorInterval,
+              directQuarticInterval
+            );
+      const fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetInterval =
+        fullResidualVectorMinusSourceOverDenominatorInterval === null ||
+        directQuarticInterval === null
+          ? null
+          : root.subtractIntervals(
+              fullResidualVectorMinusSourceOverDenominatorInterval,
+              directQuarticInterval
+            );
+      const fullResidualVectorSourceOverDenominatorToDirectQuarticOffsetAbsUpper =
+        fullResidualVectorSourceOverDenominatorToDirectQuarticOffsetInterval ===
+        null
+          ? null
+          : intervalAbsUpper(
+              fullResidualVectorSourceOverDenominatorToDirectQuarticOffsetInterval
+            );
+      const fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetAbsUpper =
+        fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetInterval ===
+        null
+          ? null
+          : intervalAbsUpper(
+              fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetInterval
+            );
+      const fullResidualVectorSourceOverDenominatorToDirectQuarticOffsetRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(
+          Number(
+            fullResidualVectorSourceOverDenominatorToDirectQuarticOffsetAbsUpper
+          )
+        )
+          ? fullResidualVectorSourceOverDenominatorToDirectQuarticOffsetAbsUpper /
+            target
+          : null;
+      const fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(
+          Number(
+            fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetAbsUpper
+          )
+        )
+          ? fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetAbsUpper /
+            target
+          : null;
+      const fullResidualVectorSourceOverDenominatorSignMatchesDirectQuartic =
+        fullResidualVectorSourceOverDenominatorSign !== null &&
+        directQuarticSign !== null &&
+        fullResidualVectorSourceOverDenominatorSign === directQuarticSign;
+      const fullResidualVectorMinusSourceOverDenominatorSignMatchesDirectQuartic =
+        fullResidualVectorMinusSourceOverDenominatorSign !== null &&
+        directQuarticSign !== null &&
+        fullResidualVectorMinusSourceOverDenominatorSign ===
+          directQuarticSign;
+      const fullResidualVectorSolveNormalizationInside =
+        productValueComparable &&
+        Number.isFinite(
+          Number(
+            fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetRatio
+          )
+        ) &&
+        Number(
+          fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetRatio
+        ) <= 1;
+      const fullResidualVectorRawMultiplierSignMismatch =
+        fullResidualVectorSourceToDirectQuarticMultiplierSign !== null &&
+        productDenominatorSign !== null &&
+        fullResidualVectorSourceToDirectQuarticMultiplierSign !==
+          productDenominatorSign;
+      const fullResidualVectorSignedSolveOpen =
+        productValueComparable &&
+        Number.isFinite(
+          Number(
+            fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetRatio
+          )
+        ) &&
+        Number(
+          fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetRatio
+        ) > 1;
+      const fullResidualVectorSolveNormalizationStatus =
+        !productValueComparable
+          ? "positive-n38-full-residual-vector-solve-normalization-derivative-segment-not-applicable"
+          : fullResidualVectorSourceInterval === null ||
+              directQuarticInterval === null ||
+              productDenominatorInterval === null ||
+              fullResidualVectorSourceToDirectQuarticMultiplierInterval ===
+                null ||
+              fullResidualVectorMinusSourceOverDenominatorInterval === null
+            ? "positive-n38-full-residual-vector-solve-normalization-unavailable"
+            : fullResidualVectorSolveNormalizationInside
+              ? "positive-n38-full-residual-vector-solve-normalization-inside-target"
+              : fullResidualVectorRawMultiplierSignMismatch &&
+                  fullResidualVectorSignedSolveOpen
+                ? "positive-n38-full-residual-vector-solve-normalization-raw-denominator-sign-mismatch-and-signed-solve-open"
+                : fullResidualVectorRawMultiplierSignMismatch
+                  ? "positive-n38-full-residual-vector-solve-normalization-raw-denominator-sign-mismatch"
+                  : fullResidualVectorSignedSolveOpen
+                    ? "positive-n38-full-residual-vector-solve-normalization-signed-solve-open"
+                    : "positive-n38-full-residual-vector-solve-normalization-open";
+      const sharedNonH38CoordinateCandidateRows =
+        sharedNonH38CoordinateCandidateSets.map((candidate) => {
+          const candidateSubcellRows = h38CoordinateSubintervals.map(
+            (h38Subinterval, h38CoordinateSubcellIndex) => {
+              const hIntervals =
+                hIntervalsForPolynomialGraphIntervalResidualCentersWithSharedVariantInterval({
+                  transportProfile,
+                  noiseInterval: segment.segment_interval,
+                  residualProfile,
+                  h38ResidualInterval:
+                    h38ResidualProfile.residual_interval_hull,
+                  h38NoiseInterval: h38Subinterval,
+                  sharedVariantHIndexes: candidate.h_indexes,
+                  sharedNoiseInterval: h38Subinterval,
+                });
+              const expression = evaluateH38RecurrenceNumeratorBeforeSolve({
+                cell,
+                branch: resolvedBranch,
+                branchSign: root.branchSign(resolvedBranch),
+                hIntervals,
+                includeTermDecomposition: true,
+              });
+              const candidateSourceYOrder = expression.source_y_order;
+              const candidateSourceInterval = root.outwardInterval(
+                expression.numerator_interval
+              );
+              const candidateTermIntervals = Object.fromEntries(
+                sourceTerms.map((term) => [
+                  term,
+                  coefficientIntervalAt(
+                    expression.term_decomposition?.[term],
+                    candidateSourceYOrder
+                  ),
+                ])
+              );
+              const candidateTermIntervalSum = sumIntervals(
+                sourceTerms.map((term) => candidateTermIntervals[term])
+              );
+              const candidateTermTriangleAbsUpper = sourceTerms.reduce(
+                (sum, term) =>
+                  sum + intervalAbsUpper(candidateTermIntervals[term]),
+                0
+              );
+              return {
+                h38_coordinate_subcell_index: h38CoordinateSubcellIndex,
+                h38_residual_coordinate_interval: h38Subinterval,
+                source_y_order: candidateSourceYOrder,
+                source_interval: candidateSourceInterval,
+                term_interval_sum: candidateTermIntervalSum,
+                term_triangle_abs_upper: candidateTermTriangleAbsUpper,
+              };
+            }
+          );
+          const candidateSourceYOrder = candidateSubcellRows.every(
+            (subcell) =>
+              subcell.source_y_order ===
+              candidateSubcellRows[0]?.source_y_order
+          )
+            ? candidateSubcellRows[0]?.source_y_order
+            : null;
+          const candidateSourceInterval = intervalHull(
+            candidateSubcellRows.map((subcell) => subcell.source_interval)
+          );
+          const candidateTermIntervalSum = intervalHull(
+            candidateSubcellRows.map((subcell) => subcell.term_interval_sum)
+          );
+          const candidateTermTriangleAbsUpper = Math.max(
+            ...candidateSubcellRows.map(
+              (subcell) => subcell.term_triangle_abs_upper
+            )
+          );
+          const candidateResidualInterval = root.subtractIntervals(
+            candidateSourceInterval,
+            directGraphInterval
+          );
+          const candidateSourceAbsUpper = intervalAbsUpper(
+            candidateSourceInterval
+          );
+          const candidateResidualAbsUpper = intervalAbsUpper(
+            candidateResidualInterval
+          );
+          const candidateRatio =
+            productValueComparable &&
+            finitePositive(target) &&
+            Number.isFinite(candidateResidualAbsUpper)
+              ? candidateResidualAbsUpper / target
+              : null;
+          const candidateInside =
+            productValueComparable &&
+            Number.isFinite(Number(candidateRatio)) &&
+            Number(candidateRatio) <= 1;
+          const candidateCancellationFraction = finitePositive(
+            candidateTermTriangleAbsUpper
+          )
+            ? 1 - candidateSourceAbsUpper / candidateTermTriangleAbsUpper
+            : null;
+          return {
+            candidate_label: candidate.label,
+            shared_non_h38_h_indexes: candidate.h_indexes,
+            shared_coordinate_source:
+              "non-h38 selected residual coordinates use the same normalized interval as the h38 residual coordinate",
+            source_y_order: candidateSourceYOrder,
+            source_interval: candidateSourceInterval,
+            source_abs_upper: candidateSourceAbsUpper,
+            direct_graph_interval: directGraphInterval,
+            residual_interval: candidateResidualInterval,
+            residual_abs_upper: candidateResidualAbsUpper,
+            residual_value_to_product_target_ratio: candidateRatio,
+            h38_coordinate_residual_abs_upper_reference:
+              residualAbsUpper,
+            h38_coordinate_to_candidate_residual_compression_factor:
+              finitePositive(candidateResidualAbsUpper) &&
+              Number.isFinite(residualAbsUpper)
+                ? residualAbsUpper / candidateResidualAbsUpper
+                : null,
+            term_interval_sum: candidateTermIntervalSum,
+            term_triangle_abs_upper: candidateTermTriangleAbsUpper,
+            term_sum_to_source_relative_gap: intervalEndpointRelativeGap(
+              candidateTermIntervalSum,
+              candidateSourceInterval
+            ),
+            source_cancellation_fraction:
+              candidateCancellationFraction,
+            h38_coordinate_subcell_count: h38CoordinateSubintervals.length,
+            target_comparison_status: productValueComparable
+              ? candidateInside
+                ? "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-product-segment-inside-target"
+                : "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-product-segment-open"
+              : "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-derivative-segment-value-only",
+          };
+        });
+      const ratio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(residualAbsUpper)
+          ? residualAbsUpper / target
+          : null;
+      const inside =
+        productValueComparable &&
+        Number.isFinite(Number(ratio)) &&
+        Number(ratio) <= 1;
+      const directNormalFormInside =
+        productValueComparable &&
+        Number.isFinite(Number(finiteDirectNormalFormRatio)) &&
+        Number(finiteDirectNormalFormRatio) <= 1 &&
+        Number.isFinite(Number(finiteDirectHeadroomRatio)) &&
+        Number(finiteDirectHeadroomRatio) > 0;
+      const pairedFiniteInside =
+        productValueComparable &&
+        Number.isFinite(Number(finitePairedRatio)) &&
+        Number(finitePairedRatio) <= 1 &&
+        Number.isFinite(Number(finitePairedHeadroomRatio)) &&
+        Number(finitePairedHeadroomRatio) > 0;
+      const sourceProviderAlignmentArtifactCandidate =
+        productValueComparable &&
+        !inside &&
+        directNormalFormInside &&
+        pairedFiniteInside;
+      const residualOffsetDominates =
+        Number.isFinite(Number(residualCenterToTargetRatio)) &&
+        Number(residualCenterToTargetRatio) > 1 &&
+        Number.isFinite(Number(residualRadiusToTargetRatio)) &&
+        Number(residualRadiusToTargetRatio) < 1;
+      const residualRadiusDominates =
+        Number.isFinite(Number(residualRadiusToTargetRatio)) &&
+        Number(residualRadiusToTargetRatio) > 1;
+      const sourceToDirectQuarticInside =
+        productValueComparable &&
+        Number.isFinite(Number(sourceToDirectQuarticOffsetRatio)) &&
+        Number(sourceToDirectQuarticOffsetRatio) <= 1;
+      const sourceToDirectQuarticOffsetPersists =
+        productValueComparable &&
+        !sourceToDirectQuarticInside &&
+        directNormalFormInside &&
+        Number.isFinite(Number(sourceToDirectQuarticOffsetCenterRatio)) &&
+        Number(sourceToDirectQuarticOffsetCenterRatio) > 1 &&
+        Number.isFinite(Number(sourceToDirectQuarticOffsetRadiusRatio)) &&
+        Number(sourceToDirectQuarticOffsetRadiusRatio) < 1;
+      const sourceToDirectQuarticAlignmentStatus = !productValueComparable
+        ? "positive-n38-source-to-direct-quartic-alignment-derivative-segment-not-applicable"
+        : directQuarticInterval === null
+          ? "positive-n38-source-to-direct-quartic-alignment-unavailable"
+          : sourceToDirectQuarticInside
+            ? "positive-n38-source-to-direct-quartic-alignment-inside-target"
+            : sourceToDirectQuarticOffsetPersists
+              ? "positive-n38-source-to-direct-quartic-alignment-h38-coordinate-offset-persists"
+              : "positive-n38-source-to-direct-quartic-alignment-open";
+      const fullResidualVectorInside =
+        productValueComparable &&
+        Number.isFinite(Number(fullResidualVectorDirectQuarticOffsetRatio)) &&
+        Number(fullResidualVectorDirectQuarticOffsetRatio) <= 1;
+      const fullResidualVectorCompressesH38CoordinateOffset =
+        productValueComparable &&
+        !fullResidualVectorInside &&
+        Number.isFinite(
+          Number(h38CoordinateToFullResidualVectorOffsetCompressionFactor)
+        ) &&
+        Number(h38CoordinateToFullResidualVectorOffsetCompressionFactor) >
+          1.01;
+      const fullResidualVectorWorseThanH38Coordinate =
+        productValueComparable &&
+        !fullResidualVectorInside &&
+        Number.isFinite(
+          Number(fullResidualVectorOffsetToH38CoordinateOffsetRatio)
+        ) &&
+        Number(fullResidualVectorOffsetToH38CoordinateOffsetRatio) > 1.01;
+      const fullResidualVectorStructuralOffsetPersists =
+        productValueComparable &&
+        !fullResidualVectorInside &&
+        directNormalFormInside &&
+        Number.isFinite(
+          Number(fullResidualVectorDirectQuarticOffsetCenterRatio)
+        ) &&
+        Number(fullResidualVectorDirectQuarticOffsetCenterRatio) > 1 &&
+        Number.isFinite(
+          Number(fullResidualVectorDirectQuarticOffsetRadiusRatio)
+        ) &&
+        Number(fullResidualVectorDirectQuarticOffsetRadiusRatio) < 1 &&
+        !fullResidualVectorCompressesH38CoordinateOffset &&
+        !fullResidualVectorWorseThanH38Coordinate;
+      const fullResidualVectorAlignmentStatus = !productValueComparable
+        ? "positive-n38-full-residual-vector-source-alignment-derivative-segment-not-applicable"
+        : fullResidualVectorProfile === null ||
+            directQuarticInterval === null ||
+            fullResidualVectorSourceInterval === null
+          ? "positive-n38-full-residual-vector-source-alignment-unavailable"
+          : fullResidualVectorInside
+            ? "positive-n38-full-residual-vector-source-alignment-inside-target"
+            : fullResidualVectorCompressesH38CoordinateOffset
+              ? "positive-n38-full-residual-vector-source-alignment-compresses-h38-coordinate-offset"
+              : fullResidualVectorWorseThanH38Coordinate
+                ? "positive-n38-full-residual-vector-source-alignment-worse-than-h38-coordinate"
+                : fullResidualVectorStructuralOffsetPersists
+                  ? "positive-n38-full-residual-vector-source-alignment-structural-offset-persists"
+                  : "positive-n38-full-residual-vector-source-alignment-open";
+      const solveNormalizationInvariant =
+        productValueComparable &&
+        Number.isFinite(Number(solveNormalizationInvarianceRatio)) &&
+        Number(solveNormalizationInvarianceRatio) >= 0.95 &&
+        Number(solveNormalizationInvarianceRatio) <= 1.05;
+      const crossedSolveNormalizationCloses =
+        productValueComparable &&
+        Number.isFinite(Number(crossedSolveNormalizationBestRatio)) &&
+        Number(crossedSolveNormalizationBestRatio) <= 1;
+      const sourceDirectNormalizationStatus = !productValueComparable
+        ? "positive-n38-source-direct-normalization-derivative-segment-not-applicable"
+        : normalizationSlopeInterval === null ||
+            directQuarticInterval === null ||
+            solvedSourceToSolvedDirectQuarticOffsetInterval === null
+          ? "positive-n38-source-direct-normalization-unavailable"
+          : crossedSolveNormalizationCloses
+            ? "positive-n38-source-direct-normalization-crossed-solve-convention-candidate"
+            : solveNormalizationInvariant &&
+                sourceToDirectQuarticOffsetPersists
+              ? "positive-n38-source-direct-normalization-mismatch-ruled-out"
+              : "positive-n38-source-direct-normalization-open";
+      const sourcePairDirectQuarticOffsetDominates =
+        productValueComparable &&
+        Number.isFinite(
+          Number(signedPairDirectQuarticOffsetToFullOffsetRelativeGap)
+        ) &&
+        Number(signedPairDirectQuarticOffsetToFullOffsetRelativeGap) <=
+          1e-12 &&
+        Number.isFinite(Number(signedPairToDirectQuarticOffsetRatio)) &&
+        Number(signedPairToDirectQuarticOffsetRatio) > 1 &&
+        Number.isFinite(Number(signedPairToDirectQuarticOffsetRadiusRatio)) &&
+        Number(signedPairToDirectQuarticOffsetRadiusRatio) < 0.001 &&
+        Number.isFinite(
+          Number(sourceDirectQuarticOffsetToFiniteDirectAbsLossFactor)
+        ) &&
+        Number(sourceDirectQuarticOffsetToFiniteDirectAbsLossFactor) > 1e6 &&
+        Number.isFinite(Number(finiteDirectNormalFormRatio)) &&
+        Number(finiteDirectNormalFormRatio) < 1e-6 &&
+        Number.isFinite(Number(finitePairedRatio)) &&
+        Number(finitePairedRatio) < 1e-6;
+      const sourcePairDirectQuarticOffsetDominanceStatus =
+        !productValueComparable
+          ? "positive-n38-source-pair-direct-quartic-offset-dominance-derivative-segment-not-applicable"
+          : signedPairToDirectQuarticOffsetInterval === null ||
+              sourceToDirectQuarticOffsetInterval === null
+            ? "positive-n38-source-pair-direct-quartic-offset-dominance-unavailable"
+            : sourcePairDirectQuarticOffsetDominates
+              ? "positive-n38-source-pair-direct-quartic-offset-dominates"
+              : "positive-n38-source-pair-direct-quartic-offset-dominance-open";
+      const sourcePairDirectGraphNormalFormGap =
+        productValueComparable &&
+        Number.isFinite(
+          Number(signedPairDirectGraphOffsetToDirectQuarticOffsetRelativeGap)
+        ) &&
+        Number(signedPairDirectGraphOffsetToDirectQuarticOffsetRelativeGap) <
+          1e-6 &&
+        Number.isFinite(
+          Number(finiteDirectNormalFormToSignedPairDirectGraphOffsetRatio)
+        ) &&
+        Number(finiteDirectNormalFormToSignedPairDirectGraphOffsetRatio) <
+          1e-6 &&
+        Number.isFinite(Number(signedPairToDirectQuarticOffsetRatio)) &&
+        Number(signedPairToDirectQuarticOffsetRatio) > 1 &&
+        sourcePairBalanceStatus ===
+          "positive-n38-source-pair-balance-large-opposed-pairs";
+      const sourcePairDirectGraphNormalFormStatus = !productValueComparable
+        ? "positive-n38-source-pair-direct-graph-normal-form-derivative-segment-not-applicable"
+        : signedPairToDirectQuarticOffsetInterval === null ||
+            directGraphInterval === null ||
+            directNormalFormInterval === null
+          ? "positive-n38-source-pair-direct-graph-normal-form-unavailable"
+          : sourcePairDirectGraphNormalFormGap
+            ? "positive-n38-source-pair-direct-graph-normal-form-gap-is-direct-graph-offset"
+            : "positive-n38-source-pair-direct-graph-normal-form-open";
+      const residualInequalityDiagnosis = !productValueComparable
+        ? "positive-n38-product-segment-residual-inequality-derivative-segment-not-applicable"
+        : inside
+          ? "positive-n38-product-segment-residual-inequality-h38-coordinate-inside-target"
+          : sourceProviderAlignmentArtifactCandidate && residualOffsetDominates
+            ? "positive-n38-product-segment-residual-inequality-source-graph-offset-mismatch-candidate"
+            : sourceProviderAlignmentArtifactCandidate && residualRadiusDominates
+              ? "positive-n38-product-segment-residual-inequality-source-provider-width-artifact-candidate"
+              : sourceProviderAlignmentArtifactCandidate
+                ? "positive-n38-product-segment-residual-inequality-source-provider-alignment-artifact-candidate"
+            : !directNormalFormInside
+              ? "positive-n38-product-segment-residual-inequality-direct-normal-form-or-target-open"
+              : !pairedFiniteInside
+                ? "positive-n38-product-segment-residual-inequality-paired-finite-replay-open"
+                : "positive-n38-product-segment-residual-inequality-mixed-or-unclassified";
+      return {
+        cell_id: segment.cell_id,
+        row_index: segment.row_index,
+        segment_index: resolvedSegmentIndex,
+        quotient_kind: segment.quotient_kind,
+        proof_object_kind: productValueComparable
+          ? "same-variable-direct-residual"
+          : "same-variable-direct-residual-derivative",
+        segment_interval: segment.segment_interval,
+        segment_speed_interval: segmentSpeedInterval,
+        h38_residual_coordinate_interval: h38ResidualCoordinateInterval,
+        row_h38_residual_coordinate_interval:
+          sample.residual_coordinate_interval,
+        producer_sample_provenance:
+          segment.producer_sample_provenance ?? {
+            row_index: sample.row_index,
+            comparison_row_index:
+              sample.comparison_row_index ?? sample.row_index,
+            source_subcover_row_index:
+              sample.source_subcover_row_index ?? null,
+            cell_id: sample.cell_id,
+            branch: resolvedBranch,
+            h_row_interval_count: sample.h_row_interval_count ?? null,
+          },
+        provider_kind:
+          "candidate-polynomial-h-row-graph-h38-residual-coordinate-provider",
+        provider_preserves_shared_xi_dependency: true,
+        provider_preserves_h38_residual_coordinate: true,
+        provider_freezes_non_h38_residuals_at_centers: true,
+        provider_polynomial_degree:
+          transportProfile[0]?.polynomial_degree ?? null,
+        provider_h_row_interval_count: transportProfile.length,
+        source_y_order: sourceYOrder,
+        target_abs_upper:
+          Number.isFinite(target) && target >= 0 ? target : null,
+        h38_coordinate_source_interval: sourceInterval,
+        h38_coordinate_source_abs_upper: sourceAbsUpper,
+        direct_graph_interval: directGraphInterval,
+        h38_coordinate_residual_interval: residualInterval,
+        h38_coordinate_residual_abs_upper: residualAbsUpper,
+        h38_coordinate_residual_value_to_product_target_ratio: ratio,
+        raw_residual_abs_upper: Number.isFinite(rawResidualAbsUpper)
+          ? rawResidualAbsUpper
+          : null,
+        graph_interval_residual_abs_upper: Number.isFinite(
+          graphResidualAbsUpper
+        )
+          ? graphResidualAbsUpper
+          : null,
+        raw_to_h38_coordinate_residual_compression_factor: rawCompression,
+        graph_interval_to_h38_coordinate_residual_compression_factor:
+          graphCompression,
+        h38_coordinate_source_term_intervals: termCoefficientIntervals,
+        h38_coordinate_source_term_interval_sum: termIntervalSum,
+        h38_coordinate_source_term_triangle_abs_upper:
+          termTriangleAbsUpper,
+        h38_coordinate_speed_constant_pair_interval:
+          speedConstantPairInterval,
+        h38_coordinate_sine_pair_interval: sinePairInterval,
+        h38_coordinate_signed_pair_source_interval:
+          signedPairSourceInterval,
+        h38_coordinate_signed_pair_source_abs_upper:
+          signedPairSourceAbsUpper,
+        h38_coordinate_signed_pair_residual_interval:
+          signedPairResidualInterval,
+        h38_coordinate_signed_pair_residual_abs_upper:
+          signedPairResidualAbsUpper,
+        h38_coordinate_signed_pair_residual_value_to_product_target_ratio:
+          signedPairRatio,
+        h38_coordinate_signed_pair_source_to_full_source_relative_gap:
+          intervalEndpointRelativeGap(signedPairSourceInterval, sourceInterval),
+        h38_coordinate_signed_pair_cancellation_fraction:
+          signedPairCancellationFraction,
+        h38_coordinate_signed_pair_to_direct_quartic_offset_interval:
+          signedPairToDirectQuarticOffsetInterval,
+        h38_coordinate_signed_pair_to_direct_quartic_offset_interval_sign:
+          signedPairToDirectQuarticOffsetSign,
+        h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio:
+          Number.isFinite(Number(signedPairToDirectQuarticOffsetRatio))
+            ? signedPairToDirectQuarticOffsetRatio
+            : null,
+        h38_coordinate_signed_pair_to_direct_quartic_offset_radius_to_target_ratio:
+          Number.isFinite(Number(signedPairToDirectQuarticOffsetRadiusRatio))
+            ? signedPairToDirectQuarticOffsetRadiusRatio
+            : null,
+        h38_coordinate_signed_pair_direct_quartic_offset_to_full_offset_relative_gap:
+          Number.isFinite(
+            Number(signedPairDirectQuarticOffsetToFullOffsetRelativeGap)
+          )
+            ? signedPairDirectQuarticOffsetToFullOffsetRelativeGap
+            : null,
+        source_direct_quartic_offset_to_finite_direct_abs_loss_factor:
+          Number.isFinite(
+            Number(sourceDirectQuarticOffsetToFiniteDirectAbsLossFactor)
+          )
+            ? sourceDirectQuarticOffsetToFiniteDirectAbsLossFactor
+            : null,
+        source_pair_direct_quartic_offset_dominance_status:
+          sourcePairDirectQuarticOffsetDominanceStatus,
+        h38_coordinate_source_term_target_unit_profiles:
+          sourceTermTargetUnitProfiles,
+        h38_coordinate_source_pair_target_unit_profile:
+          sourcePairTargetUnitProfile,
+        h38_coordinate_source_pair_balance_status:
+          sourcePairBalanceStatus,
+        h38_coordinate_source_component_graph_rows:
+          componentGraphTargetUnitRows,
+        h38_coordinate_source_component_graph_profile:
+          sourceComponentGraphTargetUnitProfile,
+        h38_coordinate_source_pair_component_graph_status:
+          sourcePairComponentGraphStatus,
+        h38_coordinate_component_drift_to_direct_graph_gap_interval:
+          componentGraphToDirectGraphGapInterval,
+        h38_coordinate_component_drift_to_direct_graph_gap_abs_upper:
+          Number.isFinite(Number(componentGraphToDirectGraphGapAbsUpper))
+            ? componentGraphToDirectGraphGapAbsUpper
+            : null,
+        h38_coordinate_signed_pair_direct_graph_offset_to_direct_quartic_offset_relative_gap:
+          Number.isFinite(
+            Number(
+              signedPairDirectGraphOffsetToDirectQuarticOffsetRelativeGap
+            )
+          )
+            ? signedPairDirectGraphOffsetToDirectQuarticOffsetRelativeGap
+            : null,
+        finite_direct_normal_form_to_signed_pair_direct_graph_offset_ratio:
+          Number.isFinite(
+            Number(finiteDirectNormalFormToSignedPairDirectGraphOffsetRatio)
+          )
+            ? finiteDirectNormalFormToSignedPairDirectGraphOffsetRatio
+            : null,
+        h38_coordinate_signed_pair_to_component_graph_offset_to_target_ratio:
+          Number.isFinite(Number(signedPairToComponentGraphOffsetRatio))
+            ? signedPairToComponentGraphOffsetRatio
+            : null,
+        h38_coordinate_component_graph_to_direct_graph_gap_to_target_ratio:
+          Number.isFinite(Number(componentGraphToDirectGraphGapRatio))
+            ? componentGraphToDirectGraphGapRatio
+            : null,
+        component_drift_solved_gap_interval:
+          solvedComponentDriftToDirectGraphGapInterval,
+        component_drift_solved_gap_abs_upper: Number.isFinite(
+          Number(solvedComponentDriftToDirectGraphGapAbsUpper)
+        )
+          ? solvedComponentDriftToDirectGraphGapAbsUpper
+          : null,
+        component_drift_solved_gap_to_solved_target_ratio:
+          Number.isFinite(Number(componentDriftSolvedGapToSolvedTargetRatio))
+            ? componentDriftSolvedGapToSolvedTargetRatio
+            : null,
+        component_drift_solve_normalization_invariance_ratio:
+          Number.isFinite(
+            Number(componentDriftSolveNormalizationInvarianceRatio)
+          )
+            ? componentDriftSolveNormalizationInvarianceRatio
+            : null,
+        component_drift_s37_division_status:
+          componentDriftS37DivisionStatus,
+        source_pair_direct_graph_normal_form_status:
+          sourcePairDirectGraphNormalFormStatus,
+        finite_direct_normal_form_abs_upper: Number.isFinite(
+          finiteDirectNormalFormAbsUpper
+        )
+          ? finiteDirectNormalFormAbsUpper
+          : null,
+        finite_direct_normal_form_to_product_target_ratio: Number.isFinite(
+          finiteDirectNormalFormRatio
+        )
+          ? finiteDirectNormalFormRatio
+          : null,
+        finite_direct_normal_form_target_headroom_abs: Number.isFinite(
+          Number(finiteDirectHeadroomAbs)
+        )
+          ? finiteDirectHeadroomAbs
+          : null,
+        finite_direct_normal_form_target_headroom_ratio: Number.isFinite(
+          Number(finiteDirectHeadroomRatio)
+        )
+          ? finiteDirectHeadroomRatio
+          : null,
+        finite_paired_abs_upper: Number.isFinite(finitePairedAbsUpper)
+          ? finitePairedAbsUpper
+          : null,
+        finite_paired_to_product_target_ratio: Number.isFinite(
+          finitePairedRatio
+        )
+          ? finitePairedRatio
+          : null,
+        finite_paired_target_headroom_abs: Number.isFinite(
+          Number(finitePairedHeadroomAbs)
+        )
+          ? finitePairedHeadroomAbs
+          : null,
+        finite_paired_target_headroom_ratio: Number.isFinite(
+          Number(finitePairedHeadroomRatio)
+        )
+          ? finitePairedHeadroomRatio
+          : null,
+        h38_coordinate_residual_excess_over_product_target_abs:
+          Number.isFinite(Number(residualExcessOverTargetAbs))
+            ? residualExcessOverTargetAbs
+            : null,
+        h38_coordinate_residual_interval_midpoint: Number.isFinite(
+          residualMidpoint
+        )
+          ? residualMidpoint
+          : null,
+        h38_coordinate_residual_interval_radius: Number.isFinite(
+          residualRadius
+        )
+          ? residualRadius
+          : null,
+        h38_coordinate_residual_interval_sign: residualIntervalSign,
+        h38_coordinate_residual_center_to_product_target_ratio:
+          Number.isFinite(Number(residualCenterToTargetRatio))
+            ? residualCenterToTargetRatio
+            : null,
+        h38_coordinate_residual_radius_to_product_target_ratio:
+          Number.isFinite(Number(residualRadiusToTargetRatio))
+            ? residualRadiusToTargetRatio
+            : null,
+        h38_coordinate_residual_to_direct_normal_form_abs_loss_factor:
+          residualToDirectNormalFormFactor,
+        h38_coordinate_residual_center_to_direct_normal_form_abs_loss_factor:
+          residualCenterToDirectNormalFormFactor,
+        h38_coordinate_residual_to_paired_finite_abs_loss_factor:
+          residualToPairedFiniteFactor,
+        product_segment_target_to_direct_normal_form_abs_factor:
+          targetToDirectNormalFormFactor,
+        product_denominator_interval: productDenominatorInterval,
+        product_denominator_abs_lower: Number.isFinite(
+          Number(productDenominatorAbsLower)
+        )
+          ? productDenominatorAbsLower
+          : null,
+        product_denominator_abs_upper: Number.isFinite(
+          Number(productDenominatorAbsUpper)
+        )
+          ? productDenominatorAbsUpper
+          : null,
+        required_denominator_abs_lower_for_h38_coordinate_residual:
+          Number.isFinite(Number(requiredDenominatorAbsLowerForResidual))
+            ? requiredDenominatorAbsLowerForResidual
+            : null,
+        required_to_available_product_denominator_abs_factor:
+          Number.isFinite(Number(requiredToAvailableDenominatorAbsFactor))
+            ? requiredToAvailableDenominatorAbsFactor
+            : null,
+        denominator_partition_can_close_h38_coordinate_residual:
+          denominatorPartitionCanClose,
+        source_provider_alignment_artifact_candidate:
+          sourceProviderAlignmentArtifactCandidate,
+        product_segment_residual_inequality_diagnosis:
+          residualInequalityDiagnosis,
+        direct_quartic_interval: directQuarticInterval,
+        source_to_direct_quartic_offset_interval:
+          sourceToDirectQuarticOffsetInterval,
+        source_to_direct_quartic_offset_abs_upper: Number.isFinite(
+          Number(sourceToDirectQuarticOffsetAbsUpper)
+        )
+          ? sourceToDirectQuarticOffsetAbsUpper
+          : null,
+        source_to_direct_quartic_offset_value_to_product_target_ratio:
+          Number.isFinite(Number(sourceToDirectQuarticOffsetRatio))
+            ? sourceToDirectQuarticOffsetRatio
+            : null,
+        source_to_direct_quartic_offset_interval_midpoint:
+          Number.isFinite(Number(sourceToDirectQuarticOffsetMidpoint))
+            ? sourceToDirectQuarticOffsetMidpoint
+            : null,
+        source_to_direct_quartic_offset_interval_radius:
+          Number.isFinite(Number(sourceToDirectQuarticOffsetRadius))
+            ? sourceToDirectQuarticOffsetRadius
+            : null,
+        source_to_direct_quartic_offset_interval_sign:
+          sourceToDirectQuarticOffsetSign,
+        source_to_direct_quartic_offset_center_to_product_target_ratio:
+          Number.isFinite(Number(sourceToDirectQuarticOffsetCenterRatio))
+            ? sourceToDirectQuarticOffsetCenterRatio
+            : null,
+        source_to_direct_quartic_offset_radius_to_product_target_ratio:
+          Number.isFinite(Number(sourceToDirectQuarticOffsetRadiusRatio))
+            ? sourceToDirectQuarticOffsetRadiusRatio
+            : null,
+        source_to_direct_quartic_offset_radius_to_center_ratio:
+          Number.isFinite(Number(sourceToDirectQuarticOffsetRadiusToCenterRatio))
+            ? sourceToDirectQuarticOffsetRadiusToCenterRatio
+            : null,
+        source_to_direct_quartic_alignment_status:
+          sourceToDirectQuarticAlignmentStatus,
+        source_direct_normalization_policy:
+          "both source_interval and direct_quartic_interval are h38-recurrence numerator units; solved-space fields divide both by -h37_solve_slope_interval as an invariance check",
+        normalization_slope_interval: normalizationSlopeInterval,
+        normalization_slope_abs_lower:
+          Number.isFinite(Number(normalizationSlopeAbsLower))
+            ? normalizationSlopeAbsLower
+            : null,
+        normalization_slope_abs_upper:
+          Number.isFinite(Number(normalizationSlopeAbsUpper))
+            ? normalizationSlopeAbsUpper
+            : null,
+        solved_product_target_abs_upper:
+          Number.isFinite(Number(solvedProductTargetAbsUpper))
+            ? solvedProductTargetAbsUpper
+            : null,
+        solved_source_interval: solvedSourceInterval,
+        solved_direct_quartic_interval: solvedDirectQuarticInterval,
+        solved_source_to_solved_direct_quartic_offset_interval:
+          solvedSourceToSolvedDirectQuarticOffsetInterval,
+        solved_source_to_solved_direct_quartic_offset_abs_upper:
+          Number.isFinite(
+            Number(solvedSourceToSolvedDirectQuarticOffsetAbsUpper)
+          )
+            ? solvedSourceToSolvedDirectQuarticOffsetAbsUpper
+            : null,
+        solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio:
+          Number.isFinite(
+            Number(solvedSourceToSolvedDirectQuarticOffsetRatio)
+          )
+            ? solvedSourceToSolvedDirectQuarticOffsetRatio
+            : null,
+        solve_normalization_invariance_ratio:
+          Number.isFinite(Number(solveNormalizationInvarianceRatio))
+            ? solveNormalizationInvarianceRatio
+            : null,
+        source_solved_to_direct_quartic_crossed_offset_interval:
+          sourceSolvedToDirectQuarticCrossedOffsetInterval,
+        source_solved_to_direct_quartic_crossed_offset_to_product_target_ratio:
+          Number.isFinite(
+            Number(sourceSolvedToDirectQuarticCrossedOffsetRatio)
+          )
+            ? sourceSolvedToDirectQuarticCrossedOffsetRatio
+            : null,
+        source_to_solved_direct_quartic_crossed_offset_interval:
+          sourceToSolvedDirectQuarticCrossedOffsetInterval,
+        source_to_solved_direct_quartic_crossed_offset_to_product_target_ratio:
+          Number.isFinite(
+            Number(sourceToSolvedDirectQuarticCrossedOffsetRatio)
+          )
+            ? sourceToSolvedDirectQuarticCrossedOffsetRatio
+            : null,
+        crossed_solve_normalization_best_offset_to_product_target_ratio:
+          Number.isFinite(Number(crossedSolveNormalizationBestRatio))
+            ? crossedSolveNormalizationBestRatio
+            : null,
+        source_direct_normalization_status:
+          sourceDirectNormalizationStatus,
+        full_residual_vector_source_y_order:
+          Number.isInteger(fullResidualVectorSourceYOrder)
+            ? fullResidualVectorSourceYOrder
+            : null,
+        full_residual_vector_source_interval:
+          fullResidualVectorSourceInterval,
+        full_residual_vector_source_abs_upper: Number.isFinite(
+          Number(fullResidualVectorSourceAbsUpper)
+        )
+          ? fullResidualVectorSourceAbsUpper
+          : null,
+        full_residual_vector_residual_interval:
+          fullResidualVectorResidualInterval,
+        full_residual_vector_residual_abs_upper: Number.isFinite(
+          Number(fullResidualVectorResidualAbsUpper)
+        )
+          ? fullResidualVectorResidualAbsUpper
+          : null,
+        full_residual_vector_direct_quartic_offset_interval:
+          fullResidualVectorDirectQuarticOffsetInterval,
+        full_residual_vector_direct_quartic_offset_abs_upper:
+          Number.isFinite(
+            Number(fullResidualVectorDirectQuarticOffsetAbsUpper)
+          )
+            ? fullResidualVectorDirectQuarticOffsetAbsUpper
+            : null,
+        full_residual_vector_direct_quartic_offset_value_to_product_target_ratio:
+          Number.isFinite(
+            Number(fullResidualVectorDirectQuarticOffsetRatio)
+          )
+            ? fullResidualVectorDirectQuarticOffsetRatio
+            : null,
+        full_residual_vector_direct_quartic_offset_interval_midpoint:
+          Number.isFinite(
+            Number(fullResidualVectorDirectQuarticOffsetMidpoint)
+          )
+            ? fullResidualVectorDirectQuarticOffsetMidpoint
+            : null,
+        full_residual_vector_direct_quartic_offset_interval_radius:
+          Number.isFinite(
+            Number(fullResidualVectorDirectQuarticOffsetRadius)
+          )
+            ? fullResidualVectorDirectQuarticOffsetRadius
+            : null,
+        full_residual_vector_direct_quartic_offset_interval_sign:
+          fullResidualVectorDirectQuarticOffsetSign,
+        full_residual_vector_direct_quartic_offset_center_to_product_target_ratio:
+          Number.isFinite(
+            Number(fullResidualVectorDirectQuarticOffsetCenterRatio)
+          )
+            ? fullResidualVectorDirectQuarticOffsetCenterRatio
+            : null,
+        full_residual_vector_direct_quartic_offset_radius_to_product_target_ratio:
+          Number.isFinite(
+            Number(fullResidualVectorDirectQuarticOffsetRadiusRatio)
+          )
+            ? fullResidualVectorDirectQuarticOffsetRadiusRatio
+            : null,
+        full_residual_vector_offset_to_h38_coordinate_offset_ratio:
+          Number.isFinite(
+            Number(fullResidualVectorOffsetToH38CoordinateOffsetRatio)
+          )
+            ? fullResidualVectorOffsetToH38CoordinateOffsetRatio
+            : null,
+        h38_coordinate_to_full_residual_vector_offset_compression_factor:
+          Number.isFinite(
+            Number(h38CoordinateToFullResidualVectorOffsetCompressionFactor)
+          )
+            ? h38CoordinateToFullResidualVectorOffsetCompressionFactor
+            : null,
+        full_residual_vector_source_to_direct_quartic_implied_multiplier_interval:
+          fullResidualVectorSourceToDirectQuarticMultiplierInterval,
+        full_residual_vector_source_to_direct_quartic_implied_multiplier_midpoint:
+          Number.isFinite(
+            Number(fullResidualVectorSourceToDirectQuarticMultiplierMidpoint)
+          )
+            ? fullResidualVectorSourceToDirectQuarticMultiplierMidpoint
+            : null,
+        full_residual_vector_source_to_direct_quartic_implied_multiplier_sign:
+          fullResidualVectorSourceToDirectQuarticMultiplierSign,
+        full_residual_vector_product_denominator_sign:
+          productDenominatorSign,
+        full_residual_vector_raw_multiplier_sign_matches_product_denominator:
+          fullResidualVectorRawMultiplierSignMatchesDenominator,
+        full_residual_vector_source_over_denominator_interval:
+          fullResidualVectorSourceOverDenominatorInterval,
+        full_residual_vector_source_over_denominator_sign:
+          fullResidualVectorSourceOverDenominatorSign,
+        full_residual_vector_source_over_denominator_sign_matches_direct_quartic:
+          fullResidualVectorSourceOverDenominatorSignMatchesDirectQuartic,
+        full_residual_vector_source_over_denominator_to_direct_quartic_offset_interval:
+          fullResidualVectorSourceOverDenominatorToDirectQuarticOffsetInterval,
+        full_residual_vector_source_over_denominator_to_direct_quartic_offset_abs_upper:
+          Number.isFinite(
+            Number(
+              fullResidualVectorSourceOverDenominatorToDirectQuarticOffsetAbsUpper
+            )
+          )
+            ? fullResidualVectorSourceOverDenominatorToDirectQuarticOffsetAbsUpper
+            : null,
+        full_residual_vector_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio:
+          Number.isFinite(
+            Number(
+              fullResidualVectorSourceOverDenominatorToDirectQuarticOffsetRatio
+            )
+          )
+            ? fullResidualVectorSourceOverDenominatorToDirectQuarticOffsetRatio
+            : null,
+        full_residual_vector_minus_source_over_denominator_interval:
+          fullResidualVectorMinusSourceOverDenominatorInterval,
+        full_residual_vector_minus_source_over_denominator_sign:
+          fullResidualVectorMinusSourceOverDenominatorSign,
+        full_residual_vector_minus_source_over_denominator_sign_matches_direct_quartic:
+          fullResidualVectorMinusSourceOverDenominatorSignMatchesDirectQuartic,
+        full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_interval:
+          fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetInterval,
+        full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_abs_upper:
+          Number.isFinite(
+            Number(
+              fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetAbsUpper
+            )
+          )
+            ? fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetAbsUpper
+            : null,
+        full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio:
+          Number.isFinite(
+            Number(
+              fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetRatio
+            )
+          )
+            ? fullResidualVectorMinusSourceOverDenominatorToDirectQuarticOffsetRatio
+            : null,
+        full_residual_vector_solve_normalization_status:
+          fullResidualVectorSolveNormalizationStatus,
+        full_residual_vector_source_term_intervals:
+          fullResidualVectorTermCoefficientIntervals,
+        full_residual_vector_source_term_interval_sum:
+          fullResidualVectorTermIntervalSum,
+        full_residual_vector_source_term_triangle_abs_upper:
+          Number.isFinite(Number(fullResidualVectorTermTriangleAbsUpper))
+            ? fullResidualVectorTermTriangleAbsUpper
+            : null,
+        full_residual_vector_term_sum_to_source_relative_gap:
+          fullResidualVectorTermIntervalSum === null ||
+          fullResidualVectorSourceInterval === null
+            ? null
+            : intervalEndpointRelativeGap(
+                fullResidualVectorTermIntervalSum,
+                fullResidualVectorSourceInterval
+              ),
+        full_residual_vector_source_cancellation_fraction:
+          finitePositive(fullResidualVectorTermTriangleAbsUpper) &&
+          Number.isFinite(Number(fullResidualVectorSourceAbsUpper))
+            ? 1 -
+              fullResidualVectorSourceAbsUpper /
+                fullResidualVectorTermTriangleAbsUpper
+            : null,
+        full_residual_vector_alignment_status:
+          fullResidualVectorAlignmentStatus,
+        term_sum_to_source_relative_gap: intervalEndpointRelativeGap(
+          termIntervalSum,
+          sourceInterval
+        ),
+        max_h38_coordinate_subcell_term_sum_to_source_relative_gap:
+          maxSubcellTermSumToSourceRelativeGap,
+        max_h38_coordinate_subcell_source_abs_upper:
+          maxSubcellSourceAbsUpper,
+        min_h38_coordinate_subcell_source_cancellation_fraction:
+          minSubcellSourceCancellationFraction,
+        h38_coordinate_subcell_count: h38CoordinateSubintervals.length,
+        worst_h38_coordinate_subcell_source_row:
+          worstSubcellSourceRow === null
+            ? null
+            : {
+                h38_coordinate_subcell_index:
+                  worstSubcellSourceRow.h38_coordinate_subcell_index,
+                h38_residual_coordinate_interval:
+                  worstSubcellSourceRow.h38_residual_coordinate_interval,
+                source_interval: worstSubcellSourceRow.source_interval,
+                source_abs_upper: intervalAbsUpper(
+                  worstSubcellSourceRow.source_interval
+                ),
+                term_sum_to_source_relative_gap:
+                  intervalEndpointRelativeGap(
+                    worstSubcellSourceRow.term_interval_sum,
+                    worstSubcellSourceRow.source_interval
+                  ),
+                source_cancellation_fraction:
+                  finitePositive(worstSubcellSourceRow.term_triangle_abs_upper)
+                    ? 1 -
+                      intervalAbsUpper(
+                        worstSubcellSourceRow.source_interval
+                      ) /
+                        worstSubcellSourceRow.term_triangle_abs_upper
+                    : null,
+              },
+        shared_non_h38_coordinate_candidate_rows:
+          sharedNonH38CoordinateCandidateRows,
+        h38_coordinate_source_cancellation_fraction:
+          sourceCancellationFraction,
+        target_comparison_status: productValueComparable
+          ? inside
+            ? "positive-n38-producer-hybrid-h38-coordinate-source-product-segment-inside-target"
+            : "positive-n38-producer-hybrid-h38-coordinate-source-product-segment-open"
+          : "positive-n38-producer-hybrid-h38-coordinate-source-derivative-segment-value-only",
+        provider_dependency_policy:
+          "preserves shared xi graph dependence and the h38 residual coordinate; freezes non-h38 residuals at interval centers; candidate-only directional diagnostic",
+        true_source_policy:
+          "candidate h38-coordinate source replay only; no directed-rounded true-stream enclosure is certified",
+      };
+    })
+  );
+  const finiteValues = (selector) =>
+    segmentRows
+      .map(selector)
+      .filter(
+        (value) =>
+          value !== null &&
+          value !== undefined &&
+          Number.isFinite(Number(value)) &&
+          Number(value) >= 0
+      );
+  const productRows = segmentRows.filter(
+    (row) => row.quotient_kind === "product-quotient-producer-complement"
+  );
+  const derivativeRows = segmentRows.filter((row) =>
+    row.quotient_kind?.startsWith("derivative-quotient")
+  );
+  const finiteProductValues = (selector) =>
+    productRows
+      .map(selector)
+      .filter(
+        (value) =>
+          value !== null &&
+          value !== undefined &&
+          Number.isFinite(Number(value)) &&
+          Number(value) >= 0
+      );
+  const insideProductRows = productRows.filter(
+    (row) =>
+      row.target_comparison_status ===
+      "positive-n38-producer-hybrid-h38-coordinate-source-product-segment-inside-target"
+  );
+  const allProductInside =
+    productRows.length > 0 && productRows.length === insideProductRows.length;
+  const productDenominatorPartitionCanCloseAll =
+    productRows.length > 0 &&
+    productRows.every(
+      (row) =>
+        row.denominator_partition_can_close_h38_coordinate_residual === true
+    );
+  const openProductRows = productRows.filter(
+    (row) =>
+      row.target_comparison_status ===
+      "positive-n38-producer-hybrid-h38-coordinate-source-product-segment-open"
+  );
+  const openProductsLookLikeSourceGraphOffset =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.product_segment_residual_inequality_diagnosis ===
+        "positive-n38-product-segment-residual-inequality-source-graph-offset-mismatch-candidate"
+    );
+  const openProductsLookLikeSourceProviderWidth =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.product_segment_residual_inequality_diagnosis ===
+        "positive-n38-product-segment-residual-inequality-source-provider-width-artifact-candidate"
+    );
+  const openProductsLookLikeSourceProviderArtifact =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.product_segment_residual_inequality_diagnosis ===
+        "positive-n38-product-segment-residual-inequality-source-provider-alignment-artifact-candidate"
+    );
+  const anyOpenDirectNormalFormOrTarget = openProductRows.some(
+    (row) =>
+      row.product_segment_residual_inequality_diagnosis ===
+      "positive-n38-product-segment-residual-inequality-direct-normal-form-or-target-open"
+  );
+  const anyOpenPairedFiniteReplay = openProductRows.some(
+    (row) =>
+      row.product_segment_residual_inequality_diagnosis ===
+      "positive-n38-product-segment-residual-inequality-paired-finite-replay-open"
+  );
+  const residualInequalityDiagnosisStatus = allProductInside
+    ? "positive-n38-product-segment-residual-inequality-diagnosis-inside-target"
+    : openProductsLookLikeSourceGraphOffset
+      ? "positive-n38-product-segment-residual-inequality-diagnosis-source-graph-offset-mismatch-candidate"
+      : openProductsLookLikeSourceProviderWidth
+        ? "positive-n38-product-segment-residual-inequality-diagnosis-source-provider-width-artifact-candidate"
+    : openProductsLookLikeSourceProviderArtifact
+      ? "positive-n38-product-segment-residual-inequality-diagnosis-source-provider-alignment-artifact-candidate"
+      : anyOpenDirectNormalFormOrTarget
+        ? "positive-n38-product-segment-residual-inequality-diagnosis-direct-normal-form-or-target-open"
+        : anyOpenPairedFiniteReplay
+          ? "positive-n38-product-segment-residual-inequality-diagnosis-paired-finite-replay-open"
+          : "positive-n38-product-segment-residual-inequality-diagnosis-mixed-or-unclassified";
+  const residualInequalityDiagnosis = allProductInside
+    ? "all h38-coordinate product residuals already fit the product targets"
+    : openProductsLookLikeSourceGraphOffset
+      ? "the finite direct normal form and finite paired split-stream replay fit the product targets with large headroom, while each open h38-coordinate residual interval is sign-stable and centered outside the target; the obstruction is a source-provider/direct-graph offset mismatch candidate, not a product-target allocation or interval-width failure"
+      : openProductsLookLikeSourceProviderWidth
+        ? "the finite direct normal form and finite paired split-stream replay fit the product targets, but the h38-coordinate residual interval radius alone exceeds target; the obstruction is a source-provider interval-width artifact candidate"
+    : openProductsLookLikeSourceProviderArtifact
+      ? "the finite direct normal form and finite paired split-stream replay fit the product targets with large headroom, while the h38-coordinate source-provider residual alone exceeds target; the remaining obstruction is a source-provider alignment artifact candidate, not a target-allocation or finite normal-form failure"
+      : anyOpenDirectNormalFormOrTarget
+        ? "at least one open product segment also has an open finite direct normal-form or target-allocation comparison"
+        : anyOpenPairedFiniteReplay
+          ? "at least one open product segment also has an open finite paired split-stream replay"
+          : "the open product-segment residual inequality is mixed or lacks enough joined finite replay evidence";
+  const productRowsWithSourceDirectQuarticOffsetInside = productRows.filter(
+    (row) =>
+      row.source_to_direct_quartic_alignment_status ===
+      "positive-n38-source-to-direct-quartic-alignment-inside-target"
+  );
+  const allSourceDirectQuarticOffsetsInside =
+    productRows.length > 0 &&
+    productRowsWithSourceDirectQuarticOffsetInside.length ===
+      productRows.length;
+  const openProductsSourceDirectQuarticOffsetPersists =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.source_to_direct_quartic_alignment_status ===
+        "positive-n38-source-to-direct-quartic-alignment-h38-coordinate-offset-persists"
+    );
+  const sourceToDirectQuarticAlignmentStatus =
+    allSourceDirectQuarticOffsetsInside
+      ? "positive-n38-source-to-direct-quartic-alignment-diagnosis-inside-target"
+      : openProductsSourceDirectQuarticOffsetPersists
+        ? "positive-n38-source-to-direct-quartic-alignment-diagnosis-h38-coordinate-offset-persists"
+        : productRows.some(
+              (row) =>
+                row.source_to_direct_quartic_alignment_status ===
+                "positive-n38-source-to-direct-quartic-alignment-unavailable"
+            )
+          ? "positive-n38-source-to-direct-quartic-alignment-diagnosis-unavailable"
+          : "positive-n38-source-to-direct-quartic-alignment-diagnosis-open";
+  const sourceToDirectQuarticAlignmentDiagnosis =
+    allSourceDirectQuarticOffsetsInside
+      ? "the h38-coordinate source provider already aligns with the finite direct quartic on every product segment"
+      : openProductsSourceDirectQuarticOffsetPersists
+        ? "adding the finite direct residual to the direct graph does not remove the product-segment offset; the mismatch is between the h38-coordinate source provider and the finite direct quartic, not between the cubic graph and its direct residual"
+        : sourceToDirectQuarticAlignmentStatus ===
+            "positive-n38-source-to-direct-quartic-alignment-diagnosis-unavailable"
+          ? "at least one product segment lacks the finite direct residual interval needed for source-to-direct-quartic alignment"
+          : "the source-to-direct-quartic alignment result is mixed across product segments";
+  const openProductsSolveNormalizationRuledOut =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.source_direct_normalization_status ===
+        "positive-n38-source-direct-normalization-mismatch-ruled-out"
+    );
+  const openProductsCrossedSolveConventionCandidate =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.source_direct_normalization_status ===
+        "positive-n38-source-direct-normalization-crossed-solve-convention-candidate"
+    );
+  const sourceDirectNormalizationDiagnosisStatus =
+    allSourceDirectQuarticOffsetsInside
+      ? "positive-n38-source-direct-normalization-diagnosis-inside-target"
+      : openProductsSolveNormalizationRuledOut
+        ? "positive-n38-source-direct-normalization-diagnosis-mismatch-ruled-out"
+        : openProductsCrossedSolveConventionCandidate
+          ? "positive-n38-source-direct-normalization-diagnosis-crossed-solve-convention-candidate"
+          : productRows.some(
+                (row) =>
+                  row.source_direct_normalization_status ===
+                  "positive-n38-source-direct-normalization-unavailable"
+              )
+            ? "positive-n38-source-direct-normalization-diagnosis-unavailable"
+            : "positive-n38-source-direct-normalization-diagnosis-open";
+  const sourceDirectNormalizationDiagnosis =
+    sourceDirectNormalizationDiagnosisStatus ===
+    "positive-n38-source-direct-normalization-diagnosis-inside-target"
+      ? "the numerator-space source/direct quartic offset is already inside target on every product segment"
+      : sourceDirectNormalizationDiagnosisStatus ===
+          "positive-n38-source-direct-normalization-diagnosis-mismatch-ruled-out"
+        ? "dividing both the live source numerator and the finite direct quartic by the inherited h37 solve slope preserves the product-segment offset ratio; crossed solved/numerator comparisons do not close, so the persistent offset is not a hidden solve/divisor normalization mismatch"
+        : sourceDirectNormalizationDiagnosisStatus ===
+            "positive-n38-source-direct-normalization-diagnosis-crossed-solve-convention-candidate"
+          ? "at least one crossed solved/numerator comparison fits the product target, so the source/direct units need a recurrence-convention audit before further source fitting"
+          : sourceDirectNormalizationDiagnosisStatus ===
+              "positive-n38-source-direct-normalization-diagnosis-unavailable"
+            ? "at least one product segment lacks the h37 solve slope or direct quartic interval needed for the solve-normalization check"
+            : "the solve-normalization comparison is mixed across product segments";
+  const controllingSourceDirectNormalizationSegment =
+    productRows.reduce((best, row) => {
+      if (
+        row.solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio ===
+        null
+      ) {
+        return best;
+      }
+      if (
+        best === null ||
+        Number(
+          row.solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio
+        ) >
+          Number(
+            best.solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio
+          )
+      ) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  const openProductsSourcePairDirectQuarticOffsetDominates =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.source_pair_direct_quartic_offset_dominance_status ===
+        "positive-n38-source-pair-direct-quartic-offset-dominates"
+    );
+  const sourcePairDirectQuarticOffsetDominanceDiagnosisStatus =
+    allSourceDirectQuarticOffsetsInside
+      ? "positive-n38-source-pair-direct-quartic-offset-dominance-diagnosis-inside-target"
+      : openProductsSourcePairDirectQuarticOffsetDominates
+        ? "positive-n38-source-pair-direct-quartic-offset-dominance-diagnosis-source-pair-offset-dominates"
+        : productRows.some(
+              (row) =>
+                row.source_pair_direct_quartic_offset_dominance_status ===
+                "positive-n38-source-pair-direct-quartic-offset-dominance-unavailable"
+            )
+          ? "positive-n38-source-pair-direct-quartic-offset-dominance-diagnosis-unavailable"
+          : "positive-n38-source-pair-direct-quartic-offset-dominance-diagnosis-open";
+  const sourcePairDirectQuarticOffsetDominanceDiagnosis =
+    sourcePairDirectQuarticOffsetDominanceDiagnosisStatus ===
+    "positive-n38-source-pair-direct-quartic-offset-dominance-diagnosis-inside-target"
+      ? "the source/direct quartic offset already fits the product target on every product segment"
+      : sourcePairDirectQuarticOffsetDominanceDiagnosisStatus ===
+          "positive-n38-source-pair-direct-quartic-offset-dominance-diagnosis-source-pair-offset-dominates"
+        ? "the signed source pair reproduces the full source and its direct-quartic offset on every open product segment while the finite direct and paired replays are far inside target; the obstruction is already source-pair normal-form mismatch before solve or Cauchy bounds"
+        : sourcePairDirectQuarticOffsetDominanceDiagnosisStatus ===
+            "positive-n38-source-pair-direct-quartic-offset-dominance-diagnosis-unavailable"
+          ? "at least one product segment lacks signed-pair or direct-quartic intervals needed for source-pair dominance classification"
+          : "the source-pair direct-quartic dominance result is mixed across product segments";
+  const controllingSourcePairDirectQuarticOffsetSegment =
+    productRows.reduce((best, row) => {
+      const ratio =
+        row.h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio;
+      if (ratio === null || ratio === undefined) {
+        return best;
+      }
+      if (
+        best === null ||
+        Number(ratio) >
+          Number(
+            best.h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio
+          )
+      ) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  const openProductsSourcePairDirectGraphNormalFormGap =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.source_pair_direct_graph_normal_form_status ===
+        "positive-n38-source-pair-direct-graph-normal-form-gap-is-direct-graph-offset"
+    );
+  const sourcePairDirectGraphNormalFormDiagnosisStatus =
+    allSourceDirectQuarticOffsetsInside
+      ? "positive-n38-source-pair-direct-graph-normal-form-diagnosis-inside-target"
+      : openProductsSourcePairDirectGraphNormalFormGap
+        ? "positive-n38-source-pair-direct-graph-normal-form-diagnosis-gap-is-direct-graph-offset"
+        : productRows.some(
+              (row) =>
+                row.source_pair_direct_graph_normal_form_status ===
+                "positive-n38-source-pair-direct-graph-normal-form-unavailable"
+            )
+          ? "positive-n38-source-pair-direct-graph-normal-form-diagnosis-unavailable"
+          : "positive-n38-source-pair-direct-graph-normal-form-diagnosis-open";
+  const sourcePairDirectGraphNormalFormDiagnosis =
+    sourcePairDirectGraphNormalFormDiagnosisStatus ===
+    "positive-n38-source-pair-direct-graph-normal-form-diagnosis-inside-target"
+      ? "the signed source pair/direct quartic offset already fits the product target on every product segment"
+      : sourcePairDirectGraphNormalFormDiagnosisStatus ===
+          "positive-n38-source-pair-direct-graph-normal-form-diagnosis-gap-is-direct-graph-offset"
+        ? "the finite direct normal-form correction is negligible compared with the signed source-pair/direct-graph offset, and adding it to the direct graph barely changes the source-pair/direct-quartic offset; the live mismatch is a direct-graph normal-form alignment problem between two large opposed signed source pairs, not a finite quartic-residual or absolute-envelope artifact"
+        : sourcePairDirectGraphNormalFormDiagnosisStatus ===
+            "positive-n38-source-pair-direct-graph-normal-form-diagnosis-unavailable"
+          ? "at least one product segment lacks source-pair, direct graph, or finite direct normal-form intervals needed for the direct-graph normal-form classification"
+          : "the source-pair direct-graph normal-form classification is mixed across product segments";
+  const controllingSourcePairDirectGraphNormalFormSegment =
+    productRows.reduce((best, row) => {
+      const ratio =
+        row.h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio;
+      if (ratio === null || ratio === undefined) {
+        return best;
+      }
+      if (
+        best === null ||
+        Number(ratio) >
+          Number(
+            best.h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio
+          )
+      ) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  const openProductsSourcePairComponentGraphCloses =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.h38_coordinate_source_pair_component_graph_status ===
+        "positive-n38-source-pair-component-graph-closes-direct-graph-gap"
+    );
+  const openProductsSourcePairComponentGraphIntervalCenterDrift =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.h38_coordinate_source_pair_component_graph_status ===
+        "positive-n38-source-pair-component-graph-exposes-interval-center-drift-offset"
+    );
+  const openProductsSourcePairComponentGraphVariationOpen =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.h38_coordinate_source_pair_component_graph_status ===
+        "positive-n38-source-pair-component-graph-source-pair-variation-open"
+    );
+  const sourcePairComponentGraphDiagnosisStatus =
+    allSourceDirectQuarticOffsetsInside
+      ? "positive-n38-source-pair-component-graph-diagnosis-inside-target"
+      : openProductsSourcePairComponentGraphCloses
+        ? "positive-n38-source-pair-component-graph-diagnosis-component-graph-closes-gap"
+        : openProductsSourcePairComponentGraphIntervalCenterDrift
+          ? "positive-n38-source-pair-component-graph-diagnosis-interval-center-drift-offset"
+          : openProductsSourcePairComponentGraphVariationOpen
+            ? "positive-n38-source-pair-component-graph-diagnosis-source-pair-variation-open"
+          : productRows.some(
+                (row) =>
+                  row.h38_coordinate_source_pair_component_graph_status ===
+                  "positive-n38-source-pair-component-graph-unavailable"
+              )
+            ? "positive-n38-source-pair-component-graph-diagnosis-unavailable"
+            : "positive-n38-source-pair-component-graph-diagnosis-open";
+  const sourcePairComponentGraphDiagnosis =
+    sourcePairComponentGraphDiagnosisStatus ===
+    "positive-n38-source-pair-component-graph-diagnosis-inside-target"
+      ? "the source/direct-quartic offset already fits the product target on every product segment"
+      : sourcePairComponentGraphDiagnosisStatus ===
+          "positive-n38-source-pair-component-graph-diagnosis-component-graph-closes-gap"
+        ? "the component Lagrange graph replays the direct graph and reduces the signed source-pair gap inside target on every open product segment; the next proof object is a directed-rounded component graph certificate rather than a new graph shape"
+        : sourcePairComponentGraphDiagnosisStatus ===
+            "positive-n38-source-pair-component-graph-diagnosis-interval-center-drift-offset"
+          ? "the signed source pair replays its component graph and the component-plus-drift graph replays the direct graph inside target, so the open product rows are driven by the interval-center drift stream rather than source-pair variation or direct-graph mismatch"
+          : sourcePairComponentGraphDiagnosisStatus ===
+            "positive-n38-source-pair-component-graph-diagnosis-source-pair-variation-open"
+          ? "the source-component graph replays the direct graph, but the live signed source pair remains separated from its own component graph by more than the product target; the remaining obstruction is true source-pair variation across the product segment"
+          : sourcePairComponentGraphDiagnosisStatus ===
+              "positive-n38-source-pair-component-graph-diagnosis-unavailable"
+            ? "at least one product segment lacks component graph coefficients needed for source-pair component-graph classification"
+            : "the source-pair component-graph classification is mixed across product segments";
+  const controllingSourcePairComponentGraphSegment =
+    productRows.reduce((best, row) => {
+      const ratio =
+        row.h38_coordinate_signed_pair_to_component_graph_offset_to_target_ratio;
+      if (ratio === null || ratio === undefined) {
+        return best;
+      }
+      if (
+        best === null ||
+        Number(ratio) >
+          Number(
+            best.h38_coordinate_signed_pair_to_component_graph_offset_to_target_ratio
+          )
+      ) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  const allComponentDriftS37DivisionInside =
+    productRows.length > 0 &&
+    productRows.every(
+      (row) =>
+        row.component_drift_s37_division_status ===
+        "positive-n38-component-drift-s37-division-inside-target"
+    );
+  const anyComponentDriftS37DivisionUnavailable = productRows.some(
+    (row) =>
+      row.component_drift_s37_division_status ===
+      "positive-n38-component-drift-s37-division-unavailable"
+  );
+  const componentDriftS37DivisionDiagnosisStatus =
+    allComponentDriftS37DivisionInside
+      ? "positive-n38-component-drift-s37-division-diagnosis-inside-target"
+      : anyComponentDriftS37DivisionUnavailable
+        ? "positive-n38-component-drift-s37-division-diagnosis-unavailable"
+        : "positive-n38-component-drift-s37-division-diagnosis-open";
+  const componentDriftS37DivisionDiagnosis =
+    componentDriftS37DivisionDiagnosisStatus ===
+    "positive-n38-component-drift-s37-division-diagnosis-inside-target"
+      ? "dividing the component-plus-drift graph/direct-graph gap by the inherited h37 solve slope keeps every product segment inside the solved target at candidate level; this does not certify a directed-rounded true stream, but it rules out S37 division as the next candidate-level obstruction for this provider"
+      : componentDriftS37DivisionDiagnosisStatus ===
+          "positive-n38-component-drift-s37-division-diagnosis-unavailable"
+        ? "at least one product segment lacks the component-plus-drift graph gap, h37 solve slope, or solved target needed for candidate S37 division"
+        : "the component-plus-drift graph gap is still open after candidate S37 division on at least one product segment";
+  const controllingComponentDriftS37DivisionSegment =
+    productRows.reduce((best, row) => {
+      const ratio = row.component_drift_solved_gap_to_solved_target_ratio;
+      if (ratio === null || ratio === undefined) {
+        return best;
+      }
+      if (
+        best === null ||
+        Number(ratio) >
+          Number(best.component_drift_solved_gap_to_solved_target_ratio)
+      ) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  const productRowsWithFullResidualVectorInside = productRows.filter(
+    (row) =>
+      row.full_residual_vector_alignment_status ===
+      "positive-n38-full-residual-vector-source-alignment-inside-target"
+  );
+  const allFullResidualVectorOffsetsInside =
+    productRows.length > 0 &&
+    productRowsWithFullResidualVectorInside.length === productRows.length;
+  const openProductsFullResidualVectorCompress =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.full_residual_vector_alignment_status ===
+        "positive-n38-full-residual-vector-source-alignment-compresses-h38-coordinate-offset"
+    );
+  const openProductsFullResidualVectorWorse =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.full_residual_vector_alignment_status ===
+        "positive-n38-full-residual-vector-source-alignment-worse-than-h38-coordinate"
+    );
+  const openProductsFullResidualVectorStructural =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.full_residual_vector_alignment_status ===
+        "positive-n38-full-residual-vector-source-alignment-structural-offset-persists"
+    );
+  const fullResidualVectorAlignmentStatus =
+    allFullResidualVectorOffsetsInside
+      ? "positive-n38-full-residual-vector-source-alignment-diagnosis-inside-target"
+      : openProductsFullResidualVectorCompress
+        ? "positive-n38-full-residual-vector-source-alignment-diagnosis-compresses-h38-coordinate-offset"
+        : openProductsFullResidualVectorWorse
+          ? "positive-n38-full-residual-vector-source-alignment-diagnosis-worse-than-h38-coordinate"
+          : openProductsFullResidualVectorStructural
+            ? "positive-n38-full-residual-vector-source-alignment-diagnosis-structural-offset-persists"
+            : productRows.some(
+                  (row) =>
+                    row.full_residual_vector_alignment_status ===
+                    "positive-n38-full-residual-vector-source-alignment-unavailable"
+                )
+              ? "positive-n38-full-residual-vector-source-alignment-diagnosis-unavailable"
+              : "positive-n38-full-residual-vector-source-alignment-diagnosis-open";
+  const fullResidualVectorAlignmentDiagnosis =
+    allFullResidualVectorOffsetsInside
+      ? "the candidate full residual-vector xi graph aligns the source with the finite direct quartic on every product segment; it remains finite-sample evidence, not directed-rounded certification"
+      : openProductsFullResidualVectorCompress
+        ? "transporting the full h-row residual vector through xi compresses the h38-coordinate source/direct-quartic offset on every open product segment, so residual-vector freezing is part of the obstruction"
+        : openProductsFullResidualVectorWorse
+          ? "transporting the finite-sample full residual vector worsens every open product segment, so the remaining offset is not explained by freezing non-H38 residual centers in this candidate coordinate"
+          : openProductsFullResidualVectorStructural
+            ? "transporting the finite-sample full residual vector leaves a sign-stable center-dominated source/direct-quartic offset; the obstruction is structural in the source coordinate or recurrence normal form"
+            : fullResidualVectorAlignmentStatus ===
+                "positive-n38-full-residual-vector-source-alignment-diagnosis-unavailable"
+              ? "the full residual-vector candidate could not be built for at least one product segment"
+              : "the full residual-vector source alignment result is mixed across product segments";
+  const controllingValueSegment =
+    productRows.reduce((best, row) => {
+      if (
+        row.h38_coordinate_residual_value_to_product_target_ratio === null
+      ) {
+        return best;
+      }
+      if (
+        best === null ||
+        Number(row.h38_coordinate_residual_value_to_product_target_ratio) >
+          Number(best.h38_coordinate_residual_value_to_product_target_ratio)
+      ) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  const controllingFullResidualVectorSegment =
+    productRows.reduce((best, row) => {
+      if (
+        row.full_residual_vector_direct_quartic_offset_value_to_product_target_ratio ===
+        null
+      ) {
+        return best;
+      }
+      if (
+        best === null ||
+        Number(
+          row.full_residual_vector_direct_quartic_offset_value_to_product_target_ratio
+        ) >
+          Number(
+            best
+              .full_residual_vector_direct_quartic_offset_value_to_product_target_ratio
+          )
+      ) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  const allFullResidualVectorSolveNormalizationInside =
+    productRows.length > 0 &&
+    productRows.every(
+      (row) =>
+        row.full_residual_vector_solve_normalization_status ===
+        "positive-n38-full-residual-vector-solve-normalization-inside-target"
+    );
+  const openFullResidualVectorRawMismatchSignedSolveOpen =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.full_residual_vector_solve_normalization_status ===
+        "positive-n38-full-residual-vector-solve-normalization-raw-denominator-sign-mismatch-and-signed-solve-open"
+    );
+  const anyFullResidualVectorSolveNormalizationUnavailable =
+    productRows.some(
+      (row) =>
+        row.full_residual_vector_solve_normalization_status ===
+        "positive-n38-full-residual-vector-solve-normalization-unavailable"
+    );
+  const allFullResidualVectorRawMultiplierSignMatchesDenominator =
+    productRows.length > 0 &&
+    productRows.every(
+      (row) =>
+        row
+          .full_residual_vector_raw_multiplier_sign_matches_product_denominator ===
+        true
+    );
+  const allFullResidualVectorMinusSourceOverDenominatorSignMatchesDirectQuartic =
+    productRows.length > 0 &&
+    productRows.every(
+      (row) =>
+        row
+          .full_residual_vector_minus_source_over_denominator_sign_matches_direct_quartic ===
+        true
+    );
+  const fullResidualVectorSolveNormalizationStatus =
+    allFullResidualVectorSolveNormalizationInside
+      ? "positive-n38-full-residual-vector-solve-normalization-diagnosis-inside-target"
+      : openFullResidualVectorRawMismatchSignedSolveOpen
+        ? "positive-n38-full-residual-vector-solve-normalization-diagnosis-raw-denominator-sign-mismatch-and-signed-solve-open"
+        : anyFullResidualVectorSolveNormalizationUnavailable
+          ? "positive-n38-full-residual-vector-solve-normalization-diagnosis-unavailable"
+          : "positive-n38-full-residual-vector-solve-normalization-diagnosis-open";
+  const fullResidualVectorSolveNormalizationDiagnosis =
+    allFullResidualVectorSolveNormalizationInside
+      ? "the recurrence solve normalization -source/denominator aligns the full residual-vector source with the finite direct quartic on every product segment"
+      : openFullResidualVectorRawMismatchSignedSolveOpen
+        ? "the scalar implied by source/direct-quartic alignment has the opposite sign from the product denominator on every open product segment, and the recurrence solve convention -source/denominator still leaves the direct-quartic offset above the product target"
+        : anyFullResidualVectorSolveNormalizationUnavailable
+          ? "at least one product segment lacks source, denominator, or direct quartic intervals needed to test the solve normalization"
+          : "the full residual-vector solve-normalization result is mixed across product segments";
+  const controllingFullResidualVectorSolveNormalizationSegment =
+    productRows.reduce((best, row) => {
+      const ratio =
+        row
+          .full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio;
+      if (ratio === null || ratio === undefined) {
+        return best;
+      }
+      if (
+        best === null ||
+        Number(ratio) >
+          Number(
+            best
+              .full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio
+          )
+      ) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  const sharedNonH38CoordinateCandidateSummaries =
+    sharedNonH38CoordinateCandidateSets.map((candidate) => {
+      const candidateRows = segmentRows
+        .map((segmentRow) => ({
+          segment_row: segmentRow,
+          candidate_row:
+            segmentRow.shared_non_h38_coordinate_candidate_rows?.find(
+              (candidateRow) =>
+                candidateRow.candidate_label === candidate.label
+            ) ?? null,
+        }))
+        .filter((entry) => entry.candidate_row !== null);
+      const productCandidateRows = candidateRows.filter(
+        (entry) =>
+          entry.segment_row.quotient_kind ===
+          "product-quotient-producer-complement"
+      );
+      const insideProductCandidateRows = productCandidateRows.filter(
+        (entry) =>
+          entry.candidate_row.target_comparison_status ===
+          "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-product-segment-inside-target"
+      );
+      const candidateFiniteValues = (selector) =>
+        candidateRows
+          .map((entry) => selector(entry.candidate_row, entry.segment_row))
+          .filter(
+            (value) =>
+              value !== null &&
+              value !== undefined &&
+              Number.isFinite(Number(value)) &&
+              Number(value) >= 0
+          );
+      const controllingCandidateSegment =
+        productCandidateRows.reduce((best, entry) => {
+          const ratio = Number(
+            entry.candidate_row.residual_value_to_product_target_ratio
+          );
+          if (!Number.isFinite(ratio)) {
+            return best;
+          }
+          if (
+            best === null ||
+            ratio >
+              Number(
+                best.candidate_row.residual_value_to_product_target_ratio
+              )
+          ) {
+            return entry;
+          }
+          return best;
+        }, null) ?? null;
+      const maxRatioValues = candidateFiniteValues(
+        (candidateRow) => candidateRow.residual_value_to_product_target_ratio
+      );
+      const maxResidualValues = candidateFiniteValues(
+        (candidateRow) => candidateRow.residual_abs_upper
+      );
+      const compressionValues = candidateFiniteValues(
+        (candidateRow) =>
+          candidateRow.h38_coordinate_to_candidate_residual_compression_factor
+      );
+      const cancellationValues = candidateFiniteValues(
+        (candidateRow) => candidateRow.source_cancellation_fraction
+      );
+      const termGapValues = candidateFiniteValues(
+        (candidateRow) => candidateRow.term_sum_to_source_relative_gap
+      );
+      const allCandidateProductsInside =
+        productCandidateRows.length > 0 &&
+        productCandidateRows.length === insideProductCandidateRows.length;
+      return {
+        candidate_label: candidate.label,
+        shared_non_h38_h_indexes: candidate.h_indexes,
+        segment_count: candidateRows.length,
+        residual_value_segment_count: productCandidateRows.length,
+        residual_value_inside_target_count:
+          insideProductCandidateRows.length,
+        all_residual_value_segments_inside_target:
+          allCandidateProductsInside,
+        max_residual_value_to_product_target_ratio:
+          maxRatioValues.length > 0 ? Math.max(...maxRatioValues) : null,
+        max_residual_abs_upper:
+          maxResidualValues.length > 0
+            ? Math.max(...maxResidualValues)
+            : null,
+        min_h38_coordinate_to_candidate_residual_compression_factor:
+          compressionValues.length > 0
+            ? Math.min(...compressionValues)
+            : null,
+        max_h38_coordinate_to_candidate_residual_compression_factor:
+          compressionValues.length > 0
+            ? Math.max(...compressionValues)
+            : null,
+        min_source_cancellation_fraction:
+          cancellationValues.length > 0
+            ? Math.min(...cancellationValues)
+            : null,
+        max_term_sum_to_source_relative_gap:
+          termGapValues.length > 0 ? Math.max(...termGapValues) : null,
+        controlling_value_segment:
+          controllingCandidateSegment === null
+            ? null
+            : {
+                cell_id: controllingCandidateSegment.segment_row.cell_id,
+                row_index: controllingCandidateSegment.segment_row.row_index,
+                segment_index:
+                  controllingCandidateSegment.segment_row.segment_index,
+                quotient_kind:
+                  controllingCandidateSegment.segment_row.quotient_kind,
+                segment_interval:
+                  controllingCandidateSegment.segment_row.segment_interval,
+                target_abs_upper:
+                  controllingCandidateSegment.segment_row.target_abs_upper,
+                source_abs_upper:
+                  controllingCandidateSegment.candidate_row.source_abs_upper,
+                residual_abs_upper:
+                  controllingCandidateSegment.candidate_row.residual_abs_upper,
+                residual_value_to_product_target_ratio:
+                  controllingCandidateSegment.candidate_row
+                    .residual_value_to_product_target_ratio,
+                source_cancellation_fraction:
+                  controllingCandidateSegment.candidate_row
+                    .source_cancellation_fraction,
+                term_interval_sum:
+                  controllingCandidateSegment.candidate_row.term_interval_sum,
+                term_triangle_abs_upper:
+                  controllingCandidateSegment.candidate_row
+                    .term_triangle_abs_upper,
+                term_sum_to_source_relative_gap:
+                  controllingCandidateSegment.candidate_row
+                    .term_sum_to_source_relative_gap,
+              },
+        candidate_status: allCandidateProductsInside
+          ? "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-candidate-inside-product-targets"
+          : "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-candidate-open",
+      };
+    });
+  const bestSharedNonH38CoordinateCandidate =
+    sharedNonH38CoordinateCandidateSummaries.reduce((best, candidate) => {
+      const ratio = Number(candidate.max_residual_value_to_product_target_ratio);
+      if (!Number.isFinite(ratio)) {
+        return best;
+      }
+      if (
+        best === null ||
+        ratio < Number(best.max_residual_value_to_product_target_ratio)
+      ) {
+        return candidate;
+      }
+      return best;
+    }, null) ?? null;
+  return {
+    status: allProductInside
+      ? "positive-n38-producer-hybrid-h38-coordinate-source-replay-candidate-emitted"
+      : "positive-n38-producer-hybrid-h38-coordinate-source-replay-open",
+    reason: allProductInside
+      ? "h38-coordinate h-row source intervals fit every product-quotient residual-value segment target; derivative segments remain value-only"
+      : "h38-coordinate h-row source intervals remain too wide on at least one product-quotient residual-value segment",
+    diagnostic_kind:
+      "candidate-producer-hybrid-h38-coordinate-source-replay",
+    finite_data_scope:
+      "hybrid-producer-partition-polynomial-h-row-graph-plus-h38-residual-coordinate-source-only",
+    provider_kind:
+      "candidate-polynomial-h-row-graph-h38-residual-coordinate-provider",
+    segment_count: segmentRows.length,
+    residual_value_segment_count: productRows.length,
+    derivative_value_only_segment_count: derivativeRows.length,
+    residual_value_inside_target_count: insideProductRows.length,
+    all_residual_value_segments_inside_target: allProductInside,
+    max_h38_coordinate_residual_value_to_product_target_ratio:
+      finiteValues(
+        (row) => row.h38_coordinate_residual_value_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.h38_coordinate_residual_value_to_product_target_ratio
+            )
+          )
+        : null,
+    max_h38_coordinate_source_abs_upper:
+      finiteValues((row) => row.h38_coordinate_source_abs_upper).length > 0
+        ? Math.max(
+            ...finiteValues((row) => row.h38_coordinate_source_abs_upper)
+          )
+        : null,
+    max_h38_coordinate_residual_abs_upper:
+      finiteValues((row) => row.h38_coordinate_residual_abs_upper).length > 0
+        ? Math.max(
+            ...finiteValues((row) => row.h38_coordinate_residual_abs_upper)
+          )
+        : null,
+    max_raw_to_h38_coordinate_residual_compression_factor:
+      finiteValues(
+        (row) => row.raw_to_h38_coordinate_residual_compression_factor
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.raw_to_h38_coordinate_residual_compression_factor
+            )
+          )
+        : null,
+    min_raw_to_h38_coordinate_residual_compression_factor:
+      finiteValues(
+        (row) => row.raw_to_h38_coordinate_residual_compression_factor
+      ).length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) => row.raw_to_h38_coordinate_residual_compression_factor
+            )
+          )
+        : null,
+    max_graph_interval_to_h38_coordinate_residual_compression_factor:
+      finiteValues(
+        (row) =>
+          row.graph_interval_to_h38_coordinate_residual_compression_factor
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.graph_interval_to_h38_coordinate_residual_compression_factor
+            )
+          )
+        : null,
+    min_graph_interval_to_h38_coordinate_residual_compression_factor:
+      finiteValues(
+        (row) =>
+          row.graph_interval_to_h38_coordinate_residual_compression_factor
+      ).length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) =>
+                row.graph_interval_to_h38_coordinate_residual_compression_factor
+            )
+          )
+        : null,
+    h38_coordinate_subcell_count: h38CoordinateSubcellCount,
+    max_h38_coordinate_segment_subcell_count:
+      finiteValues((row) => row.h38_coordinate_subcell_count).length > 0
+        ? Math.max(
+            ...finiteValues((row) => row.h38_coordinate_subcell_count)
+          )
+        : null,
+    max_h38_coordinate_subcell_term_sum_to_source_relative_gap:
+      finiteValues(
+        (row) =>
+          row.max_h38_coordinate_subcell_term_sum_to_source_relative_gap
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.max_h38_coordinate_subcell_term_sum_to_source_relative_gap
+            )
+          )
+        : null,
+    max_h38_coordinate_subcell_source_abs_upper:
+      finiteValues(
+        (row) => row.max_h38_coordinate_subcell_source_abs_upper
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.max_h38_coordinate_subcell_source_abs_upper
+            )
+          )
+        : null,
+    min_h38_coordinate_subcell_source_cancellation_fraction:
+      finiteValues(
+        (row) =>
+          row.min_h38_coordinate_subcell_source_cancellation_fraction
+      ).length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) =>
+                row.min_h38_coordinate_subcell_source_cancellation_fraction
+            )
+          )
+        : null,
+    max_h38_coordinate_signed_pair_residual_value_to_product_target_ratio:
+      finiteValues(
+        (row) =>
+          row.h38_coordinate_signed_pair_residual_value_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.h38_coordinate_signed_pair_residual_value_to_product_target_ratio
+            )
+          )
+        : null,
+    max_h38_coordinate_signed_pair_source_to_full_source_relative_gap:
+      finiteValues(
+        (row) =>
+          row.h38_coordinate_signed_pair_source_to_full_source_relative_gap
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.h38_coordinate_signed_pair_source_to_full_source_relative_gap
+            )
+          )
+        : null,
+    min_h38_coordinate_signed_pair_cancellation_fraction:
+      finiteValues(
+        (row) => row.h38_coordinate_signed_pair_cancellation_fraction
+      ).length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) => row.h38_coordinate_signed_pair_cancellation_fraction
+            )
+          )
+        : null,
+    product_segment_residual_inequality_diagnosis_status:
+      residualInequalityDiagnosisStatus,
+    product_segment_residual_inequality_diagnosis:
+      residualInequalityDiagnosis,
+    source_to_direct_quartic_alignment_status:
+      sourceToDirectQuarticAlignmentStatus,
+    source_to_direct_quartic_alignment_diagnosis:
+      sourceToDirectQuarticAlignmentDiagnosis,
+    max_source_to_direct_quartic_offset_value_to_product_target_ratio:
+      finiteValues(
+        (row) => row.source_to_direct_quartic_offset_value_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.source_to_direct_quartic_offset_value_to_product_target_ratio
+            )
+          )
+        : null,
+    max_source_to_direct_quartic_offset_center_to_product_target_ratio:
+      finiteValues(
+        (row) => row.source_to_direct_quartic_offset_center_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.source_to_direct_quartic_offset_center_to_product_target_ratio
+            )
+          )
+        : null,
+    max_source_to_direct_quartic_offset_radius_to_product_target_ratio:
+      finiteValues(
+        (row) => row.source_to_direct_quartic_offset_radius_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.source_to_direct_quartic_offset_radius_to_product_target_ratio
+            )
+          )
+        : null,
+    max_source_to_direct_quartic_offset_radius_to_center_ratio:
+      finiteValues(
+        (row) => row.source_to_direct_quartic_offset_radius_to_center_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.source_to_direct_quartic_offset_radius_to_center_ratio
+            )
+          )
+        : null,
+    source_direct_normalization_diagnosis_status:
+      sourceDirectNormalizationDiagnosisStatus,
+    source_direct_normalization_diagnosis:
+      sourceDirectNormalizationDiagnosis,
+    max_solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio:
+      finiteProductValues(
+        (row) =>
+          row.solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteProductValues(
+              (row) =>
+                row.solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio
+            )
+          )
+        : null,
+    max_solve_normalization_invariance_ratio:
+      finiteProductValues((row) => row.solve_normalization_invariance_ratio)
+        .length > 0
+        ? Math.max(
+            ...finiteProductValues(
+              (row) => row.solve_normalization_invariance_ratio
+            )
+          )
+        : null,
+    min_solve_normalization_invariance_ratio:
+      finiteProductValues((row) => row.solve_normalization_invariance_ratio)
+        .length > 0
+        ? Math.min(
+            ...finiteProductValues(
+              (row) => row.solve_normalization_invariance_ratio
+            )
+          )
+        : null,
+    min_crossed_solve_normalization_offset_to_product_target_ratio:
+      finiteProductValues(
+        (row) =>
+          row.crossed_solve_normalization_best_offset_to_product_target_ratio
+      ).length > 0
+        ? Math.min(
+            ...finiteProductValues(
+              (row) =>
+                row.crossed_solve_normalization_best_offset_to_product_target_ratio
+            )
+          )
+        : null,
+    controlling_source_direct_normalization_segment:
+      controllingSourceDirectNormalizationSegment,
+    source_pair_direct_quartic_offset_dominance_diagnosis_status:
+      sourcePairDirectQuarticOffsetDominanceDiagnosisStatus,
+    source_pair_direct_quartic_offset_dominance_diagnosis:
+      sourcePairDirectQuarticOffsetDominanceDiagnosis,
+    max_h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio:
+      finiteValues(
+        (row) =>
+          row.h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.h38_coordinate_signed_pair_to_direct_quartic_offset_to_target_ratio
+            )
+          )
+        : null,
+    max_h38_coordinate_signed_pair_direct_quartic_offset_to_full_offset_relative_gap:
+      finiteValues(
+        (row) =>
+          row
+            .h38_coordinate_signed_pair_direct_quartic_offset_to_full_offset_relative_gap
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row
+                  .h38_coordinate_signed_pair_direct_quartic_offset_to_full_offset_relative_gap
+            )
+          )
+        : null,
+    max_source_direct_quartic_offset_to_finite_direct_abs_loss_factor:
+      finiteValues(
+        (row) =>
+          row.source_direct_quartic_offset_to_finite_direct_abs_loss_factor
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.source_direct_quartic_offset_to_finite_direct_abs_loss_factor
+            )
+          )
+        : null,
+    source_pair_direct_graph_normal_form_diagnosis_status:
+      sourcePairDirectGraphNormalFormDiagnosisStatus,
+    source_pair_direct_graph_normal_form_diagnosis:
+      sourcePairDirectGraphNormalFormDiagnosis,
+    max_h38_coordinate_signed_pair_direct_graph_offset_to_direct_quartic_offset_relative_gap:
+      finiteValues(
+        (row) =>
+          row
+            .h38_coordinate_signed_pair_direct_graph_offset_to_direct_quartic_offset_relative_gap
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row
+                  .h38_coordinate_signed_pair_direct_graph_offset_to_direct_quartic_offset_relative_gap
+            )
+          )
+        : null,
+    max_finite_direct_normal_form_to_signed_pair_direct_graph_offset_ratio:
+      finiteValues(
+        (row) =>
+          row.finite_direct_normal_form_to_signed_pair_direct_graph_offset_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row
+                  .finite_direct_normal_form_to_signed_pair_direct_graph_offset_ratio
+            )
+          )
+        : null,
+    min_h38_coordinate_source_pair_opposed_cancellation_fraction:
+      finiteValues((row) => row.h38_coordinate_signed_pair_cancellation_fraction)
+        .length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) => row.h38_coordinate_signed_pair_cancellation_fraction
+            )
+        )
+        : null,
+    source_pair_component_graph_diagnosis_status:
+      sourcePairComponentGraphDiagnosisStatus,
+    source_pair_component_graph_diagnosis:
+      sourcePairComponentGraphDiagnosis,
+    max_h38_coordinate_signed_pair_to_component_graph_offset_to_target_ratio:
+      finiteValues(
+        (row) =>
+          row
+            .h38_coordinate_signed_pair_to_component_graph_offset_to_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row
+                  .h38_coordinate_signed_pair_to_component_graph_offset_to_target_ratio
+            )
+          )
+        : null,
+    max_h38_coordinate_component_graph_to_direct_graph_gap_to_target_ratio:
+      finiteValues(
+        (row) =>
+          row
+            .h38_coordinate_component_graph_to_direct_graph_gap_to_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row
+                  .h38_coordinate_component_graph_to_direct_graph_gap_to_target_ratio
+            )
+          )
+        : null,
+    component_drift_s37_division_diagnosis_status:
+      componentDriftS37DivisionDiagnosisStatus,
+    component_drift_s37_division_diagnosis:
+      componentDriftS37DivisionDiagnosis,
+    max_component_drift_solved_gap_to_solved_target_ratio:
+      finiteValues(
+        (row) => row.component_drift_solved_gap_to_solved_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.component_drift_solved_gap_to_solved_target_ratio
+            )
+          )
+        : null,
+    max_component_drift_solve_normalization_invariance_ratio:
+      finiteValues(
+        (row) => row.component_drift_solve_normalization_invariance_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.component_drift_solve_normalization_invariance_ratio
+            )
+          )
+        : null,
+    min_component_drift_solve_normalization_invariance_ratio:
+      finiteValues(
+        (row) => row.component_drift_solve_normalization_invariance_ratio
+      ).length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) =>
+                row.component_drift_solve_normalization_invariance_ratio
+            )
+          )
+        : null,
+    controlling_component_drift_s37_division_segment:
+      controllingComponentDriftS37DivisionSegment,
+    controlling_source_pair_component_graph_segment:
+      controllingSourcePairComponentGraphSegment,
+    controlling_source_pair_direct_graph_normal_form_segment:
+      controllingSourcePairDirectGraphNormalFormSegment,
+    controlling_source_pair_direct_quartic_offset_segment:
+      controllingSourcePairDirectQuarticOffsetSegment,
+    full_residual_vector_provider_kind:
+      "candidate-polynomial-h-row-full-residual-vector-xi-graph-provider",
+    full_residual_vector_provider_available:
+      fullResidualVectorProfile !== null,
+    full_residual_vector_polynomial_degree:
+      fullResidualVectorProfile?.residual_vector_polynomial_degree ?? null,
+    full_residual_vector_sample_count:
+      fullResidualVectorProfile?.sample_count ?? 0,
+    full_residual_vector_h_count: fullResidualVectorProfile?.h_count ?? 0,
+    full_residual_vector_max_sample_replay_error:
+      fullResidualVectorProfile?.max_sample_residual_midpoint_replay_error ??
+      null,
+    full_residual_vector_alignment_status:
+      fullResidualVectorAlignmentStatus,
+    full_residual_vector_alignment_diagnosis:
+      fullResidualVectorAlignmentDiagnosis,
+    max_full_residual_vector_direct_quartic_offset_value_to_product_target_ratio:
+      finiteValues(
+        (row) =>
+          row.full_residual_vector_direct_quartic_offset_value_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.full_residual_vector_direct_quartic_offset_value_to_product_target_ratio
+            )
+          )
+        : null,
+    max_full_residual_vector_direct_quartic_offset_center_to_product_target_ratio:
+      finiteValues(
+        (row) =>
+          row.full_residual_vector_direct_quartic_offset_center_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.full_residual_vector_direct_quartic_offset_center_to_product_target_ratio
+            )
+          )
+        : null,
+    max_full_residual_vector_direct_quartic_offset_radius_to_product_target_ratio:
+      finiteValues(
+        (row) =>
+          row.full_residual_vector_direct_quartic_offset_radius_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.full_residual_vector_direct_quartic_offset_radius_to_product_target_ratio
+            )
+          )
+        : null,
+    max_full_residual_vector_offset_to_h38_coordinate_offset_ratio:
+      finiteValues(
+        (row) =>
+          row.full_residual_vector_offset_to_h38_coordinate_offset_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.full_residual_vector_offset_to_h38_coordinate_offset_ratio
+            )
+          )
+        : null,
+    max_h38_coordinate_to_full_residual_vector_offset_compression_factor:
+      finiteValues(
+        (row) =>
+          row.h38_coordinate_to_full_residual_vector_offset_compression_factor
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.h38_coordinate_to_full_residual_vector_offset_compression_factor
+            )
+          )
+        : null,
+    controlling_full_residual_vector_segment:
+      controllingFullResidualVectorSegment,
+    full_residual_vector_solve_normalization_status:
+      fullResidualVectorSolveNormalizationStatus,
+    full_residual_vector_solve_normalization_diagnosis:
+      fullResidualVectorSolveNormalizationDiagnosis,
+    max_full_residual_vector_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio:
+      finiteValues(
+        (row) =>
+          row
+            .full_residual_vector_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row
+                  .full_residual_vector_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio
+            )
+          )
+        : null,
+    max_full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio:
+      finiteValues(
+        (row) =>
+          row
+            .full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row
+                  .full_residual_vector_minus_source_over_denominator_to_direct_quartic_offset_value_to_product_target_ratio
+            )
+          )
+        : null,
+    full_residual_vector_raw_multiplier_sign_matches_product_denominator_all_product_segments:
+      allFullResidualVectorRawMultiplierSignMatchesDenominator,
+    full_residual_vector_minus_source_over_denominator_sign_matches_direct_quartic_all_product_segments:
+      allFullResidualVectorMinusSourceOverDenominatorSignMatchesDirectQuartic,
+    controlling_full_residual_vector_solve_normalization_segment:
+      controllingFullResidualVectorSolveNormalizationSegment,
+    max_h38_coordinate_residual_excess_over_product_target_abs:
+      finiteValues(
+        (row) => row.h38_coordinate_residual_excess_over_product_target_abs
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.h38_coordinate_residual_excess_over_product_target_abs
+            )
+          )
+        : null,
+    max_h38_coordinate_residual_center_to_product_target_ratio:
+      finiteValues(
+        (row) => row.h38_coordinate_residual_center_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.h38_coordinate_residual_center_to_product_target_ratio
+            )
+          )
+        : null,
+    max_h38_coordinate_residual_radius_to_product_target_ratio:
+      finiteValues(
+        (row) => row.h38_coordinate_residual_radius_to_product_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.h38_coordinate_residual_radius_to_product_target_ratio
+            )
+          )
+        : null,
+    max_h38_coordinate_residual_to_direct_normal_form_abs_loss_factor:
+      finiteValues(
+        (row) =>
+          row.h38_coordinate_residual_to_direct_normal_form_abs_loss_factor
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.h38_coordinate_residual_to_direct_normal_form_abs_loss_factor
+            )
+          )
+        : null,
+    max_h38_coordinate_residual_center_to_direct_normal_form_abs_loss_factor:
+      finiteValues(
+        (row) =>
+          row.h38_coordinate_residual_center_to_direct_normal_form_abs_loss_factor
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.h38_coordinate_residual_center_to_direct_normal_form_abs_loss_factor
+            )
+          )
+        : null,
+    max_h38_coordinate_residual_to_paired_finite_abs_loss_factor:
+      finiteValues(
+        (row) => row.h38_coordinate_residual_to_paired_finite_abs_loss_factor
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.h38_coordinate_residual_to_paired_finite_abs_loss_factor
+            )
+          )
+        : null,
+    min_direct_normal_form_target_headroom_ratio:
+      finiteValues(
+        (row) => row.finite_direct_normal_form_target_headroom_ratio
+      ).length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) => row.finite_direct_normal_form_target_headroom_ratio
+            )
+          )
+        : null,
+    min_paired_finite_target_headroom_ratio:
+      finiteValues((row) => row.finite_paired_target_headroom_ratio).length > 0
+        ? Math.min(
+            ...finiteValues((row) => row.finite_paired_target_headroom_ratio)
+          )
+        : null,
+    max_product_segment_target_to_direct_normal_form_abs_factor:
+      finiteValues(
+        (row) => row.product_segment_target_to_direct_normal_form_abs_factor
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.product_segment_target_to_direct_normal_form_abs_factor
+            )
+          )
+        : null,
+    max_required_denominator_abs_lower_for_h38_coordinate_residual:
+      finiteValues(
+        (row) =>
+          row.required_denominator_abs_lower_for_h38_coordinate_residual
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.required_denominator_abs_lower_for_h38_coordinate_residual
+            )
+          )
+        : null,
+    max_required_to_available_product_denominator_abs_factor:
+      finiteValues(
+        (row) => row.required_to_available_product_denominator_abs_factor
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.required_to_available_product_denominator_abs_factor
+            )
+          )
+        : null,
+    product_denominator_partition_can_close_all_h38_coordinate_residuals:
+      productDenominatorPartitionCanCloseAll,
+    shared_non_h38_coordinate_candidate_count:
+      sharedNonH38CoordinateCandidateSummaries.length,
+    shared_non_h38_coordinate_candidate_summaries:
+      sharedNonH38CoordinateCandidateSummaries,
+    best_shared_non_h38_coordinate_candidate:
+      bestSharedNonH38CoordinateCandidate,
+    max_term_sum_to_source_relative_gap:
+      finiteValues((row) => row.term_sum_to_source_relative_gap).length > 0
+        ? Math.max(
+            ...finiteValues((row) => row.term_sum_to_source_relative_gap)
+          )
+        : null,
+    min_h38_coordinate_source_cancellation_fraction:
+      finiteValues(
+        (row) => row.h38_coordinate_source_cancellation_fraction
+      ).length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) => row.h38_coordinate_source_cancellation_fraction
+            )
+          )
+        : null,
+    controlling_value_segment: controllingValueSegment,
+    segment_rows: segmentRows,
+    route_interpretation: allProductInside
+      ? "preserving the h38 residual coordinate and shared xi graph is enough to fit residual-value product segments at candidate level; the next burden is to promote the h38-coordinate provider and derivative segments to directed-rounded residual/residual-derivative enclosures before S37 replay"
+      : sourceToDirectQuarticAlignmentStatus ===
+          "positive-n38-source-to-direct-quartic-alignment-diagnosis-h38-coordinate-offset-persists"
+        ? "the finite direct normal form and paired finite replay fit product targets, and adding the finite direct residual to the cubic graph still leaves the h38-coordinate source provider sign-stably offset; the next certificate route must replace the h38-coordinate source surrogate or prove a source-provider/direct-quartic alignment normal form"
+      : residualInequalityDiagnosisStatus ===
+          "positive-n38-product-segment-residual-inequality-diagnosis-source-graph-offset-mismatch-candidate"
+        ? "the finite direct normal form and paired finite replay fit product targets, but the h38-coordinate source residual is sign-stable and centered outside target; the next certificate route must align the source provider with the direct graph, not merely narrow interval widths or retune product-target allocation"
+      : "preserving only the h38 residual coordinate improves source dependency diagnosis but still leaves product residual-value segments open; the missing dependency is in non-h38 residual covariance or in the source term pair itself",
+    provider_dependency_policy:
+      "preserves shared xi graph dependence and the h38 residual coordinate; freezes non-h38 residuals at interval centers; candidate-only directional diagnostic",
+    true_source_policy:
+      "candidate h38-coordinate source replay only; no directed-rounded true-stream enclosure is certified",
+    claim_boundary: claimBoundary,
+  };
+}
+
 function h39H38Y44PositiveN38CubicTaylorRemainderRoute({
   taylorTarget,
   fourthDifferenceCheck,
   directedIntervalResidualCheck,
   lagrangeTarget,
   producerCoordinateProfile,
+  branch,
+  transportProfile,
+  residualProfile,
+  h38ResidualProfile,
 }) {
   const claimBoundary = {
     certifies_h38_n38_graph_enclosure: false,
@@ -17752,6 +23227,44 @@ function h39H38Y44PositiveN38CubicTaylorRemainderRoute({
     h39H38Y44ProducerHybridTrueStreamExcessBudget({
       hybridReplay: candidateProducerHybridQuotientDirectReplay,
     });
+  const candidateProducerHybridSplitStreamPairedReplay =
+    h39H38Y44ProducerHybridSplitStreamPairedReplay({
+      hybridReplay: candidateProducerHybridQuotientDirectReplay,
+      quarticWitness: selectedQuarticQuotientConsistencyWitness,
+    });
+  const candidateProducerHybridRawTrueSourceReplay =
+    h39H38Y44ProducerHybridRawTrueSourceReplay({
+      coordinateProfile: producerCoordinateProfile,
+      hybridReplay: candidateProducerHybridQuotientDirectReplay,
+      quarticWitness: selectedQuarticQuotientConsistencyWitness,
+      branch,
+    });
+  const candidateProducerHybridGraphIntervalResidualSourceReplay =
+    h39H38Y44ProducerHybridGraphIntervalResidualSourceReplay({
+      coordinateProfile: producerCoordinateProfile,
+      hybridReplay: candidateProducerHybridQuotientDirectReplay,
+      quarticWitness: selectedQuarticQuotientConsistencyWitness,
+      rawReplay: candidateProducerHybridRawTrueSourceReplay,
+      branch,
+      transportProfile,
+      residualProfile,
+    });
+  const candidateProducerHybridH38CoordinateSourceReplay =
+    h39H38Y44ProducerHybridH38CoordinateSourceReplay({
+      coordinateProfile: producerCoordinateProfile,
+      hybridReplay: candidateProducerHybridQuotientDirectReplay,
+      trueStreamExcessBudget: candidateProducerHybridTrueStreamExcessBudget,
+      splitStreamPairedReplay: candidateProducerHybridSplitStreamPairedReplay,
+      quarticWitness: selectedQuarticQuotientConsistencyWitness,
+      rawReplay: candidateProducerHybridRawTrueSourceReplay,
+      graphIntervalResidualReplay:
+        candidateProducerHybridGraphIntervalResidualSourceReplay,
+      branch,
+      transportProfile,
+      residualProfile,
+      h38ResidualProfile,
+      sourceResidualDecomposition: selectedSourceResidualDecomposition,
+    });
   const sameDomainDerivativeProviderTarget = {
     status: providerTargetStatus,
     provider_target_kind:
@@ -17820,6 +23333,14 @@ function h39H38Y44PositiveN38CubicTaylorRemainderRoute({
       candidateProducerHybridQuotientDirectReplay,
     candidate_producer_hybrid_true_stream_excess_budget:
       candidateProducerHybridTrueStreamExcessBudget,
+    candidate_producer_hybrid_split_stream_paired_replay:
+      candidateProducerHybridSplitStreamPairedReplay,
+    candidate_producer_hybrid_raw_true_source_replay:
+      candidateProducerHybridRawTrueSourceReplay,
+    candidate_producer_hybrid_graph_interval_residual_source_replay:
+      candidateProducerHybridGraphIntervalResidualSourceReplay,
+    candidate_producer_hybrid_h38_coordinate_source_replay:
+      candidateProducerHybridH38CoordinateSourceReplay,
     raw_interval_route_status:
       directedIntervalResidualCheck?.target_status ?? null,
     raw_interval_rejection_ratio:
@@ -18122,6 +23643,8 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
       branch,
       transportProfile: setup.transportProfile,
       residualInterval: setup.h38ResidualProfile.residual_interval_hull,
+      sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+      comparisonStencilIndex: resolvedComparisonStencilIndex,
     });
   const h38SolveWidthProfile = h38SolveWidthFactorizationProfileForRows({
     targetSpeedInterval: resolvedTargetSpeedInterval,
@@ -18392,6 +23915,10 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
       directedIntervalResidualCheck: positiveN38DirectedIntervalResidualCheck,
       lagrangeTarget: positiveN38LagrangeRemainderTarget,
       producerCoordinateProfile: h38ProducerResidualCoordinateProfile,
+      branch,
+      transportProfile: setup.transportProfile,
+      residualProfile: setup.residualProfile,
+      h38ResidualProfile: setup.h38ResidualProfile,
     });
   const producerCenteredSafetyClosingHalfWidths =
     producerCenteredSafetyRows
@@ -19462,6 +24989,8 @@ function h39H38Y44ProducerResidualCoordinateProfile({
   branch,
   transportProfile,
   residualInterval,
+  sourceStencilSubcellCount = null,
+  comparisonStencilIndex = null,
 }) {
   const h38Index =
     THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index;
@@ -19475,9 +25004,18 @@ function h39H38Y44ProducerResidualCoordinateProfile({
     });
     const xiMidpoint = intervalMidpoint(xiInterval);
     const branchRow = branchRowFor(row, branch);
-    const h38Interval = hIntervalsFromBranchRow(branchRow, {
+    const hIntervals = hIntervalsFromBranchRow(branchRow, {
       hCount: transportProfile.length,
-    })[h38Index];
+    });
+    const h38Interval = hIntervals[h38Index];
+    const hasComparisonStencilIndex =
+      comparisonStencilIndex !== null &&
+      comparisonStencilIndex !== undefined &&
+      Number.isInteger(Number(comparisonStencilIndex));
+    const sourceSubcoverRowIndex =
+      hasComparisonStencilIndex
+        ? Number(comparisonStencilIndex) + rowIndex
+        : null;
     const graphInterval = polynomialRangeOnInterval({
       coefficients: h38Profile.coefficients,
       interval: xiInterval,
@@ -19502,10 +25040,17 @@ function h39H38Y44ProducerResidualCoordinateProfile({
         : 0;
     return {
       row_index: rowIndex,
+      comparison_row_index: rowIndex,
+      source_subcover_row_index: sourceSubcoverRowIndex,
       cell_id: row.cell_id,
+      branch,
+      cell: cellFromCertificateRow(row),
       speed_interval: row.speed_interval,
       xi_interval: xiInterval,
       xi_midpoint: xiMidpoint,
+      h_intervals: hIntervals,
+      h_row_interval_count: hIntervals.length,
+      h38_solve_slope_interval: branchRow.h38_solve_slope_interval,
       h38_interval: h38Interval,
       graph_interval: graphInterval,
       residual_interval: residual,
@@ -19525,6 +25070,19 @@ function h39H38Y44ProducerResidualCoordinateProfile({
     coordinate_formula:
       "u=(h38-q38(xi)-center(residual_hull))/radius(residual_hull)",
     h38_index: h38Index,
+    target_speed_interval: targetSpeedInterval,
+    source_stencil_subcell_count:
+      sourceStencilSubcellCount !== null &&
+      sourceStencilSubcellCount !== undefined &&
+      Number.isInteger(Number(sourceStencilSubcellCount))
+        ? Number(sourceStencilSubcellCount)
+        : null,
+    comparison_stencil_index:
+      comparisonStencilIndex !== null &&
+      comparisonStencilIndex !== undefined &&
+      Number.isInteger(Number(comparisonStencilIndex))
+        ? Number(comparisonStencilIndex)
+        : null,
     residual_interval: residualInterval,
     residual_center: residualCenter,
     residual_radius: residualRadius,
@@ -20884,6 +26442,8 @@ export function buildH39H38Y44SignedAffineTargetEnvelopeDiagnosticCandidate({
       branch,
       transportProfile: setup.transportProfile,
       residualInterval: setup.h38ResidualProfile.residual_interval_hull,
+      sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+      comparisonStencilIndex: resolvedComparisonStencilIndex,
     });
   const producerCenteredFullHullHalfWidth =
     h39H38Y44ProducerCoordinateFullHullHalfWidth(
@@ -28909,10 +34469,40 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
       model.product_derivative_coefficients.every((value) =>
         Number.isFinite(Number(value))
       ) &&
+      Array.isArray(model?.direct_lagrange_graph_coefficients) &&
+      model.direct_lagrange_graph_coefficients.length > 0 &&
+      model.direct_lagrange_graph_coefficients.every((value) =>
+        Number.isFinite(Number(value))
+      ) &&
+      Array.isArray(model?.point_expression_residual_coefficients) &&
+      model.point_expression_residual_coefficients.length > 0 &&
+      model.point_expression_residual_coefficients.every((value) =>
+        Number.isFinite(Number(value))
+      ) &&
+      Array.isArray(model?.interval_center_drift_residual_coefficients) &&
+      model.interval_center_drift_residual_coefficients.length > 0 &&
+      model.interval_center_drift_residual_coefficients.every((value) =>
+        Number.isFinite(Number(value))
+      ) &&
       Array.isArray(model?.direct_residual_coefficients) &&
       model.direct_residual_coefficients.length > 0 &&
       model.direct_residual_coefficients.every((value) =>
         Number.isFinite(Number(value))
+      ) &&
+      Array.isArray(
+        model?.point_expression_residual_derivative_coefficients
+      ) &&
+      model.point_expression_residual_derivative_coefficients.length > 0 &&
+      model.point_expression_residual_derivative_coefficients.every(
+        (value) => Number.isFinite(Number(value))
+      ) &&
+      Array.isArray(
+        model?.interval_center_drift_residual_derivative_coefficients
+      ) &&
+      model.interval_center_drift_residual_derivative_coefficients.length >
+        0 &&
+      model.interval_center_drift_residual_derivative_coefficients.every(
+        (value) => Number.isFinite(Number(value))
       ) &&
       Array.isArray(model?.direct_residual_derivative_coefficients) &&
       model.direct_residual_derivative_coefficients.length > 0 &&
@@ -29924,6 +35514,1166 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
     budget?.claim_boundary?.certifies_directed_rounded_shared_domain ===
       false &&
     budget?.claim_boundary?.retained_branch === false;
+  const positiveN38ProducerHybridSplitStreamPairedSegmentValid = (row) =>
+    row !== null &&
+    typeof row?.cell_id === "string" &&
+    Number.isInteger(row?.row_index) &&
+    row.row_index >= 0 &&
+    Number.isInteger(row?.segment_index) &&
+    row.segment_index >= 0 &&
+    [
+      "derivative-quotient-full-producer-interval",
+      "derivative-quotient-selected-node-collar",
+      "product-quotient-producer-complement",
+    ].includes(row?.quotient_kind) &&
+    [
+      "same-variable-direct-residual",
+      "same-variable-direct-residual-derivative",
+      "same-variable-direct-object-unknown",
+    ].includes(row?.proof_object_kind) &&
+    hasFiniteInterval(row?.segment_interval) &&
+    finiteNonnegativeOrNull(row?.target_abs_upper) &&
+    (row?.point_interval_hull === null ||
+      hasFiniteInterval(row?.point_interval_hull)) &&
+    (row?.drift_interval_hull === null ||
+      hasFiniteInterval(row?.drift_interval_hull)) &&
+    (row?.paired_interval_hull === null ||
+      hasFiniteInterval(row?.paired_interval_hull)) &&
+    (row?.direct_interval_hull === null ||
+      hasFiniteInterval(row?.direct_interval_hull)) &&
+    finiteNonnegativeOrNull(row?.point_abs_upper) &&
+    finiteNonnegativeOrNull(row?.drift_abs_upper) &&
+    finiteNonnegativeOrNull(row?.split_triangle_abs_upper) &&
+    finiteNonnegativeOrNull(row?.paired_abs_upper) &&
+    finiteNonnegativeOrNull(row?.direct_abs_upper) &&
+    finiteNonnegativeOrNull(row?.paired_to_target_ratio) &&
+    finiteNonnegativeOrNull(row?.split_triangle_to_target_ratio) &&
+    finiteOrNull(row?.paired_true_stream_excess_abs_budget) &&
+    finiteOrNull(row?.paired_true_stream_slack_ratio) &&
+    finiteNonnegativeOrNull(row?.paired_to_direct_replay_relative_gap) &&
+    finiteNonnegativeOrNull(row?.paired_to_direct_abs_loss_factor) &&
+    finiteNonnegativeOrNull(row?.paired_to_split_triangle_ratio) &&
+    finiteOrNull(row?.paired_cancellation_fraction) &&
+    Number.isInteger(row?.subcell_count) &&
+    row.subcell_count > 0 &&
+    [
+      "positive-n38-producer-hybrid-split-stream-paired-segment-inside-headroom",
+      "positive-n38-producer-hybrid-split-stream-paired-segment-open",
+    ].includes(row?.segment_status) &&
+    row?.split_stream_policy ===
+      "candidate finite-polynomial paired replay only; no directed-rounded true-stream enclosure is certified";
+  const positiveN38ProducerHybridSplitStreamPairedReplayValid = (replay) =>
+    replay !== null &&
+    [
+      "positive-n38-producer-hybrid-split-stream-paired-replay-candidate-emitted",
+      "positive-n38-producer-hybrid-split-stream-paired-replay-open",
+      "positive-n38-producer-hybrid-split-stream-paired-replay-unavailable",
+    ].includes(replay?.status) &&
+    typeof replay?.reason === "string" &&
+    replay?.diagnostic_kind ===
+      "candidate-producer-hybrid-split-stream-paired-replay" &&
+    replay?.finite_data_scope ===
+      "hybrid-producer-partition-paired-point-drift-finite-polynomial-normal-form-only" &&
+    Number.isInteger(replay?.segment_count) &&
+    replay.segment_count >= 0 &&
+    Number.isInteger(replay?.residual_segment_count) &&
+    replay.residual_segment_count >= 0 &&
+    Number.isInteger(replay?.residual_derivative_segment_count) &&
+    replay.residual_derivative_segment_count >= 0 &&
+    Number.isInteger(replay?.paired_segment_inside_count) &&
+    replay.paired_segment_inside_count >= 0 &&
+    typeof replay?.all_segments_inside_paired_headroom === "boolean" &&
+    finiteNonnegativeOrNull(replay?.max_paired_to_target_ratio) &&
+    finiteNonnegativeOrNull(replay?.max_split_triangle_to_target_ratio) &&
+    finiteNonnegativeOrNull(
+      replay?.max_paired_to_direct_abs_loss_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_paired_to_direct_replay_relative_gap
+    ) &&
+    finiteOrNull(replay?.min_paired_slack_ratio) &&
+    finiteOrNull(replay?.min_paired_cancellation_fraction) &&
+    (replay?.controlling_segment === null ||
+      positiveN38ProducerHybridSplitStreamPairedSegmentValid(
+        replay.controlling_segment
+      )) &&
+    Array.isArray(replay?.segment_rows) &&
+    replay.segment_rows.every(
+      positiveN38ProducerHybridSplitStreamPairedSegmentValid
+    ) &&
+    typeof replay?.route_interpretation === "string" &&
+    replay?.split_stream_policy ===
+      "candidate finite-polynomial paired replay only; no directed-rounded true-stream enclosure is certified" &&
+    replay?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    replay?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+    replay?.claim_boundary?.certifies_s37_dependency_preserving_division ===
+      false &&
+    replay?.claim_boundary?.certifies_positive_source_covariance_collar ===
+      false &&
+    replay?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    replay?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    replay?.claim_boundary?.retained_branch === false;
+  const positiveN38ProducerSampleProvenanceValid = (provenance) =>
+    provenance === null ||
+    (Number.isInteger(provenance?.row_index) &&
+      provenance.row_index >= 0 &&
+      Number.isInteger(provenance?.comparison_row_index) &&
+      provenance.comparison_row_index >= 0 &&
+      (provenance?.source_subcover_row_index === null ||
+        (Number.isInteger(provenance?.source_subcover_row_index) &&
+          provenance.source_subcover_row_index >= 0)) &&
+      typeof provenance?.cell_id === "string" &&
+      (provenance?.branch === null || ["+", "-"].includes(provenance.branch)) &&
+      (provenance?.h_row_interval_count === null ||
+        (Number.isInteger(provenance?.h_row_interval_count) &&
+          provenance.h_row_interval_count > 0)));
+  const positiveN38RawTrueSourceTermIntervalsValid = (terms) =>
+    terms !== null &&
+    ["delta_squared_speed", "constant_minus_two", "sin_phi", "sin_delta"].every(
+      (term) => hasFiniteInterval(terms?.[term])
+    );
+  const positiveN38ProducerHybridRawTrueSourceSegmentValid = (row) =>
+    Number.isInteger(row?.row_index) &&
+    row.row_index >= 0 &&
+    typeof row?.cell_id === "string" &&
+    Number.isInteger(row?.segment_index) &&
+    row.segment_index >= 0 &&
+    [
+      "product-quotient-producer-complement",
+      "derivative-quotient-full-producer-interval",
+      "derivative-quotient-selected-node-collar",
+    ].includes(row?.quotient_kind) &&
+    [
+      "same-variable-direct-residual",
+      "same-variable-direct-residual-derivative",
+    ].includes(row?.proof_object_kind) &&
+    hasFiniteInterval(row?.segment_interval) &&
+    (row?.segment_speed_interval === null ||
+      hasFiniteInterval(row?.segment_speed_interval)) &&
+    positiveN38ProducerSampleProvenanceValid(
+      row?.producer_sample_provenance ?? null
+    ) &&
+    (row?.source_y_order === null ||
+      (Number.isInteger(row?.source_y_order) && row.source_y_order >= 0)) &&
+    finiteNonnegativeOrNull(row?.target_abs_upper) &&
+    (row?.raw_true_source_interval === null ||
+      hasFiniteInterval(row?.raw_true_source_interval)) &&
+    finiteNonnegativeOrNull(row?.raw_true_source_abs_upper) &&
+    (row?.direct_graph_interval === null ||
+      hasFiniteInterval(row?.direct_graph_interval)) &&
+    (row?.raw_true_residual_interval === null ||
+      hasFiniteInterval(row?.raw_true_residual_interval)) &&
+    finiteNonnegativeOrNull(row?.raw_true_residual_abs_upper) &&
+    finiteNonnegativeOrNull(
+      row?.raw_true_residual_value_to_product_target_ratio
+    ) &&
+    (row?.raw_true_source_term_intervals === undefined ||
+      positiveN38RawTrueSourceTermIntervalsValid(
+        row.raw_true_source_term_intervals
+      )) &&
+    (row?.raw_true_source_term_interval_sum === null ||
+      hasFiniteInterval(row?.raw_true_source_term_interval_sum)) &&
+    finiteNonnegativeOrNull(
+      row?.raw_true_source_term_triangle_abs_upper
+    ) &&
+    finiteNonnegativeOrNull(row?.term_sum_to_source_relative_gap) &&
+    finiteNonnegativeOrNull(
+      row?.term_triangle_to_source_abs_loss_factor
+    ) &&
+    finiteOrNull(row?.raw_true_source_cancellation_fraction) &&
+    [
+      "positive-n38-producer-hybrid-raw-true-source-product-segment-inside-target",
+      "positive-n38-producer-hybrid-raw-true-source-product-segment-open",
+      "positive-n38-producer-hybrid-raw-true-source-derivative-segment-value-only",
+      "positive-n38-producer-hybrid-raw-true-source-segment-unavailable",
+    ].includes(row?.target_comparison_status) &&
+    row?.true_source_policy ===
+      "candidate raw independent h-row source replay only; no dependency-preserving true-stream enclosure is certified";
+  const positiveN38ProducerHybridRawTrueSourceReplayValid = (replay) =>
+    replay !== null &&
+    [
+      "positive-n38-producer-hybrid-raw-true-source-replay-candidate-emitted",
+      "positive-n38-producer-hybrid-raw-true-source-replay-open",
+      "positive-n38-producer-hybrid-raw-true-source-replay-unavailable",
+    ].includes(replay?.status) &&
+    typeof replay?.reason === "string" &&
+    replay?.diagnostic_kind ===
+      "candidate-producer-hybrid-raw-true-source-replay" &&
+    replay?.finite_data_scope ===
+      "hybrid-producer-partition-raw-independent-h-row-h38-numerator-source-only" &&
+    Number.isInteger(replay?.segment_count) &&
+    replay.segment_count >= 0 &&
+    Number.isInteger(replay?.residual_value_segment_count) &&
+    replay.residual_value_segment_count >= 0 &&
+    Number.isInteger(replay?.derivative_value_only_segment_count) &&
+    replay.derivative_value_only_segment_count >= 0 &&
+    Number.isInteger(replay?.residual_value_inside_target_count) &&
+    replay.residual_value_inside_target_count >= 0 &&
+    typeof replay?.all_residual_value_segments_inside_target === "boolean" &&
+    finiteNonnegativeOrNull(
+      replay?.max_raw_true_residual_value_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(replay?.max_raw_true_source_abs_upper) &&
+    finiteNonnegativeOrNull(replay?.max_raw_true_residual_abs_upper) &&
+    finiteNonnegativeOrNull(
+      replay?.max_term_triangle_to_source_abs_loss_factor
+    ) &&
+    finiteOrNull(replay?.min_raw_true_source_cancellation_fraction) &&
+    finiteNonnegativeOrNull(replay?.max_term_sum_to_source_relative_gap) &&
+    (replay?.controlling_value_segment === null ||
+      positiveN38ProducerHybridRawTrueSourceSegmentValid(
+        replay.controlling_value_segment
+      )) &&
+    Array.isArray(replay?.segment_rows) &&
+    replay.segment_rows.every(
+      positiveN38ProducerHybridRawTrueSourceSegmentValid
+    ) &&
+    typeof replay?.target_comparison_policy === "string" &&
+    typeof replay?.route_interpretation === "string" &&
+    replay?.true_source_policy ===
+      "candidate raw independent h-row source replay only; no dependency-preserving true-stream enclosure is certified" &&
+    replay?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    replay?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+    replay?.claim_boundary?.certifies_s37_dependency_preserving_division ===
+      false &&
+    replay?.claim_boundary?.certifies_positive_source_covariance_collar ===
+      false &&
+    replay?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    replay?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    replay?.claim_boundary?.retained_branch === false;
+  const positiveN38ProducerHybridGraphIntervalResidualSourceSegmentValid = (
+    row
+  ) =>
+    row !== null &&
+    Number.isInteger(row?.row_index) &&
+    row.row_index >= 0 &&
+    typeof row?.cell_id === "string" &&
+    Number.isInteger(row?.segment_index) &&
+    row.segment_index >= 0 &&
+    [
+      "product-quotient-producer-complement",
+      "derivative-quotient-full-producer-interval",
+      "derivative-quotient-selected-node-collar",
+    ].includes(row?.quotient_kind) &&
+    [
+      "same-variable-direct-residual",
+      "same-variable-direct-residual-derivative",
+    ].includes(row?.proof_object_kind) &&
+    hasFiniteInterval(row?.segment_interval) &&
+    (row?.segment_speed_interval === null ||
+      hasFiniteInterval(row?.segment_speed_interval)) &&
+    positiveN38ProducerSampleProvenanceValid(
+      row?.producer_sample_provenance ?? null
+    ) &&
+    row?.provider_kind ===
+      "candidate-polynomial-h-row-graph-interval-residual-provider" &&
+    row?.provider_preserves_shared_xi_dependency === true &&
+    (row?.provider_polynomial_degree === undefined ||
+      row?.provider_polynomial_degree === null ||
+      (Number.isInteger(row.provider_polynomial_degree) &&
+        row.provider_polynomial_degree >= 0)) &&
+    (row?.provider_h_row_interval_count === undefined ||
+      (Number.isInteger(row.provider_h_row_interval_count) &&
+        row.provider_h_row_interval_count > 0)) &&
+    (row?.provider_residual_hull_count === undefined ||
+      (Number.isInteger(row.provider_residual_hull_count) &&
+        row.provider_residual_hull_count > 0)) &&
+    (row?.source_y_order === null ||
+      (Number.isInteger(row?.source_y_order) && row.source_y_order >= 0)) &&
+    finiteNonnegativeOrNull(row?.target_abs_upper) &&
+    (row?.graph_source_interval === null ||
+      hasFiniteInterval(row?.graph_source_interval)) &&
+    finiteNonnegativeOrNull(row?.graph_source_abs_upper) &&
+    (row?.direct_graph_interval === null ||
+      hasFiniteInterval(row?.direct_graph_interval)) &&
+    (row?.graph_residual_interval === null ||
+      hasFiniteInterval(row?.graph_residual_interval)) &&
+    finiteNonnegativeOrNull(row?.graph_residual_abs_upper) &&
+    finiteNonnegativeOrNull(
+      row?.graph_residual_value_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(row?.raw_residual_abs_upper) &&
+    finiteNonnegativeOrNull(
+      row?.raw_to_graph_residual_compression_factor
+    ) &&
+    (row?.graph_source_term_intervals === undefined ||
+      positiveN38RawTrueSourceTermIntervalsValid(
+        row.graph_source_term_intervals
+      )) &&
+    (row?.graph_source_term_interval_sum === null ||
+      hasFiniteInterval(row?.graph_source_term_interval_sum)) &&
+    finiteNonnegativeOrNull(
+      row?.graph_source_term_triangle_abs_upper
+    ) &&
+    finiteNonnegativeOrNull(row?.term_sum_to_source_relative_gap) &&
+    finiteOrNull(row?.graph_source_cancellation_fraction) &&
+    [
+      "positive-n38-producer-hybrid-graph-interval-residual-source-product-segment-inside-target",
+      "positive-n38-producer-hybrid-graph-interval-residual-source-product-segment-open",
+      "positive-n38-producer-hybrid-graph-interval-residual-source-derivative-segment-value-only",
+      "positive-n38-producer-hybrid-graph-interval-residual-source-segment-unavailable",
+    ].includes(row?.target_comparison_status) &&
+    row?.provider_dependency_policy ===
+      "preserves shared xi graph dependence but leaves per-h interval residual hulls independent; candidate-only" &&
+    row?.true_source_policy ===
+      "candidate graph-plus-interval-residual source replay only; no directed-rounded true-stream enclosure is certified";
+  const positiveN38ProducerHybridGraphIntervalResidualSourceReplayValid = (
+    replay
+  ) =>
+    replay !== null &&
+    [
+      "positive-n38-producer-hybrid-graph-interval-residual-source-replay-candidate-emitted",
+      "positive-n38-producer-hybrid-graph-interval-residual-source-replay-open",
+      "positive-n38-producer-hybrid-graph-interval-residual-source-replay-unavailable",
+    ].includes(replay?.status) &&
+    typeof replay?.reason === "string" &&
+    replay?.diagnostic_kind ===
+      "candidate-producer-hybrid-graph-interval-residual-source-replay" &&
+    replay?.finite_data_scope ===
+      "hybrid-producer-partition-polynomial-h-row-graph-plus-interval-residual-source-only" &&
+    replay?.provider_kind ===
+      "candidate-polynomial-h-row-graph-interval-residual-provider" &&
+    Number.isInteger(replay?.segment_count) &&
+    replay.segment_count >= 0 &&
+    Number.isInteger(replay?.residual_value_segment_count) &&
+    replay.residual_value_segment_count >= 0 &&
+    Number.isInteger(replay?.derivative_value_only_segment_count) &&
+    replay.derivative_value_only_segment_count >= 0 &&
+    Number.isInteger(replay?.residual_value_inside_target_count) &&
+    replay.residual_value_inside_target_count >= 0 &&
+    typeof replay?.all_residual_value_segments_inside_target === "boolean" &&
+    finiteNonnegativeOrNull(
+      replay?.max_graph_residual_value_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(replay?.max_graph_source_abs_upper) &&
+    finiteNonnegativeOrNull(replay?.max_graph_residual_abs_upper) &&
+    finiteNonnegativeOrNull(
+      replay?.max_raw_to_graph_residual_compression_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.min_raw_to_graph_residual_compression_factor
+    ) &&
+    finiteNonnegativeOrNull(replay?.max_term_sum_to_source_relative_gap) &&
+    finiteOrNull(replay?.min_graph_source_cancellation_fraction) &&
+    (replay?.controlling_value_segment === null ||
+      positiveN38ProducerHybridGraphIntervalResidualSourceSegmentValid(
+        replay.controlling_value_segment
+      )) &&
+    Array.isArray(replay?.segment_rows) &&
+    replay.segment_rows.every(
+      positiveN38ProducerHybridGraphIntervalResidualSourceSegmentValid
+    ) &&
+    typeof replay?.route_interpretation === "string" &&
+    replay?.provider_dependency_policy ===
+      "preserves shared xi graph dependence but leaves per-h interval residual hulls independent; candidate-only" &&
+    replay?.true_source_policy ===
+      "candidate graph-plus-interval-residual source replay only; no directed-rounded true-stream enclosure is certified" &&
+    replay?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    replay?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+    replay?.claim_boundary?.certifies_s37_dependency_preserving_division ===
+      false &&
+    replay?.claim_boundary?.certifies_positive_source_covariance_collar ===
+      false &&
+    replay?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    replay?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    replay?.claim_boundary?.retained_branch === false;
+  const positiveN38ProducerHybridH38CoordinateWorstSubcellSourceRowValid = (
+    row
+  ) =>
+    row === null ||
+    (Number.isInteger(row?.h38_coordinate_subcell_index) &&
+      row.h38_coordinate_subcell_index >= 0 &&
+      hasFiniteInterval(row?.h38_residual_coordinate_interval) &&
+      hasFiniteInterval(row?.source_interval) &&
+      finiteNonnegative(row?.source_abs_upper) &&
+      finiteNonnegativeOrNull(row?.term_sum_to_source_relative_gap) &&
+      finiteOrNull(row?.source_cancellation_fraction));
+  const positiveN38ProducerHybridSharedNonH38CoordinateCandidateRowValid = (
+    row
+  ) =>
+    row !== null &&
+    typeof row?.candidate_label === "string" &&
+    Array.isArray(row?.shared_non_h38_h_indexes) &&
+    row.shared_non_h38_h_indexes.every(
+      (index) => Number.isInteger(index) && index >= 0 && index < 38
+    ) &&
+    row?.shared_coordinate_source ===
+      "non-h38 selected residual coordinates use the same normalized interval as the h38 residual coordinate" &&
+    (row?.source_y_order === null ||
+      (Number.isInteger(row?.source_y_order) && row.source_y_order >= 0)) &&
+    hasFiniteInterval(row?.source_interval) &&
+    finiteNonnegative(row?.source_abs_upper) &&
+    hasFiniteInterval(row?.direct_graph_interval) &&
+    hasFiniteInterval(row?.residual_interval) &&
+    finiteNonnegative(row?.residual_abs_upper) &&
+    finiteNonnegativeOrNull(row?.residual_value_to_product_target_ratio) &&
+    finiteNonnegative(row?.h38_coordinate_residual_abs_upper_reference) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_to_candidate_residual_compression_factor
+    ) &&
+    hasFiniteInterval(row?.term_interval_sum) &&
+    finiteNonnegative(row?.term_triangle_abs_upper) &&
+    finiteNonnegativeOrNull(row?.term_sum_to_source_relative_gap) &&
+    finiteOrNull(row?.source_cancellation_fraction) &&
+    Number.isInteger(row?.h38_coordinate_subcell_count) &&
+    row.h38_coordinate_subcell_count >= 0 &&
+    [
+      "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-product-segment-inside-target",
+      "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-product-segment-open",
+      "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-derivative-segment-value-only",
+    ].includes(row?.target_comparison_status);
+  const positiveN38ProducerHybridSharedNonH38CoordinateCandidateSummaryValid = (
+    row
+  ) =>
+    row !== null &&
+    typeof row?.candidate_label === "string" &&
+    Array.isArray(row?.shared_non_h38_h_indexes) &&
+    row.shared_non_h38_h_indexes.every(
+      (index) => Number.isInteger(index) && index >= 0 && index < 38
+    ) &&
+    Number.isInteger(row?.segment_count) &&
+    row.segment_count >= 0 &&
+    Number.isInteger(row?.residual_value_segment_count) &&
+    row.residual_value_segment_count >= 0 &&
+    Number.isInteger(row?.residual_value_inside_target_count) &&
+    row.residual_value_inside_target_count >= 0 &&
+    typeof row?.all_residual_value_segments_inside_target === "boolean" &&
+    finiteNonnegativeOrNull(row?.max_residual_value_to_product_target_ratio) &&
+    finiteNonnegativeOrNull(row?.max_residual_abs_upper) &&
+    finiteNonnegativeOrNull(
+      row?.min_h38_coordinate_to_candidate_residual_compression_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.max_h38_coordinate_to_candidate_residual_compression_factor
+    ) &&
+    finiteOrNull(row?.min_source_cancellation_fraction) &&
+    finiteNonnegativeOrNull(row?.max_term_sum_to_source_relative_gap) &&
+    (row?.controlling_value_segment === null ||
+      (typeof row.controlling_value_segment?.cell_id === "string" &&
+        Number.isInteger(row.controlling_value_segment?.row_index) &&
+        row.controlling_value_segment.row_index >= 0 &&
+        Number.isInteger(row.controlling_value_segment?.segment_index) &&
+        row.controlling_value_segment.segment_index >= 0 &&
+        row.controlling_value_segment?.quotient_kind ===
+          "product-quotient-producer-complement" &&
+        hasFiniteInterval(row.controlling_value_segment?.segment_interval) &&
+        finiteNonnegative(row.controlling_value_segment?.target_abs_upper) &&
+        finiteNonnegative(row.controlling_value_segment?.source_abs_upper) &&
+        finiteNonnegative(row.controlling_value_segment?.residual_abs_upper) &&
+        finiteNonnegative(
+          row.controlling_value_segment
+            ?.residual_value_to_product_target_ratio
+        ) &&
+        finiteOrNull(
+          row.controlling_value_segment?.source_cancellation_fraction
+        ) &&
+        hasFiniteInterval(row.controlling_value_segment?.term_interval_sum) &&
+        finiteNonnegative(
+          row.controlling_value_segment?.term_triangle_abs_upper
+        ) &&
+        finiteNonnegativeOrNull(
+          row.controlling_value_segment?.term_sum_to_source_relative_gap
+        ))) &&
+    [
+      "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-candidate-inside-product-targets",
+      "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-candidate-open",
+    ].includes(row?.candidate_status);
+  const positiveN38ProducerHybridH38CoordinateSourceSegmentValid = (row) =>
+    row !== null &&
+    Number.isInteger(row?.row_index) &&
+    row.row_index >= 0 &&
+    typeof row?.cell_id === "string" &&
+    Number.isInteger(row?.segment_index) &&
+    row.segment_index >= 0 &&
+    [
+      "product-quotient-producer-complement",
+      "derivative-quotient-full-producer-interval",
+      "derivative-quotient-selected-node-collar",
+    ].includes(row?.quotient_kind) &&
+    [
+      "same-variable-direct-residual",
+      "same-variable-direct-residual-derivative",
+    ].includes(row?.proof_object_kind) &&
+    hasFiniteInterval(row?.segment_interval) &&
+    (row?.segment_speed_interval === null ||
+      hasFiniteInterval(row?.segment_speed_interval)) &&
+    (row?.h38_residual_coordinate_interval === null ||
+      hasFiniteInterval(row?.h38_residual_coordinate_interval)) &&
+    (row?.row_h38_residual_coordinate_interval === undefined ||
+      hasFiniteInterval(row?.row_h38_residual_coordinate_interval)) &&
+    positiveN38ProducerSampleProvenanceValid(
+      row?.producer_sample_provenance ?? null
+    ) &&
+    row?.provider_kind ===
+      "candidate-polynomial-h-row-graph-h38-residual-coordinate-provider" &&
+    row?.provider_preserves_shared_xi_dependency === true &&
+    row?.provider_preserves_h38_residual_coordinate === true &&
+    (row?.provider_freezes_non_h38_residuals_at_centers === undefined ||
+      row.provider_freezes_non_h38_residuals_at_centers === true) &&
+    (row?.provider_polynomial_degree === undefined ||
+      row?.provider_polynomial_degree === null ||
+      (Number.isInteger(row.provider_polynomial_degree) &&
+        row.provider_polynomial_degree >= 0)) &&
+    (row?.provider_h_row_interval_count === undefined ||
+      (Number.isInteger(row.provider_h_row_interval_count) &&
+        row.provider_h_row_interval_count > 0)) &&
+    (row?.source_y_order === null ||
+      (Number.isInteger(row?.source_y_order) && row.source_y_order >= 0)) &&
+    finiteNonnegativeOrNull(row?.target_abs_upper) &&
+    (row?.h38_coordinate_source_interval === null ||
+      hasFiniteInterval(row?.h38_coordinate_source_interval)) &&
+    finiteNonnegativeOrNull(row?.h38_coordinate_source_abs_upper) &&
+    (row?.direct_graph_interval === null ||
+      hasFiniteInterval(row?.direct_graph_interval)) &&
+    (row?.h38_coordinate_residual_interval === null ||
+      hasFiniteInterval(row?.h38_coordinate_residual_interval)) &&
+    finiteNonnegativeOrNull(row?.h38_coordinate_residual_abs_upper) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_residual_value_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(row?.raw_residual_abs_upper) &&
+    finiteNonnegativeOrNull(row?.graph_interval_residual_abs_upper) &&
+    finiteNonnegativeOrNull(
+      row?.raw_to_h38_coordinate_residual_compression_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.graph_interval_to_h38_coordinate_residual_compression_factor
+    ) &&
+    (row?.h38_coordinate_source_term_intervals === undefined ||
+      positiveN38RawTrueSourceTermIntervalsValid(
+        row.h38_coordinate_source_term_intervals
+      )) &&
+    (row?.h38_coordinate_source_term_interval_sum === null ||
+      hasFiniteInterval(row?.h38_coordinate_source_term_interval_sum)) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_source_term_triangle_abs_upper
+    ) &&
+    (row?.h38_coordinate_speed_constant_pair_interval === null ||
+      hasFiniteInterval(row?.h38_coordinate_speed_constant_pair_interval)) &&
+    (row?.h38_coordinate_sine_pair_interval === null ||
+      hasFiniteInterval(row?.h38_coordinate_sine_pair_interval)) &&
+    (row?.h38_coordinate_signed_pair_source_interval === null ||
+      hasFiniteInterval(row?.h38_coordinate_signed_pair_source_interval)) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_signed_pair_source_abs_upper
+    ) &&
+    (row?.h38_coordinate_signed_pair_residual_interval === null ||
+      hasFiniteInterval(row?.h38_coordinate_signed_pair_residual_interval)) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_signed_pair_residual_abs_upper
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_signed_pair_residual_value_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_signed_pair_source_to_full_source_relative_gap
+    ) &&
+    finiteOrNull(row?.h38_coordinate_signed_pair_cancellation_fraction) &&
+    finiteNonnegativeOrNull(row?.finite_direct_normal_form_abs_upper) &&
+    finiteNonnegativeOrNull(
+      row?.finite_direct_normal_form_to_product_target_ratio
+    ) &&
+    finiteOrNull(row?.finite_direct_normal_form_target_headroom_abs) &&
+    finiteOrNull(row?.finite_direct_normal_form_target_headroom_ratio) &&
+    finiteNonnegativeOrNull(row?.finite_paired_abs_upper) &&
+    finiteNonnegativeOrNull(row?.finite_paired_to_product_target_ratio) &&
+    finiteOrNull(row?.finite_paired_target_headroom_abs) &&
+    finiteOrNull(row?.finite_paired_target_headroom_ratio) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_residual_excess_over_product_target_abs
+    ) &&
+    finiteOrNull(row?.h38_coordinate_residual_interval_midpoint) &&
+    finiteNonnegativeOrNull(row?.h38_coordinate_residual_interval_radius) &&
+    [
+      "positive",
+      "negative",
+      "contains-zero",
+      null,
+      undefined,
+    ].includes(row?.h38_coordinate_residual_interval_sign) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_residual_center_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_residual_radius_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_residual_to_direct_normal_form_abs_loss_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      row
+        ?.h38_coordinate_residual_center_to_direct_normal_form_abs_loss_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_residual_to_paired_finite_abs_loss_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.product_segment_target_to_direct_normal_form_abs_factor
+    ) &&
+    (row?.product_denominator_interval === null ||
+      row?.product_denominator_interval === undefined ||
+      hasFiniteInterval(row.product_denominator_interval)) &&
+    finiteNonnegativeOrNull(row?.product_denominator_abs_lower) &&
+    finiteNonnegativeOrNull(row?.product_denominator_abs_upper) &&
+    finiteNonnegativeOrNull(
+      row?.required_denominator_abs_lower_for_h38_coordinate_residual
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.required_to_available_product_denominator_abs_factor
+    ) &&
+    typeof row?.denominator_partition_can_close_h38_coordinate_residual ===
+      "boolean" &&
+    typeof row?.source_provider_alignment_artifact_candidate === "boolean" &&
+    [
+      "positive-n38-product-segment-residual-inequality-h38-coordinate-inside-target",
+      "positive-n38-product-segment-residual-inequality-source-graph-offset-mismatch-candidate",
+      "positive-n38-product-segment-residual-inequality-source-provider-width-artifact-candidate",
+      "positive-n38-product-segment-residual-inequality-source-provider-alignment-artifact-candidate",
+      "positive-n38-product-segment-residual-inequality-direct-normal-form-or-target-open",
+      "positive-n38-product-segment-residual-inequality-paired-finite-replay-open",
+      "positive-n38-product-segment-residual-inequality-mixed-or-unclassified",
+      "positive-n38-product-segment-residual-inequality-derivative-segment-not-applicable",
+      "positive-n38-product-segment-residual-inequality-unavailable",
+      null,
+      undefined,
+    ].includes(row?.product_segment_residual_inequality_diagnosis) &&
+    (row?.direct_quartic_interval === null ||
+      row?.direct_quartic_interval === undefined ||
+      hasFiniteInterval(row.direct_quartic_interval)) &&
+    (row?.source_to_direct_quartic_offset_interval === null ||
+      row?.source_to_direct_quartic_offset_interval === undefined ||
+      hasFiniteInterval(row.source_to_direct_quartic_offset_interval)) &&
+    finiteNonnegativeOrNull(row?.source_to_direct_quartic_offset_abs_upper) &&
+    finiteNonnegativeOrNull(
+      row?.source_to_direct_quartic_offset_value_to_product_target_ratio
+    ) &&
+    finiteOrNull(row?.source_to_direct_quartic_offset_interval_midpoint) &&
+    finiteNonnegativeOrNull(
+      row?.source_to_direct_quartic_offset_interval_radius
+    ) &&
+    [
+      "positive",
+      "negative",
+      "contains-zero",
+      null,
+      undefined,
+    ].includes(row?.source_to_direct_quartic_offset_interval_sign) &&
+    finiteNonnegativeOrNull(
+      row?.source_to_direct_quartic_offset_center_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.source_to_direct_quartic_offset_radius_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.source_to_direct_quartic_offset_radius_to_center_ratio
+    ) &&
+    [
+      "positive-n38-source-to-direct-quartic-alignment-inside-target",
+      "positive-n38-source-to-direct-quartic-alignment-h38-coordinate-offset-persists",
+      "positive-n38-source-to-direct-quartic-alignment-open",
+      "positive-n38-source-to-direct-quartic-alignment-derivative-segment-not-applicable",
+      "positive-n38-source-to-direct-quartic-alignment-unavailable",
+      null,
+      undefined,
+    ].includes(row?.source_to_direct_quartic_alignment_status) &&
+    (row?.normalization_slope_interval === null ||
+      row?.normalization_slope_interval === undefined ||
+      hasFiniteInterval(row.normalization_slope_interval)) &&
+    finiteNonnegativeOrNull(row?.normalization_slope_abs_lower) &&
+    finiteNonnegativeOrNull(row?.normalization_slope_abs_upper) &&
+    finiteNonnegativeOrNull(row?.solved_product_target_abs_upper) &&
+    (row?.solved_source_interval === null ||
+      row?.solved_source_interval === undefined ||
+      hasFiniteInterval(row.solved_source_interval)) &&
+    (row?.solved_direct_quartic_interval === null ||
+      row?.solved_direct_quartic_interval === undefined ||
+      hasFiniteInterval(row.solved_direct_quartic_interval)) &&
+    (row?.solved_source_to_solved_direct_quartic_offset_interval === null ||
+      row?.solved_source_to_solved_direct_quartic_offset_interval ===
+        undefined ||
+      hasFiniteInterval(
+        row.solved_source_to_solved_direct_quartic_offset_interval
+      )) &&
+    finiteNonnegativeOrNull(
+      row?.solved_source_to_solved_direct_quartic_offset_abs_upper
+    ) &&
+    finiteNonnegativeOrNull(
+      row
+        ?.solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(row?.solve_normalization_invariance_ratio) &&
+    (row?.source_solved_to_direct_quartic_crossed_offset_interval === null ||
+      row?.source_solved_to_direct_quartic_crossed_offset_interval ===
+        undefined ||
+      hasFiniteInterval(
+        row.source_solved_to_direct_quartic_crossed_offset_interval
+      )) &&
+    finiteNonnegativeOrNull(
+      row?.source_solved_to_direct_quartic_crossed_offset_to_product_target_ratio
+    ) &&
+    (row?.source_to_solved_direct_quartic_crossed_offset_interval === null ||
+      row?.source_to_solved_direct_quartic_crossed_offset_interval ===
+        undefined ||
+      hasFiniteInterval(
+        row.source_to_solved_direct_quartic_crossed_offset_interval
+      )) &&
+    finiteNonnegativeOrNull(
+      row?.source_to_solved_direct_quartic_crossed_offset_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.crossed_solve_normalization_best_offset_to_product_target_ratio
+    ) &&
+    [
+      "positive-n38-source-direct-normalization-mismatch-ruled-out",
+      "positive-n38-source-direct-normalization-crossed-solve-convention-candidate",
+      "positive-n38-source-direct-normalization-open",
+      "positive-n38-source-direct-normalization-derivative-segment-not-applicable",
+      "positive-n38-source-direct-normalization-unavailable",
+      null,
+      undefined,
+    ].includes(row?.source_direct_normalization_status) &&
+    (row?.h38_coordinate_component_drift_to_direct_graph_gap_interval ===
+      null ||
+      row?.h38_coordinate_component_drift_to_direct_graph_gap_interval ===
+        undefined ||
+      hasFiniteInterval(
+        row.h38_coordinate_component_drift_to_direct_graph_gap_interval
+      )) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_component_drift_to_direct_graph_gap_abs_upper
+    ) &&
+    (row?.component_drift_solved_gap_interval === null ||
+      row?.component_drift_solved_gap_interval === undefined ||
+      hasFiniteInterval(row.component_drift_solved_gap_interval)) &&
+    finiteNonnegativeOrNull(row?.component_drift_solved_gap_abs_upper) &&
+    finiteNonnegativeOrNull(
+      row?.component_drift_solved_gap_to_solved_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.component_drift_solve_normalization_invariance_ratio
+    ) &&
+    [
+      "positive-n38-component-drift-s37-division-inside-target",
+      "positive-n38-component-drift-s37-division-open",
+      "positive-n38-component-drift-s37-division-derivative-segment-not-applicable",
+      "positive-n38-component-drift-s37-division-unavailable",
+      null,
+      undefined,
+    ].includes(row?.component_drift_s37_division_status) &&
+    (row?.full_residual_vector_source_y_order === null ||
+      row?.full_residual_vector_source_y_order === undefined ||
+      Number.isInteger(row.full_residual_vector_source_y_order)) &&
+    (row?.full_residual_vector_source_interval === null ||
+      row?.full_residual_vector_source_interval === undefined ||
+      hasFiniteInterval(row.full_residual_vector_source_interval)) &&
+    finiteNonnegativeOrNull(row?.full_residual_vector_source_abs_upper) &&
+    (row?.full_residual_vector_residual_interval === null ||
+      row?.full_residual_vector_residual_interval === undefined ||
+      hasFiniteInterval(row.full_residual_vector_residual_interval)) &&
+    finiteNonnegativeOrNull(row?.full_residual_vector_residual_abs_upper) &&
+    (row?.full_residual_vector_direct_quartic_offset_interval === null ||
+      row?.full_residual_vector_direct_quartic_offset_interval === undefined ||
+      hasFiniteInterval(
+        row.full_residual_vector_direct_quartic_offset_interval
+      )) &&
+    finiteNonnegativeOrNull(
+      row?.full_residual_vector_direct_quartic_offset_abs_upper
+    ) &&
+    finiteNonnegativeOrNull(
+      row
+        ?.full_residual_vector_direct_quartic_offset_value_to_product_target_ratio
+    ) &&
+    finiteOrNull(
+      row?.full_residual_vector_direct_quartic_offset_interval_midpoint
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.full_residual_vector_direct_quartic_offset_interval_radius
+    ) &&
+    [
+      "positive",
+      "negative",
+      "contains-zero",
+      null,
+      undefined,
+    ].includes(
+      row?.full_residual_vector_direct_quartic_offset_interval_sign
+    ) &&
+    finiteNonnegativeOrNull(
+      row
+        ?.full_residual_vector_direct_quartic_offset_center_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row
+        ?.full_residual_vector_direct_quartic_offset_radius_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.full_residual_vector_offset_to_h38_coordinate_offset_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_to_full_residual_vector_offset_compression_factor
+    ) &&
+    (row?.full_residual_vector_source_term_intervals === null ||
+      row?.full_residual_vector_source_term_intervals === undefined ||
+      positiveN38RawTrueSourceTermIntervalsValid(
+        row.full_residual_vector_source_term_intervals
+      )) &&
+    (row?.full_residual_vector_source_term_interval_sum === null ||
+      row?.full_residual_vector_source_term_interval_sum === undefined ||
+      hasFiniteInterval(row.full_residual_vector_source_term_interval_sum)) &&
+    finiteNonnegativeOrNull(
+      row?.full_residual_vector_source_term_triangle_abs_upper
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.full_residual_vector_term_sum_to_source_relative_gap
+    ) &&
+    finiteOrNull(row?.full_residual_vector_source_cancellation_fraction) &&
+    [
+      "positive-n38-full-residual-vector-source-alignment-inside-target",
+      "positive-n38-full-residual-vector-source-alignment-compresses-h38-coordinate-offset",
+      "positive-n38-full-residual-vector-source-alignment-worse-than-h38-coordinate",
+      "positive-n38-full-residual-vector-source-alignment-structural-offset-persists",
+      "positive-n38-full-residual-vector-source-alignment-open",
+      "positive-n38-full-residual-vector-source-alignment-derivative-segment-not-applicable",
+      "positive-n38-full-residual-vector-source-alignment-unavailable",
+      null,
+      undefined,
+    ].includes(row?.full_residual_vector_alignment_status) &&
+    finiteNonnegativeOrNull(row?.term_sum_to_source_relative_gap) &&
+    finiteOrNull(row?.h38_coordinate_source_cancellation_fraction) &&
+    (row?.h38_coordinate_subcell_count === undefined ||
+      (Number.isInteger(row.h38_coordinate_subcell_count) &&
+        row.h38_coordinate_subcell_count >= 0)) &&
+    finiteNonnegativeOrNull(
+      row?.max_h38_coordinate_subcell_term_sum_to_source_relative_gap
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.max_h38_coordinate_subcell_source_abs_upper
+    ) &&
+    finiteOrNull(
+      row?.min_h38_coordinate_subcell_source_cancellation_fraction
+    ) &&
+    positiveN38ProducerHybridH38CoordinateWorstSubcellSourceRowValid(
+      row?.worst_h38_coordinate_subcell_source_row ?? null
+    ) &&
+    (row?.shared_non_h38_coordinate_candidate_rows === undefined ||
+      (Array.isArray(row.shared_non_h38_coordinate_candidate_rows) &&
+        row.shared_non_h38_coordinate_candidate_rows.every(
+          positiveN38ProducerHybridSharedNonH38CoordinateCandidateRowValid
+        ))) &&
+    [
+      "positive-n38-producer-hybrid-h38-coordinate-source-product-segment-inside-target",
+      "positive-n38-producer-hybrid-h38-coordinate-source-product-segment-open",
+      "positive-n38-producer-hybrid-h38-coordinate-source-derivative-segment-value-only",
+      "positive-n38-producer-hybrid-h38-coordinate-source-segment-unavailable",
+    ].includes(row?.target_comparison_status) &&
+    row?.provider_dependency_policy ===
+      "preserves shared xi graph dependence and the h38 residual coordinate; freezes non-h38 residuals at interval centers; candidate-only directional diagnostic" &&
+    row?.true_source_policy ===
+      "candidate h38-coordinate source replay only; no directed-rounded true-stream enclosure is certified";
+  const positiveN38ProducerHybridH38CoordinateSourceReplayValid = (replay) =>
+    replay !== null &&
+    [
+      "positive-n38-producer-hybrid-h38-coordinate-source-replay-candidate-emitted",
+      "positive-n38-producer-hybrid-h38-coordinate-source-replay-open",
+      "positive-n38-producer-hybrid-h38-coordinate-source-replay-unavailable",
+    ].includes(replay?.status) &&
+    typeof replay?.reason === "string" &&
+    replay?.diagnostic_kind ===
+      "candidate-producer-hybrid-h38-coordinate-source-replay" &&
+    replay?.finite_data_scope ===
+      "hybrid-producer-partition-polynomial-h-row-graph-plus-h38-residual-coordinate-source-only" &&
+    replay?.provider_kind ===
+      "candidate-polynomial-h-row-graph-h38-residual-coordinate-provider" &&
+    Number.isInteger(replay?.segment_count) &&
+    replay.segment_count >= 0 &&
+    Number.isInteger(replay?.residual_value_segment_count) &&
+    replay.residual_value_segment_count >= 0 &&
+    Number.isInteger(replay?.derivative_value_only_segment_count) &&
+    replay.derivative_value_only_segment_count >= 0 &&
+    Number.isInteger(replay?.residual_value_inside_target_count) &&
+    replay.residual_value_inside_target_count >= 0 &&
+    typeof replay?.all_residual_value_segments_inside_target === "boolean" &&
+    finiteNonnegativeOrNull(
+      replay?.max_h38_coordinate_residual_value_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(replay?.max_h38_coordinate_source_abs_upper) &&
+    finiteNonnegativeOrNull(replay?.max_h38_coordinate_residual_abs_upper) &&
+    finiteNonnegativeOrNull(
+      replay?.max_raw_to_h38_coordinate_residual_compression_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.min_raw_to_h38_coordinate_residual_compression_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_graph_interval_to_h38_coordinate_residual_compression_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.min_graph_interval_to_h38_coordinate_residual_compression_factor
+    ) &&
+    Number.isInteger(replay?.h38_coordinate_subcell_count) &&
+    replay.h38_coordinate_subcell_count >= 0 &&
+    finiteNonnegativeOrNull(replay?.max_h38_coordinate_segment_subcell_count) &&
+    finiteNonnegativeOrNull(
+      replay?.max_h38_coordinate_subcell_term_sum_to_source_relative_gap
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_h38_coordinate_subcell_source_abs_upper
+    ) &&
+    finiteOrNull(
+      replay?.min_h38_coordinate_subcell_source_cancellation_fraction
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_h38_coordinate_signed_pair_residual_value_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_h38_coordinate_signed_pair_source_to_full_source_relative_gap
+    ) &&
+    finiteOrNull(
+      replay?.min_h38_coordinate_signed_pair_cancellation_fraction
+    ) &&
+    [
+      "positive-n38-product-segment-residual-inequality-diagnosis-inside-target",
+      "positive-n38-product-segment-residual-inequality-diagnosis-source-graph-offset-mismatch-candidate",
+      "positive-n38-product-segment-residual-inequality-diagnosis-source-provider-width-artifact-candidate",
+      "positive-n38-product-segment-residual-inequality-diagnosis-source-provider-alignment-artifact-candidate",
+      "positive-n38-product-segment-residual-inequality-diagnosis-direct-normal-form-or-target-open",
+      "positive-n38-product-segment-residual-inequality-diagnosis-paired-finite-replay-open",
+      "positive-n38-product-segment-residual-inequality-diagnosis-mixed-or-unclassified",
+      "positive-n38-product-segment-residual-inequality-diagnosis-unavailable",
+    ].includes(replay?.product_segment_residual_inequality_diagnosis_status) &&
+    typeof replay?.product_segment_residual_inequality_diagnosis ===
+      "string" &&
+    [
+      "positive-n38-source-to-direct-quartic-alignment-diagnosis-inside-target",
+      "positive-n38-source-to-direct-quartic-alignment-diagnosis-h38-coordinate-offset-persists",
+      "positive-n38-source-to-direct-quartic-alignment-diagnosis-open",
+      "positive-n38-source-to-direct-quartic-alignment-diagnosis-unavailable",
+    ].includes(replay?.source_to_direct_quartic_alignment_status) &&
+    typeof replay?.source_to_direct_quartic_alignment_diagnosis ===
+      "string" &&
+    finiteNonnegativeOrNull(
+      replay?.max_source_to_direct_quartic_offset_value_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_source_to_direct_quartic_offset_center_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_source_to_direct_quartic_offset_radius_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_source_to_direct_quartic_offset_radius_to_center_ratio
+    ) &&
+    [
+      "positive-n38-source-direct-normalization-diagnosis-inside-target",
+      "positive-n38-source-direct-normalization-diagnosis-mismatch-ruled-out",
+      "positive-n38-source-direct-normalization-diagnosis-crossed-solve-convention-candidate",
+      "positive-n38-source-direct-normalization-diagnosis-open",
+      "positive-n38-source-direct-normalization-diagnosis-unavailable",
+    ].includes(replay?.source_direct_normalization_diagnosis_status) &&
+    typeof replay?.source_direct_normalization_diagnosis === "string" &&
+    finiteNonnegativeOrNull(
+      replay
+        ?.max_solved_source_to_solved_direct_quartic_offset_to_solved_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_solve_normalization_invariance_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.min_solve_normalization_invariance_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.min_crossed_solve_normalization_offset_to_product_target_ratio
+    ) &&
+    (replay?.controlling_source_direct_normalization_segment === null ||
+      positiveN38ProducerHybridH38CoordinateSourceSegmentValid(
+        replay.controlling_source_direct_normalization_segment
+      )) &&
+    [
+      "positive-n38-source-pair-direct-graph-normal-form-diagnosis-inside-target",
+      "positive-n38-source-pair-direct-graph-normal-form-diagnosis-gap-is-direct-graph-offset",
+      "positive-n38-source-pair-direct-graph-normal-form-diagnosis-open",
+      "positive-n38-source-pair-direct-graph-normal-form-diagnosis-unavailable",
+    ].includes(
+      replay?.source_pair_direct_graph_normal_form_diagnosis_status
+    ) &&
+    typeof replay?.source_pair_direct_graph_normal_form_diagnosis ===
+      "string" &&
+    finiteNonnegativeOrNull(
+      replay
+        ?.max_h38_coordinate_signed_pair_direct_graph_offset_to_direct_quartic_offset_relative_gap
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_finite_direct_normal_form_to_signed_pair_direct_graph_offset_ratio
+    ) &&
+    finiteOrNull(
+      replay?.min_h38_coordinate_source_pair_opposed_cancellation_fraction
+    ) &&
+    [
+      "positive-n38-source-pair-component-graph-diagnosis-inside-target",
+      "positive-n38-source-pair-component-graph-diagnosis-component-graph-closes-gap",
+      "positive-n38-source-pair-component-graph-diagnosis-interval-center-drift-offset",
+      "positive-n38-source-pair-component-graph-diagnosis-source-pair-variation-open",
+      "positive-n38-source-pair-component-graph-diagnosis-open",
+      "positive-n38-source-pair-component-graph-diagnosis-unavailable",
+    ].includes(replay?.source_pair_component_graph_diagnosis_status) &&
+    typeof replay?.source_pair_component_graph_diagnosis === "string" &&
+    finiteNonnegativeOrNull(
+      replay
+        ?.max_h38_coordinate_signed_pair_to_component_graph_offset_to_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay
+        ?.max_h38_coordinate_component_graph_to_direct_graph_gap_to_target_ratio
+    ) &&
+    [
+      "positive-n38-component-drift-s37-division-diagnosis-inside-target",
+      "positive-n38-component-drift-s37-division-diagnosis-open",
+      "positive-n38-component-drift-s37-division-diagnosis-unavailable",
+    ].includes(replay?.component_drift_s37_division_diagnosis_status) &&
+    typeof replay?.component_drift_s37_division_diagnosis === "string" &&
+    finiteNonnegativeOrNull(
+      replay?.max_component_drift_solved_gap_to_solved_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_component_drift_solve_normalization_invariance_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.min_component_drift_solve_normalization_invariance_ratio
+    ) &&
+    (replay?.controlling_component_drift_s37_division_segment === null ||
+      positiveN38ProducerHybridH38CoordinateSourceSegmentValid(
+        replay.controlling_component_drift_s37_division_segment
+      )) &&
+    (replay?.controlling_source_pair_component_graph_segment === null ||
+      positiveN38ProducerHybridH38CoordinateSourceSegmentValid(
+        replay.controlling_source_pair_component_graph_segment
+      )) &&
+    (replay?.controlling_source_pair_direct_graph_normal_form_segment ===
+      null ||
+      positiveN38ProducerHybridH38CoordinateSourceSegmentValid(
+        replay.controlling_source_pair_direct_graph_normal_form_segment
+      )) &&
+    replay?.full_residual_vector_provider_kind ===
+      "candidate-polynomial-h-row-full-residual-vector-xi-graph-provider" &&
+    typeof replay?.full_residual_vector_provider_available === "boolean" &&
+    (replay?.full_residual_vector_polynomial_degree === null ||
+      (Number.isInteger(replay?.full_residual_vector_polynomial_degree) &&
+        replay.full_residual_vector_polynomial_degree >= 0)) &&
+    Number.isInteger(replay?.full_residual_vector_sample_count) &&
+    replay.full_residual_vector_sample_count >= 0 &&
+    Number.isInteger(replay?.full_residual_vector_h_count) &&
+    replay.full_residual_vector_h_count >= 0 &&
+    finiteNonnegativeOrNull(
+      replay?.full_residual_vector_max_sample_replay_error
+    ) &&
+    [
+      "positive-n38-full-residual-vector-source-alignment-diagnosis-inside-target",
+      "positive-n38-full-residual-vector-source-alignment-diagnosis-compresses-h38-coordinate-offset",
+      "positive-n38-full-residual-vector-source-alignment-diagnosis-worse-than-h38-coordinate",
+      "positive-n38-full-residual-vector-source-alignment-diagnosis-structural-offset-persists",
+      "positive-n38-full-residual-vector-source-alignment-diagnosis-open",
+      "positive-n38-full-residual-vector-source-alignment-diagnosis-unavailable",
+    ].includes(replay?.full_residual_vector_alignment_status) &&
+    typeof replay?.full_residual_vector_alignment_diagnosis === "string" &&
+    finiteNonnegativeOrNull(
+      replay
+        ?.max_full_residual_vector_direct_quartic_offset_value_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay
+        ?.max_full_residual_vector_direct_quartic_offset_center_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay
+        ?.max_full_residual_vector_direct_quartic_offset_radius_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_full_residual_vector_offset_to_h38_coordinate_offset_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay
+        ?.max_h38_coordinate_to_full_residual_vector_offset_compression_factor
+    ) &&
+    (replay?.controlling_full_residual_vector_segment === null ||
+      positiveN38ProducerHybridH38CoordinateSourceSegmentValid(
+        replay.controlling_full_residual_vector_segment
+      )) &&
+    finiteNonnegativeOrNull(
+      replay?.max_h38_coordinate_residual_excess_over_product_target_abs
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_h38_coordinate_residual_center_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_h38_coordinate_residual_radius_to_product_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_h38_coordinate_residual_to_direct_normal_form_abs_loss_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      replay
+        ?.max_h38_coordinate_residual_center_to_direct_normal_form_abs_loss_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_h38_coordinate_residual_to_paired_finite_abs_loss_factor
+    ) &&
+    finiteOrNull(replay?.min_direct_normal_form_target_headroom_ratio) &&
+    finiteOrNull(replay?.min_paired_finite_target_headroom_ratio) &&
+    finiteNonnegativeOrNull(
+      replay?.max_product_segment_target_to_direct_normal_form_abs_factor
+    ) &&
+    finiteNonnegativeOrNull(
+      replay
+        ?.max_required_denominator_abs_lower_for_h38_coordinate_residual
+    ) &&
+    finiteNonnegativeOrNull(
+      replay?.max_required_to_available_product_denominator_abs_factor
+    ) &&
+    typeof replay
+      ?.product_denominator_partition_can_close_all_h38_coordinate_residuals ===
+      "boolean" &&
+    Number.isInteger(
+      replay?.shared_non_h38_coordinate_candidate_count
+    ) &&
+    replay.shared_non_h38_coordinate_candidate_count >= 0 &&
+    Array.isArray(replay?.shared_non_h38_coordinate_candidate_summaries) &&
+    replay.shared_non_h38_coordinate_candidate_summaries.length ===
+      replay.shared_non_h38_coordinate_candidate_count &&
+    replay.shared_non_h38_coordinate_candidate_summaries.every(
+      positiveN38ProducerHybridSharedNonH38CoordinateCandidateSummaryValid
+    ) &&
+    (replay?.best_shared_non_h38_coordinate_candidate === null ||
+      positiveN38ProducerHybridSharedNonH38CoordinateCandidateSummaryValid(
+        replay.best_shared_non_h38_coordinate_candidate
+      )) &&
+    finiteNonnegativeOrNull(replay?.max_term_sum_to_source_relative_gap) &&
+    finiteOrNull(replay?.min_h38_coordinate_source_cancellation_fraction) &&
+    (replay?.controlling_value_segment === null ||
+      positiveN38ProducerHybridH38CoordinateSourceSegmentValid(
+        replay.controlling_value_segment
+      )) &&
+    Array.isArray(replay?.segment_rows) &&
+    replay.segment_rows.every(
+      positiveN38ProducerHybridH38CoordinateSourceSegmentValid
+    ) &&
+    typeof replay?.route_interpretation === "string" &&
+    replay?.provider_dependency_policy ===
+      "preserves shared xi graph dependence and the h38 residual coordinate; freezes non-h38 residuals at interval centers; candidate-only directional diagnostic" &&
+    replay?.true_source_policy ===
+      "candidate h38-coordinate source replay only; no directed-rounded true-stream enclosure is certified" &&
+    replay?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    replay?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+    replay?.claim_boundary?.certifies_s37_dependency_preserving_division ===
+      false &&
+    replay?.claim_boundary?.certifies_positive_source_covariance_collar ===
+      false &&
+    replay?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    replay?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    replay?.claim_boundary?.retained_branch === false;
   const positiveN38SameDomainDerivativeProviderTargetValid = (target) =>
     target !== null &&
     [
@@ -30014,6 +36764,20 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
     ) &&
     positiveN38ProducerHybridTrueStreamExcessBudgetValid(
       target?.candidate_producer_hybrid_true_stream_excess_budget ?? null
+    ) &&
+    positiveN38ProducerHybridSplitStreamPairedReplayValid(
+      target?.candidate_producer_hybrid_split_stream_paired_replay ?? null
+    ) &&
+    positiveN38ProducerHybridRawTrueSourceReplayValid(
+      target?.candidate_producer_hybrid_raw_true_source_replay ?? null
+    ) &&
+    positiveN38ProducerHybridGraphIntervalResidualSourceReplayValid(
+      target
+        ?.candidate_producer_hybrid_graph_interval_residual_source_replay ??
+        null
+    ) &&
+    positiveN38ProducerHybridH38CoordinateSourceReplayValid(
+      target?.candidate_producer_hybrid_h38_coordinate_source_replay ?? null
     ) &&
     (target?.raw_interval_route_status === null ||
       [
