@@ -26,6 +26,7 @@ import {
   buildH39PostZetaPressureSourceIsolationDiagnosticCandidate,
   buildH39H38Y44CoefficientDependenceDiagnosticCandidate,
   buildH39H38Y44N38TerminalEndpointBridgeDiagnosticCandidate,
+  buildH39H38Y44SourceCovarianceDiagnosticCandidate,
   buildH39H38Y44SignedAffineTargetEnvelopeDiagnosticCandidate,
   buildH39PolynomialHRowGraphIntervalResidualDiagnosticCandidate,
   buildH39PolynomialHRowGraphResidualDiagnosticCandidate,
@@ -53,6 +54,7 @@ import {
   validateH39PostZetaPressureSourceIsolationDiagnostic,
   validateH39H38Y44CoefficientDependenceDiagnostic,
   validateH39H38Y44N38TerminalEndpointBridgeDiagnostic,
+  validateH39H38Y44SourceCovarianceDiagnostic,
   validateH39H38Y44SignedAffineTargetEnvelopeDiagnostic,
   validateH39PolynomialHRowGraphIntervalResidualDiagnostic,
   validateH39PolynomialHRowGraphResidualDiagnostic,
@@ -4004,6 +4006,79 @@ test("h39 h38 y44 coefficient dependence fits signed source coefficient", () => 
   );
   assert.equal(
     diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
+  const diagnostic =
+    buildH39H38Y44SourceCovarianceDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      sourceStencilSubcellCount: 5,
+      comparisonStencilIndex: 0,
+      analysisRowOffset: 2,
+      polynomialDegree: 2,
+      h38NoiseSamples: [-1, 0, 1],
+      outerRadius: 0.001,
+      shiftedIndex: 1,
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38Y44SourceCovarianceDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-y44-source-covariance-diagnostic-candidate-emitted"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.equal(diagnostic.comparison_row_count, 5);
+  assert.equal(diagnostic.analysis_row_offset, 2);
+  assert.equal(diagnostic.analysis_cell_id, "speed.2.first-y");
+  assert.equal(diagnostic.sample_replays.length, 3);
+  assert.equal(diagnostic.source_affine_zero_replay.sample_index, -1);
+  assert.ok(Number.isFinite(diagnostic.source_affine_zero_coordinate));
+  assert.ok(Number.isFinite(diagnostic.source_zero_cancellation_ratio));
+  assert.ok(Number.isFinite(diagnostic.source_zero_term_sum_relative_gap));
+  assert.ok(diagnostic.source_zero_term_abs_midpoint_sum > 0);
+  assert.deepEqual(
+    diagnostic.term_covariance_rows.map((row) => row.term).sort(),
+    ["delta_squared_speed", "sin_delta", "sin_phi"]
+  );
+  assert.equal(diagnostic.term_pair_cancellation_rows.length, 3);
+  assert.ok(diagnostic.dominant_source_zero_term);
+  assert.ok(diagnostic.dominant_affine_slope_term);
+  assert.ok(diagnostic.strongest_pair_cancellation);
+  assert.ok(
+    [
+      "source-affine-zero-preserves-strong-term-cancellation",
+      "source-affine-zero-dominated-by-pairwise-term-cancellation",
+      "source-affine-zero-needs-higher-order-covariance-proof",
+    ].includes(diagnostic.source_covariance_diagnosis)
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_h38_y44_source_covariance,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_source_level_affine_zero,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
     false
   );
   assert.equal(diagnostic.claim_boundary.retained_branch, false);

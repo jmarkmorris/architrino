@@ -1319,6 +1319,22 @@ partition, higher-degree graph, or exact factorization that reduces
 $|N_{38}(\xi)-q(\xi)|$ on the `speed.28.first-y` producer window before the
 H39 collar replay is attempted.
 
+The latest H39/y44 source-covariance diagnostic changes the perspective again.
+On the same `speed.28.first-y` row, the affine-zero replay in the normalized
+$h_{38}$ residual coordinate occurs at
+$u=-2.6856315562445987\times10^{-8}$ and gives source replay pressure
+$3.901789350700001\times10^7$. The signed source coefficient midpoint is
+$3.70293115625\times10^{10}$, but the absolute midpoint mass of
+`delta_squared_speed`, `sin_phi`, and `sin_delta` is
+$4.584378986495\times10^{16}$, so the live cancellation ratio is only
+$8.077279751866864\times10^{-7}$. The source-term reconstruction gap is
+$8.384450786732948\times10^{-13}$, and the strongest pair cancellation is the
+`sin_phi`/`sin_delta` pair with cancellation fraction
+$0.8121258516345928$. This means the next proof should not only squeeze the
+independent $N_{38}$ residual box. It should also certify the source-level
+covariance of the three signed H39/y44 terms before applying absolute Cauchy
+or interval majorants.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

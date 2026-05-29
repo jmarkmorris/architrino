@@ -97,6 +97,9 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SIGNED_AFFINE_TARGET_E
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_N38_TERMINAL_ENDPOINT_BRIDGE_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-y44-n38-terminal-endpoint-bridge-diagnostic/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SOURCE_COVARIANCE_DIAGNOSTIC_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-y44-source-covariance-diagnostic/v1";
+
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_EXPRESSION_N38_TAYLOR_M4_REFINEMENT_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-expression-n38-taylor-m4-refinement-diagnostic/v1";
 
@@ -10199,6 +10202,413 @@ export function buildH39H38Y44CoefficientDependenceDiagnosticCandidate({
   };
 }
 
+function h39H38Y44TermCovarianceRows({
+  termProfiles,
+  sourceZeroCoordinate,
+  sourceZeroReplay,
+}) {
+  const sourceZeroTerms = new Map(
+    (sourceZeroReplay?.row_pressure?.terms ?? []).map((term) => [
+      term.term,
+      term,
+    ])
+  );
+  const rows = termProfiles.map((profile) => {
+    const affineCoefficients = profile.affine_fit.coefficients;
+    const quadraticCoefficients = profile.quadratic_fit.coefficients;
+    const affineValueAtZero = Number.isFinite(Number(sourceZeroCoordinate))
+      ? polynomialValue(affineCoefficients, sourceZeroCoordinate)
+      : null;
+    const quadraticValueAtZero = Number.isFinite(Number(sourceZeroCoordinate))
+      ? polynomialValue(quadraticCoefficients, sourceZeroCoordinate)
+      : null;
+    const replayTerm = sourceZeroTerms.get(profile.term);
+    const replayInterval = replayTerm?.coefficient ?? [0, 0];
+    const replayMidpoint = intervalMidpoint(replayInterval);
+    return {
+      term: profile.term,
+      affine_intercept: affineCoefficients[0],
+      affine_slope: affineCoefficients[1],
+      affine_value_at_source_zero: affineValueAtZero,
+      quadratic_value_at_source_zero: quadraticValueAtZero,
+      source_zero_replay_coefficient_interval: replayInterval,
+      source_zero_replay_coefficient_midpoint: replayMidpoint,
+      source_zero_replay_coefficient_abs_upper:
+        intervalAbsUpper(replayInterval),
+      source_zero_replay_pressure_contribution:
+        replayTerm?.pressure_contribution ?? 0,
+      affine_to_quadratic_value_gap_at_source_zero:
+        affineValueAtZero !== null && quadraticValueAtZero !== null
+          ? Math.abs(affineValueAtZero - quadraticValueAtZero)
+          : null,
+      affine_fit_max_abs_midpoint_residual:
+        profile.affine_fit.max_abs_midpoint_residual,
+      quadratic_fit_max_abs_midpoint_residual:
+        profile.quadratic_fit.max_abs_midpoint_residual,
+    };
+  });
+  const slopeAbsSum = rows.reduce(
+    (sum, row) => sum + Math.abs(Number(row.affine_slope)),
+    0
+  );
+  const sourceZeroAbsMidpointSum = rows.reduce(
+    (sum, row) =>
+      sum + Math.abs(Number(row.source_zero_replay_coefficient_midpoint)),
+    0
+  );
+  return rows.map((row) => ({
+    ...row,
+    affine_slope_abs_share:
+      slopeAbsSum > 0 ? Math.abs(Number(row.affine_slope)) / slopeAbsSum : null,
+    source_zero_abs_midpoint_share:
+      sourceZeroAbsMidpointSum > 0
+        ? Math.abs(Number(row.source_zero_replay_coefficient_midpoint)) /
+          sourceZeroAbsMidpointSum
+        : null,
+  }));
+}
+
+function h39H38Y44TermPairCancellationRows(termRows) {
+  const pairs = [];
+  for (let leftIndex = 0; leftIndex < termRows.length; leftIndex += 1) {
+    for (
+      let rightIndex = leftIndex + 1;
+      rightIndex < termRows.length;
+      rightIndex += 1
+    ) {
+      const left = termRows[leftIndex];
+      const right = termRows[rightIndex];
+      const leftMidpoint = Number(
+        left.source_zero_replay_coefficient_midpoint
+      );
+      const rightMidpoint = Number(
+        right.source_zero_replay_coefficient_midpoint
+      );
+      const pairMidpoint = leftMidpoint + rightMidpoint;
+      const pairAbsMidpointSum =
+        Math.abs(leftMidpoint) + Math.abs(rightMidpoint);
+      pairs.push({
+        terms: [left.term, right.term],
+        signed_pair_midpoint: pairMidpoint,
+        abs_pair_midpoint_sum: pairAbsMidpointSum,
+        cancellation_fraction:
+          pairAbsMidpointSum > 0
+            ? 1 - Math.abs(pairMidpoint) / pairAbsMidpointSum
+            : null,
+      });
+    }
+  }
+  return pairs;
+}
+
+export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
+  targetSpeedInterval = [3.02156, 3.02156007813],
+  branch = "-",
+  rootSubdivisions = 100,
+  outerRadius = 0.001,
+  shiftedIndex = 1,
+  seriesOrder = 60,
+  sourceStencilSubcellCount = 32,
+  comparisonStencilIndex = 27,
+  analysisRowOffset = 1,
+  polynomialDegree = 2,
+  h38NoiseSamples = [-1, 0, 1],
+  progressCallback = null,
+} = {}) {
+  const startedAt = Date.now();
+  const emitProgress =
+    typeof progressCallback === "function"
+      ? (progress) =>
+          progressCallback({
+            diagnostic: "h39-h38-y44-source-covariance",
+            elapsed_ms: Date.now() - startedAt,
+            ...progress,
+          })
+      : null;
+  const resolvedTargetSpeedInterval = numericInterval(
+    "targetSpeedInterval",
+    targetSpeedInterval
+  );
+  const resolvedSourceStencilSubcellCount = assertFinitePositiveInteger(
+    "sourceStencilSubcellCount",
+    sourceStencilSubcellCount
+  );
+  if (resolvedSourceStencilSubcellCount < 5) {
+    throw new Error("sourceStencilSubcellCount must be at least 5");
+  }
+  const resolvedComparisonStencilIndex = Number(comparisonStencilIndex);
+  if (
+    !Number.isInteger(resolvedComparisonStencilIndex) ||
+    resolvedComparisonStencilIndex < 0 ||
+    resolvedComparisonStencilIndex > resolvedSourceStencilSubcellCount - 5
+  ) {
+    throw new Error("comparisonStencilIndex must leave five stencil samples");
+  }
+  const resolvedAnalysisRowOffset = Number(analysisRowOffset);
+  if (
+    !Number.isInteger(resolvedAnalysisRowOffset) ||
+    resolvedAnalysisRowOffset < 0 ||
+    resolvedAnalysisRowOffset > 4
+  ) {
+    throw new Error("analysisRowOffset must select one row from the five-row comparison window");
+  }
+  const resolvedPolynomialDegree = assertFinitePositiveInteger(
+    "polynomialDegree",
+    polynomialDegree
+  );
+  if (resolvedPolynomialDegree > 3) {
+    throw new Error("polynomialDegree must be at most 3");
+  }
+  const resolvedOuterRadius = assertFinitePositiveNumber(
+    "outerRadius",
+    outerRadius
+  );
+  const resolvedShiftedIndex = assertFinitePositiveInteger(
+    "shiftedIndex",
+    shiftedIndex
+  );
+  const resolvedSeriesOrder = assertFinitePositiveInteger(
+    "seriesOrder",
+    seriesOrder
+  );
+  const resolvedH38NoiseSamples = h38NoiseSamples.map((sample) => {
+    const resolved = Number(sample);
+    if (!Number.isFinite(resolved) || resolved < -1 || resolved > 1) {
+      throw new Error("h38NoiseSamples must be finite values in [-1,1]");
+    }
+    return resolved;
+  });
+  if (resolvedH38NoiseSamples.length < 3) {
+    throw new Error("h38NoiseSamples must contain at least three values");
+  }
+  emitProgress?.({
+    stage: "source-covariance-setup-start",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    analysis_row_offset: resolvedAnalysisRowOffset,
+  });
+  const setup = buildH39H38Y44CoefficientReplaySetup({
+    targetSpeedInterval: resolvedTargetSpeedInterval,
+    branch,
+    rootSubdivisions,
+    seriesOrder: resolvedSeriesOrder,
+    sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+    comparisonStencilIndex: resolvedComparisonStencilIndex,
+    polynomialDegree: resolvedPolynomialDegree,
+  });
+  const analysisRow = setup.comparisonRows[resolvedAnalysisRowOffset];
+  const analysisBranchRow = branchRowFor(analysisRow, branch);
+  const analysisCell = cellFromCertificateRow(analysisRow);
+  const noiseCoordinate = speedMidpointXiCoordinate({
+    row: analysisRow,
+    targetSpeedInterval: resolvedTargetSpeedInterval,
+  });
+  emitProgress?.({
+    stage: "source-covariance-analysis-row-ready",
+    cell_id: analysisRow.cell_id,
+    speed_interval: analysisRow.speed_interval,
+    xi_coordinate: noiseCoordinate,
+  });
+  const sampleReplays = resolvedH38NoiseSamples.map(
+    (h38Noise, sampleIndex) => {
+      emitProgress?.({
+        stage: "source-covariance-sample-start",
+        sample_index: sampleIndex,
+        h38_noise_coordinate: h38Noise,
+      });
+      const sample = h39H38Y44CoefficientSampleReplay({
+        context: setup.context,
+        analysisCell,
+        analysisBranchRow,
+        branch,
+        transportProfile: setup.transportProfile,
+        residualProfile: setup.residualProfile,
+        h38ResidualProfile: setup.h38ResidualProfile,
+        noiseCoordinate,
+        outerRadius: resolvedOuterRadius,
+        shiftedIndex: resolvedShiftedIndex,
+        h38Noise,
+        sampleIndex,
+      });
+      emitProgress?.({
+        stage: "source-covariance-sample-complete",
+        sample_index: sampleIndex,
+        h38_noise_coordinate: h38Noise,
+        source_coefficient_midpoint: sample.source_coefficient_midpoint,
+      });
+      return sample;
+    }
+  );
+  const sourceAffineFit = coefficientMidpointProfileFit({
+    samples: sampleReplays,
+    coefficientKey: "source_coefficient_interval",
+    degree: 1,
+  });
+  const sourceQuadraticFit = coefficientMidpointProfileFit({
+    samples: sampleReplays,
+    coefficientKey: "source_coefficient_interval",
+    degree: 2,
+  });
+  const sourceAffineSlope = Number(sourceAffineFit.coefficients[1]);
+  const sourceAffineZeroCoordinate =
+    Math.abs(sourceAffineSlope) > 1e-300
+      ? -Number(sourceAffineFit.coefficients[0]) / sourceAffineSlope
+      : null;
+  const termProfiles = ["delta_squared_speed", "sin_phi", "sin_delta"].map(
+    (termName) =>
+      coefficientDependenceTermProfile({
+        samples: sampleReplays,
+        termName,
+      })
+  );
+  const sourceZeroReplay = Number.isFinite(Number(sourceAffineZeroCoordinate))
+    ? h39H38Y44CoefficientSampleReplay({
+        context: setup.context,
+        analysisCell,
+        analysisBranchRow,
+        branch,
+        transportProfile: setup.transportProfile,
+        residualProfile: setup.residualProfile,
+        h38ResidualProfile: setup.h38ResidualProfile,
+        noiseCoordinate,
+        outerRadius: resolvedOuterRadius,
+        shiftedIndex: resolvedShiftedIndex,
+        h38Noise: sourceAffineZeroCoordinate,
+        sampleIndex: -1,
+      })
+    : null;
+  const termRows = h39H38Y44TermCovarianceRows({
+    termProfiles,
+    sourceZeroCoordinate: sourceAffineZeroCoordinate,
+    sourceZeroReplay,
+  });
+  const pairRows = h39H38Y44TermPairCancellationRows(termRows);
+  const sourceZeroTermMidpointSum = termRows.reduce(
+    (sum, row) => sum + Number(row.source_zero_replay_coefficient_midpoint),
+    0
+  );
+  const sourceZeroTermAbsMidpointSum = termRows.reduce(
+    (sum, row) =>
+      sum + Math.abs(Number(row.source_zero_replay_coefficient_midpoint)),
+    0
+  );
+  const sourceZeroCoefficientMidpoint = Number(
+    sourceZeroReplay?.source_coefficient_midpoint ?? 0
+  );
+  const sourceZeroCancellationRatio =
+    finitePositive(sourceZeroTermAbsMidpointSum)
+      ? Math.abs(sourceZeroCoefficientMidpoint) /
+        sourceZeroTermAbsMidpointSum
+      : null;
+  const sourceZeroTermSumRelativeGap =
+    finitePositive(sourceZeroTermAbsMidpointSum)
+      ? Math.abs(sourceZeroTermMidpointSum - sourceZeroCoefficientMidpoint) /
+        sourceZeroTermAbsMidpointSum
+      : null;
+  const dominantZeroTerm = termRows.reduce((best, row) =>
+    Math.abs(Number(row.source_zero_replay_coefficient_midpoint)) >
+    Math.abs(Number(best?.source_zero_replay_coefficient_midpoint ?? 0))
+      ? row
+      : best,
+  null);
+  const dominantSlopeTerm = termRows.reduce((best, row) =>
+    Math.abs(Number(row.affine_slope)) >
+    Math.abs(Number(best?.affine_slope ?? 0))
+      ? row
+      : best,
+  null);
+  const strongestPairCancellation = pairRows.reduce((best, row) =>
+    Number(row.cancellation_fraction ?? -1) >
+    Number(best?.cancellation_fraction ?? -1)
+      ? row
+      : best,
+  null);
+  const sourceAffineToQuadraticResidualRatio =
+    sourceQuadraticFit.max_abs_midpoint_residual > 0
+      ? sourceAffineFit.max_abs_midpoint_residual /
+        sourceQuadraticFit.max_abs_midpoint_residual
+      : null;
+  const covarianceDiagnosis =
+    sourceZeroCancellationRatio !== null &&
+    sourceZeroCancellationRatio < 1e-6
+      ? "source-affine-zero-preserves-strong-term-cancellation"
+      : strongestPairCancellation?.cancellation_fraction > 0.5
+        ? "source-affine-zero-dominated-by-pairwise-term-cancellation"
+        : "source-affine-zero-needs-higher-order-covariance-proof";
+  emitProgress?.({
+    stage: "source-covariance-summary-ready",
+    cell_id: analysisRow.cell_id,
+    source_affine_zero_coordinate: sourceAffineZeroCoordinate,
+    source_zero_cancellation_ratio: sourceZeroCancellationRatio,
+    covariance_diagnosis: covarianceDiagnosis,
+  });
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SOURCE_COVARIANCE_DIAGNOSTIC_SCHEMA,
+    status: "h39-h38-y44-source-covariance-diagnostic-candidate-emitted",
+    evaluation_level: "candidate-h39-h38-y44-source-covariance-diagnostic",
+    target_speed_interval: resolvedTargetSpeedInterval,
+    branch,
+    shifted_index: resolvedShiftedIndex,
+    y_order:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+      resolvedShiftedIndex,
+    outer_radius: resolvedOuterRadius,
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    comparison_row_count: setup.comparisonRows.length,
+    analysis_row_offset: resolvedAnalysisRowOffset,
+    analysis_cell_id: analysisRow.cell_id,
+    analysis_speed_interval: analysisRow.speed_interval,
+    analysis_xi_coordinate: noiseCoordinate,
+    polynomial_degree: resolvedPolynomialDegree,
+    h38_residual_interval:
+      setup.h38ResidualProfile.residual_interval_hull,
+    h38_residual_abs_upper: setup.h38ResidualProfile.max_abs_residual,
+    h38_noise_samples: resolvedH38NoiseSamples,
+    sample_replays: sampleReplays,
+    source_coefficient_affine_fit: sourceAffineFit,
+    source_coefficient_quadratic_fit: sourceQuadraticFit,
+    source_affine_to_quadratic_residual_ratio:
+      sourceAffineToQuadraticResidualRatio,
+    source_affine_zero_coordinate: sourceAffineZeroCoordinate,
+    source_affine_zero_inside_sample_domain:
+      sourceAffineZeroCoordinate !== null &&
+      sourceAffineZeroCoordinate >= -1 &&
+      sourceAffineZeroCoordinate <= 1,
+    source_affine_zero_replay: sourceZeroReplay,
+    source_zero_coefficient_midpoint: sourceZeroCoefficientMidpoint,
+    source_zero_term_midpoint_sum: sourceZeroTermMidpointSum,
+    source_zero_term_abs_midpoint_sum: sourceZeroTermAbsMidpointSum,
+    source_zero_cancellation_ratio: sourceZeroCancellationRatio,
+    source_zero_term_sum_relative_gap: sourceZeroTermSumRelativeGap,
+    term_coefficient_dependence_profiles: termProfiles,
+    term_covariance_rows: termRows,
+    term_pair_cancellation_rows: pairRows,
+    dominant_source_zero_term: dominantZeroTerm,
+    dominant_affine_slope_term: dominantSlopeTerm,
+    strongest_pair_cancellation: strongestPairCancellation,
+    source_covariance_diagnosis: covarianceDiagnosis,
+    candidate_certificate_route:
+      covarianceDiagnosis ===
+      "source-affine-zero-preserves-strong-term-cancellation"
+        ? "Promote the next proof attempt to a directed-rounded source-level affine-zero certificate that keeps the three nonconstant source terms signed until after their cancellation is evaluated."
+        : covarianceDiagnosis ===
+          "source-affine-zero-dominated-by-pairwise-term-cancellation"
+          ? "Search for a two-term normal form for the dominant signed pair before applying absolute Cauchy bounds."
+          : "Add a higher-order covariance coordinate or source-level identity; independent source-term width control is not expected to close the y44 collar.",
+    claim_boundary: {
+      certifies_standard_h38_cover: false,
+      certifies_h38_y44_source_covariance: false,
+      certifies_source_level_affine_zero: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
 function h39H38Y44AffineTargetEnvelopeEntry({
   label,
   targetPressure,
@@ -17763,6 +18173,221 @@ export function validateH39H38Y44CoefficientDependenceDiagnostic(
     diagnostic?.claim_boundary?.retained_branch !== false
   ) {
     errors.push("claim boundary must keep h38 coefficient dependence and shifted closure open");
+  }
+  return errors;
+}
+
+export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
+  const errors = [];
+  const requiredTerms = new Set([
+    "delta_squared_speed",
+    "sin_phi",
+    "sin_delta",
+  ]);
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[1]) > Number(interval[0]);
+  const hasFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1]));
+  const fitValid = (fit, degree) =>
+    fit?.polynomial_degree === degree &&
+    Array.isArray(fit?.coefficients) &&
+    fit.coefficients.length === degree + 1 &&
+    fit.coefficients.every((coefficient) =>
+      Number.isFinite(Number(coefficient))
+    ) &&
+    fit?.coefficient_order ===
+      "ascending powers of h38 residual coordinate u" &&
+    Number.isFinite(Number(fit?.max_abs_midpoint_residual)) &&
+    Array.isArray(fit?.residuals) &&
+    fit.residuals.length === diagnostic?.sample_replays?.length;
+  const replayValid = (sample, { boundedNoise = true } = {}) =>
+    Number.isInteger(sample?.sample_index) &&
+    Number.isFinite(Number(sample?.h38_noise_coordinate)) &&
+    (!boundedNoise ||
+      (Number(sample.h38_noise_coordinate) >= -1 &&
+        Number(sample.h38_noise_coordinate) <= 1)) &&
+    Number.isFinite(Number(sample?.h38_value)) &&
+    hasFiniteInterval(sample?.source_coefficient_interval) &&
+    Number.isFinite(Number(sample?.source_coefficient_midpoint)) &&
+    finiteNonnegative(sample?.source_coefficient_width) &&
+    finiteNonnegative(sample?.source_coefficient_abs_upper) &&
+    finitePositive(sample?.pressure) &&
+    finitePositive(sample?.row_pressure?.source_pressure_contribution) &&
+    Array.isArray(sample?.row_pressure?.terms);
+  const profileValid = (profile) =>
+    requiredTerms.has(profile?.term) &&
+    fitValid(profile?.affine_fit, 1) &&
+    fitValid(profile?.quadratic_fit, 2);
+  const termRowValid = (row) =>
+    requiredTerms.has(row?.term) &&
+    Number.isFinite(Number(row?.affine_intercept)) &&
+    Number.isFinite(Number(row?.affine_slope)) &&
+    Number.isFinite(Number(row?.affine_value_at_source_zero)) &&
+    Number.isFinite(Number(row?.quadratic_value_at_source_zero)) &&
+    hasFiniteInterval(row?.source_zero_replay_coefficient_interval) &&
+    Number.isFinite(
+      Number(row?.source_zero_replay_coefficient_midpoint)
+    ) &&
+    finiteNonnegative(row?.source_zero_replay_coefficient_abs_upper) &&
+    finiteNonnegative(row?.source_zero_replay_pressure_contribution) &&
+    finiteNonnegative(row?.affine_to_quadratic_value_gap_at_source_zero) &&
+    finiteNonnegative(row?.affine_fit_max_abs_midpoint_residual) &&
+    finiteNonnegative(row?.quadratic_fit_max_abs_midpoint_residual) &&
+    (row?.affine_slope_abs_share === null ||
+      (finiteNonnegative(row?.affine_slope_abs_share) &&
+        Number(row.affine_slope_abs_share) <= 1 + 1e-12)) &&
+    (row?.source_zero_abs_midpoint_share === null ||
+      (finiteNonnegative(row?.source_zero_abs_midpoint_share) &&
+        Number(row.source_zero_abs_midpoint_share) <= 1 + 1e-12));
+  const pairRowValid = (row) =>
+    Array.isArray(row?.terms) &&
+    row.terms.length === 2 &&
+    row.terms.every((term) => requiredTerms.has(term)) &&
+    Number.isFinite(Number(row?.signed_pair_midpoint)) &&
+    finiteNonnegative(row?.abs_pair_midpoint_sum) &&
+    (row?.cancellation_fraction === null ||
+      (finiteNonnegative(row?.cancellation_fraction) &&
+        Number(row.cancellation_fraction) <= 1 + 1e-12));
+  if (
+    diagnostic?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SOURCE_COVARIANCE_DIAGNOSTIC_SCHEMA
+  ) {
+    errors.push("schema must match h39 h38 y44 source covariance diagnostic");
+  }
+  if (
+    diagnostic?.status !==
+    "h39-h38-y44-source-covariance-diagnostic-candidate-emitted"
+  ) {
+    errors.push("status must identify a candidate source covariance diagnostic");
+  }
+  if (
+    diagnostic?.evaluation_level !==
+    "candidate-h39-h38-y44-source-covariance-diagnostic"
+  ) {
+    errors.push("evaluation level must identify candidate source covariance");
+  }
+  if (
+    !Number.isInteger(diagnostic?.source_stencil_subcell_count) ||
+    diagnostic.source_stencil_subcell_count < 5 ||
+    !Number.isInteger(diagnostic?.comparison_stencil_index) ||
+    diagnostic.comparison_stencil_index < 0 ||
+    diagnostic.comparison_stencil_index >
+      diagnostic.source_stencil_subcell_count - 5 ||
+    diagnostic?.comparison_row_count !== 5 ||
+    !Number.isInteger(diagnostic?.analysis_row_offset) ||
+    diagnostic.analysis_row_offset < 0 ||
+    diagnostic.analysis_row_offset > 4 ||
+    !Number.isInteger(diagnostic?.polynomial_degree) ||
+    diagnostic.polynomial_degree < 1 ||
+    diagnostic.polynomial_degree > 3 ||
+    !Number.isFinite(Number(diagnostic?.analysis_xi_coordinate)) ||
+    !hasOrderedFiniteInterval(diagnostic?.h38_residual_interval)
+  ) {
+    errors.push("source covariance parameters must describe one five-row local graph window");
+  }
+  if (
+    !Number.isInteger(diagnostic?.shifted_index) ||
+    diagnostic.shifted_index !== 1 ||
+    diagnostic?.y_order !==
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+        diagnostic.shifted_index
+  ) {
+    errors.push("shifted index must be 1 and y order must be consistent");
+  }
+  if (
+    !Array.isArray(diagnostic?.h38_noise_samples) ||
+    diagnostic.h38_noise_samples.length < 3 ||
+    !diagnostic.h38_noise_samples.every(
+      (sample) =>
+        Number.isFinite(Number(sample)) &&
+        Number(sample) >= -1 &&
+        Number(sample) <= 1
+    ) ||
+    !Array.isArray(diagnostic?.sample_replays) ||
+    diagnostic.sample_replays.length !== diagnostic.h38_noise_samples.length ||
+    !diagnostic.sample_replays.every((sample) =>
+      replayValid(sample, { boundedNoise: true })
+    )
+  ) {
+    errors.push("source covariance samples must be finite bounded h38 replays");
+  }
+  if (
+    !fitValid(diagnostic?.source_coefficient_affine_fit, 1) ||
+    !fitValid(diagnostic?.source_coefficient_quadratic_fit, 2) ||
+    (diagnostic?.source_affine_to_quadratic_residual_ratio !== null &&
+      !finiteNonnegative(
+        diagnostic?.source_affine_to_quadratic_residual_ratio
+      )) ||
+    !Number.isFinite(Number(diagnostic?.source_affine_zero_coordinate)) ||
+    typeof diagnostic?.source_affine_zero_inside_sample_domain !==
+      "boolean" ||
+    !replayValid(diagnostic?.source_affine_zero_replay, {
+      boundedNoise: false,
+    })
+  ) {
+    errors.push("source covariance must include finite source fits and affine-zero replay");
+  }
+  if (
+    !Number.isFinite(Number(diagnostic?.source_zero_coefficient_midpoint)) ||
+    !Number.isFinite(Number(diagnostic?.source_zero_term_midpoint_sum)) ||
+    !finitePositive(diagnostic?.source_zero_term_abs_midpoint_sum) ||
+    !finiteNonnegative(diagnostic?.source_zero_cancellation_ratio) ||
+    !finiteNonnegative(diagnostic?.source_zero_term_sum_relative_gap)
+  ) {
+    errors.push("source-zero signed term summary must be finite and nonnegative");
+  }
+  if (
+    !Array.isArray(diagnostic?.term_coefficient_dependence_profiles) ||
+    diagnostic.term_coefficient_dependence_profiles.length !==
+      requiredTerms.size ||
+    !diagnostic.term_coefficient_dependence_profiles.every(profileValid) ||
+    !Array.isArray(diagnostic?.term_covariance_rows) ||
+    diagnostic.term_covariance_rows.length !== requiredTerms.size ||
+    !diagnostic.term_covariance_rows.every(termRowValid) ||
+    !Array.isArray(diagnostic?.term_pair_cancellation_rows) ||
+    diagnostic.term_pair_cancellation_rows.length !== 3 ||
+    !diagnostic.term_pair_cancellation_rows.every(pairRowValid)
+  ) {
+    errors.push("source covariance must carry finite source-term covariance and pair-cancellation rows");
+  }
+  if (
+    !termRowValid(diagnostic?.dominant_source_zero_term) ||
+    !termRowValid(diagnostic?.dominant_affine_slope_term) ||
+    !pairRowValid(diagnostic?.strongest_pair_cancellation)
+  ) {
+    errors.push("source covariance must identify dominant term and pair witnesses");
+  }
+  if (
+    ![
+      "source-affine-zero-preserves-strong-term-cancellation",
+      "source-affine-zero-dominated-by-pairwise-term-cancellation",
+      "source-affine-zero-needs-higher-order-covariance-proof",
+    ].includes(diagnostic?.source_covariance_diagnosis) ||
+    typeof diagnostic?.candidate_certificate_route !== "string"
+  ) {
+    errors.push("source covariance diagnosis must classify the candidate route");
+  }
+  if (
+    diagnostic?.claim_boundary?.certifies_standard_h38_cover !== false ||
+    diagnostic?.claim_boundary?.certifies_h38_y44_source_covariance !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_source_level_affine_zero !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    diagnostic?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_continuous_polydisc_primitives !==
+      false ||
+    diagnostic?.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("claim boundary must keep source covariance and shifted closure open");
   }
   return errors;
 }

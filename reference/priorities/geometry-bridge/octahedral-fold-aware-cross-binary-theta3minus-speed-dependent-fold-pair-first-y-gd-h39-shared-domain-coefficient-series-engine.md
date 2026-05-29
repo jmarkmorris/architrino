@@ -86,6 +86,61 @@ only a sharper terminal-row width enclosure. It must expose a coefficient-level
 zero, signed cancellation, or covariance-preserving replay before the width
 majorant is applied to the shifted $R_{\varepsilon,43}$ coefficient.
 
+## H39/y44 Source Covariance Diagnostic
+
+The follow-on executable diagnostic,
+`buildH39H38Y44SourceCovarianceDiagnosticCandidate`, evaluates the live
+shifted-index-$1$ source coefficient at the same `speed.28.first-y` row while
+keeping the three nonconstant source terms signed:
+
+$$
+\delta^2/\nu^2,\qquad \sin\phi,\qquad \sin\delta.
+$$
+
+It samples the normalized $h_{38}$ residual coordinate $u$, fits the signed
+source coefficient, replays the affine-zero coordinate, and then reports the
+signed term covariance at that replay point. On the live $32$-subcell,
+comparison-index-$27$, row-offset-$1$ target, the affine zero is
+
+$$
+u=-2.6856315562445987\times10^{-8},
+$$
+
+which lies inside the sampled residual-coordinate domain. At that point the
+source coefficient midpoint is only
+
+$$
+3.70293115625\times10^{10},
+$$
+
+while the absolute midpoint mass of the three signed source terms is
+
+$$
+4.584378986495\times10^{16}.
+$$
+
+The cancellation ratio is therefore
+
+$$
+8.077279751866864\times10^{-7},
+$$
+
+with source-term replay gap
+$8.384450786732948\times10^{-13}$. The dominant signed source-zero term is
+`sin_phi`, the dominant affine slope term is `sin_delta`, and the strongest
+pair cancellation is the `sin_phi`/`sin_delta` pair, whose cancellation
+fraction is $0.8121258516345928$.
+
+This changes the immediate H39 closure route. The remaining wall is not just a
+large geometric residual in $N_{38}$ or an independent $h_{38}$ interval box.
+It is also a source-level covariance problem: applying absolute bounds to
+`delta_squared_speed`, `sin_phi`, and `sin_delta` before their signed
+cancellation destroys about six orders of magnitude at the live affine-zero
+replay. The next certificate should therefore keep these three terms in one
+directed-rounded source-level normal form, or prove an equivalent covariance
+identity, before converting the result into a shifted
+$R_{\varepsilon,43}$ outer bound.
+
 ## Coefficient-Series Construction
 
 The exported series context builds the same fold-pair chart used by the h38
