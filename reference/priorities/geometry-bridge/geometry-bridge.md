@@ -176,6 +176,12 @@ for which $h^{ij}\delta\gamma_{ij}=-6\Psi_{\mathrm{sp}}/c_0^2$. Thus $\Psi_{\mat
 
    Latest H39 coordinate-source envelope refinement: the evaluator now accepts an ordered list of same-domain coordinate source envelope candidates and selects the first candidate whose coordinate-Cauchy source certificate computes, recording failed wider candidates as envelope-selection diagnostics rather than as a successful source handoff. A full h38-cover probe shows that the overflow was an envelope-size obstruction, not a missing branch witness: uniform radii $R_R=R_J=0.01$, $R_{J,\mathrm{num}}=0.02$, and $R_G=0.01$ validate with `source_certificate_obstruction_count=0` and an input-ready primitive backend. The same probe also exposes the sharper closure blocker. At $R_R=0.01,0.02,0.05,0.1,0.15$, source certification succeeds but the h39 primitive profile vector remains scale-open; at $R_R\ge0.2$ the coordinate $\sinh$ majorant overflows before certification. The live mathematical target is therefore no longer just "avoid overflow." It is to replace the unshifted raw-$F$ source Cauchy pressure with a shifted $R_{\varepsilon,43}=F_\varepsilon/y^{43}$ source envelope that preserves the certified cancellations of the first $43$ powers before the Cauchy tail is applied.
 
+   Latest H39 affine-$\zeta$ provider-bridge refinement: the H39 reducer now has a candidate diagnostic that feeds scalar terminal shared-residual endpoints through the actual h-row provider boundary while preserving the H39 predecessor $h_{38}$ row. On the live positive-$\xi$ row with $8$ $\zeta$ slices, the endpoint provider path validates and lowers shifted-prefix pressure from about $8.97\times10^{23}$ to about $5.97\times10^{23}$, a factor of $1.50$. This proves the endpoint route is executable at the provider boundary, but it also proves that the remaining H39 pressure is not solved by the terminal affine-$\zeta$ endpoint proof alone. The next blocker is a broader coupled producer-image provider or an H39 source-level normal form that also controls the preserved $h_{38}$ and nonterminal-row influence before Cauchy bounding.
+
+   Latest H39 post-$\zeta$ source-isolation refinement: `buildH39PostZetaPressureSourceIsolationDiagnosticCandidate` now runs same-domain family and single-$h_i$ active/frozen replays on the worst scalar endpoint. The live $32$-subcell, comparison-index $27$, $8$-slice probe validates with no diagnostic errors and localizes the remaining pressure to the preserved H39 predecessor row $h_{38}$: the active-only $h_{38}$ replay carries $0.9780999920257446$ of the full endpoint pressure, freezing only $h_{38}$ lowers pressure by $19.552742837593392\times$, and cell/slope midpoint replays are essentially neutral. A candidate replay that also carries $h_{38}$ through the graph-$\xi$, affine-$\zeta$ endpoint provider lowers the max pressure from $1.1212403496094081\times10^{21}$ to $1.168303610133882\times10^{20}$, about $9.60\times$, but still does not certify shifted $R_{\varepsilon,43}$ closure. The next blocker is now a directed-rounded H38 predecessor-row producer-image enclosure or an H39 source normal form for the $h_{38}$-driven `sin_delta` contribution.
+
+   Latest H39 $h_{38}$ coefficient-dependence refinement: `buildH39H38Y44CoefficientDependenceDiagnosticCandidate` now varies only the normalized $h_{38}$ residual coordinate $u\in[-1,1]$, re-solves the H39 center at each sample, and fits the signed shifted-index-$1$ source coefficient. The live row `speed.27.first-y` shows the $y^{44}$ coefficient is affine-dominated in $u$: the affine midpoint residual is $4.0038825984\times10^{10}$, the quadratic residual is only mildly lower at $2.5778192384\times10^{10}$, the affine zero is $u=-2.685640606399229\times10^{-8}$, and the center sample pressure is $3.3588014109525757\times10^{12}$ versus about $1.250644\times10^{20}$ at the endpoints. A cubic producer graph does not materially improve the post-$\zeta$ pressure. The next blocker has sharpened to preserving the signed affine $h_{38}$ residual-coordinate relation $C_{44}(\xi)+S_{44}(\xi)u$ before absolute Cauchy majorization.
+
    Latest regular-root status update: `directed-rounded-theta3minus-regular-root-complement-slab-exclusion-certified`; latest packets: [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-cell-certificate.md) and [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-complement-slab-certificate.md). The named regular-sheet quotient rows and the regular-root complement are now directed-rounded on the same speed/y cover.
 
    Latest root-graph/complement update: the fold-pair root geometry and $h_\varepsilon$ graph are directed-rounded on the speed/y cover; the positive-y fold-pair $G,D$ quotients are certified away from the zero cell; the first-y zero cell is certified through the twentieth-order coefficient with $Q_{G,20}\in[-16890597222.4,16939304773.1]$ and $Q_{D,20}\in[-355725400235,354702541670]$; the lower coefficients of $P-L-y^2A_{G,20}$ and $D_{\mathrm{pair}}-L-y^2A_{D,20}$ through $y^{22}$ contain zero under the zero-safe $\operatorname{Shift}_{23}$ route; the root-tail seed certifies $h_{21,\varepsilon}\in[-118506150229,118431723907]$, $Q_{G,21}\in[-100935984646,100935984646]$, and $Q_{D,21}\in[-2220591662220,2220591662220]$; the post-seed coefficient certificate certifies $h_{22,\varepsilon}\in[-707360216399,707360216399]$, $Q_{G,22}\in[-602441567891,602182148318]$, and $Q_{D,22}\in[-13850189411300,13856156061500]$; the $U$-seed packet certifies $h_{23,\varepsilon}\in[-4218031991090,4218902780690]$, $Q_{G,23}\in[-3594155902090,3594155902090]$, and $Q_{D,23}\in[-86259741650100,86259741650100]$; the post-$U$ coefficient packet certifies $h_{24,\varepsilon}\in[-25502690592000,25502690592000]$, $Q_{G,24}\in[-21722122111200,21723283979000]$, $Q_{D,24}\in[-543082099475000,543053052779000]$, and $Q_{D,24}+25Q_{G,24}\ni0$ as budget/provenance; the first successor coefficient packet certifies $h_{25,\varepsilon}\in[-152196183760000,152188011264000]$, $Q_{G,25}\in[-129647700798000,129647700798000]$, $Q_{D,25}\in[-3370840220760000,3370840220760000]$, and $Q_{D,25}+26Q_{G,25}\ni0$; the next successor coefficient packet certifies $h_{26,\varepsilon}\in[-908343826729000,908343826729000]$, $Q_{G,26}\in[-773778357003000,773775566334000]$, $Q_{D,26}\in[-20891940291000000,20892015639100000]$, and $Q_{D,26}+27Q_{G,26}\ni0$; the twenty-seventh-order successor coefficient packet certifies $h_{27,\varepsilon}\in[-5.42114282999\times10^{15},5.42121259771\times10^{15}]$, $Q_{G,27}\in[-4.61813833997\times10^{15},4.61813833997\times10^{15}]$, $Q_{D,27}\in[-1.29307873519\times10^{17},1.29307873519\times10^{17}]$, and $Q_{D,27}+28Q_{G,27}\ni0$; and the twenty-eighth-order successor coefficient packet certifies $h_{28,\varepsilon}\in[-3.23553241084\times10^{16},3.23553241084\times10^{16}]$, $Q_{G,28}\in[-2.75624779878\times10^{16},2.75624540089\times10^{16}]$, $Q_{D,28}\in[-7.99311166258\times10^{17},7.99311861646\times10^{17}]$, and $Q_{D,28}+29Q_{G,28}\ni0$. The finite-$E$ obstruction packet proves that direct $H_\varepsilon$ endpoint signs cannot close the tube; the coefficient-shifted finite-y $\operatorname{Shift}_{25}$ successor closes that finite $E_\varepsilon$ root-tail tube; the finite-y $\operatorname{Shift}_{27}$ successor closes the finite $U_\varepsilon$ tube on $3840$ positive-y rows with minimum endpoint clearance $7.91945473751\times10^{15}$, minimum $\partial_U R_{\varepsilon,27}$ clearance $0.791609030532$, and induced $E_\varepsilon$ images contained in the predecessor $E_\varepsilon$ tube; the finite-y $\operatorname{Shift}_{29}$ successor closes the finite $Z_\varepsilon$ tube on $3840$ positive-y rows with minimum endpoint clearance $7.9188994295\times10^{15}$, minimum $\partial_ZR_{\varepsilon,29}$ clearance $0.791609030534$, maximum induced $U_\varepsilon$ image $4.35162728309\times10^{12}$ inside the predecessor tube, and shifted trigonometric remainder at most $9.50819787001\times10^{-146}$; the valid C1 twenty-sixth-order attempt includes $\Xi_\varepsilon=-y\,\partial_yR_{\varepsilon,29}/J_\varepsilon$ and proves the broad factored positive-y interval evaluator too wide, with worst identity-bound excess $1.0598339923\times10^{124}$; the finite-y $\operatorname{Shift}_{31}$ next-successor closes the finite $W_\varepsilon$ tube on $3840$ positive-y rows with minimum endpoint clearance $7.87633458815\times10^{17}$, minimum $\partial_WR_{\varepsilon,31}$ clearance $0.791609030534$, induced $Z_\varepsilon$ images contained in the predecessor tube, and shifted trigonometric remainder at most $9.14082344368\times10^{-158}$; the valid C1 twenty-seventh-order attempt includes $\Xi_\varepsilon=-y\,\partial_yR_{\varepsilon,31}/J_\varepsilon$ and proves the broad factored positive-y interval evaluator too wide again, with worst identity-bound excess $4.03517714144\times10^{128}$ after the first-row shifted numerator remains about $1.1\times10^{-4}$ wide before $y^{29}$ division; and the first-y positive quotient packet certifies $1920$ positive first-y $G,D$ quotient rows with minimum $J$ clearance $0.791609023251$. The regular-root complement is closed by the hybrid raw-$F$/fold-$p$ slab certificate. At that h28 checkpoint, the collar blocker had moved to the coefficient-preserving twenty-ninth-order successor tail model after $T_G^{(28)}=Q_{G,28}+yT_G^{(29)}$.
@@ -562,6 +568,8 @@ H39 expression-level $N_{38}$ shared terminal-residual partition update: the sam
 H39 expression-level $N_{38}$ shared terminal-residual endpoint-control update: the endpoint partition now carries an executable structural reason, not just a numerical replay. Since `branchSeriesCoordinates` injects $h_i$ at $y^{i+3}$, the terminal residual rows $h_{35},h_{36},h_{37}$ enter the reduced source at orders $38,39,40$. The live source coefficient is $y^{42}$, while any monomial with two terminal residual factors starts no earlier than $y^{76}$. The diagnostic records this as `shared-terminal-residual-zeta-affine-by-y-order-gap`, with maximum shared-residual power $1$ and a two-factor gap of $34$ orders. Therefore the dependency-preserving endpoint hull is the correct candidate normal form for each $\zeta$ slice; the remaining burden is no longer to discover why endpoints work, but to convert the affine endpoint route into a directed-rounded terminal provider enclosure on the live graph-$\xi$ cover.
 
 H39 expression-level $N_{38}$ shared terminal-residual affine-envelope update: the endpoint-control route now emits an explicit affine-$\zeta$ envelope for each endpoint partition, not just an endpoint hull. For every $8$-slice partition it records the $\zeta$ interval, endpoint coefficient intervals, slope interval, intercept interval, endpoint hull, and endpoint-hull width share. On the live graph-$\xi$ stencil the worst affine-envelope width share remains $0.047364535153415446$ of all-active width, matching the endpoint hull and staying below the $5\%$ target; the worst graph affine slope bound is about $1.963684093411895\times10^{22}$. A midpoint replay is also emitted for each slice as a sanity check against the affine prediction. The worst graph midpoint-linearity gap bound is $2.5197683896201337\times10^{22}$ and contains zero, so it supports the affine order-gap diagnosis without promoting the candidate to a directed-rounded provider certificate. The next proof object is now concrete: certify the graph-$\xi$, eight-slice affine-$\zeta$ terminal provider with directed-rounded producer-image residuals and preserve the same-domain boundary.
+
+H39 long-run observability update: the terminal graph remainder-budget builder now accepts a `progressCallback` and emits structured progress at source-subcover, comparison-window, transport-profile, residual-profile, row-start, row-complete, summary, and forecast milestones. The focused terminal graph test prints TAP-safe heartbeat lines by default, follows the existing `AAA_TEST_HEARTBEAT=0` suppression convention, and honors a cooperative stop file through `AAA_H39_STOP_FILE` (default `/tmp/architrino-h39-stop`). This is operational support for closure work rather than a mathematical certificate; it reduces blind-run risk while leaving the H39 claim boundaries unchanged.
 
 H39 expression-level $N_{38}$ exploratory $64$-stencil note: a non-default refinement probe over $16/32/64$ stencils shows that the fourth-difference scale is still not stable at $32$. The maximum observed fourth-derivative estimate rises to $2.1162902030980995\times10^{15}$, with observed retile counts $1474$ for the direct expression, $1564$ for $\sin\phi$, and $1563$ for $\sin\delta$. This does not invalidate the finite-retile route, but it changes the priority: a raw deeper-stencil chase is likely to keep moving the target. The next high-value closure step is a local normal form or producer-image smoothness argument that explains the stencil growth, then a directed-rounded $M_4$ certificate on the stabilized normal-form rows.
 
@@ -1199,6 +1207,115 @@ introduced when the H38 recurrence image is exported as an independent h-row
 box. H39 closure still needs directed-rounded producer-image enclosure, but the
 candidate target has narrowed from "cover many independent h intervals" to
 "certify a low-degree graph image plus a small residual."
+The latest H39 source-level diagnostic narrows the remaining live row further.
+For shifted index $1$ at $y$-order $44$, the signed source coefficient is
+affine-dominated in the normalized $h_{38}$ residual coordinate $u$. Replaying
+the fitted affine zero
+$u=-2.685640606399229\times10^{-8}$ gives pressure
+$2.1816241500000004\times10^{7}$ on the live comparison row, a
+$5.732628765586405\times10^{12}$ reduction from the sampled full
+$u$-domain maximum. Zero-centered interval replays expose the next exact
+blocker: the allowed $u$ half-width for the center-sample pressure scale is
+$2.6856241561571736\times10^{-8}$, but the current interval replay amplifies
+nonzero zero-centered targets by a stable factor of about $8.5068$. The next
+certificate route is therefore not another raw prefix search; it is a
+directed-rounded H38 producer-image certificate that preserves this signed
+affine $h_{38}$ relation, or a covariance-preserving H39 source replay that
+removes the $8.5068\times$ interval amplification before the shifted
+$R_{\varepsilon,43}$ bound is promoted. A follow-on replay divides the
+zero-centered half-widths by the observed amplification and brings the nonzero
+reference ladder to maximum over-target ratio $1.0000057252904435$. That is
+still candidate-only, but it shows the remaining gap is now a small directed
+slack/covariance proof rather than another large pressure wall. A bisection
+safety search now tightens this to an executable candidate divisor:
+$8.507854082824874$, only $1.0001255923907613$ times the observed maximum
+amplification. The existing center-eliminated affine-row replay does not solve
+the problem; it inflates to maximum over-target ratio
+$1.3394690276662064\times10^{24}$. The next proof target is therefore a
+same-domain signed-affine H38 producer-image certificate with this safety
+divisor, or a stronger covariance-preserving replay that avoids the divisor.
+The latest producer-coordinate replay sharpens that target. On the same live
+five-row comparison stencil, the H38 producer residual-coordinate interval
+hull is still the full $[-1,1]$, but the producer midpoint hull is essentially
+a point, from $7.233482551797858\times10^{-17}$ to
+$7.233537092376838\times10^{-17}$. The obstruction is therefore not midpoint
+wander of the H38 producer image. It is the conversion of that producer image
+into a full independent interval hull, plus the conservative centering of the
+strict signed-affine safety envelope. For the $10^{13}$ reference target, the
+safety interval is
+$[-3.6254601757076974\times10^{-8},-1.7458210370907605\times10^{-8}]$,
+which does not contain the producer midpoint hull; the current full interval
+hull would need a factor $1.0640340259522507\times10^8$ shrink for that
+reference-only ladder entry. Across the ladder the largest interval-hull shrink
+factor is $3.1675131164171565\times10^8$, while the midpoint-hull shrink factor
+is effectively zero. This changes the next proof object: first prove a
+covariance-preserving producer replay centered on the actual H38 image, then
+apply the signed-affine cancellation, rather than trying to certify the raw
+$[-1,1]$ residual-coordinate hull directly.
+The covariance-centered replay now tests that proof object directly. Centering
+the H39 replay on the actual H38 producer midpoint hull makes all five
+reference pressure targets pass at the center hull; the strictest center ratio
+is $0.33588014199994104$ of target. The full $[-1,1]$ residual-coordinate hull
+still does not pass, but the replay now brackets the missing local width
+instead of treating the midpoint image as failed. For the $10^{13}$ reference
+entry the midpoint hull itself closes, while the first failing positive-width
+bracket has width $1.4901161193847656\times10^{-8}$. Across the reference
+ladder the largest producer-centered safety divisor is
+$11184810.666666666$, with maximum target-closing replay ratio
+$0.9999998765629196$. A non-default deeper search on the strict $10^{13}$
+target resolves a positive collar:
+$6.242316885618493\times10^{-9}$ in residual-coordinate half-width, with
+target replay ratio $0.9999976728150662$ and final bracket width
+$2.2737367544323206\times10^{-13}$. This is a major narrowing: the next proof
+is no longer "find where the producer midpoint goes"; it is "certify a small
+positive residual-coordinate collar around the already localized H38 producer
+image."
+The collar target is now explicit in the executable diagnostic. For the live
+$32$-stencil, shifted-index-$1$, $10^{13}$ reference row, the producer-centered
+collar has half-width $6.242316885618493\times10^{-9}$ and total residual-
+coordinate width $1.2484633771237532\times10^{-8}$. All five producer
+midpoints lie inside that collar, while zero of the five full producer
+intervals do. The current residual-coordinate interval hull would have to
+compress by $1.6019692981364492\times10^8$ to fit, which corresponds to a
+linear subcell-refinement forecast of $5,126,301,755$ subcells from the current
+$32$-stencil. This rules out brute linear retile refinement as the practical
+closure route for this obstruction. The next certificate should instead prove
+the H38 producer image as a covariance-preserving analytic enclosure around the
+midpoint hull, then feed that collar into the H39 replay. The claim remains
+candidate-only: the diagnostic does not certify the shifted $R_{\varepsilon,43}$
+bound or directed-rounded H38 producer image.
+The collar target has also been pushed one recurrence layer earlier, to the
+H38 numerator before the solve $h_{38}=-N_{38}/S_{37}$. On the same live
+$10^{13}$ reference row, the raw numerator interval still needs compression by
+$1.601969298134485\times10^8$, matching the residual-coordinate interval-hull
+obstruction. A first midpoint-only reading suggested large graph headroom, but
+the live strict-row replay of the explicit route corrects that interpretation:
+the controlling sample is `speed.28.first-y`, where the quadratic
+$N_{38}(\xi)$ midpoint residual is $3.8568408881375\times10^{10}$ against a
+conservative numerator collar target of only $25.069761713185112$. The
+residual therefore exceeds target by $1.5384433774290903\times10^9$, and the
+raw numerator interval compression is $3.666994442389419\times10^{21}$. The
+$S_{37}$ lower bound is not the source of this failure: the lower-to-midpoint
+slope ratio on the controlling row is $0.9999999888951927$, and the midpoint-
+slope target fails by the same factor. The current obstruction is a local
+$N_{38}$ graph/coordinate residual near `speed.28.first-y`, not a collapsed
+division by $S_{37}$.
+The executable route is named inside the diagnostic as
+`h38_y44_n38_collar_enclosure_route`. It records the quadratic
+$N_{38}(\xi)$ coefficients, the controlling sample, the conservative numerator
+width target, the residual-to-target ratio, the raw-interval compression, and
+the directed-rounded proof obligation in one candidate object. Its current
+diagnosis is `n38-quadratic-midpoint-residual-collar-route-open`, with
+`s37_dependency_status` equal to
+`midpoint-slope-collar-also-fails-n38-graph-residual`. The claim boundary
+still keeps the $N_{38}$ graph enclosure, the dependency-preserving
+$S_{37}$ division, the producer collar, shifted $R_{\varepsilon,43}$,
+directed-rounded shared-domain status, continuous primitive status, and
+retained branch all open. This moves the H39 target from "prove the visible
+quadratic graph" to a sharper local problem: find a normal form, local
+partition, higher-degree graph, or exact factorization that reduces
+$|N_{38}(\xi)-q(\xi)|$ on the `speed.28.first-y` producer window before the
+H39 collar replay is attempted.
 
 ## Current Classification
 

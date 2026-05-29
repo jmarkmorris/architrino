@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import fs from "node:fs";
 
 import {
   buildH39CorrelatedResidualWidthDiagnosticCandidate,
@@ -21,6 +22,10 @@ import {
   buildH39H38ExpressionN38TaylorBudgetDiagnosticCandidate,
   buildH39AffineHRowGraphSubdivisionDiagnosticCandidate,
   buildH39OneNoiseAffineHRowTransportDiagnosticCandidate,
+  buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnosticCandidate,
+  buildH39PostZetaPressureSourceIsolationDiagnosticCandidate,
+  buildH39H38Y44CoefficientDependenceDiagnosticCandidate,
+  buildH39H38Y44SignedAffineTargetEnvelopeDiagnosticCandidate,
   buildH39PolynomialHRowGraphIntervalResidualDiagnosticCandidate,
   buildH39PolynomialHRowGraphResidualDiagnosticCandidate,
   buildH39RecurrenceRefinedSubcoverPressureDiagnostic,
@@ -43,6 +48,10 @@ import {
   validateH39H38ExpressionN38TaylorBudgetDiagnostic,
   validateH39AffineHRowGraphSubdivisionDiagnostic,
   validateH39OneNoiseAffineHRowTransportDiagnostic,
+  validateH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic,
+  validateH39PostZetaPressureSourceIsolationDiagnostic,
+  validateH39H38Y44CoefficientDependenceDiagnostic,
+  validateH39H38Y44SignedAffineTargetEnvelopeDiagnostic,
   validateH39PolynomialHRowGraphIntervalResidualDiagnostic,
   validateH39PolynomialHRowGraphResidualDiagnostic,
   validateH39RecurrenceRefinedSubcoverPressureDiagnostic,
@@ -288,6 +297,62 @@ const FORBIDDEN_FIXED_SPEED_KEYS = [
   "speed_min",
   "speed_max",
 ];
+
+function h39TerminalGraphProgressLogger(label) {
+  const heartbeatEnabled = process.env.AAA_TEST_HEARTBEAT !== "0";
+  const stopFile =
+    process.env.AAA_H39_STOP_FILE === "0"
+      ? null
+      : process.env.AAA_H39_STOP_FILE ?? "/tmp/architrino-h39-stop";
+  const startedAt = Date.now();
+  let lastPrintedAt = 0;
+  return (progress) => {
+    if (stopFile) {
+      try {
+        const stat = fs.statSync(stopFile);
+        if (stat.mtimeMs >= startedAt) {
+          throw new Error(
+            `${label} stopped by ${stopFile} at ${progress.stage} after ${(progress.elapsed_ms / 1000).toFixed(1)}s`
+          );
+        }
+      } catch (error) {
+        if (error?.code !== "ENOENT") {
+          throw error;
+        }
+      }
+    }
+    if (!heartbeatEnabled) {
+      return;
+    }
+    const now = Date.now();
+    const rowBoundary =
+      progress.stage === "terminal-graph-budget-row-complete";
+    const first =
+      progress.stage === "terminal-graph-budget-source-subcover-start";
+    const subcoverComplete =
+      progress.stage === "terminal-graph-budget-source-subcover-complete";
+    const last =
+      progress.stage === "terminal-graph-budget-forecast-ready" ||
+      progress.completed_row_count === progress.row_count;
+    const intervalElapsed = now - lastPrintedAt >= 30_000;
+    if (!(first || subcoverComplete || last || intervalElapsed || rowBoundary)) {
+      return;
+    }
+    lastPrintedAt = now;
+    const share =
+      Number.isFinite(Number(progress.graph_endpoint_width_share))
+        ? `, graph endpoint share ${Number(progress.graph_endpoint_width_share).toPrecision(6)}`
+        : Number.isFinite(Number(progress.graph_affine_width_share))
+          ? `, graph affine share ${Number(progress.graph_affine_width_share).toPrecision(6)}`
+          : "";
+    const route = progress.route_interpretation
+      ? `, route ${progress.route_interpretation}`
+      : "";
+    console.error(
+      `# ${label}: ${progress.stage}, rows ${progress.completed_row_count}/${progress.row_count}, ${(progress.elapsed_ms / 1000).toFixed(1)}s${share}${route}`
+    );
+  };
+}
 
 function collectExactKeys(value, forbiddenKeys, path = [], found = []) {
   if (Array.isArray(value)) {
@@ -3666,6 +3731,754 @@ test("h39 h38 expression-level N38 terminal eta graph replay isolates candidate 
   );
 });
 
+test("h39 terminal affine-zeta endpoint provider replay crosses the provider boundary", () => {
+  const diagnostic =
+    buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      sourceStencilSubcellCount: 5,
+      comparisonStencilIndex: 0,
+      polynomialDegree: 2,
+      terminalHIndexes: [37, 36, 35],
+      residualCoordinatePartitionCount: 2,
+      endpointReplayRowLimit: 1,
+      outerRadius: 0.001,
+      shiftedIndex: 1,
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic(
+      diagnostic
+    ),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-terminal-shared-residual-affine-zeta-provider-replay-diagnostic-candidate-emitted"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.equal(diagnostic.source_stencil_subcell_count, 5);
+  assert.equal(diagnostic.comparison_row_count, 5);
+  assert.equal(diagnostic.endpoint_replay_row_count, 1);
+  assert.deepEqual(diagnostic.terminal_provider_h_indexes, [37, 36, 35]);
+  assert.equal(diagnostic.residual_coordinate_partition_count, 2);
+  assert.equal(
+    diagnostic.h38_solve_target_policy,
+    "preserved-H39-predecessor-row"
+  );
+  assert.equal(
+    diagnostic.provider_shape_interpretation
+      .existing_h_row_provider_accepts_shared_zeta_endpoint,
+    true
+  );
+  assert.equal(
+    diagnostic.provider_shape_interpretation
+      .existing_h_row_provider_accepts_shared_zeta_interval,
+    false
+  );
+  assert.equal(
+    diagnostic.terminal_zeta_degree_bound
+      .affine_in_shared_residual_coordinate,
+    true
+  );
+  assert.equal(
+    diagnostic.endpoint_provider_replay_summary.endpoint_replay_count,
+    4
+  );
+  assert.equal(
+    diagnostic.endpoint_provider_replay_summary
+      .all_endpoint_replays_provider_backed,
+    true
+  );
+  assert.ok(
+    diagnostic.endpoint_provider_replay_summary
+      .max_endpoint_shifted_prefix_pressure_outer_radius > 0
+  );
+  assert.equal(
+    diagnostic.provider_replay_diagnosis,
+    "terminal-affine-zeta-endpoints-cross-existing-H39-provider-boundary-candidate"
+  );
+  assert.equal(
+    diagnostic.claim_boundary
+      .certifies_terminal_affine_zeta_provider_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shared_zeta_interval_provider,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 post-zeta pressure source isolation reports remaining h-row source", () => {
+  const diagnostic =
+    buildH39PostZetaPressureSourceIsolationDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      sourceStencilSubcellCount: 5,
+      comparisonStencilIndex: 0,
+      polynomialDegree: 2,
+      terminalHIndexes: [37, 36, 35],
+      residualCoordinatePartitionCount: 2,
+      rowAnalysisLimit: 1,
+      hFreezeStartIndexes: [38, 35, 0],
+      hRowWidthCompressionFactors: [1, 0.5, 0],
+      singleHIndexAnalysisIndexes: [38, 37, 36, 35, 0],
+      outerRadius: 0.001,
+      shiftedIndex: 1,
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39PostZetaPressureSourceIsolationDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-post-zeta-pressure-source-isolation-diagnostic-candidate-emitted"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.equal(diagnostic.source_stencil_subcell_count, 5);
+  assert.equal(diagnostic.comparison_row_count, 5);
+  assert.equal(diagnostic.row_analysis_count, 1);
+  assert.equal(
+    diagnostic.endpoint_replay_summary.endpoint_replay_count,
+    4
+  );
+  assert.equal(
+    diagnostic.endpoint_replay_summary.all_endpoint_replays_provider_backed,
+    true
+  );
+  assert.ok(diagnostic.dominant_endpoint_replay.pressure > 0);
+  assert.equal(
+    diagnostic.h38_included_endpoint_replay_summary.endpoint_replay_count,
+    4
+  );
+  assert.equal(
+    diagnostic.h38_included_endpoint_replay_summary
+      .all_endpoint_replays_provider_backed,
+    true
+  );
+  assert.ok(
+    diagnostic.h38_included_endpoint_replay_summary
+      .preserved_h38_to_h38_included_max_pressure_ratio > 0
+  );
+  assert.equal(
+    diagnostic.dominant_endpoint_sensitivity.status,
+    "h39-affine-center-h-row-sensitivity-diagnostic-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.post_zeta_pressure_source_summary.active_only_family_replays
+      .length,
+    3
+  );
+  assert.equal(
+    diagnostic.post_zeta_pressure_source_summary.frozen_out_family_replays
+      .length,
+    3
+  );
+  assert.equal(
+    diagnostic.post_zeta_pressure_source_summary
+      .active_only_single_h_index_replays.length,
+    5
+  );
+  assert.equal(
+    diagnostic.post_zeta_pressure_source_summary
+      .frozen_out_single_h_index_replays.length,
+    5
+  );
+  assert.ok(
+    diagnostic.post_zeta_pressure_source_summary
+      .dominant_active_only_single_h_index_replay.pressure > 0
+  );
+  assert.ok(
+    diagnostic.post_zeta_pressure_source_summary
+      .dominant_frozen_out_single_h_index_replay.full_to_pressure_ratio > 0
+  );
+  assert.equal(
+    diagnostic.claim_boundary
+      .certifies_terminal_affine_zeta_provider_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_post_zeta_pressure_source_isolation,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 y44 coefficient dependence fits signed source coefficient", () => {
+  const diagnostic =
+    buildH39H38Y44CoefficientDependenceDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      sourceStencilSubcellCount: 5,
+      comparisonStencilIndex: 0,
+      polynomialDegree: 2,
+      h38NoiseSamples: [-1, 0, 1],
+      outerRadius: 0.001,
+      shiftedIndex: 1,
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38Y44CoefficientDependenceDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-y44-coefficient-dependence-diagnostic-candidate-emitted"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.equal(diagnostic.comparison_row_count, 5);
+  assert.equal(diagnostic.sample_replays.length, 3);
+  assert.equal(diagnostic.source_coefficient_affine_fit.polynomial_degree, 1);
+  assert.equal(
+    diagnostic.source_coefficient_quadratic_fit.polynomial_degree,
+    2
+  );
+  assert.ok(
+    diagnostic.source_coefficient_quadratic_fit.max_abs_midpoint_residual <=
+      diagnostic.source_coefficient_affine_fit.max_abs_midpoint_residual
+  );
+  assert.ok(Number.isFinite(diagnostic.affine_zero_coordinate));
+  assert.equal(diagnostic.center_sample_replay.h38_noise_coordinate, 0);
+  assert.ok(diagnostic.center_to_max_sample_pressure_ratio > 0);
+  assert.ok(
+    diagnostic.term_coefficient_dependence_profiles.some(
+      (profile) => profile.term === "sin_delta"
+    )
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_h38_y44_coefficient_dependence,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_continuous_polydisc_primitives,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 y44 signed affine target envelope replays the cancellation coordinate", () => {
+  const diagnostic =
+    buildH39H38Y44SignedAffineTargetEnvelopeDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      sourceStencilSubcellCount: 5,
+      comparisonStencilIndex: 0,
+      polynomialDegree: 2,
+      h38NoiseSamples: [-1, 0, 1],
+      referencePressureTargets: [1e13],
+      safetySearchIterations: 8,
+      outerRadius: 0.001,
+      shiftedIndex: 1,
+      seriesOrder: 44,
+    });
+
+  assert.deepEqual(
+    validateH39H38Y44SignedAffineTargetEnvelopeDiagnostic(diagnostic),
+    []
+  );
+  assert.equal(
+    diagnostic.status,
+    "h39-h38-y44-signed-affine-target-envelope-diagnostic-candidate-emitted"
+  );
+  assert.equal(diagnostic.shifted_index, 1);
+  assert.equal(diagnostic.y_order, 44);
+  assert.equal(diagnostic.comparison_row_count, 5);
+  assert.equal(diagnostic.affine_zero_inside_sample_domain, true);
+  assert.ok(Number.isFinite(diagnostic.signed_affine_slope));
+  assert.ok(
+    Math.abs(diagnostic.signed_affine_slope) >
+      Math.abs(diagnostic.signed_affine_intercept)
+  );
+  assert.ok(
+    diagnostic.affine_zero_replay.pressure <
+      diagnostic.center_sample_replay.pressure
+  );
+  assert.ok(diagnostic.center_to_affine_zero_pressure_ratio > 1);
+  assert.ok(diagnostic.max_sample_to_affine_zero_pressure_ratio > 1);
+  assert.ok(
+    diagnostic.pressure_reference_ladder.every(
+      (entry) =>
+        entry.target_pressure_role ===
+        "reference-only; not a shifted R43 closure threshold"
+    )
+  );
+  const referenceEntry = diagnostic.pressure_reference_ladder.find(
+    (entry) => entry.label === "reference-pressure-10000000000000"
+  );
+  assert.ok(referenceEntry);
+  assert.ok(referenceEntry.required_full_domain_shrink_factor > 1);
+  assert.ok(referenceEntry.interval_replay_pressure > 0);
+  assert.ok(referenceEntry.interval_replay_over_target_pressure > 0);
+  assert.ok(referenceEntry.interval_replay_center_eliminated_pressure > 0);
+  assert.ok(
+    referenceEntry.interval_replay_center_eliminated_over_target_pressure > 0
+  );
+  assert.ok(
+    Array.isArray(referenceEntry.interval_replay_source_coefficient_interval)
+  );
+  assert.ok(referenceEntry.amplification_correction_divisor >= 1);
+  assert.ok(referenceEntry.amplification_corrected_half_width > 0);
+  assert.ok(
+    referenceEntry.amplification_corrected_interval_replay_pressure > 0
+  );
+  assert.ok(
+    referenceEntry.amplification_corrected_interval_replay_over_target_pressure >
+      0
+  );
+  assert.equal(referenceEntry.safety_search.safety_search_iterations, 8);
+  assert.ok(referenceEntry.safety_search.target_closing_half_width > 0);
+  assert.ok(referenceEntry.safety_search.target_closing_safety_divisor > 0);
+  assert.ok(
+    referenceEntry.safety_search.target_closing_replay_over_target_pressure <=
+      1
+  );
+  assert.ok(
+    referenceEntry.safety_search
+      .target_closing_center_eliminated_over_target_pressure > 0
+  );
+  assert.equal(
+    diagnostic.h38_producer_residual_coordinate_profile.row_count,
+    diagnostic.comparison_row_count
+  );
+  assert.ok(diagnostic.producer_centered_full_hull_half_width >= 0);
+  assert.ok(
+    diagnostic.h38_producer_residual_coordinate_profile
+      .residual_coordinate_interval_hull_width >= 0
+  );
+  assert.ok(referenceEntry.producer_coordinate_target_fit);
+  assert.equal(
+    referenceEntry.producer_coordinate_target_fit.row_count,
+    diagnostic.comparison_row_count
+  );
+  assert.ok(
+    referenceEntry.producer_coordinate_target_fit
+      .required_interval_hull_shrink_factor > 0
+  );
+  assert.ok(referenceEntry.producer_centered_safety_search);
+  assert.ok(
+    referenceEntry.producer_centered_safety_search
+      .center_hull_replay_pressure > 0
+  );
+  assert.ok(
+    referenceEntry.producer_centered_safety_search
+      .center_hull_replay_over_target_pressure > 0
+  );
+  assert.ok(
+    referenceEntry.producer_centered_safety_search
+      .target_closing_replay_over_target_pressure > 0
+  );
+  assert.ok(
+    [
+      "producer-center-hull-meets-reference-target",
+      "producer-center-hull-exceeds-reference-target",
+      "producer-centered-full-hull-meets-reference-target",
+      "bisection-found-producer-centered-half-width-meeting-reference-target",
+      "producer-center-hull-meets-reference-target-but-no-positive-width-found",
+      "bisection-did-not-find-producer-centered-half-width-meeting-reference-target",
+    ].includes(
+      referenceEntry.producer_centered_safety_search.safety_search_status
+    )
+  );
+  assert.ok(referenceEntry.producer_centered_collar_target);
+  assert.equal(
+    referenceEntry.producer_centered_collar_target.label,
+    referenceEntry.label
+  );
+  assert.ok(
+    referenceEntry.producer_centered_collar_target
+      .collar_residual_coordinate_width >= 0
+  );
+  assert.equal(
+    referenceEntry.producer_centered_collar_target
+      .producer_midpoint_hull_inside_collar,
+    true
+  );
+  assert.equal(
+    typeof referenceEntry.producer_centered_collar_target
+      .producer_interval_hull_inside_collar,
+    "boolean"
+  );
+  assert.ok(
+    referenceEntry.producer_centered_collar_target
+      .required_interval_hull_compression_factor === null ||
+      referenceEntry.producer_centered_collar_target
+        .required_interval_hull_compression_factor > 0
+  );
+  assert.ok(
+    [
+      "producer-interval-hull-inside-collar",
+      "positive-midpoint-collar-full-interval-open",
+      "midpoint-only-collar-full-interval-open",
+      "producer-midpoint-hull-outside-collar",
+    ].includes(referenceEntry.producer_centered_collar_target.target_status)
+  );
+  assert.ok(
+    [
+      "current-producer-interval-hull-already-fits-collar",
+      "linear-subcell-refinement-impractical-analytic-covariance-needed",
+      "positive-collar-gives-finite-producer-image-certificate-target",
+      "center-hull-only-collar-needs-positive-width-or-producer-image-proof",
+    ].includes(
+      referenceEntry.producer_centered_collar_target
+        .refinement_interpretation
+    )
+  );
+  assert.ok(diagnostic.h38_y44_solve_width_profile);
+  assert.equal(diagnostic.h38_y44_solve_width_profile.h_index, 38);
+  assert.equal(
+    diagnostic.h38_y44_solve_width_profile.sample_count,
+    diagnostic.comparison_row_count
+  );
+  assert.ok(
+    diagnostic.h38_y44_solve_width_profile
+      .numerator_only_to_full_solve_width_ratio > 0
+  );
+  assert.ok(diagnostic.h38_y44_numerator_polynomial_diagnostic);
+  assert.equal(
+    diagnostic.h38_y44_numerator_polynomial_diagnostic.polynomial_degree,
+    diagnostic.polynomial_degree
+  );
+  assert.ok(
+    diagnostic.h38_y44_numerator_polynomial_diagnostic
+      .max_numerator_interval_width > 0
+  );
+  assert.ok(referenceEntry.producer_centered_numerator_collar_target);
+  assert.equal(
+    referenceEntry.producer_centered_numerator_collar_target.label,
+    referenceEntry.label
+  );
+  assert.equal(
+    referenceEntry.producer_centered_numerator_collar_target
+      .numerator_polynomial_degree,
+    diagnostic.polynomial_degree
+  );
+  assert.ok(
+    referenceEntry.producer_centered_numerator_collar_target
+      .h38_residual_collar_width >= 0
+  );
+  assert.equal(
+    typeof referenceEntry.producer_centered_numerator_collar_target
+      .numerator_midpoint_graph_inside_collar_target,
+    "boolean"
+  );
+  assert.ok(
+    referenceEntry.producer_centered_numerator_collar_target
+      .max_numerator_interval_compression_to_conservative_target === null ||
+      referenceEntry.producer_centered_numerator_collar_target
+        .max_numerator_interval_compression_to_conservative_target > 0
+  );
+  assert.ok(
+    referenceEntry.producer_centered_numerator_collar_target
+      .max_numerator_midpoint_residual_over_conservative_target === null ||
+      referenceEntry.producer_centered_numerator_collar_target
+        .max_numerator_midpoint_residual_over_conservative_target >= 0
+  );
+  assert.ok(
+    [
+      "degenerate-collar-no-numerator-target",
+      "numerator-interval-hull-inside-collar-target",
+      "numerator-midpoint-graph-inside-collar-target-interval-open",
+      "numerator-midpoint-graph-exceeds-collar-target",
+    ].includes(
+      referenceEntry.producer_centered_numerator_collar_target.target_status
+    )
+  );
+  assert.ok(
+    [
+      "numerator-graph-residual-certificate-can-target-producer-collar",
+      "current-numerator-interval-hull-already-fits-producer-collar",
+      "s37-lower-bound-dependency-collapse-before-numerator-collar",
+      "numerator-graph-degree-or-local-coordinate-must-tighten",
+      "positive-producer-collar-needed-before-numerator-target",
+    ].includes(
+      referenceEntry.producer_centered_numerator_collar_target
+        .proof_route_interpretation
+    )
+  );
+  assert.ok(
+    diagnostic.max_required_producer_interval_hull_shrink_factor > 0
+  );
+  assert.ok(
+    diagnostic.max_required_producer_midpoint_hull_shrink_factor >= 0
+  );
+  assert.ok(
+    diagnostic
+      .max_producer_centered_reference_center_hull_over_target_pressure > 0
+  );
+  assert.ok(
+    diagnostic.max_producer_centered_reference_replay_over_target_pressure > 0
+  );
+  assert.ok(diagnostic.producer_centered_reference_target_count > 0);
+  assert.ok(
+    diagnostic.producer_centered_reference_targets_met_at_center >= 0
+  );
+  assert.ok(
+    diagnostic.producer_centered_reference_targets_closed_by_search >= 0
+  );
+  assert.ok(
+    diagnostic.producer_centered_reference_positive_collar_count >= 0
+  );
+  assert.ok(
+    diagnostic.producer_centered_reference_interval_hull_covered_count >= 0
+  );
+  assert.ok(
+    diagnostic
+      .max_producer_centered_reference_collar_required_interval_hull_compression_factor ===
+      null ||
+      diagnostic
+        .max_producer_centered_reference_collar_required_interval_hull_compression_factor >
+        0
+  );
+  assert.ok(
+    diagnostic
+      .max_producer_centered_reference_collar_linear_subcell_forecast ===
+      null ||
+      diagnostic
+        .max_producer_centered_reference_collar_linear_subcell_forecast > 0
+  );
+  assert.ok(
+    diagnostic.producer_centered_reference_numerator_graph_inside_count >= 0
+  );
+  assert.ok(
+    diagnostic
+      .max_producer_centered_reference_numerator_interval_compression_to_conservative_target ===
+      null ||
+      diagnostic
+        .max_producer_centered_reference_numerator_interval_compression_to_conservative_target >
+        0
+  );
+  assert.ok(
+    diagnostic
+      .max_producer_centered_reference_numerator_midpoint_residual_over_conservative_target ===
+      null ||
+      diagnostic
+        .max_producer_centered_reference_numerator_midpoint_residual_over_conservative_target >=
+        0
+  );
+  assert.ok(
+    diagnostic
+      .min_producer_centered_reference_numerator_midpoint_residual_headroom_factor ===
+      null ||
+      diagnostic
+        .min_producer_centered_reference_numerator_midpoint_residual_headroom_factor >
+        0
+  );
+  assert.ok(diagnostic.h38_y44_n38_collar_enclosure_route);
+  assert.equal(
+    diagnostic.h38_y44_n38_collar_enclosure_route.status,
+    "h39-h38-y44-n38-collar-enclosure-route-candidate-emitted"
+  );
+  assert.equal(
+    diagnostic.h38_y44_n38_collar_enclosure_route.polynomial_degree,
+    diagnostic.polynomial_degree
+  );
+  assert.equal(
+    diagnostic.h38_y44_n38_collar_enclosure_route.reference_target_count,
+    diagnostic.producer_centered_reference_target_count
+  );
+  assert.ok(
+    diagnostic.h38_y44_n38_collar_enclosure_route
+      .max_midpoint_residual_over_conservative_target === null ||
+      diagnostic.h38_y44_n38_collar_enclosure_route
+        .max_midpoint_residual_over_conservative_target >= 0
+  );
+  assert.ok(
+    diagnostic.h38_y44_n38_collar_enclosure_route
+      .min_midpoint_residual_headroom_factor === null ||
+      diagnostic.h38_y44_n38_collar_enclosure_route
+        .min_midpoint_residual_headroom_factor > 0
+  );
+  assert.ok(
+    diagnostic.h38_y44_n38_collar_enclosure_route.controlling_sample ===
+      null ||
+      diagnostic.h38_y44_n38_collar_enclosure_route.controlling_sample
+        .conservative_numerator_width_target > 0
+  );
+  assert.ok(
+    [
+      "n38-quadratic-midpoint-residual-has-directed-rounded-collar-headroom",
+      "s37-lower-bound-dependency-collapse-controls-n38-collar-route",
+      "n38-quadratic-midpoint-residual-has-partial-collar-headroom",
+      "n38-quadratic-midpoint-residual-collar-route-open",
+    ].includes(
+      diagnostic.h38_y44_n38_collar_enclosure_route.route_diagnosis
+    )
+  );
+  assert.ok(
+    [
+      "midpoint-slope-collar-fits-but-conservative-s37-lower-bound-collapses",
+      "midpoint-slope-collar-also-fails-n38-graph-residual",
+      "conservative-s37-lower-bound-supports-n38-collar",
+      "s37-dependency-status-open",
+    ].includes(
+      diagnostic.h38_y44_n38_collar_enclosure_route.s37_dependency_status
+    )
+  );
+  assert.equal(
+    diagnostic.h38_y44_n38_collar_enclosure_route.claim_boundary
+      .certifies_h38_n38_graph_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.h38_y44_n38_collar_enclosure_route.claim_boundary
+      .certifies_s37_dependency_preserving_division,
+    false
+  );
+  assert.ok(diagnostic.max_interval_replay_over_target_pressure > 0);
+  assert.ok(
+    diagnostic.max_interval_replay_center_eliminated_over_target_pressure > 0
+  );
+  assert.ok(
+    diagnostic.max_nonzero_width_interval_replay_over_target_pressure > 0
+  );
+  assert.ok(
+    diagnostic.max_amplification_corrected_interval_replay_over_target_pressure >
+      0
+  );
+  assert.ok(
+    diagnostic
+      .max_amplification_corrected_center_eliminated_over_target_pressure >
+      0
+  );
+  assert.ok(
+    diagnostic
+      .max_amplification_corrected_nonzero_width_interval_replay_over_target_pressure >
+      0
+  );
+  assert.equal(diagnostic.safety_search_iterations, 8);
+  assert.ok(diagnostic.max_target_closing_safety_divisor > 0);
+  assert.ok(diagnostic.safety_divisor_over_observed_amplification > 0);
+  assert.ok(diagnostic.max_target_closing_bracket_width >= 0);
+  assert.ok(diagnostic.max_safety_search_replay_over_target_pressure <= 1);
+  assert.ok(
+    diagnostic.max_safety_search_center_eliminated_over_target_pressure > 0
+  );
+  assert.ok(
+    [
+      "zero-centered-h38-interval-replay-meets-reference-pressure-ladder",
+      "zero-centered-h38-interval-replay-has-stable-over-target-amplification",
+    ].includes(diagnostic.interval_replay_amplification_interpretation)
+  );
+  assert.ok(
+    [
+      "amplification-corrected-zero-centered-widths-meet-reference-pressure-ladder",
+      "amplification-corrected-zero-centered-widths-still-exceed-reference-pressure-ladder",
+    ].includes(diagnostic.amplification_corrected_replay_interpretation)
+  );
+  assert.equal(
+    diagnostic.safety_search_interpretation,
+    "bisection-safety-divisor-finds-reference-meeting-widths"
+  );
+  assert.ok(
+    [
+      "center-eliminated-affine-row-removes-zero-centered-amplification",
+      "center-eliminated-affine-row-still-exceeds-reference-pressure-ladder",
+    ].includes(diagnostic.center_eliminated_replay_interpretation)
+  );
+  assert.ok(
+    [
+      "h38-producer-coordinate-hull-fits-signed-affine-safety-envelope",
+      "h38-producer-midpoint-hull-fits-but-interval-hull-exceeds-signed-affine-safety-envelope",
+      "h38-producer-coordinate-hull-exceeds-signed-affine-safety-envelope",
+    ].includes(diagnostic.producer_coordinate_envelope_interpretation)
+  );
+  assert.ok(
+    [
+      "producer-midpoint-hull-meets-reference-pressure-targets",
+      "producer-centered-width-search-closes-some-reference-pressure-targets",
+      "producer-midpoint-hull-exceeds-reference-pressure-targets",
+    ].includes(diagnostic.producer_centered_replay_interpretation)
+  );
+  assert.ok(
+    [
+      "producer-centered-collars-cover-full-interval-hull",
+      "positive-collars-found-but-raw-subcell-refinement-impractical",
+      "positive-collars-found-for-producer-image-certificate-target",
+      "producer-center-hull-closes-but-positive-collar-open",
+    ].includes(diagnostic.producer_centered_collar_interpretation)
+  );
+  assert.ok(
+    [
+      "numerator-midpoint-graph-fits-producer-collar-target",
+      "some-numerator-midpoint-graphs-fit-producer-collar-target",
+      "numerator-midpoint-graph-does-not-yet-fit-producer-collar-target",
+    ].includes(diagnostic.producer_centered_numerator_collar_interpretation)
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_h38_y44_signed_affine_envelope,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
 test("h39 h38 expression-level N38 terminal graph remainder budget sets finite candidate target", () => {
   const diagnostic =
     buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate({
@@ -3683,6 +4496,9 @@ test("h39 h38 expression-level N38 terminal graph remainder budget sets finite c
       refinementSubcellCounts: [32],
       topContributorCount: 8,
       seriesOrder: 60,
+      progressCallback: h39TerminalGraphProgressLogger(
+        "H39 terminal graph remainder budget"
+      ),
     });
 
   assert.deepEqual(

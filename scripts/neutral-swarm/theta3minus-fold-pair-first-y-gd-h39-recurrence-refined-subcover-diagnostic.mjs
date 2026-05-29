@@ -82,6 +82,18 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_EXPRESSION_N38_TERMINAL_ET
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_EXPRESSION_N38_TERMINAL_GRAPH_REMAINDER_BUDGET_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-expression-n38-terminal-graph-remainder-budget-diagnostic/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_TERMINAL_SHARED_RESIDUAL_AFFINE_ZETA_PROVIDER_REPLAY_DIAGNOSTIC_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-terminal-shared-residual-affine-zeta-provider-replay-diagnostic/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_POST_ZETA_PRESSURE_SOURCE_ISOLATION_DIAGNOSTIC_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-post-zeta-pressure-source-isolation-diagnostic/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_COEFFICIENT_DEPENDENCE_DIAGNOSTIC_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-y44-coefficient-dependence-diagnostic/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SIGNED_AFFINE_TARGET_ENVELOPE_DIAGNOSTIC_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-y44-signed-affine-target-envelope-diagnostic/v1";
+
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_EXPRESSION_N38_TAYLOR_M4_REFINEMENT_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-expression-n38-taylor-m4-refinement-diagnostic/v1";
 
@@ -231,6 +243,15 @@ function intervalWidth([left, right]) {
 
 function intervalAbsUpper([left, right]) {
   return Math.max(Math.abs(Number(left)), Math.abs(Number(right)));
+}
+
+function intervalAbsLower([left, right]) {
+  const resolvedLeft = Number(left);
+  const resolvedRight = Number(right);
+  if (resolvedLeft <= 0 && resolvedRight >= 0) {
+    return 0;
+  }
+  return Math.min(Math.abs(resolvedLeft), Math.abs(resolvedRight));
 }
 
 function intervalEndpointMaxGap(left, right) {
@@ -719,6 +740,44 @@ function hIntervalsForPolynomialGraphResidualCentersWithH38VariantPoint({
   });
 }
 
+function hIntervalsForPolynomialGraphResidualCentersWithH38VariantInterval({
+  transportProfile,
+  noise,
+  residualProfile,
+  h38ResidualInterval,
+  h38NoiseInterval,
+}) {
+  if (!Array.isArray(h38NoiseInterval) || h38NoiseInterval.length !== 2) {
+    throw new Error("h38NoiseInterval must be a two-entry interval");
+  }
+  const resolvedH38NoiseInterval = h38NoiseInterval.map(Number);
+  if (
+    !Number.isFinite(resolvedH38NoiseInterval[0]) ||
+    !Number.isFinite(resolvedH38NoiseInterval[1]) ||
+    resolvedH38NoiseInterval[0] > resolvedH38NoiseInterval[1]
+  ) {
+    throw new Error("h38NoiseInterval must be a finite nondecreasing interval");
+  }
+  return transportProfile.map((profile, hIndex) => {
+    const residualInterval =
+      hIndex === 38
+        ? h38ResidualInterval
+        : residualProfile?.[hIndex]?.residual_interval_hull ?? [0, 0];
+    const residualCenter = intervalMidpoint(residualInterval);
+    if (hIndex !== 38) {
+      return pointInterval(
+        polynomialValue(profile.coefficients, noise) + residualCenter
+      );
+    }
+    const residualRadius = intervalWidth(residualInterval) / 2;
+    const graphCenter = polynomialValue(profile.coefficients, noise);
+    return [
+      graphCenter + residualCenter + resolvedH38NoiseInterval[0] * residualRadius,
+      graphCenter + residualCenter + resolvedH38NoiseInterval[1] * residualRadius,
+    ];
+  });
+}
+
 function splitNumericInterval(interval, partitionCount) {
   const [left, right] = numericInterval("interval", interval);
   const resolvedPartitionCount = assertFinitePositiveInteger(
@@ -884,6 +943,132 @@ function polynomialGraphIntervalResidualHRowProvider({
   };
 }
 
+function hIntervalsForTerminalSharedResidualAffineZetaEndpointProvider({
+  baseHIntervals,
+  transportProfile,
+  xiInterval,
+  residualProfile,
+  terminalHIndexes,
+  residualNoise,
+  preserveH38 = true,
+}) {
+  const resolvedResidualNoise = Number(residualNoise);
+  if (!Number.isFinite(resolvedResidualNoise)) {
+    throw new Error("residualNoise must be finite");
+  }
+  const replay = cloneHIntervals(baseHIntervals);
+  const h38Index =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index;
+  terminalHIndexes.forEach((hIndex) => {
+    if (preserveH38 && hIndex === h38Index) {
+      return;
+    }
+    const graphInterval = polynomialRangeOnInterval({
+      coefficients: transportProfile[hIndex].coefficients,
+      interval: xiInterval,
+    });
+    const residualInterval =
+      residualProfile?.[hIndex]?.residual_interval_hull ?? [0, 0];
+    const residualCenter = intervalMidpoint(residualInterval);
+    const residualRadius = intervalWidth(residualInterval) / 2;
+    const residualContribution =
+      residualCenter + resolvedResidualNoise * residualRadius;
+    replay[hIndex] = [
+      Number(graphInterval[0]) + residualContribution,
+      Number(graphInterval[1]) + residualContribution,
+    ];
+  });
+  return replay;
+}
+
+function terminalSharedResidualAffineZetaEndpointHRowProvider({
+  targetSpeedInterval,
+  transportProfilesByBranch,
+  intervalResidualProfilesByBranch,
+  terminalHIndexes,
+  residualNoise,
+  preserveH38 = true,
+  providerKind =
+    "candidate-terminal-shared-residual-affine-zeta-endpoint-provider",
+  providerProvenance =
+    "local-H38-terminal-quadratic-graph-affine-zeta-endpoint-replay",
+}) {
+  return ({ branch, branchRow, cellId, h38Row, replayKind }) => {
+    const transportProfile = transportProfilesByBranch[branch];
+    const residualProfile = intervalResidualProfilesByBranch[branch];
+    if (!transportProfile) {
+      throw new Error(
+        `missing terminal affine-zeta graph profile for branch ${branch}`
+      );
+    }
+    if (!residualProfile) {
+      throw new Error(
+        `missing terminal affine-zeta residual profile for branch ${branch}`
+      );
+    }
+    const xiInterval = speedIntervalXiInterval({
+      row: h38Row,
+      targetSpeedInterval,
+    });
+    const baseHIntervals = hIntervalsFromBranchRow(branchRow, {
+      hCount: transportProfile.length,
+    });
+    const polynomialDegree = transportProfile[0]?.polynomial_degree ?? null;
+    const h38SolveTargetPolicy = preserveH38
+      ? "preserved-H39-predecessor-row"
+      : "candidate-H38-predecessor-row-affine-zeta-endpoint";
+    return {
+      branch,
+      hIntervals: hIntervalsForTerminalSharedResidualAffineZetaEndpointProvider(
+        {
+          baseHIntervals,
+          transportProfile,
+          xiInterval,
+          residualProfile,
+          terminalHIndexes,
+          residualNoise,
+          preserveH38,
+        }
+      ),
+      solveSlopeInterval: branchRow.h38_solve_slope_interval,
+      providerKind,
+      preservesDependencies: true,
+      sourceCellId: cellId,
+      replayKind:
+        replayKind ??
+        "h39-terminal-shared-residual-affine-zeta-endpoint-replay",
+      hRowProviderProvenance: providerProvenance,
+      hRowDependencyTrace: [
+        {
+          dependency_kind:
+            "terminal-shared-residual-affine-zeta-endpoint",
+          source: providerProvenance,
+          xi_interval: xiInterval,
+          residual_noise: Number(residualNoise),
+          terminal_h_indexes: terminalHIndexes.map(Number),
+          polynomial_degree: polynomialDegree,
+          h38_solve_target_policy: h38SolveTargetPolicy,
+          h_count: transportProfile.length,
+        },
+      ],
+      hRowDependencyWitness: {
+        witness_kind:
+          "candidate-terminal-shared-residual-affine-zeta-endpoint-provider",
+        xi_interval: xiInterval,
+        residual_coordinate:
+          "endpoint zeta in h_i(xi,zeta)=q_i(xi)+center_i+zeta*radius_i for terminal h rows",
+        residual_noise: Number(residualNoise),
+        terminal_h_indexes: terminalHIndexes.map(Number),
+        polynomial_degree: polynomialDegree,
+        coefficient_order: "ascending powers of xi",
+        h38_solve_target_policy: h38SolveTargetPolicy,
+        h_count: transportProfile.length,
+      },
+      hRowProviderClaimBoundary: candidateOnlyHRowProviderClaimBoundary(),
+    };
+  };
+}
+
 function shiftedPressureReplayForPointHRow({
   context,
   cell,
@@ -912,6 +1097,9 @@ function shiftedPressureReplayForPointHRow({
   });
   const rowPressure =
     decomposition.term_pressure_by_coefficient[shiftedIndex];
+  const centerEliminatedRowPressure =
+    decomposition.center_eliminated_shifted_pressures?.[shiftedIndex] ??
+    null;
   return {
     center_interval: solve.h39_center_interval,
     center_numeric_interval: root.formatInterval(
@@ -919,6 +1107,17 @@ function shiftedPressureReplayForPointHRow({
     ),
     row_pressure: rowPressure,
     pressure: rowPressure.source_pressure_contribution,
+    center_eliminated_row_pressure: centerEliminatedRowPressure,
+    center_eliminated_pressure:
+      centerEliminatedRowPressure?.pressure_contribution ?? null,
+    center_elimination_improvement_factor:
+      finitePositive(rowPressure.source_pressure_contribution) &&
+      finitePositive(centerEliminatedRowPressure?.pressure_contribution)
+        ? rowPressure.source_pressure_contribution /
+          centerEliminatedRowPressure.pressure_contribution
+        : null,
+    center_elimination_interval_warning:
+      decomposition.center_elimination_interval_warning,
   };
 }
 
@@ -3129,11 +3328,15 @@ function reducedSigmaEtaSourceSummary({ rows }) {
   };
 }
 
-function cloneHIntervalsWithZeroedSolveTarget(hIntervals) {
-  const cloned = hIntervals.map((interval) => [
+function cloneHIntervals(hIntervals) {
+  return hIntervals.map((interval) => [
     Number(interval[0]),
     Number(interval[1]),
   ]);
+}
+
+function cloneHIntervalsWithZeroedSolveTarget(hIntervals) {
+  const cloned = cloneHIntervals(hIntervals);
   cloned[THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index] = [
     0,
     0,
@@ -6827,6 +7030,12 @@ function shiftedPressureReplayForPolynomialGraphCorrelatedResidualPoint({
     center_numeric_interval: replay.center_numeric_interval,
     row_pressure: replay.row_pressure,
     pressure: replay.pressure,
+    center_eliminated_row_pressure: replay.center_eliminated_row_pressure,
+    center_eliminated_pressure: replay.center_eliminated_pressure,
+    center_elimination_improvement_factor:
+      replay.center_elimination_improvement_factor,
+    center_elimination_interval_warning:
+      replay.center_elimination_interval_warning,
     h0_value: hIntervals[0][0],
     h38_value: hIntervals[38][0],
   };
@@ -6871,8 +7080,64 @@ function shiftedPressureReplayForPolynomialGraphH38ResidualVariantPoint({
     center_numeric_interval: replay.center_numeric_interval,
     row_pressure: replay.row_pressure,
     pressure: replay.pressure,
+    center_eliminated_row_pressure: replay.center_eliminated_row_pressure,
+    center_eliminated_pressure: replay.center_eliminated_pressure,
+    center_elimination_improvement_factor:
+      replay.center_elimination_improvement_factor,
+    center_elimination_interval_warning:
+      replay.center_elimination_interval_warning,
     h0_value: hIntervals[0][0],
     h38_value: hIntervals[38][0],
+  };
+}
+
+function shiftedPressureReplayForPolynomialGraphH38ResidualVariantInterval({
+  context,
+  cell,
+  branch,
+  transportProfile,
+  noise,
+  residualProfile,
+  h38ResidualInterval,
+  h38NoiseInterval,
+  solveSlopeInterval,
+  outerRadius,
+  shiftedIndex,
+  variant,
+}) {
+  const hIntervals =
+    hIntervalsForPolynomialGraphResidualCentersWithH38VariantInterval({
+      transportProfile,
+      noise,
+      residualProfile,
+      h38ResidualInterval,
+      h38NoiseInterval,
+    });
+  const replay = shiftedPressureReplayForPointHRow({
+    context,
+    cell,
+    branch,
+    hIntervals,
+    solveSlopeInterval,
+    outerRadius,
+    shiftedIndex,
+  });
+  return {
+    variant,
+    noise_coordinate: noise,
+    h38_noise_interval: h38NoiseInterval,
+    center_interval: replay.center_interval,
+    center_numeric_interval: replay.center_numeric_interval,
+    row_pressure: replay.row_pressure,
+    pressure: replay.pressure,
+    center_eliminated_row_pressure: replay.center_eliminated_row_pressure,
+    center_eliminated_pressure: replay.center_eliminated_pressure,
+    center_elimination_improvement_factor:
+      replay.center_elimination_improvement_factor,
+    center_elimination_interval_warning:
+      replay.center_elimination_interval_warning,
+    h0_value: hIntervals[0][0],
+    h38_interval: hIntervals[38],
   };
 }
 
@@ -8214,6 +8479,3874 @@ export function buildH39PolynomialHRowGraphIntervalResidualDiagnosticCandidate({
       certifies_standard_h38_cover: false,
       certifies_polynomial_h_row_graph_enclosure: false,
       certifies_polynomial_interval_residual_enclosure: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function sharedDomainReplayArtifactCandidateSummary(artifact) {
+  const summary = artifact?.h39_shared_domain_coefficient_summary ?? {};
+  return {
+    coefficient_row_count: summary.coefficient_row_count ?? null,
+    h_row_provider_dependency_state:
+      summary.h_row_provider_dependency_state ?? null,
+    h_row_provider_kinds: summary.h_row_provider_kinds ?? [],
+    h_row_provider_backed_all_cells:
+      summary.h_row_provider_backed_all_cells ?? false,
+    h_row_provider_backed_cell_count:
+      summary.h_row_provider_backed_cell_count ?? 0,
+    h_row_provider_backed_branch_count:
+      summary.h_row_provider_backed_branch_count ?? 0,
+    h_row_provider_dependency_trace_count:
+      summary.h_row_provider_dependency_trace_count ?? 0,
+    max_R43_shifted_prefix_pressure_outer_radius:
+      summary.max_R43_shifted_prefix_pressure_outer_radius ?? null,
+    max_R43_center_eliminated_shifted_prefix_pressure_outer_radius:
+      summary.max_R43_center_eliminated_shifted_prefix_pressure_outer_radius ??
+      null,
+    max_R43_affine_center_shifted_prefix_majorant_outer_radius:
+      summary.max_R43_affine_center_shifted_prefix_majorant_outer_radius ?? null,
+    max_candidate_E_R_finite_prefix:
+      summary.max_candidate_E_R_finite_prefix ?? null,
+    max_candidate_M_R_finite_prefix:
+      summary.max_candidate_M_R_finite_prefix ?? null,
+    min_candidate_nu_J_finite_prefix:
+      summary.min_candidate_nu_J_finite_prefix ?? null,
+    max_candidate_M_G_finite_prefix:
+      summary.max_candidate_M_G_finite_prefix ?? null,
+    candidate_profile_scale_status:
+      summary.candidate_profile_scale_status ?? null,
+    certifies_continuous_polydisc_primitives:
+      summary.certifies_continuous_polydisc_primitives ?? false,
+    claim_boundary: artifact?.claim_boundary ?? null,
+  };
+}
+
+function replaySummaryShiftedPressure(summary) {
+  return Number(summary?.max_R43_shifted_prefix_pressure_outer_radius);
+}
+
+export function buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnosticCandidate({
+  targetSpeedInterval = [3.02156, 3.02156007813],
+  branch = "-",
+  rootSubdivisions = 100,
+  outerRadius = 0.001,
+  shiftedIndex = 1,
+  seriesOrder = 60,
+  sourceStencilSubcellCount = 32,
+  comparisonStencilIndex = 27,
+  polynomialDegree = 2,
+  terminalHIndexes = [37, 36, 35],
+  residualCoordinatePartitionCount = 8,
+  endpointReplayRowLimit = null,
+  progressCallback = null,
+} = {}) {
+  const startedAt = Date.now();
+  const emitProgress =
+    typeof progressCallback === "function"
+      ? (progress) =>
+          progressCallback({
+            diagnostic:
+              "h39-terminal-shared-residual-affine-zeta-provider-replay",
+            elapsed_ms: Date.now() - startedAt,
+            ...progress,
+          })
+      : null;
+  const resolvedTargetSpeedInterval = numericInterval(
+    "targetSpeedInterval",
+    targetSpeedInterval
+  );
+  const resolvedSourceStencilSubcellCount = assertFinitePositiveInteger(
+    "sourceStencilSubcellCount",
+    sourceStencilSubcellCount
+  );
+  if (resolvedSourceStencilSubcellCount < 5) {
+    throw new Error("sourceStencilSubcellCount must be at least 5");
+  }
+  const resolvedComparisonStencilIndex = Number(comparisonStencilIndex);
+  if (
+    !Number.isInteger(resolvedComparisonStencilIndex) ||
+    resolvedComparisonStencilIndex < 0
+  ) {
+    throw new Error("comparisonStencilIndex must be a nonnegative integer");
+  }
+  const resolvedPolynomialDegree = assertFinitePositiveInteger(
+    "polynomialDegree",
+    polynomialDegree
+  );
+  if (resolvedPolynomialDegree > 3) {
+    throw new Error("polynomialDegree must be at most 3");
+  }
+  const resolvedTerminalHIndexes = terminalHIndexes.map((hIndex) => {
+    const resolved = Number(hIndex);
+    if (!Number.isInteger(resolved) || resolved < 0 || resolved > 38) {
+      throw new Error("terminalHIndexes must contain h indexes 0 through 38");
+    }
+    return resolved;
+  });
+  const resolvedResidualCoordinatePartitionCount =
+    assertFinitePositiveInteger(
+      "residualCoordinatePartitionCount",
+      residualCoordinatePartitionCount
+    );
+  const resolvedEndpointReplayRowLimit =
+    endpointReplayRowLimit === null || endpointReplayRowLimit === undefined
+      ? null
+      : assertFinitePositiveInteger(
+          "endpointReplayRowLimit",
+          endpointReplayRowLimit
+        );
+  const resolvedOuterRadius = assertFinitePositiveNumber(
+    "outerRadius",
+    outerRadius
+  );
+  const resolvedShiftedIndex = assertFinitePositiveInteger(
+    "shiftedIndex",
+    shiftedIndex
+  );
+  const context = makeTheta3minusFirstYGdSeriesContext({
+    seriesOrder: assertFinitePositiveInteger("seriesOrder", seriesOrder),
+  });
+  emitProgress?.({
+    stage: "terminal-affine-zeta-provider-source-subcover-start",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    completed_endpoint_count: 0,
+    endpoint_count: 2 * resolvedResidualCoordinatePartitionCount,
+  });
+  const rows = targetRowsForSubcellCount({
+    targetSpeedInterval: resolvedTargetSpeedInterval,
+    subcellCount: resolvedSourceStencilSubcellCount,
+    rootSubdivisions,
+  });
+  emitProgress?.({
+    stage: "terminal-affine-zeta-provider-source-subcover-complete",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    source_row_count: rows.length,
+    completed_endpoint_count: 0,
+    endpoint_count: 2 * resolvedResidualCoordinatePartitionCount,
+  });
+  if (rows.length !== resolvedSourceStencilSubcellCount) {
+    throw new Error(
+      "terminal affine-zeta provider replay requires a complete source subcover"
+    );
+  }
+  const comparisonRows = rows.slice(
+    resolvedComparisonStencilIndex,
+    resolvedComparisonStencilIndex + 5
+  );
+  if (comparisonRows.length !== 5) {
+    throw new Error(
+      "terminal affine-zeta provider replay requires a five-row comparison window"
+    );
+  }
+  emitProgress?.({
+    stage: "terminal-affine-zeta-provider-comparison-window-ready",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    comparison_row_count: comparisonRows.length,
+    completed_endpoint_count: 0,
+    endpoint_count: 2 * resolvedResidualCoordinatePartitionCount,
+  });
+  const comparisonXiIntervalHull = intervalHull(
+    comparisonRows.map((row) =>
+      speedIntervalXiInterval({
+        row,
+        targetSpeedInterval: resolvedTargetSpeedInterval,
+      })
+    )
+  );
+  const polynomialTransportProfilesByBranch =
+    hRowPolynomialTransportProfilesByBranch({
+      rows: comparisonRows,
+      targetSpeedInterval: resolvedTargetSpeedInterval,
+      degree: resolvedPolynomialDegree,
+    });
+  const intervalResidualProfilesByBranch = Object.fromEntries(
+    comparisonRows[0].branch_rows.map((branchRowEntry) => {
+      const branchName = branchRowEntry.branch;
+      return [
+        branchName,
+        polynomialGraphProducerIntervalResidualProfileForRows({
+          targetSpeedInterval: resolvedTargetSpeedInterval,
+          rows: comparisonRows,
+          branch: branchName,
+          transportProfile: polynomialTransportProfilesByBranch[branchName],
+        }),
+      ];
+    })
+  );
+  emitProgress?.({
+    stage: "terminal-affine-zeta-provider-profiles-ready",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    comparison_row_count: comparisonRows.length,
+    completed_endpoint_count: 0,
+    endpoint_count: 2 * resolvedResidualCoordinatePartitionCount,
+  });
+  const baselineReferenceReplayArtifact = buildH39SharedDomainCoefficientArtifact({
+    h38Rows: comparisonRows,
+    validateH38: false,
+    shiftedOrder: resolvedShiftedIndex,
+    seriesOrder: context.seriesOrder,
+    rho: resolvedOuterRadius,
+    sharedDomainSignature:
+      "candidate-h39-terminal-affine-zeta-provider-baseline-reference",
+    rowLimit: resolvedEndpointReplayRowLimit,
+    includeRows: false,
+  });
+  const intervalResidualReplayArtifact =
+    buildH39SharedDomainCoefficientArtifact({
+      h38Rows: comparisonRows,
+      validateH38: false,
+      shiftedOrder: resolvedShiftedIndex,
+      seriesOrder: context.seriesOrder,
+      rho: resolvedOuterRadius,
+      sharedDomainSignature:
+        "candidate-h39-terminal-affine-zeta-provider-interval-residual-reference",
+      rowLimit: resolvedEndpointReplayRowLimit,
+      includeRows: false,
+      hRowProvider: polynomialGraphIntervalResidualHRowProvider({
+        transportProfilesByBranch: polynomialTransportProfilesByBranch,
+        intervalResidualProfilesByBranch,
+        noiseInterval: comparisonXiIntervalHull,
+      }),
+    });
+  emitProgress?.({
+    stage: "terminal-affine-zeta-provider-reference-replays-ready",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    comparison_row_count: comparisonRows.length,
+    completed_endpoint_count: 0,
+    endpoint_count: 2 * resolvedResidualCoordinatePartitionCount,
+  });
+  const partitionIntervals = residualCoordinatePartitions(
+    resolvedResidualCoordinatePartitionCount
+  );
+  let completedEndpointCount = 0;
+  const partitionReplays = partitionIntervals.map(
+    (residualNoiseInterval, partitionIndex) => {
+      const endpointReplays = residualNoiseInterval.map(
+        (residualNoise, endpointIndex) => {
+          emitProgress?.({
+            stage: "terminal-affine-zeta-provider-endpoint-start",
+            source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+            comparison_stencil_index: resolvedComparisonStencilIndex,
+            partition_index: partitionIndex,
+            endpoint_index: endpointIndex,
+            residual_noise: Number(residualNoise),
+            completed_endpoint_count: completedEndpointCount,
+            endpoint_count: 2 * resolvedResidualCoordinatePartitionCount,
+          });
+          const artifact = buildH39SharedDomainCoefficientArtifact({
+            h38Rows: comparisonRows,
+            validateH38: false,
+            shiftedOrder: resolvedShiftedIndex,
+            seriesOrder: context.seriesOrder,
+            rho: resolvedOuterRadius,
+            sharedDomainSignature:
+              "candidate-h39-terminal-affine-zeta-endpoint-provider-replay",
+            rowLimit: resolvedEndpointReplayRowLimit,
+            includeRows: false,
+            hRowProvider:
+              terminalSharedResidualAffineZetaEndpointHRowProvider({
+                targetSpeedInterval: resolvedTargetSpeedInterval,
+                transportProfilesByBranch:
+                  polynomialTransportProfilesByBranch,
+                intervalResidualProfilesByBranch,
+                terminalHIndexes: resolvedTerminalHIndexes,
+                residualNoise,
+              }),
+          });
+          const summary = sharedDomainReplayArtifactCandidateSummary(artifact);
+          completedEndpointCount += 1;
+          emitProgress?.({
+            stage: "terminal-affine-zeta-provider-endpoint-complete",
+            source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+            comparison_stencil_index: resolvedComparisonStencilIndex,
+            partition_index: partitionIndex,
+            endpoint_index: endpointIndex,
+            residual_noise: Number(residualNoise),
+            shifted_prefix_pressure:
+              summary.max_R43_shifted_prefix_pressure_outer_radius,
+            completed_endpoint_count: completedEndpointCount,
+            endpoint_count: 2 * resolvedResidualCoordinatePartitionCount,
+          });
+          return {
+            endpoint_index: endpointIndex,
+            residual_noise: Number(residualNoise),
+            shared_domain_replay_artifact_summary: summary,
+            endpoint_provider_backed_replay:
+              summary.h_row_provider_dependency_state ===
+                "dependency-preserving-provider-backed-replay" &&
+              summary.h_row_provider_backed_all_cells === true,
+            endpoint_claim_boundary: artifact.claim_boundary,
+          };
+        }
+      );
+      const endpointPressures = endpointReplays.map((endpoint) =>
+        replaySummaryShiftedPressure(
+          endpoint.shared_domain_replay_artifact_summary
+        )
+      );
+      return {
+        partition_index: partitionIndex,
+        residual_noise_interval: residualNoiseInterval,
+        endpoint_replays: endpointReplays,
+        max_endpoint_shifted_prefix_pressure_outer_radius: Math.max(
+          ...endpointPressures
+        ),
+        min_endpoint_shifted_prefix_pressure_outer_radius: Math.min(
+          ...endpointPressures
+        ),
+        all_endpoint_replays_provider_backed: endpointReplays.every(
+          (endpoint) => endpoint.endpoint_provider_backed_replay === true
+        ),
+      };
+    }
+  );
+  const endpointSummaries = partitionReplays.flatMap((partition) =>
+    partition.endpoint_replays.map(
+      (endpoint) => endpoint.shared_domain_replay_artifact_summary
+    )
+  );
+  const endpointPressures = endpointSummaries.map(replaySummaryShiftedPressure);
+  const maxEndpointPressure = Math.max(...endpointPressures);
+  const minEndpointPressure = Math.min(...endpointPressures);
+  const baselineReferenceSummary = sharedDomainReplayArtifactCandidateSummary(
+    baselineReferenceReplayArtifact
+  );
+  const intervalResidualSummary = sharedDomainReplayArtifactCandidateSummary(
+    intervalResidualReplayArtifact
+  );
+  const baselineReferencePressure = replaySummaryShiftedPressure(
+    baselineReferenceSummary
+  );
+  const intervalResidualPressure =
+    replaySummaryShiftedPressure(intervalResidualSummary);
+  const zetaDegreeBound = terminalSharedResidualZetaDegreeBound({
+    terminalHIndexes: resolvedTerminalHIndexes,
+    targetYOrder:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+      resolvedShiftedIndex,
+  });
+  emitProgress?.({
+    stage: "terminal-affine-zeta-provider-summary-ready",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    completed_endpoint_count: completedEndpointCount,
+    endpoint_count: 2 * resolvedResidualCoordinatePartitionCount,
+    max_endpoint_shifted_prefix_pressure_outer_radius:
+      maxEndpointPressure,
+  });
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_TERMINAL_SHARED_RESIDUAL_AFFINE_ZETA_PROVIDER_REPLAY_DIAGNOSTIC_SCHEMA,
+    status:
+      "h39-terminal-shared-residual-affine-zeta-provider-replay-diagnostic-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-terminal-shared-residual-affine-zeta-provider-replay-diagnostic",
+    target_speed_interval: resolvedTargetSpeedInterval,
+    branch,
+    shifted_index: resolvedShiftedIndex,
+    y_order:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+      resolvedShiftedIndex,
+    outer_radius: resolvedOuterRadius,
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    comparison_row_count: comparisonRows.length,
+    comparison_xi_interval_hull: comparisonXiIntervalHull,
+    endpoint_replay_row_limit: resolvedEndpointReplayRowLimit,
+    endpoint_replay_row_count:
+      baselineReferenceSummary.coefficient_row_count ?? null,
+    polynomial_degree: resolvedPolynomialDegree,
+    terminal_provider_h_indexes: resolvedTerminalHIndexes,
+    residual_coordinate:
+      "shared endpoint zeta in h_i(xi,zeta)=q_i(xi)+center_i+zeta*radius_i for terminal h rows",
+    residual_coordinate_partition_count:
+      resolvedResidualCoordinatePartitionCount,
+    residual_noise_partition_intervals: partitionIntervals,
+    terminal_zeta_degree_bound: zetaDegreeBound,
+    affine_in_shared_residual_coordinate:
+      zetaDegreeBound.affine_in_shared_residual_coordinate,
+    h38_solve_target_policy: "preserved-H39-predecessor-row",
+    provider_shape_interpretation: {
+      existing_h_row_provider_accepts_shared_zeta_endpoint: true,
+      existing_h_row_provider_accepts_shared_zeta_interval: false,
+      reason:
+        "the current provider boundary consumes one derived hIntervals vector per branch, so a scalar zeta endpoint can be replayed while a coupled zeta interval still needs an explicit endpoint/partition proof",
+    },
+    baseline_reference_replay_artifact_summary: baselineReferenceSummary,
+    interval_residual_replay_artifact_summary: intervalResidualSummary,
+    endpoint_partition_replays: partitionReplays,
+    endpoint_provider_replay_summary: {
+      endpoint_replay_count: endpointSummaries.length,
+      all_endpoint_replays_provider_backed: partitionReplays.every(
+        (partition) => partition.all_endpoint_replays_provider_backed === true
+      ),
+      provider_kind:
+        "candidate-terminal-shared-residual-affine-zeta-endpoint-provider",
+      min_endpoint_shifted_prefix_pressure_outer_radius:
+        minEndpointPressure,
+      max_endpoint_shifted_prefix_pressure_outer_radius:
+        maxEndpointPressure,
+      baseline_reference_to_max_endpoint_shifted_prefix_pressure_ratio:
+        finitePositive(baselineReferencePressure) &&
+        finitePositive(maxEndpointPressure)
+          ? Number(baselineReferencePressure) / Number(maxEndpointPressure)
+          : null,
+      interval_residual_to_max_endpoint_shifted_prefix_pressure_ratio:
+        finitePositive(intervalResidualPressure) &&
+        finitePositive(maxEndpointPressure)
+          ? Number(intervalResidualPressure) / Number(maxEndpointPressure)
+          : null,
+    },
+    provider_replay_diagnosis:
+      "terminal-affine-zeta-endpoints-cross-existing-H39-provider-boundary-candidate",
+    candidate_certificate_route:
+      "The existing h-row provider hook can replay scalar affine-zeta endpoints through H39 without widening zeta to independent terminal h-row boxes. A certificate still needs a directed-rounded coupled graph-xi/eight-slice affine-zeta producer-image enclosure, or an evaluator boundary that carries that coupled coordinate natively.",
+    claim_boundary: {
+      certifies_standard_h38_cover: false,
+      certifies_terminal_affine_zeta_provider_enclosure: false,
+      certifies_shared_zeta_interval_provider: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function summarizePostZetaReplay({
+  row,
+  rowAnalysisIndex,
+  partitionIndex,
+  endpointIndex,
+  residualNoise,
+  providerOutput,
+  replay,
+}) {
+  return {
+    row_analysis_index: rowAnalysisIndex,
+    cell_id: row.cell_id,
+    speed_interval: row.speed_interval,
+    partition_index: partitionIndex,
+    endpoint_index: endpointIndex,
+    residual_noise: Number(residualNoise),
+    pressure: replay.pressure,
+    center_interval: replay.center_interval,
+    center_numeric_interval: replay.center_numeric_interval,
+    row_pressure: replay.row_pressure,
+    h_row_provider_kind: providerOutput.providerKind,
+    h_row_dependency_witness: providerOutput.hRowDependencyWitness,
+    h_row_provider_claim_boundary: providerOutput.hRowProviderClaimBoundary,
+  };
+}
+
+function replayForInputFamily(sensitivity, inputFamily) {
+  return (
+    sensitivity?.input_family_replays?.find(
+      (replay) => replay.input_family === inputFamily
+    ) ?? null
+  );
+}
+
+function replayForFreezeStart(sensitivity, freezeStartIndex) {
+  return (
+    sensitivity?.h_row_freeze_replays?.find(
+      (replay) => replay.freeze_start_index === freezeStartIndex
+    ) ?? null
+  );
+}
+
+function pointHIntervalAtMidpoint(interval) {
+  const midpoint = intervalMidpoint(interval);
+  return [midpoint, midpoint];
+}
+
+function hIntervalsWithOnlyIndexesActive(hIntervals, activeIndexes) {
+  const activeIndexSet = new Set(activeIndexes.map(Number));
+  return hIntervals.map((interval, hIndex) =>
+    activeIndexSet.has(hIndex) ? [Number(interval[0]), Number(interval[1])] : pointHIntervalAtMidpoint(interval)
+  );
+}
+
+function hIntervalsWithIndexesFrozen(hIntervals, frozenIndexes) {
+  const frozenIndexSet = new Set(frozenIndexes.map(Number));
+  return hIntervals.map((interval, hIndex) =>
+    frozenIndexSet.has(hIndex) ? pointHIntervalAtMidpoint(interval) : [Number(interval[0]), Number(interval[1])]
+  );
+}
+
+function postZetaFamilyDefinitions({ hCount, terminalHIndexes }) {
+  const terminalIndexSet = new Set(terminalHIndexes.map(Number));
+  const h38Index = THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index;
+  const allIndexes = Array.from({ length: hCount }, (_, hIndex) => hIndex);
+  const terminalIndexes = allIndexes.filter(
+    (hIndex) => terminalIndexSet.has(hIndex) && hIndex !== h38Index
+  );
+  const nonterminalIndexes = allIndexes.filter(
+    (hIndex) => hIndex !== h38Index && !terminalIndexSet.has(hIndex)
+  );
+  return [
+    {
+      family: "h38-solve-target-row",
+      h_indexes: [h38Index],
+    },
+    {
+      family: "terminal-affine-zeta-provider-rows",
+      h_indexes: terminalIndexes,
+    },
+    {
+      family: "nonterminal-h-row-chain",
+      h_indexes: nonterminalIndexes,
+    },
+  ].filter((family) => family.h_indexes.length > 0);
+}
+
+function postZetaPressureReplaySummary({
+  context,
+  cell,
+  branch,
+  hIntervals,
+  solveSlopeInterval,
+  outerRadius,
+  shiftedIndex,
+  fullPressure,
+  mode,
+  family,
+  hIndexes,
+}) {
+  const replay = shiftedPressureReplayForPointHRow({
+    context,
+    cell,
+    branch,
+    hIntervals,
+    solveSlopeInterval,
+    outerRadius,
+    shiftedIndex,
+  });
+  return {
+    mode,
+    family,
+    h_indexes: hIndexes,
+    pressure: replay.pressure,
+    pressure_share_of_full:
+      Number(fullPressure) > 0
+        ? Number(replay.pressure) / Number(fullPressure)
+        : null,
+    full_to_pressure_ratio:
+      Number(replay.pressure) > 0
+        ? Number(fullPressure) / Number(replay.pressure)
+        : null,
+    center_interval: replay.center_interval,
+    center_numeric_interval: replay.center_numeric_interval,
+    row_pressure: replay.row_pressure,
+  };
+}
+
+function dominantPressureSummary(replays) {
+  return replays.reduce(
+    (dominant, replay) =>
+      Number(replay.pressure) > Number(dominant?.pressure ?? -1)
+        ? replay
+        : dominant,
+    null
+  );
+}
+
+function dominantReductionSummary(replays) {
+  return replays.reduce(
+    (dominant, replay) =>
+      Number(replay.full_to_pressure_ratio ?? -1) >
+      Number(dominant?.full_to_pressure_ratio ?? -1)
+        ? replay
+        : dominant,
+    null
+  );
+}
+
+function postZetaPressureSourceInterpretation({
+  sensitivity,
+  terminalHIndexes,
+  frozenOutFamilyReplays = [],
+  activeOnlySingleHIndexReplays = [],
+}) {
+  const strongestFrozenFamily = dominantReductionSummary(
+    frozenOutFamilyReplays
+  );
+  const strongestActiveSingle = dominantPressureSummary(
+    activeOnlySingleHIndexReplays
+  );
+  const h38Index = THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index;
+  if (
+    strongestFrozenFamily?.family === "h38-solve-target-row" &&
+    Number(strongestFrozenFamily?.full_to_pressure_ratio ?? 0) >= 10
+  ) {
+    return "preserved-h38-row-dominates-after-terminal-zeta";
+  }
+  if (
+    strongestFrozenFamily?.family === "terminal-affine-zeta-provider-rows" &&
+    Number(strongestFrozenFamily?.full_to_pressure_ratio ?? 0) >= 10
+  ) {
+    return "terminal-plus-h38-family-dominates-after-terminal-zeta";
+  }
+  if (
+    strongestFrozenFamily?.family === "nonterminal-h-row-chain" &&
+    Number(strongestFrozenFamily?.full_to_pressure_ratio ?? 0) >= 10
+  ) {
+    return "nonterminal-h-row-chain-dominates-after-terminal-zeta";
+  }
+  if (
+    strongestActiveSingle?.h_indexes?.length === 1 &&
+    strongestActiveSingle.h_indexes[0] === h38Index &&
+    Number(strongestActiveSingle?.pressure_share_of_full ?? 0) >= 0.5
+  ) {
+    return "preserved-h38-row-dominates-after-terminal-zeta";
+  }
+  const h38FreezeReplay = replayForFreezeStart(
+    sensitivity,
+    h38Index
+  );
+  const terminalStartIndex = Math.min(...terminalHIndexes.map(Number));
+  const terminalPlusH38Replay = replayForFreezeStart(
+    sensitivity,
+    terminalStartIndex
+  );
+  const fullChainReplay = replayForFreezeStart(sensitivity, 0);
+  const h38Reduction = Number(h38FreezeReplay?.full_to_pressure_ratio ?? 0);
+  const terminalReduction = Number(
+    terminalPlusH38Replay?.full_to_pressure_ratio ?? 0
+  );
+  const fullChainReduction = Number(
+    fullChainReplay?.full_to_pressure_ratio ?? 0
+  );
+  const hRowReduction = Number(
+    sensitivity?.h_row_midpoint_reduction_factor ?? 0
+  );
+  const strongestNonHReduction = Number(
+    sensitivity?.strongest_non_h_row_reduction_factor ?? 1
+  );
+
+  if (
+    h38Reduction >= 10 &&
+    h38Reduction >= 2 * Math.max(1, terminalReduction)
+  ) {
+    return "preserved-h38-row-dominates-after-terminal-zeta";
+  }
+  if (
+    terminalReduction >= 10 &&
+    terminalReduction >= 2 * Math.max(1, h38Reduction)
+  ) {
+    return "terminal-plus-h38-family-dominates-after-terminal-zeta";
+  }
+  if (
+    fullChainReduction >=
+    10 * Math.max(1, terminalReduction, h38Reduction)
+  ) {
+    return "nonterminal-h-row-chain-dominates-after-terminal-zeta";
+  }
+  if (
+    hRowReduction >= 10 &&
+    hRowReduction >= 10 * Math.max(1, strongestNonHReduction)
+  ) {
+    return "h-row-interval-dependency-dominates-after-terminal-zeta";
+  }
+  return "post-zeta-pressure-source-mixed-or-source-level";
+}
+
+export function buildH39PostZetaPressureSourceIsolationDiagnosticCandidate({
+  targetSpeedInterval = [3.02156, 3.02156007813],
+  branch = "-",
+  rootSubdivisions = 100,
+  outerRadius = 0.001,
+  shiftedIndex = 1,
+  seriesOrder = 60,
+  sourceStencilSubcellCount = 32,
+  comparisonStencilIndex = 27,
+  polynomialDegree = 2,
+  terminalHIndexes = [37, 36, 35],
+  residualCoordinatePartitionCount = 8,
+  rowAnalysisLimit = 1,
+  hFreezeStartIndexes = [38, 37, 36, 35, 34, 30, 20, 10, 0],
+  hRowWidthCompressionFactors = [1, 0.5, 0.25, 0.125, 0.0625, 0],
+  singleHIndexAnalysisIndexes = null,
+  progressCallback = null,
+} = {}) {
+  const startedAt = Date.now();
+  const emitProgress =
+    typeof progressCallback === "function"
+      ? (progress) =>
+          progressCallback({
+            diagnostic: "h39-post-zeta-pressure-source-isolation",
+            elapsed_ms: Date.now() - startedAt,
+            ...progress,
+          })
+      : null;
+  const resolvedTargetSpeedInterval = numericInterval(
+    "targetSpeedInterval",
+    targetSpeedInterval
+  );
+  const resolvedSourceStencilSubcellCount = assertFinitePositiveInteger(
+    "sourceStencilSubcellCount",
+    sourceStencilSubcellCount
+  );
+  if (resolvedSourceStencilSubcellCount < 5) {
+    throw new Error("sourceStencilSubcellCount must be at least 5");
+  }
+  const resolvedComparisonStencilIndex = Number(comparisonStencilIndex);
+  if (
+    !Number.isInteger(resolvedComparisonStencilIndex) ||
+    resolvedComparisonStencilIndex < 0
+  ) {
+    throw new Error("comparisonStencilIndex must be a nonnegative integer");
+  }
+  const resolvedPolynomialDegree = assertFinitePositiveInteger(
+    "polynomialDegree",
+    polynomialDegree
+  );
+  if (resolvedPolynomialDegree > 3) {
+    throw new Error("polynomialDegree must be at most 3");
+  }
+  const resolvedTerminalHIndexes = terminalHIndexes.map((hIndex) => {
+    const resolved = Number(hIndex);
+    if (!Number.isInteger(resolved) || resolved < 0 || resolved > 38) {
+      throw new Error("terminalHIndexes must contain h indexes 0 through 38");
+    }
+    return resolved;
+  });
+  const resolvedResidualCoordinatePartitionCount =
+    assertFinitePositiveInteger(
+      "residualCoordinatePartitionCount",
+      residualCoordinatePartitionCount
+    );
+  const resolvedRowAnalysisLimit = assertFinitePositiveInteger(
+    "rowAnalysisLimit",
+    rowAnalysisLimit
+  );
+  const resolvedOuterRadius = assertFinitePositiveNumber(
+    "outerRadius",
+    outerRadius
+  );
+  const resolvedShiftedIndex = assertFinitePositiveInteger(
+    "shiftedIndex",
+    shiftedIndex
+  );
+  const resolvedFreezeStartIndexes = hFreezeStartIndexes.map((hIndex) => {
+    const resolved = Number(hIndex);
+    if (!Number.isInteger(resolved) || resolved < 0 || resolved > 38) {
+      throw new Error("hFreezeStartIndexes must contain h indexes 0 through 38");
+    }
+    return resolved;
+  });
+  const resolvedCompressionFactors = hRowWidthCompressionFactors.map((factor) => {
+    const resolved = Number(factor);
+    if (!Number.isFinite(resolved) || resolved < 0 || resolved > 1) {
+      throw new Error("hRowWidthCompressionFactors must be finite values in [0,1]");
+    }
+    return resolved;
+  });
+  const resolvedSingleHIndexAnalysisIndexes = (
+    singleHIndexAnalysisIndexes ??
+    Array.from({ length: 39 }, (_, hIndex) => hIndex)
+  ).map((hIndex) => {
+    const resolved = Number(hIndex);
+    if (!Number.isInteger(resolved) || resolved < 0 || resolved > 38) {
+      throw new Error(
+        "singleHIndexAnalysisIndexes must contain h indexes 0 through 38"
+      );
+    }
+    return resolved;
+  });
+  const context = makeTheta3minusFirstYGdSeriesContext({
+    seriesOrder: assertFinitePositiveInteger("seriesOrder", seriesOrder),
+  });
+  emitProgress?.({
+    stage: "post-zeta-source-subcover-start",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    completed_endpoint_count: 0,
+    endpoint_count:
+      resolvedRowAnalysisLimit * resolvedResidualCoordinatePartitionCount * 2,
+  });
+  const rows = targetRowsForSubcellCount({
+    targetSpeedInterval: resolvedTargetSpeedInterval,
+    subcellCount: resolvedSourceStencilSubcellCount,
+    rootSubdivisions,
+  });
+  if (rows.length !== resolvedSourceStencilSubcellCount) {
+    throw new Error(
+      "post-zeta pressure source isolation requires a complete source subcover"
+    );
+  }
+  const comparisonRows = rows.slice(
+    resolvedComparisonStencilIndex,
+    resolvedComparisonStencilIndex + 5
+  );
+  if (comparisonRows.length !== 5) {
+    throw new Error(
+      "post-zeta pressure source isolation requires a five-row comparison window"
+    );
+  }
+  const analysisRows = comparisonRows.slice(
+    0,
+    Math.min(resolvedRowAnalysisLimit, comparisonRows.length)
+  );
+  emitProgress?.({
+    stage: "post-zeta-comparison-window-ready",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    comparison_row_count: comparisonRows.length,
+    row_analysis_count: analysisRows.length,
+    completed_endpoint_count: 0,
+    endpoint_count:
+      analysisRows.length * resolvedResidualCoordinatePartitionCount * 2,
+  });
+  const comparisonXiIntervalHull = intervalHull(
+    comparisonRows.map((row) =>
+      speedIntervalXiInterval({
+        row,
+        targetSpeedInterval: resolvedTargetSpeedInterval,
+      })
+    )
+  );
+  const polynomialTransportProfilesByBranch =
+    hRowPolynomialTransportProfilesByBranch({
+      rows: comparisonRows,
+      targetSpeedInterval: resolvedTargetSpeedInterval,
+      degree: resolvedPolynomialDegree,
+    });
+  const intervalResidualProfilesByBranch = Object.fromEntries(
+    comparisonRows[0].branch_rows.map((branchRowEntry) => {
+      const branchName = branchRowEntry.branch;
+      return [
+        branchName,
+        polynomialGraphProducerIntervalResidualProfileForRows({
+          targetSpeedInterval: resolvedTargetSpeedInterval,
+          rows: comparisonRows,
+          branch: branchName,
+          transportProfile: polynomialTransportProfilesByBranch[branchName],
+        }),
+      ];
+    })
+  );
+  const partitionIntervals = residualCoordinatePartitions(
+    resolvedResidualCoordinatePartitionCount
+  );
+  const endpointProvider = (residualNoise) =>
+    terminalSharedResidualAffineZetaEndpointHRowProvider({
+      targetSpeedInterval: resolvedTargetSpeedInterval,
+      transportProfilesByBranch: polynomialTransportProfilesByBranch,
+      intervalResidualProfilesByBranch,
+      terminalHIndexes: resolvedTerminalHIndexes,
+      residualNoise,
+      providerKind:
+        "candidate-terminal-shared-residual-affine-zeta-endpoint-provider",
+      providerProvenance:
+        "post-zeta-pressure-source-isolation-terminal-affine-zeta-endpoint",
+    });
+  let completedEndpointCount = 0;
+  const endpointReplays = analysisRows.flatMap((row, rowAnalysisIndex) => {
+    const branchRow = branchRowFor(row, branch);
+    const cell = cellFromCertificateRow(row);
+    return partitionIntervals.flatMap((residualNoiseInterval, partitionIndex) =>
+      residualNoiseInterval.map((residualNoise, endpointIndex) => {
+        emitProgress?.({
+          stage: "post-zeta-endpoint-start",
+          row_analysis_index: rowAnalysisIndex,
+          cell_id: row.cell_id,
+          partition_index: partitionIndex,
+          endpoint_index: endpointIndex,
+          residual_noise: Number(residualNoise),
+          completed_endpoint_count: completedEndpointCount,
+          endpoint_count:
+            analysisRows.length *
+            resolvedResidualCoordinatePartitionCount *
+            2,
+        });
+        const providerOutput = endpointProvider(residualNoise)({
+          branch,
+          branchRow,
+          cellId: row.cell_id,
+          h38Row: row,
+          replayKind: "h39-post-zeta-pressure-source-isolation",
+        });
+        const replay = shiftedPressureReplayForPointHRow({
+          context,
+          cell,
+          branch,
+          hIntervals: providerOutput.hIntervals,
+          solveSlopeInterval: providerOutput.solveSlopeInterval,
+          outerRadius: resolvedOuterRadius,
+          shiftedIndex: resolvedShiftedIndex,
+        });
+        completedEndpointCount += 1;
+        emitProgress?.({
+          stage: "post-zeta-endpoint-complete",
+          row_analysis_index: rowAnalysisIndex,
+          cell_id: row.cell_id,
+          partition_index: partitionIndex,
+          endpoint_index: endpointIndex,
+          residual_noise: Number(residualNoise),
+          pressure: replay.pressure,
+          completed_endpoint_count: completedEndpointCount,
+          endpoint_count:
+            analysisRows.length *
+            resolvedResidualCoordinatePartitionCount *
+            2,
+        });
+        return {
+          row,
+          cell,
+          branchRow,
+          providerOutput,
+          replay,
+          summary: summarizePostZetaReplay({
+            row,
+            rowAnalysisIndex,
+            partitionIndex,
+            endpointIndex,
+            residualNoise,
+            providerOutput,
+            replay,
+          }),
+        };
+      })
+    );
+  });
+  const h38IncludedTerminalHIndexes = [
+    ...new Set([
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index,
+      ...resolvedTerminalHIndexes,
+    ]),
+  ].sort((left, right) => left - right);
+  const h38IncludedEndpointProvider = (residualNoise) =>
+    terminalSharedResidualAffineZetaEndpointHRowProvider({
+      targetSpeedInterval: resolvedTargetSpeedInterval,
+      transportProfilesByBranch: polynomialTransportProfilesByBranch,
+      intervalResidualProfilesByBranch,
+      terminalHIndexes: h38IncludedTerminalHIndexes,
+      residualNoise,
+      preserveH38: false,
+      providerKind:
+        "candidate-h38-included-shared-residual-affine-zeta-endpoint-provider",
+      providerProvenance:
+        "post-zeta-pressure-source-isolation-h38-included-affine-zeta-endpoint",
+    });
+  const h38IncludedEndpointReplays = analysisRows.flatMap(
+    (row, rowAnalysisIndex) => {
+      const branchRow = branchRowFor(row, branch);
+      const cell = cellFromCertificateRow(row);
+      return partitionIntervals.flatMap(
+        (residualNoiseInterval, partitionIndex) =>
+          residualNoiseInterval.map((residualNoise, endpointIndex) => {
+            const providerOutput = h38IncludedEndpointProvider(residualNoise)({
+              branch,
+              branchRow,
+              cellId: row.cell_id,
+              h38Row: row,
+              replayKind:
+                "h39-post-zeta-h38-included-pressure-source-isolation",
+            });
+            const replay = shiftedPressureReplayForPointHRow({
+              context,
+              cell,
+              branch,
+              hIntervals: providerOutput.hIntervals,
+              solveSlopeInterval: providerOutput.solveSlopeInterval,
+              outerRadius: resolvedOuterRadius,
+              shiftedIndex: resolvedShiftedIndex,
+            });
+            return summarizePostZetaReplay({
+              row,
+              rowAnalysisIndex,
+              partitionIndex,
+              endpointIndex,
+              residualNoise,
+              providerOutput,
+              replay,
+            });
+          })
+      );
+    }
+  );
+  const dominantEndpointReplay = endpointReplays.reduce((dominant, replay) =>
+    Number(replay.replay.pressure) > Number(dominant?.replay?.pressure ?? -1)
+      ? replay
+      : dominant
+  );
+  const dominantSensitivity =
+    computeH39AffineCenterHRowSensitivityDiagnosticCandidate({
+      context,
+      cell: dominantEndpointReplay.cell,
+      branch,
+      hIntervals: dominantEndpointReplay.providerOutput.hIntervals,
+      solveSlopeInterval:
+        dominantEndpointReplay.providerOutput.solveSlopeInterval,
+      outerRadius: resolvedOuterRadius,
+      shiftedIndex: resolvedShiftedIndex,
+      hFreezeStartIndexes: resolvedFreezeStartIndexes,
+      hRowWidthCompressionFactors: resolvedCompressionFactors,
+    });
+  const h38FreezeReplay = replayForFreezeStart(
+    dominantSensitivity,
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index
+  );
+  const terminalStartIndex = Math.min(...resolvedTerminalHIndexes);
+  const terminalPlusH38FreezeReplay = replayForFreezeStart(
+    dominantSensitivity,
+    terminalStartIndex
+  );
+  const fullChainFreezeReplay = replayForFreezeStart(
+    dominantSensitivity,
+    0
+  );
+  const dominantHIntervals =
+    dominantEndpointReplay.providerOutput.hIntervals;
+  const dominantFullPressure = dominantEndpointReplay.replay.pressure;
+  const familyDefinitions = postZetaFamilyDefinitions({
+    hCount: dominantHIntervals.length,
+    terminalHIndexes: resolvedTerminalHIndexes,
+  });
+  let completedPressureSourceReplayCount = 0;
+  const pressureSourceReplayCount =
+    2 * familyDefinitions.length +
+    2 * resolvedSingleHIndexAnalysisIndexes.length;
+  const pressureSourceReplay = ({
+    mode,
+    family,
+    hIndexes,
+    hIntervals,
+  }) => {
+    emitProgress?.({
+      stage: "post-zeta-pressure-source-replay-start",
+      mode,
+      family,
+      h_indexes: hIndexes,
+      completed_pressure_source_replay_count:
+        completedPressureSourceReplayCount,
+      pressure_source_replay_count: pressureSourceReplayCount,
+    });
+    const replay = postZetaPressureReplaySummary({
+      context,
+      cell: dominantEndpointReplay.cell,
+      branch,
+      hIntervals,
+      solveSlopeInterval:
+        dominantEndpointReplay.providerOutput.solveSlopeInterval,
+      outerRadius: resolvedOuterRadius,
+      shiftedIndex: resolvedShiftedIndex,
+      fullPressure: dominantFullPressure,
+      mode,
+      family,
+      hIndexes,
+    });
+    completedPressureSourceReplayCount += 1;
+    emitProgress?.({
+      stage: "post-zeta-pressure-source-replay-complete",
+      mode,
+      family,
+      h_indexes: hIndexes,
+      pressure: replay.pressure,
+      completed_pressure_source_replay_count:
+        completedPressureSourceReplayCount,
+      pressure_source_replay_count: pressureSourceReplayCount,
+    });
+    return replay;
+  };
+  const activeOnlyFamilyReplays = familyDefinitions.map((family) =>
+    pressureSourceReplay({
+      hIntervals: hIntervalsWithOnlyIndexesActive(
+        dominantHIntervals,
+        family.h_indexes
+      ),
+      mode: "active-only-family",
+      family: family.family,
+      hIndexes: family.h_indexes,
+    })
+  );
+  const frozenOutFamilyReplays = familyDefinitions.map((family) =>
+    pressureSourceReplay({
+      hIntervals: hIntervalsWithIndexesFrozen(
+        dominantHIntervals,
+        family.h_indexes
+      ),
+      mode: "frozen-out-family",
+      family: family.family,
+      hIndexes: family.h_indexes,
+    })
+  );
+  const activeOnlySingleHIndexReplays =
+    resolvedSingleHIndexAnalysisIndexes.map((hIndex) =>
+      pressureSourceReplay({
+        hIntervals: hIntervalsWithOnlyIndexesActive(dominantHIntervals, [
+          hIndex,
+        ]),
+        mode: "active-only-single-h-index",
+        family: `h${hIndex}`,
+        hIndexes: [hIndex],
+      })
+    );
+  const frozenOutSingleHIndexReplays =
+    resolvedSingleHIndexAnalysisIndexes.map((hIndex) =>
+      pressureSourceReplay({
+        hIntervals: hIntervalsWithIndexesFrozen(dominantHIntervals, [
+          hIndex,
+        ]),
+        mode: "frozen-out-single-h-index",
+        family: `h${hIndex}`,
+        hIndexes: [hIndex],
+      })
+    );
+  const endpointReplaySummaries = endpointReplays.map(
+    (endpoint) => endpoint.summary
+  );
+  const pressures = endpointReplaySummaries.map((endpoint) =>
+    Number(endpoint.pressure)
+  );
+  const maxEndpointPressure = Math.max(...pressures);
+  const minEndpointPressure = Math.min(...pressures);
+  const h38IncludedPressures = h38IncludedEndpointReplays.map((endpoint) =>
+    Number(endpoint.pressure)
+  );
+  const maxH38IncludedEndpointPressure = Math.max(...h38IncludedPressures);
+  const minH38IncludedEndpointPressure = Math.min(...h38IncludedPressures);
+  emitProgress?.({
+    stage: "post-zeta-pressure-source-summary-ready",
+    completed_endpoint_count: completedEndpointCount,
+    endpoint_count: endpointReplaySummaries.length,
+    max_endpoint_pressure: maxEndpointPressure,
+    post_zeta_pressure_source_interpretation:
+      postZetaPressureSourceInterpretation({
+        sensitivity: dominantSensitivity,
+        terminalHIndexes: resolvedTerminalHIndexes,
+        frozenOutFamilyReplays,
+        activeOnlySingleHIndexReplays,
+      }),
+  });
+
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_POST_ZETA_PRESSURE_SOURCE_ISOLATION_DIAGNOSTIC_SCHEMA,
+    status:
+      "h39-post-zeta-pressure-source-isolation-diagnostic-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-post-zeta-pressure-source-isolation-diagnostic",
+    target_speed_interval: resolvedTargetSpeedInterval,
+    branch,
+    shifted_index: resolvedShiftedIndex,
+    y_order:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+      resolvedShiftedIndex,
+    outer_radius: resolvedOuterRadius,
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    comparison_row_count: comparisonRows.length,
+    row_analysis_limit: resolvedRowAnalysisLimit,
+    row_analysis_count: analysisRows.length,
+    comparison_xi_interval_hull: comparisonXiIntervalHull,
+    polynomial_degree: resolvedPolynomialDegree,
+    terminal_provider_h_indexes: resolvedTerminalHIndexes,
+    residual_coordinate_partition_count:
+      resolvedResidualCoordinatePartitionCount,
+    single_h_index_analysis_indexes: resolvedSingleHIndexAnalysisIndexes,
+    residual_noise_partition_intervals: partitionIntervals,
+    h38_solve_target_policy: "preserved-H39-predecessor-row",
+    endpoint_replay_summary: {
+      endpoint_replay_count: endpointReplaySummaries.length,
+      min_endpoint_pressure: minEndpointPressure,
+      max_endpoint_pressure: maxEndpointPressure,
+      provider_kind:
+        "candidate-terminal-shared-residual-affine-zeta-endpoint-provider",
+      all_endpoint_replays_provider_backed: endpointReplaySummaries.every(
+        (endpoint) =>
+          endpoint.h_row_provider_kind ===
+            "candidate-terminal-shared-residual-affine-zeta-endpoint-provider" &&
+          endpoint.h_row_provider_claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false
+      ),
+    },
+    endpoint_replays: endpointReplaySummaries,
+    h38_included_endpoint_replay_summary: {
+      endpoint_replay_count: h38IncludedEndpointReplays.length,
+      min_endpoint_pressure: minH38IncludedEndpointPressure,
+      max_endpoint_pressure: maxH38IncludedEndpointPressure,
+      provider_kind:
+        "candidate-h38-included-shared-residual-affine-zeta-endpoint-provider",
+      h38_included_terminal_h_indexes: h38IncludedTerminalHIndexes,
+      preserved_h38_to_h38_included_max_pressure_ratio:
+        finitePositive(maxH38IncludedEndpointPressure)
+          ? maxEndpointPressure / maxH38IncludedEndpointPressure
+          : null,
+      all_endpoint_replays_provider_backed: h38IncludedEndpointReplays.every(
+        (endpoint) =>
+          endpoint.h_row_provider_kind ===
+            "candidate-h38-included-shared-residual-affine-zeta-endpoint-provider" &&
+          endpoint.h_row_provider_claim_boundary
+            ?.certifies_directed_rounded_shared_domain === false
+      ),
+    },
+    h38_included_endpoint_replays: h38IncludedEndpointReplays,
+    dominant_endpoint_replay: dominantEndpointReplay.summary,
+    dominant_endpoint_sensitivity: dominantSensitivity,
+    post_zeta_pressure_source_summary: {
+      interpretation: postZetaPressureSourceInterpretation({
+        sensitivity: dominantSensitivity,
+        terminalHIndexes: resolvedTerminalHIndexes,
+        frozenOutFamilyReplays,
+        activeOnlySingleHIndexReplays,
+      }),
+      full_input_pressure:
+        dominantSensitivity.full_input_replay?.pressure ?? null,
+      h_row_midpoint_reduction_factor:
+        dominantSensitivity.h_row_midpoint_reduction_factor,
+      cell_midpoint_reduction_factor:
+        dominantSensitivity.cell_midpoint_reduction_factor,
+      slope_midpoint_reduction_factor:
+        dominantSensitivity.slope_midpoint_reduction_factor,
+      strongest_non_h_row_reduction_factor:
+        dominantSensitivity.strongest_non_h_row_reduction_factor,
+      h38_only_freeze_replay: h38FreezeReplay,
+      terminal_plus_h38_freeze_replay: terminalPlusH38FreezeReplay,
+      full_chain_freeze_replay: fullChainFreezeReplay,
+      h_row_transport_depth_summary:
+        dominantSensitivity.h_row_transport_depth_summary,
+      h_row_width_compression_replays:
+        dominantSensitivity.h_row_width_compression_replays,
+      h38_included_endpoint_replay_summary: {
+        max_endpoint_pressure: maxH38IncludedEndpointPressure,
+        min_endpoint_pressure: minH38IncludedEndpointPressure,
+        preserved_h38_to_h38_included_max_pressure_ratio:
+          finitePositive(maxH38IncludedEndpointPressure)
+            ? maxEndpointPressure / maxH38IncludedEndpointPressure
+            : null,
+      },
+      active_only_family_replays: activeOnlyFamilyReplays,
+      frozen_out_family_replays: frozenOutFamilyReplays,
+      active_only_single_h_index_replays: activeOnlySingleHIndexReplays,
+      frozen_out_single_h_index_replays: frozenOutSingleHIndexReplays,
+      dominant_active_only_family_replay: dominantPressureSummary(
+        activeOnlyFamilyReplays
+      ),
+      dominant_frozen_out_family_replay: dominantReductionSummary(
+        frozenOutFamilyReplays
+      ),
+      dominant_active_only_single_h_index_replay: dominantPressureSummary(
+        activeOnlySingleHIndexReplays
+      ),
+      dominant_frozen_out_single_h_index_replay: dominantReductionSummary(
+        frozenOutSingleHIndexReplays
+      ),
+      cell_midpoint_replay: replayForInputFamily(
+        dominantSensitivity,
+        "cell-midpoint"
+      ),
+      h_row_midpoint_replay: replayForInputFamily(
+        dominantSensitivity,
+        "h-row-midpoint"
+      ),
+      slope_midpoint_replay: replayForInputFamily(
+        dominantSensitivity,
+        "slope-midpoint"
+      ),
+    },
+    candidate_certificate_route:
+      "The terminal affine-zeta endpoint replay is now followed by same-domain h-row sensitivity on the worst endpoint. If pressure falls only when preserved h38 or wider h-row suffixes are midpointed, the next certificate must transport that producer-image dependency rather than adding raw shifted prefixes.",
+    claim_boundary: {
+      certifies_standard_h38_cover: false,
+      certifies_terminal_affine_zeta_provider_enclosure: false,
+      certifies_post_zeta_pressure_source_isolation: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function coefficientMidpointProfileFit({ samples, coefficientKey, degree }) {
+  const resolvedDegree = assertFinitePositiveInteger("degree", degree);
+  const fitPoints = samples.map((sample) => ({
+    x: sample.h38_noise_coordinate,
+    y: intervalMidpoint(sample[coefficientKey]),
+  }));
+  const coefficients = fitPolynomialLeastSquares(fitPoints, resolvedDegree);
+  const residuals = fitPoints.map((point, index) => {
+    const predicted = polynomialValue(coefficients, point.x);
+    const residual = point.y - predicted;
+    return {
+      h38_noise_coordinate: point.x,
+      actual_coefficient_midpoint: point.y,
+      polynomial_prediction: predicted,
+      residual,
+      abs_residual: Math.abs(residual),
+      source_sample_index: index,
+    };
+  });
+  return {
+    polynomial_degree: resolvedDegree,
+    coefficients,
+    coefficient_order: "ascending powers of h38 residual coordinate u",
+    max_abs_midpoint_residual: Math.max(
+      ...residuals.map((residual) => residual.abs_residual)
+    ),
+    residuals,
+  };
+}
+
+function sourceTermCoefficientInterval(rowPressure, termName) {
+  const term = rowPressure?.terms?.find((entry) => entry.term === termName);
+  return term?.coefficient ?? [0, 0];
+}
+
+function coefficientDependenceTermProfile({ samples, termName }) {
+  const termSamples = samples.map((sample) => ({
+    ...sample,
+    term_coefficient_interval: sourceTermCoefficientInterval(
+      sample.row_pressure,
+      termName
+    ),
+  }));
+  return {
+    term: termName,
+    affine_fit: coefficientMidpointProfileFit({
+      samples: termSamples,
+      coefficientKey: "term_coefficient_interval",
+      degree: 1,
+    }),
+    quadratic_fit: coefficientMidpointProfileFit({
+      samples: termSamples,
+      coefficientKey: "term_coefficient_interval",
+      degree: 2,
+    }),
+  };
+}
+
+function buildH39H38Y44CoefficientReplaySetup({
+  targetSpeedInterval,
+  branch,
+  rootSubdivisions,
+  seriesOrder,
+  sourceStencilSubcellCount,
+  comparisonStencilIndex,
+  polynomialDegree,
+}) {
+  const context = makeTheta3minusFirstYGdSeriesContext({
+    seriesOrder,
+  });
+  const rows = targetRowsForSubcellCount({
+    targetSpeedInterval,
+    subcellCount: sourceStencilSubcellCount,
+    rootSubdivisions,
+  });
+  if (rows.length !== sourceStencilSubcellCount) {
+    throw new Error(
+      "h38 coefficient dependence diagnostic requires a complete source subcover"
+    );
+  }
+  const comparisonRows = rows.slice(
+    comparisonStencilIndex,
+    comparisonStencilIndex + 5
+  );
+  if (comparisonRows.length !== 5) {
+    throw new Error(
+      "h38 coefficient dependence diagnostic requires a five-row comparison window"
+    );
+  }
+  const analysisRow = comparisonRows[0];
+  const analysisBranchRow = branchRowFor(analysisRow, branch);
+  const analysisCell = cellFromCertificateRow(analysisRow);
+  const noiseCoordinate = speedMidpointXiCoordinate({
+    row: analysisRow,
+    targetSpeedInterval,
+  });
+  const polynomialTransportProfilesByBranch =
+    hRowPolynomialTransportProfilesByBranch({
+      rows: comparisonRows,
+      targetSpeedInterval,
+      degree: polynomialDegree,
+    });
+  const transportProfile = polynomialTransportProfilesByBranch[branch];
+  const residualProfile = polynomialGraphProducerIntervalResidualProfileForRows({
+    targetSpeedInterval,
+    rows: comparisonRows,
+    branch,
+    transportProfile,
+  });
+  const h38ResidualProfile =
+    residualProfile[THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index];
+  return {
+    context,
+    rows,
+    comparisonRows,
+    analysisRow,
+    analysisBranchRow,
+    analysisCell,
+    noiseCoordinate,
+    transportProfile,
+    residualProfile,
+    h38ResidualProfile,
+  };
+}
+
+function h39H38Y44CoefficientSampleReplay({
+  context,
+  analysisCell,
+  analysisBranchRow,
+  branch,
+  transportProfile,
+  residualProfile,
+  h38ResidualProfile,
+  noiseCoordinate,
+  outerRadius,
+  shiftedIndex,
+  h38Noise,
+  sampleIndex,
+}) {
+  const replay =
+    shiftedPressureReplayForPolynomialGraphH38ResidualVariantPoint({
+      context,
+      cell: analysisCell,
+      branch,
+      transportProfile,
+      noise: noiseCoordinate,
+      residualProfile,
+      h38ResidualInterval: h38ResidualProfile.residual_interval_hull,
+      h38Noise,
+      solveSlopeInterval: analysisBranchRow.h38_solve_slope_interval,
+      outerRadius,
+      shiftedIndex,
+      variant: `h38-noise-${h38Noise}`,
+    });
+  const sourceCoefficientInterval = replay.row_pressure.source_coefficient;
+  const sourceCoefficientMidpoint = intervalMidpoint(
+    sourceCoefficientInterval
+  );
+  const sourceCoefficientWidth = intervalWidth(sourceCoefficientInterval);
+  return {
+    sample_index: sampleIndex,
+    h38_noise_coordinate: h38Noise,
+    h38_value: replay.h38_value,
+    center_interval: replay.center_interval,
+    center_numeric_interval: replay.center_numeric_interval,
+    source_coefficient_interval: sourceCoefficientInterval,
+    source_coefficient_midpoint: sourceCoefficientMidpoint,
+    source_coefficient_width: sourceCoefficientWidth,
+    source_coefficient_abs_upper: intervalAbsUpper(
+      sourceCoefficientInterval
+    ),
+    row_pressure: replay.row_pressure,
+    pressure: replay.pressure,
+    center_eliminated_row_pressure: replay.center_eliminated_row_pressure,
+    center_eliminated_pressure: replay.center_eliminated_pressure,
+    center_elimination_improvement_factor:
+      replay.center_elimination_improvement_factor,
+    center_elimination_interval_warning:
+      replay.center_elimination_interval_warning,
+  };
+}
+
+export function buildH39H38Y44CoefficientDependenceDiagnosticCandidate({
+  targetSpeedInterval = [3.02156, 3.02156007813],
+  branch = "-",
+  rootSubdivisions = 100,
+  outerRadius = 0.001,
+  shiftedIndex = 1,
+  seriesOrder = 60,
+  sourceStencilSubcellCount = 32,
+  comparisonStencilIndex = 27,
+  polynomialDegree = 2,
+  h38NoiseSamples = [-1, -0.5, 0, 0.5, 1],
+  progressCallback = null,
+} = {}) {
+  const startedAt = Date.now();
+  const emitProgress =
+    typeof progressCallback === "function"
+      ? (progress) =>
+          progressCallback({
+            diagnostic: "h39-h38-y44-coefficient-dependence",
+            elapsed_ms: Date.now() - startedAt,
+            ...progress,
+          })
+      : null;
+  const resolvedTargetSpeedInterval = numericInterval(
+    "targetSpeedInterval",
+    targetSpeedInterval
+  );
+  const resolvedSourceStencilSubcellCount = assertFinitePositiveInteger(
+    "sourceStencilSubcellCount",
+    sourceStencilSubcellCount
+  );
+  if (resolvedSourceStencilSubcellCount < 5) {
+    throw new Error("sourceStencilSubcellCount must be at least 5");
+  }
+  const resolvedComparisonStencilIndex = Number(comparisonStencilIndex);
+  if (
+    !Number.isInteger(resolvedComparisonStencilIndex) ||
+    resolvedComparisonStencilIndex < 0
+  ) {
+    throw new Error("comparisonStencilIndex must be a nonnegative integer");
+  }
+  const resolvedPolynomialDegree = assertFinitePositiveInteger(
+    "polynomialDegree",
+    polynomialDegree
+  );
+  if (resolvedPolynomialDegree > 3) {
+    throw new Error("polynomialDegree must be at most 3");
+  }
+  const resolvedOuterRadius = assertFinitePositiveNumber(
+    "outerRadius",
+    outerRadius
+  );
+  const resolvedShiftedIndex = assertFinitePositiveInteger(
+    "shiftedIndex",
+    shiftedIndex
+  );
+  const resolvedH38NoiseSamples = h38NoiseSamples.map((sample) => {
+    const resolved = Number(sample);
+    if (!Number.isFinite(resolved) || resolved < -1 || resolved > 1) {
+      throw new Error("h38NoiseSamples must be finite values in [-1,1]");
+    }
+    return resolved;
+  });
+  if (resolvedH38NoiseSamples.length < 3) {
+    throw new Error("h38NoiseSamples must contain at least three values");
+  }
+  const resolvedSeriesOrder = assertFinitePositiveInteger(
+    "seriesOrder",
+    seriesOrder
+  );
+  const setup = buildH39H38Y44CoefficientReplaySetup({
+    targetSpeedInterval: resolvedTargetSpeedInterval,
+    branch,
+    rootSubdivisions,
+    seriesOrder: resolvedSeriesOrder,
+    sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+    comparisonStencilIndex: resolvedComparisonStencilIndex,
+    polynomialDegree: resolvedPolynomialDegree,
+  });
+  const {
+    context,
+    comparisonRows,
+    analysisRow,
+    analysisBranchRow,
+    analysisCell,
+    noiseCoordinate,
+    transportProfile,
+    residualProfile,
+    h38ResidualProfile,
+  } = setup;
+  emitProgress?.({
+    stage: "h38-y44-dependence-source-subcover-start",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+  });
+  emitProgress?.({
+    stage: "h38-y44-dependence-comparison-window-ready",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    analysis_cell_id: analysisRow.cell_id,
+    h38_noise_sample_count: resolvedH38NoiseSamples.length,
+  });
+  const sampleReplays = resolvedH38NoiseSamples.map(
+    (h38Noise, sampleIndex) => {
+      emitProgress?.({
+        stage: "h38-y44-dependence-sample-start",
+        sample_index: sampleIndex,
+        h38_noise_coordinate: h38Noise,
+        completed_sample_count: sampleIndex,
+        sample_count: resolvedH38NoiseSamples.length,
+      });
+      const sample = h39H38Y44CoefficientSampleReplay({
+        context,
+        analysisCell,
+        analysisBranchRow,
+        branch,
+        transportProfile,
+        residualProfile,
+        h38ResidualProfile,
+        noiseCoordinate,
+        outerRadius: resolvedOuterRadius,
+        shiftedIndex: resolvedShiftedIndex,
+        h38Noise,
+        sampleIndex,
+      });
+      emitProgress?.({
+        stage: "h38-y44-dependence-sample-complete",
+        sample_index: sampleIndex,
+        h38_noise_coordinate: h38Noise,
+        source_coefficient_midpoint: sample.source_coefficient_midpoint,
+        source_coefficient_width: sample.source_coefficient_width,
+        completed_sample_count: sampleIndex + 1,
+        sample_count: resolvedH38NoiseSamples.length,
+      });
+      return sample;
+    }
+  );
+  const affineFit = coefficientMidpointProfileFit({
+    samples: sampleReplays,
+    coefficientKey: "source_coefficient_interval",
+    degree: 1,
+  });
+  const quadraticFit = coefficientMidpointProfileFit({
+    samples: sampleReplays,
+    coefficientKey: "source_coefficient_interval",
+    degree: 2,
+  });
+  const termProfiles = ["delta_squared_speed", "sin_phi", "sin_delta"].map(
+    (termName) =>
+      coefficientDependenceTermProfile({
+        samples: sampleReplays,
+        termName,
+      })
+  );
+  const dominantTermProfile = termProfiles.reduce((best, profile) =>
+    Number(profile.quadratic_fit.max_abs_midpoint_residual) >
+    Number(best?.quadratic_fit?.max_abs_midpoint_residual ?? -1)
+      ? profile
+      : best
+  );
+  const affineToQuadraticResidualRatio =
+    quadraticFit.max_abs_midpoint_residual > 0
+      ? affineFit.max_abs_midpoint_residual /
+        quadraticFit.max_abs_midpoint_residual
+      : null;
+  const affineSlope = Number(affineFit.coefficients[1]);
+  const affineZeroCoordinate =
+    Math.abs(affineSlope) > 1e-300
+      ? -Number(affineFit.coefficients[0]) / affineSlope
+      : null;
+  const centerSample =
+    sampleReplays.find(
+      (sample) => Math.abs(Number(sample.h38_noise_coordinate)) < 1e-15
+    ) ?? null;
+  const maxSamplePressure = Math.max(
+    ...sampleReplays.map((sample) => Number(sample.pressure))
+  );
+  const centerToMaxSamplePressureRatio =
+    centerSample && Number(centerSample.pressure) > 0
+      ? maxSamplePressure / Number(centerSample.pressure)
+      : null;
+  const dependenceInterpretation =
+    affineToQuadraticResidualRatio !== null &&
+    affineToQuadraticResidualRatio >= 10
+      ? "h38-y44-coefficient-has-material-quadratic-curvature"
+      : "h38-y44-coefficient-is-affine-dominated-on-sampled-source";
+  emitProgress?.({
+    stage: "h38-y44-dependence-summary-ready",
+    affine_max_abs_midpoint_residual: affineFit.max_abs_midpoint_residual,
+    quadratic_max_abs_midpoint_residual:
+      quadraticFit.max_abs_midpoint_residual,
+    dependence_interpretation: dependenceInterpretation,
+  });
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_COEFFICIENT_DEPENDENCE_DIAGNOSTIC_SCHEMA,
+    status:
+      "h39-h38-y44-coefficient-dependence-diagnostic-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-h38-y44-coefficient-dependence-diagnostic",
+    target_speed_interval: resolvedTargetSpeedInterval,
+    branch,
+    shifted_index: resolvedShiftedIndex,
+    y_order:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+      resolvedShiftedIndex,
+    outer_radius: resolvedOuterRadius,
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    comparison_row_count: comparisonRows.length,
+    analysis_cell_id: analysisRow.cell_id,
+    analysis_speed_interval: analysisRow.speed_interval,
+    analysis_xi_coordinate: noiseCoordinate,
+    polynomial_degree: resolvedPolynomialDegree,
+    h38_residual_interval:
+      h38ResidualProfile.residual_interval_hull,
+    h38_residual_abs_upper: h38ResidualProfile.max_abs_residual,
+    h38_noise_samples: resolvedH38NoiseSamples,
+    sample_replays: sampleReplays,
+    source_coefficient_affine_fit: affineFit,
+    source_coefficient_quadratic_fit: quadraticFit,
+    affine_to_quadratic_residual_ratio: affineToQuadraticResidualRatio,
+    affine_zero_coordinate: affineZeroCoordinate,
+    center_sample_replay: centerSample,
+    max_sample_pressure: maxSamplePressure,
+    center_to_max_sample_pressure_ratio: centerToMaxSamplePressureRatio,
+    term_coefficient_dependence_profiles: termProfiles,
+    dominant_quadratic_residual_term_profile: dominantTermProfile,
+    dependence_interpretation: dependenceInterpretation,
+    candidate_certificate_route:
+      dependenceInterpretation ===
+      "h38-y44-coefficient-has-material-quadratic-curvature"
+        ? "Replace the h38 residual endpoint check with a directed-rounded quadratic h38 residual-coordinate enclosure, or derive the quadratic source-level cancellation before Cauchy bounding."
+        : "Attempt an affine h38 residual-coordinate source identity for shifted y44, preserving the signed coefficient rather than absolute pressure before applying Cauchy bounds.",
+    claim_boundary: {
+      certifies_standard_h38_cover: false,
+      certifies_h38_y44_coefficient_dependence: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function h39H38Y44AffineTargetEnvelopeEntry({
+  label,
+  targetPressure,
+  outerRadius,
+  shiftedIndex,
+  affineZeroCoordinate,
+  affineSlopeAbs,
+  midpointLinearityGapAbsUpper,
+  zeroReplayCoefficientHalfWidth,
+  h38ResidualAbsUpper,
+}) {
+  const resolvedTargetPressure = assertFinitePositiveNumber(
+    "targetPressure",
+    targetPressure
+  );
+  const coefficientAbsTarget =
+    resolvedTargetPressure / outerRadius ** shiftedIndex;
+  const idealAffineHalfWidth =
+    coefficientAbsTarget / affineSlopeAbs;
+  const midpointResidualAwareBudget = Math.max(
+    0,
+    coefficientAbsTarget - midpointLinearityGapAbsUpper
+  );
+  const midpointResidualAwareHalfWidth =
+    midpointResidualAwareBudget / affineSlopeAbs;
+  const candidateMarginAbsUpper =
+    midpointLinearityGapAbsUpper + zeroReplayCoefficientHalfWidth;
+  const candidateMarginAwareBudget = Math.max(
+    0,
+    coefficientAbsTarget - candidateMarginAbsUpper
+  );
+  const candidateMarginAwareHalfWidth =
+    candidateMarginAwareBudget / affineSlopeAbs;
+  const zeroCenteredNoiseInterval = [
+    affineZeroCoordinate - candidateMarginAwareHalfWidth,
+    affineZeroCoordinate + candidateMarginAwareHalfWidth,
+  ];
+  const clippedZeroCenteredNoiseInterval = [
+    Math.max(-1, zeroCenteredNoiseInterval[0]),
+    Math.min(1, zeroCenteredNoiseInterval[1]),
+  ];
+  const requiredShrinkFactor =
+    candidateMarginAwareHalfWidth > 0
+      ? 1 / candidateMarginAwareHalfWidth
+      : null;
+  return {
+    label,
+    target_pressure: resolvedTargetPressure,
+    target_pressure_role:
+      "reference-only; not a shifted R43 closure threshold",
+    coefficient_abs_target: coefficientAbsTarget,
+    ideal_affine_half_width: idealAffineHalfWidth,
+    midpoint_residual_aware_half_width:
+      midpointResidualAwareHalfWidth,
+    candidate_margin_aware_half_width:
+      candidateMarginAwareHalfWidth,
+    candidate_margin_abs_upper: candidateMarginAbsUpper,
+    zero_centered_h38_noise_interval: zeroCenteredNoiseInterval,
+    clipped_zero_centered_h38_noise_interval:
+      clippedZeroCenteredNoiseInterval,
+    zero_centered_h38_residual_half_width:
+      candidateMarginAwareHalfWidth * h38ResidualAbsUpper,
+    full_residual_coordinate_half_width: 1,
+    required_full_domain_shrink_factor: requiredShrinkFactor,
+    fits_inside_sample_domain:
+      zeroCenteredNoiseInterval[0] >= -1 &&
+      zeroCenteredNoiseInterval[1] <= 1,
+  };
+}
+
+function h39H38Y44ProducerResidualCoordinateProfile({
+  targetSpeedInterval,
+  rows,
+  branch,
+  transportProfile,
+  residualInterval,
+}) {
+  const h38Index =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index;
+  const residualCenter = intervalMidpoint(residualInterval);
+  const residualRadius = intervalWidth(residualInterval) / 2;
+  const h38Profile = transportProfile[h38Index];
+  const samples = rows.map((row, rowIndex) => {
+    const xiInterval = speedIntervalXiInterval({
+      row,
+      targetSpeedInterval,
+    });
+    const xiMidpoint = intervalMidpoint(xiInterval);
+    const branchRow = branchRowFor(row, branch);
+    const h38Interval = hIntervalsFromBranchRow(branchRow, {
+      hCount: transportProfile.length,
+    })[h38Index];
+    const graphInterval = polynomialRangeOnInterval({
+      coefficients: h38Profile.coefficients,
+      interval: xiInterval,
+    });
+    const residual = [
+      Number(h38Interval[0]) - Number(graphInterval[1]),
+      Number(h38Interval[1]) - Number(graphInterval[0]),
+    ];
+    const residualMidpoint =
+      intervalMidpoint(h38Interval) -
+      polynomialValue(h38Profile.coefficients, xiMidpoint);
+    const coordinateInterval =
+      residualRadius > 0
+        ? [
+            (Number(residual[0]) - residualCenter) / residualRadius,
+            (Number(residual[1]) - residualCenter) / residualRadius,
+          ]
+        : [0, 0];
+    const coordinateMidpoint =
+      residualRadius > 0
+        ? (residualMidpoint - residualCenter) / residualRadius
+        : 0;
+    return {
+      row_index: rowIndex,
+      cell_id: row.cell_id,
+      speed_interval: row.speed_interval,
+      xi_interval: xiInterval,
+      xi_midpoint: xiMidpoint,
+      h38_interval: h38Interval,
+      graph_interval: graphInterval,
+      residual_interval: residual,
+      residual_midpoint: residualMidpoint,
+      residual_coordinate_interval: coordinateInterval,
+      residual_coordinate_midpoint: coordinateMidpoint,
+      residual_coordinate_width: intervalWidth(coordinateInterval),
+    };
+  });
+  const residualCoordinateIntervalHull = intervalHull(
+    samples.map((sample) => sample.residual_coordinate_interval)
+  );
+  const residualCoordinateMidpointHull = intervalHull(
+    samples.map((sample) => pointInterval(sample.residual_coordinate_midpoint))
+  );
+  return {
+    coordinate_formula:
+      "u=(h38-q38(xi)-center(residual_hull))/radius(residual_hull)",
+    h38_index: h38Index,
+    residual_interval: residualInterval,
+    residual_center: residualCenter,
+    residual_radius: residualRadius,
+    row_count: samples.length,
+    residual_coordinate_interval_hull: residualCoordinateIntervalHull,
+    residual_coordinate_midpoint_hull: residualCoordinateMidpointHull,
+    residual_coordinate_interval_hull_width: intervalWidth(
+      residualCoordinateIntervalHull
+    ),
+    residual_coordinate_midpoint_hull_width: intervalWidth(
+      residualCoordinateMidpointHull
+    ),
+    max_residual_coordinate_interval_width: Math.max(
+      ...samples.map((sample) => sample.residual_coordinate_width)
+    ),
+    samples,
+  };
+}
+
+function h39H38Y44ProducerCoordinateTargetFit({
+  label,
+  coordinateProfile,
+  targetInterval,
+}) {
+  if (!Array.isArray(targetInterval) || targetInterval.length !== 2) {
+    throw new Error("targetInterval must be a two-entry interval");
+  }
+  const resolvedTargetInterval = targetInterval.map(Number);
+  if (
+    !Number.isFinite(resolvedTargetInterval[0]) ||
+    !Number.isFinite(resolvedTargetInterval[1]) ||
+    resolvedTargetInterval[0] > resolvedTargetInterval[1]
+  ) {
+    throw new Error("targetInterval must be finite and nondecreasing");
+  }
+  const targetWidth = intervalWidth(resolvedTargetInterval);
+  const producerHull = coordinateProfile.residual_coordinate_interval_hull;
+  const producerMidpointHull =
+    coordinateProfile.residual_coordinate_midpoint_hull;
+  const producerHullWidth = intervalWidth(producerHull);
+  const producerMidpointHullWidth = intervalWidth(producerMidpointHull);
+  const sampleFits = coordinateProfile.samples.map((sample) => {
+    const intervalInside =
+      Number(sample.residual_coordinate_interval[0]) >=
+        Number(resolvedTargetInterval[0]) &&
+      Number(sample.residual_coordinate_interval[1]) <=
+        Number(resolvedTargetInterval[1]);
+    const midpointInside =
+      Number(sample.residual_coordinate_midpoint) >=
+        Number(resolvedTargetInterval[0]) &&
+      Number(sample.residual_coordinate_midpoint) <=
+        Number(resolvedTargetInterval[1]);
+    return {
+      row_index: sample.row_index,
+      cell_id: sample.cell_id,
+      residual_coordinate_interval: sample.residual_coordinate_interval,
+      residual_coordinate_midpoint: sample.residual_coordinate_midpoint,
+      interval_inside_target: intervalInside,
+      midpoint_inside_target: midpointInside,
+    };
+  });
+  const intervalInsideTargetCount = sampleFits.filter(
+    (sample) => sample.interval_inside_target
+  ).length;
+  const midpointInsideTargetCount = sampleFits.filter(
+    (sample) => sample.midpoint_inside_target
+  ).length;
+  const targetCoversProducerIntervalHull =
+    Number(producerHull[0]) >= Number(resolvedTargetInterval[0]) &&
+    Number(producerHull[1]) <= Number(resolvedTargetInterval[1]);
+  const targetCoversProducerMidpointHull =
+    Number(producerMidpointHull[0]) >= Number(resolvedTargetInterval[0]) &&
+    Number(producerMidpointHull[1]) <= Number(resolvedTargetInterval[1]);
+  return {
+    label,
+    target_residual_coordinate_interval: resolvedTargetInterval,
+    target_residual_coordinate_width: targetWidth,
+    producer_residual_coordinate_interval_hull: producerHull,
+    producer_residual_coordinate_midpoint_hull: producerMidpointHull,
+    producer_residual_coordinate_interval_hull_width:
+      producerHullWidth,
+    producer_residual_coordinate_midpoint_hull_width:
+      producerMidpointHullWidth,
+    target_width_to_producer_interval_hull_width:
+      producerHullWidth > 0 ? targetWidth / producerHullWidth : null,
+    target_width_to_producer_midpoint_hull_width:
+      producerMidpointHullWidth > 0
+        ? targetWidth / producerMidpointHullWidth
+        : null,
+    required_interval_hull_shrink_factor:
+      targetWidth > 0 ? producerHullWidth / targetWidth : null,
+    required_midpoint_hull_shrink_factor:
+      targetWidth > 0 ? producerMidpointHullWidth / targetWidth : null,
+    target_center_offset_from_producer_midpoint_hull_center:
+      intervalMidpoint(resolvedTargetInterval) -
+      intervalMidpoint(producerMidpointHull),
+    row_count: sampleFits.length,
+    interval_inside_target_row_count: intervalInsideTargetCount,
+    midpoint_inside_target_row_count: midpointInsideTargetCount,
+    target_covers_all_sample_intervals:
+      intervalInsideTargetCount === sampleFits.length,
+    target_covers_all_sample_midpoints:
+      midpointInsideTargetCount === sampleFits.length,
+    target_covers_producer_interval_hull: targetCoversProducerIntervalHull,
+    target_covers_producer_midpoint_hull: targetCoversProducerMidpointHull,
+    sample_fits: sampleFits,
+  };
+}
+
+function h39H38Y44H38NoiseIntervalReplay({
+  setup,
+  branch,
+  h38NoiseInterval,
+  outerRadius,
+  shiftedIndex,
+  variant,
+}) {
+  if (!Array.isArray(h38NoiseInterval) || h38NoiseInterval.length !== 2) {
+    throw new Error("h38NoiseInterval must be a two-entry interval");
+  }
+  const resolvedH38NoiseInterval = h38NoiseInterval.map(Number);
+  if (
+    !Number.isFinite(resolvedH38NoiseInterval[0]) ||
+    !Number.isFinite(resolvedH38NoiseInterval[1]) ||
+    resolvedH38NoiseInterval[0] > resolvedH38NoiseInterval[1]
+  ) {
+    throw new Error("h38NoiseInterval must be finite and nondecreasing");
+  }
+  const clippedH38NoiseInterval = [
+    Math.max(-1, resolvedH38NoiseInterval[0]),
+    Math.min(1, resolvedH38NoiseInterval[1]),
+  ];
+  const replay =
+    shiftedPressureReplayForPolynomialGraphH38ResidualVariantInterval({
+      context: setup.context,
+      cell: setup.analysisCell,
+      branch,
+      transportProfile: setup.transportProfile,
+      noise: setup.noiseCoordinate,
+      residualProfile: setup.residualProfile,
+      h38ResidualInterval:
+        setup.h38ResidualProfile.residual_interval_hull,
+      h38NoiseInterval: clippedH38NoiseInterval,
+      solveSlopeInterval:
+        setup.analysisBranchRow.h38_solve_slope_interval,
+      outerRadius,
+      shiftedIndex,
+      variant,
+    });
+  return {
+    h38_noise_interval: resolvedH38NoiseInterval,
+    clipped_h38_noise_interval: clippedH38NoiseInterval,
+    h38_residual_coordinate_width: intervalWidth(clippedH38NoiseInterval),
+    h38_residual_width:
+      intervalWidth(clippedH38NoiseInterval) *
+      setup.h38ResidualProfile.max_abs_residual,
+    replay,
+  };
+}
+
+function h39H38Y44ZeroCenteredIntervalReplay({
+  setup,
+  branch,
+  affineZeroCoordinate,
+  halfWidth,
+  outerRadius,
+  shiftedIndex,
+  variant,
+}) {
+  const resolvedHalfWidth = Number(halfWidth);
+  if (!Number.isFinite(resolvedHalfWidth) || resolvedHalfWidth < 0) {
+    throw new Error("halfWidth must be finite and nonnegative");
+  }
+  const h38NoiseInterval = [
+    affineZeroCoordinate - resolvedHalfWidth,
+    affineZeroCoordinate + resolvedHalfWidth,
+  ];
+  const intervalReplay = h39H38Y44H38NoiseIntervalReplay({
+    setup,
+    branch,
+    h38NoiseInterval,
+    outerRadius,
+    shiftedIndex,
+    variant,
+  });
+  return {
+    ...intervalReplay,
+    half_width: resolvedHalfWidth,
+    h38_residual_half_width:
+      resolvedHalfWidth * setup.h38ResidualProfile.max_abs_residual,
+  };
+}
+
+function h39H38Y44ZeroCenteredSafetySearch({
+  setup,
+  branch,
+  affineZeroCoordinate,
+  candidateHalfWidth,
+  targetPressure,
+  outerRadius,
+  shiftedIndex,
+  iterations,
+  label,
+}) {
+  const resolvedCandidateHalfWidth = Number(candidateHalfWidth);
+  const resolvedTargetPressure = Number(targetPressure);
+  const resolvedIterations = assertFinitePositiveInteger(
+    "safetySearchIterations",
+    iterations
+  );
+  if (
+    !Number.isFinite(resolvedCandidateHalfWidth) ||
+    resolvedCandidateHalfWidth < 0 ||
+    !finitePositive(resolvedTargetPressure)
+  ) {
+    return {
+      safety_search_iterations: resolvedIterations,
+      target_closing_half_width: 0,
+      target_closing_safety_divisor: null,
+      target_closing_replay_pressure: null,
+      target_closing_replay_over_target_pressure: null,
+      target_closing_bracket: [0, 0],
+      target_closing_bracket_width: 0,
+      safety_search_status: "not-applicable",
+    };
+  }
+  if (resolvedCandidateHalfWidth === 0) {
+    const zeroReplay = h39H38Y44ZeroCenteredIntervalReplay({
+      setup,
+      branch,
+      affineZeroCoordinate,
+      halfWidth: 0,
+      outerRadius,
+      shiftedIndex,
+      variant: `safety-search-zero-${label}`,
+    });
+    const ratio = zeroReplay.replay.pressure / resolvedTargetPressure;
+    return {
+      safety_search_iterations: resolvedIterations,
+      target_closing_half_width: 0,
+      target_closing_safety_divisor: null,
+      target_closing_replay_pressure: zeroReplay.replay.pressure,
+      target_closing_replay_over_target_pressure: ratio,
+      target_closing_center_eliminated_pressure:
+        zeroReplay.replay.center_eliminated_pressure,
+      target_closing_center_eliminated_over_target_pressure:
+        finitePositive(zeroReplay.replay.center_eliminated_pressure)
+          ? zeroReplay.replay.center_eliminated_pressure /
+            resolvedTargetPressure
+          : null,
+      target_closing_h38_noise_interval: zeroReplay.h38_noise_interval,
+      clipped_target_closing_h38_noise_interval:
+        zeroReplay.clipped_h38_noise_interval,
+      target_closing_h38_residual_half_width:
+        zeroReplay.h38_residual_half_width,
+      target_closing_bracket: [0, 0],
+      target_closing_bracket_width: 0,
+      safety_search_status:
+        ratio <= 1
+          ? "zero-width-meets-reference-target"
+          : "zero-width-exceeds-reference-target",
+    };
+  }
+  let left = 0;
+  let right = resolvedCandidateHalfWidth;
+  let bestReplay = h39H38Y44ZeroCenteredIntervalReplay({
+    setup,
+    branch,
+    affineZeroCoordinate,
+    halfWidth: 0,
+    outerRadius,
+    shiftedIndex,
+    variant: `safety-search-left-${label}`,
+  });
+  let bestRatio = bestReplay.replay.pressure / resolvedTargetPressure;
+  for (let iteration = 0; iteration < resolvedIterations; iteration += 1) {
+    const midpoint = (left + right) / 2;
+    const replay = h39H38Y44ZeroCenteredIntervalReplay({
+      setup,
+      branch,
+      affineZeroCoordinate,
+      halfWidth: midpoint,
+      outerRadius,
+      shiftedIndex,
+      variant: `safety-search-${label}-${iteration}`,
+    });
+    const ratio = replay.replay.pressure / resolvedTargetPressure;
+    if (ratio <= 1) {
+      left = midpoint;
+      bestReplay = replay;
+      bestRatio = ratio;
+    } else {
+      right = midpoint;
+    }
+  }
+  return {
+    safety_search_iterations: resolvedIterations,
+    target_closing_half_width: bestReplay.half_width,
+    target_closing_safety_divisor:
+      bestReplay.half_width > 0
+        ? resolvedCandidateHalfWidth / bestReplay.half_width
+        : null,
+    target_closing_replay_pressure: bestReplay.replay.pressure,
+    target_closing_replay_over_target_pressure: bestRatio,
+    target_closing_center_eliminated_pressure:
+      bestReplay.replay.center_eliminated_pressure,
+    target_closing_center_eliminated_over_target_pressure:
+      finitePositive(bestReplay.replay.center_eliminated_pressure)
+        ? bestReplay.replay.center_eliminated_pressure / resolvedTargetPressure
+        : null,
+    target_closing_h38_noise_interval: bestReplay.h38_noise_interval,
+    clipped_target_closing_h38_noise_interval:
+      bestReplay.clipped_h38_noise_interval,
+    target_closing_h38_residual_half_width:
+      bestReplay.h38_residual_half_width,
+    target_closing_bracket: [left, right],
+    target_closing_bracket_width: right - left,
+    safety_search_status:
+      bestRatio <= 1
+        ? "bisection-found-candidate-half-width-meeting-reference-target"
+        : "bisection-did-not-find-half-width-meeting-reference-target",
+  };
+}
+
+function h39H38Y44ProducerCoordinateFullHullHalfWidth(coordinateProfile) {
+  const midpointHull = coordinateProfile.residual_coordinate_midpoint_hull;
+  const intervalHull = coordinateProfile.residual_coordinate_interval_hull;
+  return Math.max(
+    0,
+    Number(midpointHull[0]) - Number(intervalHull[0]),
+    Number(intervalHull[1]) - Number(midpointHull[1])
+  );
+}
+
+function h39H38Y44ProducerCenteredIntervalReplay({
+  setup,
+  branch,
+  coordinateProfile,
+  halfWidth,
+  outerRadius,
+  shiftedIndex,
+  variant,
+}) {
+  const resolvedHalfWidth = Number(halfWidth);
+  if (!Number.isFinite(resolvedHalfWidth) || resolvedHalfWidth < 0) {
+    throw new Error("halfWidth must be finite and nonnegative");
+  }
+  const midpointHull = coordinateProfile.residual_coordinate_midpoint_hull;
+  const h38NoiseInterval = [
+    Number(midpointHull[0]) - resolvedHalfWidth,
+    Number(midpointHull[1]) + resolvedHalfWidth,
+  ];
+  const intervalReplay = h39H38Y44H38NoiseIntervalReplay({
+    setup,
+    branch,
+    h38NoiseInterval,
+    outerRadius,
+    shiftedIndex,
+    variant,
+  });
+  return {
+    ...intervalReplay,
+    producer_midpoint_coordinate_hull: midpointHull,
+    half_width: resolvedHalfWidth,
+    h38_residual_half_width:
+      resolvedHalfWidth * setup.h38ResidualProfile.max_abs_residual,
+  };
+}
+
+function h39H38Y44ProducerCenteredSafetySearch({
+  setup,
+  branch,
+  coordinateProfile,
+  candidateHalfWidth,
+  targetPressure,
+  outerRadius,
+  shiftedIndex,
+  iterations,
+  label,
+}) {
+  const resolvedCandidateHalfWidth = Number(candidateHalfWidth);
+  const resolvedTargetPressure = Number(targetPressure);
+  const resolvedIterations = assertFinitePositiveInteger(
+    "safetySearchIterations",
+    iterations
+  );
+  if (
+    !Number.isFinite(resolvedCandidateHalfWidth) ||
+    resolvedCandidateHalfWidth < 0 ||
+    !finitePositive(resolvedTargetPressure)
+  ) {
+    return {
+      safety_search_iterations: resolvedIterations,
+      target_closing_half_width: 0,
+      target_closing_safety_divisor: null,
+      target_closing_replay_pressure: null,
+      target_closing_replay_over_target_pressure: null,
+      center_hull_replay_pressure: null,
+      center_hull_replay_over_target_pressure: null,
+      target_closing_bracket: [0, 0],
+      target_closing_bracket_width: 0,
+      safety_search_status: "not-applicable",
+    };
+  }
+  const centerReplay = h39H38Y44ProducerCenteredIntervalReplay({
+    setup,
+    branch,
+    coordinateProfile,
+    halfWidth: 0,
+    outerRadius,
+    shiftedIndex,
+    variant: `producer-centered-zero-${label}`,
+  });
+  const centerRatio = centerReplay.replay.pressure / resolvedTargetPressure;
+  if (centerRatio > 1 || resolvedCandidateHalfWidth === 0) {
+    return {
+      safety_search_iterations: resolvedIterations,
+      target_closing_half_width: 0,
+      target_closing_safety_divisor: null,
+      target_closing_replay_pressure: centerReplay.replay.pressure,
+      target_closing_replay_over_target_pressure: centerRatio,
+      target_closing_center_eliminated_pressure:
+        centerReplay.replay.center_eliminated_pressure,
+      target_closing_center_eliminated_over_target_pressure:
+        finitePositive(centerReplay.replay.center_eliminated_pressure)
+          ? centerReplay.replay.center_eliminated_pressure /
+            resolvedTargetPressure
+          : null,
+      center_hull_replay_pressure: centerReplay.replay.pressure,
+      center_hull_replay_over_target_pressure: centerRatio,
+      target_closing_h38_noise_interval: centerReplay.h38_noise_interval,
+      clipped_target_closing_h38_noise_interval:
+        centerReplay.clipped_h38_noise_interval,
+      target_closing_h38_residual_half_width:
+        centerReplay.h38_residual_half_width,
+      target_closing_bracket: [0, 0],
+      target_closing_bracket_width: 0,
+      expansion_step_count: 0,
+      safety_search_status:
+        centerRatio <= 1
+          ? "producer-center-hull-meets-reference-target"
+          : "producer-center-hull-exceeds-reference-target",
+    };
+  }
+  let left = 0;
+  let bestReplay = centerReplay;
+  let bestRatio = centerRatio;
+  let right = Math.min(
+    resolvedCandidateHalfWidth,
+    Math.max(1e-12, resolvedCandidateHalfWidth / 1024)
+  );
+  let expansionStepCount = 0;
+  let rightFailed = false;
+  while (right <= resolvedCandidateHalfWidth) {
+    const replay = h39H38Y44ProducerCenteredIntervalReplay({
+      setup,
+      branch,
+      coordinateProfile,
+      halfWidth: right,
+      outerRadius,
+      shiftedIndex,
+      variant: `producer-centered-${label}-expand-${expansionStepCount}`,
+    });
+    const ratio = replay.replay.pressure / resolvedTargetPressure;
+    expansionStepCount += 1;
+    if (ratio <= 1) {
+      left = right;
+      bestReplay = replay;
+      bestRatio = ratio;
+      if (right >= resolvedCandidateHalfWidth) {
+        break;
+      }
+      right = Math.min(resolvedCandidateHalfWidth, right * 2);
+      continue;
+    }
+    rightFailed = true;
+    break;
+  }
+  if (!rightFailed) {
+    return {
+      safety_search_iterations: resolvedIterations,
+      target_closing_half_width: bestReplay.half_width,
+      target_closing_safety_divisor:
+        bestReplay.half_width > 0
+          ? resolvedCandidateHalfWidth / bestReplay.half_width
+          : null,
+      target_closing_replay_pressure: bestReplay.replay.pressure,
+      target_closing_replay_over_target_pressure: bestRatio,
+      target_closing_center_eliminated_pressure:
+        bestReplay.replay.center_eliminated_pressure,
+      target_closing_center_eliminated_over_target_pressure:
+        finitePositive(bestReplay.replay.center_eliminated_pressure)
+          ? bestReplay.replay.center_eliminated_pressure /
+            resolvedTargetPressure
+          : null,
+      center_hull_replay_pressure: centerReplay.replay.pressure,
+      center_hull_replay_over_target_pressure: centerRatio,
+      target_closing_h38_noise_interval: bestReplay.h38_noise_interval,
+      clipped_target_closing_h38_noise_interval:
+        bestReplay.clipped_h38_noise_interval,
+      target_closing_h38_residual_half_width:
+        bestReplay.h38_residual_half_width,
+      target_closing_bracket: [bestReplay.half_width, bestReplay.half_width],
+      target_closing_bracket_width: 0,
+      expansion_step_count: expansionStepCount,
+      safety_search_status:
+        "producer-centered-full-hull-meets-reference-target",
+    };
+  }
+  for (let iteration = 0; iteration < resolvedIterations; iteration += 1) {
+    const midpoint = (left + right) / 2;
+    const replay = h39H38Y44ProducerCenteredIntervalReplay({
+      setup,
+      branch,
+      coordinateProfile,
+      halfWidth: midpoint,
+      outerRadius,
+      shiftedIndex,
+      variant: `producer-centered-${label}-${iteration}`,
+    });
+    const ratio = replay.replay.pressure / resolvedTargetPressure;
+    if (ratio <= 1) {
+      left = midpoint;
+      bestReplay = replay;
+      bestRatio = ratio;
+    } else {
+      right = midpoint;
+    }
+  }
+  return {
+    safety_search_iterations: resolvedIterations,
+    target_closing_half_width: bestReplay.half_width,
+    target_closing_safety_divisor:
+      bestReplay.half_width > 0
+        ? resolvedCandidateHalfWidth / bestReplay.half_width
+        : null,
+    target_closing_replay_pressure: bestReplay.replay.pressure,
+    target_closing_replay_over_target_pressure: bestRatio,
+    target_closing_center_eliminated_pressure:
+      bestReplay.replay.center_eliminated_pressure,
+    target_closing_center_eliminated_over_target_pressure:
+      finitePositive(bestReplay.replay.center_eliminated_pressure)
+        ? bestReplay.replay.center_eliminated_pressure / resolvedTargetPressure
+        : null,
+    center_hull_replay_pressure: centerReplay.replay.pressure,
+    center_hull_replay_over_target_pressure: centerRatio,
+    target_closing_h38_noise_interval: bestReplay.h38_noise_interval,
+    clipped_target_closing_h38_noise_interval:
+      bestReplay.clipped_h38_noise_interval,
+    target_closing_h38_residual_half_width:
+      bestReplay.h38_residual_half_width,
+    target_closing_bracket: [left, right],
+    target_closing_bracket_width: right - left,
+    expansion_step_count: expansionStepCount,
+    safety_search_status:
+      bestRatio <= 1 && bestReplay.half_width > 0
+        ? "bisection-found-producer-centered-half-width-meeting-reference-target"
+        : bestRatio <= 1
+          ? "producer-center-hull-meets-reference-target-but-no-positive-width-found"
+        : "bisection-did-not-find-producer-centered-half-width-meeting-reference-target",
+  };
+}
+
+function h39H38Y44ProducerCenteredCollarTarget({
+  label,
+  coordinateProfile,
+  safetySearch,
+  sourceStencilSubcellCount,
+}) {
+  const midpointHull = coordinateProfile.residual_coordinate_midpoint_hull;
+  const intervalHull = coordinateProfile.residual_coordinate_interval_hull;
+  const halfWidth = Math.max(
+    0,
+    Number(safetySearch?.target_closing_half_width ?? 0)
+  );
+  const collarInterval = [
+    Number(midpointHull[0]) - halfWidth,
+    Number(midpointHull[1]) + halfWidth,
+  ];
+  const collarWidth = intervalWidth(collarInterval);
+  const intervalHullWidth =
+    coordinateProfile.residual_coordinate_interval_hull_width;
+  const midpointHullWidth =
+    coordinateProfile.residual_coordinate_midpoint_hull_width;
+  const maxSampleIntervalWidth =
+    coordinateProfile.max_residual_coordinate_interval_width;
+  const intervalHullInsideCollar =
+    Number(intervalHull[0]) >= Number(collarInterval[0]) &&
+    Number(intervalHull[1]) <= Number(collarInterval[1]);
+  const midpointHullInsideCollar =
+    Number(midpointHull[0]) >= Number(collarInterval[0]) &&
+    Number(midpointHull[1]) <= Number(collarInterval[1]);
+  const sampleFits = coordinateProfile.samples.map((sample) => {
+    const intervalInside =
+      Number(sample.residual_coordinate_interval[0]) >=
+        Number(collarInterval[0]) &&
+      Number(sample.residual_coordinate_interval[1]) <=
+        Number(collarInterval[1]);
+    const midpointInside =
+      Number(sample.residual_coordinate_midpoint) >=
+        Number(collarInterval[0]) &&
+      Number(sample.residual_coordinate_midpoint) <=
+        Number(collarInterval[1]);
+    return {
+      row_index: sample.row_index,
+      cell_id: sample.cell_id,
+      residual_coordinate_interval: sample.residual_coordinate_interval,
+      residual_coordinate_midpoint: sample.residual_coordinate_midpoint,
+      interval_inside_collar: intervalInside,
+      midpoint_inside_collar: midpointInside,
+    };
+  });
+  const intervalInsideCollarCount = sampleFits.filter(
+    (sample) => sample.interval_inside_collar
+  ).length;
+  const midpointInsideCollarCount = sampleFits.filter(
+    (sample) => sample.midpoint_inside_collar
+  ).length;
+  const requiredIntervalHullCompressionFactor =
+    collarWidth > 0 ? intervalHullWidth / collarWidth : null;
+  const requiredMaxSampleIntervalCompressionFactor =
+    collarWidth > 0 ? maxSampleIntervalWidth / collarWidth : null;
+  const linearSubcellForecast =
+    finitePositive(requiredIntervalHullCompressionFactor)
+      ? Math.ceil(
+          Number(sourceStencilSubcellCount) *
+            requiredIntervalHullCompressionFactor
+        )
+      : null;
+  const replayRatio = Number(
+    safetySearch?.target_closing_replay_over_target_pressure
+  );
+  const positiveCollarFound =
+    halfWidth > 0 && Number.isFinite(replayRatio) && replayRatio <= 1;
+  const targetStatus = intervalHullInsideCollar
+    ? "producer-interval-hull-inside-collar"
+    : positiveCollarFound && midpointHullInsideCollar
+      ? "positive-midpoint-collar-full-interval-open"
+      : midpointHullInsideCollar
+        ? "midpoint-only-collar-full-interval-open"
+        : "producer-midpoint-hull-outside-collar";
+  const refinementInterpretation =
+    intervalHullInsideCollar
+      ? "current-producer-interval-hull-already-fits-collar"
+      : finitePositive(linearSubcellForecast) &&
+          linearSubcellForecast >= 1e8
+        ? "linear-subcell-refinement-impractical-analytic-covariance-needed"
+        : positiveCollarFound
+          ? "positive-collar-gives-finite-producer-image-certificate-target"
+          : "center-hull-only-collar-needs-positive-width-or-producer-image-proof";
+  return {
+    label,
+    collar_center_coordinate_hull: midpointHull,
+    collar_residual_coordinate_interval: collarInterval,
+    collar_residual_coordinate_half_width: halfWidth,
+    collar_residual_coordinate_width: collarWidth,
+    positive_collar_found: positiveCollarFound,
+    producer_residual_coordinate_interval_hull: intervalHull,
+    producer_residual_coordinate_midpoint_hull: midpointHull,
+    producer_residual_coordinate_interval_hull_width:
+      intervalHullWidth,
+    producer_residual_coordinate_midpoint_hull_width:
+      midpointHullWidth,
+    producer_max_residual_coordinate_interval_width:
+      maxSampleIntervalWidth,
+    producer_interval_hull_inside_collar: intervalHullInsideCollar,
+    producer_midpoint_hull_inside_collar: midpointHullInsideCollar,
+    interval_inside_collar_row_count: intervalInsideCollarCount,
+    midpoint_inside_collar_row_count: midpointInsideCollarCount,
+    required_interval_hull_compression_factor:
+      requiredIntervalHullCompressionFactor,
+    required_max_sample_interval_compression_factor:
+      requiredMaxSampleIntervalCompressionFactor,
+    linear_subcell_refinement_forecast:
+      linearSubcellForecast,
+    source_stencil_subcell_count: sourceStencilSubcellCount,
+    target_replay_over_target_pressure:
+      Number.isFinite(replayRatio) ? replayRatio : null,
+    target_status: targetStatus,
+    refinement_interpretation: refinementInterpretation,
+    sample_fits: sampleFits,
+  };
+}
+
+function h39H38Y44ProducerCenteredNumeratorCollarTarget({
+  label,
+  coordinateProfile,
+  collarTarget,
+  solveWidthProfile,
+  numeratorPolynomialDiagnostic,
+}) {
+  const residualCenter = Number(coordinateProfile.residual_center);
+  const residualRadius = Number(coordinateProfile.residual_radius);
+  const collarCoordinateInterval =
+    collarTarget.collar_residual_coordinate_interval;
+  const residualCollarInterval = [
+    residualCenter + residualRadius * Number(collarCoordinateInterval[0]),
+    residualCenter + residualRadius * Number(collarCoordinateInterval[1]),
+  ];
+  const residualCollarWidth = intervalWidth(residualCollarInterval);
+  const coefficients = numeratorPolynomialDiagnostic.coefficients;
+  const samples = solveWidthProfile.samples.map((sample) => {
+    const slopeAbsLower = intervalAbsLower(sample.slope_interval);
+    const slopeAbsUpper = intervalAbsUpper(sample.slope_interval);
+    const slopeMidpointAbs = Math.abs(Number(sample.slope_midpoint));
+    const conservativeNumeratorWidthTarget =
+      slopeAbsLower * residualCollarWidth;
+    const midpointSlopeNumeratorWidthTarget =
+      slopeMidpointAbs * residualCollarWidth;
+    const slopeAbsLowerToMidpointAbsRatio = finitePositive(slopeMidpointAbs)
+      ? slopeAbsLower / slopeMidpointAbs
+      : null;
+    const numeratorWidth = intervalWidth(sample.numerator_interval);
+    const xiMidpoint = intervalMidpoint(sample.xi_interval);
+    const graphMidpoint = polynomialValue(coefficients, xiMidpoint);
+    const midpointResidual = sample.numerator_midpoint - graphMidpoint;
+    const absMidpointResidual = Math.abs(midpointResidual);
+    return {
+      cell_id: sample.cell_id,
+      xi_interval: sample.xi_interval,
+      xi_midpoint: xiMidpoint,
+      numerator_interval: sample.numerator_interval,
+      numerator_interval_width: numeratorWidth,
+      numerator_midpoint: sample.numerator_midpoint,
+      numerator_graph_midpoint: graphMidpoint,
+      numerator_midpoint_residual: midpointResidual,
+      numerator_abs_midpoint_residual: absMidpointResidual,
+      slope_interval: sample.slope_interval,
+      slope_abs_lower: slopeAbsLower,
+      slope_abs_upper: slopeAbsUpper,
+      slope_abs_lower_to_midpoint_abs_ratio:
+        slopeAbsLowerToMidpointAbsRatio,
+      conservative_numerator_width_target:
+        conservativeNumeratorWidthTarget,
+      midpoint_slope_numerator_width_target:
+        midpointSlopeNumeratorWidthTarget,
+      numerator_interval_compression_to_conservative_target:
+        finitePositive(conservativeNumeratorWidthTarget)
+          ? numeratorWidth / conservativeNumeratorWidthTarget
+          : null,
+      numerator_midpoint_residual_over_conservative_target:
+        finitePositive(conservativeNumeratorWidthTarget)
+          ? absMidpointResidual / conservativeNumeratorWidthTarget
+          : null,
+      numerator_midpoint_residual_over_midpoint_slope_target:
+        finitePositive(midpointSlopeNumeratorWidthTarget)
+          ? absMidpointResidual / midpointSlopeNumeratorWidthTarget
+          : null,
+      numerator_midpoint_residual_headroom_factor:
+        absMidpointResidual > 0 &&
+        finitePositive(conservativeNumeratorWidthTarget)
+          ? conservativeNumeratorWidthTarget / absMidpointResidual
+          : null,
+      numerator_midpoint_slope_residual_headroom_factor:
+        absMidpointResidual > 0 &&
+        finitePositive(midpointSlopeNumeratorWidthTarget)
+          ? midpointSlopeNumeratorWidthTarget / absMidpointResidual
+          : null,
+    };
+  });
+  const compressionFactors = samples
+    .map((sample) =>
+      Number(sample.numerator_interval_compression_to_conservative_target)
+    )
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const midpointResidualRatios = samples
+    .map((sample) =>
+      Number(sample.numerator_midpoint_residual_over_conservative_target)
+    )
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const midpointHeadroomFactors = samples
+    .map((sample) => Number(sample.numerator_midpoint_residual_headroom_factor))
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const midpointSlopeResidualRatios = samples
+    .map((sample) =>
+      Number(sample.numerator_midpoint_residual_over_midpoint_slope_target)
+    )
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const midpointSlopeHeadroomFactors = samples
+    .map((sample) =>
+      Number(sample.numerator_midpoint_slope_residual_headroom_factor)
+    )
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const slopeAbsLowerToMidpointAbsRatios = samples
+    .map((sample) => Number(sample.slope_abs_lower_to_midpoint_abs_ratio))
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const maxCompressionFactor =
+    compressionFactors.length > 0 ? Math.max(...compressionFactors) : null;
+  const maxMidpointResidualRatio =
+    midpointResidualRatios.length > 0
+      ? Math.max(...midpointResidualRatios)
+      : null;
+  const minMidpointHeadroomFactor =
+    midpointHeadroomFactors.length > 0
+      ? Math.min(...midpointHeadroomFactors)
+      : null;
+  const maxMidpointSlopeResidualRatio =
+    midpointSlopeResidualRatios.length > 0
+      ? Math.max(...midpointSlopeResidualRatios)
+      : null;
+  const minMidpointSlopeHeadroomFactor =
+    midpointSlopeHeadroomFactors.length > 0
+      ? Math.min(...midpointSlopeHeadroomFactors)
+      : null;
+  const minSlopeAbsLowerToMidpointAbsRatio =
+    slopeAbsLowerToMidpointAbsRatios.length > 0
+      ? Math.min(...slopeAbsLowerToMidpointAbsRatios)
+      : null;
+  const maxSlopeAbsLowerToMidpointAbsRatio =
+    slopeAbsLowerToMidpointAbsRatios.length > 0
+      ? Math.max(...slopeAbsLowerToMidpointAbsRatios)
+      : null;
+  const intervalHullOpen =
+    maxCompressionFactor !== null && maxCompressionFactor > 1;
+  const midpointGraphInsideTarget =
+    maxMidpointResidualRatio !== null && maxMidpointResidualRatio <= 1;
+  const midpointSlopeGraphInsideTarget =
+    maxMidpointSlopeResidualRatio !== null &&
+    maxMidpointSlopeResidualRatio <= 1;
+  const targetStatus = !finitePositive(residualCollarWidth)
+    ? "degenerate-collar-no-numerator-target"
+    : !intervalHullOpen
+      ? "numerator-interval-hull-inside-collar-target"
+      : midpointGraphInsideTarget
+        ? "numerator-midpoint-graph-inside-collar-target-interval-open"
+        : "numerator-midpoint-graph-exceeds-collar-target";
+  const proofRouteInterpretation =
+    targetStatus ===
+    "numerator-midpoint-graph-inside-collar-target-interval-open"
+      ? "numerator-graph-residual-certificate-can-target-producer-collar"
+      : targetStatus === "numerator-interval-hull-inside-collar-target"
+        ? "current-numerator-interval-hull-already-fits-producer-collar"
+        : targetStatus === "numerator-midpoint-graph-exceeds-collar-target" &&
+            midpointSlopeGraphInsideTarget
+          ? "s37-lower-bound-dependency-collapse-before-numerator-collar"
+        : targetStatus === "numerator-midpoint-graph-exceeds-collar-target"
+          ? "numerator-graph-degree-or-local-coordinate-must-tighten"
+          : "positive-producer-collar-needed-before-numerator-target";
+  return {
+    label,
+    numerator_polynomial_degree:
+      numeratorPolynomialDiagnostic.polynomial_degree,
+    h38_residual_collar_interval: residualCollarInterval,
+    h38_residual_collar_width: residualCollarWidth,
+    max_numerator_interval_compression_to_conservative_target:
+      maxCompressionFactor,
+    max_numerator_midpoint_residual_over_conservative_target:
+      maxMidpointResidualRatio,
+    min_numerator_midpoint_residual_headroom_factor:
+      minMidpointHeadroomFactor,
+    max_numerator_midpoint_residual_over_midpoint_slope_target:
+      maxMidpointSlopeResidualRatio,
+    min_numerator_midpoint_slope_residual_headroom_factor:
+      minMidpointSlopeHeadroomFactor,
+    min_slope_abs_lower_to_midpoint_abs_ratio:
+      minSlopeAbsLowerToMidpointAbsRatio,
+    max_slope_abs_lower_to_midpoint_abs_ratio:
+      maxSlopeAbsLowerToMidpointAbsRatio,
+    numerator_interval_hull_open_against_collar: intervalHullOpen,
+    numerator_midpoint_graph_inside_collar_target:
+      midpointGraphInsideTarget,
+    numerator_midpoint_graph_inside_midpoint_slope_target:
+      midpointSlopeGraphInsideTarget,
+    target_status: targetStatus,
+    proof_route_interpretation: proofRouteInterpretation,
+    samples,
+  };
+}
+
+function h39H38Y44N38CollarEnclosureRoute({
+  referenceTargets,
+  numeratorPolynomialDiagnostic,
+  sourceStencilSubcellCount,
+}) {
+  const finiteValue = (value) =>
+    value !== null && value !== undefined && Number.isFinite(Number(value));
+  const compactSample = (sample) =>
+    sample
+      ? {
+          reference_label: sample.reference_label,
+          cell_id: sample.cell_id,
+          xi_interval: sample.xi_interval,
+          xi_midpoint: sample.xi_midpoint,
+          numerator_midpoint_residual: sample.numerator_midpoint_residual,
+          numerator_abs_midpoint_residual:
+            sample.numerator_abs_midpoint_residual,
+          conservative_numerator_width_target:
+            sample.conservative_numerator_width_target,
+          midpoint_slope_numerator_width_target:
+            sample.midpoint_slope_numerator_width_target,
+          slope_interval: sample.slope_interval,
+          slope_abs_lower: sample.slope_abs_lower,
+          slope_abs_upper: sample.slope_abs_upper,
+          slope_abs_lower_to_midpoint_abs_ratio:
+            sample.slope_abs_lower_to_midpoint_abs_ratio,
+          numerator_midpoint_residual_over_conservative_target:
+            sample.numerator_midpoint_residual_over_conservative_target,
+          numerator_midpoint_residual_over_midpoint_slope_target:
+            sample.numerator_midpoint_residual_over_midpoint_slope_target,
+          numerator_midpoint_residual_headroom_factor:
+            sample.numerator_midpoint_residual_headroom_factor,
+          numerator_midpoint_slope_residual_headroom_factor:
+            sample.numerator_midpoint_slope_residual_headroom_factor,
+          target_status: sample.target_status,
+          proof_route_interpretation: sample.proof_route_interpretation,
+        }
+      : null;
+  const samples = referenceTargets.flatMap((target) =>
+    target.samples.map((sample) => ({
+      ...sample,
+      reference_label: target.label,
+      target_status: target.target_status,
+      proof_route_interpretation: target.proof_route_interpretation,
+    }))
+  );
+  const finiteSamples = samples.filter(
+    (sample) =>
+      finiteValue(
+        sample.numerator_midpoint_residual_over_conservative_target
+      ) &&
+      finiteValue(sample.numerator_abs_midpoint_residual) &&
+      finitePositive(sample.conservative_numerator_width_target)
+  );
+  const controllingSample = finiteSamples.reduce((best, sample) =>
+    Number(sample.numerator_midpoint_residual_over_conservative_target) >
+    Number(best?.numerator_midpoint_residual_over_conservative_target ?? -1)
+      ? sample
+      : best,
+  null);
+  const targetWidthSamples = finiteSamples
+    .map((sample) => Number(sample.conservative_numerator_width_target))
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const residualSamples = finiteSamples
+    .map((sample) => Number(sample.numerator_abs_midpoint_residual))
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const residualRatios = finiteSamples
+    .map((sample) =>
+      Number(sample.numerator_midpoint_residual_over_conservative_target)
+    )
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const headroomFactors = finiteSamples
+    .map((sample) => Number(sample.numerator_midpoint_residual_headroom_factor))
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const midpointSlopeSamples = samples.filter(
+    (sample) =>
+      finiteValue(
+        sample.numerator_midpoint_residual_over_midpoint_slope_target
+      ) &&
+      finitePositive(sample.midpoint_slope_numerator_width_target)
+  );
+  const controllingMidpointSlopeSample = midpointSlopeSamples.reduce(
+    (best, sample) =>
+      Number(sample.numerator_midpoint_residual_over_midpoint_slope_target) >
+      Number(
+        best?.numerator_midpoint_residual_over_midpoint_slope_target ?? -1
+      )
+        ? sample
+        : best,
+    null
+  );
+  const midpointSlopeResidualRatios = midpointSlopeSamples
+    .map((sample) =>
+      Number(sample.numerator_midpoint_residual_over_midpoint_slope_target)
+    )
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const midpointSlopeHeadroomFactors = midpointSlopeSamples
+    .map((sample) =>
+      Number(sample.numerator_midpoint_slope_residual_headroom_factor)
+    )
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const slopeAbsLowerToMidpointAbsRatios = midpointSlopeSamples
+    .map((sample) => Number(sample.slope_abs_lower_to_midpoint_abs_ratio))
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const compressionFactors = referenceTargets
+    .map((target) =>
+      Number(target.max_numerator_interval_compression_to_conservative_target)
+    )
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const residualToRawWidthRatios = finiteSamples
+    .map((sample) =>
+      finitePositive(sample.numerator_interval_width)
+        ? Number(sample.numerator_abs_midpoint_residual) /
+          Number(sample.numerator_interval_width)
+        : null
+    )
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const referenceGraphInsideCount = referenceTargets.filter(
+    (target) =>
+      target.numerator_midpoint_graph_inside_collar_target &&
+      [
+        "numerator-interval-hull-inside-collar-target",
+        "numerator-midpoint-graph-inside-collar-target-interval-open",
+      ].includes(target.target_status)
+  ).length;
+  const midpointSlopeGraphInsideCount = referenceTargets.filter(
+    (target) =>
+      target.numerator_midpoint_graph_inside_midpoint_slope_target === true
+  ).length;
+  const maxResidualRatio =
+    residualRatios.length > 0 ? Math.max(...residualRatios) : null;
+  const minHeadroom =
+    headroomFactors.length > 0 ? Math.min(...headroomFactors) : null;
+  const maxMidpointSlopeResidualRatio =
+    midpointSlopeResidualRatios.length > 0
+      ? Math.max(...midpointSlopeResidualRatios)
+      : null;
+  const minMidpointSlopeHeadroom =
+    midpointSlopeHeadroomFactors.length > 0
+      ? Math.min(...midpointSlopeHeadroomFactors)
+      : null;
+  const minSlopeAbsLowerToMidpointAbsRatio =
+    slopeAbsLowerToMidpointAbsRatios.length > 0
+      ? Math.min(...slopeAbsLowerToMidpointAbsRatios)
+      : null;
+  const maxCompression =
+    compressionFactors.length > 0 ? Math.max(...compressionFactors) : null;
+  const maxResidualToRawWidthRatio =
+    residualToRawWidthRatios.length > 0
+      ? Math.max(...residualToRawWidthRatios)
+      : null;
+  const s37DependencyStatus =
+    finitePositive(maxResidualRatio) &&
+    maxResidualRatio > 1 &&
+    maxMidpointSlopeResidualRatio !== null &&
+    maxMidpointSlopeResidualRatio <= 1
+      ? "midpoint-slope-collar-fits-but-conservative-s37-lower-bound-collapses"
+      : maxMidpointSlopeResidualRatio !== null &&
+          maxMidpointSlopeResidualRatio > 1
+        ? "midpoint-slope-collar-also-fails-n38-graph-residual"
+        : finitePositive(maxResidualRatio) && maxResidualRatio <= 1
+          ? "conservative-s37-lower-bound-supports-n38-collar"
+          : "s37-dependency-status-open";
+  const routeDiagnosis =
+    referenceTargets.length > 0 &&
+    referenceGraphInsideCount === referenceTargets.length &&
+    finitePositive(minHeadroom) &&
+    minHeadroom >= 100
+      ? "n38-quadratic-midpoint-residual-has-directed-rounded-collar-headroom"
+      : s37DependencyStatus ===
+          "midpoint-slope-collar-fits-but-conservative-s37-lower-bound-collapses"
+        ? "s37-lower-bound-dependency-collapse-controls-n38-collar-route"
+      : referenceGraphInsideCount > 0
+        ? "n38-quadratic-midpoint-residual-has-partial-collar-headroom"
+        : "n38-quadratic-midpoint-residual-collar-route-open";
+  return {
+    status: "h39-h38-y44-n38-collar-enclosure-route-candidate-emitted",
+    evaluation_level: "candidate-h38-y44-n38-collar-enclosure-route",
+    polynomial_degree: numeratorPolynomialDiagnostic.polynomial_degree,
+    numerator_polynomial_coefficients:
+      numeratorPolynomialDiagnostic.coefficients,
+    source_stencil_subcell_count: sourceStencilSubcellCount,
+    reference_target_count: referenceTargets.length,
+    sample_count: samples.length,
+    reference_targets_with_midpoint_graph_inside_collar_count:
+      referenceGraphInsideCount,
+    reference_targets_with_midpoint_slope_graph_inside_collar_count:
+      midpointSlopeGraphInsideCount,
+    min_conservative_numerator_width_target:
+      targetWidthSamples.length > 0 ? Math.min(...targetWidthSamples) : null,
+    max_conservative_numerator_width_target:
+      targetWidthSamples.length > 0 ? Math.max(...targetWidthSamples) : null,
+    max_numerator_abs_midpoint_residual:
+      residualSamples.length > 0 ? Math.max(...residualSamples) : null,
+    max_midpoint_residual_over_conservative_target: maxResidualRatio,
+    min_midpoint_residual_headroom_factor: minHeadroom,
+    max_midpoint_residual_over_midpoint_slope_target:
+      maxMidpointSlopeResidualRatio,
+    min_midpoint_slope_residual_headroom_factor:
+      minMidpointSlopeHeadroom,
+    min_slope_abs_lower_to_midpoint_abs_ratio:
+      minSlopeAbsLowerToMidpointAbsRatio,
+    max_numerator_interval_compression_to_conservative_target:
+      maxCompression,
+    max_midpoint_residual_to_raw_numerator_interval_width_ratio:
+      maxResidualToRawWidthRatio,
+    controlling_sample: compactSample(controllingSample),
+    controlling_midpoint_slope_sample:
+      compactSample(controllingMidpointSlopeSample),
+    s37_dependency_status: s37DependencyStatus,
+    directed_rounded_proof_obligation: {
+      target:
+        "prove |N38(xi)-q2(xi)| stays below the conservative numerator collar target on the same producer xi window",
+      dependency_to_preserve:
+        "keep xi, N38, and inherited S37 solve-slope dependency coupled until h38=-N38/S37 is replayed into the H39 collar",
+      sufficient_condition:
+        "directed-rounded N38 graph residual enclosure plus same-domain lower bound for |S37| below the conservative numerator-width target",
+      current_evidence:
+        "midpoint residual and midpoint-slope comparison only; not a directed-rounded interval enclosure",
+    },
+    route_diagnosis: routeDiagnosis,
+    claim_boundary: {
+      certifies_h38_n38_graph_enclosure: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_producer_collar_enclosure: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function buildH39H38Y44SignedAffineTargetEnvelopeDiagnosticCandidate({
+  targetSpeedInterval = [3.02156, 3.02156007813],
+  branch = "-",
+  rootSubdivisions = 100,
+  outerRadius = 0.001,
+  shiftedIndex = 1,
+  seriesOrder = 60,
+  sourceStencilSubcellCount = 32,
+  comparisonStencilIndex = 27,
+  polynomialDegree = 2,
+  h38NoiseSamples = [-1, -0.5, 0, 0.5, 1],
+  referencePressureTargets = [1e13, 1e14, 1e16, 1e18, 1e20],
+  safetySearchIterations = 16,
+  progressCallback = null,
+} = {}) {
+  const startedAt = Date.now();
+  const emitProgress =
+    typeof progressCallback === "function"
+      ? (progress) =>
+          progressCallback({
+            diagnostic: "h39-h38-y44-signed-affine-target-envelope",
+            elapsed_ms: Date.now() - startedAt,
+            ...progress,
+          })
+      : null;
+  const resolvedTargetSpeedInterval = numericInterval(
+    "targetSpeedInterval",
+    targetSpeedInterval
+  );
+  const resolvedSourceStencilSubcellCount = assertFinitePositiveInteger(
+    "sourceStencilSubcellCount",
+    sourceStencilSubcellCount
+  );
+  if (resolvedSourceStencilSubcellCount < 5) {
+    throw new Error("sourceStencilSubcellCount must be at least 5");
+  }
+  const resolvedComparisonStencilIndex = Number(comparisonStencilIndex);
+  if (
+    !Number.isInteger(resolvedComparisonStencilIndex) ||
+    resolvedComparisonStencilIndex < 0
+  ) {
+    throw new Error("comparisonStencilIndex must be a nonnegative integer");
+  }
+  const resolvedPolynomialDegree = assertFinitePositiveInteger(
+    "polynomialDegree",
+    polynomialDegree
+  );
+  if (resolvedPolynomialDegree > 3) {
+    throw new Error("polynomialDegree must be at most 3");
+  }
+  const resolvedOuterRadius = assertFinitePositiveNumber(
+    "outerRadius",
+    outerRadius
+  );
+  const resolvedShiftedIndex = assertFinitePositiveInteger(
+    "shiftedIndex",
+    shiftedIndex
+  );
+  const resolvedSeriesOrder = assertFinitePositiveInteger(
+    "seriesOrder",
+    seriesOrder
+  );
+  const resolvedH38NoiseSamples = h38NoiseSamples.map((sample) => {
+    const resolved = Number(sample);
+    if (!Number.isFinite(resolved) || resolved < -1 || resolved > 1) {
+      throw new Error("h38NoiseSamples must be finite values in [-1,1]");
+    }
+    return resolved;
+  });
+  if (resolvedH38NoiseSamples.length < 3) {
+    throw new Error("h38NoiseSamples must contain at least three values");
+  }
+  const resolvedReferencePressureTargets = referencePressureTargets.map(
+    (target) => assertFinitePositiveNumber("referencePressureTargets", target)
+  );
+  const resolvedSafetySearchIterations = assertFinitePositiveInteger(
+    "safetySearchIterations",
+    safetySearchIterations
+  );
+  emitProgress?.({
+    stage: "signed-affine-target-envelope-dependence-start",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+  });
+  const setup = buildH39H38Y44CoefficientReplaySetup({
+    targetSpeedInterval: resolvedTargetSpeedInterval,
+    branch,
+    rootSubdivisions,
+    seriesOrder: resolvedSeriesOrder,
+    sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+    comparisonStencilIndex: resolvedComparisonStencilIndex,
+    polynomialDegree: resolvedPolynomialDegree,
+  });
+  emitProgress?.({
+    stage: "signed-affine-target-envelope-comparison-window-ready",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    analysis_cell_id: setup.analysisRow.cell_id,
+    h38_noise_sample_count: resolvedH38NoiseSamples.length,
+  });
+  const sampleReplays = resolvedH38NoiseSamples.map(
+    (h38Noise, sampleIndex) => {
+      emitProgress?.({
+        stage: "signed-affine-target-envelope-sample-start",
+        sample_index: sampleIndex,
+        h38_noise_coordinate: h38Noise,
+        completed_sample_count: sampleIndex,
+        sample_count: resolvedH38NoiseSamples.length,
+      });
+      const sample = h39H38Y44CoefficientSampleReplay({
+        context: setup.context,
+        analysisCell: setup.analysisCell,
+        analysisBranchRow: setup.analysisBranchRow,
+        branch,
+        transportProfile: setup.transportProfile,
+        residualProfile: setup.residualProfile,
+        h38ResidualProfile: setup.h38ResidualProfile,
+        noiseCoordinate: setup.noiseCoordinate,
+        outerRadius: resolvedOuterRadius,
+        shiftedIndex: resolvedShiftedIndex,
+        h38Noise,
+        sampleIndex,
+      });
+      emitProgress?.({
+        stage: "signed-affine-target-envelope-sample-complete",
+        sample_index: sampleIndex,
+        h38_noise_coordinate: h38Noise,
+        source_coefficient_midpoint: sample.source_coefficient_midpoint,
+        source_coefficient_width: sample.source_coefficient_width,
+        completed_sample_count: sampleIndex + 1,
+        sample_count: resolvedH38NoiseSamples.length,
+      });
+      return sample;
+    }
+  );
+  const affineFit = coefficientMidpointProfileFit({
+    samples: sampleReplays,
+    coefficientKey: "source_coefficient_interval",
+    degree: 1,
+  });
+  const quadraticFit = coefficientMidpointProfileFit({
+    samples: sampleReplays,
+    coefficientKey: "source_coefficient_interval",
+    degree: 2,
+  });
+  const affineToQuadraticResidualRatio =
+    quadraticFit.max_abs_midpoint_residual > 0
+      ? affineFit.max_abs_midpoint_residual /
+        quadraticFit.max_abs_midpoint_residual
+      : null;
+  const centerSample =
+    sampleReplays.find(
+      (sample) => Math.abs(Number(sample.h38_noise_coordinate)) < 1e-15
+    ) ??
+    h39H38Y44CoefficientSampleReplay({
+      context: setup.context,
+      analysisCell: setup.analysisCell,
+      analysisBranchRow: setup.analysisBranchRow,
+      branch,
+      transportProfile: setup.transportProfile,
+      residualProfile: setup.residualProfile,
+      h38ResidualProfile: setup.h38ResidualProfile,
+      noiseCoordinate: setup.noiseCoordinate,
+      outerRadius: resolvedOuterRadius,
+      shiftedIndex: resolvedShiftedIndex,
+      h38Noise: 0,
+      sampleIndex: -2,
+    });
+  const maxSamplePressure = Math.max(
+    ...sampleReplays.map((sample) => Number(sample.pressure))
+  );
+  const affineIntercept = Number(affineFit.coefficients[0]);
+  const affineSlope = Number(affineFit.coefficients[1]);
+  const affineSlopeAbs = Math.abs(affineSlope);
+  if (!finitePositive(affineSlopeAbs)) {
+    throw new Error("signed affine target envelope requires nonzero affine slope");
+  }
+  const affineZeroCoordinate = -affineIntercept / affineSlope;
+  if (!Number.isFinite(Number(affineZeroCoordinate))) {
+    throw new Error("signed affine target envelope requires a finite affine zero");
+  }
+  emitProgress?.({
+    stage: "signed-affine-target-envelope-zero-replay-start",
+    affine_zero_coordinate: affineZeroCoordinate,
+  });
+  const affineZeroReplay = h39H38Y44CoefficientSampleReplay({
+    context: setup.context,
+    analysisCell: setup.analysisCell,
+    analysisBranchRow: setup.analysisBranchRow,
+    branch,
+    transportProfile: setup.transportProfile,
+    residualProfile: setup.residualProfile,
+    h38ResidualProfile: setup.h38ResidualProfile,
+    noiseCoordinate: setup.noiseCoordinate,
+    outerRadius: resolvedOuterRadius,
+    shiftedIndex: resolvedShiftedIndex,
+    h38Noise: affineZeroCoordinate,
+    sampleIndex: -1,
+  });
+  const midpointLinearityGapAbsUpper = Math.max(
+    Number(affineFit.max_abs_midpoint_residual),
+    Number(quadraticFit.max_abs_midpoint_residual)
+  );
+  const zeroReplayCoefficientHalfWidth =
+    Number(affineZeroReplay.source_coefficient_width) / 2;
+  const candidateCoefficientMarginAbsUpper =
+    midpointLinearityGapAbsUpper + zeroReplayCoefficientHalfWidth;
+  const candidateMarginPressure =
+    candidateCoefficientMarginAbsUpper *
+    resolvedOuterRadius ** resolvedShiftedIndex;
+  const pressureReferenceRows = [
+    {
+      label: "affine-zero-replay-pressure",
+      targetPressure: affineZeroReplay.pressure,
+    },
+    {
+      label: "center-sample-pressure",
+      targetPressure: centerSample.pressure,
+    },
+    {
+      label: "max-sample-pressure",
+      targetPressure: maxSamplePressure,
+    },
+    ...resolvedReferencePressureTargets.map((targetPressure) => ({
+      label: `reference-pressure-${targetPressure}`,
+      targetPressure,
+    })),
+  ];
+  const pressureTargetEnvelope = pressureReferenceRows.map((row) =>
+    h39H38Y44AffineTargetEnvelopeEntry({
+      label: row.label,
+      targetPressure: row.targetPressure,
+      outerRadius: resolvedOuterRadius,
+      shiftedIndex: resolvedShiftedIndex,
+      affineZeroCoordinate,
+      affineSlopeAbs,
+      midpointLinearityGapAbsUpper,
+      zeroReplayCoefficientHalfWidth,
+      h38ResidualAbsUpper: setup.h38ResidualProfile.max_abs_residual,
+    })
+  );
+  const h38ProducerResidualCoordinateProfile =
+    h39H38Y44ProducerResidualCoordinateProfile({
+      targetSpeedInterval: resolvedTargetSpeedInterval,
+      rows: setup.comparisonRows,
+      branch,
+      transportProfile: setup.transportProfile,
+      residualInterval: setup.h38ResidualProfile.residual_interval_hull,
+    });
+  const producerCenteredFullHullHalfWidth =
+    h39H38Y44ProducerCoordinateFullHullHalfWidth(
+      h38ProducerResidualCoordinateProfile
+    );
+  const h38SolveWidthProfile = h38SolveWidthFactorizationProfileForRows({
+    targetSpeedInterval: resolvedTargetSpeedInterval,
+    rows: setup.comparisonRows,
+    branch,
+    transportProfile: setup.transportProfile,
+  });
+  const h38NumeratorPolynomialDegreeDiagnosticRows =
+    h38NumeratorPolynomialDegreeDiagnostics({
+      solveWidthProfile: h38SolveWidthProfile,
+      degrees: [1, 2, 3],
+    });
+  const h38NumeratorPolynomialDiagnostic =
+    h38NumeratorPolynomialDegreeDiagnosticRows.find(
+      (diagnostic) =>
+        diagnostic.polynomial_degree === resolvedPolynomialDegree
+    ) ?? h38NumeratorPolynomialDegreeDiagnosticRows[0];
+  const pressureTargetEnvelopeReplays = pressureTargetEnvelope.map(
+    (entry, entryIndex) => {
+      emitProgress?.({
+        stage: "signed-affine-target-envelope-interval-replay-start",
+        pressure_ladder_index: entryIndex,
+        label: entry.label,
+        h38_noise_interval: entry.clipped_zero_centered_h38_noise_interval,
+      });
+      const replayEnvelope = h39H38Y44ZeroCenteredIntervalReplay({
+        setup,
+        branch,
+        affineZeroCoordinate,
+        halfWidth: entry.candidate_margin_aware_half_width,
+        outerRadius: resolvedOuterRadius,
+        shiftedIndex: resolvedShiftedIndex,
+        variant: `zero-centered-${entry.label}`,
+      });
+      const replay = replayEnvelope.replay;
+      const intervalReplayOverTargetPressure =
+        finitePositive(entry.target_pressure)
+          ? replay.pressure / entry.target_pressure
+          : null;
+      const amplificationCorrectionDivisor =
+        finitePositive(intervalReplayOverTargetPressure)
+          ? Math.max(1, intervalReplayOverTargetPressure)
+          : 1;
+      const amplificationCorrectedHalfWidth =
+        entry.candidate_margin_aware_half_width /
+        amplificationCorrectionDivisor;
+      const amplificationCorrectedH38NoiseInterval = [
+        affineZeroCoordinate - amplificationCorrectedHalfWidth,
+        affineZeroCoordinate + amplificationCorrectedHalfWidth,
+      ];
+      const clippedAmplificationCorrectedH38NoiseInterval = [
+        Math.max(-1, amplificationCorrectedH38NoiseInterval[0]),
+        Math.min(1, amplificationCorrectedH38NoiseInterval[1]),
+      ];
+      const correctedEnvelope = h39H38Y44ZeroCenteredIntervalReplay({
+        setup,
+        branch,
+        affineZeroCoordinate,
+        halfWidth: amplificationCorrectedHalfWidth,
+        outerRadius: resolvedOuterRadius,
+        shiftedIndex: resolvedShiftedIndex,
+        variant: `amplification-corrected-${entry.label}`,
+      });
+      const correctedReplay = correctedEnvelope.replay;
+      const correctedReplayOverTargetPressure =
+        finitePositive(entry.target_pressure)
+          ? correctedReplay.pressure / entry.target_pressure
+          : null;
+      const safetySearch = h39H38Y44ZeroCenteredSafetySearch({
+        setup,
+        branch,
+        affineZeroCoordinate,
+        candidateHalfWidth: entry.candidate_margin_aware_half_width,
+        targetPressure: entry.target_pressure,
+        outerRadius: resolvedOuterRadius,
+        shiftedIndex: resolvedShiftedIndex,
+        iterations: resolvedSafetySearchIterations,
+        label: entry.label,
+      });
+      const producerCoordinateTargetFit =
+        h39H38Y44ProducerCoordinateTargetFit({
+          label: entry.label,
+          coordinateProfile: h38ProducerResidualCoordinateProfile,
+          targetInterval:
+            safetySearch.clipped_target_closing_h38_noise_interval ??
+            safetySearch.target_closing_h38_noise_interval ??
+            pointInterval(affineZeroCoordinate),
+        });
+      const producerCenteredSafetySearch =
+        h39H38Y44ProducerCenteredSafetySearch({
+          setup,
+          branch,
+          coordinateProfile: h38ProducerResidualCoordinateProfile,
+          candidateHalfWidth: producerCenteredFullHullHalfWidth,
+          targetPressure: entry.target_pressure,
+          outerRadius: resolvedOuterRadius,
+          shiftedIndex: resolvedShiftedIndex,
+          iterations: resolvedSafetySearchIterations,
+          label: entry.label,
+        });
+      const producerCenteredCollarTarget =
+        h39H38Y44ProducerCenteredCollarTarget({
+          label: entry.label,
+          coordinateProfile: h38ProducerResidualCoordinateProfile,
+          safetySearch: producerCenteredSafetySearch,
+          sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+        });
+      const producerCenteredNumeratorCollarTarget =
+        h39H38Y44ProducerCenteredNumeratorCollarTarget({
+          label: entry.label,
+          coordinateProfile: h38ProducerResidualCoordinateProfile,
+          collarTarget: producerCenteredCollarTarget,
+          solveWidthProfile: h38SolveWidthProfile,
+          numeratorPolynomialDiagnostic:
+            h38NumeratorPolynomialDiagnostic,
+        });
+      emitProgress?.({
+        stage: "signed-affine-target-envelope-interval-replay-complete",
+        pressure_ladder_index: entryIndex,
+        label: entry.label,
+        pressure: replay.pressure,
+      });
+      return {
+        ...entry,
+        interval_replay_pressure: replay.pressure,
+        interval_replay_source_coefficient_interval:
+          replay.row_pressure.source_coefficient,
+        interval_replay_source_coefficient_abs_upper:
+          replay.row_pressure.source_pressure_contribution /
+          resolvedOuterRadius ** resolvedShiftedIndex,
+        interval_replay_over_target_pressure:
+          intervalReplayOverTargetPressure,
+        interval_replay_center_eliminated_pressure:
+          replay.center_eliminated_pressure,
+        interval_replay_center_eliminated_over_target_pressure:
+          finitePositive(entry.target_pressure) &&
+          finitePositive(replay.center_eliminated_pressure)
+            ? replay.center_eliminated_pressure / entry.target_pressure
+            : null,
+        interval_replay_center_elimination_improvement_factor:
+          replay.center_elimination_improvement_factor,
+        interval_replay: replay,
+        amplification_correction_divisor:
+          amplificationCorrectionDivisor,
+        amplification_corrected_half_width:
+          amplificationCorrectedHalfWidth,
+        amplification_corrected_h38_noise_interval:
+          amplificationCorrectedH38NoiseInterval,
+        clipped_amplification_corrected_h38_noise_interval:
+          clippedAmplificationCorrectedH38NoiseInterval,
+        amplification_corrected_h38_residual_half_width:
+          amplificationCorrectedHalfWidth *
+          setup.h38ResidualProfile.max_abs_residual,
+        amplification_corrected_interval_replay_pressure:
+          correctedReplay.pressure,
+        amplification_corrected_interval_replay_over_target_pressure:
+          correctedReplayOverTargetPressure,
+        amplification_corrected_center_eliminated_pressure:
+          correctedReplay.center_eliminated_pressure,
+        amplification_corrected_center_eliminated_over_target_pressure:
+          finitePositive(entry.target_pressure) &&
+          finitePositive(correctedReplay.center_eliminated_pressure)
+            ? correctedReplay.center_eliminated_pressure /
+              entry.target_pressure
+            : null,
+        amplification_corrected_center_elimination_improvement_factor:
+          correctedReplay.center_elimination_improvement_factor,
+        amplification_corrected_interval_replay:
+          correctedReplay,
+        amplification_corrected_replay_meets_reference_target:
+          correctedReplayOverTargetPressure !== null &&
+          correctedReplayOverTargetPressure <= 1,
+        safety_search: safetySearch,
+        producer_coordinate_target_fit: producerCoordinateTargetFit,
+        producer_centered_safety_search: producerCenteredSafetySearch,
+        producer_centered_collar_target: producerCenteredCollarTarget,
+        producer_centered_numerator_collar_target:
+          producerCenteredNumeratorCollarTarget,
+      };
+    }
+  );
+  const intervalReplayOverTargetRatios = pressureTargetEnvelopeReplays
+    .map((entry) => Number(entry.interval_replay_over_target_pressure))
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const maxIntervalReplayOverTargetPressure =
+    intervalReplayOverTargetRatios.length > 0
+      ? Math.max(...intervalReplayOverTargetRatios)
+      : null;
+  const intervalReplayCenterEliminatedOverTargetRatios =
+    pressureTargetEnvelopeReplays
+      .map((entry) =>
+        Number(entry.interval_replay_center_eliminated_over_target_pressure)
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxIntervalReplayCenterEliminatedOverTargetPressure =
+    intervalReplayCenterEliminatedOverTargetRatios.length > 0
+      ? Math.max(...intervalReplayCenterEliminatedOverTargetRatios)
+      : null;
+  const nonzeroWidthIntervalReplayOverTargetRatios =
+    pressureTargetEnvelopeReplays
+      .filter((entry) => Number(entry.candidate_margin_aware_half_width) > 0)
+      .map((entry) => Number(entry.interval_replay_over_target_pressure))
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxNonzeroWidthIntervalReplayOverTargetPressure =
+    nonzeroWidthIntervalReplayOverTargetRatios.length > 0
+      ? Math.max(...nonzeroWidthIntervalReplayOverTargetRatios)
+      : null;
+  const correctedIntervalReplayOverTargetRatios = pressureTargetEnvelopeReplays
+    .map((entry) =>
+      Number(entry.amplification_corrected_interval_replay_over_target_pressure)
+    )
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const maxCorrectedIntervalReplayOverTargetPressure =
+    correctedIntervalReplayOverTargetRatios.length > 0
+      ? Math.max(...correctedIntervalReplayOverTargetRatios)
+      : null;
+  const correctedCenterEliminatedOverTargetRatios =
+    pressureTargetEnvelopeReplays
+      .map((entry) =>
+        Number(
+          entry.amplification_corrected_center_eliminated_over_target_pressure
+        )
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxCorrectedCenterEliminatedOverTargetPressure =
+    correctedCenterEliminatedOverTargetRatios.length > 0
+      ? Math.max(...correctedCenterEliminatedOverTargetRatios)
+      : null;
+  const correctedNonzeroWidthIntervalReplayOverTargetRatios =
+    pressureTargetEnvelopeReplays
+      .filter((entry) => Number(entry.candidate_margin_aware_half_width) > 0)
+      .map((entry) =>
+        Number(
+          entry.amplification_corrected_interval_replay_over_target_pressure
+        )
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxCorrectedNonzeroWidthIntervalReplayOverTargetPressure =
+    correctedNonzeroWidthIntervalReplayOverTargetRatios.length > 0
+      ? Math.max(...correctedNonzeroWidthIntervalReplayOverTargetRatios)
+      : null;
+  const safetyDivisors = pressureTargetEnvelopeReplays
+    .filter((entry) => Number(entry.candidate_margin_aware_half_width) > 0)
+    .map((entry) => Number(entry.safety_search?.target_closing_safety_divisor))
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const maxTargetClosingSafetyDivisor =
+    safetyDivisors.length > 0 ? Math.max(...safetyDivisors) : null;
+  const targetClosingBracketWidths = pressureTargetEnvelopeReplays
+    .map((entry) => Number(entry.safety_search?.target_closing_bracket_width))
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const maxTargetClosingBracketWidth =
+    targetClosingBracketWidths.length > 0
+      ? Math.max(...targetClosingBracketWidths)
+      : null;
+  const safetySearchOverTargetRatios = pressureTargetEnvelopeReplays
+    .map((entry) =>
+      Number(entry.safety_search?.target_closing_replay_over_target_pressure)
+    )
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const maxSafetySearchReplayOverTargetPressure =
+    safetySearchOverTargetRatios.length > 0
+      ? Math.max(...safetySearchOverTargetRatios)
+      : null;
+  const safetySearchCenterEliminatedOverTargetRatios =
+    pressureTargetEnvelopeReplays
+      .map((entry) =>
+        Number(
+          entry.safety_search
+            ?.target_closing_center_eliminated_over_target_pressure
+        )
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxSafetySearchCenterEliminatedOverTargetPressure =
+    safetySearchCenterEliminatedOverTargetRatios.length > 0
+      ? Math.max(...safetySearchCenterEliminatedOverTargetRatios)
+      : null;
+  const producerCoordinateTargetFits = pressureTargetEnvelopeReplays
+    .map((entry) => entry.producer_coordinate_target_fit)
+    .filter(Boolean);
+  const requiredIntervalHullShrinkFactors = producerCoordinateTargetFits
+    .map((fit) => Number(fit.required_interval_hull_shrink_factor))
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const requiredMidpointHullShrinkFactors = producerCoordinateTargetFits
+    .map((fit) => Number(fit.required_midpoint_hull_shrink_factor))
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const maxRequiredProducerIntervalHullShrinkFactor =
+    requiredIntervalHullShrinkFactors.length > 0
+      ? Math.max(...requiredIntervalHullShrinkFactors)
+      : null;
+  const maxRequiredProducerMidpointHullShrinkFactor =
+    requiredMidpointHullShrinkFactors.length > 0
+      ? Math.max(...requiredMidpointHullShrinkFactors)
+      : null;
+  const producerCenteredReferenceEntries = pressureTargetEnvelopeReplays.filter(
+    (entry) => entry.label.startsWith("reference-pressure-")
+  );
+  const producerCenteredReferenceCenterRatios =
+    producerCenteredReferenceEntries
+      .map((entry) =>
+        Number(
+          entry.producer_centered_safety_search
+            ?.center_hull_replay_over_target_pressure
+        )
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxProducerCenteredReferenceCenterHullOverTargetPressure =
+    producerCenteredReferenceCenterRatios.length > 0
+      ? Math.max(...producerCenteredReferenceCenterRatios)
+      : null;
+  const producerCenteredReferenceTargetRatios =
+    producerCenteredReferenceEntries
+      .map((entry) =>
+        Number(
+          entry.producer_centered_safety_search
+            ?.target_closing_replay_over_target_pressure
+        )
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxProducerCenteredReferenceReplayOverTargetPressure =
+    producerCenteredReferenceTargetRatios.length > 0
+      ? Math.max(...producerCenteredReferenceTargetRatios)
+      : null;
+  const producerCenteredReferenceSafetyDivisors =
+    producerCenteredReferenceEntries
+      .map((entry) =>
+        Number(
+          entry.producer_centered_safety_search
+            ?.target_closing_safety_divisor
+        )
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxProducerCenteredReferenceSafetyDivisor =
+    producerCenteredReferenceSafetyDivisors.length > 0
+      ? Math.max(...producerCenteredReferenceSafetyDivisors)
+      : null;
+  const producerCenteredReferenceTargetsMetAtCenter =
+    producerCenteredReferenceEntries.filter(
+      (entry) =>
+        Number(
+          entry.producer_centered_safety_search
+            ?.center_hull_replay_over_target_pressure
+        ) <= 1
+    ).length;
+  const producerCenteredReferenceTargetsClosedBySearch =
+    producerCenteredReferenceEntries.filter(
+      (entry) =>
+        Number(
+          entry.producer_centered_safety_search
+            ?.target_closing_replay_over_target_pressure
+        ) <= 1
+    ).length;
+  const producerCenteredReferenceCollarTargets =
+    producerCenteredReferenceEntries
+      .map((entry) => entry.producer_centered_collar_target)
+      .filter(Boolean);
+  const producerCenteredReferencePositiveCollarCount =
+    producerCenteredReferenceCollarTargets.filter(
+      (target) => target.positive_collar_found === true
+    ).length;
+  const producerCenteredReferenceIntervalHullCoveredCount =
+    producerCenteredReferenceCollarTargets.filter(
+      (target) => target.producer_interval_hull_inside_collar === true
+    ).length;
+  const producerCenteredReferenceCollarCompressionFactors =
+    producerCenteredReferenceCollarTargets
+      .map((target) =>
+        Number(target.required_interval_hull_compression_factor)
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxProducerCenteredReferenceCollarCompressionFactor =
+    producerCenteredReferenceCollarCompressionFactors.length > 0
+      ? Math.max(...producerCenteredReferenceCollarCompressionFactors)
+      : null;
+  const producerCenteredReferenceLinearSubcellForecasts =
+    producerCenteredReferenceCollarTargets
+      .map((target) => Number(target.linear_subcell_refinement_forecast))
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxProducerCenteredReferenceLinearSubcellForecast =
+    producerCenteredReferenceLinearSubcellForecasts.length > 0
+      ? Math.max(...producerCenteredReferenceLinearSubcellForecasts)
+      : null;
+  const producerCenteredReferenceNumeratorCollarTargets =
+    producerCenteredReferenceEntries
+      .map((entry) => entry.producer_centered_numerator_collar_target)
+      .filter(Boolean);
+  const producerCenteredReferenceNumeratorGraphInsideCount =
+    producerCenteredReferenceNumeratorCollarTargets.filter(
+      (target) =>
+        target.numerator_midpoint_graph_inside_collar_target === true
+    ).length;
+  const producerCenteredReferenceNumeratorCompressionFactors =
+    producerCenteredReferenceNumeratorCollarTargets
+      .map((target) =>
+        Number(
+          target.max_numerator_interval_compression_to_conservative_target
+        )
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const maxProducerCenteredReferenceNumeratorCompressionFactor =
+    producerCenteredReferenceNumeratorCompressionFactors.length > 0
+      ? Math.max(...producerCenteredReferenceNumeratorCompressionFactors)
+      : null;
+  const producerCenteredReferenceNumeratorResidualRatios =
+    producerCenteredReferenceNumeratorCollarTargets
+      .map((target) =>
+        Number(
+          target.max_numerator_midpoint_residual_over_conservative_target
+        )
+      )
+      .filter((value) => Number.isFinite(value) && value >= 0);
+  const maxProducerCenteredReferenceNumeratorMidpointResidualOverTarget =
+    producerCenteredReferenceNumeratorResidualRatios.length > 0
+      ? Math.max(...producerCenteredReferenceNumeratorResidualRatios)
+      : null;
+  const producerCenteredReferenceNumeratorHeadroomFactors =
+    producerCenteredReferenceNumeratorCollarTargets
+      .map((target) =>
+        Number(target.min_numerator_midpoint_residual_headroom_factor)
+      )
+      .filter((value) => Number.isFinite(value) && value > 0);
+  const minProducerCenteredReferenceNumeratorMidpointHeadroom =
+    producerCenteredReferenceNumeratorHeadroomFactors.length > 0
+      ? Math.min(...producerCenteredReferenceNumeratorHeadroomFactors)
+      : null;
+  const n38CollarEnclosureRoute =
+    h39H38Y44N38CollarEnclosureRoute({
+      referenceTargets: producerCenteredReferenceNumeratorCollarTargets,
+      numeratorPolynomialDiagnostic: h38NumeratorPolynomialDiagnostic,
+      sourceStencilSubcellCount: resolvedSourceStencilSubcellCount,
+    });
+  const intervalReplayAmplificationInterpretation =
+    maxNonzeroWidthIntervalReplayOverTargetPressure !== null &&
+    maxNonzeroWidthIntervalReplayOverTargetPressure <= 1
+      ? "zero-centered-h38-interval-replay-meets-reference-pressure-ladder"
+      : "zero-centered-h38-interval-replay-has-stable-over-target-amplification";
+  const amplificationCorrectedReplayInterpretation =
+    maxCorrectedNonzeroWidthIntervalReplayOverTargetPressure !== null &&
+    maxCorrectedNonzeroWidthIntervalReplayOverTargetPressure <= 1
+      ? "amplification-corrected-zero-centered-widths-meet-reference-pressure-ladder"
+      : "amplification-corrected-zero-centered-widths-still-exceed-reference-pressure-ladder";
+  const safetySearchInterpretation =
+    maxSafetySearchReplayOverTargetPressure !== null &&
+    maxSafetySearchReplayOverTargetPressure <= 1
+      ? "bisection-safety-divisor-finds-reference-meeting-widths"
+      : "bisection-safety-divisor-does-not-find-reference-meeting-widths";
+  const safetyDivisorOverObservedAmplification =
+    finitePositive(maxTargetClosingSafetyDivisor) &&
+    finitePositive(maxNonzeroWidthIntervalReplayOverTargetPressure)
+      ? maxTargetClosingSafetyDivisor /
+        maxNonzeroWidthIntervalReplayOverTargetPressure
+      : null;
+  const centerEliminatedReplayInterpretation =
+    maxIntervalReplayCenterEliminatedOverTargetPressure !== null &&
+    maxIntervalReplayCenterEliminatedOverTargetPressure <= 1
+      ? "center-eliminated-affine-row-removes-zero-centered-amplification"
+      : "center-eliminated-affine-row-still-exceeds-reference-pressure-ladder";
+  const producerCoordinateEnvelopeInterpretation =
+    producerCoordinateTargetFits.length > 0 &&
+    producerCoordinateTargetFits.every(
+      (fit) => fit.target_covers_producer_interval_hull === true
+    )
+      ? "h38-producer-coordinate-hull-fits-signed-affine-safety-envelope"
+      : producerCoordinateTargetFits.length > 0 &&
+          producerCoordinateTargetFits.every(
+            (fit) => fit.target_covers_producer_midpoint_hull === true
+          )
+        ? "h38-producer-midpoint-hull-fits-but-interval-hull-exceeds-signed-affine-safety-envelope"
+        : "h38-producer-coordinate-hull-exceeds-signed-affine-safety-envelope";
+  const producerCenteredReplayInterpretation =
+    producerCenteredReferenceEntries.length > 0 &&
+    producerCenteredReferenceTargetsMetAtCenter ===
+      producerCenteredReferenceEntries.length
+    ? "producer-midpoint-hull-meets-reference-pressure-targets"
+      : producerCenteredReferenceTargetsClosedBySearch > 0
+        ? "producer-centered-width-search-closes-some-reference-pressure-targets"
+        : "producer-midpoint-hull-exceeds-reference-pressure-targets";
+  const producerCenteredCollarInterpretation =
+    producerCenteredReferenceCollarTargets.length > 0 &&
+    producerCenteredReferenceIntervalHullCoveredCount ===
+      producerCenteredReferenceCollarTargets.length
+      ? "producer-centered-collars-cover-full-interval-hull"
+      : producerCenteredReferencePositiveCollarCount > 0 &&
+          finitePositive(
+            maxProducerCenteredReferenceLinearSubcellForecast
+          ) &&
+          maxProducerCenteredReferenceLinearSubcellForecast >= 1e8
+        ? "positive-collars-found-but-raw-subcell-refinement-impractical"
+        : producerCenteredReferencePositiveCollarCount > 0
+          ? "positive-collars-found-for-producer-image-certificate-target"
+          : "producer-center-hull-closes-but-positive-collar-open";
+  const producerCenteredNumeratorCollarInterpretation =
+    producerCenteredReferenceNumeratorCollarTargets.length > 0 &&
+    producerCenteredReferenceNumeratorGraphInsideCount ===
+      producerCenteredReferenceNumeratorCollarTargets.length
+      ? "numerator-midpoint-graph-fits-producer-collar-target"
+      : producerCenteredReferenceNumeratorGraphInsideCount > 0
+        ? "some-numerator-midpoint-graphs-fit-producer-collar-target"
+        : "numerator-midpoint-graph-does-not-yet-fit-producer-collar-target";
+  const centerToAffineZeroPressureRatio =
+    finitePositive(centerSample.pressure) &&
+    finitePositive(affineZeroReplay.pressure)
+      ? Number(centerSample.pressure) /
+        Number(affineZeroReplay.pressure)
+      : null;
+  const maxSampleToAffineZeroPressureRatio =
+    finitePositive(maxSamplePressure) &&
+    finitePositive(affineZeroReplay.pressure)
+      ? Number(maxSamplePressure) /
+        Number(affineZeroReplay.pressure)
+      : null;
+  const targetEnvelopeInterpretation =
+    maxSampleToAffineZeroPressureRatio !== null &&
+    maxSampleToAffineZeroPressureRatio >= 1e6
+      ? "signed-affine-zero-localizes-the-y44-h38-obstruction"
+      : "signed-affine-zero-does-not-yet-localize-the-y44-h38-obstruction";
+  emitProgress?.({
+    stage: "signed-affine-target-envelope-summary-ready",
+    affine_zero_pressure: affineZeroReplay.pressure,
+    center_to_affine_zero_pressure_ratio:
+      centerToAffineZeroPressureRatio,
+    max_sample_to_affine_zero_pressure_ratio:
+      maxSampleToAffineZeroPressureRatio,
+  });
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SIGNED_AFFINE_TARGET_ENVELOPE_DIAGNOSTIC_SCHEMA,
+    status:
+      "h39-h38-y44-signed-affine-target-envelope-diagnostic-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-h38-y44-signed-affine-target-envelope-diagnostic",
+    target_speed_interval: resolvedTargetSpeedInterval,
+    branch,
+    shifted_index: resolvedShiftedIndex,
+    y_order:
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+      resolvedShiftedIndex,
+    outer_radius: resolvedOuterRadius,
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    comparison_row_count: setup.comparisonRows.length,
+    analysis_cell_id: setup.analysisRow.cell_id,
+    analysis_speed_interval: setup.analysisRow.speed_interval,
+    analysis_xi_coordinate: setup.noiseCoordinate,
+    polynomial_degree: resolvedPolynomialDegree,
+    h38_residual_interval:
+      setup.h38ResidualProfile.residual_interval_hull,
+    h38_residual_abs_upper:
+      setup.h38ResidualProfile.max_abs_residual,
+    h38_producer_residual_coordinate_profile:
+      h38ProducerResidualCoordinateProfile,
+    producer_centered_full_hull_half_width:
+      producerCenteredFullHullHalfWidth,
+    h38_y44_solve_width_profile: h38SolveWidthProfile,
+    h38_y44_numerator_polynomial_degree_diagnostics:
+      h38NumeratorPolynomialDegreeDiagnosticRows,
+    h38_y44_numerator_polynomial_diagnostic:
+      h38NumeratorPolynomialDiagnostic,
+    h38_noise_samples: resolvedH38NoiseSamples,
+    safety_search_iterations: resolvedSafetySearchIterations,
+    source_coefficient_affine_fit: affineFit,
+    source_coefficient_quadratic_fit: quadraticFit,
+    affine_to_quadratic_residual_ratio: affineToQuadraticResidualRatio,
+    signed_affine_intercept: affineIntercept,
+    signed_affine_slope: affineSlope,
+    affine_zero_coordinate: affineZeroCoordinate,
+    affine_zero_inside_sample_domain:
+      affineZeroCoordinate >= -1 && affineZeroCoordinate <= 1,
+    midpoint_linearity_gap_abs_upper: midpointLinearityGapAbsUpper,
+    affine_zero_replay: affineZeroReplay,
+    center_sample_replay: centerSample,
+    max_sample_pressure: maxSamplePressure,
+    center_to_affine_zero_pressure_ratio:
+      centerToAffineZeroPressureRatio,
+    max_sample_to_affine_zero_pressure_ratio:
+      maxSampleToAffineZeroPressureRatio,
+    affine_zero_source_coefficient_half_width:
+      zeroReplayCoefficientHalfWidth,
+    candidate_coefficient_margin_abs_upper:
+      candidateCoefficientMarginAbsUpper,
+    candidate_margin_pressure: candidateMarginPressure,
+    pressure_reference_ladder: pressureTargetEnvelopeReplays,
+    max_interval_replay_over_target_pressure:
+      maxIntervalReplayOverTargetPressure,
+    max_interval_replay_center_eliminated_over_target_pressure:
+      maxIntervalReplayCenterEliminatedOverTargetPressure,
+    max_nonzero_width_interval_replay_over_target_pressure:
+      maxNonzeroWidthIntervalReplayOverTargetPressure,
+    max_amplification_corrected_interval_replay_over_target_pressure:
+      maxCorrectedIntervalReplayOverTargetPressure,
+    max_amplification_corrected_center_eliminated_over_target_pressure:
+      maxCorrectedCenterEliminatedOverTargetPressure,
+    max_amplification_corrected_nonzero_width_interval_replay_over_target_pressure:
+      maxCorrectedNonzeroWidthIntervalReplayOverTargetPressure,
+    max_target_closing_safety_divisor:
+      maxTargetClosingSafetyDivisor,
+    safety_divisor_over_observed_amplification:
+      safetyDivisorOverObservedAmplification,
+    max_target_closing_bracket_width:
+      maxTargetClosingBracketWidth,
+    max_safety_search_replay_over_target_pressure:
+      maxSafetySearchReplayOverTargetPressure,
+    max_safety_search_center_eliminated_over_target_pressure:
+      maxSafetySearchCenterEliminatedOverTargetPressure,
+    max_required_producer_interval_hull_shrink_factor:
+      maxRequiredProducerIntervalHullShrinkFactor,
+    max_required_producer_midpoint_hull_shrink_factor:
+      maxRequiredProducerMidpointHullShrinkFactor,
+    max_producer_centered_reference_center_hull_over_target_pressure:
+      maxProducerCenteredReferenceCenterHullOverTargetPressure,
+    max_producer_centered_reference_replay_over_target_pressure:
+      maxProducerCenteredReferenceReplayOverTargetPressure,
+    max_producer_centered_reference_safety_divisor:
+      maxProducerCenteredReferenceSafetyDivisor,
+    producer_centered_reference_target_count:
+      producerCenteredReferenceEntries.length,
+    producer_centered_reference_targets_met_at_center:
+      producerCenteredReferenceTargetsMetAtCenter,
+    producer_centered_reference_targets_closed_by_search:
+      producerCenteredReferenceTargetsClosedBySearch,
+    producer_centered_reference_positive_collar_count:
+      producerCenteredReferencePositiveCollarCount,
+    producer_centered_reference_interval_hull_covered_count:
+      producerCenteredReferenceIntervalHullCoveredCount,
+    max_producer_centered_reference_collar_required_interval_hull_compression_factor:
+      maxProducerCenteredReferenceCollarCompressionFactor,
+    max_producer_centered_reference_collar_linear_subcell_forecast:
+      maxProducerCenteredReferenceLinearSubcellForecast,
+    producer_centered_reference_numerator_graph_inside_count:
+      producerCenteredReferenceNumeratorGraphInsideCount,
+    max_producer_centered_reference_numerator_interval_compression_to_conservative_target:
+      maxProducerCenteredReferenceNumeratorCompressionFactor,
+    max_producer_centered_reference_numerator_midpoint_residual_over_conservative_target:
+      maxProducerCenteredReferenceNumeratorMidpointResidualOverTarget,
+    min_producer_centered_reference_numerator_midpoint_residual_headroom_factor:
+      minProducerCenteredReferenceNumeratorMidpointHeadroom,
+    h38_y44_n38_collar_enclosure_route: n38CollarEnclosureRoute,
+    interval_replay_amplification_interpretation:
+      intervalReplayAmplificationInterpretation,
+    amplification_corrected_replay_interpretation:
+      amplificationCorrectedReplayInterpretation,
+    safety_search_interpretation: safetySearchInterpretation,
+    center_eliminated_replay_interpretation:
+      centerEliminatedReplayInterpretation,
+    producer_coordinate_envelope_interpretation:
+      producerCoordinateEnvelopeInterpretation,
+    producer_centered_replay_interpretation:
+      producerCenteredReplayInterpretation,
+    producer_centered_collar_interpretation:
+      producerCenteredCollarInterpretation,
+    producer_centered_numerator_collar_interpretation:
+      producerCenteredNumeratorCollarInterpretation,
+    target_envelope_interpretation: targetEnvelopeInterpretation,
+    candidate_certificate_route:
+      "Upgrade the signed affine h38 residual-coordinate source relation C44(u)=A+B u into a directed-rounded producer-image enclosure that preserves the actual H38 midpoint hull and then carries a local residual-coordinate collar around that image. The producer-centered collar target records the interval-hull compression needed; the pressure ladder is reference-only and does not certify shifted R43 closure.",
+    claim_boundary: {
+      certifies_standard_h38_cover: false,
+      certifies_h38_y44_coefficient_dependence: false,
+      certifies_h38_y44_signed_affine_envelope: false,
       certifies_shifted_R43_outer_bound: false,
       certifies_directed_rounded_shared_domain: false,
       certifies_continuous_polydisc_primitives: false,
@@ -11204,7 +15337,19 @@ export function buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCa
   residualCoordinatePartitionCount = 8,
   refinementSubcellCounts = [32],
   topContributorCount = 8,
+  progressCallback = null,
 } = {}) {
+  const startedAt = Date.now();
+  const emitProgress =
+    typeof progressCallback === "function"
+      ? (progress) =>
+          progressCallback({
+            diagnostic:
+              "h39-h38-expression-n38-terminal-graph-remainder-budget",
+            elapsed_ms: Date.now() - startedAt,
+            ...progress,
+          })
+      : null;
   const resolvedTargetSpeedInterval = numericInterval(
     "targetSpeedInterval",
     targetSpeedInterval
@@ -11299,10 +15444,24 @@ export function buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCa
   const context = makeTheta3minusFirstYGdSeriesContext({
     seriesOrder: assertFinitePositiveInteger("seriesOrder", seriesOrder),
   });
+  emitProgress?.({
+    stage: "terminal-graph-budget-source-subcover-start",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    row_count: 5,
+    completed_row_count: 0,
+  });
   const rows = targetRowsForSubcellCount({
     targetSpeedInterval: resolvedTargetSpeedInterval,
     subcellCount: resolvedSourceStencilSubcellCount,
     rootSubdivisions,
+  });
+  emitProgress?.({
+    stage: "terminal-graph-budget-source-subcover-complete",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    row_count: rows.length,
+    completed_row_count: 0,
   });
   if (rows.length !== resolvedSourceStencilSubcellCount) {
     throw new Error(
@@ -11313,11 +15472,25 @@ export function buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCa
     resolvedComparisonStencilIndex,
     resolvedComparisonStencilIndex + 5
   );
+  emitProgress?.({
+    stage: "terminal-graph-budget-comparison-window-ready",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    row_count: comparisonRows.length,
+    completed_row_count: 0,
+  });
   const terminalTransportProfile = hRowPolynomialTransportProfileForRows({
     rows: comparisonRows,
     branch,
     targetSpeedInterval: resolvedTargetSpeedInterval,
     degree: resolvedPolynomialDegree,
+  });
+  emitProgress?.({
+    stage: "terminal-graph-budget-transport-profile-ready",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    row_count: comparisonRows.length,
+    completed_row_count: 0,
   });
   const terminalResidualProfile =
     polynomialGraphProducerIntervalResidualProfileForRows({
@@ -11326,8 +15499,25 @@ export function buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCa
       branch,
       transportProfile: terminalTransportProfile,
     });
-  const budgetRows = comparisonRows.map((row) =>
-    terminalGraphRemainderBudgetRow({
+  emitProgress?.({
+    stage: "terminal-graph-budget-residual-profile-ready",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    row_count: comparisonRows.length,
+    completed_row_count: 0,
+  });
+  const budgetRows = comparisonRows.map((row, rowIndex) => {
+    emitProgress?.({
+      stage: "terminal-graph-budget-row-start",
+      source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+      comparison_stencil_index: resolvedComparisonStencilIndex,
+      row_count: comparisonRows.length,
+      completed_row_count: rowIndex,
+      row_index: rowIndex,
+      cell_id: row.cell_id,
+      speed_interval: row.speed_interval,
+    });
+    const budgetRow = terminalGraphRemainderBudgetRow({
       context,
       row,
       targetSpeedInterval: resolvedTargetSpeedInterval,
@@ -11341,12 +15531,47 @@ export function buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCa
       residualCoordinatePartitionCount:
         resolvedResidualCoordinatePartitionCount,
       topContributorCount: resolvedTopContributorCount,
-    })
-  );
+    });
+    emitProgress?.({
+      stage: "terminal-graph-budget-row-complete",
+      source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+      comparison_stencil_index: resolvedComparisonStencilIndex,
+      row_count: comparisonRows.length,
+      completed_row_count: rowIndex + 1,
+      row_index: rowIndex,
+      cell_id: row.cell_id,
+      speed_interval: row.speed_interval,
+      route_interpretation:
+        budgetRow.residual_coordinate_partition_route_interpretation,
+      graph_endpoint_width_share:
+        budgetRow
+          .max_terminal_graph_correlated_residual_graph_endpoint_partition_width_share_of_all,
+    });
+    return budgetRow;
+  });
+  emitProgress?.({
+    stage: "terminal-graph-budget-rows-complete",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    row_count: comparisonRows.length,
+    completed_row_count: comparisonRows.length,
+  });
   const summary = terminalGraphRemainderBudgetSummary({
     rows: budgetRows,
     terminalHIndexes: resolvedTerminalHIndexes,
     residualBudgetTargetShareOfAll: resolvedTargetShare,
+  });
+  emitProgress?.({
+    stage: "terminal-graph-budget-summary-ready",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    row_count: comparisonRows.length,
+    completed_row_count: comparisonRows.length,
+    route_interpretation:
+      summary.correlated_terminal_residual_partition_route_interpretation,
+    graph_affine_width_share:
+      summary
+        .max_correlated_terminal_residual_graph_affine_envelope_width_share_of_all,
   });
   const refinementForecast = terminalProducerRefinementForecast({
     targetSpeedInterval: resolvedTargetSpeedInterval,
@@ -11357,6 +15582,15 @@ export function buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCa
     baseSubcellCount: resolvedSourceStencilSubcellCount,
     baseBudgetRows: budgetRows,
     refinementSubcellCounts: resolvedRefinementSubcellCounts,
+  });
+  emitProgress?.({
+    stage: "terminal-graph-budget-forecast-ready",
+    source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
+    comparison_stencil_index: resolvedComparisonStencilIndex,
+    row_count: comparisonRows.length,
+    completed_row_count: comparisonRows.length,
+    projected_subcell_count:
+      refinementForecast.projected_subcell_count_for_baseline_budget,
   });
   const diagnosis =
     summary.correlated_terminal_residual_partition_route_interpretation ===
@@ -12531,6 +16765,1453 @@ export function validateH39PolynomialHRowGraphIntervalResidualDiagnostic(
     diagnostic?.claim_boundary?.retained_branch !== false
   ) {
     errors.push("claim boundary must keep graph, interval residual, h38, shifted source, primitive, and retention closure open");
+  }
+  return errors;
+}
+
+export function validateH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic(
+  diagnostic
+) {
+  const errors = [];
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[1]) > Number(interval[0]);
+  const terminalIndexes = diagnostic?.terminal_provider_h_indexes ?? [];
+  const terminalIndexesMatch =
+    Array.isArray(terminalIndexes) &&
+    terminalIndexes.length === 3 &&
+    terminalIndexes[0] === 37 &&
+    terminalIndexes[1] === 36 &&
+    terminalIndexes[2] === 35;
+  const endpointReplayValid = (endpoint) => {
+    const summary = endpoint?.shared_domain_replay_artifact_summary ?? {};
+    return (
+      Number.isInteger(endpoint?.endpoint_index) &&
+      [0, 1].includes(endpoint.endpoint_index) &&
+      Number.isFinite(Number(endpoint?.residual_noise)) &&
+      endpoint?.endpoint_provider_backed_replay === true &&
+      summary.h_row_provider_dependency_state ===
+        "dependency-preserving-provider-backed-replay" &&
+      summary.h_row_provider_backed_all_cells === true &&
+      Array.isArray(summary.h_row_provider_kinds) &&
+      summary.h_row_provider_kinds.includes(
+        "candidate-terminal-shared-residual-affine-zeta-endpoint-provider"
+      ) &&
+      Number(summary.h_row_provider_dependency_trace_count) > 0 &&
+      finitePositive(summary.max_R43_shifted_prefix_pressure_outer_radius) &&
+      summary.certifies_continuous_polydisc_primitives === false &&
+      endpoint.endpoint_claim_boundary?.certifies_directed_rounded_shared_domain ===
+        false &&
+      endpoint.endpoint_claim_boundary?.retained_branch === false
+    );
+  };
+  if (
+    diagnostic?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_TERMINAL_SHARED_RESIDUAL_AFFINE_ZETA_PROVIDER_REPLAY_DIAGNOSTIC_SCHEMA
+  ) {
+    errors.push("schema must match h39 terminal affine-zeta provider replay diagnostic");
+  }
+  if (
+    diagnostic?.status !==
+    "h39-terminal-shared-residual-affine-zeta-provider-replay-diagnostic-candidate-emitted"
+  ) {
+    errors.push("status must identify a candidate terminal affine-zeta provider replay diagnostic");
+  }
+  if (
+    diagnostic?.evaluation_level !==
+    "candidate-h39-terminal-shared-residual-affine-zeta-provider-replay-diagnostic"
+  ) {
+    errors.push("evaluation level must identify candidate terminal affine-zeta provider replay");
+  }
+  if (
+    !Number.isInteger(diagnostic?.source_stencil_subcell_count) ||
+    diagnostic.source_stencil_subcell_count < 5 ||
+    !Number.isInteger(diagnostic?.comparison_stencil_index) ||
+    diagnostic.comparison_stencil_index < 0 ||
+    diagnostic?.comparison_row_count !== 5 ||
+    !hasOrderedFiniteInterval(diagnostic?.comparison_xi_interval_hull) ||
+    !Number.isInteger(diagnostic?.polynomial_degree) ||
+    diagnostic.polynomial_degree !== 2 ||
+    !terminalIndexesMatch ||
+    !Number.isInteger(diagnostic?.residual_coordinate_partition_count) ||
+    diagnostic.residual_coordinate_partition_count < 1 ||
+    diagnostic?.h38_solve_target_policy !== "preserved-H39-predecessor-row"
+  ) {
+    errors.push("terminal affine-zeta provider replay parameters must describe a five-row local provider window");
+  }
+  if (
+    !Number.isInteger(diagnostic?.shifted_index) ||
+    diagnostic.shifted_index < 1 ||
+    diagnostic?.y_order !==
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+        diagnostic.shifted_index
+  ) {
+    errors.push("shifted index and y order must be consistent");
+  }
+  if (
+    diagnostic?.terminal_zeta_degree_bound
+      ?.affine_in_shared_residual_coordinate !== true ||
+    diagnostic.terminal_zeta_degree_bound?.max_shared_residual_power_by_y_order !==
+      1 ||
+    diagnostic.terminal_zeta_degree_bound?.two_terminal_factor_min_y_order <=
+      diagnostic.y_order ||
+    diagnostic?.affine_in_shared_residual_coordinate !== true
+  ) {
+    errors.push("terminal zeta degree bound must keep the endpoint route affine in zeta");
+  }
+  if (
+    diagnostic?.provider_shape_interpretation
+      ?.existing_h_row_provider_accepts_shared_zeta_endpoint !== true ||
+    diagnostic.provider_shape_interpretation
+      ?.existing_h_row_provider_accepts_shared_zeta_interval !== false
+  ) {
+    errors.push("provider shape interpretation must distinguish endpoint replay from interval-zeta certification");
+  }
+  if (
+    !finitePositive(
+      diagnostic?.baseline_reference_replay_artifact_summary
+        ?.max_R43_shifted_prefix_pressure_outer_radius
+    ) ||
+    ![
+      "dependency-preserving-provider-backed-replay",
+      "independent-interval-snapshot-replay",
+    ].includes(
+      diagnostic.baseline_reference_replay_artifact_summary
+        ?.h_row_provider_dependency_state
+    ) ||
+    !finitePositive(
+      diagnostic?.interval_residual_replay_artifact_summary
+        ?.max_R43_shifted_prefix_pressure_outer_radius
+    ) ||
+    diagnostic.interval_residual_replay_artifact_summary
+      ?.h_row_provider_dependency_state !==
+      "dependency-preserving-provider-backed-replay"
+  ) {
+    errors.push("reference shared-domain replays must include independent and interval-residual pressure summaries");
+  }
+  const partitionReplays = diagnostic?.endpoint_partition_replays ?? [];
+  if (
+    !Array.isArray(partitionReplays) ||
+    partitionReplays.length !== diagnostic?.residual_coordinate_partition_count ||
+    !partitionReplays.every(
+      (partition) =>
+        Number.isInteger(partition?.partition_index) &&
+        hasOrderedFiniteInterval(partition?.residual_noise_interval) &&
+        Array.isArray(partition?.endpoint_replays) &&
+        partition.endpoint_replays.length === 2 &&
+        partition.endpoint_replays.every(endpointReplayValid) &&
+        partition?.all_endpoint_replays_provider_backed === true &&
+        finitePositive(
+          partition?.max_endpoint_shifted_prefix_pressure_outer_radius
+        ) &&
+        finitePositive(
+          partition?.min_endpoint_shifted_prefix_pressure_outer_radius
+        )
+    )
+  ) {
+    errors.push("endpoint partitions must carry provider-backed scalar-zeta endpoint replays");
+  }
+  const endpointCount = partitionReplays.reduce(
+    (count, partition) => count + Number(partition.endpoint_replays?.length ?? 0),
+    0
+  );
+  if (
+    diagnostic?.endpoint_provider_replay_summary?.endpoint_replay_count !==
+      endpointCount ||
+    diagnostic.endpoint_provider_replay_summary
+      ?.all_endpoint_replays_provider_backed !== true ||
+    diagnostic.endpoint_provider_replay_summary?.provider_kind !==
+      "candidate-terminal-shared-residual-affine-zeta-endpoint-provider" ||
+    !finitePositive(
+      diagnostic.endpoint_provider_replay_summary
+        ?.max_endpoint_shifted_prefix_pressure_outer_radius
+    ) ||
+    !finitePositive(
+      diagnostic.endpoint_provider_replay_summary
+        ?.min_endpoint_shifted_prefix_pressure_outer_radius
+    ) ||
+    !finitePositive(
+      diagnostic.endpoint_provider_replay_summary
+        ?.baseline_reference_to_max_endpoint_shifted_prefix_pressure_ratio
+    )
+  ) {
+    errors.push("endpoint provider replay summary must aggregate positive provider-backed pressure replays");
+  }
+  if (
+    diagnostic?.provider_replay_diagnosis !==
+    "terminal-affine-zeta-endpoints-cross-existing-H39-provider-boundary-candidate"
+  ) {
+    errors.push("provider replay diagnosis must name the endpoint-provider bridge");
+  }
+  if (
+    diagnostic?.claim_boundary?.certifies_standard_h38_cover !== false ||
+    diagnostic?.claim_boundary
+      ?.certifies_terminal_affine_zeta_provider_enclosure !== false ||
+    diagnostic?.claim_boundary?.certifies_shared_zeta_interval_provider !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    diagnostic?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_continuous_polydisc_primitives !==
+      false ||
+    diagnostic?.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("claim boundary must keep terminal provider, shifted source, primitive, and retention closure open");
+  }
+  return errors;
+}
+
+export function validateH39PostZetaPressureSourceIsolationDiagnostic(
+  diagnostic
+) {
+  const errors = [];
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[1]) > Number(interval[0]);
+  const terminalIndexes = diagnostic?.terminal_provider_h_indexes ?? [];
+  const expectedEndpointCount =
+    Number(diagnostic?.row_analysis_count) *
+    Number(diagnostic?.residual_coordinate_partition_count) *
+    2;
+  const endpointReplayValid = (endpoint) =>
+    Number.isInteger(endpoint?.row_analysis_index) &&
+    Number.isInteger(endpoint?.partition_index) &&
+    Number.isInteger(endpoint?.endpoint_index) &&
+    [0, 1].includes(endpoint.endpoint_index) &&
+    Number.isFinite(Number(endpoint?.residual_noise)) &&
+    finitePositive(endpoint?.pressure) &&
+    endpoint?.h_row_provider_kind ===
+      "candidate-terminal-shared-residual-affine-zeta-endpoint-provider" &&
+    endpoint?.h_row_provider_claim_boundary
+      ?.certifies_directed_rounded_shared_domain === false &&
+    endpoint?.h_row_provider_claim_boundary?.retained_branch === false &&
+    finitePositive(endpoint?.row_pressure?.source_pressure_contribution);
+  const h38IncludedEndpointReplayValid = (endpoint) =>
+    endpointReplayValid({
+      ...endpoint,
+      h_row_provider_kind:
+        "candidate-terminal-shared-residual-affine-zeta-endpoint-provider",
+    }) &&
+    endpoint?.h_row_provider_kind ===
+      "candidate-h38-included-shared-residual-affine-zeta-endpoint-provider" &&
+    endpoint?.h_row_dependency_witness?.h38_solve_target_policy ===
+      "candidate-H38-predecessor-row-affine-zeta-endpoint";
+  const replayValid = (replay, mode) =>
+    replay?.mode === mode &&
+    typeof replay?.family === "string" &&
+    Array.isArray(replay?.h_indexes) &&
+    replay.h_indexes.length > 0 &&
+    replay.h_indexes.every(
+      (hIndex) => Number.isInteger(hIndex) && hIndex >= 0 && hIndex <= 38
+    ) &&
+    finitePositive(replay?.pressure) &&
+    Number.isFinite(Number(replay?.pressure_share_of_full)) &&
+    Number.isFinite(Number(replay?.full_to_pressure_ratio)) &&
+    finitePositive(replay?.row_pressure?.source_pressure_contribution);
+
+  if (
+    diagnostic?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_POST_ZETA_PRESSURE_SOURCE_ISOLATION_DIAGNOSTIC_SCHEMA
+  ) {
+    errors.push("schema must match h39 post-zeta pressure source isolation diagnostic");
+  }
+  if (
+    diagnostic?.status !==
+    "h39-post-zeta-pressure-source-isolation-diagnostic-candidate-emitted"
+  ) {
+    errors.push("status must identify a candidate post-zeta pressure source isolation diagnostic");
+  }
+  if (
+    diagnostic?.evaluation_level !==
+    "candidate-h39-post-zeta-pressure-source-isolation-diagnostic"
+  ) {
+    errors.push("evaluation level must identify candidate post-zeta pressure source isolation");
+  }
+  if (
+    !Number.isInteger(diagnostic?.source_stencil_subcell_count) ||
+    diagnostic.source_stencil_subcell_count < 5 ||
+    !Number.isInteger(diagnostic?.comparison_stencil_index) ||
+    diagnostic.comparison_stencil_index < 0 ||
+    diagnostic?.comparison_row_count !== 5 ||
+    !Number.isInteger(diagnostic?.row_analysis_count) ||
+    diagnostic.row_analysis_count < 1 ||
+    diagnostic.row_analysis_count > diagnostic.comparison_row_count ||
+    !hasOrderedFiniteInterval(diagnostic?.comparison_xi_interval_hull) ||
+    !Number.isInteger(diagnostic?.polynomial_degree) ||
+    diagnostic.polynomial_degree !== 2 ||
+    !Array.isArray(terminalIndexes) ||
+    terminalIndexes.length !== 3 ||
+    terminalIndexes[0] !== 37 ||
+    terminalIndexes[1] !== 36 ||
+    terminalIndexes[2] !== 35 ||
+    diagnostic?.h38_solve_target_policy !== "preserved-H39-predecessor-row"
+  ) {
+    errors.push("post-zeta pressure source parameters must describe a five-row local provider window");
+  }
+  if (
+    !Number.isInteger(diagnostic?.shifted_index) ||
+    diagnostic.shifted_index < 1 ||
+    diagnostic?.y_order !==
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+        diagnostic.shifted_index
+  ) {
+    errors.push("shifted index and y order must be consistent");
+  }
+  if (
+    !Number.isInteger(diagnostic?.residual_coordinate_partition_count) ||
+    diagnostic.residual_coordinate_partition_count < 1 ||
+    !Array.isArray(diagnostic?.residual_noise_partition_intervals) ||
+    diagnostic.residual_noise_partition_intervals.length !==
+      diagnostic.residual_coordinate_partition_count ||
+    !diagnostic.residual_noise_partition_intervals.every(
+      hasOrderedFiniteInterval
+    )
+  ) {
+    errors.push("residual noise partitions must be complete finite intervals");
+  }
+  if (
+    !Array.isArray(diagnostic?.single_h_index_analysis_indexes) ||
+    diagnostic.single_h_index_analysis_indexes.length === 0 ||
+    !diagnostic.single_h_index_analysis_indexes.every(
+      (hIndex) => Number.isInteger(hIndex) && hIndex >= 0 && hIndex <= 38
+    )
+  ) {
+    errors.push("single h-index analysis indexes must be nonempty h indexes");
+  }
+  if (
+    diagnostic?.endpoint_replay_summary?.endpoint_replay_count !==
+      expectedEndpointCount ||
+    diagnostic.endpoint_replay_summary?.all_endpoint_replays_provider_backed !==
+      true ||
+    diagnostic.endpoint_replay_summary?.provider_kind !==
+      "candidate-terminal-shared-residual-affine-zeta-endpoint-provider" ||
+    !finitePositive(diagnostic.endpoint_replay_summary?.min_endpoint_pressure) ||
+    !finitePositive(diagnostic.endpoint_replay_summary?.max_endpoint_pressure)
+  ) {
+    errors.push("endpoint replay summary must aggregate complete positive provider-backed replays");
+  }
+  if (
+    !Array.isArray(diagnostic?.endpoint_replays) ||
+    diagnostic.endpoint_replays.length !== expectedEndpointCount ||
+    !diagnostic.endpoint_replays.every(endpointReplayValid) ||
+    !endpointReplayValid(diagnostic?.dominant_endpoint_replay)
+  ) {
+    errors.push("endpoint replays must be complete positive scalar-zeta provider replays");
+  }
+  if (
+    diagnostic?.h38_included_endpoint_replay_summary?.endpoint_replay_count !==
+      expectedEndpointCount ||
+    diagnostic.h38_included_endpoint_replay_summary
+      ?.all_endpoint_replays_provider_backed !== true ||
+    diagnostic.h38_included_endpoint_replay_summary?.provider_kind !==
+      "candidate-h38-included-shared-residual-affine-zeta-endpoint-provider" ||
+    !Array.isArray(
+      diagnostic.h38_included_endpoint_replay_summary
+        ?.h38_included_terminal_h_indexes
+    ) ||
+    !diagnostic.h38_included_endpoint_replay_summary.h38_included_terminal_h_indexes.includes(
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index
+    ) ||
+    !finitePositive(
+      diagnostic.h38_included_endpoint_replay_summary?.min_endpoint_pressure
+    ) ||
+    !finitePositive(
+      diagnostic.h38_included_endpoint_replay_summary?.max_endpoint_pressure
+    ) ||
+    !finitePositive(
+      diagnostic.h38_included_endpoint_replay_summary
+        ?.preserved_h38_to_h38_included_max_pressure_ratio
+    ) ||
+    !Array.isArray(diagnostic?.h38_included_endpoint_replays) ||
+    diagnostic.h38_included_endpoint_replays.length !== expectedEndpointCount ||
+    !diagnostic.h38_included_endpoint_replays.every(
+      h38IncludedEndpointReplayValid
+    )
+  ) {
+    errors.push("h38-included endpoint replays must remain complete candidate scalar-zeta variants");
+  }
+  if (
+    diagnostic?.dominant_endpoint_sensitivity?.status !==
+      "h39-affine-center-h-row-sensitivity-diagnostic-candidate-emitted" ||
+    diagnostic.dominant_endpoint_sensitivity?.certifies_shifted_R43_outer_bound !==
+      false ||
+    diagnostic.dominant_endpoint_sensitivity
+      ?.certifies_directed_rounded_shared_domain !== false ||
+    diagnostic.dominant_endpoint_sensitivity
+      ?.certifies_continuous_polydisc_primitives !== false ||
+    diagnostic.dominant_endpoint_sensitivity?.retained_branch !== false
+  ) {
+    errors.push("dominant endpoint sensitivity must remain a candidate-only h-row diagnostic");
+  }
+  const summary = diagnostic?.post_zeta_pressure_source_summary ?? {};
+  if (
+    ![
+      "preserved-h38-row-dominates-after-terminal-zeta",
+      "terminal-plus-h38-family-dominates-after-terminal-zeta",
+      "nonterminal-h-row-chain-dominates-after-terminal-zeta",
+      "h-row-interval-dependency-dominates-after-terminal-zeta",
+      "post-zeta-pressure-source-mixed-or-source-level",
+    ].includes(summary?.interpretation) ||
+    !finitePositive(summary?.full_input_pressure) ||
+    !finitePositive(summary?.h38_only_freeze_replay?.pressure) ||
+    !finitePositive(summary?.terminal_plus_h38_freeze_replay?.pressure) ||
+    !finitePositive(summary?.full_chain_freeze_replay?.pressure)
+  ) {
+    errors.push("post-zeta pressure source summary must carry a finite candidate interpretation");
+  }
+  if (
+    !Array.isArray(summary?.active_only_family_replays) ||
+    summary.active_only_family_replays.length < 3 ||
+    !summary.active_only_family_replays.every((replay) =>
+      replayValid(replay, "active-only-family")
+    ) ||
+    !Array.isArray(summary?.frozen_out_family_replays) ||
+    summary.frozen_out_family_replays.length < 3 ||
+    !summary.frozen_out_family_replays.every((replay) =>
+      replayValid(replay, "frozen-out-family")
+    )
+  ) {
+    errors.push("family pressure replays must include active-only and frozen-out candidate variants");
+  }
+  if (
+    !Array.isArray(summary?.active_only_single_h_index_replays) ||
+    summary.active_only_single_h_index_replays.length !==
+      diagnostic.single_h_index_analysis_indexes.length ||
+    !summary.active_only_single_h_index_replays.every((replay) =>
+      replayValid(replay, "active-only-single-h-index")
+    ) ||
+    !Array.isArray(summary?.frozen_out_single_h_index_replays) ||
+    summary.frozen_out_single_h_index_replays.length !==
+      diagnostic.single_h_index_analysis_indexes.length ||
+    !summary.frozen_out_single_h_index_replays.every((replay) =>
+      replayValid(replay, "frozen-out-single-h-index")
+    )
+  ) {
+    errors.push("single h-index pressure replays must match the requested h-index analysis set");
+  }
+  if (
+    !summary?.dominant_active_only_family_replay ||
+    !summary?.dominant_frozen_out_family_replay ||
+    !summary?.dominant_active_only_single_h_index_replay ||
+    !summary?.dominant_frozen_out_single_h_index_replay
+  ) {
+    errors.push("post-zeta pressure summary must identify dominant replay variants");
+  }
+  if (
+    diagnostic?.claim_boundary?.certifies_standard_h38_cover !== false ||
+    diagnostic?.claim_boundary
+      ?.certifies_terminal_affine_zeta_provider_enclosure !== false ||
+    diagnostic?.claim_boundary
+      ?.certifies_post_zeta_pressure_source_isolation !== false ||
+    diagnostic?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    diagnostic?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_continuous_polydisc_primitives !==
+      false ||
+    diagnostic?.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("claim boundary must keep post-zeta source isolation and shifted closure open");
+  }
+  return errors;
+}
+
+export function validateH39H38Y44CoefficientDependenceDiagnostic(
+  diagnostic
+) {
+  const errors = [];
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[1]) > Number(interval[0]);
+  const fitValid = (fit, degree) =>
+    fit?.polynomial_degree === degree &&
+    Array.isArray(fit?.coefficients) &&
+    fit.coefficients.length === degree + 1 &&
+    fit.coefficients.every((coefficient) =>
+      Number.isFinite(Number(coefficient))
+    ) &&
+    fit?.coefficient_order ===
+      "ascending powers of h38 residual coordinate u" &&
+    Number.isFinite(Number(fit?.max_abs_midpoint_residual)) &&
+    Array.isArray(fit?.residuals) &&
+    fit.residuals.length === diagnostic?.sample_replays?.length;
+  const sampleValid = (sample) =>
+    Number.isInteger(sample?.sample_index) &&
+    Number.isFinite(Number(sample?.h38_noise_coordinate)) &&
+    Number(sample.h38_noise_coordinate) >= -1 &&
+    Number(sample.h38_noise_coordinate) <= 1 &&
+    Number.isFinite(Number(sample?.h38_value)) &&
+    Array.isArray(sample?.source_coefficient_interval) &&
+    sample.source_coefficient_interval.length === 2 &&
+    Number.isFinite(Number(sample?.source_coefficient_midpoint)) &&
+    Number.isFinite(Number(sample?.source_coefficient_width)) &&
+    Number.isFinite(Number(sample?.source_coefficient_abs_upper)) &&
+    finitePositive(sample?.pressure) &&
+    finitePositive(sample?.row_pressure?.source_pressure_contribution) &&
+    (sample?.center_eliminated_pressure === null ||
+      finitePositive(sample?.center_eliminated_pressure));
+  if (
+    diagnostic?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_COEFFICIENT_DEPENDENCE_DIAGNOSTIC_SCHEMA
+  ) {
+    errors.push("schema must match h39 h38 y44 coefficient dependence diagnostic");
+  }
+  if (
+    diagnostic?.status !==
+    "h39-h38-y44-coefficient-dependence-diagnostic-candidate-emitted"
+  ) {
+    errors.push("status must identify a candidate h38 y44 coefficient dependence diagnostic");
+  }
+  if (
+    diagnostic?.evaluation_level !==
+    "candidate-h39-h38-y44-coefficient-dependence-diagnostic"
+  ) {
+    errors.push("evaluation level must identify candidate h38 y44 coefficient dependence");
+  }
+  if (
+    !Number.isInteger(diagnostic?.source_stencil_subcell_count) ||
+    diagnostic.source_stencil_subcell_count < 5 ||
+    !Number.isInteger(diagnostic?.comparison_stencil_index) ||
+    diagnostic.comparison_stencil_index < 0 ||
+    diagnostic?.comparison_row_count !== 5 ||
+    !Number.isInteger(diagnostic?.polynomial_degree) ||
+    diagnostic.polynomial_degree < 1 ||
+    diagnostic.polynomial_degree > 3 ||
+    !Number.isFinite(Number(diagnostic?.analysis_xi_coordinate)) ||
+    !hasOrderedFiniteInterval(diagnostic?.h38_residual_interval)
+  ) {
+    errors.push("h38 y44 coefficient dependence parameters must describe one five-row local graph window");
+  }
+  if (
+    !Number.isInteger(diagnostic?.shifted_index) ||
+    diagnostic.shifted_index !== 1 ||
+    diagnostic?.y_order !==
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+        diagnostic.shifted_index
+  ) {
+    errors.push("shifted index must be 1 and y order must be consistent");
+  }
+  if (
+    !Array.isArray(diagnostic?.h38_noise_samples) ||
+    diagnostic.h38_noise_samples.length < 3 ||
+    !diagnostic.h38_noise_samples.every(
+      (sample) =>
+        Number.isFinite(Number(sample)) &&
+        Number(sample) >= -1 &&
+        Number(sample) <= 1
+    ) ||
+    !Array.isArray(diagnostic?.sample_replays) ||
+    diagnostic.sample_replays.length !== diagnostic.h38_noise_samples.length ||
+    !diagnostic.sample_replays.every(sampleValid)
+  ) {
+    errors.push("h38 noise samples and signed coefficient replays must be finite and complete");
+  }
+  if (
+    !fitValid(diagnostic?.source_coefficient_affine_fit, 1) ||
+    !fitValid(diagnostic?.source_coefficient_quadratic_fit, 2) ||
+    !Number.isFinite(
+      Number(diagnostic?.affine_to_quadratic_residual_ratio)
+    ) ||
+    !Number.isFinite(Number(diagnostic?.affine_zero_coordinate)) ||
+    !sampleValid(diagnostic?.center_sample_replay) ||
+    !finitePositive(diagnostic?.max_sample_pressure) ||
+    !finitePositive(diagnostic?.center_to_max_sample_pressure_ratio)
+  ) {
+    errors.push("source coefficient dependence must include finite affine and quadratic midpoint fits");
+  }
+  if (
+    !Array.isArray(diagnostic?.term_coefficient_dependence_profiles) ||
+    diagnostic.term_coefficient_dependence_profiles.length < 3 ||
+    !diagnostic.term_coefficient_dependence_profiles.every(
+      (profile) =>
+        typeof profile?.term === "string" &&
+        fitValid(profile?.affine_fit, 1) &&
+        fitValid(profile?.quadratic_fit, 2)
+    ) ||
+    !diagnostic?.dominant_quadratic_residual_term_profile
+  ) {
+    errors.push("term coefficient dependence profiles must include finite affine and quadratic fits");
+  }
+  if (
+    ![
+      "h38-y44-coefficient-has-material-quadratic-curvature",
+      "h38-y44-coefficient-is-affine-dominated-on-sampled-source",
+    ].includes(diagnostic?.dependence_interpretation)
+  ) {
+    errors.push("dependence interpretation must identify the sampled h38 coefficient shape");
+  }
+  if (
+    diagnostic?.claim_boundary?.certifies_standard_h38_cover !== false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_coefficient_dependence !== false ||
+    diagnostic?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    diagnostic?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_continuous_polydisc_primitives !==
+      false ||
+    diagnostic?.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("claim boundary must keep h38 coefficient dependence and shifted closure open");
+  }
+  return errors;
+}
+
+export function validateH39H38Y44SignedAffineTargetEnvelopeDiagnostic(
+  diagnostic
+) {
+  const errors = [];
+  const hasOrderedFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[1]) > Number(interval[0]);
+  const hasFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1]));
+  const fitValid = (fit, degree) =>
+    fit?.polynomial_degree === degree &&
+    Array.isArray(fit?.coefficients) &&
+    fit.coefficients.length === degree + 1 &&
+    fit.coefficients.every((coefficient) =>
+      Number.isFinite(Number(coefficient))
+    ) &&
+    fit?.coefficient_order ===
+      "ascending powers of h38 residual coordinate u" &&
+    Number.isFinite(Number(fit?.max_abs_midpoint_residual)) &&
+    Array.isArray(fit?.residuals) &&
+    fit.residuals.length === diagnostic?.h38_noise_samples?.length;
+  const replayValid = (sample) =>
+    Number.isInteger(sample?.sample_index) &&
+    Number.isFinite(Number(sample?.h38_noise_coordinate)) &&
+    Number(sample.h38_noise_coordinate) >= -1 &&
+    Number(sample.h38_noise_coordinate) <= 1 &&
+    Number.isFinite(Number(sample?.h38_value)) &&
+    hasFiniteInterval(sample?.source_coefficient_interval) &&
+    Number.isFinite(Number(sample?.source_coefficient_midpoint)) &&
+    Number.isFinite(Number(sample?.source_coefficient_width)) &&
+    Number.isFinite(Number(sample?.source_coefficient_abs_upper)) &&
+    finitePositive(sample?.pressure) &&
+    finitePositive(sample?.row_pressure?.source_pressure_contribution);
+  const producerCoordinateProfileValid = (profile) =>
+    profile?.coordinate_formula ===
+      "u=(h38-q38(xi)-center(residual_hull))/radius(residual_hull)" &&
+    profile?.h38_index ===
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index &&
+    finitePositive(profile?.residual_radius) &&
+    profile?.row_count === diagnostic?.comparison_row_count &&
+    hasOrderedFiniteInterval(profile?.residual_coordinate_interval_hull) &&
+    hasFiniteInterval(profile?.residual_coordinate_midpoint_hull) &&
+    finiteNonnegative(profile?.residual_coordinate_interval_hull_width) &&
+    finiteNonnegative(profile?.residual_coordinate_midpoint_hull_width) &&
+    finiteNonnegative(profile?.max_residual_coordinate_interval_width) &&
+    Array.isArray(profile?.samples) &&
+    profile.samples.length === diagnostic?.comparison_row_count &&
+    profile.samples.every(
+      (sample) =>
+        Number.isInteger(sample?.row_index) &&
+        typeof sample?.cell_id === "string" &&
+        hasFiniteInterval(sample?.xi_interval) &&
+        hasFiniteInterval(sample?.h38_interval) &&
+        hasFiniteInterval(sample?.graph_interval) &&
+        hasFiniteInterval(sample?.residual_interval) &&
+        hasFiniteInterval(sample?.residual_coordinate_interval) &&
+        Number.isFinite(Number(sample?.residual_coordinate_midpoint)) &&
+        finiteNonnegative(sample?.residual_coordinate_width)
+    );
+  const producerCoordinateTargetFitValid = (fit) =>
+    typeof fit?.label === "string" &&
+    hasFiniteInterval(fit?.target_residual_coordinate_interval) &&
+    finiteNonnegative(fit?.target_residual_coordinate_width) &&
+    hasFiniteInterval(fit?.producer_residual_coordinate_interval_hull) &&
+    hasFiniteInterval(fit?.producer_residual_coordinate_midpoint_hull) &&
+    finiteNonnegative(
+      fit?.producer_residual_coordinate_interval_hull_width
+    ) &&
+    finiteNonnegative(
+      fit?.producer_residual_coordinate_midpoint_hull_width
+    ) &&
+    (fit?.target_width_to_producer_interval_hull_width === null ||
+      finiteNonnegative(
+        fit?.target_width_to_producer_interval_hull_width
+      )) &&
+    (fit?.target_width_to_producer_midpoint_hull_width === null ||
+      finiteNonnegative(
+        fit?.target_width_to_producer_midpoint_hull_width
+      )) &&
+    (fit?.required_interval_hull_shrink_factor === null ||
+      finiteNonnegative(fit?.required_interval_hull_shrink_factor)) &&
+    (fit?.required_midpoint_hull_shrink_factor === null ||
+      finiteNonnegative(fit?.required_midpoint_hull_shrink_factor)) &&
+    Number.isFinite(
+      Number(fit?.target_center_offset_from_producer_midpoint_hull_center)
+    ) &&
+    fit?.row_count === diagnostic?.comparison_row_count &&
+    Number.isInteger(fit?.interval_inside_target_row_count) &&
+    Number.isInteger(fit?.midpoint_inside_target_row_count) &&
+    typeof fit?.target_covers_all_sample_intervals === "boolean" &&
+    typeof fit?.target_covers_all_sample_midpoints === "boolean" &&
+    typeof fit?.target_covers_producer_interval_hull === "boolean" &&
+    typeof fit?.target_covers_producer_midpoint_hull === "boolean" &&
+    Array.isArray(fit?.sample_fits) &&
+    fit.sample_fits.length === diagnostic?.comparison_row_count;
+  const producerCenteredSafetySearchValid = (search) =>
+    Number.isInteger(search?.safety_search_iterations) &&
+    Number.isFinite(Number(search?.target_closing_half_width)) &&
+    search.target_closing_half_width >= 0 &&
+    (search?.target_closing_safety_divisor === null ||
+      finitePositive(search?.target_closing_safety_divisor)) &&
+    (search?.target_closing_replay_pressure === null ||
+      finitePositive(search?.target_closing_replay_pressure)) &&
+    (search?.target_closing_replay_over_target_pressure === null ||
+      finitePositive(search?.target_closing_replay_over_target_pressure)) &&
+    (search?.target_closing_center_eliminated_pressure === null ||
+      finitePositive(search?.target_closing_center_eliminated_pressure)) &&
+    (search?.target_closing_center_eliminated_over_target_pressure === null ||
+      finitePositive(
+        search?.target_closing_center_eliminated_over_target_pressure
+      )) &&
+    (search?.center_hull_replay_pressure === null ||
+      finitePositive(search?.center_hull_replay_pressure)) &&
+    (search?.center_hull_replay_over_target_pressure === null ||
+      finitePositive(search?.center_hull_replay_over_target_pressure)) &&
+    hasFiniteInterval(search?.target_closing_h38_noise_interval) &&
+    hasFiniteInterval(search?.clipped_target_closing_h38_noise_interval) &&
+    Number.isFinite(Number(search?.target_closing_h38_residual_half_width)) &&
+    hasFiniteInterval(search?.target_closing_bracket) &&
+    Number.isFinite(Number(search?.target_closing_bracket_width)) &&
+    Number.isInteger(search?.expansion_step_count) &&
+    search.expansion_step_count >= 0 &&
+    [
+      "not-applicable",
+      "producer-center-hull-meets-reference-target",
+      "producer-center-hull-exceeds-reference-target",
+      "producer-centered-full-hull-meets-reference-target",
+      "bisection-found-producer-centered-half-width-meeting-reference-target",
+      "producer-center-hull-meets-reference-target-but-no-positive-width-found",
+      "bisection-did-not-find-producer-centered-half-width-meeting-reference-target",
+    ].includes(search?.safety_search_status);
+  const producerCenteredCollarTargetValid = (target) =>
+    typeof target?.label === "string" &&
+    hasFiniteInterval(target?.collar_center_coordinate_hull) &&
+    hasFiniteInterval(target?.collar_residual_coordinate_interval) &&
+    finiteNonnegative(target?.collar_residual_coordinate_half_width) &&
+    finiteNonnegative(target?.collar_residual_coordinate_width) &&
+    typeof target?.positive_collar_found === "boolean" &&
+    hasFiniteInterval(target?.producer_residual_coordinate_interval_hull) &&
+    hasFiniteInterval(target?.producer_residual_coordinate_midpoint_hull) &&
+    finiteNonnegative(
+      target?.producer_residual_coordinate_interval_hull_width
+    ) &&
+    finiteNonnegative(
+      target?.producer_residual_coordinate_midpoint_hull_width
+    ) &&
+    finiteNonnegative(
+      target?.producer_max_residual_coordinate_interval_width
+    ) &&
+    typeof target?.producer_interval_hull_inside_collar === "boolean" &&
+    typeof target?.producer_midpoint_hull_inside_collar === "boolean" &&
+    Number.isInteger(target?.interval_inside_collar_row_count) &&
+    Number.isInteger(target?.midpoint_inside_collar_row_count) &&
+    (target?.required_interval_hull_compression_factor === null ||
+      finitePositive(target?.required_interval_hull_compression_factor)) &&
+    (target?.required_max_sample_interval_compression_factor === null ||
+      finitePositive(
+        target?.required_max_sample_interval_compression_factor
+      )) &&
+    (target?.linear_subcell_refinement_forecast === null ||
+      (Number.isInteger(target?.linear_subcell_refinement_forecast) &&
+        target.linear_subcell_refinement_forecast > 0)) &&
+    Number.isInteger(target?.source_stencil_subcell_count) &&
+    target.source_stencil_subcell_count >= 5 &&
+    (target?.target_replay_over_target_pressure === null ||
+      finitePositive(target?.target_replay_over_target_pressure)) &&
+    [
+      "producer-interval-hull-inside-collar",
+      "positive-midpoint-collar-full-interval-open",
+      "midpoint-only-collar-full-interval-open",
+      "producer-midpoint-hull-outside-collar",
+    ].includes(target?.target_status) &&
+    [
+      "current-producer-interval-hull-already-fits-collar",
+      "linear-subcell-refinement-impractical-analytic-covariance-needed",
+      "positive-collar-gives-finite-producer-image-certificate-target",
+      "center-hull-only-collar-needs-positive-width-or-producer-image-proof",
+    ].includes(target?.refinement_interpretation) &&
+    Array.isArray(target?.sample_fits) &&
+    target.sample_fits.length === diagnostic?.comparison_row_count;
+  const h38Y44SolveWidthProfileValid = (profile) =>
+    profile?.h_index ===
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index &&
+    profile?.sample_count === diagnostic?.comparison_row_count &&
+    Array.isArray(profile?.samples) &&
+    profile.samples.length === diagnostic?.comparison_row_count &&
+    hasFiniteInterval(profile?.residual_interval_hulls?.full_solve) &&
+    hasFiniteInterval(profile?.residual_interval_hulls?.numerator_only) &&
+    hasFiniteInterval(profile?.residual_interval_hulls?.slope_only) &&
+    hasFiniteInterval(profile?.residual_interval_hulls?.midpoint_solve) &&
+    finitePositive(profile?.max_solve_widths?.reconstructed_full_solve) &&
+    finitePositive(profile?.max_solve_widths?.numerator_only) &&
+    finiteNonnegative(profile?.max_solve_widths?.slope_only) &&
+    finiteNonnegative(profile?.max_solve_widths?.graph_interval) &&
+    finitePositive(profile?.numerator_only_to_full_solve_width_ratio) &&
+    finiteNonnegative(profile?.slope_only_to_full_solve_width_ratio) &&
+    [
+      "h38-recurrence-numerator-width",
+      "inherited-solve-slope-width",
+      "mixed-numerator-slope-width",
+    ].includes(profile?.dominant_solve_width_source);
+  const h38Y44NumeratorPolynomialDiagnosticValid = (diagnosticRow) =>
+    Number.isInteger(diagnosticRow?.polynomial_degree) &&
+    diagnosticRow.polynomial_degree >= 1 &&
+    diagnosticRow.polynomial_degree <= 3 &&
+    Array.isArray(diagnosticRow?.coefficients) &&
+    diagnosticRow.coefficients.length ===
+      diagnosticRow.polynomial_degree + 1 &&
+    diagnosticRow.coefficients.every((coefficient) =>
+      Number.isFinite(Number(coefficient))
+    ) &&
+    Array.isArray(diagnosticRow?.residuals) &&
+    diagnosticRow.residuals.length === diagnostic?.comparison_row_count &&
+    finiteNonnegative(diagnosticRow?.max_midpoint_residual) &&
+    finitePositive(diagnosticRow?.max_numerator_interval_width) &&
+    finiteNonnegative(
+      diagnosticRow?.midpoint_residual_to_numerator_width_ratio
+    );
+  const producerCenteredNumeratorCollarTargetValid = (target) =>
+    typeof target?.label === "string" &&
+    Number.isInteger(target?.numerator_polynomial_degree) &&
+    target.numerator_polynomial_degree >= 1 &&
+    target.numerator_polynomial_degree <= 3 &&
+    hasFiniteInterval(target?.h38_residual_collar_interval) &&
+    finiteNonnegative(target?.h38_residual_collar_width) &&
+    (target
+      ?.max_numerator_interval_compression_to_conservative_target === null ||
+      finitePositive(
+        target
+          ?.max_numerator_interval_compression_to_conservative_target
+      )) &&
+    (target
+      ?.max_numerator_midpoint_residual_over_conservative_target === null ||
+      finiteNonnegative(
+        target
+          ?.max_numerator_midpoint_residual_over_conservative_target
+      )) &&
+    (target
+      ?.min_numerator_midpoint_residual_headroom_factor === null ||
+      finitePositive(
+        target
+          ?.min_numerator_midpoint_residual_headroom_factor
+      )) &&
+    (target
+      ?.max_numerator_midpoint_residual_over_midpoint_slope_target ===
+      null ||
+      finiteNonnegative(
+        target
+          ?.max_numerator_midpoint_residual_over_midpoint_slope_target
+      )) &&
+    (target
+      ?.min_numerator_midpoint_slope_residual_headroom_factor ===
+      null ||
+      finitePositive(
+        target
+          ?.min_numerator_midpoint_slope_residual_headroom_factor
+      )) &&
+    (target?.min_slope_abs_lower_to_midpoint_abs_ratio === null ||
+      finiteNonnegative(
+        target?.min_slope_abs_lower_to_midpoint_abs_ratio
+      )) &&
+    (target?.max_slope_abs_lower_to_midpoint_abs_ratio === null ||
+      finiteNonnegative(
+        target?.max_slope_abs_lower_to_midpoint_abs_ratio
+      )) &&
+    typeof target?.numerator_interval_hull_open_against_collar ===
+      "boolean" &&
+    typeof target?.numerator_midpoint_graph_inside_collar_target ===
+      "boolean" &&
+    typeof target
+      ?.numerator_midpoint_graph_inside_midpoint_slope_target ===
+      "boolean" &&
+    [
+      "degenerate-collar-no-numerator-target",
+      "numerator-interval-hull-inside-collar-target",
+      "numerator-midpoint-graph-inside-collar-target-interval-open",
+      "numerator-midpoint-graph-exceeds-collar-target",
+    ].includes(target?.target_status) &&
+    [
+      "numerator-graph-residual-certificate-can-target-producer-collar",
+      "current-numerator-interval-hull-already-fits-producer-collar",
+      "s37-lower-bound-dependency-collapse-before-numerator-collar",
+      "numerator-graph-degree-or-local-coordinate-must-tighten",
+      "positive-producer-collar-needed-before-numerator-target",
+    ].includes(target?.proof_route_interpretation) &&
+    Array.isArray(target?.samples) &&
+    target.samples.length === diagnostic?.comparison_row_count;
+  const n38RouteSampleValid = (sample) =>
+    sample === null ||
+    (typeof sample?.reference_label === "string" &&
+      typeof sample?.cell_id === "string" &&
+      hasFiniteInterval(sample?.xi_interval) &&
+      Number.isFinite(Number(sample?.xi_midpoint)) &&
+      Number.isFinite(Number(sample?.numerator_midpoint_residual)) &&
+      finiteNonnegative(sample?.numerator_abs_midpoint_residual) &&
+      (sample?.conservative_numerator_width_target === null ||
+        sample?.conservative_numerator_width_target === undefined ||
+        finiteNonnegative(sample?.conservative_numerator_width_target)) &&
+      (sample?.midpoint_slope_numerator_width_target === null ||
+        sample?.midpoint_slope_numerator_width_target === undefined ||
+        finiteNonnegative(sample?.midpoint_slope_numerator_width_target)) &&
+      (sample?.slope_interval === undefined ||
+        hasFiniteInterval(sample?.slope_interval)) &&
+      (sample?.slope_abs_lower === undefined ||
+        finiteNonnegative(sample?.slope_abs_lower)) &&
+      (sample?.slope_abs_upper === undefined ||
+        finiteNonnegative(sample?.slope_abs_upper)) &&
+      (sample?.slope_abs_lower_to_midpoint_abs_ratio === null ||
+        sample?.slope_abs_lower_to_midpoint_abs_ratio === undefined ||
+        finiteNonnegative(sample?.slope_abs_lower_to_midpoint_abs_ratio)) &&
+      (sample?.numerator_midpoint_residual_over_conservative_target ===
+        null ||
+        sample?.numerator_midpoint_residual_over_conservative_target ===
+          undefined ||
+        finiteNonnegative(
+          sample?.numerator_midpoint_residual_over_conservative_target
+        )) &&
+      (sample?.numerator_midpoint_residual_over_midpoint_slope_target ===
+        null ||
+        sample?.numerator_midpoint_residual_over_midpoint_slope_target ===
+          undefined ||
+        finiteNonnegative(
+          sample?.numerator_midpoint_residual_over_midpoint_slope_target
+        )) &&
+      (sample?.numerator_midpoint_residual_headroom_factor === null ||
+        sample?.numerator_midpoint_residual_headroom_factor === undefined ||
+        finitePositive(sample?.numerator_midpoint_residual_headroom_factor)) &&
+      (sample?.numerator_midpoint_slope_residual_headroom_factor === null ||
+        sample?.numerator_midpoint_slope_residual_headroom_factor ===
+          undefined ||
+        finitePositive(
+          sample?.numerator_midpoint_slope_residual_headroom_factor
+        )));
+  const n38CollarEnclosureRouteValid = (route) =>
+    route?.status ===
+      "h39-h38-y44-n38-collar-enclosure-route-candidate-emitted" &&
+    route?.evaluation_level ===
+      "candidate-h38-y44-n38-collar-enclosure-route" &&
+    Number.isInteger(route?.polynomial_degree) &&
+    route.polynomial_degree >= 1 &&
+    route.polynomial_degree <= 3 &&
+    Array.isArray(route?.numerator_polynomial_coefficients) &&
+    route.numerator_polynomial_coefficients.length ===
+      route.polynomial_degree + 1 &&
+    route.numerator_polynomial_coefficients.every((coefficient) =>
+      Number.isFinite(Number(coefficient))
+    ) &&
+    Number.isInteger(route?.source_stencil_subcell_count) &&
+    route.source_stencil_subcell_count >= 5 &&
+    Number.isInteger(route?.reference_target_count) &&
+    route.reference_target_count >= 1 &&
+    Number.isInteger(route?.sample_count) &&
+    route.sample_count ===
+      route.reference_target_count * diagnostic?.comparison_row_count &&
+    Number.isInteger(
+      route?.reference_targets_with_midpoint_graph_inside_collar_count
+    ) &&
+    route.reference_targets_with_midpoint_graph_inside_collar_count >= 0 &&
+    route.reference_targets_with_midpoint_graph_inside_collar_count <=
+      route.reference_target_count &&
+    Number.isInteger(
+      route
+        ?.reference_targets_with_midpoint_slope_graph_inside_collar_count
+    ) &&
+    route.reference_targets_with_midpoint_slope_graph_inside_collar_count >=
+      0 &&
+    route.reference_targets_with_midpoint_slope_graph_inside_collar_count <=
+      route.reference_target_count &&
+    (route?.min_conservative_numerator_width_target === null ||
+      finiteNonnegative(route.min_conservative_numerator_width_target)) &&
+    (route?.max_conservative_numerator_width_target === null ||
+      finiteNonnegative(route.max_conservative_numerator_width_target)) &&
+    (route?.max_numerator_abs_midpoint_residual === null ||
+      finiteNonnegative(route.max_numerator_abs_midpoint_residual)) &&
+    (route?.max_midpoint_residual_over_conservative_target === null ||
+      finiteNonnegative(
+        route.max_midpoint_residual_over_conservative_target
+      )) &&
+    (route?.min_midpoint_residual_headroom_factor === null ||
+      finitePositive(route.min_midpoint_residual_headroom_factor)) &&
+    (route?.max_midpoint_residual_over_midpoint_slope_target === null ||
+      finiteNonnegative(
+        route.max_midpoint_residual_over_midpoint_slope_target
+      )) &&
+    (route?.min_midpoint_slope_residual_headroom_factor === null ||
+      finitePositive(route.min_midpoint_slope_residual_headroom_factor)) &&
+    (route?.min_slope_abs_lower_to_midpoint_abs_ratio === null ||
+      finiteNonnegative(
+        route.min_slope_abs_lower_to_midpoint_abs_ratio
+      )) &&
+    (route
+      ?.max_numerator_interval_compression_to_conservative_target === null ||
+      finitePositive(
+        route
+          .max_numerator_interval_compression_to_conservative_target
+      )) &&
+    (route
+      ?.max_midpoint_residual_to_raw_numerator_interval_width_ratio ===
+      null ||
+      finiteNonnegative(
+        route
+          .max_midpoint_residual_to_raw_numerator_interval_width_ratio
+      )) &&
+    n38RouteSampleValid(route?.controlling_sample ?? null) &&
+    n38RouteSampleValid(route?.controlling_midpoint_slope_sample ?? null) &&
+    [
+      "midpoint-slope-collar-fits-but-conservative-s37-lower-bound-collapses",
+      "midpoint-slope-collar-also-fails-n38-graph-residual",
+      "conservative-s37-lower-bound-supports-n38-collar",
+      "s37-dependency-status-open",
+    ].includes(route?.s37_dependency_status) &&
+    typeof route?.directed_rounded_proof_obligation?.target === "string" &&
+    typeof route.directed_rounded_proof_obligation.dependency_to_preserve ===
+      "string" &&
+    typeof route.directed_rounded_proof_obligation.sufficient_condition ===
+      "string" &&
+    typeof route.directed_rounded_proof_obligation.current_evidence ===
+      "string" &&
+    [
+      "n38-quadratic-midpoint-residual-has-directed-rounded-collar-headroom",
+      "s37-lower-bound-dependency-collapse-controls-n38-collar-route",
+      "n38-quadratic-midpoint-residual-has-partial-collar-headroom",
+      "n38-quadratic-midpoint-residual-collar-route-open",
+    ].includes(route?.route_diagnosis) &&
+    route?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    route?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    route?.claim_boundary?.certifies_producer_collar_enclosure === false &&
+    route?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    route?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    route?.claim_boundary?.certifies_continuous_polydisc_primitives ===
+      false &&
+    route?.claim_boundary?.retained_branch === false;
+  const pressureEntryValid = (entry) =>
+    typeof entry?.label === "string" &&
+    finitePositive(entry?.target_pressure) &&
+    entry?.target_pressure_role ===
+      "reference-only; not a shifted R43 closure threshold" &&
+    finitePositive(entry?.coefficient_abs_target) &&
+    finitePositive(entry?.ideal_affine_half_width) &&
+    Number.isFinite(Number(entry?.midpoint_residual_aware_half_width)) &&
+    Number.isFinite(Number(entry?.candidate_margin_aware_half_width)) &&
+    finitePositive(entry?.candidate_margin_abs_upper) &&
+    hasFiniteInterval(entry?.zero_centered_h38_noise_interval) &&
+    hasFiniteInterval(entry?.clipped_zero_centered_h38_noise_interval) &&
+    Number.isFinite(Number(entry?.zero_centered_h38_residual_half_width)) &&
+    entry?.full_residual_coordinate_half_width === 1 &&
+    (entry?.required_full_domain_shrink_factor === null ||
+      finitePositive(entry?.required_full_domain_shrink_factor)) &&
+    typeof entry?.fits_inside_sample_domain === "boolean" &&
+    finitePositive(entry?.interval_replay_pressure) &&
+    hasFiniteInterval(entry?.interval_replay_source_coefficient_interval) &&
+    finitePositive(entry?.interval_replay_source_coefficient_abs_upper) &&
+    finitePositive(entry?.interval_replay_over_target_pressure) &&
+    hasFiniteInterval(entry?.interval_replay?.h38_noise_interval) &&
+    hasFiniteInterval(entry?.interval_replay?.h38_interval) &&
+    finitePositive(entry?.interval_replay?.row_pressure?.source_pressure_contribution) &&
+    (entry?.interval_replay_center_eliminated_pressure === null ||
+      finitePositive(entry?.interval_replay_center_eliminated_pressure)) &&
+    (entry?.interval_replay_center_eliminated_over_target_pressure === null ||
+      finitePositive(
+        entry?.interval_replay_center_eliminated_over_target_pressure
+      )) &&
+    (entry?.interval_replay_center_elimination_improvement_factor === null ||
+      finitePositive(
+        entry?.interval_replay_center_elimination_improvement_factor
+      )) &&
+    finitePositive(entry?.amplification_correction_divisor) &&
+    Number.isFinite(Number(entry?.amplification_corrected_half_width)) &&
+    hasFiniteInterval(entry?.amplification_corrected_h38_noise_interval) &&
+    hasFiniteInterval(
+      entry?.clipped_amplification_corrected_h38_noise_interval
+    ) &&
+    Number.isFinite(
+      Number(entry?.amplification_corrected_h38_residual_half_width)
+    ) &&
+    finitePositive(entry?.amplification_corrected_interval_replay_pressure) &&
+    finitePositive(
+      entry?.amplification_corrected_interval_replay_over_target_pressure
+    ) &&
+    hasFiniteInterval(
+      entry?.amplification_corrected_interval_replay?.h38_noise_interval
+    ) &&
+    hasFiniteInterval(
+      entry?.amplification_corrected_interval_replay?.h38_interval
+    ) &&
+    (entry?.amplification_corrected_center_eliminated_pressure === null ||
+      finitePositive(
+        entry?.amplification_corrected_center_eliminated_pressure
+      )) &&
+    (entry
+      ?.amplification_corrected_center_eliminated_over_target_pressure ===
+      null ||
+      finitePositive(
+        entry
+          ?.amplification_corrected_center_eliminated_over_target_pressure
+      )) &&
+    (entry
+      ?.amplification_corrected_center_elimination_improvement_factor ===
+      null ||
+      finitePositive(
+        entry?.amplification_corrected_center_elimination_improvement_factor
+      )) &&
+    typeof entry?.amplification_corrected_replay_meets_reference_target ===
+      "boolean" &&
+    Number.isInteger(entry?.safety_search?.safety_search_iterations) &&
+    Number.isFinite(Number(entry?.safety_search?.target_closing_half_width)) &&
+    (entry?.safety_search?.target_closing_safety_divisor === null ||
+      finitePositive(entry?.safety_search?.target_closing_safety_divisor)) &&
+    (entry?.safety_search?.target_closing_replay_pressure === null ||
+      finitePositive(entry?.safety_search?.target_closing_replay_pressure)) &&
+    (entry?.safety_search?.target_closing_replay_over_target_pressure === null ||
+      finitePositive(
+        entry?.safety_search?.target_closing_replay_over_target_pressure
+      )) &&
+    (entry?.safety_search?.target_closing_center_eliminated_pressure === null ||
+      finitePositive(
+        entry?.safety_search?.target_closing_center_eliminated_pressure
+      )) &&
+    (entry
+      ?.safety_search?.target_closing_center_eliminated_over_target_pressure ===
+      null ||
+      finitePositive(
+        entry
+          ?.safety_search
+          ?.target_closing_center_eliminated_over_target_pressure
+      )) &&
+    hasFiniteInterval(entry?.safety_search?.target_closing_bracket) &&
+    Number.isFinite(Number(entry?.safety_search?.target_closing_bracket_width)) &&
+    typeof entry?.safety_search?.safety_search_status === "string" &&
+    producerCoordinateTargetFitValid(entry?.producer_coordinate_target_fit) &&
+    producerCenteredSafetySearchValid(
+      entry?.producer_centered_safety_search
+    ) &&
+    producerCenteredCollarTargetValid(
+      entry?.producer_centered_collar_target
+    ) &&
+    producerCenteredNumeratorCollarTargetValid(
+      entry?.producer_centered_numerator_collar_target
+    );
+  if (
+    diagnostic?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SIGNED_AFFINE_TARGET_ENVELOPE_DIAGNOSTIC_SCHEMA
+  ) {
+    errors.push("schema must match h39 h38 y44 signed affine target envelope diagnostic");
+  }
+  if (
+    diagnostic?.status !==
+    "h39-h38-y44-signed-affine-target-envelope-diagnostic-candidate-emitted"
+  ) {
+    errors.push("status must identify a candidate signed affine target envelope diagnostic");
+  }
+  if (
+    diagnostic?.evaluation_level !==
+    "candidate-h39-h38-y44-signed-affine-target-envelope-diagnostic"
+  ) {
+    errors.push("evaluation level must identify candidate signed affine target envelope");
+  }
+  if (
+    !Number.isInteger(diagnostic?.source_stencil_subcell_count) ||
+    diagnostic.source_stencil_subcell_count < 5 ||
+    !Number.isInteger(diagnostic?.comparison_stencil_index) ||
+    diagnostic.comparison_stencil_index < 0 ||
+    diagnostic?.comparison_row_count !== 5 ||
+    !Number.isInteger(diagnostic?.polynomial_degree) ||
+    diagnostic.polynomial_degree < 1 ||
+    diagnostic.polynomial_degree > 3 ||
+    !Number.isFinite(Number(diagnostic?.analysis_xi_coordinate)) ||
+    !hasOrderedFiniteInterval(diagnostic?.h38_residual_interval) ||
+    !producerCoordinateProfileValid(
+      diagnostic?.h38_producer_residual_coordinate_profile
+    ) ||
+    !finiteNonnegative(diagnostic?.producer_centered_full_hull_half_width) ||
+    !h38Y44SolveWidthProfileValid(diagnostic?.h38_y44_solve_width_profile) ||
+    !Array.isArray(
+      diagnostic?.h38_y44_numerator_polynomial_degree_diagnostics
+    ) ||
+    diagnostic.h38_y44_numerator_polynomial_degree_diagnostics.length < 1 ||
+    !diagnostic.h38_y44_numerator_polynomial_degree_diagnostics.every(
+      h38Y44NumeratorPolynomialDiagnosticValid
+    ) ||
+    !h38Y44NumeratorPolynomialDiagnosticValid(
+      diagnostic?.h38_y44_numerator_polynomial_diagnostic
+    )
+  ) {
+    errors.push("signed affine target envelope parameters must describe one five-row local graph window");
+  }
+  if (
+    !Number.isInteger(diagnostic?.shifted_index) ||
+    diagnostic.shifted_index !== 1 ||
+    diagnostic?.y_order !==
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+        diagnostic.shifted_index
+  ) {
+    errors.push("shifted index must be 1 and y order must be consistent");
+  }
+  if (
+    !Array.isArray(diagnostic?.h38_noise_samples) ||
+    diagnostic.h38_noise_samples.length < 3 ||
+    !diagnostic.h38_noise_samples.every(
+      (sample) =>
+        Number.isFinite(Number(sample)) &&
+        Number(sample) >= -1 &&
+        Number(sample) <= 1
+    )
+  ) {
+    errors.push("h38 noise samples must be finite values in [-1,1]");
+  }
+  if (
+    !fitValid(diagnostic?.source_coefficient_affine_fit, 1) ||
+    !fitValid(diagnostic?.source_coefficient_quadratic_fit, 2) ||
+    !Number.isFinite(
+      Number(diagnostic?.affine_to_quadratic_residual_ratio)
+    ) ||
+    !Number.isFinite(Number(diagnostic?.signed_affine_intercept)) ||
+    !Number.isFinite(Number(diagnostic?.signed_affine_slope)) ||
+    Number(diagnostic.signed_affine_slope) === 0 ||
+    !Number.isFinite(Number(diagnostic?.affine_zero_coordinate)) ||
+    diagnostic?.affine_zero_inside_sample_domain !== true ||
+    !Number.isInteger(diagnostic?.safety_search_iterations) ||
+    diagnostic.safety_search_iterations < 1 ||
+    !Number.isFinite(Number(diagnostic?.midpoint_linearity_gap_abs_upper)) ||
+    !finitePositive(diagnostic?.affine_zero_source_coefficient_half_width) ||
+    !finitePositive(diagnostic?.candidate_coefficient_margin_abs_upper) ||
+    !finitePositive(diagnostic?.candidate_margin_pressure)
+  ) {
+    errors.push("signed affine target envelope must include finite signed fit and zero-margin data");
+  }
+  if (
+    !replayValid(diagnostic?.affine_zero_replay) ||
+    !replayValid(diagnostic?.center_sample_replay) ||
+    !finitePositive(diagnostic?.max_sample_pressure) ||
+    !finitePositive(diagnostic?.center_to_affine_zero_pressure_ratio) ||
+    !finitePositive(diagnostic?.max_sample_to_affine_zero_pressure_ratio) ||
+    Number(diagnostic.center_to_affine_zero_pressure_ratio) <= 1 ||
+    Number(diagnostic.max_sample_to_affine_zero_pressure_ratio) <= 1
+  ) {
+    errors.push("signed affine target envelope must replay a pressure-reducing affine zero");
+  }
+  if (
+    !Array.isArray(diagnostic?.pressure_reference_ladder) ||
+    diagnostic.pressure_reference_ladder.length < 3 ||
+    !diagnostic.pressure_reference_ladder.every(pressureEntryValid)
+  ) {
+    errors.push("pressure reference ladder must contain finite reference-only target envelopes");
+  }
+  if (
+    !finitePositive(diagnostic?.max_interval_replay_over_target_pressure) ||
+    !finitePositive(
+      diagnostic?.max_interval_replay_center_eliminated_over_target_pressure
+    ) ||
+    !finitePositive(
+      diagnostic?.max_nonzero_width_interval_replay_over_target_pressure
+    ) ||
+    !finitePositive(
+      diagnostic?.max_amplification_corrected_interval_replay_over_target_pressure
+    ) ||
+    !finitePositive(
+      diagnostic
+        ?.max_amplification_corrected_center_eliminated_over_target_pressure
+    ) ||
+    !finitePositive(
+      diagnostic
+        ?.max_amplification_corrected_nonzero_width_interval_replay_over_target_pressure
+    ) ||
+    !finitePositive(diagnostic?.max_target_closing_safety_divisor) ||
+    !finitePositive(diagnostic?.safety_divisor_over_observed_amplification) ||
+    !Number.isFinite(Number(diagnostic?.max_target_closing_bracket_width)) ||
+    !finitePositive(
+      diagnostic?.max_safety_search_replay_over_target_pressure
+    ) ||
+    !finitePositive(
+      diagnostic?.max_safety_search_center_eliminated_over_target_pressure
+    ) ||
+    !finitePositive(
+      diagnostic?.max_required_producer_interval_hull_shrink_factor
+    ) ||
+    !finiteNonnegative(
+      diagnostic?.max_required_producer_midpoint_hull_shrink_factor
+    ) ||
+    !finitePositive(
+      diagnostic
+        ?.max_producer_centered_reference_center_hull_over_target_pressure
+    ) ||
+    !finitePositive(
+      diagnostic?.max_producer_centered_reference_replay_over_target_pressure
+    ) ||
+    (diagnostic?.max_producer_centered_reference_safety_divisor !== null &&
+      !finitePositive(
+        diagnostic?.max_producer_centered_reference_safety_divisor
+      )) ||
+    !Number.isInteger(diagnostic?.producer_centered_reference_target_count) ||
+    diagnostic.producer_centered_reference_target_count < 1 ||
+    !Number.isInteger(
+      diagnostic?.producer_centered_reference_targets_met_at_center
+    ) ||
+    !Number.isInteger(
+      diagnostic?.producer_centered_reference_targets_closed_by_search
+    ) ||
+    !Number.isInteger(
+      diagnostic?.producer_centered_reference_positive_collar_count
+    ) ||
+    !Number.isInteger(
+      diagnostic?.producer_centered_reference_interval_hull_covered_count
+    ) ||
+    (diagnostic
+      ?.max_producer_centered_reference_collar_required_interval_hull_compression_factor !==
+      null &&
+      !finitePositive(
+        diagnostic
+          ?.max_producer_centered_reference_collar_required_interval_hull_compression_factor
+      )) ||
+    (diagnostic
+      ?.max_producer_centered_reference_collar_linear_subcell_forecast !==
+      null &&
+      (!Number.isInteger(
+        diagnostic
+          ?.max_producer_centered_reference_collar_linear_subcell_forecast
+      ) ||
+        diagnostic
+          .max_producer_centered_reference_collar_linear_subcell_forecast <=
+          0)
+    ) ||
+    !Number.isInteger(
+      diagnostic?.producer_centered_reference_numerator_graph_inside_count
+    ) ||
+    (diagnostic
+      ?.max_producer_centered_reference_numerator_interval_compression_to_conservative_target !==
+      null &&
+      !finitePositive(
+        diagnostic
+          ?.max_producer_centered_reference_numerator_interval_compression_to_conservative_target
+      )) ||
+    (diagnostic
+      ?.max_producer_centered_reference_numerator_midpoint_residual_over_conservative_target !==
+      null &&
+      !finiteNonnegative(
+        diagnostic
+          ?.max_producer_centered_reference_numerator_midpoint_residual_over_conservative_target
+      )) ||
+    (diagnostic
+      ?.min_producer_centered_reference_numerator_midpoint_residual_headroom_factor !==
+      null &&
+      !finitePositive(
+        diagnostic
+          ?.min_producer_centered_reference_numerator_midpoint_residual_headroom_factor
+      )
+    ) ||
+    !n38CollarEnclosureRouteValid(
+      diagnostic?.h38_y44_n38_collar_enclosure_route
+    ) ||
+    ![
+      "zero-centered-h38-interval-replay-meets-reference-pressure-ladder",
+      "zero-centered-h38-interval-replay-has-stable-over-target-amplification",
+    ].includes(diagnostic?.interval_replay_amplification_interpretation)
+  ) {
+    errors.push("interval replay amplification summary must be finite and classified");
+  }
+  if (
+    ![
+      "amplification-corrected-zero-centered-widths-meet-reference-pressure-ladder",
+      "amplification-corrected-zero-centered-widths-still-exceed-reference-pressure-ladder",
+    ].includes(diagnostic?.amplification_corrected_replay_interpretation)
+  ) {
+    errors.push("amplification-corrected replay summary must be classified");
+  }
+  if (
+    ![
+      "bisection-safety-divisor-finds-reference-meeting-widths",
+      "bisection-safety-divisor-does-not-find-reference-meeting-widths",
+    ].includes(diagnostic?.safety_search_interpretation)
+  ) {
+    errors.push("safety-search replay summary must be classified");
+  }
+  if (
+    ![
+      "center-eliminated-affine-row-removes-zero-centered-amplification",
+      "center-eliminated-affine-row-still-exceeds-reference-pressure-ladder",
+    ].includes(diagnostic?.center_eliminated_replay_interpretation)
+  ) {
+    errors.push("center-eliminated replay summary must be classified");
+  }
+  if (
+    ![
+      "h38-producer-coordinate-hull-fits-signed-affine-safety-envelope",
+      "h38-producer-midpoint-hull-fits-but-interval-hull-exceeds-signed-affine-safety-envelope",
+      "h38-producer-coordinate-hull-exceeds-signed-affine-safety-envelope",
+    ].includes(diagnostic?.producer_coordinate_envelope_interpretation)
+  ) {
+    errors.push("producer coordinate envelope summary must be classified");
+  }
+  if (
+    ![
+      "producer-midpoint-hull-meets-reference-pressure-targets",
+      "producer-centered-width-search-closes-some-reference-pressure-targets",
+      "producer-midpoint-hull-exceeds-reference-pressure-targets",
+    ].includes(diagnostic?.producer_centered_replay_interpretation)
+  ) {
+    errors.push("producer-centered replay summary must be classified");
+  }
+  if (
+    ![
+      "producer-centered-collars-cover-full-interval-hull",
+      "positive-collars-found-but-raw-subcell-refinement-impractical",
+      "positive-collars-found-for-producer-image-certificate-target",
+      "producer-center-hull-closes-but-positive-collar-open",
+    ].includes(diagnostic?.producer_centered_collar_interpretation)
+  ) {
+    errors.push("producer-centered collar summary must be classified");
+  }
+  if (
+    ![
+      "numerator-midpoint-graph-fits-producer-collar-target",
+      "some-numerator-midpoint-graphs-fit-producer-collar-target",
+      "numerator-midpoint-graph-does-not-yet-fit-producer-collar-target",
+    ].includes(diagnostic?.producer_centered_numerator_collar_interpretation)
+  ) {
+    errors.push("producer-centered numerator collar summary must be classified");
+  }
+  if (
+    ![
+      "signed-affine-zero-localizes-the-y44-h38-obstruction",
+      "signed-affine-zero-does-not-yet-localize-the-y44-h38-obstruction",
+    ].includes(diagnostic?.target_envelope_interpretation)
+  ) {
+    errors.push("target envelope interpretation must identify whether the affine zero localizes the obstruction");
+  }
+  if (
+    diagnostic?.claim_boundary?.certifies_standard_h38_cover !== false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_coefficient_dependence !== false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_signed_affine_envelope !== false ||
+    diagnostic?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    diagnostic?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+      false ||
+    diagnostic?.claim_boundary?.certifies_continuous_polydisc_primitives !==
+      false ||
+    diagnostic?.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("claim boundary must keep signed affine envelope and shifted closure open");
   }
   return errors;
 }
