@@ -4055,6 +4055,98 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
     ["delta_squared_speed", "sin_delta", "sin_phi"]
   );
   assert.equal(diagnostic.term_pair_cancellation_rows.length, 3);
+  assert.equal(
+    diagnostic.source_covariance_collar_rows.length,
+    diagnostic.collar_half_widths.length
+  );
+  assert.equal(
+    diagnostic.source_covariance_reference_collar_summary.length,
+    diagnostic.reference_pressure_targets.length
+  );
+  assert.equal(
+    diagnostic.h38_producer_residual_coordinate_profile.row_count,
+    diagnostic.comparison_row_count
+  );
+  assert.equal(
+    diagnostic.source_covariance_producer_image_collar_rows.length,
+    diagnostic.collar_half_widths.length
+  );
+  assert.equal(
+    diagnostic.source_covariance_reference_producer_image_summary.length,
+    diagnostic.reference_pressure_targets.length
+  );
+  assert.ok(
+    diagnostic.source_covariance_producer_image_collar_rows.every(
+      (row) =>
+        row.producer_coordinate_target_fit.row_count ===
+          diagnostic.comparison_row_count &&
+        typeof row.target_covers_producer_midpoint_hull === "boolean" &&
+        typeof row.target_covers_producer_interval_hull === "boolean"
+    )
+  );
+  assert.ok(
+    diagnostic.source_covariance_reference_producer_image_summary.every(
+      (row) =>
+        [
+          "no-signed-source-collar-meets-reference-target",
+          "signed-source-collar-covers-producer-interval-hull",
+          "signed-source-collar-covers-producer-midpoint-hull-only",
+          "signed-source-collar-misses-producer-midpoint-hull",
+        ].includes(row.route_interpretation)
+    )
+  );
+  assert.ok(
+    [
+      "zero-centered-source-collar-covers-producer-interval-hull",
+      "zero-centered-source-collar-covers-producer-midpoint-hull-only",
+      "zero-centered-source-collar-misses-producer-midpoint-hull",
+      "no-reference-target-closed-by-zero-centered-source-collar",
+    ].includes(diagnostic.source_covariance_producer_image_route_diagnosis)
+  );
+  assert.equal(
+    diagnostic.source_covariance_producer_centered_collar_rows.length,
+    diagnostic.collar_half_widths.length
+  );
+  assert.equal(
+    diagnostic.source_covariance_reference_producer_centered_summary.length,
+    diagnostic.reference_pressure_targets.length
+  );
+  assert.ok(
+    diagnostic.source_covariance_producer_centered_collar_rows.every(
+      (row) =>
+        Array.isArray(row.producer_midpoint_coordinate_hull) &&
+        row.producer_midpoint_coordinate_hull.length === 2 &&
+        row.source_pressure <= row.term_triangle_pressure
+    )
+  );
+  assert.ok(
+    [
+      "producer-centered-source-collar-closes-reference-target",
+      "producer-midpoint-hull-closes-reference-target",
+      "producer-centered-source-collar-exceeds-reference-target",
+    ].includes(
+      diagnostic.source_covariance_producer_centered_route_diagnosis
+    )
+  );
+  assert.ok(diagnostic.max_source_covariance_term_triangle_gain > 1);
+  assert.ok(
+    diagnostic.source_covariance_collar_rows.every(
+      (row) =>
+        row.source_pressure <= row.term_triangle_pressure &&
+        row.term_pressure_rows.some(
+          (termRow) => termRow.term === "sin_delta"
+        ) &&
+        row.term_pressure_rows.some((termRow) => termRow.term === "sin_phi") &&
+        row.term_pressure_rows.some(
+          (termRow) => termRow.term === "delta_squared_speed"
+        )
+    )
+  );
+  assert.ok(
+    diagnostic.source_covariance_reference_collar_summary.some(
+      (row) => row.signed_source_beats_triangle_at_some_collar
+    )
+  );
   assert.ok(diagnostic.dominant_source_zero_term);
   assert.ok(diagnostic.dominant_affine_slope_term);
   assert.ok(diagnostic.strongest_pair_cancellation);
@@ -4067,6 +4159,20 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
   );
   assert.equal(
     diagnostic.claim_boundary.certifies_h38_y44_source_covariance,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_h38_y44_source_covariance_collar,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary
+      .certifies_h38_y44_source_covariance_producer_image_collar,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary
+      .certifies_h38_y44_source_covariance_producer_centered_collar,
     false
   );
   assert.equal(

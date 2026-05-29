@@ -141,6 +141,38 @@ directed-rounded source-level normal form, or prove an equivalent covariance
 identity, before converting the result into a shifted
 $R_{\varepsilon,43}$ outer bound.
 
+The same diagnostic now replays zero-centered $h_{38}$ residual-coordinate
+collars around the affine zero and compares the signed source interval against
+the independent source-term triangle. On the live row, the point collar has
+signed source pressure $3.3134759851000004\times10^7$ while the term triangle
+is $4.584390873462528\times10^{13}$, a triangle-to-signed-source gain of
+$1.3835594083305758\times10^6$. For the reference pressure
+$10^{13}$, signed source intervals remain below target through half-width
+$5\times10^{-9}$, while the term triangle does not close even at the point
+collar and remains about $4.584390873462528$ times target there. At half-width
+$10^{-8}$, the signed source interval rises to
+$1.0638992053901588\times10^{13}$ and just misses the same reference target.
+This turns the covariance observation into a finite collar route: the next
+proof target is a directed-rounded source-level covariance enclosure on an
+$h_{38}$ residual-coordinate collar of order $10^{-9}$, not an independent
+term box.
+
+The diagnostic now also checks whether that collar is aligned with the actual
+H38 producer image. It is not enough to keep the affine-zero collar: the live
+H38 producer midpoint hull is
+$[7.233482551797858,7.233537092376838]\times10^{-17}$ in the normalized
+residual coordinate, while the source affine zero is
+$-2.6856315562445987\times10^{-8}$. The zero-centered collar therefore misses
+the producer midpoint hull. A producer-centered replay gives the useful
+replacement route: the producer midpoint hull has signed source pressure
+$3.3588014199994106\times10^{12}$, and producer-centered collars remain under
+the $10^{13}$ reference target through half-width $5\times10^{-9}$. The
+$10^{-8}$ collar fails with pressure $1.3997760410677502\times10^{13}$.
+This makes the next executable certificate target precise: prove a
+directed-rounded H38 producer-centered residual-coordinate collar of positive
+width, then feed that signed source enclosure into the shifted
+$R_{\varepsilon,43}$ outer-bound backend.
+
 ## Coefficient-Series Construction
 
 The exported series context builds the same fold-pair chart used by the h38

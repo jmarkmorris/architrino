@@ -10301,6 +10301,371 @@ function h39H38Y44TermPairCancellationRows(termRows) {
   return pairs;
 }
 
+function h39H38Y44SourceCovarianceCollarRows({
+  setup,
+  branch,
+  sourceAffineZeroCoordinate,
+  collarHalfWidths,
+  referencePressureTargets,
+  outerRadius,
+  shiftedIndex,
+}) {
+  return collarHalfWidths.map((halfWidth, collarIndex) => {
+    const replayEnvelope = h39H38Y44ZeroCenteredIntervalReplay({
+      setup,
+      branch,
+      affineZeroCoordinate: sourceAffineZeroCoordinate,
+      halfWidth,
+      outerRadius,
+      shiftedIndex,
+      variant: `source-covariance-collar-${collarIndex}`,
+    });
+    const replay = replayEnvelope.replay;
+    const sourcePressure = Number(replay.pressure);
+    const termTrianglePressure = Number(replay.row_pressure.term_pressure_sum);
+    const sourceToTriangleRatio =
+      finitePositive(termTrianglePressure)
+        ? sourcePressure / termTrianglePressure
+        : null;
+    const triangleToSourceGain =
+      finitePositive(sourcePressure)
+        ? termTrianglePressure / sourcePressure
+        : null;
+    return {
+      collar_index: collarIndex,
+      half_width: halfWidth,
+      h38_noise_interval: replayEnvelope.h38_noise_interval,
+      clipped_h38_noise_interval:
+        replayEnvelope.clipped_h38_noise_interval,
+      h38_residual_half_width: replayEnvelope.h38_residual_half_width,
+      source_coefficient_interval: replay.row_pressure.source_coefficient,
+      source_coefficient_abs_upper:
+        intervalAbsUpper(replay.row_pressure.source_coefficient),
+      source_pressure: sourcePressure,
+      term_triangle_pressure: termTrianglePressure,
+      source_to_term_triangle_pressure_ratio: sourceToTriangleRatio,
+      term_triangle_to_source_pressure_gain: triangleToSourceGain,
+      dominant_term: replay.row_pressure.dominant_term,
+      term_pressure_rows: replay.row_pressure.terms,
+      reference_pressure_results: referencePressureTargets.map(
+        (targetPressure) => ({
+          target_pressure: targetPressure,
+          source_over_target:
+            finitePositive(targetPressure)
+              ? sourcePressure / targetPressure
+              : null,
+          term_triangle_over_target:
+            finitePositive(targetPressure)
+              ? termTrianglePressure / targetPressure
+              : null,
+          signed_source_meets_target:
+            finitePositive(targetPressure) && sourcePressure <= targetPressure,
+          term_triangle_meets_target:
+            finitePositive(targetPressure) &&
+            termTrianglePressure <= targetPressure,
+        })
+      ),
+    };
+  });
+}
+
+function h39H38Y44SourceCovarianceProducerCenteredCollarRows({
+  setup,
+  branch,
+  coordinateProfile,
+  collarHalfWidths,
+  referencePressureTargets,
+  outerRadius,
+  shiftedIndex,
+}) {
+  return collarHalfWidths.map((halfWidth, collarIndex) => {
+    const replayEnvelope = h39H38Y44ProducerCenteredIntervalReplay({
+      setup,
+      branch,
+      coordinateProfile,
+      halfWidth,
+      outerRadius,
+      shiftedIndex,
+      variant: `source-covariance-producer-centered-collar-${collarIndex}`,
+    });
+    const replay = replayEnvelope.replay;
+    const sourcePressure = Number(replay.pressure);
+    const termTrianglePressure = Number(replay.row_pressure.term_pressure_sum);
+    const sourceToTriangleRatio =
+      finitePositive(termTrianglePressure)
+        ? sourcePressure / termTrianglePressure
+        : null;
+    const triangleToSourceGain =
+      finitePositive(sourcePressure)
+        ? termTrianglePressure / sourcePressure
+        : null;
+    return {
+      collar_index: collarIndex,
+      half_width: halfWidth,
+      producer_midpoint_coordinate_hull:
+        replayEnvelope.producer_midpoint_coordinate_hull,
+      h38_noise_interval: replayEnvelope.h38_noise_interval,
+      clipped_h38_noise_interval:
+        replayEnvelope.clipped_h38_noise_interval,
+      h38_residual_half_width: replayEnvelope.h38_residual_half_width,
+      source_coefficient_interval: replay.row_pressure.source_coefficient,
+      source_coefficient_abs_upper:
+        intervalAbsUpper(replay.row_pressure.source_coefficient),
+      source_pressure: sourcePressure,
+      term_triangle_pressure: termTrianglePressure,
+      source_to_term_triangle_pressure_ratio: sourceToTriangleRatio,
+      term_triangle_to_source_pressure_gain: triangleToSourceGain,
+      dominant_term: replay.row_pressure.dominant_term,
+      term_pressure_rows: replay.row_pressure.terms,
+      reference_pressure_results: referencePressureTargets.map(
+        (targetPressure) => ({
+          target_pressure: targetPressure,
+          source_over_target:
+            finitePositive(targetPressure)
+              ? sourcePressure / targetPressure
+              : null,
+          term_triangle_over_target:
+            finitePositive(targetPressure)
+              ? termTrianglePressure / targetPressure
+              : null,
+          signed_source_meets_target:
+            finitePositive(targetPressure) && sourcePressure <= targetPressure,
+          term_triangle_meets_target:
+            finitePositive(targetPressure) &&
+            termTrianglePressure <= targetPressure,
+        })
+      ),
+    };
+  });
+}
+
+function h39H38Y44SourceCovarianceReferenceCollarSummary({
+  referencePressureTargets,
+  collarRows,
+}) {
+  return referencePressureTargets.map((targetPressure) => {
+    const rowsForTarget = collarRows.map((row) => {
+      const targetResult = row.reference_pressure_results.find(
+        (entry) => entry.target_pressure === targetPressure
+      );
+      return {
+        row,
+        targetResult,
+      };
+    });
+    const signedRows = rowsForTarget.filter(
+      ({ targetResult }) => targetResult?.signed_source_meets_target === true
+    );
+    const triangleRows = rowsForTarget.filter(
+      ({ targetResult }) => targetResult?.term_triangle_meets_target === true
+    );
+    const bestSigned =
+      signedRows.length > 0
+        ? signedRows.reduce((best, current) =>
+            Number(current.row.half_width) > Number(best.row.half_width)
+              ? current
+              : best
+          )
+        : null;
+    const bestTriangle =
+      triangleRows.length > 0
+        ? triangleRows.reduce((best, current) =>
+            Number(current.row.half_width) > Number(best.row.half_width)
+              ? current
+              : best
+          )
+        : null;
+    const worstSourceOverTarget = Math.max(
+      ...rowsForTarget
+        .map(({ targetResult }) => Number(targetResult?.source_over_target))
+        .filter((value) => Number.isFinite(value))
+    );
+    const worstTriangleOverTarget = Math.max(
+      ...rowsForTarget
+        .map(({ targetResult }) =>
+          Number(targetResult?.term_triangle_over_target)
+        )
+        .filter((value) => Number.isFinite(value))
+    );
+    return {
+      target_pressure: targetPressure,
+      max_signed_source_half_width_meeting_target:
+        bestSigned?.row.half_width ?? null,
+      max_term_triangle_half_width_meeting_target:
+        bestTriangle?.row.half_width ?? null,
+      signed_source_collar_count: signedRows.length,
+      term_triangle_collar_count: triangleRows.length,
+      worst_source_over_target:
+        Number.isFinite(worstSourceOverTarget)
+          ? worstSourceOverTarget
+          : null,
+      worst_term_triangle_over_target:
+        Number.isFinite(worstTriangleOverTarget)
+          ? worstTriangleOverTarget
+          : null,
+      signed_source_beats_triangle_at_some_collar:
+        signedRows.length > triangleRows.length ||
+        (bestSigned !== null &&
+          bestTriangle !== null &&
+          Number(bestSigned.row.half_width) >
+            Number(bestTriangle.row.half_width)),
+    };
+  });
+}
+
+function h39H38Y44SourceCovarianceProducerImageRows({
+  coordinateProfile,
+  collarRows,
+}) {
+  return collarRows.map((row) => {
+    const targetFit = h39H38Y44ProducerCoordinateTargetFit({
+      label: `source-covariance-collar-${row.collar_index}`,
+      coordinateProfile,
+      targetInterval: row.clipped_h38_noise_interval,
+    });
+    return {
+      collar_index: row.collar_index,
+      half_width: row.half_width,
+      source_pressure: row.source_pressure,
+      term_triangle_pressure: row.term_triangle_pressure,
+      target_residual_coordinate_interval:
+        targetFit.target_residual_coordinate_interval,
+      target_residual_coordinate_width:
+        targetFit.target_residual_coordinate_width,
+      producer_residual_coordinate_interval_hull:
+        targetFit.producer_residual_coordinate_interval_hull,
+      producer_residual_coordinate_midpoint_hull:
+        targetFit.producer_residual_coordinate_midpoint_hull,
+      target_center_offset_from_producer_midpoint_hull_center:
+        targetFit.target_center_offset_from_producer_midpoint_hull_center,
+      target_covers_producer_interval_hull:
+        targetFit.target_covers_producer_interval_hull,
+      target_covers_producer_midpoint_hull:
+        targetFit.target_covers_producer_midpoint_hull,
+      interval_inside_target_row_count:
+        targetFit.interval_inside_target_row_count,
+      midpoint_inside_target_row_count:
+        targetFit.midpoint_inside_target_row_count,
+      required_interval_hull_shrink_factor:
+        targetFit.required_interval_hull_shrink_factor,
+      required_midpoint_hull_shrink_factor:
+        targetFit.required_midpoint_hull_shrink_factor,
+      target_width_to_producer_interval_hull_width:
+        targetFit.target_width_to_producer_interval_hull_width,
+      target_width_to_producer_midpoint_hull_width:
+        targetFit.target_width_to_producer_midpoint_hull_width,
+      producer_coordinate_target_fit: targetFit,
+    };
+  });
+}
+
+function h39H38Y44SourceCovarianceReferenceProducerImageSummary({
+  referencePressureTargets,
+  collarRows,
+  producerImageRows,
+}) {
+  return referencePressureTargets.map((targetPressure) => {
+    const signedRows = collarRows.filter((row) =>
+      row.reference_pressure_results.some(
+        (entry) =>
+          entry.target_pressure === targetPressure &&
+          entry.signed_source_meets_target === true
+      )
+    );
+    const bestSigned =
+      signedRows.length > 0
+        ? signedRows.reduce((best, current) =>
+            Number(current.half_width) > Number(best.half_width)
+              ? current
+              : best
+          )
+        : null;
+    const producerFit =
+      bestSigned !== null
+        ? producerImageRows.find(
+            (row) => row.collar_index === bestSigned.collar_index
+          ) ?? null
+        : null;
+    const bestTargetResult =
+      bestSigned?.reference_pressure_results.find(
+        (entry) => entry.target_pressure === targetPressure
+      ) ?? null;
+    return {
+      target_pressure: targetPressure,
+      best_signed_collar_index: bestSigned?.collar_index ?? null,
+      best_signed_collar_half_width: bestSigned?.half_width ?? null,
+      best_signed_collar_source_over_target:
+        bestTargetResult?.source_over_target ?? null,
+      best_signed_collar_term_triangle_over_target:
+        bestTargetResult?.term_triangle_over_target ?? null,
+      producer_midpoint_hull_inside_best_signed_collar:
+        producerFit?.target_covers_producer_midpoint_hull ?? false,
+      producer_interval_hull_inside_best_signed_collar:
+        producerFit?.target_covers_producer_interval_hull ?? false,
+      producer_midpoint_inside_target_row_count:
+        producerFit?.midpoint_inside_target_row_count ?? 0,
+      producer_interval_inside_target_row_count:
+        producerFit?.interval_inside_target_row_count ?? 0,
+      required_interval_hull_shrink_factor:
+        producerFit?.required_interval_hull_shrink_factor ?? null,
+      required_midpoint_hull_shrink_factor:
+        producerFit?.required_midpoint_hull_shrink_factor ?? null,
+      target_center_offset_from_producer_midpoint_hull_center:
+        producerFit?.target_center_offset_from_producer_midpoint_hull_center ??
+        null,
+      producer_image_collar_row: producerFit,
+      route_interpretation:
+        producerFit === null
+          ? "no-signed-source-collar-meets-reference-target"
+          : producerFit.target_covers_producer_midpoint_hull
+            ? producerFit.target_covers_producer_interval_hull
+              ? "signed-source-collar-covers-producer-interval-hull"
+              : "signed-source-collar-covers-producer-midpoint-hull-only"
+            : "signed-source-collar-misses-producer-midpoint-hull",
+    };
+  });
+}
+
+function h39H38Y44SourceCovarianceProducerImageRouteDiagnosis(summaryRows) {
+  if (
+    summaryRows.some(
+      (row) => row.producer_interval_hull_inside_best_signed_collar
+    )
+  ) {
+    return "zero-centered-source-collar-covers-producer-interval-hull";
+  }
+  if (
+    summaryRows.some(
+      (row) => row.producer_midpoint_hull_inside_best_signed_collar
+    )
+  ) {
+    return "zero-centered-source-collar-covers-producer-midpoint-hull-only";
+  }
+  if (summaryRows.some((row) => row.best_signed_collar_index !== null)) {
+    return "zero-centered-source-collar-misses-producer-midpoint-hull";
+  }
+  return "no-reference-target-closed-by-zero-centered-source-collar";
+}
+
+function h39H38Y44SourceCovarianceProducerCenteredRouteDiagnosis(
+  summaryRows
+) {
+  const closingRows = summaryRows.filter(
+    (row) => row.max_signed_source_half_width_meeting_target !== null
+  );
+  if (
+    closingRows.some(
+      (row) => Number(row.max_signed_source_half_width_meeting_target) > 0
+    )
+  ) {
+    return "producer-centered-source-collar-closes-reference-target";
+  }
+  if (closingRows.length > 0) {
+    return "producer-midpoint-hull-closes-reference-target";
+  }
+  return "producer-centered-source-collar-exceeds-reference-target";
+}
+
 export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
   targetSpeedInterval = [3.02156, 3.02156007813],
   branch = "-",
@@ -10313,6 +10678,8 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
   analysisRowOffset = 1,
   polynomialDegree = 2,
   h38NoiseSamples = [-1, 0, 1],
+  collarHalfWidths = [0, 1e-9, 2e-9, 5e-9, 1e-8],
+  referencePressureTargets = [1e8, 1e10, 1e13],
   progressCallback = null,
 } = {}) {
   const startedAt = Date.now();
@@ -10381,6 +10748,19 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
   if (resolvedH38NoiseSamples.length < 3) {
     throw new Error("h38NoiseSamples must contain at least three values");
   }
+  const resolvedCollarHalfWidths = collarHalfWidths.map((halfWidth) => {
+    const resolved = Number(halfWidth);
+    if (!Number.isFinite(resolved) || resolved < 0) {
+      throw new Error("collarHalfWidths must contain finite nonnegative values");
+    }
+    return resolved;
+  });
+  if (resolvedCollarHalfWidths.length === 0) {
+    throw new Error("collarHalfWidths must contain at least one value");
+  }
+  const resolvedReferencePressureTargets = referencePressureTargets.map(
+    (target) => assertFinitePositiveNumber("referencePressureTargets", target)
+  );
   emitProgress?.({
     stage: "source-covariance-setup-start",
     source_stencil_subcell_count: resolvedSourceStencilSubcellCount,
@@ -10483,6 +10863,73 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
     sourceZeroReplay,
   });
   const pairRows = h39H38Y44TermPairCancellationRows(termRows);
+  const h38ProducerResidualCoordinateProfile =
+    h39H38Y44ProducerResidualCoordinateProfile({
+      targetSpeedInterval: resolvedTargetSpeedInterval,
+      rows: setup.comparisonRows,
+      branch,
+      transportProfile: setup.transportProfile,
+      residualInterval: setup.h38ResidualProfile.residual_interval_hull,
+    });
+  const collarRows =
+    Number.isFinite(Number(sourceAffineZeroCoordinate))
+      ? h39H38Y44SourceCovarianceCollarRows({
+          setup,
+          branch,
+          sourceAffineZeroCoordinate,
+          collarHalfWidths: resolvedCollarHalfWidths,
+          referencePressureTargets: resolvedReferencePressureTargets,
+          outerRadius: resolvedOuterRadius,
+          shiftedIndex: resolvedShiftedIndex,
+        })
+      : [];
+  const referenceCollarSummary =
+    h39H38Y44SourceCovarianceReferenceCollarSummary({
+      referencePressureTargets: resolvedReferencePressureTargets,
+      collarRows,
+    });
+  const producerImageCollarRows =
+    h39H38Y44SourceCovarianceProducerImageRows({
+      coordinateProfile: h38ProducerResidualCoordinateProfile,
+      collarRows,
+    });
+  const referenceProducerImageSummary =
+    h39H38Y44SourceCovarianceReferenceProducerImageSummary({
+      referencePressureTargets: resolvedReferencePressureTargets,
+      collarRows,
+      producerImageRows: producerImageCollarRows,
+    });
+  const producerImageRouteDiagnosis =
+    h39H38Y44SourceCovarianceProducerImageRouteDiagnosis(
+      referenceProducerImageSummary
+    );
+  const producerCenteredCollarRows =
+    h39H38Y44SourceCovarianceProducerCenteredCollarRows({
+      setup,
+      branch,
+      coordinateProfile: h38ProducerResidualCoordinateProfile,
+      collarHalfWidths: resolvedCollarHalfWidths,
+      referencePressureTargets: resolvedReferencePressureTargets,
+      outerRadius: resolvedOuterRadius,
+      shiftedIndex: resolvedShiftedIndex,
+    });
+  const referenceProducerCenteredSummary =
+    h39H38Y44SourceCovarianceReferenceCollarSummary({
+      referencePressureTargets: resolvedReferencePressureTargets,
+      collarRows: producerCenteredCollarRows,
+    });
+  const producerCenteredRouteDiagnosis =
+    h39H38Y44SourceCovarianceProducerCenteredRouteDiagnosis(
+      referenceProducerCenteredSummary
+    );
+  const maxCollarTriangleGain =
+    collarRows.length > 0
+      ? Math.max(
+          ...collarRows
+            .map((row) => Number(row.term_triangle_to_source_pressure_gain))
+            .filter((value) => Number.isFinite(value) && value > 0)
+        )
+      : null;
   const sourceZeroTermMidpointSum = termRows.reduce(
     (sum, row) => sum + Number(row.source_zero_replay_coefficient_midpoint),
     0
@@ -10566,6 +11013,8 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
       setup.h38ResidualProfile.residual_interval_hull,
     h38_residual_abs_upper: setup.h38ResidualProfile.max_abs_residual,
     h38_noise_samples: resolvedH38NoiseSamples,
+    collar_half_widths: resolvedCollarHalfWidths,
+    reference_pressure_targets: resolvedReferencePressureTargets,
     sample_replays: sampleReplays,
     source_coefficient_affine_fit: sourceAffineFit,
     source_coefficient_quadratic_fit: sourceQuadraticFit,
@@ -10585,21 +11034,54 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
     term_coefficient_dependence_profiles: termProfiles,
     term_covariance_rows: termRows,
     term_pair_cancellation_rows: pairRows,
+    h38_producer_residual_coordinate_profile:
+      h38ProducerResidualCoordinateProfile,
+    source_covariance_collar_rows: collarRows,
+    source_covariance_reference_collar_summary:
+      referenceCollarSummary,
+    source_covariance_producer_image_collar_rows:
+      producerImageCollarRows,
+    source_covariance_reference_producer_image_summary:
+      referenceProducerImageSummary,
+    source_covariance_producer_image_route_diagnosis:
+      producerImageRouteDiagnosis,
+    source_covariance_producer_centered_collar_rows:
+      producerCenteredCollarRows,
+    source_covariance_reference_producer_centered_summary:
+      referenceProducerCenteredSummary,
+    source_covariance_producer_centered_route_diagnosis:
+      producerCenteredRouteDiagnosis,
+    max_source_covariance_term_triangle_gain:
+      Number.isFinite(maxCollarTriangleGain)
+        ? maxCollarTriangleGain
+        : null,
     dominant_source_zero_term: dominantZeroTerm,
     dominant_affine_slope_term: dominantSlopeTerm,
     strongest_pair_cancellation: strongestPairCancellation,
     source_covariance_diagnosis: covarianceDiagnosis,
     candidate_certificate_route:
-      covarianceDiagnosis ===
-      "source-affine-zero-preserves-strong-term-cancellation"
-        ? "Promote the next proof attempt to a directed-rounded source-level affine-zero certificate that keeps the three nonconstant source terms signed until after their cancellation is evaluated."
-        : covarianceDiagnosis ===
-          "source-affine-zero-dominated-by-pairwise-term-cancellation"
-          ? "Search for a two-term normal form for the dominant signed pair before applying absolute Cauchy bounds."
-          : "Add a higher-order covariance coordinate or source-level identity; independent source-term width control is not expected to close the y44 collar.",
+      producerCenteredRouteDiagnosis ===
+      "producer-centered-source-collar-closes-reference-target"
+        ? "Promote the next proof attempt to a directed-rounded producer-centered source-covariance certificate: keep the H38 producer midpoint hull and residual-coordinate collar signed through the H39 source replay, then attach the shifted outer bound only after source-level cancellation."
+        : producerCenteredRouteDiagnosis ===
+            "producer-midpoint-hull-closes-reference-target"
+          ? "The H38 producer midpoint hull is source-covariance compatible, but no positive residual-coordinate collar closes on the current reference targets. Tighten the directed-rounded producer image or derive a local source identity before widening the collar."
+          : producerImageRouteDiagnosis ===
+              "zero-centered-source-collar-misses-producer-midpoint-hull"
+            ? "Do not force the source-affine-zero collar onto the actual H38 producer image. Search for the missing source-level identity that transports cancellation from the affine-zero coordinate to the H38 producer midpoint hull."
+            : covarianceDiagnosis ===
+                "source-affine-zero-preserves-strong-term-cancellation"
+              ? "Promote the next proof attempt to a directed-rounded source-level affine-zero certificate that keeps the three nonconstant source terms signed until after their cancellation is evaluated."
+              : covarianceDiagnosis ===
+                  "source-affine-zero-dominated-by-pairwise-term-cancellation"
+                ? "Search for a two-term normal form for the dominant signed pair before applying absolute Cauchy bounds."
+                : "Add a higher-order covariance coordinate or source-level identity; independent source-term width control is not expected to close the y44 collar.",
     claim_boundary: {
       certifies_standard_h38_cover: false,
       certifies_h38_y44_source_covariance: false,
+      certifies_h38_y44_source_covariance_collar: false,
+      certifies_h38_y44_source_covariance_producer_image_collar: false,
+      certifies_h38_y44_source_covariance_producer_centered_collar: false,
       certifies_source_level_affine_zero: false,
       certifies_shifted_R43_outer_bound: false,
       certifies_directed_rounded_shared_domain: false,
@@ -18184,6 +18666,7 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
     "sin_phi",
     "sin_delta",
   ]);
+  const sourceTermNames = new Set([...requiredTerms, "constant_minus_two"]);
   const hasOrderedFiniteInterval = (interval) =>
     Array.isArray(interval) &&
     interval.length === 2 &&
@@ -18195,6 +18678,13 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
     interval.length === 2 &&
     Number.isFinite(Number(interval[0])) &&
     Number.isFinite(Number(interval[1]));
+  const hasNondecreasingFiniteInterval = (interval) =>
+    hasFiniteInterval(interval) &&
+    Number(interval[1]) >= Number(interval[0]);
+  const finiteNonnegativeOrNull = (value) =>
+    value === null || finiteNonnegative(value);
+  const boundedCount = (value, maxValue) =>
+    Number.isInteger(value) && value >= 0 && value <= maxValue;
   const fitValid = (fit, degree) =>
     fit?.polynomial_degree === degree &&
     Array.isArray(fit?.coefficients) &&
@@ -18255,6 +18745,195 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
     (row?.cancellation_fraction === null ||
       (finiteNonnegative(row?.cancellation_fraction) &&
         Number(row.cancellation_fraction) <= 1 + 1e-12));
+  const termPressureRowValid = (row) =>
+    sourceTermNames.has(row?.term) &&
+    hasFiniteInterval(row?.coefficient) &&
+    finiteNonnegative(row?.coefficient_abs_upper) &&
+    finiteNonnegative(row?.pressure_contribution);
+  const referencePressureResultValid = (row) =>
+    finitePositive(row?.target_pressure) &&
+    finiteNonnegative(row?.source_over_target) &&
+    finiteNonnegative(row?.term_triangle_over_target) &&
+    typeof row?.signed_source_meets_target === "boolean" &&
+    typeof row?.term_triangle_meets_target === "boolean";
+  const collarRowValid = (row) =>
+    Number.isInteger(row?.collar_index) &&
+    row.collar_index >= 0 &&
+    finiteNonnegative(row?.half_width) &&
+    hasFiniteInterval(row?.h38_noise_interval) &&
+    hasFiniteInterval(row?.clipped_h38_noise_interval) &&
+    finiteNonnegative(row?.h38_residual_half_width) &&
+    hasFiniteInterval(row?.source_coefficient_interval) &&
+    finiteNonnegative(row?.source_coefficient_abs_upper) &&
+    finitePositive(row?.source_pressure) &&
+    finitePositive(row?.term_triangle_pressure) &&
+    finiteNonnegative(row?.source_to_term_triangle_pressure_ratio) &&
+    finitePositive(row?.term_triangle_to_source_pressure_gain) &&
+    termPressureRowValid(row?.dominant_term) &&
+    Array.isArray(row?.term_pressure_rows) &&
+    row.term_pressure_rows.length >= requiredTerms.size &&
+    row.term_pressure_rows.every(termPressureRowValid) &&
+    [...requiredTerms].every((term) =>
+      row.term_pressure_rows.some((termRow) => termRow.term === term)
+    ) &&
+    Array.isArray(row?.reference_pressure_results) &&
+    row.reference_pressure_results.length ===
+      diagnostic?.reference_pressure_targets?.length &&
+    row.reference_pressure_results.every(referencePressureResultValid);
+  const referenceCollarSummaryValid = (row) =>
+    finitePositive(row?.target_pressure) &&
+    (row?.max_signed_source_half_width_meeting_target === null ||
+      finiteNonnegative(row?.max_signed_source_half_width_meeting_target)) &&
+    (row?.max_term_triangle_half_width_meeting_target === null ||
+      finiteNonnegative(row?.max_term_triangle_half_width_meeting_target)) &&
+    Number.isInteger(row?.signed_source_collar_count) &&
+    row.signed_source_collar_count >= 0 &&
+    Number.isInteger(row?.term_triangle_collar_count) &&
+    row.term_triangle_collar_count >= 0 &&
+    (row?.worst_source_over_target === null ||
+      finiteNonnegative(row?.worst_source_over_target)) &&
+    (row?.worst_term_triangle_over_target === null ||
+      finiteNonnegative(row?.worst_term_triangle_over_target)) &&
+    typeof row?.signed_source_beats_triangle_at_some_collar === "boolean";
+  const producerProfileSampleValid = (sample) =>
+    Number.isInteger(sample?.row_index) &&
+    sample.row_index >= 0 &&
+    typeof sample?.cell_id === "string" &&
+    hasNondecreasingFiniteInterval(sample?.speed_interval) &&
+    hasNondecreasingFiniteInterval(sample?.xi_interval) &&
+    Number.isFinite(Number(sample?.xi_midpoint)) &&
+    hasNondecreasingFiniteInterval(sample?.h38_interval) &&
+    hasNondecreasingFiniteInterval(sample?.graph_interval) &&
+    hasFiniteInterval(sample?.residual_interval) &&
+    Number.isFinite(Number(sample?.residual_midpoint)) &&
+    hasFiniteInterval(sample?.residual_coordinate_interval) &&
+    Number.isFinite(Number(sample?.residual_coordinate_midpoint)) &&
+    finiteNonnegative(sample?.residual_coordinate_width);
+  const producerCoordinateProfileValid = (profile) =>
+    profile?.coordinate_formula ===
+      "u=(h38-q38(xi)-center(residual_hull))/radius(residual_hull)" &&
+    profile?.h38_index ===
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index &&
+    hasOrderedFiniteInterval(profile?.residual_interval) &&
+    Number.isFinite(Number(profile?.residual_center)) &&
+    finitePositive(profile?.residual_radius) &&
+    profile?.row_count === diagnostic?.comparison_row_count &&
+    hasFiniteInterval(profile?.residual_coordinate_interval_hull) &&
+    hasFiniteInterval(profile?.residual_coordinate_midpoint_hull) &&
+    finiteNonnegative(profile?.residual_coordinate_interval_hull_width) &&
+    finiteNonnegative(profile?.residual_coordinate_midpoint_hull_width) &&
+    finiteNonnegative(profile?.max_residual_coordinate_interval_width) &&
+    Array.isArray(profile?.samples) &&
+    profile.samples.length === profile.row_count &&
+    profile.samples.every(producerProfileSampleValid);
+  const producerTargetFitSampleValid = (sample) =>
+    Number.isInteger(sample?.row_index) &&
+    sample.row_index >= 0 &&
+    typeof sample?.cell_id === "string" &&
+    hasFiniteInterval(sample?.residual_coordinate_interval) &&
+    Number.isFinite(Number(sample?.residual_coordinate_midpoint)) &&
+    typeof sample?.interval_inside_target === "boolean" &&
+    typeof sample?.midpoint_inside_target === "boolean";
+  const producerCoordinateTargetFitValid = (fit) =>
+    typeof fit?.label === "string" &&
+    hasNondecreasingFiniteInterval(fit?.target_residual_coordinate_interval) &&
+    finiteNonnegative(fit?.target_residual_coordinate_width) &&
+    hasFiniteInterval(fit?.producer_residual_coordinate_interval_hull) &&
+    hasFiniteInterval(fit?.producer_residual_coordinate_midpoint_hull) &&
+    finiteNonnegative(fit?.producer_residual_coordinate_interval_hull_width) &&
+    finiteNonnegative(fit?.producer_residual_coordinate_midpoint_hull_width) &&
+    finiteNonnegativeOrNull(
+      fit?.target_width_to_producer_interval_hull_width
+    ) &&
+    finiteNonnegativeOrNull(
+      fit?.target_width_to_producer_midpoint_hull_width
+    ) &&
+    finiteNonnegativeOrNull(fit?.required_interval_hull_shrink_factor) &&
+    finiteNonnegativeOrNull(fit?.required_midpoint_hull_shrink_factor) &&
+    Number.isFinite(
+      Number(fit?.target_center_offset_from_producer_midpoint_hull_center)
+    ) &&
+    fit?.row_count === diagnostic?.comparison_row_count &&
+    boundedCount(fit?.interval_inside_target_row_count, fit.row_count) &&
+    boundedCount(fit?.midpoint_inside_target_row_count, fit.row_count) &&
+    typeof fit?.target_covers_all_sample_intervals === "boolean" &&
+    typeof fit?.target_covers_all_sample_midpoints === "boolean" &&
+    typeof fit?.target_covers_producer_interval_hull === "boolean" &&
+    typeof fit?.target_covers_producer_midpoint_hull === "boolean" &&
+    Array.isArray(fit?.sample_fits) &&
+    fit.sample_fits.length === fit.row_count &&
+    fit.sample_fits.every(producerTargetFitSampleValid);
+  const producerImageCollarRowValid = (row) =>
+    Number.isInteger(row?.collar_index) &&
+    row.collar_index >= 0 &&
+    finiteNonnegative(row?.half_width) &&
+    finitePositive(row?.source_pressure) &&
+    finitePositive(row?.term_triangle_pressure) &&
+    hasNondecreasingFiniteInterval(row?.target_residual_coordinate_interval) &&
+    finiteNonnegative(row?.target_residual_coordinate_width) &&
+    hasFiniteInterval(row?.producer_residual_coordinate_interval_hull) &&
+    hasFiniteInterval(row?.producer_residual_coordinate_midpoint_hull) &&
+    Number.isFinite(
+      Number(row?.target_center_offset_from_producer_midpoint_hull_center)
+    ) &&
+    typeof row?.target_covers_producer_interval_hull === "boolean" &&
+    typeof row?.target_covers_producer_midpoint_hull === "boolean" &&
+    boundedCount(
+      row?.interval_inside_target_row_count,
+      diagnostic?.comparison_row_count
+    ) &&
+    boundedCount(
+      row?.midpoint_inside_target_row_count,
+      diagnostic?.comparison_row_count
+    ) &&
+    finiteNonnegativeOrNull(row?.required_interval_hull_shrink_factor) &&
+    finiteNonnegativeOrNull(row?.required_midpoint_hull_shrink_factor) &&
+    finiteNonnegativeOrNull(
+      row?.target_width_to_producer_interval_hull_width
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.target_width_to_producer_midpoint_hull_width
+    ) &&
+    producerCoordinateTargetFitValid(row?.producer_coordinate_target_fit);
+  const producerCenteredCollarRowValid = (row) =>
+    collarRowValid(row) &&
+    hasFiniteInterval(row?.producer_midpoint_coordinate_hull);
+  const referenceProducerImageSummaryValid = (row) =>
+    finitePositive(row?.target_pressure) &&
+    (row?.best_signed_collar_index === null ||
+      (Number.isInteger(row?.best_signed_collar_index) &&
+        row.best_signed_collar_index >= 0)) &&
+    finiteNonnegativeOrNull(row?.best_signed_collar_half_width) &&
+    finiteNonnegativeOrNull(row?.best_signed_collar_source_over_target) &&
+    finiteNonnegativeOrNull(
+      row?.best_signed_collar_term_triangle_over_target
+    ) &&
+    typeof row?.producer_midpoint_hull_inside_best_signed_collar ===
+      "boolean" &&
+    typeof row?.producer_interval_hull_inside_best_signed_collar ===
+      "boolean" &&
+    boundedCount(
+      row?.producer_midpoint_inside_target_row_count,
+      diagnostic?.comparison_row_count
+    ) &&
+    boundedCount(
+      row?.producer_interval_inside_target_row_count,
+      diagnostic?.comparison_row_count
+    ) &&
+    finiteNonnegativeOrNull(row?.required_interval_hull_shrink_factor) &&
+    finiteNonnegativeOrNull(row?.required_midpoint_hull_shrink_factor) &&
+    (row?.target_center_offset_from_producer_midpoint_hull_center === null ||
+      Number.isFinite(
+        Number(row?.target_center_offset_from_producer_midpoint_hull_center)
+      )) &&
+    (row?.producer_image_collar_row === null ||
+      producerImageCollarRowValid(row?.producer_image_collar_row)) &&
+    [
+      "no-signed-source-collar-meets-reference-target",
+      "signed-source-collar-covers-producer-interval-hull",
+      "signed-source-collar-covers-producer-midpoint-hull-only",
+      "signed-source-collar-misses-producer-midpoint-hull",
+    ].includes(row?.route_interpretation);
   if (
     diagnostic?.schema !==
     THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SOURCE_COVARIANCE_DIAGNOSTIC_SCHEMA
@@ -18288,7 +18967,17 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
     diagnostic.polynomial_degree < 1 ||
     diagnostic.polynomial_degree > 3 ||
     !Number.isFinite(Number(diagnostic?.analysis_xi_coordinate)) ||
-    !hasOrderedFiniteInterval(diagnostic?.h38_residual_interval)
+    !hasOrderedFiniteInterval(diagnostic?.h38_residual_interval) ||
+    !Array.isArray(diagnostic?.collar_half_widths) ||
+    diagnostic.collar_half_widths.length < 1 ||
+    !diagnostic.collar_half_widths.every((halfWidth) =>
+      finiteNonnegative(halfWidth)
+    ) ||
+    !Array.isArray(diagnostic?.reference_pressure_targets) ||
+    diagnostic.reference_pressure_targets.length < 1 ||
+    !diagnostic.reference_pressure_targets.every((target) =>
+      finitePositive(target)
+    )
   ) {
     errors.push("source covariance parameters must describe one five-row local graph window");
   }
@@ -18358,6 +19047,79 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
     errors.push("source covariance must carry finite source-term covariance and pair-cancellation rows");
   }
   if (
+    !Array.isArray(diagnostic?.source_covariance_collar_rows) ||
+    diagnostic.source_covariance_collar_rows.length !==
+      diagnostic.collar_half_widths.length ||
+    !diagnostic.source_covariance_collar_rows.every(collarRowValid) ||
+    !Array.isArray(
+      diagnostic?.source_covariance_reference_collar_summary
+    ) ||
+    diagnostic.source_covariance_reference_collar_summary.length !==
+      diagnostic.reference_pressure_targets.length ||
+    !diagnostic.source_covariance_reference_collar_summary.every(
+      referenceCollarSummaryValid
+    ) ||
+    !finitePositive(diagnostic?.max_source_covariance_term_triangle_gain)
+  ) {
+    errors.push("source covariance collar replay must compare signed source pressure against term-triangle pressure");
+  }
+  if (
+    !producerCoordinateProfileValid(
+      diagnostic?.h38_producer_residual_coordinate_profile
+    ) ||
+    !Array.isArray(
+      diagnostic?.source_covariance_producer_image_collar_rows
+    ) ||
+    diagnostic.source_covariance_producer_image_collar_rows.length !==
+      diagnostic.collar_half_widths.length ||
+    !diagnostic.source_covariance_producer_image_collar_rows.every(
+      producerImageCollarRowValid
+    ) ||
+    !Array.isArray(
+      diagnostic?.source_covariance_reference_producer_image_summary
+    ) ||
+    diagnostic.source_covariance_reference_producer_image_summary.length !==
+      diagnostic.reference_pressure_targets.length ||
+    !diagnostic.source_covariance_reference_producer_image_summary.every(
+      referenceProducerImageSummaryValid
+    ) ||
+    ![
+      "zero-centered-source-collar-covers-producer-interval-hull",
+      "zero-centered-source-collar-covers-producer-midpoint-hull-only",
+      "zero-centered-source-collar-misses-producer-midpoint-hull",
+      "no-reference-target-closed-by-zero-centered-source-collar",
+    ].includes(diagnostic?.source_covariance_producer_image_route_diagnosis)
+  ) {
+    errors.push("source covariance producer-image comparison must fit the H38 producer coordinate profile");
+  }
+  if (
+    !Array.isArray(
+      diagnostic?.source_covariance_producer_centered_collar_rows
+    ) ||
+    diagnostic.source_covariance_producer_centered_collar_rows.length !==
+      diagnostic.collar_half_widths.length ||
+    !diagnostic.source_covariance_producer_centered_collar_rows.every(
+      producerCenteredCollarRowValid
+    ) ||
+    !Array.isArray(
+      diagnostic?.source_covariance_reference_producer_centered_summary
+    ) ||
+    diagnostic.source_covariance_reference_producer_centered_summary.length !==
+      diagnostic.reference_pressure_targets.length ||
+    !diagnostic.source_covariance_reference_producer_centered_summary.every(
+      referenceCollarSummaryValid
+    ) ||
+    ![
+      "producer-centered-source-collar-closes-reference-target",
+      "producer-midpoint-hull-closes-reference-target",
+      "producer-centered-source-collar-exceeds-reference-target",
+    ].includes(
+      diagnostic?.source_covariance_producer_centered_route_diagnosis
+    )
+  ) {
+    errors.push("source covariance producer-centered replay must compare signed pressure on the H38 producer midpoint hull");
+  }
+  if (
     !termRowValid(diagnostic?.dominant_source_zero_term) ||
     !termRowValid(diagnostic?.dominant_affine_slope_term) ||
     !pairRowValid(diagnostic?.strongest_pair_cancellation)
@@ -18377,6 +19139,14 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
   if (
     diagnostic?.claim_boundary?.certifies_standard_h38_cover !== false ||
     diagnostic?.claim_boundary?.certifies_h38_y44_source_covariance !==
+      false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_source_covariance_collar !== false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_source_covariance_producer_image_collar !==
+      false ||
+    diagnostic?.claim_boundary
+      ?.certifies_h38_y44_source_covariance_producer_centered_collar !==
       false ||
     diagnostic?.claim_boundary?.certifies_source_level_affine_zero !==
       false ||

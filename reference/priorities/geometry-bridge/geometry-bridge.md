@@ -1334,6 +1334,33 @@ $0.8121258516345928$. This means the next proof should not only squeeze the
 independent $N_{38}$ residual box. It should also certify the source-level
 covariance of the three signed H39/y44 terms before applying absolute Cauchy
 or interval majorants.
+The new collar replay makes this route finite. Around the same affine zero,
+the point collar has signed source pressure
+$3.3134759851000004\times10^7$ against term-triangle pressure
+$4.584390873462528\times10^{13}$, so the term triangle is
+$1.3835594083305758\times10^6$ times wider than the signed source interval.
+For the $10^{13}$ reference pressure, signed source intervals close through
+half-width $5\times10^{-9}$ and fail only by a factor
+$1.0638992053901588$ at half-width $10^{-8}$; the independent term triangle
+does not close even at the point collar. This identifies the next H39/y44
+certificate as a directed-rounded source-level covariance collar on the
+actual H38 producer image, not a deeper independent prefix or term-triangle
+majorant.
+
+The producer-image comparison now separates two different issues. The
+zero-centered affine collar does not contain the actual H38 producer midpoint
+hull: on the live row, the H38 producer midpoint hull is
+$[7.233482551797858,7.233537092376838]\times10^{-17}$ in the same residual
+coordinate, while the affine-zero coordinate is
+$-2.6856315562445987\times10^{-8}$. Therefore the good zero-centered source
+collar is not itself a producer-image certificate. Replaying the signed
+source covariance around the producer midpoint hull changes the route: the
+producer-centered point pressure is $3.3588014199994106\times10^{12}$, and
+producer-centered collars stay below the $10^{13}$ reference target through
+half-width $5\times10^{-9}$ but fail at half-width $10^{-8}$ with pressure
+$1.3997760410677502\times10^{13}$. The live obstruction is now a concrete
+directed-rounded producer-centered residual-coordinate collar certificate,
+not the old independent full-box H39/h38 pressure artifact.
 
 ## Current Classification
 
