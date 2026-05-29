@@ -4784,6 +4784,256 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
     );
     const quarticQuotientWitness =
       derivativeProviderTarget.quartic_quotient_consistency_witness;
+    const directResidualDerivativeModel =
+      quarticQuotientWitness.same_variable_direct_residual_derivative_model;
+    assert.ok(directResidualDerivativeModel);
+    assert.equal(
+      directResidualDerivativeModel.model_kind,
+      "five-sample-quartic-minus-four-node-cubic-residual-derivative"
+    );
+    assert.equal(
+      directResidualDerivativeModel.selected_node_xi_midpoints.length,
+      4
+    );
+    assert.equal(directResidualDerivativeModel.product_coefficients.length, 5);
+    assert.equal(
+      directResidualDerivativeModel.product_derivative_coefficients.length,
+      4
+    );
+    assert.equal(
+      directResidualDerivativeModel.direct_residual_coefficients.length,
+      5
+    );
+    assert.equal(
+      directResidualDerivativeModel.direct_residual_derivative_coefficients
+        .length,
+      4
+    );
+    assert.ok(
+      directResidualDerivativeModel.split_stream_m4_ceiling > 0
+    );
+    assert.equal(
+      directResidualDerivativeModel.direct_stream_policy,
+      "diagnostic-only"
+    );
+    const signedSourceCollarProbe =
+      derivativeProviderTarget
+        .same_domain_signed_source_collar_provider_probe;
+    assert.ok(signedSourceCollarProbe);
+    assert.ok(
+      [
+        "positive-n38-same-domain-signed-source-collar-provider-probe-inside-headroom",
+        "positive-n38-same-domain-signed-source-collar-provider-probe-open",
+        "positive-n38-same-domain-signed-source-collar-provider-probe-unavailable",
+      ].includes(signedSourceCollarProbe.status)
+    );
+    assert.equal(
+      signedSourceCollarProbe.provider_probe_kind,
+      "same-domain-signed-source-collar-residual-derivative-provider-probe"
+    );
+    assert.equal(
+      signedSourceCollarProbe.claim_boundary
+        .certifies_n38_taylor_remainder_bound,
+      false
+    );
+    assert.equal(
+      signedSourceCollarProbe.claim_boundary
+        .certifies_positive_source_covariance_collar,
+      false
+    );
+    assert.equal(
+      signedSourceCollarProbe.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      signedSourceCollarProbe.claim_boundary.retained_branch,
+      false
+    );
+    assert.ok(
+      signedSourceCollarProbe.max_signed_point_drift_replay_relative_gap ===
+        null ||
+        signedSourceCollarProbe
+          .max_signed_point_drift_replay_relative_gap >= 0
+    );
+    assert.ok(
+      signedSourceCollarProbe.min_signed_point_drift_cancellation_fraction ===
+        null ||
+        (signedSourceCollarProbe
+          .min_signed_point_drift_cancellation_fraction >= 0 &&
+          signedSourceCollarProbe
+            .min_signed_point_drift_cancellation_fraction <= 1)
+    );
+    assert.ok(
+      signedSourceCollarProbe
+        .max_signed_point_drift_residual_derivative_to_target_ratio ===
+        null ||
+        signedSourceCollarProbe
+          .max_signed_point_drift_residual_derivative_to_target_ratio >= 0
+    );
+    assert.ok(
+      signedSourceCollarProbe
+        .min_signed_point_drift_true_stream_slack_ratio === null ||
+        signedSourceCollarProbe
+          .min_signed_point_drift_true_stream_slack_ratio >= 0
+    );
+    if (
+      signedSourceCollarProbe.status ===
+      "positive-n38-same-domain-signed-source-collar-provider-probe-inside-headroom"
+    ) {
+      assert.equal(
+        signedSourceCollarProbe.collar_rows.length,
+        signedSourceCollarProbe.selected_sample_indexes.length
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .max_signed_point_drift_residual_derivative_to_target_ratio < 1
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .min_signed_point_drift_cancellation_fraction > 0.5
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .min_signed_point_drift_true_stream_slack_ratio > 0.99
+      );
+      assert.ok(
+        signedSourceCollarProbe.max_signed_point_drift_replay_relative_gap >
+          0.7
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .max_paired_subcell_signed_point_drift_residual_derivative_to_target_ratio <
+          signedSourceCollarProbe
+            .max_signed_point_drift_residual_derivative_to_target_ratio
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .min_paired_subcell_signed_point_drift_cancellation_fraction >
+          signedSourceCollarProbe
+            .min_signed_point_drift_cancellation_fraction
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .max_paired_subcell_signed_point_drift_replay_relative_gap <
+          signedSourceCollarProbe
+            .max_signed_point_drift_replay_relative_gap
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .max_paired_subcell_signed_point_drift_to_direct_abs_loss_factor <
+          signedSourceCollarProbe
+            .max_signed_point_drift_to_direct_abs_loss_factor
+      );
+      assert.equal(
+        signedSourceCollarProbe
+          .paired_subcell_direct_collapse_locality_status,
+        "positive-n38-paired-subcell-direct-collapse-local-interval-dependency-artifact-candidate"
+      );
+      assert.equal(
+        signedSourceCollarProbe
+          .direct_split_residual_derivative_coefficient_replay_status,
+        "positive-n38-direct-split-residual-derivative-coefficient-replay-consistent"
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .direct_split_residual_derivative_coefficient_replay_relative_gap >
+          0
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .max_paired_subcell_signed_point_drift_subcell_replay_relative_gap >
+          signedSourceCollarProbe
+            .max_paired_subcell_signed_point_drift_replay_relative_gap
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .max_paired_subcell_signed_point_drift_subcell_to_collar_gap_ratio >
+          1
+      );
+      assert.equal(
+        signedSourceCollarProbe
+          .same_variable_direct_normal_form_candidate_status,
+        "positive-n38-same-variable-direct-normal-form-candidate-inside-headroom"
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .max_same_variable_direct_normal_form_to_target_ratio <
+          signedSourceCollarProbe
+            .max_paired_subcell_signed_point_drift_residual_derivative_to_target_ratio
+      );
+      assert.equal(
+        signedSourceCollarProbe
+          .same_variable_direct_true_stream_excess_target_status,
+        "positive-n38-same-variable-direct-normal-form-true-stream-excess-target-positive"
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .min_same_variable_direct_true_stream_slack_ratio > 0.999999
+      );
+      assert.ok(
+        signedSourceCollarProbe
+          .min_same_variable_direct_true_stream_excess_to_directed_ratio >
+          1e6
+      );
+      assert.ok(
+        signedSourceCollarProbe.collar_rows.every(
+          (row) =>
+            row.provider_probe_status ===
+              "positive-n38-signed-source-collar-provider-row-inside-headroom" &&
+            Array.isArray(row.signed_point_drift_residual_derivative_interval) &&
+            row.signed_pair_combination_mode ===
+              "point-hull-plus-drift-hull" &&
+            row.same_variable_direct_normal_form_candidate_status ===
+              "positive-n38-same-variable-direct-normal-form-candidate-inside-headroom" &&
+            row.direct_true_stream_excess_target_status ===
+              "positive-n38-same-variable-direct-normal-form-true-stream-excess-target-positive" &&
+            row.direct_true_stream_residual_derivative_slack_to_target_ratio >
+              0.999999 &&
+            row.direct_true_stream_excess_to_directed_finite_polynomial_ratio >
+              1e6 &&
+            row.direct_residual_derivative_to_target_ratio <=
+              row.paired_subcell_signed_point_drift_residual_derivative_to_target_ratio &&
+            row.signed_point_drift_residual_derivative_to_target_ratio <
+              1 &&
+            row.signed_point_drift_cancellation_fraction > 0 &&
+            row.signed_point_drift_true_stream_slack_ratio > 0 &&
+            row.paired_subcell_signed_pair_combination_mode ===
+              "same-subcell-point-plus-drift-then-hull" &&
+            Array.isArray(
+              row.paired_subcell_signed_point_drift_residual_derivative_interval
+            ) &&
+            row.paired_subcell_signed_point_drift_residual_derivative_to_target_ratio <=
+              row.signed_point_drift_residual_derivative_to_target_ratio &&
+            row.paired_subcell_signed_point_drift_cancellation_fraction >=
+              row.signed_point_drift_cancellation_fraction &&
+            row.paired_subcell_signed_point_drift_to_direct_replay_relative_gap <=
+              row.signed_point_drift_to_direct_replay_relative_gap &&
+            row.paired_subcell_signed_point_drift_to_direct_abs_loss_factor <=
+              row.signed_point_drift_to_direct_abs_loss_factor &&
+            Array.isArray(row.paired_subcell_signed_point_drift_subcell_rows) &&
+            row.paired_subcell_signed_point_drift_subcell_rows.length ===
+              16 &&
+            row.paired_subcell_signed_point_drift_direct_inside_paired_interval_all ===
+              true &&
+            row.paired_subcell_signed_point_drift_paired_inside_direct_interval_all ===
+              false &&
+            row.paired_subcell_signed_point_drift_gap_localization_status ===
+              "positive-n38-paired-subcell-direct-collapse-local-interval-dependency-artifact-candidate" &&
+            row.paired_subcell_signed_point_drift_subcell_rows.every(
+              (subcellRow) =>
+                subcellRow.cell_id === row.cell_id &&
+                subcellRow.sample_index === row.sample_index &&
+                Array.isArray(subcellRow.paired_interval) &&
+                Array.isArray(subcellRow.direct_interval) &&
+                subcellRow.direct_inside_paired_interval === true
+            ) &&
+            row.direct_stream_policy === "diagnostic-only" &&
+            row.continuous_stream_derivative_policy ===
+              "candidate-only until directed-rounded residual-derivative enclosures cover this collar"
+        )
+      );
+    }
     assert.ok(
       [
         "positive-n38-quartic-quotient-consistency-witness-inside-provider-target",
@@ -4838,6 +5088,423 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
               quarticQuotientWitness.direct_signed_m4
         )
       );
+      assert.equal(
+        quarticQuotientWitness.node_derivative_limit_status,
+        "positive-n38-quartic-node-derivative-limit-inside-provider-target"
+      );
+      assert.equal(
+        quarticQuotientWitness.node_derivative_limit_rows.length,
+        quarticQuotientWitness.selected_sample_indexes.length
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_limit_split_stream_relative_gap <=
+          quarticQuotientWitness.consistency_tolerance
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_limit_direct_relative_gap <=
+          quarticQuotientWitness.consistency_tolerance
+      );
+      assert.ok(
+        quarticQuotientWitness.node_derivative_limit_rows.every(
+          (row) =>
+            row.finite_data_limit_kind ===
+              "quartic-removable-node-derivative-limit-replay" &&
+            Number.isFinite(row.lagrange_product_derivative_at_node) &&
+            row.lagrange_product_derivative_at_node !== 0 &&
+            row.direct_stream_policy === "diagnostic-only" &&
+            row.split_stream_derivative_limit_status ===
+              "positive-n38-quartic-node-derivative-limit-inside-provider-target" &&
+            Math.abs(
+              row.point_expression_derivative_limit_m4 -
+                quarticQuotientWitness.point_expression_signed_m4
+            ) /
+              Math.max(
+                1,
+                Math.abs(row.point_expression_derivative_limit_m4),
+                Math.abs(quarticQuotientWitness.point_expression_signed_m4)
+              ) <=
+              quarticQuotientWitness.consistency_tolerance &&
+            Math.abs(
+              row.interval_center_drift_derivative_limit_m4 -
+                quarticQuotientWitness.interval_center_drift_signed_m4
+            ) /
+              Math.max(
+                1,
+                Math.abs(row.interval_center_drift_derivative_limit_m4),
+                Math.abs(
+                  quarticQuotientWitness.interval_center_drift_signed_m4
+                )
+              ) <=
+              quarticQuotientWitness.consistency_tolerance &&
+            Math.abs(
+              row.direct_derivative_limit_m4 -
+                quarticQuotientWitness.direct_signed_m4
+            ) /
+              Math.max(
+                1,
+                Math.abs(row.direct_derivative_limit_m4),
+                Math.abs(quarticQuotientWitness.direct_signed_m4)
+              ) <=
+              quarticQuotientWitness.consistency_tolerance &&
+            row.point_expression_derivative_limit_relative_gap <=
+              quarticQuotientWitness.consistency_tolerance &&
+            row.interval_center_drift_derivative_limit_relative_gap <=
+              quarticQuotientWitness.consistency_tolerance
+        )
+      );
+      assert.equal(
+        quarticQuotientWitness.node_derivative_collar_target_status,
+        "positive-n38-quartic-node-derivative-collar-target-inside-sampled-headroom"
+      );
+      assert.equal(
+        quarticQuotientWitness.node_derivative_collar_rows.length,
+        quarticQuotientWitness.selected_sample_indexes.length
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .min_node_derivative_collar_product_derivative_abs_lower > 0
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_split_stream_sampled_ratio < 1
+      );
+      assert.equal(
+        quarticQuotientWitness
+          .node_derivative_collar_finite_polynomial_status,
+        "positive-n38-quartic-node-derivative-collar-finite-polynomial-inside-headroom"
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_finite_polynomial_split_stream_ratio <
+          1
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_finite_polynomial_to_sampled_split_ratio >=
+          1
+      );
+      assert.equal(
+        quarticQuotientWitness
+          .node_derivative_collar_directed_finite_polynomial_status,
+        "positive-n38-quartic-node-derivative-collar-directed-finite-polynomial-inside-headroom"
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_directed_finite_polynomial_split_stream_ratio <
+          1
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_directed_to_exact_finite_polynomial_split_ratio >=
+          1
+      );
+      assert.equal(
+        quarticQuotientWitness
+          .node_derivative_collar_true_stream_slack_budget_status,
+        "positive-n38-quartic-node-derivative-collar-true-stream-slack-positive"
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .min_node_derivative_collar_true_stream_slack_ratio > 0.99
+      );
+      assert.equal(
+        quarticQuotientWitness
+          .node_derivative_collar_true_stream_excess_target_status,
+        "positive-n38-quartic-node-derivative-collar-true-stream-excess-target-positive"
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .min_node_derivative_collar_true_stream_excess_to_directed_ratio >
+          400
+      );
+      assert.equal(
+        quarticQuotientWitness
+          .node_derivative_collar_component_covariance_status,
+        "positive-n38-quartic-node-derivative-collar-component-covariance-open"
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .min_node_derivative_collar_component_cancellation_fraction > 0
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_component_replay_relative_gap > 0.4
+      );
+      assert.equal(
+        quarticQuotientWitness
+          .node_derivative_collar_raw_value_width_proxy_status,
+        "positive-n38-quartic-node-derivative-collar-raw-value-width-proxy-rejected"
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_raw_value_proxy_to_excess_budget_ratio >
+          1e9
+      );
+      assert.equal(
+        quarticQuotientWitness
+          .node_derivative_collar_signed_pair_provider_status,
+        "positive-n38-quartic-node-derivative-collar-signed-pair-provider-inside-headroom"
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_signed_pair_to_target_ratio < 1e-5
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .min_node_derivative_collar_signed_pair_cancellation_fraction >
+          0.5
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_signed_pair_replay_relative_gap > 0.7
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .min_node_derivative_collar_signed_pair_slack_ratio > 0.99
+      );
+      assert.equal(
+        quarticQuotientWitness
+          .node_derivative_collar_paired_subcell_signed_pair_provider_status,
+        "positive-n38-quartic-node-derivative-collar-paired-subcell-signed-pair-provider-inside-headroom"
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_paired_subcell_signed_pair_to_target_ratio <
+          quarticQuotientWitness
+            .max_node_derivative_collar_signed_pair_to_target_ratio
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_paired_subcell_signed_pair_to_target_ratio <
+          2e-6
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .min_node_derivative_collar_paired_subcell_signed_pair_cancellation_fraction >
+          quarticQuotientWitness
+            .min_node_derivative_collar_signed_pair_cancellation_fraction
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .min_node_derivative_collar_paired_subcell_signed_pair_cancellation_fraction >
+          0.9
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_paired_subcell_signed_pair_replay_relative_gap <
+          quarticQuotientWitness
+            .max_node_derivative_collar_signed_pair_replay_relative_gap
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_paired_subcell_signed_pair_replay_relative_gap <
+          0.5
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .min_node_derivative_collar_paired_subcell_signed_pair_slack_ratio >
+          0.999
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_paired_subcell_signed_pair_to_direct_abs_loss_factor <
+          2
+      );
+      assert.equal(
+        quarticQuotientWitness
+          .node_derivative_collar_paired_subcell_direct_collapse_locality_status,
+        "positive-n38-paired-subcell-direct-collapse-local-interval-dependency-artifact-candidate"
+      );
+      assert.equal(
+        quarticQuotientWitness
+          .direct_split_residual_derivative_coefficient_replay_status,
+        "positive-n38-direct-split-residual-derivative-coefficient-replay-consistent"
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .direct_split_residual_derivative_coefficient_replay_max_abs_gap <=
+          1
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .direct_split_residual_derivative_coefficient_replay_relative_gap >
+          0
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_paired_subcell_subcell_replay_relative_gap >
+          quarticQuotientWitness
+            .max_node_derivative_collar_paired_subcell_signed_pair_replay_relative_gap
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_paired_subcell_subcell_to_collar_gap_ratio >
+          1
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_paired_subcell_subcell_abs_loss_factor >
+          quarticQuotientWitness
+            .max_node_derivative_collar_paired_subcell_signed_pair_to_direct_abs_loss_factor
+      );
+      assert.equal(
+        quarticQuotientWitness
+          .node_derivative_collar_same_variable_direct_normal_form_candidate_status,
+        "positive-n38-same-variable-direct-normal-form-candidate-inside-headroom"
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .max_node_derivative_collar_same_variable_direct_normal_form_to_target_ratio <
+          quarticQuotientWitness
+            .max_node_derivative_collar_paired_subcell_signed_pair_to_target_ratio
+      );
+      assert.equal(
+        quarticQuotientWitness
+          .node_derivative_collar_same_variable_direct_true_stream_excess_target_status,
+        "positive-n38-same-variable-direct-normal-form-true-stream-excess-target-positive"
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .min_node_derivative_collar_same_variable_direct_true_stream_slack_ratio >
+          0.999999
+      );
+      assert.ok(
+        quarticQuotientWitness
+          .min_node_derivative_collar_same_variable_direct_true_stream_excess_to_directed_ratio >
+          1e6
+      );
+      assert.ok(
+        quarticQuotientWitness.node_derivative_collar_rows.every(
+          (row) =>
+            row.finite_data_limit_kind ===
+              "quartic-removable-node-derivative-collar-target" &&
+            row.removable_quotient_collar_method ===
+              "cauchy-mean-value-theorem" &&
+            row.denominator_guard_status ===
+              "node-collar-lagrange-product-derivative-separated-from-zero" &&
+            row.pprime_zero_exclusion_status ===
+              "pprime-zero-excluded-on-node-collar" &&
+            row.lagrange_product_derivative_abs_lower > 0 &&
+            row.point_expression_sampled_residual_derivative_to_target_ratio <
+              1 &&
+            row.interval_center_drift_sampled_residual_derivative_to_target_ratio <
+              1 &&
+            row.split_stream_sampled_residual_derivative_to_target_ratio <
+              1 &&
+            row.finite_polynomial_residual_derivative_scope ===
+              "five-sample-quartic-minus-four-node-cubic-only" &&
+            row.point_expression_finite_polynomial_residual_derivative_to_target_ratio <
+              1 &&
+            row.interval_center_drift_finite_polynomial_residual_derivative_to_target_ratio <
+              1 &&
+            row.split_stream_finite_polynomial_residual_derivative_to_target_ratio <
+              1 &&
+            row.finite_polynomial_to_sampled_split_stream_ratio >= 1 &&
+            row.directed_finite_polynomial_residual_derivative_scope ===
+              "subpartitioned-outward-interval-evaluation-of-five-sample-quartic-minus-four-node-cubic" &&
+            row.directed_finite_polynomial_subcell_count === 16 &&
+            row.split_stream_directed_finite_polynomial_residual_derivative_to_target_ratio <
+              1 &&
+            row.directed_to_exact_finite_polynomial_split_stream_ratio >= 1 &&
+            Array.isArray(
+              row
+                .source_component_directed_finite_polynomial_residual_derivative_rows
+            ) &&
+            row
+              .source_component_directed_finite_polynomial_residual_derivative_rows
+              .length === 4 &&
+            row.point_expression_component_directed_cancellation_fraction >
+              0 &&
+            row.point_expression_component_directed_replay_relative_gap >
+              0 &&
+            row.point_expression_true_stream_residual_derivative_slack_to_target_ratio >
+              0.99 &&
+            row.interval_center_drift_true_stream_residual_derivative_slack_to_target_ratio >
+              0.99 &&
+            row.split_stream_true_stream_residual_derivative_slack_to_target_ratio >
+              0.99 &&
+            row.true_stream_slack_budget_status ===
+              "positive-n38-quartic-node-derivative-collar-true-stream-slack-positive" &&
+            row.point_expression_true_stream_excess_to_directed_finite_polynomial_ratio >
+              400 &&
+            row.interval_center_drift_true_stream_excess_to_directed_finite_polynomial_ratio >
+              400 &&
+            row.split_stream_true_stream_excess_to_directed_finite_polynomial_ratio >
+              400 &&
+            row.raw_value_width_proxy_policy ===
+              "rejection-only; value-width-over-collar-width is not a derivative certificate" &&
+            row.raw_value_width_proxy_status ===
+              "positive-n38-raw-value-width-proxy-rejected-above-excess-budget" &&
+            row.max_raw_value_width_proxy_to_true_stream_excess_budget_ratio >
+              1e9 &&
+            row.signed_pair_combination_mode ===
+              "point-hull-plus-drift-hull" &&
+            row.signed_pair_directed_finite_polynomial_collar_target_status ===
+              "positive-n38-signed-pair-directed-finite-polynomial-inside-headroom" &&
+            row.signed_pair_directed_finite_polynomial_residual_derivative_to_target_ratio <
+              1e-5 &&
+            row.signed_pair_directed_cancellation_fraction > 0.5 &&
+            row.signed_pair_directed_replay_relative_gap > 0.7 &&
+            row.signed_pair_true_stream_residual_derivative_slack_to_target_ratio >
+              0.99 &&
+            row.paired_subcell_signed_pair_combination_mode ===
+              "same-subcell-point-plus-drift-then-hull" &&
+            row.paired_subcell_signed_pair_directed_finite_polynomial_collar_target_status ===
+              "positive-n38-paired-subcell-signed-pair-directed-finite-polynomial-inside-headroom" &&
+            row.paired_subcell_signed_pair_directed_finite_polynomial_residual_derivative_to_target_ratio <=
+              row
+                .signed_pair_directed_finite_polynomial_residual_derivative_to_target_ratio &&
+            row.paired_subcell_signed_pair_directed_cancellation_fraction >=
+              row.signed_pair_directed_cancellation_fraction &&
+            row.paired_subcell_signed_pair_directed_replay_relative_gap <=
+              row.signed_pair_directed_replay_relative_gap &&
+            row.paired_subcell_signed_pair_directed_to_direct_abs_loss_factor <=
+              row.signed_pair_directed_to_direct_abs_loss_factor &&
+            row.paired_subcell_signed_pair_true_stream_residual_derivative_slack_to_target_ratio >
+              0.999 &&
+            Array.isArray(
+              row
+                .paired_subcell_signed_pair_directed_finite_polynomial_subcell_rows
+            ) &&
+            row
+              .paired_subcell_signed_pair_directed_finite_polynomial_subcell_rows
+              .length === row.directed_finite_polynomial_subcell_count &&
+            row.paired_subcell_signed_pair_direct_inside_paired_interval_all ===
+              true &&
+            row.paired_subcell_signed_pair_paired_inside_direct_interval_all ===
+              false &&
+            row.paired_subcell_signed_pair_gap_localization_status ===
+              "positive-n38-paired-subcell-direct-collapse-local-interval-dependency-artifact-candidate" &&
+            row.paired_subcell_signed_pair_worst_replay_gap_subcell
+              .direct_inside_paired_interval === true &&
+            row.paired_subcell_signed_pair_worst_abs_loss_subcell
+              .direct_inside_paired_interval === true &&
+            row.true_stream_excess_target_status ===
+              "positive-n38-quartic-node-derivative-collar-true-stream-excess-target-positive" &&
+            row.split_stream_collar_target_status ===
+              "positive-n38-quartic-node-derivative-collar-target-inside-sampled-headroom" &&
+            row.finite_polynomial_collar_target_status ===
+              "positive-n38-quartic-node-derivative-collar-finite-polynomial-inside-headroom" &&
+            row.directed_finite_polynomial_collar_target_status ===
+              "positive-n38-quartic-node-derivative-collar-directed-finite-polynomial-inside-headroom" &&
+            row.same_variable_direct_normal_form_candidate_status ===
+              "positive-n38-same-variable-direct-normal-form-candidate-inside-headroom" &&
+            row.same_variable_direct_true_stream_excess_target_status ===
+              "positive-n38-same-variable-direct-normal-form-true-stream-excess-target-positive" &&
+            row.same_variable_direct_true_stream_residual_derivative_slack_to_target_ratio >
+              0.999999 &&
+            row.same_variable_direct_true_stream_excess_to_directed_finite_polynomial_ratio >
+              1e6 &&
+            row.direct_directed_finite_polynomial_residual_derivative_to_target_ratio <=
+              row
+                .paired_subcell_signed_pair_directed_finite_polynomial_residual_derivative_to_target_ratio &&
+            row.continuous_stream_derivative_policy ===
+              "candidate-only until directed-rounded residual-derivative enclosures cover this collar" &&
+            row.direct_stream_policy === "diagnostic-only"
+        )
+      );
       assert.ok(
         quarticQuotientWitness.max_quotient_consistency_relative_gap <=
           quarticQuotientWitness.consistency_tolerance
@@ -4857,6 +5524,350 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
         quarticQuotientWitness.split_triangle_abs_m4_to_ceiling_ratio <= 1
       );
     }
+    const producerImageReplay =
+      derivativeProviderTarget
+        .candidate_producer_image_direct_true_stream_excess_diagnostic;
+    assert.ok(producerImageReplay);
+    assert.deepEqual(
+      collectExactKeys(producerImageReplay, FORBIDDEN_FIXED_SPEED_KEYS),
+      []
+    );
+    assert.equal(
+      producerImageReplay.status,
+      "positive-n38-shared-xi-producer-image-direct-normal-form-diagnostic-open"
+    );
+    assert.equal(
+      producerImageReplay.diagnostic_kind,
+      "candidate-shared-xi-producer-image-direct-normal-form-replay"
+    );
+    assert.equal(producerImageReplay.producer_sample_count, 5);
+    assert.equal(producerImageReplay.matched_producer_sample_count, 4);
+    assert.equal(
+      producerImageReplay.producer_xi_inside_matched_collar_count,
+      0
+    );
+    assert.equal(
+      producerImageReplay.all_producer_xi_samples_inside_node_collars,
+      false
+    );
+    assert.equal(
+      producerImageReplay.all_matched_direct_normal_form_rows_inside_headroom,
+      true
+    );
+    assert.ok(producerImageReplay.max_direct_normal_form_to_target_ratio < 1e-6);
+    assert.ok(producerImageReplay.min_direct_true_stream_slack_ratio > 0.999999);
+    assert.ok(
+      producerImageReplay.min_direct_true_stream_excess_to_directed_ratio >
+        1e6
+    );
+    assert.equal(
+      producerImageReplay.claim_boundary.certifies_n38_taylor_remainder_bound,
+      false
+    );
+    assert.equal(
+      producerImageReplay.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(producerImageReplay.claim_boundary.retained_branch, false);
+    assert.equal(producerImageReplay.rows.length, 5);
+    assert.equal(
+      producerImageReplay.rows.filter(
+        (row) =>
+          row.row_status ===
+          "positive-n38-shared-xi-producer-image-direct-normal-form-row-unmatched"
+      ).length,
+      1
+    );
+    assert.equal(
+      producerImageReplay.rows.filter(
+        (row) =>
+          row.row_status ===
+          "positive-n38-shared-xi-producer-image-direct-normal-form-row-xi-outside-collar"
+      ).length,
+      4
+    );
+    assert.ok(
+      producerImageReplay.rows
+        .filter((row) => row.matched_node_cell_id !== null)
+        .every(
+          (row) =>
+            row.producer_midpoint_inside_matched_collar === true &&
+            row.producer_xi_inside_matched_collar === false &&
+            row.direct_normal_form_to_target_ratio < 1e-6 &&
+            row.direct_true_stream_slack_ratio > 0.999999 &&
+            row.direct_true_stream_excess_to_directed_ratio > 1e6 &&
+            row.true_stream_excess_target_status ===
+              "positive-n38-same-variable-direct-normal-form-true-stream-excess-target-positive" &&
+            row.same_variable_direct_normal_form_candidate_status ===
+              "positive-n38-same-variable-direct-normal-form-candidate-inside-headroom" &&
+            row.direct_stream_policy === "diagnostic-only" &&
+            row.continuous_stream_derivative_policy ===
+              "candidate-only until directed-rounded residual-derivative enclosures cover this collar"
+        )
+    );
+    const producerIntervalReplay =
+      derivativeProviderTarget
+        .candidate_producer_interval_direct_normal_form_replay;
+    assert.ok(producerIntervalReplay);
+    assert.deepEqual(
+      collectExactKeys(producerIntervalReplay, FORBIDDEN_FIXED_SPEED_KEYS),
+      []
+    );
+    assert.equal(
+      producerIntervalReplay.status,
+      "positive-n38-producer-interval-direct-normal-form-diagnostic-denominator-guard-open"
+    );
+    assert.equal(
+      producerIntervalReplay.diagnostic_kind,
+      "candidate-producer-interval-direct-normal-form-replay"
+    );
+    assert.equal(producerIntervalReplay.producer_sample_count, 5);
+    assert.equal(
+      producerIntervalReplay.product_derivative_separated_count,
+      2
+    );
+    assert.equal(producerIntervalReplay.denominator_guard_open_count, 3);
+    assert.equal(
+      producerIntervalReplay.direct_rows_inside_headroom_count,
+      2
+    );
+    assert.deepEqual(producerIntervalReplay.denominator_guard_open_cell_ids, [
+      "speed.0.first-y",
+      "speed.2.first-y",
+      "speed.4.first-y",
+    ]);
+    assert.equal(
+      producerIntervalReplay.all_producer_intervals_product_derivative_separated,
+      false
+    );
+    assert.equal(
+      producerIntervalReplay.all_guarded_direct_rows_inside_headroom,
+      true
+    );
+    assert.ok(
+      producerIntervalReplay.max_guarded_direct_normal_form_to_target_ratio <
+        1e-6
+    );
+    assert.ok(
+      producerIntervalReplay.min_guarded_product_derivative_abs_lower > 0
+    );
+    assert.ok(
+      producerIntervalReplay.min_guarded_direct_true_stream_slack_ratio >
+        0.999999
+    );
+    assert.ok(
+      producerIntervalReplay
+        .min_guarded_direct_true_stream_excess_to_directed_ratio > 1e6
+    );
+    assert.equal(
+      producerIntervalReplay.claim_boundary.certifies_n38_taylor_remainder_bound,
+      false
+    );
+    assert.equal(
+      producerIntervalReplay.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(producerIntervalReplay.claim_boundary.retained_branch, false);
+    assert.equal(producerIntervalReplay.rows.length, 5);
+    assert.equal(
+      producerIntervalReplay.rows.filter(
+        (row) =>
+          row.row_status ===
+          "positive-n38-producer-interval-direct-normal-form-row-denominator-guard-open"
+      ).length,
+      3
+    );
+    assert.equal(
+      producerIntervalReplay.rows.filter(
+        (row) =>
+          row.row_status ===
+          "positive-n38-producer-interval-direct-normal-form-row-inside-headroom"
+      ).length,
+      2
+    );
+    assert.ok(
+      producerIntervalReplay.rows
+        .filter(
+          (row) =>
+            row.row_status ===
+            "positive-n38-producer-interval-direct-normal-form-row-inside-headroom"
+        )
+        .every(
+          (row) =>
+            row.denominator_guard_status ===
+              "producer-interval-lagrange-product-derivative-separated-from-zero" &&
+            row.product_derivative_abs_lower > 0 &&
+            row.direct_normal_form_to_target_ratio < 1e-6 &&
+            row.direct_true_stream_slack_ratio > 0.999999 &&
+            row.direct_true_stream_excess_to_directed_ratio > 1e6 &&
+            row.direct_stream_policy === "diagnostic-only" &&
+            row.continuous_stream_derivative_policy ===
+              "candidate-only until directed-rounded residual-derivative enclosures cover this producer interval"
+        )
+    );
+    assert.ok(
+      producerIntervalReplay.rows
+        .filter(
+          (row) =>
+            row.row_status ===
+            "positive-n38-producer-interval-direct-normal-form-row-denominator-guard-open"
+        )
+        .every(
+          (row) =>
+            row.denominator_guard_status ===
+              "producer-interval-lagrange-product-derivative-crosses-zero-or-open" &&
+            row.product_derivative_abs_lower === 0 &&
+            row.direct_normal_form_to_target_ratio === null &&
+            row.direct_true_stream_excess_to_directed_ratio === null
+        )
+    );
+    const producerHybridReplay =
+      derivativeProviderTarget
+        .candidate_producer_hybrid_quotient_direct_replay;
+    assert.ok(producerHybridReplay);
+    assert.deepEqual(
+      collectExactKeys(producerHybridReplay, FORBIDDEN_FIXED_SPEED_KEYS),
+      []
+    );
+    assert.equal(
+      producerHybridReplay.status,
+      "positive-n38-producer-hybrid-quotient-direct-replay-candidate-emitted"
+    );
+    assert.equal(
+      producerHybridReplay.diagnostic_kind,
+      "candidate-producer-hybrid-quotient-direct-replay"
+    );
+    assert.equal(producerHybridReplay.producer_sample_count, 5);
+    assert.equal(producerHybridReplay.segment_count, 9);
+    assert.equal(producerHybridReplay.product_quotient_segment_count, 5);
+    assert.equal(producerHybridReplay.derivative_quotient_segment_count, 4);
+    assert.equal(producerHybridReplay.segment_inside_count, 9);
+    assert.equal(producerHybridReplay.all_segments_inside_headroom, true);
+    assert.deepEqual(producerHybridReplay.open_segment_cell_ids, []);
+    assert.ok(producerHybridReplay.max_segment_to_target_ratio < 1e-6);
+    assert.ok(producerHybridReplay.min_segment_denominator_abs_lower > 0);
+    assert.ok(producerHybridReplay.min_segment_slack_ratio > 0.999999);
+    assert.ok(producerHybridReplay.min_segment_excess_to_directed_ratio > 1e6);
+    assert.equal(
+      producerHybridReplay.claim_boundary.certifies_n38_taylor_remainder_bound,
+      false
+    );
+    assert.equal(
+      producerHybridReplay.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(producerHybridReplay.claim_boundary.retained_branch, false);
+    assert.equal(producerHybridReplay.rows.length, 5);
+    assert.ok(
+      producerHybridReplay.rows.every(
+        (row) =>
+          row.row_status ===
+            "positive-n38-producer-hybrid-quotient-direct-row-inside-headroom" &&
+          row.hybrid_segment_rows.length >= 1 &&
+          row.hybrid_segment_rows.every(
+            (segment) =>
+              [
+                "derivative-quotient-full-producer-interval",
+                "derivative-quotient-selected-node-collar",
+                "product-quotient-producer-complement",
+              ].includes(segment.quotient_kind) &&
+              segment.segment_status ===
+                "positive-n38-producer-hybrid-quotient-direct-segment-inside-headroom" &&
+              segment.denominator_abs_lower > 0 &&
+              segment.split_stream_required_direct_normal_form_abs_upper >
+                0 &&
+              segment.direct_normal_form_to_target_ratio < 1e-6 &&
+              segment.direct_true_stream_slack_ratio > 0.999999 &&
+              segment.direct_true_stream_excess_to_directed_ratio > 1e6 &&
+              segment.direct_stream_policy === "diagnostic-only"
+          ) &&
+          row.direct_stream_policy === "diagnostic-only" &&
+          row.continuous_stream_derivative_policy ===
+            "candidate-only until directed-rounded residual enclosures cover this hybrid producer partition"
+      )
+    );
+    const producerHybridTrueStreamBudget =
+      derivativeProviderTarget
+        .candidate_producer_hybrid_true_stream_excess_budget;
+    assert.ok(producerHybridTrueStreamBudget);
+    assert.deepEqual(
+      collectExactKeys(
+        producerHybridTrueStreamBudget,
+        FORBIDDEN_FIXED_SPEED_KEYS
+      ),
+      []
+    );
+    assert.equal(
+      producerHybridTrueStreamBudget.status,
+      "positive-n38-producer-hybrid-true-stream-excess-budget-candidate-emitted"
+    );
+    assert.equal(
+      producerHybridTrueStreamBudget.diagnostic_kind,
+      "candidate-producer-hybrid-true-stream-excess-budget"
+    );
+    assert.equal(producerHybridTrueStreamBudget.segment_count, 9);
+    assert.equal(producerHybridTrueStreamBudget.residual_segment_count, 5);
+    assert.equal(
+      producerHybridTrueStreamBudget.residual_derivative_segment_count,
+      4
+    );
+    assert.equal(
+      producerHybridTrueStreamBudget.positive_budget_segment_count,
+      9
+    );
+    assert.equal(
+      producerHybridTrueStreamBudget
+        .all_segments_have_positive_true_stream_excess_budget,
+      true
+    );
+    assert.ok(
+      producerHybridTrueStreamBudget.max_finite_model_to_target_ratio < 1e-6
+    );
+    assert.ok(
+      producerHybridTrueStreamBudget.min_true_stream_slack_ratio > 0.999999
+    );
+    assert.ok(
+      producerHybridTrueStreamBudget
+        .min_true_stream_excess_to_directed_ratio > 1e6
+    );
+    assert.ok(
+      producerHybridTrueStreamBudget.min_true_stream_excess_abs_budget > 0
+    );
+    assert.equal(
+      producerHybridTrueStreamBudget.claim_boundary
+        .certifies_n38_taylor_remainder_bound,
+      false
+    );
+    assert.equal(
+      producerHybridTrueStreamBudget.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
+    );
+    assert.equal(
+      producerHybridTrueStreamBudget.claim_boundary.retained_branch,
+      false
+    );
+    assert.equal(producerHybridTrueStreamBudget.segment_rows.length, 9);
+    assert.ok(producerHybridTrueStreamBudget.controlling_segment);
+    assert.ok(
+      producerHybridTrueStreamBudget.segment_rows.every(
+        (segment) =>
+          [
+            "same-variable-direct-residual",
+            "same-variable-direct-residual-derivative",
+          ].includes(segment.proof_object_kind) &&
+          segment.budget_status ===
+            "positive-n38-producer-hybrid-true-stream-excess-segment-budget-positive" &&
+          segment.true_stream_excess_abs_budget > 0 &&
+          segment.true_stream_slack_ratio > 0.999999 &&
+          segment.true_stream_excess_to_directed_ratio > 1e6 &&
+          segment.true_stream_excess_policy ===
+            "candidate budget only; no true-stream enclosure is certified"
+      )
+    );
   }
   assert.equal(
     diagnostic.source_covariance_positive_n38_cubic_taylor_remainder_route
@@ -5260,6 +6271,36 @@ test("h39 h38 y44 split M4 refinement ladder keeps sampled claims noncertifying"
       .all_quartic_quotient_node_limit_proxy_rows_inside_provider_target,
     true
   );
+  assert.equal(
+    diagnostic
+      .all_quartic_quotient_node_derivative_limit_rows_inside_provider_target,
+    true
+  );
+  assert.equal(
+    diagnostic
+      .all_quartic_quotient_node_derivative_collar_targets_inside_sampled_headroom,
+    true
+  );
+  assert.equal(
+    diagnostic
+      .all_quartic_quotient_node_derivative_collar_finite_polynomial_rows_inside_headroom,
+    true
+  );
+  assert.equal(
+    diagnostic
+      .all_quartic_quotient_node_derivative_collar_directed_finite_polynomial_rows_inside_headroom,
+    true
+  );
+  assert.equal(
+    diagnostic
+      .all_quartic_quotient_node_derivative_collar_true_stream_slack_rows_positive,
+    true
+  );
+  assert.equal(
+    diagnostic
+      .all_quartic_quotient_node_derivative_collar_true_stream_excess_target_rows_positive,
+    true
+  );
   assert.ok(diagnostic.quartic_quotient_inside_row_count >= 0);
   assert.equal(
     diagnostic.quartic_quotient_inside_row_count,
@@ -5269,9 +6310,82 @@ test("h39 h38 y44 split M4 refinement ladder keeps sampled claims noncertifying"
     diagnostic.quartic_quotient_node_limit_proxy_inside_row_count,
     diagnostic.sampled_ladder_rows.length
   );
+  assert.equal(
+    diagnostic.quartic_quotient_node_derivative_limit_inside_row_count,
+    diagnostic.sampled_ladder_rows.length
+  );
+  assert.equal(
+    diagnostic.quartic_quotient_node_derivative_collar_inside_row_count,
+    diagnostic.sampled_ladder_rows.length
+  );
+  assert.equal(
+    diagnostic
+      .quartic_quotient_node_derivative_collar_finite_polynomial_inside_row_count,
+    diagnostic.sampled_ladder_rows.length
+  );
+  assert.equal(
+    diagnostic
+      .quartic_quotient_node_derivative_collar_directed_finite_polynomial_inside_row_count,
+    diagnostic.sampled_ladder_rows.length
+  );
+  assert.equal(
+    diagnostic
+      .quartic_quotient_node_derivative_collar_true_stream_slack_positive_row_count,
+    diagnostic.sampled_ladder_rows.length
+  );
+  assert.equal(
+    diagnostic
+      .quartic_quotient_node_derivative_collar_true_stream_excess_target_positive_row_count,
+    diagnostic.sampled_ladder_rows.length
+  );
   assert.ok(
     diagnostic.max_quartic_quotient_split_stream_consistency_relative_gap <=
       1e-6
+  );
+  assert.ok(
+    diagnostic
+      .max_quartic_quotient_node_derivative_limit_split_stream_relative_gap <=
+      1e-6
+  );
+  assert.ok(
+    diagnostic
+      .min_quartic_quotient_node_derivative_collar_product_derivative_abs_lower >
+      0
+  );
+  assert.ok(
+    diagnostic
+      .max_quartic_quotient_node_derivative_collar_split_stream_sampled_ratio <
+      1
+  );
+  assert.ok(
+    diagnostic
+      .max_quartic_quotient_node_derivative_collar_finite_polynomial_split_stream_ratio <
+      1
+  );
+  assert.ok(
+    diagnostic
+      .max_quartic_quotient_node_derivative_collar_finite_polynomial_to_sampled_split_ratio >=
+      1
+  );
+  assert.ok(
+    diagnostic
+      .max_quartic_quotient_node_derivative_collar_directed_finite_polynomial_split_stream_ratio <
+      1
+  );
+  assert.ok(
+    diagnostic
+      .max_quartic_quotient_node_derivative_collar_directed_to_exact_finite_polynomial_split_ratio >=
+      1
+  );
+  assert.ok(
+    diagnostic
+      .min_quartic_quotient_node_derivative_collar_true_stream_slack_ratio >
+      0.99
+  );
+  assert.ok(
+    diagnostic
+      .min_quartic_quotient_node_derivative_collar_true_stream_excess_to_directed_ratio >
+      400
   );
   assert.ok(
     diagnostic.max_quartic_quotient_split_triangle_abs_m4_to_ceiling_ratio <
@@ -5309,12 +6423,79 @@ test("h39 h38 y44 split M4 refinement ladder keeps sampled claims noncertifying"
         row.quartic_quotient_node_limit_proxy_row_count === 4
     )
   );
+  assert.ok(
+    diagnostic.sampled_ladder_rows.every(
+      (row) =>
+        row.quartic_quotient_node_derivative_limit_status ===
+          "positive-n38-quartic-node-derivative-limit-inside-provider-target" &&
+        row.quartic_quotient_node_derivative_limit_row_count === 4
+    )
+  );
+  assert.ok(
+    diagnostic.sampled_ladder_rows.every(
+      (row) =>
+        row.quartic_quotient_node_derivative_collar_target_status ===
+          "positive-n38-quartic-node-derivative-collar-target-inside-sampled-headroom" &&
+        row.quartic_quotient_node_derivative_collar_row_count === 4 &&
+        row.quartic_quotient_min_node_derivative_collar_product_derivative_abs_lower >
+          0 &&
+        row.quartic_quotient_max_node_derivative_collar_split_stream_sampled_ratio <
+          1 &&
+        row.quartic_quotient_node_derivative_collar_finite_polynomial_status ===
+          "positive-n38-quartic-node-derivative-collar-finite-polynomial-inside-headroom" &&
+        row.quartic_quotient_max_node_derivative_collar_finite_polynomial_split_stream_ratio <
+          1 &&
+        row.quartic_quotient_max_node_derivative_collar_finite_polynomial_to_sampled_split_ratio >=
+          1 &&
+        row.quartic_quotient_node_derivative_collar_directed_finite_polynomial_status ===
+          "positive-n38-quartic-node-derivative-collar-directed-finite-polynomial-inside-headroom" &&
+        row.quartic_quotient_max_node_derivative_collar_directed_finite_polynomial_split_stream_ratio <
+          1 &&
+        row.quartic_quotient_max_node_derivative_collar_directed_to_exact_finite_polynomial_split_ratio >=
+          1 &&
+        row.quartic_quotient_node_derivative_collar_true_stream_slack_budget_status ===
+          "positive-n38-quartic-node-derivative-collar-true-stream-slack-positive" &&
+        row.quartic_quotient_min_node_derivative_collar_true_stream_slack_ratio >
+          0.99 &&
+        row.quartic_quotient_node_derivative_collar_true_stream_excess_target_status ===
+          "positive-n38-quartic-node-derivative-collar-true-stream-excess-target-positive" &&
+        row.quartic_quotient_min_node_derivative_collar_true_stream_excess_to_directed_ratio >
+          400
+    )
+  );
   assert.equal(
     typeof diagnostic.quotient_refinement_interpretation,
     "string"
   );
   assert.equal(
     typeof diagnostic.node_limit_proxy_interpretation,
+    "string"
+  );
+  assert.equal(
+    typeof diagnostic.node_derivative_limit_interpretation,
+    "string"
+  );
+  assert.equal(
+    typeof diagnostic.node_derivative_collar_interpretation,
+    "string"
+  );
+  assert.equal(
+    typeof diagnostic.node_derivative_collar_finite_polynomial_interpretation,
+    "string"
+  );
+  assert.equal(
+    typeof diagnostic
+      .node_derivative_collar_directed_finite_polynomial_interpretation,
+    "string"
+  );
+  assert.equal(
+    typeof diagnostic
+      .node_derivative_collar_true_stream_slack_budget_interpretation,
+    "string"
+  );
+  assert.equal(
+    typeof diagnostic
+      .node_derivative_collar_true_stream_excess_target_interpretation,
     "string"
   );
 });

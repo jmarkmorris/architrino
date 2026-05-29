@@ -469,6 +469,208 @@ kept `diagnostic-only`. The remaining certificate is therefore a
 directed-rounded repeated-node quotient limit for the split streams, not another
 raw product-crossing interval division.
 
+The node-limit route now has an executable derivative replay. At each selected
+node $\xi_i$, the diagnostic evaluates
+$24R'_{\text{stream}}(\xi_i)/P'(\xi_i)$ for
+$R_{\text{stream}}=F_{\text{stream}}-p_{3,\text{stream}}$ and
+$P(\xi)=\prod_j(\xi-\xi_j)$. On the live `speed.28.first-y` row, all four
+node derivative-limit rows are inside the split-stream provider target, with
+maximum split-stream replay gap $6.3052830038510166\times10^{-12}$ and maximum
+diagnostic direct replay gap $3.809093258764788\times10^{-12}$. This leaves a
+specific continuous certificate target: directed-rounded repeated-node
+derivative bounds for $R'_{\text{point}}/P'$ and
+$R'_{\text{drift}}/P'$ on the same selected $\xi$ window.
+
+That target is now localized to node collars. The live diagnostic chooses a
+same-domain collar around each selected $\xi_i$, keeps the collar inside the
+selected sample interval and away from neighboring selected nodes, computes the
+polynomial range of $P'(\xi)$ there, and translates the split $M_4$ ceilings
+into residual-derivative headroom by Cauchy's mean value theorem:
+$\sup |R'_{\text{stream}}| \le M_{4,\text{stream}}\inf |P'|/24$. On
+`speed.28.first-y`, all four collars exclude zeros of $P'$, with minimum
+$\inf |P'|=0.007691910678268243$ and maximum split-stream sampled
+residual-derivative ratio $3.9153923295599704\times10^{-4}$. The result is
+still candidate-only because the residual-derivative suprema are sampled, not
+directed-rounded continuous enclosures.
+
+The same collar target now ranges the finite-polynomial residual derivative on
+the whole collar. It builds $F_{4,\text{stream}}$ from all five samples,
+$p_{3,\text{stream}}$ from the selected Lagrange nodes, and evaluates the
+polynomial range of
+$R'_{4,\text{stream}}=(F_{4,\text{stream}}-p_{3,\text{stream}})'$ on each
+collar. On the live `speed.28.first-y` row, all four collars remain inside the
+split-stream headroom with maximum finite-polynomial split ratio
+$7.526334680718182\times10^{-4}$. The largest whole-collar-to-node-sampled
+ratio is $1.9222427913281492$, so the route now tests an actual collar
+supremum rather than only a node derivative. It remains candidate-only until a
+directed-rounded true-stream derivative enclosure replaces the finite
+interpolation model.
+
+The finite-polynomial collar target now also has a subpartitioned outward
+interval replay. The diagnostic evaluates
+$R'_{4,\text{stream}}=(F_{4,\text{stream}}-p_{3,\text{stream}})'$ on 16
+same-domain collar subcells using outward interval Horner arithmetic. On the
+live `speed.28.first-y` row, all four selected-node collars remain inside
+split-stream headroom, with maximum directed finite-polynomial split ratio
+$0.002339647678303848$. The largest directed-to-exact finite-polynomial ratio
+is $8.720511848333576$, so this is a stricter interval enclosure of the
+finite interpolation model, not yet a directed-rounded true-stream derivative
+certificate.
+
+The replay now also reports how much true-stream derivative error can fit
+inside that collar headroom. After the directed finite-polynomial enclosure is
+charged against the point-expression, interval-center drift, and split-stream
+targets, every selected-node collar retains positive slack. The minimum
+slack-to-target ratio is $0.9976603523210646$ on `speed.31.first-y`. The
+remaining proof task is therefore sharply quantitative: construct a
+same-domain directed-rounded true-stream residual-derivative enclosure whose
+excess over the finite interpolation model stays below this slack budget.
+
+That slack is now exposed as a collar-wise true-stream excess target. The
+diagnostic records the allowed excess over the directed finite-polynomial
+model for the point-expression, interval-center drift, and split streams, and
+the live row keeps all four selected-node collars positive. The limiting
+excess-to-directed finite-polynomial ratio is $426.41478086780194$ on
+`speed.31.first-y`. This is still a candidate-only budget surface, not a
+directed-rounded true-stream derivative certificate; its value is that the
+next certificate now has a precise same-domain inequality to prove rather than
+an open-ended headroom search.
+
+The next provider probe rules out two noncertifying shortcuts. Replaying
+independent source-component interval hulls over each selected-node collar
+does not preserve enough covariance: the live component cancellation fraction
+falls to $0.04668187334189089$ and the worst point-expression replay relative
+gap is $0.4537493235929499$. A raw value-width-over-collar-width proxy is even
+less usable, with worst proxy-to-excess-budget ratio
+$2.042964124275476\times10^9$. These rows sharpen the route: the directed
+certificate cannot be assembled from independent component hulls or raw value
+widths; it has to evaluate the signed source normal form, with point/drift
+dependence preserved, on the same collar.
+
+The signed point/drift collar provider probe now gives that route an
+executable finite-polynomial target. On each selected-node collar it adds the
+directed point-expression residual-derivative interval to the directed
+interval-center drift residual-derivative interval before taking the absolute
+upper bound. On the focused H39/y44 fixture, every collar is inside headroom:
+maximum signed-pair-to-target ratio
+$7.050251213504737\times10^{-6}$, minimum signed-pair cancellation fraction
+$0.5584485102554677$, and minimum signed-pair slack ratio
+$0.9999929497487865$. The direct stream remains diagnostic-only because the
+signed-pair interval can differ from the direct interval with replay gap
+$0.8958585907160469$ and absolute-hull loss factor $9.602328095428067$.
+Therefore the next proof should not collapse point plus drift prematurely; it
+should build the directed-rounded same-domain provider for the signed
+point/drift pair and only then replay the direct cancellation.
+
+The paired-subcell signed provider sharpens the same finite-polynomial target
+by keeping point and drift paired one collar subcell longer. Instead of adding
+the global point-expression hull to the global interval-center drift hull, it
+adds the two directed intervals on each matching subcell and hulls those
+subcell sums. On the focused H39/y44 fixture, this lowers the maximum
+signed-pair-to-target ratio to $1.2493112588664224\times10^{-6}$, raises the
+minimum cancellation fraction to $0.9213461827518983$, and raises the minimum
+slack ratio to $0.9999987506887411$. It also lowers the direct replay gap to
+$0.4845136658732542$ and the worst absolute-hull loss factor to
+$1.7104681714917842$. The status remains candidate-only: this proves that the
+global-hull replay was partly a bounding-coordinate artifact, but the remaining
+gap is still a true same-subcell dependency-preservation problem for the
+directed-rounded provider.
+
+The direct-collapse locality trace identifies that dependency more precisely.
+For every collar subcell it now records the point interval, drift interval,
+paired point-plus-drift interval, and direct interval. The live status is
+`positive-n38-paired-subcell-direct-collapse-local-interval-dependency-artifact-candidate`.
+Every direct subcell interval is contained in the paired interval, but the
+paired interval is wider because point and drift are still evaluated as
+separate interval functions of the same $\xi$. The worst local replay gap is
+$0.6495457279983037$, the worst local-to-collar gap ratio is
+$1.575428979698578$, and the worst local direct loss factor is
+$2.853439132657084$. The direct split derivative coefficients replay to
+maximum absolute gap $0.25$, so the obstruction is not a missing
+finite-polynomial direct identity at the current numerical scale. The next
+certificate route should evaluate the shared-$\xi$ point/drift normal form as
+one dependency-preserving object before applying absolute bounds.
+
+The candidate same-variable direct normal form now performs that finite
+polynomial replay. Instead of evaluating point and drift as two interval
+functions and then adding their hulls, it evaluates the direct point-plus-drift
+residual derivative as one shared-$\xi$ object on the same directed subcells.
+On the focused H39/y44 fixture it stays inside headroom with status
+`positive-n38-same-variable-direct-normal-form-candidate-inside-headroom` and
+lowers the maximum derivative-target ratio from the paired-subcell value
+$1.2493112588664224\times10^{-6}$ to
+$7.342231140809408\times10^{-7}$. This is still candidate-only, but it
+identifies the mathematical route sharply: certify the same shared-$\xi$
+direct replay with directed rounding on the H38 producer image, then feed that
+provider through the H39 shifted-source replay.
+
+The same direct replay now carries an explicit true-stream excess budget. On
+the selected-node collars the status is
+`positive-n38-same-variable-direct-normal-form-true-stream-excess-target-positive`,
+with minimum slack-to-target ratio $0.999999265776886$ and minimum
+excess-to-directed finite-polynomial ratio
+$1.3619828177551026\times10^6$. A shared-$\xi$ producer-image replay then
+tests this finite-polynomial normal form against the H38 producer coordinate
+profile. It is open in the intended way: all four matched selected-node rows
+retain direct headroom with maximum target ratio
+$7.342231140809408\times10^{-7}$, but no full producer $\xi$ interval is
+contained in the current matched collar and the omitted center sample is
+unmatched. The next executable proof step is therefore to extend or partition
+the shared-$\xi$ producer-image support, not to search for another
+finite-polynomial cancellation on the already matched rows.
+
+The producer-interval replay now makes that support burden explicit. It
+replays the same finite-polynomial direct residual derivative on each actual
+H38 producer $\xi$ interval and recomputes the Lagrange-product derivative
+guard on that interval. Its status is
+`positive-n38-producer-interval-direct-normal-form-diagnostic-denominator-guard-open`.
+On the guarded rows `speed.1.first-y` and `speed.3.first-y`, the direct
+normal form remains small: maximum guarded target ratio
+$5.425381767312044\times10^{-7}$, minimum product-derivative lower bound
+$0.7692446997498641$, minimum slack ratio $0.9999994574618234$, and minimum
+excess-to-directed ratio $1.843187263773447\times10^6$. The open rows are
+`speed.0.first-y`, `speed.2.first-y`, and `speed.4.first-y`, where the full
+producer interval crosses a zero of the Lagrange-product derivative. This
+turns the next proof step into a concrete support problem: partition the
+producer image at product-derivative zero crossings, or replace the
+repeated-node quotient coordinate by a local coordinate that keeps the
+denominator separated before applying the same direct normal form.
+
+The hybrid quotient replay implements that support refinement at the
+finite-polynomial candidate level. It keeps the repeated-node derivative
+quotient on producer pieces where $P'(\xi)$ is separated and uses the product
+quotient on complementary producer pieces where $P(\xi)$ is separated. The
+live H38 producer image is covered by nine segments: five product-quotient
+segments and four derivative-quotient segments. Every segment remains inside
+headroom, with maximum segment ratio $7.342231140809408\times10^{-7}$, minimum
+denominator lower bound $0.7692446997498641$, minimum slack ratio
+$0.999999265776886$, and minimum excess-to-directed ratio
+$1.3619828177551026\times10^6$. The result is not a directed-rounded
+true-stream certificate, but it changes the obstruction: the open full-interval
+rows were a quotient-coordinate denominator artifact at finite-polynomial
+level. The next certificate must reproduce this same hybrid producer partition
+with directed-rounded residual and residual-derivative enclosures before
+dependency-preserving $S_{37}$ division and signed H39 shifted-source replay.
+
+The provider target now records that certificate burden as a segment-wise
+true-stream excess budget. On the same nine-segment hybrid partition, the five
+product-quotient complement segments are labeled as same-variable direct
+residual enclosure obligations, and the four derivative-quotient segments are
+labeled as same-variable direct residual-derivative enclosure obligations. All
+nine segments have positive finite-polynomial slack for a future true-stream
+enclosure, with maximum finite-model ratio
+$7.342231140809408\times10^{-7}$, minimum slack ratio
+$0.999999265776886$, and minimum excess-to-directed ratio
+$1.3619828177551026\times10^6$. The controlling segment is
+`speed.4.first-y`, the selected-node-collar derivative quotient on
+$\xi\in[1.3999104057263942,1.7998848073625069]$; it leaves absolute
+true-stream excess budget $1.921420936834246\times10^{14}$ after the
+directed finite-polynomial normal form is charged. This remains a candidate
+budget surface: it does not enclose the directed-rounded true stream, but it
+turns the next proof into explicit same-domain inequalities on the already
+working hybrid producer partition instead of another search over quotient
+coordinates.
+
 The refinement ladder now carries the quotient witness, and it exposed a
 useful split-stream correction. On the live `[32,64]` ladder, both rows stay
 inside the split-stream provider target on the same local Lagrange pattern
