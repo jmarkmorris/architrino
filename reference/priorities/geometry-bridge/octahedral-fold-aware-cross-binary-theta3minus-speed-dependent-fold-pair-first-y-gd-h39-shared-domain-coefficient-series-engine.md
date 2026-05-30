@@ -880,6 +880,105 @@ directed-rounded component-plus-drift producer-image provider with provenance,
 dependency witness, continuous same-domain remainder bounds, and a connection
 to shifted $R_{\varepsilon,43}$ replay.
 
+The provider boundary has now been made executable at candidate level. The
+H39/y44 h38-coordinate source replay emits
+`candidate_component_drift_source_provider_contract`, with provider kind
+`candidate-polynomial-h-row-graph-component-plus-drift-source-provider`. On the
+focused fixture the contract is `candidate-ready`: all five product segments
+are inside the component-plus-drift/direct-graph target and all five remain
+inside after candidate $S_{37}$ division; the worst component-drift gap and
+solved gap are both below $10^{-3}$ of target. The contract also records the
+source component graph coefficients, interval-center drift coefficients,
+dependency trace, and dependency witness. Its shifted replay readiness remains
+open by construction: it exports a source normal form, not concrete
+dependency-preserving H39 `hIntervals`, so `can_enter_shifted_replay=false`,
+`h_row_provider_backed_replay=false`, and the shifted
+$R_{\varepsilon,43}$, directed-rounded, $S_{37}$-certificate, and retained
+branch claim flags all remain false. The next true proof object is therefore
+not another candidate source decomposition; it is a dependency-preserving
+h-row or producer-image provider that realizes this source normal form as
+same-domain `hIntervals` before shifted replay.
+
+The replay now tests that realization boundary directly. It compares the
+component-plus-drift source graph with the current full residual-vector h-row
+provider and emits a h-row realization diagnosis. On the focused fixture, every
+product segment misses because the full residual-vector source does not carry
+the interval-center drift stream; the worst segment is `speed.4.first-y`,
+segment `1`, with
+$3.2095222369744145\times$ target gap from the full residual-vector source to
+the component-plus-drift source. By contrast, the component-plus-drift gap and
+candidate $S_{37}$-divided gap stay below $10^{-3}$ of target. The obstruction
+is therefore localized: shifted replay is blocked by the missing
+dependency-preserving realization of the interval-center drift source
+coordinate as h-row or producer-image data, not by source-component graph
+coefficients, direct-graph alignment, or $S_{37}$ division.
+
+The next probe supplies a positive candidate lift rather than another
+negative obstruction. The replay now evaluates selected residual-coordinate
+point-Jacobian source lifts against the same component-plus-drift graph. On
+the focused fixture, the best lift on every product segment is the
+`h36-source-coordinate-lift`; the needed normalized coordinate is only about
+$9.7\times10^{-9}$ in magnitude, and the worst solved source/component-drift
+gap is $6.895497413452774\times10^{-4}$ of target. The h38-only direction is
+singular in this point probe, so the positive direction is not the already
+isolated predecessor coordinate; it is a nearby producer-image h-row
+coordinate that can absorb the interval-center drift stream. A finite collar
+probe makes the target sharper: every product segment remains inside target
+for a $10^{-9}$ h36-coordinate collar around the solved lift coordinate, while
+the controlling segment opens at $2\times10^{-9}$. The claim remains
+candidate-only, but the proof route has sharpened: certify a same-domain
+directed-rounded h36-centered drift-coordinate lift and export it through the
+H39 h-row provider boundary before shifted $R_{\varepsilon,43}$ replay.
+
+The h36 collar has now been converted into the smallest provider-boundary
+bridge that is honest about its limits. Each product segment's largest inside
+h36 collar is replayed as a provider-shaped branch input with concrete
+`hIntervals`, dependency trace, dependency witness, and candidate-only h-row
+claim boundary. On the focused fixture all five product segments emit the
+`candidate-component-drift-h36-coordinate-lift-collar-provider`; the minimum
+selected collar half width is $10^{-9}$ and the worst h36 collar source gap is
+$0.8871269825989422\times$ target. The segment-local shifted-pressure replay is
+also executable, with maximum pressure about
+$6.809004947674311\times10^{21}$. The key distinction is that this is still not
+the shared-domain evaluator's full h-row provider path: it is active-branch and
+segment-local, so the component-drift contract deliberately keeps
+`dependency_preserving_h_row_provider_present=false`,
+`can_enter_shifted_replay=false`, and `h_row_provider_backed_replay=false`.
+Thus the next closure step is not another source normal form; it is a
+directed-rounded two-branch producer-image provider that carries the h36
+collars through `branchInputsFromH38Row` without losing same-domain provenance.
+
+The provider-inlet blocker is now decomposed rather than implicit. The H39
+diagnostic exports `candidate_component_drift_h36_provider_inlet_report`,
+which records that the active branch has all five segment-local h36 payloads
+but the row-level two-branch provider is still open. The new branch-pair
+readiness probe runs the same focused fixture on both branches and returns
+`positive-n38-component-drift-h36-provider-branch-pair-segment-local-ready-row-provider-open`:
+both `-` and `+` branches emit five h36 provider-shaped segment payloads, with
+worst source gap $0.8871269825989422\times$ target and minimum collar
+$10^{-9}$. This means the h36 coordinate lift is not merely a retained-branch
+accident. The remaining proof obligation is a directed-rounded H38
+producer-image enclosure that packages those two segment-local branch families
+as the concrete h-row provider object consumed by `branchInputsFromH38Row`;
+until then the contract correctly keeps `dependency_preserving_h_row_provider_present=false`.
+The inlet report also records a naive single-row hull forecast over the
+segment-local h36/h38/solve-slope summaries. That forecast is candidate-only
+and not provider-backed; it exists to measure the dependency loss before any
+attempt to replace the segment-wise producer-image relation with one
+independent row box.
+
+The provider-shape obstruction has now been separated from the producer-image
+obstruction. The branch-pair readiness probe exports nested h36 provider
+snapshots and aligns them by product-segment key. All five matched two-branch
+segment rows are accepted by the predecessor h-row provider-boundary checker
+as `dependency-preserving-provider-present`. This is still not H39 closure:
+the accepted rows are synthetic segment-local boundary objects, not full H38
+producer-image rows with cell intervals that can enter
+`buildH39SharedDomainCoefficientArtifact`. The next mathematical certificate
+must therefore prove a directed-rounded row-level H38 producer-image provider;
+it no longer needs to discover the h36 coordinate direction or repair provider
+metadata.
+
 The refinement ladder now carries the quotient witness, and it exposed a
 useful split-stream correction. On the live `[32,64]` ladder, both rows stay
 inside the split-stream provider target on the same local Lagrange pattern
@@ -2964,3 +3063,224 @@ about $4.8\times10^9$. The sharper statement is that the inherited h-row
 widths, not the live cell variables or inherited slope interval, are the
 dominant source. The engine still does not claim a retained branch, scaled
 remainder, $I_1$, quadrature, or full first-y closure.
+
+The h36 provider inlet now reaches the actual coefficient artifact at
+segment-local candidate level. The H39/y44 branch-pair readiness diagnostic
+adds H38 cell intervals to the nested h36 provider snapshots, aligns the
+`-` and `+` snapshots by product-segment key, and feeds the five synthetic
+two-branch segment rows through
+\texttt{buildH39SharedDomainCoefficientArtifact}. The replay is
+provider-backed for all five cells and all ten branch rows, and the artifact
+summary reports `dependency-preserving-provider-backed-replay`. At outer
+radius $0.001$, the remaining shifted-prefix pressure is
+$3.7305089254880956\times10^{24}$, with the dominant unreduced contribution at
+shifted index `0`, $y$-order $43$, coefficient absolute upper
+$3.723699920558467\times10^{24}$ on `speed.0.first-y:segment-1`. The
+center-eliminated interval form rises to $6.861746423307076\times10^{45}$,
+which is itself diagnostic: independent interval products destroy the
+correlation among the affine center quantities $C_k$, $S_k$, $C_0$, and
+$S_0$. Thus the next coefficient-engine closure route is a correlation-
+preserving affine center normal form or certified subdivision for those four
+quantities, followed by the same row-level directed-rounded H38 producer-image
+upgrade. This packet remains priority-only and candidate-only; it does not
+certify the shifted $R_{\varepsilon,43}$ outer bound or any continuous
+primitive.
+
+The next replay adds the missing correlation and sensitivity decomposition.
+The segment-local artifact now surfaces the affine-center shifted-prefix
+summary, leading-zero counts, row-correlation probe, and dominant-row h-row
+sensitivity probe. On the same five matched synthetic segment rows, symbolic
+affine-center replay zero-certifies all ten leading rows and reduces the
+maximum shifted-prefix pressure from
+$3.7305089254880956\times10^{24}$ to
+$6.809004947674311\times10^{21}$, while the independent center-eliminated
+interval form remains the rejected artifact at
+$6.861746423307076\times10^{45}$. The row-correlation probe emits all ten
+rows; its all-input midpoint replay lowers the maximum to
+$5.310303269330753\times10^{12}$, so the full-center interval bound is about
+$1.2822336555092587\times10^9$ wider than the correlated midpoint replay. The
+dominant term is `sin_delta` on `speed.0.first-y:segment-2`, branch `-`,
+shifted index `1`, $y$-order $44$.
+
+The h-row sensitivity result is the actionable normal-form direction. For the
+dominant row, h-row midpoint replay gives
+$5.310280365218674\times10^{12}$, almost the full all-input midpoint gain,
+whereas cell-midpoint and solve-slope-midpoint replays reduce the row by only
+factors $1.000000215966408$ and $1.000000046193894$. The suffix scan reports
+that the final successor h-row alone gives reduction
+$1.1125169135697098\times10^9$ and the top twelve successor rows give
+$1.282223971704711\times10^9$. Thus the current coefficient-engine blocker is
+not raw shifted prefix depth, branch asymmetry, or provider metadata; it is a
+directed-rounded dependency certificate for inherited successor h-row
+transport, preferably starting with a suffix certificate for the
+`sin_delta`-dominated row before widening to full $h_0,\ldots,h_{38}$
+transport.
+
+The suffix target is now a concrete three-row transport problem. The h-row
+sensitivity helper now emits `h_row_suffix_width_compression_summary`, which
+compares selected successor suffixes under the same shifted index, radius, and
+series order. On the live segment-local dominant row, h38 alone at zero width
+gives pressure $6.120360836426657\times10^{12}$ and captures about
+$86.76417138044193\%$ of the full h-row midpoint reduction. The h36-through-h38
+suffix gives $5.310416865556751\times10^{12}$ and captures about
+$99.99742957395751\%$; the top twelve successor rows only improve that to
+$99.99946883695403\%$. The coefficient-engine blocker has therefore narrowed
+from "transport the inherited h-row box" to "certify the h36-through-h38
+successor suffix, with h38-only as the one-row comparison." This remains a
+candidate diagnostic until a directed-rounded producer-image enclosure proves
+the suffix compression on the same domain.
+
+The terminal affine-zeta endpoint replay gives a parallel consistency check.
+The post-zeta provider path already compares preserved-H38 endpoints with an
+H38-included endpoint policy. On the focused probe, H38-included endpoint
+replay lowers the worst endpoint pressure by about
+$9.59691834474703\times$, while the source-isolation diagnosis remains
+`preserved-h38-row-dominates-after-terminal-zeta`. This supports the same
+mathematical direction but does not replace it: endpoint replay is
+provider-backed for scalar zeta endpoints, whereas H39 closure still requires
+a directed-rounded successor-suffix enclosure for the live h36-through-h38
+dependency before applying the shifted $R_{\varepsilon,43}$ Cauchy bound.
+
+The scalar endpoint provider boundary now exercises that H38-included policy
+through the full coefficient artifact. The terminal affine-zeta provider replay
+can run `includeH38EndpointProvider=true`, which sends both the preserved-H38
+endpoint provider and the candidate H38-included endpoint provider through
+`buildH39SharedDomainCoefficientArtifact` at the same shifted index, radius,
+series order, and row limit. In the focused row-limited probe, preserved-H38
+endpoint replay has worst pressure $3.819087178670516\times10^{24}$, while the
+H38-included endpoint replay has worst pressure
+$8.92454128278921\times10^{22}$, a $42.79309218990947\times$ reduction with
+all endpoint replays provider-backed. The claim remains endpoint-only and
+candidate-only because no continuous shared-zeta or full-cover suffix
+enclosure has been proven.
+
+The same endpoint-provider diagnostic now accepts explicit successor suffix
+h-index sets and emits provider-backed summaries for each suffix. This turns
+the h36-through-h38 idea into an executable suffix sweep rather than a single
+hand-selected replay. The exact minimal probe is guarded by a fixture: with
+\texttt{terminalHIndexes=[37,36]} and
+\texttt{includeH38EndpointProvider=true}, the H38-included terminal set is
+exactly \texttt{[36,37,38]}; the validator rejects leakage by checking the
+H38-included set against the sorted union of the requested terminal rows with
+h38. The diagnostic now also records a transition summary for each suffix,
+including the dominant shifted index, dominant source term, marginal pressure
+drop, and the zeta-degree bound. On the row-limited provider sweep,
+h31-through-h38 has worst pressure
+$2.758931393108097\times10^{21}$, reduction
+$1429.2583270355638\times$, and is still shifted-$0$
+\texttt{sin\_phi} dominated. Adding h30 gives h30-through-h38 pressure
+$1.6124917378978755\times10^{21}$, reduction
+$2445.423796378741\times$, and changes the dominant endpoint pressure to
+shifted-$1$ \texttt{sin\_delta}. The h27-through-h38 suffix then reaches
+$9.394749241084401\times10^{20}$, reduction
+$4197.265478971341\times$. The h20-through-h38 suffix is still scalar-endpoint
+legal at $y^{44}$: its first possible two-terminal residual product is at
+$y^{46}$, and the row-limited replay reaches
+$8.924217291257199\times10^{20}$, reduction
+$4418.567520966396\times$, near the exploratory full h0-through-h38 suffix
+at about $4458.421575751787\times$. The degree guard is therefore favorable
+through h20: h30-through-h38 has two-factor onset at $y^{66}$ against the
+live $y^{44}$ source row, and h20-through-h38 has onset at $y^{46}$, so the
+shared residual coordinate remains affine and scalar endpoint hulls are the
+right candidate normal form through that suffix. The next lower suffix,
+h19-through-h38, is the exact endpoint-method boundary at this order because
+its first two-terminal residual product occurs at $y^{44}$, so scalar endpoint
+control is no longer justified by the affine zeta degree gap. The mathematical conclusion
+is now four-tiered: h36-through-h38 is the smallest valid provider-boundary
+target, h30-through-h38 is the first source-shape transition,
+h27-through-h38 is the practical near-plateau checkpoint, and h20-through-h38
+is the deepest tested affine-endpoint floor. The coefficient-engine route
+should therefore build a directed-rounded inherited-chain suffix covariance
+provider across this h30/h20 transition zone, with h27 as the intermediate
+checkpoint, before any shifted $R_{\varepsilon,43}$ certificate can be
+promoted. The executable route is now captured by
+\texttt{buildH39SuccessorSuffixTransitionCertificateRouteCandidate}, which
+reuses the provider-backed endpoint replay and remains candidate-only until a
+coupled directed-rounded producer-image enclosure replaces scalar endpoint
+sampling.
+
+The latest coefficient-envelope refinement sharpens that route: the diagnostic
+now tracks the requested shifted-$1$, $y^{44}$ coefficient separately from the
+endpoint-wise maximum shifted-prefix pressure. This is necessary because
+h30-through-h38, h27-through-h38, and h20-through-h38 exhibit source-shape
+transitions where the endpoint-wise dominant shifted target can change. The
+requested $y^{44}$ coefficient is still affine in the shared residual coordinate
+through h20, so it remains an endpoint-envelope candidate, but h20 adds a second
+boundary: inside the requested coefficient itself the dominant term changes from
+\texttt{sin\_delta} at the endpoints to \texttt{sin\_phi} at the midpoint. The
+certificate route therefore cannot certify the maximum first and infer the row;
+it must certify the fixed shifted index and $y$-order, then handle term
+decomposition, and only afterward take absolute or maximum Cauchy majorants. This
+refinement is not a shifted $R_{\varepsilon,43}$ certificate; it identifies the
+normal form that the coupled directed-rounded $\xi,\zeta$ producer-image
+enclosure must preserve.
+
+The route now adds a requested-coefficient $\xi,\zeta$ row-interval cover at the
+h20-through-h38 affine floor. With the same five contiguous comparison $\xi$
+intervals and two residual-coordinate slices, the diagnostic records that the
+row intervals cover the comparison $\xi$ hull, so the result is not merely a
+midpoint-stencil sample. Each interval row covers the fixed requested shifted-$1$,
+$y^{44}$ coefficient before endpoint maximum pressure is taken, and each row
+shows the same requested-coefficient term switch. The worst requested
+endpoint-hull pressure is nearly $\xi$-flat, with row-interval spread below
+$1.001$, so the remaining obstruction is not a localized speed-cell spike. It is
+the structural residual-direction wall: the $\zeta$ endpoints are
+\texttt{sin\_delta} dominated while the midpoint is \texttt{sin\_phi} dominated
+and much smaller. The next certificate target is therefore a directed-rounded
+$\xi,\zeta$ producer-image enclosure for this same row-interval cover and fixed
+requested coefficient, not a deeper search for a better scalar endpoint row.
+
+The requested-coefficient route now also exposes a signed source-term normal
+form for that fixed shifted-$1$, $y^{44}$ coefficient. For each $\zeta$ endpoint
+replay it records the requested source coefficient, the four source-term
+coefficient intervals, the term triangle, the source-to-triangle ratio, and the
+dominant term before any maximum over shifted coefficients is taken. On the live
+h20-through-h38 affine floor, the source terms reconstruct the requested source
+coefficient with maximum relative gap about $4.98\times10^{-12}$. This confirms
+that the term switch is structural rather than a reporting artifact:
+$\zeta=-1$ is \texttt{sin\_delta} dominated while the shared midpoint
+$\zeta=0$ is \texttt{sin\_phi} dominated. It also limits the hoped-for shortcut:
+the minimum source cancellation fraction on the row-interval cover is only about
+$2.67\times10^{-2}$, and the largest term-triangle-to-source gain is about
+$1.83$. Preserving signed terms is necessary, but the closure route still needs
+a directed-rounded H38 producer-image enclosure for the coupled $\xi,\zeta$
+source geometry before absolute Cauchy bounds are applied.
+
+The same requested-coefficient scan now emits an explicit residual-direction
+profile for the h20 affine floor. Each row deduplicates the adjacent $\zeta$
+partition boundary and records the requested-source pressure at
+$\zeta=-1,0,1$, the dominant term at each point, the endpoint-to-midpoint
+pressure ratio, and the duplicate-boundary relative gap. On the live first row,
+the outer endpoints are \texttt{sin\_delta} dominated with requested-source
+pressure about $8.84\times10^{20}$, while the shared midpoint is
+\texttt{sin\_phi} dominated with pressure about $1.35\times10^{15}$. The maximum
+endpoint-to-midpoint ratio across the row-interval cover is about
+$6.57\times10^5$, and the duplicate boundary gap is zero. Since the requested
+$y^{44}$ coefficient is affine in the shared residual coordinate through h20,
+this rules out finer $\zeta$ partitioning as the closure lever. The executable
+next proof object is a directed-rounded H38 producer-image residual enclosure
+that shrinks or correlates the endpoint residual image before the H39 shifted
+source replay takes absolute Cauchy bounds.
+
+The profile now also emits a normalized residual-radius budget. It computes the
+midpoint coefficient bound, the unit residual-coordinate slope bound, and the
+half-width scale at which the slope contribution would match the midpoint
+contribution. On the live first row at $\rho=10^{-3}$, the unit slope contributes
+about $8.84\times10^{20}$ of requested-source pressure while the midpoint bound
+is about $1.35\times10^{15}$, so the midpoint-matching residual half-width is
+about $1.52\times10^{-6}$. Across the row-interval cover, the full normalized
+residual radius is about $6.57\times10^5$ too large for midpoint-scale endpoint
+control. The next H38 producer-image certificate therefore has a numerical
+target: directed-rounded residual narrowing or correlation at roughly the
+$10^{-6}$ normalized scale before the H39 source replay applies absolute Cauchy
+majorants.
+
+The executable comparison against the H38 producer residual-coordinate profile
+now localizes that target. On the focused H39/y44 fixture, the producer midpoint
+hull lies inside the requested residual budget, but the producer interval hull
+is still the full normalized interval $[-1,1]$. The gap is therefore not a
+miscentered producer image; it is interval dependency loss. The current
+same-domain producer image must be narrowed or carried as a correlated object by
+about $6.57\times10^5$ before the requested shifted source can be absolutized.
+This keeps the next route concrete: certify the H38 producer-image residual
+correlation, then replay it through the H39 requested-source budget.

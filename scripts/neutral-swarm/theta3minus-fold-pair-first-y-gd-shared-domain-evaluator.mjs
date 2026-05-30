@@ -5397,6 +5397,19 @@ function scaleIntervalsAboutMidpoints(intervals, widthScale) {
   );
 }
 
+function scaleSuffixIntervalsAboutMidpoints({
+  intervals,
+  widthScale,
+  startIndex,
+  endIndex,
+}) {
+  return intervals.map((interval, index) =>
+    index >= startIndex && index <= endIndex
+      ? scaleIntervalAboutMidpoint(interval, widthScale)
+      : interval
+  );
+}
+
 function sumPressure(entries) {
   return entries.reduce(
     (sum, entry) => sum + Number(entry.pressure_contribution),
@@ -5910,6 +5923,8 @@ export function computeH39AffineCenterHRowSensitivityDiagnosticCandidate({
   shiftedIndex = 1,
   hFreezeStartIndexes = null,
   hRowWidthCompressionFactors = null,
+  hRowSuffixWidthCompressionStartIndexes = null,
+  hRowSuffixWidthCompressionFactors = null,
   targetPressure = null,
 } = {}) {
   const resolvedOuterRadius = assertFinitePositiveNumber(
@@ -6184,26 +6199,59 @@ export function computeH39AffineCenterHRowSensitivityDiagnosticCandidate({
       : null,
     threshold_crossings: hRowTransportDepthThresholdRatios,
   };
+  const hRowFullChainCaptureThresholds = [0.5, 0.75, 0.9, 0.99].map(
+    (fraction) => {
+      const requiredRatio =
+        Number(fullChainReduction ?? 0) > 0
+          ? Number(fullChainReduction) * fraction
+          : null;
+      const firstReplay =
+        requiredRatio === null
+          ? null
+          : hRowFreezeReplays.find(
+              (replay) =>
+                Number(replay.full_to_pressure_ratio ?? 0) >= requiredRatio
+            ) ?? null;
+      return {
+        target_full_chain_capture_fraction: fraction,
+        required_full_to_pressure_ratio: requiredRatio,
+        first_freeze_start_index: firstReplay?.freeze_start_index ?? null,
+        transported_h_row_count: firstReplay
+          ? freezeEndIndex - firstReplay.freeze_start_index + 1
+          : null,
+        pressure: firstReplay?.pressure ?? null,
+        full_to_pressure_ratio: firstReplay?.full_to_pressure_ratio ?? null,
+        achieved_full_chain_capture_fraction:
+          firstReplay !== null && Number(fullChainReduction ?? 0) > 0
+            ? Number(firstReplay.full_to_pressure_ratio) /
+              Number(fullChainReduction)
+            : null,
+      };
+    }
+  );
+  hRowTransportDepthSummary.full_chain_capture_thresholds =
+    hRowFullChainCaptureThresholds;
   const defaultCompressionFactors = [1, 0.5, 0.25, 0.125, 0.0625, 0];
-  const resolvedCompressionFactors = [
+  const normalizeCompressionFactors = (factors) => [
     ...new Set(
-      (hRowWidthCompressionFactors ?? defaultCompressionFactors).map(
-        (factor) => {
-          const resolvedFactor = Number(factor);
-          if (
-            !Number.isFinite(resolvedFactor) ||
-            resolvedFactor < 0 ||
-            resolvedFactor > 1
-          ) {
-            throw new Error(
-              "hRowWidthCompressionFactors must contain finite values in [0,1]"
-            );
-          }
-          return resolvedFactor;
+      factors.map((factor) => {
+        const resolvedFactor = Number(factor);
+        if (
+          !Number.isFinite(resolvedFactor) ||
+          resolvedFactor < 0 ||
+          resolvedFactor > 1
+        ) {
+          throw new Error(
+            "h-row width compression factors must be finite values in [0,1]"
+          );
         }
-      )
+        return resolvedFactor;
+      })
     ),
   ];
+  const resolvedCompressionFactors = normalizeCompressionFactors(
+    hRowWidthCompressionFactors ?? defaultCompressionFactors
+  );
   const hRowWidthCompressionReplays = resolvedCompressionFactors.map(
     (factor) => {
       const compressedHIntervals = scaleIntervalsAboutMidpoints(
@@ -6227,6 +6275,170 @@ export function computeH39AffineCenterHRowSensitivityDiagnosticCandidate({
       : hRowWidthCompressionReplays.find(
           (replay) => Number(replay.pressure) <= resolvedTargetPressure
         ) ?? null;
+  const defaultSuffixCompressionStartIndexes = [
+    hIntervals.length - 1,
+    Math.max(0, hIntervals.length - 3),
+    Math.max(0, hIntervals.length - 4),
+    topTwelveSuffixStartIndex,
+    0,
+  ];
+  const resolvedSuffixCompressionStartIndexes = [
+    ...new Set(
+      (
+        hRowSuffixWidthCompressionStartIndexes ??
+        defaultSuffixCompressionStartIndexes
+      ).map((index) => {
+        const resolvedIndex = Number(index);
+        if (
+          !Number.isInteger(resolvedIndex) ||
+          resolvedIndex < 0 ||
+          resolvedIndex >= hIntervals.length
+        ) {
+          throw new Error(
+            "hRowSuffixWidthCompressionStartIndexes must contain valid h-row indexes"
+          );
+        }
+        return resolvedIndex;
+      })
+    ),
+  ].sort((left, right) => right - left);
+  const resolvedSuffixCompressionFactors = normalizeCompressionFactors(
+    hRowSuffixWidthCompressionFactors ??
+      hRowWidthCompressionFactors ??
+      defaultCompressionFactors
+  );
+  const hRowSuffixWidthCompressionReplays =
+    resolvedSuffixCompressionStartIndexes.flatMap((startIndex) =>
+      resolvedSuffixCompressionFactors.map((factor) => {
+        const compressedHIntervals = scaleSuffixIntervalsAboutMidpoints({
+          intervals: hIntervals,
+          widthScale: factor,
+          startIndex,
+          endIndex: freezeEndIndex,
+        });
+        return {
+          ...withRatio(
+            replayForInputs({
+              inputFamily: `suffix-h${startIndex}-through-h${freezeEndIndex}-width-compression-${factor}`,
+              replayCell: cell,
+              replayHIntervals: compressedHIntervals,
+              replaySolveSlopeInterval: solveSlopeInterval,
+              changedInputs: ["h-row-suffix-width"],
+              freezeStartIndex: startIndex,
+              freezeEndIndex,
+            })
+          ),
+          width_compression_factor: factor,
+          transported_h_row_count: freezeEndIndex - startIndex + 1,
+        };
+      })
+    );
+  const suffixCompressionReplayFor = ({ startIndex, factor }) =>
+    hRowSuffixWidthCompressionReplays.find(
+      (replay) =>
+        replay.freeze_start_index === startIndex &&
+        replay.width_compression_factor === factor
+    ) ?? null;
+  const lastSuccessorZeroWidthCompressionReplay =
+    suffixCompressionReplayFor({
+      startIndex: hIntervals.length - 1,
+      factor: 0,
+    });
+  const topTwelveZeroWidthCompressionReplay =
+    suffixCompressionReplayFor({
+      startIndex: topTwelveSuffixStartIndex,
+      factor: 0,
+    });
+  const fullChainZeroWidthCompressionReplay =
+    suffixCompressionReplayFor({ startIndex: 0, factor: 0 });
+  const zeroWidthCompressionReplays =
+    hRowSuffixWidthCompressionReplays.filter(
+      (replay) => replay.width_compression_factor === 0
+    );
+  const suffixCompressionMeetsTarget =
+    resolvedTargetPressure === null
+      ? []
+      : hRowSuffixWidthCompressionReplays.filter(
+          (replay) => Number(replay.pressure) <= resolvedTargetPressure
+        );
+  const firstSuffixWidthCompressionMeetingTarget =
+    suffixCompressionMeetsTarget.length === 0
+      ? null
+      : [...suffixCompressionMeetsTarget].sort((left, right) => {
+          const countDelta =
+            left.transported_h_row_count - right.transported_h_row_count;
+          if (countDelta !== 0) {
+            return countDelta;
+          }
+          return (
+            right.width_compression_factor - left.width_compression_factor
+          );
+        })[0];
+  const fullChainZeroReduction =
+    fullChainZeroWidthCompressionReplay?.full_to_pressure_ratio ?? null;
+  const suffixWidthCompressionCaptureThresholds = [0.5, 0.75, 0.9, 0.99].map(
+    (fraction) => {
+      const requiredRatio =
+        Number(fullChainZeroReduction ?? 0) > 0
+          ? Number(fullChainZeroReduction) * fraction
+          : null;
+      const firstReplay =
+        requiredRatio === null
+          ? null
+          : zeroWidthCompressionReplays.find(
+              (replay) =>
+                Number(replay.full_to_pressure_ratio ?? 0) >= requiredRatio
+            ) ?? null;
+      return {
+        target_full_chain_capture_fraction: fraction,
+        required_full_to_pressure_ratio: requiredRatio,
+        first_freeze_start_index: firstReplay?.freeze_start_index ?? null,
+        transported_h_row_count: firstReplay?.transported_h_row_count ?? null,
+        width_compression_factor:
+          firstReplay?.width_compression_factor ?? null,
+        pressure: firstReplay?.pressure ?? null,
+        full_to_pressure_ratio: firstReplay?.full_to_pressure_ratio ?? null,
+        achieved_full_chain_capture_fraction:
+          firstReplay !== null && Number(fullChainZeroReduction ?? 0) > 0
+            ? Number(firstReplay.full_to_pressure_ratio) /
+              Number(fullChainZeroReduction)
+            : null,
+      };
+    }
+  );
+  const hRowSuffixWidthCompressionSummary = {
+    tested_suffix_start_indexes: resolvedSuffixCompressionStartIndexes,
+    width_compression_factors: resolvedSuffixCompressionFactors,
+    replay_count: hRowSuffixWidthCompressionReplays.length,
+    last_successor_zero_width_pressure:
+      lastSuccessorZeroWidthCompressionReplay?.pressure ?? null,
+    last_successor_zero_width_reduction_factor:
+      lastSuccessorZeroWidthCompressionReplay?.full_to_pressure_ratio ?? null,
+    last_successor_zero_width_full_chain_capture_fraction:
+      lastSuccessorZeroWidthCompressionReplay !== null &&
+      Number(fullChainZeroReduction ?? 0) > 0
+        ? Number(lastSuccessorZeroWidthCompressionReplay.full_to_pressure_ratio) /
+          Number(fullChainZeroReduction)
+        : null,
+    top_twelve_zero_width_pressure:
+      topTwelveZeroWidthCompressionReplay?.pressure ?? null,
+    top_twelve_zero_width_reduction_factor:
+      topTwelveZeroWidthCompressionReplay?.full_to_pressure_ratio ?? null,
+    top_twelve_zero_width_full_chain_capture_fraction:
+      topTwelveZeroWidthCompressionReplay !== null &&
+      Number(fullChainZeroReduction ?? 0) > 0
+        ? Number(topTwelveZeroWidthCompressionReplay.full_to_pressure_ratio) /
+          Number(fullChainZeroReduction)
+        : null,
+    full_chain_zero_width_pressure:
+      fullChainZeroWidthCompressionReplay?.pressure ?? null,
+    full_chain_zero_width_reduction_factor: fullChainZeroReduction,
+    capture_thresholds: suffixWidthCompressionCaptureThresholds,
+    first_suffix_width_compression_meeting_target:
+      firstSuffixWidthCompressionMeetingTarget,
+    candidate_certificate_route:
+      "Use this suffix-width compression table to choose the narrowest successor h-row transport theorem to certify with directed-rounded dependency intervals; midpoint or compression replay is still diagnostic until a producer-image transport enclosure proves the width reduction on the same domain.",
+  };
 
   return {
     schema: THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_SHARED_DOMAIN_EVALUATOR_SCHEMA,
@@ -6253,6 +6465,10 @@ export function computeH39AffineCenterHRowSensitivityDiagnosticCandidate({
     target_pressure: resolvedTargetPressure,
     first_h_row_width_compression_meeting_target:
       firstHRowWidthCompressionMeetingTarget,
+    h_row_suffix_width_compression_replays:
+      hRowSuffixWidthCompressionReplays,
+    h_row_suffix_width_compression_summary:
+      hRowSuffixWidthCompressionSummary,
     h_row_midpoint_reduction_factor: hRowReduction,
     cell_midpoint_reduction_factor: cellReduction,
     slope_midpoint_reduction_factor: slopeReduction,
@@ -8720,6 +8936,25 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
               .leading_centered_coefficient_contains_zero,
           dominant_unreduced_shifted_pressure:
             dominantShiftedPressure.dominant_unreduced_shifted_pressure,
+          requested_unreduced_shifted_pressure:
+            dominantShiftedPressure.shifted_coefficient_pressures?.find(
+              (pressure) =>
+                pressure.shifted_index ===
+                dominantShiftedPressure.shifted_order
+            ) ?? null,
+          dominant_unreduced_shifted_term_decomposition:
+            dominantShiftedPressure.term_pressure_by_coefficient?.find(
+              (termPressure) =>
+                termPressure.shifted_index ===
+                dominantShiftedPressure.dominant_unreduced_shifted_pressure
+                  ?.shifted_index
+            ) ?? null,
+          requested_unreduced_shifted_term_decomposition:
+            dominantShiftedPressure.term_pressure_by_coefficient?.find(
+              (termPressure) =>
+                termPressure.shifted_index ===
+                dominantShiftedPressure.shifted_order
+            ) ?? null,
         }
       : null,
     max_R43_center_eliminated_shifted_prefix_pressure_outer_radius:

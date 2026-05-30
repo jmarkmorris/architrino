@@ -22,6 +22,7 @@ import {
   buildH39H38ExpressionN38TaylorBudgetDiagnosticCandidate,
   buildH39AffineHRowGraphSubdivisionDiagnosticCandidate,
   buildH39OneNoiseAffineHRowTransportDiagnosticCandidate,
+  buildH39SuccessorSuffixTransitionCertificateRouteCandidate,
   buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnosticCandidate,
   buildH39PostZetaPressureSourceIsolationDiagnosticCandidate,
   buildH39H38Y44CoefficientDependenceDiagnosticCandidate,
@@ -51,6 +52,7 @@ import {
   validateH39H38ExpressionN38TaylorBudgetDiagnostic,
   validateH39AffineHRowGraphSubdivisionDiagnostic,
   validateH39OneNoiseAffineHRowTransportDiagnostic,
+  validateH39SuccessorSuffixTransitionCertificateRouteCandidate,
   validateH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic,
   validateH39PostZetaPressureSourceIsolationDiagnostic,
   validateH39H38Y44CoefficientDependenceDiagnostic,
@@ -58,6 +60,7 @@ import {
   validateH39H38Y44SourceCovarianceDiagnostic,
   validateH39H38Y44SourceCovarianceSplitM4RefinementLadder,
   validateH39H38Y44SignedAffineTargetEnvelopeDiagnostic,
+  validateH39RequestedY44ProducerImageBudgetComparison,
   validateH39PolynomialHRowGraphIntervalResidualDiagnostic,
   validateH39PolynomialHRowGraphResidualDiagnostic,
   validateH39RecurrenceRefinedSubcoverPressureDiagnostic,
@@ -1407,6 +1410,17 @@ test("h39 affine-center h-row sensitivity diagnostic isolates inherited h-row wi
     diagnostic.h_row_midpoint_reduction_factor
   );
   assert.equal(
+    diagnostic.h_row_transport_depth_summary
+      .full_chain_capture_thresholds.length,
+    4
+  );
+  assert.equal(
+    diagnostic.h_row_transport_depth_summary
+      .full_chain_capture_thresholds.at(-1)
+      .target_full_chain_capture_fraction,
+    0.99
+  );
+  assert.equal(
     diagnostic.h_row_transport_depth_summary.best_freeze_start_index,
     diagnostic.best_h_row_freeze_replay.freeze_start_index
   );
@@ -1453,6 +1467,62 @@ test("h39 affine-center h-row sensitivity diagnostic isolates inherited h-row wi
   );
   assert.equal(
     diagnostic.first_h_row_width_compression_meeting_target,
+    null
+  );
+  assert.deepEqual(
+    diagnostic.h_row_suffix_width_compression_summary
+      .tested_suffix_start_indexes,
+    [38, 36, 35, 27, 0]
+  );
+  assert.deepEqual(
+    diagnostic.h_row_suffix_width_compression_summary
+      .width_compression_factors,
+    [1, 0.5, 0.25, 0.125, 0.0625, 0]
+  );
+  assert.equal(
+    diagnostic.h_row_suffix_width_compression_replays.length,
+    30
+  );
+  assert.equal(
+    diagnostic.h_row_suffix_width_compression_replays[0].input_family,
+    "suffix-h38-through-h38-width-compression-1"
+  );
+  assert.equal(
+    diagnostic.h_row_suffix_width_compression_replays.at(-1).input_family,
+    "suffix-h0-through-h38-width-compression-0"
+  );
+  numberClose(
+    diagnostic.h_row_suffix_width_compression_summary
+      .full_chain_zero_width_pressure,
+    diagnostic.input_family_replays.find(
+      (replay) => replay.input_family === "h-row-midpoint"
+    ).pressure
+  );
+  assert.ok(
+    diagnostic.h_row_suffix_width_compression_summary
+      .last_successor_zero_width_reduction_factor > 0
+  );
+  assert.ok(
+    diagnostic.h_row_suffix_width_compression_summary
+      .top_twelve_zero_width_full_chain_capture_fraction > 0
+  );
+  assert.ok(
+    diagnostic.h_row_suffix_width_compression_summary
+      .top_twelve_zero_width_full_chain_capture_fraction <= 1
+  );
+  assert.equal(
+    diagnostic.h_row_suffix_width_compression_summary
+      .capture_thresholds.length,
+    4
+  );
+  assert.equal(
+    diagnostic.h_row_suffix_width_compression_summary
+      .capture_thresholds.at(-1).target_full_chain_capture_fraction,
+    0.99
+  );
+  assert.equal(
+    diagnostic.h_row_suffix_width_compression_summary
+      .first_suffix_width_compression_meeting_target,
     null
   );
   assert.equal(diagnostic.certifies_shifted_R43_outer_bound, false);
@@ -3749,6 +3819,21 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       terminalHIndexes: [37, 36, 35],
       residualCoordinatePartitionCount: 2,
       endpointReplayRowLimit: 1,
+      includeH38EndpointProvider: true,
+      successorSuffixEndpointProviderHIndexSets: [
+        [38],
+        [37, 38],
+        [36, 37, 38],
+        [35, 36, 37, 38],
+        [31, 32, 33, 34, 35, 36, 37, 38],
+        [30, 31, 32, 33, 34, 35, 36, 37, 38],
+        [27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38],
+        [
+          20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
+          33, 34, 35, 36, 37, 38,
+        ],
+      ],
+      requestedCoefficientXiZetaScanSuffixStartIndexes: [20],
       outerRadius: 0.001,
       shiftedIndex: 1,
       seriesOrder: 60,
@@ -3775,6 +3860,11 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     diagnostic.h38_solve_target_policy,
     "preserved-H39-predecessor-row"
   );
+  assert.equal(diagnostic.include_h38_endpoint_provider, true);
+  assert.equal(
+    diagnostic.h38_included_h38_solve_target_policy,
+    "candidate-H38-predecessor-row-affine-zeta-endpoint"
+  );
   assert.equal(
     diagnostic.provider_shape_interpretation
       .existing_h_row_provider_accepts_shared_zeta_endpoint,
@@ -3799,13 +3889,412 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .all_endpoint_replays_provider_backed,
     true
   );
+  assert.equal(
+    diagnostic.h38_included_endpoint_provider_replay_summary
+      .endpoint_replay_count,
+    4
+  );
+  assert.equal(
+    diagnostic.h38_included_endpoint_provider_replay_summary
+      .all_endpoint_replays_provider_backed,
+    true
+  );
+  assert.deepEqual(
+    diagnostic.h38_included_endpoint_provider_replay_summary
+      .h38_included_terminal_h_indexes,
+    [35, 36, 37, 38]
+  );
+  assert.ok(
+    diagnostic.h38_included_endpoint_provider_replay_summary
+      .preserved_h38_to_h38_included_max_pressure_ratio > 0
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_replay_summaries.length,
+    8
+  );
+  assert.deepEqual(
+    diagnostic.successor_suffix_endpoint_provider_replay_summaries.map(
+      (summary) => summary.successor_suffix_h_indexes
+    ),
+    [
+      [38],
+      [37, 38],
+      [36, 37, 38],
+      [35, 36, 37, 38],
+      [31, 32, 33, 34, 35, 36, 37, 38],
+      [30, 31, 32, 33, 34, 35, 36, 37, 38],
+      [27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38],
+      [
+        20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
+        33, 34, 35, 36, 37, 38,
+      ],
+    ]
+  );
+  diagnostic.successor_suffix_endpoint_provider_replay_summaries.forEach(
+    (summary) => {
+      assert.equal(summary.endpoint_replay_count, 4);
+      assert.equal(summary.all_endpoint_replays_provider_backed, true);
+      assert.equal(
+        summary.provider_kind,
+        "candidate-successor-suffix-shared-residual-affine-zeta-endpoint-provider"
+      );
+      assert.equal(
+        summary.successor_suffix_zeta_degree_bound
+          .affine_in_shared_residual_coordinate,
+        true
+      );
+      assert.ok(
+        summary.max_endpoint_shifted_prefix_pressure_outer_radius > 0
+      );
+      assert.ok(
+        summary.preserved_h38_to_successor_suffix_max_pressure_ratio > 0
+      );
+      assert.ok(
+        summary.dominant_endpoint_shifted_prefix_pressure
+          .dominant_R43_shifted_prefix_pressure
+          .dominant_unreduced_shifted_term_decomposition.dominant_term
+      );
+    }
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .sweep_count,
+    8
+  );
+  assert.deepEqual(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .first_dominant_shifted_index_transition.added_h_indexes,
+    [30]
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .sweep_entries.find((entry) => entry.suffix_start_index === 30)
+      .affine_in_shared_residual_coordinate,
+    true
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .first_dominant_shifted_index_transition.to_suffix_start_index,
+    30
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .first_dominant_shifted_index_transition.previous_dominant_shifted_index,
+    0
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .first_dominant_shifted_index_transition.next_dominant_shifted_index,
+    1
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .first_dominant_term_transition.next_dominant_term,
+    "sin_delta"
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .first_source_shape_transition.to_suffix_start_index,
+    30
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .first_source_shape_transition_entry.dominant_term,
+    "sin_delta"
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .deepest_tested_affine_suffix_entry.suffix_start_index,
+    20
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .deepest_tested_affine_suffix_entry.two_terminal_factor_min_y_order,
+    46
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .transition_to_affine_floor_certificate_target
+      .source_shape_transition_suffix_start_index,
+    30
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .transition_to_affine_floor_certificate_target
+      .deepest_tested_affine_suffix_start_index,
+    20
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .transition_to_affine_floor_certificate_target.affine_y_order_gap,
+    2
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .transition_to_affine_floor_certificate_target
+      .next_lower_suffix_start_index,
+    19
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .transition_to_affine_floor_certificate_target
+      .next_lower_suffix_affine_in_shared_residual_coordinate,
+    false
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .transition_to_affine_floor_certificate_target
+      .next_lower_suffix_two_terminal_factor_min_y_order,
+    44
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .transition_to_affine_floor_certificate_target
+      .source_shape_stable_after_first_transition,
+    true
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_coefficient_envelope_summaries
+      .length,
+    8
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_coefficient_envelope_summaries
+      .find((summary) => summary.suffix_start_index === 30)
+      .any_partition_dominant_target_switch_detected,
+    true
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_coefficient_envelope_summaries
+      .find((summary) => summary.suffix_start_index === 20)
+      .all_partitions_candidate_cover_requested_shifted_zeta_slice,
+    true
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_coefficient_envelope_summaries
+      .find((summary) => summary.suffix_start_index === 20)
+      .any_requested_shifted_dominant_term_switch_detected,
+    true
+  );
+  assert.ok(
+    diagnostic.successor_suffix_endpoint_coefficient_envelope_summaries
+      .find((summary) => summary.suffix_start_index === 20)
+      .requested_shifted_endpoint_hull_to_endpoint_replay_pressure_ratio > 0
+  );
+  assert.equal(
+    diagnostic.comparison_xi_interval_cover.interval_count,
+    diagnostic.comparison_row_count
+  );
+  assert.deepEqual(
+    diagnostic.comparison_xi_interval_cover.target_interval,
+    diagnostic.comparison_xi_interval_hull
+  );
+  assert.deepEqual(
+    diagnostic.comparison_xi_interval_cover.interval_hull,
+    diagnostic.comparison_xi_interval_hull
+  );
+  assert.equal(
+    diagnostic.comparison_xi_interval_cover.intervals_contiguous_or_overlapping,
+    true
+  );
+  assert.equal(
+    diagnostic.comparison_xi_interval_cover.covers_target_interval,
+    true
+  );
+  const requestedXiZetaScan =
+    diagnostic.successor_suffix_requested_coefficient_xi_zeta_scan;
+  const h20RequestedXiZetaEntry =
+    requestedXiZetaScan.scan_entries.find(
+      (entry) => entry.suffix_start_index === 20
+    );
+  assert.equal(
+    requestedXiZetaScan.all_scan_entries_xi_interval_covers_contiguous_or_overlapping,
+    true
+  );
+  assert.equal(
+    requestedXiZetaScan.all_scan_entries_cover_comparison_xi_hull,
+    true
+  );
+  assert.equal(
+    requestedXiZetaScan.all_scan_entries_cover_requested_shifted_zeta_slices,
+    true
+  );
+  assert.equal(
+    requestedXiZetaScan.any_scan_entry_requested_shifted_dominant_term_switch_detected,
+    true
+  );
+  assert.ok(
+    requestedXiZetaScan.max_requested_shifted_xi_row_spread_factor < 1.001
+  );
+  assert.equal(
+    h20RequestedXiZetaEntry.row_count,
+    5
+  );
+  assert.equal(
+    h20RequestedXiZetaEntry.xi_interval_cover_summary.interval_count,
+    5
+  );
+  assert.deepEqual(
+    h20RequestedXiZetaEntry.xi_interval_cover_summary.target_interval,
+    diagnostic.comparison_xi_interval_hull
+  );
+  assert.deepEqual(
+    h20RequestedXiZetaEntry.xi_interval_cover_summary.interval_hull,
+    diagnostic.comparison_xi_interval_hull
+  );
+  assert.equal(
+    h20RequestedXiZetaEntry.xi_interval_cover_summary.max_positive_gap,
+    0
+  );
+  assert.equal(
+    h20RequestedXiZetaEntry
+      .all_rows_requested_shifted_source_terms_reconstruct_source,
+    true
+  );
+  assert.ok(
+    h20RequestedXiZetaEntry
+      .min_requested_shifted_source_cancellation_fraction > 0.02
+  );
+  assert.ok(
+    h20RequestedXiZetaEntry
+      .max_requested_shifted_term_triangle_to_source_gain > 1.8
+  );
+  assert.ok(
+    h20RequestedXiZetaEntry
+      .max_requested_shifted_term_sum_to_source_relative_gap < 1e-10
+  );
+  const h20FirstRequestedTermPartition =
+    h20RequestedXiZetaEntry.row_replays[0].coefficient_envelope_summary
+      .partition_envelopes[0];
+  assert.deepEqual(
+    h20FirstRequestedTermPartition
+      .requested_shifted_source_term_normal_forms.map(
+        (entry) => entry.normal_form.dominant_term.term
+      ),
+    ["sin_delta", "sin_phi"]
+  );
+  assert.equal(
+    h20FirstRequestedTermPartition
+      .requested_shifted_source_term_normal_forms[0].normal_form.term_count,
+    4
+  );
+  assert.ok(
+    h20FirstRequestedTermPartition
+      .requested_shifted_source_term_normal_forms[0].normal_form
+      .term_triangle_to_source_pressure_gain > 1.8
+  );
+  const h20FirstResidualDirectionProfile =
+    h20RequestedXiZetaEntry.row_replays[0].coefficient_envelope_summary
+      .requested_shifted_residual_direction_profile;
+  assert.deepEqual(
+    h20FirstResidualDirectionProfile.residual_noise_values,
+    [-1, 0, 1]
+  );
+  assert.deepEqual(
+    h20FirstResidualDirectionProfile.residual_noise_points.map(
+      (point) => point.dominant_term
+    ),
+    ["sin_delta", "sin_phi", "sin_delta"]
+  );
+  assert.equal(
+    h20FirstResidualDirectionProfile.outer_endpoints_dominate_midpoint,
+    true
+  );
+  assert.ok(
+    h20FirstResidualDirectionProfile.endpoint_to_midpoint_pressure_ratio > 1e5
+  );
+  assert.equal(
+    h20FirstResidualDirectionProfile.residual_radius_budget.budget_kind,
+    "candidate-requested-shifted-source-residual-radius-budget"
+  );
+  assert.deepEqual(
+    h20FirstResidualDirectionProfile.residual_radius_budget.unit_slope_entries.map(
+      (entry) => entry.residual_displacement
+    ),
+    [-1, 1]
+  );
+  assert.ok(
+    h20FirstResidualDirectionProfile.residual_radius_budget
+      .midpoint_matching_residual_half_width > 1e-6
+  );
+  assert.ok(
+    h20FirstResidualDirectionProfile.residual_radius_budget
+      .midpoint_matching_residual_half_width < 2e-6
+  );
+  assert.ok(
+    h20FirstResidualDirectionProfile.residual_radius_budget
+      .full_radius_to_midpoint_matching_scale > 6e5
+  );
+  assert.ok(
+    h20FirstResidualDirectionProfile.residual_radius_budget
+      .full_radius_to_midpoint_matching_scale < 7e5
+  );
+  assert.ok(
+    Math.abs(
+      h20FirstResidualDirectionProfile.residual_radius_budget
+        .unit_slope_to_midpoint_pressure_ratio *
+        h20FirstResidualDirectionProfile.residual_radius_budget
+          .midpoint_matching_residual_half_width -
+        1
+    ) < 1e-12
+  );
+  assert.deepEqual(
+    h20FirstResidualDirectionProfile.residual_radius_budget
+      .total_bound_to_midpoint_ratio_target_scales.map(
+        (entry) => entry.total_bound_to_midpoint_pressure_ratio_target
+      ),
+    [2, 10, 100]
+  );
+  assert.equal(
+    h20FirstResidualDirectionProfile.residual_radius_budget.claim_boundary
+      .certifies_producer_image_residual_radius,
+    false
+  );
+  assert.equal(
+    h20FirstResidualDirectionProfile.all_duplicate_boundary_points_consistent,
+    true
+  );
+  assert.ok(
+    h20RequestedXiZetaEntry
+      .max_requested_shifted_residual_endpoint_to_midpoint_pressure_ratio >
+      1e5
+  );
+  assert.ok(
+    h20RequestedXiZetaEntry
+      .min_requested_shifted_residual_midpoint_matching_half_width < 2e-6
+  );
+  assert.ok(
+    h20RequestedXiZetaEntry
+      .max_requested_shifted_residual_full_radius_to_midpoint_matching_scale >
+      6e5
+  );
+  assert.equal(
+    h20RequestedXiZetaEntry
+      .all_rows_requested_shifted_residual_outer_endpoints_dominate_midpoint,
+    true
+  );
+  assert.ok(
+    h20RequestedXiZetaEntry
+      .max_requested_shifted_residual_profile_duplicate_relative_gap <
+      1e-12
+  );
+  assert.ok(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .transition_to_affine_floor_certificate_target
+      .transition_to_affine_floor_pressure_reduction_factor > 1
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .claim_boundary.certifies_successor_suffix_provider_enclosure,
+    false
+  );
   assert.ok(
     diagnostic.endpoint_provider_replay_summary
       .max_endpoint_shifted_prefix_pressure_outer_radius > 0
   );
   assert.equal(
     diagnostic.provider_replay_diagnosis,
-    "terminal-affine-zeta-endpoints-cross-existing-H39-provider-boundary-candidate"
+    "terminal-affine-zeta-H38-included-endpoints-cross-existing-H39-provider-boundary-candidate"
   );
   assert.equal(
     diagnostic.claim_boundary
@@ -3829,6 +4318,318 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     false
   );
   assert.equal(diagnostic.claim_boundary.retained_branch, false);
+  const route =
+    buildH39SuccessorSuffixTransitionCertificateRouteCandidate({
+      sourceDiagnostic: diagnostic,
+    });
+  assert.deepEqual(
+    validateH39SuccessorSuffixTransitionCertificateRouteCandidate(route),
+    []
+  );
+  assert.equal(
+    route.certificate_route_metrics.source_shape_transition_detected,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics.affine_floor_still_endpoint_legal,
+    true
+  );
+  assert.equal(route.certificate_route_metrics.affine_floor_y_order_gap, 2);
+  assert.equal(route.certificate_route_metrics.next_lower_suffix_start_index, 19);
+  assert.equal(
+    route.certificate_route_metrics
+      .next_lower_suffix_affine_in_shared_residual_coordinate,
+    false
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .next_lower_suffix_two_terminal_factor_min_y_order,
+    44
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .source_shape_transition_dominant_target_switch_detected,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .source_shape_transition_requested_shifted_zeta_slices_candidate_covered,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics.plateau_dominant_target_switch_detected,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .plateau_requested_shifted_zeta_slices_candidate_covered,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics.affine_floor_dominant_target_switch_detected,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_shifted_term_switch_detected,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_shifted_zeta_slices_candidate_covered,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_xi_zeta_scan_available,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_xi_zeta_row_slices_candidate_covered,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_xi_zeta_any_term_switch_detected,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_source_term_normal_form_available,
+    true
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_min_source_cancellation_fraction > 0.02
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_max_term_triangle_to_source_gain > 1.8
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_max_term_sum_to_source_relative_gap < 1e-10
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_residual_outer_endpoints_dominate_midpoint,
+    true
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_residual_endpoint_to_midpoint_pressure_ratio >
+      1e5
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_residual_midpoint_matching_half_width < 2e-6
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_residual_full_radius_to_midpoint_matching_scale >
+      6e5
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_residual_profile_duplicate_relative_gap <
+      1e-12
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_xi_interval_cover_count,
+    route.comparison_row_count
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_xi_interval_cover_max_positive_gap,
+    0
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_xi_interval_cover_contiguous_or_overlapping,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_xi_interval_cover_covers_comparison_hull,
+    true
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_xi_zeta_endpoint_hull_to_row_replay_pressure_ratio >
+      0
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_xi_row_spread_factor < 1.001
+  );
+  assert.equal(
+    route.requested_coefficient_xi_zeta_scan.scan_entries.find(
+      (entry) => entry.suffix_start_index === 20
+    ).row_count,
+    5
+  );
+  assert.equal(
+    route.requested_coefficient_xi_zeta_scan
+      .all_scan_entries_xi_interval_covers_contiguous_or_overlapping,
+    true
+  );
+  assert.equal(
+    route.requested_coefficient_xi_zeta_scan
+      .all_scan_entries_cover_comparison_xi_hull,
+    true
+  );
+  assert.ok(
+    route.requested_coefficient_xi_zeta_scan.scan_entries.find(
+      (entry) => entry.suffix_start_index === 20
+    ).requested_shifted_controlling_xi_rows.length >= 1
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_shifted_endpoint_hull_to_replay_pressure_ratio > 0
+  );
+  assert.equal(
+    route.suffix_route_start_indexes.source_shape_transition,
+    30
+  );
+  assert.equal(
+    route.suffix_route_start_indexes.deepest_tested_affine_endpoint_floor,
+    20
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .transition_to_affine_floor_pressure_reduction_factor > 1
+  );
+  assert.equal(
+    route.claim_boundary.certifies_successor_suffix_provider_enclosure,
+    false
+  );
+  const producerBudgetComparison =
+    route.requested_y44_producer_image_budget_comparison;
+  assert.deepEqual(
+    validateH39RequestedY44ProducerImageBudgetComparison(
+      producerBudgetComparison
+    ),
+    []
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_producer_image_budget_comparison_available,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_midpoint_hull_inside_requested_residual_budget,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_interval_hull_inside_requested_residual_budget,
+    false
+  );
+  assert.ok(
+    producerBudgetComparison
+      .producer_centered_full_hull_half_width_to_requested_budget_half_width >
+      6e5
+  );
+  assert.ok(
+    producerBudgetComparison
+      .producer_centered_full_hull_half_width_to_requested_budget_half_width <
+      7e5
+  );
+  assert.equal(
+    producerBudgetComparison.budget_comparison_interpretation,
+    "producer-midpoint-hull-fits-but-interval-hull-needs-directed-correlation-to-h39-budget"
+  );
+  assert.equal(
+    producerBudgetComparison.claim_boundary
+      .certifies_h38_producer_image_residual_radius,
+    false
+  );
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+  assert.deepEqual(collectExactKeys(route, FORBIDDEN_FIXED_SPEED_KEYS), []);
+});
+
+test("h39 terminal affine-zeta exact h36 through h38 endpoint provider stays suffix scoped", () => {
+  const diagnostic =
+    buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      sourceStencilSubcellCount: 5,
+      comparisonStencilIndex: 0,
+      polynomialDegree: 2,
+      terminalHIndexes: [37, 36],
+      residualCoordinatePartitionCount: 2,
+      endpointReplayRowLimit: 1,
+      includeH38EndpointProvider: true,
+      successorSuffixEndpointProviderHIndexSets: [[36, 37, 38]],
+      outerRadius: 0.001,
+      shiftedIndex: 1,
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic(
+      diagnostic
+    ),
+    []
+  );
+  assert.deepEqual(diagnostic.terminal_provider_h_indexes, [37, 36]);
+  assert.deepEqual(
+    diagnostic.h38_included_endpoint_provider_replay_summary
+      .h38_included_terminal_h_indexes,
+    [36, 37, 38]
+  );
+  assert.deepEqual(
+    diagnostic.successor_suffix_endpoint_provider_replay_summaries[0]
+      .successor_suffix_h_indexes,
+    [36, 37, 38]
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_replay_summaries[0]
+      .all_endpoint_replays_provider_backed,
+    true
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_replay_summaries[0]
+      .successor_suffix_zeta_degree_bound
+      .affine_in_shared_residual_coordinate,
+    true
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .sweep_count,
+    1
+  );
+  assert.equal(
+    diagnostic.successor_suffix_endpoint_provider_transition_summary
+      .marginal_transitions.length,
+    0
+  );
+  assert.ok(
+    diagnostic.successor_suffix_endpoint_provider_replay_summaries[0]
+      .dominant_endpoint_shifted_prefix_pressure
+      .dominant_R43_shifted_prefix_pressure
+      .dominant_unreduced_shifted_term_decomposition.dominant_term
+  );
+  assert.ok(
+    diagnostic.h38_included_endpoint_provider_replay_summary
+      .preserved_h38_to_h38_included_max_pressure_ratio > 0
+  );
+  assert.equal(
+    diagnostic.claim_boundary
+      .certifies_terminal_affine_zeta_provider_enclosure,
+    false
+  );
+  assert.equal(
+    diagnostic.claim_boundary.certifies_directed_rounded_shared_domain,
+    false
+  );
   assert.deepEqual(
     collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
     []
@@ -3921,6 +4722,22 @@ test("h39 post-zeta pressure source isolation reports remaining h-row source", (
   assert.ok(
     diagnostic.post_zeta_pressure_source_summary
       .dominant_frozen_out_single_h_index_replay.full_to_pressure_ratio > 0
+  );
+  assert.deepEqual(
+    diagnostic.post_zeta_pressure_source_summary
+      .h_row_suffix_width_compression_summary
+      .tested_suffix_start_indexes,
+    [38, 36, 35, 27, 0]
+  );
+  assert.deepEqual(
+    diagnostic.post_zeta_pressure_source_summary
+      .h_row_suffix_width_compression_summary.width_compression_factors,
+    [1, 0.5, 0]
+  );
+  assert.equal(
+    diagnostic.post_zeta_pressure_source_summary
+      .h_row_suffix_width_compression_summary.replay_count,
+    15
   );
   assert.equal(
     diagnostic.claim_boundary
@@ -6481,6 +7298,557 @@ test("h39 h38 y44 source covariance diagnoses signed term cancellation", () => {
         .controlling_component_drift_s37_division_segment
         .component_drift_s37_division_status,
       "positive-n38-component-drift-s37-division-inside-target"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .component_drift_hrow_realization_diagnosis_status,
+      "positive-n38-component-drift-hrow-realization-diagnosis-misses-interval-center-drift"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_source_to_component_drift_gap_to_target_ratio > 3.2
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_h38_coordinate_source_to_component_drift_gap_to_target_ratio < 3.3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_source_to_component_drift_gap_to_target_ratio >
+        3.2
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_full_residual_vector_source_to_component_drift_gap_to_target_ratio <
+        3.3
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_hrow_realization_segment
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_hrow_realization_segment.cell_id,
+      "speed.4.first-y"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_hrow_realization_segment.segment_index,
+      1
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_hrow_realization_segment
+        .component_drift_hrow_realization_status,
+      "positive-n38-component-drift-hrow-realization-misses-interval-center-drift"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay.segment_rows
+        .filter(
+          (segment) =>
+            segment.quotient_kind === "product-quotient-producer-complement"
+        )
+        .every(
+          (segment) =>
+            segment.component_drift_hrow_realization_status ===
+              "positive-n38-component-drift-hrow-realization-misses-interval-center-drift" &&
+            segment.full_residual_vector_source_to_component_drift_gap_to_target_ratio >
+              1
+        )
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .component_drift_coordinate_lift_diagnosis_status,
+      "positive-n38-component-drift-coordinate-lift-diagnosis-point-lift-inside-target"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_best_component_drift_coordinate_lift_gap_to_target_ratio < 0.001
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .max_best_component_drift_coordinate_lift_abs_coordinate < 1e-8
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .min_best_component_drift_coordinate_lift_collar_half_width_inside >=
+        1e-9
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_coordinate_lift_segment
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_coordinate_lift_segment.cell_id,
+      "speed.2.first-y"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_coordinate_lift_segment
+        .best_component_drift_coordinate_lift_candidate.candidate_label,
+      "h36-source-coordinate-lift"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_coordinate_lift_segment
+        .best_component_drift_coordinate_lift_candidate
+        .coordinate_lift_status,
+      "positive-n38-component-drift-coordinate-lift-point-inside-target"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_coordinate_lift_segment
+        .best_component_drift_coordinate_lift_candidate
+        .solved_coordinate_collar_rows.some(
+          (row) =>
+            row.half_width === 1e-9 &&
+            row.collar_status ===
+              "positive-n38-component-drift-coordinate-lift-collar-inside-target"
+        )
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .controlling_component_drift_coordinate_lift_segment
+        .best_component_drift_coordinate_lift_candidate
+        .solved_coordinate_collar_rows.some(
+          (row) =>
+            row.half_width === 2e-9 &&
+            row.collar_status ===
+              "positive-n38-component-drift-coordinate-lift-collar-open"
+        )
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay.segment_rows
+        .filter(
+          (segment) =>
+            segment.quotient_kind === "product-quotient-producer-complement"
+        )
+        .every(
+          (segment) =>
+            segment.best_component_drift_coordinate_lift_candidate
+              ?.coordinate_lift_status ===
+              "positive-n38-component-drift-coordinate-lift-point-inside-target" &&
+            segment.best_component_drift_coordinate_lift_candidate
+              .solved_source_to_component_drift_gap_to_target_ratio < 0.001
+        )
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .h36_provider_shaped_branch_input_replay_status,
+      "positive-n38-component-drift-h36-provider-shaped-branch-input-replay-all-product-segments"
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .h36_provider_shaped_branch_input_replay_count,
+      5
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .h36_provider_shaped_branch_input_provider_kind,
+      "candidate-component-drift-h36-coordinate-lift-collar-provider"
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .h36_provider_shaped_branch_input_max_source_gap_to_target_ratio < 1
+    );
+    assert.ok(
+      producerHybridH38CoordinateSourceReplay
+        .h36_provider_shaped_branch_input_min_collar_half_width >= 1e-9
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay
+        .h36_provider_shaped_branch_input_all_candidate_only,
+      true
+    );
+    assert.equal(
+      producerHybridH38CoordinateSourceReplay.h36_provider_inlet_status,
+      "positive-n38-component-drift-h36-provider-inlet-active-branch-ready-two-branch-row-provider-open"
+    );
+    const h36ProviderInletReport =
+      producerHybridH38CoordinateSourceReplay
+        .candidate_component_drift_h36_provider_inlet_report;
+    assert.ok(h36ProviderInletReport);
+    assert.equal(
+      h36ProviderInletReport.provider_hook,
+      "branchInputsFromH38Row -> buildH39SharedDomainCoefficientArtifact"
+    );
+    assert.equal(
+      h36ProviderInletReport.active_branch_provider_payload_complete,
+      true
+    );
+    assert.equal(
+      h36ProviderInletReport.active_branch_provider_payload_count,
+      5
+    );
+    assert.equal(
+      h36ProviderInletReport.active_branch_product_segment_count,
+      5
+    );
+    assert.deepEqual(h36ProviderInletReport.observed_branches, ["-"]);
+    assert.equal(
+      h36ProviderInletReport.two_branch_provider_payload_complete,
+      false
+    );
+    assert.equal(h36ProviderInletReport.row_level_provider_hook_ready, false);
+    assert.equal(
+      h36ProviderInletReport.dependency_preserving_h_row_provider_present,
+      false
+    );
+    assert.equal(h36ProviderInletReport.can_enter_shifted_replay, false);
+    assert.ok(
+      h36ProviderInletReport.missing_provider_payloads.some((payload) =>
+        payload.includes("opposite-branch")
+      )
+    );
+    assert.ok(
+      h36ProviderInletReport.expected_provider_boundary.required_payload_fields
+        .includes("hIntervals")
+    );
+    assert.equal(
+      h36ProviderInletReport.naive_single_row_hull_forecast.status,
+      "positive-n38-component-drift-h36-provider-naive-single-row-hull-forecast-emitted"
+    );
+    assert.equal(
+      h36ProviderInletReport.naive_single_row_hull_forecast.h36_interval
+        .interval_count,
+      5
+    );
+    assert.ok(
+      h36ProviderInletReport.naive_single_row_hull_forecast.h36_interval
+        .hull_to_max_segment_width_ratio >= 1
+    );
+    assert.equal(
+      h36ProviderInletReport.naive_single_row_hull_forecast.forecast_kind,
+      "segment-local-summary-interval-hull-only-not-provider-backed"
+    );
+    const h36ProviderReplaySegments =
+      producerHybridH38CoordinateSourceReplay.segment_rows.filter(
+        (segment) =>
+          segment.quotient_kind ===
+          "product-quotient-producer-complement"
+      );
+    assert.ok(
+      h36ProviderReplaySegments.every((segment) => {
+        const replay =
+          segment.candidate_component_drift_h36_provider_branch_input_replay;
+        return (
+          replay?.status ===
+            "positive-n38-component-drift-h36-provider-shaped-branch-input-replay-emitted" &&
+          replay.provider_kind ===
+            "candidate-component-drift-h36-coordinate-lift-collar-provider" &&
+          replay.selected_collar_half_width >= 1e-9 &&
+          replay.provider_shape_summary?.preserves_dependencies === true &&
+          replay.provider_shape_summary?.dependency_trace_count > 0 &&
+          replay.provider_shape_summary
+            ?.provider_claim_boundary_candidate_only === true &&
+          replay.dependency_trace.length > 0 &&
+          replay.dependency_witness?.witness_kind ===
+            "candidate-component-drift-h36-coordinate-lift-collar-provider" &&
+          replay.dependency_preserving_h_row_provider_present === false &&
+          replay.can_enter_shifted_replay === false &&
+          replay.h_row_provider_backed_replay === false &&
+          replay.claim_boundary?.certifies_shifted_R43_outer_bound ===
+            false &&
+          replay.claim_boundary?.certifies_directed_rounded_shared_domain ===
+            false &&
+          replay.claim_boundary?.retained_branch === false
+        );
+      })
+    );
+    const h36Replay =
+      h36ProviderReplaySegments[0]
+        .candidate_component_drift_h36_provider_branch_input_replay;
+    assert.equal(h36Replay.hIntervals, undefined);
+    assert.equal(h36Replay.h_row_provider_provenance, undefined);
+    assert.equal(h36Replay.dependency_preserving_h_row_provider, undefined);
+    assert.equal(
+      h36Replay.provider_branch_input_snapshot
+        .dependency_preserving_h_row_provider,
+      true
+    );
+    assert.equal(
+      h36Replay.provider_branch_input_snapshot.h_row_provider_replay_kind,
+      "h39-component-drift-h36-coordinate-lift-branch-input-replay"
+    );
+    for (const key of [
+      "speed_interval",
+      "delta_fold_interval",
+      "phi_fold_interval",
+      "beta_interval",
+      "gamma_interval",
+      "L_interval",
+    ]) {
+      assert.equal(
+        Array.isArray(h36Replay.provider_branch_input_snapshot[key]),
+        true
+      );
+      assert.equal(h36Replay.provider_branch_input_snapshot[key].length, 2);
+      assert.equal(
+        h36Replay.provider_branch_input_snapshot[key].every((value) =>
+          Number.isFinite(Number(value))
+        ),
+        true
+      );
+    }
+    assert.equal(
+      h36Replay.provider_branch_input_snapshot.h_intervals.length,
+      39
+    );
+    assert.equal(
+      h36Replay.provider_branch_input_snapshot.h_row_provider_provenance,
+      "h39-y44-component-drift-h36-coordinate-lift-collar"
+    );
+    assert.ok(
+      h36Replay.provider_branch_input_snapshot.h_row_dependency_trace.length >
+        0
+    );
+    assert.ok(
+      h36Replay.provider_branch_input_snapshot
+        .h_row_provider_dependency_trace.length > 0
+    );
+    const h36ReplayBoundaryRow = h38Row();
+    h36ReplayBoundaryRow.branch_rows = h36ReplayBoundaryRow.branch_rows.map(
+      (branchRow) => ({
+        ...branchRow,
+        ...h36Replay,
+      })
+    );
+    const h36ReplayBoundary =
+      computeH39PredecessorHRowProviderBoundaryCandidate({
+        h38Row: h36ReplayBoundaryRow,
+      });
+    assert.equal(
+      h36ReplayBoundary.exported_h_row_dependency_state,
+      "incomplete-provider-metadata-rejected"
+    );
+    assert.equal(
+      h36ReplayBoundary.branch_summaries[0]
+        .h_row_provider_provenance_present,
+      false
+    );
+    const componentDriftSourceProviderContract =
+      producerHybridH38CoordinateSourceReplay
+        .candidate_component_drift_source_provider_contract;
+    assert.ok(componentDriftSourceProviderContract);
+    assert.equal(
+      componentDriftSourceProviderContract.status,
+      "positive-n38-component-drift-source-provider-contract-candidate-ready"
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.provider_kind,
+      "candidate-polynomial-h-row-graph-component-plus-drift-source-provider"
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.preserves_shared_xi_dependency,
+      true
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.preserves_source_component_dependency,
+      true
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .preserves_interval_center_drift_dependency,
+      true
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.preserves_s37_dependency,
+      false
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .dependency_preserving_h_row_provider_present,
+      false
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.can_enter_shifted_replay,
+      false
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.h_row_provider_backed_replay,
+      false
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.h_row_provider_backed_all_cells,
+      false
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.h_row_provider_backed_cell_count,
+      0
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.h_row_provider_backed_branch_count,
+      0
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.shifted_replay_readiness_status,
+      "positive-n38-component-drift-shifted-replay-readiness-open"
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.product_segment_count,
+      5
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .product_segments_inside_component_drift_target_count,
+      5
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .product_segments_inside_s37_target_count,
+      5
+    );
+    assert.ok(
+      componentDriftSourceProviderContract
+        .source_component_graph_coefficient_rows.length >= 4
+    );
+    assert.ok(
+      componentDriftSourceProviderContract
+        .source_component_graph_coefficient_rows.every((row) =>
+          Array.isArray(row.lagrange_polynomial_coefficients)
+        )
+    );
+    assert.ok(
+      Array.isArray(
+        componentDriftSourceProviderContract
+          .interval_center_drift_lagrange_graph_coefficients
+      )
+    );
+    assert.ok(
+      componentDriftSourceProviderContract
+        .max_component_drift_gap_to_target_ratio < 0.001
+    );
+    assert.ok(
+      componentDriftSourceProviderContract
+        .max_component_drift_solved_gap_to_solved_target_ratio < 0.001
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.hrow_realization_diagnosis_status,
+      "positive-n38-component-drift-hrow-realization-diagnosis-misses-interval-center-drift"
+    );
+    assert.ok(
+      componentDriftSourceProviderContract
+        .max_full_residual_vector_source_to_component_drift_gap_to_target_ratio >
+        3.2
+    );
+    assert.ok(
+      componentDriftSourceProviderContract
+        .max_full_residual_vector_source_to_component_drift_gap_to_target_ratio <
+        3.3
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .controlling_component_drift_hrow_realization_segment.cell_id,
+      "speed.4.first-y"
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .controlling_component_drift_hrow_realization_segment
+        .component_drift_hrow_realization_status,
+      "positive-n38-component-drift-hrow-realization-misses-interval-center-drift"
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.coordinate_lift_diagnosis_status,
+      "positive-n38-component-drift-coordinate-lift-diagnosis-point-lift-inside-target"
+    );
+    assert.ok(
+      componentDriftSourceProviderContract
+        .max_best_component_drift_coordinate_lift_gap_to_target_ratio < 0.001
+    );
+    assert.ok(
+      componentDriftSourceProviderContract
+        .min_best_component_drift_coordinate_lift_collar_half_width_inside >=
+        1e-9
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .controlling_component_drift_coordinate_lift_segment
+        .best_component_drift_coordinate_lift_candidate.candidate_label,
+      "h36-source-coordinate-lift"
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .h36_provider_shaped_branch_input_replay_status,
+      "positive-n38-component-drift-h36-provider-shaped-branch-input-replay-all-product-segments"
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .h36_provider_shaped_branch_input_replay_count,
+      5
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .h36_provider_shaped_branch_input_provider_kind,
+      "candidate-component-drift-h36-coordinate-lift-collar-provider"
+    );
+    assert.ok(
+      componentDriftSourceProviderContract
+        .h36_provider_shaped_branch_input_max_source_gap_to_target_ratio < 1
+    );
+    assert.ok(
+      componentDriftSourceProviderContract
+        .h36_provider_shaped_branch_input_min_collar_half_width >= 1e-9
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .h36_provider_shaped_branch_input_all_candidate_only,
+      true
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.h36_provider_inlet_status,
+      "positive-n38-component-drift-h36-provider-inlet-active-branch-ready-two-branch-row-provider-open"
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .candidate_component_drift_h36_provider_inlet_report
+        .active_branch_provider_payload_complete,
+      true
+    );
+    assert.equal(
+      componentDriftSourceProviderContract
+        .candidate_component_drift_h36_provider_inlet_report
+        .two_branch_provider_payload_complete,
+      false
+    );
+    assert.ok(
+      componentDriftSourceProviderContract.dependency_trace.length >= 4
+    );
+    assert.ok(
+      componentDriftSourceProviderContract.dependency_trace.some(
+        (row) => row.dependency_kind === "h-row-realization-boundary"
+      )
+    );
+    assert.ok(
+      componentDriftSourceProviderContract.dependency_trace.some(
+        (row) => row.dependency_kind === "component-drift-coordinate-lift-probe"
+      )
+    );
+    assert.ok(
+      componentDriftSourceProviderContract.dependency_trace.some(
+        (row) =>
+          row.dependency_kind ===
+          "h36-provider-shaped-branch-input-replay"
+      )
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.dependency_witness.witness_kind,
+      "candidate-component-plus-drift-source-provider-contract"
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.claim_boundary
+        .certifies_shifted_R43_outer_bound,
+      false
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.claim_boundary
+        .certifies_s37_dependency_preserving_division,
+      false
+    );
+    assert.equal(
+      componentDriftSourceProviderContract.claim_boundary
+        .certifies_directed_rounded_shared_domain,
+      false
     );
     assert.ok(
       producerHybridH38CoordinateSourceReplay

@@ -12,6 +12,8 @@ import {
   branchSeriesCoordinates,
   buildH39SharedDomainCoefficientArtifact,
   cellFromCertificateRow,
+  computeH39PredecessorHRowProviderBoundaryCandidate,
+  computeH39AffineCenterRowCorrelationDiagnosticCandidate,
   computeH39AffineCenterHRowSensitivityDiagnosticCandidate,
   computeH39ShiftedR43PressureDecompositionCandidate,
   hIntervalsFromBranchRow,
@@ -85,6 +87,9 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_EXPRESSION_N38_TERMINAL_GR
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_TERMINAL_SHARED_RESIDUAL_AFFINE_ZETA_PROVIDER_REPLAY_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-terminal-shared-residual-affine-zeta-provider-replay-diagnostic/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_SUCCESSOR_SUFFIX_TRANSITION_CERTIFICATE_ROUTE_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-successor-suffix-transition-certificate-route/v1";
+
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_POST_ZETA_PRESSURE_SOURCE_ISOLATION_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-post-zeta-pressure-source-isolation-diagnostic/v1";
 
@@ -105,6 +110,9 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_Y44_SOURCE_COVARIANCE_SPLI
 
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_EXPRESSION_N38_TAYLOR_M4_REFINEMENT_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-h38-expression-n38-taylor-m4-refinement-diagnostic/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_PRODUCER_IMAGE_BUDGET_COMPARISON_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-producer-image-budget-comparison/v1";
 
 const H38_NUMERATOR_Y_ORDER =
   THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift - 1;
@@ -240,6 +248,59 @@ function finitePositive(value) {
 
 function finiteNonnegative(value) {
   return Number.isFinite(Number(value)) && Number(value) >= 0;
+}
+
+function boundedUnitValue(value) {
+  const resolved = Number(value);
+  return Number.isFinite(resolved) && resolved >= 0 && resolved <= 1;
+}
+
+function finiteMaximum(values) {
+  const finiteValues = values
+    .filter((value) => value !== null && value !== undefined)
+    .map(Number)
+    .filter(Number.isFinite);
+  return finiteValues.length > 0 ? Math.max(...finiteValues) : null;
+}
+
+function finiteMinimum(values) {
+  const finiteValues = values
+    .filter((value) => value !== null && value !== undefined)
+    .map(Number)
+    .filter(Number.isFinite);
+  return finiteValues.length > 0 ? Math.min(...finiteValues) : null;
+}
+
+function intervalCoverSummary(intervals, targetInterval = null) {
+  const orderedIntervals = intervals
+    .map((interval) => numericInterval("interval cover entry", interval))
+    .sort((left, right) => left[0] - right[0]);
+  const positiveGaps = [];
+  for (let index = 1; index < orderedIntervals.length; index += 1) {
+    positiveGaps.push(
+      Math.max(0, orderedIntervals[index][0] - orderedIntervals[index - 1][1])
+    );
+  }
+  const maxPositiveGap =
+    positiveGaps.length > 0 ? Math.max(...positiveGaps) : 0;
+  const intervalHullValue =
+    orderedIntervals.length > 0 ? intervalHull(orderedIntervals) : null;
+  const resolvedTargetInterval =
+    targetInterval === null ? null : numericInterval("targetInterval", targetInterval);
+  const tolerance = 1e-12;
+  return {
+    interval_count: orderedIntervals.length,
+    ordered_intervals: orderedIntervals,
+    interval_hull: intervalHullValue,
+    max_positive_gap: maxPositiveGap,
+    intervals_contiguous_or_overlapping: maxPositiveGap <= tolerance,
+    target_interval: resolvedTargetInterval,
+    covers_target_interval:
+      intervalHullValue !== null &&
+      resolvedTargetInterval !== null &&
+      intervalHullValue[0] <= resolvedTargetInterval[0] + tolerance &&
+      intervalHullValue[1] >= resolvedTargetInterval[1] - tolerance,
+  };
 }
 
 function intervalMidpoint([left, right]) {
@@ -1280,6 +1341,95 @@ function candidateOnlyHRowProviderClaimBoundary() {
     certifies_directed_rounded_shared_domain: false,
     certifies_continuous_polydisc_primitives: false,
     retained_branch: false,
+  };
+}
+
+function componentDriftH36CoordinateLiftProviderBranchInput({
+  branch,
+  cellId,
+  transportProfile,
+  residualProfile,
+  h38ResidualProfile,
+  segmentInterval,
+  h38NoiseInterval,
+  h36NoiseInterval,
+  solveSlopeInterval,
+  sourceCoordinateGapRatio,
+  collarHalfWidth,
+}) {
+  const hIntervals =
+    hIntervalsForPolynomialGraphIntervalResidualCentersWithSharedVariantInterval({
+      transportProfile,
+      noiseInterval: segmentInterval,
+      residualProfile,
+      h38ResidualInterval: h38ResidualProfile.residual_interval_hull,
+      h38NoiseInterval,
+      sharedVariantHIndexes: [36],
+      sharedNoiseInterval: h36NoiseInterval,
+    });
+  const dependencyTrace = [
+    {
+      dependency_kind: "component-drift-h36-coordinate-lift-collar",
+      source: "selected residual-coordinate point-Jacobian source replay",
+      active_h_indexes: [36],
+      h38_noise_interval: h38NoiseInterval,
+      h36_noise_interval: h36NoiseInterval,
+      collar_half_width: collarHalfWidth,
+      source_gap_to_target_ratio: sourceCoordinateGapRatio,
+    },
+  ];
+  const providerKind =
+    "candidate-component-drift-h36-coordinate-lift-collar-provider";
+  const providerProvenance =
+    "h39-y44-component-drift-h36-coordinate-lift-collar";
+  return {
+    branch,
+    branchSign: root.branchSign(branch),
+    hIntervals,
+    solveSlopeInterval,
+    dependency_preserving_h_row_provider: true,
+    provider_kind: providerKind,
+    providerKind,
+    source_cell_id: cellId,
+    sourceCellId: cellId,
+    h_row_provider_kind: providerKind,
+    h_row_provider_preserves_dependencies: true,
+    preservesDependencies: true,
+    h_row_provider_dependency_trace: dependencyTrace,
+    hRowDependencyTrace: dependencyTrace,
+    h_row_provider_source_cell_id: cellId,
+    h_row_provider_provenance: providerProvenance,
+    hRowProviderProvenance: providerProvenance,
+    h_row_dependency_trace: dependencyTrace,
+    h_row_dependency_witness: {
+      witness_kind:
+        "candidate-component-drift-h36-coordinate-lift-collar-provider",
+      active_h_indexes: [36],
+      h38_noise_interval: h38NoiseInterval,
+      h36_noise_interval: h36NoiseInterval,
+      collar_half_width: collarHalfWidth,
+      h38_residual_interval: h38ResidualProfile.residual_interval_hull,
+      h_count: hIntervals.length,
+      claim_level:
+        "segment-local provider-shaped branch input; not a two-branch directed-rounded H39 provider",
+    },
+    hRowDependencyWitness: {
+      witness_kind:
+        "candidate-component-drift-h36-coordinate-lift-collar-provider",
+      active_h_indexes: [36],
+      h38_noise_interval: h38NoiseInterval,
+      h36_noise_interval: h36NoiseInterval,
+      collar_half_width: collarHalfWidth,
+      h38_residual_interval: h38ResidualProfile.residual_interval_hull,
+      h_count: hIntervals.length,
+      claim_level:
+        "segment-local provider-shaped branch input; not a two-branch directed-rounded H39 provider",
+    },
+    h_row_provider_claim_boundary: candidateOnlyHRowProviderClaimBoundary(),
+    hRowProviderClaimBoundary: candidateOnlyHRowProviderClaimBoundary(),
+    h_row_provider_replay_kind:
+      "h39-component-drift-h36-coordinate-lift-branch-input-replay",
+    replayKind: "h39-component-drift-h36-coordinate-lift-branch-input-replay",
   };
 }
 
@@ -9081,11 +9231,21 @@ function sharedDomainReplayArtifactCandidateSummary(artifact) {
       summary.h_row_provider_dependency_trace_count ?? 0,
     max_R43_shifted_prefix_pressure_outer_radius:
       summary.max_R43_shifted_prefix_pressure_outer_radius ?? null,
+    dominant_R43_shifted_prefix_pressure:
+      summary.dominant_R43_shifted_prefix_pressure ?? null,
     max_R43_center_eliminated_shifted_prefix_pressure_outer_radius:
       summary.max_R43_center_eliminated_shifted_prefix_pressure_outer_radius ??
       null,
     max_R43_affine_center_shifted_prefix_majorant_outer_radius:
       summary.max_R43_affine_center_shifted_prefix_majorant_outer_radius ?? null,
+    dominant_R43_affine_center_shifted_prefix:
+      summary.dominant_R43_affine_center_shifted_prefix ?? null,
+    all_R43_affine_center_forms_zero_leading_symbolically:
+      summary.all_R43_affine_center_forms_zero_leading_symbolically ?? false,
+    R43_affine_center_leading_zero_certified_count:
+      summary.R43_affine_center_leading_zero_certified_count ?? 0,
+    R43_affine_center_leading_zero_open_count:
+      summary.R43_affine_center_leading_zero_open_count ?? 0,
     max_candidate_E_R_finite_prefix:
       summary.max_candidate_E_R_finite_prefix ?? null,
     max_candidate_M_R_finite_prefix:
@@ -9106,6 +9266,1357 @@ function replaySummaryShiftedPressure(summary) {
   return Number(summary?.max_R43_shifted_prefix_pressure_outer_radius);
 }
 
+function endpointDominantShiftedPressure(endpoint) {
+  return (
+    endpoint?.shared_domain_replay_artifact_summary
+      ?.dominant_R43_shifted_prefix_pressure
+      ?.dominant_unreduced_shifted_pressure ?? null
+  );
+}
+
+function endpointDominantTerm(endpoint) {
+  return (
+    endpoint?.shared_domain_replay_artifact_summary
+      ?.dominant_R43_shifted_prefix_pressure
+      ?.dominant_unreduced_shifted_term_decomposition
+      ?.dominant_term?.term ?? null
+  );
+}
+
+function endpointRequestedShiftedPressure(endpoint) {
+  return (
+    endpoint?.shared_domain_replay_artifact_summary
+      ?.dominant_R43_shifted_prefix_pressure
+      ?.requested_unreduced_shifted_pressure ?? null
+  );
+}
+
+function endpointRequestedTerm(endpoint) {
+  return (
+    endpoint?.shared_domain_replay_artifact_summary
+      ?.dominant_R43_shifted_prefix_pressure
+      ?.requested_unreduced_shifted_term_decomposition
+      ?.dominant_term?.term ?? null
+  );
+}
+
+function endpointRequestedTermDecomposition(endpoint) {
+  return (
+    endpoint?.shared_domain_replay_artifact_summary
+      ?.dominant_R43_shifted_prefix_pressure
+      ?.requested_unreduced_shifted_term_decomposition ?? null
+  );
+}
+
+function requestedShiftedSourceTermNormalForm(endpoint) {
+  const decomposition = endpointRequestedTermDecomposition(endpoint);
+  if (decomposition === null) {
+    return null;
+  }
+  const sourceCoefficient = numericOrderedInterval(
+    "requested source coefficient",
+    decomposition.source_coefficient
+  );
+  const terms = (decomposition.terms ?? []).map((term) => ({
+    term: term.term,
+    coefficient: numericOrderedInterval(
+      "requested term coefficient",
+      term.coefficient
+    ),
+    coefficient_abs_upper: Number(term.coefficient_abs_upper),
+    pressure_contribution: Number(term.pressure_contribution),
+  }));
+  const termCoefficientIntervalSum = terms.reduce(
+    (sum, term) => root.addIntervals(sum, root.outwardInterval(term.coefficient)),
+    root.pointInterval(0)
+  );
+  const sourcePressure = Number(decomposition.source_pressure_contribution);
+  const termTrianglePressure = Number(decomposition.term_pressure_sum);
+  const sourceToTriangleRatio =
+    finitePositive(termTrianglePressure)
+      ? sourcePressure / termTrianglePressure
+      : null;
+  const triangleToSourceGain =
+    finitePositive(sourcePressure)
+      ? termTrianglePressure / sourcePressure
+      : null;
+  return {
+    shifted_index: decomposition.shifted_index,
+    y_order: decomposition.y_order,
+    source_coefficient: sourceCoefficient,
+    source_pressure_contribution: sourcePressure,
+    term_count: terms.length,
+    terms,
+    term_coefficient_interval_sum: termCoefficientIntervalSum,
+    term_sum_to_source_relative_gap: intervalEndpointRelativeGap(
+      termCoefficientIntervalSum,
+      sourceCoefficient
+    ),
+    term_triangle_pressure: termTrianglePressure,
+    source_to_term_triangle_pressure_ratio: sourceToTriangleRatio,
+    term_triangle_to_source_pressure_gain: triangleToSourceGain,
+    source_cancellation_fraction:
+      sourceToTriangleRatio === null ? null : 1 - sourceToTriangleRatio,
+    dominant_term: decomposition.dominant_term ?? null,
+  };
+}
+
+function requestedShiftedResidualRadiusBudget({
+  midpointPoint,
+  outerEndpointPoints,
+  outerRadius,
+}) {
+  if (midpointPoint === null || outerEndpointPoints.length === 0) {
+    return null;
+  }
+  const shiftedIndex = Number(midpointPoint.shifted_index);
+  const radiusFactor = Number(outerRadius) ** shiftedIndex;
+  if (!Number.isInteger(shiftedIndex) || !finitePositive(radiusFactor)) {
+    return null;
+  }
+  const midpointCoefficientHull = numericOrderedInterval(
+    "requested residual midpoint coefficient hull",
+    midpointPoint.coefficient_hull
+  );
+  const midpointCoefficientAbsUpper = intervalAbsUpper(midpointCoefficientHull);
+  const slopeEntries = outerEndpointPoints
+    .map((point) => {
+      const residualDisplacement =
+        Number(point.residual_noise) - Number(midpointPoint.residual_noise);
+      if (residualDisplacement === 0) {
+        return null;
+      }
+      const slopeInterval = root.divideIntervals(
+        root.subtractIntervals(
+          root.outwardInterval(point.coefficient_hull),
+          root.outwardInterval(midpointCoefficientHull)
+        ),
+        pointInterval(residualDisplacement)
+      );
+      return {
+        residual_noise: point.residual_noise,
+        residual_displacement: residualDisplacement,
+        slope_coefficient_interval: slopeInterval,
+        slope_coefficient_abs_upper: intervalAbsUpper(slopeInterval),
+      };
+    })
+    .filter((entry) => entry !== null);
+  const unitSlopeCoefficientAbsUpper = finiteMaximum(
+    slopeEntries.map((entry) => entry.slope_coefficient_abs_upper)
+  );
+  const midpointPressureBound = midpointCoefficientAbsUpper * radiusFactor;
+  const unitSlopePressureContribution =
+    unitSlopeCoefficientAbsUpper === null
+      ? null
+      : unitSlopeCoefficientAbsUpper * radiusFactor;
+  const slopeToMidpointPressureRatio =
+    finitePositive(unitSlopePressureContribution) &&
+    finitePositive(midpointPressureBound)
+      ? Number(unitSlopePressureContribution) / Number(midpointPressureBound)
+      : null;
+  const midpointMatchingResidualHalfWidth =
+    finitePositive(slopeToMidpointPressureRatio)
+      ? 1 / Number(slopeToMidpointPressureRatio)
+      : null;
+  const totalBoundToMidpointRatioTargetScales = [2, 10, 100].map(
+    (targetRatio) => ({
+      total_bound_to_midpoint_pressure_ratio_target: targetRatio,
+      residual_half_width_scale:
+        finitePositive(slopeToMidpointPressureRatio) && targetRatio > 1
+          ? (targetRatio - 1) / Number(slopeToMidpointPressureRatio)
+          : null,
+    })
+  );
+  return {
+    budget_kind:
+      "candidate-requested-shifted-source-residual-radius-budget",
+    shifted_index: shiftedIndex,
+    outer_radius: Number(outerRadius),
+    radius_factor: radiusFactor,
+    midpoint_coefficient_hull: midpointCoefficientHull,
+    midpoint_coefficient_abs_upper: midpointCoefficientAbsUpper,
+    midpoint_pressure_bound: midpointPressureBound,
+    unit_slope_entries: slopeEntries,
+    unit_slope_coefficient_abs_upper: unitSlopeCoefficientAbsUpper,
+    unit_slope_pressure_contribution: unitSlopePressureContribution,
+    unit_slope_to_midpoint_pressure_ratio: slopeToMidpointPressureRatio,
+    midpoint_matching_residual_half_width:
+      midpointMatchingResidualHalfWidth,
+    full_radius_to_midpoint_matching_scale:
+      finitePositive(midpointMatchingResidualHalfWidth)
+        ? 1 / Number(midpointMatchingResidualHalfWidth)
+        : null,
+    total_bound_to_midpoint_ratio_target_scales:
+      totalBoundToMidpointRatioTargetScales,
+    budget_interpretation:
+      "For the affine requested-y44 residual direction, P(delta) is bounded by midpoint pressure plus unit-slope pressure times the residual half-width delta. The midpoint-matching scale is candidate-only and does not certify the H38 producer image.",
+    claim_boundary: {
+      certifies_producer_image_residual_radius: false,
+      certifies_shared_zeta_interval_provider: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function requestedShiftedResidualDirectionProfileForPartitionEnvelopes(
+  partitionEnvelopes,
+  { outerRadius }
+) {
+  const residualPointSamples = new Map();
+  (partitionEnvelopes ?? []).forEach((partition) => {
+    const normalFormsByEndpoint = new Map(
+      (partition.requested_shifted_source_term_normal_forms ?? []).map(
+        (entry) => [entry.endpoint_index, entry.normal_form]
+      )
+    );
+    (partition.requested_shifted_endpoint_targets ?? []).forEach((target) => {
+      const residualNoise = Number(target.residual_noise);
+      if (!Number.isFinite(residualNoise)) {
+        return;
+      }
+      const key = residualNoise.toPrecision(15);
+      const normalForm = normalFormsByEndpoint.get(target.endpoint_index) ?? null;
+      const samples = residualPointSamples.get(key) ?? [];
+      samples.push({
+        partition_index: partition.partition_index,
+        endpoint_index: target.endpoint_index,
+        residual_noise: residualNoise,
+        shifted_index: target.shifted_index,
+        y_order: target.y_order,
+        dominant_term: target.dominant_term,
+        coefficient: target.coefficient,
+        pressure_contribution: target.pressure_contribution,
+        source_cancellation_fraction:
+          normalForm?.source_cancellation_fraction ?? null,
+        term_triangle_to_source_pressure_gain:
+          normalForm?.term_triangle_to_source_pressure_gain ?? null,
+        term_sum_to_source_relative_gap:
+          normalForm?.term_sum_to_source_relative_gap ?? null,
+      });
+      residualPointSamples.set(key, samples);
+    });
+  });
+  const residualNoisePoints = [...residualPointSamples.values()]
+    .map((samples) => {
+      const pressures = samples.map((sample) => sample.pressure_contribution);
+      const maxPressure = finiteMaximum(pressures);
+      const minPressure = finiteMinimum(pressures);
+      const coefficientHull = intervalHull(
+        samples.map((sample) =>
+          numericOrderedInterval("requested residual point coefficient", sample.coefficient)
+        )
+      );
+      const pressureDuplicateGap =
+        finitePositive(maxPressure) && minPressure !== null
+          ? (Number(maxPressure) - Number(minPressure)) /
+            Math.max(1, Number(maxPressure))
+          : 0;
+      const termSet = [
+        ...new Set(
+          samples
+            .map((sample) => sample.dominant_term)
+            .filter((term) => typeof term === "string")
+        ),
+      ];
+      const firstSample = samples[0];
+      return {
+        residual_noise: firstSample.residual_noise,
+        sample_count: samples.length,
+        shifted_index: firstSample.shifted_index,
+        y_order: firstSample.y_order,
+        dominant_term: termSet.length === 1 ? termSet[0] : null,
+        dominant_terms: termSet,
+        coefficient_hull: coefficientHull,
+        pressure_contribution: maxPressure,
+        min_pressure_contribution: minPressure,
+        pressure_duplicate_relative_gap: pressureDuplicateGap,
+        source_cancellation_fraction: finiteMinimum(
+          samples.map((sample) => sample.source_cancellation_fraction)
+        ),
+        term_triangle_to_source_pressure_gain: finiteMaximum(
+          samples.map((sample) => sample.term_triangle_to_source_pressure_gain)
+        ),
+        term_sum_to_source_relative_gap: finiteMaximum(
+          samples.map((sample) => sample.term_sum_to_source_relative_gap)
+        ),
+        samples,
+      };
+    })
+    .sort((left, right) => left.residual_noise - right.residual_noise);
+  const midpointPoint =
+    residualNoisePoints.reduce(
+      (best, point) =>
+        best === null ||
+        Math.abs(Number(point.residual_noise)) <
+          Math.abs(Number(best.residual_noise))
+          ? point
+          : best,
+      null
+    ) ?? null;
+  const minResidualNoise = finiteMinimum(
+    residualNoisePoints.map((point) => point.residual_noise)
+  );
+  const maxResidualNoise = finiteMaximum(
+    residualNoisePoints.map((point) => point.residual_noise)
+  );
+  const outerEndpointPoints = residualNoisePoints.filter(
+    (point) =>
+      Number(point.residual_noise) === Number(minResidualNoise) ||
+      Number(point.residual_noise) === Number(maxResidualNoise)
+  );
+  const outerEndpointPressure = finiteMaximum(
+    outerEndpointPoints.map((point) => point.pressure_contribution)
+  );
+  const midpointPressure = midpointPoint?.pressure_contribution ?? null;
+  const endpointToMidpointPressureRatio =
+    finitePositive(outerEndpointPressure) && finitePositive(midpointPressure)
+      ? Number(outerEndpointPressure) / Number(midpointPressure)
+      : null;
+  const maxDuplicateGap = finiteMaximum(
+    residualNoisePoints.map((point) => point.pressure_duplicate_relative_gap)
+  );
+  const residualRadiusBudget = requestedShiftedResidualRadiusBudget({
+    midpointPoint,
+    outerEndpointPoints,
+    outerRadius,
+  });
+  return {
+    profile_kind:
+      "candidate-requested-shifted-source-residual-direction-profile",
+    residual_noise_point_count: residualNoisePoints.length,
+    residual_noise_values: residualNoisePoints.map(
+      (point) => point.residual_noise
+    ),
+    residual_noise_points: residualNoisePoints,
+    outer_endpoint_residual_noise_values: [
+      minResidualNoise,
+      maxResidualNoise,
+    ],
+    outer_endpoint_dominant_terms: outerEndpointPoints.map(
+      (point) => point.dominant_term
+    ),
+    midpoint_residual_noise: midpointPoint?.residual_noise ?? null,
+    midpoint_dominant_term: midpointPoint?.dominant_term ?? null,
+    outer_endpoint_pressure_contribution: outerEndpointPressure,
+    midpoint_pressure_contribution: midpointPressure,
+    endpoint_to_midpoint_pressure_ratio: endpointToMidpointPressureRatio,
+    outer_endpoints_dominate_midpoint:
+      finitePositive(outerEndpointPressure) &&
+      finitePositive(midpointPressure) &&
+      Number(outerEndpointPressure) > Number(midpointPressure),
+    max_duplicate_pressure_relative_gap: maxDuplicateGap ?? 0,
+    all_duplicate_boundary_points_consistent:
+      (maxDuplicateGap ?? 0) <= 1e-12,
+    max_term_sum_to_source_relative_gap: finiteMaximum(
+      residualNoisePoints.map((point) => point.term_sum_to_source_relative_gap)
+    ),
+    residual_radius_budget: residualRadiusBudget,
+    midpoint_matching_residual_half_width:
+      residualRadiusBudget?.midpoint_matching_residual_half_width ?? null,
+    full_radius_to_midpoint_matching_scale:
+      residualRadiusBudget?.full_radius_to_midpoint_matching_scale ?? null,
+    residual_direction_interpretation:
+      finitePositive(endpointToMidpointPressureRatio) &&
+      Number(endpointToMidpointPressureRatio) > 1
+        ? "requested-y44 pressure is largest at the shared residual-coordinate endpoints; because the slice is affine in this coordinate, residual subpartitioning alone cannot reduce the endpoint wall without a sharper producer-image residual enclosure"
+        : "requested-y44 residual direction profile remains candidate-only; inspect producer-image enclosure before changing the certificate route",
+    claim_boundary: {
+      certifies_producer_image_residual_radius: false,
+      certifies_shared_zeta_interval_provider: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function affineEndpointEnvelopeForPressurePair({
+  residualNoiseInterval,
+  leftPressure,
+  rightPressure,
+  outerRadius,
+}) {
+  if (
+    leftPressure === null ||
+    rightPressure === null ||
+    leftPressure.shifted_index !== rightPressure.shifted_index ||
+    leftPressure.y_order !== rightPressure.y_order
+  ) {
+    return null;
+  }
+  const envelope = affineZetaEndpointEnvelope({
+    residualNoiseInterval,
+    leftCoefficientInterval: numericOrderedInterval(
+      "left endpoint coefficient",
+      leftPressure.coefficient
+    ),
+    rightCoefficientInterval: numericOrderedInterval(
+      "right endpoint coefficient",
+      rightPressure.coefficient
+    ),
+  });
+  return {
+    shifted_index: leftPressure.shifted_index,
+    y_order: leftPressure.y_order,
+    coefficient_endpoint_envelope: envelope,
+    endpoint_hull_pressure_contribution:
+      intervalAbsUpper(envelope.endpoint_hull) *
+      Number(outerRadius) ** Number(leftPressure.shifted_index),
+  };
+}
+
+function successorSuffixEndpointCoefficientEnvelopeSummaries({
+  successorSuffixEndpointProviderReplays,
+  outerRadius,
+}) {
+  return successorSuffixEndpointProviderReplays.map((suffixReplay) => {
+    const summary = suffixReplay.endpoint_provider_replay_summary ?? {};
+    const zetaDegreeBound = summary.successor_suffix_zeta_degree_bound ?? {};
+    const partitionEnvelopes = (
+      suffixReplay.endpoint_partition_replays ?? []
+    ).map((partition) => {
+      const endpoints = (partition.endpoint_replays ?? [])
+        .slice()
+        .sort((left, right) => left.endpoint_index - right.endpoint_index);
+      const leftEndpoint = endpoints[0] ?? null;
+      const rightEndpoint = endpoints[1] ?? null;
+      const leftPressure = endpointDominantShiftedPressure(leftEndpoint);
+      const rightPressure = endpointDominantShiftedPressure(rightEndpoint);
+      const leftTerm = endpointDominantTerm(leftEndpoint);
+      const rightTerm = endpointDominantTerm(rightEndpoint);
+      const leftRequestedPressure =
+        endpointRequestedShiftedPressure(leftEndpoint);
+      const rightRequestedPressure =
+        endpointRequestedShiftedPressure(rightEndpoint);
+      const leftRequestedTerm = endpointRequestedTerm(leftEndpoint);
+      const rightRequestedTerm = endpointRequestedTerm(rightEndpoint);
+      const requestedSourceTermNormalForms = endpoints.map((endpoint) => ({
+        endpoint_index: endpoint.endpoint_index,
+        residual_noise: endpoint.residual_noise,
+        normal_form: requestedShiftedSourceTermNormalForm(endpoint),
+      }));
+      const requestedSourceCancellationFractions =
+        requestedSourceTermNormalForms
+          .map((entry) => entry.normal_form?.source_cancellation_fraction)
+          .filter((value) => Number.isFinite(Number(value)))
+          .map(Number);
+      const requestedTermTriangleToSourceGains =
+        requestedSourceTermNormalForms
+          .map((entry) => entry.normal_form?.term_triangle_to_source_pressure_gain)
+          .filter((value) => Number.isFinite(Number(value)))
+          .map(Number);
+      const requestedTermSumToSourceRelativeGaps =
+        requestedSourceTermNormalForms
+          .map((entry) => entry.normal_form?.term_sum_to_source_relative_gap)
+          .filter((value) => Number.isFinite(Number(value)))
+          .map(Number);
+      const sameDominantTarget =
+        leftPressure !== null &&
+        rightPressure !== null &&
+        leftPressure.shifted_index === rightPressure.shifted_index &&
+        leftPressure.y_order === rightPressure.y_order &&
+        leftTerm === rightTerm;
+      const dominantEnvelope =
+        sameDominantTarget === true
+          ? affineEndpointEnvelopeForPressurePair({
+              residualNoiseInterval: partition.residual_noise_interval,
+              leftPressure,
+              rightPressure,
+              outerRadius,
+            })
+          : null;
+      const requestedEnvelope = affineEndpointEnvelopeForPressurePair({
+        residualNoiseInterval: partition.residual_noise_interval,
+        leftPressure: leftRequestedPressure,
+        rightPressure: rightRequestedPressure,
+        outerRadius,
+      });
+      const requestedTargetsMatch = requestedEnvelope !== null;
+      const requestedShiftedTermSwitch =
+        requestedEnvelope !== null && leftRequestedTerm !== rightRequestedTerm;
+      return {
+        partition_index: partition.partition_index,
+        residual_noise_interval: partition.residual_noise_interval,
+        endpoint_count: endpoints.length,
+        endpoint_dominant_targets: endpoints.map((endpoint) => {
+          const pressure = endpointDominantShiftedPressure(endpoint);
+          return {
+            endpoint_index: endpoint.endpoint_index,
+            residual_noise: endpoint.residual_noise,
+            shifted_index: pressure?.shifted_index ?? null,
+            y_order: pressure?.y_order ?? null,
+            dominant_term: endpointDominantTerm(endpoint),
+            coefficient: pressure?.coefficient ?? null,
+            pressure_contribution: pressure?.pressure_contribution ?? null,
+          };
+        }),
+        endpoints_share_dominant_target: sameDominantTarget,
+        endpoint_dominant_target_switch_detected:
+          sameDominantTarget !== true,
+        requested_shifted_endpoint_targets: endpoints.map((endpoint) => {
+          const pressure = endpointRequestedShiftedPressure(endpoint);
+          return {
+            endpoint_index: endpoint.endpoint_index,
+            residual_noise: endpoint.residual_noise,
+            shifted_index: pressure?.shifted_index ?? null,
+            y_order: pressure?.y_order ?? null,
+            dominant_term: endpointRequestedTerm(endpoint),
+            coefficient: pressure?.coefficient ?? null,
+            pressure_contribution: pressure?.pressure_contribution ?? null,
+          };
+        }),
+        endpoints_share_requested_shifted_target: requestedTargetsMatch,
+        requested_shifted_dominant_term_switch_detected:
+          requestedShiftedTermSwitch,
+        requested_shifted_source_term_normal_forms:
+          requestedSourceTermNormalForms,
+        min_requested_shifted_source_cancellation_fraction:
+          finiteMinimum(requestedSourceCancellationFractions),
+        max_requested_shifted_term_triangle_to_source_gain:
+          finiteMaximum(requestedTermTriangleToSourceGains),
+        max_requested_shifted_term_sum_to_source_relative_gap:
+          finiteMaximum(requestedTermSumToSourceRelativeGaps),
+        requested_shifted_source_terms_reconstruct_source:
+          requestedTermSumToSourceRelativeGaps.length === endpoints.length &&
+          finiteMaximum(requestedTermSumToSourceRelativeGaps) <= 1e-10,
+        affine_in_shared_residual_coordinate:
+          zetaDegreeBound.affine_in_shared_residual_coordinate === true,
+        dominant_target_coefficient_endpoint_envelope:
+          dominantEnvelope?.coefficient_endpoint_envelope ?? null,
+        dominant_target_endpoint_hull_pressure_contribution:
+          dominantEnvelope?.endpoint_hull_pressure_contribution ?? null,
+        requested_shifted_coefficient_endpoint_envelope:
+          requestedEnvelope?.coefficient_endpoint_envelope ?? null,
+        requested_shifted_endpoint_hull_pressure_contribution:
+          requestedEnvelope?.endpoint_hull_pressure_contribution ?? null,
+        candidate_covers_dominant_target_zeta_slice:
+          dominantEnvelope !== null &&
+          sameDominantTarget === true &&
+          zetaDegreeBound.affine_in_shared_residual_coordinate === true &&
+          finitePositive(dominantEnvelope.endpoint_hull_pressure_contribution),
+        candidate_covers_requested_shifted_zeta_slice:
+          requestedTargetsMatch === true &&
+          zetaDegreeBound.affine_in_shared_residual_coordinate === true &&
+          finitePositive(
+            requestedEnvelope?.endpoint_hull_pressure_contribution
+          ),
+        certificate_boundary:
+          "Requested shifted-index hulls must be built before taking a maximum over shifted coefficients. Dominant-target switches are diagnostic evidence that max-after-endpoint replay is too crude. The hull remains candidate-only until a directed-rounded xi,zeta producer-image enclosure is available.",
+      };
+    });
+    const maxDominantEndpointHullPressure = finiteMaximum(
+      partitionEnvelopes.map(
+        (partition) =>
+          partition.dominant_target_endpoint_hull_pressure_contribution
+      )
+    );
+    const maxRequestedEndpointHullPressure = finiteMaximum(
+      partitionEnvelopes.map(
+        (partition) =>
+          partition.requested_shifted_endpoint_hull_pressure_contribution
+      )
+    );
+    const minRequestedSourceCancellationFraction = finiteMinimum(
+      partitionEnvelopes.map(
+        (partition) =>
+          partition.min_requested_shifted_source_cancellation_fraction
+      )
+    );
+    const maxRequestedTermTriangleToSourceGain = finiteMaximum(
+      partitionEnvelopes.map(
+        (partition) => partition.max_requested_shifted_term_triangle_to_source_gain
+      )
+    );
+    const maxRequestedTermSumToSourceRelativeGap = finiteMaximum(
+      partitionEnvelopes.map(
+        (partition) =>
+          partition.max_requested_shifted_term_sum_to_source_relative_gap
+      )
+    );
+    const requestedResidualDirectionProfile =
+      requestedShiftedResidualDirectionProfileForPartitionEnvelopes(
+        partitionEnvelopes,
+        { outerRadius }
+      );
+    return {
+      successor_suffix_h_indexes: suffixReplay.successor_suffix_h_indexes,
+      suffix_start_index:
+        suffixReplay.successor_suffix_h_indexes?.[0] ?? null,
+      successor_suffix_zeta_degree_bound: zetaDegreeBound,
+      partition_envelopes: partitionEnvelopes,
+      all_partitions_share_dominant_target: partitionEnvelopes.every(
+        (partition) => partition.endpoints_share_dominant_target === true
+      ),
+      any_partition_dominant_target_switch_detected:
+        partitionEnvelopes.some(
+          (partition) =>
+            partition.endpoint_dominant_target_switch_detected === true
+        ),
+      all_partitions_share_requested_shifted_target:
+        partitionEnvelopes.every(
+          (partition) =>
+            partition.endpoints_share_requested_shifted_target === true
+        ),
+      any_requested_shifted_dominant_term_switch_detected:
+        partitionEnvelopes.some(
+          (partition) =>
+            partition.requested_shifted_dominant_term_switch_detected ===
+            true
+        ),
+      all_partitions_requested_shifted_source_terms_reconstruct_source:
+        partitionEnvelopes.every(
+          (partition) =>
+            partition.requested_shifted_source_terms_reconstruct_source === true
+        ),
+      min_requested_shifted_source_cancellation_fraction:
+        minRequestedSourceCancellationFraction,
+      max_requested_shifted_term_triangle_to_source_gain:
+        maxRequestedTermTriangleToSourceGain,
+      max_requested_shifted_term_sum_to_source_relative_gap:
+        maxRequestedTermSumToSourceRelativeGap,
+      requested_shifted_residual_direction_profile:
+        requestedResidualDirectionProfile,
+      requested_shifted_residual_outer_endpoints_dominate_midpoint:
+        requestedResidualDirectionProfile.outer_endpoints_dominate_midpoint,
+      requested_shifted_residual_endpoint_to_midpoint_pressure_ratio:
+        requestedResidualDirectionProfile.endpoint_to_midpoint_pressure_ratio,
+      requested_shifted_residual_profile_duplicate_relative_gap:
+        requestedResidualDirectionProfile.max_duplicate_pressure_relative_gap,
+      requested_shifted_residual_midpoint_matching_half_width:
+        requestedResidualDirectionProfile.midpoint_matching_residual_half_width,
+      requested_shifted_residual_full_radius_to_midpoint_matching_scale:
+        requestedResidualDirectionProfile.full_radius_to_midpoint_matching_scale,
+      all_partitions_candidate_cover_dominant_target_zeta_slice:
+        partitionEnvelopes.every(
+          (partition) =>
+            partition.candidate_covers_dominant_target_zeta_slice === true
+        ),
+      all_partitions_candidate_cover_requested_shifted_zeta_slice:
+        partitionEnvelopes.every(
+          (partition) =>
+            partition.candidate_covers_requested_shifted_zeta_slice === true
+      ),
+      max_dominant_target_endpoint_hull_pressure_contribution:
+        maxDominantEndpointHullPressure,
+      max_requested_shifted_endpoint_hull_pressure_contribution:
+        maxRequestedEndpointHullPressure,
+      max_endpoint_replay_pressure:
+        summary.max_endpoint_shifted_prefix_pressure_outer_radius ?? null,
+      requested_shifted_endpoint_hull_to_endpoint_replay_pressure_ratio:
+        finitePositive(maxRequestedEndpointHullPressure) &&
+        finitePositive(summary.max_endpoint_shifted_prefix_pressure_outer_radius)
+          ? Number(maxRequestedEndpointHullPressure) /
+            Number(summary.max_endpoint_shifted_prefix_pressure_outer_radius)
+          : null,
+      claim_boundary: {
+        certifies_successor_suffix_provider_enclosure: false,
+        certifies_shared_zeta_interval_provider: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        certifies_continuous_polydisc_primitives: false,
+        retained_branch: false,
+      },
+    };
+  });
+}
+
+function successorSuffixRequestedCoefficientXiZetaScan({
+  context,
+  comparisonRows,
+  comparisonXiIntervalHull,
+  targetSpeedInterval,
+  polynomialTransportProfilesByBranch,
+  intervalResidualProfilesByBranch,
+  successorSuffixEndpointProviderHIndexSets,
+  selectedSuffixStartIndexes,
+  partitionIntervals,
+  endpointReplayRowLimit,
+  shiftedIndex,
+  seriesOrder,
+  outerRadius,
+}) {
+  const selectedStarts = new Set(
+    (selectedSuffixStartIndexes ?? []).map(Number)
+  );
+  const selectedHIndexSets = successorSuffixEndpointProviderHIndexSets.filter(
+    (hIndexSet) =>
+      selectedStarts.size === 0 || selectedStarts.has(Number(hIndexSet[0]))
+  );
+  const resolvedComparisonXiIntervalHull = numericInterval(
+    "comparisonXiIntervalHull",
+    comparisonXiIntervalHull
+  );
+  const scanEntries = selectedHIndexSets.map((hIndexSet) => {
+    const rowReplays = comparisonRows.map((row, rowAnalysisIndex) => {
+      const rowPartitionReplays = partitionIntervals.map(
+        (residualNoiseInterval, partitionIndex) => {
+          const endpointReplays = residualNoiseInterval.map(
+            (residualNoise, endpointIndex) => {
+              const artifact = buildH39SharedDomainCoefficientArtifact({
+                h38Rows: [row],
+                validateH38: false,
+                shiftedOrder: shiftedIndex,
+                seriesOrder,
+                rho: outerRadius,
+                sharedDomainSignature:
+                  "candidate-h39-successor-suffix-requested-xi-zeta-row-endpoint-replay",
+                rowLimit: endpointReplayRowLimit,
+                includeRows: false,
+                hRowProvider:
+                  terminalSharedResidualAffineZetaEndpointHRowProvider({
+                    targetSpeedInterval,
+                    transportProfilesByBranch:
+                      polynomialTransportProfilesByBranch,
+                    intervalResidualProfilesByBranch,
+                    terminalHIndexes: hIndexSet,
+                    residualNoise,
+                    preserveH38: false,
+                    providerKind:
+                      "candidate-successor-suffix-requested-xi-zeta-row-endpoint-provider",
+                    providerProvenance:
+                      "successor-suffix-requested-coefficient-xi-zeta-row-scan",
+                  }),
+              });
+              const summary =
+                sharedDomainReplayArtifactCandidateSummary(artifact);
+              return {
+                endpoint_index: endpointIndex,
+                residual_noise: Number(residualNoise),
+                shared_domain_replay_artifact_summary: summary,
+                endpoint_provider_backed_replay:
+                  summary.h_row_provider_dependency_state ===
+                    "dependency-preserving-provider-backed-replay" &&
+                  summary.h_row_provider_backed_all_cells === true,
+                endpoint_claim_boundary: artifact.claim_boundary,
+              };
+            }
+          );
+          const endpointPressures = endpointReplays.map((endpoint) =>
+            replaySummaryShiftedPressure(
+              endpoint.shared_domain_replay_artifact_summary
+            )
+          );
+          return {
+            partition_index: partitionIndex,
+            residual_noise_interval: residualNoiseInterval,
+            endpoint_replays: endpointReplays,
+            max_endpoint_shifted_prefix_pressure_outer_radius:
+              Math.max(...endpointPressures),
+            min_endpoint_shifted_prefix_pressure_outer_radius:
+              Math.min(...endpointPressures),
+            all_endpoint_replays_provider_backed: endpointReplays.every(
+              (endpoint) => endpoint.endpoint_provider_backed_replay === true
+            ),
+          };
+        }
+      );
+      const rowEndpointSummaries = rowPartitionReplays.flatMap((partition) =>
+        partition.endpoint_replays.map(
+          (endpoint) => endpoint.shared_domain_replay_artifact_summary
+        )
+      );
+      const rowEndpointPressures = rowEndpointSummaries.map(
+        replaySummaryShiftedPressure
+      );
+      const rowReplay = {
+        successor_suffix_h_indexes: hIndexSet,
+        endpoint_partition_replays: rowPartitionReplays,
+        endpoint_provider_replay_summary: {
+          endpoint_replay_count: rowEndpointSummaries.length,
+          all_endpoint_replays_provider_backed: rowPartitionReplays.every(
+            (partition) =>
+              partition.all_endpoint_replays_provider_backed === true
+          ),
+          provider_kind:
+            "candidate-successor-suffix-requested-xi-zeta-row-endpoint-provider",
+          h38_solve_target_policy:
+            "candidate-H38-predecessor-row-affine-zeta-endpoint",
+          successor_suffix_zeta_degree_bound:
+            terminalSharedResidualZetaDegreeBound({
+              terminalHIndexes: hIndexSet,
+              targetYOrder:
+                THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS
+                  .r43_source_shift + Number(shiftedIndex),
+            }),
+          min_endpoint_shifted_prefix_pressure_outer_radius: Math.min(
+            ...rowEndpointPressures
+          ),
+          max_endpoint_shifted_prefix_pressure_outer_radius: Math.max(
+            ...rowEndpointPressures
+          ),
+        },
+      };
+      const coefficientEnvelope =
+        successorSuffixEndpointCoefficientEnvelopeSummaries({
+          successorSuffixEndpointProviderReplays: [rowReplay],
+          outerRadius,
+        })[0] ?? null;
+      const xiInterval = speedIntervalXiInterval({
+        row,
+        targetSpeedInterval,
+      });
+      return {
+        row_analysis_index: rowAnalysisIndex,
+        cell_id: row.cell_id,
+        speed_interval: row.speed_interval,
+        xi_interval: xiInterval,
+        xi_midpoint: intervalMidpoint(xiInterval),
+        endpoint_partition_replays: rowPartitionReplays,
+        endpoint_provider_replay_summary:
+          rowReplay.endpoint_provider_replay_summary,
+        coefficient_envelope_summary: coefficientEnvelope,
+      };
+    });
+    const maxRequestedEndpointHullPressure = finiteMaximum(
+      rowReplays.map(
+        (rowReplay) =>
+          rowReplay.coefficient_envelope_summary
+            ?.max_requested_shifted_endpoint_hull_pressure_contribution
+      )
+    );
+    const minRequestedEndpointHullPressure = finiteMinimum(
+      rowReplays.map(
+        (rowReplay) =>
+          rowReplay.coefficient_envelope_summary
+            ?.max_requested_shifted_endpoint_hull_pressure_contribution
+      )
+    );
+    const maxEndpointReplayPressure = finiteMaximum(
+      rowReplays.map(
+        (rowReplay) =>
+          rowReplay.endpoint_provider_replay_summary
+            ?.max_endpoint_shifted_prefix_pressure_outer_radius
+      )
+    );
+    const minRequestedSourceCancellationFraction = finiteMinimum(
+      rowReplays.map(
+        (rowReplay) =>
+          rowReplay.coefficient_envelope_summary
+            ?.min_requested_shifted_source_cancellation_fraction
+      )
+    );
+    const maxRequestedTermTriangleToSourceGain = finiteMaximum(
+      rowReplays.map(
+        (rowReplay) =>
+          rowReplay.coefficient_envelope_summary
+            ?.max_requested_shifted_term_triangle_to_source_gain
+      )
+    );
+    const maxRequestedTermSumToSourceRelativeGap = finiteMaximum(
+      rowReplays.map(
+        (rowReplay) =>
+          rowReplay.coefficient_envelope_summary
+            ?.max_requested_shifted_term_sum_to_source_relative_gap
+      )
+    );
+    const maxRequestedResidualEndpointToMidpointPressureRatio = finiteMaximum(
+      rowReplays.map(
+        (rowReplay) =>
+          rowReplay.coefficient_envelope_summary
+            ?.requested_shifted_residual_endpoint_to_midpoint_pressure_ratio
+      )
+    );
+    const maxRequestedResidualProfileDuplicateRelativeGap = finiteMaximum(
+      rowReplays.map(
+        (rowReplay) =>
+          rowReplay.coefficient_envelope_summary
+            ?.requested_shifted_residual_profile_duplicate_relative_gap
+      )
+    );
+    const minRequestedResidualMidpointMatchingHalfWidth = finiteMinimum(
+      rowReplays.map(
+        (rowReplay) =>
+          rowReplay.coefficient_envelope_summary
+            ?.requested_shifted_residual_midpoint_matching_half_width
+      )
+    );
+    const maxRequestedResidualFullRadiusToMidpointMatchingScale =
+      finiteMaximum(
+        rowReplays.map(
+          (rowReplay) =>
+            rowReplay.coefficient_envelope_summary
+              ?.requested_shifted_residual_full_radius_to_midpoint_matching_scale
+        )
+      );
+    const requestedXiRowSpreadFactor =
+      finitePositive(maxRequestedEndpointHullPressure) &&
+      finitePositive(minRequestedEndpointHullPressure)
+        ? Number(maxRequestedEndpointHullPressure) /
+          Number(minRequestedEndpointHullPressure)
+        : null;
+    const requestedControllingRows = rowReplays
+      .filter(
+        (rowReplay) =>
+          Number(
+            rowReplay.coefficient_envelope_summary
+              ?.max_requested_shifted_endpoint_hull_pressure_contribution
+          ) === Number(maxRequestedEndpointHullPressure)
+      )
+      .map((rowReplay) => ({
+        row_analysis_index: rowReplay.row_analysis_index,
+        cell_id: rowReplay.cell_id,
+        xi_midpoint: rowReplay.xi_midpoint,
+        xi_interval: rowReplay.xi_interval,
+      }));
+    const xiIntervalCoverSummary = intervalCoverSummary(
+      rowReplays.map((rowReplay) => rowReplay.xi_interval),
+      resolvedComparisonXiIntervalHull
+    );
+    return {
+      successor_suffix_h_indexes: hIndexSet,
+      suffix_start_index: hIndexSet[0] ?? null,
+      row_replays: rowReplays,
+      row_count: rowReplays.length,
+      xi_interval_cover_summary: xiIntervalCoverSummary,
+      xi_interval_cover_contiguous_or_overlapping:
+        xiIntervalCoverSummary.intervals_contiguous_or_overlapping,
+      xi_interval_cover_covers_comparison_hull:
+        xiIntervalCoverSummary.covers_target_interval,
+      all_rows_candidate_cover_requested_shifted_zeta_slice:
+        rowReplays.every(
+          (rowReplay) =>
+            rowReplay.coefficient_envelope_summary
+              ?.all_partitions_candidate_cover_requested_shifted_zeta_slice ===
+            true
+        ),
+      all_rows_share_requested_shifted_target: rowReplays.every(
+        (rowReplay) =>
+          rowReplay.coefficient_envelope_summary
+            ?.all_partitions_share_requested_shifted_target === true
+      ),
+      any_row_dominant_target_switch_detected: rowReplays.some(
+        (rowReplay) =>
+          rowReplay.coefficient_envelope_summary
+            ?.any_partition_dominant_target_switch_detected === true
+      ),
+      any_row_requested_shifted_dominant_term_switch_detected:
+        rowReplays.some(
+          (rowReplay) =>
+            rowReplay.coefficient_envelope_summary
+              ?.any_requested_shifted_dominant_term_switch_detected === true
+        ),
+      all_rows_requested_shifted_source_terms_reconstruct_source:
+        rowReplays.every(
+          (rowReplay) =>
+            rowReplay.coefficient_envelope_summary
+              ?.all_partitions_requested_shifted_source_terms_reconstruct_source ===
+            true
+        ),
+      min_requested_shifted_source_cancellation_fraction:
+        minRequestedSourceCancellationFraction,
+      max_requested_shifted_term_triangle_to_source_gain:
+        maxRequestedTermTriangleToSourceGain,
+      max_requested_shifted_term_sum_to_source_relative_gap:
+        maxRequestedTermSumToSourceRelativeGap,
+      all_rows_requested_shifted_residual_outer_endpoints_dominate_midpoint:
+        rowReplays.every(
+          (rowReplay) =>
+            rowReplay.coefficient_envelope_summary
+              ?.requested_shifted_residual_outer_endpoints_dominate_midpoint ===
+            true
+        ),
+      max_requested_shifted_residual_endpoint_to_midpoint_pressure_ratio:
+        maxRequestedResidualEndpointToMidpointPressureRatio,
+      max_requested_shifted_residual_profile_duplicate_relative_gap:
+        maxRequestedResidualProfileDuplicateRelativeGap,
+      min_requested_shifted_residual_midpoint_matching_half_width:
+        minRequestedResidualMidpointMatchingHalfWidth,
+      max_requested_shifted_residual_full_radius_to_midpoint_matching_scale:
+        maxRequestedResidualFullRadiusToMidpointMatchingScale,
+      max_requested_shifted_endpoint_hull_pressure_contribution:
+        maxRequestedEndpointHullPressure,
+      min_requested_shifted_endpoint_hull_pressure_contribution:
+        minRequestedEndpointHullPressure,
+      requested_shifted_xi_row_spread_factor:
+        requestedXiRowSpreadFactor,
+      requested_shifted_controlling_xi_rows: requestedControllingRows,
+      max_endpoint_replay_pressure: maxEndpointReplayPressure,
+      requested_shifted_endpoint_hull_to_row_endpoint_replay_pressure_ratio:
+        finitePositive(maxRequestedEndpointHullPressure) &&
+        finitePositive(maxEndpointReplayPressure)
+          ? Number(maxRequestedEndpointHullPressure) /
+            Number(maxEndpointReplayPressure)
+          : null,
+      xi_scan_interpretation:
+        xiIntervalCoverSummary.intervals_contiguous_or_overlapping === true &&
+        xiIntervalCoverSummary.covers_target_interval === true &&
+        finitePositive(requestedXiRowSpreadFactor) &&
+        requestedXiRowSpreadFactor < 1.001
+          ? "row-interval xi cover finds requested-y44 pressure nearly xi-flat across the comparison hull; residual-direction profile separates the remaining burden as producer-image residual-radius certification, not a narrow xi spike between rows"
+          : "row-interval xi cover scan; candidate-only until directed-rounded continuous xi,zeta producer-image enclosure certifies the same cover",
+      claim_boundary: {
+        certifies_continuous_xi_enclosure: false,
+        certifies_successor_suffix_provider_enclosure: false,
+        certifies_shared_zeta_interval_provider: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        certifies_continuous_polydisc_primitives: false,
+        retained_branch: false,
+      },
+    };
+  });
+  return {
+    scan_kind:
+      "candidate-successor-suffix-requested-coefficient-xi-zeta-row-scan",
+    selected_suffix_start_indexes: selectedHIndexSets.map(
+      (hIndexSet) => hIndexSet[0] ?? null
+    ),
+    comparison_xi_interval_hull: resolvedComparisonXiIntervalHull,
+    comparison_row_count: comparisonRows.length,
+    residual_coordinate_partition_count: partitionIntervals.length,
+    scan_entries: scanEntries,
+    all_scan_entries_xi_interval_covers_contiguous_or_overlapping:
+      scanEntries.every(
+        (entry) => entry.xi_interval_cover_contiguous_or_overlapping === true
+      ),
+    all_scan_entries_cover_comparison_xi_hull: scanEntries.every(
+      (entry) => entry.xi_interval_cover_covers_comparison_hull === true
+    ),
+    max_xi_interval_cover_positive_gap: finiteMaximum(
+      scanEntries.map(
+        (entry) => entry.xi_interval_cover_summary?.max_positive_gap
+      )
+    ),
+    all_scan_entries_cover_requested_shifted_zeta_slices:
+      scanEntries.every(
+        (entry) =>
+          entry.all_rows_candidate_cover_requested_shifted_zeta_slice === true
+      ),
+    any_scan_entry_requested_shifted_dominant_term_switch_detected:
+      scanEntries.some(
+        (entry) =>
+          entry.any_row_requested_shifted_dominant_term_switch_detected ===
+          true
+      ),
+    all_scan_entries_requested_shifted_source_terms_reconstruct_source:
+      scanEntries.every(
+        (entry) =>
+          entry.all_rows_requested_shifted_source_terms_reconstruct_source ===
+          true
+      ),
+    min_requested_shifted_source_cancellation_fraction: finiteMinimum(
+      scanEntries.map(
+        (entry) => entry.min_requested_shifted_source_cancellation_fraction
+      )
+    ),
+    max_requested_shifted_term_triangle_to_source_gain: finiteMaximum(
+      scanEntries.map(
+        (entry) => entry.max_requested_shifted_term_triangle_to_source_gain
+      )
+    ),
+    max_requested_shifted_term_sum_to_source_relative_gap: finiteMaximum(
+      scanEntries.map(
+        (entry) => entry.max_requested_shifted_term_sum_to_source_relative_gap
+      )
+    ),
+    all_scan_entries_requested_shifted_residual_outer_endpoints_dominate_midpoint:
+      scanEntries.every(
+        (entry) =>
+          entry
+            .all_rows_requested_shifted_residual_outer_endpoints_dominate_midpoint ===
+          true
+      ),
+    max_requested_shifted_residual_endpoint_to_midpoint_pressure_ratio:
+      finiteMaximum(
+        scanEntries.map(
+          (entry) =>
+            entry
+              .max_requested_shifted_residual_endpoint_to_midpoint_pressure_ratio
+        )
+      ),
+    max_requested_shifted_residual_profile_duplicate_relative_gap:
+      finiteMaximum(
+        scanEntries.map(
+          (entry) =>
+            entry.max_requested_shifted_residual_profile_duplicate_relative_gap
+        )
+      ),
+    min_requested_shifted_residual_midpoint_matching_half_width:
+      finiteMinimum(
+        scanEntries.map(
+          (entry) =>
+            entry.min_requested_shifted_residual_midpoint_matching_half_width
+        )
+      ),
+    max_requested_shifted_residual_full_radius_to_midpoint_matching_scale:
+      finiteMaximum(
+        scanEntries.map(
+          (entry) =>
+            entry
+              .max_requested_shifted_residual_full_radius_to_midpoint_matching_scale
+        )
+      ),
+    max_requested_shifted_endpoint_hull_pressure_contribution:
+      finiteMaximum(
+        scanEntries.map(
+          (entry) =>
+            entry.max_requested_shifted_endpoint_hull_pressure_contribution
+          )
+      ),
+    max_requested_shifted_xi_row_spread_factor: finiteMaximum(
+      scanEntries.map(
+        (entry) => entry.requested_shifted_xi_row_spread_factor
+      )
+    ),
+    max_endpoint_replay_pressure: finiteMaximum(
+      scanEntries.map((entry) => entry.max_endpoint_replay_pressure)
+    ),
+    claim_boundary: {
+      certifies_continuous_xi_enclosure: false,
+      certifies_successor_suffix_provider_enclosure: false,
+      certifies_shared_zeta_interval_provider: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function successorSuffixEndpointTransitionSummary(summaries) {
+  const entries = summaries
+    .map((summary) => {
+      const hIndexes = summary?.successor_suffix_h_indexes ?? [];
+      const dominantShiftedPrefix =
+        summary?.dominant_endpoint_shifted_prefix_pressure
+          ?.dominant_R43_shifted_prefix_pressure ?? null;
+      const dominantUnreduced =
+        dominantShiftedPrefix?.dominant_unreduced_shifted_pressure ?? null;
+      const dominantTermDecomposition =
+        dominantShiftedPrefix?.dominant_unreduced_shifted_term_decomposition ??
+        null;
+      return {
+        suffix_start_index: hIndexes[0] ?? null,
+        successor_suffix_h_indexes: hIndexes,
+        transported_h_row_count: hIndexes.length,
+        affine_in_shared_residual_coordinate:
+          summary?.successor_suffix_zeta_degree_bound
+            ?.affine_in_shared_residual_coordinate ?? null,
+        two_terminal_factor_min_y_order:
+          summary?.successor_suffix_zeta_degree_bound
+            ?.two_terminal_factor_min_y_order ?? null,
+        max_endpoint_shifted_prefix_pressure_outer_radius:
+          summary?.max_endpoint_shifted_prefix_pressure_outer_radius ?? null,
+        preserved_h38_to_successor_suffix_max_pressure_ratio:
+          summary?.preserved_h38_to_successor_suffix_max_pressure_ratio ?? null,
+        dominant_shifted_index: dominantUnreduced?.shifted_index ?? null,
+        dominant_y_order: dominantUnreduced?.y_order ?? null,
+        dominant_term:
+          dominantTermDecomposition?.dominant_term?.term ?? null,
+        dominant_term_triangle_over_source_pressure_ratio:
+          dominantTermDecomposition?.term_triangle_over_source_pressure_ratio ??
+          null,
+      };
+    })
+    .sort((left, right) => right.suffix_start_index - left.suffix_start_index);
+  const marginal_transitions = entries.slice(1).map((entry, index) => {
+    const previous = entries[index];
+    const addedHIndexes =
+      Number.isInteger(previous.suffix_start_index) &&
+      Number.isInteger(entry.suffix_start_index) &&
+      entry.suffix_start_index < previous.suffix_start_index
+        ? Array.from(
+            { length: previous.suffix_start_index - entry.suffix_start_index },
+            (_, offset) => entry.suffix_start_index + offset
+          )
+        : [];
+    const previousPressure = Number(
+      previous.max_endpoint_shifted_prefix_pressure_outer_radius
+    );
+    const entryPressure = Number(
+      entry.max_endpoint_shifted_prefix_pressure_outer_radius
+    );
+    const previousRatio = Number(
+      previous.preserved_h38_to_successor_suffix_max_pressure_ratio
+    );
+    const entryRatio = Number(
+      entry.preserved_h38_to_successor_suffix_max_pressure_ratio
+    );
+    return {
+      from_suffix_start_index: previous.suffix_start_index,
+      to_suffix_start_index: entry.suffix_start_index,
+      added_h_indexes: addedHIndexes,
+      marginal_pressure_reduction_factor:
+        previousPressure > 0 && entryPressure > 0
+          ? previousPressure / entryPressure
+          : null,
+      marginal_preserved_ratio_gain:
+        previousRatio > 0 && entryRatio > 0
+          ? entryRatio / previousRatio
+          : null,
+      dominant_shifted_index_changed:
+        previous.dominant_shifted_index !== entry.dominant_shifted_index,
+      dominant_term_changed: previous.dominant_term !== entry.dominant_term,
+      previous_dominant_shifted_index: previous.dominant_shifted_index,
+      next_dominant_shifted_index: entry.dominant_shifted_index,
+      previous_dominant_term: previous.dominant_term,
+      next_dominant_term: entry.dominant_term,
+    };
+  });
+  const firstDominantShiftedIndexTransition =
+    marginal_transitions.find(
+      (transition) => transition.dominant_shifted_index_changed === true
+    ) ?? null;
+  const firstDominantTermTransition =
+    marginal_transitions.find(
+      (transition) => transition.dominant_term_changed === true
+    ) ?? null;
+  const firstSourceShapeTransition =
+    firstDominantShiftedIndexTransition ?? firstDominantTermTransition;
+  const firstSourceShapeTransitionEntry =
+    firstSourceShapeTransition !== null
+      ? entries.find(
+          (entry) =>
+            entry.suffix_start_index ===
+            firstSourceShapeTransition.to_suffix_start_index
+        ) ?? null
+      : null;
+  const bestReductionEntry =
+    entries.reduce(
+      (best, entry) =>
+        Number(entry.preserved_h38_to_successor_suffix_max_pressure_ratio) >
+        Number(best?.preserved_h38_to_successor_suffix_max_pressure_ratio ?? -1)
+          ? entry
+          : best,
+      null
+    ) ?? null;
+  const affineEntries = entries.filter(
+    (entry) => entry.affine_in_shared_residual_coordinate === true
+  );
+  const deepestTestedAffineSuffixEntry =
+    affineEntries.reduce(
+      (deepest, entry) =>
+        Number(entry.suffix_start_index) <
+        Number(deepest?.suffix_start_index ?? Infinity)
+          ? entry
+          : deepest,
+      null
+    ) ?? null;
+  const nextLowerSuffixStartIndex =
+    Number.isInteger(deepestTestedAffineSuffixEntry?.suffix_start_index) &&
+    deepestTestedAffineSuffixEntry.suffix_start_index > 0
+      ? deepestTestedAffineSuffixEntry.suffix_start_index - 1
+      : null;
+  const nextLowerSuffixZetaDegreeBound =
+    nextLowerSuffixStartIndex !== null &&
+    Number.isInteger(deepestTestedAffineSuffixEntry?.dominant_y_order)
+      ? terminalSharedResidualZetaDegreeBound({
+          terminalHIndexes:
+            successorSuffixHIndexesFromStart(nextLowerSuffixStartIndex),
+          targetYOrder: deepestTestedAffineSuffixEntry.dominant_y_order,
+        })
+      : null;
+  const sourceShapeStableAfterFirstTransition =
+    firstSourceShapeTransitionEntry !== null &&
+    entries
+      .filter(
+        (entry) =>
+          Number(entry.suffix_start_index) <=
+          Number(firstSourceShapeTransitionEntry.suffix_start_index)
+      )
+      .every(
+        (entry) =>
+          entry.dominant_shifted_index ===
+            firstSourceShapeTransitionEntry.dominant_shifted_index &&
+          entry.dominant_term === firstSourceShapeTransitionEntry.dominant_term
+      );
+  const transitionToAffineFloorPressureReductionFactor =
+    firstSourceShapeTransitionEntry !== null &&
+    deepestTestedAffineSuffixEntry !== null &&
+    finitePositive(
+      firstSourceShapeTransitionEntry
+        .max_endpoint_shifted_prefix_pressure_outer_radius
+    ) &&
+    finitePositive(
+      deepestTestedAffineSuffixEntry
+        .max_endpoint_shifted_prefix_pressure_outer_radius
+    )
+      ? Number(
+          firstSourceShapeTransitionEntry
+            .max_endpoint_shifted_prefix_pressure_outer_radius
+        ) /
+        Number(
+          deepestTestedAffineSuffixEntry
+            .max_endpoint_shifted_prefix_pressure_outer_radius
+        )
+      : null;
+  return {
+    sweep_count: entries.length,
+    sweep_entries: entries,
+    marginal_transitions,
+    first_dominant_shifted_index_transition:
+      firstDominantShiftedIndexTransition,
+    first_dominant_term_transition: firstDominantTermTransition,
+    first_source_shape_transition: firstSourceShapeTransition,
+    first_source_shape_transition_entry: firstSourceShapeTransitionEntry,
+    best_reduction_entry: bestReductionEntry,
+    deepest_tested_affine_suffix_entry: deepestTestedAffineSuffixEntry,
+    next_lower_suffix_zeta_degree_bound: nextLowerSuffixZetaDegreeBound,
+    transition_to_affine_floor_certificate_target: {
+      source_shape_transition_suffix_start_index:
+        firstSourceShapeTransitionEntry?.suffix_start_index ?? null,
+      deepest_tested_affine_suffix_start_index:
+        deepestTestedAffineSuffixEntry?.suffix_start_index ?? null,
+      deepest_tested_affine_two_terminal_factor_min_y_order:
+        deepestTestedAffineSuffixEntry?.two_terminal_factor_min_y_order ??
+        null,
+      next_lower_suffix_start_index: nextLowerSuffixStartIndex,
+      next_lower_suffix_affine_in_shared_residual_coordinate:
+        nextLowerSuffixZetaDegreeBound
+          ?.affine_in_shared_residual_coordinate ?? null,
+      next_lower_suffix_two_terminal_factor_min_y_order:
+        nextLowerSuffixZetaDegreeBound?.two_terminal_factor_min_y_order ??
+        null,
+      target_y_order:
+        deepestTestedAffineSuffixEntry?.dominant_y_order ??
+        firstSourceShapeTransitionEntry?.dominant_y_order ??
+        null,
+      affine_y_order_gap:
+        Number.isFinite(
+          Number(
+            deepestTestedAffineSuffixEntry
+              ?.two_terminal_factor_min_y_order
+          )
+        ) &&
+        Number.isFinite(
+          Number(
+            deepestTestedAffineSuffixEntry?.dominant_y_order ??
+              firstSourceShapeTransitionEntry?.dominant_y_order
+          )
+        )
+          ? Number(
+              deepestTestedAffineSuffixEntry
+                ?.two_terminal_factor_min_y_order
+            ) -
+            Number(
+              deepestTestedAffineSuffixEntry?.dominant_y_order ??
+                firstSourceShapeTransitionEntry?.dominant_y_order
+            )
+          : null,
+      transition_to_affine_floor_pressure_reduction_factor:
+        transitionToAffineFloorPressureReductionFactor,
+      source_shape_stable_after_first_transition:
+        sourceShapeStableAfterFirstTransition,
+      certificate_interpretation:
+        "A directed-rounded successor-suffix certificate should first prove the h30 source-shape transition, then extend the same dominant shifted-index/term shape to the deepest affine-in-zeta suffix before the y-order gap closes. The next lower suffix marks where scalar endpoint control stops being justified by the y-order gap.",
+    },
+    route_interpretation:
+      "Successor suffix endpoint replay is diagnostic-only. Dominant shifted-index and term transitions identify where the inherited h-row covariance changes the H39 source shape. The deepest affine-in-zeta suffix identifies the scalar endpoint floor before two-terminal residual factors can enter at the requested y order. No continuous zeta, directed-rounded shared-domain, or shifted R43 closure is certified.",
+    claim_boundary: {
+      certifies_successor_suffix_provider_enclosure: false,
+      certifies_shared_zeta_interval_provider: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
 export function buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnosticCandidate({
   targetSpeedInterval = [3.02156, 3.02156007813],
   branch = "-",
@@ -9119,6 +10630,9 @@ export function buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic
   terminalHIndexes = [37, 36, 35],
   residualCoordinatePartitionCount = 8,
   endpointReplayRowLimit = null,
+  includeH38EndpointProvider = false,
+  successorSuffixEndpointProviderHIndexSets = null,
+  requestedCoefficientXiZetaScanSuffixStartIndexes = null,
   progressCallback = null,
 } = {}) {
   const startedAt = Date.now();
@@ -9176,6 +10690,57 @@ export function buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic
           "endpointReplayRowLimit",
           endpointReplayRowLimit
         );
+  const resolvedSuccessorSuffixEndpointProviderHIndexSets =
+    successorSuffixEndpointProviderHIndexSets === null ||
+    successorSuffixEndpointProviderHIndexSets === undefined
+      ? []
+      : successorSuffixEndpointProviderHIndexSets.map((hIndexSet) => {
+          if (!Array.isArray(hIndexSet) || hIndexSet.length === 0) {
+            throw new Error(
+              "successorSuffixEndpointProviderHIndexSets must contain nonempty h-index arrays"
+            );
+          }
+          const resolvedSet = [
+            ...new Set(
+              hIndexSet.map((hIndex) => {
+                const resolved = Number(hIndex);
+                if (
+                  !Number.isInteger(resolved) ||
+                  resolved < 0 ||
+                  resolved > 38
+                ) {
+                  throw new Error(
+                    "successorSuffixEndpointProviderHIndexSets must contain h indexes 0 through 38"
+                  );
+                }
+                return resolved;
+              })
+            ),
+          ].sort((left, right) => left - right);
+          if (
+            !resolvedSet.includes(
+              THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index
+            )
+          ) {
+            throw new Error(
+              "successorSuffixEndpointProviderHIndexSets entries must include h38"
+            );
+          }
+          return resolvedSet;
+        });
+  const resolvedRequestedCoefficientXiZetaScanSuffixStartIndexes =
+    requestedCoefficientXiZetaScanSuffixStartIndexes === null ||
+    requestedCoefficientXiZetaScanSuffixStartIndexes === undefined
+      ? []
+      : requestedCoefficientXiZetaScanSuffixStartIndexes.map((startIndex) => {
+          const resolved = Number(startIndex);
+          if (!Number.isInteger(resolved) || resolved < 0 || resolved > 38) {
+            throw new Error(
+              "requestedCoefficientXiZetaScanSuffixStartIndexes must contain suffix start indexes 0 through 38"
+            );
+          }
+          return resolved;
+        });
   const resolvedOuterRadius = assertFinitePositiveNumber(
     "outerRadius",
     outerRadius
@@ -9236,6 +10801,15 @@ export function buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic
         targetSpeedInterval: resolvedTargetSpeedInterval,
       })
     )
+  );
+  const comparisonXiIntervalCover = intervalCoverSummary(
+    comparisonRows.map((row) =>
+      speedIntervalXiInterval({
+        row,
+        targetSpeedInterval: resolvedTargetSpeedInterval,
+      })
+    ),
+    comparisonXiIntervalHull
   );
   const polynomialTransportProfilesByBranch =
     hRowPolynomialTransportProfilesByBranch({
@@ -9386,14 +10960,129 @@ export function buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic
       };
     }
   );
+  const h38IncludedTerminalHIndexes = [
+    ...new Set([
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index,
+      ...resolvedTerminalHIndexes,
+    ]),
+  ].sort((left, right) => left - right);
+  let h38IncludedCompletedEndpointCount = 0;
+  const h38IncludedPartitionReplays = includeH38EndpointProvider
+    ? partitionIntervals.map((residualNoiseInterval, partitionIndex) => {
+        const endpointReplays = residualNoiseInterval.map(
+          (residualNoise, endpointIndex) => {
+            emitProgress?.({
+              stage:
+                "terminal-affine-zeta-h38-included-provider-endpoint-start",
+              source_stencil_subcell_count:
+                resolvedSourceStencilSubcellCount,
+              comparison_stencil_index: resolvedComparisonStencilIndex,
+              partition_index: partitionIndex,
+              endpoint_index: endpointIndex,
+              residual_noise: Number(residualNoise),
+              completed_endpoint_count: h38IncludedCompletedEndpointCount,
+              endpoint_count: 2 * resolvedResidualCoordinatePartitionCount,
+            });
+            const artifact = buildH39SharedDomainCoefficientArtifact({
+              h38Rows: comparisonRows,
+              validateH38: false,
+              shiftedOrder: resolvedShiftedIndex,
+              seriesOrder: context.seriesOrder,
+              rho: resolvedOuterRadius,
+              sharedDomainSignature:
+                "candidate-h39-terminal-affine-zeta-h38-included-endpoint-provider-replay",
+              rowLimit: resolvedEndpointReplayRowLimit,
+              includeRows: false,
+              hRowProvider:
+                terminalSharedResidualAffineZetaEndpointHRowProvider({
+                  targetSpeedInterval: resolvedTargetSpeedInterval,
+                  transportProfilesByBranch:
+                    polynomialTransportProfilesByBranch,
+                  intervalResidualProfilesByBranch,
+                  terminalHIndexes: h38IncludedTerminalHIndexes,
+                  residualNoise,
+                  preserveH38: false,
+                  providerKind:
+                    "candidate-h38-included-shared-residual-affine-zeta-endpoint-provider",
+                  providerProvenance:
+                    "terminal-affine-zeta-h38-included-endpoint-provider-replay",
+                }),
+            });
+            const summary =
+              sharedDomainReplayArtifactCandidateSummary(artifact);
+            h38IncludedCompletedEndpointCount += 1;
+            emitProgress?.({
+              stage:
+                "terminal-affine-zeta-h38-included-provider-endpoint-complete",
+              source_stencil_subcell_count:
+                resolvedSourceStencilSubcellCount,
+              comparison_stencil_index: resolvedComparisonStencilIndex,
+              partition_index: partitionIndex,
+              endpoint_index: endpointIndex,
+              residual_noise: Number(residualNoise),
+              shifted_prefix_pressure:
+                summary.max_R43_shifted_prefix_pressure_outer_radius,
+              completed_endpoint_count: h38IncludedCompletedEndpointCount,
+              endpoint_count: 2 * resolvedResidualCoordinatePartitionCount,
+            });
+            return {
+              endpoint_index: endpointIndex,
+              residual_noise: Number(residualNoise),
+              shared_domain_replay_artifact_summary: summary,
+              endpoint_provider_backed_replay:
+                summary.h_row_provider_dependency_state ===
+                  "dependency-preserving-provider-backed-replay" &&
+                summary.h_row_provider_backed_all_cells === true,
+              endpoint_claim_boundary: artifact.claim_boundary,
+            };
+          }
+        );
+        const endpointPressures = endpointReplays.map((endpoint) =>
+          replaySummaryShiftedPressure(
+            endpoint.shared_domain_replay_artifact_summary
+          )
+        );
+        return {
+          partition_index: partitionIndex,
+          residual_noise_interval: residualNoiseInterval,
+          endpoint_replays: endpointReplays,
+          max_endpoint_shifted_prefix_pressure_outer_radius: Math.max(
+            ...endpointPressures
+          ),
+          min_endpoint_shifted_prefix_pressure_outer_radius: Math.min(
+            ...endpointPressures
+          ),
+          all_endpoint_replays_provider_backed: endpointReplays.every(
+            (endpoint) => endpoint.endpoint_provider_backed_replay === true
+          ),
+        };
+      })
+    : [];
   const endpointSummaries = partitionReplays.flatMap((partition) =>
     partition.endpoint_replays.map(
       (endpoint) => endpoint.shared_domain_replay_artifact_summary
     )
   );
+  const h38IncludedEndpointSummaries = h38IncludedPartitionReplays.flatMap(
+    (partition) =>
+      partition.endpoint_replays.map(
+        (endpoint) => endpoint.shared_domain_replay_artifact_summary
+      )
+  );
   const endpointPressures = endpointSummaries.map(replaySummaryShiftedPressure);
   const maxEndpointPressure = Math.max(...endpointPressures);
   const minEndpointPressure = Math.min(...endpointPressures);
+  const h38IncludedEndpointPressures = h38IncludedEndpointSummaries.map(
+    replaySummaryShiftedPressure
+  );
+  const maxH38IncludedEndpointPressure =
+    h38IncludedEndpointPressures.length > 0
+      ? Math.max(...h38IncludedEndpointPressures)
+      : null;
+  const minH38IncludedEndpointPressure =
+    h38IncludedEndpointPressures.length > 0
+      ? Math.min(...h38IncludedEndpointPressures)
+      : null;
   const baselineReferenceSummary = sharedDomainReplayArtifactCandidateSummary(
     baselineReferenceReplayArtifact
   );
@@ -9405,6 +11094,177 @@ export function buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic
   );
   const intervalResidualPressure =
     replaySummaryShiftedPressure(intervalResidualSummary);
+  const successorSuffixEndpointProviderReplays =
+    resolvedSuccessorSuffixEndpointProviderHIndexSets.map((hIndexSet) => {
+      const providerKind =
+        "candidate-successor-suffix-shared-residual-affine-zeta-endpoint-provider";
+      const partitionReplaysForSuffix = partitionIntervals.map(
+        (residualNoiseInterval, partitionIndex) => {
+          const endpointReplays = residualNoiseInterval.map(
+            (residualNoise, endpointIndex) => {
+              const artifact = buildH39SharedDomainCoefficientArtifact({
+                h38Rows: comparisonRows,
+                validateH38: false,
+                shiftedOrder: resolvedShiftedIndex,
+                seriesOrder: context.seriesOrder,
+                rho: resolvedOuterRadius,
+                sharedDomainSignature:
+                  "candidate-h39-successor-suffix-affine-zeta-endpoint-provider-replay",
+                rowLimit: resolvedEndpointReplayRowLimit,
+                includeRows: false,
+                hRowProvider:
+                  terminalSharedResidualAffineZetaEndpointHRowProvider({
+                    targetSpeedInterval: resolvedTargetSpeedInterval,
+                    transportProfilesByBranch:
+                      polynomialTransportProfilesByBranch,
+                    intervalResidualProfilesByBranch,
+                    terminalHIndexes: hIndexSet,
+                    residualNoise,
+                    preserveH38: false,
+                    providerKind,
+                    providerProvenance:
+                      "terminal-affine-zeta-successor-suffix-endpoint-provider-replay",
+                  }),
+              });
+              const summary =
+                sharedDomainReplayArtifactCandidateSummary(artifact);
+              return {
+                endpoint_index: endpointIndex,
+                residual_noise: Number(residualNoise),
+                shared_domain_replay_artifact_summary: summary,
+                endpoint_provider_backed_replay:
+                  summary.h_row_provider_dependency_state ===
+                    "dependency-preserving-provider-backed-replay" &&
+                  summary.h_row_provider_backed_all_cells === true,
+                endpoint_claim_boundary: artifact.claim_boundary,
+              };
+            }
+          );
+          const endpointPressures = endpointReplays.map((endpoint) =>
+            replaySummaryShiftedPressure(
+              endpoint.shared_domain_replay_artifact_summary
+            )
+          );
+          return {
+            partition_index: partitionIndex,
+            residual_noise_interval: residualNoiseInterval,
+            endpoint_replays: endpointReplays,
+            max_endpoint_shifted_prefix_pressure_outer_radius: Math.max(
+              ...endpointPressures
+            ),
+            min_endpoint_shifted_prefix_pressure_outer_radius: Math.min(
+              ...endpointPressures
+            ),
+            all_endpoint_replays_provider_backed: endpointReplays.every(
+              (endpoint) => endpoint.endpoint_provider_backed_replay === true
+            ),
+          };
+        }
+      );
+      const summaries = partitionReplaysForSuffix.flatMap((partition) =>
+        partition.endpoint_replays.map(
+          (endpoint) => endpoint.shared_domain_replay_artifact_summary
+        )
+      );
+      const pressures = summaries.map(replaySummaryShiftedPressure);
+      const maxPressure = Math.max(...pressures);
+      const minPressure = Math.min(...pressures);
+      const suffixZetaDegreeBound = terminalSharedResidualZetaDegreeBound({
+        terminalHIndexes: hIndexSet,
+        targetYOrder:
+          THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+          resolvedShiftedIndex,
+      });
+      const dominantEndpoint = partitionReplaysForSuffix
+        .flatMap((partition) =>
+          partition.endpoint_replays.map((endpoint) => ({
+            partition_index: partition.partition_index,
+            endpoint,
+          }))
+        )
+        .reduce((dominant, candidate) =>
+          replaySummaryShiftedPressure(
+            candidate.endpoint.shared_domain_replay_artifact_summary
+          ) >
+          replaySummaryShiftedPressure(
+            dominant.endpoint.shared_domain_replay_artifact_summary
+          )
+            ? candidate
+            : dominant
+        );
+      return {
+        successor_suffix_h_indexes: hIndexSet,
+        endpoint_partition_replays: partitionReplaysForSuffix,
+        endpoint_provider_replay_summary: {
+          endpoint_replay_count: summaries.length,
+          all_endpoint_replays_provider_backed:
+            partitionReplaysForSuffix.every(
+              (partition) =>
+                partition.all_endpoint_replays_provider_backed === true
+            ),
+          provider_kind: providerKind,
+          h38_solve_target_policy:
+            "candidate-H38-predecessor-row-affine-zeta-endpoint",
+          successor_suffix_zeta_degree_bound: suffixZetaDegreeBound,
+          min_endpoint_shifted_prefix_pressure_outer_radius: minPressure,
+          max_endpoint_shifted_prefix_pressure_outer_radius: maxPressure,
+          dominant_endpoint_shifted_prefix_pressure: {
+            partition_index: dominantEndpoint.partition_index,
+            endpoint_index: dominantEndpoint.endpoint.endpoint_index,
+            residual_noise: dominantEndpoint.endpoint.residual_noise,
+            max_R43_shifted_prefix_pressure_outer_radius:
+              dominantEndpoint.endpoint.shared_domain_replay_artifact_summary
+                .max_R43_shifted_prefix_pressure_outer_radius,
+            dominant_R43_shifted_prefix_pressure:
+              dominantEndpoint.endpoint.shared_domain_replay_artifact_summary
+                .dominant_R43_shifted_prefix_pressure,
+          },
+          preserved_h38_to_successor_suffix_max_pressure_ratio:
+            finitePositive(maxPressure)
+              ? Number(maxEndpointPressure) / Number(maxPressure)
+              : null,
+          interval_residual_to_successor_suffix_max_pressure_ratio:
+            finitePositive(intervalResidualPressure) &&
+            finitePositive(maxPressure)
+              ? Number(intervalResidualPressure) / Number(maxPressure)
+              : null,
+        },
+      };
+    });
+  const successorSuffixEndpointProviderReplaySummaries =
+    successorSuffixEndpointProviderReplays.map((replay) => ({
+      successor_suffix_h_indexes: replay.successor_suffix_h_indexes,
+      ...replay.endpoint_provider_replay_summary,
+    }));
+  const successorSuffixEndpointCoefficientEnvelopeReports =
+    successorSuffixEndpointCoefficientEnvelopeSummaries({
+      successorSuffixEndpointProviderReplays,
+      outerRadius: resolvedOuterRadius,
+    });
+  const requestedCoefficientXiZetaScan =
+    resolvedRequestedCoefficientXiZetaScanSuffixStartIndexes.length > 0
+      ? successorSuffixRequestedCoefficientXiZetaScan({
+          context,
+          comparisonRows,
+          comparisonXiIntervalHull,
+          targetSpeedInterval: resolvedTargetSpeedInterval,
+          polynomialTransportProfilesByBranch,
+          intervalResidualProfilesByBranch,
+          successorSuffixEndpointProviderHIndexSets:
+            resolvedSuccessorSuffixEndpointProviderHIndexSets,
+          selectedSuffixStartIndexes:
+            resolvedRequestedCoefficientXiZetaScanSuffixStartIndexes,
+          partitionIntervals,
+          endpointReplayRowLimit: resolvedEndpointReplayRowLimit,
+          shiftedIndex: resolvedShiftedIndex,
+          seriesOrder: context.seriesOrder,
+          outerRadius: resolvedOuterRadius,
+        })
+      : null;
+  const successorSuffixEndpointProviderTransitionSummary =
+    successorSuffixEndpointTransitionSummary(
+      successorSuffixEndpointProviderReplaySummaries
+    );
   const zetaDegreeBound = terminalSharedResidualZetaDegreeBound({
     terminalHIndexes: resolvedTerminalHIndexes,
     targetYOrder:
@@ -9438,6 +11298,7 @@ export function buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic
     comparison_stencil_index: resolvedComparisonStencilIndex,
     comparison_row_count: comparisonRows.length,
     comparison_xi_interval_hull: comparisonXiIntervalHull,
+    comparison_xi_interval_cover: comparisonXiIntervalCover,
     endpoint_replay_row_limit: resolvedEndpointReplayRowLimit,
     endpoint_replay_row_count:
       baselineReferenceSummary.coefficient_row_count ?? null,
@@ -9452,6 +11313,11 @@ export function buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic
     affine_in_shared_residual_coordinate:
       zetaDegreeBound.affine_in_shared_residual_coordinate,
     h38_solve_target_policy: "preserved-H39-predecessor-row",
+    include_h38_endpoint_provider: includeH38EndpointProvider === true,
+    h38_included_h38_solve_target_policy:
+      includeH38EndpointProvider === true
+        ? "candidate-H38-predecessor-row-affine-zeta-endpoint"
+        : null,
     provider_shape_interpretation: {
       existing_h_row_provider_accepts_shared_zeta_endpoint: true,
       existing_h_row_provider_accepts_shared_zeta_interval: false,
@@ -9483,8 +11349,54 @@ export function buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic
           ? Number(intervalResidualPressure) / Number(maxEndpointPressure)
           : null,
     },
+    h38_included_endpoint_partition_replays:
+      h38IncludedPartitionReplays,
+    h38_included_endpoint_provider_replay_summary:
+      includeH38EndpointProvider
+        ? {
+            endpoint_replay_count: h38IncludedEndpointSummaries.length,
+            all_endpoint_replays_provider_backed:
+              h38IncludedPartitionReplays.every(
+                (partition) =>
+                  partition.all_endpoint_replays_provider_backed === true
+              ),
+            provider_kind:
+              "candidate-h38-included-shared-residual-affine-zeta-endpoint-provider",
+            h38_included_terminal_h_indexes:
+              h38IncludedTerminalHIndexes,
+            h38_solve_target_policy:
+              "candidate-H38-predecessor-row-affine-zeta-endpoint",
+            min_endpoint_shifted_prefix_pressure_outer_radius:
+              minH38IncludedEndpointPressure,
+            max_endpoint_shifted_prefix_pressure_outer_radius:
+              maxH38IncludedEndpointPressure,
+            preserved_h38_to_h38_included_max_pressure_ratio:
+              finitePositive(maxH38IncludedEndpointPressure)
+                ? Number(maxEndpointPressure) /
+                  Number(maxH38IncludedEndpointPressure)
+                : null,
+            interval_residual_to_h38_included_max_pressure_ratio:
+              finitePositive(intervalResidualPressure) &&
+              finitePositive(maxH38IncludedEndpointPressure)
+                ? Number(intervalResidualPressure) /
+                  Number(maxH38IncludedEndpointPressure)
+                : null,
+          }
+        : null,
+    successor_suffix_endpoint_provider_replays:
+      successorSuffixEndpointProviderReplays,
+    successor_suffix_endpoint_provider_replay_summaries:
+      successorSuffixEndpointProviderReplaySummaries,
+    successor_suffix_endpoint_coefficient_envelope_summaries:
+      successorSuffixEndpointCoefficientEnvelopeReports,
+    successor_suffix_requested_coefficient_xi_zeta_scan:
+      requestedCoefficientXiZetaScan,
+    successor_suffix_endpoint_provider_transition_summary:
+      successorSuffixEndpointProviderTransitionSummary,
     provider_replay_diagnosis:
-      "terminal-affine-zeta-endpoints-cross-existing-H39-provider-boundary-candidate",
+      includeH38EndpointProvider
+        ? "terminal-affine-zeta-H38-included-endpoints-cross-existing-H39-provider-boundary-candidate"
+        : "terminal-affine-zeta-endpoints-cross-existing-H39-provider-boundary-candidate",
     candidate_certificate_route:
       "The existing h-row provider hook can replay scalar affine-zeta endpoints through H39 without widening zeta to independent terminal h-row boxes. A certificate still needs a directed-rounded coupled graph-xi/eight-slice affine-zeta producer-image enclosure, or an evaluator boundary that carries that coupled coordinate natively.",
     claim_boundary: {
@@ -9497,6 +11409,470 @@ export function buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic
       retained_branch: false,
     },
   };
+}
+
+function successorSuffixHIndexesFromStart(startIndex) {
+  const start = Number(startIndex);
+  if (!Number.isInteger(start) || start < 0 || start > 38) {
+    throw new Error("suffix start index must be an integer from 0 through 38");
+  }
+  return Array.from({ length: 39 - start }, (_, offset) => start + offset);
+}
+
+function suffixTransitionEntryByStart(transitionSummary, suffixStartIndex) {
+  return (
+    transitionSummary?.sweep_entries?.find(
+      (entry) => entry.suffix_start_index === suffixStartIndex
+    ) ?? null
+  );
+}
+
+function requestedResidualRadiusBudgetForXiZetaScanEntry(xiZetaScanEntry) {
+  const budgets = (xiZetaScanEntry?.row_replays ?? [])
+    .map(
+      (rowReplay) =>
+        rowReplay?.coefficient_envelope_summary
+          ?.requested_shifted_residual_direction_profile
+          ?.residual_radius_budget ?? null
+    )
+    .filter(
+      (budget) =>
+        budget?.budget_kind ===
+          "candidate-requested-shifted-source-residual-radius-budget" &&
+        finitePositive(budget?.midpoint_matching_residual_half_width)
+    );
+  return budgets.reduce(
+    (best, budget) =>
+      Number(budget.midpoint_matching_residual_half_width) <
+      Number(best?.midpoint_matching_residual_half_width ?? Infinity)
+        ? budget
+        : best,
+    null
+  );
+}
+
+function h39RequestedY44ProducerImageBudgetComparisonForRoute({
+  diagnostic,
+  rootSubdivisions,
+  seriesOrder,
+  xiZetaScanEntry,
+}) {
+  const requestedResidualRadiusBudget =
+    requestedResidualRadiusBudgetForXiZetaScanEntry(xiZetaScanEntry);
+  if (requestedResidualRadiusBudget === null) {
+    return null;
+  }
+  const setup = buildH39H38Y44CoefficientReplaySetup({
+    targetSpeedInterval: diagnostic.target_speed_interval,
+    branch: diagnostic.branch,
+    rootSubdivisions,
+    seriesOrder,
+    sourceStencilSubcellCount: diagnostic.source_stencil_subcell_count,
+    comparisonStencilIndex: diagnostic.comparison_stencil_index,
+    polynomialDegree: diagnostic.polynomial_degree,
+  });
+  const producerCoordinateProfile =
+    h39H38Y44ProducerResidualCoordinateProfile({
+      targetSpeedInterval: diagnostic.target_speed_interval,
+      rows: setup.comparisonRows,
+      branch: diagnostic.branch,
+      transportProfile: setup.transportProfile,
+      residualInterval: setup.h38ResidualProfile.residual_interval_hull,
+      sourceStencilSubcellCount: diagnostic.source_stencil_subcell_count,
+      comparisonStencilIndex: diagnostic.comparison_stencil_index,
+    });
+  return buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
+    requestedResidualRadiusBudget,
+    producerCoordinateProfile,
+    label: "h20-affine-floor-requested-y44-vs-h38-producer-image",
+  });
+}
+
+export function buildH39SuccessorSuffixTransitionCertificateRouteCandidate({
+  sourceDiagnostic = null,
+  targetSpeedInterval = [3.02156, 3.02156007813],
+  branch = "-",
+  rootSubdivisions = 100,
+  outerRadius = 0.001,
+  shiftedIndex = 1,
+  seriesOrder = 60,
+  sourceStencilSubcellCount = 5,
+  comparisonStencilIndex = 0,
+  polynomialDegree = 2,
+  terminalHIndexes = [37, 36, 35],
+  residualCoordinatePartitionCount = 2,
+  endpointReplayRowLimit = 1,
+  includeH38EndpointProvider = true,
+  guardrailSuffixStartIndex = 36,
+  predecessorSuffixStartIndex = 31,
+  sourceShapeTransitionSuffixStartIndex = 30,
+  plateauSuffixStartIndex = 27,
+  affineEndpointFloorSuffixStartIndex = 20,
+  requestedCoefficientXiZetaScanSuffixStartIndexes = null,
+  progressCallback = null,
+} = {}) {
+  const suffixStarts = [
+    guardrailSuffixStartIndex,
+    predecessorSuffixStartIndex,
+    sourceShapeTransitionSuffixStartIndex,
+    plateauSuffixStartIndex,
+    affineEndpointFloorSuffixStartIndex,
+  ];
+  const successorSuffixEndpointProviderHIndexSets = suffixStarts.map(
+    successorSuffixHIndexesFromStart
+  );
+  const diagnostic =
+    sourceDiagnostic ??
+    buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnosticCandidate({
+      targetSpeedInterval,
+      branch,
+      rootSubdivisions,
+      outerRadius,
+      shiftedIndex,
+      seriesOrder,
+      sourceStencilSubcellCount,
+      comparisonStencilIndex,
+      polynomialDegree,
+      terminalHIndexes,
+      residualCoordinatePartitionCount,
+      endpointReplayRowLimit,
+      includeH38EndpointProvider,
+      successorSuffixEndpointProviderHIndexSets,
+      requestedCoefficientXiZetaScanSuffixStartIndexes:
+        requestedCoefficientXiZetaScanSuffixStartIndexes ?? [
+          affineEndpointFloorSuffixStartIndex,
+        ],
+      progressCallback,
+    });
+  const diagnosticValidationErrors =
+    validateH39TerminalSharedResidualAffineZetaProviderReplayDiagnostic(
+      diagnostic
+    );
+  const transitionSummary =
+    diagnostic.successor_suffix_endpoint_provider_transition_summary ?? null;
+  const coefficientEnvelopeSummaries =
+    diagnostic.successor_suffix_endpoint_coefficient_envelope_summaries ?? [];
+  const requestedCoefficientXiZetaScan =
+    diagnostic.successor_suffix_requested_coefficient_xi_zeta_scan ?? null;
+  const guardrailEntry = suffixTransitionEntryByStart(
+    transitionSummary,
+    guardrailSuffixStartIndex
+  );
+  const predecessorEntry = suffixTransitionEntryByStart(
+    transitionSummary,
+    predecessorSuffixStartIndex
+  );
+  const sourceShapeTransitionEntry =
+    suffixTransitionEntryByStart(
+      transitionSummary,
+      sourceShapeTransitionSuffixStartIndex
+    ) ?? transitionSummary?.first_source_shape_transition_entry ?? null;
+  const plateauEntry = suffixTransitionEntryByStart(
+    transitionSummary,
+    plateauSuffixStartIndex
+  );
+  const affineEndpointFloorEntry =
+    suffixTransitionEntryByStart(
+      transitionSummary,
+      affineEndpointFloorSuffixStartIndex
+    ) ?? transitionSummary?.deepest_tested_affine_suffix_entry ?? null;
+  const transitionToPlateauPressureReductionFactor =
+    sourceShapeTransitionEntry !== null &&
+    plateauEntry !== null &&
+    finitePositive(
+      sourceShapeTransitionEntry
+        .max_endpoint_shifted_prefix_pressure_outer_radius
+    ) &&
+    finitePositive(plateauEntry.max_endpoint_shifted_prefix_pressure_outer_radius)
+      ? Number(
+          sourceShapeTransitionEntry
+            .max_endpoint_shifted_prefix_pressure_outer_radius
+        ) / Number(plateauEntry.max_endpoint_shifted_prefix_pressure_outer_radius)
+      : null;
+  const plateauToAffineFloorPressureReductionFactor =
+    plateauEntry !== null &&
+    affineEndpointFloorEntry !== null &&
+    finitePositive(plateauEntry.max_endpoint_shifted_prefix_pressure_outer_radius) &&
+    finitePositive(
+      affineEndpointFloorEntry.max_endpoint_shifted_prefix_pressure_outer_radius
+    )
+      ? Number(plateauEntry.max_endpoint_shifted_prefix_pressure_outer_radius) /
+        Number(
+          affineEndpointFloorEntry
+            .max_endpoint_shifted_prefix_pressure_outer_radius
+        )
+      : null;
+  const transitionToAffineFloorPressureReductionFactor =
+    sourceShapeTransitionEntry !== null &&
+    affineEndpointFloorEntry !== null &&
+    finitePositive(
+      sourceShapeTransitionEntry
+        .max_endpoint_shifted_prefix_pressure_outer_radius
+    ) &&
+    finitePositive(
+      affineEndpointFloorEntry.max_endpoint_shifted_prefix_pressure_outer_radius
+    )
+      ? Number(
+          sourceShapeTransitionEntry
+            .max_endpoint_shifted_prefix_pressure_outer_radius
+        ) /
+        Number(
+          affineEndpointFloorEntry
+            .max_endpoint_shifted_prefix_pressure_outer_radius
+        )
+      : null;
+  const routeTargets = [
+    {
+      route_stage: "provider-boundary-guardrail",
+      suffix_start_index: guardrailSuffixStartIndex,
+      entry: guardrailEntry,
+      proof_role:
+        "smallest exact suffix probe that should remain isolated from wider h-row leakage",
+    },
+    {
+      route_stage: "pre-transition-reference",
+      suffix_start_index: predecessorSuffixStartIndex,
+      entry: predecessorEntry,
+      proof_role:
+        "last tested shifted-0 sin_phi source shape before inherited-chain covariance changes the source term",
+    },
+    {
+      route_stage: "source-shape-transition",
+      suffix_start_index: sourceShapeTransitionSuffixStartIndex,
+      entry: sourceShapeTransitionEntry,
+      proof_role:
+        "first tested shifted-1 sin_delta source shape under successor suffix covariance",
+    },
+    {
+      route_stage: "near-plateau-checkpoint",
+      suffix_start_index: plateauSuffixStartIndex,
+      entry: plateauEntry,
+      proof_role:
+        "practical pressure plateau checkpoint before the affine endpoint floor",
+    },
+    {
+      route_stage: "deepest-tested-affine-endpoint-floor",
+      suffix_start_index: affineEndpointFloorSuffixStartIndex,
+      entry: affineEndpointFloorEntry,
+      proof_role:
+        "deepest tested suffix whose two-terminal residual product still starts above the live y order",
+    },
+  ];
+  const envelopeSummaryByStart = (suffixStartIndex) =>
+    coefficientEnvelopeSummaries.find(
+      (summary) => summary.suffix_start_index === suffixStartIndex
+    ) ?? null;
+  const sourceShapeTransitionEnvelope = envelopeSummaryByStart(
+    sourceShapeTransitionSuffixStartIndex
+  );
+  const plateauEnvelope = envelopeSummaryByStart(plateauSuffixStartIndex);
+  const affineEndpointFloorEnvelope = envelopeSummaryByStart(
+    affineEndpointFloorSuffixStartIndex
+  );
+  const xiZetaScanEntry =
+    requestedCoefficientXiZetaScan?.scan_entries?.find(
+      (entry) => entry.suffix_start_index === affineEndpointFloorSuffixStartIndex
+    ) ?? null;
+  const requestedY44ProducerImageBudgetComparison =
+    h39RequestedY44ProducerImageBudgetComparisonForRoute({
+      diagnostic,
+      rootSubdivisions,
+      seriesOrder,
+      xiZetaScanEntry,
+    });
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_SUCCESSOR_SUFFIX_TRANSITION_CERTIFICATE_ROUTE_SCHEMA,
+    status:
+      "h39-successor-suffix-transition-certificate-route-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-successor-suffix-transition-certificate-route",
+    target_speed_interval: diagnostic.target_speed_interval,
+    branch: diagnostic.branch,
+    shifted_index: diagnostic.shifted_index,
+    y_order: diagnostic.y_order,
+    outer_radius: diagnostic.outer_radius,
+    source_stencil_subcell_count: diagnostic.source_stencil_subcell_count,
+    comparison_stencil_index: diagnostic.comparison_stencil_index,
+    comparison_row_count: diagnostic.comparison_row_count,
+    comparison_xi_interval_hull: diagnostic.comparison_xi_interval_hull,
+    comparison_xi_interval_cover: diagnostic.comparison_xi_interval_cover,
+    endpoint_replay_row_limit: diagnostic.endpoint_replay_row_limit,
+    residual_coordinate_partition_count:
+      diagnostic.residual_coordinate_partition_count,
+    suffix_route_start_indexes: {
+      guardrail: guardrailSuffixStartIndex,
+      pre_transition_reference: predecessorSuffixStartIndex,
+      source_shape_transition: sourceShapeTransitionSuffixStartIndex,
+      near_plateau_checkpoint: plateauSuffixStartIndex,
+      deepest_tested_affine_endpoint_floor:
+        affineEndpointFloorSuffixStartIndex,
+    },
+    source_diagnostic_validation_errors: diagnosticValidationErrors,
+    transition_summary: transitionSummary,
+    coefficient_envelope_summaries: coefficientEnvelopeSummaries,
+    requested_coefficient_xi_zeta_scan: requestedCoefficientXiZetaScan,
+    requested_y44_producer_image_budget_comparison:
+      requestedY44ProducerImageBudgetComparison,
+    route_targets: routeTargets,
+    certificate_route_metrics: {
+      source_shape_transition_detected:
+        transitionSummary?.first_source_shape_transition
+          ?.to_suffix_start_index === sourceShapeTransitionSuffixStartIndex,
+      source_shape_stable_after_transition:
+        transitionSummary?.transition_to_affine_floor_certificate_target
+          ?.source_shape_stable_after_first_transition === true,
+      guardrail_suffix_provider_backed: guardrailEntry !== null,
+      affine_floor_still_endpoint_legal:
+        affineEndpointFloorEntry
+          ?.affine_in_shared_residual_coordinate === true,
+      affine_floor_y_order_gap:
+        Number(
+          affineEndpointFloorEntry?.two_terminal_factor_min_y_order
+        ) - Number(affineEndpointFloorEntry?.dominant_y_order),
+      next_lower_suffix_start_index:
+        transitionSummary?.transition_to_affine_floor_certificate_target
+          ?.next_lower_suffix_start_index ?? null,
+      next_lower_suffix_affine_in_shared_residual_coordinate:
+        transitionSummary?.transition_to_affine_floor_certificate_target
+          ?.next_lower_suffix_affine_in_shared_residual_coordinate ?? null,
+      next_lower_suffix_two_terminal_factor_min_y_order:
+        transitionSummary?.transition_to_affine_floor_certificate_target
+          ?.next_lower_suffix_two_terminal_factor_min_y_order ?? null,
+      source_shape_transition_dominant_target_switch_detected:
+        sourceShapeTransitionEnvelope
+          ?.any_partition_dominant_target_switch_detected === true,
+      source_shape_transition_requested_shifted_zeta_slices_candidate_covered:
+        sourceShapeTransitionEnvelope
+          ?.all_partitions_candidate_cover_requested_shifted_zeta_slice ===
+        true,
+      plateau_dominant_target_switch_detected:
+        plateauEnvelope?.any_partition_dominant_target_switch_detected ===
+        true,
+      plateau_requested_shifted_term_switch_detected:
+        plateauEnvelope
+          ?.any_requested_shifted_dominant_term_switch_detected === true,
+      plateau_requested_shifted_zeta_slices_candidate_covered:
+        plateauEnvelope
+          ?.all_partitions_candidate_cover_requested_shifted_zeta_slice ===
+        true,
+      affine_floor_dominant_target_switch_detected:
+        affineEndpointFloorEnvelope
+          ?.any_partition_dominant_target_switch_detected === true,
+      affine_floor_requested_shifted_term_switch_detected:
+        affineEndpointFloorEnvelope
+          ?.any_requested_shifted_dominant_term_switch_detected === true,
+      affine_floor_requested_shifted_zeta_slices_candidate_covered:
+        affineEndpointFloorEnvelope
+          ?.all_partitions_candidate_cover_requested_shifted_zeta_slice ===
+        true,
+      affine_floor_requested_shifted_endpoint_hull_to_replay_pressure_ratio:
+        affineEndpointFloorEnvelope
+          ?.requested_shifted_endpoint_hull_to_endpoint_replay_pressure_ratio ??
+        null,
+      affine_floor_requested_xi_zeta_scan_available:
+        xiZetaScanEntry !== null,
+      affine_floor_requested_xi_zeta_row_slices_candidate_covered:
+        xiZetaScanEntry
+          ?.all_rows_candidate_cover_requested_shifted_zeta_slice === true,
+      affine_floor_requested_xi_zeta_any_term_switch_detected:
+        xiZetaScanEntry
+          ?.any_row_requested_shifted_dominant_term_switch_detected === true,
+      affine_floor_requested_source_term_normal_form_available:
+        xiZetaScanEntry
+          ?.all_rows_requested_shifted_source_terms_reconstruct_source === true,
+      affine_floor_requested_min_source_cancellation_fraction:
+        xiZetaScanEntry?.min_requested_shifted_source_cancellation_fraction ??
+        null,
+      affine_floor_requested_max_term_triangle_to_source_gain:
+        xiZetaScanEntry?.max_requested_shifted_term_triangle_to_source_gain ??
+        null,
+      affine_floor_requested_max_term_sum_to_source_relative_gap:
+        xiZetaScanEntry
+          ?.max_requested_shifted_term_sum_to_source_relative_gap ?? null,
+      affine_floor_requested_residual_outer_endpoints_dominate_midpoint:
+        xiZetaScanEntry
+          ?.all_rows_requested_shifted_residual_outer_endpoints_dominate_midpoint ===
+        true,
+      affine_floor_requested_residual_endpoint_to_midpoint_pressure_ratio:
+        xiZetaScanEntry
+          ?.max_requested_shifted_residual_endpoint_to_midpoint_pressure_ratio ??
+        null,
+      affine_floor_requested_residual_profile_duplicate_relative_gap:
+        xiZetaScanEntry
+          ?.max_requested_shifted_residual_profile_duplicate_relative_gap ??
+        null,
+      affine_floor_requested_residual_midpoint_matching_half_width:
+        xiZetaScanEntry
+          ?.min_requested_shifted_residual_midpoint_matching_half_width ??
+        null,
+      affine_floor_requested_residual_full_radius_to_midpoint_matching_scale:
+        xiZetaScanEntry
+          ?.max_requested_shifted_residual_full_radius_to_midpoint_matching_scale ??
+        null,
+      affine_floor_requested_y44_producer_image_budget_comparison_available:
+        requestedY44ProducerImageBudgetComparison !== null,
+      affine_floor_requested_y44_producer_midpoint_hull_inside_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_midpoint_hull_inside_requested_residual_budget ?? null,
+      affine_floor_requested_y44_producer_interval_hull_inside_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_interval_hull_inside_requested_residual_budget ?? null,
+      affine_floor_requested_y44_producer_centered_full_hull_half_width_to_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_centered_full_hull_half_width_to_requested_budget_half_width ??
+        null,
+      affine_floor_requested_y44_producer_max_sample_interval_half_width_to_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_max_sample_interval_half_width_to_requested_budget_half_width ??
+        null,
+      affine_floor_requested_xi_interval_cover_count:
+        xiZetaScanEntry?.xi_interval_cover_summary?.interval_count ?? null,
+      affine_floor_requested_xi_interval_cover_max_positive_gap:
+        xiZetaScanEntry?.xi_interval_cover_summary?.max_positive_gap ?? null,
+      affine_floor_requested_xi_interval_cover_contiguous_or_overlapping:
+        xiZetaScanEntry?.xi_interval_cover_contiguous_or_overlapping === true,
+      affine_floor_requested_xi_interval_cover_covers_comparison_hull:
+        xiZetaScanEntry?.xi_interval_cover_covers_comparison_hull === true,
+      affine_floor_requested_xi_zeta_endpoint_hull_to_row_replay_pressure_ratio:
+        xiZetaScanEntry
+          ?.requested_shifted_endpoint_hull_to_row_endpoint_replay_pressure_ratio ??
+        null,
+      affine_floor_requested_xi_row_spread_factor:
+        xiZetaScanEntry?.requested_shifted_xi_row_spread_factor ?? null,
+      transition_to_plateau_pressure_reduction_factor:
+        transitionToPlateauPressureReductionFactor,
+      plateau_to_affine_floor_pressure_reduction_factor:
+        plateauToAffineFloorPressureReductionFactor,
+      transition_to_affine_floor_pressure_reduction_factor:
+        transitionToAffineFloorPressureReductionFactor,
+    },
+    missing_certificate_boundary: {
+      provider_boundary:
+        "buildH39SharedDomainCoefficientArtifact currently consumes one derived hIntervals vector per branch",
+      missing_object:
+        "directed-rounded same-domain producer-image enclosure for coupled xi,zeta over the successor suffix",
+      first_suffix_to_certify:
+        successorShapeSuffixLabel(sourceShapeTransitionSuffixStartIndex),
+      plateau_checkpoint: successorShapeSuffixLabel(plateauSuffixStartIndex),
+      affine_endpoint_floor:
+        successorShapeSuffixLabel(affineEndpointFloorSuffixStartIndex),
+    },
+    route_interpretation:
+      "This route candidate turns the suffix scan into a certificate agenda: certify the h30 source-shape transition, check h27 as the pressure plateau, and then extend to the h20 affine-endpoint floor before replacing endpoint replay with a coupled directed-rounded producer-image enclosure.",
+    claim_boundary: {
+      certifies_successor_suffix_provider_enclosure: false,
+      certifies_shared_zeta_interval_provider: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function successorShapeSuffixLabel(startIndex) {
+  return `h${startIndex}-through-h38`;
 }
 
 function summarizePostZetaReplay({
@@ -10295,6 +12671,8 @@ export function buildH39PostZetaPressureSourceIsolationDiagnosticCandidate({
         dominantSensitivity.h_row_transport_depth_summary,
       h_row_width_compression_replays:
         dominantSensitivity.h_row_width_compression_replays,
+      h_row_suffix_width_compression_summary:
+        dominantSensitivity.h_row_suffix_width_compression_summary,
       h38_included_endpoint_replay_summary: {
         max_endpoint_pressure: maxH38IncludedEndpointPressure,
         min_endpoint_pressure: minH38IncludedEndpointPressure,
@@ -19126,6 +21504,9 @@ function h39H38Y44ProducerHybridGraphIntervalResidualSourceReplay({
 }
 
 function h39H38Y44ProducerHybridH38CoordinateSourceReplay({
+  context,
+  outerRadius = 0.001,
+  shiftedIndex = 1,
   coordinateProfile,
   hybridReplay,
   trueStreamExcessBudget,
@@ -19148,6 +21529,59 @@ function h39H38Y44ProducerHybridH38CoordinateSourceReplay({
     certifies_directed_rounded_shared_domain: false,
     retained_branch: false,
   };
+  const componentDriftSourceProviderClaimBoundary = () => ({
+    ...claimBoundary,
+  });
+  const unavailableComponentDriftSourceProviderContract = (reason) => ({
+    status:
+      "positive-n38-component-drift-source-provider-contract-unavailable",
+    reason,
+    provider_kind:
+      "candidate-polynomial-h-row-graph-component-plus-drift-source-provider",
+    finite_data_scope:
+      "selected-lagrange-source-component-graphs-plus-interval-center-drift",
+    source_provider_claim_level: "candidate-source-normal-form-only",
+    preserves_shared_xi_dependency: false,
+    preserves_source_component_dependency: false,
+    preserves_interval_center_drift_dependency: false,
+    preserves_s37_dependency: false,
+    dependency_preserving_h_row_provider_present: false,
+    exported_h_row_dependency_state: "source-provider-contract-unavailable",
+    can_enter_shifted_replay: false,
+    h_row_provider_backed_replay: false,
+    h_row_provider_backed_all_cells: false,
+    h_row_provider_backed_cell_count: 0,
+    h_row_provider_backed_branch_count: 0,
+    shifted_replay_readiness_status:
+      "positive-n38-component-drift-shifted-replay-readiness-unavailable",
+    shifted_replay_readiness_reason: reason,
+    product_segment_count: 0,
+    derivative_value_only_segment_count: 0,
+    product_segments_inside_component_drift_target_count: 0,
+    product_segments_inside_s37_target_count: 0,
+    source_component_graph_coefficient_rows: [],
+    interval_center_drift_lagrange_graph_coefficients: null,
+    max_component_drift_gap_to_target_ratio: null,
+    max_component_drift_solved_gap_to_solved_target_ratio: null,
+    hrow_realization_diagnosis_status:
+      "positive-n38-component-drift-hrow-realization-diagnosis-unavailable",
+    hrow_realization_diagnosis: reason,
+    max_h38_coordinate_source_to_component_drift_gap_to_target_ratio: null,
+    max_full_residual_vector_source_to_component_drift_gap_to_target_ratio:
+      null,
+    source_pair_component_graph_diagnosis_status:
+      "positive-n38-source-pair-component-graph-diagnosis-unavailable",
+    component_drift_s37_division_diagnosis_status:
+      "positive-n38-component-drift-s37-division-diagnosis-unavailable",
+    h36_provider_inlet_status:
+      "positive-n38-component-drift-h36-provider-inlet-unavailable",
+    h36_provider_inlet_diagnosis: reason,
+    candidate_component_drift_h36_provider_inlet_report: null,
+    controlling_component_drift_hrow_realization_segment: null,
+    dependency_trace: [],
+    dependency_witness: null,
+    claim_boundary: componentDriftSourceProviderClaimBoundary(),
+  });
   const unavailable = (reason) => ({
     status:
       "positive-n38-producer-hybrid-h38-coordinate-source-replay-unavailable",
@@ -19229,6 +21663,15 @@ function h39H38Y44ProducerHybridH38CoordinateSourceReplay({
     max_component_drift_solved_gap_to_solved_target_ratio: null,
     max_component_drift_solve_normalization_invariance_ratio: null,
     min_component_drift_solve_normalization_invariance_ratio: null,
+    component_drift_hrow_realization_diagnosis_status:
+      "positive-n38-component-drift-hrow-realization-diagnosis-unavailable",
+    component_drift_hrow_realization_diagnosis: reason,
+    max_h38_coordinate_source_to_component_drift_gap_to_target_ratio: null,
+    max_full_residual_vector_source_to_component_drift_gap_to_target_ratio:
+      null,
+    candidate_component_drift_source_provider_contract:
+      unavailableComponentDriftSourceProviderContract(reason),
+    controlling_component_drift_hrow_realization_segment: null,
     controlling_component_drift_s37_division_segment: null,
     controlling_source_pair_component_graph_segment: null,
     controlling_source_pair_direct_graph_normal_form_segment: null,
@@ -19403,6 +21846,24 @@ function h39H38Y44ProducerHybridH38CoordinateSourceReplay({
     {
       label: "all-non-h38-shared-with-h38-coordinate",
       h_indexes: Array.from({ length: h38Index }, (_, index) => index),
+    },
+  ];
+  const componentDriftCoordinateLiftCandidateSets = [
+    { label: "h38-source-coordinate-lift", h_indexes: [38] },
+    { label: "h37-source-coordinate-lift", h_indexes: [37] },
+    { label: "h36-source-coordinate-lift", h_indexes: [36] },
+    { label: "h35-source-coordinate-lift", h_indexes: [35] },
+    {
+      label: "terminal-h35-h38-source-coordinate-lift",
+      h_indexes: [35, 36, 37, 38],
+    },
+    {
+      label: "suffix-h30-h38-source-coordinate-lift",
+      h_indexes: Array.from({ length: 9 }, (_, index) => 30 + index),
+    },
+    {
+      label: "all-h0-h38-source-coordinate-lift",
+      h_indexes: Array.from({ length: h38Index + 1 }, (_, index) => index),
     },
   ];
   const fullResidualVectorProfile =
@@ -20577,6 +23038,82 @@ function h39H38Y44ProducerHybridH38CoordinateSourceReplay({
         fullResidualVectorSourceInterval === null
           ? null
           : intervalAbsUpper(fullResidualVectorSourceInterval);
+      const h38CoordinateSourceToComponentDriftSourceGapInterval =
+        sourceComponentPlusDriftGraphInterval === null
+          ? null
+          : root.subtractIntervals(
+              sourceInterval,
+              sourceComponentPlusDriftGraphInterval
+            );
+      const h38CoordinateSourceToComponentDriftSourceGapAbsUpper =
+        h38CoordinateSourceToComponentDriftSourceGapInterval === null
+          ? null
+          : intervalAbsUpper(
+              h38CoordinateSourceToComponentDriftSourceGapInterval
+            );
+      const h38CoordinateSourceToComponentDriftSourceGapRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(
+          Number(h38CoordinateSourceToComponentDriftSourceGapAbsUpper)
+        )
+          ? h38CoordinateSourceToComponentDriftSourceGapAbsUpper / target
+          : null;
+      const fullResidualVectorSourceToComponentDriftSourceGapInterval =
+        fullResidualVectorSourceInterval === null ||
+        sourceComponentPlusDriftGraphInterval === null
+          ? null
+          : root.subtractIntervals(
+              fullResidualVectorSourceInterval,
+              sourceComponentPlusDriftGraphInterval
+            );
+      const fullResidualVectorSourceToComponentDriftSourceGapAbsUpper =
+        fullResidualVectorSourceToComponentDriftSourceGapInterval === null
+          ? null
+          : intervalAbsUpper(
+              fullResidualVectorSourceToComponentDriftSourceGapInterval
+            );
+      const fullResidualVectorSourceToComponentDriftSourceGapRatio =
+        productValueComparable &&
+        finitePositive(target) &&
+        Number.isFinite(
+          Number(fullResidualVectorSourceToComponentDriftSourceGapAbsUpper)
+        )
+          ? fullResidualVectorSourceToComponentDriftSourceGapAbsUpper /
+            target
+          : null;
+      const fullResidualVectorRealizesComponentDriftSource =
+        productValueComparable &&
+        Number.isFinite(
+          Number(fullResidualVectorSourceToComponentDriftSourceGapRatio)
+        ) &&
+        Number(fullResidualVectorSourceToComponentDriftSourceGapRatio) <= 1;
+      const componentDriftHRowRealizationStatus = !productValueComparable
+        ? "positive-n38-component-drift-hrow-realization-derivative-segment-not-applicable"
+        : sourceComponentPlusDriftGraphInterval === null ||
+            fullResidualVectorSourceInterval === null
+          ? "positive-n38-component-drift-hrow-realization-unavailable"
+          : fullResidualVectorRealizesComponentDriftSource
+            ? "positive-n38-component-drift-hrow-realization-realized-by-full-residual-vector"
+            : Number.isFinite(
+                  Number(
+                    fullResidualVectorSourceToComponentDriftSourceGapRatio
+                  )
+                ) &&
+                Number(fullResidualVectorSourceToComponentDriftSourceGapRatio) >
+                  1 &&
+                Number.isFinite(
+                  Number(
+                    sourceComponentGraphTargetUnitProfile
+                      .interval_center_drift_graph?.abs_upper_to_target
+                  )
+                ) &&
+                Number(
+                  sourceComponentGraphTargetUnitProfile
+                    .interval_center_drift_graph.abs_upper_to_target
+                ) > 1
+              ? "positive-n38-component-drift-hrow-realization-misses-interval-center-drift"
+              : "positive-n38-component-drift-hrow-realization-open";
       const fullResidualVectorResidualInterval =
         fullResidualVectorSourceInterval === null
           ? null
@@ -20801,9 +23338,462 @@ function h39H38Y44ProducerHybridH38CoordinateSourceReplay({
                 ? "positive-n38-full-residual-vector-solve-normalization-raw-denominator-sign-mismatch-and-signed-solve-open"
                 : fullResidualVectorRawMultiplierSignMismatch
                   ? "positive-n38-full-residual-vector-solve-normalization-raw-denominator-sign-mismatch"
-                  : fullResidualVectorSignedSolveOpen
-                    ? "positive-n38-full-residual-vector-solve-normalization-signed-solve-open"
-                    : "positive-n38-full-residual-vector-solve-normalization-open";
+                : fullResidualVectorSignedSolveOpen
+                  ? "positive-n38-full-residual-vector-solve-normalization-signed-solve-open"
+                  : "positive-n38-full-residual-vector-solve-normalization-open";
+      const h38ResidualCoordinateMidpoint = intervalMidpoint(
+        h38ResidualCoordinateInterval
+      );
+      const componentDriftSourceMidpoint =
+        sourceComponentPlusDriftGraphInterval === null
+          ? null
+          : intervalMidpoint(sourceComponentPlusDriftGraphInterval);
+      const componentDriftCoordinateLiftProbeStep = 1e-4;
+      const componentDriftCoordinateLiftCandidateRows =
+        componentDriftCoordinateLiftCandidateSets.map((candidate) => {
+          const activeHIndexSet = new Set(candidate.h_indexes);
+          const sharedVariantHIndexes = candidate.h_indexes.filter(
+            (hIndex) => hIndex !== h38Index
+          );
+          const baseCoordinate = activeHIndexSet.has(h38Index)
+            ? h38ResidualCoordinateMidpoint
+            : 0;
+          const evaluateSourceAtCoordinateInterval = (coordinateInterval) => {
+            if (
+              !Array.isArray(coordinateInterval) ||
+              coordinateInterval.length !== 2 ||
+              !coordinateInterval.every((value) =>
+                Number.isFinite(Number(value))
+              ) ||
+              Number(coordinateInterval[0]) > Number(coordinateInterval[1])
+            ) {
+              return null;
+            }
+            const h38NoiseCoordinate = activeHIndexSet.has(h38Index)
+              ? coordinateInterval
+              : h38ResidualCoordinateMidpoint;
+            const hIntervals =
+              hIntervalsForPolynomialGraphIntervalResidualCentersWithSharedVariantInterval({
+                transportProfile,
+                noiseInterval: segment.segment_interval,
+                residualProfile,
+                h38ResidualInterval:
+                  h38ResidualProfile.residual_interval_hull,
+                h38NoiseInterval: Array.isArray(h38NoiseCoordinate)
+                  ? h38NoiseCoordinate
+                  : [h38NoiseCoordinate, h38NoiseCoordinate],
+                sharedVariantHIndexes,
+                sharedNoiseInterval: coordinateInterval,
+              });
+            const expression = evaluateH38RecurrenceNumeratorBeforeSolve({
+              cell,
+              branch: resolvedBranch,
+              branchSign: root.branchSign(resolvedBranch),
+              hIntervals,
+              includeTermDecomposition: false,
+            });
+            const sourceInterval = root.outwardInterval(
+              expression.numerator_interval
+            );
+            return {
+              coordinate_interval: coordinateInterval,
+              source_y_order: expression.source_y_order,
+              source_interval: sourceInterval,
+              source_midpoint: intervalMidpoint(sourceInterval),
+            };
+          };
+          const evaluateSourceAtCoordinate = (coordinate) => {
+            if (!Number.isFinite(Number(coordinate))) {
+              return null;
+            }
+            return evaluateSourceAtCoordinateInterval([
+              Number(coordinate),
+              Number(coordinate),
+            ]);
+          };
+          const leftCoordinate = Math.max(
+            -1,
+            baseCoordinate - componentDriftCoordinateLiftProbeStep
+          );
+          const rightCoordinate = Math.min(
+            1,
+            baseCoordinate + componentDriftCoordinateLiftProbeStep
+          );
+          const baseProbe = evaluateSourceAtCoordinate(baseCoordinate);
+          const leftProbe = evaluateSourceAtCoordinate(leftCoordinate);
+          const rightProbe = evaluateSourceAtCoordinate(rightCoordinate);
+          const finiteDifferenceDenominator =
+            Number(rightCoordinate) - Number(leftCoordinate);
+          const finiteDifferenceSlope =
+            leftProbe === null ||
+            rightProbe === null ||
+            !Number.isFinite(finiteDifferenceDenominator) ||
+            finiteDifferenceDenominator === 0
+              ? null
+              : (Number(rightProbe.source_midpoint) -
+                  Number(leftProbe.source_midpoint)) /
+                finiteDifferenceDenominator;
+          const baseGapInterval =
+            baseProbe === null || sourceComponentPlusDriftGraphInterval === null
+              ? null
+              : root.subtractIntervals(
+                  baseProbe.source_interval,
+                  sourceComponentPlusDriftGraphInterval
+                );
+          const baseGapAbsUpper =
+            baseGapInterval === null ? null : intervalAbsUpper(baseGapInterval);
+          const solvedCoordinate =
+            baseProbe === null ||
+            !Number.isFinite(Number(componentDriftSourceMidpoint)) ||
+            !Number.isFinite(Number(finiteDifferenceSlope)) ||
+            Number(finiteDifferenceSlope) === 0
+              ? null
+              : Number(baseCoordinate) +
+                (Number(componentDriftSourceMidpoint) -
+                  Number(baseProbe.source_midpoint)) /
+                  Number(finiteDifferenceSlope);
+          const solvedCoordinateInsideUnitInterval =
+            Number.isFinite(Number(solvedCoordinate)) &&
+            Number(solvedCoordinate) >= -1 &&
+            Number(solvedCoordinate) <= 1;
+          const solvedProbe = solvedCoordinateInsideUnitInterval
+            ? evaluateSourceAtCoordinate(solvedCoordinate)
+            : null;
+          const solvedGapInterval =
+            solvedProbe === null || sourceComponentPlusDriftGraphInterval === null
+              ? null
+              : root.subtractIntervals(
+                  solvedProbe.source_interval,
+                  sourceComponentPlusDriftGraphInterval
+                );
+          const solvedGapAbsUpper =
+            solvedGapInterval === null
+              ? null
+              : intervalAbsUpper(solvedGapInterval);
+          const solvedGapRatio =
+            productValueComparable &&
+            finitePositive(target) &&
+            Number.isFinite(Number(solvedGapAbsUpper))
+              ? solvedGapAbsUpper / target
+              : null;
+          const baseGapRatio =
+            productValueComparable &&
+            finitePositive(target) &&
+            Number.isFinite(Number(baseGapAbsUpper))
+              ? baseGapAbsUpper / target
+              : null;
+          const solvedCoordinateCollarHalfWidths = [
+            0,
+            1e-10,
+            5e-10,
+            1e-9,
+            2e-9,
+            5e-9,
+          ];
+          const solvedCoordinateCollarRows =
+            solvedCoordinateInsideUnitInterval
+              ? solvedCoordinateCollarHalfWidths.map((halfWidth) => {
+                  const coordinateInterval = [
+                    Math.max(-1, Number(solvedCoordinate) - halfWidth),
+                    Math.min(1, Number(solvedCoordinate) + halfWidth),
+                  ];
+                  const collarProbe =
+                    evaluateSourceAtCoordinateInterval(coordinateInterval);
+                  const collarGapInterval =
+                    collarProbe === null ||
+                    sourceComponentPlusDriftGraphInterval === null
+                      ? null
+                      : root.subtractIntervals(
+                          collarProbe.source_interval,
+                          sourceComponentPlusDriftGraphInterval
+                        );
+                  const collarGapAbsUpper =
+                    collarGapInterval === null
+                      ? null
+                      : intervalAbsUpper(collarGapInterval);
+                  const collarGapRatio =
+                    productValueComparable &&
+                    finitePositive(target) &&
+                    Number.isFinite(Number(collarGapAbsUpper))
+                      ? collarGapAbsUpper / target
+                      : null;
+                  return {
+                    half_width: halfWidth,
+                    coordinate_interval: coordinateInterval,
+                    source_interval: collarProbe?.source_interval ?? null,
+                    source_to_component_drift_gap_interval:
+                      collarGapInterval,
+                    source_to_component_drift_gap_abs_upper:
+                      Number.isFinite(Number(collarGapAbsUpper))
+                        ? collarGapAbsUpper
+                        : null,
+                    source_to_component_drift_gap_to_target_ratio:
+                      Number.isFinite(Number(collarGapRatio))
+                        ? collarGapRatio
+                        : null,
+                    collar_status:
+                      Number.isFinite(Number(collarGapRatio)) &&
+                      Number(collarGapRatio) <= 1
+                        ? "positive-n38-component-drift-coordinate-lift-collar-inside-target"
+                        : collarProbe === null
+                          ? "positive-n38-component-drift-coordinate-lift-collar-unavailable"
+                          : "positive-n38-component-drift-coordinate-lift-collar-open",
+                  };
+                })
+              : [];
+          const maxSolvedCoordinateCollarHalfWidthInside =
+            solvedCoordinateCollarRows
+              .filter(
+                (row) =>
+                  row.collar_status ===
+                  "positive-n38-component-drift-coordinate-lift-collar-inside-target"
+              )
+              .reduce(
+                (maxHalfWidth, row) =>
+                  Math.max(maxHalfWidth, Number(row.half_width)),
+                null
+              );
+          const liftStatus = !productValueComparable
+            ? "positive-n38-component-drift-coordinate-lift-derivative-segment-not-applicable"
+            : sourceComponentPlusDriftGraphInterval === null ||
+                baseProbe === null ||
+                leftProbe === null ||
+                rightProbe === null
+              ? "positive-n38-component-drift-coordinate-lift-unavailable"
+              : !Number.isFinite(Number(finiteDifferenceSlope)) ||
+                  Number(finiteDifferenceSlope) === 0
+                ? "positive-n38-component-drift-coordinate-lift-singular-jacobian"
+                : !solvedCoordinateInsideUnitInterval
+                  ? "positive-n38-component-drift-coordinate-lift-outside-unit-domain"
+                  : Number.isFinite(Number(solvedGapRatio)) &&
+                      Number(solvedGapRatio) <= 1
+                    ? "positive-n38-component-drift-coordinate-lift-point-inside-target"
+                    : "positive-n38-component-drift-coordinate-lift-open";
+          return {
+            candidate_label: candidate.label,
+            active_h_indexes: candidate.h_indexes,
+            base_coordinate: Number.isFinite(Number(baseCoordinate))
+              ? baseCoordinate
+              : null,
+            finite_difference_step: componentDriftCoordinateLiftProbeStep,
+            finite_difference_left_coordinate: leftCoordinate,
+            finite_difference_right_coordinate: rightCoordinate,
+            finite_difference_source_slope:
+              Number.isFinite(Number(finiteDifferenceSlope))
+                ? finiteDifferenceSlope
+                : null,
+            component_drift_source_midpoint:
+              Number.isFinite(Number(componentDriftSourceMidpoint))
+                ? componentDriftSourceMidpoint
+                : null,
+            source_at_base_interval: baseProbe?.source_interval ?? null,
+            source_at_base_midpoint: Number.isFinite(
+              Number(baseProbe?.source_midpoint)
+            )
+              ? baseProbe.source_midpoint
+              : null,
+            source_at_base_to_component_drift_gap_interval: baseGapInterval,
+            source_at_base_to_component_drift_gap_abs_upper:
+              Number.isFinite(Number(baseGapAbsUpper))
+                ? baseGapAbsUpper
+                : null,
+            source_at_base_to_component_drift_gap_to_target_ratio:
+              Number.isFinite(Number(baseGapRatio)) ? baseGapRatio : null,
+            solved_coordinate: Number.isFinite(Number(solvedCoordinate))
+              ? solvedCoordinate
+              : null,
+            solved_coordinate_inside_unit_interval:
+              solvedCoordinateInsideUnitInterval,
+            solved_source_interval: solvedProbe?.source_interval ?? null,
+            solved_source_midpoint: Number.isFinite(
+              Number(solvedProbe?.source_midpoint)
+            )
+              ? solvedProbe.source_midpoint
+              : null,
+            solved_source_to_component_drift_gap_interval: solvedGapInterval,
+            solved_source_to_component_drift_gap_abs_upper:
+              Number.isFinite(Number(solvedGapAbsUpper))
+                ? solvedGapAbsUpper
+                : null,
+            solved_source_to_component_drift_gap_to_target_ratio:
+              Number.isFinite(Number(solvedGapRatio)) ? solvedGapRatio : null,
+            solved_coordinate_collar_rows: solvedCoordinateCollarRows,
+            max_solved_coordinate_collar_half_width_inside:
+              Number.isFinite(Number(maxSolvedCoordinateCollarHalfWidthInside))
+                ? maxSolvedCoordinateCollarHalfWidthInside
+                : null,
+            coordinate_lift_status: liftStatus,
+            claim_boundary:
+              "candidate point-Jacobian lift only; not a directed-rounded h-row provider",
+          };
+        });
+      const bestComponentDriftCoordinateLiftCandidate =
+        componentDriftCoordinateLiftCandidateRows.reduce((best, candidate) => {
+          const ratio =
+            candidate.solved_source_to_component_drift_gap_to_target_ratio;
+          if (!Number.isFinite(Number(ratio))) {
+            return best;
+          }
+          if (
+            best === null ||
+            Number(ratio) <
+              Number(best.solved_source_to_component_drift_gap_to_target_ratio)
+          ) {
+            return candidate;
+          }
+          return best;
+        }, null) ?? null;
+      const candidateComponentDriftH36ProviderBranchInputReplay = (() => {
+        if (
+          !productValueComparable ||
+          bestComponentDriftCoordinateLiftCandidate?.candidate_label !==
+            "h36-source-coordinate-lift" ||
+          !Array.isArray(
+            bestComponentDriftCoordinateLiftCandidate
+              .solved_coordinate_collar_rows
+          ) ||
+          !Array.isArray(normalizationSlopeInterval) ||
+          context === null ||
+          context === undefined
+        ) {
+          return null;
+        }
+        const selectedCollarRow =
+          bestComponentDriftCoordinateLiftCandidate.solved_coordinate_collar_rows
+            .filter(
+              (row) =>
+                row.collar_status ===
+                  "positive-n38-component-drift-coordinate-lift-collar-inside-target" &&
+                Array.isArray(row.coordinate_interval)
+            )
+            .reduce(
+              (best, row) =>
+                best === null || Number(row.half_width) > Number(best.half_width)
+                  ? row
+                  : best,
+              null
+            );
+        if (selectedCollarRow === null) {
+          return null;
+        }
+        const providerBranchInput =
+          componentDriftH36CoordinateLiftProviderBranchInput({
+            branch: resolvedBranch,
+            cellId: segment.cell_id,
+            transportProfile,
+            residualProfile,
+            h38ResidualProfile,
+            segmentInterval: segment.segment_interval,
+            h38NoiseInterval: h38ResidualCoordinateInterval,
+            h36NoiseInterval: selectedCollarRow.coordinate_interval,
+            solveSlopeInterval: normalizationSlopeInterval,
+            sourceCoordinateGapRatio:
+              selectedCollarRow
+                .source_to_component_drift_gap_to_target_ratio ?? null,
+            collarHalfWidth: selectedCollarRow.half_width,
+          });
+        const replay = shiftedPressureReplayForPointHRow({
+          context,
+          cell,
+          branch: resolvedBranch,
+          hIntervals: providerBranchInput.hIntervals,
+          solveSlopeInterval: providerBranchInput.solveSlopeInterval,
+          outerRadius,
+          shiftedIndex,
+        });
+        const providerClaimBoundary =
+          providerBranchInput.h_row_provider_claim_boundary;
+        return {
+          status:
+            "positive-n38-component-drift-h36-provider-shaped-branch-input-replay-emitted",
+          provider_kind: providerBranchInput.provider_kind,
+          replay_kind: providerBranchInput.h_row_provider_replay_kind,
+          selected_candidate_label:
+            bestComponentDriftCoordinateLiftCandidate.candidate_label,
+          selected_collar_half_width: selectedCollarRow.half_width,
+          selected_h36_coordinate_interval:
+            selectedCollarRow.coordinate_interval,
+          selected_h36_source_gap_to_target_ratio:
+            selectedCollarRow
+              .source_to_component_drift_gap_to_target_ratio ?? null,
+          provider_shape_summary: {
+            branch: providerBranchInput.branch,
+            h_interval_count: providerBranchInput.hIntervals.length,
+            h36_interval: providerBranchInput.hIntervals[36] ?? null,
+            h38_interval: providerBranchInput.hIntervals[38] ?? null,
+            solve_slope_interval: providerBranchInput.solveSlopeInterval,
+            preserves_dependencies:
+              providerBranchInput.h_row_provider_preserves_dependencies === true,
+            dependency_trace_count:
+              providerBranchInput.h_row_provider_dependency_trace.length,
+            dependency_witness_present:
+              providerBranchInput.h_row_dependency_witness !== null &&
+              providerBranchInput.h_row_dependency_witness !== undefined,
+            provider_claim_boundary_candidate_only:
+              providerClaimBoundary.certifies_shifted_R43_outer_bound ===
+                false &&
+              providerClaimBoundary.certifies_directed_rounded_shared_domain ===
+                false &&
+              providerClaimBoundary
+                .certifies_continuous_polydisc_primitives === false &&
+              providerClaimBoundary.retained_branch === false,
+          },
+          shifted_pressure_replay: {
+            pressure: replay.pressure,
+            center_eliminated_pressure: replay.center_eliminated_pressure,
+            center_elimination_improvement_factor:
+              replay.center_elimination_improvement_factor,
+            source_coefficient:
+              replay.row_pressure?.source_coefficient ?? null,
+            source_pressure_contribution:
+              replay.row_pressure?.source_pressure_contribution ?? null,
+          },
+          dependency_trace:
+            providerBranchInput.h_row_provider_dependency_trace,
+          dependency_witness:
+            providerBranchInput.h_row_dependency_witness,
+          h_row_provider_claim_boundary: providerClaimBoundary,
+          provider_branch_input_snapshot: {
+            branch: providerBranchInput.branch,
+            cell_id: segment.cell_id,
+            row_index: segment.row_index,
+            segment_index: segment.segment_index,
+            quotient_kind: segment.quotient_kind,
+            first_y_cell: sample.first_y_cell ?? null,
+            speed_interval: cell.speed_interval,
+            delta_fold_interval: cell.delta_fold_interval,
+            phi_fold_interval: cell.phi_fold_interval,
+            beta_interval: cell.beta_interval,
+            gamma_interval: cell.gamma_interval,
+            L_interval: cell.L_interval,
+            h_intervals: providerBranchInput.hIntervals,
+            solve_slope_interval: providerBranchInput.solveSlopeInterval,
+            dependency_preserving_h_row_provider:
+              providerBranchInput.dependency_preserving_h_row_provider,
+            provider_kind: providerBranchInput.provider_kind,
+            source_cell_id: providerBranchInput.source_cell_id,
+            h_row_provider_replay_kind:
+              providerBranchInput.h_row_provider_replay_kind,
+            h_row_provider_provenance:
+              providerBranchInput.h_row_provider_provenance,
+            h_row_provider_dependency_trace:
+              providerBranchInput.h_row_provider_dependency_trace,
+            h_row_dependency_trace:
+              providerBranchInput.h_row_dependency_trace,
+            h_row_dependency_witness:
+              providerBranchInput.h_row_dependency_witness,
+            h_row_provider_claim_boundary: providerClaimBoundary,
+            claim_level:
+              "candidate segment-local branch input snapshot; not a directed-rounded row-level H38 producer-image provider",
+          },
+          full_evaluator_provider_status:
+            "segment-local-branch-input-replay-not-entered-through-two-branch-H39-provider-boundary",
+          dependency_preserving_h_row_provider_present: false,
+          can_enter_shifted_replay: false,
+          h_row_provider_backed_replay: false,
+          claim_boundary: componentDriftSourceProviderClaimBoundary(),
+        };
+      })();
       const sharedNonH38CoordinateCandidateRows =
         sharedNonH38CoordinateCandidateSets.map((candidate) => {
           const candidateSubcellRows = h38CoordinateSubintervals.map(
@@ -21486,6 +24476,42 @@ function h39H38Y44ProducerHybridH38CoordinateSourceReplay({
         )
           ? fullResidualVectorSourceAbsUpper
           : null,
+        h38_coordinate_source_to_component_drift_source_gap_interval:
+          h38CoordinateSourceToComponentDriftSourceGapInterval,
+        h38_coordinate_source_to_component_drift_source_gap_abs_upper:
+          Number.isFinite(
+            Number(h38CoordinateSourceToComponentDriftSourceGapAbsUpper)
+          )
+            ? h38CoordinateSourceToComponentDriftSourceGapAbsUpper
+            : null,
+        h38_coordinate_source_to_component_drift_gap_to_target_ratio:
+          Number.isFinite(
+            Number(h38CoordinateSourceToComponentDriftSourceGapRatio)
+          )
+            ? h38CoordinateSourceToComponentDriftSourceGapRatio
+            : null,
+        full_residual_vector_source_to_component_drift_source_gap_interval:
+          fullResidualVectorSourceToComponentDriftSourceGapInterval,
+        full_residual_vector_source_to_component_drift_source_gap_abs_upper:
+          Number.isFinite(
+            Number(fullResidualVectorSourceToComponentDriftSourceGapAbsUpper)
+          )
+            ? fullResidualVectorSourceToComponentDriftSourceGapAbsUpper
+            : null,
+        full_residual_vector_source_to_component_drift_gap_to_target_ratio:
+          Number.isFinite(
+            Number(fullResidualVectorSourceToComponentDriftSourceGapRatio)
+          )
+            ? fullResidualVectorSourceToComponentDriftSourceGapRatio
+            : null,
+        component_drift_hrow_realization_status:
+          componentDriftHRowRealizationStatus,
+        component_drift_coordinate_lift_candidate_rows:
+          componentDriftCoordinateLiftCandidateRows,
+        best_component_drift_coordinate_lift_candidate:
+          bestComponentDriftCoordinateLiftCandidate,
+        candidate_component_drift_h36_provider_branch_input_replay:
+          candidateComponentDriftH36ProviderBranchInputReplay,
         full_residual_vector_residual_interval:
           fullResidualVectorResidualInterval,
         full_residual_vector_residual_abs_upper: Number.isFinite(
@@ -22097,6 +25123,703 @@ function h39H38Y44ProducerHybridH38CoordinateSourceReplay({
       }
       return best;
     }, null) ?? null;
+  const componentDriftTargetInsideProductRows = productRows.filter(
+    (row) =>
+      Number.isFinite(
+        Number(
+          row.h38_coordinate_component_graph_to_direct_graph_gap_to_target_ratio
+        )
+      ) &&
+      Number(row.h38_coordinate_component_graph_to_direct_graph_gap_to_target_ratio) <=
+        1
+  );
+  const componentDriftS37InsideProductRows = productRows.filter(
+    (row) =>
+      row.component_drift_s37_division_status ===
+      "positive-n38-component-drift-s37-division-inside-target"
+  );
+  const allComponentDriftHRowRealizationInside =
+    productRows.length > 0 &&
+    productRows.every(
+      (row) =>
+        row.component_drift_hrow_realization_status ===
+        "positive-n38-component-drift-hrow-realization-realized-by-full-residual-vector"
+    );
+  const openProductsComponentDriftHRowMissIntervalCenterDrift =
+    openProductRows.length > 0 &&
+    openProductRows.every(
+      (row) =>
+        row.component_drift_hrow_realization_status ===
+        "positive-n38-component-drift-hrow-realization-misses-interval-center-drift"
+    );
+  const anyComponentDriftHRowRealizationUnavailable = productRows.some(
+    (row) =>
+      row.component_drift_hrow_realization_status ===
+      "positive-n38-component-drift-hrow-realization-unavailable"
+  );
+  const componentDriftHRowRealizationDiagnosisStatus =
+    allComponentDriftHRowRealizationInside
+      ? "positive-n38-component-drift-hrow-realization-diagnosis-realized-by-full-residual-vector"
+      : openProductsComponentDriftHRowMissIntervalCenterDrift
+        ? "positive-n38-component-drift-hrow-realization-diagnosis-misses-interval-center-drift"
+        : anyComponentDriftHRowRealizationUnavailable
+          ? "positive-n38-component-drift-hrow-realization-diagnosis-unavailable"
+          : "positive-n38-component-drift-hrow-realization-diagnosis-open";
+  const componentDriftHRowRealizationDiagnosis =
+    componentDriftHRowRealizationDiagnosisStatus ===
+    "positive-n38-component-drift-hrow-realization-diagnosis-realized-by-full-residual-vector"
+      ? "the candidate full residual-vector h-row provider realizes the component-plus-drift source graph inside the product target on every product segment"
+      : componentDriftHRowRealizationDiagnosisStatus ===
+          "positive-n38-component-drift-hrow-realization-diagnosis-misses-interval-center-drift"
+        ? "the component-plus-drift source graph closes the direct graph, but the current full residual-vector h-row provider still misses that source graph by more than target on every open product segment; the missing realization is the interval-center drift stream, not S37 division"
+        : componentDriftHRowRealizationDiagnosisStatus ===
+            "positive-n38-component-drift-hrow-realization-diagnosis-unavailable"
+          ? "at least one product segment lacks the component-plus-drift source graph or full residual-vector source interval needed for h-row realization"
+          : "the component-drift h-row realization result is mixed across product segments";
+  const controllingComponentDriftHRowRealizationSegment =
+    productRows.reduce((best, row) => {
+      const ratio =
+        row.full_residual_vector_source_to_component_drift_gap_to_target_ratio;
+      if (ratio === null || ratio === undefined) {
+        return best;
+      }
+      if (
+        best === null ||
+        Number(ratio) >
+          Number(
+            best.full_residual_vector_source_to_component_drift_gap_to_target_ratio
+          )
+      ) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  const productRowsWithBestComponentDriftCoordinateLift = productRows.filter(
+    (row) => row.best_component_drift_coordinate_lift_candidate !== null
+  );
+  const allComponentDriftCoordinateLiftInside =
+    productRows.length > 0 &&
+    productRows.every(
+      (row) =>
+        row.best_component_drift_coordinate_lift_candidate
+          ?.coordinate_lift_status ===
+        "positive-n38-component-drift-coordinate-lift-point-inside-target"
+    );
+  const anyComponentDriftCoordinateLiftUnavailable = productRows.some((row) =>
+    (row.component_drift_coordinate_lift_candidate_rows ?? []).some(
+      (candidate) =>
+        candidate.coordinate_lift_status ===
+        "positive-n38-component-drift-coordinate-lift-unavailable"
+    )
+  );
+  const allComponentDriftCoordinateLiftOutside =
+    productRows.length > 0 &&
+    productRows.every((row) =>
+      (row.component_drift_coordinate_lift_candidate_rows ?? []).every(
+        (candidate) =>
+          candidate.coordinate_lift_status ===
+            "positive-n38-component-drift-coordinate-lift-outside-unit-domain" ||
+          candidate.coordinate_lift_status ===
+            "positive-n38-component-drift-coordinate-lift-singular-jacobian"
+      )
+    );
+  const componentDriftCoordinateLiftDiagnosisStatus =
+    allComponentDriftCoordinateLiftInside
+      ? "positive-n38-component-drift-coordinate-lift-diagnosis-point-lift-inside-target"
+      : anyComponentDriftCoordinateLiftUnavailable
+        ? "positive-n38-component-drift-coordinate-lift-diagnosis-unavailable"
+        : allComponentDriftCoordinateLiftOutside
+          ? "positive-n38-component-drift-coordinate-lift-diagnosis-outside-unit-domain"
+          : "positive-n38-component-drift-coordinate-lift-diagnosis-open";
+  const componentDriftCoordinateLiftDiagnosis =
+    componentDriftCoordinateLiftDiagnosisStatus ===
+    "positive-n38-component-drift-coordinate-lift-diagnosis-point-lift-inside-target"
+      ? "a candidate point-Jacobian source-coordinate lift hits the component-plus-drift source graph inside target on every product segment; this identifies a positive h-row realization route but does not certify a directed-rounded h-row provider"
+      : componentDriftCoordinateLiftDiagnosisStatus ===
+          "positive-n38-component-drift-coordinate-lift-diagnosis-outside-unit-domain"
+        ? "the candidate point-Jacobian source-coordinate lift would require coordinates outside the normalized producer residual domain or singular h-row directions on every product segment"
+        : componentDriftCoordinateLiftDiagnosisStatus ===
+            "positive-n38-component-drift-coordinate-lift-diagnosis-unavailable"
+          ? "at least one product segment lacks the component-plus-drift graph or finite source probes needed for the point-Jacobian coordinate lift"
+          : "the candidate point-Jacobian source-coordinate lift is mixed across product segments";
+  const controllingComponentDriftCoordinateLiftSegment =
+    productRows.reduce((best, row) => {
+      const ratio =
+        row.best_component_drift_coordinate_lift_candidate
+          ?.solved_source_to_component_drift_gap_to_target_ratio;
+      if (!Number.isFinite(Number(ratio))) {
+        return best;
+      }
+      const bestRatio =
+        best?.best_component_drift_coordinate_lift_candidate
+          ?.solved_source_to_component_drift_gap_to_target_ratio;
+      if (best === null || Number(ratio) > Number(bestRatio)) {
+        return row;
+      }
+      return best;
+    }, null) ?? null;
+  const productRowsWithH36ProviderBranchInputReplay = productRows.filter(
+    (row) =>
+      row.candidate_component_drift_h36_provider_branch_input_replay
+        ?.status ===
+      "positive-n38-component-drift-h36-provider-shaped-branch-input-replay-emitted"
+  );
+  const allH36ProviderBranchInputReplaysEmitted =
+    productRows.length > 0 &&
+    productRowsWithH36ProviderBranchInputReplay.length === productRows.length;
+  const h36ProviderBranchInputReplayStatus =
+    allH36ProviderBranchInputReplaysEmitted
+      ? "positive-n38-component-drift-h36-provider-shaped-branch-input-replay-all-product-segments"
+      : productRowsWithH36ProviderBranchInputReplay.length > 0
+        ? "positive-n38-component-drift-h36-provider-shaped-branch-input-replay-partial"
+        : "positive-n38-component-drift-h36-provider-shaped-branch-input-replay-unavailable";
+  const h36ProviderBranchInputReplayDiagnosis =
+    allH36ProviderBranchInputReplaysEmitted
+      ? "the h36 drift-coordinate collar can be materialized as concrete segment-local provider-shaped hIntervals on every product segment, but it has not entered the two-branch H39 h-row provider boundary"
+      : productRowsWithH36ProviderBranchInputReplay.length > 0
+        ? "only some product segments expose the h36 drift-coordinate collar as provider-shaped hIntervals"
+        : "no product segment exposes a h36 drift-coordinate collar provider-shaped hIntervals replay";
+  const h36ProviderBranchInputAllCandidateOnly =
+    productRowsWithH36ProviderBranchInputReplay.length > 0 &&
+    productRowsWithH36ProviderBranchInputReplay.every((row) => {
+      const replay =
+        row.candidate_component_drift_h36_provider_branch_input_replay;
+      return (
+        replay?.dependency_preserving_h_row_provider_present === false &&
+        replay?.can_enter_shifted_replay === false &&
+        replay?.h_row_provider_backed_replay === false &&
+        replay?.provider_shape_summary
+          ?.provider_claim_boundary_candidate_only === true &&
+        replay?.claim_boundary?.certifies_h38_n38_graph_enclosure ===
+          false &&
+        replay?.claim_boundary?.certifies_n38_taylor_remainder_bound ===
+          false &&
+        replay?.claim_boundary
+          ?.certifies_s37_dependency_preserving_division === false &&
+        replay?.claim_boundary?.certifies_positive_source_covariance_collar ===
+          false &&
+        replay?.claim_boundary?.certifies_shifted_R43_outer_bound ===
+          false &&
+        replay?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+          false &&
+        replay?.claim_boundary?.retained_branch === false
+      );
+    });
+  const h36ProviderBranchInputBranches = [
+    ...new Set(
+      productRowsWithH36ProviderBranchInputReplay
+        .map(
+          (row) =>
+            row.candidate_component_drift_h36_provider_branch_input_replay
+              ?.provider_shape_summary?.branch
+        )
+        .filter((value) => typeof value === "string")
+    ),
+  ].sort();
+  const h36ProviderBranchInputCells = [
+    ...new Set(
+      productRowsWithH36ProviderBranchInputReplay
+        .map((row) => row.cell_id)
+        .filter((value) => typeof value === "string")
+    ),
+  ].sort();
+  const h36ProviderBranchInputSegmentKeys =
+    productRowsWithH36ProviderBranchInputReplay.map((row) => {
+      const replay =
+        row.candidate_component_drift_h36_provider_branch_input_replay;
+      return {
+        cell_id: row.cell_id,
+        row_index: row.row_index,
+        segment_index: row.segment_index,
+        quotient_kind: row.quotient_kind,
+        branch: replay?.provider_shape_summary?.branch ?? null,
+        selected_collar_half_width:
+          replay?.selected_collar_half_width ?? null,
+        selected_h36_source_gap_to_target_ratio:
+          replay?.selected_h36_source_gap_to_target_ratio ?? null,
+        shifted_pressure: replay?.shifted_pressure_replay?.pressure ?? null,
+      };
+    });
+  const providerSummaryIntervals = (selector) =>
+    productRowsWithH36ProviderBranchInputReplay
+      .map((row) =>
+        selector(
+          row.candidate_component_drift_h36_provider_branch_input_replay
+            ?.provider_shape_summary
+        )
+      )
+      .filter(
+        (interval) =>
+          Array.isArray(interval) &&
+          interval.length === 2 &&
+          Number.isFinite(Number(interval[0])) &&
+          Number.isFinite(Number(interval[1]))
+      );
+  const providerSummaryHullForecast = (label, intervals) => {
+    if (intervals.length === 0) {
+      return {
+        label,
+        interval_count: 0,
+        interval_hull: null,
+        hull_width: null,
+        max_segment_width: null,
+        hull_to_max_segment_width_ratio: null,
+      };
+    }
+    const intervalHullValue = intervalHull(intervals);
+    const maxSegmentWidth = Math.max(
+      ...intervals.map((interval) => intervalWidth(interval))
+    );
+    return {
+      label,
+      interval_count: intervals.length,
+      interval_hull: intervalHullValue,
+      hull_width: intervalWidth(intervalHullValue),
+      max_segment_width: maxSegmentWidth,
+      hull_to_max_segment_width_ratio:
+        Number.isFinite(Number(maxSegmentWidth)) && maxSegmentWidth > 0
+          ? intervalWidth(intervalHullValue) / maxSegmentWidth
+          : null,
+    };
+  };
+  const h36ProviderNaiveSingleRowHullForecast = {
+    status:
+      productRowsWithH36ProviderBranchInputReplay.length > 0
+        ? "positive-n38-component-drift-h36-provider-naive-single-row-hull-forecast-emitted"
+        : "positive-n38-component-drift-h36-provider-naive-single-row-hull-forecast-unavailable",
+    forecast_kind:
+      "segment-local-summary-interval-hull-only-not-provider-backed",
+    h36_interval:
+      providerSummaryHullForecast(
+        "h36-provider-summary-interval",
+        providerSummaryIntervals((summary) => summary?.h36_interval)
+      ),
+    h38_interval:
+      providerSummaryHullForecast(
+        "h38-provider-summary-interval",
+        providerSummaryIntervals((summary) => summary?.h38_interval)
+      ),
+    solve_slope_interval:
+      providerSummaryHullForecast(
+        "solve-slope-summary-interval",
+        providerSummaryIntervals((summary) => summary?.solve_slope_interval)
+      ),
+    interpretation:
+      "a single row-level hull over segment-local h36 payload summaries is only a dependency-loss forecast; a true provider must preserve the segment/branch producer-image relation instead of treating these intervals as independent row boxes",
+  };
+  const h36ProviderBranchInputActivePayloadComplete =
+    allH36ProviderBranchInputReplaysEmitted &&
+    h36ProviderBranchInputAllCandidateOnly;
+  const h36ProviderBranchInputReadinessMissingPayloads = [
+    ...(h36ProviderBranchInputActivePayloadComplete
+      ? []
+      : [
+          "active-branch h36 coordinate-lift collar hIntervals on every product segment",
+        ]),
+    "opposite-branch h36 coordinate-lift collar payload on the same H38 producer-image cover",
+    "row-level branchInputsFromH38Row package merging segment-local collars into two branch rows",
+    "directed-rounded H38 producer-image proof that the h36 collar covers the live branch pair",
+  ];
+  const h36ProviderBranchInputReadinessStatus =
+    h36ProviderBranchInputActivePayloadComplete
+      ? "positive-n38-component-drift-h36-provider-inlet-active-branch-ready-two-branch-row-provider-open"
+      : productRowsWithH36ProviderBranchInputReplay.length > 0
+        ? "positive-n38-component-drift-h36-provider-inlet-active-branch-partial"
+        : "positive-n38-component-drift-h36-provider-inlet-unavailable";
+  const h36ProviderBranchInputReadinessDiagnosis =
+    h36ProviderBranchInputReadinessStatus ===
+    "positive-n38-component-drift-h36-provider-inlet-active-branch-ready-two-branch-row-provider-open"
+      ? "the h36 coordinate-lift collar has crossed the branch-input shape for the active branch on every product segment; the remaining obstruction is packaging the opposite branch and a row-level directed-rounded producer-image provider through branchInputsFromH38Row"
+      : h36ProviderBranchInputReadinessStatus ===
+          "positive-n38-component-drift-h36-provider-inlet-active-branch-partial"
+        ? "the h36 coordinate-lift collar only crosses the branch-input shape on some product segments, so the active branch provider inlet is still incomplete"
+        : "no product segment has crossed the h36 coordinate-lift collar into the provider branch-input shape";
+  const h36ProviderBranchInputReadinessReport = {
+    status: h36ProviderBranchInputReadinessStatus,
+    diagnosis: h36ProviderBranchInputReadinessDiagnosis,
+    provider_hook:
+      "branchInputsFromH38Row -> buildH39SharedDomainCoefficientArtifact",
+    expected_provider_boundary: {
+      required_branch_count: 2,
+      required_surface:
+        "one dependency-preserving hIntervals vector per branch row on the H38 producer-image cover",
+      required_payload_fields: [
+        "branch",
+        "hIntervals",
+        "solveSlopeInterval",
+        "providerKind",
+        "hRowDependencyTrace",
+        "hRowDependencyWitness",
+        "hRowProviderClaimBoundary",
+      ],
+    },
+    active_branch: branch,
+    active_branch_provider_payload_complete:
+      h36ProviderBranchInputActivePayloadComplete,
+    active_branch_provider_payload_count:
+      productRowsWithH36ProviderBranchInputReplay.length,
+    active_branch_product_segment_count: productRows.length,
+    active_branch_cells: h36ProviderBranchInputCells,
+    active_branch_segment_keys: h36ProviderBranchInputSegmentKeys,
+    naive_single_row_hull_forecast:
+      h36ProviderNaiveSingleRowHullForecast,
+    observed_branch_count: h36ProviderBranchInputBranches.length,
+    observed_branches: h36ProviderBranchInputBranches,
+    two_branch_provider_payload_complete: false,
+    row_level_provider_hook_ready: false,
+    dependency_preserving_h_row_provider_present: false,
+    can_enter_shifted_replay: false,
+    missing_provider_payloads: h36ProviderBranchInputReadinessMissingPayloads,
+    next_executable_probe:
+      "run buildH39H38Y44H36ProviderBranchPairReadinessCandidate to compare active-branch h36 inlet readiness on both branches before attempting row-level provider packaging",
+    claim_boundary: componentDriftSourceProviderClaimBoundary(),
+  };
+  const sourceComponentGraphCoefficientRows = sourceTerms.map(
+    (component) => ({
+      component,
+      lagrange_polynomial_coefficients:
+        sourceComponentGraphCoefficientMap.get(component) ?? null,
+      coefficient_order: "ascending-powers-of-xi",
+    })
+  );
+  const allSourceComponentGraphCoefficientsPresent =
+    sourceComponentGraphCoefficientRows.every((row) =>
+      Array.isArray(row.lagrange_polynomial_coefficients)
+    );
+  const componentDriftSourceProviderContractReady =
+    productRows.length > 0 &&
+    allSourceComponentGraphCoefficientsPresent &&
+    intervalCenterDriftGraphCoefficients !== null &&
+    sourcePairComponentGraphDiagnosisStatus ===
+      "positive-n38-source-pair-component-graph-diagnosis-interval-center-drift-offset" &&
+    componentDriftS37DivisionDiagnosisStatus ===
+      "positive-n38-component-drift-s37-division-diagnosis-inside-target";
+  const componentDriftSegmentKey = (row) =>
+    row === null
+      ? null
+      : {
+          cell_id: row.cell_id,
+          row_index: row.row_index,
+          segment_index: row.segment_index,
+          quotient_kind: row.quotient_kind,
+          component_drift_gap_to_target_ratio:
+            row.h38_coordinate_component_graph_to_direct_graph_gap_to_target_ratio ??
+            null,
+          component_drift_solved_gap_to_solved_target_ratio:
+            row.component_drift_solved_gap_to_solved_target_ratio ?? null,
+          h38_coordinate_source_to_component_drift_gap_to_target_ratio:
+            row.h38_coordinate_source_to_component_drift_gap_to_target_ratio ??
+            null,
+          full_residual_vector_source_to_component_drift_gap_to_target_ratio:
+            row
+              .full_residual_vector_source_to_component_drift_gap_to_target_ratio ??
+            null,
+          component_drift_s37_division_status:
+            row.component_drift_s37_division_status ?? null,
+          component_drift_hrow_realization_status:
+            row.component_drift_hrow_realization_status ?? null,
+        };
+  const componentDriftCoordinateLiftCandidateKey = (candidate) =>
+    candidate === null
+      ? null
+      : {
+          candidate_label: candidate.candidate_label,
+          active_h_indexes: candidate.active_h_indexes,
+          solved_coordinate: candidate.solved_coordinate ?? null,
+          solved_source_to_component_drift_gap_to_target_ratio:
+            candidate.solved_source_to_component_drift_gap_to_target_ratio ??
+            null,
+          max_solved_coordinate_collar_half_width_inside:
+            candidate.max_solved_coordinate_collar_half_width_inside ?? null,
+          coordinate_lift_status: candidate.coordinate_lift_status,
+        };
+  const componentDriftCoordinateLiftSegmentKey = (row) =>
+    row === null
+      ? null
+      : {
+          ...componentDriftSegmentKey(row),
+          best_component_drift_coordinate_lift_candidate:
+            componentDriftCoordinateLiftCandidateKey(
+              row.best_component_drift_coordinate_lift_candidate ?? null
+            ),
+        };
+  const componentDriftSourceProviderContract = {
+    status: componentDriftSourceProviderContractReady
+      ? "positive-n38-component-drift-source-provider-contract-candidate-ready"
+      : "positive-n38-component-drift-source-provider-contract-open",
+    provider_kind:
+      "candidate-polynomial-h-row-graph-component-plus-drift-source-provider",
+    finite_data_scope:
+      "selected-lagrange-source-component-graphs-plus-interval-center-drift",
+    source_provider_claim_level: "candidate-source-normal-form-only",
+    preserves_shared_xi_dependency: true,
+    preserves_source_component_dependency: allSourceComponentGraphCoefficientsPresent,
+    preserves_interval_center_drift_dependency:
+      intervalCenterDriftGraphCoefficients !== null,
+    preserves_s37_dependency: false,
+    dependency_preserving_h_row_provider_present: false,
+    exported_h_row_dependency_state: "source-provider-contract-not-h-row-provider",
+    can_enter_shifted_replay: false,
+    h_row_provider_backed_replay: false,
+    h_row_provider_backed_all_cells: false,
+    h_row_provider_backed_cell_count: 0,
+    h_row_provider_backed_branch_count: 0,
+    shifted_replay_readiness_status:
+      "positive-n38-component-drift-shifted-replay-readiness-open",
+    shifted_replay_readiness_reason:
+      "component-plus-drift/S37 candidate source replay is present, but shifted R43 replay requires a dependency-preserving H39 h-row provider with concrete hIntervals, provenance, trace, witness, and candidate-only boundary",
+    product_segment_count: productRows.length,
+    derivative_value_only_segment_count: derivativeRows.length,
+    product_segments_inside_component_drift_target_count:
+      componentDriftTargetInsideProductRows.length,
+    product_segments_inside_s37_target_count:
+      componentDriftS37InsideProductRows.length,
+    source_component_graph_coefficient_rows:
+      sourceComponentGraphCoefficientRows,
+    interval_center_drift_lagrange_graph_coefficients:
+      intervalCenterDriftGraphCoefficients,
+    max_component_drift_gap_to_target_ratio:
+      finiteValues(
+        (row) =>
+          row
+            .h38_coordinate_component_graph_to_direct_graph_gap_to_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row
+                  .h38_coordinate_component_graph_to_direct_graph_gap_to_target_ratio
+            )
+          )
+        : null,
+    max_component_drift_solved_gap_to_solved_target_ratio:
+      finiteValues(
+        (row) => row.component_drift_solved_gap_to_solved_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) => row.component_drift_solved_gap_to_solved_target_ratio
+            )
+          )
+        : null,
+    hrow_realization_diagnosis_status:
+      componentDriftHRowRealizationDiagnosisStatus,
+    hrow_realization_diagnosis: componentDriftHRowRealizationDiagnosis,
+    max_h38_coordinate_source_to_component_drift_gap_to_target_ratio:
+      finiteValues(
+        (row) =>
+          row.h38_coordinate_source_to_component_drift_gap_to_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.h38_coordinate_source_to_component_drift_gap_to_target_ratio
+            )
+          )
+        : null,
+    max_full_residual_vector_source_to_component_drift_gap_to_target_ratio:
+      finiteValues(
+        (row) =>
+          row.full_residual_vector_source_to_component_drift_gap_to_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row
+                  .full_residual_vector_source_to_component_drift_gap_to_target_ratio
+            )
+          )
+        : null,
+    source_pair_component_graph_diagnosis_status:
+      sourcePairComponentGraphDiagnosisStatus,
+    component_drift_s37_division_diagnosis_status:
+      componentDriftS37DivisionDiagnosisStatus,
+    coordinate_lift_diagnosis_status:
+      componentDriftCoordinateLiftDiagnosisStatus,
+    coordinate_lift_diagnosis: componentDriftCoordinateLiftDiagnosis,
+    max_best_component_drift_coordinate_lift_gap_to_target_ratio:
+      finiteValues(
+        (row) =>
+          row.best_component_drift_coordinate_lift_candidate
+            ?.solved_source_to_component_drift_gap_to_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.best_component_drift_coordinate_lift_candidate
+                  ?.solved_source_to_component_drift_gap_to_target_ratio
+            )
+          )
+        : null,
+    max_best_component_drift_coordinate_lift_abs_coordinate:
+      finiteValues((row) =>
+        Math.abs(
+          Number(
+            row.best_component_drift_coordinate_lift_candidate
+              ?.solved_coordinate
+          )
+        )
+      ).length > 0
+        ? Math.max(
+            ...finiteValues((row) =>
+              Math.abs(
+                Number(
+                  row.best_component_drift_coordinate_lift_candidate
+                    ?.solved_coordinate
+                )
+              )
+            )
+          )
+        : null,
+    min_best_component_drift_coordinate_lift_collar_half_width_inside:
+      finiteValues(
+        (row) =>
+          row.best_component_drift_coordinate_lift_candidate
+            ?.max_solved_coordinate_collar_half_width_inside
+      ).length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) =>
+                row.best_component_drift_coordinate_lift_candidate
+                  ?.max_solved_coordinate_collar_half_width_inside
+            )
+          )
+        : null,
+    h36_provider_shaped_branch_input_replay_status:
+      h36ProviderBranchInputReplayStatus,
+    h36_provider_shaped_branch_input_replay_diagnosis:
+      h36ProviderBranchInputReplayDiagnosis,
+    h36_provider_shaped_branch_input_replay_count:
+      productRowsWithH36ProviderBranchInputReplay.length,
+    h36_provider_shaped_branch_input_provider_kind:
+      "candidate-component-drift-h36-coordinate-lift-collar-provider",
+    h36_provider_shaped_branch_input_max_pressure:
+      finiteValues(
+        (row) =>
+          row.candidate_component_drift_h36_provider_branch_input_replay
+            ?.shifted_pressure_replay?.pressure
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.candidate_component_drift_h36_provider_branch_input_replay
+                  ?.shifted_pressure_replay?.pressure
+            )
+          )
+        : null,
+    h36_provider_shaped_branch_input_max_source_gap_to_target_ratio:
+      finiteValues(
+        (row) =>
+          row.candidate_component_drift_h36_provider_branch_input_replay
+            ?.selected_h36_source_gap_to_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.candidate_component_drift_h36_provider_branch_input_replay
+                  ?.selected_h36_source_gap_to_target_ratio
+            )
+          )
+        : null,
+    h36_provider_shaped_branch_input_min_collar_half_width:
+      finiteValues(
+        (row) =>
+          row.candidate_component_drift_h36_provider_branch_input_replay
+            ?.selected_collar_half_width
+      ).length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) =>
+                row.candidate_component_drift_h36_provider_branch_input_replay
+                  ?.selected_collar_half_width
+            )
+          )
+        : null,
+    h36_provider_shaped_branch_input_all_candidate_only:
+      h36ProviderBranchInputAllCandidateOnly,
+    h36_provider_inlet_status:
+      h36ProviderBranchInputReadinessReport.status,
+    h36_provider_inlet_diagnosis:
+      h36ProviderBranchInputReadinessReport.diagnosis,
+    candidate_component_drift_h36_provider_inlet_report:
+      h36ProviderBranchInputReadinessReport,
+    controlling_component_drift_hrow_realization_segment:
+      componentDriftSegmentKey(controllingComponentDriftHRowRealizationSegment),
+    controlling_component_drift_coordinate_lift_segment:
+      componentDriftCoordinateLiftSegmentKey(
+        controllingComponentDriftCoordinateLiftSegment
+      ),
+    controlling_component_drift_segment:
+      componentDriftSegmentKey(controllingSourcePairComponentGraphSegment),
+    controlling_component_drift_s37_division_segment:
+      componentDriftSegmentKey(controllingComponentDriftS37DivisionSegment),
+    dependency_trace: [
+      {
+        dependency_kind: "shared-xi-source-component-graphs",
+        source: "positive-n38-lagrange-source-decomposition",
+        source_components: sourceTerms,
+        component_graph_count: sourceComponentGraphCoefficientRows.filter(
+          (row) => Array.isArray(row.lagrange_polynomial_coefficients)
+        ).length,
+      },
+      {
+        dependency_kind: "interval-center-drift-polynomial-graph",
+        source: "positive-n38-lagrange-source-decomposition",
+        coefficient_count: Array.isArray(intervalCenterDriftGraphCoefficients)
+          ? intervalCenterDriftGraphCoefficients.length
+          : 0,
+      },
+      {
+        dependency_kind: "candidate-s37-division-boundary",
+        source:
+          "positive-n38-producer-hybrid-h38-coordinate-source-replay",
+        status: componentDriftS37DivisionDiagnosisStatus,
+        preserves_s37_dependency: false,
+      },
+      {
+        dependency_kind: "h-row-realization-boundary",
+        source: "candidate-polynomial-h-row-full-residual-vector-xi-graph-provider",
+        status: componentDriftHRowRealizationDiagnosisStatus,
+        available_payload: "full residual-vector hIntervals",
+        missing_payload: "interval-center drift source coordinate",
+      },
+      {
+        dependency_kind: "component-drift-coordinate-lift-probe",
+        source: "selected residual-coordinate point-Jacobian source replay",
+        status: componentDriftCoordinateLiftDiagnosisStatus,
+        claim_boundary:
+          "candidate point lift only; not a directed-rounded h-row provider",
+      },
+      {
+        dependency_kind: "h36-provider-shaped-branch-input-replay",
+        source: "component-drift-h36-coordinate-lift-collar-provider",
+        status: h36ProviderBranchInputReplayStatus,
+        replay_count: productRowsWithH36ProviderBranchInputReplay.length,
+        claim_boundary:
+          "segment-local provider-shaped hIntervals only; not a two-branch H39 provider-backed replay",
+      },
+      {
+        dependency_kind: "shifted-r43-provider-boundary",
+        source: "shiftedPressureReplayForPointHRow",
+        required_payload: "concrete dependency-preserving hIntervals",
+        available_payload: "candidate source normal form",
+      },
+    ],
+    dependency_witness: {
+      witness_kind:
+        "candidate-component-plus-drift-source-provider-contract",
+      source_formula:
+        "source(xi)=sum(component_i(xi))+interval_center_drift(xi)",
+      component_formula: "component_i(xi)=a_i0+a_i1*xi+...",
+      component_count: sourceTerms.length,
+      component_graphs_present: allSourceComponentGraphCoefficientsPresent,
+      interval_center_drift_present:
+        intervalCenterDriftGraphCoefficients !== null,
+      shifted_replay_boundary:
+        "not an H39 h-row provider; no hIntervals are exported",
+    },
+    claim_boundary: componentDriftSourceProviderClaimBoundary(),
+  };
   const productRowsWithFullResidualVectorInside = productRows.filter(
     (row) =>
       row.full_residual_vector_alignment_status ===
@@ -22825,6 +26548,151 @@ function h39H38Y44ProducerHybridH38CoordinateSourceReplay({
             )
           )
         : null,
+    component_drift_hrow_realization_diagnosis_status:
+      componentDriftHRowRealizationDiagnosisStatus,
+    component_drift_hrow_realization_diagnosis:
+      componentDriftHRowRealizationDiagnosis,
+    component_drift_coordinate_lift_diagnosis_status:
+      componentDriftCoordinateLiftDiagnosisStatus,
+    component_drift_coordinate_lift_diagnosis:
+      componentDriftCoordinateLiftDiagnosis,
+    max_best_component_drift_coordinate_lift_gap_to_target_ratio:
+      finiteValues(
+        (row) =>
+          row.best_component_drift_coordinate_lift_candidate
+            ?.solved_source_to_component_drift_gap_to_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.best_component_drift_coordinate_lift_candidate
+                  ?.solved_source_to_component_drift_gap_to_target_ratio
+            )
+          )
+        : null,
+    max_best_component_drift_coordinate_lift_abs_coordinate:
+      finiteValues((row) =>
+        Math.abs(
+          Number(
+            row.best_component_drift_coordinate_lift_candidate
+              ?.solved_coordinate
+          )
+        )
+      ).length > 0
+        ? Math.max(
+            ...finiteValues((row) =>
+              Math.abs(
+                Number(
+                  row.best_component_drift_coordinate_lift_candidate
+                    ?.solved_coordinate
+                )
+              )
+            )
+          )
+        : null,
+    min_best_component_drift_coordinate_lift_collar_half_width_inside:
+      finiteValues(
+        (row) =>
+          row.best_component_drift_coordinate_lift_candidate
+            ?.max_solved_coordinate_collar_half_width_inside
+      ).length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) =>
+                row.best_component_drift_coordinate_lift_candidate
+                  ?.max_solved_coordinate_collar_half_width_inside
+            )
+          )
+        : null,
+    h36_provider_shaped_branch_input_replay_status:
+      h36ProviderBranchInputReplayStatus,
+    h36_provider_shaped_branch_input_replay_diagnosis:
+      h36ProviderBranchInputReplayDiagnosis,
+    h36_provider_shaped_branch_input_replay_count:
+      productRowsWithH36ProviderBranchInputReplay.length,
+    h36_provider_shaped_branch_input_provider_kind:
+      "candidate-component-drift-h36-coordinate-lift-collar-provider",
+    h36_provider_shaped_branch_input_max_pressure:
+      finiteValues(
+        (row) =>
+          row.candidate_component_drift_h36_provider_branch_input_replay
+            ?.shifted_pressure_replay?.pressure
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.candidate_component_drift_h36_provider_branch_input_replay
+                  ?.shifted_pressure_replay?.pressure
+            )
+          )
+        : null,
+    h36_provider_shaped_branch_input_max_source_gap_to_target_ratio:
+      finiteValues(
+        (row) =>
+          row.candidate_component_drift_h36_provider_branch_input_replay
+            ?.selected_h36_source_gap_to_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.candidate_component_drift_h36_provider_branch_input_replay
+                  ?.selected_h36_source_gap_to_target_ratio
+            )
+          )
+        : null,
+    h36_provider_shaped_branch_input_min_collar_half_width:
+      finiteValues(
+        (row) =>
+          row.candidate_component_drift_h36_provider_branch_input_replay
+            ?.selected_collar_half_width
+      ).length > 0
+        ? Math.min(
+            ...finiteValues(
+              (row) =>
+                row.candidate_component_drift_h36_provider_branch_input_replay
+                  ?.selected_collar_half_width
+            )
+          )
+        : null,
+    h36_provider_shaped_branch_input_all_candidate_only:
+      h36ProviderBranchInputAllCandidateOnly,
+    h36_provider_inlet_status:
+      h36ProviderBranchInputReadinessReport.status,
+    h36_provider_inlet_diagnosis:
+      h36ProviderBranchInputReadinessReport.diagnosis,
+    candidate_component_drift_h36_provider_inlet_report:
+      h36ProviderBranchInputReadinessReport,
+    max_h38_coordinate_source_to_component_drift_gap_to_target_ratio:
+      finiteValues(
+        (row) =>
+          row.h38_coordinate_source_to_component_drift_gap_to_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row.h38_coordinate_source_to_component_drift_gap_to_target_ratio
+            )
+          )
+        : null,
+    max_full_residual_vector_source_to_component_drift_gap_to_target_ratio:
+      finiteValues(
+        (row) =>
+          row.full_residual_vector_source_to_component_drift_gap_to_target_ratio
+      ).length > 0
+        ? Math.max(
+            ...finiteValues(
+              (row) =>
+                row
+                  .full_residual_vector_source_to_component_drift_gap_to_target_ratio
+            )
+          )
+        : null,
+    candidate_component_drift_source_provider_contract:
+      componentDriftSourceProviderContract,
+    controlling_component_drift_hrow_realization_segment:
+      controllingComponentDriftHRowRealizationSegment,
+    controlling_component_drift_coordinate_lift_segment:
+      controllingComponentDriftCoordinateLiftSegment,
     controlling_component_drift_s37_division_segment:
       controllingComponentDriftS37DivisionSegment,
     controlling_source_pair_component_graph_segment:
@@ -23106,11 +26974,14 @@ function h39H38Y44ProducerHybridH38CoordinateSourceReplay({
 }
 
 function h39H38Y44PositiveN38CubicTaylorRemainderRoute({
+  context,
   taylorTarget,
   fourthDifferenceCheck,
   directedIntervalResidualCheck,
   lagrangeTarget,
   producerCoordinateProfile,
+  outerRadius = 0.001,
+  shiftedIndex = 1,
   branch,
   transportProfile,
   residualProfile,
@@ -23251,6 +27122,9 @@ function h39H38Y44PositiveN38CubicTaylorRemainderRoute({
     });
   const candidateProducerHybridH38CoordinateSourceReplay =
     h39H38Y44ProducerHybridH38CoordinateSourceReplay({
+      context,
+      outerRadius,
+      shiftedIndex,
       coordinateProfile: producerCoordinateProfile,
       hybridReplay: candidateProducerHybridQuotientDirectReplay,
       trueStreamExcessBudget: candidateProducerHybridTrueStreamExcessBudget,
@@ -23910,11 +27784,14 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
     });
   const positiveN38CubicTaylorRemainderRoute =
     h39H38Y44PositiveN38CubicTaylorRemainderRoute({
+      context: setup.context,
       taylorTarget: positiveN38TaylorCertificateTarget,
       fourthDifferenceCheck: positiveN38FourthDifferenceCheck,
       directedIntervalResidualCheck: positiveN38DirectedIntervalResidualCheck,
       lagrangeTarget: positiveN38LagrangeRemainderTarget,
       producerCoordinateProfile: h38ProducerResidualCoordinateProfile,
+      outerRadius: resolvedOuterRadius,
+      shiftedIndex: resolvedShiftedIndex,
       branch,
       transportProfile: setup.transportProfile,
       residualProfile: setup.residualProfile,
@@ -24195,6 +28072,964 @@ export function buildH39H38Y44SourceCovarianceDiagnosticCandidate({
       retained_branch: false,
     },
   };
+}
+
+function h39H38Y44SourceCovarianceProducerReplay(diagnostic) {
+  return (
+    diagnostic?.source_covariance_positive_n38_cubic_taylor_remainder_route
+      ?.same_domain_derivative_provider_target
+      ?.candidate_producer_hybrid_h38_coordinate_source_replay ?? null
+  );
+}
+
+export function buildH39H38Y44H36ProviderBranchPairReadinessCandidate({
+  branches = ["-", "+"],
+  progressCallback = null,
+  ...sourceCovarianceOptions
+} = {}) {
+  const startedAt = Date.now();
+  const emitProgress =
+    typeof progressCallback === "function"
+      ? (progress) =>
+          progressCallback({
+            diagnostic:
+              "h39-h38-y44-h36-provider-branch-pair-readiness",
+            elapsed_ms: Date.now() - startedAt,
+            ...progress,
+          })
+      : null;
+  const resolvedBranches = [
+    ...new Set(
+      branches.map((branch) => {
+        if (!["+", "-"].includes(branch)) {
+          throw new Error("branches must contain only '+' or '-'");
+        }
+        return branch;
+      })
+    ),
+  ];
+  const branchRows = resolvedBranches.map((branch) => {
+    emitProgress?.({ stage: "branch-start", branch });
+    const diagnostic = buildH39H38Y44SourceCovarianceDiagnosticCandidate({
+      ...sourceCovarianceOptions,
+      branch,
+      progressCallback:
+        typeof progressCallback === "function"
+          ? (branchProgress) =>
+              emitProgress({
+                stage: "branch-progress",
+                branch,
+                branch_progress: branchProgress,
+              })
+          : null,
+    });
+    const replay = h39H38Y44SourceCovarianceProducerReplay(diagnostic);
+    const inletReport =
+      replay?.candidate_component_drift_h36_provider_inlet_report ?? null;
+    const segmentProviderSnapshots = (replay?.segment_rows ?? [])
+      .map(
+        (segment) =>
+          segment.candidate_component_drift_h36_provider_branch_input_replay
+            ?.provider_branch_input_snapshot ?? null
+      )
+      .filter((snapshot) => snapshot !== null);
+    const branchRow = {
+      branch,
+      source_covariance_status: diagnostic.status,
+      producer_replay_status: replay?.status ?? null,
+      analysis_cell_id: diagnostic.analysis_cell_id,
+      segment_provider_snapshots: segmentProviderSnapshots,
+      h36_provider_shaped_branch_input_replay_status:
+        replay?.h36_provider_shaped_branch_input_replay_status ?? null,
+      h36_provider_shaped_branch_input_replay_count:
+        replay?.h36_provider_shaped_branch_input_replay_count ?? 0,
+      h36_provider_shaped_branch_input_max_source_gap_to_target_ratio:
+        replay?.h36_provider_shaped_branch_input_max_source_gap_to_target_ratio ??
+        null,
+      h36_provider_shaped_branch_input_min_collar_half_width:
+        replay?.h36_provider_shaped_branch_input_min_collar_half_width ??
+        null,
+      h36_provider_inlet_status: inletReport?.status ?? null,
+      active_branch_provider_payload_complete:
+        inletReport?.active_branch_provider_payload_complete === true,
+      active_branch_provider_payload_count:
+        inletReport?.active_branch_provider_payload_count ?? 0,
+      active_branch_product_segment_count:
+        inletReport?.active_branch_product_segment_count ?? 0,
+      observed_branch_count: inletReport?.observed_branch_count ?? 0,
+      observed_branches: inletReport?.observed_branches ?? [],
+      two_branch_provider_payload_complete:
+        inletReport?.two_branch_provider_payload_complete === true,
+      row_level_provider_hook_ready:
+        inletReport?.row_level_provider_hook_ready === true,
+      missing_provider_payloads: inletReport?.missing_provider_payloads ?? [],
+      claim_boundary:
+        inletReport?.claim_boundary ??
+        componentDriftSourceProviderClaimBoundaryForReadiness(),
+    };
+    emitProgress?.({
+      stage: "branch-complete",
+      branch,
+      h36_provider_inlet_status: branchRow.h36_provider_inlet_status,
+      active_branch_provider_payload_complete:
+        branchRow.active_branch_provider_payload_complete,
+    });
+    return branchRow;
+  });
+  const alignedSegmentBoundaryRows =
+    h36ProviderAlignedSegmentBoundaryRows(branchRows);
+  const alignedSegmentBoundaryAcceptedRows =
+    alignedSegmentBoundaryRows.filter(
+      (row) => row.dependency_preserving_h_row_provider_present === true
+    );
+  const alignedSegmentBoundaryAllAccepted =
+    alignedSegmentBoundaryRows.length > 0 &&
+    alignedSegmentBoundaryAcceptedRows.length ===
+      alignedSegmentBoundaryRows.length;
+  emitProgress?.({
+    stage: "segment-local-artifact-replay-start",
+    aligned_segment_row_count: alignedSegmentBoundaryRows.length,
+    accepted_segment_row_count: alignedSegmentBoundaryAcceptedRows.length,
+  });
+  const segmentLocalArtifactReplay =
+    h36ProviderSegmentLocalArtifactReplayCandidate({
+      alignedSegmentBoundaryRows,
+      shiftedOrder: sourceCovarianceOptions.shiftedIndex ?? 1,
+      seriesOrder: sourceCovarianceOptions.seriesOrder ?? null,
+      outerRadius: sourceCovarianceOptions.outerRadius ?? 0.001,
+    });
+  emitProgress?.({
+    stage: "segment-local-artifact-replay-complete",
+    status: segmentLocalArtifactReplay.status,
+    replay_row_count: segmentLocalArtifactReplay.replay_row_count,
+    shifted_prefix_pressure:
+      segmentLocalArtifactReplay
+        .max_R43_shifted_prefix_pressure_outer_radius ?? null,
+    h_row_provider_backed_replay:
+      segmentLocalArtifactReplay.h_row_provider_backed_replay,
+  });
+  const allRequestedBranchesHaveActivePayload =
+    branchRows.length === 2 &&
+    resolvedBranches.includes("-") &&
+    resolvedBranches.includes("+") &&
+    branchRows.every(
+      (row) => row.active_branch_provider_payload_complete === true
+    );
+  const finiteBranchValues = (selector) =>
+    branchRows
+      .map(selector)
+      .filter((value) => Number.isFinite(Number(value)))
+      .map(Number);
+  const sourceGapValues = finiteBranchValues(
+    (row) => row.h36_provider_shaped_branch_input_max_source_gap_to_target_ratio
+  );
+  const collarHalfWidthValues = finiteBranchValues(
+    (row) => row.h36_provider_shaped_branch_input_min_collar_half_width
+  );
+  const maxSourceGap =
+    sourceGapValues.length > 0
+      ? Math.max(...sourceGapValues)
+      : null;
+  const minCollar =
+    collarHalfWidthValues.length > 0
+      ? Math.min(...collarHalfWidthValues)
+      : null;
+  return {
+    status: allRequestedBranchesHaveActivePayload
+      ? "positive-n38-component-drift-h36-provider-branch-pair-segment-local-ready-row-provider-open"
+      : "positive-n38-component-drift-h36-provider-branch-pair-segment-local-open",
+    diagnostic_kind:
+      "candidate-h39-h38-y44-h36-provider-branch-pair-readiness",
+    branch_count: branchRows.length,
+    requested_branches: resolvedBranches,
+    branch_rows: branchRows,
+    all_requested_branches_active_branch_payload_complete:
+      allRequestedBranchesHaveActivePayload,
+    segment_local_two_branch_provider_payload_complete:
+      alignedSegmentBoundaryAllAccepted,
+    aligned_segment_provider_boundary_row_count:
+      alignedSegmentBoundaryRows.length,
+    aligned_segment_provider_boundary_dependency_preserving_count:
+      alignedSegmentBoundaryAcceptedRows.length,
+    aligned_segment_provider_boundary_rows:
+      alignedSegmentBoundaryRows,
+    segment_level_provider_boundary_state:
+      alignedSegmentBoundaryAllAccepted
+        ? "segment-local-two-branch-provider-boundary-accepted-candidate"
+        : "segment-local-two-branch-provider-boundary-open",
+    segment_local_artifact_replay_status:
+      segmentLocalArtifactReplay.status,
+    segment_local_artifact_h_row_provider_backed_replay:
+      segmentLocalArtifactReplay.h_row_provider_backed_replay === true,
+    segment_local_artifact_replay_row_count:
+      segmentLocalArtifactReplay.replay_row_count,
+    segment_local_artifact_replay_pressure:
+      segmentLocalArtifactReplay.max_R43_shifted_prefix_pressure_outer_radius,
+    segment_local_artifact_replay: segmentLocalArtifactReplay,
+    two_branch_provider_payload_complete: false,
+    row_level_provider_hook_ready: false,
+    dependency_preserving_h_row_provider_present: false,
+    can_enter_shifted_replay: false,
+    max_h36_provider_shaped_branch_input_source_gap_to_target_ratio:
+      maxSourceGap,
+    min_h36_provider_shaped_branch_input_collar_half_width: minCollar,
+    provider_inlet_blocker:
+      "both branch-local h36 collars must be merged into a directed-rounded row-level H38 producer-image provider before H39 shifted replay can consume them through branchInputsFromH38Row",
+    mathematical_interpretation:
+      alignedSegmentBoundaryAllAccepted
+        ? "the h36 coordinate-lift mechanism crosses the H39 provider boundary at matched segment level for both branches; the remaining work is the directed-rounded row-level producer-image enclosure rather than provider metadata plumbing or another scalar source-coordinate search"
+        : allRequestedBranchesHaveActivePayload
+          ? "the h36 coordinate-lift mechanism is not an active-branch accident; the remaining work is the two-branch, same-domain provider enclosure rather than another scalar source-coordinate search"
+        : "at least one branch still lacks segment-local h36 coordinate-lift provider shape, so branch-pair closure must first repair that branch",
+    claim_boundary: {
+      certifies_h38_n38_graph_enclosure: false,
+      certifies_n38_taylor_remainder_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_positive_source_covariance_collar: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+function componentDriftSourceProviderClaimBoundaryForReadiness() {
+  return {
+    certifies_h38_n38_graph_enclosure: false,
+    certifies_n38_taylor_remainder_bound: false,
+    certifies_s37_dependency_preserving_division: false,
+    certifies_positive_source_covariance_collar: false,
+    certifies_shifted_R43_outer_bound: false,
+    certifies_directed_rounded_shared_domain: false,
+    retained_branch: false,
+  };
+}
+
+function h36ProviderSnapshotSegmentKey(snapshot) {
+  return [
+    snapshot?.cell_id ?? "unknown-cell",
+    snapshot?.row_index ?? "unknown-row",
+    snapshot?.segment_index ?? "unknown-segment",
+    snapshot?.quotient_kind ?? "unknown-quotient",
+  ].join("|");
+}
+
+function h36ProviderFiniteInterval(value) {
+  return (
+    Array.isArray(value) &&
+    value.length === 2 &&
+    Number.isFinite(Number(value[0])) &&
+    Number.isFinite(Number(value[1]))
+  );
+}
+
+function h36ProviderSnapshotCellFields(snapshot) {
+  return {
+    speed_interval: snapshot?.speed_interval ?? null,
+    delta_fold_interval: snapshot?.delta_fold_interval ?? null,
+    phi_fold_interval: snapshot?.phi_fold_interval ?? null,
+    beta_interval: snapshot?.beta_interval ?? null,
+    gamma_interval: snapshot?.gamma_interval ?? null,
+    L_interval: snapshot?.L_interval ?? null,
+  };
+}
+
+function h36ProviderSnapshotCellFieldsPresent(snapshot) {
+  const cellFields = h36ProviderSnapshotCellFields(snapshot);
+  return Object.values(cellFields).every(h36ProviderFiniteInterval);
+}
+
+function h36ProviderSnapshotToBranchRow(snapshot) {
+  const branchRow = {
+    branch: snapshot.branch,
+    h38_solve_slope_interval: snapshot.solve_slope_interval,
+    dependency_preserving_h_row_provider:
+      snapshot.dependency_preserving_h_row_provider === true,
+    h_row_provider_preserves_dependencies:
+      snapshot.dependency_preserving_h_row_provider === true,
+    provider_kind: snapshot.provider_kind,
+    h_row_provider_kind: snapshot.provider_kind,
+    source_cell_id: snapshot.source_cell_id,
+    h_row_provider_source_cell_id: snapshot.source_cell_id,
+    h_row_provider_replay_kind: snapshot.h_row_provider_replay_kind,
+    h_row_provider_provenance: snapshot.h_row_provider_provenance,
+    h_row_provider_dependency_trace:
+      snapshot.h_row_provider_dependency_trace,
+    h_row_dependency_trace: snapshot.h_row_dependency_trace,
+    h_row_dependency_witness: snapshot.h_row_dependency_witness,
+    h_row_provider_claim_boundary: snapshot.h_row_provider_claim_boundary,
+  };
+  (snapshot.h_intervals ?? []).forEach((interval, hIndex) => {
+    branchRow[`h${hIndex}_interval`] = interval;
+  });
+  return branchRow;
+}
+
+function h36ProviderAlignedSegmentBoundaryRows(branchRows) {
+  const snapshotsBySegmentKey = new Map();
+  for (const branchRow of branchRows) {
+    for (const snapshot of branchRow.segment_provider_snapshots ?? []) {
+      const key = h36ProviderSnapshotSegmentKey(snapshot);
+      const bucket = snapshotsBySegmentKey.get(key) ?? new Map();
+      bucket.set(snapshot.branch, snapshot);
+      snapshotsBySegmentKey.set(key, bucket);
+    }
+  }
+  return [...snapshotsBySegmentKey.entries()]
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([segmentKey, snapshotsByBranch]) => {
+      const snapshots = ["-", "+"]
+        .map((branch) => snapshotsByBranch.get(branch))
+        .filter(Boolean);
+      const representative = snapshots[0] ?? null;
+      const representativeCellFields =
+        h36ProviderSnapshotCellFields(representative);
+      const representativeCellFieldsPresent =
+        h36ProviderSnapshotCellFieldsPresent(representative);
+      const syntheticRow =
+        snapshots.length === 2
+          ? {
+              cell_id:
+                representative === null
+                  ? segmentKey
+                  : `${representative.cell_id}:segment-${representative.segment_index}`,
+              row_status:
+                "candidate-h36-provider-segment-local-synthetic-h38-row",
+              first_y_cell: representative?.first_y_cell ?? null,
+              ...representativeCellFields,
+              branch_rows: snapshots.map(h36ProviderSnapshotToBranchRow),
+            }
+          : null;
+      const boundary =
+        syntheticRow === null
+          ? null
+          : computeH39PredecessorHRowProviderBoundaryCandidate({
+              h38Row: syntheticRow,
+            });
+      return {
+        segment_key: segmentKey,
+        cell_id: representative?.cell_id ?? null,
+        row_index: representative?.row_index ?? null,
+        segment_index: representative?.segment_index ?? null,
+        quotient_kind: representative?.quotient_kind ?? null,
+        branch_count: snapshots.length,
+        branches: snapshots.map((snapshot) => snapshot.branch).sort(),
+        synthetic_provider_boundary_state:
+          boundary?.exported_h_row_dependency_state ??
+          "missing-two-branch-segment-payload",
+        dependency_preserving_h_row_provider_present:
+          boundary?.dependency_preserving_h_row_provider_present === true,
+        boundary_branch_summaries: boundary?.branch_summaries ?? [],
+        synthetic_row_cell_fields_present:
+          representativeCellFieldsPresent === true,
+        synthetic_h38_row: syntheticRow,
+      };
+    });
+}
+
+function h36ProviderSyntheticH38RowCellFieldsPresent(row) {
+  return [
+    row?.speed_interval,
+    row?.delta_fold_interval,
+    row?.phi_fold_interval,
+    row?.beta_interval,
+    row?.gamma_interval,
+    row?.L_interval,
+  ].every(h36ProviderFiniteInterval);
+}
+
+function h36ProviderSegmentLocalArtifactReplayCandidate({
+  alignedSegmentBoundaryRows,
+  shiftedOrder = 1,
+  seriesOrder = null,
+  outerRadius = 0.001,
+} = {}) {
+  const replayRows = (alignedSegmentBoundaryRows ?? [])
+    .filter(
+      (row) =>
+        row.dependency_preserving_h_row_provider_present === true &&
+        row.synthetic_row_cell_fields_present === true &&
+        h36ProviderSyntheticH38RowCellFieldsPresent(row.synthetic_h38_row)
+    )
+    .map((row) => row.synthetic_h38_row);
+  const resolvedShiftedOrder = Number.isFinite(Number(shiftedOrder))
+    ? Number(shiftedOrder)
+    : 1;
+  const resolvedSeriesOrder =
+    seriesOrder === null || seriesOrder === undefined
+      ? null
+      : Number(seriesOrder);
+  const resolvedOuterRadius = Number.isFinite(Number(outerRadius))
+    ? Number(outerRadius)
+    : 0.001;
+  if (replayRows.length === 0) {
+    return {
+      status:
+        "positive-n38-component-drift-h36-provider-segment-artifact-replay-unavailable",
+      replay_row_count: 0,
+      shifted_order: resolvedShiftedOrder,
+      requested_series_order: resolvedSeriesOrder,
+      outer_radius: resolvedOuterRadius,
+      h_row_provider_backed_replay: false,
+      max_R43_shifted_prefix_pressure_outer_radius: null,
+      blocker:
+        "matched segment-local provider rows must carry both dependency-preserving branch metadata and full H38 cell intervals before the H39 coefficient artifact can replay them",
+      claim_boundary: componentDriftSourceProviderClaimBoundaryForReadiness(),
+    };
+  }
+  try {
+    const artifact = buildH39SharedDomainCoefficientArtifact({
+      h38Rows: replayRows,
+      validateH38: false,
+      shiftedOrder: resolvedShiftedOrder,
+      seriesOrder: resolvedSeriesOrder,
+      rho: resolvedOuterRadius,
+      sharedDomainSignature:
+        "candidate-h39-h38-y44-h36-segment-local-provider-artifact-replay",
+      rowLimit: null,
+      includeRows: true,
+    });
+    const summary = sharedDomainReplayArtifactCandidateSummary(artifact);
+    const rowPressureSummaries =
+      h36ProviderSegmentArtifactRowPressureSummaries(artifact);
+    const correlationProbeRows =
+      h36ProviderSegmentArtifactAffineCenterCorrelationProbeRows({
+        syntheticRows: replayRows,
+        seriesOrder:
+          artifact.coefficient_artifact_parameters?.series_order ??
+          resolvedSeriesOrder,
+        shiftedIndex: resolvedShiftedOrder,
+        outerRadius: resolvedOuterRadius,
+      });
+    const correlationProbeSummary =
+      h36ProviderSegmentArtifactAffineCenterCorrelationProbeSummary(
+        correlationProbeRows
+      );
+    const dominantUnreducedPressure =
+      h36ProviderDominantSegmentArtifactPressure(
+        rowPressureSummaries,
+        "unreduced_shifted_prefix_pressure"
+      );
+    const dominantCenterEliminatedPressure =
+      h36ProviderDominantSegmentArtifactPressure(
+        rowPressureSummaries,
+        "center_eliminated_shifted_prefix_pressure"
+      );
+    const dominantAffineCenterPressure =
+      h36ProviderDominantSegmentArtifactPressure(
+        rowPressureSummaries,
+        "affine_center_shifted_prefix_pressure"
+      );
+    const dominantAffineCenterHRowSensitivityProbe =
+      h36ProviderSegmentArtifactDominantAffineHRowSensitivityProbe({
+        syntheticRows: replayRows,
+        dominantAffineCenterPressure,
+        seriesOrder:
+          artifact.coefficient_artifact_parameters?.series_order ??
+          resolvedSeriesOrder,
+        shiftedIndex: resolvedShiftedOrder,
+        outerRadius: resolvedOuterRadius,
+      });
+    const providerBackedReplay =
+      summary.h_row_provider_dependency_state ===
+        "dependency-preserving-provider-backed-replay" &&
+      summary.h_row_provider_backed_all_cells === true;
+    return {
+      status: providerBackedReplay
+        ? "positive-n38-component-drift-h36-provider-segment-artifact-replay-candidate-emitted"
+        : "positive-n38-component-drift-h36-provider-segment-artifact-replay-open",
+      replay_row_count: replayRows.length,
+      shifted_order: resolvedShiftedOrder,
+      requested_series_order: resolvedSeriesOrder,
+      outer_radius: resolvedOuterRadius,
+      h_row_provider_backed_replay: providerBackedReplay,
+      h_row_provider_dependency_state:
+        summary.h_row_provider_dependency_state,
+      h_row_provider_backed_cell_count:
+        summary.h_row_provider_backed_cell_count,
+      h_row_provider_backed_branch_count:
+        summary.h_row_provider_backed_branch_count,
+      h_row_provider_dependency_trace_count:
+        summary.h_row_provider_dependency_trace_count,
+      max_R43_shifted_prefix_pressure_outer_radius:
+        summary.max_R43_shifted_prefix_pressure_outer_radius,
+      max_R43_center_eliminated_shifted_prefix_pressure_outer_radius:
+        summary.max_R43_center_eliminated_shifted_prefix_pressure_outer_radius,
+      max_R43_affine_center_shifted_prefix_majorant_outer_radius:
+        summary.max_R43_affine_center_shifted_prefix_majorant_outer_radius,
+      unreduced_to_affine_center_pressure_ratio:
+        Number(summary.max_R43_affine_center_shifted_prefix_majorant_outer_radius) >
+        0
+          ? Number(summary.max_R43_shifted_prefix_pressure_outer_radius) /
+            Number(
+              summary.max_R43_affine_center_shifted_prefix_majorant_outer_radius
+            )
+          : null,
+      affine_center_to_independent_center_eliminated_pressure_ratio:
+        Number(summary.max_R43_affine_center_shifted_prefix_majorant_outer_radius) >
+        0
+          ? Number(
+              summary.max_R43_center_eliminated_shifted_prefix_pressure_outer_radius
+            ) /
+            Number(
+              summary.max_R43_affine_center_shifted_prefix_majorant_outer_radius
+            )
+          : null,
+      all_R43_affine_center_forms_zero_leading_symbolically:
+        summary.all_R43_affine_center_forms_zero_leading_symbolically,
+      R43_affine_center_leading_zero_certified_count:
+        summary.R43_affine_center_leading_zero_certified_count,
+      R43_affine_center_leading_zero_open_count:
+        summary.R43_affine_center_leading_zero_open_count,
+      max_candidate_E_R_finite_prefix:
+        summary.max_candidate_E_R_finite_prefix,
+      max_candidate_M_R_finite_prefix:
+        summary.max_candidate_M_R_finite_prefix,
+      min_candidate_nu_J_finite_prefix:
+        summary.min_candidate_nu_J_finite_prefix,
+      max_candidate_M_G_finite_prefix:
+        summary.max_candidate_M_G_finite_prefix,
+      row_pressure_summaries: rowPressureSummaries,
+      dominant_unreduced_segment_pressure: dominantUnreducedPressure,
+      dominant_center_eliminated_segment_pressure:
+        dominantCenterEliminatedPressure,
+      dominant_affine_center_segment_pressure:
+        dominantAffineCenterPressure,
+      candidate_affine_center_row_correlation_probe_status:
+        correlationProbeSummary.status,
+      candidate_affine_center_row_correlation_probe_summary:
+        correlationProbeSummary,
+      candidate_affine_center_row_correlation_probe_rows:
+        correlationProbeRows,
+      candidate_dominant_affine_center_h_row_sensitivity_probe:
+        dominantAffineCenterHRowSensitivityProbe,
+      shared_domain_replay_artifact_summary: summary,
+      claim_boundary: {
+        ...componentDriftSourceProviderClaimBoundaryForReadiness(),
+        h_row_provider_backed_replay: providerBackedReplay,
+        segment_local_synthetic_h38_rows_only: true,
+        emits_segment_local_h39_coefficient_replay: providerBackedReplay,
+      },
+      interpretation:
+        "the matched h36 segment snapshots can enter the real H39 shared-domain coefficient artifact as provider-backed synthetic segment rows; this is still segment-local and does not certify a directed-rounded row-level H38 producer-image cover",
+    };
+  } catch (error) {
+    return {
+      status:
+        "positive-n38-component-drift-h36-provider-segment-artifact-replay-failed",
+      replay_row_count: replayRows.length,
+      shifted_order: resolvedShiftedOrder,
+      requested_series_order: resolvedSeriesOrder,
+      outer_radius: resolvedOuterRadius,
+      h_row_provider_backed_replay: false,
+      max_R43_shifted_prefix_pressure_outer_radius: null,
+      error_name: error?.name ?? "Error",
+      error_message: error?.message ?? String(error),
+      claim_boundary: componentDriftSourceProviderClaimBoundaryForReadiness(),
+    };
+  }
+}
+
+function h36ProviderPressureEntrySummary(entry) {
+  if (entry === null || entry === undefined) {
+    return null;
+  }
+  return {
+    shifted_index: entry.shifted_index ?? null,
+    y_order: entry.y_order ?? null,
+    coefficient_abs_upper: entry.coefficient_abs_upper ?? null,
+    pressure_contribution: entry.pressure_contribution ?? null,
+  };
+}
+
+function h36ProviderSegmentArtifactRowPressureSummaries(artifact) {
+  return (artifact?.h39_shared_domain_coefficient_rows ?? []).map((row) => ({
+    cell_id: row.cell_id ?? null,
+    provider_backed:
+      row.h39_coefficient_cell?.h_row_provider_report
+        ?.provider_backed_all_branches === true,
+    branch_pressures: (row.h39_coefficient_cell?.r43_rows ?? []).map(
+      (r43Row) => {
+        const diagnostic =
+          r43Row.R43_shifted_prefix_pressure_diagnostic ?? {};
+        return {
+          branch: r43Row.branch ?? null,
+          unreduced_shifted_prefix_pressure:
+            diagnostic.unreduced_shifted_prefix_majorant_outer_radius ?? null,
+          center_eliminated_shifted_prefix_pressure:
+            diagnostic.center_eliminated_shifted_prefix_majorant_outer_radius ??
+            null,
+          affine_center_shifted_prefix_pressure:
+            r43Row.R43_affine_center_shifted_prefix_majorant_outer_radius ??
+            null,
+          center_elimination_reduces_pressure:
+            diagnostic.center_elimination_reduces_pressure ?? null,
+          center_elimination_interval_warning:
+            diagnostic.center_elimination_interval_warning ?? null,
+          affine_center_leading_zero_certified:
+            r43Row.R43_affine_center_certificate
+              ?.leading_affine_center_zero_certified === true,
+          dominant_unreduced_shifted_pressure:
+            h36ProviderPressureEntrySummary(
+              diagnostic.dominant_unreduced_shifted_pressure
+            ),
+          dominant_center_eliminated_shifted_pressure:
+            h36ProviderPressureEntrySummary(
+              diagnostic.dominant_center_eliminated_shifted_pressure
+            ),
+          dominant_affine_center_shifted_pressure:
+            h36ProviderPressureEntrySummary(
+              r43Row.R43_affine_center_form_candidate
+                ?.dominant_R43_affine_center_shifted_pressure
+            ),
+        };
+      }
+    ),
+  }));
+}
+
+function h36ProviderDominantSegmentArtifactPressure(
+  rowPressureSummaries,
+  pressureKey
+) {
+  return rowPressureSummaries
+    .flatMap((row) =>
+      (row.branch_pressures ?? []).map((branchPressure) => ({
+        cell_id: row.cell_id,
+        branch: branchPressure.branch,
+        pressure: branchPressure[pressureKey],
+        dominant_unreduced_shifted_pressure:
+          branchPressure.dominant_unreduced_shifted_pressure,
+        dominant_center_eliminated_shifted_pressure:
+          branchPressure.dominant_center_eliminated_shifted_pressure,
+        dominant_affine_center_shifted_pressure:
+          branchPressure.dominant_affine_center_shifted_pressure,
+        center_elimination_interval_warning:
+          branchPressure.center_elimination_interval_warning,
+      }))
+    )
+    .filter((entry) => Number.isFinite(Number(entry.pressure)))
+    .reduce(
+      (best, entry) =>
+        best === null || Number(entry.pressure) > Number(best.pressure)
+          ? entry
+          : best,
+      null
+    );
+}
+
+function h36ProviderSegmentArtifactAffineCenterCorrelationProbeRows({
+  syntheticRows,
+  seriesOrder,
+  shiftedIndex,
+  outerRadius,
+  partitionCount = 2,
+}) {
+  const context = makeTheta3minusFirstYGdSeriesContext({
+    seriesOrder:
+      Number.isInteger(Number(seriesOrder)) && Number(seriesOrder) > 0
+        ? Number(seriesOrder)
+        : undefined,
+  });
+  return (syntheticRows ?? []).flatMap((syntheticRow) => {
+    const cell = cellFromCertificateRow(syntheticRow);
+    return (syntheticRow.branch_rows ?? []).map((branchRow) => {
+      try {
+        const hIntervals = hIntervalsFromBranchRow(branchRow);
+        const solve = solveH39CenterCoefficientRow({
+          context,
+          cell,
+          branch: branchRow.branch,
+          hIntervals,
+          solveSlopeInterval: branchRow.h38_solve_slope_interval,
+        });
+        const diagnostic =
+          computeH39AffineCenterRowCorrelationDiagnosticCandidate({
+            context,
+            cell,
+            branch: branchRow.branch,
+            hIntervals,
+            xInterval: solve.h39_center_interval,
+            solveSlopeInterval: branchRow.h38_solve_slope_interval,
+            outerRadius,
+            shiftedIndex,
+            partitionCount,
+          });
+        return {
+          status:
+            "positive-n38-component-drift-h36-provider-affine-center-correlation-probe-emitted",
+          cell_id: syntheticRow.cell_id ?? null,
+          branch: branchRow.branch ?? null,
+          shifted_index: diagnostic.shifted_index,
+          y_order: diagnostic.y_order,
+          affine_dependence_valid_for_row:
+            diagnostic.affine_dependence_valid_for_row,
+          partition_count: diagnostic.partition_count,
+          leading_source_at_zero_C_0:
+            diagnostic.leading_source_at_zero_C_0,
+          leading_slope_used_S_0: diagnostic.leading_slope_used_S_0,
+          row_source_at_zero_C_k: diagnostic.row_source_at_zero_C_k,
+          row_source_slope_S_k: diagnostic.row_source_slope_S_k,
+          independent_interval_center_eliminated_pressure:
+            diagnostic.independent_interval_center_eliminated_pressure,
+          full_center_pressure:
+            diagnostic.full_center_replay?.row_pressure
+              ?.source_pressure_contribution ?? null,
+          max_partition_pressure: diagnostic.max_partition_pressure,
+          midpoint_pressure: diagnostic.midpoint_pressure,
+          input_midpoint_pressure: diagnostic.input_midpoint_pressure,
+          full_to_max_partition_pressure_ratio:
+            diagnostic.full_to_max_partition_pressure_ratio,
+          full_to_midpoint_pressure_ratio:
+            diagnostic.full_to_midpoint_pressure_ratio,
+          full_to_input_midpoint_pressure_ratio:
+            diagnostic.full_to_input_midpoint_pressure_ratio,
+          full_center_term_triangle_over_source_pressure_ratio:
+            diagnostic.full_center_replay?.row_pressure
+              ?.term_triangle_over_source_pressure_ratio ?? null,
+          dominant_full_center_term:
+            diagnostic.full_center_replay?.row_pressure?.dominant_term ?? null,
+          candidate_certificate_route: diagnostic.candidate_certificate_route,
+          claim_boundary: {
+            certifies_shifted_R43_outer_bound:
+              diagnostic.certifies_shifted_R43_outer_bound,
+            certifies_directed_rounded_shared_domain:
+              diagnostic.certifies_directed_rounded_shared_domain,
+            certifies_continuous_polydisc_primitives:
+              diagnostic.certifies_continuous_polydisc_primitives,
+            retained_branch: diagnostic.retained_branch,
+          },
+        };
+      } catch (error) {
+        return {
+          status:
+            "positive-n38-component-drift-h36-provider-affine-center-correlation-probe-failed",
+          cell_id: syntheticRow.cell_id ?? null,
+          branch: branchRow.branch ?? null,
+          error_name: error?.name ?? "Error",
+          error_message: error?.message ?? String(error),
+          claim_boundary: componentDriftSourceProviderClaimBoundaryForReadiness(),
+        };
+      }
+    });
+  });
+}
+
+function h36ProviderSegmentArtifactAffineCenterCorrelationProbeSummary(rows) {
+  const emittedRows = (rows ?? []).filter((row) =>
+    row?.status?.endsWith("-emitted")
+  );
+  const finiteValues = (selector) =>
+    emittedRows
+      .map(selector)
+      .filter((value) => Number.isFinite(Number(value)))
+      .map(Number);
+  const fullCenterPressures = finiteValues((row) => row.full_center_pressure);
+  const inputMidpointPressures = finiteValues(
+    (row) => row.input_midpoint_pressure
+  );
+  const fullToInputRatios = finiteValues(
+    (row) => row.full_to_input_midpoint_pressure_ratio
+  );
+  const maxFullCenterPressure =
+    fullCenterPressures.length > 0 ? Math.max(...fullCenterPressures) : null;
+  const maxInputMidpointPressure =
+    inputMidpointPressures.length > 0
+      ? Math.max(...inputMidpointPressures)
+      : null;
+  const maxFullToInputRatio =
+    fullToInputRatios.length > 0 ? Math.max(...fullToInputRatios) : null;
+  const dominantFullCenterRow =
+    emittedRows.reduce(
+      (best, row) =>
+        best === null ||
+        Number(row.full_center_pressure) > Number(best.full_center_pressure)
+          ? row
+          : best,
+      null
+    ) ?? null;
+  const dominantInputMidpointRow =
+    emittedRows.reduce(
+      (best, row) =>
+        best === null ||
+        Number(row.input_midpoint_pressure) >
+          Number(best.input_midpoint_pressure)
+          ? row
+          : best,
+      null
+    ) ?? null;
+  return {
+    status:
+      emittedRows.length === rows.length && rows.length > 0
+        ? "positive-n38-component-drift-h36-provider-affine-center-correlation-probe-all-rows-emitted"
+        : emittedRows.length > 0
+          ? "positive-n38-component-drift-h36-provider-affine-center-correlation-probe-partial"
+          : "positive-n38-component-drift-h36-provider-affine-center-correlation-probe-unavailable",
+    probe_row_count: rows.length,
+    emitted_probe_row_count: emittedRows.length,
+    max_full_center_pressure: maxFullCenterPressure,
+    max_input_midpoint_pressure: maxInputMidpointPressure,
+    max_full_to_input_midpoint_pressure_ratio: maxFullToInputRatio,
+    dominant_full_center_row:
+      dominantFullCenterRow === null
+        ? null
+        : {
+            cell_id: dominantFullCenterRow.cell_id,
+            branch: dominantFullCenterRow.branch,
+            full_center_pressure: dominantFullCenterRow.full_center_pressure,
+            input_midpoint_pressure:
+              dominantFullCenterRow.input_midpoint_pressure,
+            full_to_input_midpoint_pressure_ratio:
+              dominantFullCenterRow.full_to_input_midpoint_pressure_ratio,
+            dominant_full_center_term:
+              dominantFullCenterRow.dominant_full_center_term,
+          },
+    dominant_input_midpoint_row:
+      dominantInputMidpointRow === null
+        ? null
+        : {
+            cell_id: dominantInputMidpointRow.cell_id,
+            branch: dominantInputMidpointRow.branch,
+            full_center_pressure: dominantInputMidpointRow.full_center_pressure,
+            input_midpoint_pressure:
+              dominantInputMidpointRow.input_midpoint_pressure,
+            full_to_input_midpoint_pressure_ratio:
+              dominantInputMidpointRow.full_to_input_midpoint_pressure_ratio,
+            dominant_full_center_term:
+              dominantInputMidpointRow.dominant_full_center_term,
+          },
+    claim_boundary: componentDriftSourceProviderClaimBoundaryForReadiness(),
+  };
+}
+
+function h36ProviderSegmentArtifactDominantAffineHRowSensitivityProbe({
+  syntheticRows,
+  dominantAffineCenterPressure,
+  seriesOrder,
+  shiftedIndex,
+  outerRadius,
+}) {
+  if (
+    dominantAffineCenterPressure === null ||
+    dominantAffineCenterPressure === undefined
+  ) {
+    return {
+      status:
+        "positive-n38-component-drift-h36-provider-dominant-affine-h-row-sensitivity-probe-unavailable",
+      reason: "no dominant affine-center pressure row was available",
+      claim_boundary: componentDriftSourceProviderClaimBoundaryForReadiness(),
+    };
+  }
+  const syntheticRow = (syntheticRows ?? []).find(
+    (row) => row?.cell_id === dominantAffineCenterPressure.cell_id
+  );
+  const branchRow = (syntheticRow?.branch_rows ?? []).find(
+    (row) => row?.branch === dominantAffineCenterPressure.branch
+  );
+  if (syntheticRow === undefined || branchRow === undefined) {
+    return {
+      status:
+        "positive-n38-component-drift-h36-provider-dominant-affine-h-row-sensitivity-probe-unavailable",
+      reason: "dominant affine-center row could not be matched to a synthetic branch row",
+      dominant_affine_center_pressure: dominantAffineCenterPressure,
+      claim_boundary: componentDriftSourceProviderClaimBoundaryForReadiness(),
+    };
+  }
+  try {
+    const context = makeTheta3minusFirstYGdSeriesContext({
+      seriesOrder:
+        Number.isInteger(Number(seriesOrder)) && Number(seriesOrder) > 0
+          ? Number(seriesOrder)
+          : undefined,
+    });
+    const diagnostic = computeH39AffineCenterHRowSensitivityDiagnosticCandidate({
+      context,
+      cell: cellFromCertificateRow(syntheticRow),
+      branch: branchRow.branch,
+      hIntervals: hIntervalsFromBranchRow(branchRow),
+      solveSlopeInterval: branchRow.h38_solve_slope_interval,
+      outerRadius,
+      shiftedIndex,
+    });
+    const replayByFamily = Object.fromEntries(
+      diagnostic.input_family_replays.map((replay) => [
+        replay.input_family,
+        replay,
+      ])
+    );
+    const pressureForFamily = (family) => replayByFamily[family]?.pressure ?? null;
+    const ratioForFamily = (family) =>
+      replayByFamily[family]?.full_to_pressure_ratio ?? null;
+    return {
+      status:
+        "positive-n38-component-drift-h36-provider-dominant-affine-h-row-sensitivity-probe-emitted",
+      cell_id: syntheticRow.cell_id,
+      branch: branchRow.branch,
+      shifted_index: diagnostic.shifted_index,
+      y_order: diagnostic.y_order,
+      full_input_pressure: diagnostic.full_input_replay.pressure,
+      cell_midpoint_pressure: pressureForFamily("cell-midpoint"),
+      h_row_midpoint_pressure: pressureForFamily("h-row-midpoint"),
+      slope_midpoint_pressure: pressureForFamily("slope-midpoint"),
+      cell_and_h_row_midpoint_pressure: pressureForFamily(
+        "cell-and-h-row-midpoint"
+      ),
+      all_input_midpoint_pressure: pressureForFamily("all-input-midpoint"),
+      h_row_midpoint_reduction_factor:
+        diagnostic.h_row_midpoint_reduction_factor,
+      cell_midpoint_reduction_factor:
+        diagnostic.cell_midpoint_reduction_factor,
+      slope_midpoint_reduction_factor:
+        diagnostic.slope_midpoint_reduction_factor,
+      all_input_midpoint_reduction_factor:
+        ratioForFamily("all-input-midpoint"),
+      h_row_width_dominates_input_width:
+        diagnostic.h_row_width_dominates_input_width,
+      h_row_transport_depth_summary:
+        diagnostic.h_row_transport_depth_summary,
+      h_row_suffix_width_compression_summary:
+        diagnostic.h_row_suffix_width_compression_summary,
+      best_h_row_freeze_replay:
+        diagnostic.best_h_row_freeze_replay === null
+          ? null
+          : {
+              input_family: diagnostic.best_h_row_freeze_replay.input_family,
+              freeze_start_index:
+                diagnostic.best_h_row_freeze_replay.freeze_start_index,
+              freeze_end_index:
+                diagnostic.best_h_row_freeze_replay.freeze_end_index,
+              pressure: diagnostic.best_h_row_freeze_replay.pressure,
+              full_to_pressure_ratio:
+                diagnostic.best_h_row_freeze_replay.full_to_pressure_ratio,
+            },
+      dominant_full_input_term:
+        diagnostic.full_input_replay.row_pressure?.dominant_term ?? null,
+      interpretation:
+        diagnostic.h_row_width_dominates_input_width === true
+          ? "the remaining affine-center segment pressure is dominated by inherited h-row interval width, not by live cell width or solve-slope width"
+          : "the remaining affine-center segment pressure is not isolated to inherited h-row interval width by this probe",
+      candidate_certificate_route: diagnostic.candidate_certificate_route,
+      claim_boundary: {
+        certifies_shifted_R43_outer_bound:
+          diagnostic.certifies_shifted_R43_outer_bound,
+        certifies_directed_rounded_shared_domain:
+          diagnostic.certifies_directed_rounded_shared_domain,
+        certifies_continuous_polydisc_primitives:
+          diagnostic.certifies_continuous_polydisc_primitives,
+        retained_branch: diagnostic.retained_branch,
+      },
+    };
+  } catch (error) {
+    return {
+      status:
+        "positive-n38-component-drift-h36-provider-dominant-affine-h-row-sensitivity-probe-failed",
+      cell_id: syntheticRow.cell_id,
+      branch: branchRow.branch,
+      error_name: error?.name ?? "Error",
+      error_message: error?.message ?? String(error),
+      claim_boundary: componentDriftSourceProviderClaimBoundaryForReadiness(),
+    };
+  }
 }
 
 function scaledComparisonStencilIndex({
@@ -25415,6 +30250,124 @@ function h39H38Y44ProducerCoordinateFullHullHalfWidth(coordinateProfile) {
     Number(midpointHull[0]) - Number(intervalHull[0]),
     Number(intervalHull[1]) - Number(midpointHull[1])
   );
+}
+
+export function buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
+  requestedResidualRadiusBudget,
+  producerCoordinateProfile,
+  label = "h39-requested-y44-vs-h38-producer-image",
+} = {}) {
+  const requestedHalfWidth = Number(
+    requestedResidualRadiusBudget?.midpoint_matching_residual_half_width
+  );
+  if (!finitePositive(requestedHalfWidth)) {
+    throw new Error(
+      "requestedResidualRadiusBudget must expose a positive midpoint-matching half-width"
+    );
+  }
+  if (
+    !Array.isArray(producerCoordinateProfile?.residual_coordinate_interval_hull) ||
+    !Array.isArray(producerCoordinateProfile?.residual_coordinate_midpoint_hull)
+  ) {
+    throw new Error(
+      "producerCoordinateProfile must expose residual coordinate interval and midpoint hulls"
+    );
+  }
+  const targetInterval = [-requestedHalfWidth, requestedHalfWidth];
+  const intervalHull =
+    producerCoordinateProfile.residual_coordinate_interval_hull.map(Number);
+  const midpointHull =
+    producerCoordinateProfile.residual_coordinate_midpoint_hull.map(Number);
+  const intervalHullWidth = intervalWidth(intervalHull);
+  const midpointHullWidth = intervalWidth(midpointHull);
+  const targetWidth = intervalWidth(targetInterval);
+  const fullHullHalfWidth =
+    h39H38Y44ProducerCoordinateFullHullHalfWidth(
+      producerCoordinateProfile
+    );
+  const maxSampleIntervalHalfWidth =
+    Number(producerCoordinateProfile.max_residual_coordinate_interval_width) /
+    2;
+  const intervalHullInsideTarget =
+    Number(intervalHull[0]) >= Number(targetInterval[0]) &&
+    Number(intervalHull[1]) <= Number(targetInterval[1]);
+  const midpointHullInsideTarget =
+    Number(midpointHull[0]) >= Number(targetInterval[0]) &&
+    Number(midpointHull[1]) <= Number(targetInterval[1]);
+  const ratio = (numerator, denominator) =>
+    finitePositive(numerator) && finitePositive(denominator)
+      ? Number(numerator) / Number(denominator)
+      : null;
+  const interpretation = intervalHullInsideTarget
+    ? "producer-interval-hull-fits-h39-requested-residual-budget"
+    : midpointHullInsideTarget
+      ? "producer-midpoint-hull-fits-but-interval-hull-needs-directed-correlation-to-h39-budget"
+      : "producer-midpoint-hull-misses-h39-requested-residual-budget";
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_PRODUCER_IMAGE_BUDGET_COMPARISON_SCHEMA,
+    status:
+      "h39-requested-y44-producer-image-budget-comparison-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-producer-image-budget-comparison",
+    label,
+    requested_residual_budget_kind:
+      requestedResidualRadiusBudget.budget_kind ?? null,
+    requested_residual_midpoint_matching_half_width:
+      requestedHalfWidth,
+    requested_residual_budget_interval: targetInterval,
+    requested_residual_budget_width: targetWidth,
+    requested_residual_full_radius_to_midpoint_matching_scale:
+      requestedResidualRadiusBudget.full_radius_to_midpoint_matching_scale ??
+      null,
+    requested_residual_unit_slope_to_midpoint_pressure_ratio:
+      requestedResidualRadiusBudget.unit_slope_to_midpoint_pressure_ratio ??
+      null,
+    requested_residual_midpoint_pressure_bound:
+      requestedResidualRadiusBudget.midpoint_pressure_bound ?? null,
+    requested_residual_unit_slope_pressure_contribution:
+      requestedResidualRadiusBudget.unit_slope_pressure_contribution ?? null,
+    producer_coordinate_formula:
+      producerCoordinateProfile.coordinate_formula ?? null,
+    producer_h38_index: producerCoordinateProfile.h38_index ?? null,
+    producer_row_count: producerCoordinateProfile.row_count ?? null,
+    producer_residual_coordinate_interval_hull: intervalHull,
+    producer_residual_coordinate_midpoint_hull: midpointHull,
+    producer_residual_coordinate_interval_hull_width:
+      intervalHullWidth,
+    producer_residual_coordinate_midpoint_hull_width:
+      midpointHullWidth,
+    producer_centered_full_hull_half_width: fullHullHalfWidth,
+    producer_max_sample_interval_half_width:
+      maxSampleIntervalHalfWidth,
+    producer_interval_hull_inside_requested_residual_budget:
+      intervalHullInsideTarget,
+    producer_midpoint_hull_inside_requested_residual_budget:
+      midpointHullInsideTarget,
+    producer_interval_hull_width_to_requested_budget_width: ratio(
+      intervalHullWidth,
+      targetWidth
+    ),
+    producer_midpoint_hull_width_to_requested_budget_width: ratio(
+      midpointHullWidth,
+      targetWidth
+    ),
+    producer_centered_full_hull_half_width_to_requested_budget_half_width:
+      ratio(fullHullHalfWidth, requestedHalfWidth),
+    producer_max_sample_interval_half_width_to_requested_budget_half_width:
+      ratio(maxSampleIntervalHalfWidth, requestedHalfWidth),
+    budget_comparison_interpretation: interpretation,
+    certificate_route:
+      "The H38 producer midpoint image is already aligned with the H39 requested residual coordinate, but the interval hull must be narrowed or dependency-correlated before the requested-y44 source term is absolutized.",
+    claim_boundary: {
+      certifies_h38_producer_image_residual_radius: false,
+      certifies_shared_zeta_interval_provider: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
 }
 
 function h39H38Y44ProducerCenteredIntervalReplay({
@@ -31938,13 +36891,26 @@ export function validateH39TerminalSharedResidualAffineZetaProviderReplayDiagnos
     Number.isFinite(Number(interval[0])) &&
     Number.isFinite(Number(interval[1])) &&
     Number(interval[1]) > Number(interval[0]);
+  const hasFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[1]) >= Number(interval[0]);
+  const intervalsMatchWithinTolerance = (left, right, tolerance = 1e-12) =>
+    hasOrderedFiniteInterval(left) &&
+    hasOrderedFiniteInterval(right) &&
+    intervalEndpointMaxGap(left, right) <= tolerance;
+  const h38Index =
+    THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index;
   const terminalIndexes = diagnostic?.terminal_provider_h_indexes ?? [];
-  const terminalIndexesMatch =
+  const terminalIndexesValid =
     Array.isArray(terminalIndexes) &&
-    terminalIndexes.length === 3 &&
-    terminalIndexes[0] === 37 &&
-    terminalIndexes[1] === 36 &&
-    terminalIndexes[2] === 35;
+    terminalIndexes.length > 0 &&
+    new Set(terminalIndexes).size === terminalIndexes.length &&
+    terminalIndexes.every(
+      (hIndex) => Number.isInteger(hIndex) && hIndex >= 0 && hIndex <= 38
+    );
   const endpointReplayValid = (endpoint) => {
     const summary = endpoint?.shared_domain_replay_artifact_summary ?? {};
     return (
@@ -31967,6 +36933,168 @@ export function validateH39TerminalSharedResidualAffineZetaProviderReplayDiagnos
       endpoint.endpoint_claim_boundary?.retained_branch === false
     );
   };
+  const successorSuffixEndpointReplayValid = (endpoint) => {
+    const summary = endpoint?.shared_domain_replay_artifact_summary ?? {};
+    return (
+      Number.isInteger(endpoint?.endpoint_index) &&
+      [0, 1].includes(endpoint.endpoint_index) &&
+      Number.isFinite(Number(endpoint?.residual_noise)) &&
+      endpoint?.endpoint_provider_backed_replay === true &&
+      summary.h_row_provider_dependency_state ===
+        "dependency-preserving-provider-backed-replay" &&
+      summary.h_row_provider_backed_all_cells === true &&
+      Array.isArray(summary.h_row_provider_kinds) &&
+      summary.h_row_provider_kinds.includes(
+        "candidate-successor-suffix-shared-residual-affine-zeta-endpoint-provider"
+      ) &&
+      Number(summary.h_row_provider_dependency_trace_count) > 0 &&
+      finitePositive(summary.max_R43_shifted_prefix_pressure_outer_radius) &&
+      summary.certifies_continuous_polydisc_primitives === false &&
+      endpoint.endpoint_claim_boundary?.certifies_directed_rounded_shared_domain ===
+        false &&
+      endpoint.endpoint_claim_boundary?.retained_branch === false
+    );
+  };
+  const requestedSourceTermNormalFormValid = (entry) => {
+    const normalForm = entry?.normal_form ?? null;
+    return (
+      Number.isInteger(entry?.endpoint_index) &&
+      Number.isFinite(Number(entry?.residual_noise)) &&
+      Number.isInteger(normalForm?.shifted_index) &&
+      normalForm.shifted_index === diagnostic?.shifted_index &&
+      normalForm?.y_order === diagnostic?.y_order &&
+      hasFiniteInterval(normalForm?.source_coefficient) &&
+      finitePositive(normalForm?.source_pressure_contribution) &&
+      normalForm?.term_count === 4 &&
+      Array.isArray(normalForm?.terms) &&
+      normalForm.terms.length === normalForm.term_count &&
+      normalForm.terms.every(
+        (term) =>
+          typeof term?.term === "string" &&
+          hasFiniteInterval(term?.coefficient) &&
+          finiteNonnegative(term?.coefficient_abs_upper) &&
+          finiteNonnegative(term?.pressure_contribution)
+      ) &&
+      hasFiniteInterval(normalForm?.term_coefficient_interval_sum) &&
+      finiteNonnegative(normalForm?.term_sum_to_source_relative_gap) &&
+      normalForm.term_sum_to_source_relative_gap <= 1e-10 &&
+      finitePositive(normalForm?.term_triangle_pressure) &&
+      finitePositive(normalForm?.source_to_term_triangle_pressure_ratio) &&
+      finitePositive(normalForm?.term_triangle_to_source_pressure_gain) &&
+      boundedUnitValue(normalForm?.source_cancellation_fraction) &&
+      typeof normalForm?.dominant_term?.term === "string"
+    );
+  };
+  const requestedResidualRadiusBudgetValid = (budget) =>
+    budget?.budget_kind ===
+      "candidate-requested-shifted-source-residual-radius-budget" &&
+    budget?.shifted_index === diagnostic?.shifted_index &&
+    Number(budget?.outer_radius) === Number(diagnostic?.outer_radius) &&
+    finitePositive(budget?.radius_factor) &&
+    hasFiniteInterval(budget?.midpoint_coefficient_hull) &&
+    finitePositive(budget?.midpoint_coefficient_abs_upper) &&
+    finitePositive(budget?.midpoint_pressure_bound) &&
+    Array.isArray(budget?.unit_slope_entries) &&
+    budget.unit_slope_entries.length === 2 &&
+    budget.unit_slope_entries.every(
+      (entry) =>
+        Number.isFinite(Number(entry?.residual_noise)) &&
+        Number.isFinite(Number(entry?.residual_displacement)) &&
+        entry.residual_displacement !== 0 &&
+        hasFiniteInterval(entry?.slope_coefficient_interval) &&
+        finitePositive(entry?.slope_coefficient_abs_upper)
+    ) &&
+    finitePositive(budget?.unit_slope_coefficient_abs_upper) &&
+    finitePositive(budget?.unit_slope_pressure_contribution) &&
+    finitePositive(budget?.unit_slope_to_midpoint_pressure_ratio) &&
+    finitePositive(budget?.midpoint_matching_residual_half_width) &&
+    Number(budget.midpoint_matching_residual_half_width) < 1 &&
+    finitePositive(budget?.full_radius_to_midpoint_matching_scale) &&
+    Number(budget.full_radius_to_midpoint_matching_scale) > 1 &&
+    Array.isArray(budget?.total_bound_to_midpoint_ratio_target_scales) &&
+    budget.total_bound_to_midpoint_ratio_target_scales.length === 3 &&
+    budget.total_bound_to_midpoint_ratio_target_scales.every(
+      (entry) =>
+        finitePositive(
+          entry?.total_bound_to_midpoint_pressure_ratio_target
+        ) &&
+        Number(entry.total_bound_to_midpoint_pressure_ratio_target) > 1 &&
+        finitePositive(entry?.residual_half_width_scale)
+    ) &&
+    typeof budget?.budget_interpretation === "string" &&
+    budget?.claim_boundary?.certifies_producer_image_residual_radius ===
+      false &&
+    budget.claim_boundary?.certifies_shared_zeta_interval_provider === false &&
+    budget.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    budget.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    budget.claim_boundary?.certifies_continuous_polydisc_primitives ===
+      false &&
+    budget.claim_boundary?.retained_branch === false;
+  const requestedResidualDirectionProfileValid = (profile) =>
+    profile?.profile_kind ===
+      "candidate-requested-shifted-source-residual-direction-profile" &&
+    Number.isInteger(profile?.residual_noise_point_count) &&
+    profile.residual_noise_point_count >= 2 &&
+    Array.isArray(profile?.residual_noise_values) &&
+    profile.residual_noise_values.length ===
+      profile.residual_noise_point_count &&
+    profile.residual_noise_values.every((value) =>
+      Number.isFinite(Number(value))
+    ) &&
+    Array.isArray(profile?.residual_noise_points) &&
+    profile.residual_noise_points.length ===
+      profile.residual_noise_point_count &&
+    profile.residual_noise_points.every(
+      (point) =>
+        Number.isFinite(Number(point?.residual_noise)) &&
+        Number.isInteger(point?.sample_count) &&
+        point.sample_count >= 1 &&
+        point?.shifted_index === diagnostic?.shifted_index &&
+        point?.y_order === diagnostic?.y_order &&
+        (point?.dominant_term === null ||
+          typeof point?.dominant_term === "string") &&
+        Array.isArray(point?.dominant_terms) &&
+        point.dominant_terms.every((term) => typeof term === "string") &&
+        hasFiniteInterval(point?.coefficient_hull) &&
+        finitePositive(point?.pressure_contribution) &&
+        finitePositive(point?.min_pressure_contribution) &&
+        finiteNonnegative(point?.pressure_duplicate_relative_gap) &&
+        boundedUnitValue(point?.source_cancellation_fraction) &&
+        finitePositive(point?.term_triangle_to_source_pressure_gain) &&
+        finiteNonnegative(point?.term_sum_to_source_relative_gap) &&
+        point.term_sum_to_source_relative_gap <= 1e-10 &&
+        Array.isArray(point?.samples) &&
+        point.samples.length === point.sample_count
+    ) &&
+    Array.isArray(profile?.outer_endpoint_residual_noise_values) &&
+    profile.outer_endpoint_residual_noise_values.length === 2 &&
+    profile.outer_endpoint_residual_noise_values.every((value) =>
+      Number.isFinite(Number(value))
+    ) &&
+    Number.isFinite(Number(profile?.midpoint_residual_noise)) &&
+    finitePositive(profile?.outer_endpoint_pressure_contribution) &&
+    finitePositive(profile?.midpoint_pressure_contribution) &&
+    finitePositive(profile?.endpoint_to_midpoint_pressure_ratio) &&
+    typeof profile?.outer_endpoints_dominate_midpoint === "boolean" &&
+    finiteNonnegative(profile?.max_duplicate_pressure_relative_gap) &&
+    typeof profile?.all_duplicate_boundary_points_consistent === "boolean" &&
+    profile.all_duplicate_boundary_points_consistent === true &&
+    finiteNonnegative(profile?.max_term_sum_to_source_relative_gap) &&
+    profile.max_term_sum_to_source_relative_gap <= 1e-10 &&
+    requestedResidualRadiusBudgetValid(profile?.residual_radius_budget) &&
+    finitePositive(profile?.midpoint_matching_residual_half_width) &&
+    finitePositive(profile?.full_radius_to_midpoint_matching_scale) &&
+    typeof profile?.residual_direction_interpretation === "string" &&
+    profile?.claim_boundary?.certifies_producer_image_residual_radius ===
+      false &&
+    profile.claim_boundary?.certifies_shared_zeta_interval_provider === false &&
+    profile.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    profile.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    profile.claim_boundary?.certifies_continuous_polydisc_primitives ===
+      false &&
+    profile.claim_boundary?.retained_branch === false;
   if (
     diagnostic?.schema !==
     THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_TERMINAL_SHARED_RESIDUAL_AFFINE_ZETA_PROVIDER_REPLAY_DIAGNOSTIC_SCHEMA
@@ -31992,9 +37120,33 @@ export function validateH39TerminalSharedResidualAffineZetaProviderReplayDiagnos
     diagnostic.comparison_stencil_index < 0 ||
     diagnostic?.comparison_row_count !== 5 ||
     !hasOrderedFiniteInterval(diagnostic?.comparison_xi_interval_hull) ||
+    diagnostic?.comparison_xi_interval_cover?.interval_count !==
+      diagnostic?.comparison_row_count ||
+    !Array.isArray(
+      diagnostic?.comparison_xi_interval_cover?.ordered_intervals
+    ) ||
+    diagnostic.comparison_xi_interval_cover.ordered_intervals.length !==
+      diagnostic?.comparison_row_count ||
+    diagnostic.comparison_xi_interval_cover.ordered_intervals.every(
+      hasOrderedFiniteInterval
+    ) !== true ||
+    !intervalsMatchWithinTolerance(
+      diagnostic?.comparison_xi_interval_cover?.interval_hull,
+      diagnostic?.comparison_xi_interval_hull
+    ) ||
+    !intervalsMatchWithinTolerance(
+      diagnostic?.comparison_xi_interval_cover?.target_interval,
+      diagnostic?.comparison_xi_interval_hull
+    ) ||
+    !finiteNonnegative(
+      diagnostic?.comparison_xi_interval_cover?.max_positive_gap
+    ) ||
+    diagnostic?.comparison_xi_interval_cover
+      ?.intervals_contiguous_or_overlapping !== true ||
+    diagnostic?.comparison_xi_interval_cover?.covers_target_interval !== true ||
     !Number.isInteger(diagnostic?.polynomial_degree) ||
     diagnostic.polynomial_degree !== 2 ||
-    !terminalIndexesMatch ||
+    !terminalIndexesValid ||
     !Number.isInteger(diagnostic?.residual_coordinate_partition_count) ||
     diagnostic.residual_coordinate_partition_count < 1 ||
     diagnostic?.h38_solve_target_policy !== "preserved-H39-predecessor-row"
@@ -32099,11 +37251,691 @@ export function validateH39TerminalSharedResidualAffineZetaProviderReplayDiagnos
   ) {
     errors.push("endpoint provider replay summary must aggregate positive provider-backed pressure replays");
   }
-  if (
-    diagnostic?.provider_replay_diagnosis !==
-    "terminal-affine-zeta-endpoints-cross-existing-H39-provider-boundary-candidate"
-  ) {
+  const allowedProviderReplayDiagnoses = new Set([
+    "terminal-affine-zeta-endpoints-cross-existing-H39-provider-boundary-candidate",
+    "terminal-affine-zeta-H38-included-endpoints-cross-existing-H39-provider-boundary-candidate",
+  ]);
+  if (!allowedProviderReplayDiagnoses.has(diagnostic?.provider_replay_diagnosis)) {
     errors.push("provider replay diagnosis must name the endpoint-provider bridge");
+  }
+  if (diagnostic?.include_h38_endpoint_provider === true) {
+    const h38Summary =
+      diagnostic?.h38_included_endpoint_provider_replay_summary;
+    const h38PartitionReplays =
+      diagnostic?.h38_included_endpoint_partition_replays ?? [];
+    const expectedH38IncludedTerminalHIndexes = [
+      ...new Set([h38Index, ...terminalIndexes]),
+    ].sort((left, right) => left - right);
+    const h38EndpointCount = h38PartitionReplays.reduce(
+      (count, partition) =>
+        count + Number(partition.endpoint_replays?.length ?? 0),
+      0
+    );
+    if (
+      h38Summary?.endpoint_replay_count !== h38EndpointCount ||
+      h38Summary?.all_endpoint_replays_provider_backed !== true ||
+      h38Summary?.provider_kind !==
+        "candidate-h38-included-shared-residual-affine-zeta-endpoint-provider" ||
+      h38Summary?.h38_solve_target_policy !==
+        "candidate-H38-predecessor-row-affine-zeta-endpoint" ||
+      !Array.isArray(h38Summary?.h38_included_terminal_h_indexes) ||
+      h38Summary.h38_included_terminal_h_indexes.length !==
+        expectedH38IncludedTerminalHIndexes.length ||
+      !h38Summary.h38_included_terminal_h_indexes.every(
+        (hIndex, hIndexPosition) =>
+          hIndex === expectedH38IncludedTerminalHIndexes[hIndexPosition]
+      ) ||
+      !finitePositive(
+        h38Summary?.max_endpoint_shifted_prefix_pressure_outer_radius
+      ) ||
+      !finitePositive(
+        h38Summary?.min_endpoint_shifted_prefix_pressure_outer_radius
+      ) ||
+      !finitePositive(
+        h38Summary?.preserved_h38_to_h38_included_max_pressure_ratio
+      )
+    ) {
+      errors.push("H38-included endpoint provider replay summary must aggregate positive provider-backed pressure replays");
+    }
+  }
+  const successorSuffixReplays =
+    diagnostic?.successor_suffix_endpoint_provider_replays ?? [];
+  const successorSuffixSummaries =
+    diagnostic?.successor_suffix_endpoint_provider_replay_summaries ?? [];
+  if (
+    !Array.isArray(successorSuffixReplays) ||
+    !Array.isArray(successorSuffixSummaries) ||
+    successorSuffixReplays.length !== successorSuffixSummaries.length
+  ) {
+    errors.push("successor suffix endpoint provider replay summaries must match replay entries");
+  } else {
+    successorSuffixReplays.forEach((suffixReplay, replayIndex) => {
+      const summary = successorSuffixSummaries[replayIndex] ?? {};
+      const hIndexes = suffixReplay?.successor_suffix_h_indexes ?? [];
+      const summaryHIndexes = summary?.successor_suffix_h_indexes ?? [];
+      const hIndexSet =
+        Array.isArray(hIndexes) &&
+        hIndexes.every(
+          (hIndex) => Number.isInteger(hIndex) && hIndex >= 0 && hIndex <= 38
+        )
+          ? new Set(hIndexes)
+          : null;
+      const hIndexesValid =
+        hIndexSet !== null &&
+        hIndexes.length > 0 &&
+        hIndexSet.size === hIndexes.length &&
+        hIndexes.every(
+          (hIndex, hIndexPosition) =>
+            hIndexPosition === 0 || hIndex > hIndexes[hIndexPosition - 1]
+        ) &&
+        hIndexSet.has(h38Index);
+      const partitions = suffixReplay?.endpoint_partition_replays ?? [];
+      const suffixEndpointCount = Array.isArray(partitions)
+        ? partitions.reduce(
+            (count, partition) =>
+              count + Number(partition.endpoint_replays?.length ?? 0),
+            0
+          )
+        : 0;
+      if (
+        !hIndexesValid ||
+        !Array.isArray(summaryHIndexes) ||
+        summaryHIndexes.length !== hIndexes.length ||
+        !summaryHIndexes.every(
+          (hIndex, hIndexPosition) => hIndex === hIndexes[hIndexPosition]
+        ) ||
+        !Array.isArray(partitions) ||
+        partitions.length !== diagnostic?.residual_coordinate_partition_count ||
+        !partitions.every(
+          (partition) =>
+            Number.isInteger(partition?.partition_index) &&
+            hasOrderedFiniteInterval(partition?.residual_noise_interval) &&
+            Array.isArray(partition?.endpoint_replays) &&
+            partition.endpoint_replays.length === 2 &&
+            partition.endpoint_replays.every(
+              successorSuffixEndpointReplayValid
+            ) &&
+            partition?.all_endpoint_replays_provider_backed === true &&
+            finitePositive(
+              partition?.max_endpoint_shifted_prefix_pressure_outer_radius
+            ) &&
+            finitePositive(
+              partition?.min_endpoint_shifted_prefix_pressure_outer_radius
+            )
+        ) ||
+        summary?.endpoint_replay_count !== suffixEndpointCount ||
+        summary?.all_endpoint_replays_provider_backed !== true ||
+        summary?.provider_kind !==
+          "candidate-successor-suffix-shared-residual-affine-zeta-endpoint-provider" ||
+        summary?.h38_solve_target_policy !==
+          "candidate-H38-predecessor-row-affine-zeta-endpoint" ||
+        !Array.isArray(
+          summary?.successor_suffix_zeta_degree_bound
+            ?.terminal_h_indexes
+        ) ||
+        summary.successor_suffix_zeta_degree_bound.terminal_h_indexes
+          .length !== hIndexes.length ||
+        !summary.successor_suffix_zeta_degree_bound.terminal_h_indexes.every(
+          (hIndex, hIndexPosition) => hIndex === hIndexes[hIndexPosition]
+        ) ||
+        !Number.isInteger(
+          summary.successor_suffix_zeta_degree_bound
+            .max_shared_residual_power_by_y_order
+        ) ||
+        typeof summary.successor_suffix_zeta_degree_bound
+          .affine_in_shared_residual_coordinate !== "boolean" ||
+        !finitePositive(
+          summary?.max_endpoint_shifted_prefix_pressure_outer_radius
+        ) ||
+        !finitePositive(
+          summary?.min_endpoint_shifted_prefix_pressure_outer_radius
+        ) ||
+        !finitePositive(
+          summary?.dominant_endpoint_shifted_prefix_pressure
+            ?.max_R43_shifted_prefix_pressure_outer_radius
+        ) ||
+        !summary?.dominant_endpoint_shifted_prefix_pressure
+          ?.dominant_R43_shifted_prefix_pressure
+          ?.dominant_unreduced_shifted_term_decomposition
+          ?.dominant_term ||
+        !finitePositive(
+          summary?.preserved_h38_to_successor_suffix_max_pressure_ratio
+        )
+      ) {
+        errors.push("successor suffix endpoint provider replay summaries must aggregate positive provider-backed pressure replays");
+      }
+    });
+  }
+  const transitionSummary =
+    diagnostic?.successor_suffix_endpoint_provider_transition_summary ?? null;
+  const coefficientEnvelopeSummaries =
+    diagnostic?.successor_suffix_endpoint_coefficient_envelope_summaries ?? [];
+  if (
+    !Array.isArray(coefficientEnvelopeSummaries) ||
+    coefficientEnvelopeSummaries.length !== successorSuffixSummaries.length ||
+    !coefficientEnvelopeSummaries.every(
+      (summary) =>
+        Array.isArray(summary?.successor_suffix_h_indexes) &&
+        Number.isInteger(summary?.suffix_start_index) &&
+        summary.successor_suffix_h_indexes[0] ===
+          summary.suffix_start_index &&
+        Array.isArray(summary?.partition_envelopes) &&
+        summary.partition_envelopes.length ===
+          diagnostic?.residual_coordinate_partition_count &&
+        summary.partition_envelopes.every(
+          (partition) =>
+            Number.isInteger(partition?.partition_index) &&
+            hasOrderedFiniteInterval(partition?.residual_noise_interval) &&
+            partition?.endpoint_count === 2 &&
+            Array.isArray(partition?.endpoint_dominant_targets) &&
+            partition.endpoint_dominant_targets.length === 2 &&
+            typeof partition?.endpoints_share_dominant_target === "boolean" &&
+            typeof partition?.endpoint_dominant_target_switch_detected ===
+              "boolean" &&
+            Array.isArray(partition?.requested_shifted_endpoint_targets) &&
+            partition.requested_shifted_endpoint_targets.length === 2 &&
+            typeof partition?.endpoints_share_requested_shifted_target ===
+              "boolean" &&
+            typeof partition
+              ?.requested_shifted_dominant_term_switch_detected ===
+              "boolean" &&
+            Array.isArray(
+              partition?.requested_shifted_source_term_normal_forms
+            ) &&
+            partition.requested_shifted_source_term_normal_forms.length === 2 &&
+            partition.requested_shifted_source_term_normal_forms.every(
+              requestedSourceTermNormalFormValid
+            ) &&
+            boundedUnitValue(
+              partition
+                ?.min_requested_shifted_source_cancellation_fraction
+            ) &&
+            finitePositive(
+              partition?.max_requested_shifted_term_triangle_to_source_gain
+            ) &&
+            finiteNonnegative(
+              partition
+                ?.max_requested_shifted_term_sum_to_source_relative_gap
+            ) &&
+            partition.max_requested_shifted_term_sum_to_source_relative_gap <=
+              1e-10 &&
+            partition?.requested_shifted_source_terms_reconstruct_source ===
+              true &&
+            typeof partition?.affine_in_shared_residual_coordinate ===
+              "boolean" &&
+            typeof partition?.candidate_covers_dominant_target_zeta_slice ===
+              "boolean" &&
+            typeof partition?.candidate_covers_requested_shifted_zeta_slice ===
+              "boolean" &&
+            (partition?.dominant_target_coefficient_endpoint_envelope ===
+              null ||
+              (hasOrderedFiniteInterval(
+                partition.dominant_target_coefficient_endpoint_envelope
+                  ?.endpoint_hull
+              ) &&
+                finiteNonnegative(
+                  partition.dominant_target_coefficient_endpoint_envelope
+                    ?.slope_abs_upper
+                ))) &&
+            (partition?.dominant_target_endpoint_hull_pressure_contribution ===
+              null ||
+              finitePositive(
+                partition
+                  .dominant_target_endpoint_hull_pressure_contribution
+              )) &&
+            hasOrderedFiniteInterval(
+              partition.requested_shifted_coefficient_endpoint_envelope
+                ?.endpoint_hull
+            ) &&
+            finiteNonnegative(
+              partition.requested_shifted_coefficient_endpoint_envelope
+                ?.slope_abs_upper
+            ) &&
+            finitePositive(
+              partition
+                ?.requested_shifted_endpoint_hull_pressure_contribution
+            )
+        ) &&
+        typeof summary?.all_partitions_share_dominant_target === "boolean" &&
+        typeof summary?.any_partition_dominant_target_switch_detected ===
+          "boolean" &&
+        typeof summary?.all_partitions_share_requested_shifted_target ===
+          "boolean" &&
+        typeof summary?.any_requested_shifted_dominant_term_switch_detected ===
+          "boolean" &&
+        typeof summary
+          ?.all_partitions_requested_shifted_source_terms_reconstruct_source ===
+          "boolean" &&
+        summary
+          ?.all_partitions_requested_shifted_source_terms_reconstruct_source ===
+          true &&
+        boundedUnitValue(
+          summary?.min_requested_shifted_source_cancellation_fraction
+        ) &&
+        finitePositive(
+          summary?.max_requested_shifted_term_triangle_to_source_gain
+        ) &&
+        finiteNonnegative(
+          summary?.max_requested_shifted_term_sum_to_source_relative_gap
+        ) &&
+        summary.max_requested_shifted_term_sum_to_source_relative_gap <=
+          1e-10 &&
+        requestedResidualDirectionProfileValid(
+          summary?.requested_shifted_residual_direction_profile
+        ) &&
+        typeof summary
+          ?.requested_shifted_residual_outer_endpoints_dominate_midpoint ===
+          "boolean" &&
+        finitePositive(
+          summary
+            ?.requested_shifted_residual_endpoint_to_midpoint_pressure_ratio
+        ) &&
+        finiteNonnegative(
+          summary
+            ?.requested_shifted_residual_profile_duplicate_relative_gap
+        ) &&
+        finitePositive(
+          summary?.requested_shifted_residual_midpoint_matching_half_width
+        ) &&
+        Number(
+          summary.requested_shifted_residual_midpoint_matching_half_width
+        ) < 1 &&
+        finitePositive(
+          summary
+            ?.requested_shifted_residual_full_radius_to_midpoint_matching_scale
+        ) &&
+        Number(
+          summary
+            .requested_shifted_residual_full_radius_to_midpoint_matching_scale
+        ) > 1 &&
+        typeof summary
+          ?.all_partitions_candidate_cover_dominant_target_zeta_slice ===
+          "boolean" &&
+        typeof summary
+          ?.all_partitions_candidate_cover_requested_shifted_zeta_slice ===
+          "boolean" &&
+        (summary?.max_dominant_target_endpoint_hull_pressure_contribution ===
+          null ||
+          finitePositive(
+            summary
+              .max_dominant_target_endpoint_hull_pressure_contribution
+          )) &&
+        finitePositive(
+          summary?.max_requested_shifted_endpoint_hull_pressure_contribution
+        ) &&
+        finitePositive(summary?.max_endpoint_replay_pressure) &&
+        finitePositive(
+          summary
+            ?.requested_shifted_endpoint_hull_to_endpoint_replay_pressure_ratio
+        ) &&
+        summary?.claim_boundary
+          ?.certifies_successor_suffix_provider_enclosure === false &&
+        summary.claim_boundary?.certifies_shared_zeta_interval_provider ===
+          false &&
+        summary.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+        summary.claim_boundary?.certifies_directed_rounded_shared_domain ===
+          false &&
+        summary.claim_boundary?.certifies_continuous_polydisc_primitives ===
+          false &&
+        summary.claim_boundary?.retained_branch === false
+    )
+  ) {
+    errors.push("successor suffix endpoint coefficient envelope summaries must remain candidate-only and match suffix partitions");
+  }
+  const requestedXiZetaScan =
+    diagnostic?.successor_suffix_requested_coefficient_xi_zeta_scan ?? null;
+  if (
+    requestedXiZetaScan !== null &&
+    (requestedXiZetaScan?.scan_kind !==
+      "candidate-successor-suffix-requested-coefficient-xi-zeta-row-scan" ||
+      !Array.isArray(requestedXiZetaScan?.selected_suffix_start_indexes) ||
+      !Array.isArray(requestedXiZetaScan?.scan_entries) ||
+      requestedXiZetaScan.scan_entries.length !==
+        requestedXiZetaScan.selected_suffix_start_indexes.length ||
+      requestedXiZetaScan?.comparison_row_count !==
+        diagnostic?.comparison_row_count ||
+      !intervalsMatchWithinTolerance(
+        requestedXiZetaScan.comparison_xi_interval_hull,
+        diagnostic?.comparison_xi_interval_hull
+      ) ||
+      requestedXiZetaScan?.residual_coordinate_partition_count !==
+        diagnostic?.residual_coordinate_partition_count ||
+      typeof requestedXiZetaScan
+        ?.all_scan_entries_xi_interval_covers_contiguous_or_overlapping !==
+        "boolean" ||
+      typeof requestedXiZetaScan
+        ?.all_scan_entries_cover_comparison_xi_hull !== "boolean" ||
+      !finiteNonnegative(
+        requestedXiZetaScan?.max_xi_interval_cover_positive_gap
+      ) ||
+      typeof requestedXiZetaScan
+        ?.all_scan_entries_cover_requested_shifted_zeta_slices !==
+        "boolean" ||
+      typeof requestedXiZetaScan
+        ?.any_scan_entry_requested_shifted_dominant_term_switch_detected !==
+        "boolean" ||
+      requestedXiZetaScan
+        ?.all_scan_entries_requested_shifted_source_terms_reconstruct_source !==
+        true ||
+      !boundedUnitValue(
+        requestedXiZetaScan
+          ?.min_requested_shifted_source_cancellation_fraction
+      ) ||
+      !finitePositive(
+        requestedXiZetaScan
+          ?.max_requested_shifted_term_triangle_to_source_gain
+      ) ||
+      !finiteNonnegative(
+        requestedXiZetaScan
+          ?.max_requested_shifted_term_sum_to_source_relative_gap
+      ) ||
+      requestedXiZetaScan
+        .max_requested_shifted_term_sum_to_source_relative_gap > 1e-10 ||
+      requestedXiZetaScan
+        ?.all_scan_entries_requested_shifted_residual_outer_endpoints_dominate_midpoint !==
+        true ||
+      !finitePositive(
+        requestedXiZetaScan
+          ?.max_requested_shifted_residual_endpoint_to_midpoint_pressure_ratio
+      ) ||
+      !finiteNonnegative(
+        requestedXiZetaScan
+          ?.max_requested_shifted_residual_profile_duplicate_relative_gap
+      ) ||
+      !finitePositive(
+        requestedXiZetaScan
+          ?.min_requested_shifted_residual_midpoint_matching_half_width
+      ) ||
+      requestedXiZetaScan
+        .min_requested_shifted_residual_midpoint_matching_half_width >= 1 ||
+      !finitePositive(
+        requestedXiZetaScan
+          ?.max_requested_shifted_residual_full_radius_to_midpoint_matching_scale
+      ) ||
+      requestedXiZetaScan
+        .max_requested_shifted_residual_full_radius_to_midpoint_matching_scale <=
+        1 ||
+      !finitePositive(
+        requestedXiZetaScan
+          ?.max_requested_shifted_endpoint_hull_pressure_contribution
+      ) ||
+      !finitePositive(
+        requestedXiZetaScan?.max_requested_shifted_xi_row_spread_factor
+      ) ||
+      !finitePositive(requestedXiZetaScan?.max_endpoint_replay_pressure) ||
+      !requestedXiZetaScan.scan_entries.every(
+        (entry) =>
+          Array.isArray(entry?.successor_suffix_h_indexes) &&
+          entry.successor_suffix_h_indexes[0] === entry.suffix_start_index &&
+          entry.successor_suffix_h_indexes.at(-1) === h38Index &&
+          entry?.row_count === diagnostic?.comparison_row_count &&
+          Array.isArray(entry?.row_replays) &&
+          entry.row_replays.length === diagnostic?.comparison_row_count &&
+          entry?.xi_interval_cover_contiguous_or_overlapping === true &&
+          entry?.xi_interval_cover_covers_comparison_hull === true &&
+          entry?.xi_interval_cover_summary?.interval_count ===
+            entry?.row_count &&
+          Array.isArray(
+            entry?.xi_interval_cover_summary?.ordered_intervals
+          ) &&
+          entry.xi_interval_cover_summary.ordered_intervals.length ===
+            entry.row_count &&
+          entry.xi_interval_cover_summary.ordered_intervals.every(
+            hasOrderedFiniteInterval
+          ) &&
+          hasOrderedFiniteInterval(
+            entry?.xi_interval_cover_summary?.interval_hull
+          ) &&
+          hasOrderedFiniteInterval(
+            entry?.xi_interval_cover_summary?.target_interval
+          ) &&
+          finiteNonnegative(
+            entry?.xi_interval_cover_summary?.max_positive_gap
+          ) &&
+          entry.xi_interval_cover_summary
+            .intervals_contiguous_or_overlapping === true &&
+          entry.xi_interval_cover_summary.covers_target_interval === true &&
+          intervalsMatchWithinTolerance(
+            entry.xi_interval_cover_summary.interval_hull,
+            diagnostic?.comparison_xi_interval_hull
+          ) &&
+          intervalsMatchWithinTolerance(
+            entry.xi_interval_cover_summary.target_interval,
+            diagnostic?.comparison_xi_interval_hull
+          ) &&
+          typeof entry
+            ?.all_rows_candidate_cover_requested_shifted_zeta_slice ===
+            "boolean" &&
+          typeof entry?.all_rows_share_requested_shifted_target ===
+            "boolean" &&
+          typeof entry?.any_row_dominant_target_switch_detected ===
+            "boolean" &&
+          typeof entry
+            ?.any_row_requested_shifted_dominant_term_switch_detected ===
+            "boolean" &&
+          entry
+            ?.all_rows_requested_shifted_source_terms_reconstruct_source ===
+            true &&
+          boundedUnitValue(
+            entry?.min_requested_shifted_source_cancellation_fraction
+          ) &&
+          finitePositive(
+            entry?.max_requested_shifted_term_triangle_to_source_gain
+          ) &&
+          finiteNonnegative(
+            entry?.max_requested_shifted_term_sum_to_source_relative_gap
+          ) &&
+          entry.max_requested_shifted_term_sum_to_source_relative_gap <=
+            1e-10 &&
+          entry
+            ?.all_rows_requested_shifted_residual_outer_endpoints_dominate_midpoint ===
+            true &&
+          finitePositive(
+            entry
+              ?.max_requested_shifted_residual_endpoint_to_midpoint_pressure_ratio
+          ) &&
+          finiteNonnegative(
+            entry
+              ?.max_requested_shifted_residual_profile_duplicate_relative_gap
+          ) &&
+          finitePositive(
+            entry?.min_requested_shifted_residual_midpoint_matching_half_width
+          ) &&
+          entry.min_requested_shifted_residual_midpoint_matching_half_width <
+            1 &&
+          finitePositive(
+            entry
+              ?.max_requested_shifted_residual_full_radius_to_midpoint_matching_scale
+          ) &&
+          entry
+            .max_requested_shifted_residual_full_radius_to_midpoint_matching_scale >
+            1 &&
+          finitePositive(
+            entry?.max_requested_shifted_endpoint_hull_pressure_contribution
+          ) &&
+          finitePositive(
+            entry?.min_requested_shifted_endpoint_hull_pressure_contribution
+          ) &&
+          finitePositive(entry?.requested_shifted_xi_row_spread_factor) &&
+          entry.requested_shifted_xi_row_spread_factor < 1.001 &&
+          Array.isArray(entry?.requested_shifted_controlling_xi_rows) &&
+          entry.requested_shifted_controlling_xi_rows.length >= 1 &&
+          entry.requested_shifted_controlling_xi_rows.every(
+            (row) =>
+              Number.isInteger(row?.row_analysis_index) &&
+              typeof row?.cell_id === "string" &&
+              hasOrderedFiniteInterval(row?.xi_interval) &&
+              Number.isFinite(Number(row?.xi_midpoint))
+          ) &&
+          finitePositive(entry?.max_endpoint_replay_pressure) &&
+          finitePositive(
+            entry
+              ?.requested_shifted_endpoint_hull_to_row_endpoint_replay_pressure_ratio
+          ) &&
+          entry?.claim_boundary?.certifies_continuous_xi_enclosure === false &&
+          entry.claim_boundary?.certifies_successor_suffix_provider_enclosure ===
+            false &&
+          entry.claim_boundary?.certifies_shared_zeta_interval_provider ===
+            false &&
+          entry.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+          entry.claim_boundary?.certifies_directed_rounded_shared_domain ===
+            false &&
+          entry.claim_boundary?.certifies_continuous_polydisc_primitives ===
+            false &&
+          entry.claim_boundary?.retained_branch === false &&
+          entry.row_replays.every(
+            (rowReplay) =>
+              Number.isInteger(rowReplay?.row_analysis_index) &&
+              typeof rowReplay?.cell_id === "string" &&
+              hasOrderedFiniteInterval(rowReplay?.speed_interval) &&
+              hasOrderedFiniteInterval(rowReplay?.xi_interval) &&
+              Number.isFinite(Number(rowReplay?.xi_midpoint)) &&
+              Number(rowReplay.xi_midpoint) > Number(rowReplay.xi_interval[0]) &&
+              Number(rowReplay.xi_midpoint) < Number(rowReplay.xi_interval[1]) &&
+              Math.abs(
+                Number(rowReplay.xi_midpoint) -
+                  intervalMidpoint(rowReplay.xi_interval)
+              ) <= 1e-12 &&
+              rowReplay?.endpoint_provider_replay_summary
+                ?.endpoint_replay_count ===
+                2 * diagnostic?.residual_coordinate_partition_count &&
+              rowReplay.endpoint_provider_replay_summary
+                ?.all_endpoint_replays_provider_backed === true &&
+              rowReplay.coefficient_envelope_summary
+                ?.all_partitions_candidate_cover_requested_shifted_zeta_slice ===
+                true &&
+              rowReplay.coefficient_envelope_summary
+                ?.all_partitions_requested_shifted_source_terms_reconstruct_source ===
+                true &&
+              rowReplay.coefficient_envelope_summary
+                ?.requested_shifted_residual_outer_endpoints_dominate_midpoint ===
+                true &&
+              finitePositive(
+                rowReplay.coefficient_envelope_summary
+                  ?.requested_shifted_residual_endpoint_to_midpoint_pressure_ratio
+              ) &&
+              finitePositive(
+                rowReplay.coefficient_envelope_summary
+                  ?.requested_shifted_residual_midpoint_matching_half_width
+              ) &&
+              Number(
+                rowReplay.coefficient_envelope_summary
+                  .requested_shifted_residual_midpoint_matching_half_width
+              ) < 1 &&
+              requestedResidualDirectionProfileValid(
+                rowReplay.coefficient_envelope_summary
+                  ?.requested_shifted_residual_direction_profile
+              )
+          )
+      ) ||
+      requestedXiZetaScan?.claim_boundary?.certifies_continuous_xi_enclosure !==
+        false ||
+      requestedXiZetaScan.claim_boundary
+        ?.certifies_successor_suffix_provider_enclosure !== false ||
+      requestedXiZetaScan.claim_boundary
+        ?.certifies_shared_zeta_interval_provider !== false ||
+      requestedXiZetaScan.claim_boundary?.certifies_shifted_R43_outer_bound !==
+        false ||
+      requestedXiZetaScan.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      requestedXiZetaScan.claim_boundary
+        ?.certifies_continuous_polydisc_primitives !== false ||
+      requestedXiZetaScan.claim_boundary?.retained_branch !== false)
+  ) {
+    errors.push("requested coefficient xi-zeta row scan must remain candidate-only and match row-local endpoint envelopes");
+  }
+  if (
+    transitionSummary !== null &&
+    (!Number.isInteger(transitionSummary?.sweep_count) ||
+      transitionSummary.sweep_count !== successorSuffixSummaries.length ||
+      !Array.isArray(transitionSummary?.sweep_entries) ||
+      transitionSummary.sweep_entries.length !==
+        successorSuffixSummaries.length ||
+      !Array.isArray(transitionSummary?.marginal_transitions) ||
+      transitionSummary.marginal_transitions.length !==
+        Math.max(0, successorSuffixSummaries.length - 1) ||
+      !transitionSummary.sweep_entries.every(
+        (entry) =>
+          Number.isInteger(entry?.suffix_start_index) &&
+          Array.isArray(entry?.successor_suffix_h_indexes) &&
+          entry.successor_suffix_h_indexes[0] === entry.suffix_start_index &&
+          finitePositive(
+            entry?.max_endpoint_shifted_prefix_pressure_outer_radius
+          ) &&
+          finitePositive(
+            entry?.preserved_h38_to_successor_suffix_max_pressure_ratio
+          ) &&
+          typeof entry?.affine_in_shared_residual_coordinate === "boolean" &&
+          Number.isInteger(entry?.two_terminal_factor_min_y_order) &&
+          Number.isInteger(entry?.dominant_shifted_index) &&
+          typeof entry?.dominant_term === "string"
+      ) ||
+      (transitionSummary.first_source_shape_transition !== null &&
+        (!Number.isInteger(
+          transitionSummary.first_source_shape_transition
+            ?.from_suffix_start_index
+        ) ||
+          !Number.isInteger(
+            transitionSummary.first_source_shape_transition
+              ?.to_suffix_start_index
+          ))) ||
+      (transitionSummary.first_source_shape_transition_entry !== null &&
+        !transitionSummary.sweep_entries.some(
+          (entry) =>
+            entry.suffix_start_index ===
+            transitionSummary.first_source_shape_transition_entry
+              ?.suffix_start_index
+        )) ||
+      (transitionSummary.deepest_tested_affine_suffix_entry !== null &&
+        (transitionSummary.deepest_tested_affine_suffix_entry
+          ?.affine_in_shared_residual_coordinate !== true ||
+          !transitionSummary.sweep_entries.some(
+            (entry) =>
+              entry.suffix_start_index ===
+              transitionSummary.deepest_tested_affine_suffix_entry
+                ?.suffix_start_index
+          ))) ||
+      (transitionSummary.next_lower_suffix_zeta_degree_bound !== null &&
+        (typeof transitionSummary.next_lower_suffix_zeta_degree_bound
+          ?.affine_in_shared_residual_coordinate !== "boolean" ||
+          !Array.isArray(
+            transitionSummary.next_lower_suffix_zeta_degree_bound
+              ?.terminal_h_indexes
+          ) ||
+          !Number.isInteger(
+            transitionSummary.next_lower_suffix_zeta_degree_bound
+              ?.two_terminal_factor_min_y_order
+          ))) ||
+      typeof transitionSummary
+        ?.transition_to_affine_floor_certificate_target
+        ?.source_shape_stable_after_first_transition !== "boolean" ||
+      (transitionSummary.transition_to_affine_floor_certificate_target
+        ?.deepest_tested_affine_suffix_start_index !== null &&
+        !Number.isInteger(
+          transitionSummary.transition_to_affine_floor_certificate_target
+            ?.deepest_tested_affine_suffix_start_index
+        )) ||
+      (transitionSummary.transition_to_affine_floor_certificate_target
+        ?.affine_y_order_gap !== null &&
+        !Number.isFinite(
+          Number(
+            transitionSummary.transition_to_affine_floor_certificate_target
+              ?.affine_y_order_gap
+          )
+        )) ||
+      transitionSummary?.claim_boundary
+        ?.certifies_successor_suffix_provider_enclosure !== false ||
+      transitionSummary.claim_boundary
+        ?.certifies_shared_zeta_interval_provider !== false ||
+      transitionSummary.claim_boundary?.certifies_shifted_R43_outer_bound !==
+        false ||
+      transitionSummary.claim_boundary
+        ?.certifies_directed_rounded_shared_domain !== false ||
+      transitionSummary.claim_boundary
+        ?.certifies_continuous_polydisc_primitives !== false ||
+      transitionSummary.claim_boundary?.retained_branch !== false)
+  ) {
+    errors.push("successor suffix endpoint provider transition summary must stay candidate-only and match suffix replay summaries");
   }
   if (
     diagnostic?.claim_boundary?.certifies_standard_h38_cover !== false ||
@@ -32119,6 +37951,292 @@ export function validateH39TerminalSharedResidualAffineZetaProviderReplayDiagnos
     diagnostic?.claim_boundary?.retained_branch !== false
   ) {
     errors.push("claim boundary must keep terminal provider, shifted source, primitive, and retention closure open");
+  }
+  return errors;
+}
+
+export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
+  route
+) {
+  const errors = [];
+  const entryValid = (entry) =>
+    entry !== null &&
+    Number.isInteger(entry?.suffix_start_index) &&
+    Array.isArray(entry?.successor_suffix_h_indexes) &&
+    entry.successor_suffix_h_indexes[0] === entry.suffix_start_index &&
+    entry.successor_suffix_h_indexes.at(-1) === 38 &&
+    finitePositive(entry?.max_endpoint_shifted_prefix_pressure_outer_radius) &&
+    finitePositive(entry?.preserved_h38_to_successor_suffix_max_pressure_ratio) &&
+    typeof entry?.dominant_term === "string" &&
+    Number.isInteger(entry?.dominant_shifted_index) &&
+    Number.isInteger(entry?.dominant_y_order);
+  if (
+    route?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_SUCCESSOR_SUFFIX_TRANSITION_CERTIFICATE_ROUTE_SCHEMA
+  ) {
+    errors.push("schema must match h39 successor suffix transition certificate route");
+  }
+  if (
+    route?.status !==
+    "h39-successor-suffix-transition-certificate-route-candidate-emitted" ||
+    route?.evaluation_level !==
+      "candidate-h39-successor-suffix-transition-certificate-route"
+  ) {
+    errors.push("status and evaluation level must identify a candidate successor suffix route");
+  }
+  if (
+    !Array.isArray(route?.source_diagnostic_validation_errors) ||
+    route.source_diagnostic_validation_errors.length !== 0
+  ) {
+    errors.push("source diagnostic must validate before route interpretation");
+  }
+  if (
+    !Number.isInteger(route?.shifted_index) ||
+    route.shifted_index < 1 ||
+    route?.y_order !==
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift +
+        route.shifted_index
+  ) {
+    errors.push("route shifted index and y order must be consistent");
+  }
+  const targetEntries = route?.route_targets?.map((target) => target.entry) ?? [];
+  if (
+    !Array.isArray(route?.route_targets) ||
+    route.route_targets.length !== 5 ||
+    !targetEntries.every(entryValid)
+  ) {
+    errors.push("route targets must contain the five provider-backed suffix entries");
+  }
+  if (
+    route?.suffix_route_start_indexes?.guardrail !== 36 ||
+    route.suffix_route_start_indexes?.pre_transition_reference !== 31 ||
+    route.suffix_route_start_indexes?.source_shape_transition !== 30 ||
+    route.suffix_route_start_indexes?.near_plateau_checkpoint !== 27 ||
+    route.suffix_route_start_indexes
+      ?.deepest_tested_affine_endpoint_floor !== 20
+  ) {
+    errors.push("route suffix indexes must preserve the h36/h31/h30/h27/h20 certificate ladder");
+  }
+  const metrics = route?.certificate_route_metrics ?? {};
+  if (
+    metrics.source_shape_transition_detected !== true ||
+    metrics.source_shape_stable_after_transition !== true ||
+    metrics.guardrail_suffix_provider_backed !== true ||
+    metrics.affine_floor_still_endpoint_legal !== true ||
+    Number(metrics.affine_floor_y_order_gap) <= 0 ||
+    metrics.next_lower_suffix_start_index !== 19 ||
+    metrics.next_lower_suffix_affine_in_shared_residual_coordinate !== false ||
+    metrics.next_lower_suffix_two_terminal_factor_min_y_order !==
+      route.y_order ||
+    metrics.source_shape_transition_dominant_target_switch_detected !==
+      true ||
+    metrics
+      .source_shape_transition_requested_shifted_zeta_slices_candidate_covered !==
+      true ||
+    metrics.plateau_dominant_target_switch_detected !== true ||
+    metrics.plateau_requested_shifted_zeta_slices_candidate_covered !== true ||
+    metrics.affine_floor_dominant_target_switch_detected !== true ||
+    metrics.affine_floor_requested_shifted_term_switch_detected !== true ||
+    metrics.affine_floor_requested_shifted_zeta_slices_candidate_covered !==
+      true ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_shifted_endpoint_hull_to_replay_pressure_ratio
+    ) ||
+    metrics.affine_floor_requested_xi_zeta_scan_available !== true ||
+    metrics.affine_floor_requested_xi_zeta_row_slices_candidate_covered !==
+      true ||
+    metrics.affine_floor_requested_xi_zeta_any_term_switch_detected !== true ||
+    metrics.affine_floor_requested_source_term_normal_form_available !==
+      true ||
+    !boundedUnitValue(
+      metrics.affine_floor_requested_min_source_cancellation_fraction
+    ) ||
+    !finitePositive(
+      metrics.affine_floor_requested_max_term_triangle_to_source_gain
+    ) ||
+    !finiteNonnegative(
+      metrics.affine_floor_requested_max_term_sum_to_source_relative_gap
+    ) ||
+    metrics.affine_floor_requested_max_term_sum_to_source_relative_gap >
+      1e-10 ||
+    metrics
+      .affine_floor_requested_residual_outer_endpoints_dominate_midpoint !==
+      true ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_residual_endpoint_to_midpoint_pressure_ratio
+    ) ||
+    !finiteNonnegative(
+      metrics.affine_floor_requested_residual_profile_duplicate_relative_gap
+    ) ||
+    !finitePositive(
+      metrics.affine_floor_requested_residual_midpoint_matching_half_width
+    ) ||
+    metrics.affine_floor_requested_residual_midpoint_matching_half_width >= 1 ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_residual_full_radius_to_midpoint_matching_scale
+    ) ||
+    metrics
+      .affine_floor_requested_residual_full_radius_to_midpoint_matching_scale <=
+      1 ||
+    metrics
+      .affine_floor_requested_y44_producer_image_budget_comparison_available !==
+      true ||
+    typeof metrics
+      .affine_floor_requested_y44_producer_midpoint_hull_inside_budget !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_producer_interval_hull_inside_budget !==
+      "boolean" ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_producer_centered_full_hull_half_width_to_budget
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_producer_max_sample_interval_half_width_to_budget
+    ) ||
+    metrics.affine_floor_requested_xi_interval_cover_count !==
+      route?.comparison_row_count ||
+    !finiteNonnegative(
+      metrics.affine_floor_requested_xi_interval_cover_max_positive_gap
+    ) ||
+    metrics
+      .affine_floor_requested_xi_interval_cover_contiguous_or_overlapping !==
+      true ||
+    metrics.affine_floor_requested_xi_interval_cover_covers_comparison_hull !==
+      true ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_xi_zeta_endpoint_hull_to_row_replay_pressure_ratio
+    ) ||
+    !finitePositive(metrics.affine_floor_requested_xi_row_spread_factor) ||
+    metrics.affine_floor_requested_xi_row_spread_factor >= 1.001 ||
+    !finitePositive(metrics.transition_to_plateau_pressure_reduction_factor) ||
+    !finitePositive(metrics.plateau_to_affine_floor_pressure_reduction_factor) ||
+    !finitePositive(
+      metrics.transition_to_affine_floor_pressure_reduction_factor
+    )
+  ) {
+    errors.push("route metrics must identify the h30 transition, h27 checkpoint, and h20 affine floor");
+  }
+  const producerImageBudgetComparisonErrors =
+    validateH39RequestedY44ProducerImageBudgetComparison(
+      route?.requested_y44_producer_image_budget_comparison
+    );
+  if (
+    producerImageBudgetComparisonErrors.length !== 0
+  ) {
+    errors.push("route must carry the candidate H39 requested-y44 producer-image budget comparison");
+  }
+  if (
+    !Array.isArray(route?.coefficient_envelope_summaries) ||
+    route.coefficient_envelope_summaries.length < 5 ||
+    !route.coefficient_envelope_summaries.every(
+      (summary) =>
+        Number.isInteger(summary?.suffix_start_index) &&
+        Array.isArray(summary?.partition_envelopes) &&
+        summary.partition_envelopes.length > 0 &&
+        typeof summary
+          ?.all_partitions_candidate_cover_requested_shifted_zeta_slice ===
+          "boolean" &&
+        summary?.claim_boundary
+          ?.certifies_successor_suffix_provider_enclosure === false
+    )
+  ) {
+    errors.push("route must carry candidate-only coefficient envelope summaries");
+  }
+  if (
+    route?.requested_coefficient_xi_zeta_scan?.scan_kind !==
+      "candidate-successor-suffix-requested-coefficient-xi-zeta-row-scan" ||
+    route.requested_coefficient_xi_zeta_scan
+      ?.all_scan_entries_cover_requested_shifted_zeta_slices !== true ||
+    route.requested_coefficient_xi_zeta_scan
+      ?.all_scan_entries_xi_interval_covers_contiguous_or_overlapping !==
+      true ||
+    route.requested_coefficient_xi_zeta_scan
+      ?.all_scan_entries_cover_comparison_xi_hull !== true ||
+    route.requested_coefficient_xi_zeta_scan
+      ?.all_scan_entries_requested_shifted_source_terms_reconstruct_source !==
+      true ||
+    route.requested_coefficient_xi_zeta_scan
+      ?.all_scan_entries_requested_shifted_residual_outer_endpoints_dominate_midpoint !==
+      true ||
+    !finitePositive(
+      route.requested_coefficient_xi_zeta_scan
+        ?.max_requested_shifted_residual_endpoint_to_midpoint_pressure_ratio
+    ) ||
+    !finitePositive(
+      route.requested_coefficient_xi_zeta_scan
+        ?.min_requested_shifted_residual_midpoint_matching_half_width
+    ) ||
+    route.requested_coefficient_xi_zeta_scan
+      .min_requested_shifted_residual_midpoint_matching_half_width >= 1 ||
+    !Array.isArray(route.requested_coefficient_xi_zeta_scan?.scan_entries) ||
+    !route.requested_coefficient_xi_zeta_scan.scan_entries.some(
+      (entry) =>
+        entry.suffix_start_index ===
+          route.suffix_route_start_indexes
+            ?.deepest_tested_affine_endpoint_floor &&
+        entry.all_rows_candidate_cover_requested_shifted_zeta_slice === true &&
+        entry.xi_interval_cover_contiguous_or_overlapping === true &&
+        entry.xi_interval_cover_covers_comparison_hull === true &&
+        entry.all_rows_requested_shifted_source_terms_reconstruct_source ===
+          true &&
+        boundedUnitValue(
+          entry.min_requested_shifted_source_cancellation_fraction
+        ) &&
+        finitePositive(
+          entry.max_requested_shifted_term_triangle_to_source_gain
+        ) &&
+        entry
+          .all_rows_requested_shifted_residual_outer_endpoints_dominate_midpoint ===
+          true &&
+        finitePositive(
+          entry
+            .max_requested_shifted_residual_endpoint_to_midpoint_pressure_ratio
+        ) &&
+        finitePositive(
+          entry.min_requested_shifted_residual_midpoint_matching_half_width
+        ) &&
+        entry.min_requested_shifted_residual_midpoint_matching_half_width <
+          1 &&
+        entry.any_row_requested_shifted_dominant_term_switch_detected === true
+    )
+  ) {
+    errors.push("route must carry the row-local xi-zeta requested coefficient scan for the h20 affine floor");
+  }
+  if (
+    route?.transition_summary?.claim_boundary
+      ?.certifies_successor_suffix_provider_enclosure !== false ||
+    route.transition_summary?.claim_boundary
+      ?.certifies_shared_zeta_interval_provider !== false ||
+    route.transition_summary?.claim_boundary?.certifies_shifted_R43_outer_bound !==
+      false ||
+    route.transition_summary?.claim_boundary
+      ?.certifies_directed_rounded_shared_domain !== false ||
+    route.transition_summary?.claim_boundary
+      ?.certifies_continuous_polydisc_primitives !== false ||
+    route.transition_summary?.claim_boundary?.retained_branch !== false ||
+    route?.claim_boundary?.certifies_successor_suffix_provider_enclosure !==
+      false ||
+    route.claim_boundary?.certifies_shared_zeta_interval_provider !== false ||
+    route.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    route.claim_boundary?.certifies_directed_rounded_shared_domain !== false ||
+    route.claim_boundary?.certifies_continuous_polydisc_primitives !== false ||
+    route.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("route and transition claim boundaries must remain candidate-only");
+  }
+  if (
+    typeof route?.missing_certificate_boundary?.missing_object !== "string" ||
+    !route.missing_certificate_boundary.missing_object.includes(
+      "directed-rounded"
+    )
+  ) {
+    errors.push("route must name the missing directed-rounded producer-image boundary");
   }
   return errors;
 }
@@ -35981,6 +42099,168 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
       "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-candidate-inside-product-targets",
       "positive-n38-producer-hybrid-shared-non-h38-coordinate-source-candidate-open",
     ].includes(row?.candidate_status);
+  const positiveN38ComponentDriftProviderSegmentKeyValid = (row) =>
+    row === null ||
+    (typeof row?.cell_id === "string" &&
+      Number.isInteger(row?.row_index) &&
+      row.row_index >= 0 &&
+      Number.isInteger(row?.segment_index) &&
+      row.segment_index >= 0 &&
+      typeof row?.quotient_kind === "string" &&
+      finiteNonnegativeOrNull(row?.component_drift_gap_to_target_ratio) &&
+      finiteNonnegativeOrNull(
+        row?.component_drift_solved_gap_to_solved_target_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        row?.h38_coordinate_source_to_component_drift_gap_to_target_ratio
+      ) &&
+      finiteNonnegativeOrNull(
+        row
+          ?.full_residual_vector_source_to_component_drift_gap_to_target_ratio
+      ) &&
+      [
+        "positive-n38-component-drift-s37-division-inside-target",
+        "positive-n38-component-drift-s37-division-open",
+        "positive-n38-component-drift-s37-division-derivative-segment-not-applicable",
+        "positive-n38-component-drift-s37-division-unavailable",
+        null,
+        undefined,
+      ].includes(row?.component_drift_s37_division_status) &&
+      [
+        "positive-n38-component-drift-hrow-realization-realized-by-full-residual-vector",
+        "positive-n38-component-drift-hrow-realization-misses-interval-center-drift",
+        "positive-n38-component-drift-hrow-realization-open",
+        "positive-n38-component-drift-hrow-realization-derivative-segment-not-applicable",
+        "positive-n38-component-drift-hrow-realization-unavailable",
+        null,
+        undefined,
+      ].includes(row?.component_drift_hrow_realization_status));
+  const positiveN38ComponentDriftSourceProviderContractValid = (contract) =>
+    contract !== null &&
+    [
+      "positive-n38-component-drift-source-provider-contract-candidate-ready",
+      "positive-n38-component-drift-source-provider-contract-open",
+      "positive-n38-component-drift-source-provider-contract-unavailable",
+    ].includes(contract?.status) &&
+    contract?.provider_kind ===
+      "candidate-polynomial-h-row-graph-component-plus-drift-source-provider" &&
+    contract?.finite_data_scope ===
+      "selected-lagrange-source-component-graphs-plus-interval-center-drift" &&
+    contract?.source_provider_claim_level ===
+      "candidate-source-normal-form-only" &&
+    typeof contract?.preserves_shared_xi_dependency === "boolean" &&
+    typeof contract?.preserves_source_component_dependency === "boolean" &&
+    typeof contract?.preserves_interval_center_drift_dependency ===
+      "boolean" &&
+    contract?.preserves_s37_dependency === false &&
+    contract?.dependency_preserving_h_row_provider_present === false &&
+    [
+      "source-provider-contract-not-h-row-provider",
+      "source-provider-contract-unavailable",
+    ].includes(contract?.exported_h_row_dependency_state) &&
+    contract?.can_enter_shifted_replay === false &&
+    contract?.h_row_provider_backed_replay === false &&
+    contract?.h_row_provider_backed_all_cells === false &&
+    contract?.h_row_provider_backed_cell_count === 0 &&
+    contract?.h_row_provider_backed_branch_count === 0 &&
+    [
+      "positive-n38-component-drift-shifted-replay-readiness-open",
+      "positive-n38-component-drift-shifted-replay-readiness-unavailable",
+    ].includes(contract?.shifted_replay_readiness_status) &&
+    typeof contract?.shifted_replay_readiness_reason === "string" &&
+    Number.isInteger(contract?.product_segment_count) &&
+    contract.product_segment_count >= 0 &&
+    Number.isInteger(contract?.derivative_value_only_segment_count) &&
+    contract.derivative_value_only_segment_count >= 0 &&
+    Number.isInteger(
+      contract?.product_segments_inside_component_drift_target_count
+    ) &&
+    contract.product_segments_inside_component_drift_target_count >= 0 &&
+    Number.isInteger(contract?.product_segments_inside_s37_target_count) &&
+    contract.product_segments_inside_s37_target_count >= 0 &&
+    Array.isArray(contract?.source_component_graph_coefficient_rows) &&
+    contract.source_component_graph_coefficient_rows.every(
+      (row) =>
+        sourceTermNames.has(row?.component) &&
+        row?.coefficient_order === "ascending-powers-of-xi" &&
+        (row?.lagrange_polynomial_coefficients === null ||
+          (Array.isArray(row?.lagrange_polynomial_coefficients) &&
+            row.lagrange_polynomial_coefficients.every((coefficient) =>
+              Number.isFinite(Number(coefficient))
+            )))
+    ) &&
+    (contract?.interval_center_drift_lagrange_graph_coefficients === null ||
+      (Array.isArray(
+        contract.interval_center_drift_lagrange_graph_coefficients
+      ) &&
+        contract.interval_center_drift_lagrange_graph_coefficients.every(
+          (coefficient) => Number.isFinite(Number(coefficient))
+        ))) &&
+    finiteNonnegativeOrNull(
+      contract?.max_component_drift_gap_to_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      contract?.max_component_drift_solved_gap_to_solved_target_ratio
+    ) &&
+    [
+      "positive-n38-component-drift-hrow-realization-diagnosis-realized-by-full-residual-vector",
+      "positive-n38-component-drift-hrow-realization-diagnosis-misses-interval-center-drift",
+      "positive-n38-component-drift-hrow-realization-diagnosis-open",
+      "positive-n38-component-drift-hrow-realization-diagnosis-unavailable",
+    ].includes(contract?.hrow_realization_diagnosis_status) &&
+    typeof contract?.hrow_realization_diagnosis === "string" &&
+    finiteNonnegativeOrNull(
+      contract?.max_h38_coordinate_source_to_component_drift_gap_to_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      contract
+        ?.max_full_residual_vector_source_to_component_drift_gap_to_target_ratio
+    ) &&
+    [
+      "positive-n38-source-pair-component-graph-diagnosis-inside-target",
+      "positive-n38-source-pair-component-graph-diagnosis-component-graph-closes-gap",
+      "positive-n38-source-pair-component-graph-diagnosis-interval-center-drift-offset",
+      "positive-n38-source-pair-component-graph-diagnosis-source-pair-variation-open",
+      "positive-n38-source-pair-component-graph-diagnosis-open",
+      "positive-n38-source-pair-component-graph-diagnosis-unavailable",
+    ].includes(contract?.source_pair_component_graph_diagnosis_status) &&
+    [
+      "positive-n38-component-drift-s37-division-diagnosis-inside-target",
+      "positive-n38-component-drift-s37-division-diagnosis-open",
+      "positive-n38-component-drift-s37-division-diagnosis-unavailable",
+    ].includes(contract?.component_drift_s37_division_diagnosis_status) &&
+    positiveN38ComponentDriftProviderSegmentKeyValid(
+      contract?.controlling_component_drift_hrow_realization_segment ?? null
+    ) &&
+    positiveN38ComponentDriftProviderSegmentKeyValid(
+      contract?.controlling_component_drift_segment ?? null
+    ) &&
+    positiveN38ComponentDriftProviderSegmentKeyValid(
+      contract?.controlling_component_drift_s37_division_segment ?? null
+    ) &&
+    Array.isArray(contract?.dependency_trace) &&
+    (contract.status ===
+    "positive-n38-component-drift-source-provider-contract-unavailable"
+      ? contract.dependency_trace.length === 0 &&
+        contract?.dependency_witness === null
+      : contract.dependency_trace.length >= 4 &&
+        contract.dependency_trace.every(
+          (row) =>
+            typeof row?.dependency_kind === "string" &&
+            typeof row?.source === "string"
+        ) &&
+        contract?.dependency_witness?.witness_kind ===
+          "candidate-component-plus-drift-source-provider-contract") &&
+    contract?.claim_boundary?.certifies_h38_n38_graph_enclosure === false &&
+    contract?.claim_boundary?.certifies_n38_taylor_remainder_bound === false &&
+    contract?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    contract?.claim_boundary?.certifies_positive_source_covariance_collar ===
+      false &&
+    contract?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    contract?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    contract?.claim_boundary?.retained_branch === false;
   const positiveN38ProducerHybridH38CoordinateSourceSegmentValid = (row) =>
     row !== null &&
     Number.isInteger(row?.row_index) &&
@@ -36270,6 +42550,41 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
       row?.full_residual_vector_source_interval === undefined ||
       hasFiniteInterval(row.full_residual_vector_source_interval)) &&
     finiteNonnegativeOrNull(row?.full_residual_vector_source_abs_upper) &&
+    (row?.h38_coordinate_source_to_component_drift_source_gap_interval ===
+      null ||
+      row?.h38_coordinate_source_to_component_drift_source_gap_interval ===
+        undefined ||
+      hasFiniteInterval(
+        row.h38_coordinate_source_to_component_drift_source_gap_interval
+      )) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_source_to_component_drift_source_gap_abs_upper
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.h38_coordinate_source_to_component_drift_gap_to_target_ratio
+    ) &&
+    (row?.full_residual_vector_source_to_component_drift_source_gap_interval ===
+      null ||
+      row?.full_residual_vector_source_to_component_drift_source_gap_interval ===
+        undefined ||
+      hasFiniteInterval(
+        row.full_residual_vector_source_to_component_drift_source_gap_interval
+      )) &&
+    finiteNonnegativeOrNull(
+      row?.full_residual_vector_source_to_component_drift_source_gap_abs_upper
+    ) &&
+    finiteNonnegativeOrNull(
+      row?.full_residual_vector_source_to_component_drift_gap_to_target_ratio
+    ) &&
+    [
+      "positive-n38-component-drift-hrow-realization-realized-by-full-residual-vector",
+      "positive-n38-component-drift-hrow-realization-misses-interval-center-drift",
+      "positive-n38-component-drift-hrow-realization-open",
+      "positive-n38-component-drift-hrow-realization-derivative-segment-not-applicable",
+      "positive-n38-component-drift-hrow-realization-unavailable",
+      null,
+      undefined,
+    ].includes(row?.component_drift_hrow_realization_status) &&
     (row?.full_residual_vector_residual_interval === null ||
       row?.full_residual_vector_residual_interval === undefined ||
       hasFiniteInterval(row.full_residual_vector_residual_interval)) &&
@@ -36547,6 +42862,27 @@ export function validateH39H38Y44SourceCovarianceDiagnostic(diagnostic) {
       positiveN38ProducerHybridH38CoordinateSourceSegmentValid(
         replay.controlling_component_drift_s37_division_segment
       )) &&
+    [
+      "positive-n38-component-drift-hrow-realization-diagnosis-realized-by-full-residual-vector",
+      "positive-n38-component-drift-hrow-realization-diagnosis-misses-interval-center-drift",
+      "positive-n38-component-drift-hrow-realization-diagnosis-open",
+      "positive-n38-component-drift-hrow-realization-diagnosis-unavailable",
+    ].includes(replay?.component_drift_hrow_realization_diagnosis_status) &&
+    typeof replay?.component_drift_hrow_realization_diagnosis === "string" &&
+    finiteNonnegativeOrNull(
+      replay?.max_h38_coordinate_source_to_component_drift_gap_to_target_ratio
+    ) &&
+    finiteNonnegativeOrNull(
+      replay
+        ?.max_full_residual_vector_source_to_component_drift_gap_to_target_ratio
+    ) &&
+    (replay?.controlling_component_drift_hrow_realization_segment === null ||
+      positiveN38ProducerHybridH38CoordinateSourceSegmentValid(
+        replay.controlling_component_drift_hrow_realization_segment
+      )) &&
+    positiveN38ComponentDriftSourceProviderContractValid(
+      replay?.candidate_component_drift_source_provider_contract ?? null
+    ) &&
     (replay?.controlling_source_pair_component_graph_segment === null ||
       positiveN38ProducerHybridH38CoordinateSourceSegmentValid(
         replay.controlling_source_pair_component_graph_segment
@@ -39074,6 +45410,134 @@ export function validateH39H38Y44SignedAffineTargetEnvelopeDiagnostic(
     diagnostic?.claim_boundary?.retained_branch !== false
   ) {
     errors.push("claim boundary must keep signed affine envelope and shifted closure open");
+  }
+  return errors;
+}
+
+export function validateH39RequestedY44ProducerImageBudgetComparison(
+  comparison
+) {
+  const errors = [];
+  const hasFiniteInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
+  if (
+    comparison?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_PRODUCER_IMAGE_BUDGET_COMPARISON_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 producer-image budget comparison");
+  }
+  if (
+    comparison?.status !==
+    "h39-requested-y44-producer-image-budget-comparison-candidate-emitted"
+  ) {
+    errors.push("status must identify a candidate requested-y44 producer-image budget comparison");
+  }
+  if (
+    comparison?.evaluation_level !==
+    "candidate-h39-requested-y44-producer-image-budget-comparison"
+  ) {
+    errors.push("evaluation level must identify candidate producer-image budget comparison");
+  }
+  if (
+    typeof comparison?.label !== "string" ||
+    comparison?.requested_residual_budget_kind !==
+      "candidate-requested-shifted-source-residual-radius-budget" ||
+    !finitePositive(
+      comparison?.requested_residual_midpoint_matching_half_width
+    ) ||
+    !hasFiniteInterval(comparison?.requested_residual_budget_interval) ||
+    !finitePositive(comparison?.requested_residual_budget_width) ||
+    !finitePositive(
+      comparison?.requested_residual_full_radius_to_midpoint_matching_scale
+    ) ||
+    !finitePositive(
+      comparison
+        ?.requested_residual_unit_slope_to_midpoint_pressure_ratio
+    ) ||
+    !finitePositive(comparison?.requested_residual_midpoint_pressure_bound) ||
+    !finitePositive(
+      comparison?.requested_residual_unit_slope_pressure_contribution
+    )
+  ) {
+    errors.push("requested residual budget fields must be finite and candidate-only");
+  }
+  if (
+    comparison?.producer_coordinate_formula !==
+      "u=(h38-q38(xi)-center(residual_hull))/radius(residual_hull)" ||
+    comparison?.producer_h38_index !==
+      THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index ||
+    !Number.isInteger(comparison?.producer_row_count) ||
+    comparison.producer_row_count < 1 ||
+    !hasFiniteInterval(
+      comparison?.producer_residual_coordinate_interval_hull
+    ) ||
+    !hasFiniteInterval(
+      comparison?.producer_residual_coordinate_midpoint_hull
+    ) ||
+    !finiteNonnegative(
+      comparison?.producer_residual_coordinate_interval_hull_width
+    ) ||
+    !finiteNonnegative(
+      comparison?.producer_residual_coordinate_midpoint_hull_width
+    ) ||
+    !finiteNonnegative(comparison?.producer_centered_full_hull_half_width) ||
+    !finiteNonnegative(comparison?.producer_max_sample_interval_half_width)
+  ) {
+    errors.push("producer coordinate profile fields must be finite");
+  }
+  if (
+    typeof comparison
+      ?.producer_interval_hull_inside_requested_residual_budget !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_midpoint_hull_inside_requested_residual_budget !==
+      "boolean" ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_interval_hull_width_to_requested_budget_width
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_midpoint_hull_width_to_requested_budget_width
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_centered_full_hull_half_width_to_requested_budget_half_width
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_max_sample_interval_half_width_to_requested_budget_half_width
+    )
+  ) {
+    errors.push("producer-to-budget comparison ratios must be finite");
+  }
+  if (
+    ![
+      "producer-interval-hull-fits-h39-requested-residual-budget",
+      "producer-midpoint-hull-fits-but-interval-hull-needs-directed-correlation-to-h39-budget",
+      "producer-midpoint-hull-misses-h39-requested-residual-budget",
+    ].includes(comparison?.budget_comparison_interpretation) ||
+    typeof comparison?.certificate_route !== "string"
+  ) {
+    errors.push("budget comparison must classify the producer-image route");
+  }
+  if (
+    comparison?.claim_boundary
+      ?.certifies_h38_producer_image_residual_radius !== false ||
+    comparison?.claim_boundary?.certifies_shared_zeta_interval_provider !==
+      false ||
+    comparison?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    comparison?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+      false ||
+    comparison?.claim_boundary?.certifies_continuous_polydisc_primitives !==
+      false ||
+    comparison?.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("claim boundary must keep producer image and shifted closure open");
   }
   return errors;
 }

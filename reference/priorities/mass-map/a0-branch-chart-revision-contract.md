@@ -8,6 +8,16 @@
 - Promotion decision: priority-only until an accepted corrected branch row exists
 - Current verdict: no further corrected one-period rerun is admissible until a revised branch coordinate is declared before fitting.
 
+## Master-Equation Boundary
+
+This packet may advance the $A_0$ branch-chart revision checker and
+anti-overfit coordinate tests as pre-rerun simulation work. A
+`revision_candidate_only` row means only that a coordinate ledger is admissible
+as a corrected-rerun input check. It is not an accepted $A_0$ branch, not
+accepted history, and not accepted physics. Corrected-branch promotion remains
+blocked until `master-equation-closure` supplies the matching
+dynamics/branch-chart basis for the same $A_0$ branch.
+
 ## Source Verdict
 
 The compact $A_0$ fixture has failed the scalar, quotient-class, raw-root-key, and first two-bin `I` observation-phase residual-balance tests. The source artifact is

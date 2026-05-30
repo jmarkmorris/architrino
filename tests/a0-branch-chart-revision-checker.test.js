@@ -368,6 +368,26 @@ function runChecker(artifact, args = [], options = {}) {
   return JSON.parse(fs.readFileSync(outPath, "utf8"));
 }
 
+test("residual-surface harmonic audit fails closed as hidden fitting", () => {
+  const output = runChecker(
+    fixture({
+      validationStable: true,
+      rootTransportCertified: true,
+      identityStable: true,
+      phaseOriginCertified: true,
+    })
+  );
+  const row = output.rows[0];
+
+  assert.equal(row.status, "rejected_hidden_fit_split");
+  assert.equal(row.anti_overfit_residual.R_src.status, "failed");
+  assert.equal(row.anti_overfit_residual.R_src.failure_code, "rejected_hidden_fit_split");
+  assert.equal(row.rerun_authority, "blocked_before_corrected_rerun");
+  assert.equal(row.accepted_history_boundary, false);
+  assert.equal(row.promotion_boundary.accepted_branch_promotion, false);
+  assert.equal(row.promotion_boundary.accepted_physics_claim, false);
+});
+
 test("root-transport source-declared quotient fails closed on identity certification", () => {
   const output = runChecker(fixture(), [
     "--coordinate-source",
@@ -681,6 +701,22 @@ test("root-transport checker can emit rerun-candidate boundary without accepted 
   assert.equal(row.status, "revision_candidate_only");
   assert.equal(row.rerun_authority, "corrected_rerun_input_check_only_not_accepted_history");
   assert.equal(row.accepted_history_boundary, false);
+  assert.equal(row.promotion_boundary.corrected_rerun_candidate, true);
+  assert.equal(row.promotion_boundary.accepted_history_boundary, false);
+  assert.equal(row.promotion_boundary.accepted_branch_promotion, false);
+  assert.equal(row.promotion_boundary.accepted_physics_claim, false);
+  assert.equal(
+    row.promotion_boundary.accepted_branch_promotion_authority,
+    "blocked_until_master_equation_branch_chart_basis"
+  );
+  assert.equal(
+    row.promotion_boundary.required_dependency,
+    "master-equation-closure matching dynamics/branch-chart basis"
+  );
   assert.equal(output.accepted_history_boundary, false);
+  assert.equal(output.promotion_boundary.corrected_rerun_candidate, true);
+  assert.equal(output.promotion_boundary.accepted_branch_promotion, false);
+  assert.equal(output.promotion_boundary.accepted_physics_claim, false);
   assert.equal(output.summary.accepted_history_row_count, 0);
+  assert.equal(output.summary.accepted_branch_promotion_row_count, 0);
 });
