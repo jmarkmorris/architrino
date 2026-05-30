@@ -1,0 +1,367 @@
+{
+  "schema": "breather-fresh-v10-finite-itinerary-strict-gap-screen-v1",
+  "packet_id": "fresh-v10-finite-itinerary-strict-gap-screen-shifted-separator-v0",
+  "source_packet": "fresh-same-packet-fold-shear-seed-v0",
+  "source_strict_gap_packet": "fresh-v10-shifted-separator-fixed-period-strict-gap-matrix-v0",
+  "claim_level": "priority-only finite sampled LP screen for shifted-separator strict gaps plus field-speed sign itinerary; not interval-certified",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "variables": [
+    "h_A0s",
+    "h_A1s",
+    "h_A2s"
+  ],
+  "finite_screen_model": {
+    "variable_count": 3,
+    "basis_model": "shifted_separator_aligned_half_period_antisymmetric_c1_arc_bumps",
+    "coefficient_bound": 1.0,
+    "optimized_quantity": "sampled strict-gap margin gamma with base_gap(theta_r,theta_s)+D_gap(theta_r,theta_s) h >= gamma",
+    "gap_sample_count_per_interval": 9,
+    "speed_midpoint_samples": 1000,
+    "speed_guard": "Samples whose current signed distance from xdot=+1 or xdot=-1 is below the guard are excluded as separator/contact neighborhoods.",
+    "speed_guard_value": 0.015,
+    "field_speed_inequality": "For retained samples, sign(xdot_fresh(theta)-target)*(xdot_h(theta)-target) >= 0 for target in {-1,+1}."
+  },
+  "constraints": {
+    "total": 2756,
+    "bound": 6,
+    "sampled_gap": 810,
+    "sampled_field_speed_sign": 1940,
+    "excluded_field_speed_near_contact": 60
+  },
+  "separator_derivative_audit": [
+    {
+      "id": "sigma_1",
+      "theta": 0.12758361765,
+      "xdot_fresh": -0.999999999997892,
+      "basis_xdot_derivatives": {
+        "h_A0s": 0,
+        "h_A1s": 0,
+        "h_A2s": 0
+      },
+      "max_abs_basis_xdot_derivative": 0
+    },
+    {
+      "id": "sigma_2",
+      "theta": 0.33241638235,
+      "xdot_fresh": -0.999999999997893,
+      "basis_xdot_derivatives": {
+        "h_A0s": 0,
+        "h_A1s": 0,
+        "h_A2s": 0
+      },
+      "max_abs_basis_xdot_derivative": 0
+    },
+    {
+      "id": "sigma_3",
+      "theta": 0.62758361765,
+      "xdot_fresh": 0.999999999997892,
+      "basis_xdot_derivatives": {
+        "h_A0s": 0,
+        "h_A1s": 0,
+        "h_A2s": 0
+      },
+      "max_abs_basis_xdot_derivative": 0
+    },
+    {
+      "id": "sigma_4",
+      "theta": 0.83241638235,
+      "xdot_fresh": 0.999999999997892,
+      "basis_xdot_derivatives": {
+        "h_A0s": 0,
+        "h_A1s": 0,
+        "h_A2s": 0
+      },
+      "max_abs_basis_xdot_derivative": 0
+    }
+  ],
+  "limitations": [
+    "This is a finite sampled LP screen, not an outward-rounded interval certificate.",
+    "A nonpositive sampled optimum is a no-go for this declared bounded sample screen, not a proof over all bases or all interval points.",
+    "The field-speed constraints preserve signs only at retained samples outside the declared speed guard; they do not certify root count.",
+    "No live causal ledger, branch chart, fold atlas, or AAA theorem prose is updated."
+  ],
+  "status": "sampled_itinerary_constraints_block_positive_strict_gap_margin",
+  "solver": {
+    "method": "scipy.optimize.linprog(method='highs')",
+    "success": true,
+    "status_code": 0,
+    "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "objective_minimized": 0.204126631574676,
+    "sample_gap_margin": -0.204126631574676,
+    "coefficients": {
+      "h_A0s": -0.16330565849438,
+      "h_A1s": -0.0262483015114846,
+      "h_A2s": 0.0059867825496064
+    },
+    "max_constraint_violation": 0
+  },
+  "evaluation": {
+    "bound": {
+      "count": 6,
+      "max_violation": -0.83669434150562,
+      "min_slack": 0.83669434150562,
+      "limiting_rows": [
+        {
+          "id": "bound_h_A0s_lower",
+          "kind": "bound",
+          "slack": 0.83669434150562,
+          "value": -0.83669434150562,
+          "ledger": null,
+          "target": null,
+          "theta": null,
+          "receiver_theta": null,
+          "source_theta": null
+        },
+        {
+          "id": "bound_h_A1s_lower",
+          "kind": "bound",
+          "slack": 0.973751698488515,
+          "value": -0.973751698488515,
+          "ledger": null,
+          "target": null,
+          "theta": null,
+          "receiver_theta": null,
+          "source_theta": null
+        },
+        {
+          "id": "bound_h_A2s_upper",
+          "kind": "bound",
+          "slack": 0.994013217450394,
+          "value": -0.994013217450394,
+          "ledger": null,
+          "target": null,
+          "theta": null,
+          "receiver_theta": null,
+          "source_theta": null
+        },
+        {
+          "id": "bound_h_A2s_lower",
+          "kind": "bound",
+          "slack": 1.00598678254961,
+          "value": -1.00598678254961,
+          "ledger": null,
+          "target": null,
+          "theta": null,
+          "receiver_theta": null,
+          "source_theta": null
+        },
+        {
+          "id": "bound_h_A1s_upper",
+          "kind": "bound",
+          "slack": 1.02624830151148,
+          "value": -1.02624830151148,
+          "ledger": null,
+          "target": null,
+          "theta": null,
+          "receiver_theta": null,
+          "source_theta": null
+        },
+        {
+          "id": "bound_h_A0s_upper",
+          "kind": "bound",
+          "slack": 1.16330565849438,
+          "value": -1.16330565849438,
+          "ledger": null,
+          "target": null,
+          "theta": null,
+          "receiver_theta": null,
+          "source_theta": null
+        }
+      ]
+    },
+    "sampled_gap": {
+      "count": 810,
+      "max_violation": 0,
+      "min_slack": 0,
+      "limiting_rows": [
+        {
+          "id": "C_u_A4_A2_left_v10_7",
+          "kind": "sampled_gap",
+          "slack": 0,
+          "value": 0,
+          "ledger": "u",
+          "target": null,
+          "theta": null,
+          "receiver_theta": 0.866725016082031,
+          "source_theta": 0.61508361765
+        },
+        {
+          "id": "C_u_A4_A2_left_v10_7",
+          "kind": "sampled_gap",
+          "slack": 1.05732196941932e-05,
+          "value": -1.05732196941932e-05,
+          "ledger": "u",
+          "target": null,
+          "theta": null,
+          "receiver_theta": 0.870359788370703,
+          "source_theta": 0.61508361765
+        },
+        {
+          "id": "C_u_A4_A2_left_v10_7",
+          "kind": "sampled_gap",
+          "slack": 0.000416576539145369,
+          "value": -0.000416576539145369,
+          "ledger": "u",
+          "target": null,
+          "theta": null,
+          "receiver_theta": 0.863090243793359,
+          "source_theta": 0.61508361765
+        },
+        {
+          "id": "C_u_A4_A2_left_v10_7",
+          "kind": "sampled_gap",
+          "slack": 0.000565900280232123,
+          "value": -0.000565900280232123,
+          "ledger": "u",
+          "target": null,
+          "theta": null,
+          "receiver_theta": 0.873994560659375,
+          "source_theta": 0.61508361765
+        },
+        {
+          "id": "C_u_A4_A2_left_v10_7",
+          "kind": "sampled_gap",
+          "slack": 0.00114411441771631,
+          "value": -0.00114411441771631,
+          "ledger": "u",
+          "target": null,
+          "theta": null,
+          "receiver_theta": 0.859455471504687,
+          "source_theta": 0.61508361765
+        },
+        {
+          "id": "C_u_A4_A2_left_v10_7",
+          "kind": "sampled_gap",
+          "slack": 0.00207042527871462,
+          "value": -0.00207042527871462,
+          "ledger": "u",
+          "target": null,
+          "theta": null,
+          "receiver_theta": 0.855820699216016,
+          "source_theta": 0.61508361765
+        },
+        {
+          "id": "C_u_A4_A2_left_v10_7",
+          "kind": "sampled_gap",
+          "slack": 0.00308980148157842,
+          "value": -0.00308980148157842,
+          "ledger": "u",
+          "target": null,
+          "theta": null,
+          "receiver_theta": 0.852185926927344,
+          "source_theta": 0.61508361765
+        },
+        {
+          "id": "C_u_A4_A2_left_v10_7",
+          "kind": "sampled_gap",
+          "slack": 0.0041053331869417,
+          "value": -0.0041053331869417,
+          "ledger": "u",
+          "target": null,
+          "theta": null,
+          "receiver_theta": 0.848551154638672,
+          "source_theta": 0.61508361765
+        }
+      ]
+    },
+    "sampled_field_speed_sign": {
+      "count": 1940,
+      "max_violation": 0,
+      "min_slack": 0,
+      "limiting_rows": [
+        {
+          "id": "speed_plus_817",
+          "kind": "sampled_field_speed_sign",
+          "slack": 0,
+          "value": 0,
+          "ledger": null,
+          "target": 1.0,
+          "theta": 0.8175,
+          "receiver_theta": null,
+          "source_theta": null
+        },
+        {
+          "id": "speed_plus_868",
+          "kind": "sampled_field_speed_sign",
+          "slack": 0,
+          "value": 0,
+          "ledger": null,
+          "target": 1.0,
+          "theta": 0.8685,
+          "receiver_theta": null,
+          "source_theta": null
+        },
+        {
+          "id": "speed_minus_38",
+          "kind": "sampled_field_speed_sign",
+          "slack": 0,
+          "value": 0,
+          "ledger": null,
+          "target": -1.0,
+          "theta": 0.0385,
+          "receiver_theta": null,
+          "source_theta": null
+        },
+        {
+          "id": "speed_minus_317",
+          "kind": "sampled_field_speed_sign",
+          "slack": 0,
+          "value": 0,
+          "ledger": null,
+          "target": -1.0,
+          "theta": 0.3175,
+          "receiver_theta": null,
+          "source_theta": null
+        },
+        {
+          "id": "speed_minus_368",
+          "kind": "sampled_field_speed_sign",
+          "slack": 0,
+          "value": 0,
+          "ledger": null,
+          "target": -1.0,
+          "theta": 0.3685,
+          "receiver_theta": null,
+          "source_theta": null
+        },
+        {
+          "id": "speed_plus_538",
+          "kind": "sampled_field_speed_sign",
+          "slack": 0,
+          "value": 0,
+          "ledger": null,
+          "target": 1.0,
+          "theta": 0.5385,
+          "receiver_theta": null,
+          "source_theta": null
+        },
+        {
+          "id": "speed_minus_318",
+          "kind": "sampled_field_speed_sign",
+          "slack": 4.64974696691434e-06,
+          "value": -4.64974696691434e-06,
+          "ledger": null,
+          "target": -1.0,
+          "theta": 0.3185,
+          "receiver_theta": null,
+          "source_theta": null
+        },
+        {
+          "id": "speed_plus_818",
+          "kind": "sampled_field_speed_sign",
+          "slack": 4.64974696691434e-06,
+          "value": -4.64974696691434e-06,
+          "ledger": null,
+          "target": 1.0,
+          "theta": 0.8185,
+          "receiver_theta": null,
+          "source_theta": null
+        }
+      ]
+    }
+  },
+  "conclusion": "Under this bounded shifted-separator basis and retained field-speed sign samples, the sampled LP optimum has nonpositive strict-gap margin; the declared bounded basis is not enough for a finite itinerary-preserving strict-gap repair.",
+  "recommended_next_step": "Move from this declared shifted basis to a richer finite constrained basis or an explicit higher-fold itinerary decision; do not keep following single tangent rays in this basis."
+}

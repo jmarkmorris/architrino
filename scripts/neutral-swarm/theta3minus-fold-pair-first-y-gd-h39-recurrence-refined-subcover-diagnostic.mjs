@@ -114,6 +114,12 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_H38_EXPRESSION_N38_TAYLOR_M4_R
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_PRODUCER_IMAGE_BUDGET_COMPARISON_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-producer-image-budget-comparison/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-row-local-producer-collar-replay/v1";
+
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_N38_S37_COLLAR_DIAGNOSTIC_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-row-local-n38-s37-collar-diagnostic/v1";
+
 const H38_NUMERATOR_Y_ORDER =
   THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift - 1;
 
@@ -11484,6 +11490,12 @@ function h39RequestedY44ProducerImageBudgetComparisonForRoute({
   return buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
     requestedResidualRadiusBudget,
     producerCoordinateProfile,
+    rowLocalReplayContext: {
+      setup,
+      branch: diagnostic.branch,
+      outerRadius: diagnostic.outer_radius,
+      shiftedIndex: diagnostic.shifted_index,
+    },
     label: "h20-affine-floor-requested-y44-vs-h38-producer-image",
   });
 }
@@ -11825,6 +11837,199 @@ export function buildH39SuccessorSuffixTransitionCertificateRouteCandidate({
       affine_floor_requested_y44_producer_max_sample_interval_half_width_to_budget:
         requestedY44ProducerImageBudgetComparison
           ?.producer_max_sample_interval_half_width_to_requested_budget_half_width ??
+        null,
+      affine_floor_requested_y44_producer_all_sample_midpoints_inside_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_all_sample_midpoints_inside_requested_residual_budget ??
+        null,
+      affine_floor_requested_y44_producer_all_sample_intervals_inside_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_all_sample_intervals_inside_requested_residual_budget ??
+        null,
+      affine_floor_requested_y44_producer_sample_worst_required_compression:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_sample_worst_required_half_width_compression_to_fit_at_interval_center ??
+        null,
+      affine_floor_requested_y44_producer_row_local_budget_diagnosis:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_budget_diagnosis ?? null,
+      affine_floor_requested_y44_row_local_collar_replay_available:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay !== null &&
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay !== undefined,
+      affine_floor_requested_y44_row_local_all_requested_collars_close:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_requested_budget_collar_replays_close_midpoint_pressure ??
+        null,
+      affine_floor_requested_y44_row_local_any_current_interval_closes:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.any_current_row_interval_replay_closes_midpoint_pressure ??
+        null,
+      affine_floor_requested_y44_row_local_worst_requested_collar_to_midpoint_pressure:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.worst_requested_budget_collar_replay_over_midpoint_pressure ??
+        null,
+      affine_floor_requested_y44_row_local_worst_current_interval_to_midpoint_pressure:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.worst_current_row_interval_replay_over_midpoint_pressure ??
+        null,
+      affine_floor_requested_y44_row_local_replay_corrected_half_width_estimate:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.replay_corrected_residual_coordinate_half_width_estimate ??
+        null,
+      affine_floor_requested_y44_row_local_replay_corrected_full_radius_scale_estimate:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.replay_corrected_full_radius_to_half_width_scale_estimate ??
+        null,
+      affine_floor_requested_y44_row_local_safety_search_available:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.row_local_collar_safety_search_available ?? null,
+      affine_floor_requested_y44_row_local_all_zero_width_inside:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_zero_width_row_center_replays_close_midpoint_pressure ??
+        null,
+      affine_floor_requested_y44_row_local_all_requested_budget_candidates_exceed:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_requested_budget_row_center_candidates_exceed_midpoint_pressure ??
+        null,
+      affine_floor_requested_y44_row_local_all_safety_searches_close:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_safety_searches_close_midpoint_pressure ?? null,
+      affine_floor_requested_y44_row_local_min_target_closing_half_width:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.min_row_local_target_closing_half_width ?? null,
+      affine_floor_requested_y44_row_local_max_target_closing_full_radius_scale:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_target_closing_full_radius_scale ?? null,
+      affine_floor_requested_y44_row_local_max_target_closing_replay_over_midpoint_pressure:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_target_closing_replay_over_midpoint_pressure ??
+        null,
+      affine_floor_requested_y44_row_local_max_target_closing_bracket_width:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_target_closing_bracket_width ?? null,
+      affine_floor_requested_y44_row_local_worst_zero_width_to_midpoint_pressure:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.worst_zero_width_row_center_replay_over_midpoint_pressure ??
+        null,
+      affine_floor_requested_y44_row_local_worst_requested_candidate_to_midpoint_pressure:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.worst_requested_budget_row_center_candidate_replay_over_midpoint_pressure ??
+        null,
+      affine_floor_requested_y44_row_local_producer_width_contraction_target_available:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.row_local_producer_width_contraction_target_available ??
+        null,
+      affine_floor_requested_y44_row_local_producer_centers_inside_bisection_collar:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_producer_centers_inside_bisection_collar ??
+        null,
+      affine_floor_requested_y44_row_local_current_producer_intervals_inside_bisection_collar:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_current_row_local_producer_intervals_inside_bisection_collar ??
+        null,
+      affine_floor_requested_y44_row_local_max_required_coordinate_compression:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_required_row_local_coordinate_half_width_compression ??
+        null,
+      affine_floor_requested_y44_row_local_max_required_h38_residual_compression:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_required_row_local_h38_residual_half_width_compression ??
+        null,
+      affine_floor_requested_y44_row_local_max_required_s37_numerator_compression:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_required_row_local_s37_division_numerator_width_compression ??
+        null,
+      affine_floor_requested_y44_row_local_max_linear_subcell_forecast:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_linear_subcell_refinement_forecast ?? null,
+      affine_floor_requested_y44_row_local_min_target_h38_residual_half_width:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.min_row_local_target_h38_residual_half_width ?? null,
+      affine_floor_requested_y44_row_local_min_target_s37_numerator_width_lower:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.min_row_local_target_s37_division_numerator_width_lower ??
+        null,
+      affine_floor_requested_y44_row_local_n38_s37_collar_diagnostic_available:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.row_local_n38_s37_collar_diagnostic_available ?? null,
+      affine_floor_requested_y44_row_local_n38_midpoint_residuals_inside_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_midpoint_graph_residuals_inside_s37_target ??
+        null,
+      affine_floor_requested_y44_row_local_n38_graph_intervals_inside_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_graph_intervals_inside_s37_target ?? null,
+      affine_floor_requested_y44_row_local_current_n38_interval_residuals_inside_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_current_row_local_n38_interval_residuals_inside_s37_target ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_midpoint_residual_width_to_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_midpoint_residual_width_to_s37_target ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_graph_interval_width_to_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_graph_interval_width_to_s37_target ?? null,
+      affine_floor_requested_y44_row_local_max_n38_interval_residual_width_to_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_interval_residual_width_to_s37_target ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_numerator_interval_width_to_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_numerator_interval_width_to_s37_target ??
+        null,
+      affine_floor_requested_y44_row_local_n38_graph_remainder_target_available:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.row_local_n38_s37_graph_remainder_target_available ?? null,
+      affine_floor_requested_y44_row_local_max_n38_graph_plus_midpoint_width_to_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_graph_plus_midpoint_width_to_s37_target ??
+        null,
+      affine_floor_requested_y44_row_local_min_n38_same_domain_remainder_width_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.min_row_local_n38_same_domain_remainder_width_budget ?? null,
+      affine_floor_requested_y44_row_local_max_n38_interval_residual_width_to_same_domain_remainder_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_interval_residual_width_to_same_domain_remainder_budget ??
         null,
       affine_floor_requested_xi_interval_cover_count:
         xiZetaScanEntry?.xi_interval_cover_summary?.interval_count ?? null,
@@ -12837,6 +13042,8 @@ function buildH39H38Y44CoefficientReplaySetup({
     residualProfile[THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.h38_index];
   return {
     context,
+    targetSpeedInterval,
+    polynomialDegree,
     rows,
     comparisonRows,
     analysisRow,
@@ -30034,6 +30241,7 @@ function h39H38Y44H38NoiseIntervalReplay({
   outerRadius,
   shiftedIndex,
   variant,
+  rowReplayContext = null,
 }) {
   if (!Array.isArray(h38NoiseInterval) || h38NoiseInterval.length !== 2) {
     throw new Error("h38NoiseInterval must be a two-entry interval");
@@ -30050,19 +30258,24 @@ function h39H38Y44H38NoiseIntervalReplay({
     Math.max(-1, resolvedH38NoiseInterval[0]),
     Math.min(1, resolvedH38NoiseInterval[1]),
   ];
+  const replayCell = rowReplayContext?.cell ?? setup.analysisCell;
+  const replayNoiseCoordinate =
+    rowReplayContext?.noise_coordinate ?? setup.noiseCoordinate;
+  const replaySolveSlopeInterval =
+    rowReplayContext?.solve_slope_interval ??
+    setup.analysisBranchRow.h38_solve_slope_interval;
   const replay =
     shiftedPressureReplayForPolynomialGraphH38ResidualVariantInterval({
       context: setup.context,
-      cell: setup.analysisCell,
+      cell: replayCell,
       branch,
       transportProfile: setup.transportProfile,
-      noise: setup.noiseCoordinate,
+      noise: replayNoiseCoordinate,
       residualProfile: setup.residualProfile,
       h38ResidualInterval:
         setup.h38ResidualProfile.residual_interval_hull,
       h38NoiseInterval: clippedH38NoiseInterval,
-      solveSlopeInterval:
-        setup.analysisBranchRow.h38_solve_slope_interval,
+      solveSlopeInterval: replaySolveSlopeInterval,
       outerRadius,
       shiftedIndex,
       variant,
@@ -30074,6 +30287,27 @@ function h39H38Y44H38NoiseIntervalReplay({
     h38_residual_width:
       intervalWidth(clippedH38NoiseInterval) *
       setup.h38ResidualProfile.max_abs_residual,
+    replay_row_context:
+      rowReplayContext === null
+        ? {
+            row_index: 0,
+            comparison_row_index: 0,
+            cell_id: setup.analysisRow.cell_id,
+            speed_interval: setup.analysisRow.speed_interval,
+            xi_interval: speedIntervalXiInterval({
+              row: setup.analysisRow,
+              targetSpeedInterval: setup.targetSpeedInterval,
+            }),
+            noise_coordinate: replayNoiseCoordinate,
+          }
+        : {
+            row_index: rowReplayContext.row_index,
+            comparison_row_index: rowReplayContext.comparison_row_index,
+            cell_id: rowReplayContext.cell_id,
+            speed_interval: rowReplayContext.speed_interval,
+            xi_interval: rowReplayContext.xi_interval,
+            noise_coordinate: replayNoiseCoordinate,
+          },
     replay,
   };
 }
@@ -30252,9 +30486,1374 @@ function h39H38Y44ProducerCoordinateFullHullHalfWidth(coordinateProfile) {
   );
 }
 
+function h39RequestedY44ProducerSampleBudgetRows({
+  producerCoordinateProfile,
+  requestedHalfWidth,
+  targetInterval,
+}) {
+  const residualRadius = Number(producerCoordinateProfile?.residual_radius);
+  const rows = (producerCoordinateProfile?.samples ?? []).map((sample) => {
+    const coordinateInterval =
+      sample.residual_coordinate_interval.map(Number);
+    const coordinateCenter = intervalMidpoint(coordinateInterval);
+    const coordinateWidth = intervalWidth(coordinateInterval);
+    const coordinateHalfWidth = coordinateWidth / 2;
+    const coordinateMidpoint = Number(sample.residual_coordinate_midpoint);
+    const midpointAbs = Math.abs(coordinateMidpoint);
+    const centerAbs = Math.abs(coordinateCenter);
+    const intervalInsideTarget =
+      Number(coordinateInterval[0]) >= Number(targetInterval[0]) &&
+      Number(coordinateInterval[1]) <= Number(targetInterval[1]);
+    const midpointInsideTarget =
+      coordinateMidpoint >= Number(targetInterval[0]) &&
+      coordinateMidpoint <= Number(targetInterval[1]);
+    const centerInsideTarget =
+      coordinateCenter >= Number(targetInterval[0]) &&
+      coordinateCenter <= Number(targetInterval[1]);
+    const leftExcess = Math.max(
+      0,
+      Number(targetInterval[0]) - Number(coordinateInterval[0])
+    );
+    const rightExcess = Math.max(
+      0,
+      Number(coordinateInterval[1]) - Number(targetInterval[1])
+    );
+    const intervalExcess = Math.max(leftExcess, rightExcess);
+    const availableHalfWidthAtCenter = Math.max(
+      0,
+      requestedHalfWidth - centerAbs
+    );
+    const ratio = (numerator, denominator) =>
+      finiteNonnegative(numerator) && finitePositive(denominator)
+        ? Number(numerator) / Number(denominator)
+        : null;
+    return {
+      row_index: sample.row_index,
+      comparison_row_index: sample.comparison_row_index,
+      source_subcover_row_index: sample.source_subcover_row_index,
+      cell_id: sample.cell_id,
+      speed_interval: sample.speed_interval,
+      xi_interval: sample.xi_interval,
+      residual_coordinate_interval: coordinateInterval,
+      residual_coordinate_midpoint: coordinateMidpoint,
+      residual_coordinate_interval_center: coordinateCenter,
+      residual_coordinate_interval_width: coordinateWidth,
+      residual_coordinate_interval_half_width: coordinateHalfWidth,
+      residual_coordinate_midpoint_abs_to_requested_budget_half_width: ratio(
+        midpointAbs,
+        requestedHalfWidth
+      ),
+      residual_coordinate_interval_center_abs_to_requested_budget_half_width:
+        ratio(centerAbs, requestedHalfWidth),
+      residual_coordinate_interval_half_width_to_requested_budget_half_width:
+        ratio(coordinateHalfWidth, requestedHalfWidth),
+      residual_coordinate_interval_excess_beyond_requested_budget:
+        intervalExcess,
+      residual_coordinate_interval_excess_to_requested_budget_half_width:
+        ratio(intervalExcess, requestedHalfWidth),
+      residual_coordinate_available_half_width_at_interval_center:
+        availableHalfWidthAtCenter,
+      residual_coordinate_required_half_width_compression_to_fit_at_interval_center:
+        finitePositive(availableHalfWidthAtCenter)
+          ? coordinateHalfWidth / availableHalfWidthAtCenter
+          : null,
+      residual_absolute_interval_half_width:
+        finitePositive(residualRadius)
+          ? coordinateHalfWidth * residualRadius
+          : null,
+      residual_absolute_required_half_width:
+        finitePositive(residualRadius)
+          ? requestedHalfWidth * residualRadius
+          : null,
+      residual_coordinate_interval_inside_requested_budget:
+        intervalInsideTarget,
+      residual_coordinate_midpoint_inside_requested_budget:
+        midpointInsideTarget,
+      residual_coordinate_interval_center_inside_requested_budget:
+        centerInsideTarget,
+    };
+  });
+  const finiteRowNumbers = (field) =>
+    rows
+      .map((row) => Number(row[field]))
+      .filter((value) => Number.isFinite(value));
+  const maxOrNull = (field) => {
+    const values = finiteRowNumbers(field);
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const minOrNull = (field) => {
+    const values = finiteRowNumbers(field);
+    return values.length > 0 ? Math.min(...values) : null;
+  };
+  const rowWithMax = (field) =>
+    rows.reduce((best, row) => {
+      const value = Number(row[field]);
+      if (!Number.isFinite(value)) {
+        return best;
+      }
+      const bestValue = Number(best?.[field] ?? -Infinity);
+      return value > bestValue ? row : best;
+    }, null);
+  const summarizeRow = (row) =>
+    row === null
+      ? null
+      : {
+          row_index: row.row_index,
+          comparison_row_index: row.comparison_row_index,
+          source_subcover_row_index: row.source_subcover_row_index,
+          cell_id: row.cell_id,
+          speed_interval: row.speed_interval,
+          xi_interval: row.xi_interval,
+          residual_coordinate_midpoint:
+            row.residual_coordinate_midpoint,
+          residual_coordinate_interval_center:
+            row.residual_coordinate_interval_center,
+          residual_coordinate_interval:
+            row.residual_coordinate_interval,
+          residual_coordinate_interval_width:
+            row.residual_coordinate_interval_width,
+          residual_coordinate_interval_half_width:
+            row.residual_coordinate_interval_half_width,
+          residual_coordinate_midpoint_abs_to_requested_budget_half_width:
+            row
+              .residual_coordinate_midpoint_abs_to_requested_budget_half_width,
+          residual_coordinate_interval_center_abs_to_requested_budget_half_width:
+            row
+              .residual_coordinate_interval_center_abs_to_requested_budget_half_width,
+          residual_coordinate_interval_half_width_to_requested_budget_half_width:
+            row
+              .residual_coordinate_interval_half_width_to_requested_budget_half_width,
+          residual_coordinate_interval_excess_beyond_requested_budget:
+            row.residual_coordinate_interval_excess_beyond_requested_budget,
+          residual_coordinate_interval_excess_to_requested_budget_half_width:
+            row
+              .residual_coordinate_interval_excess_to_requested_budget_half_width,
+          residual_coordinate_available_half_width_at_interval_center:
+            row
+              .residual_coordinate_available_half_width_at_interval_center,
+          residual_coordinate_required_half_width_compression_to_fit_at_interval_center:
+            row
+              .residual_coordinate_required_half_width_compression_to_fit_at_interval_center,
+          residual_absolute_interval_half_width:
+            row.residual_absolute_interval_half_width,
+          residual_absolute_required_half_width:
+            row.residual_absolute_required_half_width,
+          residual_coordinate_interval_inside_requested_budget:
+            row.residual_coordinate_interval_inside_requested_budget,
+          residual_coordinate_midpoint_inside_requested_budget:
+            row.residual_coordinate_midpoint_inside_requested_budget,
+          residual_coordinate_interval_center_inside_requested_budget:
+            row
+              .residual_coordinate_interval_center_inside_requested_budget,
+        };
+  const rowCount = rows.length;
+  const midpointInsideCount = rows.filter(
+    (row) =>
+      row.residual_coordinate_midpoint_inside_requested_budget === true
+  ).length;
+  const centerInsideCount = rows.filter(
+    (row) =>
+      row.residual_coordinate_interval_center_inside_requested_budget === true
+  ).length;
+  const intervalInsideCount = rows.filter(
+    (row) =>
+      row.residual_coordinate_interval_inside_requested_budget === true
+  ).length;
+  const allMidpointsInside =
+    rowCount > 0 && midpointInsideCount === rowCount;
+  const allCentersInside =
+    rowCount > 0 && centerInsideCount === rowCount;
+  const allIntervalsInside =
+    rowCount > 0 && intervalInsideCount === rowCount;
+  const rowLocalDiagnosis = allIntervalsInside
+    ? "row-local-producer-intervals-fit-requested-budget"
+    : allMidpointsInside && allCentersInside
+      ? "row-local-centers-fit-but-interval-widths-need-correlation"
+      : allMidpointsInside
+        ? "row-local-midpoints-fit-but-interval-centers-or-widths-need-correlation"
+        : "row-local-midpoints-miss-requested-budget";
+  const firstIntervalFailureRow =
+    rows.find(
+      (row) =>
+        row.residual_coordinate_interval_inside_requested_budget === false
+    ) ?? null;
+  return {
+    rows,
+    row_count: rowCount,
+    midpoint_inside_requested_budget_row_count: midpointInsideCount,
+    interval_center_inside_requested_budget_row_count: centerInsideCount,
+    interval_inside_requested_budget_row_count: intervalInsideCount,
+    all_midpoints_inside_requested_budget: allMidpointsInside,
+    all_interval_centers_inside_requested_budget: allCentersInside,
+    all_intervals_inside_requested_budget: allIntervalsInside,
+    worst_midpoint_abs_to_requested_budget_half_width: maxOrNull(
+      "residual_coordinate_midpoint_abs_to_requested_budget_half_width"
+    ),
+    worst_interval_center_abs_to_requested_budget_half_width: maxOrNull(
+      "residual_coordinate_interval_center_abs_to_requested_budget_half_width"
+    ),
+    best_interval_half_width_to_requested_budget_half_width: minOrNull(
+      "residual_coordinate_interval_half_width_to_requested_budget_half_width"
+    ),
+    worst_interval_half_width_to_requested_budget_half_width: maxOrNull(
+      "residual_coordinate_interval_half_width_to_requested_budget_half_width"
+    ),
+    worst_interval_excess_to_requested_budget_half_width: maxOrNull(
+      "residual_coordinate_interval_excess_to_requested_budget_half_width"
+    ),
+    worst_required_half_width_compression_to_fit_at_interval_center:
+      maxOrNull(
+        "residual_coordinate_required_half_width_compression_to_fit_at_interval_center"
+      ),
+    worst_interval_half_width_row: summarizeRow(
+      rowWithMax(
+        "residual_coordinate_interval_half_width_to_requested_budget_half_width"
+      )
+    ),
+    worst_required_half_width_compression_row: summarizeRow(
+      rowWithMax(
+        "residual_coordinate_required_half_width_compression_to_fit_at_interval_center"
+      )
+    ),
+    first_interval_failure_row: summarizeRow(firstIntervalFailureRow),
+    requested_residual_absolute_half_width:
+      finitePositive(residualRadius)
+        ? requestedHalfWidth * residualRadius
+        : null,
+    worst_sample_residual_absolute_half_width: maxOrNull(
+      "residual_absolute_interval_half_width"
+    ),
+    row_local_budget_diagnosis: rowLocalDiagnosis,
+  };
+}
+
+function h39RequestedY44ProducerRowReplayContext({
+  setup,
+  branch,
+  rowSummary,
+}) {
+  const rowIndex = Number(rowSummary?.row_index);
+  if (
+    !Number.isInteger(rowIndex) ||
+    rowIndex < 0 ||
+    rowIndex >= setup.comparisonRows.length
+  ) {
+    return null;
+  }
+  const row = setup.comparisonRows[rowIndex];
+  const branchRow = branchRowFor(row, branch);
+  const xiInterval =
+    Array.isArray(rowSummary?.xi_interval) &&
+    rowSummary.xi_interval.length === 2
+      ? rowSummary.xi_interval.map(Number)
+      : speedIntervalXiInterval({
+          row,
+          targetSpeedInterval: setup.targetSpeedInterval,
+        });
+  return {
+    row_index: rowIndex,
+    comparison_row_index: Number(rowSummary?.comparison_row_index ?? rowIndex),
+    source_subcover_row_index:
+      rowSummary?.source_subcover_row_index ?? null,
+    cell_id: row.cell_id,
+    speed_interval: row.speed_interval,
+    xi_interval: xiInterval,
+    noise_coordinate: intervalMidpoint(xiInterval),
+    cell: cellFromCertificateRow(row),
+    solve_slope_interval: branchRow.h38_solve_slope_interval,
+  };
+}
+
+function h39RequestedY44SummarizeNoiseIntervalReplay({
+  intervalReplay,
+  requestedMidpointPressureBound,
+}) {
+  const pressure = Number(intervalReplay?.replay?.pressure);
+  const centerEliminatedPressure = Number(
+    intervalReplay?.replay?.center_eliminated_pressure
+  );
+  const target = Number(requestedMidpointPressureBound);
+  return {
+    h38_noise_interval: intervalReplay.h38_noise_interval,
+    clipped_h38_noise_interval: intervalReplay.clipped_h38_noise_interval,
+    clipping_changed:
+      Number(intervalReplay.h38_noise_interval[0]) !==
+        Number(intervalReplay.clipped_h38_noise_interval[0]) ||
+      Number(intervalReplay.h38_noise_interval[1]) !==
+        Number(intervalReplay.clipped_h38_noise_interval[1]),
+    h38_residual_coordinate_width:
+      intervalReplay.h38_residual_coordinate_width,
+    h38_residual_width: intervalReplay.h38_residual_width,
+    replay_row_context: intervalReplay.replay_row_context,
+    replay_pressure: pressure,
+    replay_pressure_over_requested_midpoint_pressure_bound:
+      finitePositive(target) && Number.isFinite(pressure)
+        ? pressure / target
+        : null,
+    center_eliminated_pressure: centerEliminatedPressure,
+    center_eliminated_pressure_over_requested_midpoint_pressure_bound:
+      finitePositive(target) && Number.isFinite(centerEliminatedPressure)
+        ? centerEliminatedPressure / target
+        : null,
+    center_elimination_improvement_factor:
+      intervalReplay.replay.center_elimination_improvement_factor ?? null,
+  };
+}
+
+function h39RequestedY44ProducerRowLocalCollarReplay({
+  setup,
+  branch,
+  outerRadius,
+  shiftedIndex,
+  requestedResidualRadiusBudget,
+  producerBudgetComparison,
+}) {
+  const requestedHalfWidth = Number(
+    producerBudgetComparison?.requested_residual_midpoint_matching_half_width
+  );
+  const requestedBudgetInterval =
+    producerBudgetComparison?.requested_residual_budget_interval;
+  const requestedMidpointPressureBound = Number(
+    requestedResidualRadiusBudget?.midpoint_pressure_bound
+  );
+  if (
+    !finitePositive(requestedHalfWidth) ||
+    !Array.isArray(requestedBudgetInterval) ||
+    requestedBudgetInterval.length !== 2 ||
+    !finitePositive(requestedMidpointPressureBound)
+  ) {
+    return null;
+  }
+  const rowRoles = [
+    [
+      "first-interval-failure",
+      producerBudgetComparison.producer_sample_first_interval_failure_row,
+    ],
+    [
+      "worst-interval-half-width",
+      producerBudgetComparison.producer_sample_worst_interval_half_width_row,
+    ],
+    [
+      "worst-required-compression",
+      producerBudgetComparison
+        .producer_sample_worst_required_half_width_compression_row,
+    ],
+  ];
+  const selectedRows = [];
+  for (const [role, row] of rowRoles) {
+    if (row === null || row === undefined) {
+      continue;
+    }
+    const key = `${row.row_index}:${row.cell_id}`;
+    const existing = selectedRows.find((entry) => entry.key === key);
+    if (existing) {
+      existing.row_roles.push(role);
+      continue;
+    }
+    selectedRows.push({
+      key,
+      row_roles: [role],
+      row_summary: row,
+    });
+  }
+  const replayIntervalForRow = ({ rowContext, interval, variant }) =>
+    h39RequestedY44SummarizeNoiseIntervalReplay({
+      requestedMidpointPressureBound,
+      intervalReplay: h39H38Y44H38NoiseIntervalReplay({
+        setup,
+        branch,
+        h38NoiseInterval: interval,
+        outerRadius,
+        shiftedIndex,
+        variant,
+        rowReplayContext: rowContext,
+      }),
+    });
+  const safetySearchIterations = 32;
+  const safetySearchForRow = ({
+    rowContext,
+    centerCoordinate,
+    candidateHalfWidth,
+    candidateReplay,
+    label,
+  }) => {
+    const resolvedCenter = Number(centerCoordinate);
+    const resolvedCandidateHalfWidth = Number(candidateHalfWidth);
+    const residualAbsScale = Number(setup.h38ResidualProfile.max_abs_residual);
+    const replayAtHalfWidth = ({ halfWidth, variant }) =>
+      replayIntervalForRow({
+        rowContext,
+        interval: [resolvedCenter - halfWidth, resolvedCenter + halfWidth],
+        variant,
+      });
+    const decorateReplay = (summary, halfWidth) => ({
+      ...summary,
+      h38_residual_coordinate_half_width: halfWidth,
+      h38_residual_half_width:
+        Number.isFinite(residualAbsScale) && Number.isFinite(halfWidth)
+          ? halfWidth * residualAbsScale
+          : null,
+    });
+    if (
+      !Number.isFinite(resolvedCenter) ||
+      !Number.isFinite(resolvedCandidateHalfWidth) ||
+      resolvedCandidateHalfWidth < 0
+    ) {
+      return null;
+    }
+    const zeroReplay = decorateReplay(
+      replayAtHalfWidth({
+        halfWidth: 0,
+        variant: `row-local-safety-zero-${label}`,
+      }),
+      0
+    );
+    const requestedCandidateReplay = decorateReplay(
+      candidateReplay ??
+        replayAtHalfWidth({
+          halfWidth: resolvedCandidateHalfWidth,
+          variant: `row-local-safety-requested-${label}`,
+        }),
+      resolvedCandidateHalfWidth
+    );
+    const zeroRatio = Number(
+      zeroReplay.replay_pressure_over_requested_midpoint_pressure_bound
+    );
+    const requestedCandidateRatio = Number(
+      requestedCandidateReplay
+        .replay_pressure_over_requested_midpoint_pressure_bound
+    );
+    const baseResult = {
+      center_mode: "row-interval-center",
+      center_coordinate: resolvedCenter,
+      requested_budget_candidate_half_width:
+        resolvedCandidateHalfWidth,
+      requested_budget_candidate_interval: [
+        resolvedCenter - resolvedCandidateHalfWidth,
+        resolvedCenter + resolvedCandidateHalfWidth,
+      ],
+      safety_search_iterations: safetySearchIterations,
+      zero_width_replay: zeroReplay,
+      requested_budget_candidate_replay: requestedCandidateReplay,
+    };
+    if (zeroRatio > 1 || resolvedCandidateHalfWidth === 0) {
+      return {
+        ...baseResult,
+        target_closing_half_width: 0,
+        target_closing_full_radius_scale: null,
+        target_closing_replay: zeroReplay,
+        target_closing_replay_over_midpoint_pressure: zeroRatio,
+        target_closing_h38_noise_interval:
+          zeroReplay.h38_noise_interval,
+        clipped_target_closing_h38_noise_interval:
+          zeroReplay.clipped_h38_noise_interval,
+        target_closing_h38_residual_half_width:
+          zeroReplay.h38_residual_half_width,
+        target_closing_bracket: [0, 0],
+        target_closing_bracket_width: 0,
+        safety_search_status:
+          zeroRatio <= 1
+            ? "row-local-center-zero-width-meets-midpoint-pressure-with-no-positive-candidate"
+            : "row-local-center-zero-width-exceeds-midpoint-pressure",
+      };
+    }
+    if (requestedCandidateRatio <= 1) {
+      return {
+        ...baseResult,
+        target_closing_half_width: resolvedCandidateHalfWidth,
+        target_closing_full_radius_scale:
+          resolvedCandidateHalfWidth > 0
+            ? 1 / resolvedCandidateHalfWidth
+            : null,
+        target_closing_replay: requestedCandidateReplay,
+        target_closing_replay_over_midpoint_pressure:
+          requestedCandidateRatio,
+        target_closing_h38_noise_interval:
+          requestedCandidateReplay.h38_noise_interval,
+        clipped_target_closing_h38_noise_interval:
+          requestedCandidateReplay.clipped_h38_noise_interval,
+        target_closing_h38_residual_half_width:
+          requestedCandidateReplay.h38_residual_half_width,
+        target_closing_bracket: [
+          resolvedCandidateHalfWidth,
+          resolvedCandidateHalfWidth,
+        ],
+        target_closing_bracket_width: 0,
+        safety_search_status:
+          "row-local-requested-half-width-meets-midpoint-pressure",
+      };
+    }
+    let left = 0;
+    let right = resolvedCandidateHalfWidth;
+    let bestReplay = zeroReplay;
+    let bestRatio = zeroRatio;
+    for (
+      let iteration = 0;
+      iteration < safetySearchIterations;
+      iteration += 1
+    ) {
+      const midpoint = (left + right) / 2;
+      const midpointReplay = decorateReplay(
+        replayAtHalfWidth({
+          halfWidth: midpoint,
+          variant: `row-local-safety-${label}-${iteration}`,
+        }),
+        midpoint
+      );
+      const midpointRatio = Number(
+        midpointReplay
+          .replay_pressure_over_requested_midpoint_pressure_bound
+      );
+      if (midpointRatio <= 1) {
+        left = midpoint;
+        bestReplay = midpointReplay;
+        bestRatio = midpointRatio;
+      } else {
+        right = midpoint;
+      }
+    }
+    return {
+      ...baseResult,
+      target_closing_half_width:
+        bestReplay.h38_residual_coordinate_half_width,
+      target_closing_full_radius_scale:
+        bestReplay.h38_residual_coordinate_half_width > 0
+          ? 1 / bestReplay.h38_residual_coordinate_half_width
+          : null,
+      target_closing_replay: bestReplay,
+      target_closing_replay_over_midpoint_pressure: bestRatio,
+      target_closing_h38_noise_interval: bestReplay.h38_noise_interval,
+      clipped_target_closing_h38_noise_interval:
+        bestReplay.clipped_h38_noise_interval,
+      target_closing_h38_residual_half_width:
+        bestReplay.h38_residual_half_width,
+      target_closing_bracket: [left, right],
+      target_closing_bracket_width: right - left,
+      safety_search_status:
+        bestRatio <= 1 &&
+        bestReplay.h38_residual_coordinate_half_width > 0
+          ? "bisection-found-row-local-half-width-meeting-midpoint-pressure"
+        : "bisection-did-not-find-row-local-half-width-meeting-midpoint-pressure",
+    };
+  };
+  const producerWidthContractionTargetForRow = ({
+    row,
+    rowContext,
+    safetySearch,
+  }) => {
+    if (safetySearch === null || safetySearch === undefined) {
+      return null;
+    }
+    const center = Number(row.residual_coordinate_interval_center);
+    const currentHalfWidth = Number(
+      row.residual_coordinate_interval_half_width
+    );
+    const requestedHalfWidthAtCenter = Number(
+      row.residual_coordinate_available_half_width_at_interval_center
+    );
+    const targetHalfWidth = Number(safetySearch.target_closing_half_width);
+    const residualAbsScale = Number(setup.h38ResidualProfile.max_abs_residual);
+    const targetResidualHalfWidth = Number(
+      safetySearch.target_closing_h38_residual_half_width
+    );
+    const currentResidualHalfWidth =
+      Number.isFinite(row.residual_absolute_interval_half_width)
+        ? Number(row.residual_absolute_interval_half_width)
+        : Number.isFinite(residualAbsScale) &&
+            Number.isFinite(currentHalfWidth)
+          ? currentHalfWidth * residualAbsScale
+          : null;
+    const targetInterval = [
+      center - targetHalfWidth,
+      center + targetHalfWidth,
+    ];
+    const currentInterval = row.residual_coordinate_interval.map(Number);
+    const currentInsideTarget =
+      Number(currentInterval[0]) >= Number(targetInterval[0]) &&
+      Number(currentInterval[1]) <= Number(targetInterval[1]);
+    const centerInsideTarget =
+      center >= Number(targetInterval[0]) &&
+      center <= Number(targetInterval[1]);
+    const slopeInterval = rowContext.solve_slope_interval.map(Number);
+    const slopeAbsLower = intervalAbsLower(slopeInterval);
+    const slopeAbsUpper = intervalAbsUpper(slopeInterval);
+    const targetResidualWidth =
+      Number.isFinite(targetResidualHalfWidth) &&
+      targetResidualHalfWidth >= 0
+        ? 2 * targetResidualHalfWidth
+        : null;
+    const currentResidualWidth =
+      Number.isFinite(currentResidualHalfWidth) &&
+      currentResidualHalfWidth >= 0
+        ? 2 * currentResidualHalfWidth
+        : null;
+    const targetNumeratorWidthLower =
+      finitePositive(targetResidualWidth)
+        ? slopeAbsLower * targetResidualWidth
+        : null;
+    const targetNumeratorWidthUpper =
+      finitePositive(targetResidualWidth)
+        ? slopeAbsUpper * targetResidualWidth
+        : null;
+    const currentNumeratorWidthUpper =
+      finitePositive(currentResidualWidth)
+        ? slopeAbsUpper * currentResidualWidth
+        : null;
+    const requiredCoordinateCompression =
+      finitePositive(targetHalfWidth) && Number.isFinite(currentHalfWidth)
+        ? currentHalfWidth / targetHalfWidth
+        : null;
+    const requestedToTargetCompression =
+      finitePositive(targetHalfWidth) &&
+      Number.isFinite(requestedHalfWidthAtCenter)
+        ? requestedHalfWidthAtCenter / targetHalfWidth
+        : null;
+    const residualCompression =
+      finitePositive(targetResidualHalfWidth) &&
+      Number.isFinite(currentResidualHalfWidth)
+        ? currentResidualHalfWidth / targetResidualHalfWidth
+        : null;
+    const numeratorCompression =
+      finitePositive(targetNumeratorWidthLower) &&
+      finitePositive(currentNumeratorWidthUpper)
+        ? currentNumeratorWidthUpper / targetNumeratorWidthLower
+        : null;
+    const linearSubcellForecast =
+      finitePositive(requiredCoordinateCompression) &&
+      Number.isInteger(producerBudgetComparison?.producer_row_count)
+        ? Math.ceil(
+            Number(producerBudgetComparison.producer_row_count) *
+              requiredCoordinateCompression
+          )
+        : null;
+    const targetStatus = currentInsideTarget
+      ? "current-row-interval-inside-bisection-collar"
+      : centerInsideTarget && finitePositive(targetHalfWidth)
+        ? "row-center-inside-bisection-collar-width-open"
+        : "row-center-outside-bisection-collar";
+    const certificateInterpretation =
+      currentInsideTarget
+        ? "selected-producer-row-already-inside-row-local-H39-collar"
+        : finitePositive(requiredCoordinateCompression) &&
+            requiredCoordinateCompression > 1
+          ? "selected-producer-row-needs-directed-rounded-width-contraction"
+          : "selected-producer-row-width-contraction-target-unresolved";
+    return {
+      row_index: row.row_index,
+      comparison_row_index: row.comparison_row_index,
+      source_subcover_row_index: row.source_subcover_row_index,
+      cell_id: row.cell_id,
+      speed_interval: row.speed_interval,
+      xi_interval: row.xi_interval,
+      center_coordinate: center,
+      current_residual_coordinate_interval: currentInterval,
+      current_residual_coordinate_half_width: currentHalfWidth,
+      requested_residual_coordinate_half_width_at_center:
+        requestedHalfWidthAtCenter,
+      target_residual_coordinate_interval: targetInterval,
+      target_residual_coordinate_half_width: targetHalfWidth,
+      current_interval_inside_target: currentInsideTarget,
+      center_inside_target: centerInsideTarget,
+      required_coordinate_half_width_compression:
+        requiredCoordinateCompression,
+      requested_to_target_half_width_compression:
+        requestedToTargetCompression,
+      h38_residual_abs_scale: residualAbsScale,
+      current_h38_residual_half_width: currentResidualHalfWidth,
+      target_h38_residual_half_width: targetResidualHalfWidth,
+      required_h38_residual_half_width_compression:
+        residualCompression,
+      solve_slope_interval: slopeInterval,
+      solve_slope_abs_lower: slopeAbsLower,
+      solve_slope_abs_upper: slopeAbsUpper,
+      target_s37_division_numerator_width_lower:
+        targetNumeratorWidthLower,
+      target_s37_division_numerator_width_upper:
+        targetNumeratorWidthUpper,
+      current_s37_division_numerator_width_upper:
+        currentNumeratorWidthUpper,
+      required_s37_division_numerator_width_compression:
+        numeratorCompression,
+      linear_row_subcell_refinement_forecast:
+        linearSubcellForecast,
+      safety_search_status: safetySearch.safety_search_status,
+      target_replay_over_midpoint_pressure:
+        safetySearch.target_closing_replay_over_midpoint_pressure,
+      target_status: targetStatus,
+      certificate_interpretation: certificateInterpretation,
+    };
+  };
+  const rowLocalN38S37Profile = (() => {
+    try {
+      const polynomialDegree = Math.max(
+        1,
+        Math.min(3, Number(setup?.polynomialDegree ?? 2))
+      );
+      const solveWidthProfile = h38SolveWidthFactorizationProfileForRows({
+        targetSpeedInterval: setup.targetSpeedInterval,
+        rows: setup.comparisonRows,
+        branch,
+        transportProfile: setup.transportProfile,
+      });
+      const numeratorPolynomialDiagnostic =
+        h38NumeratorPolynomialDegreeDiagnostics({
+          solveWidthProfile,
+          degrees: [polynomialDegree],
+        })[0];
+      const numeratorResidualProfile = h38NumeratorGraphResidualProfile({
+        solveWidthProfile,
+        numeratorPolynomialDiagnostic,
+      });
+      return {
+        available: true,
+        polynomial_degree: polynomialDegree,
+        solve_width_profile: solveWidthProfile,
+        numerator_polynomial_diagnostic: numeratorPolynomialDiagnostic,
+        numerator_residual_profile: numeratorResidualProfile,
+        sample_by_cell_id: new Map(
+          numeratorResidualProfile.samples.map((sample) => [
+            sample.cell_id,
+            sample,
+          ])
+        ),
+      };
+    } catch {
+      return {
+        available: false,
+        polynomial_degree: null,
+        solve_width_profile: null,
+        numerator_polynomial_diagnostic: null,
+        numerator_residual_profile: null,
+        sample_by_cell_id: new Map(),
+      };
+    }
+  })();
+  const rowLocalN38S37GraphRemainderTargetForRow = ({
+    targetNumeratorWidthLower,
+    graphIntervalWidth,
+    midpointResidualAbs,
+    intervalResidualWidth,
+  }) => {
+    const graphPlusMidpointWidth =
+      Number(graphIntervalWidth) + 2 * Math.abs(Number(midpointResidualAbs));
+    const remainderWidthBudget =
+      Number(targetNumeratorWidthLower) - graphPlusMidpointWidth;
+    const targetPositive = finitePositive(targetNumeratorWidthLower);
+    const budgetPositive = finitePositive(remainderWidthBudget);
+    const graphPlusMidpointInside =
+      targetPositive && graphPlusMidpointWidth <= targetNumeratorWidthLower;
+    return {
+      n38_graph_plus_midpoint_width: graphPlusMidpointWidth,
+      n38_graph_plus_midpoint_width_to_row_local_s37_target:
+        targetPositive ? graphPlusMidpointWidth / targetNumeratorWidthLower : null,
+      row_local_n38_same_domain_remainder_width_budget:
+        Number.isFinite(remainderWidthBudget) ? Math.max(0, remainderWidthBudget) : null,
+      row_local_n38_same_domain_remainder_width_budget_to_s37_target:
+        targetPositive && Number.isFinite(remainderWidthBudget)
+          ? Math.max(0, remainderWidthBudget) / targetNumeratorWidthLower
+          : null,
+      n38_interval_residual_width_to_same_domain_remainder_budget:
+        budgetPositive && Number.isFinite(Number(intervalResidualWidth))
+          ? Number(intervalResidualWidth) / remainderWidthBudget
+          : null,
+      graph_plus_midpoint_inside_row_local_s37_target:
+        graphPlusMidpointInside,
+      same_domain_n38_graph_remainder_target_status:
+        graphPlusMidpointInside && budgetPositive
+          ? "row-local-n38-graph-remainder-target-has-headroom"
+          : "row-local-n38-graph-remainder-target-open",
+      same_domain_n38_graph_remainder_acceptance_inequality:
+        "n38_graph_interval_width + 2*abs(n38_midpoint_residual) + same_domain_remainder_width <= target_s37_division_numerator_width_lower",
+      same_domain_n38_graph_remainder_certificate_route:
+        "Certify a same-domain N38 graph remainder width below the remaining row-local S37 numerator budget before forming h38=-N38/S37.",
+    };
+  };
+  const rowLocalN38S37CollarDiagnosticForRow = ({
+    row,
+    rowContext,
+    target,
+  }) => {
+    if (
+      target === null ||
+      target === undefined ||
+      rowLocalN38S37Profile.available !== true
+    ) {
+      return null;
+    }
+    const sample =
+      rowLocalN38S37Profile.sample_by_cell_id.get(row.cell_id) ??
+      rowLocalN38S37Profile.numerator_residual_profile.samples.find(
+        (candidate) =>
+          Number(candidate?.xi_midpoint) ===
+          Number(rowContext?.noise_coordinate)
+      ) ??
+      null;
+    if (sample === null) {
+      return null;
+    }
+    const targetNumeratorWidthLower = Number(
+      target.target_s37_division_numerator_width_lower
+    );
+    const targetNumeratorWidthUpper = Number(
+      target.target_s37_division_numerator_width_upper
+    );
+    const midpointResidualAbs = Math.abs(Number(sample.midpoint_residual));
+    const midpointResidualWidth = 2 * midpointResidualAbs;
+    const intervalResidualWidth = Number(sample.interval_residual_width);
+    const graphIntervalWidth = Number(sample.graph_interval_width);
+    const numeratorIntervalWidth = Number(sample.numerator_interval_width);
+    const targetNumeratorHalfWidthLower = targetNumeratorWidthLower / 2;
+    const ratioToTarget = (value) =>
+      finitePositive(targetNumeratorWidthLower) && Number.isFinite(value)
+        ? Number(value) / targetNumeratorWidthLower
+        : null;
+    const midpointInsideTarget =
+      Number.isFinite(midpointResidualAbs) &&
+      finitePositive(targetNumeratorHalfWidthLower) &&
+      midpointResidualAbs <= targetNumeratorHalfWidthLower;
+    const graphIntervalInsideTarget =
+      Number.isFinite(graphIntervalWidth) &&
+      finitePositive(targetNumeratorWidthLower) &&
+      graphIntervalWidth <= targetNumeratorWidthLower;
+    const intervalResidualInsideTarget =
+      Number.isFinite(intervalResidualWidth) &&
+      finitePositive(targetNumeratorWidthLower) &&
+      intervalResidualWidth <= targetNumeratorWidthLower;
+    const s37DependencyStatus = intervalResidualInsideTarget
+      ? "current-n38-interval-residual-inside-row-local-s37-target"
+      : midpointInsideTarget && graphIntervalInsideTarget
+        ? "n38-midpoint-graph-fits-row-local-s37-target-but-interval-hull-needs-directed-rounded-remainder"
+        : midpointInsideTarget
+          ? "n38-midpoint-fits-but-graph-width-needs-row-local-s37-control"
+          : "n38-midpoint-graph-misses-row-local-s37-target";
+    const graphRemainderTarget =
+      rowLocalN38S37GraphRemainderTargetForRow({
+        targetNumeratorWidthLower,
+        graphIntervalWidth,
+        midpointResidualAbs,
+        intervalResidualWidth,
+      });
+    return {
+      schema:
+        THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_N38_S37_COLLAR_DIAGNOSTIC_SCHEMA,
+      status:
+        "h39-requested-y44-row-local-n38-s37-collar-diagnostic-candidate-emitted",
+      evaluation_level:
+        "candidate-h39-requested-y44-row-local-n38-s37-collar-diagnostic",
+      row_index: row.row_index,
+      comparison_row_index: row.comparison_row_index,
+      source_subcover_row_index: row.source_subcover_row_index,
+      cell_id: row.cell_id,
+      speed_interval: row.speed_interval,
+      xi_interval: row.xi_interval,
+      polynomial_degree: rowLocalN38S37Profile.polynomial_degree,
+      target_residual_coordinate_half_width:
+        target.target_residual_coordinate_half_width,
+      target_h38_residual_half_width:
+        target.target_h38_residual_half_width,
+      solve_slope_interval: target.solve_slope_interval,
+      target_s37_division_numerator_width_lower:
+        targetNumeratorWidthLower,
+      target_s37_division_numerator_width_upper:
+        targetNumeratorWidthUpper,
+      target_s37_division_numerator_half_width_lower:
+        targetNumeratorHalfWidthLower,
+      n38_graph_interval_width: graphIntervalWidth,
+      n38_midpoint_residual: sample.midpoint_residual,
+      n38_midpoint_residual_abs: midpointResidualAbs,
+      n38_midpoint_residual_width: midpointResidualWidth,
+      n38_interval_residual: sample.interval_residual,
+      n38_interval_residual_width: intervalResidualWidth,
+      n38_numerator_interval_width: numeratorIntervalWidth,
+      n38_graph_interval_width_to_row_local_s37_target:
+        ratioToTarget(graphIntervalWidth),
+      n38_midpoint_residual_width_to_row_local_s37_target:
+        ratioToTarget(midpointResidualWidth),
+      n38_interval_residual_width_to_row_local_s37_target:
+        ratioToTarget(intervalResidualWidth),
+      n38_numerator_interval_width_to_row_local_s37_target:
+        ratioToTarget(numeratorIntervalWidth),
+      n38_midpoint_residual_inside_row_local_s37_target:
+        midpointInsideTarget,
+      n38_graph_interval_inside_row_local_s37_target:
+        graphIntervalInsideTarget,
+      current_n38_interval_residual_inside_row_local_s37_target:
+        intervalResidualInsideTarget,
+      ...graphRemainderTarget,
+      s37_dependency_status: s37DependencyStatus,
+      certificate_interpretation:
+        intervalResidualInsideTarget
+          ? "selected-row-current-N38-interval-residual-already-fits-row-local-S37-target"
+          : midpointInsideTarget && graphIntervalInsideTarget
+            ? "selected-row-N38-midpoint-graph-fits-but-raw-interval-residual-is-the-width-artifact"
+            : "selected-row-N38-graph-center-does-not-yet-fit-row-local-S37-target",
+      candidate_certificate_route:
+        "Prove a directed-rounded same-domain N38 graph remainder below the row-local S37 numerator-width target, then divide by the inherited S37 interval before H39 source absolutization.",
+      claim_boundary: {
+        certifies_n38_graph_residual_enclosure: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_h38_producer_image_residual_radius: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        certifies_continuous_polydisc_primitives: false,
+        retained_branch: false,
+      },
+    };
+  };
+  const rowReplays = selectedRows
+    .map(({ row_roles: roles, row_summary: row }) => {
+      const rowContext = h39RequestedY44ProducerRowReplayContext({
+        setup,
+        branch,
+        rowSummary: row,
+      });
+      if (rowContext === null) {
+        return null;
+      }
+      const rowMidpoint = Number(row.residual_coordinate_midpoint);
+      const rowCenter = Number(row.residual_coordinate_interval_center);
+      const midpointAvailableHalfWidth = Math.max(
+        0,
+        requestedHalfWidth - Math.abs(rowMidpoint)
+      );
+      const centerAvailableHalfWidth = Math.max(
+        0,
+        requestedHalfWidth - Math.abs(rowCenter)
+      );
+      const rowMidpointCollar = [
+        rowMidpoint - midpointAvailableHalfWidth,
+        rowMidpoint + midpointAvailableHalfWidth,
+      ];
+      const rowCenterCollar = [
+        rowCenter - centerAvailableHalfWidth,
+        rowCenter + centerAvailableHalfWidth,
+      ];
+      const currentRowIntervalReplay = replayIntervalForRow({
+        rowContext,
+        interval: row.residual_coordinate_interval,
+        variant: `row-local-current-${row.row_index}`,
+      });
+      const requestedBudgetReplay = replayIntervalForRow({
+        rowContext,
+        interval: requestedBudgetInterval,
+        variant: `row-local-requested-budget-${row.row_index}`,
+      });
+      const rowMidpointCollarReplay = replayIntervalForRow({
+        rowContext,
+        interval: rowMidpointCollar,
+        variant: `row-local-midpoint-collar-${row.row_index}`,
+      });
+      const rowCenterCollarReplay = replayIntervalForRow({
+        rowContext,
+        interval: rowCenterCollar,
+        variant: `row-local-center-collar-${row.row_index}`,
+      });
+      const rowCenterCollarSafetySearch = safetySearchForRow({
+        rowContext,
+        centerCoordinate: rowCenter,
+        candidateHalfWidth: centerAvailableHalfWidth,
+        candidateReplay: rowCenterCollarReplay,
+        label: `${row.row_index}`,
+      });
+      const rowCenterProducerWidthContractionTarget =
+        producerWidthContractionTargetForRow({
+          row,
+          rowContext,
+          safetySearch: rowCenterCollarSafetySearch,
+        });
+      const rowCenterN38S37CollarDiagnostic =
+        rowLocalN38S37CollarDiagnosticForRow({
+          row,
+          rowContext,
+          target: rowCenterProducerWidthContractionTarget,
+        });
+      const requestedBudgetCloses =
+        Number(
+          requestedBudgetReplay
+            .replay_pressure_over_requested_midpoint_pressure_bound
+        ) <= 1;
+      const midpointCollarCloses =
+        Number(
+          rowMidpointCollarReplay
+            .replay_pressure_over_requested_midpoint_pressure_bound
+        ) <= 1;
+      const centerCollarCloses =
+        Number(
+          rowCenterCollarReplay
+            .replay_pressure_over_requested_midpoint_pressure_bound
+        ) <= 1;
+      return {
+        row_roles: roles,
+        row_summary: row,
+        row_replay_context: {
+          row_index: rowContext.row_index,
+          comparison_row_index: rowContext.comparison_row_index,
+          source_subcover_row_index: rowContext.source_subcover_row_index,
+          cell_id: rowContext.cell_id,
+          speed_interval: rowContext.speed_interval,
+          xi_interval: rowContext.xi_interval,
+          noise_coordinate: rowContext.noise_coordinate,
+        },
+        requested_budget_collar_interval: requestedBudgetInterval.map(Number),
+        row_midpoint_collar_interval: rowMidpointCollar,
+        row_midpoint_collar_half_width: midpointAvailableHalfWidth,
+        row_center_collar_interval: rowCenterCollar,
+        row_center_collar_half_width: centerAvailableHalfWidth,
+        current_row_interval_replay: currentRowIntervalReplay,
+        requested_budget_collar_replay: requestedBudgetReplay,
+        row_midpoint_collar_replay: rowMidpointCollarReplay,
+        row_center_collar_replay: rowCenterCollarReplay,
+        row_center_collar_safety_search: rowCenterCollarSafetySearch,
+        row_center_producer_width_contraction_target:
+          rowCenterProducerWidthContractionTarget,
+        row_center_n38_s37_collar_diagnostic:
+          rowCenterN38S37CollarDiagnostic,
+        requested_budget_collar_inside_requested_budget: true,
+        row_midpoint_collar_inside_requested_budget:
+          Number(rowMidpointCollar[0]) >= Number(requestedBudgetInterval[0]) &&
+          Number(rowMidpointCollar[1]) <= Number(requestedBudgetInterval[1]),
+        row_center_collar_inside_requested_budget:
+          Number(rowCenterCollar[0]) >= Number(requestedBudgetInterval[0]) &&
+          Number(rowCenterCollar[1]) <= Number(requestedBudgetInterval[1]),
+        current_row_interval_inside_requested_budget:
+          row.residual_coordinate_interval_inside_requested_budget,
+        requested_budget_collar_closes_midpoint_pressure:
+          requestedBudgetCloses,
+        row_midpoint_collar_closes_midpoint_pressure:
+          midpointCollarCloses,
+        row_center_collar_closes_midpoint_pressure:
+          centerCollarCloses,
+        row_local_replay_status:
+          requestedBudgetCloses && midpointCollarCloses && centerCollarCloses
+            ? "row-local-requested-collars-close-midpoint-pressure-candidate"
+            : "row-local-requested-collars-still-exceed-midpoint-pressure-candidate",
+      };
+    })
+    .filter((entry) => entry !== null);
+  const requestedRatios = rowReplays
+    .map((row) =>
+      Number(
+        row.requested_budget_collar_replay
+          .replay_pressure_over_requested_midpoint_pressure_bound
+      )
+    )
+    .filter((value) => Number.isFinite(value));
+  const currentRatios = rowReplays
+    .map((row) =>
+      Number(
+        row.current_row_interval_replay
+          .replay_pressure_over_requested_midpoint_pressure_bound
+      )
+    )
+    .filter((value) => Number.isFinite(value));
+  const allRequestedCollarsClose =
+    rowReplays.length > 0 &&
+    rowReplays.every(
+      (row) =>
+        row.requested_budget_collar_closes_midpoint_pressure === true
+    );
+  const anyCurrentIntervalCloses = rowReplays.some(
+    (row) =>
+      Number(
+        row.current_row_interval_replay
+          .replay_pressure_over_requested_midpoint_pressure_bound
+      ) <= 1
+  );
+  const worstRequestedBudgetRatio =
+    requestedRatios.length > 0 ? Math.max(...requestedRatios) : null;
+  const worstCurrentIntervalRatio =
+    currentRatios.length > 0 ? Math.max(...currentRatios) : null;
+  const replayCorrectedHalfWidthEstimate =
+    finitePositive(worstRequestedBudgetRatio)
+      ? requestedHalfWidth / worstRequestedBudgetRatio
+      : null;
+  const safetySearches = rowReplays
+    .map((row) => row.row_center_collar_safety_search)
+    .filter((search) => search !== null && search !== undefined);
+  const safetyTargetHalfWidths = safetySearches
+    .map((search) => Number(search.target_closing_half_width))
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const positiveSafetyTargetHalfWidths = safetyTargetHalfWidths.filter(
+    (value) => value > 0
+  );
+  const safetyTargetFullRadiusScales = safetySearches
+    .map((search) => Number(search.target_closing_full_radius_scale))
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const safetyTargetRatios = safetySearches
+    .map((search) =>
+      Number(search.target_closing_replay_over_midpoint_pressure)
+    )
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const safetyTargetBracketWidths = safetySearches
+    .map((search) => Number(search.target_closing_bracket_width))
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const safetyZeroRatios = safetySearches
+    .map((search) =>
+      Number(
+        search.zero_width_replay
+          .replay_pressure_over_requested_midpoint_pressure_bound
+      )
+    )
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const safetyRequestedRatios = safetySearches
+    .map((search) =>
+      Number(
+        search.requested_budget_candidate_replay
+          .replay_pressure_over_requested_midpoint_pressure_bound
+      )
+    )
+    .filter((value) => Number.isFinite(value) && value > 0);
+  const allZeroWidthReplaysInside =
+    safetySearches.length > 0 &&
+    safetyZeroRatios.length === safetySearches.length &&
+    safetyZeroRatios.every((ratio) => ratio <= 1);
+  const allRequestedBudgetCandidatesExceed =
+    safetySearches.length > 0 &&
+    safetyRequestedRatios.length === safetySearches.length &&
+    safetyRequestedRatios.every((ratio) => ratio > 1);
+  const allSafetySearchesClose =
+    safetySearches.length > 0 &&
+    safetyTargetRatios.length === safetySearches.length &&
+    safetyTargetRatios.every((ratio) => ratio <= 1);
+  const producerWidthTargets = rowReplays
+    .map((row) => row.row_center_producer_width_contraction_target)
+    .filter((target) => target !== null && target !== undefined);
+  const n38S37CollarDiagnostics = rowReplays
+    .map((row) => row.row_center_n38_s37_collar_diagnostic)
+    .filter((target) => target !== null && target !== undefined);
+  const producerTargetNumbers = (field) =>
+    producerWidthTargets
+      .map((target) => Number(target[field]))
+      .filter((value) => Number.isFinite(value) && value >= 0);
+  const n38S37DiagnosticNumbers = (field) =>
+    n38S37CollarDiagnostics
+      .map((target) => Number(target[field]))
+      .filter((value) => Number.isFinite(value) && value >= 0);
+  const maxProducerTargetNumber = (field) => {
+    const values = producerTargetNumbers(field);
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const maxN38S37DiagnosticNumber = (field) => {
+    const values = n38S37DiagnosticNumbers(field);
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const minPositiveN38S37DiagnosticNumber = (field) => {
+    const values = n38S37DiagnosticNumbers(field).filter((value) => value > 0);
+    return values.length > 0 ? Math.min(...values) : null;
+  };
+  const minPositiveProducerTargetNumber = (field) => {
+    const values = producerTargetNumbers(field).filter((value) => value > 0);
+    return values.length > 0 ? Math.min(...values) : null;
+  };
+  const allProducerTargetCentersInside =
+    producerWidthTargets.length > 0 &&
+    producerWidthTargets.every(
+      (target) => target.center_inside_target === true
+    );
+  const allProducerTargetCurrentIntervalsInside =
+    producerWidthTargets.length > 0 &&
+    producerWidthTargets.every(
+      (target) => target.current_interval_inside_target === true
+    );
+  const allN38S37MidpointResidualsInside =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.n38_midpoint_residual_inside_row_local_s37_target === true
+    );
+  const allN38S37GraphIntervalsInside =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.n38_graph_interval_inside_row_local_s37_target === true
+    );
+  const allN38S37IntervalResidualsInside =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.current_n38_interval_residual_inside_row_local_s37_target ===
+        true
+    );
+  const allN38GraphPlusMidpointInside =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.graph_plus_midpoint_inside_row_local_s37_target === true
+    );
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA,
+    status:
+      "h39-requested-y44-row-local-producer-collar-replay-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-row-local-producer-collar-replay",
+    selected_row_count: rowReplays.length,
+    requested_residual_midpoint_matching_half_width: requestedHalfWidth,
+    requested_residual_budget_interval: requestedBudgetInterval.map(Number),
+    requested_residual_midpoint_pressure_bound:
+      requestedMidpointPressureBound,
+    row_replays: rowReplays,
+    all_requested_budget_collar_replays_close_midpoint_pressure:
+      allRequestedCollarsClose,
+    any_current_row_interval_replay_closes_midpoint_pressure:
+      anyCurrentIntervalCloses,
+    worst_requested_budget_collar_replay_over_midpoint_pressure:
+      worstRequestedBudgetRatio,
+    worst_current_row_interval_replay_over_midpoint_pressure:
+      worstCurrentIntervalRatio,
+    requested_budget_to_full_replay_amplification_factor:
+      worstRequestedBudgetRatio,
+    replay_corrected_residual_coordinate_half_width_estimate:
+      replayCorrectedHalfWidthEstimate,
+    replay_corrected_full_radius_to_half_width_scale_estimate:
+      finitePositive(replayCorrectedHalfWidthEstimate)
+        ? 1 / replayCorrectedHalfWidthEstimate
+        : null,
+    row_local_collar_safety_search_available:
+      safetySearches.length === rowReplays.length && safetySearches.length > 0,
+    row_local_collar_safety_search_iterations: safetySearchIterations,
+    all_zero_width_row_center_replays_close_midpoint_pressure:
+      allZeroWidthReplaysInside,
+    all_requested_budget_row_center_candidates_exceed_midpoint_pressure:
+      allRequestedBudgetCandidatesExceed,
+    all_row_local_safety_searches_close_midpoint_pressure:
+      allSafetySearchesClose,
+    min_row_local_target_closing_half_width:
+      positiveSafetyTargetHalfWidths.length > 0
+        ? Math.min(...positiveSafetyTargetHalfWidths)
+        : null,
+    max_row_local_target_closing_full_radius_scale:
+      safetyTargetFullRadiusScales.length > 0
+        ? Math.max(...safetyTargetFullRadiusScales)
+        : null,
+    max_row_local_target_closing_replay_over_midpoint_pressure:
+      safetyTargetRatios.length > 0 ? Math.max(...safetyTargetRatios) : null,
+    max_row_local_target_closing_bracket_width:
+      safetyTargetBracketWidths.length > 0
+        ? Math.max(...safetyTargetBracketWidths)
+        : null,
+    worst_zero_width_row_center_replay_over_midpoint_pressure:
+      safetyZeroRatios.length > 0 ? Math.max(...safetyZeroRatios) : null,
+    worst_requested_budget_row_center_candidate_replay_over_midpoint_pressure:
+      safetyRequestedRatios.length > 0
+        ? Math.max(...safetyRequestedRatios)
+        : null,
+    row_local_collar_safety_search_interpretation:
+      allZeroWidthReplaysInside &&
+      allRequestedBudgetCandidatesExceed &&
+      allSafetySearchesClose
+        ? "bisection-finds-positive-row-local-collars-below-requested-budget"
+        : allZeroWidthReplaysInside && allSafetySearchesClose
+          ? "requested-row-local-collars-already-close-or-bisection-finds-collar"
+          : "row-local-center-zero-width-pressure-blocks-current-bisection-route",
+    row_local_producer_width_contraction_target_available:
+      producerWidthTargets.length === rowReplays.length &&
+      producerWidthTargets.length > 0,
+    all_row_local_producer_centers_inside_bisection_collar:
+      allProducerTargetCentersInside,
+    all_current_row_local_producer_intervals_inside_bisection_collar:
+      allProducerTargetCurrentIntervalsInside,
+    max_required_row_local_coordinate_half_width_compression:
+      maxProducerTargetNumber("required_coordinate_half_width_compression"),
+    max_required_row_local_h38_residual_half_width_compression:
+      maxProducerTargetNumber(
+        "required_h38_residual_half_width_compression"
+      ),
+    max_required_row_local_s37_division_numerator_width_compression:
+      maxProducerTargetNumber(
+        "required_s37_division_numerator_width_compression"
+      ),
+    max_row_local_linear_subcell_refinement_forecast:
+      maxProducerTargetNumber("linear_row_subcell_refinement_forecast"),
+    min_row_local_target_h38_residual_half_width:
+      minPositiveProducerTargetNumber("target_h38_residual_half_width"),
+    min_row_local_target_s37_division_numerator_width_lower:
+      minPositiveProducerTargetNumber(
+        "target_s37_division_numerator_width_lower"
+      ),
+    row_local_producer_width_contraction_interpretation:
+      allProducerTargetCurrentIntervalsInside
+        ? "selected-producer-rows-already-inside-bisection-collar"
+        : allProducerTargetCentersInside
+          ? "selected-producer-row-centers-fit-but-width-needs-directed-rounded-contraction"
+          : "selected-producer-row-centers-miss-bisection-collar",
+    row_local_n38_s37_collar_diagnostic_available:
+      n38S37CollarDiagnostics.length === rowReplays.length &&
+      n38S37CollarDiagnostics.length > 0,
+    all_row_local_n38_midpoint_graph_residuals_inside_s37_target:
+      allN38S37MidpointResidualsInside,
+    all_row_local_n38_graph_intervals_inside_s37_target:
+      allN38S37GraphIntervalsInside,
+    all_current_row_local_n38_interval_residuals_inside_s37_target:
+      allN38S37IntervalResidualsInside,
+    max_row_local_n38_midpoint_residual_width_to_s37_target:
+      maxN38S37DiagnosticNumber(
+        "n38_midpoint_residual_width_to_row_local_s37_target"
+      ),
+    max_row_local_n38_graph_interval_width_to_s37_target:
+      maxN38S37DiagnosticNumber(
+        "n38_graph_interval_width_to_row_local_s37_target"
+      ),
+    max_row_local_n38_interval_residual_width_to_s37_target:
+      maxN38S37DiagnosticNumber(
+        "n38_interval_residual_width_to_row_local_s37_target"
+      ),
+    max_row_local_n38_numerator_interval_width_to_s37_target:
+      maxN38S37DiagnosticNumber(
+        "n38_numerator_interval_width_to_row_local_s37_target"
+      ),
+    row_local_n38_s37_graph_remainder_target_available:
+      n38S37CollarDiagnostics.length === rowReplays.length &&
+      n38S37CollarDiagnostics.length > 0,
+    all_row_local_n38_graph_plus_midpoint_widths_inside_s37_target:
+      allN38GraphPlusMidpointInside,
+    max_row_local_n38_graph_plus_midpoint_width_to_s37_target:
+      maxN38S37DiagnosticNumber(
+        "n38_graph_plus_midpoint_width_to_row_local_s37_target"
+      ),
+    min_row_local_n38_same_domain_remainder_width_budget:
+      minPositiveN38S37DiagnosticNumber(
+        "row_local_n38_same_domain_remainder_width_budget"
+      ),
+    max_row_local_n38_interval_residual_width_to_same_domain_remainder_budget:
+      maxN38S37DiagnosticNumber(
+        "n38_interval_residual_width_to_same_domain_remainder_budget"
+      ),
+    row_local_n38_s37_collar_interpretation:
+      allN38S37IntervalResidualsInside
+        ? "current-n38-interval-residuals-fit-row-local-s37-target"
+        : allN38S37MidpointResidualsInside && allN38S37GraphIntervalsInside
+          ? "n38-midpoint-graph-fits-but-interval-remainder-needs-directed-rounding"
+          : "n38-midpoint-graph-misses-row-local-s37-target",
+    row_local_n38_s37_graph_remainder_target_interpretation:
+      allN38GraphPlusMidpointInside && !allN38S37IntervalResidualsInside
+        ? "same-domain-n38-graph-remainder-has-row-local-s37-headroom-but-raw-interval-hull-exceeds-it"
+        : allN38GraphPlusMidpointInside
+          ? "same-domain-n38-graph-remainder-target-already-covered-by-current-interval-hull"
+          : "same-domain-n38-graph-remainder-target-open",
+    row_local_collar_replay_interpretation:
+      allRequestedCollarsClose && !anyCurrentIntervalCloses
+        ? "requested-budget-collar-closes-but-current-row-intervals-need-producer-certificate"
+        : allRequestedCollarsClose
+          ? "requested-budget-collar-closes-on-selected-producer-rows"
+          : "requested-budget-collar-still-exceeds-selected-row-midpoint-pressure",
+    candidate_certificate_route:
+      "This replay measures H39 pressure under proposed row-local H38 residual-coordinate collars. It does not prove the H38 producer image is confined to those collars; that still requires a directed-rounded row-local producer-image enclosure.",
+    claim_boundary: {
+      certifies_h38_producer_image_residual_radius: false,
+      certifies_shared_zeta_interval_provider: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      certifies_continuous_polydisc_primitives: false,
+      retained_branch: false,
+    },
+  };
+}
+
 export function buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
   requestedResidualRadiusBudget,
   producerCoordinateProfile,
+  rowLocalReplayContext = null,
   label = "h39-requested-y44-vs-h38-producer-image",
 } = {}) {
   const requestedHalfWidth = Number(
@@ -30285,6 +31884,12 @@ export function buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
     h39H38Y44ProducerCoordinateFullHullHalfWidth(
       producerCoordinateProfile
     );
+  const sampleBudget =
+    h39RequestedY44ProducerSampleBudgetRows({
+      producerCoordinateProfile,
+      requestedHalfWidth,
+      targetInterval,
+    });
   const maxSampleIntervalHalfWidth =
     Number(producerCoordinateProfile.max_residual_coordinate_interval_width) /
     2;
@@ -30303,6 +31908,26 @@ export function buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
     : midpointHullInsideTarget
       ? "producer-midpoint-hull-fits-but-interval-hull-needs-directed-correlation-to-h39-budget"
       : "producer-midpoint-hull-misses-h39-requested-residual-budget";
+  const comparison = {
+    requested_residual_midpoint_matching_half_width:
+      requestedHalfWidth,
+    requested_residual_budget_interval: targetInterval,
+    producer_row_count: sampleBudget.row_count,
+    producer_sample_first_interval_failure_row:
+      sampleBudget.first_interval_failure_row,
+    producer_sample_worst_interval_half_width_row:
+      sampleBudget.worst_interval_half_width_row,
+    producer_sample_worst_required_half_width_compression_row:
+      sampleBudget.worst_required_half_width_compression_row,
+  };
+  const rowLocalCollarReplay =
+    rowLocalReplayContext === null
+      ? null
+      : h39RequestedY44ProducerRowLocalCollarReplay({
+          ...rowLocalReplayContext,
+          requestedResidualRadiusBudget,
+          producerBudgetComparison: comparison,
+        });
   return {
     schema:
       THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_PRODUCER_IMAGE_BUDGET_COMPARISON_SCHEMA,
@@ -30337,9 +31962,51 @@ export function buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
       intervalHullWidth,
     producer_residual_coordinate_midpoint_hull_width:
       midpointHullWidth,
+    producer_residual_coordinate_residual_radius:
+      producerCoordinateProfile.residual_radius ?? null,
     producer_centered_full_hull_half_width: fullHullHalfWidth,
     producer_max_sample_interval_half_width:
       maxSampleIntervalHalfWidth,
+    producer_sample_budget_rows: sampleBudget.rows,
+    producer_sample_budget_row_count: sampleBudget.row_count,
+    producer_sample_midpoints_inside_requested_budget_row_count:
+      sampleBudget.midpoint_inside_requested_budget_row_count,
+    producer_sample_interval_centers_inside_requested_budget_row_count:
+      sampleBudget.interval_center_inside_requested_budget_row_count,
+    producer_sample_intervals_inside_requested_budget_row_count:
+      sampleBudget.interval_inside_requested_budget_row_count,
+    producer_all_sample_midpoints_inside_requested_residual_budget:
+      sampleBudget.all_midpoints_inside_requested_budget,
+    producer_all_sample_interval_centers_inside_requested_residual_budget:
+      sampleBudget.all_interval_centers_inside_requested_budget,
+    producer_all_sample_intervals_inside_requested_residual_budget:
+      sampleBudget.all_intervals_inside_requested_budget,
+    producer_sample_worst_midpoint_abs_to_requested_budget_half_width:
+      sampleBudget.worst_midpoint_abs_to_requested_budget_half_width,
+    producer_sample_worst_interval_center_abs_to_requested_budget_half_width:
+      sampleBudget.worst_interval_center_abs_to_requested_budget_half_width,
+    producer_sample_best_interval_half_width_to_requested_budget_half_width:
+      sampleBudget.best_interval_half_width_to_requested_budget_half_width,
+    producer_sample_worst_interval_half_width_to_requested_budget_half_width:
+      sampleBudget.worst_interval_half_width_to_requested_budget_half_width,
+    producer_sample_worst_interval_excess_to_requested_budget_half_width:
+      sampleBudget.worst_interval_excess_to_requested_budget_half_width,
+    producer_sample_worst_required_half_width_compression_to_fit_at_interval_center:
+      sampleBudget
+        .worst_required_half_width_compression_to_fit_at_interval_center,
+    producer_sample_worst_interval_half_width_row:
+      sampleBudget.worst_interval_half_width_row,
+    producer_sample_worst_required_half_width_compression_row:
+      sampleBudget.worst_required_half_width_compression_row,
+    producer_sample_first_interval_failure_row:
+      sampleBudget.first_interval_failure_row,
+    producer_requested_residual_absolute_half_width:
+      sampleBudget.requested_residual_absolute_half_width,
+    producer_worst_sample_residual_absolute_half_width:
+      sampleBudget.worst_sample_residual_absolute_half_width,
+    producer_row_local_budget_diagnosis:
+      sampleBudget.row_local_budget_diagnosis,
+    producer_row_local_collar_replay: rowLocalCollarReplay,
     producer_interval_hull_inside_requested_residual_budget:
       intervalHullInsideTarget,
     producer_midpoint_hull_inside_requested_residual_budget:
@@ -38098,6 +39765,161 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
       metrics
         .affine_floor_requested_y44_producer_max_sample_interval_half_width_to_budget
     ) ||
+    metrics
+      .affine_floor_requested_y44_producer_all_sample_midpoints_inside_budget !==
+      true ||
+    typeof metrics
+      .affine_floor_requested_y44_producer_all_sample_intervals_inside_budget !==
+      "boolean" ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_producer_sample_worst_required_compression
+    ) ||
+    ![
+      "row-local-producer-intervals-fit-requested-budget",
+      "row-local-centers-fit-but-interval-widths-need-correlation",
+      "row-local-midpoints-fit-but-interval-centers-or-widths-need-correlation",
+      "row-local-midpoints-miss-requested-budget",
+    ].includes(
+      metrics
+        .affine_floor_requested_y44_producer_row_local_budget_diagnosis
+    ) ||
+    metrics
+      .affine_floor_requested_y44_row_local_collar_replay_available !==
+      true ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_requested_collars_close !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_any_current_interval_closes !==
+      "boolean" ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_worst_requested_collar_to_midpoint_pressure
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_worst_current_interval_to_midpoint_pressure
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_replay_corrected_half_width_estimate
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_replay_corrected_full_radius_scale_estimate
+    ) ||
+    metrics
+      .affine_floor_requested_y44_row_local_safety_search_available !==
+      true ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_zero_width_inside !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_requested_budget_candidates_exceed !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_safety_searches_close !==
+      "boolean" ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_min_target_closing_half_width
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_max_target_closing_full_radius_scale
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_max_target_closing_replay_over_midpoint_pressure
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_target_closing_bracket_width
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_worst_zero_width_to_midpoint_pressure
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_worst_requested_candidate_to_midpoint_pressure
+    ) ||
+    metrics
+      .affine_floor_requested_y44_row_local_producer_width_contraction_target_available !==
+      true ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_producer_centers_inside_bisection_collar !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_current_producer_intervals_inside_bisection_collar !==
+      "boolean" ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_max_required_coordinate_compression
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_max_required_h38_residual_compression
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_max_required_s37_numerator_compression
+    ) ||
+    !finitePositive(
+      metrics.affine_floor_requested_y44_row_local_max_linear_subcell_forecast
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_min_target_h38_residual_half_width
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_min_target_s37_numerator_width_lower
+    ) ||
+    metrics
+      .affine_floor_requested_y44_row_local_n38_s37_collar_diagnostic_available !==
+      true ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_n38_midpoint_residuals_inside_s37_target !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_n38_graph_intervals_inside_s37_target !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_current_n38_interval_residuals_inside_s37_target !==
+      "boolean" ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_midpoint_residual_width_to_s37_target
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_graph_interval_width_to_s37_target
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_interval_residual_width_to_s37_target
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_numerator_interval_width_to_s37_target
+    ) ||
+    metrics
+      .affine_floor_requested_y44_row_local_n38_graph_remainder_target_available !==
+      true ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_graph_plus_midpoint_width_to_s37_target
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_min_n38_same_domain_remainder_width_budget
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_interval_residual_width_to_same_domain_remainder_budget
+    ) ||
     metrics.affine_floor_requested_xi_interval_cover_count !==
       route?.comparison_row_count ||
     !finiteNonnegative(
@@ -45424,6 +47246,470 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     Number.isFinite(Number(interval[0])) &&
     Number.isFinite(Number(interval[1])) &&
     Number(interval[0]) <= Number(interval[1]);
+  const nullableFiniteNonnegative = (value) =>
+    value === null || finiteNonnegative(value);
+  const nullableFinitePositive = (value) =>
+    value === null || finitePositive(value);
+  const hasFiniteBudgetRowSummary = (row) =>
+    row !== null &&
+    Number.isInteger(row?.row_index) &&
+    Number.isInteger(row?.comparison_row_index) &&
+    (row?.source_subcover_row_index === null ||
+      Number.isInteger(row?.source_subcover_row_index)) &&
+    typeof row?.cell_id === "string" &&
+    hasFiniteInterval(row?.speed_interval) &&
+    hasFiniteInterval(row?.xi_interval) &&
+    hasFiniteInterval(row?.residual_coordinate_interval) &&
+    Number.isFinite(Number(row?.residual_coordinate_midpoint)) &&
+    Number.isFinite(Number(row?.residual_coordinate_interval_center)) &&
+    finiteNonnegative(row?.residual_coordinate_interval_width) &&
+    finiteNonnegative(row?.residual_coordinate_interval_half_width) &&
+    finiteNonnegative(
+      row?.residual_coordinate_midpoint_abs_to_requested_budget_half_width
+    ) &&
+    finiteNonnegative(
+      row
+        ?.residual_coordinate_interval_center_abs_to_requested_budget_half_width
+    ) &&
+    finiteNonnegative(
+      row?.residual_coordinate_interval_half_width_to_requested_budget_half_width
+    ) &&
+    finiteNonnegative(
+      row?.residual_coordinate_interval_excess_beyond_requested_budget
+    ) &&
+    finiteNonnegative(
+      row?.residual_coordinate_interval_excess_to_requested_budget_half_width
+    ) &&
+    finiteNonnegative(
+      row?.residual_coordinate_available_half_width_at_interval_center
+    ) &&
+    nullableFiniteNonnegative(
+      row
+        ?.residual_coordinate_required_half_width_compression_to_fit_at_interval_center
+    ) &&
+    nullableFiniteNonnegative(row?.residual_absolute_interval_half_width) &&
+    nullableFiniteNonnegative(row?.residual_absolute_required_half_width) &&
+    typeof row?.residual_coordinate_interval_inside_requested_budget ===
+      "boolean" &&
+    typeof row?.residual_coordinate_midpoint_inside_requested_budget ===
+      "boolean" &&
+    typeof row
+      ?.residual_coordinate_interval_center_inside_requested_budget ===
+      "boolean";
+  const nullableBudgetRowSummary = (row) =>
+    row === null || hasFiniteBudgetRowSummary(row);
+  const replaySummaryValid = (summary) =>
+    hasFiniteInterval(summary?.h38_noise_interval) &&
+    hasFiniteInterval(summary?.clipped_h38_noise_interval) &&
+    typeof summary?.clipping_changed === "boolean" &&
+    finiteNonnegative(summary?.h38_residual_coordinate_width) &&
+    finiteNonnegative(summary?.h38_residual_width) &&
+    Number.isInteger(summary?.replay_row_context?.row_index) &&
+    Number.isInteger(summary?.replay_row_context?.comparison_row_index) &&
+    typeof summary?.replay_row_context?.cell_id === "string" &&
+    hasFiniteInterval(summary?.replay_row_context?.speed_interval) &&
+    hasFiniteInterval(summary?.replay_row_context?.xi_interval) &&
+    Number.isFinite(Number(summary?.replay_row_context?.noise_coordinate)) &&
+    finitePositive(summary?.replay_pressure) &&
+    finitePositive(
+      summary?.replay_pressure_over_requested_midpoint_pressure_bound
+    ) &&
+    finiteNonnegative(summary?.center_eliminated_pressure) &&
+    finiteNonnegative(
+      summary
+        ?.center_eliminated_pressure_over_requested_midpoint_pressure_bound
+    ) &&
+    (summary?.center_elimination_improvement_factor === null ||
+      finitePositive(summary?.center_elimination_improvement_factor));
+  const decoratedReplaySummaryValid = (summary) =>
+    replaySummaryValid(summary) &&
+    finiteNonnegative(summary?.h38_residual_coordinate_half_width) &&
+    finiteNonnegative(summary?.h38_residual_half_width);
+  const rowLocalCollarSafetySearchValid = (search) =>
+    search?.center_mode === "row-interval-center" &&
+    Number.isFinite(Number(search?.center_coordinate)) &&
+    finiteNonnegative(search?.requested_budget_candidate_half_width) &&
+    hasFiniteInterval(search?.requested_budget_candidate_interval) &&
+    Number.isInteger(search?.safety_search_iterations) &&
+    search.safety_search_iterations > 0 &&
+    decoratedReplaySummaryValid(search?.zero_width_replay) &&
+    decoratedReplaySummaryValid(search?.requested_budget_candidate_replay) &&
+    finiteNonnegative(search?.target_closing_half_width) &&
+    nullableFinitePositive(search?.target_closing_full_radius_scale) &&
+    decoratedReplaySummaryValid(search?.target_closing_replay) &&
+    finitePositive(search?.target_closing_replay_over_midpoint_pressure) &&
+    hasFiniteInterval(search?.target_closing_h38_noise_interval) &&
+    hasFiniteInterval(search?.clipped_target_closing_h38_noise_interval) &&
+    finiteNonnegative(search?.target_closing_h38_residual_half_width) &&
+    hasFiniteInterval(search?.target_closing_bracket) &&
+    finiteNonnegative(search?.target_closing_bracket_width) &&
+    [
+      "row-local-center-zero-width-meets-midpoint-pressure-with-no-positive-candidate",
+      "row-local-center-zero-width-exceeds-midpoint-pressure",
+      "row-local-requested-half-width-meets-midpoint-pressure",
+      "bisection-found-row-local-half-width-meeting-midpoint-pressure",
+      "bisection-did-not-find-row-local-half-width-meeting-midpoint-pressure",
+    ].includes(search?.safety_search_status);
+  const rowLocalProducerWidthContractionTargetValid = (target) =>
+    Number.isInteger(target?.row_index) &&
+    Number.isInteger(target?.comparison_row_index) &&
+    (target?.source_subcover_row_index === null ||
+      Number.isInteger(target?.source_subcover_row_index)) &&
+    typeof target?.cell_id === "string" &&
+    hasFiniteInterval(target?.speed_interval) &&
+    hasFiniteInterval(target?.xi_interval) &&
+    Number.isFinite(Number(target?.center_coordinate)) &&
+    hasFiniteInterval(target?.current_residual_coordinate_interval) &&
+    finiteNonnegative(target?.current_residual_coordinate_half_width) &&
+    finiteNonnegative(
+      target?.requested_residual_coordinate_half_width_at_center
+    ) &&
+    hasFiniteInterval(target?.target_residual_coordinate_interval) &&
+    finiteNonnegative(target?.target_residual_coordinate_half_width) &&
+    typeof target?.current_interval_inside_target === "boolean" &&
+    typeof target?.center_inside_target === "boolean" &&
+    finitePositive(target?.required_coordinate_half_width_compression) &&
+    finitePositive(target?.requested_to_target_half_width_compression) &&
+    finitePositive(target?.h38_residual_abs_scale) &&
+    finiteNonnegative(target?.current_h38_residual_half_width) &&
+    finiteNonnegative(target?.target_h38_residual_half_width) &&
+    finitePositive(target?.required_h38_residual_half_width_compression) &&
+    hasFiniteInterval(target?.solve_slope_interval) &&
+    finiteNonnegative(target?.solve_slope_abs_lower) &&
+    finiteNonnegative(target?.solve_slope_abs_upper) &&
+    finiteNonnegative(target?.target_s37_division_numerator_width_lower) &&
+    finiteNonnegative(target?.target_s37_division_numerator_width_upper) &&
+    finiteNonnegative(target?.current_s37_division_numerator_width_upper) &&
+    finitePositive(
+      target?.required_s37_division_numerator_width_compression
+    ) &&
+    Number.isInteger(target?.linear_row_subcell_refinement_forecast) &&
+    target.linear_row_subcell_refinement_forecast >= 1 &&
+    typeof target?.safety_search_status === "string" &&
+    finitePositive(target?.target_replay_over_midpoint_pressure) &&
+    [
+      "current-row-interval-inside-bisection-collar",
+      "row-center-inside-bisection-collar-width-open",
+      "row-center-outside-bisection-collar",
+    ].includes(target?.target_status) &&
+    [
+      "selected-producer-row-already-inside-row-local-H39-collar",
+      "selected-producer-row-needs-directed-rounded-width-contraction",
+      "selected-producer-row-width-contraction-target-unresolved",
+    ].includes(target?.certificate_interpretation);
+  const rowLocalN38S37CollarDiagnosticValid = (diagnostic) =>
+    diagnostic?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_N38_S37_COLLAR_DIAGNOSTIC_SCHEMA &&
+    diagnostic?.status ===
+      "h39-requested-y44-row-local-n38-s37-collar-diagnostic-candidate-emitted" &&
+    diagnostic?.evaluation_level ===
+      "candidate-h39-requested-y44-row-local-n38-s37-collar-diagnostic" &&
+    Number.isInteger(diagnostic?.row_index) &&
+    Number.isInteger(diagnostic?.comparison_row_index) &&
+    (diagnostic?.source_subcover_row_index === null ||
+      Number.isInteger(diagnostic?.source_subcover_row_index)) &&
+    typeof diagnostic?.cell_id === "string" &&
+    hasFiniteInterval(diagnostic?.speed_interval) &&
+    hasFiniteInterval(diagnostic?.xi_interval) &&
+    Number.isInteger(diagnostic?.polynomial_degree) &&
+    diagnostic.polynomial_degree >= 1 &&
+    diagnostic.polynomial_degree <= 3 &&
+    finitePositive(diagnostic?.target_residual_coordinate_half_width) &&
+    finitePositive(diagnostic?.target_h38_residual_half_width) &&
+    hasFiniteInterval(diagnostic?.solve_slope_interval) &&
+    finitePositive(
+      diagnostic?.target_s37_division_numerator_width_lower
+    ) &&
+    finitePositive(
+      diagnostic?.target_s37_division_numerator_width_upper
+    ) &&
+    finitePositive(
+      diagnostic?.target_s37_division_numerator_half_width_lower
+    ) &&
+    finiteNonnegative(diagnostic?.n38_graph_interval_width) &&
+    Number.isFinite(Number(diagnostic?.n38_midpoint_residual)) &&
+    finiteNonnegative(diagnostic?.n38_midpoint_residual_abs) &&
+    finiteNonnegative(diagnostic?.n38_midpoint_residual_width) &&
+    hasFiniteInterval(diagnostic?.n38_interval_residual) &&
+    finitePositive(diagnostic?.n38_interval_residual_width) &&
+    finitePositive(diagnostic?.n38_numerator_interval_width) &&
+    finiteNonnegative(
+      diagnostic?.n38_graph_interval_width_to_row_local_s37_target
+    ) &&
+    finiteNonnegative(
+      diagnostic?.n38_midpoint_residual_width_to_row_local_s37_target
+    ) &&
+    finitePositive(
+      diagnostic?.n38_interval_residual_width_to_row_local_s37_target
+    ) &&
+    finitePositive(
+      diagnostic?.n38_numerator_interval_width_to_row_local_s37_target
+    ) &&
+    finiteNonnegative(diagnostic?.n38_graph_plus_midpoint_width) &&
+    finiteNonnegative(
+      diagnostic?.n38_graph_plus_midpoint_width_to_row_local_s37_target
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_same_domain_remainder_width_budget
+    ) &&
+    finiteNonnegative(
+      diagnostic
+        ?.row_local_n38_same_domain_remainder_width_budget_to_s37_target
+    ) &&
+    finitePositive(
+      diagnostic
+        ?.n38_interval_residual_width_to_same_domain_remainder_budget
+    ) &&
+    typeof diagnostic
+      ?.n38_midpoint_residual_inside_row_local_s37_target === "boolean" &&
+    typeof diagnostic?.n38_graph_interval_inside_row_local_s37_target ===
+      "boolean" &&
+    typeof diagnostic
+      ?.current_n38_interval_residual_inside_row_local_s37_target ===
+      "boolean" &&
+    typeof diagnostic
+      ?.graph_plus_midpoint_inside_row_local_s37_target === "boolean" &&
+    [
+      "row-local-n38-graph-remainder-target-has-headroom",
+      "row-local-n38-graph-remainder-target-open",
+    ].includes(
+      diagnostic?.same_domain_n38_graph_remainder_target_status
+    ) &&
+    typeof diagnostic
+      ?.same_domain_n38_graph_remainder_acceptance_inequality ===
+      "string" &&
+    typeof diagnostic
+      ?.same_domain_n38_graph_remainder_certificate_route === "string" &&
+    [
+      "current-n38-interval-residual-inside-row-local-s37-target",
+      "n38-midpoint-graph-fits-row-local-s37-target-but-interval-hull-needs-directed-rounded-remainder",
+      "n38-midpoint-fits-but-graph-width-needs-row-local-s37-control",
+      "n38-midpoint-graph-misses-row-local-s37-target",
+    ].includes(diagnostic?.s37_dependency_status) &&
+    [
+      "selected-row-current-N38-interval-residual-already-fits-row-local-S37-target",
+      "selected-row-N38-midpoint-graph-fits-but-raw-interval-residual-is-the-width-artifact",
+      "selected-row-N38-graph-center-does-not-yet-fit-row-local-S37-target",
+    ].includes(diagnostic?.certificate_interpretation) &&
+    typeof diagnostic?.candidate_certificate_route === "string" &&
+    diagnostic?.claim_boundary?.certifies_n38_graph_residual_enclosure ===
+      false &&
+    diagnostic?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    diagnostic?.claim_boundary
+      ?.certifies_h38_producer_image_residual_radius === false &&
+    diagnostic?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    diagnostic?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    diagnostic?.claim_boundary?.certifies_continuous_polydisc_primitives ===
+      false &&
+    diagnostic?.claim_boundary?.retained_branch === false;
+  const rowLocalReplayEntryValid = (entry) =>
+    Array.isArray(entry?.row_roles) &&
+    entry.row_roles.length >= 1 &&
+    entry.row_roles.every((role) =>
+      [
+        "first-interval-failure",
+        "worst-interval-half-width",
+        "worst-required-compression",
+      ].includes(role)
+    ) &&
+    hasFiniteBudgetRowSummary(entry?.row_summary) &&
+    Number.isInteger(entry?.row_replay_context?.row_index) &&
+    typeof entry?.row_replay_context?.cell_id === "string" &&
+    hasFiniteInterval(entry?.row_replay_context?.speed_interval) &&
+    hasFiniteInterval(entry?.row_replay_context?.xi_interval) &&
+    Number.isFinite(Number(entry?.row_replay_context?.noise_coordinate)) &&
+    hasFiniteInterval(entry?.requested_budget_collar_interval) &&
+    hasFiniteInterval(entry?.row_midpoint_collar_interval) &&
+    finiteNonnegative(entry?.row_midpoint_collar_half_width) &&
+    hasFiniteInterval(entry?.row_center_collar_interval) &&
+    finiteNonnegative(entry?.row_center_collar_half_width) &&
+    replaySummaryValid(entry?.current_row_interval_replay) &&
+    replaySummaryValid(entry?.requested_budget_collar_replay) &&
+    replaySummaryValid(entry?.row_midpoint_collar_replay) &&
+    replaySummaryValid(entry?.row_center_collar_replay) &&
+    rowLocalCollarSafetySearchValid(entry?.row_center_collar_safety_search) &&
+    rowLocalProducerWidthContractionTargetValid(
+      entry?.row_center_producer_width_contraction_target
+    ) &&
+    rowLocalN38S37CollarDiagnosticValid(
+      entry?.row_center_n38_s37_collar_diagnostic
+    ) &&
+    entry?.requested_budget_collar_inside_requested_budget === true &&
+    typeof entry?.row_midpoint_collar_inside_requested_budget === "boolean" &&
+    typeof entry?.row_center_collar_inside_requested_budget === "boolean" &&
+    typeof entry?.current_row_interval_inside_requested_budget === "boolean" &&
+    typeof entry?.requested_budget_collar_closes_midpoint_pressure ===
+      "boolean" &&
+    typeof entry?.row_midpoint_collar_closes_midpoint_pressure ===
+      "boolean" &&
+    typeof entry?.row_center_collar_closes_midpoint_pressure === "boolean" &&
+    [
+      "row-local-requested-collars-close-midpoint-pressure-candidate",
+      "row-local-requested-collars-still-exceed-midpoint-pressure-candidate",
+    ].includes(entry?.row_local_replay_status);
+  const rowLocalCollarReplayValid = (replay) =>
+    replay?.schema ===
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA &&
+    replay?.status ===
+      "h39-requested-y44-row-local-producer-collar-replay-candidate-emitted" &&
+    replay?.evaluation_level ===
+      "candidate-h39-requested-y44-row-local-producer-collar-replay" &&
+    Number.isInteger(replay?.selected_row_count) &&
+    replay.selected_row_count >= 1 &&
+    finitePositive(replay?.requested_residual_midpoint_matching_half_width) &&
+    hasFiniteInterval(replay?.requested_residual_budget_interval) &&
+    finitePositive(replay?.requested_residual_midpoint_pressure_bound) &&
+    Array.isArray(replay?.row_replays) &&
+    replay.row_replays.length === replay.selected_row_count &&
+    replay.row_replays.every(rowLocalReplayEntryValid) &&
+    typeof replay
+      ?.all_requested_budget_collar_replays_close_midpoint_pressure ===
+      "boolean" &&
+    typeof replay
+      ?.any_current_row_interval_replay_closes_midpoint_pressure ===
+      "boolean" &&
+    finitePositive(
+      replay?.worst_requested_budget_collar_replay_over_midpoint_pressure
+    ) &&
+    finitePositive(
+      replay?.worst_current_row_interval_replay_over_midpoint_pressure
+    ) &&
+    finitePositive(
+      replay?.requested_budget_to_full_replay_amplification_factor
+    ) &&
+    finitePositive(
+      replay?.replay_corrected_residual_coordinate_half_width_estimate
+    ) &&
+    finitePositive(
+      replay?.replay_corrected_full_radius_to_half_width_scale_estimate
+    ) &&
+    replay?.row_local_collar_safety_search_available === true &&
+    Number.isInteger(replay?.row_local_collar_safety_search_iterations) &&
+    replay.row_local_collar_safety_search_iterations > 0 &&
+    typeof replay
+      ?.all_zero_width_row_center_replays_close_midpoint_pressure ===
+      "boolean" &&
+    typeof replay
+      ?.all_requested_budget_row_center_candidates_exceed_midpoint_pressure ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_safety_searches_close_midpoint_pressure ===
+      "boolean" &&
+    nullableFinitePositive(replay?.min_row_local_target_closing_half_width) &&
+    nullableFinitePositive(
+      replay?.max_row_local_target_closing_full_radius_scale
+    ) &&
+    nullableFinitePositive(
+      replay?.max_row_local_target_closing_replay_over_midpoint_pressure
+    ) &&
+    nullableFiniteNonnegative(
+      replay?.max_row_local_target_closing_bracket_width
+    ) &&
+    nullableFinitePositive(
+      replay?.worst_zero_width_row_center_replay_over_midpoint_pressure
+    ) &&
+    nullableFinitePositive(
+      replay
+        ?.worst_requested_budget_row_center_candidate_replay_over_midpoint_pressure
+    ) &&
+    [
+      "bisection-finds-positive-row-local-collars-below-requested-budget",
+      "requested-row-local-collars-already-close-or-bisection-finds-collar",
+      "row-local-center-zero-width-pressure-blocks-current-bisection-route",
+    ].includes(replay?.row_local_collar_safety_search_interpretation) &&
+    replay?.row_local_producer_width_contraction_target_available === true &&
+    typeof replay
+      ?.all_row_local_producer_centers_inside_bisection_collar ===
+      "boolean" &&
+    typeof replay
+      ?.all_current_row_local_producer_intervals_inside_bisection_collar ===
+      "boolean" &&
+    finitePositive(
+      replay?.max_required_row_local_coordinate_half_width_compression
+    ) &&
+    finitePositive(
+      replay?.max_required_row_local_h38_residual_half_width_compression
+    ) &&
+    finitePositive(
+      replay?.max_required_row_local_s37_division_numerator_width_compression
+    ) &&
+    finitePositive(replay?.max_row_local_linear_subcell_refinement_forecast) &&
+    finitePositive(replay?.min_row_local_target_h38_residual_half_width) &&
+    finitePositive(
+      replay?.min_row_local_target_s37_division_numerator_width_lower
+    ) &&
+    [
+      "selected-producer-rows-already-inside-bisection-collar",
+      "selected-producer-row-centers-fit-but-width-needs-directed-rounded-contraction",
+      "selected-producer-row-centers-miss-bisection-collar",
+    ].includes(
+      replay?.row_local_producer_width_contraction_interpretation
+    ) &&
+    replay?.row_local_n38_s37_collar_diagnostic_available === true &&
+    typeof replay
+      ?.all_row_local_n38_midpoint_graph_residuals_inside_s37_target ===
+      "boolean" &&
+    typeof replay?.all_row_local_n38_graph_intervals_inside_s37_target ===
+      "boolean" &&
+    typeof replay
+      ?.all_current_row_local_n38_interval_residuals_inside_s37_target ===
+      "boolean" &&
+    finiteNonnegative(
+      replay?.max_row_local_n38_midpoint_residual_width_to_s37_target
+    ) &&
+    finiteNonnegative(
+      replay?.max_row_local_n38_graph_interval_width_to_s37_target
+    ) &&
+    finitePositive(
+      replay?.max_row_local_n38_interval_residual_width_to_s37_target
+    ) &&
+    finitePositive(
+      replay?.max_row_local_n38_numerator_interval_width_to_s37_target
+    ) &&
+    replay?.row_local_n38_s37_graph_remainder_target_available === true &&
+    typeof replay
+      ?.all_row_local_n38_graph_plus_midpoint_widths_inside_s37_target ===
+      "boolean" &&
+    finiteNonnegative(
+      replay?.max_row_local_n38_graph_plus_midpoint_width_to_s37_target
+    ) &&
+    finitePositive(
+      replay?.min_row_local_n38_same_domain_remainder_width_budget
+    ) &&
+    finitePositive(
+      replay
+        ?.max_row_local_n38_interval_residual_width_to_same_domain_remainder_budget
+    ) &&
+    [
+      "current-n38-interval-residuals-fit-row-local-s37-target",
+      "n38-midpoint-graph-fits-but-interval-remainder-needs-directed-rounding",
+      "n38-midpoint-graph-misses-row-local-s37-target",
+    ].includes(replay?.row_local_n38_s37_collar_interpretation) &&
+    [
+      "same-domain-n38-graph-remainder-has-row-local-s37-headroom-but-raw-interval-hull-exceeds-it",
+      "same-domain-n38-graph-remainder-target-already-covered-by-current-interval-hull",
+      "same-domain-n38-graph-remainder-target-open",
+    ].includes(
+      replay?.row_local_n38_s37_graph_remainder_target_interpretation
+    ) &&
+    [
+      "requested-budget-collar-closes-but-current-row-intervals-need-producer-certificate",
+      "requested-budget-collar-closes-on-selected-producer-rows",
+      "requested-budget-collar-still-exceeds-selected-row-midpoint-pressure",
+    ].includes(replay?.row_local_collar_replay_interpretation) &&
+    typeof replay?.candidate_certificate_route === "string" &&
+    replay?.claim_boundary
+      ?.certifies_h38_producer_image_residual_radius === false &&
+    replay?.claim_boundary?.certifies_shared_zeta_interval_provider ===
+      false &&
+    replay?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    replay?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    replay?.claim_boundary?.certifies_continuous_polydisc_primitives ===
+      false &&
+    replay?.claim_boundary?.retained_branch === false;
   if (
     comparison?.schema !==
     THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_PRODUCER_IMAGE_BUDGET_COMPARISON_SCHEMA
@@ -45484,10 +47770,154 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     !finiteNonnegative(
       comparison?.producer_residual_coordinate_midpoint_hull_width
     ) ||
+    !finitePositive(
+      comparison?.producer_residual_coordinate_residual_radius
+    ) ||
     !finiteNonnegative(comparison?.producer_centered_full_hull_half_width) ||
     !finiteNonnegative(comparison?.producer_max_sample_interval_half_width)
   ) {
     errors.push("producer coordinate profile fields must be finite");
+  }
+  const sampleRows = comparison?.producer_sample_budget_rows;
+  if (
+    !Array.isArray(sampleRows) ||
+    !Number.isInteger(comparison?.producer_sample_budget_row_count) ||
+    comparison.producer_sample_budget_row_count !== sampleRows.length ||
+    comparison.producer_sample_budget_row_count !==
+      comparison?.producer_row_count ||
+    !Number.isInteger(
+      comparison?.producer_sample_midpoints_inside_requested_budget_row_count
+    ) ||
+    !Number.isInteger(
+      comparison
+        ?.producer_sample_interval_centers_inside_requested_budget_row_count
+    ) ||
+    !Number.isInteger(
+      comparison?.producer_sample_intervals_inside_requested_budget_row_count
+    ) ||
+    comparison.producer_sample_midpoints_inside_requested_budget_row_count < 0 ||
+    comparison.producer_sample_midpoints_inside_requested_budget_row_count >
+      comparison.producer_sample_budget_row_count ||
+    comparison
+      .producer_sample_interval_centers_inside_requested_budget_row_count <
+      0 ||
+    comparison
+      .producer_sample_interval_centers_inside_requested_budget_row_count >
+      comparison.producer_sample_budget_row_count ||
+    comparison.producer_sample_intervals_inside_requested_budget_row_count <
+      0 ||
+    comparison.producer_sample_intervals_inside_requested_budget_row_count >
+      comparison.producer_sample_budget_row_count ||
+    typeof comparison
+      ?.producer_all_sample_midpoints_inside_requested_residual_budget !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_all_sample_interval_centers_inside_requested_residual_budget !==
+      "boolean" ||
+    typeof comparison
+      ?.producer_all_sample_intervals_inside_requested_residual_budget !==
+      "boolean" ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_sample_worst_midpoint_abs_to_requested_budget_half_width
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_sample_worst_interval_center_abs_to_requested_budget_half_width
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_sample_best_interval_half_width_to_requested_budget_half_width
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_sample_worst_interval_half_width_to_requested_budget_half_width
+    ) ||
+    !finiteNonnegative(
+      comparison
+        ?.producer_sample_worst_interval_excess_to_requested_budget_half_width
+    ) ||
+    !nullableFiniteNonnegative(
+      comparison
+        ?.producer_sample_worst_required_half_width_compression_to_fit_at_interval_center
+    ) ||
+    !nullableBudgetRowSummary(
+      comparison?.producer_sample_worst_interval_half_width_row
+    ) ||
+    !nullableBudgetRowSummary(
+      comparison?.producer_sample_worst_required_half_width_compression_row
+    ) ||
+    !nullableBudgetRowSummary(
+      comparison?.producer_sample_first_interval_failure_row
+    ) ||
+    !finitePositive(
+      comparison?.producer_requested_residual_absolute_half_width
+    ) ||
+    !finiteNonnegative(
+      comparison?.producer_worst_sample_residual_absolute_half_width
+    )
+  ) {
+    errors.push("producer row-local budget aggregate fields must be finite");
+  }
+  if (
+    Array.isArray(sampleRows) &&
+    !sampleRows.every(
+      (row) =>
+        Number.isInteger(row?.row_index) &&
+        Number.isInteger(row?.comparison_row_index) &&
+        (row?.source_subcover_row_index === null ||
+          Number.isInteger(row?.source_subcover_row_index)) &&
+        typeof row?.cell_id === "string" &&
+        hasFiniteInterval(row?.speed_interval) &&
+        hasFiniteInterval(row?.xi_interval) &&
+        hasFiniteInterval(row?.residual_coordinate_interval) &&
+        Number.isFinite(Number(row?.residual_coordinate_midpoint)) &&
+        Number.isFinite(Number(row?.residual_coordinate_interval_center)) &&
+        finiteNonnegative(row?.residual_coordinate_interval_width) &&
+        finiteNonnegative(row?.residual_coordinate_interval_half_width) &&
+        finiteNonnegative(
+          row
+            ?.residual_coordinate_midpoint_abs_to_requested_budget_half_width
+        ) &&
+        finiteNonnegative(
+          row
+            ?.residual_coordinate_interval_center_abs_to_requested_budget_half_width
+        ) &&
+        finiteNonnegative(
+          row
+            ?.residual_coordinate_interval_half_width_to_requested_budget_half_width
+        ) &&
+        finiteNonnegative(
+          row?.residual_coordinate_interval_excess_beyond_requested_budget
+        ) &&
+        finiteNonnegative(
+          row
+            ?.residual_coordinate_interval_excess_to_requested_budget_half_width
+        ) &&
+        finiteNonnegative(
+          row?.residual_coordinate_available_half_width_at_interval_center
+        ) &&
+        nullableFiniteNonnegative(
+          row
+            ?.residual_coordinate_required_half_width_compression_to_fit_at_interval_center
+        ) &&
+        nullableFiniteNonnegative(
+          row?.residual_absolute_interval_half_width
+        ) &&
+        nullableFiniteNonnegative(row?.residual_absolute_required_half_width) &&
+        typeof row?.residual_coordinate_interval_inside_requested_budget ===
+          "boolean" &&
+        typeof row?.residual_coordinate_midpoint_inside_requested_budget ===
+          "boolean" &&
+        typeof row
+          ?.residual_coordinate_interval_center_inside_requested_budget ===
+          "boolean"
+    )
+  ) {
+    errors.push("producer row-local budget rows must be finite and boolean classified");
+  }
+  if (!rowLocalCollarReplayValid(comparison?.producer_row_local_collar_replay)) {
+    errors.push("producer row-local collar replay must be finite and candidate-only");
   }
   if (
     typeof comparison
@@ -45521,6 +47951,12 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
       "producer-midpoint-hull-fits-but-interval-hull-needs-directed-correlation-to-h39-budget",
       "producer-midpoint-hull-misses-h39-requested-residual-budget",
     ].includes(comparison?.budget_comparison_interpretation) ||
+    ![
+      "row-local-producer-intervals-fit-requested-budget",
+      "row-local-centers-fit-but-interval-widths-need-correlation",
+      "row-local-midpoints-fit-but-interval-centers-or-widths-need-correlation",
+      "row-local-midpoints-miss-requested-budget",
+    ].includes(comparison?.producer_row_local_budget_diagnosis) ||
     typeof comparison?.certificate_route !== "string"
   ) {
     errors.push("budget comparison must classify the producer-image route");

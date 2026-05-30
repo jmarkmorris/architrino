@@ -132,21 +132,62 @@ equality core, the strict-gap repair route fails closed for that parent row.
 
 The existing finite fold-shear witness remains useful only as a seed direction.
 The current v10 deficits show that the first sidecar did not finish strict-gap
-closure. The next solver should therefore:
+closure. The free-period local-shear diagnostic and the shifted-separator
+fixed-period diagnostic now sharpen the route:
 
-1. freeze a new repaired packet identity rather than rewriting the current
-   sidecar in place;
-2. assemble the signed gap derivative matrix $A$ for the selected orientations
+- the free-period local-shear matrix has a strict tangent witness, but direct
+  finite integration reaches 20 field-speed crossings at its strict-gap
+  threshold;
+- the shifted-separator fixed-period matrix has a stricter tangent witness
+  $(h_{A0s},h_{A1s},h_{A2s})=(-1,-1,-1)$ with minimum post-margin surplus
+  `0.484518823372`, but direct finite integration still reaches 12 field-speed
+  roots at $\lambda_{\min}=0.264833953926991`;
+- the bounded three-coordinate shifted-separator sampled LP screen adds
+  explicit field-speed sign-itinerary inequalities to 810 sampled collar
+  inequalities and 1,940 retained field-speed sign guards, but its optimum
+  still has nonpositive sampled strict-gap margin
+  $\gamma_{\mathrm{sample}}=-0.204126631574676$;
+- the split-two shifted-separator enrichment repeats the same sampled screen
+  with six subarc coefficients and still has nonpositive sampled margin
+  $\gamma_{\mathrm{sample}}=-0.207816886605516$;
+- the anti-periodic cubic Hermite same-itinerary screen tests grid refinements
+  through 270 Hermite nodes and 541 LP variables, with derivative-bound
+  sensitivity over $40\le |H'_i|_{\max}\le 640$, and reaches the sampled
+  boundary from below with best margin
+  $\gamma_{\mathrm{sample}}=-2.20865857936394\times 10^{-10}$ rather than a
+  positive strict-gap margin;
+- the row-only numerical dual for that Hermite sampled LP gives a
+  residual-adjusted negative upper bound
+  $\gamma\le -2.20862209291526\times 10^{-10}$ at half-grid 256;
+- the rationalization audit replaces the 23 active half-grid-256 dual
+  multipliers by exact rationals with denominator cap $10^9$ while preserving
+  the negative binary64-row residual-adjusted bound
+  $\gamma\le -2.20860276388005\times 10^{-10}$;
+- the active-row interval backend reconstructs those 23 rows with exact
+  rational Hermite coefficients, outward rational trigonometric bounds, exact
+  gamma stationarity, and no gamma residual cap, proving the finite sampled
+  row-system upper bound
+  $\gamma\le -2.20499517531647\times 10^{-10}$.
+
+The next solver should therefore:
+
+1. treat generic same-itinerary Hermite basis enrichment as closed at the
+   finite sampled level unless a continuous-in-collar lift is explicitly built;
+2. either freeze a new repaired packet identity around a genuinely different
+   same-itinerary structural ansatz or explicitly reopen the itinerary;
+3. assemble the signed gap derivative matrix $A$ for the selected orientations
    above;
-3. keep the structural constraint matrix $B=DC(\mathbf a_0)$, including section,
+4. keep the structural constraint matrix $B=DC(\mathbf a_0)$, including section,
    symmetry, separator, matching, and neutral-coordinate rows;
-4. solve
+5. solve
    $$
    B\xi=0,
    \qquad
    A\xi\ge\kappa+\gamma;
    $$
-5. emit a candidate packet only after the same deformation also preserves or
+   together with finite field-speed-itinerary inequalities inside that
+   constrained solve;
+6. emit a candidate packet only after the same deformation also preserves or
    recomputes the simple-root and empty-row certificates.
 
 This is the shortest path toward closure because it attacks the actual

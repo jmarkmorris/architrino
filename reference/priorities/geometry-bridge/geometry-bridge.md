@@ -2417,6 +2417,87 @@ bounded. This confirms that the next proof step is a directed-rounded
 producer-image/correlation certificate, not another independent residual box or
 finer raw $\zeta$ subdivision.
 
+The row-local producer-budget refinement sharpens that conclusion. The H39
+route now exports `producer_sample_budget_rows` for the same requested
+shifted-index-$1$, $y^{44}$ comparison, carrying each producer row's cell,
+speed interval, $\xi$ interval, residual-coordinate midpoint, residual-coordinate
+interval, and fit ratios against the requested half-width. On the focused
+fixture all five row midpoints fit the requested budget, while at least one row
+interval still fails. The obstruction is therefore not a global hull artifact
+created by distant row centers; it is the row-field interval width itself. The
+artifact also names the first interval-failing row and the worst interval-width
+row, so the next proof object can target a concrete producer cell rather than a
+global interval hull. That proof object must carry the H38 producer residual
+coordinate as a dependency-preserving row-local enclosure before H39 applies
+absolute Cauchy bounds.
+
+The row-local producer-collar replay tightens the numerical target again. The
+H39 route now replays the first interval-failing row and the worst interval-width
+row through explicit H38 residual-coordinate collars. The current full row
+intervals miss the midpoint pressure bound by about $5.06\times10^6$, and even
+the earlier requested source-only collar of half-width
+$1.52\times10^{-6}$ still misses the selected-row H39 replay by about $7.71$.
+Thus the actual row-local replay target is closer to
+$2\times10^{-7}$ in normalized residual coordinate, or a full-radius compression
+scale above $5\times10^6$. This does not certify the H38 producer image; it
+replaces the broad interval-dependency statement with a concrete failing-row
+collar replay and a sharper directed-rounded enclosure target.
+
+The row-local collar bisection turns the estimate into an executable target.
+At the selected row centers, the zero-width replay is already below the
+midpoint pressure bound, with worst ratio about $3.47\times10^{-3}$. The full
+requested collar still exceeds the bound by about $7.71$. Bisection on the same
+row-local replay finds a positive normalized half-width about
+$1.97\times10^{-7}$, with full-radius scale about $5.08\times10^6$ and
+bracket width below $10^{-15}$. This identifies the next certificate target
+more sharply: prove, with directed rounding on the same H38 producer domain,
+that the selected producer rows stay inside this row-local collar before H39
+applies absolute Cauchy bounds.
+
+The row-local producer-width contraction packet converts that collar into H38
+producer-image targets. The live route now emits
+`row_center_producer_width_contraction_target` for each selected row and projects
+the row-local bisection collar back to the H38 residual coordinate and the
+pre-division $S_{37}$ numerator. On the focused H39/y44 route, both selected row
+centers are inside the bisection collar, while the current producer intervals
+are not. The largest required normalized coordinate contraction is
+$5.077823006494715\times10^6$; the same H38 residual half-width contraction is
+$5.077823006494714\times10^6$; the $S_{37}$ numerator-width contraction target
+is $5.0778237283133995\times10^6$. Equivalently, the selected rows must reach
+H38 residual half-width at least as small as
+$7.308309016282101\times10^{16}$ and a pre-division numerator-width lower
+target about $1.158687441087688\times10^{17}$. A naive linear row-subcell
+forecast is about $25{,}389{,}116$ local subcells, so the next useful artifact is
+not brute refinement; it is a directed-rounded same-domain producer-image
+certificate that keeps the residual coordinate correlated through the $N_{38}$
+graph and $S_{37}$ division before H39 absolutizes the source. This remains
+candidate-only and does not certify the H38 producer image.
+
+The row-local $N_{38}/S_{37}$ collar diagnostic now tests the same target one
+step closer to a certificate. For each selected row, the route compares the
+quadratic $N_{38}$ graph residual against the row-local numerator-width target
+derived from the inherited $S_{37}$ solve slope. The midpoint graph residuals
+and graph widths already fit by large margins: the worst midpoint residual
+width is only $5.791796829783928\times10^{-11}$ of the row-local
+$S_{37}$ target, and the worst graph interval width is only
+$2.896826890907833\times10^{-11}$ of that target. The current interval
+residual, however, is still $5.077823006493376\times10^6$ times too wide. This
+separates the problem: the quadratic $N_{38}$ normal form is centered correctly,
+and $S_{37}$ is not the immediate source of the blowup; the remaining certificate
+must prove a directed-rounded same-domain $N_{38}$ graph remainder instead of
+passing through the raw row interval hull.
+
+The same row-local diagnostic now records the exact acceptance inequality for
+that next certificate:
+$w(\mathrm{graph})+2|r_{\mathrm{mid}}|+w(r_{\mathrm{sd}})\le
+w_{S_{37}}^{\mathrm{row}}$. On the live selected rows, the graph-plus-midpoint
+part is below $10^{-9}$ of the row-local $S_{37}$ numerator-width target, so
+the remaining same-domain $N_{38}$ graph-remainder width budget is still
+positive and above $10^{17}$. The raw interval residual is more than
+$5\times10^6$ times larger than this remaining budget. This tightens the target
+from a general "directed-rounded $N_{38}$ graph remainder" to a concrete
+same-domain remainder inequality measured before the $S_{37}$ division.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.

@@ -4528,6 +4528,579 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .producer_interval_hull_inside_requested_residual_budget,
     false
   );
+  assert.equal(
+    producerBudgetComparison.producer_sample_budget_row_count,
+    route.comparison_row_count
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_sample_midpoints_inside_requested_budget_row_count,
+    route.comparison_row_count
+  );
+  assert.ok(
+    producerBudgetComparison
+      .producer_sample_intervals_inside_requested_budget_row_count <
+      route.comparison_row_count
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_all_sample_midpoints_inside_requested_residual_budget,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison
+      .producer_all_sample_intervals_inside_requested_residual_budget,
+    false
+  );
+  assert.ok(
+    producerBudgetComparison.producer_sample_budget_rows.some(
+      (row) =>
+        row.residual_coordinate_midpoint_inside_requested_budget === true &&
+        row.residual_coordinate_interval_inside_requested_budget === false
+    )
+  );
+  assert.equal(
+    producerBudgetComparison.producer_sample_first_interval_failure_row
+      .residual_coordinate_midpoint_inside_requested_budget,
+    true
+  );
+  assert.equal(
+    producerBudgetComparison.producer_sample_first_interval_failure_row
+      .residual_coordinate_interval_inside_requested_budget,
+    false
+  );
+  assert.ok(
+    producerBudgetComparison.producer_sample_worst_interval_half_width_row
+      .residual_coordinate_interval_half_width_to_requested_budget_half_width >=
+      producerBudgetComparison
+        .producer_sample_first_interval_failure_row
+        .residual_coordinate_interval_half_width_to_requested_budget_half_width
+  );
+  const rowLocalCollarReplay =
+    producerBudgetComparison.producer_row_local_collar_replay;
+  assert.equal(rowLocalCollarReplay.selected_row_count, 2);
+  assert.equal(
+    rowLocalCollarReplay
+      .all_requested_budget_collar_replays_close_midpoint_pressure,
+    false
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .any_current_row_interval_replay_closes_midpoint_pressure,
+    false
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .worst_requested_budget_collar_replay_over_midpoint_pressure > 7
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .worst_requested_budget_collar_replay_over_midpoint_pressure < 8
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .worst_current_row_interval_replay_over_midpoint_pressure > 5e6
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .replay_corrected_residual_coordinate_half_width_estimate < 2e-7
+  );
+  assert.equal(
+    rowLocalCollarReplay.row_local_collar_safety_search_available,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay.row_local_collar_safety_search_iterations,
+    32
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_zero_width_row_center_replays_close_midpoint_pressure,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_requested_budget_row_center_candidates_exceed_midpoint_pressure,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_safety_searches_close_midpoint_pressure,
+    true
+  );
+  assert.ok(
+    rowLocalCollarReplay.min_row_local_target_closing_half_width > 1.9e-7
+  );
+  assert.ok(
+    rowLocalCollarReplay.min_row_local_target_closing_half_width < 2e-7
+  );
+  assert.ok(
+    rowLocalCollarReplay.max_row_local_target_closing_full_radius_scale >
+      5e6
+  );
+  assert.ok(
+    rowLocalCollarReplay.max_row_local_target_closing_replay_over_midpoint_pressure <=
+      1
+  );
+  assert.ok(
+    rowLocalCollarReplay.max_row_local_target_closing_replay_over_midpoint_pressure >
+      0.999999
+  );
+  assert.ok(
+    rowLocalCollarReplay.max_row_local_target_closing_bracket_width < 1e-15
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .worst_zero_width_row_center_replay_over_midpoint_pressure < 0.004
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .worst_requested_budget_row_center_candidate_replay_over_midpoint_pressure >
+      7
+  );
+  assert.equal(
+    rowLocalCollarReplay.row_local_collar_safety_search_interpretation,
+    "bisection-finds-positive-row-local-collars-below-requested-budget"
+  );
+  assert.equal(
+    rowLocalCollarReplay.row_local_producer_width_contraction_target_available,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay.all_row_local_producer_centers_inside_bisection_collar,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_current_row_local_producer_intervals_inside_bisection_collar,
+    false
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_required_row_local_coordinate_half_width_compression > 5e6
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_required_row_local_coordinate_half_width_compression < 5.2e6
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_required_row_local_h38_residual_half_width_compression > 5e6
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_required_row_local_h38_residual_half_width_compression < 5.2e6
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_required_row_local_s37_division_numerator_width_compression > 5e6
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_required_row_local_s37_division_numerator_width_compression < 5.3e6
+  );
+  assert.ok(
+    rowLocalCollarReplay.max_row_local_linear_subcell_refinement_forecast >
+      2.5e7
+  );
+  assert.ok(
+    rowLocalCollarReplay.max_row_local_linear_subcell_refinement_forecast <
+      2.6e7
+  );
+  assert.ok(
+    rowLocalCollarReplay.min_row_local_target_h38_residual_half_width >
+      7e16
+  );
+  assert.ok(
+    rowLocalCollarReplay.min_row_local_target_h38_residual_half_width <
+      8e16
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .min_row_local_target_s37_division_numerator_width_lower > 1e17
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .min_row_local_target_s37_division_numerator_width_lower < 1.3e17
+  );
+  assert.equal(
+    rowLocalCollarReplay.row_local_producer_width_contraction_interpretation,
+    "selected-producer-row-centers-fit-but-width-needs-directed-rounded-contraction"
+  );
+  assert.equal(
+    rowLocalCollarReplay.row_local_n38_s37_collar_diagnostic_available,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_midpoint_graph_residuals_inside_s37_target,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_graph_intervals_inside_s37_target,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_current_row_local_n38_interval_residuals_inside_s37_target,
+    false
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_midpoint_residual_width_to_s37_target < 1e-9
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_graph_interval_width_to_s37_target < 1e-10
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_interval_residual_width_to_s37_target > 5e6
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_interval_residual_width_to_s37_target < 5.2e6
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_numerator_interval_width_to_s37_target > 5e6
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_numerator_interval_width_to_s37_target < 5.2e6
+  );
+  assert.equal(
+    rowLocalCollarReplay.row_local_n38_s37_collar_interpretation,
+    "n38-midpoint-graph-fits-but-interval-remainder-needs-directed-rounding"
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .row_local_n38_s37_graph_remainder_target_available,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_graph_plus_midpoint_widths_inside_s37_target,
+    true
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_graph_plus_midpoint_width_to_s37_target < 1e-9
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .min_row_local_n38_same_domain_remainder_width_budget > 1e17
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_interval_residual_width_to_same_domain_remainder_budget >
+      5e6
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .row_local_n38_s37_graph_remainder_target_interpretation,
+    "same-domain-n38-graph-remainder-has-row-local-s37-headroom-but-raw-interval-hull-exceeds-it"
+  );
+  rowLocalCollarReplay.row_replays.forEach((row) => {
+    assert.equal(
+      row.row_center_collar_safety_search.safety_search_status,
+      "bisection-found-row-local-half-width-meeting-midpoint-pressure"
+    );
+    assert.ok(
+      row.row_center_collar_safety_search
+        .target_closing_replay_over_midpoint_pressure <= 1
+    );
+    assert.ok(
+      row.row_center_collar_safety_search
+        .requested_budget_candidate_replay
+        .replay_pressure_over_requested_midpoint_pressure_bound > 7
+    );
+    assert.ok(
+      row.row_center_collar_safety_search.zero_width_replay
+        .replay_pressure_over_requested_midpoint_pressure_bound < 0.004
+    );
+    assert.equal(
+      row.row_center_producer_width_contraction_target.target_status,
+      "row-center-inside-bisection-collar-width-open"
+    );
+    assert.equal(
+      row.row_center_producer_width_contraction_target
+        .certificate_interpretation,
+      "selected-producer-row-needs-directed-rounded-width-contraction"
+    );
+    assert.equal(
+      row.row_center_producer_width_contraction_target
+        .current_interval_inside_target,
+      false
+    );
+    assert.equal(
+      row.row_center_producer_width_contraction_target.center_inside_target,
+      true
+    );
+    assert.ok(
+      row.row_center_producer_width_contraction_target
+        .required_coordinate_half_width_compression > 5e6
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic.s37_dependency_status,
+      "n38-midpoint-graph-fits-row-local-s37-target-but-interval-hull-needs-directed-rounded-remainder"
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .n38_midpoint_residual_inside_row_local_s37_target,
+      true
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .n38_graph_interval_inside_row_local_s37_target,
+      true
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .current_n38_interval_residual_inside_row_local_s37_target,
+      false
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .graph_plus_midpoint_inside_row_local_s37_target,
+      true
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .same_domain_n38_graph_remainder_target_status,
+      "row-local-n38-graph-remainder-target-has-headroom"
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .n38_midpoint_residual_width_to_row_local_s37_target < 1e-9
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .n38_graph_plus_midpoint_width_to_row_local_s37_target < 1e-9
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_same_domain_remainder_width_budget > 1e17
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .n38_interval_residual_width_to_row_local_s37_target > 5e6
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .n38_interval_residual_width_to_same_domain_remainder_budget > 5e6
+    );
+  });
+  assert.equal(
+    rowLocalCollarReplay.row_local_collar_replay_interpretation,
+    "requested-budget-collar-still-exceeds-selected-row-midpoint-pressure"
+  );
+  assert.equal(
+    rowLocalCollarReplay.claim_boundary
+      .certifies_h38_producer_image_residual_radius,
+    false
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_producer_all_sample_midpoints_inside_budget,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_producer_all_sample_intervals_inside_budget,
+    false
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_producer_sample_worst_required_compression >
+      0
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_collar_replay_available,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_requested_collars_close,
+    false
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_any_current_interval_closes,
+    false
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_worst_requested_collar_to_midpoint_pressure >
+      7
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_replay_corrected_full_radius_scale_estimate >
+      5e6
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_safety_search_available,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_zero_width_inside,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_requested_budget_candidates_exceed,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_safety_searches_close,
+    true
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_min_target_closing_half_width <
+      2e-7
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_target_closing_full_radius_scale >
+      5e6
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_target_closing_replay_over_midpoint_pressure <=
+      1
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_target_closing_bracket_width <
+      1e-15
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_worst_zero_width_to_midpoint_pressure <
+      0.004
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_worst_requested_candidate_to_midpoint_pressure >
+      7
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_producer_width_contraction_target_available,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_producer_centers_inside_bisection_collar,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_current_producer_intervals_inside_bisection_collar,
+    false
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_required_coordinate_compression >
+      5e6
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_required_coordinate_compression <
+      5.2e6
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_required_h38_residual_compression >
+      5e6
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_required_s37_numerator_compression >
+      5e6
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_linear_subcell_forecast >
+      2.5e7
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_min_target_h38_residual_half_width >
+      7e16
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_min_target_s37_numerator_width_lower >
+      1e17
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_n38_s37_collar_diagnostic_available,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_n38_midpoint_residuals_inside_s37_target,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_n38_graph_intervals_inside_s37_target,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_current_n38_interval_residuals_inside_s37_target,
+    false
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_midpoint_residual_width_to_s37_target <
+      1e-9
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_graph_interval_width_to_s37_target <
+      1e-10
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_interval_residual_width_to_s37_target >
+      5e6
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_numerator_interval_width_to_s37_target >
+      5e6
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_n38_graph_remainder_target_available,
+    true
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_graph_plus_midpoint_width_to_s37_target <
+      1e-9
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_min_n38_same_domain_remainder_width_budget >
+      1e17
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_interval_residual_width_to_same_domain_remainder_budget >
+      5e6
+  );
   assert.ok(
     producerBudgetComparison
       .producer_centered_full_hull_half_width_to_requested_budget_half_width >
