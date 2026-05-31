@@ -45,7 +45,7 @@ Image-generation rule: do not include book text, captions, labels, equations, or
 
 Pilot generated asset:
 
-![Pilot cover illustration](assets/the-message-that-traveled-cover.png)
+![Pilot cover illustration](assets/the-message-that-traveled-preview.png)
 
 Read-aloud title:
 
