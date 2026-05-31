@@ -7346,30 +7346,50 @@ export function evaluateH39SharedDomainCoefficientCell({
       centerSolves[index].h39_center_numeric_interval ??
       centerSolves[index].h39_center_interval,
   }));
-  const hRowProviderBranchReports = centeredBranchInputs.map((input) => ({
-    branch: input.branch,
-    provider_kind:
-      input.h_row_provider_kind ?? "direct-branch-input-no-provider-metadata",
-    preserves_dependencies:
-      input.h_row_provider_preserves_dependencies === true,
-    dependency_trace_count: Array.isArray(
-      input.h_row_provider_dependency_trace
-    )
-      ? input.h_row_provider_dependency_trace.length
-      : 0,
-    source_cell_id: input.h_row_provider_source_cell_id ?? null,
-    provenance_present: input.h_row_provider_provenance !== undefined,
-    dependency_witness_present: input.h_row_dependency_witness !== undefined,
-    provider_claim_boundary_candidate_only:
-      input.h_row_provider_claim_boundary
-        ?.certifies_shifted_R43_outer_bound === false &&
-      input.h_row_provider_claim_boundary
-        ?.certifies_directed_rounded_shared_domain === false &&
-      input.h_row_provider_claim_boundary
-        ?.certifies_continuous_polydisc_primitives === false &&
-      input.h_row_provider_claim_boundary?.retained_branch === false,
-    replay_kind: input.h_row_provider_replay_kind ?? null,
-  }));
+  const hRowProviderBranchReports = centeredBranchInputs.map((input) => {
+    const dependencyTrace = Array.isArray(input.h_row_provider_dependency_trace)
+      ? input.h_row_provider_dependency_trace
+      : [];
+    const dependencyWitness = input.h_row_dependency_witness ?? null;
+    return {
+      branch: input.branch,
+      provider_kind:
+        input.h_row_provider_kind ?? "direct-branch-input-no-provider-metadata",
+      preserves_dependencies:
+        input.h_row_provider_preserves_dependencies === true,
+      dependency_trace_count: dependencyTrace.length,
+      dependency_kinds: [
+        ...new Set(
+          dependencyTrace
+            .map((trace) => trace?.dependency_kind)
+            .filter(Boolean)
+        ),
+      ],
+      h38_solve_target_policies: [
+        ...new Set(
+          dependencyTrace
+            .map((trace) => trace?.h38_solve_target_policy)
+            .filter(Boolean)
+        ),
+      ],
+      terminal_h_index_sets: dependencyTrace
+        .map((trace) => trace?.terminal_h_indexes)
+        .filter(Array.isArray),
+      source_cell_id: input.h_row_provider_source_cell_id ?? null,
+      provenance_present: input.h_row_provider_provenance !== undefined,
+      dependency_witness_present: dependencyWitness !== undefined,
+      dependency_witness_kind: dependencyWitness?.witness_kind ?? null,
+      provider_claim_boundary_candidate_only:
+        input.h_row_provider_claim_boundary
+          ?.certifies_shifted_R43_outer_bound === false &&
+        input.h_row_provider_claim_boundary
+          ?.certifies_directed_rounded_shared_domain === false &&
+        input.h_row_provider_claim_boundary
+          ?.certifies_continuous_polydisc_primitives === false &&
+        input.h_row_provider_claim_boundary?.retained_branch === false,
+      replay_kind: input.h_row_provider_replay_kind ?? null,
+    };
+  });
   const providerBackedBranchCount = hRowProviderBranchReports.filter(
     (report) => report.preserves_dependencies === true
   ).length;
@@ -8537,6 +8557,42 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
         .filter(Boolean)
     ),
   ];
+  const hRowProviderDependencyKinds = [
+    ...new Set(
+      hRowProviderBranchReports.flatMap(
+        (report) => report.dependency_kinds ?? []
+      )
+    ),
+  ];
+  const hRowProviderH38SolveTargetPolicies = [
+    ...new Set(
+      hRowProviderBranchReports.flatMap(
+        (report) => report.h38_solve_target_policies ?? []
+      )
+    ),
+  ];
+  const hRowProviderDependencyWitnessKinds = [
+    ...new Set(
+      hRowProviderBranchReports
+        .map((report) => report.dependency_witness_kind)
+        .filter(Boolean)
+    ),
+  ];
+  const hRowProviderReplayKinds = [
+    ...new Set(
+      hRowProviderBranchReports
+        .map((report) => report.replay_kind)
+        .filter(Boolean)
+    ),
+  ];
+  const hRowProviderTerminalHIndexSets = [
+    ...new Map(
+      hRowProviderBranchReports
+        .flatMap((report) => report.terminal_h_index_sets ?? [])
+        .filter(Array.isArray)
+        .map((hIndexSet) => [JSON.stringify(hIndexSet), hIndexSet])
+    ).values(),
+  ];
   const hRowProviderBackedBranchCount = hRowProviderBranchReports.filter(
     (report) => report.preserves_dependencies === true
   ).length;
@@ -8747,6 +8803,13 @@ function summarizeH39CoefficientRows({ rows, h38ValidationErrors = null }) {
       rows.length > 0 && hRowProviderBackedCellCount === rows.length,
     h_row_provider_kinds: hRowProviderKinds,
     h_row_provider_source_cell_ids: hRowProviderSourceCellIds,
+    h_row_provider_dependency_kinds: hRowProviderDependencyKinds,
+    h_row_provider_h38_solve_target_policies:
+      hRowProviderH38SolveTargetPolicies,
+    h_row_provider_dependency_witness_kinds:
+      hRowProviderDependencyWitnessKinds,
+    h_row_provider_replay_kinds: hRowProviderReplayKinds,
+    h_row_provider_terminal_h_index_sets: hRowProviderTerminalHIndexSets,
     h_row_provider_dependency_trace_count: hRowProviderBranchReports.reduce(
       (sum, report) => sum + Number(report.dependency_trace_count ?? 0),
       0

@@ -95,15 +95,47 @@ audits the 42 regular residual parent-complement rows by a 32-cell receiver
 grid. It certifies 571 simple-root receiver cells, misses 773 cells, consumes 0
 parent rows, and leaves the same 162 base rows `split_required`.
 
+The sixth sidecar,
+`causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+adaptively refines the failed v5 receiver cells to terminal grid 128. It
+certifies 622 simple-root receiver leaves, records 3,024 structural terminal
+source-cover misses, resolves 0 coarse cells, consumes 0 parent rows, and
+leaves the same 162 base rows `split_required`.
+
+The fold-layer burden atlas,
+`fold_layer_burden_report.fresh-v10-higher-fold-12-root-rebuild-v0.md`,
+groups the 112 fold-layer rows by 12 higher-fold separator layers. It records
+the required same-packet fold-layer fields, consumes 0 rows, and does not
+authorize a branch chart.
+
+The source-cover boundary ownership audit,
+`source_cover_boundary_ownership_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+proves 42 / 42 complete terminal-grid receiver partitions for the regular
+parent-complement rows. It certifies 0 rows against the full ownership pass
+rule, so the regular-row blocker is no longer partition construction; it is the
+absent source-boundary movement, receiver contraction, endpoint/topology
+ownership, no-double-counting, branch-reuse exclusion, and non-owned-complement
+closure fields.
+
+The one-leaf boundary movement probe,
+`one_leaf_boundary_movement_probe_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+audits the three smallest regular-row boundary components and certifies 0
+source-boundary movement rows, 0 receiver-range contraction rows, and 0 full
+pass-rule rows. Its strict improvement thresholds are `0.000026691996524`,
+`0.000026691996524`, and `0.00024618430271`.
+
 ## Required Next Certificate Step
 
 Before any branch-chart work, this successor packet needs:
 
 - regenerated null-coordinate collars and fold-layer rows under this packet
   identity;
-- parent complement, endpoint/complement, and fold-layer proof-interval closure
-  that classifies the remaining base rows as `empty`, `simple_root`, or bounded
-  `fold_layer`.
+- a new source-cover/parent-complement ownership theorem, source-boundary
+  movement theorem, receiver-contraction theorem, or candidate change for the
+  42 regular residual rows;
+- periodic endpoint/complement ownership for 8 rows;
+- fold-layer proof-interval closure, using the burden atlas as the worklist,
+  that classifies the 112 fold-layer rows as bounded `fold_layer`.
 
 ## Capture Decision
 

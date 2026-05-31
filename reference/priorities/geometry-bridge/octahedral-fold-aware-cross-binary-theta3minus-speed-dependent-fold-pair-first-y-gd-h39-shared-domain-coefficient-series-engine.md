@@ -3521,3 +3521,73 @@ the next certificate should not spend effort on cell partitioning or termwise
 source splitting first. It should attack terminal h-row covariance through the
 H38 producer image, especially h37 with h36 and h35 retained as a coupled
 terminal block, before the $N_{38}$ derivative is absolutized.
+
+The terminal eta graph diagnostic now validates the same coupled h35-h37
+quadratic graph on the exact symmetric cross-fold five-node row-local window
+used by the live H39/y44 derivative stencil. In that window, terminal h35-h37
+account for at least $0.971399$ of the active source width, h0-h34 account for
+at most $0.0286009$, and the terminal graph-only replay has width at most
+$2.03\times10^{-13}$ of the terminal replay. Adding nonterminal rows leaves
+about $0.0286009$ of the full width, while the interval residual replay
+recreates the terminal width. The next certificate route is therefore a
+dependency-preserving terminal h35-h37 graph/residual provider for the H38
+producer image, not another independent h-row box, source-term split, or
+positive-$\xi$-only coordinate repair.
+
+The H39 shared-domain replay summary now exports the provider dependency
+shape: dependency kind, witness kind, h38 solve-target policy, replay kind,
+and terminal h-index set. The endpoint-zeta provider test confirms that the
+live scalar endpoint replays carry
+`terminal-shared-residual-affine-zeta-endpoint` with terminal h-index set
+`[37,36,35]` through the provider boundary. This does not certify the
+continuous shared-zeta interval, but it proves the audit path can distinguish
+the coupled endpoint-zeta route from an independent terminal h-row box.
+
+The next bridge is now executable as a candidate object. The terminal graph
+remainder-budget validator accepts the exact symmetric cross-fold five-node
+window and verifies that affine endpoint partitions close the graph-$\xi$
+candidate while raw residual export still fails. The terminal affine-$\zeta$
+provider replay now adds
+`candidate-coupled-xi-zeta-terminal-residual-provider-summary`, which records
+the comparison $\xi$ cover, residual partition count, endpoint-zeta replays,
+requested shifted $\zeta$-slice coverage, exact `[37,36,35]` terminal h-index
+set, and candidate-only claim boundary. The H39 route has therefore moved from
+"find a coupled route" to "directed-round the already identified coupled
+$\xi,\zeta$ producer-image enclosure."
+
+The route now makes that enclosure target explicit. The coupled summary
+preserves each row's requested shifted residual-direction profile, including
+the midpoint-matching residual-radius budget, and the successor route emits a
+`candidate-requested-y44-continuous-xi-zeta-producer-image-target` over the
+live five $\xi$ rows and two $\zeta$ partitions. That target checks the
+continuous-grid bookkeeping, verifies requested shifted source reconstruction,
+confirms that producer midpoints fit the requested residual budget while full
+producer intervals do not, and records that only the selected row-local
+producer width targets have bisection collars. The same replay classifies the
+intervalized Lagrange failure as a terminal h35-h37 node-width artifact: the
+midpoint normal form fits, the intervalized enclosure contains the midpoint
+with zero gap, and the excess remains tied to terminal h-row interval width.
+The target records this as a terminal h35-h37 covariance-preservation subtarget
+on the selected rows, separating the terminal block from negligible cell-only
+width. No shifted $R_{\varepsilon,43}$ or shared-$\zeta$ interval certificate
+is promoted; the next proof object is a directed-rounded continuous
+$\xi,\zeta$ producer-image enclosure that keeps terminal h35-h37 covariance
+through the H38 producer image.
+
+The route now also records why a terminal-only repair is insufficient. The
+linear width-share budget keeps the same selected rows and asks how much width
+can remain before the row-local $M_4$ target closes. The current total
+intervalized Lagrange ratio is about $2.12\times10^5$, so the closure share is
+about $4.7\times10^{-6}$. The nonterminal h0-h34 floor plus cell floor already
+exceeds that share by about $7.84\times10^3$, even though the cell-only floor
+is negligible at about $5.62\times10^{-10}$ of the required share. Therefore
+there is no positive terminal h35-h37-only compression budget while h0-h34 is
+kept fixed; an all-h-row compression budget remains positive at about
+$2.12\times10^5$. The successor route also emits
+`candidate-requested-y44-terminal-h35-h37-coupled-endpoint-partition-target`,
+which carries the exact `[37,36,35]` endpoint provider, requested shifted
+$\zeta$ coverage, and source reconstruction as a provider-backed witness. This
+is still not a directed-rounded continuous producer-image certificate, but it
+removes the terminal-only false path: the next certificate must preserve
+broader all-h-row covariance or prove a signed nonterminal-floor cancellation
+before the H39 shifted-source majorant is taken.

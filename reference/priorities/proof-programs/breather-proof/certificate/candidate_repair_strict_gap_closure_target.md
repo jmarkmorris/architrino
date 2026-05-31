@@ -194,16 +194,33 @@ The next solver should therefore:
    root-count audit surface, and
    `fresh_v10_higher_fold_root_tube_interval_certificate.v0.md` as the
    proof-grade root-count topology certificate, plus the proof-interval
-   v1/v2/v3/v4/v5 sidecars under `fresh-v10-higher-fold-12-root-rebuild-v0`: v1
+   v1/v2/v3/v4/v5/v6 sidecars under `fresh-v10-higher-fold-12-root-rebuild-v0`: v1
    certifies 270 exact-rational coarse range-empty rows, v2 certifies 1,062
    row-specific trigonometric range-empty rows, v3 certifies those 1,062
    range-empty rows plus 26 root-complement monotone diagonal exclusions, and
    v4 records 42 simple-root receiver subwindow certificates while consuming 0
    parent simple-root rows. v5 audits those 42 regular residual parents,
    certifies 571 simple-root receiver cells, misses 773 cells, and consumes 0
-   parent rows. The branch still leaves 162 rows `split_required` across 42
-   parent complement-coverage rows, 8 periodic endpoint/complement rows, and
-   112 fold-layer rows;
+   parent rows. v6 adaptively refines the failed receiver cells to terminal grid
+   128, certifies 622 simple-root receiver leaves, records 3,024 structural
+   terminal source-cover misses, resolves 0 coarse cells, and consumes 0 parent
+   rows. The source-cover defect atlas records the exact rational terminal
+   boundary burden for the 42 regular rows: 1,207 low-side and 1,817 high-side
+   terminal source-cover defects, with 10 low-only rows, 10 high-only rows, and
+   22 two-sided rows. It also records 0 receiver-interior missing leaves, so the
+   current obstruction is boundary ownership or boundary movement rather than
+   interior receiver-cover failure. The boundary ownership audit proves 42 / 42
+   complete terminal-grid receiver partitions while certifying 0 rows against
+   the full pass rule, so the next regular-row target is a source-boundary
+   movement, receiver-contraction, or endpoint/topology ownership certificate.
+   The one-leaf boundary movement probe checks the three smallest regular-row
+   components and certifies 0 movement or contraction rows; its strict
+   thresholds are `0.000026691996524`, `0.000026691996524`, and
+   `0.00024618430271`.
+   The fold-layer burden atlas groups the 112 fold-layer rows
+   by 12 separator layers, but consumes 0 rows. The branch still leaves 162
+   rows `split_required` across 42 structural parent complement-coverage rows,
+   8 periodic endpoint/complement rows, and 112 fold-layer rows;
 4. assemble the signed gap derivative matrix $A$ for the selected orientations
    above;
 5. keep the structural constraint matrix $B=DC(\mathbf a_0)$, including section,

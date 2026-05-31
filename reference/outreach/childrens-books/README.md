@@ -1,6 +1,6 @@
 # Children's Book Series
 
-This folder develops child-facing outreach books derived from [early-learning.md](../early-learning.md). These are working manuscripts, not textbook chapters. The visual system is controlled by [style-guide.md](style-guide.md), with approved image direction recorded in [exemplars.md](exemplars.md) and story-text placement explored in [text-layout-proposals.md](text-layout-proposals.md). Each book should keep the same three commitments:
+This folder develops child-facing outreach books derived from [early-learning.md](../early-learning.md). These are working manuscripts, not textbook chapters. The visual system is controlled by [style-guide.md](style-guide.md), with approved image direction recorded in [exemplars.md](exemplars.md) and selected reverse-band story-text placement recorded in [text-layout-proposals.md](text-layout-proposals.md). Each book should keep the same three commitments:
 
 - the story is emotionally simple enough for the target age;
 - the lesson preserves the $\mathbb{A}\mathbb{A}\mathbb{A}$ level distinction between substrate ontology, assembly behavior, and observer-level description;

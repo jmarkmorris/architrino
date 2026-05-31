@@ -44,10 +44,37 @@ fold-layer rows. The fifth sidecar,
 `causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v5.md`,
 audits those 42 regular residual parents by 32 receiver-grid cells, certifies
 571 simple-root receiver cells, misses 773 cells, consumes 0 parent rows, and
+leaves the same 162 base rows `split_required`. The sixth sidecar,
+`causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+then adaptively refines those failed receiver cells to terminal grid 128. It
+certifies 622 simple-root receiver leaves, records 3,024 structural terminal
+source-cover misses, resolves 0 coarse cells, consumes 0 parent rows, and
 leaves the same 162 base rows `split_required`. The next executable action is
-therefore sharper parent-complement coverage, periodic endpoint/complement
-ownership, and fold-layer certificate closure under
-`fresh-v10-higher-fold-12-root-rebuild-v0`.
+now sharpened by
+`source_cover_defect_atlas_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`:
+the 42 regular residual rows need source-inner boundary expansion,
+receiver-range contraction, or endpoint/topology ownership at the recorded
+exact rational terminal defects. The atlas also shows that all 3,024 terminal
+defects are boundary-attached receiver spans: 978 touch the receiver-left
+boundary, 2,046 touch the receiver-right boundary, and 0 are interior-only.
+The follow-up boundary ownership audit,
+`source_cover_boundary_ownership_audit_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+proves 42 / 42 complete terminal-grid receiver partitions but certifies 0 rows
+against the full ownership pass rule. The regular-row blocker is therefore no
+longer receiver partitioning; it is the absent source-boundary movement,
+receiver contraction, endpoint/topology ownership, no-double-counting,
+branch-reuse exclusion, and non-owned-complement closure fields.
+The one-leaf boundary movement probe,
+`one_leaf_boundary_movement_probe_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md`,
+tests the three smallest boundary components and certifies 0 movement or
+contraction rows. The exact strict improvement thresholds are
+`0.000026691996524`, `0.000026691996524`, and `0.00024618430271`, so these are
+now the smallest concrete inequalities a same-packet movement theorem or
+receiver-range contraction theorem must prove.
+The remaining branches are periodic
+endpoint/complement ownership for the 8 lift rows and fold-layer certificate
+closure for the 112 fold-layer rows now grouped by
+`fold_layer_burden_report.fresh-v10-higher-fold-12-root-rebuild-v0.md`.
 
 The rejected cosine packet may be used only as diagnostic data. The solver must be judged first by whether it removes fold-adjacent parent-complement equality cores before branch-chart construction.
 

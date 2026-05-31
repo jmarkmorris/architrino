@@ -681,15 +681,30 @@ audits the 42 regular residual parent-complement rows by a 32-cell receiver
 grid. It certifies 571 simple-root receiver cells, misses 773 cells, consumes 0
 parent rows, and leaves the same 162 base rows \`split_required\`.
 
+The sixth sidecar,
+\`causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.md\`,
+adaptively refines the failed v5 receiver cells to terminal grid 128. It
+certifies 622 simple-root receiver leaves, records 3,024 structural terminal
+source-cover misses, resolves 0 coarse cells, consumes 0 parent rows, and
+leaves the same 162 base rows \`split_required\`.
+
+The fold-layer burden atlas,
+\`fold_layer_burden_report.fresh-v10-higher-fold-12-root-rebuild-v0.md\`,
+groups the 112 fold-layer rows by 12 higher-fold separator layers. It records
+the required same-packet fold-layer fields, consumes 0 rows, and does not
+authorize a branch chart.
+
 ## Required Next Certificate Step
 
 Before any branch-chart work, this successor packet needs:
 
 - regenerated null-coordinate collars and fold-layer rows under this packet
   identity;
-- parent complement, endpoint/complement, and fold-layer proof-interval closure
-  that classifies the remaining base rows as \`empty\`, \`simple_root\`, or bounded
-  \`fold_layer\`.
+- a new source-cover/parent-complement theorem or candidate change for the 42
+  regular residual rows;
+- periodic endpoint/complement ownership for 8 rows;
+- fold-layer proof-interval closure, using the burden atlas as the worklist,
+  that classifies the 112 fold-layer rows as bounded \`fold_layer\`.
 
 ## Capture Decision
 

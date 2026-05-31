@@ -22,15 +22,15 @@ The approved visual target is recorded in [exemplars.md](exemplars.md). Future p
 
 ## Text Color
 
-Use **black text on white** as the default.
+Use **white text on deep purple** as the default for child-facing story pages.
 
-Use **white text on black or very dark purple** only for deliberate night pages, title pages, or small reverse-type callouts.
+Use **black text on white** for adult notes, back matter, production notes, and documentation pages.
 
 Do not use red, blue, or purple for body text. Those colors carry geometry and polarity meaning, so using them for ordinary reading text would confuse the lesson and reduce accessibility.
 
 Production rule:
 
-> Black and white carry readability. Red, blue, and purple carry physics meaning.
+> White and deep purple carry story readability. Red, blue, and brighter purple carry physics meaning.
 
 ## Palette
 
@@ -42,7 +42,7 @@ Production rule:
 | Light neutral balance | Pale purple tint | `#d8b4ff` | Gentle neutral glow, child-facing quiet balance, Noether sea softness. |
 | Dark purple depth | Deep purple shade | `#220033` | Night scenes, shadowed neutral medium, high contrast backing. |
 | Page and neutral clarity | White | `#ffffff` | Page space, highlights, exact neutral centers, readable text ground. |
-| Line and contrast | Black | `#000000` | Body text, outlines, pupils, object boundaries, deep shadow, occlusion. |
+| Line and contrast | Black | `#000000` | Adult/back-matter text, outlines, pupils, object boundaries, deep shadow, occlusion. |
 
 Purple may vary only by mixing red, blue, white, and black. It should never drift toward pink, lavender-gray, brown, gold, teal, or naturalistic environmental color.
 
@@ -171,7 +171,7 @@ Use white for:
 
 Use black for:
 
-- readable body text;
+- adult/back-matter text;
 - outlines;
 - pupils and facial expression;
 - shadow occlusion;
@@ -209,18 +209,20 @@ Avoid:
 
 For concrete placement examples, see [text-layout-proposals.md](text-layout-proposals.md).
 
-Default page layout:
+Default story-page layout:
 
-- white margin or white text panel;
-- black body text;
+- deep purple reverse band;
+- white body text;
+- no horizontal rules inside the text band;
+- no decorative polarity dots inside the text band;
 - one or two short sentences per young-child spread;
 - no text embedded in generated images;
 - title lettering added in layout, not generated as art.
 
 Readable hierarchy:
 
-- body text: black;
-- title text: black on white, or white on dark purple;
+- story body text: white on deep purple;
+- title text: white on deep purple, or black on white for documentation/back matter;
 - parent/teacher notes: black on white;
 - glossary term highlights: black bold text, not colored text.
 

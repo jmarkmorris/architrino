@@ -3663,7 +3663,9 @@ test("h39 h38 expression-level N38 terminal eta graph replay isolates candidate 
   assert.equal(summary.row_count, 5);
   assert.deepEqual(summary.terminal_provider_h_indexes, [37, 36, 35]);
   assert.equal(summary.nonterminal_provider_h_indexes_exclude_terminal, true);
+  assert.equal(summary.xi_stencil_kind, "positive-xi");
   assert.equal(summary.all_rows_positive_xi_stencil, true);
+  assert.equal(summary.all_rows_symmetric_cross_fold_stencil, false);
   assert.equal(summary.all_rows_h38_solve_target_zeroed, true);
   assert.equal(summary.all_rows_form_sigma_before_h_row_substitution, true);
   assert.equal(summary.all_rows_terminal_rows_dominate, true);
@@ -3809,6 +3811,65 @@ test("h39 h38 expression-level N38 terminal eta graph replay isolates candidate 
   );
 });
 
+test("h39 h38 expression-level N38 terminal eta graph replay bridges the symmetric cross-fold window", () => {
+  const diagnostic =
+    buildH39H38ExpressionN38TerminalEtaGraphDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      sourceStencilSubcellCount: 5,
+      comparisonStencilIndex: 0,
+      polynomialDegree: 2,
+      terminalHIndexes: [37, 36, 35],
+      topContributorCount: 8,
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38ExpressionN38TerminalEtaGraphDiagnostic(diagnostic),
+    []
+  );
+  assert.deepEqual(diagnostic.comparison_xi_midpoint_span, [
+    -1.5998976065444506,
+    1.5998976065444506,
+  ]);
+
+  const summary = diagnostic.terminal_eta_graph_summary;
+  assert.equal(summary.xi_stencil_kind, "symmetric-cross-fold");
+  assert.equal(summary.all_rows_positive_xi_stencil, false);
+  assert.equal(summary.all_rows_symmetric_cross_fold_stencil, true);
+  assert.deepEqual(summary.xi_midpoints, [
+    -1.5998976065444506,
+    -0.7999488032722253,
+    0,
+    0.7999488032722253,
+    1.5998976065444506,
+  ]);
+  assert.equal(summary.xi_pair_symmetry_gap, 0);
+  assert.equal(summary.xi_pair_symmetry_relative_gap, 0);
+  assert.deepEqual(summary.terminal_provider_h_indexes, [37, 36, 35]);
+  assert.equal(summary.nonterminal_provider_h_indexes_exclude_terminal, true);
+  assert.ok(summary.min_terminal_width_share_of_all > 0.97);
+  assert.ok(summary.max_nonterminal_width_share_of_all < 0.03);
+  assert.ok(summary.min_terminal_plus_nonterminal_width_share_of_all > 0.999);
+  assert.ok(summary.max_terminal_graph_width_share_of_terminal < 1e-12);
+  assert.ok(
+    summary.max_terminal_graph_with_nonterminal_width_share_of_all < 0.03
+  );
+  assert.ok(
+    summary.min_terminal_graph_interval_residual_width_share_of_terminal > 0.99
+  );
+  assert.equal(
+    summary.route_interpretation,
+    "terminal-polynomial-graph-collapses-localized-eta-width-candidate"
+  );
+  assert.deepEqual(collectTrueCertifies(diagnostic), []);
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
 test("h39 terminal affine-zeta endpoint provider replay crosses the provider boundary", () => {
   const diagnostic =
     buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnosticCandidate({
@@ -3890,6 +3951,120 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     diagnostic.endpoint_provider_replay_summary
       .all_endpoint_replays_provider_backed,
     true
+  );
+  const firstEndpointSummary =
+    diagnostic.endpoint_partition_replays[0].endpoint_replays[0]
+      .shared_domain_replay_artifact_summary;
+  assert.deepEqual(firstEndpointSummary.h_row_provider_dependency_kinds, [
+    "terminal-shared-residual-affine-zeta-endpoint",
+  ]);
+  assert.deepEqual(
+    firstEndpointSummary.h_row_provider_h38_solve_target_policies,
+    ["preserved-H39-predecessor-row"]
+  );
+  assert.deepEqual(
+    firstEndpointSummary.h_row_provider_dependency_witness_kinds,
+    ["candidate-terminal-shared-residual-affine-zeta-endpoint-provider"]
+  );
+  assert.deepEqual(firstEndpointSummary.h_row_provider_terminal_h_index_sets, [
+    [37, 36, 35],
+  ]);
+  const coupledProviderSummary =
+    diagnostic.coupled_xi_zeta_terminal_residual_provider_summary;
+  assert.equal(
+    coupledProviderSummary.summary_kind,
+    "candidate-coupled-xi-zeta-terminal-residual-provider-summary"
+  );
+  assert.deepEqual(coupledProviderSummary.terminal_provider_h_indexes, [
+    37, 36, 35,
+  ]);
+  assert.equal(coupledProviderSummary.polynomial_degree, 2);
+  assert.equal(
+    coupledProviderSummary.h38_solve_target_policy,
+    "preserved-H39-predecessor-row"
+  );
+  assert.equal(coupledProviderSummary.all_endpoint_replays_provider_backed, true);
+  assert.equal(
+    coupledProviderSummary.all_endpoint_summaries_dependency_preserving,
+    true
+  );
+  assert.deepEqual(coupledProviderSummary.h_row_provider_dependency_kinds, [
+    "terminal-shared-residual-affine-zeta-endpoint",
+  ]);
+  assert.deepEqual(
+    coupledProviderSummary.h_row_provider_h38_solve_target_policies,
+    ["preserved-H39-predecessor-row"]
+  );
+  assert.deepEqual(
+    coupledProviderSummary.h_row_provider_dependency_witness_kinds,
+    ["candidate-terminal-shared-residual-affine-zeta-endpoint-provider"]
+  );
+  assert.deepEqual(coupledProviderSummary.h_row_provider_terminal_h_index_sets, [
+    [37, 36, 35],
+  ]);
+  assert.equal(coupledProviderSummary.all_terminal_h_index_sets_exact, true);
+  assert.deepEqual(
+    coupledProviderSummary.comparison_xi_interval_hull,
+    diagnostic.comparison_xi_interval_hull
+  );
+  assert.equal(
+    coupledProviderSummary.all_xi_intervals_cover_comparison_hull,
+    true
+  );
+  assert.equal(coupledProviderSummary.residual_coordinate_partition_count, 2);
+  assert.equal(coupledProviderSummary.xi_zeta_partition_count, 10);
+  assert.equal(coupledProviderSummary.endpoint_partition_summaries.length, 2);
+  assert.equal(
+    coupledProviderSummary.all_requested_scan_entries_cover_comparison_xi_hull,
+    true
+  );
+  assert.equal(
+    coupledProviderSummary
+      .all_requested_scan_entries_cover_requested_shifted_zeta_slices,
+    true
+  );
+  assert.equal(
+    coupledProviderSummary.requested_xi_zeta_scan_entries.length,
+    1
+  );
+  assert.equal(
+    coupledProviderSummary.requested_xi_zeta_scan_entries[0]
+      .partition_envelope_rows.length,
+    5
+  );
+  assert.equal(
+    coupledProviderSummary.requested_xi_zeta_scan_entries[0]
+      .partition_envelope_rows[0].partition_envelopes.length,
+    2
+  );
+  const firstCoupledPartitionEnvelopeRow =
+    coupledProviderSummary.requested_xi_zeta_scan_entries[0]
+      .partition_envelope_rows[0];
+  assert.equal(
+    firstCoupledPartitionEnvelopeRow
+      .requested_shifted_residual_direction_profile.profile_kind,
+    "candidate-requested-shifted-source-residual-direction-profile"
+  );
+  assert.equal(
+    firstCoupledPartitionEnvelopeRow
+      .requested_shifted_residual_direction_profile.residual_radius_budget
+      .budget_kind,
+    "candidate-requested-shifted-source-residual-radius-budget"
+  );
+  assert.equal(coupledProviderSummary.uses_terminal_graph_xi_interval, true);
+  assert.equal(coupledProviderSummary.uses_shared_zeta_endpoint_partition, true);
+  assert.equal(
+    coupledProviderSummary.does_not_export_independent_h35_h37_box,
+    true
+  );
+  assert.equal(
+    coupledProviderSummary.claim_boundary
+      .certifies_shared_zeta_interval_provider,
+    false
+  );
+  assert.equal(
+    coupledProviderSummary.claim_boundary.certifies_shifted_R43_outer_bound,
+    false
   );
   assert.equal(
     diagnostic.h38_included_endpoint_provider_replay_summary
@@ -5147,6 +5322,69 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       rowLocalCollarReplay
         .max_row_local_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio <
       1e-12
+  );
+  const lossAttribution =
+    rowLocalCollarReplay
+      .row_local_n38_intervalized_lagrange_loss_attribution_summary;
+  assert.equal(
+    lossAttribution.summary_kind,
+    "candidate-row-local-n38-intervalized-lagrange-loss-attribution-summary"
+  );
+  assert.equal(
+    lossAttribution.intervalized_loss_attribution,
+    "midpoint-normal-form-fits-intervalized-loss-is-terminal-hrow-node-width-artifact"
+  );
+  assert.equal(
+    lossAttribution.all_midpoint_lagrange_interpolants_fit_m4_target,
+    true
+  );
+  assert.equal(
+    lossAttribution.all_intervalized_total_n38_providers_fit_m4_target,
+    false
+  );
+  assert.equal(
+    lossAttribution.all_intervalized_gaps_to_midpoint_estimate_zero,
+    true
+  );
+  assert.equal(
+    lossAttribution.all_intervalized_total_tracks_source_term_width,
+    true
+  );
+  assert.equal(
+    lossAttribution.all_intervalized_loss_localized_to_terminal_hrows,
+    true
+  );
+  assert.ok(
+    lossAttribution.max_source_to_total_intervalized_lagrange_relative_gap <
+      1e-12
+  );
+  assert.ok(
+    lossAttribution.max_node_width_terminal_h35_h37_to_direct_ratio > 0.5
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_intervalized_lagrange_loss_attribution_available,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_intervalized_lagrange_loss_attribution,
+    "midpoint-normal-form-fits-intervalized-loss-is-terminal-hrow-node-width-artifact"
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_intervalized_lagrange_loss_all_midpoint_interpolants_fit,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_intervalized_lagrange_loss_all_total_tracks_source_term_width,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_intervalized_lagrange_loss_all_localized_to_terminal_hrows,
+    true
   );
   const finiteStencilSourceTermD4Inputs =
     rowLocalCollarReplay.row_replays.flatMap((row) => {
@@ -6511,6 +6749,333 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     producerBudgetComparison.claim_boundary
       .certifies_h38_producer_image_residual_radius,
     false
+  );
+  const continuousTarget =
+    route.requested_y44_continuous_xi_zeta_producer_image_target;
+  assert.equal(
+    continuousTarget.target_kind,
+    "candidate-requested-y44-continuous-xi-zeta-producer-image-target"
+  );
+  assert.equal(continuousTarget.suffix_start_index, 20);
+  assert.equal(continuousTarget.row_count, 5);
+  assert.equal(continuousTarget.residual_coordinate_partition_count, 2);
+  assert.equal(continuousTarget.expected_xi_zeta_target_cell_count, 10);
+  assert.equal(continuousTarget.xi_zeta_target_cell_count, 10);
+  assert.equal(continuousTarget.xi_zeta_target_cells.length, 10);
+  assert.equal(continuousTarget.all_rows_cover_comparison_xi_hull, true);
+  assert.equal(
+    continuousTarget.all_target_cells_cover_requested_shifted_zeta_slice,
+    true
+  );
+  assert.equal(
+    continuousTarget.all_target_cells_reconstruct_requested_shifted_source,
+    true
+  );
+  assert.equal(
+    continuousTarget.all_target_cells_have_residual_radius_budget,
+    true
+  );
+  assert.equal(
+    continuousTarget
+      .producer_all_sample_midpoints_inside_requested_residual_budget,
+    true
+  );
+  assert.equal(
+    continuousTarget
+      .producer_all_sample_intervals_inside_requested_residual_budget,
+    false
+  );
+  assert.equal(
+    continuousTarget.all_target_cells_have_row_local_producer_width_targets,
+    false
+  );
+  assert.equal(
+    continuousTarget.row_local_producer_target_cell_count,
+    rowLocalCollarReplay.selected_row_count * 2
+  );
+  assert.equal(
+    continuousTarget.continuous_target_interpretation,
+    "continuous-xi-zeta-target-localizes-to-producer-width-and-terminal-node-interval-dependency"
+  );
+  assert.equal(
+    continuousTarget.claim_boundary
+      .certifies_h38_producer_image_residual_radius,
+    false
+  );
+  const terminalCovarianceTarget =
+    continuousTarget.terminal_h35_h37_covariance_target;
+  assert.equal(
+    terminalCovarianceTarget.target_kind,
+    "candidate-terminal-h35-h37-covariance-preservation-target"
+  );
+  assert.deepEqual(terminalCovarianceTarget.terminal_h_indexes, [
+    37, 36, 35,
+  ]);
+  assert.equal(
+    terminalCovarianceTarget.selected_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalCovarianceTarget.covariance_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_terminal_h35_h37_dominate_node_width,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget.all_selected_rows_cell_geometry_negligible,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_total_n38_intervalized_lagrange_contains_midpoint,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_total_n38_intervalized_lagrange_gap_to_midpoint_zero,
+    true
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_total_n38_intervalized_lagrange_exceeds_m4_target,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget.max_node_width_cell_only_to_direct_ratio < 1e-12
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_node_width_all_hrows_cell_midpoint_to_direct_ratio > 0.9
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_node_width_terminal_h35_h37_to_direct_ratio > 0.5
+  );
+  assert.equal(
+    terminalCovarianceTarget.covariance_preservation_interpretation,
+    "directed-round-terminal-h35-h37-coupled-producer-image-before-absolute-lagrange-bound"
+  );
+  assert.equal(
+    terminalCovarianceTarget.linear_width_share_budget_kind,
+    "candidate-terminal-h35-h37-linear-width-share-compression-budget-summary"
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_terminal_only_compression_can_close,
+    false
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .all_selected_rows_all_hrows_compression_can_close,
+    true
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_terminal_only_nonterminal_plus_cell_floor_to_required_ratio > 1
+  );
+  assert.ok(
+    terminalCovarianceTarget.max_all_hrows_cell_floor_to_required_ratio < 1e-6
+  );
+  assert.equal(
+    terminalCovarianceTarget
+      .max_required_terminal_h35_h37_compression_if_nonterminal_floor_fixed,
+    null
+  );
+  assert.ok(
+    terminalCovarianceTarget
+      .max_required_all_hrow_compression_if_cell_floor_fixed > 1e5
+  );
+  assert.equal(
+    terminalCovarianceTarget.linear_width_share_budget_interpretation,
+    "terminal-h35-h37-dominates-but-terminal-only-compression-is-insufficient-under-nonterminal-floor"
+  );
+  terminalCovarianceTarget.covariance_rows.forEach((row) => {
+    assert.equal(
+      row.provider_kind,
+      "intervalized-degree-four-total-n38-xi-provider-candidate"
+    );
+    assert.equal(
+      row.node_width_localization_interpretation,
+      "terminal-h35-h37-hrow-intervals-dominate-total-n38-node-width"
+    );
+    assert.equal(row.total_n38_intervalized_lagrange_fits_m4_target, false);
+    assert.equal(
+      row.total_n38_intervalized_lagrange_contains_midpoint_estimate,
+      true
+    );
+    assert.equal(
+      row.total_n38_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
+      0
+    );
+    assert.ok(row.max_node_width_cell_only_to_direct_ratio < 1e-12);
+    assert.ok(row.max_node_width_terminal_h35_h37_to_direct_ratio > 0.5);
+    assert.ok(row.dominant_terminal_h_indexes.includes(37));
+    assert.equal(
+      row.linear_width_share_budget.budget_kind,
+      "candidate-terminal-h35-h37-linear-width-share-compression-budget"
+    );
+    assert.equal(
+      row.linear_width_share_budget.terminal_only_compression_can_close,
+      false
+    );
+    assert.equal(
+      row.linear_width_share_budget.all_hrows_compression_can_close,
+      true
+    );
+    assert.ok(
+      row.linear_width_share_budget
+        .current_total_intervalized_lagrange_to_required_upper_ratio > 2e5
+    );
+    assert.ok(
+      row.linear_width_share_budget
+        .nonterminal_plus_cell_floor_to_required_ratio > 1
+    );
+    assert.ok(
+      row.linear_width_share_budget.cell_floor_to_required_ratio < 1e-6
+    );
+    assert.equal(
+      row.linear_width_share_budget
+        .required_terminal_h35_h37_compression_if_nonterminal_floor_fixed,
+      null
+    );
+    assert.ok(
+      row.linear_width_share_budget
+        .required_all_hrow_compression_if_cell_floor_fixed > 1e5
+    );
+    assert.equal(
+      row.linear_width_share_budget.budget_interpretation,
+      "terminal-dominant-but-terminal-only-compression-cannot-close-with-nonterminal-floor-fixed"
+    );
+  });
+  const endpointPartitionTarget =
+    continuousTarget
+      .requested_y44_terminal_h35_h37_coupled_endpoint_partition_target;
+  assert.equal(
+    endpointPartitionTarget.target_kind,
+    "candidate-requested-y44-terminal-h35-h37-coupled-endpoint-partition-target"
+  );
+  assert.equal(endpointPartitionTarget.suffix_start_index, 20);
+  assert.deepEqual(endpointPartitionTarget.terminal_h_indexes, [37, 36, 35]);
+  assert.equal(
+    endpointPartitionTarget.provider_kind,
+    "candidate-terminal-shared-residual-affine-zeta-endpoint-provider"
+  );
+  assert.equal(endpointPartitionTarget.uses_terminal_graph_xi_interval, true);
+  assert.equal(endpointPartitionTarget.uses_shared_zeta_endpoint_partition, true);
+  assert.equal(
+    endpointPartitionTarget.does_not_export_independent_h35_h37_box,
+    true
+  );
+  assert.equal(
+    endpointPartitionTarget.all_endpoint_replays_provider_backed,
+    true
+  );
+  assert.equal(
+    endpointPartitionTarget.all_endpoint_summaries_dependency_preserving,
+    true
+  );
+  assert.equal(endpointPartitionTarget.all_terminal_h_index_sets_exact, true);
+  assert.deepEqual(endpointPartitionTarget.h_row_provider_dependency_kinds, [
+    "terminal-shared-residual-affine-zeta-endpoint",
+  ]);
+  assert.deepEqual(
+    endpointPartitionTarget.h_row_provider_dependency_witness_kinds,
+    ["candidate-terminal-shared-residual-affine-zeta-endpoint-provider"]
+  );
+  assert.deepEqual(
+    endpointPartitionTarget
+      .requested_xi_zeta_scan_selected_suffix_start_indexes,
+    [20]
+  );
+  assert.deepEqual(
+    endpointPartitionTarget.requested_xi_zeta_scan_entry_suffix_start_indexes,
+    [20]
+  );
+  assert.equal(endpointPartitionTarget.requested_xi_zeta_scan_entry_count, 1);
+  assert.equal(endpointPartitionTarget.requested_scan_row_count, 5);
+  assert.equal(endpointPartitionTarget.requested_partition_envelope_row_count, 5);
+  assert.equal(endpointPartitionTarget.requested_partition_envelope_count, 10);
+  assert.equal(endpointPartitionTarget.xi_zeta_partition_count, 10);
+  assert.equal(endpointPartitionTarget.expected_xi_zeta_partition_count, 10);
+  assert.equal(endpointPartitionTarget.residual_coordinate_partition_count, 2);
+  assert.equal(endpointPartitionTarget.endpoint_partition_summary_count, 2);
+  assert.equal(
+    endpointPartitionTarget.all_requested_scan_entries_cover_comparison_xi_hull,
+    true
+  );
+  assert.equal(
+    endpointPartitionTarget
+      .all_requested_scan_entries_cover_requested_shifted_zeta_slices,
+    true
+  );
+  assert.equal(
+    endpointPartitionTarget.all_requested_partition_envelopes_cover_zeta_slices,
+    true
+  );
+  assert.equal(
+    endpointPartitionTarget.all_requested_partition_envelopes_reconstruct_source,
+    true
+  );
+  assert.equal(
+    endpointPartitionTarget.target_interpretation,
+    "requested-y44-endpoint-partition-preserves-terminal-coupling-before-continuous-interval-certification"
+  );
+  assert.equal(
+    endpointPartitionTarget.claim_boundary
+      .certifies_terminal_h35_h37_covariance_enclosure,
+    false
+  );
+  assert.equal(
+    endpointPartitionTarget.claim_boundary
+      .certifies_terminal_affine_zeta_provider_enclosure,
+    false
+  );
+  assert.equal(
+    endpointPartitionTarget.claim_boundary.certifies_shared_zeta_interval_provider,
+    false
+  );
+  assert.equal(
+    endpointPartitionTarget.claim_boundary
+      .certifies_directed_rounded_shared_domain,
+    false
+  );
+  assert.equal(
+    terminalCovarianceTarget.claim_boundary
+      .certifies_terminal_h35_h37_covariance_enclosure,
+    false
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_continuous_xi_zeta_target_available,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_continuous_xi_zeta_target_cell_count,
+    10
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_continuous_xi_zeta_expected_cell_count,
+    10
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_continuous_xi_zeta_all_cells_have_residual_budget,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_continuous_xi_zeta_all_cells_reconstruct_source,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_continuous_xi_zeta_interpretation,
+    "continuous-xi-zeta-target-localizes-to-producer-width-and-terminal-node-interval-dependency"
   );
   assert.deepEqual(
     collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
@@ -11614,6 +12179,9 @@ test("h39 h38 expression-level N38 terminal graph remainder budget sets finite c
   const summary = diagnostic.terminal_graph_remainder_budget_summary;
   assert.equal(summary.row_count, 5);
   assert.deepEqual(summary.terminal_provider_h_indexes, [37, 36, 35]);
+  assert.equal(summary.xi_stencil_kind, "positive-xi");
+  assert.equal(summary.all_rows_positive_xi_stencil, true);
+  assert.equal(summary.all_rows_symmetric_cross_fold_stencil, false);
   assert.equal(summary.all_rows_h38_solve_target_zeroed, true);
   assert.equal(summary.all_rows_form_sigma_before_h_row_substitution, true);
   assert.equal(summary.all_rows_terminal_rows_dominate, true);
@@ -12195,6 +12763,93 @@ test("h39 h38 expression-level N38 terminal graph remainder budget sets finite c
       []
     );
   });
+  assert.deepEqual(
+    collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
+    []
+  );
+});
+
+test("h39 h38 expression-level N38 terminal graph remainder budget bridges the symmetric cross-fold window", () => {
+  const diagnostic =
+    buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate({
+      targetSpeedInterval: [3.02156, 3.02156007813],
+      branch: "-",
+      rootSubdivisions: 100,
+      sourceStencilSubcellCount: 5,
+      comparisonStencilIndex: 0,
+      polynomialDegree: 2,
+      terminalHIndexes: [37, 36, 35],
+      residualBudgetTargetShareOfAll: 0.05,
+      residualBudgetScales: [0, 0.02, 0.05, 1],
+      residualNoiseSamples: [-1, -0.5, 0, 0.5, 1],
+      residualCoordinatePartitionCount: 8,
+      refinementSubcellCounts: [5],
+      topContributorCount: 8,
+      seriesOrder: 60,
+    });
+
+  assert.deepEqual(
+    validateH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnostic(
+      diagnostic
+    ),
+    []
+  );
+  assert.deepEqual(diagnostic.comparison_xi_midpoint_span, [
+    -1.5998976065444506,
+    1.5998976065444506,
+  ]);
+
+  const summary = diagnostic.terminal_graph_remainder_budget_summary;
+  assert.equal(summary.xi_stencil_kind, "symmetric-cross-fold");
+  assert.equal(summary.all_rows_positive_xi_stencil, false);
+  assert.equal(summary.all_rows_symmetric_cross_fold_stencil, true);
+  assert.deepEqual(summary.xi_midpoints, [
+    -1.5998976065444506,
+    -0.7999488032722253,
+    0,
+    0.7999488032722253,
+    1.5998976065444506,
+  ]);
+  assert.equal(summary.xi_pair_symmetry_gap, 0);
+  assert.equal(summary.xi_pair_symmetry_relative_gap, 0);
+  assert.ok(summary.min_terminal_width_share_of_all > 0.97);
+  assert.ok(summary.max_nonterminal_width_share_of_all < 0.03);
+  assert.ok(summary.max_graph_plus_nonterminal_width_share_of_all < 0.03);
+  assert.equal(
+    summary.all_rows_correlated_terminal_residual_endpoint_partitions_under_target,
+    true
+  );
+  assert.equal(
+    summary
+      .all_rows_correlated_terminal_residual_graph_endpoint_partitions_under_target,
+    true
+  );
+  assert.equal(
+    summary.all_rows_correlated_terminal_residual_affine_envelopes_under_target,
+    true
+  );
+  assert.ok(
+    summary.max_correlated_terminal_residual_endpoint_partition_width_share_of_all <
+      0.05
+  );
+  assert.ok(
+    summary
+      .max_correlated_terminal_residual_graph_endpoint_partition_width_share_of_all <
+      0.05
+  );
+  assert.equal(
+    summary.correlated_terminal_residual_partition_route_interpretation,
+    "shared-terminal-residual-coordinate-affine-endpoint-partition-closes-graph-xi-candidate"
+  );
+  assert.equal(
+    summary.route_interpretation,
+    "terminal-graph-remainder-budget-localizes-enclosure-failure-to-producer-interval-width"
+  );
+  assert.equal(
+    diagnostic.terminal_producer_refinement_forecast.route_interpretation,
+    "linear-subcell-refinement-forecast-large-partition-needed"
+  );
+  assert.deepEqual(collectTrueCertifies(diagnostic), []);
   assert.deepEqual(
     collectExactKeys(diagnostic, FORBIDDEN_FIXED_SPEED_KEYS),
     []
