@@ -1,0 +1,122 @@
+{
+  "schema": "aaa-proof/null-coordinate-gap-opening-scan-result/v1",
+  "input_schema": "aaa-proof/null-coordinate-gap-opening-scan/v1",
+  "packet_id": "fresh-v10-shifted-separator-fixed-period-strict-gap-matrix-v0",
+  "packet_identity": {
+    "source_packet": "fresh-same-packet-fold-shear-seed-v0",
+    "source_refinement": "fresh-same-packet-fold-shear-seed-v0-proof-interval-topology-no-double-counting-no-go-v10",
+    "matrix_status": "diagnostic_v10_parent_complement_shifted_separator_basis_fixed_period_not_full_candidate",
+    "basis_model": "shifted_separator_aligned_half_period_antisymmetric_c1_arc_bumps",
+    "period_mode": "fixed",
+    "separator_policy": "Basis arcs use the fresh shifted separator phases; each bump has zero theta-derivative at the four separator phases."
+  },
+  "source": "Proof-interval-v10 parent-complement collars evaluated against shifted-separator-aligned half-period-antisymmetric C1 bumps on the current fresh packet.",
+  "status": "feasible",
+  "theory_success_marker": "strict_null_coordinate_gap_opening_tangent_witness",
+  "method": "input_witness",
+  "claim_level": "strict tangent-space gap-opening witness for declared finite matrix",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "nullity": null,
+  "variable_count": 3,
+  "structural_constraint_count": 0,
+  "gap_constraint_count": 10,
+  "tolerance": 1e-9,
+  "normalization": "||xi||_inf <= 1",
+  "xi_infinity_norm": 1,
+  "updates_live_ledger": false,
+  "B_xi_residual_verified_zero_with_tolerance": true,
+  "B_xi_residual_certified_zero": false,
+  "rank_B_certified": false,
+  "kappa_observed_after_required_margin": 0.484518823372,
+  "max_structural_residual": 0,
+  "min_gap_value_after_required_margin": 0.484518823372,
+  "witness": {
+    "h_A0s": -1,
+    "h_A1s": -1,
+    "h_A2s": -1
+  },
+  "diagnostic_candidate": null,
+  "structural_rows": [],
+  "gap_rows": [
+    {
+      "id": "C_w_A1_A0_left_v10_1",
+      "value_after_required_margin": 0.933162112996,
+      "required_margin": 0.0305306251747979,
+      "collar_id": "C_w_A1_A0_left_v10_1",
+      "ledger": "w"
+    },
+    {
+      "id": "C_w_A2_A0_left_v10_2",
+      "value_after_required_margin": 0.484518823372,
+      "required_margin": 0.097129464401903,
+      "collar_id": "C_w_A2_A0_left_v10_2",
+      "ledger": "w"
+    },
+    {
+      "id": "C_w_A2_A0_right_v10_3",
+      "value_after_required_margin": 1.93839310733,
+      "required_margin": 0.0616068926719289,
+      "collar_id": "C_w_A2_A0_right_v10_3",
+      "ledger": "w"
+    },
+    {
+      "id": "C_w_A2_A1_left_v10_4",
+      "value_after_required_margin": 0.791157803393,
+      "required_margin": 0.030206375980675,
+      "collar_id": "C_w_A2_A1_left_v10_4",
+      "ledger": "w"
+    },
+    {
+      "id": "C_w_A2_A1_right_v10_5",
+      "value_after_required_margin": 1.93482158027,
+      "required_margin": 0.0651784197251379,
+      "collar_id": "C_w_A2_A1_right_v10_5",
+      "ledger": "w"
+    },
+    {
+      "id": "C_u_A3_A2_left_v10_6",
+      "value_after_required_margin": 0.918262984342,
+      "required_margin": 0.0454297538282589,
+      "collar_id": "C_u_A3_A2_left_v10_6",
+      "ledger": "u"
+    },
+    {
+      "id": "C_u_A4_A2_left_v10_7",
+      "value_after_required_margin": 0.695531092222,
+      "required_margin": 0.25055598013026,
+      "collar_id": "C_u_A4_A2_left_v10_7",
+      "ledger": "u"
+    },
+    {
+      "id": "C_u_A4_A2_right_v10_8",
+      "value_after_required_margin": 0.950210494975,
+      "required_margin": 0.049789505024517,
+      "collar_id": "C_u_A4_A2_right_v10_8",
+      "ledger": "u"
+    },
+    {
+      "id": "C_u_A4_A3_left_v10_9",
+      "value_after_required_margin": 0.764830307808,
+      "required_margin": 0.0266345725630224,
+      "collar_id": "C_u_A4_A3_left_v10_9",
+      "ledger": "u"
+    },
+    {
+      "id": "C_u_A4_A3_right_v10_10",
+      "value_after_required_margin": 0.961538096576,
+      "required_margin": 0.038461903424265,
+      "collar_id": "C_u_A4_A3_right_v10_10",
+      "ledger": "u"
+    }
+  ],
+  "iterations": null,
+  "projected_margin": null,
+  "note": null,
+  "limitations": [
+    "The scanner certifies only the declared finite tangent matrix, not a passed pre-ledger.",
+    "A feasible witness must still be integrated into a fresh same-packet candidate and interval-validated.",
+    "An inconclusive result is not a proof that no gap-opening direction exists."
+  ],
+  "input_path": "/Users/markmorris/vibe/architrino/reference/priorities/proof-programs/breather-proof/certificate/gap_opening_fresh_v10_strict_gap_input.shifted_separator_fixed_period.v0.json"
+}

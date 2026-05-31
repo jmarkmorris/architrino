@@ -1,0 +1,122 @@
+{
+  "schema": "aaa-proof/null-coordinate-gap-opening-scan-result/v1",
+  "input_schema": "aaa-proof/null-coordinate-gap-opening-scan/v1",
+  "packet_id": "fresh-v10-local-shear-free-period-strict-gap-matrix-v0",
+  "packet_identity": {
+    "source_packet": "fresh-same-packet-fold-shear-seed-v0",
+    "source_refinement": "fresh-same-packet-fold-shear-seed-v0-proof-interval-topology-no-double-counting-no-go-v10",
+    "matrix_status": "diagnostic_v10_parent_complement_local_shear_free_period_not_full_candidate",
+    "basis_model": "half_period_antisymmetric_c1_arc_bumps",
+    "period_mode": "free"
+  },
+  "source": "Proof-interval-v10 parent-complement collars evaluated against the existing half-period-antisymmetric C1 shear basis on A0, A1, and A2.",
+  "status": "feasible",
+  "theory_success_marker": "strict_null_coordinate_gap_opening_tangent_witness",
+  "method": "nullspace_perceptron_strict_witness",
+  "claim_level": "strict tangent-space gap-opening witness for declared finite matrix",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "nullity": 4,
+  "variable_count": 4,
+  "structural_constraint_count": 0,
+  "gap_constraint_count": 10,
+  "tolerance": 1e-9,
+  "normalization": "||xi||_inf <= 1",
+  "xi_infinity_norm": 1,
+  "updates_live_ledger": false,
+  "B_xi_residual_verified_zero_with_tolerance": true,
+  "B_xi_residual_certified_zero": false,
+  "rank_B_certified": false,
+  "kappa_observed_after_required_margin": 0.115066037632,
+  "max_structural_residual": 0,
+  "min_gap_value_after_required_margin": 0.115066037632,
+  "witness": {
+    "b_T": -0.176804284695,
+    "h_A0": -0.998248451171,
+    "h_A1": -1,
+    "h_A2": -0.558213117762
+  },
+  "diagnostic_candidate": null,
+  "structural_rows": [],
+  "gap_rows": [
+    {
+      "id": "C_w_A1_A0_left_v10_1",
+      "value_after_required_margin": 0.371306703032,
+      "required_margin": 0.0305306251747979,
+      "collar_id": "C_w_A1_A0_left_v10_1",
+      "ledger": "w"
+    },
+    {
+      "id": "C_w_A2_A0_left_v10_2",
+      "value_after_required_margin": 0.140113336348,
+      "required_margin": 0.097129464401903,
+      "collar_id": "C_w_A2_A0_left_v10_2",
+      "ledger": "w"
+    },
+    {
+      "id": "C_w_A2_A0_right_v10_3",
+      "value_after_required_margin": 0.693852748769,
+      "required_margin": 0.0616068926719289,
+      "collar_id": "C_w_A2_A0_right_v10_3",
+      "ledger": "w"
+    },
+    {
+      "id": "C_w_A2_A1_left_v10_4",
+      "value_after_required_margin": 0.380758286166,
+      "required_margin": 0.030206375980675,
+      "collar_id": "C_w_A2_A1_left_v10_4",
+      "ledger": "w"
+    },
+    {
+      "id": "C_w_A2_A1_right_v10_5",
+      "value_after_required_margin": 0.57402524062,
+      "required_margin": 0.0651784197251379,
+      "collar_id": "C_w_A2_A1_right_v10_5",
+      "ledger": "w"
+    },
+    {
+      "id": "C_u_A3_A2_left_v10_6",
+      "value_after_required_margin": 0.356407574379,
+      "required_margin": 0.0454297538282589,
+      "collar_id": "C_u_A3_A2_left_v10_6",
+      "ledger": "u"
+    },
+    {
+      "id": "C_u_A4_A2_left_v10_7",
+      "value_after_required_margin": 0.115066037632,
+      "required_margin": 0.25055598013026,
+      "collar_id": "C_u_A4_A2_left_v10_7",
+      "ledger": "u"
+    },
+    {
+      "id": "C_u_A4_A2_right_v10_8",
+      "value_after_required_margin": 0.298695357683,
+      "required_margin": 0.049789505024517,
+      "collar_id": "C_u_A4_A2_right_v10_8",
+      "ledger": "u"
+    },
+    {
+      "id": "C_u_A4_A3_left_v10_9",
+      "value_after_required_margin": 0.358523506914,
+      "required_margin": 0.0266345725630224,
+      "collar_id": "C_u_A4_A3_left_v10_9",
+      "ledger": "u"
+    },
+    {
+      "id": "C_u_A4_A3_right_v10_10",
+      "value_after_required_margin": 0.193766978188,
+      "required_margin": 0.038461903424265,
+      "collar_id": "C_u_A4_A3_right_v10_10",
+      "ledger": "u"
+    }
+  ],
+  "iterations": 3,
+  "projected_margin": 0.56331967248,
+  "note": null,
+  "limitations": [
+    "The scanner certifies only the declared finite tangent matrix, not a passed pre-ledger.",
+    "A feasible witness must still be integrated into a fresh same-packet candidate and interval-validated.",
+    "An inconclusive result is not a proof that no gap-opening direction exists."
+  ],
+  "input_path": "/Users/markmorris/vibe/architrino/reference/priorities/proof-programs/breather-proof/certificate/gap_opening_fresh_v10_strict_gap_input.local_shear_free_period.v0.json"
+}

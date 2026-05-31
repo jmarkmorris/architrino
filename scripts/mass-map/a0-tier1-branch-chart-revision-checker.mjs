@@ -31,6 +31,9 @@ const ROOT_LEDGER_PHASE_ORIGIN_VARIANT_KINDS = new Set([
 ]);
 const ROOT_TRANSPORT_FIT_FAILURE = "root-transport-coordinate-fit-not-implemented";
 const DEFAULT_ROOT_TRANSPORT_QUOTIENT = "source_layer_shear";
+const ACCEPTED_BRANCH_PROMOTION_BLOCKER = "blocked_until_master_equation_branch_chart_basis";
+const MASTER_EQUATION_BRANCH_BASIS_DEPENDENCY =
+  "master-equation-closure matching dynamics/branch-chart basis";
 const ROOT_TRANSPORT_QUOTIENTS = new Set([
   DEFAULT_ROOT_TRANSPORT_QUOTIENT,
   "source_layer_signed_polarity_shear",
@@ -1735,6 +1738,19 @@ function coordinateNameFor(args) {
   return args.coordinateSource === "root_transport_source_record" ? "mu_root_transport" : "H_I";
 }
 
+function promotionBoundary(status) {
+  return {
+    corrected_rerun_candidate: status === "revision_candidate_only",
+    accepted_history_boundary: false,
+    accepted_branch_promotion: false,
+    accepted_physics_claim: false,
+    accepted_branch_promotion_authority: ACCEPTED_BRANCH_PROMOTION_BLOCKER,
+    required_dependency: MASTER_EQUATION_BRANCH_BASIS_DEPENDENCY,
+    note:
+      "This checker can emit a pre-rerun coordinate ledger only. It cannot promote a corrected A0 branch as accepted physics until the matching master-equation dynamics and branch-chart basis are supplied.",
+  };
+}
+
 function zLambdaExtensionFor(args) {
   if (args.coordinateSource === "root_transport_source_record") {
     return {
@@ -1894,6 +1910,7 @@ function solveRow(row, args, intakePath, context) {
     },
     anti_overfit_residual: checks,
     accepted_history_boundary: false,
+    promotion_boundary: promotionBoundary(status),
     rerun_authority:
       status === "revision_candidate_only"
         ? "corrected_rerun_input_check_only_not_accepted_history"
@@ -1909,17 +1926,19 @@ function buildOutput(artifact, args, intakePath, context = {}) {
     counts[row.status] = (counts[row.status] ?? 0) + 1;
     return counts;
   }, {});
+  const status = topMissing.length
+    ? "blocked_invalid_intake"
+    : rows.some((row) => row.status !== "revision_candidate_only")
+      ? "blocked_before_corrected_rerun"
+      : "revision_candidate_only";
   return {
     artifact_schema: OUTPUT_SCHEMA,
     generated_at: new Date().toISOString(),
     intake: intakePath,
     intake_schema: artifact?.artifact_schema ?? null,
-    status: topMissing.length
-      ? "blocked_invalid_intake"
-      : rows.some((row) => row.status !== "revision_candidate_only")
-        ? "blocked_before_corrected_rerun"
-        : "revision_candidate_only",
+    status,
     accepted_history_boundary: false,
+    promotion_boundary: promotionBoundary(status),
     parameters: {
       rows: args.rows,
       tolerance: args.tolerance,
@@ -1938,10 +1957,11 @@ function buildOutput(artifact, args, intakePath, context = {}) {
       selected_row_count: rows.length,
       status_counts: statusCounts,
       accepted_history_row_count: 0,
+      accepted_branch_promotion_row_count: 0,
       rerun_candidate_row_count: rows.filter((row) => row.status === "revision_candidate_only").length,
     },
     nonfit_statement:
-      "This checker may audit harmonic residual structure, but it does not use observed particle masses, measured alpha, CKM values, or accepted-history output. A residual-surface-only coordinate source fails closed as hidden fitting.",
+      "This checker may audit harmonic residual structure, but it does not use observed particle masses, measured alpha, CKM values, accepted-history output, or a master-equation closure result. A residual-surface-only coordinate source fails closed as hidden fitting; a passing row is still only a pre-rerun coordinate ledger until the matching master-equation branch-chart basis is supplied.",
     rows,
   };
 }

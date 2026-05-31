@@ -1,0 +1,592 @@
+{
+  "schema": "breather-fresh-v10-shifted-separator-finite-integration-audit-v1",
+  "packet_id": "fresh-v10-shifted-separator-finite-integration-obstruction-fixed-period-v0",
+  "source_packet": "fresh-same-packet-fold-shear-seed-v0",
+  "source_strict_gap_packet": "fresh-v10-shifted-separator-fixed-period-strict-gap-matrix-v0",
+  "status": "shifted_separator_fixed_period_tangent_feasible_but_direct_finite_integration_obstructs_itinerary",
+  "claim_level": "priority-only finite-integration audit of the shifted-separator strict-gap witness; not a repaired candidate and not a pre-ledger pass",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "source_artifacts": {
+    "fresh_seed_contract": "fresh_same_packet_fold_shear_seed.v0.json",
+    "shifted_separator_input": "gap_opening_fresh_v10_strict_gap_input.shifted_separator_fixed_period.v0.json",
+    "shifted_separator_result": "gap_opening_fresh_v10_strict_gap_result.shifted_separator_fixed_period.v0.json"
+  },
+  "direct_repair_path": {
+    "X_lambda": "X_fresh(theta)+lambda*H_shifted(theta), where H_shifted is the shifted-separator fixed-period strict-gap witness",
+    "T_lambda": "T0",
+    "T0": 6.28318530718,
+    "witness": {
+      "h_A0s": -1,
+      "h_A1s": -1,
+      "h_A2s": -1
+    },
+    "first_half_arcs": [
+      {
+        "id": "A0_shifted",
+        "theta_range": [
+          0,
+          0.12758361765
+        ],
+        "basis": "h_A0s"
+      },
+      {
+        "id": "A1_shifted",
+        "theta_range": [
+          0.12758361765,
+          0.33241638235
+        ],
+        "basis": "h_A1s"
+      },
+      {
+        "id": "A2_shifted",
+        "theta_range": [
+          0.33241638235,
+          0.5
+        ],
+        "basis": "h_A2s"
+      }
+    ],
+    "scan_steps": 50000
+  },
+  "strict_gap_threshold": {
+    "lambda_min_nonnegative_all_listed_collars": 0.264833953926991,
+    "strict_opening_rule": "All listed collars are nonnegative at lambda_min; strict opening requires lambda > lambda_min.",
+    "controlling_rows": [
+      "C_u_A4_A2_left_v10_7"
+    ],
+    "row_thresholds": [
+      {
+        "id": "C_w_A1_A0_left_v10_1",
+        "ledger": "w",
+        "required_margin": 0.0305306251747979,
+        "derivative_at_witness": 0.963692738170798,
+        "value_after_required_margin": 0.933162112996,
+        "lambda_min_open": 0.0316808708476403
+      },
+      {
+        "id": "C_w_A2_A0_left_v10_2",
+        "ledger": "w",
+        "required_margin": 0.097129464401903,
+        "derivative_at_witness": 0.581648287773903,
+        "value_after_required_margin": 0.484518823372,
+        "lambda_min_open": 0.166990028929061
+      },
+      {
+        "id": "C_w_A2_A0_right_v10_3",
+        "ledger": "w",
+        "required_margin": 0.0616068926719289,
+        "derivative_at_witness": 2.00000000000193,
+        "value_after_required_margin": 1.93839310733,
+        "lambda_min_open": 0.0308034463359347
+      },
+      {
+        "id": "C_w_A2_A1_left_v10_4",
+        "ledger": "w",
+        "required_margin": 0.030206375980675,
+        "derivative_at_witness": 0.821364179373675,
+        "value_after_required_margin": 0.791157803393,
+        "lambda_min_open": 0.036775862326634
+      },
+      {
+        "id": "C_w_A2_A1_right_v10_5",
+        "ledger": "w",
+        "required_margin": 0.0651784197251379,
+        "derivative_at_witness": 1.99999999999514,
+        "value_after_required_margin": 1.93482158027,
+        "lambda_min_open": 0.0325892098626482
+      },
+      {
+        "id": "C_u_A3_A2_left_v10_6",
+        "ledger": "u",
+        "required_margin": 0.0454297538282589,
+        "derivative_at_witness": 0.963692738170259,
+        "value_after_required_margin": 0.918262984342,
+        "lambda_min_open": 0.0471413263054315
+      },
+      {
+        "id": "C_u_A4_A2_left_v10_7",
+        "ledger": "u",
+        "required_margin": 0.25055598013026,
+        "derivative_at_witness": 0.94608707235226,
+        "value_after_required_margin": 0.695531092222,
+        "lambda_min_open": 0.264833953926991
+      },
+      {
+        "id": "C_u_A4_A2_right_v10_8",
+        "ledger": "u",
+        "required_margin": 0.049789505024517,
+        "derivative_at_witness": 0.999999999999517,
+        "value_after_required_margin": 0.950210494975,
+        "lambda_min_open": 0.049789505024541
+      },
+      {
+        "id": "C_u_A4_A3_left_v10_9",
+        "ledger": "u",
+        "required_margin": 0.0266345725630224,
+        "derivative_at_witness": 0.791464880371022,
+        "value_after_required_margin": 0.764830307808,
+        "lambda_min_open": 0.0336522481585496
+      },
+      {
+        "id": "C_u_A4_A3_right_v10_10",
+        "ledger": "u",
+        "required_margin": 0.038461903424265,
+        "derivative_at_witness": 1.00000000000026,
+        "value_after_required_margin": 0.961538096576,
+        "lambda_min_open": 0.0384619034242548
+      }
+    ]
+  },
+  "field_speed_itinerary_audit": {
+    "expected_root_count_for_current_itinerary": 4,
+    "lambda_min_root_count": 12,
+    "lambda_one_root_count": 24,
+    "states": [
+      {
+        "lambda": 0,
+        "T_cyc": 6.28318530718,
+        "max_abs_xdot_sampled": 1.29545029980074,
+        "x_range_sampled": [
+          -1.25081444498421,
+          1.25081444498421
+        ],
+        "root_count": 4,
+        "root_thetas": [
+          0.127583617650308,
+          0.371281469658986,
+          0.627583617650308,
+          0.871281469658986
+        ],
+        "positive_velocity_roots": [
+          0.627583617650308,
+          0.871281469658986
+        ],
+        "negative_velocity_roots": [
+          0.127583617650308,
+          0.371281469658986
+        ]
+      },
+      {
+        "lambda": 0.01,
+        "T_cyc": 6.28318530718,
+        "max_abs_xdot_sampled": 1.31600063667639,
+        "x_range_sampled": [
+          -1.25656726843828,
+          1.25656726843828
+        ],
+        "root_count": 4,
+        "root_thetas": [
+          0.12758361765027,
+          0.37518094518207,
+          0.62758361765027,
+          0.87518094518207
+        ],
+        "positive_velocity_roots": [
+          0.62758361765027,
+          0.87518094518207
+        ],
+        "negative_velocity_roots": [
+          0.12758361765027,
+          0.37518094518207
+        ]
+      },
+      {
+        "lambda": 0.02,
+        "T_cyc": 6.28318530718,
+        "max_abs_xdot_sampled": 1.33759275531511,
+        "x_range_sampled": [
+          -1.26337674622921,
+          1.26337674622921
+        ],
+        "root_count": 4,
+        "root_thetas": [
+          0.127583617650233,
+          0.378392637601309,
+          0.627583617650233,
+          0.878392637601308
+        ],
+        "positive_velocity_roots": [
+          0.627583617650233,
+          0.878392637601308
+        ],
+        "negative_velocity_roots": [
+          0.127583617650233,
+          0.378392637601309
+        ]
+      },
+      {
+        "lambda": 0.03,
+        "T_cyc": 6.28318530718,
+        "max_abs_xdot_sampled": 1.35985638808351,
+        "x_range_sampled": [
+          -1.27080943800743,
+          1.27080943800743
+        ],
+        "root_count": 8,
+        "root_thetas": [
+          0.127583617650233,
+          0.298043623224497,
+          0.332416382350288,
+          0.381098676290885,
+          0.627583617650233,
+          0.798043623224497,
+          0.832416382350289,
+          0.881098676290884
+        ],
+        "positive_velocity_roots": [
+          0.627583617650233,
+          0.798043623224497,
+          0.832416382350289,
+          0.881098676290884
+        ],
+        "negative_velocity_roots": [
+          0.127583617650233,
+          0.298043623224497,
+          0.332416382350288,
+          0.381098676290885
+        ]
+      },
+      {
+        "lambda": 0.04,
+        "T_cyc": 6.28318530718,
+        "max_abs_xdot_sampled": 1.38257734390509,
+        "x_range_sampled": [
+          -1.27867133197206,
+          1.27867133197206
+        ],
+        "root_count": 8,
+        "root_thetas": [
+          0.127583617650196,
+          0.282599557217583,
+          0.332416382350251,
+          0.383417848172747,
+          0.627583617650196,
+          0.782599557217583,
+          0.832416382350251,
+          0.883417848172747
+        ],
+        "positive_velocity_roots": [
+          0.627583617650196,
+          0.782599557217583,
+          0.832416382350251,
+          0.883417848172747
+        ],
+        "negative_velocity_roots": [
+          0.127583617650196,
+          0.282599557217583,
+          0.332416382350251,
+          0.383417848172747
+        ]
+      },
+      {
+        "lambda": 0.05,
+        "T_cyc": 6.28318530718,
+        "max_abs_xdot_sampled": 1.40562354302886,
+        "x_range_sampled": [
+          -1.28685028402242,
+          1.28685028402242
+        ],
+        "root_count": 8,
+        "root_thetas": [
+          0.127583617650196,
+          0.274182459532023,
+          0.332416382350214,
+          0.385432306629792,
+          0.627583617650196,
+          0.774182459532022,
+          0.832416382350214,
+          0.885432306629792
+        ],
+        "positive_velocity_roots": [
+          0.627583617650196,
+          0.774182459532022,
+          0.832416382350214,
+          0.885432306629792
+        ],
+        "negative_velocity_roots": [
+          0.127583617650196,
+          0.274182459532023,
+          0.332416382350214,
+          0.385432306629792
+        ]
+      },
+      {
+        "lambda": 0.1,
+        "T_cyc": 6.28318530718,
+        "max_abs_xdot_sampled": 1.52351272676189,
+        "x_range_sampled": [
+          -1.33058893390057,
+          1.33058893390058
+        ],
+        "root_count": 8,
+        "root_thetas": [
+          0.127583617650159,
+          0.255751460259743,
+          0.332416382350139,
+          0.392567618240975,
+          0.627583617650159,
+          0.755751460259743,
+          0.832416382350139,
+          0.892567618240975
+        ],
+        "positive_velocity_roots": [
+          0.627583617650159,
+          0.755751460259743,
+          0.832416382350139,
+          0.892567618240975
+        ],
+        "negative_velocity_roots": [
+          0.127583617650159,
+          0.255751460259743,
+          0.332416382350139,
+          0.392567618240975
+        ]
+      },
+      {
+        "lambda": 0.2,
+        "T_cyc": 6.28318530718,
+        "max_abs_xdot_sampled": 1.76420443960142,
+        "x_range_sampled": [
+          -1.42429902516199,
+          1.42429902516199
+        ],
+        "root_count": 12,
+        "root_thetas": [
+          0.0249360581475496,
+          0.050507966809012,
+          0.127583617650084,
+          0.244393952861316,
+          0.332416382350065,
+          0.399947477405854,
+          0.52493605814755,
+          0.550507966809012,
+          0.627583617650084,
+          0.744393952861317,
+          0.832416382350065,
+          0.899947477405854
+        ],
+        "positive_velocity_roots": [
+          0.52493605814755,
+          0.550507966809012,
+          0.627583617650084,
+          0.744393952861317,
+          0.832416382350065,
+          0.899947477405854
+        ],
+        "negative_velocity_roots": [
+          0.0249360581475496,
+          0.050507966809012,
+          0.127583617650084,
+          0.244393952861316,
+          0.332416382350065,
+          0.399947477405854
+        ]
+      },
+      {
+        "lambda": 0.264833953926991,
+        "T_cyc": 6.28318530718,
+        "max_abs_xdot_sampled": 1.92139610770217,
+        "x_range_sampled": [
+          -1.48684585642354,
+          1.48684585642354
+        ],
+        "root_count": 12,
+        "root_thetas": [
+          0.017798396198377,
+          0.0552155420033261,
+          0.127583617650084,
+          0.241225936405174,
+          0.332416382350065,
+          0.402659855366312,
+          0.517798396198377,
+          0.555215542003326,
+          0.627583617650084,
+          0.741225936405174,
+          0.832416382350065,
+          0.902659855366312
+        ],
+        "positive_velocity_roots": [
+          0.517798396198377,
+          0.555215542003326,
+          0.627583617650084,
+          0.741225936405174,
+          0.832416382350065,
+          0.902659855366312
+        ],
+        "negative_velocity_roots": [
+          0.017798396198377,
+          0.0552155420033261,
+          0.127583617650084,
+          0.241225936405174,
+          0.332416382350065,
+          0.402659855366312
+        ]
+      },
+      {
+        "lambda": 0.3,
+        "T_cyc": 6.28318530718,
+        "max_abs_xdot_sampled": 2.00682070185171,
+        "x_range_sampled": [
+          -1.52106942773432,
+          1.52106942773432
+        ],
+        "root_count": 12,
+        "root_thetas": [
+          0.0155469919352606,
+          0.0565392322026566,
+          0.127583617650084,
+          0.240031876245625,
+          0.332416382350065,
+          0.403780132558234,
+          0.51554699193526,
+          0.556539232202657,
+          0.627583617650084,
+          0.740031876245625,
+          0.832416382350065,
+          0.903780132558234
+        ],
+        "positive_velocity_roots": [
+          0.51554699193526,
+          0.556539232202657,
+          0.627583617650084,
+          0.740031876245625,
+          0.832416382350065,
+          0.903780132558234
+        ],
+        "negative_velocity_roots": [
+          0.0155469919352606,
+          0.0565392322026566,
+          0.127583617650084,
+          0.240031876245625,
+          0.332416382350065,
+          0.403780132558234
+        ]
+      },
+      {
+        "lambda": 0.4,
+        "T_cyc": 6.28318530718,
+        "max_abs_xdot_sampled": 2.25009042470909,
+        "x_range_sampled": [
+          -1.61908696087307,
+          1.61908696087307
+        ],
+        "root_count": 16,
+        "root_thetas": [
+          0.0115346088869497,
+          0.0587195030147955,
+          0.127583617650084,
+          0.237705966855921,
+          0.332416382350065,
+          0.406139845824279,
+          0.445337277953513,
+          0.473770420608483,
+          0.51153460888695,
+          0.558719503014795,
+          0.627583617650084,
+          0.737705966855921,
+          0.832416382350065,
+          0.906139845824279,
+          0.945337277953513,
+          0.973770420608483
+        ],
+        "positive_velocity_roots": [
+          0.445337277953513,
+          0.473770420608483,
+          0.51153460888695,
+          0.558719503014795,
+          0.627583617650084,
+          0.737705966855921,
+          0.832416382350065,
+          0.906139845824279
+        ],
+        "negative_velocity_roots": [
+          0.0115346088869497,
+          0.0587195030147955,
+          0.127583617650084,
+          0.237705966855921,
+          0.332416382350065,
+          0.406139845824279,
+          0.945337277953513,
+          0.973770420608483
+        ]
+      },
+      {
+        "lambda": 1,
+        "T_cyc": 6.28318530718,
+        "max_abs_xdot_sampled": 4.25078726697125,
+        "x_range_sampled": [
+          -2.21460185196975,
+          2.21460185196975
+        ],
+        "root_count": 24,
+        "root_thetas": [
+          0.00463521637845784,
+          0.0619598796117678,
+          0.0732419395853952,
+          0.116783263856582,
+          0.12758361765001,
+          0.233228549963944,
+          0.264995105075613,
+          0.299655153764673,
+          0.33241638234999,
+          0.41148556748677,
+          0.42760832872007,
+          0.491322076591141,
+          0.504635216378458,
+          0.561959879611768,
+          0.573241939585395,
+          0.616783263856582,
+          0.62758361765001,
+          0.733228549963944,
+          0.764995105075613,
+          0.799655153764673,
+          0.83241638234999,
+          0.91148556748677,
+          0.927608328720071,
+          0.991322076591141
+        ],
+        "positive_velocity_roots": [
+          0.0732419395853952,
+          0.116783263856582,
+          0.264995105075613,
+          0.299655153764673,
+          0.42760832872007,
+          0.491322076591141,
+          0.504635216378458,
+          0.561959879611768,
+          0.62758361765001,
+          0.733228549963944,
+          0.83241638234999,
+          0.91148556748677
+        ],
+        "negative_velocity_roots": [
+          0.00463521637845784,
+          0.0619598796117678,
+          0.12758361765001,
+          0.233228549963944,
+          0.33241638234999,
+          0.41148556748677,
+          0.573241939585395,
+          0.616783263856582,
+          0.764995105075613,
+          0.799655153764673,
+          0.927608328720071,
+          0.991322076591141
+        ]
+      }
+    ]
+  },
+  "obstruction": {
+    "summary": "The shifted-separator fixed-period basis gives a strict tangent, but the direct finite amplitude needed to open all 10 collars creates additional field-speed roots.",
+    "direct_integration_promotable_to_fresh_repair_v0": false,
+    "recommended_next_solver_constraint": "Use the shifted-separator basis only inside a finite nonlinear solve that constrains the field-speed itinerary; do not promote the direct tangent path."
+  },
+  "limitations": [
+    "The audit checks a direct finite path through one tangent witness, not the full nonlinear constrained solve space.",
+    "The root counts are deterministic high-resolution root scans, not outward-rounded interval root counts.",
+    "The obstruction blocks direct promotion of this shifted witness, not every possible strict-gap repair.",
+    "No live causal ledger, branch chart, fold atlas, or AAA theorem prose is updated."
+  ]
+}

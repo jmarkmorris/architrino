@@ -33,6 +33,968 @@ coefficient-series layer from which the continuous h39 primitive witness is
 built, and it now records source-certificate obstructions when an optional
 source certificate cannot be computed on the requested envelope.
 
+## H39/y44 N38 Terminal Endpoint Bridge
+
+The bounded provenance audit found no shifted-index, branch-sign, same-domain,
+same-radius, or fixed speed-band bookkeeping error in the H38-to-H39 join. The
+current obstruction should therefore be treated as a live geometry/source
+problem, not as evidence that the row is being optimized around a wrong
+coefficient.
+
+The new executable bridge diagnostic,
+`buildH39H38Y44N38TerminalEndpointBridgeDiagnosticCandidate`, compares the live
+shifted-index-$1$ H39 numerator collar target with the reduced $N_{38}$
+terminal $\eta$-graph endpoint normal form. On the live $32$-subcell positive
+$\xi$ window, the controlling target remains `speed.28.first-y` with
+
+$$
+\operatorname{width}_{\mathrm{target}}
+=25.069761713185112,
+$$
+
+and the existing quadratic $N_{38}$ graph residual still misses by
+$1.5384433774290903\times10^{9}$. The endpoint bridge shows why the earlier
+terminal endpoint result is not enough for H39 closure: the terminal graph plus
+nonterminal replay has width
+
+$$
+2.9642106707775817\times10^{21},
+$$
+
+and the affine $\zeta$ endpoint envelope has width
+
+$$
+4.908990049944492\times10^{21}.
+$$
+
+Relative to the actual H39 collar, those are over target by
+$1.1823848605703315\times10^{20}$ and
+$1.9581319144978838\times10^{20}$, respectively. In share form, the H39 collar
+requires only
+
+$$
+2.418863346372706\times10^{-22}
+$$
+
+of the all-active reduced $N_{38}$ source width, while the affine endpoint
+envelope still carries about $4.7364535153415446\%$ of that width.
+
+This changes the local normal-form target. The affine $\zeta$ endpoint
+certificate remains mathematically useful, but it is calibrated to an internal
+$5\%$ source-width proxy, not to the live H39 collar. The next route cannot be
+only a sharper terminal-row width enclosure. It must expose a coefficient-level
+zero, signed cancellation, or covariance-preserving replay before the width
+majorant is applied to the shifted $R_{\varepsilon,43}$ coefficient.
+
+## H39/y44 Source Covariance Diagnostic
+
+The follow-on executable diagnostic,
+`buildH39H38Y44SourceCovarianceDiagnosticCandidate`, evaluates the live
+shifted-index-$1$ source coefficient at the same `speed.28.first-y` row while
+keeping the three nonconstant source terms signed:
+
+$$
+\delta^2/\nu^2,\qquad \sin\phi,\qquad \sin\delta.
+$$
+
+It samples the normalized $h_{38}$ residual coordinate $u$, fits the signed
+source coefficient, replays the affine-zero coordinate, and then reports the
+signed term covariance at that replay point. On the live $32$-subcell,
+comparison-index-$27$, row-offset-$1$ target, the affine zero is
+
+$$
+u=-2.6856315562445987\times10^{-8},
+$$
+
+which lies inside the sampled residual-coordinate domain. At that point the
+source coefficient midpoint is only
+
+$$
+3.70293115625\times10^{10},
+$$
+
+while the absolute midpoint mass of the three signed source terms is
+
+$$
+4.584378986495\times10^{16}.
+$$
+
+The cancellation ratio is therefore
+
+$$
+8.077279751866864\times10^{-7},
+$$
+
+with source-term replay gap
+$8.384450786732948\times10^{-13}$. The dominant signed source-zero term is
+`sin_phi`, the dominant affine slope term is `sin_delta`, and the strongest
+pair cancellation is the `sin_phi`/`sin_delta` pair, whose cancellation
+fraction is $0.8121258516345928$.
+
+This changes the immediate H39 closure route. The remaining wall is not just a
+large geometric residual in $N_{38}$ or an independent $h_{38}$ interval box.
+It is also a source-level covariance problem: applying absolute bounds to
+`delta_squared_speed`, `sin_phi`, and `sin_delta` before their signed
+cancellation destroys about six orders of magnitude at the live affine-zero
+replay. The next certificate should therefore keep these three terms in one
+directed-rounded source-level normal form, or prove an equivalent covariance
+identity, before converting the result into a shifted
+$R_{\varepsilon,43}$ outer bound.
+
+The same diagnostic now replays zero-centered $h_{38}$ residual-coordinate
+collars around the affine zero and compares the signed source interval against
+the independent source-term triangle. On the live row, the point collar has
+signed source pressure $3.3134759851000004\times10^7$ while the term triangle
+is $4.584390873462528\times10^{13}$, a triangle-to-signed-source gain of
+$1.3835594083305758\times10^6$. For the reference pressure
+$10^{13}$, signed source intervals remain below target through half-width
+$5\times10^{-9}$, while the term triangle does not close even at the point
+collar and remains about $4.584390873462528$ times target there. At half-width
+$10^{-8}$, the signed source interval rises to
+$1.0638992053901588\times10^{13}$ and just misses the same reference target.
+This turns the covariance observation into a finite collar route: the next
+proof target is a directed-rounded source-level covariance enclosure on an
+$h_{38}$ residual-coordinate collar of order $10^{-9}$, not an independent
+term box.
+
+The diagnostic now also checks whether that collar is aligned with the actual
+H38 producer image. It is not enough to keep the affine-zero collar: the live
+H38 producer midpoint hull is
+$[7.233482551797858,7.233537092376838]\times10^{-17}$ in the normalized
+residual coordinate, while the source affine zero is
+$-2.6856315562445987\times10^{-8}$. The zero-centered collar therefore misses
+the producer midpoint hull. A producer-centered replay gives the useful
+replacement route: the producer midpoint hull has signed source pressure
+$3.3588014199994106\times10^{12}$, and producer-centered collars remain under
+the $10^{13}$ reference target through half-width $5\times10^{-9}$. The
+$10^{-8}$ collar fails with pressure $1.3997760410677502\times10^{13}$.
+This makes the next executable certificate target precise: prove a
+directed-rounded H38 producer-centered residual-coordinate collar of positive
+width, then feed that signed source enclosure into the shifted
+$R_{\varepsilon,43}$ outer-bound backend.
+
+A producer-centered safety search now measures the width rather than relying
+on the coarse collar ladder. On the live `speed.28.first-y` row, the
+$10^{13}$ reference target closes at half-width
+$6.242338716983796\times10^{-9}$, with replay ratio
+$0.9999999954450799$ and bracket width
+$2.9802322372008686\times10^{-16}$. The lower $10^8$ and $10^{10}$ reference
+targets fail at the producer midpoint hull. The measured collar remains a
+midpoint-hull certificate target only: it requires a full interval-hull
+compression factor $1.6019636955604696\times10^8$ against the current
+producer interval hull. Thus the next route is not another raw pressure
+prefix; it is a directed-rounded local H38 producer-image enclosure inside
+the measured source-covariance collar.
+
+The same measured collar is now tested against the existing H38 recurrence
+numerator route. The diagnostic emits both an all-reference stress route and a
+positive-collar-only route. The all-reference route is intentionally dominated
+by the lower $10^8$ and $10^{10}$ pressure targets, which already fail at the
+producer midpoint hull. The positive route isolates the actual $10^{13}$
+source-covariance collar: `source_covariance_positive_h38_y44_n38_collar_enclosure_route`
+has one positive target, route diagnosis
+`n38-quadratic-midpoint-residual-has-directed-rounded-collar-headroom`, and
+`s37_dependency_status` equal to
+`conservative-s37-lower-bound-supports-n38-collar`. On `speed.28.first-y`, the
+quadratic $N_{38}(\xi)$ midpoint residual is
+$3.8568408881375\times10^{10}$ against conservative numerator target
+$5.73862423531554\times10^{14}$, so the residual-to-target ratio is
+$6.720845850826876\times10^{-5}$ and the headroom is
+$1.4879079541408742\times10^4$. This advances the blocker from "find a local
+producer image" to "make the already isolated positive-collar N38 graph
+residual and $S_{37}$ division directed-rounded on the same domain."
+
+The positive route now also includes a live graph-degree sweep. Linear,
+quadratic, and cubic $N_{38}(\xi)$ graphs all fit the measured positive collar
+with headroom, and the cubic graph is the best local coordinate on the live
+row. Its residual-to-target ratio is
+$2.233649281651077\times10^{-5}$ with headroom
+$4.4769785848421845\times10^4$, compared with
+$6.098345638556299\times10^{-5}$ for the linear graph and
+$6.720845850826876\times10^{-5}$ for the quadratic graph. The emitted
+candidate Taylor target is a cubic graph on
+$\xi\in[1.3748880220784354,2]$, with conservative numerator residual target
+$5.738624107848429\times10^{14}$ and observed controlling midpoint residual
+$1.28180741855625\times10^{10}$. As a Taylor-route target, this translates to
+a required fourth-derivative upper bound
+$1.4431375279595438\times10^{18}$ on the parent window; the midpoint residual
+implies only $3.223463245842429\times10^{13}$, leaving the same
+$4.4769783859669544\times10^4$ scale of headroom. A local sampled
+fourth-difference check on the same positive collar stencil gives nonuniform
+fourth-derivative estimate $6.115956847843226\times10^{14}$, ratio
+$4.237958426935647\times10^{-4}$ against the required bound, and pass status
+`positive-n38-sampled-fourth-difference-supports-cubic-target`. The same
+artifact now emits an inflation budget: sampled $M_4$ can be inflated by
+$2359.6267335804732$ before the cubic target fails, and the requested ladder
+through $2000\times$ sampled $M_4$ still closes with remainder ratio
+$0.8475916853871295$. This is not yet a directed-rounded certificate, but it
+replaces the vague producer-image obstruction with a specific same-domain
+cubic Taylor derivative budget and $S_{37}$-division proof obligation.
+
+The route now also records the negative result that keeps the proof honest:
+raw directed interval enclosure of the same cubic graph residual does not
+close. On the live positive target, `source_covariance_positive_n38_directed_interval_residual_check`
+reports target status
+`positive-n38-directed-interval-residual-exposes-dependency-loss`. The
+selected $q_3(\xi)$ midpoint residual remains tiny, with ratio
+$2.233665171037203\times10^{-5}$ against the conservative numerator target,
+but the outward-rounded interval residual has maximum absolute-upper ratio
+$8.00987545753348\times10^7$. The controlling sample is
+`speed.27.first-y`; the raw numerator interval width there is already
+$1.6019750913581634\times10^8$ times the target, and the
+midpoint-to-directed-interval dependency-loss factor is
+$2.156733711521737\times10^{13}$. This classifies the remaining obstruction as
+dependency loss in the raw interval coordinate. The next closure attempt
+should certify the cubic residual derivative or a dependency-preserving
+normal form on the same producer window, not try to force the raw
+independent interval hull through the collar.
+
+The certificate target is now sharper than the original center-Taylor parent
+window. The diagnostic emits
+`source_covariance_positive_n38_lagrange_remainder_target`, a four-node cubic
+Lagrange scan on the same five positive-collar samples. The best candidate
+uses `speed.27.first-y`, `speed.28.first-y`, `speed.30.first-y`, and
+`speed.31.first-y` as interpolation nodes and omits `speed.29.first-y`. Its
+product envelope has maximum $2.886464445233012\times10^{-3}$ on
+$\xi\in[1.3748880220784354,2]$, so the required fourth-derivative ceiling is
+$4.771442762167798\times10^{18}$, a factor
+$3.306321547371893$ above the parent Taylor requirement. Against the sampled
+nonuniform fourth-derivative estimate
+$6.115956847843226\times10^{14}$, the new sampled-$M_4$ ratio is
+$1.2817835511589747\times10^{-4}$ and the inflation margin is
+$7801.629214977919$. The omitted-node residual remains below the collar, with
+ratio $4.343246822549331\times10^{-5}$. This keeps the claim candidate-only
+but gives the next directed-rounded proof a concrete, less brittle target:
+certify the $q_3$ residual derivative below $4.7714\times10^{18}$ on the same
+producer window, then replay the existing conservative $S_{37}$ lower-bound
+status through the H39 source-covariance path.
+
+The Lagrange route now has a source-level residual decomposition, and it
+changes the next proof target again. The selected omitted sample
+`speed.29.first-y` has direct interval-midpoint residual
+$-2.492408362115625\times10^{10}$, but the recomputed point-source
+point-expression residual is only $-1.313289726678125\times10^{10}$. The
+separate interval-center drift residual is
+$-1.1791186313234375\times10^{10}$, and the point/drift split replays the
+direct residual with relative gap $1.650637416618146\times10^{-9}$. Their
+ratios against the conservative numerator target are
+$2.28852593571814\times10^{-5}$ and
+$2.054720686727435\times10^{-5}$ respectively, so
+$0.4730840362731557$ of the direct omitted residual is an
+interval-midpoint artifact rather than point-source geometry. The point-source
+part remains a real signed balance: the sine pair accounts for
+$0.9920894683344795$ of the absolute source residual mass, and `sin_delta` is
+the dominant component with share $0.752464803608694$ while `sin_phi` opposes
+it. This means the directed-rounded proof should not certify the row-hull
+midpoint residual as if it were the primitive function. The next certificate
+should use the point-expression/source-term midpoint normal form for
+$N_{38}(\xi)-q_3(\xi)$, then separately bound the interval-center drift or
+avoid that drift by choosing a dependency-preserving center before applying
+absolute Cauchy bounds.
+
+The sampled fourth-difference check now carries the same split. The direct
+row-hull sampled nonuniform $M_4$ estimate is
+$6.115956847843226\times10^{14}$, ratio
+$4.2379885742637813\times10^{-4}$ against the parent Taylor requirement. The
+point-expression residual contributes
+$3.2225952407871556\times10^{14}$, ratio
+$2.233063795201403\times10^{-4}$, and interval-center drift contributes
+$2.8933616070560706\times10^{14}$, ratio
+$2.004924779062378\times10^{-4}$. Their signed nonuniform split replays the
+direct estimate with zero reported relative gap. The separate triangle split
+of the two pieces has the same ratio,
+$4.2379885742637813\times10^{-4}$, leaving sampled headroom
+$2359.60994815499$ against the parent Taylor requirement. This sharpens the
+blocker: the sampled $M_4$ pressure is slightly point-expression dominated,
+not purely an interval-center artifact, and both pieces have sampled
+headroom. Closure therefore needs a directed-rounded certificate for the
+split source normal form and drift bound, not another raw row-hull
+subdivision.
+
+The M4 inflation budget now records that sufficient condition explicitly. It
+separately inflates the point-expression and interval-center drift sampled
+$M_4$ estimates, adds them by triangle inequality, and tests the same
+parent-window Taylor remainder target. On the live selected row, every
+requested factor in $1,2,10,100,1000,2000$ closes under the split budget. The
+factor-$2000$ split-triangle remainder ratio is
+$0.8475977148527561$, and the sampled split-triangle inflation factor before
+failure is $2359.60994815499$. The next directed-rounded certificate can
+therefore target a combined fourth-derivative inflation below that number for
+the point-expression source normal form plus interval-center drift, then feed
+the result into the existing positive-collar $N_{38}$ replay.
+
+The Lagrange route carries the same split budget into the sharper selected
+four-node stencil. Its required fourth-derivative bound is
+$4.771442762167798\times10^{18}$, and the split-triangle sampled $M_4$ ratio
+against that Lagrange requirement is
+$1.2817835511589747\times10^{-4}$, giving sampled headroom
+$7801.629214977919$. The immediate proof target is therefore a
+directed-rounded split source/drift fourth-derivative certificate with
+combined inflation below $7801.629214977919$, followed by the existing
+$S_{37}$ dependency and H39 source replay obligations.
+
+The selected Lagrange target now also carries an explicit split-M4 allocation
+region:
+$\lambda_p M_{4,p}+\lambda_d M_{4,d}\le M_{4,\mathrm{Lag}}$. On the live
+stencil, the point-expression source-term stream carries
+$0.5269159546021968$ of the split-triangle sampled $M_4$, and interval-center
+drift carries $0.47308404539780324$. The equal-stream inflation factor is
+$7801.629214977919$. The point-expression and drift axis intercepts are
+$14806.211781664266$ and $16491.000469943443$ respectively; holding the other
+stream at sampled scale gives allowable factors $14805.313945792595$ and
+$16489.88668062899$. This is the current allocation target for a
+directed-rounded split derivative proof.
+
+The same target now records absolute $M_4$ ceilings. Equal-stream allocation
+sets the point-expression ceiling at
+$2.5141493178573875\times10^{18}$ and the interval-center drift ceiling at
+$2.2572934443104102\times10^{18}$, with split ceiling
+$4.771442762167798\times10^{18}$. The point-expression and drift axis
+ceilings are both $4.771442762167798\times10^{18}$. With the other stream
+left at sampled scale, the point-expression stream may reach
+$4.771153426007092\times10^{18}$, while the drift stream may reach
+$4.771120502643719\times10^{18}$. These are candidate certificate targets:
+closure still requires directed-rounded continuous fourth-derivative bounds
+inside one feasible allocation pair, then the $S_{37}$ dependency and H39
+source replay.
+
+The sampled ceiling comparison now confirms the magnitude picture directly.
+The point-expression stream, interval-center drift stream, and split triangle
+each sit at $1.2817835511589747\times10^{-4}$ of the equal-stream ceiling.
+Against one-stream-fixed ceilings, the sampled ratios are
+$6.754331611348114\times10^{-5}$ for the point-expression stream and
+$6.06432305671767\times10^{-5}$ for interval-center drift. This makes the
+next proof step precise: replace the sampled finite-difference $M_4$ estimates
+with directed-rounded continuous fourth-derivative upper bounds for those two
+streams on the same selected Lagrange window.
+
+The sampled split-M4 refinement ladder also removed a selector artifact. The
+degree sweep may still prefer a lower-degree row by midpoint residual, but the
+Taylor/Lagrange route now selects a cubic row whenever cubic headroom exists.
+For counts $32,64,128$ with scaled comparison indexes $27,54,108$, every row
+validates, uses selected Taylor degree $3$, and keeps the same local Lagrange
+node pattern `0|1|3|4`. The sampled split-to-equal-ceiling ratios are
+$1.2817835511589747\times10^{-4}$, $2.2974267404209582\times10^{-5}$, and
+$4.671094237864675\times10^{-4}$; the sampled headroom factors are
+$7801.629214977919$, $43526.959202049235$, and $2140.8260015262204$. This
+clears the sampled selection/magnitude obstruction on the live ladder while
+preserving candidate-only status until the continuous directed-rounded
+fourth-derivative bounds are proved.
+
+The cubic Taylor remainder route is now explicit. For the live
+`speed.28.first-y` row, the parent cubic Taylor target requires
+$M_4\le1.443127262065751\times10^{18}$, while the sampled nonuniform estimate
+is $6.115956847843226\times10^{14}$, ratio
+$4.2379885742637813\times10^{-4}$, headroom $2359.60994815499$. The Lagrange
+split route remains sharper, with required
+$M_4\le4.771442762167798\times10^{18}$ and split-triangle ratio
+$1.2817835511589747\times10^{-4}$. The raw directed interval residual route
+fails as a certificate because it has residual-to-target ratio
+$80098754.5753348$ and midpoint-to-directed dependency loss
+$2.156733711521737\times10^{13}$. The next proof obligation is therefore a
+same-domain directed-rounded bound on
+$d^4(N_{38}(\xi)-q_3(\xi))/d\xi^4$, equivalently $N_{38}^{(4)}$ because
+$q_3$ is cubic, or a split source/drift fourth-derivative proof inside the
+allocation region.
+
+The route now carries that obligation as a validator-covered provider target,
+not as an informal next step. Its live `provider_target_kind` is a
+directed-rounded continuous fourth-derivative bound; it is explicitly
+candidate-only and preserves all false claim-boundary flags. The selected
+same-domain Lagrange pattern is `0|1|3|4`, with nodes `speed.27.first-y`,
+`speed.28.first-y`, `speed.30.first-y`, and `speed.31.first-y`; the omitted
+cell is `speed.29.first-y`. On $\xi\in[1.3748880220784354,2]$, the split
+acceptance test requires
+$\sup_\xi |F_{\text{point}}^{(4)}(\xi)|\le
+2.5141493178573875\times10^{18}$ and
+$\sup_\xi |F_{\text{drift}}^{(4)}(\xi)|\le
+2.2572934443104102\times10^{18}$ for
+$F_{\text{point}}=$ source-term midpoint sum minus $q_3$ and
+$F_{\text{drift}}=$ interval-center drift. This makes the next certificate
+interface concrete: provide those two same-domain directed-rounded derivative
+bounds, then replay the dependency-preserving $S_{37}$ division and signed H39
+source.
+
+A first same-domain stream derivative witness now probes the omitted Lagrange
+cell rather than only the sampled stencil. For `speed.29.first-y`, the
+directed Lagrange product interval stays away from zero, with absolute lower
+bound $1.379151044211313\times10^{-4}$. The resulting guarded fourth-derivative
+witnesses are $2.2853880706227905\times10^{15}$ for the point-expression stream
+and $2.051903398872862\times10^{15}$ for the interval-center drift stream; the
+split guarded value is $4.3372914694956525\times10^{15}$. Those are only
+$9.090104769793259\times10^{-4}$, $9.090104806908285\times10^{-4}$, and
+$9.090104787351786\times10^{-4}$ of the split ceilings. The omitted cell is
+therefore not the active obstruction. The remaining certificate has to control
+the continuous fourth-derivative supremum over the same $\xi$ window, without
+turning the stream data back into independent h-row boxes.
+
+The quotient form is now explicit. For each stream, the diagnostic records the
+candidate identity
+$F_{\text{stream}}(\xi)-p_{3,\text{stream}}(\xi)
+=\prod_i(\xi-\xi_i)Q_{\text{stream}}(\xi)/24$. A raw quotient interval is valid
+only on cells whose Lagrange product interval is separated from zero. The live
+route reports one such separated cell, `speed.29.first-y`, and four
+product-crossing node cells, `speed.27.first-y`, `speed.28.first-y`,
+`speed.30.first-y`, and `speed.31.first-y`. Those four product-zero rows are
+not new failures; they are the expected removable-node limit obligations. The
+next certificate should therefore bound the removable quotient
+$Q_{\text{stream}}$ directly with directed rounding on the same $\xi$ window,
+instead of dividing raw residual intervals near Lagrange nodes.
+
+The finite-data quotient consistency witness now verifies the removable
+normal form on the live five-row stencil before any continuous supremum claim.
+With the same selected node pattern `0|1|3|4` and omitted cell
+`speed.29.first-y`, the live diagnostic reports
+`positive-n38-quartic-quotient-consistency-witness-inside-provider-target`.
+The signed five-point quartic estimates are
+$-3.2225952407829644\times10^{14}$ for $F_{\text{point}}$,
+$-2.8933616070560706\times10^{14}$ for $F_{\text{drift}}$, and
+$-6.115956847839032\times10^{14}$ for $F_{\text{direct}}$; their split replay
+gap is $4.0876678207488184\times10^{-16}$. The omitted residual quotient check
+agrees with the fourth divided-difference form to relative gap at most
+$4.3377600832686915\times10^{-9}$, and the absolute split-M4 ratio against the
+provider ceiling is $1.2817835511580962\times10^{-4}$. This is not a
+directed-rounded certificate. It shows that the apparent node singularity is a
+finite-data bounding artifact, so the live proof obligation is now sharply the
+continuous same-domain bound for $Q_{\text{stream}}$ or equivalently the stream
+fourth derivatives.
+
+The same witness now emits explicit finite-data node-limit proxies for the four
+selected Lagrange nodes. The `node_limit_proxy_rows` entries reuse the
+point-expression, interval-center drift, and diagnostic direct signed $M_4$
+constants as the removable quotient limit proxy of the five-sample quartic
+normal form, without dividing by the zero product at a node. The split-stream
+node-limit proxy status is inside the provider target, and the direct stream is
+kept `diagnostic-only`. The remaining certificate is therefore a
+directed-rounded repeated-node quotient limit for the split streams, not another
+raw product-crossing interval division.
+
+The node-limit route now has an executable derivative replay. At each selected
+node $\xi_i$, the diagnostic evaluates
+$24R'_{\text{stream}}(\xi_i)/P'(\xi_i)$ for
+$R_{\text{stream}}=F_{\text{stream}}-p_{3,\text{stream}}$ and
+$P(\xi)=\prod_j(\xi-\xi_j)$. On the live `speed.28.first-y` row, all four
+node derivative-limit rows are inside the split-stream provider target, with
+maximum split-stream replay gap $6.3052830038510166\times10^{-12}$ and maximum
+diagnostic direct replay gap $3.809093258764788\times10^{-12}$. This leaves a
+specific continuous certificate target: directed-rounded repeated-node
+derivative bounds for $R'_{\text{point}}/P'$ and
+$R'_{\text{drift}}/P'$ on the same selected $\xi$ window.
+
+That target is now localized to node collars. The live diagnostic chooses a
+same-domain collar around each selected $\xi_i$, keeps the collar inside the
+selected sample interval and away from neighboring selected nodes, computes the
+polynomial range of $P'(\xi)$ there, and translates the split $M_4$ ceilings
+into residual-derivative headroom by Cauchy's mean value theorem:
+$\sup |R'_{\text{stream}}| \le M_{4,\text{stream}}\inf |P'|/24$. On
+`speed.28.first-y`, all four collars exclude zeros of $P'$, with minimum
+$\inf |P'|=0.007691910678268243$ and maximum split-stream sampled
+residual-derivative ratio $3.9153923295599704\times10^{-4}$. The result is
+still candidate-only because the residual-derivative suprema are sampled, not
+directed-rounded continuous enclosures.
+
+The same collar target now ranges the finite-polynomial residual derivative on
+the whole collar. It builds $F_{4,\text{stream}}$ from all five samples,
+$p_{3,\text{stream}}$ from the selected Lagrange nodes, and evaluates the
+polynomial range of
+$R'_{4,\text{stream}}=(F_{4,\text{stream}}-p_{3,\text{stream}})'$ on each
+collar. On the live `speed.28.first-y` row, all four collars remain inside the
+split-stream headroom with maximum finite-polynomial split ratio
+$7.526334680718182\times10^{-4}$. The largest whole-collar-to-node-sampled
+ratio is $1.9222427913281492$, so the route now tests an actual collar
+supremum rather than only a node derivative. It remains candidate-only until a
+directed-rounded true-stream derivative enclosure replaces the finite
+interpolation model.
+
+The finite-polynomial collar target now also has a subpartitioned outward
+interval replay. The diagnostic evaluates
+$R'_{4,\text{stream}}=(F_{4,\text{stream}}-p_{3,\text{stream}})'$ on 16
+same-domain collar subcells using outward interval Horner arithmetic. On the
+live `speed.28.first-y` row, all four selected-node collars remain inside
+split-stream headroom, with maximum directed finite-polynomial split ratio
+$0.002339647678303848$. The largest directed-to-exact finite-polynomial ratio
+is $8.720511848333576$, so this is a stricter interval enclosure of the
+finite interpolation model, not yet a directed-rounded true-stream derivative
+certificate.
+
+The replay now also reports how much true-stream derivative error can fit
+inside that collar headroom. After the directed finite-polynomial enclosure is
+charged against the point-expression, interval-center drift, and split-stream
+targets, every selected-node collar retains positive slack. The minimum
+slack-to-target ratio is $0.9976603523210646$ on `speed.31.first-y`. The
+remaining proof task is therefore sharply quantitative: construct a
+same-domain directed-rounded true-stream residual-derivative enclosure whose
+excess over the finite interpolation model stays below this slack budget.
+
+That slack is now exposed as a collar-wise true-stream excess target. The
+diagnostic records the allowed excess over the directed finite-polynomial
+model for the point-expression, interval-center drift, and split streams, and
+the live row keeps all four selected-node collars positive. The limiting
+excess-to-directed finite-polynomial ratio is $426.41478086780194$ on
+`speed.31.first-y`. This is still a candidate-only budget surface, not a
+directed-rounded true-stream derivative certificate; its value is that the
+next certificate now has a precise same-domain inequality to prove rather than
+an open-ended headroom search.
+
+The next provider probe rules out two noncertifying shortcuts. Replaying
+independent source-component interval hulls over each selected-node collar
+does not preserve enough covariance: the live component cancellation fraction
+falls to $0.04668187334189089$ and the worst point-expression replay relative
+gap is $0.4537493235929499$. A raw value-width-over-collar-width proxy is even
+less usable, with worst proxy-to-excess-budget ratio
+$2.042964124275476\times10^9$. These rows sharpen the route: the directed
+certificate cannot be assembled from independent component hulls or raw value
+widths; it has to evaluate the signed source normal form, with point/drift
+dependence preserved, on the same collar.
+
+The signed point/drift collar provider probe now gives that route an
+executable finite-polynomial target. On each selected-node collar it adds the
+directed point-expression residual-derivative interval to the directed
+interval-center drift residual-derivative interval before taking the absolute
+upper bound. On the focused H39/y44 fixture, every collar is inside headroom:
+maximum signed-pair-to-target ratio
+$7.050251213504737\times10^{-6}$, minimum signed-pair cancellation fraction
+$0.5584485102554677$, and minimum signed-pair slack ratio
+$0.9999929497487865$. The direct stream remains diagnostic-only because the
+signed-pair interval can differ from the direct interval with replay gap
+$0.8958585907160469$ and absolute-hull loss factor $9.602328095428067$.
+Therefore the next proof should not collapse point plus drift prematurely; it
+should build the directed-rounded same-domain provider for the signed
+point/drift pair and only then replay the direct cancellation.
+
+The paired-subcell signed provider sharpens the same finite-polynomial target
+by keeping point and drift paired one collar subcell longer. Instead of adding
+the global point-expression hull to the global interval-center drift hull, it
+adds the two directed intervals on each matching subcell and hulls those
+subcell sums. On the focused H39/y44 fixture, this lowers the maximum
+signed-pair-to-target ratio to $1.2493112588664224\times10^{-6}$, raises the
+minimum cancellation fraction to $0.9213461827518983$, and raises the minimum
+slack ratio to $0.9999987506887411$. It also lowers the direct replay gap to
+$0.4845136658732542$ and the worst absolute-hull loss factor to
+$1.7104681714917842$. The status remains candidate-only: this proves that the
+global-hull replay was partly a bounding-coordinate artifact, but the remaining
+gap is still a true same-subcell dependency-preservation problem for the
+directed-rounded provider.
+
+The direct-collapse locality trace identifies that dependency more precisely.
+For every collar subcell it now records the point interval, drift interval,
+paired point-plus-drift interval, and direct interval. The live status is
+`positive-n38-paired-subcell-direct-collapse-local-interval-dependency-artifact-candidate`.
+Every direct subcell interval is contained in the paired interval, but the
+paired interval is wider because point and drift are still evaluated as
+separate interval functions of the same $\xi$. The worst local replay gap is
+$0.6495457279983037$, the worst local-to-collar gap ratio is
+$1.575428979698578$, and the worst local direct loss factor is
+$2.853439132657084$. The direct split derivative coefficients replay to
+maximum absolute gap $0.25$, so the obstruction is not a missing
+finite-polynomial direct identity at the current numerical scale. The next
+certificate route should evaluate the shared-$\xi$ point/drift normal form as
+one dependency-preserving object before applying absolute bounds.
+
+The candidate same-variable direct normal form now performs that finite
+polynomial replay. Instead of evaluating point and drift as two interval
+functions and then adding their hulls, it evaluates the direct point-plus-drift
+residual derivative as one shared-$\xi$ object on the same directed subcells.
+On the focused H39/y44 fixture it stays inside headroom with status
+`positive-n38-same-variable-direct-normal-form-candidate-inside-headroom` and
+lowers the maximum derivative-target ratio from the paired-subcell value
+$1.2493112588664224\times10^{-6}$ to
+$7.342231140809408\times10^{-7}$. This is still candidate-only, but it
+identifies the mathematical route sharply: certify the same shared-$\xi$
+direct replay with directed rounding on the H38 producer image, then feed that
+provider through the H39 shifted-source replay.
+
+The same direct replay now carries an explicit true-stream excess budget. On
+the selected-node collars the status is
+`positive-n38-same-variable-direct-normal-form-true-stream-excess-target-positive`,
+with minimum slack-to-target ratio $0.999999265776886$ and minimum
+excess-to-directed finite-polynomial ratio
+$1.3619828177551026\times10^6$. A shared-$\xi$ producer-image replay then
+tests this finite-polynomial normal form against the H38 producer coordinate
+profile. It is open in the intended way: all four matched selected-node rows
+retain direct headroom with maximum target ratio
+$7.342231140809408\times10^{-7}$, but no full producer $\xi$ interval is
+contained in the current matched collar and the omitted center sample is
+unmatched. The next executable proof step is therefore to extend or partition
+the shared-$\xi$ producer-image support, not to search for another
+finite-polynomial cancellation on the already matched rows.
+
+The producer-interval replay now makes that support burden explicit. It
+replays the same finite-polynomial direct residual derivative on each actual
+H38 producer $\xi$ interval and recomputes the Lagrange-product derivative
+guard on that interval. Its status is
+`positive-n38-producer-interval-direct-normal-form-diagnostic-denominator-guard-open`.
+On the guarded rows `speed.1.first-y` and `speed.3.first-y`, the direct
+normal form remains small: maximum guarded target ratio
+$5.425381767312044\times10^{-7}$, minimum product-derivative lower bound
+$0.7692446997498641$, minimum slack ratio $0.9999994574618234$, and minimum
+excess-to-directed ratio $1.843187263773447\times10^6$. The open rows are
+`speed.0.first-y`, `speed.2.first-y`, and `speed.4.first-y`, where the full
+producer interval crosses a zero of the Lagrange-product derivative. This
+turns the next proof step into a concrete support problem: partition the
+producer image at product-derivative zero crossings, or replace the
+repeated-node quotient coordinate by a local coordinate that keeps the
+denominator separated before applying the same direct normal form.
+
+The hybrid quotient replay implements that support refinement at the
+finite-polynomial candidate level. It keeps the repeated-node derivative
+quotient on producer pieces where $P'(\xi)$ is separated and uses the product
+quotient on complementary producer pieces where $P(\xi)$ is separated. The
+live H38 producer image is covered by nine segments: five product-quotient
+segments and four derivative-quotient segments. Every segment remains inside
+headroom, with maximum segment ratio $7.342231140809408\times10^{-7}$, minimum
+denominator lower bound $0.7692446997498641$, minimum slack ratio
+$0.999999265776886$, and minimum excess-to-directed ratio
+$1.3619828177551026\times10^6$. The result is not a directed-rounded
+true-stream certificate, but it changes the obstruction: the open full-interval
+rows were a quotient-coordinate denominator artifact at finite-polynomial
+level. The next certificate must reproduce this same hybrid producer partition
+with directed-rounded residual and residual-derivative enclosures before
+dependency-preserving $S_{37}$ division and signed H39 shifted-source replay.
+
+The provider target now records that certificate burden as a segment-wise
+true-stream excess budget. On the same nine-segment hybrid partition, the five
+product-quotient complement segments are labeled as same-variable direct
+residual enclosure obligations, and the four derivative-quotient segments are
+labeled as same-variable direct residual-derivative enclosure obligations. All
+nine segments have positive finite-polynomial slack for a future true-stream
+enclosure, with maximum finite-model ratio
+$7.342231140809408\times10^{-7}$, minimum slack ratio
+$0.999999265776886$, and minimum excess-to-directed ratio
+$1.3619828177551026\times10^6$. The controlling segment is
+`speed.4.first-y`, the selected-node-collar derivative quotient on
+$\xi\in[1.3999104057263942,1.7998848073625069]$; it leaves absolute
+true-stream excess budget $1.921420936834246\times10^{14}$ after the
+directed finite-polynomial normal form is charged. This remains a candidate
+budget surface: it does not enclose the directed-rounded true stream, but it
+turns the next proof into explicit same-domain inequalities on the already
+working hybrid producer partition instead of another search over quotient
+coordinates.
+
+The hybrid split-stream paired replay now tests those inequalities at the
+finite-polynomial paired-stream level. It evaluates the point-expression
+residual and interval-center drift residual together on each segment subcell
+before hulling, using residual coefficients on product-quotient complements
+and residual-derivative coefficients on derivative-quotient segments. All nine
+segments stay inside their targets, with maximum paired-to-target ratio
+$1.318673422133216\times10^{-6}$, maximum split-triangle-to-target ratio
+$1.5966996776715186\times10^{-5}$, minimum paired slack ratio
+$0.9999986813265779$, and minimum paired cancellation fraction
+$0.8882334726988339$. The controlling paired segment is now
+`speed.1.first-y`, the full-producer-interval derivative quotient on
+$\xi\in[-1.1997952130889011,-0.40010239345554943]$. This is still a
+candidate finite-polynomial replay rather than a directed-rounded true-stream
+certificate, but it shows that the signed covariance survives the actual
+hybrid producer partition.
+
+The provider target also now emits a raw true-source replay on that same
+hybrid partition. The producer profile exports the live cell, branch,
+source-subcover row index, and all h-row intervals for each sample; each hybrid
+segment records its own speed interval and provenance. The replay calls the H38
+numerator source evaluator on those segment speed intervals and subtracts the
+direct cubic graph. It is deliberately conservative: the h-row intervals are
+still independent boxes. The source-term decomposition itself is consistent,
+with maximum term-sum-to-source relative gap
+$3.4219484145129325\times10^{-16}$, but all five product-quotient
+residual-value segments remain open; the worst residual-value-to-target ratio
+is $3.8974824211297927\times10^9$ on `speed.0.first-y`,
+$\xi\in[-1.3999104057263942,-1.1997952130889011]$. The four derivative
+quotient segments are value-only in this replay because a derivative quotient
+certificate needs a same-domain residual-derivative true-stream provider, not
+a raw value interval. This executable comparison separates the obstruction
+from the support geometry: finite-polynomial paired covariance works on the
+hybrid support, while raw independent h-row source intervals lose the
+producer-image dependency before quotient division.
+
+The same provider target now compares two dependency-preserving source-provider
+candidates against that raw replay. First, a polynomial h-row graph plus
+per-h interval residual hull keeps the shared $\xi$ graph but still opens all
+five product segments by essentially the same factor: the maximum ratio is
+$3.8974853044963255\times10^9$, and the raw-to-graph compression stays within
+about $0.004\%$ of $1$. This rejects the naive graph-plus-independent-residual
+route. Second, an H38-coordinate provider keeps the shared $\xi$ graph and the
+normalized $h_{38}$ residual coordinate together while freezing the non-H38
+residuals at their centers. That collapses the worst product ratio to
+$3.209141465121827$, gives raw-to-H38-coordinate compression above
+$1.214284457\times10^9$, and keeps source-term replay consistent below
+$2.678840781450165\times10^{-15}$ with minimum signed cancellation
+$0.947379206732799$. Subdividing the H38 residual coordinate into $16$
+subcells does not reduce the remaining factor, so the leftover obstruction is
+not a simple H38-coordinate hull-width artifact. The next source-provider
+blocker is the missing covariance of the non-H38 residual coordinates, or an
+identity in the source-term pair that reduces the remaining factor before
+absolute bounds.
+
+That follow-on probe has now been run, and it is a useful negative result.
+Forcing non-H38 rows to ride the same normalized coordinate as $h_{38}$ makes
+the product-segment replay much worse, not better. The best such shared-row
+candidate is `h35-shared-with-h38-coordinate`, with maximum residual-to-target
+ratio $4.697752230126054\times10^7$; the `h37`, `h36`, terminal
+`h35`-`h37`, suffix `h30`-`h37`, and all-non-$h_{38}$ variants range from
+$3.651743626376995\times10^8$ to $8.529556359672245\times10^8$. This rejects
+the hypothesis that the remaining factor $3.209141465121827$ is removed by a
+single shared terminal or non-H38 residual coordinate. A source-pair replay
+then keeps
+$(\delta^2/\nu^2-2)+(\sin\phi+\sin\delta)$ signed through the same
+H38-coordinate provider. The signed pair reproduces the full source with
+maximum relative gap $2.678840781450165\times10^{-15}$ and minimum pair
+cancellation $0.8716471687569114$, but its maximum residual-to-target ratio is
+$3.2091414651218377$, essentially identical to the full H38-coordinate replay.
+A cubic h-row provider also leaves the factor unchanged
+($3.2092292609161452$). The remaining H39/y44 blocker is therefore localized
+to the direct graph or product-target residual inequality on the hybrid
+product segments, controlled by `speed.4.first-y` segment $1$, not to hidden
+source-term cancellation, terminal-row covariance, or graph degree.
+
+The product-segment residual inequality is now decomposed against the finite
+direct normal form, the paired split-stream replay, and the product
+denominator on the same segment key. The finite direct normal form is far
+inside target on the controlling segment, with ratio
+$1.539303896293056\times10^{-7}$, and the paired finite replay is also far
+inside target, with ratio $3.246194829834325\times10^{-7}$. The H38-coordinate
+source-provider residual remains open at $3.209141465121827\times$ target, but
+the residual interval is sign-stable and center-dominated: the center-to-target
+ratio is $3.2089269678139676$ while the radius-to-target ratio is only
+$2.14497307859442\times10^{-4}$. A denominator-only partition cannot close
+this row: the current product denominator can reach only
+$0.9213641081237944$, while the H38-coordinate residual would require lower
+bound $2.540989484562941$, a factor $2.7578559465890695$ beyond the available
+range. The blocker is therefore sharper than "make the segment smaller": it is
+a source-provider/direct-graph offset mismatch candidate. The next proof route
+must align the same-domain source provider with the direct graph, or derive a
+normal form that removes the offset before absolute product-quotient bounds are
+applied.
+
+The alignment check has now been repeated against the finite direct quartic
+itself by adding the finite direct residual interval back onto the direct cubic
+graph before comparing with the H38-coordinate source provider. The obstruction
+persists: on the controlling `speed.4.first-y` segment $1$, the
+source-to-direct-quartic offset is still $3.209141346609569\times$ target, with
+center-to-target ratio $3.2089268315926427$ and radius-to-target ratio
+$2.1451501692603826\times10^{-4}$. The radius-to-center ratio is only
+$6.684945721232633\times10^{-5}$. The direct finite normal form is therefore
+not hiding the missing cancellation. The remaining target is a source-provider
+coordinate or normal form that aligns the H38-coordinate source replay with the
+finite direct quartic before product-quotient bounds are applied.
+
+The full residual-vector source replay now rules out the direct residual-vector
+freezing explanation. The diagnostic fits each of the $39$ h-row residual
+midpoint streams over the five producer samples as a quartic function of the
+shared fold coordinate $\xi$, then replays the source with
+$h_i(\xi)=q_i(\xi)+r_i(\xi)$. All five product segments remain open. On the
+same controlling `speed.4.first-y` segment $1$, the full-vector
+source/direct-quartic ratio is $3.2093016611215166$, the center-to-target ratio
+is $3.2087291668088085$, and the radius-to-target ratio is
+$5.724943127080209\times10^{-4}$. The full-vector/H38-coordinate offset ratio
+is only $1.0000499555783409$. The remaining blocker is therefore not frozen
+non-H38 residual covariance. It is a structural source/direct-quartic
+normal-form mismatch, now narrowed to the source-term cancellation or the
+solve/divisor-normalization step. The same diagnostic now exposes the
+full-vector source term intervals; on the controlling segment the midpoint
+contributions are $13.647625870103923$ from $\delta^2/\nu^2$,
+$-40.20025094519486$ from $\sin\phi$, and $22.53423789439216$ from
+$\sin\delta$, in product-target units.
+
+The solve/divisor-normalization branch of that ambiguity is now ruled out at
+candidate level. The H39 diagnostic carries the inherited $h_{37}$ solve slope
+from the H38 producer row and compares the source/direct-quartic offset after
+dividing both sides by $-S_{37}$. The controlling `speed.4.first-y` segment $1$
+has numerator-space ratio $3.209141346609569$ and solved-space ratio
+$3.209141917764117$, with solve-normalization invariance in
+$[1.0000001779431105,1.0000001780158168]$ over all product segments. Crossed
+unit comparisons do not rescue the row: the best crossed solved/numerator
+ratio is still $5.508576099660705$. Thus `direct_quartic_interval` and
+`evaluateH38RecurrenceNumeratorBeforeSolve` are being compared in the same
+$N_{38}$ numerator units; the remaining mismatch is a numerator normal-form
+problem, not a hidden $h_{38}=-N_{38}/S_{37}$ convention mismatch.
+
+The numerator normal-form target is now sharper. The H39/y44 replay splits the
+signed source pair
+$(\delta^2/\nu^2-2)+(\sin\phi+\sin\delta)$ from the finite direct quartic.
+On the controlling `speed.4.first-y` segment $1$, the signed pair reproduces
+the full source with relative gap $2.678798682741313\times10^{-15}$ and
+reproduces the full source/direct-quartic offset with relative gap
+$3.3543225839288712\times10^{-15}$. The signed-pair/direct-quartic offset is
+$3.2091413466095795\times$ target with radius-to-target ratio
+$2.1451501693680277\times10^{-4}$, while the offset is about
+$2.0848003791439798\times10^7$ times the finite direct normal-form size.
+Therefore the obstruction is already present in the signed source-pair
+numerator before solve normalization or absolute Cauchy bounds are applied.
+The same replay also rejects a raw denominator repair on the full residual-vector
+provider: the scalar implied by source/direct-quartic alignment is positive,
+about $0.5560152884612777$, whereas the live product-denominator interval is
+negative, $[-0.9213641081237944,-0.7917972804188858]$. The recurrence sign
+$-N_{38}/S_{37}$ gives the controlling segment the right sign but still leaves
+the direct-quartic offset at $2.866392226825057\times$ target. The next proof
+object should therefore be a source-pair numerator identity or source-coordinate
+normal form, not a denominator convention repair.
+
+The source-pair numerator target is now localized to the direct graph itself.
+The diagnostic records target-unit profiles for the four source terms, the
+speed-constant pair, the sine pair, the signed source pair, the direct graph,
+the finite direct normal form, and the direct quartic. On the controlling
+`speed.4.first-y` segment $1$, the signed source pair is about
+$-4.0184\times$ target and the direct graph is about $-7.2271\times$ target,
+leaving a positive $3.209141465\times$ signed-pair/direct-graph offset. The
+finite direct normal-form correction is only about $1.539\times10^{-7}\times$
+target, so the direct-quartic offset remains $3.209141346\times$ target. This
+rules out the finite direct residual as the next lever. The closure route has
+therefore narrowed to a component-level graph identity: either decompose the
+direct graph into the same $\delta^2/\nu^2$, $\sin\phi$, and $\sin\delta$
+streams, or replace the graph coordinate by a source coordinate where the large
+opposed signed-pair cancellation is preserved before the Cauchy/product
+absolute value is taken.
+
+The component-level graph identity is now executable. The selected Lagrange
+source decomposition exports the actual component graph coefficients for
+$\delta^2/\nu^2$, $-2$, $\sin\phi$, and $\sin\delta$, together with the
+interval-center drift graph. Replaying those coefficients on the focused
+H39/y44 fixture shows that the signed source pair is not the remaining
+variation: its distance to its own component graph is below
+$7.493324528523494\times10^{-4}$ of target, and the component-plus-drift graph
+matches the direct graph within $2.974033630031388\times10^{-4}$ of target.
+The open offset is carried by the interval-center drift stream itself, whose
+controlling graph is larger than $2\times$ target. On the default live replay,
+the same provider becomes a candidate h38-coordinate source replay with all
+five product segments inside target; the worst residual is
+$0.4213769304308513\times$ target, the worst signed-pair-to-component-graph
+gap is $0.0034271425858984146\times$ target, and the worst
+component-plus-drift-to-direct-graph gap is
+$0.06817219409516423\times$ target. This is not a shifted
+$R_{\varepsilon,43}$ certificate, but it changes the next proof object: certify
+the split component-plus-drift graph with directed rounding, then replay the
+same dependency-preserving source provider through $S_{37}$ division and the
+H39 shifted source.
+
+The candidate $S_{37}$ division probe now rules out the next simple
+explanation as well. The h38-coordinate replay divides the
+component-plus-drift/direct-graph gap by the inherited $h_{37}$ solve-slope
+interval and compares it against the solved product target. On the focused
+fixture, the maximum solved gap is
+$2.9740336300313895\times10^{-4}$ of solved target, with solve-normalization
+invariance in $[1.0000000000000004,1.0000000000000007]$. On the default live
+replay, the maximum solved gap is $0.06817219409516427$ of solved target. Thus
+candidate-level $S_{37}$ division is not the remaining obstruction for this
+provider. The missing object is now more specific: a first-class
+directed-rounded component-plus-drift producer-image provider with provenance,
+dependency witness, continuous same-domain remainder bounds, and a connection
+to shifted $R_{\varepsilon,43}$ replay.
+
+The provider boundary has now been made executable at candidate level. The
+H39/y44 h38-coordinate source replay emits
+`candidate_component_drift_source_provider_contract`, with provider kind
+`candidate-polynomial-h-row-graph-component-plus-drift-source-provider`. On the
+focused fixture the contract is `candidate-ready`: all five product segments
+are inside the component-plus-drift/direct-graph target and all five remain
+inside after candidate $S_{37}$ division; the worst component-drift gap and
+solved gap are both below $10^{-3}$ of target. The contract also records the
+source component graph coefficients, interval-center drift coefficients,
+dependency trace, and dependency witness. Its shifted replay readiness remains
+open by construction: it exports a source normal form, not concrete
+dependency-preserving H39 `hIntervals`, so `can_enter_shifted_replay=false`,
+`h_row_provider_backed_replay=false`, and the shifted
+$R_{\varepsilon,43}$, directed-rounded, $S_{37}$-certificate, and retained
+branch claim flags all remain false. The next true proof object is therefore
+not another candidate source decomposition; it is a dependency-preserving
+h-row or producer-image provider that realizes this source normal form as
+same-domain `hIntervals` before shifted replay.
+
+The replay now tests that realization boundary directly. It compares the
+component-plus-drift source graph with the current full residual-vector h-row
+provider and emits a h-row realization diagnosis. On the focused fixture, every
+product segment misses because the full residual-vector source does not carry
+the interval-center drift stream; the worst segment is `speed.4.first-y`,
+segment `1`, with
+$3.2095222369744145\times$ target gap from the full residual-vector source to
+the component-plus-drift source. By contrast, the component-plus-drift gap and
+candidate $S_{37}$-divided gap stay below $10^{-3}$ of target. The obstruction
+is therefore localized: shifted replay is blocked by the missing
+dependency-preserving realization of the interval-center drift source
+coordinate as h-row or producer-image data, not by source-component graph
+coefficients, direct-graph alignment, or $S_{37}$ division.
+
+The next probe supplies a positive candidate lift rather than another
+negative obstruction. The replay now evaluates selected residual-coordinate
+point-Jacobian source lifts against the same component-plus-drift graph. On
+the focused fixture, the best lift on every product segment is the
+`h36-source-coordinate-lift`; the needed normalized coordinate is only about
+$9.7\times10^{-9}$ in magnitude, and the worst solved source/component-drift
+gap is $6.895497413452774\times10^{-4}$ of target. The h38-only direction is
+singular in this point probe, so the positive direction is not the already
+isolated predecessor coordinate; it is a nearby producer-image h-row
+coordinate that can absorb the interval-center drift stream. A finite collar
+probe makes the target sharper: every product segment remains inside target
+for a $10^{-9}$ h36-coordinate collar around the solved lift coordinate, while
+the controlling segment opens at $2\times10^{-9}$. The claim remains
+candidate-only, but the proof route has sharpened: certify a same-domain
+directed-rounded h36-centered drift-coordinate lift and export it through the
+H39 h-row provider boundary before shifted $R_{\varepsilon,43}$ replay.
+
+The h36 collar has now been converted into the smallest provider-boundary
+bridge that is honest about its limits. Each product segment's largest inside
+h36 collar is replayed as a provider-shaped branch input with concrete
+`hIntervals`, dependency trace, dependency witness, and candidate-only h-row
+claim boundary. On the focused fixture all five product segments emit the
+`candidate-component-drift-h36-coordinate-lift-collar-provider`; the minimum
+selected collar half width is $10^{-9}$ and the worst h36 collar source gap is
+$0.8871269825989422\times$ target. The segment-local shifted-pressure replay is
+also executable, with maximum pressure about
+$6.809004947674311\times10^{21}$. The key distinction is that this is still not
+the shared-domain evaluator's full h-row provider path: it is active-branch and
+segment-local, so the component-drift contract deliberately keeps
+`dependency_preserving_h_row_provider_present=false`,
+`can_enter_shifted_replay=false`, and `h_row_provider_backed_replay=false`.
+Thus the next closure step is not another source normal form; it is a
+directed-rounded two-branch producer-image provider that carries the h36
+collars through `branchInputsFromH38Row` without losing same-domain provenance.
+
+The provider-inlet blocker is now decomposed rather than implicit. The H39
+diagnostic exports `candidate_component_drift_h36_provider_inlet_report`,
+which records that the active branch has all five segment-local h36 payloads
+but the row-level two-branch provider is still open. The new branch-pair
+readiness probe runs the same focused fixture on both branches and returns
+`positive-n38-component-drift-h36-provider-branch-pair-segment-local-ready-row-provider-open`:
+both `-` and `+` branches emit five h36 provider-shaped segment payloads, with
+worst source gap $0.8871269825989422\times$ target and minimum collar
+$10^{-9}$. This means the h36 coordinate lift is not merely a retained-branch
+accident. The remaining proof obligation is a directed-rounded H38
+producer-image enclosure that packages those two segment-local branch families
+as the concrete h-row provider object consumed by `branchInputsFromH38Row`;
+until then the contract correctly keeps `dependency_preserving_h_row_provider_present=false`.
+The inlet report also records a naive single-row hull forecast over the
+segment-local h36/h38/solve-slope summaries. That forecast is candidate-only
+and not provider-backed; it exists to measure the dependency loss before any
+attempt to replace the segment-wise producer-image relation with one
+independent row box.
+
+The provider-shape obstruction has now been separated from the producer-image
+obstruction. The branch-pair readiness probe exports nested h36 provider
+snapshots and aligns them by product-segment key. All five matched two-branch
+segment rows are accepted by the predecessor h-row provider-boundary checker
+as `dependency-preserving-provider-present`. This is still not H39 closure:
+the accepted rows are synthetic segment-local boundary objects, not full H38
+producer-image rows with cell intervals that can enter
+`buildH39SharedDomainCoefficientArtifact`. The next mathematical certificate
+must therefore prove a directed-rounded row-level H38 producer-image provider;
+it no longer needs to discover the h36 coordinate direction or repair provider
+metadata.
+
+The refinement ladder now carries the quotient witness, and it exposed a
+useful split-stream correction. On the live `[32,64]` ladder, both rows stay
+inside the split-stream provider target on the same local Lagrange pattern
+`0|1|3|4`. The $32$-subcell row keeps the direct quotient consistent, while the
+$64$-subcell row has $F_{\text{direct}}^{(4)}=0$ because
+$F_{\text{point}}^{(4)}=7.00073055386285\times10^{14}$ and
+$F_{\text{drift}}^{(4)}=-7.00073055386285\times10^{14}$ cancel. That direct
+quotient diagnostic is open with relative gap $1$, but it is not the provider
+acceptance test: the split streams themselves have quotient-consistency gap at
+most $2.9663342060118986\times10^{-8}$, split-to-direct replay gap at most
+$4.0876678207488184\times10^{-16}$, and split ceiling ratio at most
+$1.2817835511580962\times10^{-4}$. The mathematical route is therefore not a
+direct-stream quotient certificate; it is a split-stream removable quotient
+certificate that preserves the point/drift cancellation until after the
+same-domain bounds are applied.
+
 ## Coefficient-Series Construction
 
 The exported series context builds the same fold-pair chart used by the h38
@@ -1571,6 +2533,483 @@ recurrence numerator: set $h_{38}=0$, evaluate the `sourceEquationSeries`
 coefficient that becomes \texttt{h38\_residual\_before\_solve}, and enclose
 that expression by a directed-rounded Taylor remainder before division by
 $S_{37}$.
+\texttt{evaluateH38RecurrenceNumeratorBeforeSolve} now exposes that numerator
+from the H38 successor itself. It returns the $y^{42}$ coefficient of
+$\delta^2/\nu^2-2+\sin\phi+\sin\delta$ with $h_{38}=0$, together with term
+decomposition, before any division by $S_{37}$.
+\texttt{buildH39H38ExpressionN38DecompositionDiagnosticCandidate} consumes that
+H38-owned helper and verifies that the recomputed expression-level numerator
+matches the exported \texttt{h38\_residual\_before\_solve} row interval up to
+formatted artifact precision. On the live dominant row, the direct numerator
+width scales from $2.9419491126351116\times10^{24}$ on one subcell to
+$1.8386372459721104\times10^{23}$ on sixteen subcells, with observed exponent
+$1.0000158789836409$. The largest term-width contribution is the
+$\sin\delta$ term, with width $1.4301330176653544\times10^{24}$ on the one-piece
+row. The diagnosis is therefore
+\texttt{expression-level-n38-export-confirmed-row-hull-artifact}: the exported
+row interval is faithful to the current expression interval, but that expression
+interval is still a dependency-losing hull. The same diagnostic also evaluates
+the expression on point midpoint rows: the largest midpoint term width is only
+$236$ on the one-piece row, so the raw expression width is about
+$1.2465886070487762\times10^{22}$ times the point-evaluated local term width.
+The next certificate must Taylor enclose the shared $\delta,\phi$ recurrence
+expression itself, especially the high-order sine-term contribution, rather than
+fitting another exported numerator interval field.
+\texttt{buildH39H38ExpressionN38TaylorBudgetDiagnosticCandidate} now makes that
+route quantitative. On the same live target with $1,4,8$ subcells and an
+$8$-sample midpoint fit, the one-piece raw expression width is
+$2.9419491126351116\times10^{24}$ while the point-local term-width scale is only
+$236$, so a uniform width-linear subcover would require about
+$1.245071482894444\times10^{22}$ local cells to reach point scale. The term
+shares on the one-piece worst row are $48.6117523761\%$ from $\sin\delta$,
+$35.9913177414\%$ from $\sin\phi$, and $15.3969298825\%$ from
+$\delta^2/\nu^2$; the sine terms therefore carry $84.6030701175\%$ of the raw
+interval width. A cubic point-midpoint fit for the direct expression has
+maximum residual $4.71369097121875\times10^9$, only
+$1.6022340260660338\times10^{-15}$ of the raw interval width but still far
+above the final point-width scale. Interpreted only as a fourth-order local
+Taylor-scaling estimate, this residual suggests finite local $\xi$ tiling rather
+than brute subcovering: about $67$ tiles for the direct expression, $93$ for
+$\sin\phi$, and $86$ for $\sin\delta$. The closure route is therefore not deeper
+raw partitioning. It is a directed-rounded local Taylor or normal-form provider
+that keeps the shared sine-term dependency through the $y^{42}$ coefficient
+before $h_{38}=-N_{38}/S_{37}$ is formed.
+\texttt{buildH39H38ExpressionN38TaylorEnclosurePrototypeCandidate} now turns
+that estimate into explicit candidate tile rows. For the direct expression plus
+the two sine components, it emits $246$ component-tile rows over the same
+$\xi$ domain, with maximum tile count $93$. Under the candidate fourth-order
+scaling law, the local prototype remainders are $233.91705956302627$ for the
+direct expression, $232.1086233629665$ for $\sin\phi$, and
+$228.95202748895008$ for $\sin\delta$, all below the point-local scale $236$.
+This replaces the impossible $1.245071482894444\times10^{22}$ width-linear
+subcover with a concrete finite derivative-bound target. It still does not
+certify a directed-rounded Taylor remainder; it provides the rows and component
+budgets the directed-rounded certificate must prove.
+\texttt{buildH39H38ExpressionN38TaylorDerivativeBoundPrototypeCandidate} now
+translates those rows into the exact fourth-derivative target form
+$R\le M_4 h^4/24$. The sampled parent-residual proxy reports required-vs-proxy
+headroom below one on every tile: the direct expression uses proxy
+$M_4=7.070536456828125\times10^9$ against required
+$7.133496834\times10^9$, $\sin\phi$ uses
+$2.604439833675\times10^{10}$ against
+$2.6481041153999992\times10^{10}$, and $\sin\delta$ uses
+$1.878579409275\times10^{10}$ against $1.9364088864\times10^{10}$.
+Across all $246$ derivative rows, the worst headroom ratio is
+$0.9911739811992639$ and the prototype-remainder reconstruction gap is only
+$1.2245003661909943\times10^{-16}$ relative. The claim boundary remains
+candidate-only: the next proof step is a directed-rounded same-domain bound on
+these fourth derivatives, not a promoted $R_{\varepsilon,43}$ certificate.
+\texttt{buildH39H38ExpressionN38TaylorFourthDifferenceDiagnosticCandidate} now
+performs the required sanity check against live producer-row fourth differences.
+That check corrects the previous route: the sampled parent-residual proxy is
+not strong enough to serve as a certificate. Across the $8$- and $16$-subcell
+stencils, the maximum finite fourth-derivative estimate is
+$4.300955531321041\times10^{13}$, the maximum ratio against the existing tile
+bound is $4580.928151229552$, and the maximum ratio against the sampled parent
+proxy is $4621.719534734851$. The fourth-difference scale still implies a
+finite path: at the $16$-subcell level the observed retile counts are $552$ for
+the direct expression, $591$ for $\sin\phi$, and $582$ for $\sin\delta$. Thus
+the obstruction is no longer the raw interval box or the impossible brute
+subcover. It is the missing derivative-capable expression-level producer
+normal form: either certify fourth derivatives at the observed finite-difference
+scale, or remove the row-sample fourth variation analytically before applying
+Taylor bounds.
+\texttt{buildH39H38ExpressionN38TaylorCorrectedRetilePrototypeCandidate} now
+turns that correction into an explicit finite retile prototype. With the
+observed fourth-difference $M_4$ scale inflated by a factor of $2$, the
+candidate emits $2051$ corrected rows: $656$ direct-expression rows, $703$
+$\sin\phi$ rows, and $692$ $\sin\delta$ rows. The maximum corrected
+remainder-to-point-width ratio is $0.9993542425323698$, so all corrected rows
+remain below the point-local term-width scale $236$. The artifact remains
+candidate-only and does not certify a directed-rounded Taylor remainder or
+$R_{\varepsilon,43}$ closure. Its value is that the obstruction is now a
+specific directed-rounded $M_4$ enclosure or analytic normal-form proof on
+about two thousand same-domain $\xi$ rows, not an unbounded brute row-hull
+subcover.
+\texttt{buildH39H38ExpressionN38TaylorM4RefinementDiagnosticCandidate} now
+tests whether that base corrected-retile row set is stable under a finer
+$32$-subcell producer-row fourth-difference stencil. It is not stable: the
+refined observed $M_4$ scale grows by as much as $11.480891969090306$, and the
+old base corrected rows would overshoot the point-local scale by as much as
+$11.473478097366211$ under the refined observed derivative. The route remains
+finite. Applying the same observed-$M_4$ inflation factor $2$ to the refined
+$32$-stencil scale gives $3576$ corrected rows: $1162$ direct-expression rows,
+$1140$ $\sin\phi$ rows, and $1274$ $\sin\delta$ rows, with maximum corrected
+remainder-to-point-width ratio $0.9987550516507323$. The corrected blocker is
+therefore not the $2051$ base rows but either a directed-rounded $M_4$ enclosure
+on the refined same-domain rows or an analytic normal form that explains and
+removes the fourth-difference growth before the H38 solve.
+The same diagnostic now replays those fourth-difference rows as fourth divided
+differences on the actual $\xi$ midpoints. That check rejects the simplest
+coordinate-error explanation: on the compared $16$- and $32$-subcell rows, the
+largest nonuniform-to-uniform fourth-derivative relative correction is
+$0.024053174217917833$, while the correction-to-growth-excess ratio is only
+$0.0022949548844558446$. Thus the continued fourth-difference growth is not an
+equal-spacing stencil artifact; the remaining target is producer-image
+smoothness, a local fold-coordinate normal form, or a source-level cancellation
+before a directed-rounded $M_4$ enclosure can close.
+The same refinement path now localizes the growth. The refined worst stencils
+are disjoint from the base worst stencils in all three components, with zero
+overlap fraction. At the $32$-subcell level the worst stencils form one
+contiguous positive-$\xi$ region with hull
+$[0.9376679896182594,1.9375400034828008]$. The maximum growth ratio is still
+the $\sin\delta$ row, $11.480891969090306$, and its growth-increment share is
+$0.43824215565670466$, but the direct expression and $\sin\phi$ rows carry the
+rest of the growth. The obstruction is therefore a shared positive-$\xi$
+producer-image variation, not a single-component nested stencil defect.
+The same diagnostic now decomposes the direct refined worst stencil into the
+nonconstant $N_{38}$ source terms. At stencil index $27$ on the $\xi$ span
+$[1.4373480185956347,1.9375400034828008]$, $\delta^2/\nu^2$, $\sin\phi$, and
+$\sin\delta$ replay the direct fourth difference with relative gap
+$3.172314916464896\times10^{-12}$. The replay shows partial cancellation, not
+complete cancellation: $\sin\delta$ carries $75.25653319792786\%$ of the
+absolute fourth-difference mass with the direct sign, $\sin\phi$ opposes that
+sign, and $\delta^2/\nu^2$ contributes only $0.7857012766573206\%$. The
+signed-to-absolute source-sum ratio is $0.5208446894917035$. This makes the
+next normal-form target more precise: explain the positive-$\xi$ sine-pair
+curvature balance before Cauchy/Taylor majorants are applied, rather than
+seeking an omitted source term or a complete branch-pair cancellation.
+\texttt{buildH39H38ExpressionN38SinePairNormalFormDiagnosticCandidate} now
+checks that normal form directly. On the same stencil, the identity
+$\sin\delta+\sin\phi=2\sin((\delta+\phi)/2)\cos((\delta-\phi)/2)$ holds on the
+live midpoint producer rows with maximum relative coefficient residual
+$5.940710236511779\times10^{-13}$. The reduced sum coordinate has only orders
+$0$ and $2$: $(\delta+\phi)/2=(\delta_f+\phi_f)/2-y^2$, so it carries no branch
+or h-row dependence, while $(\delta-\phi)/2$ carries the branch and h-row
+transport. The diagnostic also finds the trap that kept the previous bounding
+coordinate lossy: if $\delta+\phi$ is formed after interval h-row substitution,
+outward rounding leaves raw h-tail residue up to $0.25000000000000006$, but
+the explicitly reduced half-sum has zero h-tail. The sine pair accounts for
+$0.9921429872334268$ of the absolute source fourth-difference mass and
+$0.9849148644049466$ of the signed direct fourth difference. Thus the next
+certificate should be built in reduced $(\sigma,\eta)$ coordinates before
+interval h-row substitution, not as two independent sine majorants.
+\texttt{buildH39H38ExpressionN38ReducedSigmaEtaSourceDiagnosticCandidate}
+then tests the same route with the live $h_{38}$ solve target zeroed. The
+explicit $\sigma=(\delta+\phi)/2$ coordinate remains h-row free, and the raw
+post-substitution half-sum still shows h-tail rounding residue, but the naive
+product replay is not a closure certificate. On the five-row positive-$\xi$
+stencil the raw-to-reduced sine width ratio is only
+$[0.8690468744159027,0.8690469333430854]$, so
+$2\sin\sigma\cos\eta$ is wider than the raw sine-pair interval after the live
+$h_{38}$ zeroing. The full reduced source also widens: the
+reduced-full-to-raw-direct width ratio is
+$[1.1274848477512474,1.1274849138532606]$. The next certificate must therefore
+control $\eta$ transport and the $\delta^2/\nu^2$ versus sine-pair correlation
+together inside the reduced chart. A product-substitution interval replay alone
+is now ruled out as the H39 closure route.
+\texttt{buildH39H38ExpressionN38EtaTransportCouplingDiagnosticCandidate} then
+localizes the widened reduced-source width inside that same chart. It freezes
+all transported $\eta$ h rows, replays one active h row at a time, and keeps
+$h_{38}$ zeroed throughout. Frozen $\eta$ h rows collapse the reduced-source
+width to less than $10^{-12}$ of the raw direct width; the live observed ratio
+is about $2.5\times10^{-15}$. The all-active reduced source still widens by the
+same factor as the product no-go, but the one-active replay shows that this is
+not a broad $\eta$-tail effect: $h_{37}$ contributes about $73.84\%$ of the
+all-active width, $h_{36}$ about $16.46\%$, and $h_{35}$ about $6.84\%$, so the
+terminal triple carries more than $97\%$ of the width. The next proof route is
+therefore a coupled terminal-row source enclosure or normal form for
+$h_{37},h_{36},h_{35}$ inside $(\sigma,\eta)$ before applying Cauchy/Taylor
+majorants; an independent reduced-product interval replay is already excluded.
+\texttt{buildH39H38ExpressionN38TerminalEtaGraphDiagnosticCandidate} now tests
+that route directly on the same five-row positive-$\xi$ stencil. The
+terminal-only replay for $h_{37},h_{36},h_{35}$ carries more than $97.13\%$ of
+the all-active reduced-source width, while the nonterminal replay stays below
+$2.87\%$. Replacing only those terminal rows by a local quadratic h-row graph
+collapses the terminal width below $3.15\times10^{-13}$ of terminal-only width,
+and graph-plus-live-nonterminal replay stays below $2.87\%$ of all-active
+width. This is the first positive executable route after the reduced-chart
+product no-go: terminal predecessor transport is smooth enough in the local
+fold coordinate $\xi$ to remove the wall when replayed as a graph. The raw
+interval-residual replay is also a controlled no-go: adding ordinary H38
+producer interval residual hulls back to the same terminal graph recreates
+essentially the full terminal wall, at least $1.0$ times terminal-only width.
+The next certificate must therefore prove a dependency-preserving terminal
+graph remainder for $h_{37},h_{36},h_{35}$, not export raw terminal row
+interval residuals.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now turns that route into an explicit residual target and checks whether the
+current H38 producer intervals fit that target. On the same five-row stencil,
+graph-plus-live-nonterminal replay stays below the $5\%$ all-active width
+target, while both the raw terminal producer interval residual and a symmetric
+scale-$1$ raw residual replay return to essentially $100\%$ of the all-active
+width. The allowed symmetric raw-residual scale for
+$h_{37},h_{36},h_{35}$ is tightly localized between
+$0.02202814627390118$ and $0.022029786299231222$, while the midpoint quadratic
+fit residual scale is below $1.58\times10^{-12}$ of the raw residual scale and
+below $7.18\times10^{-11}$ of the allowed residual radius. The current producer
+intervals do not fit inside graph plus allowed budget: they require essentially
+scale $1$, or about $45.4$ times the allowed scale. This remains
+candidate-only, but it localizes the open certificate target to producer
+interval width rather than terminal graph geometry. The next certificate route
+is a directed-rounded producer-image refinement or dependency-preserving
+terminal graph remainder that shrinks the independent terminal producer hull by
+roughly this factor on the live stencil.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now also emits a bounded terminal producer refinement forecast. Because live
+multi-count refinement probes at $64$ and $128$ subcells were too slow for the
+default regression path, the default forecast uses the measured $32$-subcell
+gap and a conservative linear subcell-width scaling law. It projects about
+$1453$ local subcells, or $45.4\times$ the current stencil, before the
+independent terminal producer hull would fit the already measured terminal
+graph remainder budget. This keeps the result candidate-only and does not
+certify a terminal provider enclosure. It does, however, sharpen the blocker:
+ordinary brute partitioning is a large local job, while the higher-value route
+remains a dependency-preserving terminal graph remainder or directed-rounded
+producer-image enclosure for $h_{37},h_{36},h_{35}$.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now also probes a shared terminal-residual coordinate for
+$h_{37},h_{36},h_{35}$. Instead of assigning independent residual hulls to the
+terminal rows, it samples a common coordinate $\zeta$ in
+$h_i(\xi,\zeta)=q_i(\xi)+c_i+\zeta r_i$ on the same positive-$\xi$ stencil.
+This cuts the independent interval-residual wall by about $5.6\times$: the
+sample-hull width is about $0.1787141938837605$ of all-active width, while
+each fixed-$\zeta$ replay stays below $0.02860030964379187$ of all-active
+width. This is a real dependency signal, but not a closure certificate. The
+full sample hull across $\zeta$ remains above the $5\%$ budget, but a linear
+residual-coordinate partition forecast projects that $8$ $\zeta$ slices would
+reduce the worst partitioned hull to $0.047364538763892544$ of all-active
+width. The next proof object is therefore much sharper than brute speed
+partitioning: certify a small residual-coordinate partition or a coupled
+$\xi$-$\zeta$ terminal normal form before claiming a directed-rounded terminal
+provider enclosure.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now converts that forecast into two executable partition replays. The ordinary
+interval $\zeta$ slice still fails: its worst graph-$\xi$ slice width is about
+$0.15003428732691895$ of all-active width, because the interval form splits one
+shared residual coordinate back into independent terminal h-row residuals. The
+dependency-preserving endpoint replay succeeds at candidate level: it keeps
+$\zeta$ as one coordinate and hulls only the two endpoint replays for each of
+the $8$ slices, giving worst graph-$\xi$ endpoint-slice width about
+$0.047364535153415446$ of all-active width. This does not certify the provider
+yet, but it identifies the next mathematical proof burden precisely: prove that
+each $\zeta$ slice is endpoint-controlled, monotone, convex, or derivative
+bounded in the shared residual coordinate, rather than exporting independent
+terminal residual intervals.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now records the endpoint-control reason as an order-gap diagnostic. The shared
+residual rows $h_{35},h_{36},h_{37}$ enter \texttt{branchSeriesCoordinates} at
+$y^{38},y^{39},y^{40}$, while the live source coefficient is $y^{42}$. Any term
+with two terminal residual factors would begin no earlier than $y^{76}$, so the
+coefficient is affine in the shared coordinate $\zeta$ on this target row. The
+diagnostic reports route
+\texttt{shared-terminal-residual-zeta-affine-by-y-order-gap}, maximum
+shared-residual power $1$, and two-factor gap $34$. This upgrades the candidate
+route: the next closure object is a directed-rounded graph-$\xi$, eight-slice
+affine-$\zeta$ terminal provider, not another independent residual box or raw
+subcell refinement chase.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now makes that affine endpoint route explicit in the emitted data. Each
+endpoint partition records its $\zeta$ interval, endpoint coefficient intervals,
+slope interval, intercept interval, endpoint hull, and endpoint-hull width
+share. On the live graph-$\xi$ stencil the worst affine-envelope width share is
+still $0.047364535153415446$ of all-active width, matching the
+dependency-preserving endpoint hull and staying below the $5\%$ target. The
+worst graph affine slope bound is about $1.963684093411895\times10^{22}$. Each
+partition also emits a midpoint replay against the affine prediction; the worst
+graph midpoint-linearity gap bound is $2.5197683896201337\times10^{22}$ and contains
+zero. This is a sanity check for the order-gap route, not a directed-rounded
+provider certificate. The next proof object is therefore a graph-$\xi$,
+eight-slice affine-$\zeta$ terminal provider whose producer-image residuals are
+bounded with directed rounding on the same domain.
+\texttt{buildH39H38ExpressionN38TerminalGraphRemainderBudgetDiagnosticCandidate}
+now also emits structured progress through an optional \texttt{progressCallback}
+at the source-subcover, comparison-window, transport-profile, residual-profile,
+row, summary, and forecast milestones. The focused terminal graph regression
+prints TAP-safe heartbeats by default, accepts \texttt{AAA_TEST_HEARTBEAT=0} to
+silence progress, and checks \texttt{AAA\_H39\_STOP\_FILE} (default
+\texttt{/tmp/architrino-h39-stop}) as a cooperative stop file between expensive
+milestones. This is only long-run control for repeated closure sprints; it does
+not change the mathematical status of the affine-$\zeta$ route.
+\texttt{buildH39TerminalSharedResidualAffineZetaProviderReplayDiagnosticCandidate}
+now feeds the scalar affine-$\zeta$ endpoint route through the actual H39
+h-row provider boundary. The diagnostic keeps the H39 predecessor
+$h_{38}$ row preserved, replaces only $h_{37},h_{36},h_{35}$ by the local
+quadratic graph-$\xi$ plus endpoint shared-residual value, and records that the
+current provider interface accepts scalar $\zeta$ endpoints but not a coupled
+$\zeta$ interval as a native dependency. On the live $32$-subcell positive-$\xi$
+window with $8$ $\zeta$ slices and a one-row H39 replay, validation passes:
+the embedded baseline reference gives shifted-prefix pressure
+$8.969469109637004\times10^{23}$, the ordinary graph-plus-interval-residual
+reference gives $8.969469194927959\times10^{23}$, and the worst endpoint
+provider replay gives $5.967252820438861\times10^{23}$. This is a real
+provider-boundary advance, but only a $1.5031153161325828$ pressure reduction.
+It therefore changes the blocker: the affine-$\zeta$ endpoint proof alone does
+not close the H39 shifted source once $h_{38}$ and the nonterminal rows are
+preserved as H39 predecessor data. The next proof object must either carry a
+broader coupled producer-image provider, including the remaining influential
+h-row dependencies, or expose a source-level H39 normal form that cancels the
+remaining shifted-prefix pressure before Cauchy bounds are applied.
+\texttt{buildH39PostZetaPressureSourceIsolationDiagnosticCandidate} now makes
+that remaining pressure source executable. It replays the scalar
+affine-$\zeta$ endpoint provider on the live comparison row, selects the worst
+endpoint, then re-solves the H39 center under same-domain family and
+single-$h_i$ active/frozen variants. On the live $32$-subcell,
+comparison-index $27$ window with $8$ $\zeta$ slices, the preserved-terminal
+endpoint maximum is $1.1212403496094081\times10^{21}$. The dominant row is
+cell \texttt{speed.27.first-y}, $\zeta=-1$, with \texttt{sin\_delta} the
+dominant source term and term-triangle/source ratio $1.0455255167624105$.
+The active-only $h_{38}$ replay retains $0.9780999920257446$ of the full
+pressure, while freezing only $h_{38}$ lowers the pressure by
+$19.552742837593392\times$. Cell midpoint and solve-slope midpoint replays are
+nearly neutral, with factors $1.0000000363117727$ and
+$1.0000000071160708$. Thus the post-$\zeta$ obstruction is localized to the
+preserved H39 predecessor row $h_{38}$, not to the terminal
+$h_{37},h_{36},h_{35}$ residuals. A candidate replay that also carries
+$h_{38}$ through the same graph-$\xi$, affine-$\zeta$ endpoint provider lowers
+the live max pressure to $1.168303610133882\times10^{20}$, a further
+$9.597165838432351\times$ reduction, but remains open and candidate-only. The
+next proof object is therefore a directed-rounded H38 predecessor-row
+producer-image enclosure, or an H39 source normal form that cancels the
+$h_{38}$-driven \texttt{sin\_delta} contribution before the shifted
+$R_{\varepsilon,43}$ Cauchy bound is applied.
+\texttt{buildH39H38Y44CoefficientDependenceDiagnosticCandidate} now tests that
+source-level normal form directly by varying only the $h_{38}$ residual
+coordinate $u\in[-1,1]$, re-solving the H39 center at each sample, and fitting
+the signed shifted-index-$1$ source coefficient rather than its absolute
+pressure. On the same live row \texttt{speed.27.first-y}, the signed
+$y^{44}$ coefficient is affine-dominated in $u$: the affine fit has
+coefficients approximately
+$(3.358779956736819\times10^{15},1.2506438682576002\times10^{23})$
+with maximum midpoint residual $4.0038825984\times10^{10}$, while the
+quadratic fit improves that only mildly to $2.5778192384\times10^{10}$ and
+has affine/quadratic residual ratio $1.5532053368044256$. The affine zero is
+at $u=-2.685640606399229\times10^{-8}$. The center sample $u=0$ gives pressure
+$3.3588014109525757\times10^{12}$, while the endpoints give about
+$1.250644\times10^{20}$, a center-to-endpoint reduction of about
+$3.723483417985433\times10^{7}$. The dominant term profile is still
+\texttt{sin\_delta}, but its dependence is also essentially affine at this
+scale. This changes the mathematical route again: a cubic h-row producer graph
+does not help, and the live blocker is the loss of the signed affine
+$h_{38}$ residual-coordinate relation before the absolute Cauchy majorant is
+formed. The next certificate should preserve an affine source identity of the
+form $C_{44}(\xi)+S_{44}(\xi)u$ on the same H38 producer image, or produce a
+directed-rounded enclosure of the near-zero residual coordinate rather than
+letting $u$ range independently over $[-1,1]$.
+\texttt{buildH39H38Y44SignedAffineTargetEnvelopeDiagnosticCandidate} now turns
+that normal-form lead into an executable target envelope. On the same live row
+it replays the fitted affine-zero coordinate
+$u=-2.685640606399229\times10^{-8}$ directly through the H39 center solve and
+gets pressure $2.1816241500000004\times10^{7}$, with source-coefficient
+interval $[1.7838673239\times10^{10},2.18162415\times10^{10}]$. This is a
+$1.5395875641331598\times10^{5}$ reduction from the $u=0$ center sample and a
+$5.732628765586405\times10^{12}$ reduction from the sampled full $u$-domain
+maximum. The diagnostic then builds zero-centered $h_{38}$ residual-coordinate
+intervals for reference pressures and replays those intervals through the live
+same-domain pressure computation. Matching the center-sample pressure scale
+requires a candidate half-width $2.6856241561571736\times10^{-8}$ in $u$, or a
+full-domain shrink factor $3.72352921278042\times10^{7}$. A reference pressure
+$10^{13}$ requires half-width $7.995847759859767\times10^{-8}$, while
+$10^{20}$ allows half-width $0.7995881364634857$. The live interval replay
+returns a stable over-target amplification of about $8.5068\times$ for every
+nonzero zero-centered interval. The obstruction is therefore no longer an
+unlocalized $h_{38}$ box: it is a signed affine zero plus a nearly constant
+interval-replay amplification that must be removed by preserving the missing
+$h_{38}$-to-center covariance or budgeted by shrinking the residual coordinate
+by that factor. The diagnostic now performs that budget test directly: dividing
+each nonzero half-width by its measured interval-replay amplification gives
+corrected replays with maximum over-target ratio
+$1.0000057252904435$. This almost closes the reference ladder at candidate
+level, but the residual excess is still positive and not directed-rounded. The
+follow-on bisection search solves the reference ladder directly: the largest
+target-closing safety divisor is $8.507854082824874$, only a factor
+$1.0001255923907613$ above the observed maximum amplification. The same replay
+also surfaces the existing center-eliminated affine-row pressure fields and
+turns the obvious Schur-style shortcut into a no-go: independent
+center-eliminated replay remains catastrophically over target, with maximum
+center-eliminated over-target ratio $1.3394690276662064\times10^{24}$. The
+next proof burden is therefore extremely specific: prove the affine-zero
+source relation and either preserve the missing $h_{38}$-to-center covariance
+directly, or certify a safety divisor of at least $8.507854082824874$ on the
+same domain. This remains priority-only and candidate-only; it does not
+certify a directed-rounded H38 producer image or the shifted
+$R_{\varepsilon,43}$ outer bound.
+The producer-coordinate target fit now distinguishes two failures that were
+previously mixed together. On the live five-row stencil the H38 producer
+residual-coordinate interval hull is still the full $[-1,1]$, but the midpoint
+hull is essentially pinned at zero, from
+$7.233482551797858\times10^{-17}$ to
+$7.233537092376838\times10^{-17}$. The full interval hull therefore remains an
+interval-dependency artifact, not evidence that the actual producer midpoint
+wanders across the residual coordinate. For the reference-only $10^{13}$
+ladder entry, the signed-affine safety interval is
+$[-3.6254601757076974\times10^{-8},-1.7458210370907605\times10^{-8}]$ and
+requires a full-hull shrink factor $1.0640340259522507\times10^8$; the maximum
+required full-hull shrink factor across the ladder is
+$3.1675131164171565\times10^8$, while the midpoint-hull shrink factor is
+effectively zero. The next proof should therefore carry the covariance of the
+actual H38 producer image before applying the signed-affine cancellation,
+rather than trying to force the raw $[-1,1]$ residual-coordinate box through
+the same safety envelope.
+The covariance-centered replay turns that interpretation into an executable
+local-width search. When the H39 replay is centered on the actual H38 producer
+midpoint hull, all five reference pressure targets close at the center hull;
+the strictest center replay is only $0.33588014199994104$ of target. The
+$10^{13}$ reference target is already localized to a first failing bracket
+width $1.4901161193847656\times10^{-8}$ at $16$ bisection iterations; a
+non-default $32$-iteration replay resolves a positive collar of
+$6.242316885618493\times10^{-9}$ with target ratio
+$0.9999976728150662$ and final bracket width
+$2.2737367544323206\times10^{-13}$. The larger reference targets also admit
+positive producer-centered widths; across the ladder the worst producer-
+centered safety divisor is $11184810.666666666$, and the worst target-closing
+replay ratio is $0.9999998765629196$. This keeps the claim candidate-only but
+changes the proof route: the H38 producer-image certificate should prove a
+small collar around the actual midpoint image, not a full independent
+residual-coordinate hull.
+The executable collar target now quantifies why this is not a raw refinement
+problem. For the live $32$-stencil, shifted-index-$1$, $10^{13}$ reference row,
+the producer-centered collar width is
+$1.2484633771237532\times10^{-8}$ around the midpoint hull. All five H38
+producer midpoints fit inside the collar, but zero of the five full H38
+producer intervals fit. The required residual-coordinate interval-hull
+compression is $1.6019692981364492\times10^8$, giving a linear subcell-
+refinement forecast of $5,126,301,755$ subcells from the current $32$-stencil.
+That makes the next closure move analytic rather than brute-force: certify a
+covariance-preserving H38 producer-image enclosure around the midpoint hull and
+then replay the H39 source against that collar. This is still a reference-only
+candidate diagnostic, not a shifted $R_{\varepsilon,43}$ certificate.
+The same collar has now been pulled back through the H38 recurrence numerator.
+For the strict $10^{13}$ reference target, the raw $N_{38}$ interval still
+requires compression by $1.601969298134485\times10^8$, so the open interval
+hull is the same obstruction in numerator coordinates. A first midpoint-only
+reading suggested large graph headroom, but the live strict-row replay of the
+explicit route corrects that interpretation. The controlling sample is
+`speed.28.first-y`, where the quadratic $N_{38}(\xi)$ midpoint residual is
+$3.8568408881375\times10^{10}$ against a conservative numerator collar target
+of $25.069761713185112$. The residual therefore exceeds target by
+$1.5384433774290903\times10^9$, and the raw numerator interval compression is
+$3.666994442389419\times10^{21}$. The inherited $S_{37}$ lower bound is not
+the failure: the lower-to-midpoint slope ratio on the controlling row is
+$0.9999999888951927$, so the midpoint-slope target fails by essentially the
+same factor. The obstruction is a local $N_{38}$ graph/coordinate residual
+near `speed.28.first-y`.
+The diagnostic now emits that route as
+`h38_y44_n38_collar_enclosure_route`. The route carries the quadratic
+$N_{38}(\xi)$ coefficients, the controlling sample, the conservative numerator
+width target, the residual-to-target ratio, the raw-interval compression, and
+an explicit directed-rounded proof obligation. The current route diagnosis is
+`n38-quadratic-midpoint-residual-collar-route-open`, with
+`s37_dependency_status` equal to
+`midpoint-slope-collar-also-fails-n38-graph-residual`, not a closure claim.
+Its claim boundary keeps the $N_{38}$ graph enclosure, dependency-preserving
+$S_{37}$ division, producer collar, shifted $R_{\varepsilon,43}$,
+directed-rounded shared-domain status, continuous primitive status, and
+retained branch open. The sufficient condition has therefore become sharper:
+reduce $|N_{38}(\xi)-q(\xi)|$ on the `speed.28.first-y` producer window by a
+local normal form, local partition, higher-degree graph, or exact
+factorization before forming $h_{38}=-N_{38}/S_{37}$ and replaying the H39
+collar.
+A non-default $64$-stencil probe confirms that the $32$-stencil target is not
+yet stable. Over $16/32/64$ stencils the largest observed fourth-derivative
+estimate rises to $2.1162902030980995\times10^{15}$, with observed retile
+counts $1474$ for the direct expression, $1564$ for $\sin\phi$, and $1563$ for
+$\sin\delta$. This is priority-only evidence rather than a default regression
+test because of runtime cost. Mathematically, it suggests that deeper raw
+stencils are exposing unresolved producer-image curvature or nonsmooth
+coordinate dependence. The next closure step should be a local normal form or
+stencil-convergence argument before another directed-rounded $M_4$ backend is
+treated as final.
 \texttt{computeH39PredecessorHRowProviderBoundaryCandidate} now records that
 boundary explicitly. Given an h38 row, it counts the exported h-interval,
 solve-slope, and residual fields and reports whether a complete
@@ -1624,3 +3063,461 @@ about $4.8\times10^9$. The sharper statement is that the inherited h-row
 widths, not the live cell variables or inherited slope interval, are the
 dominant source. The engine still does not claim a retained branch, scaled
 remainder, $I_1$, quadrature, or full first-y closure.
+
+The h36 provider inlet now reaches the actual coefficient artifact at
+segment-local candidate level. The H39/y44 branch-pair readiness diagnostic
+adds H38 cell intervals to the nested h36 provider snapshots, aligns the
+`-` and `+` snapshots by product-segment key, and feeds the five synthetic
+two-branch segment rows through
+\texttt{buildH39SharedDomainCoefficientArtifact}. The replay is
+provider-backed for all five cells and all ten branch rows, and the artifact
+summary reports `dependency-preserving-provider-backed-replay`. At outer
+radius $0.001$, the remaining shifted-prefix pressure is
+$3.7305089254880956\times10^{24}$, with the dominant unreduced contribution at
+shifted index `0`, $y$-order $43$, coefficient absolute upper
+$3.723699920558467\times10^{24}$ on `speed.0.first-y:segment-1`. The
+center-eliminated interval form rises to $6.861746423307076\times10^{45}$,
+which is itself diagnostic: independent interval products destroy the
+correlation among the affine center quantities $C_k$, $S_k$, $C_0$, and
+$S_0$. Thus the next coefficient-engine closure route is a correlation-
+preserving affine center normal form or certified subdivision for those four
+quantities, followed by the same row-level directed-rounded H38 producer-image
+upgrade. This packet remains priority-only and candidate-only; it does not
+certify the shifted $R_{\varepsilon,43}$ outer bound or any continuous
+primitive.
+
+The next replay adds the missing correlation and sensitivity decomposition.
+The segment-local artifact now surfaces the affine-center shifted-prefix
+summary, leading-zero counts, row-correlation probe, and dominant-row h-row
+sensitivity probe. On the same five matched synthetic segment rows, symbolic
+affine-center replay zero-certifies all ten leading rows and reduces the
+maximum shifted-prefix pressure from
+$3.7305089254880956\times10^{24}$ to
+$6.809004947674311\times10^{21}$, while the independent center-eliminated
+interval form remains the rejected artifact at
+$6.861746423307076\times10^{45}$. The row-correlation probe emits all ten
+rows; its all-input midpoint replay lowers the maximum to
+$5.310303269330753\times10^{12}$, so the full-center interval bound is about
+$1.2822336555092587\times10^9$ wider than the correlated midpoint replay. The
+dominant term is `sin_delta` on `speed.0.first-y:segment-2`, branch `-`,
+shifted index `1`, $y$-order $44$.
+
+The h-row sensitivity result is the actionable normal-form direction. For the
+dominant row, h-row midpoint replay gives
+$5.310280365218674\times10^{12}$, almost the full all-input midpoint gain,
+whereas cell-midpoint and solve-slope-midpoint replays reduce the row by only
+factors $1.000000215966408$ and $1.000000046193894$. The suffix scan reports
+that the final successor h-row alone gives reduction
+$1.1125169135697098\times10^9$ and the top twelve successor rows give
+$1.282223971704711\times10^9$. Thus the current coefficient-engine blocker is
+not raw shifted prefix depth, branch asymmetry, or provider metadata; it is a
+directed-rounded dependency certificate for inherited successor h-row
+transport, preferably starting with a suffix certificate for the
+`sin_delta`-dominated row before widening to full $h_0,\ldots,h_{38}$
+transport.
+
+The suffix target is now a concrete three-row transport problem. The h-row
+sensitivity helper now emits `h_row_suffix_width_compression_summary`, which
+compares selected successor suffixes under the same shifted index, radius, and
+series order. On the live segment-local dominant row, h38 alone at zero width
+gives pressure $6.120360836426657\times10^{12}$ and captures about
+$86.76417138044193\%$ of the full h-row midpoint reduction. The h36-through-h38
+suffix gives $5.310416865556751\times10^{12}$ and captures about
+$99.99742957395751\%$; the top twelve successor rows only improve that to
+$99.99946883695403\%$. The coefficient-engine blocker has therefore narrowed
+from "transport the inherited h-row box" to "certify the h36-through-h38
+successor suffix, with h38-only as the one-row comparison." This remains a
+candidate diagnostic until a directed-rounded producer-image enclosure proves
+the suffix compression on the same domain.
+
+The terminal affine-zeta endpoint replay gives a parallel consistency check.
+The post-zeta provider path already compares preserved-H38 endpoints with an
+H38-included endpoint policy. On the focused probe, H38-included endpoint
+replay lowers the worst endpoint pressure by about
+$9.59691834474703\times$, while the source-isolation diagnosis remains
+`preserved-h38-row-dominates-after-terminal-zeta`. This supports the same
+mathematical direction but does not replace it: endpoint replay is
+provider-backed for scalar zeta endpoints, whereas H39 closure still requires
+a directed-rounded successor-suffix enclosure for the live h36-through-h38
+dependency before applying the shifted $R_{\varepsilon,43}$ Cauchy bound.
+
+The scalar endpoint provider boundary now exercises that H38-included policy
+through the full coefficient artifact. The terminal affine-zeta provider replay
+can run `includeH38EndpointProvider=true`, which sends both the preserved-H38
+endpoint provider and the candidate H38-included endpoint provider through
+`buildH39SharedDomainCoefficientArtifact` at the same shifted index, radius,
+series order, and row limit. In the focused row-limited probe, preserved-H38
+endpoint replay has worst pressure $3.819087178670516\times10^{24}$, while the
+H38-included endpoint replay has worst pressure
+$8.92454128278921\times10^{22}$, a $42.79309218990947\times$ reduction with
+all endpoint replays provider-backed. The claim remains endpoint-only and
+candidate-only because no continuous shared-zeta or full-cover suffix
+enclosure has been proven.
+
+The same endpoint-provider diagnostic now accepts explicit successor suffix
+h-index sets and emits provider-backed summaries for each suffix. This turns
+the h36-through-h38 idea into an executable suffix sweep rather than a single
+hand-selected replay. The exact minimal probe is guarded by a fixture: with
+\texttt{terminalHIndexes=[37,36]} and
+\texttt{includeH38EndpointProvider=true}, the H38-included terminal set is
+exactly \texttt{[36,37,38]}; the validator rejects leakage by checking the
+H38-included set against the sorted union of the requested terminal rows with
+h38. The diagnostic now also records a transition summary for each suffix,
+including the dominant shifted index, dominant source term, marginal pressure
+drop, and the zeta-degree bound. On the row-limited provider sweep,
+h31-through-h38 has worst pressure
+$2.758931393108097\times10^{21}$, reduction
+$1429.2583270355638\times$, and is still shifted-$0$
+\texttt{sin\_phi} dominated. Adding h30 gives h30-through-h38 pressure
+$1.6124917378978755\times10^{21}$, reduction
+$2445.423796378741\times$, and changes the dominant endpoint pressure to
+shifted-$1$ \texttt{sin\_delta}. The h27-through-h38 suffix then reaches
+$9.394749241084401\times10^{20}$, reduction
+$4197.265478971341\times$. The h20-through-h38 suffix is still scalar-endpoint
+legal at $y^{44}$: its first possible two-terminal residual product is at
+$y^{46}$, and the row-limited replay reaches
+$8.924217291257199\times10^{20}$, reduction
+$4418.567520966396\times$, near the exploratory full h0-through-h38 suffix
+at about $4458.421575751787\times$. The degree guard is therefore favorable
+through h20: h30-through-h38 has two-factor onset at $y^{66}$ against the
+live $y^{44}$ source row, and h20-through-h38 has onset at $y^{46}$, so the
+shared residual coordinate remains affine and scalar endpoint hulls are the
+right candidate normal form through that suffix. The next lower suffix,
+h19-through-h38, is the exact endpoint-method boundary at this order because
+its first two-terminal residual product occurs at $y^{44}$, so scalar endpoint
+control is no longer justified by the affine zeta degree gap. The mathematical conclusion
+is now four-tiered: h36-through-h38 is the smallest valid provider-boundary
+target, h30-through-h38 is the first source-shape transition,
+h27-through-h38 is the practical near-plateau checkpoint, and h20-through-h38
+is the deepest tested affine-endpoint floor. The coefficient-engine route
+should therefore build a directed-rounded inherited-chain suffix covariance
+provider across this h30/h20 transition zone, with h27 as the intermediate
+checkpoint, before any shifted $R_{\varepsilon,43}$ certificate can be
+promoted. The executable route is now captured by
+\texttt{buildH39SuccessorSuffixTransitionCertificateRouteCandidate}, which
+reuses the provider-backed endpoint replay and remains candidate-only until a
+coupled directed-rounded producer-image enclosure replaces scalar endpoint
+sampling.
+
+The latest coefficient-envelope refinement sharpens that route: the diagnostic
+now tracks the requested shifted-$1$, $y^{44}$ coefficient separately from the
+endpoint-wise maximum shifted-prefix pressure. This is necessary because
+h30-through-h38, h27-through-h38, and h20-through-h38 exhibit source-shape
+transitions where the endpoint-wise dominant shifted target can change. The
+requested $y^{44}$ coefficient is still affine in the shared residual coordinate
+through h20, so it remains an endpoint-envelope candidate, but h20 adds a second
+boundary: inside the requested coefficient itself the dominant term changes from
+\texttt{sin\_delta} at the endpoints to \texttt{sin\_phi} at the midpoint. The
+certificate route therefore cannot certify the maximum first and infer the row;
+it must certify the fixed shifted index and $y$-order, then handle term
+decomposition, and only afterward take absolute or maximum Cauchy majorants. This
+refinement is not a shifted $R_{\varepsilon,43}$ certificate; it identifies the
+normal form that the coupled directed-rounded $\xi,\zeta$ producer-image
+enclosure must preserve.
+
+The route now adds a requested-coefficient $\xi,\zeta$ row-interval cover at the
+h20-through-h38 affine floor. With the same five contiguous comparison $\xi$
+intervals and two residual-coordinate slices, the diagnostic records that the
+row intervals cover the comparison $\xi$ hull, so the result is not merely a
+midpoint-stencil sample. Each interval row covers the fixed requested shifted-$1$,
+$y^{44}$ coefficient before endpoint maximum pressure is taken, and each row
+shows the same requested-coefficient term switch. The worst requested
+endpoint-hull pressure is nearly $\xi$-flat, with row-interval spread below
+$1.001$, so the remaining obstruction is not a localized speed-cell spike. It is
+the structural residual-direction wall: the $\zeta$ endpoints are
+\texttt{sin\_delta} dominated while the midpoint is \texttt{sin\_phi} dominated
+and much smaller. The next certificate target is therefore a directed-rounded
+$\xi,\zeta$ producer-image enclosure for this same row-interval cover and fixed
+requested coefficient, not a deeper search for a better scalar endpoint row.
+
+The requested-coefficient route now also exposes a signed source-term normal
+form for that fixed shifted-$1$, $y^{44}$ coefficient. For each $\zeta$ endpoint
+replay it records the requested source coefficient, the four source-term
+coefficient intervals, the term triangle, the source-to-triangle ratio, and the
+dominant term before any maximum over shifted coefficients is taken. On the live
+h20-through-h38 affine floor, the source terms reconstruct the requested source
+coefficient with maximum relative gap about $4.98\times10^{-12}$. This confirms
+that the term switch is structural rather than a reporting artifact:
+$\zeta=-1$ is \texttt{sin\_delta} dominated while the shared midpoint
+$\zeta=0$ is \texttt{sin\_phi} dominated. It also limits the hoped-for shortcut:
+the minimum source cancellation fraction on the row-interval cover is only about
+$2.67\times10^{-2}$, and the largest term-triangle-to-source gain is about
+$1.83$. Preserving signed terms is necessary, but the closure route still needs
+a directed-rounded H38 producer-image enclosure for the coupled $\xi,\zeta$
+source geometry before absolute Cauchy bounds are applied.
+
+The same requested-coefficient scan now emits an explicit residual-direction
+profile for the h20 affine floor. Each row deduplicates the adjacent $\zeta$
+partition boundary and records the requested-source pressure at
+$\zeta=-1,0,1$, the dominant term at each point, the endpoint-to-midpoint
+pressure ratio, and the duplicate-boundary relative gap. On the live first row,
+the outer endpoints are \texttt{sin\_delta} dominated with requested-source
+pressure about $8.84\times10^{20}$, while the shared midpoint is
+\texttt{sin\_phi} dominated with pressure about $1.35\times10^{15}$. The maximum
+endpoint-to-midpoint ratio across the row-interval cover is about
+$6.57\times10^5$, and the duplicate boundary gap is zero. Since the requested
+$y^{44}$ coefficient is affine in the shared residual coordinate through h20,
+this rules out finer $\zeta$ partitioning as the closure lever. The executable
+next proof object is a directed-rounded H38 producer-image residual enclosure
+that shrinks or correlates the endpoint residual image before the H39 shifted
+source replay takes absolute Cauchy bounds.
+
+The profile now also emits a normalized residual-radius budget. It computes the
+midpoint coefficient bound, the unit residual-coordinate slope bound, and the
+half-width scale at which the slope contribution would match the midpoint
+contribution. On the live first row at $\rho=10^{-3}$, the unit slope contributes
+about $8.84\times10^{20}$ of requested-source pressure while the midpoint bound
+is about $1.35\times10^{15}$, so the midpoint-matching residual half-width is
+about $1.52\times10^{-6}$. Across the row-interval cover, the full normalized
+residual radius is about $6.57\times10^5$ too large for midpoint-scale endpoint
+control. The next H38 producer-image certificate therefore has a numerical
+target: directed-rounded residual narrowing or correlation at roughly the
+$10^{-6}$ normalized scale before the H39 source replay applies absolute Cauchy
+majorants.
+
+The executable comparison against the H38 producer residual-coordinate profile
+now localizes that target. On the focused H39/y44 fixture, the producer midpoint
+hull lies inside the requested residual budget, but the producer interval hull
+is still the full normalized interval $[-1,1]$. The gap is therefore not a
+miscentered producer image; it is interval dependency loss. The current
+same-domain producer image must be narrowed or carried as a correlated object by
+about $6.57\times10^5$ before the requested shifted source can be absolutized.
+This keeps the next route concrete: certify the H38 producer-image residual
+correlation, then replay it through the H39 requested-source budget.
+
+The same comparison now carries row-local budget rows rather than only the
+aggregate hulls. Each row records the producer cell, speed interval, $\xi$
+interval, residual-coordinate midpoint, residual-coordinate interval, and
+half-width ratios against the requested budget. On the focused fixture all five
+row midpoints fit the requested residual budget, but at least one row interval
+does not. The remaining H39/y44 obstruction is therefore localized to
+row-field interval width inside the H38 producer image, not to midpoint
+misplacement or distant-row aggregation. The packet also records the first
+interval-failing row and the worst interval-width row, giving the next
+certificate a concrete producer cell target. That certificate must preserve the
+producer-coordinate dependency row by row before H39 source absolutization.
+
+The next replay tests those selected rows directly. The H39 route now feeds
+explicit row-local H38 residual-coordinate collars into the selected producer
+rows before absolutization. The current full row intervals miss the midpoint
+pressure bound by about $5.06\times10^6$, and the previous requested
+source-only half-width $1.52\times10^{-6}$ still misses the selected-row replay
+by about $7.71$. The sharper target is therefore a normalized row-local
+producer collar near $2\times10^{-7}$, corresponding to full-radius compression
+above $5\times10^6$. This remains candidate-only: it measures the collar needed
+for H39 replay, but the H38 producer image must still be directed-rounded into
+that row-local collar.
+
+The bisection refinement makes the target explicit. On the selected live rows,
+zero-width row-center replay is already safe, with worst pressure ratio about
+$3.47\times10^{-3}$ against the midpoint bound. The requested collar fails, so
+the diagnostic bisects the row-local half-width and finds a closing normalized
+half-width about $1.97\times10^{-7}$, full-radius scale about
+$5.08\times10^6$, and bracket width below $10^{-15}$. The obstruction is now
+localized to proving the H38 producer-image row width, not to the H39 replay
+mechanism itself.
+
+The row-local producer-width contraction diagnostic now maps that H39 replay
+target back to the H38 producer side. For each selected row it emits
+\texttt{row\_center\_producer\_width\_contraction\_target}, including the
+target residual-coordinate collar, the current and target H38 residual
+half-widths, the inherited $S_{37}$ solve-slope interval, and the corresponding
+pre-division numerator-width target. On the focused route, the selected row
+centers are already inside the bisection collar but the current row intervals
+are not. The worst required normalized coordinate contraction is
+$5.077823006494715\times10^6$, the worst required H38 residual half-width
+contraction is $5.077823006494714\times10^6$, and the worst required
+$S_{37}$-division numerator-width contraction is
+$5.0778237283133995\times10^6$. The minimum target H38 residual half-width is
+$7.308309016282101\times10^{16}$, and the minimum target pre-division numerator
+width lower bound is $1.158687441087688\times10^{17}$. A linear local
+subcell-width forecast would need about $25{,}389{,}116$ selected-row subcells,
+so the route remains a normal-form/correlation problem rather than a brute
+covering problem. This packet is still candidate-only: it quantifies the
+directed-rounded same-domain producer-image width certificate needed before the
+H39 requested source can be promoted.
+
+The row-local $N_{38}/S_{37}$ collar diagnostic then shows that this width
+certificate should be aimed at the $N_{38}$ graph remainder itself. It matches
+the selected row-local collar to the quadratic $N_{38}$ numerator graph and the
+inherited $S_{37}$ slope target. The selected row midpoint residuals and graph
+intervals are already far inside the row-local $S_{37}$ target: the worst
+midpoint residual width is
+$5.791796829783928\times10^{-11}$ of the target, and the worst graph interval
+width is $2.896826890907833\times10^{-11}$ of the target. The raw interval
+residual remains $5.077823006493376\times10^6$ times too wide. Thus the
+coefficient-engine target is no longer ambiguous: prove a directed-rounded
+same-domain $N_{38}$ graph-remainder enclosure below the row-local numerator
+target, then perform the $S_{37}$ division and H39 replay. The current packet
+does not certify that enclosure; it identifies exactly which remainder must be
+certified.
+
+The follow-on row-local remainder target makes the acceptance inequality
+explicit:
+$w(\mathrm{graph})+2|r_{\mathrm{mid}}|+w(r_{\mathrm{sd}})\le
+w_{S_{37}}^{\mathrm{row}}$. The selected-row graph-plus-midpoint contribution is
+less than $10^{-9}$ of the inherited $S_{37}$ numerator-width target, leaving a
+positive same-domain graph-remainder budget above $10^{17}$. The raw interval
+residual still exceeds that budget by more than $5\times10^6$. This means the
+next certificate is not a new H39 pressure search; it is a directed-rounded
+same-domain enclosure for $r_{\mathrm{sd}}$ in the $N_{38}$ graph normal form,
+before the quotient $h_{38}=-N_{38}/S_{37}$ is formed.
+
+The same row-local route now converts that remaining graph-remainder budget
+into an explicit cubic Taylor/M4 target. The diagnostic preserves the quadratic
+$N_{38}$ graph as the current graph-width comparison, but the M4 target is now
+computed against a separate cubic $N_{38}(\xi)$ graph. This correction removes
+the cubic blind spot: a fourth-derivative remainder controls the error after a
+cubic Taylor graph, whereas the fourth difference of a residual behind only a
+quadratic graph would not see a pure cubic term. For each selected row, the
+diagnostic computes the fourth-derivative ceiling required by
+$R\le M_4\Delta\xi^4/24$ using the cubic same-domain remainder budget and the
+row $\xi$ half-width, then compares it with the five-row nonuniform
+fourth-difference proxy of the cubic $N_{38}$ midpoint residual. On the live
+selected rows the maximum observed proxy ratio is
+$5.285745096878382\times10^{-12}$, with observed
+$M_4\approx2.867934073729911\times10^8$ against a minimum required ceiling
+$5.425789592887548\times10^{19}$. The resulting minimum allowed inflation
+factor is about $1.891880863855075\times10^{11}$, so a future
+directed-rounded same-domain fourth-derivative bound can be that much larger
+than the observed proxy and still fit the row-local budget. This remains a
+finite-difference proxy, not a directed-rounded derivative certificate, but it
+changes the blocker from an unspecified same-domain remainder to a concrete
+local proof object: prove a row-local cubic $N_{38}$ Taylor remainder with
+$M_4$ below the absolute directed-rounded ceiling before applying the $S_{37}$
+division.
+
+The H39/y44 route now records that proof object as a non-certifying directed
+M4 sufficiency screen. For each selected row, the screen names the maximum
+same-domain directed-rounded upper bound allowed for
+$|d^4(N_{38}-q_3)/d\xi^4|$ and checks that the corresponding Taylor remainder
+width is within the row-local budget. Since $q_3$ is cubic, the fourth
+derivative of the fitted graph vanishes, so the remaining certificate is a
+same-domain upper bound on the true $N_{38}$ fourth derivative. The live route
+has all sufficiency screens ready and records this reduction, but still marks
+the remainder as uncertified because no directed-rounded fourth-derivative
+enclosure has been supplied on the same domain.
+
+The same packet now bridges that abstract proof object to the executable H38
+producer stream. Each row-local target names
+`evaluateH38RecurrenceNumeratorBeforeSolve` as the candidate true-stream
+evaluator and emits raw true-stream and cubic-graph fourth-difference probes
+against the same $M_4$ ceiling. These probes are deliberately non-certifying:
+they diagnose whether sampled true-stream curvature is numerically aligned with
+the budget, but the accepted certificate must still differentiate the analytic
+$N_{38}$ recurrence stream with shared $\xi$ dependency and directed-rounded
+interval arithmetic before the $S_{37}$ quotient is formed. This keeps the
+closure target concrete without promoting a finite-difference sample into a
+same-domain proof.
+
+The analytic derivative-provider scaffold now states that derivative route
+directly. Since $N_{38}$ is the $y^{42}$ coefficient of
+$S(y,\xi)=\delta^2\nu^{-2}-2+\sin\phi+\sin\delta$ with $h_{38}$ zeroed,
+the same-domain provider can prove
+$d^4N_{38}/d\xi^4=[y^{42}]d^4S/d\xi^4$ by commuting coefficient extraction and
+$\xi$ differentiation. The executable scaffold records the three nonconstant
+source terms, the required derivative order, and the needed input families:
+directed-rounded $\xi$ derivatives of $\nu^{-2}$, the $\delta$ coefficient
+stream, and the $\phi$ coefficient stream through order $4$. It also records
+the fourth-order Leibniz formula for $\delta^2\nu^{-2}$ and the fourth-order
+sine chain rule for $\sin\phi$ and $\sin\delta$. No derivative bound is claimed
+yet; the advancement is that the missing proof object is now a concrete
+chain-rule coefficient-extraction provider whose output must fit the already
+computed row-local $M_4$ ceiling. The provider scaffold is now also a
+standalone executable artifact: it can be fed source-term $d^4/d\xi^4$
+intervals for the selected rows, keeps the three nonconstant source terms
+signed together before taking the absolute upper bound, and reports whether the
+resulting $N_{38}^{(4)}$ candidate fits the row-local $M_4$ ceiling. It remains
+non-certifying until those intervals are produced by a directed-rounded
+same-domain source-term derivative provider.
+
+The first live source-term jet provider now exists at the same boundary. It
+does not replace the directed-rounded proof object; it populates the scaffold's
+input slots from finite-stencil midpoint jets of the actual H38 source-term
+decomposition. Each selected row carries same-cell, same-speed-interval, and
+same-$\xi$-interval provenance into the scaffold for the three terms
+$\delta^2\nu^{-2}$, $\sin\phi$, and $\sin\delta$, then sums their signed
+$d^4/d\xi^4$ candidates before taking the absolute $M_4$ ratio. The claim
+boundary remains false for directed-rounded shared-domain status,
+$S_{37}$ dependency-preserving division, shifted $R_{\varepsilon,43}$ closure,
+and retained branch. The mathematical advance is narrower but concrete: the
+H39/y44 route can now distinguish "no source-term derivative provider" from
+"live source-term jet provider present but non-certifying," and the next
+certificate is the directed-rounded replacement of those same source-term
+slots rather than another synthetic gate.
+
+The analytic scaffold now also performs the candidate $S_{37}$ division replay
+from those same source-term slots. For each complete selected row, it converts
+the supplied $N_{38}^{(4)}$ upper bound into a cubic Taylor numerator-remainder
+width, adds the cubic graph-plus-midpoint width, checks the resulting numerator
+envelope against the row-local `target_s37_division_numerator_width_lower`, and
+then divides by the inherited solve-slope lower bound to compare with the
+selected $h_{38}$ residual target. This is still not a
+dependency-preserving $S_{37}$ certificate, because the live derivative inputs
+remain finite-stencil midpoint jets. The advance is that the scaffold no longer
+stops at "fits $M_4$"; it now tests whether the same candidate derivative
+inputs would also survive the concrete $S_{37}$ division budget, while missing
+inputs remain null rather than being silently treated as zero remainder.
+
+The same boundary now has a degree-four Lagrange source-term interpolant
+normal-form check. For each selected row and each nonconstant source term, the
+diagnostic builds the five-node interpolant on the live producer stencil, reads
+the fourth derivative as $24$ times the quartic coefficient, verifies agreement
+with the fourth divided difference, and feeds the resulting term intervals into
+the existing scaffold and $S_{37}$ division replay. On the live requested-y44
+rows, the maximum interpolant $N_{38}^{(4)}$ ratio is
+$5.483112580155718\times10^{-11}$ against the row-local $M_4$ ceiling, the
+maximum interpolant-to-true-stream gap is
+$6.011687092222812\times10^{-11}$ of that ceiling, and the maximum
+interpolant-to-finite-jet gap is
+$8.446099606345556\times10^{-20}$ of that ceiling. This is not a
+directed-rounded true-stream certificate; it proves only that the small
+source-term derivative seen by the scaffold is the degree-four interpolant
+identity on the live nodes, so the directed-rounded proof can target the same
+source-term slots instead of another finite-difference artifact.
+
+The engine now preserves source-term interval endpoints through the same path
+and tests the intervalized Lagrange replacement. Each H38 producer sample
+exports `numerator_term_intervals`, and the H39 row-local diagnostic applies
+the five Lagrange $d^4/d\xi^4$ weights to those intervals for
+$\delta^2\nu^{-2}$, $\sin\phi$, and $\sin\delta$ before summing the signed
+source-term enclosure. This provider is emitted and same-domain matched, but
+it is not a closure certificate: the maximum row-local ratio is
+$2.1184411320931636\times10^5$, the scaffold and $S_{37}$ replay both report
+`exceeds`, and the intervalized enclosure still contains the midpoint
+interpolant with zero gap. The new conclusion is sharper than "need tighter
+intervals": the current node intervals lose about $3.86\times10^{15}$ relative
+to the midpoint derivative, with term ratios about $3.26\times10^4$,
+$7.62\times10^4$, and $1.03\times10^5$ for the three nonconstant source terms.
+The next executable proof object is therefore a dependency-preserving,
+directed-rounded source-term derivative enclosure through the H38 producer
+image, not another midpoint interpolant or an independent h-row box.
+
+The follow-up total-$N_{38}$ intervalized provider now tests whether the
+termwise split itself was the dominant artifact. Instead of carrying
+`numerator_term_intervals` separately, the diagnostic applies the same
+five-node Lagrange $d^4/d\xi^4$ weights directly to each propagated total
+`numerator_interval`. That keeps the three signed source terms combined at
+each producer node before derivative weighting. The live result is still open:
+the maximum total-$N_{38}$ intervalized ratio is
+$2.118441132092869\times10^5$, the midpoint derivative remains inside the
+interval with zero gap, and the selected node widths are already about
+$5.88\times10^{23}$. This rules out the source-term split as the remaining
+main loss. The obstruction has moved one layer earlier, into the total
+$N_{38}$ node interval propagated from the H38 producer image. The next proof
+object is therefore either a dependency-preserving construction of those node
+intervals or a directed-rounded continuous derivative enclosure that avoids
+exporting the node hull before the Lagrange/Cauchy step.
+
+The same provider now carries a node-width localization replay that freezes and
+unfreezes input families before the Lagrange step. On the live selected rows,
+cell-only uncertainty contributes only about $2.65\times10^{-15}$ of the total
+node width, while all h rows with the cell fixed at its midpoint reproduce
+$0.999999876$ of the width. The late terminal h rows are the dominant block:
+h35-h37 together account for about $0.962988$, compared with about
+$0.037012$ from h0-h34. The largest single terminal contributor is h37, about
+$0.649856$ of the full node width. This is a real theory-routing advancement:
+the next certificate should not spend effort on cell partitioning or termwise
+source splitting first. It should attack terminal h-row covariance through the
+H38 producer image, especially h37 with h36 and h35 retained as a coupled
+terminal block, before the $N_{38}$ derivative is absolutized.

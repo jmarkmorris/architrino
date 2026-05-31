@@ -9,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import {
   OCTAHEDRAL_FOLD_AWARE_CROSS_BINARY_THETA3MINUS_SPEED_DEPENDENT_FOLD_PAIR_FIRST_Y_GD_THIRTY_EIGHTH_ORDER_POST_U_SUCCESSOR_COEFFICIENT_CERTIFICATE_SCHEMA,
   buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdThirtyEighthOrderPostUSuccessorCoefficientCertificate,
+  evaluateH38RecurrenceNumeratorBeforeSolve,
   validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFoldPairFirstYGdThirtyEighthOrderPostUSuccessorCoefficientCertificate,
 } from "../scripts/neutral-swarm/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-thirty-eighth-order-post-u-successor-coefficient-certificate.mjs";
 
@@ -29,6 +30,29 @@ function artifact() {
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
+}
+
+function intervalRelativeGap(left, right) {
+  const endpointGap = Math.max(
+    Math.abs(Number(left[0]) - Number(right[0])),
+    Math.abs(Number(left[1]) - Number(right[1]))
+  );
+  return endpointGap / Math.max(1, Math.abs(left[0]), Math.abs(left[1]), Math.abs(right[0]), Math.abs(right[1]));
+}
+
+function hIntervalsFromBranchRow(branchRow) {
+  return Array.from({ length: 39 }, (_, index) => branchRow[`h${index}_interval`]);
+}
+
+function cellFromRow(row) {
+  return {
+    speed_interval: row.speed_interval,
+    delta_fold_interval: row.delta_fold_interval,
+    phi_fold_interval: row.phi_fold_interval,
+    beta_interval: row.beta_interval,
+    gamma_interval: row.gamma_interval,
+    L_interval: row.L_interval,
+  };
 }
 
 function scriptPath() {
@@ -181,6 +205,38 @@ test("thirty-eighth-order post-U successor rows expose dependency-preserving h-r
     false
   );
   assert.equal(branchRow.h_row_provider_claim_boundary.retained_branch, false);
+});
+
+test("thirty-eighth-order helper exposes expression-level N38 before h38 solve", () => {
+  const packet = artifact();
+  const firstRow =
+    packet.thirty_eighth_order_post_u_successor_coefficient_rows[0];
+  const branchRow = firstRow.branch_rows[0];
+  const numerator = evaluateH38RecurrenceNumeratorBeforeSolve({
+    cell: cellFromRow(firstRow),
+    branch: branchRow.branch,
+    hIntervals: hIntervalsFromBranchRow(branchRow),
+    includeSourceSeries: true,
+    includeTermDecomposition: true,
+  });
+
+  assert.equal(numerator.target_h_index, 38);
+  assert.equal(numerator.source_y_order, 42);
+  assert.deepEqual(numerator.source_series[42], numerator.numerator_interval);
+  assert.ok(
+    intervalRelativeGap(
+      numerator.numerator_interval,
+      branchRow.h38_residual_before_solve
+    ) < 1e-10
+  );
+  assert.deepEqual(Object.keys(numerator.term_decomposition), [
+    "delta_squared_speed",
+    "constant_minus_two",
+    "sin_phi",
+    "sin_delta",
+  ]);
+  assert.equal(numerator.term_decomposition.constant_minus_two[42][0], 0);
+  assert.equal(numerator.term_decomposition.constant_minus_two[42][1], 0);
 });
 
 test("thirty-eighth-order post-U successor coefficient certificate keeps tube, continuous tail, and retention open", () => {

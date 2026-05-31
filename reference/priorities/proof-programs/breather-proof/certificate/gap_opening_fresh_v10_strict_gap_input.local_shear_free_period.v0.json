@@ -1,0 +1,479 @@
+{
+  "schema": "aaa-proof/null-coordinate-gap-opening-scan/v1",
+  "packet_id": "fresh-v10-local-shear-free-period-strict-gap-matrix-v0",
+  "packet_identity": {
+    "source_packet": "fresh-same-packet-fold-shear-seed-v0",
+    "source_refinement": "fresh-same-packet-fold-shear-seed-v0-proof-interval-topology-no-double-counting-no-go-v10",
+    "matrix_status": "diagnostic_v10_parent_complement_local_shear_free_period_not_full_candidate",
+    "basis_model": "half_period_antisymmetric_c1_arc_bumps",
+    "period_mode": "free"
+  },
+  "source": "Proof-interval-v10 parent-complement collars evaluated against the existing half-period-antisymmetric C1 shear basis on A0, A1, and A2.",
+  "claim_limits": {
+    "claims_breather": false,
+    "claims_preledger_pass": false,
+    "claims_branch_chart_authorization": false,
+    "claims_interval_certification": false,
+    "claims_live_candidate": false,
+    "claims_full_structural_jacobian": false
+  },
+  "basis_definition": {
+    "first_half_arcs": [
+      {
+        "id": "A0",
+        "theta_range": [
+          0,
+          0.14758361765
+        ],
+        "basis": "h_A0"
+      },
+      {
+        "id": "A1",
+        "theta_range": [
+          0.14758361765,
+          0.35241638235
+        ],
+        "basis": "h_A1"
+      },
+      {
+        "id": "A2",
+        "theta_range": [
+          0.35241638235,
+          0.5
+        ],
+        "basis": "h_A2"
+      }
+    ],
+    "formula": "psi_Aj(theta)=sin(pi*(theta-L_j)/(R_j-L_j))^2 on arc A_j and 0 outside; H(theta+1/2)=-H(theta).",
+    "coordinate_functionals": {
+      "w": "z_w(theta)=T_cyc theta + X(theta)",
+      "u": "z_u(theta)=T_cyc theta - X(theta)"
+    },
+    "strict_gap_orientations": {
+      "source_below_receiver": "delta=inf_R z_l - sup_S z_l",
+      "receiver_below_source": "delta=inf_S z_l - sup_R z_l"
+    },
+    "endpoint_extrema_note": "Rows use endpoint extrema for the listed v10 collar intervals; this is a finite tangent matrix, not outward-rounded interval certification."
+  },
+  "variables": [
+    {
+      "id": "b_T",
+      "meaning": "period tangent column in z_l(theta)=T_cyc theta +/- X(theta)"
+    },
+    {
+      "id": "h_A0",
+      "meaning": "C1 A0 arc bump shear, extended by H(theta+1/2)=-H(theta)"
+    },
+    {
+      "id": "h_A1",
+      "meaning": "C1 A1 arc bump shear, extended by H(theta+1/2)=-H(theta)"
+    },
+    {
+      "id": "h_A2",
+      "meaning": "C1 A2 arc bump shear, extended by H(theta+1/2)=-H(theta)"
+    }
+  ],
+  "structural_constraints": [],
+  "gap_constraints": [
+    {
+      "id": "C_w_A1_A0_left_v10_1",
+      "collar_id": "C_w_A1_A0_left_v10_1",
+      "parent_base_row_id": "R_w_A1_A0",
+      "simple_root_subrow_id": "S_w_A1_A0_v4_1",
+      "ledger": "w",
+      "side": "left",
+      "receiver_interval": "A1",
+      "source_interval": "A0",
+      "receiver_theta_range": [
+        "0.14008361765",
+        "0.156942939340625"
+      ],
+      "source_theta_range": [
+        "0",
+        "0.11508361765"
+      ],
+      "receiver_range": [
+        "1.531693762519064",
+        "1.549796034394304"
+      ],
+      "source_range": [
+        "1.242915219796209",
+        "1.562224387693862"
+      ],
+      "orientation": "source_below_receiver",
+      "source_below_receiver_deficit": 0.0305306251747979,
+      "receiver_below_source_deficit": 0.306880814598095,
+      "required_margin": 0.0305306251747979,
+      "coefficients": {
+        "b_T": 0.025,
+        "h_A0": -0.406970263612983,
+        "h_A1": 0,
+        "h_A2": 0
+      }
+    },
+    {
+      "id": "C_w_A2_A0_left_v10_2",
+      "collar_id": "C_w_A2_A0_left_v10_2",
+      "parent_base_row_id": "R_w_A2_A0",
+      "simple_root_subrow_id": "S_w_A2_A0_v4_2",
+      "ledger": "w",
+      "side": "left",
+      "receiver_interval": "A2",
+      "source_interval": "A0",
+      "receiver_theta_range": [
+        "0.34491638235",
+        "0.3786872867625"
+      ],
+      "source_theta_range": [
+        "0",
+        "0.11508361765"
+      ],
+      "receiver_range": [
+        "1.326106841603919",
+        "1.340044684198112"
+      ],
+      "source_range": [
+        "1.242915219796209",
+        "1.562224387693862"
+      ],
+      "orientation": "receiver_below_source",
+      "source_below_receiver_deficit": 0.236117546089943,
+      "receiver_below_source_deficit": 0.097129464401903,
+      "required_margin": 0.097129464401903,
+      "coefficients": {
+        "b_T": -0.3786872867625,
+        "h_A0": 0,
+        "h_A1": -0.0131736783002998,
+        "h_A2": -0.281461654323709
+      }
+    },
+    {
+      "id": "C_w_A2_A0_right_v10_3",
+      "collar_id": "C_w_A2_A0_right_v10_3",
+      "parent_base_row_id": "R_w_A2_A0",
+      "simple_root_subrow_id": "S_w_A2_A0_v4_2",
+      "ledger": "w",
+      "side": "right",
+      "receiver_interval": "A2",
+      "source_interval": "A0",
+      "receiver_theta_range": [
+        "0.437786369484375",
+        "0.61508361765"
+      ],
+      "source_theta_range": [
+        "0",
+        "0.11508361765"
+      ],
+      "receiver_range": [
+        "1.500617495021933",
+        "3.036688153917679"
+      ],
+      "source_range": [
+        "1.242915219796209",
+        "1.562224387693862"
+      ],
+      "orientation": "source_below_receiver",
+      "source_below_receiver_deficit": 0.0616068926719289,
+      "receiver_below_source_deficit": 1.79377293412147,
+      "required_margin": 0.0616068926719289,
+      "coefficients": {
+        "b_T": 0.322702751834375,
+        "h_A0": -0.813940527225966,
+        "h_A1": 0,
+        "h_A2": 0
+      }
+    },
+    {
+      "id": "C_w_A2_A1_left_v10_4",
+      "collar_id": "C_w_A2_A1_left_v10_4",
+      "parent_base_row_id": "R_w_A2_A1",
+      "simple_root_subrow_id": "S_w_A2_A1_v4_3",
+      "ledger": "w",
+      "side": "left",
+      "receiver_interval": "A2",
+      "source_interval": "A1",
+      "receiver_theta_range": [
+        "0.34491638235",
+        "0.39557273896875"
+      ],
+      "source_theta_range": [
+        "0.14008361765",
+        "0.31991638235"
+      ],
+      "receiver_range": [
+        "1.324450322067767",
+        "1.351531046082623"
+      ],
+      "source_range": [
+        "1.321324670101948",
+        "1.565795914747071"
+      ],
+      "orientation": "receiver_below_source",
+      "source_below_receiver_deficit": 0.241345592679304,
+      "receiver_below_source_deficit": 0.030206375980675,
+      "required_margin": 0.030206375980675,
+      "coefficients": {
+        "b_T": -0.25548912131875,
+        "h_A0": 0,
+        "h_A1": -0.0131736783002998,
+        "h_A2": -0.631693167508513
+      }
+    },
+    {
+      "id": "C_w_A2_A1_right_v10_5",
+      "collar_id": "C_w_A2_A1_right_v10_5",
+      "parent_base_row_id": "R_w_A2_A1",
+      "simple_root_subrow_id": "S_w_A2_A1_v4_3",
+      "ledger": "w",
+      "side": "right",
+      "receiver_interval": "A2",
+      "source_interval": "A1",
+      "receiver_theta_range": [
+        "0.437786369484375",
+        "0.61508361765"
+      ],
+      "source_theta_range": [
+        "0.14008361765",
+        "0.31991638235"
+      ],
+      "receiver_range": [
+        "1.500617495021933",
+        "3.036688153917679"
+      ],
+      "source_range": [
+        "1.321324670101948",
+        "1.565795914747071"
+      ],
+      "orientation": "source_below_receiver",
+      "source_below_receiver_deficit": 0.0651784197251379,
+      "receiver_below_source_deficit": 1.71536348381573,
+      "required_margin": 0.0651784197251379,
+      "coefficients": {
+        "b_T": 0.117869987134375,
+        "h_A0": -0.432243041227446,
+        "h_A1": -0.228557632673001,
+        "h_A2": 0
+      }
+    },
+    {
+      "id": "C_u_A3_A2_left_v10_6",
+      "collar_id": "C_u_A3_A2_left_v10_6",
+      "parent_base_row_id": "R_u_A3_A2",
+      "simple_root_subrow_id": "S_u_A3_A2_v4_4",
+      "ledger": "u",
+      "side": "left",
+      "receiver_interval": "A3",
+      "source_interval": "A2",
+      "receiver_theta_range": [
+        "0.64008361765",
+        "0.656942939340625"
+      ],
+      "source_theta_range": [
+        "0.34491638235",
+        "0.61508361765"
+      ],
+      "receiver_range": [
+        "4.673286416109064",
+        "4.691388687984304"
+      ],
+      "source_range": [
+        "2.997617858164017",
+        "4.718716169937323"
+      ],
+      "orientation": "source_below_receiver",
+      "source_below_receiver_deficit": 0.0454297538282589,
+      "receiver_below_source_deficit": 1.69377082982029,
+      "required_margin": 0.0454297538282589,
+      "coefficients": {
+        "b_T": 0.025,
+        "h_A0": -0.406970263612983,
+        "h_A1": 0,
+        "h_A2": 0
+      }
+    },
+    {
+      "id": "C_u_A4_A2_left_v10_7",
+      "collar_id": "C_u_A4_A2_left_v10_7",
+      "parent_base_row_id": "R_u_A4_A2",
+      "simple_root_subrow_id": "S_u_A4_A2_v4_5",
+      "ledger": "u",
+      "side": "left",
+      "receiver_interval": "A4",
+      "source_interval": "A2",
+      "receiver_theta_range": [
+        "0.84491638235",
+        "0.873994560659375"
+      ],
+      "source_theta_range": [
+        "0.34491638235",
+        "0.61508361765"
+      ],
+      "receiver_range": [
+        "4.468160189807063",
+        "4.481176630480271"
+      ],
+      "source_range": [
+        "2.997617858164017",
+        "4.718716169937323"
+      ],
+      "orientation": "source_below_receiver",
+      "source_below_receiver_deficit": 0.25055598013026,
+      "receiver_below_source_deficit": 1.48355877231625,
+      "required_margin": 0.25055598013026,
+      "coefficients": {
+        "b_T": 0.2298327647,
+        "h_A0": -0.406970263612983,
+        "h_A1": 0,
+        "h_A2": 0
+      }
+    },
+    {
+      "id": "C_u_A4_A2_right_v10_8",
+      "collar_id": "C_u_A4_A2_right_v10_8",
+      "parent_base_row_id": "R_u_A4_A2",
+      "simple_root_subrow_id": "S_u_A4_A2_v4_5",
+      "ledger": "u",
+      "side": "right",
+      "receiver_interval": "A4",
+      "source_interval": "A2",
+      "receiver_theta_range": [
+        "0.94184364338125",
+        "1"
+      ],
+      "source_theta_range": [
+        "0.34491638235",
+        "0.61508361765"
+      ],
+      "receiver_range": [
+        "4.668926664912806",
+        "5.038808373393061"
+      ],
+      "source_range": [
+        "2.997617858164017",
+        "4.718716169937323"
+      ],
+      "orientation": "source_below_receiver",
+      "source_below_receiver_deficit": 0.049789505024517,
+      "receiver_below_source_deficit": 2.04119051522904,
+      "required_margin": 0.049789505024517,
+      "coefficients": {
+        "b_T": 0.32676002573125,
+        "h_A0": -0.406970263612983,
+        "h_A1": 0,
+        "h_A2": 0
+      }
+    },
+    {
+      "id": "C_u_A4_A3_left_v10_9",
+      "collar_id": "C_u_A4_A3_left_v10_9",
+      "parent_base_row_id": "R_u_A4_A3",
+      "simple_root_subrow_id": "S_u_A4_A3_v4_6",
+      "ledger": "u",
+      "side": "left",
+      "receiver_interval": "A4",
+      "source_interval": "A3",
+      "receiver_theta_range": [
+        "0.84491638235",
+        "0.893380012865625"
+      ],
+      "source_theta_range": [
+        "0.64008361765",
+        "0.81991638235"
+      ],
+      "receiver_range": [
+        "4.466257480779874",
+        "4.48955189625497"
+      ],
+      "source_range": [
+        "4.462917323691948",
+        "4.707388568337071"
+      ],
+      "orientation": "receiver_below_source",
+      "source_below_receiver_deficit": 0.241131087557196,
+      "receiver_below_source_deficit": 0.0266345725630224,
+      "required_margin": 0.0266345725630224,
+      "coefficients": {
+        "b_T": -0.253296395215625,
+        "h_A0": 0,
+        "h_A1": -0.0131736783002998,
+        "h_A2": -0.586156976238714
+      }
+    },
+    {
+      "id": "C_u_A4_A3_right_v10_10",
+      "collar_id": "C_u_A4_A3_right_v10_10",
+      "parent_base_row_id": "R_u_A4_A3",
+      "simple_root_subrow_id": "S_u_A4_A3_v4_6",
+      "ledger": "u",
+      "side": "right",
+      "receiver_interval": "A4",
+      "source_interval": "A3",
+      "receiver_theta_range": [
+        "0.94184364338125",
+        "1"
+      ],
+      "source_theta_range": [
+        "0.64008361765",
+        "0.81991638235"
+      ],
+      "receiver_range": [
+        "4.668926664912806",
+        "5.038808373393061"
+      ],
+      "source_range": [
+        "4.462917323691948",
+        "4.707388568337071"
+      ],
+      "orientation": "source_below_receiver",
+      "source_below_receiver_deficit": 0.038461903424265,
+      "receiver_below_source_deficit": 0.575891049701113,
+      "required_margin": 0.038461903424265,
+      "coefficients": {
+        "b_T": 0.12192726103125,
+        "h_A0": -0.0252727776144629,
+        "h_A1": -0.228557632673001,
+        "h_A2": 0
+      }
+    }
+  ],
+  "source_summary": {
+    "base_rows": 162,
+    "certified_empty_base_rows": 124,
+    "certified_range_empty_base_rows": 116,
+    "certified_diagonal_exclusion_empty_rows": 8,
+    "certified_simple_root_rows": 0,
+    "certified_simple_root_subrows": 6,
+    "parent_complement_strips": 10,
+    "regular_boundary_candidate_cores_imported_from_v9": 10,
+    "finite_regular_boundary_candidate_families_imported_from_v9": 4,
+    "finite_regular_boundary_candidate_membership_edges_imported_from_v9": 20,
+    "topology_no_double_counting_methods_tested": 5,
+    "topology_no_double_counting_method_evaluations": 50,
+    "topology_no_double_counting_certificates_certified": 0,
+    "accepted_topology_no_double_counting_certificates_by_v10": 0,
+    "explicit_topology_fields_certified": 0,
+    "complement_boundary_ownership_for_residual_core_certified": 0,
+    "simple_root_branch_reuse_exclusions_certified": 0,
+    "endpoint_excluded_complement_disjointness_certified": 0,
+    "fold_layer_nonexpansion_certificates_certified": 0,
+    "exact_single_separator_assignments_certified": 0,
+    "accepted_separator_assignments_by_v10": 0,
+    "same_packet_inclusion_proofs_certified": 0,
+    "same_packet_fold_ceiling_available_for_fresh_packet": false,
+    "domination_inequalities_certified": 0,
+    "non_core_complement_closures_certified": 0,
+    "regular_boundary_covered_strips": 0,
+    "accepted_parent_complement_strips_by_v10": 0,
+    "split_required_parent_complement_strips": 10,
+    "simple_root_parent_rows_consumed_by_v10": 0,
+    "accepted_fold_layer_rows": 0,
+    "split_required_base_rows": 38,
+    "branch_chart_authorized": false
+  },
+  "limitations": [
+    "Diagnostic finite tangent matrix only; it is not a full structural Jacobian for a solved candidate.",
+    "Endpoint extrema are not outward-rounded interval lower bounds.",
+    "A feasible witness must still be integrated into a repaired or successor candidate and rerun through the proof-interval pre-ledger.",
+    "The result must not update the live causal ledger or authorize branch-chart construction."
+  ]
+}

@@ -1,0 +1,942 @@
+{
+  "schema": "breather-mesh-v1",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "status": "higher_fold_separator_refined_mesh_input_not_preledger",
+  "claim_level": "diagnostic higher-fold 12-root separator-refined mesh, not a preledger classification",
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "source_candidate": "phi_cyc.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+  "common_identity": {
+    "K": "fresh_v10_shifted_threshold_12_root_itinerary",
+    "T_cyc": 6.28318530718,
+    "S": "section x(0)=1.2447644729563, xdot(0)=-0.0876176690331297",
+    "P": {
+      "c_f": 1,
+      "eta": 0.02,
+      "epsilon_c": 0.05,
+      "g": 1,
+      "seed_lambda": 0.3,
+      "memory_horizon_h": 6.28318530718
+    },
+    "B_rep": "shifted-separator fixed-period direct-path higher-fold seed",
+    "Theta": "mesh.fresh-v10-higher-fold-12-root-rebuild-v0.json:nodes"
+  },
+  "itinerary_ref": {
+    "itinerary_id": "fresh_v10_shifted_threshold_12_root_itinerary",
+    "source_target": "fresh_v10_higher_fold_itinerary_rebuild_target.v0.json",
+    "root_count": 12
+  },
+  "period_ref": {
+    "T_cyc": 6.28318530718
+  },
+  "nodes": [
+    {
+      "node_id": "theta_000000",
+      "theta": 0,
+      "t": 0,
+      "node_type": "section_endpoint",
+      "x": 1.2447644729563,
+      "xdot": -0.0876176690331297,
+      "speed": 0.0876176690331297,
+      "u": -1.2447644729563,
+      "w": 1.2447644729563
+    },
+    {
+      "node_id": "mid_A00",
+      "theta": 0.0057734959676303,
+      "t": 0.0362759450348777,
+      "node_type": "regular_midpoint",
+      "x": 1.23499198278302,
+      "xdot": -0.449652857829219,
+      "speed": 0.449652857829219,
+      "u": -1.19871603774814,
+      "w": 1.2712679278179
+    },
+    {
+      "node_id": "Sigma_hf_01",
+      "theta": 0.0155469919352606,
+      "t": 0.0976846312984753,
+      "node_type": "field_speed_separator",
+      "x": 1.18986029779144,
+      "xdot": -1.00000000000127,
+      "speed": 1.00000000000127,
+      "u": -1.09217566649297,
+      "w": 1.28754492908992
+    },
+    {
+      "node_id": "mid_A01",
+      "theta": 0.0360431120689586,
+      "t": 0.226465552176723,
+      "node_type": "regular_midpoint",
+      "x": 1.01628353688976,
+      "xdot": -1.51944035288167,
+      "speed": 1.51944035288167,
+      "u": -0.789817984713036,
+      "w": 1.24274908906648
+    },
+    {
+      "node_id": "Sigma_hf_02",
+      "theta": 0.0565392322026566,
+      "t": 0.35524647305497,
+      "node_type": "field_speed_separator",
+      "x": 0.844685089721911,
+      "xdot": -1.00000000000148,
+      "speed": 1.00000000000148,
+      "u": -0.48943861666694,
+      "w": 1.19993156277688
+    },
+    {
+      "node_id": "mid_A02",
+      "theta": 0.0920614249263703,
+      "t": 0.578438992455424,
+      "node_type": "regular_midpoint",
+      "x": 0.788849989790342,
+      "xdot": 0.256180817631066,
+      "speed": 0.256180817631066,
+      "u": -0.210410997334918,
+      "w": 1.36728898224577
+    },
+    {
+      "node_id": "Sigma_hf_03",
+      "theta": 0.127583617650084,
+      "t": 0.801631511855879,
+      "node_type": "field_speed_separator",
+      "x": 0.750000000002195,
+      "xdot": -1.00000000000039,
+      "speed": 1.00000000000039,
+      "u": 0.0516315118536841,
+      "w": 1.55163151185807
+    },
+    {
+      "node_id": "mid_A03",
+      "theta": 0.183807746947855,
+      "t": 1.15489813496862,
+      "node_type": "regular_midpoint",
+      "x": 0.164682272091667,
+      "xdot": -2.00525069478957,
+      "speed": 2.00525069478957,
+      "u": 0.990215862876952,
+      "w": 1.31958040706029
+    },
+    {
+      "node_id": "Sigma_hf_04",
+      "theta": 0.240031876245625,
+      "t": 1.50816475808136,
+      "node_type": "field_speed_separator",
+      "x": -0.405646985636329,
+      "xdot": -0.999999999999538,
+      "speed": 0.999999999999538,
+      "u": 1.91381174371769,
+      "w": 1.10251777244503
+    },
+    {
+      "node_id": "mid_A04",
+      "theta": 0.286224129297845,
+      "t": 1.79839924376461,
+      "node_type": "regular_midpoint",
+      "x": -0.574188725206436,
+      "xdot": -0.365279783292413,
+      "speed": 0.365279783292413,
+      "u": 2.37258796897104,
+      "w": 1.22421051855817
+    },
+    {
+      "node_id": "Sigma_hf_05",
+      "theta": 0.332416382350065,
+      "t": 2.08863372944786,
+      "node_type": "field_speed_separator",
+      "x": -0.750000000003131,
+      "xdot": -1.00000000000035,
+      "speed": 1.00000000000035,
+      "u": 2.83863372945099,
+      "w": 1.33863372944473
+    },
+    {
+      "node_id": "mid_A05",
+      "theta": 0.368098257454149,
+      "t": 2.31282956283447,
+      "node_type": "regular_midpoint",
+      "x": -1.09855590028446,
+      "xdot": -1.89058571872177,
+      "speed": 1.89058571872177,
+      "u": 3.41138546311893,
+      "w": 1.21427366255001
+    },
+    {
+      "node_id": "Sigma_hf_06",
+      "theta": 0.403780132558234,
+      "t": 2.53702539622109,
+      "node_type": "field_speed_separator",
+      "x": -1.45571745434051,
+      "xdot": -0.999999999999235,
+      "speed": 0.999999999999235,
+      "u": 3.9927428505616,
+      "w": 1.08130794188058
+    },
+    {
+      "node_id": "mid_A06",
+      "theta": 0.459663562246747,
+      "t": 2.88815134055478,
+      "node_type": "regular_midpoint",
+      "x": -1.39204308386964,
+      "xdot": 0.895525501453634,
+      "speed": 0.895525501453634,
+      "u": 4.28019442442442,
+      "w": 1.49610825668514
+    },
+    {
+      "node_id": "Sigma_hf_07",
+      "theta": 0.51554699193526,
+      "t": 3.23927728488847,
+      "node_type": "field_speed_separator",
+      "x": -1.18986029779145,
+      "xdot": 1.00000000000124,
+      "speed": 1.00000000000124,
+      "u": 4.42913758267992,
+      "w": 2.04941698709702
+    },
+    {
+      "node_id": "mid_A07",
+      "theta": 0.536043112068958,
+      "t": 3.36805820576672,
+      "node_type": "regular_midpoint",
+      "x": -1.01628353688976,
+      "xdot": 1.51944035288167,
+      "speed": 1.51944035288167,
+      "u": 4.38434174265648,
+      "w": 2.35177466887696
+    },
+    {
+      "node_id": "Sigma_hf_08",
+      "theta": 0.556539232202657,
+      "t": 3.49683912664497,
+      "node_type": "field_speed_separator",
+      "x": -0.844685089721908,
+      "xdot": 1.00000000000146,
+      "speed": 1.00000000000146,
+      "u": 4.34152421636688,
+      "w": 2.65215403692306
+    },
+    {
+      "node_id": "mid_A08",
+      "theta": 0.59206142492637,
+      "t": 3.72003164604543,
+      "node_type": "regular_midpoint",
+      "x": -0.788849989790342,
+      "xdot": -0.256180817631067,
+      "speed": 0.256180817631067,
+      "u": 4.50888163583577,
+      "w": 2.93118165625508
+    },
+    {
+      "node_id": "Sigma_hf_09",
+      "theta": 0.627583617650084,
+      "t": 3.94322416544588,
+      "node_type": "field_speed_separator",
+      "x": -0.750000000002195,
+      "xdot": 1.00000000000039,
+      "speed": 1.00000000000039,
+      "u": 4.69322416544807,
+      "w": 3.19322416544368
+    },
+    {
+      "node_id": "mid_A09",
+      "theta": 0.683807746947855,
+      "t": 4.29649078855862,
+      "node_type": "regular_midpoint",
+      "x": -0.164682272091667,
+      "xdot": 2.00525069478957,
+      "speed": 2.00525069478957,
+      "u": 4.46117306065029,
+      "w": 4.13180851646695
+    },
+    {
+      "node_id": "Sigma_hf_10",
+      "theta": 0.740031876245625,
+      "t": 4.64975741167136,
+      "node_type": "field_speed_separator",
+      "x": 0.405646985636329,
+      "xdot": 0.999999999999536,
+      "speed": 0.999999999999536,
+      "u": 4.24411042603503,
+      "w": 5.05540439730769
+    },
+    {
+      "node_id": "mid_A10",
+      "theta": 0.786224129297845,
+      "t": 4.93999189735461,
+      "node_type": "regular_midpoint",
+      "x": 0.574188725206436,
+      "xdot": 0.365279783292413,
+      "speed": 0.365279783292413,
+      "u": 4.36580317214817,
+      "w": 5.51418062256104
+    },
+    {
+      "node_id": "Sigma_hf_11",
+      "theta": 0.832416382350065,
+      "t": 5.23022638303786,
+      "node_type": "field_speed_separator",
+      "x": 0.75000000000313,
+      "xdot": 1.00000000000035,
+      "speed": 1.00000000000035,
+      "u": 4.48022638303473,
+      "w": 5.98022638304099
+    },
+    {
+      "node_id": "mid_A11",
+      "theta": 0.868098257454149,
+      "t": 5.45442221642447,
+      "node_type": "regular_midpoint",
+      "x": 1.09855590028446,
+      "xdot": 1.89058571872177,
+      "speed": 1.89058571872177,
+      "u": 4.35586631614002,
+      "w": 6.55297811670893
+    },
+    {
+      "node_id": "Sigma_hf_12",
+      "theta": 0.903780132558234,
+      "t": 5.67861804981109,
+      "node_type": "field_speed_separator",
+      "x": 1.45571745434051,
+      "xdot": 0.999999999999235,
+      "speed": 0.999999999999235,
+      "u": 4.22290059547058,
+      "w": 7.1343355041516
+    },
+    {
+      "node_id": "mid_A12",
+      "theta": 0.953890066279117,
+      "t": 5.9934680491099,
+      "node_type": "regular_midpoint",
+      "x": 1.42421667725941,
+      "xdot": -0.86958799756397,
+      "speed": 0.86958799756397,
+      "u": 4.56925137185049,
+      "w": 7.41768472636931
+    }
+  ],
+  "preledger_intervals": [
+    {
+      "interval_id": "A00",
+      "theta_range": [
+        0,
+        0.0115469919352606
+      ],
+      "type": "regular",
+      "order": 0,
+      "velocity_class": "sub",
+      "t_range": [
+        0,
+        0.0725518900697553
+      ]
+    },
+    {
+      "interval_id": "F01",
+      "theta_range": [
+        0.0115469919352606,
+        0.0195469919352606
+      ],
+      "type": "fold_layer_candidate",
+      "separator_event": "Sigma_hf_01",
+      "order": 1,
+      "velocity_class": "separator_layer",
+      "t_range": [
+        0.0725518900697553,
+        0.122817372527195
+      ]
+    },
+    {
+      "interval_id": "A01",
+      "theta_range": [
+        0.0195469919352606,
+        0.0525392322026566
+      ],
+      "type": "regular",
+      "order": 2,
+      "velocity_class": "super",
+      "t_range": [
+        0.122817372527195,
+        0.33011373182625
+      ]
+    },
+    {
+      "interval_id": "F02",
+      "theta_range": [
+        0.0525392322026566,
+        0.0605392322026566
+      ],
+      "type": "fold_layer_candidate",
+      "separator_event": "Sigma_hf_02",
+      "order": 3,
+      "velocity_class": "separator_layer",
+      "t_range": [
+        0.33011373182625,
+        0.38037921428369
+      ]
+    },
+    {
+      "interval_id": "A02",
+      "theta_range": [
+        0.0605392322026566,
+        0.123583617650084
+      ],
+      "type": "regular",
+      "order": 4,
+      "velocity_class": "sub",
+      "t_range": [
+        0.38037921428369,
+        0.776498770627159
+      ]
+    },
+    {
+      "interval_id": "F03",
+      "theta_range": [
+        0.123583617650084,
+        0.131583617650084
+      ],
+      "type": "fold_layer_candidate",
+      "separator_event": "Sigma_hf_03",
+      "order": 5,
+      "velocity_class": "separator_layer",
+      "t_range": [
+        0.776498770627159,
+        0.826764253084599
+      ]
+    },
+    {
+      "interval_id": "A03",
+      "theta_range": [
+        0.131583617650084,
+        0.236031876245625
+      ],
+      "type": "regular",
+      "order": 6,
+      "velocity_class": "super",
+      "t_range": [
+        0.826764253084599,
+        1.48303201685264
+      ]
+    },
+    {
+      "interval_id": "F04",
+      "theta_range": [
+        0.236031876245625,
+        0.244031876245625
+      ],
+      "type": "fold_layer_candidate",
+      "separator_event": "Sigma_hf_04",
+      "order": 7,
+      "velocity_class": "separator_layer",
+      "t_range": [
+        1.48303201685264,
+        1.53329749931008
+      ]
+    },
+    {
+      "interval_id": "A04",
+      "theta_range": [
+        0.244031876245625,
+        0.328416382350065
+      ],
+      "type": "regular",
+      "order": 8,
+      "velocity_class": "sub",
+      "t_range": [
+        1.53329749931008,
+        2.06350098821914
+      ]
+    },
+    {
+      "interval_id": "F05",
+      "theta_range": [
+        0.328416382350065,
+        0.336416382350065
+      ],
+      "type": "fold_layer_candidate",
+      "separator_event": "Sigma_hf_05",
+      "order": 9,
+      "velocity_class": "separator_layer",
+      "t_range": [
+        2.06350098821914,
+        2.11376647067658
+      ]
+    },
+    {
+      "interval_id": "A05",
+      "theta_range": [
+        0.336416382350065,
+        0.399780132558234
+      ],
+      "type": "regular",
+      "order": 10,
+      "velocity_class": "super",
+      "t_range": [
+        2.11376647067658,
+        2.51189265499237
+      ]
+    },
+    {
+      "interval_id": "F06",
+      "theta_range": [
+        0.399780132558234,
+        0.407780132558234
+      ],
+      "type": "fold_layer_candidate",
+      "separator_event": "Sigma_hf_06",
+      "order": 11,
+      "velocity_class": "separator_layer",
+      "t_range": [
+        2.51189265499237,
+        2.56215813744981
+      ]
+    },
+    {
+      "interval_id": "A06",
+      "theta_range": [
+        0.407780132558234,
+        0.51154699193526
+      ],
+      "type": "regular",
+      "order": 12,
+      "velocity_class": "sub",
+      "t_range": [
+        2.56215813744981,
+        3.21414454365975
+      ]
+    },
+    {
+      "interval_id": "F07",
+      "theta_range": [
+        0.51154699193526,
+        0.51954699193526
+      ],
+      "type": "fold_layer_candidate",
+      "separator_event": "Sigma_hf_07",
+      "order": 13,
+      "velocity_class": "separator_layer",
+      "t_range": [
+        3.21414454365975,
+        3.26441002611719
+      ]
+    },
+    {
+      "interval_id": "A07",
+      "theta_range": [
+        0.51954699193526,
+        0.552539232202657
+      ],
+      "type": "regular",
+      "order": 14,
+      "velocity_class": "super",
+      "t_range": [
+        3.26441002611719,
+        3.47170638541625
+      ]
+    },
+    {
+      "interval_id": "F08",
+      "theta_range": [
+        0.552539232202657,
+        0.560539232202657
+      ],
+      "type": "fold_layer_candidate",
+      "separator_event": "Sigma_hf_08",
+      "order": 15,
+      "velocity_class": "separator_layer",
+      "t_range": [
+        3.47170638541625,
+        3.52197186787369
+      ]
+    },
+    {
+      "interval_id": "A08",
+      "theta_range": [
+        0.560539232202657,
+        0.623583617650084
+      ],
+      "type": "regular",
+      "order": 16,
+      "velocity_class": "sub",
+      "t_range": [
+        3.52197186787369,
+        3.91809142421716
+      ]
+    },
+    {
+      "interval_id": "F09",
+      "theta_range": [
+        0.623583617650084,
+        0.631583617650084
+      ],
+      "type": "fold_layer_candidate",
+      "separator_event": "Sigma_hf_09",
+      "order": 17,
+      "velocity_class": "separator_layer",
+      "t_range": [
+        3.91809142421716,
+        3.9683569066746
+      ]
+    },
+    {
+      "interval_id": "A09",
+      "theta_range": [
+        0.631583617650084,
+        0.736031876245625
+      ],
+      "type": "regular",
+      "order": 18,
+      "velocity_class": "super",
+      "t_range": [
+        3.9683569066746,
+        4.62462467044264
+      ]
+    },
+    {
+      "interval_id": "F10",
+      "theta_range": [
+        0.736031876245625,
+        0.744031876245625
+      ],
+      "type": "fold_layer_candidate",
+      "separator_event": "Sigma_hf_10",
+      "order": 19,
+      "velocity_class": "separator_layer",
+      "t_range": [
+        4.62462467044264,
+        4.67489015290008
+      ]
+    },
+    {
+      "interval_id": "A10",
+      "theta_range": [
+        0.744031876245625,
+        0.828416382350065
+      ],
+      "type": "regular",
+      "order": 20,
+      "velocity_class": "sub",
+      "t_range": [
+        4.67489015290008,
+        5.20509364180914
+      ]
+    },
+    {
+      "interval_id": "F11",
+      "theta_range": [
+        0.828416382350065,
+        0.836416382350065
+      ],
+      "type": "fold_layer_candidate",
+      "separator_event": "Sigma_hf_11",
+      "order": 21,
+      "velocity_class": "separator_layer",
+      "t_range": [
+        5.20509364180914,
+        5.25535912426658
+      ]
+    },
+    {
+      "interval_id": "A11",
+      "theta_range": [
+        0.836416382350065,
+        0.899780132558234
+      ],
+      "type": "regular",
+      "order": 22,
+      "velocity_class": "super",
+      "t_range": [
+        5.25535912426658,
+        5.65348530858237
+      ]
+    },
+    {
+      "interval_id": "F12",
+      "theta_range": [
+        0.899780132558234,
+        0.907780132558234
+      ],
+      "type": "fold_layer_candidate",
+      "separator_event": "Sigma_hf_12",
+      "order": 23,
+      "velocity_class": "separator_layer",
+      "t_range": [
+        5.65348530858237,
+        5.70375079103981
+      ]
+    },
+    {
+      "interval_id": "A12",
+      "theta_range": [
+        0.907780132558234,
+        1
+      ],
+      "type": "regular",
+      "order": 24,
+      "velocity_class": "sub",
+      "t_range": [
+        5.70375079103981,
+        6.28318530718
+      ]
+    }
+  ],
+  "subblocks": [
+    {
+      "id": "A00",
+      "theta_range": [
+        0,
+        0.0115469919352606
+      ],
+      "type": "regular",
+      "velocity_class": "sub",
+      "separator_event": null
+    },
+    {
+      "id": "F01",
+      "theta_range": [
+        0.0115469919352606,
+        0.0195469919352606
+      ],
+      "type": "fold_layer_candidate",
+      "velocity_class": "separator_layer",
+      "separator_event": "Sigma_hf_01"
+    },
+    {
+      "id": "A01",
+      "theta_range": [
+        0.0195469919352606,
+        0.0525392322026566
+      ],
+      "type": "regular",
+      "velocity_class": "super",
+      "separator_event": null
+    },
+    {
+      "id": "F02",
+      "theta_range": [
+        0.0525392322026566,
+        0.0605392322026566
+      ],
+      "type": "fold_layer_candidate",
+      "velocity_class": "separator_layer",
+      "separator_event": "Sigma_hf_02"
+    },
+    {
+      "id": "A02",
+      "theta_range": [
+        0.0605392322026566,
+        0.123583617650084
+      ],
+      "type": "regular",
+      "velocity_class": "sub",
+      "separator_event": null
+    },
+    {
+      "id": "F03",
+      "theta_range": [
+        0.123583617650084,
+        0.131583617650084
+      ],
+      "type": "fold_layer_candidate",
+      "velocity_class": "separator_layer",
+      "separator_event": "Sigma_hf_03"
+    },
+    {
+      "id": "A03",
+      "theta_range": [
+        0.131583617650084,
+        0.236031876245625
+      ],
+      "type": "regular",
+      "velocity_class": "super",
+      "separator_event": null
+    },
+    {
+      "id": "F04",
+      "theta_range": [
+        0.236031876245625,
+        0.244031876245625
+      ],
+      "type": "fold_layer_candidate",
+      "velocity_class": "separator_layer",
+      "separator_event": "Sigma_hf_04"
+    },
+    {
+      "id": "A04",
+      "theta_range": [
+        0.244031876245625,
+        0.328416382350065
+      ],
+      "type": "regular",
+      "velocity_class": "sub",
+      "separator_event": null
+    },
+    {
+      "id": "F05",
+      "theta_range": [
+        0.328416382350065,
+        0.336416382350065
+      ],
+      "type": "fold_layer_candidate",
+      "velocity_class": "separator_layer",
+      "separator_event": "Sigma_hf_05"
+    },
+    {
+      "id": "A05",
+      "theta_range": [
+        0.336416382350065,
+        0.399780132558234
+      ],
+      "type": "regular",
+      "velocity_class": "super",
+      "separator_event": null
+    },
+    {
+      "id": "F06",
+      "theta_range": [
+        0.399780132558234,
+        0.407780132558234
+      ],
+      "type": "fold_layer_candidate",
+      "velocity_class": "separator_layer",
+      "separator_event": "Sigma_hf_06"
+    },
+    {
+      "id": "A06",
+      "theta_range": [
+        0.407780132558234,
+        0.51154699193526
+      ],
+      "type": "regular",
+      "velocity_class": "sub",
+      "separator_event": null
+    },
+    {
+      "id": "F07",
+      "theta_range": [
+        0.51154699193526,
+        0.51954699193526
+      ],
+      "type": "fold_layer_candidate",
+      "velocity_class": "separator_layer",
+      "separator_event": "Sigma_hf_07"
+    },
+    {
+      "id": "A07",
+      "theta_range": [
+        0.51954699193526,
+        0.552539232202657
+      ],
+      "type": "regular",
+      "velocity_class": "super",
+      "separator_event": null
+    },
+    {
+      "id": "F08",
+      "theta_range": [
+        0.552539232202657,
+        0.560539232202657
+      ],
+      "type": "fold_layer_candidate",
+      "velocity_class": "separator_layer",
+      "separator_event": "Sigma_hf_08"
+    },
+    {
+      "id": "A08",
+      "theta_range": [
+        0.560539232202657,
+        0.623583617650084
+      ],
+      "type": "regular",
+      "velocity_class": "sub",
+      "separator_event": null
+    },
+    {
+      "id": "F09",
+      "theta_range": [
+        0.623583617650084,
+        0.631583617650084
+      ],
+      "type": "fold_layer_candidate",
+      "velocity_class": "separator_layer",
+      "separator_event": "Sigma_hf_09"
+    },
+    {
+      "id": "A09",
+      "theta_range": [
+        0.631583617650084,
+        0.736031876245625
+      ],
+      "type": "regular",
+      "velocity_class": "super",
+      "separator_event": null
+    },
+    {
+      "id": "F10",
+      "theta_range": [
+        0.736031876245625,
+        0.744031876245625
+      ],
+      "type": "fold_layer_candidate",
+      "velocity_class": "separator_layer",
+      "separator_event": "Sigma_hf_10"
+    },
+    {
+      "id": "A10",
+      "theta_range": [
+        0.744031876245625,
+        0.828416382350065
+      ],
+      "type": "regular",
+      "velocity_class": "sub",
+      "separator_event": null
+    },
+    {
+      "id": "F11",
+      "theta_range": [
+        0.828416382350065,
+        0.836416382350065
+      ],
+      "type": "fold_layer_candidate",
+      "velocity_class": "separator_layer",
+      "separator_event": "Sigma_hf_11"
+    },
+    {
+      "id": "A11",
+      "theta_range": [
+        0.836416382350065,
+        0.899780132558234
+      ],
+      "type": "regular",
+      "velocity_class": "super",
+      "separator_event": null
+    },
+    {
+      "id": "F12",
+      "theta_range": [
+        0.899780132558234,
+        0.907780132558234
+      ],
+      "type": "fold_layer_candidate",
+      "velocity_class": "separator_layer",
+      "separator_event": "Sigma_hf_12"
+    },
+    {
+      "id": "A12",
+      "theta_range": [
+        0.907780132558234,
+        1
+      ],
+      "type": "regular",
+      "velocity_class": "sub",
+      "separator_event": null
+    }
+  ],
+  "mesh_widths": {
+    "fold_half_width": 0.004,
+    "min_regular_width": 0.0115469919352606
+  },
+  "endpoint_policy": "Field-speed separator layers are diagnostic separator collars around sampled roots; fresh_v10_higher_fold_root_tube_interval_certificate.v0 supplies the root-count topology certificate, while preledger acceptance still requires row classification.",
+  "adaptation_policy": "Use the 12 sampled field-speed contacts as separator-refined mesh anchors for the higher-fold successor packet."
+}

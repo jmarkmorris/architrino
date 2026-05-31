@@ -252,6 +252,119 @@ expression-level $N_{38}$ provider: set $h_{38}=0$, evaluate the
 \texttt{sourceEquationSeries} coefficient used as the recurrence numerator,
 and certify a directed-rounded local Taylor remainder before division by the
 inherited slope.
+The successor module now exposes that expression-level object directly through
+\texttt{evaluateH38RecurrenceNumeratorBeforeSolve}. The helper returns the
+$y^{42}$ coefficient of the H38 recurrence source with $h_{38}=0$ and reports
+the term decomposition of
+$\delta^2/\nu^2-2+\sin\phi+\sin\delta$ before the solve by $S_{37}$. The H39
+expression-level diagnostic verifies that this helper reproduces the exported
+\texttt{h38\_residual\_before\_solve} interval up to formatted artifact
+precision. On the live target, the direct $N_{38}$ expression width scales
+linearly under $1,4,8,16$ subcells, with exponent $1.0000158789836409$; the
+one-piece width is $2.9419491126351116\times10^{24}$ and the sixteen-piece
+width is $1.8386372459721104\times10^{23}$. The dominant term-width source is
+$\sin\delta$, not the inherited slope. On point midpoint rows, the largest term
+width is only $236$ on the one-piece row, leaving a
+$1.2465886070487762\times10^{22}$ gap between raw interval width and local
+point-evaluation width. This is not yet a Taylor certificate, but it moves the
+proof target inside the recurrence expression rather than leaving it at the
+exported row-field boundary.
+The H39 Taylor-budget diagnostic now turns that gap into a no-go for brute
+subcovering. On the live target, an $8$-sample midpoint fit reports a point-local
+term-width scale of $236$ against the one-piece raw expression width
+$2.9419491126351116\times10^{24}$; with the observed width-linear exponent
+$1.000023935850454$, a uniform subcover would need about
+$1.245071482894444\times10^{22}$ local cells to reach point scale. The raw width
+is $48.6117523761\%$ $\sin\delta$, $35.9913177414\%$ $\sin\phi$, and
+$15.3969298825\%$ $\delta^2/\nu^2$. Thus the H38 successor's actionable closure
+work is a directed-rounded local Taylor or normal-form enclosure of the
+expression-level sine-bearing numerator coefficient, not more exported-row
+partitioning. The same diagnostic also reports the rough Taylor-tiling scale:
+if the cubic point-midpoint residual is treated only as a fourth-order local
+scaling proxy, the direct expression needs about $67$ local $\xi$ tiles, while
+the two sine terms need about $93$ and $86$ tiles respectively.
+The Taylor-enclosure prototype now emits those rows explicitly rather than
+leaving them as an estimate: $67$ direct-expression tiles, $93$ $\sin\phi$ tiles,
+and $86$ $\sin\delta$ tiles, for $246$ component rows in total. The candidate
+fourth-order remainder model puts the three component remainders at
+$233.91705956302627$, $232.1086233629665$, and $228.95202748895008$, all below
+the point-local scale $236$. This is still not a directed-rounded certificate,
+but it is now the finite proof target for a same-domain Taylor derivative-bound
+backend inside the expression-level H38 numerator.
+The H39 derivative-bound prototype makes that target explicit in fourth-jet
+form. It rewrites each tile obligation as $R\le M_4 h^4/24$ and emits $246$
+candidate derivative rows. The sampled parent-residual proxy requires only
+$0.9911739811992639$ of the available fourth-derivative budget in the worst
+case. Componentwise, the proxy/required pairs are
+$7.070536456828125\times10^9/7.133496834\times10^9$ for the direct expression,
+$2.604439833675\times10^{10}/2.6481041153999992\times10^{10}$ for
+$\sin\phi$, and
+$1.878579409275\times10^{10}/1.9364088864\times10^{10}$ for $\sin\delta$.
+This is not yet the H38 successor certificate; it is the finite
+directed-rounded fourth-derivative enclosure target that should be proved
+before exporting $h_{38}$ to H39.
+The fourth-difference diagnostic now corrects that target against the live H38
+producer rows. It evaluates fourth-difference stencils on the same
+expression-level $N_{38}$ components and shows that the parent-residual proxy is
+too optimistic as a certificate: over the $8$- and $16$-subcell stencils, the
+largest finite fourth-derivative estimate is
+$4.300955531321041\times10^{13}$, with worst existing-bound ratio
+$4580.928151229552$. This does not send the handoff back to brute row-hull
+subcovering. At the $16$-subcell scale, the observed fourth-difference retile
+counts are $552$ for the direct expression, $591$ for $\sin\phi$, and $582$ for
+$\sin\delta$. The H38 successor target is therefore sharper: export an
+expression-level $N_{38}$ fourth-derivative enclosure or analytic normal form at
+that finite scale before the solve $h_{38}=-N_{38}/S_{37}$ is applied.
+The corrected-retile prototype now turns this target into concrete rows for the
+next backend. With observed fourth-difference $M_4$ inflated by $2$, the
+candidate emits $2051$ corrected rows: $656$ direct-expression rows, $703$
+$\sin\phi$ rows, and $692$ $\sin\delta$ rows. Its worst corrected
+remainder-to-point-width ratio is $0.9993542425323698$ against the point-local
+scale $236$. This remains an observed-$M_4$ prototype rather than a
+directed-rounded producer-image enclosure, but it replaces the abstract
+"certify a better derivative bound" blocker with a finite same-domain row set
+whose next obligation is a directed-rounded $M_4$ enclosure or a normal-form
+identity that lowers the fourth-derivative requirement before solving for
+$h_{38}$.
+The $M_4$ refinement diagnostic now shows that this $2051$-row target is only
+the base corrected-retile route. Adding a $32$-subcell fourth-difference
+stencil rejects the base inflation: the refined observed $M_4$ scale grows by
+as much as $11.480891969090306$, and the base corrected rows would miss the
+point-local scale by as much as $11.473478097366211$ under the refined observed
+derivative. The route stays finite after correction. With the same observed
+$M_4$ inflation factor $2$ applied to the refined stencil, the candidate emits
+$3576$ corrected rows: $1162$ direct-expression rows, $1140$ $\sin\phi$ rows,
+and $1274$ $\sin\delta$ rows. The maximum corrected remainder-to-point-width
+ratio is $0.9987550516507323$. The H38 successor handoff must therefore either
+prove this refined same-domain $M_4$ enclosure with directed rounding or find a
+normal-form identity that explains the $16$-to-$32$ fourth-difference growth.
+The refinement diagnostic also compares the equal-spacing fourth-difference
+formula with true fourth divided differences on the actual $\xi$ midpoints. The
+largest nonuniform-to-uniform fourth-derivative relative correction on the
+compared $16$- and $32$-subcell rows is only $0.024053174217917833$, and the
+correction-to-growth-excess ratio is only $0.0022949548844558446$. This makes
+the H38 handoff sharper: the fourth-difference growth is not explained by
+nonuniform $\xi$ spacing, so the next successor-side advance should expose
+producer-image smoothness, a fold-coordinate normal form, or source-level
+cancellation before the directed-rounded $M_4$ certificate is attempted.
+The H39-side localization replay further sharpens the H38 handoff. The refined
+worst stencils are disjoint from the base worst stencils for the direct
+expression, $\sin\phi$, and $\sin\delta$, and the $32$-subcell worst spans form
+one contiguous positive-$\xi$ region with hull
+$[0.9376679896182594,1.9375400034828008]$. The largest refined-to-base $M_4$
+ratio is the $\sin\delta$ row at $11.480891969090306$, but its growth-increment
+share is $0.43824215565670466$, so the effect is multi-component. The
+successor-side normal form should therefore target shared positive-$\xi$
+producer-image variation before the expression-level $N_{38}$ source is turned
+into a solved $h_{38}$ interval.
+A non-default $64$-stencil probe shows that the growth continues past $32$:
+the maximum observed fourth-derivative estimate reaches
+$2.1162902030980995\times10^{15}$, with observed retile counts $1474$ for the
+direct expression, $1564$ for $\sin\phi$, and $1563$ for $\sin\delta$. This
+keeps the route finite but weakens a pure "retile and prove" plan. The stronger
+successor handoff is now a normal-form or producer-image smoothness argument
+that stabilizes the fourth derivative, followed by a directed-rounded $M_4$
+certificate on that stabilized same-domain representation.
 
 It does not claim:
 
