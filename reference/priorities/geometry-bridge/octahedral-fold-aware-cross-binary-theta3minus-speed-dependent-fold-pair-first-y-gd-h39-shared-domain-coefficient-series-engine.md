@@ -3492,3 +3492,32 @@ $7.62\times10^4$, and $1.03\times10^5$ for the three nonconstant source terms.
 The next executable proof object is therefore a dependency-preserving,
 directed-rounded source-term derivative enclosure through the H38 producer
 image, not another midpoint interpolant or an independent h-row box.
+
+The follow-up total-$N_{38}$ intervalized provider now tests whether the
+termwise split itself was the dominant artifact. Instead of carrying
+`numerator_term_intervals` separately, the diagnostic applies the same
+five-node Lagrange $d^4/d\xi^4$ weights directly to each propagated total
+`numerator_interval`. That keeps the three signed source terms combined at
+each producer node before derivative weighting. The live result is still open:
+the maximum total-$N_{38}$ intervalized ratio is
+$2.118441132092869\times10^5$, the midpoint derivative remains inside the
+interval with zero gap, and the selected node widths are already about
+$5.88\times10^{23}$. This rules out the source-term split as the remaining
+main loss. The obstruction has moved one layer earlier, into the total
+$N_{38}$ node interval propagated from the H38 producer image. The next proof
+object is therefore either a dependency-preserving construction of those node
+intervals or a directed-rounded continuous derivative enclosure that avoids
+exporting the node hull before the Lagrange/Cauchy step.
+
+The same provider now carries a node-width localization replay that freezes and
+unfreezes input families before the Lagrange step. On the live selected rows,
+cell-only uncertainty contributes only about $2.65\times10^{-15}$ of the total
+node width, while all h rows with the cell fixed at its midpoint reproduce
+$0.999999876$ of the width. The late terminal h rows are the dominant block:
+h35-h37 together account for about $0.962988$, compared with about
+$0.037012$ from h0-h34. The largest single terminal contributor is h37, about
+$0.649856$ of the full node width. This is a real theory-routing advancement:
+the next certificate should not spend effort on cell partitioning or termwise
+source splitting first. It should attack terminal h-row covariance through the
+H38 producer image, especially h37 with h36 and h35 retained as a coupled
+terminal block, before the $N_{38}$ derivative is absolutized.

@@ -2280,6 +2280,8 @@ function h38SolveWidthFactorizationProfileForRows({
       numerator_term_midpoints: numeratorTermMidpoints,
       numerator_term_widths: numeratorTermWidths,
       numerator_term_intervals: numeratorTermIntervals,
+      numerator_node_width_localization:
+        sourceTermSummary.node_width_localization ?? null,
       numerator_source_term_midpoint_sum: numeratorSourceTermMidpointSum,
       numerator_source_term_sum_to_interval_midpoint_gap: Math.abs(
         numeratorSourceTermMidpointSum - numeratorMidpoint
@@ -2387,6 +2389,219 @@ function n38ExpressionTermEntries(decomposed) {
   });
 }
 
+function hIndexRange(first, last) {
+  return Array.from({ length: last - first + 1 }, (_, index) => first + index);
+}
+
+function n38NodeWidthLocalizationForRow({
+  cell,
+  branch,
+  hIntervals,
+  directInterval,
+  midpointInterval,
+}) {
+  const branchSign = root.branchSign(branch);
+  const pointCell = pointCellAtMidpoint(cell);
+  const directWidth = intervalWidth(directInterval);
+  const directAbsUpper = intervalAbsUpper(directInterval);
+  const directMidpoint = intervalMidpoint(directInterval);
+  const pointHIntervals = () =>
+    hIntervals.map((interval) => pointInterval(intervalMidpoint(interval)));
+  const intervalHIntervals = () =>
+    hIntervals.map((interval, index) =>
+      numericOrderedInterval(`h${index}_interval`, interval)
+    );
+  const hIntervalsWithActiveIndexes = (activeHIndexes) => {
+    const activeSet = new Set(activeHIndexes);
+    return hIntervals.map((interval, index) =>
+      activeSet.has(index)
+        ? numericOrderedInterval(`h${index}_active_interval`, interval)
+        : pointInterval(intervalMidpoint(interval))
+    );
+  };
+  const coefficientForVariant = ({ variant, cellForVariant, hForVariant }) => {
+    if (variant === "full-cell-and-hrows") {
+      return directInterval;
+    }
+    if (variant === "all-midpoint") {
+      return midpointInterval;
+    }
+    return evaluateH38RecurrenceNumeratorBeforeSolve({
+      cell: cellForVariant,
+      branch,
+      branchSign,
+      hIntervals: hForVariant,
+      includeTermDecomposition: false,
+    }).numerator_interval;
+  };
+  const variants = [
+    {
+      variant: "full-cell-and-hrows",
+      cell_mode: "cell-interval",
+      active_h_indexes: hIndexRange(0, 37),
+      cellForVariant: cell,
+      hForVariant: intervalHIntervals(),
+    },
+    {
+      variant: "cell-only-hrow-midpoints",
+      cell_mode: "cell-interval",
+      active_h_indexes: [],
+      cellForVariant: cell,
+      hForVariant: pointHIntervals(),
+    },
+    {
+      variant: "all-hrows-cell-midpoint",
+      cell_mode: "cell-midpoint",
+      active_h_indexes: hIndexRange(0, 37),
+      cellForVariant: pointCell,
+      hForVariant: intervalHIntervals(),
+    },
+    {
+      variant: "h0-h34-cell-midpoint",
+      cell_mode: "cell-midpoint",
+      active_h_indexes: hIndexRange(0, 34),
+      cellForVariant: pointCell,
+      hForVariant: hIntervalsWithActiveIndexes(hIndexRange(0, 34)),
+    },
+    {
+      variant: "h35-h37-terminal-cell-midpoint",
+      cell_mode: "cell-midpoint",
+      active_h_indexes: [35, 36, 37],
+      cellForVariant: pointCell,
+      hForVariant: hIntervalsWithActiveIndexes([35, 36, 37]),
+    },
+    {
+      variant: "h35-only-cell-midpoint",
+      cell_mode: "cell-midpoint",
+      active_h_indexes: [35],
+      cellForVariant: pointCell,
+      hForVariant: hIntervalsWithActiveIndexes([35]),
+    },
+    {
+      variant: "h36-only-cell-midpoint",
+      cell_mode: "cell-midpoint",
+      active_h_indexes: [36],
+      cellForVariant: pointCell,
+      hForVariant: hIntervalsWithActiveIndexes([36]),
+    },
+    {
+      variant: "h37-only-cell-midpoint",
+      cell_mode: "cell-midpoint",
+      active_h_indexes: [37],
+      cellForVariant: pointCell,
+      hForVariant: hIntervalsWithActiveIndexes([37]),
+    },
+    {
+      variant: "all-midpoint",
+      cell_mode: "cell-midpoint",
+      active_h_indexes: [],
+      cellForVariant: pointCell,
+      hForVariant: pointHIntervals(),
+    },
+  ];
+  const rows = variants.map(
+    ({ variant, cell_mode: cellMode, active_h_indexes: activeHIndexes, cellForVariant, hForVariant }) => {
+      const coefficient = coefficientForVariant({
+        variant,
+        cellForVariant,
+        hForVariant,
+      });
+      const coefficientWidth = intervalWidth(coefficient);
+      const coefficientAbsUpper = intervalAbsUpper(coefficient);
+      return {
+        variant,
+        cell_mode: cellMode,
+        active_h_indexes: activeHIndexes,
+        coefficient_interval: coefficient,
+        coefficient_midpoint: intervalMidpoint(coefficient),
+        coefficient_width: coefficientWidth,
+        coefficient_abs_upper: coefficientAbsUpper,
+        width_to_direct_ratio: finitePositive(directWidth)
+          ? coefficientWidth / directWidth
+          : null,
+        abs_upper_to_direct_abs_upper_ratio: finitePositive(directAbsUpper)
+          ? coefficientAbsUpper / directAbsUpper
+          : null,
+        midpoint_gap_to_direct_midpoint: Math.abs(
+          intervalMidpoint(coefficient) - directMidpoint
+        ),
+      };
+    }
+  );
+  const rowByVariant = new Map(rows.map((row) => [row.variant, row]));
+  const ratioFor = (variant) =>
+    rowByVariant.get(variant)?.width_to_direct_ratio ?? null;
+  const singleTerminalRows = [
+    "h35-only-cell-midpoint",
+    "h36-only-cell-midpoint",
+    "h37-only-cell-midpoint",
+  ]
+    .map((variant) => rowByVariant.get(variant))
+    .filter(Boolean);
+  const dominantSingleTerminalRow = singleTerminalRows.reduce(
+    (best, row) =>
+      Number(row.width_to_direct_ratio ?? -1) >
+      Number(best?.width_to_direct_ratio ?? -1)
+        ? row
+        : best,
+    null
+  );
+  const dominantNonFullRow = rows
+    .filter((row) => row.variant !== "full-cell-and-hrows")
+    .reduce(
+      (best, row) =>
+        Number(row.coefficient_width) > Number(best?.coefficient_width ?? -1)
+          ? row
+          : best,
+      null
+    );
+  const allHRowsRatio = ratioFor("all-hrows-cell-midpoint");
+  const cellOnlyRatio = ratioFor("cell-only-hrow-midpoints");
+  const terminalRatio = ratioFor("h35-h37-terminal-cell-midpoint");
+  const nonterminalRatio = ratioFor("h0-h34-cell-midpoint");
+  const interpretation =
+    finiteNonnegative(allHRowsRatio) &&
+    allHRowsRatio >= 0.9 &&
+    finiteNonnegative(cellOnlyRatio) &&
+    cellOnlyRatio <= 0.1 &&
+    finiteNonnegative(terminalRatio) &&
+    terminalRatio >= 0.5
+      ? "terminal-h35-h37-hrow-intervals-dominate-total-n38-node-width"
+      : finiteNonnegative(allHRowsRatio) &&
+          allHRowsRatio >= 0.9 &&
+          finiteNonnegative(cellOnlyRatio) &&
+          cellOnlyRatio <= 0.1
+        ? "hrow-interval-dependency-dominates-total-n38-node-width"
+        : finiteNonnegative(cellOnlyRatio) &&
+            finiteNonnegative(allHRowsRatio) &&
+            cellOnlyRatio > allHRowsRatio
+          ? "cell-geometry-intervals-dominate-total-n38-node-width"
+          : "mixed-cell-and-hrow-interval-dependency";
+  return {
+    source_y_order: H38_NUMERATOR_Y_ORDER,
+    diagnostic_kind: "total-n38-node-width-localization",
+    variants: rows,
+    dominant_non_full_variant: dominantNonFullRow?.variant ?? null,
+    dominant_non_full_variant_width_to_direct_ratio:
+      dominantNonFullRow?.width_to_direct_ratio ?? null,
+    cell_only_width_to_direct_ratio: cellOnlyRatio,
+    all_hrows_cell_midpoint_width_to_direct_ratio: allHRowsRatio,
+    nonterminal_h0_h34_width_to_direct_ratio: nonterminalRatio,
+    terminal_h35_h37_width_to_direct_ratio: terminalRatio,
+    dominant_single_terminal_h_variant:
+      dominantSingleTerminalRow?.variant ?? null,
+    dominant_single_terminal_h_index:
+      dominantSingleTerminalRow?.active_h_indexes?.[0] ?? null,
+    dominant_single_terminal_h_width_to_direct_ratio:
+      dominantSingleTerminalRow?.width_to_direct_ratio ?? null,
+    interpretation,
+    claim_boundary: {
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+    },
+  };
+}
+
 function n38ExpressionDecompositionForRow({
   row,
   targetSpeedInterval,
@@ -2423,6 +2638,13 @@ function n38ExpressionDecompositionForRow({
     terms: midpointExpression.term_decomposition,
   });
   const midpointDirectInterval = midpointExpression.numerator_interval;
+  const nodeWidthLocalization = n38NodeWidthLocalizationForRow({
+    cell,
+    branch,
+    hIntervals,
+    directInterval: exportedInterval,
+    midpointInterval: midpointDirectInterval,
+  });
   const dominantWidthTerm = termEntries.reduce((best, entry) =>
     Number(entry.coefficient_width) > Number(best?.coefficient_width ?? -1)
       ? entry
@@ -2468,6 +2690,7 @@ function n38ExpressionDecompositionForRow({
     midpoint_n38_expression_interval: midpointDirectInterval,
     midpoint_n38_expression_midpoint: intervalMidpoint(midpointDirectInterval),
     midpoint_n38_expression_width: intervalWidth(midpointDirectInterval),
+    node_width_localization: nodeWidthLocalization,
     expression_terms: termEntries,
     midpoint_expression_terms: midpointTermEntries,
     dominant_expression_term_by_width: dominantWidthTerm?.term ?? null,
@@ -7881,6 +8104,8 @@ function h38NumeratorGraphResidualProfile({
       numerator_term_midpoints: sample.numerator_term_midpoints ?? null,
       numerator_term_widths: sample.numerator_term_widths ?? null,
       numerator_term_intervals: sample.numerator_term_intervals ?? null,
+      numerator_node_width_localization:
+        sample.numerator_node_width_localization ?? null,
       numerator_source_term_midpoint_sum:
         sample.numerator_source_term_midpoint_sum ?? null,
       numerator_source_term_sum_to_interval_midpoint_gap:
@@ -32544,6 +32769,60 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
     const totalN38IntervalizedLagrangeInputsComplete =
       totalN38IntervalizedLagrangeMetrics !== null &&
       totalN38IntervalizedLagrangeInterval !== null;
+    const totalN38NodeWidthLocalizationRows = stencilSamples
+      .map((entry) =>
+        entry?.numerator_node_width_localization
+          ? {
+              cell_id: entry.cell_id,
+              speed_interval: Array.isArray(entry.speed_interval)
+                ? entry.speed_interval.map(Number)
+                : null,
+              xi_interval: Array.isArray(entry.xi_interval)
+                ? entry.xi_interval.map(Number)
+                : null,
+              xi_midpoint: Number(entry.xi_midpoint),
+              ...entry.numerator_node_width_localization,
+            }
+          : null
+      )
+      .filter((entry) => entry !== null);
+    const localizationMaximum = (key) =>
+      finiteMaximum(
+        totalN38NodeWidthLocalizationRows.map((entry) => entry?.[key])
+      );
+    const maxNodeWidthCellOnlyRatio = localizationMaximum(
+      "cell_only_width_to_direct_ratio"
+    );
+    const maxNodeWidthAllHRowsRatio = localizationMaximum(
+      "all_hrows_cell_midpoint_width_to_direct_ratio"
+    );
+    const maxNodeWidthNonterminalHRowsRatio = localizationMaximum(
+      "nonterminal_h0_h34_width_to_direct_ratio"
+    );
+    const maxNodeWidthTerminalHRowsRatio = localizationMaximum(
+      "terminal_h35_h37_width_to_direct_ratio"
+    );
+    const maxNodeWidthSingleTerminalHRatio = localizationMaximum(
+      "dominant_single_terminal_h_width_to_direct_ratio"
+    );
+    const nodeWidthLocalizationInterpretation =
+      finiteNonnegative(maxNodeWidthAllHRowsRatio) &&
+      maxNodeWidthAllHRowsRatio >= 0.9 &&
+      finiteNonnegative(maxNodeWidthCellOnlyRatio) &&
+      maxNodeWidthCellOnlyRatio <= 0.1 &&
+      finiteNonnegative(maxNodeWidthTerminalHRowsRatio) &&
+      maxNodeWidthTerminalHRowsRatio >= 0.5
+        ? "terminal-h35-h37-hrow-intervals-dominate-total-n38-node-width"
+        : finiteNonnegative(maxNodeWidthAllHRowsRatio) &&
+            maxNodeWidthAllHRowsRatio >= 0.9 &&
+            finiteNonnegative(maxNodeWidthCellOnlyRatio) &&
+            maxNodeWidthCellOnlyRatio <= 0.1
+          ? "hrow-interval-dependency-dominates-total-n38-node-width"
+          : finiteNonnegative(maxNodeWidthCellOnlyRatio) &&
+              finiteNonnegative(maxNodeWidthAllHRowsRatio) &&
+              maxNodeWidthCellOnlyRatio > maxNodeWidthAllHRowsRatio
+            ? "cell-geometry-intervals-dominate-total-n38-node-width"
+            : "mixed-cell-and-hrow-interval-dependency";
     const totalN38IntervalizedLagrangeProviderCandidate = {
       status: totalN38IntervalizedLagrangeInputsComplete
         ? totalN38IntervalizedLagrangeFitsM4
@@ -32586,6 +32865,21 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
       )
         ? totalN38NodeValueIntervals.map(intervalWidth)
         : [],
+      node_width_localization_rows: totalN38NodeWidthLocalizationRows,
+      node_width_localization_sample_count:
+        totalN38NodeWidthLocalizationRows.length,
+      node_width_localization_interpretation:
+        nodeWidthLocalizationInterpretation,
+      max_node_width_cell_only_to_direct_ratio:
+        maxNodeWidthCellOnlyRatio,
+      max_node_width_all_hrows_cell_midpoint_to_direct_ratio:
+        maxNodeWidthAllHRowsRatio,
+      max_node_width_nonterminal_h0_h34_to_direct_ratio:
+        maxNodeWidthNonterminalHRowsRatio,
+      max_node_width_terminal_h35_h37_to_direct_ratio:
+        maxNodeWidthTerminalHRowsRatio,
+      max_node_width_single_terminal_h_to_direct_ratio:
+        maxNodeWidthSingleTerminalHRatio,
       midpoint_values: numeratorValues.every(Number.isFinite)
         ? numeratorValues
         : [],
@@ -42754,6 +43048,12 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
     typeof metrics
       .affine_floor_requested_y44_row_local_all_n38_source_term_xi_intervalized_lagrange_providers_fit_m4_target !==
       "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_total_xi_intervalized_lagrange_providers_emitted !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_total_xi_intervalized_lagrange_providers_fit_m4_target !==
+      "boolean" ||
     !finitePositive(
       metrics
         .affine_floor_requested_y44_row_local_min_n38_directed_m4_sufficient_upper_bound
@@ -42805,6 +43105,18 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
     !finiteNonnegative(
       metrics
         .affine_floor_requested_y44_row_local_max_n38_source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_total_xi_intervalized_lagrange_to_required_upper_ratio
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_total_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_total_xi_intervalized_lagrange_to_midpoint_abs_loss_factor
     ) ||
     metrics.affine_floor_requested_xi_interval_cover_count !==
       route?.comparison_row_count ||
@@ -50643,6 +50955,199 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     provider?.claim_boundary?.certifies_directed_rounded_shared_domain ===
       false &&
     provider?.claim_boundary?.retained_branch === false;
+  const totalN38NodeWidthLocalizationRowValid = (
+    row,
+    provider,
+    index
+  ) => {
+    const fullVariant = Array.isArray(row?.variants)
+      ? row.variants.find(
+          (variant) => variant?.variant === "full-cell-and-hrows"
+        )
+      : null;
+    const directWidth = Number(provider?.node_value_interval_widths?.[index]);
+    const fullWidth = Number(fullVariant?.coefficient_width);
+    const widthGap =
+      Number.isFinite(directWidth) && Number.isFinite(fullWidth)
+        ? Math.abs(directWidth - fullWidth)
+        : Infinity;
+    return (
+      row?.diagnostic_kind === "total-n38-node-width-localization" &&
+      row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+      typeof row?.cell_id === "string" &&
+      hasFiniteInterval(row?.speed_interval) &&
+      hasFiniteInterval(row?.xi_interval) &&
+      Number.isFinite(Number(row?.xi_midpoint)) &&
+      Array.isArray(row?.variants) &&
+      row.variants.length === 9 &&
+      row.variants.every(
+        (variant) =>
+          typeof variant?.variant === "string" &&
+          ["cell-interval", "cell-midpoint"].includes(variant?.cell_mode) &&
+          Array.isArray(variant?.active_h_indexes) &&
+          variant.active_h_indexes.every(
+            (hIndex) =>
+              Number.isInteger(hIndex) && hIndex >= 0 && hIndex <= 37
+          ) &&
+          hasFiniteInterval(variant?.coefficient_interval) &&
+          Number.isFinite(Number(variant?.coefficient_midpoint)) &&
+          finiteNonnegative(variant?.coefficient_width) &&
+          finiteNonnegative(variant?.coefficient_abs_upper) &&
+          nullableFiniteNonnegative(variant?.width_to_direct_ratio) &&
+          nullableFiniteNonnegative(
+            variant?.abs_upper_to_direct_abs_upper_ratio
+          ) &&
+          finiteNonnegative(variant?.midpoint_gap_to_direct_midpoint)
+      ) &&
+      fullVariant !== null &&
+      widthGap <= Math.max(1, Math.abs(directWidth)) * 1e-12 &&
+      [
+        "terminal-h35-h37-hrow-intervals-dominate-total-n38-node-width",
+        "hrow-interval-dependency-dominates-total-n38-node-width",
+        "cell-geometry-intervals-dominate-total-n38-node-width",
+        "mixed-cell-and-hrow-interval-dependency",
+      ].includes(row?.interpretation) &&
+      typeof row?.dominant_non_full_variant === "string" &&
+      nullableFiniteNonnegative(
+        row?.dominant_non_full_variant_width_to_direct_ratio
+      ) &&
+      nullableFiniteNonnegative(row?.cell_only_width_to_direct_ratio) &&
+      nullableFiniteNonnegative(
+        row?.all_hrows_cell_midpoint_width_to_direct_ratio
+      ) &&
+      nullableFiniteNonnegative(row?.nonterminal_h0_h34_width_to_direct_ratio) &&
+      nullableFiniteNonnegative(row?.terminal_h35_h37_width_to_direct_ratio) &&
+      typeof row?.dominant_single_terminal_h_variant === "string" &&
+      [35, 36, 37].includes(row?.dominant_single_terminal_h_index) &&
+      nullableFiniteNonnegative(
+        row?.dominant_single_terminal_h_width_to_direct_ratio
+      ) &&
+      row?.claim_boundary?.certifies_n38_fourth_derivative_bound === false &&
+      row?.claim_boundary?.certifies_directed_rounded_shared_domain === false
+    );
+  };
+  const totalN38XiIntervalizedLagrangeProviderCandidateValid = (
+    provider,
+    diagnostic
+  ) =>
+    [
+      "row-local-n38-total-intervalized-lagrange-provider-fits-m4-target",
+      "row-local-n38-total-intervalized-lagrange-provider-exceeds-m4-target",
+      "row-local-n38-total-intervalized-lagrange-provider-unavailable",
+    ].includes(provider?.status) &&
+    provider?.provider_kind ===
+      "intervalized-degree-four-total-n38-xi-provider-candidate" &&
+    provider?.proof_status ===
+      "total-n38-node-intervals-propagated-through-lagrange-weights-not-directed-rounded-continuous-domain" &&
+    provider?.evaluator_source === "evaluateH38RecurrenceNumeratorBeforeSolve" &&
+    typeof provider?.normal_form_identity === "string" &&
+    provider?.source_expression ===
+      "N38=[y^42](delta^2*nu^{-2}-2+sin(phi)+sin(delta)) with h38=0" &&
+    provider?.cell_id === diagnostic?.cell_id &&
+    hasFiniteInterval(provider?.speed_interval) &&
+    hasFiniteInterval(provider?.xi_interval) &&
+    Array.isArray(provider?.source_terms) &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every((term) =>
+      provider.source_terms.includes(term)
+    ) &&
+    Array.isArray(provider?.source_terms_with_zero_fourth_xi_derivative) &&
+    provider.source_terms_with_zero_fourth_xi_derivative.includes(
+      "constant_minus_two"
+    ) &&
+    provider?.derivative_order === 4 &&
+    provider?.interpolation_node_count === 5 &&
+    provider?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+    hasFiniteInterval(provider?.xi_midpoint_span) &&
+    finitePositive(provider?.required_fourth_derivative_upper) &&
+    Array.isArray(provider?.node_value_intervals) &&
+    provider.node_value_intervals.length === 5 &&
+    provider.node_value_intervals.every(hasFiniteInterval) &&
+    Array.isArray(provider?.node_value_interval_widths) &&
+    provider.node_value_interval_widths.length === 5 &&
+    provider.node_value_interval_widths.every(finiteNonnegative) &&
+    Array.isArray(provider?.node_width_localization_rows) &&
+    provider.node_width_localization_rows.length === 5 &&
+    provider?.node_width_localization_sample_count === 5 &&
+    [
+      "terminal-h35-h37-hrow-intervals-dominate-total-n38-node-width",
+      "hrow-interval-dependency-dominates-total-n38-node-width",
+      "cell-geometry-intervals-dominate-total-n38-node-width",
+      "mixed-cell-and-hrow-interval-dependency",
+    ].includes(provider?.node_width_localization_interpretation) &&
+    finiteNonnegative(provider?.max_node_width_cell_only_to_direct_ratio) &&
+    finiteNonnegative(
+      provider?.max_node_width_all_hrows_cell_midpoint_to_direct_ratio
+    ) &&
+    finiteNonnegative(
+      provider?.max_node_width_nonterminal_h0_h34_to_direct_ratio
+    ) &&
+    finiteNonnegative(
+      provider?.max_node_width_terminal_h35_h37_to_direct_ratio
+    ) &&
+    finiteNonnegative(
+      provider?.max_node_width_single_terminal_h_to_direct_ratio
+    ) &&
+    provider.node_width_localization_rows.every((row, index) =>
+      totalN38NodeWidthLocalizationRowValid(row, provider, index)
+    ) &&
+    Array.isArray(provider?.midpoint_values) &&
+    provider.midpoint_values.length === 5 &&
+    provider.midpoint_values.every((value) => Number.isFinite(Number(value))) &&
+    Array.isArray(provider?.lagrange_fourth_derivative_weights) &&
+    provider.lagrange_fourth_derivative_weights.length === 5 &&
+    provider.lagrange_fourth_derivative_weights.every((value) =>
+      Number.isFinite(Number(value))
+    ) &&
+    Array.isArray(provider?.weighted_node_interval_rows) &&
+    provider.weighted_node_interval_rows.length === 5 &&
+    provider.weighted_node_interval_rows.every(
+      (entry) =>
+        Number.isInteger(entry?.node_index) &&
+        entry.node_index >= 0 &&
+        entry.node_index < 5 &&
+        Number.isFinite(Number(entry?.xi_midpoint)) &&
+        hasFiniteInterval(entry?.value_interval) &&
+        finiteNonnegative(entry?.value_interval_width) &&
+        Number.isFinite(Number(entry?.lagrange_fourth_derivative_weight)) &&
+        hasFiniteInterval(entry?.weighted_derivative_interval) &&
+        finiteNonnegative(entry?.weighted_derivative_abs_upper)
+    ) &&
+    hasFiniteInterval(provider?.total_n38_intervalized_lagrange_interval) &&
+    finiteNonnegative(provider?.total_n38_intervalized_lagrange_width) &&
+    finiteNonnegative(provider?.total_n38_intervalized_lagrange_abs_upper) &&
+    finiteNonnegative(
+      provider?.total_n38_intervalized_lagrange_to_required_upper_ratio
+    ) &&
+    typeof provider?.total_n38_intervalized_lagrange_fits_m4_target ===
+      "boolean" &&
+    Number.isFinite(
+      Number(provider?.total_n38_intervalized_lagrange_midpoint_estimate)
+    ) &&
+    typeof provider
+      ?.total_n38_intervalized_lagrange_contains_midpoint_estimate ===
+      "boolean" &&
+    finiteNonnegative(
+      provider?.total_n38_intervalized_lagrange_gap_to_midpoint_estimate
+    ) &&
+    finiteNonnegative(
+      provider
+        ?.total_n38_intervalized_lagrange_gap_to_midpoint_estimate_to_required
+    ) &&
+    nullableFiniteNonnegative(
+      provider?.total_n38_intervalized_lagrange_to_midpoint_abs_loss_factor
+    ) &&
+    hasFiniteInterval(provider?.derivative_interval_d4) &&
+    finiteNonnegative(provider?.derivative_abs_upper) &&
+    typeof provider?.dependency_chain === "string" &&
+    typeof provider?.certificate_route === "string" &&
+    provider?.claim_boundary?.certifies_n38_fourth_derivative_bound ===
+      false &&
+    provider?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    provider?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    provider?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    provider?.claim_boundary?.retained_branch === false;
   const rowLocalN38S37CollarDiagnosticValid = (diagnostic) =>
     diagnostic?.schema ===
       THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_N38_S37_COLLAR_DIAGNOSTIC_SCHEMA &&
@@ -50950,6 +51455,42 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     ) &&
     diagnostic
       ?.row_local_n38_source_term_xi_intervalized_lagrange_certifies_n38_fourth_derivative ===
+      false &&
+    totalN38XiIntervalizedLagrangeProviderCandidateValid(
+      diagnostic
+        ?.row_local_n38_total_xi_intervalized_lagrange_provider_candidate,
+      diagnostic
+    ) &&
+    [
+      "row-local-n38-total-intervalized-lagrange-provider-fits-m4-target",
+      "row-local-n38-total-intervalized-lagrange-provider-exceeds-m4-target",
+      "row-local-n38-total-intervalized-lagrange-provider-unavailable",
+    ].includes(
+      diagnostic
+        ?.row_local_n38_total_xi_intervalized_lagrange_provider_status
+    ) &&
+    diagnostic?.row_local_n38_total_xi_intervalized_lagrange_provider_kind ===
+      "intervalized-degree-four-total-n38-xi-provider-candidate" &&
+    diagnostic
+      ?.row_local_n38_total_xi_intervalized_lagrange_provider_proof_status ===
+      "total-n38-node-intervals-propagated-through-lagrange-weights-not-directed-rounded-continuous-domain" &&
+    finiteNonnegative(
+      diagnostic
+        ?.row_local_n38_total_xi_intervalized_lagrange_to_required_upper_ratio
+    ) &&
+    typeof diagnostic
+      ?.row_local_n38_total_xi_intervalized_lagrange_fits_m4_target ===
+      "boolean" &&
+    finiteNonnegative(
+      diagnostic
+        ?.row_local_n38_total_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required
+    ) &&
+    nullableFiniteNonnegative(
+      diagnostic
+        ?.row_local_n38_total_xi_intervalized_lagrange_to_midpoint_abs_loss_factor
+    ) &&
+    diagnostic
+      ?.row_local_n38_total_xi_intervalized_lagrange_certifies_n38_fourth_derivative ===
       false &&
     diagnostic
       ?.row_local_n38_analytic_derivative_provider_scaffold_status ===
@@ -51328,6 +51869,12 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     typeof replay
       ?.all_row_local_n38_source_term_xi_intervalized_lagrange_providers_fit_m4_target ===
       "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_total_xi_intervalized_lagrange_providers_emitted ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_total_xi_intervalized_lagrange_providers_fit_m4_target ===
+      "boolean" &&
     finiteNonnegative(
       replay?.max_row_local_n38_observed_m4_proxy_to_required_budget
     ) &&
@@ -51396,6 +51943,18 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     nullableFiniteNonnegative(
       replay
         ?.max_row_local_n38_source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor
+    ) &&
+    finiteNonnegative(
+      replay
+        ?.max_row_local_n38_total_xi_intervalized_lagrange_to_required_upper_ratio
+    ) &&
+    finiteNonnegative(
+      replay
+        ?.max_row_local_n38_total_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required
+    ) &&
+    nullableFiniteNonnegative(
+      replay
+        ?.max_row_local_n38_total_xi_intervalized_lagrange_to_midpoint_abs_loss_factor
     ) &&
     [
       "current-n38-interval-residuals-fit-row-local-s37-target",
@@ -51469,6 +52028,14 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     ].includes(
       replay
         ?.row_local_n38_source_term_xi_intervalized_lagrange_provider_interpretation
+    ) &&
+    [
+      "intervalized-total-n38-lagrange-provider-fits-row-local-m4-target-candidate",
+      "intervalized-total-n38-lagrange-provider-emitted-but-open",
+      "intervalized-total-n38-lagrange-provider-open",
+    ].includes(
+      replay
+        ?.row_local_n38_total_xi_intervalized_lagrange_provider_interpretation
     ) &&
     [
       "requested-budget-collar-closes-but-current-row-intervals-need-producer-certificate",

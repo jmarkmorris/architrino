@@ -5082,6 +5082,72 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .affine_floor_requested_y44_row_local_max_n38_source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
     0
   );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_total_xi_intervalized_lagrange_providers_emitted,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_total_xi_intervalized_lagrange_providers_fit_m4_target,
+    false
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_total_xi_intervalized_lagrange_to_required_upper_ratio >
+      2e5
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_total_xi_intervalized_lagrange_to_required_upper_ratio <
+      2.2e5
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .max_row_local_n38_total_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
+    0
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_total_xi_intervalized_lagrange_to_midpoint_abs_loss_factor >
+      1e16
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .row_local_n38_total_xi_intervalized_lagrange_provider_interpretation,
+    "intervalized-total-n38-lagrange-provider-emitted-but-open"
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_total_xi_intervalized_lagrange_providers_emitted,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_total_xi_intervalized_lagrange_providers_fit_m4_target,
+    false
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_total_xi_intervalized_lagrange_to_required_upper_ratio >
+      2e5
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_total_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
+    0
+  );
+  assert.ok(
+    Math.abs(
+      rowLocalCollarReplay
+        .max_row_local_n38_total_xi_intervalized_lagrange_to_required_upper_ratio -
+        rowLocalCollarReplay
+          .max_row_local_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio
+    ) /
+      rowLocalCollarReplay
+        .max_row_local_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio <
+      1e-12
+  );
   const finiteStencilSourceTermD4Inputs =
     rowLocalCollarReplay.row_replays.flatMap((row) => {
       const jet =
@@ -5268,6 +5334,120 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       );
       return intervalized.source_term_derivative_inputs_for_scaffold;
     });
+  rowLocalCollarReplay.row_replays.forEach((row) => {
+    const totalIntervalized =
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_total_xi_intervalized_lagrange_provider_candidate;
+    assert.equal(
+      totalIntervalized.provider_kind,
+      "intervalized-degree-four-total-n38-xi-provider-candidate"
+    );
+    assert.equal(
+      totalIntervalized.proof_status,
+      "total-n38-node-intervals-propagated-through-lagrange-weights-not-directed-rounded-continuous-domain"
+    );
+    assert.equal(
+      totalIntervalized.status,
+      "row-local-n38-total-intervalized-lagrange-provider-exceeds-m4-target"
+    );
+    assert.deepEqual(totalIntervalized.source_terms, [
+      "delta_squared_speed",
+      "sin_phi",
+      "sin_delta",
+    ]);
+    assert.equal(totalIntervalized.derivative_order, 4);
+    assert.equal(totalIntervalized.interpolation_node_count, 5);
+    assert.equal(totalIntervalized.source_y_order, 42);
+    assert.equal(totalIntervalized.node_value_intervals.length, 5);
+    assert.equal(totalIntervalized.node_value_interval_widths.length, 5);
+    assert.equal(totalIntervalized.node_width_localization_sample_count, 5);
+    assert.equal(totalIntervalized.node_width_localization_rows.length, 5);
+    assert.equal(
+      totalIntervalized.node_width_localization_interpretation,
+      "terminal-h35-h37-hrow-intervals-dominate-total-n38-node-width"
+    );
+    assert.ok(
+      totalIntervalized.max_node_width_cell_only_to_direct_ratio < 1e-12
+    );
+    assert.ok(
+      totalIntervalized
+        .max_node_width_all_hrows_cell_midpoint_to_direct_ratio > 0.999
+    );
+    assert.ok(
+      totalIntervalized.max_node_width_nonterminal_h0_h34_to_direct_ratio >
+        0.03
+    );
+    assert.ok(
+      totalIntervalized.max_node_width_nonterminal_h0_h34_to_direct_ratio <
+        0.04
+    );
+    assert.ok(
+      totalIntervalized.max_node_width_terminal_h35_h37_to_direct_ratio > 0.96
+    );
+    assert.ok(
+      totalIntervalized.max_node_width_terminal_h35_h37_to_direct_ratio < 0.97
+    );
+    assert.ok(
+      totalIntervalized.max_node_width_single_terminal_h_to_direct_ratio > 0.64
+    );
+    assert.ok(
+      totalIntervalized.max_node_width_single_terminal_h_to_direct_ratio < 0.66
+    );
+    totalIntervalized.node_width_localization_rows.forEach((localizationRow) => {
+      assert.equal(
+        localizationRow.interpretation,
+        "terminal-h35-h37-hrow-intervals-dominate-total-n38-node-width"
+      );
+      assert.equal(localizationRow.variants.length, 9);
+      assert.equal(localizationRow.dominant_single_terminal_h_index, 37);
+      assert.ok(localizationRow.cell_only_width_to_direct_ratio < 1e-12);
+      assert.ok(
+        localizationRow.all_hrows_cell_midpoint_width_to_direct_ratio > 0.999
+      );
+      assert.ok(
+        localizationRow.terminal_h35_h37_width_to_direct_ratio > 0.96
+      );
+      assert.ok(
+        localizationRow.nonterminal_h0_h34_width_to_direct_ratio < 0.04
+      );
+    });
+    assert.equal(totalIntervalized.midpoint_values.length, 5);
+    assert.equal(
+      totalIntervalized.lagrange_fourth_derivative_weights.length,
+      5
+    );
+    assert.equal(totalIntervalized.weighted_node_interval_rows.length, 5);
+    assert.equal(
+      totalIntervalized.total_n38_intervalized_lagrange_fits_m4_target,
+      false
+    );
+    assert.ok(
+      totalIntervalized
+        .total_n38_intervalized_lagrange_to_required_upper_ratio > 2e5
+    );
+    assert.equal(
+      totalIntervalized.total_n38_intervalized_lagrange_contains_midpoint_estimate,
+      true
+    );
+    assert.equal(
+      totalIntervalized
+        .total_n38_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
+      0
+    );
+    assert.ok(
+      totalIntervalized.node_value_interval_widths.every(
+        (width) => width > 5e23 && width < 6e23
+      )
+    );
+    assert.equal(
+      totalIntervalized.claim_boundary.certifies_n38_fourth_derivative_bound,
+      false
+    );
+    assert.equal(
+      totalIntervalized.claim_boundary.certifies_directed_rounded_shared_domain,
+      false
+    );
+  });
   const finiteStencilAnalyticProviderScaffold =
     buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate({
       producerRowLocalCollarReplay: rowLocalCollarReplay,

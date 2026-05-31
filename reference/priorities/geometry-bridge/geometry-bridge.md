@@ -2612,6 +2612,37 @@ is present inside the interval hull; the remaining blocker is dependency loss
 in the node source-term intervals before a directed-rounded same-domain
 derivative certificate is applied.
 
+The next provider probe removes one more possible artifact. Instead of summing
+separate `numerator_term_intervals`, the H39/y44 diagnostic now applies the
+same five-node Lagrange fourth-derivative weights directly to the propagated
+total signed $N_{38}$ node intervals `numerator_interval`. This preserves
+intra-node source cancellation before any derivative weighting. The result is
+negative but clarifying: the total-$N_{38}$ intervalized provider is emitted
+and contains the midpoint derivative with zero gap, but the live maximum ratio
+is still about $2.118441132092869\times10^5$ against the row-local $M_4$
+ceiling. Each selected node's total $N_{38}$ interval is already about
+$5.88\times10^{23}$ wide, so the obstruction is present inside the H38
+producer node intervals themselves, not only in the termwise source split. The
+next certificate must therefore preserve dependency while forming the node
+$N_{38}$ interval or prove a sharper same-domain continuous derivative
+enclosure before Lagrange weights and absolute Cauchy bounds are applied.
+
+The node-width localizer now identifies where that total-$N_{38}$ interval
+width is born. For the live selected H39/y44 rows, pinning all h rows to their
+midpoints and leaving only the cell geometry interval active leaves only about
+$2.65\times10^{-15}$ of the full node width. Keeping the cell at its midpoint
+while restoring all h-row intervals recovers essentially all of the width
+($0.999999876$ of the full node width). The late terminal rows dominate that
+dependency: h35-h37 alone account for about $0.962988$ of the node width, while
+the nonterminal h0-h34 block accounts for only about $0.037012$. Among single
+terminal rows, h37 is the largest contributor at about $0.649856$ of the full
+width. This changes the immediate closure target: the obstruction is not
+ordinary cell-geometry uncertainty and not the Lagrange provider. It is a late
+h-row dependency-width problem in the H38 producer image, so the next proof
+route should preserve covariance through h35-h37, or derive a terminal h-row
+normal form that avoids exporting those rows as independent intervals before
+the $N_{38}$ derivative certificate.
+
 ## Current Classification
 
 This folder is `priority-only`. It should not be linked from `content/markdown/aaa` until at least one theorem-target row is promoted into a reader-facing corpus file. It may link to corpus and priority files as needed for workstream coordination.
