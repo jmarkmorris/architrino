@@ -1,0 +1,327 @@
+{
+  "schema": "breather-fresh-v10-higher-fold-itinerary-rebuild-target-v1",
+  "packet_id": "fresh-v10-higher-fold-itinerary-rebuild-target-v0",
+  "source_packet": "fresh-same-packet-fold-shear-seed-v0",
+  "status": "higher_fold_itinerary_rebuild_target_frozen_from_shifted_separator_obstruction",
+  "claim_level": "priority-only target packet for a new higher-fold itinerary rebuild; not a candidate, not a proof-interval preledger pass, and not branch-chart authorization",
+  "branch_chart_authorized": false,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "source_artifacts": {
+    "fresh_seed_contract": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fresh_same_packet_fold_shear_seed.v0.json",
+      "sha256": "322a6baf6e36360890b3e1c67f3781e8cd55ba9fb83d576a696e47371e43492b"
+    },
+    "shifted_separator_obstruction": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fresh_v10_shifted_separator_finite_integration_obstruction.fixed_period.v0.json",
+      "sha256": "2294230e1343b8c5739b6f080d9884e590b24131744260b7c27a2600fcdb9e28"
+    },
+    "free_period_obstruction": {
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/fresh_v10_strict_gap_finite_integration_obstruction.local_shear_free_period.v0.json",
+      "sha256": "a65e7ec93836b6890e32ec4ccd698584736fa72402ea2a0f3349bbc573aa43cd"
+    }
+  },
+  "current_packet_identity": {
+    "K": "doubled_four_arc_generic",
+    "T_cyc": 6.28318530718,
+    "section": {
+      "phase_shift_delta": 0.02,
+      "x_section": 1.2447644729563,
+      "xdot_section": -0.0876176690331297,
+      "inbound_speed": 0.0876176690331297
+    },
+    "parameters": {
+      "c_f": 1,
+      "eta": 0.02,
+      "epsilon_c": 0.05,
+      "g": 1,
+      "epsilon_shear": 0.0625
+    },
+    "basis_representation": "phase-shifted half-period-antisymmetric C1 fold-shear seed",
+    "theta_policy": "shift existing doubled-four-arc separator-refined mesh policy by -0.02 and regenerate the pre-ledger on that shifted same-packet identity"
+  },
+  "source_facts": {
+    "current_itinerary": {
+      "id": "doubled_four_arc_generic",
+      "expected_root_count": 4,
+      "shifted_separator_coordinates": {
+        "sigma_1": 0.12758361765,
+        "sigma_2": 0.33241638235,
+        "sigma_3": 0.62758361765,
+        "sigma_4": 0.83241638235
+      }
+    },
+    "shifted_separator_fixed_period": {
+      "threshold_lambda": 0.264833953926991,
+      "controlling_rows": [
+        "C_u_A4_A2_left_v10_7"
+      ],
+      "root_count_at_threshold": 12,
+      "root_count_at_lambda_one": 24,
+      "max_abs_xdot_sampled_at_threshold": 1.92139610770217,
+      "progression": [
+        {
+          "lambda": 0,
+          "root_count": 4,
+          "max_abs_xdot_sampled": 1.29545029980074
+        },
+        {
+          "lambda": 0.01,
+          "root_count": 4,
+          "max_abs_xdot_sampled": 1.31600063667639
+        },
+        {
+          "lambda": 0.02,
+          "root_count": 4,
+          "max_abs_xdot_sampled": 1.33759275531511
+        },
+        {
+          "lambda": 0.03,
+          "root_count": 8,
+          "max_abs_xdot_sampled": 1.35985638808351
+        },
+        {
+          "lambda": 0.04,
+          "root_count": 8,
+          "max_abs_xdot_sampled": 1.38257734390509
+        },
+        {
+          "lambda": 0.05,
+          "root_count": 8,
+          "max_abs_xdot_sampled": 1.40562354302886
+        },
+        {
+          "lambda": 0.1,
+          "root_count": 8,
+          "max_abs_xdot_sampled": 1.52351272676189
+        },
+        {
+          "lambda": 0.2,
+          "root_count": 12,
+          "max_abs_xdot_sampled": 1.76420443960142
+        },
+        {
+          "lambda": 0.264833953926991,
+          "root_count": 12,
+          "max_abs_xdot_sampled": 1.92139610770217
+        },
+        {
+          "lambda": 0.3,
+          "root_count": 12,
+          "max_abs_xdot_sampled": 2.00682070185171
+        },
+        {
+          "lambda": 0.4,
+          "root_count": 16,
+          "max_abs_xdot_sampled": 2.25009042470909
+        },
+        {
+          "lambda": 1,
+          "root_count": 24,
+          "max_abs_xdot_sampled": 4.25078726697125
+        }
+      ]
+    },
+    "free_period_local_shear": {
+      "threshold_lambda": 0.685286902752066,
+      "controlling_rows": [
+        "C_u_A4_A2_left_v10_7"
+      ],
+      "crossing_count_at_threshold": 20,
+      "crossing_count_at_lambda_one": 24,
+      "max_abs_xdot_sampled_at_threshold": 3.02660581020726
+    }
+  },
+  "selected_rebuild_target": {
+    "proposed_successor_packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+    "proposed_itinerary_id": "fresh_v10_shifted_threshold_12_root_itinerary",
+    "selection_reason": "The shifted-separator fixed-period tangent opens all listed v10 collars at the lower direct-path threshold and has the smallest observed higher-fold count at that threshold: 12 field-speed roots instead of the current itinerary's 4 roots and the free-period witness's 20 crossings.",
+    "target_root_count": 12,
+    "first_half_root_count": 6,
+    "second_half_root_count": 6,
+    "new_first_half_separator_count": 4,
+    "retained_current_first_half_separator_count": 2,
+    "strict_gap_target_status": "The old 10 v10 collars are admissible source diagnostics for the rebuild, but they are not consumable preledger rows for a new itinerary until regenerated under the successor packet identity.",
+    "finite_amplitude_window_signal": "At lambda_min and at lambda=0.3 the shifted direct path has 12 roots; by lambda=0.4 it has 16 roots. This is a sampled routing signal only, not an interval-stable root-count proof."
+  },
+  "successor_seed_packet": {
+    "status": "diagnostic_successor_seed_materialized",
+    "seed_lambda": 0.3,
+    "artifacts": [
+      "phi_cyc.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+      "mesh.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+      "causal_preledger_input_screen.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+      "candidate_cycle_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.md"
+    ],
+    "claim_level": "diagnostic higher-fold direct-path seed packet; not an interval root-count certificate, not a preledger pass, and not branch-chart authorization"
+  },
+  "root_tube_certificate_attempt": {
+    "status": "root_count_interval_certificate_materialized",
+    "artifacts": [
+      "fresh_v10_higher_fold_root_tube_certificate.v0.json",
+      "fresh_v10_higher_fold_root_tube_certificate.v0.md",
+      "fresh_v10_higher_fold_root_tube_interval_certificate.v0.json",
+      "fresh_v10_higher_fold_root_tube_interval_certificate.v0.md"
+    ],
+    "claim_level": "binary64/Lipschitz 12-root evidence has been translated into an outward rational interval root-count certificate; this closes the root-count topology gate but not the preledger or branch chart"
+  },
+  "proof_interval_v1_sidecar": {
+    "status": "proof_interval_v1_fail_closed_materialized",
+    "artifacts": [
+      "preledger_interval_backend_certificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v1.json",
+      "causal_ledger.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v1.json",
+      "causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v1.md",
+      "preledger_interval_engine_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v1.json"
+    ],
+    "claim_level": "exact-rational coarse range sidecar certifies 270 range-empty rows and leaves 980 split-required rows; not a preledger pass or branch chart authorization"
+  },
+  "proof_interval_v2_sidecar": {
+    "status": "proof_interval_v2_fail_closed_materialized",
+    "artifacts": [
+      "preledger_interval_backend_certificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v2.json",
+      "causal_ledger.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v2.json",
+      "causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v2.md",
+      "preledger_interval_engine_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v2.json"
+    ],
+    "claim_level": "exact-rational row-specific trigonometric sidecar certifies 1,062 range-empty rows and leaves 188 split-required rows; not a preledger pass or branch chart authorization"
+  },
+  "proof_interval_v3_sidecar": {
+    "status": "proof_interval_v3_fail_closed_materialized",
+    "artifacts": [
+      "preledger_interval_backend_certificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v3.json",
+      "causal_ledger.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v3.json",
+      "causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v3.md",
+      "preledger_interval_engine_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v3.json"
+    ],
+    "claim_level": "exact-rational root-complement monotone diagonal sidecar certifies the same 1,062 range-empty rows plus 26 diagonal exclusions and leaves 162 split-required rows; not a preledger pass or branch chart authorization"
+  },
+  "proof_interval_v4_sidecar": {
+    "status": "proof_interval_v4_fail_closed_materialized",
+    "artifacts": [
+      "preledger_interval_backend_certificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v4.json",
+      "causal_ledger.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v4.json",
+      "causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v4.md",
+      "preledger_interval_engine_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v4.json"
+    ],
+    "claim_level": "exact-rational simple-root subwindow sidecar records 42 root-complement monotone receiver subrow certificates, consumes 0 parent simple-root rows, and leaves 162 split-required base rows: 42 parent complement-coverage rows, 8 periodic endpoint/complement rows, and 112 fold-layer rows; not a preledger pass or branch chart authorization"
+  },
+  "proof_interval_v5_sidecar": {
+    "status": "proof_interval_v5_fail_closed_materialized",
+    "artifacts": [
+      "preledger_interval_backend_certificate.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v5.json",
+      "causal_ledger.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v5.json",
+      "causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v5.md",
+      "preledger_interval_engine_audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v5.json"
+    ],
+    "claim_level": "exact-rational receiver-grid cover audit over the 42 regular residual parent-complement rows certifies 571 simple-root cells, misses 773 cells, consumes 0 parent rows, and leaves 162 split-required base rows; not a preledger pass or branch chart authorization"
+  },
+  "root_inventory_at_shifted_threshold": {
+    "lambda": 0.264833953926991,
+    "T_cyc": 6.28318530718,
+    "x_range_sampled": [
+      -1.48684585642354,
+      1.48684585642354
+    ],
+    "roots": [
+      {
+        "theta": 0.017798396198377,
+        "half_period": "first",
+        "velocity_contact": "negative_field_speed",
+        "source": "new_higher_fold_separator",
+        "current_separator_label": null
+      },
+      {
+        "theta": 0.0552155420033261,
+        "half_period": "first",
+        "velocity_contact": "negative_field_speed",
+        "source": "new_higher_fold_separator",
+        "current_separator_label": null
+      },
+      {
+        "theta": 0.127583617650084,
+        "half_period": "first",
+        "velocity_contact": "negative_field_speed",
+        "source": "current_shifted_separator",
+        "current_separator_label": "sigma_1"
+      },
+      {
+        "theta": 0.241225936405174,
+        "half_period": "first",
+        "velocity_contact": "negative_field_speed",
+        "source": "new_higher_fold_separator",
+        "current_separator_label": null
+      },
+      {
+        "theta": 0.332416382350065,
+        "half_period": "first",
+        "velocity_contact": "negative_field_speed",
+        "source": "current_shifted_separator",
+        "current_separator_label": "sigma_2"
+      },
+      {
+        "theta": 0.402659855366312,
+        "half_period": "first",
+        "velocity_contact": "negative_field_speed",
+        "source": "new_higher_fold_separator",
+        "current_separator_label": null
+      },
+      {
+        "theta": 0.517798396198377,
+        "half_period": "second",
+        "velocity_contact": "positive_field_speed",
+        "source": "new_higher_fold_separator",
+        "current_separator_label": null
+      },
+      {
+        "theta": 0.555215542003326,
+        "half_period": "second",
+        "velocity_contact": "positive_field_speed",
+        "source": "new_higher_fold_separator",
+        "current_separator_label": null
+      },
+      {
+        "theta": 0.627583617650084,
+        "half_period": "second",
+        "velocity_contact": "positive_field_speed",
+        "source": "current_shifted_separator",
+        "current_separator_label": "sigma_3"
+      },
+      {
+        "theta": 0.741225936405174,
+        "half_period": "second",
+        "velocity_contact": "positive_field_speed",
+        "source": "new_higher_fold_separator",
+        "current_separator_label": null
+      },
+      {
+        "theta": 0.832416382350065,
+        "half_period": "second",
+        "velocity_contact": "positive_field_speed",
+        "source": "current_shifted_separator",
+        "current_separator_label": "sigma_4"
+      },
+      {
+        "theta": 0.902659855366312,
+        "half_period": "second",
+        "velocity_contact": "positive_field_speed",
+        "source": "new_higher_fold_separator",
+        "current_separator_label": null
+      }
+    ]
+  },
+  "rebuild_obligations_before_branch_chart": [
+    "Freeze the successor packet identity before any row consumption, using a new itinerary id and mesh name rather than mutating fresh-same-packet-fold-shear-seed-v0.",
+    "Use the outward rational 12-root field-speed interval certificate as the topology input for the successor packet; regenerate the seed surface if that certificate changes the root tubes or itinerary partition.",
+    "Regenerate null-coordinate gap collars and fold-layer rows for the successor packet; old same-itinerary v10 rows are historical unless recomputed or proven persistent under the new packet identity.",
+    "Extend the higher-fold proof-interval backend beyond the v5 receiver-grid cover audit so the remaining 162 parent complement, endpoint/complement, and fold-layer rows are classified before branch-chart, corridor, monodromy, returned-sample, topology, or Schauder rows can resume.",
+    "Record any strict-gap tangent or sampled LP evidence as diagnostic until it is backed by outward-rounded interval certificates."
+  ],
+  "non_authorizations": [
+    "Does not accept the shifted direct finite path as a repaired candidate.",
+    "Does not update causal_ledger.json or any live proof-interval ledger.",
+    "Does not authorize branch_chart.json.",
+    "Does not promote the collinear-breather theorem into $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ prose."
+  ],
+  "closure_condition": "The 12-root field-speed topology is interval-certified for fresh-v10-higher-fold-12-root-rebuild-v0, proof-interval v3 certifies 1,062 row-specific range-empty rows plus 26 root-complement monotone diagonal exclusions, proof-interval v4 records 42 simple-root receiver subwindow certificates, and proof-interval v5 audits the 42 residual regular parents with 571 certified receiver cells and 773 missing cells. The remaining closure artifact is sharper parent-complement coverage, periodic endpoint/complement ownership, and fold-layer classification of the 162 split-required base rows before branch-chart work.",
+  "capture_decision": "Priority-only. This packet converts obstruction evidence into a rebuild target; promotion should wait for a passed proof-interval preledger for the interval-certified successor packet."
+}

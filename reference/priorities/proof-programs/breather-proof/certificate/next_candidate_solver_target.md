@@ -8,7 +8,46 @@ It is priority-only. It does not claim a solved candidate, does not edit `causal
 
 ## Verdict
 
-The next executable target is a fresh fold-adapted collocation candidate for the same doubled four-arc itinerary, with the null-coordinate pre-ledger as the first acceptance row.
+The original executable target was a fresh fold-adapted collocation candidate
+for the same doubled four-arc itinerary, with the null-coordinate pre-ledger as
+the first acceptance row. That remains the same-itinerary branch only. After
+the bounded same-itinerary structural screens failed, the explicit higher-fold
+successor branch is now frozen in
+`fresh_v10_higher_fold_itinerary_rebuild_target.v0.md` and materialized as the
+diagnostic seed packet
+`candidate_cycle_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.md`.
+The first root-count stability attempt,
+`fresh_v10_higher_fold_root_tube_certificate.v0.md`, gave positive
+binary64/Lipschitz evidence for the 12 candidate root tubes and complements.
+The proof-grade topology gate is now
+`fresh_v10_higher_fold_root_tube_interval_certificate.v0.md`: it certifies one
+root in each of the 12 tubes, no extra roots on the 13 complements, and total
+root count bound `12..12`. The first higher-fold proof-interval sidecar,
+`causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v1.md`,
+certifies 270 exact-rational coarse range-empty rows and leaves 980 rows
+`split_required`. The second sidecar,
+`causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v2.md`,
+uses row-specific trigonometric enclosures to certify 1,062 range-empty rows
+and leaves 188 rows `split_required`: 112 fold-layer-candidate contacts, 50
+simple-root/complement rows, and 26 same-interval diagonal or endpoint rows.
+The third sidecar,
+`causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v3.md`,
+uses the root-count complement certificate to certify those 26 same-interval
+diagonal exclusions and leaves 162 rows `split_required`: 112
+fold-layer-candidate contacts and 50 simple-root/complement rows. The fourth
+sidecar,
+`causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v4.md`,
+records 42 proof-grade simple-root receiver subwindow certificates but consumes
+0 parent simple-root rows. The 162 base rows remain `split_required`: 42
+parent complement-coverage rows, 8 periodic endpoint/complement rows, and 112
+fold-layer rows. The fifth sidecar,
+`causal_preledger_interval_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v5.md`,
+audits those 42 regular residual parents by 32 receiver-grid cells, certifies
+571 simple-root receiver cells, misses 773 cells, consumes 0 parent rows, and
+leaves the same 162 base rows `split_required`. The next executable action is
+therefore sharper parent-complement coverage, periodic endpoint/complement
+ownership, and fold-layer certificate closure under
+`fresh-v10-higher-fold-12-root-rebuild-v0`.
 
 The rejected cosine packet may be used only as diagnostic data. The solver must be judged first by whether it removes fold-adjacent parent-complement equality cores before branch-chart construction.
 
@@ -32,7 +71,7 @@ Recommended fixed choices for the first run:
 
 | Entry | Target choice |
 | --- | --- |
-| $\mathcal{K}$ | `doubled_four_arc_generic`, rerun itinerary parity if separator ordering changes. |
+| $\mathcal{K}$ | Same-itinerary branch: `doubled_four_arc_generic`, rerun itinerary parity if separator ordering changes. Higher-fold branch: use `fresh_v10_shifted_threshold_12_root_itinerary` from `fresh_v10_higher_fold_itinerary_rebuild_target.v0.md`. |
 | $\mathcal{P}$ | Keep `c_f=1.0`, `eta=0.02`, `epsilon_c=0.05`, `g=1.0`, and `h=6.28318530718` for comparison with the rejected packet. |
 | $\mathcal{S}$ | Section $x(0)=x_\ast$, $\dot x(0)=-v_\ast$, $0<v_\ast<c_f$, with half-period antisymmetry $x(\theta+1/2)=-x(\theta)$. |
 | $\mathcal{B}_{\mathrm{rep}}$ | Fold-adapted piecewise collocation representation for the first half-cycle, mirrored to the second half-cycle. |
@@ -340,4 +379,4 @@ If the pre-ledger passes with every row accepted as `empty`, `simple_root`, or `
 
 ## Capture Decision
 
-Priority-only. This is an executable solver target for the proof-program priority bucket. It is not reader-facing AAA prose and should not be promoted into `content/markdown/aaa` unless a later proof-program chapter needs a worked account of candidate-generation gates before branch-chart certification.
+Priority-only. This is an executable solver target for the proof-program priority bucket. It is not reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose and should not be promoted into `content/markdown/aaa` unless a later proof-program chapter needs a worked account of candidate-generation gates before branch-chart certification.

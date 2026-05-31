@@ -3362,3 +3362,133 @@ residual still exceeds that budget by more than $5\times10^6$. This means the
 next certificate is not a new H39 pressure search; it is a directed-rounded
 same-domain enclosure for $r_{\mathrm{sd}}$ in the $N_{38}$ graph normal form,
 before the quotient $h_{38}=-N_{38}/S_{37}$ is formed.
+
+The same row-local route now converts that remaining graph-remainder budget
+into an explicit cubic Taylor/M4 target. The diagnostic preserves the quadratic
+$N_{38}$ graph as the current graph-width comparison, but the M4 target is now
+computed against a separate cubic $N_{38}(\xi)$ graph. This correction removes
+the cubic blind spot: a fourth-derivative remainder controls the error after a
+cubic Taylor graph, whereas the fourth difference of a residual behind only a
+quadratic graph would not see a pure cubic term. For each selected row, the
+diagnostic computes the fourth-derivative ceiling required by
+$R\le M_4\Delta\xi^4/24$ using the cubic same-domain remainder budget and the
+row $\xi$ half-width, then compares it with the five-row nonuniform
+fourth-difference proxy of the cubic $N_{38}$ midpoint residual. On the live
+selected rows the maximum observed proxy ratio is
+$5.285745096878382\times10^{-12}$, with observed
+$M_4\approx2.867934073729911\times10^8$ against a minimum required ceiling
+$5.425789592887548\times10^{19}$. The resulting minimum allowed inflation
+factor is about $1.891880863855075\times10^{11}$, so a future
+directed-rounded same-domain fourth-derivative bound can be that much larger
+than the observed proxy and still fit the row-local budget. This remains a
+finite-difference proxy, not a directed-rounded derivative certificate, but it
+changes the blocker from an unspecified same-domain remainder to a concrete
+local proof object: prove a row-local cubic $N_{38}$ Taylor remainder with
+$M_4$ below the absolute directed-rounded ceiling before applying the $S_{37}$
+division.
+
+The H39/y44 route now records that proof object as a non-certifying directed
+M4 sufficiency screen. For each selected row, the screen names the maximum
+same-domain directed-rounded upper bound allowed for
+$|d^4(N_{38}-q_3)/d\xi^4|$ and checks that the corresponding Taylor remainder
+width is within the row-local budget. Since $q_3$ is cubic, the fourth
+derivative of the fitted graph vanishes, so the remaining certificate is a
+same-domain upper bound on the true $N_{38}$ fourth derivative. The live route
+has all sufficiency screens ready and records this reduction, but still marks
+the remainder as uncertified because no directed-rounded fourth-derivative
+enclosure has been supplied on the same domain.
+
+The same packet now bridges that abstract proof object to the executable H38
+producer stream. Each row-local target names
+`evaluateH38RecurrenceNumeratorBeforeSolve` as the candidate true-stream
+evaluator and emits raw true-stream and cubic-graph fourth-difference probes
+against the same $M_4$ ceiling. These probes are deliberately non-certifying:
+they diagnose whether sampled true-stream curvature is numerically aligned with
+the budget, but the accepted certificate must still differentiate the analytic
+$N_{38}$ recurrence stream with shared $\xi$ dependency and directed-rounded
+interval arithmetic before the $S_{37}$ quotient is formed. This keeps the
+closure target concrete without promoting a finite-difference sample into a
+same-domain proof.
+
+The analytic derivative-provider scaffold now states that derivative route
+directly. Since $N_{38}$ is the $y^{42}$ coefficient of
+$S(y,\xi)=\delta^2\nu^{-2}-2+\sin\phi+\sin\delta$ with $h_{38}$ zeroed,
+the same-domain provider can prove
+$d^4N_{38}/d\xi^4=[y^{42}]d^4S/d\xi^4$ by commuting coefficient extraction and
+$\xi$ differentiation. The executable scaffold records the three nonconstant
+source terms, the required derivative order, and the needed input families:
+directed-rounded $\xi$ derivatives of $\nu^{-2}$, the $\delta$ coefficient
+stream, and the $\phi$ coefficient stream through order $4$. It also records
+the fourth-order Leibniz formula for $\delta^2\nu^{-2}$ and the fourth-order
+sine chain rule for $\sin\phi$ and $\sin\delta$. No derivative bound is claimed
+yet; the advancement is that the missing proof object is now a concrete
+chain-rule coefficient-extraction provider whose output must fit the already
+computed row-local $M_4$ ceiling. The provider scaffold is now also a
+standalone executable artifact: it can be fed source-term $d^4/d\xi^4$
+intervals for the selected rows, keeps the three nonconstant source terms
+signed together before taking the absolute upper bound, and reports whether the
+resulting $N_{38}^{(4)}$ candidate fits the row-local $M_4$ ceiling. It remains
+non-certifying until those intervals are produced by a directed-rounded
+same-domain source-term derivative provider.
+
+The first live source-term jet provider now exists at the same boundary. It
+does not replace the directed-rounded proof object; it populates the scaffold's
+input slots from finite-stencil midpoint jets of the actual H38 source-term
+decomposition. Each selected row carries same-cell, same-speed-interval, and
+same-$\xi$-interval provenance into the scaffold for the three terms
+$\delta^2\nu^{-2}$, $\sin\phi$, and $\sin\delta$, then sums their signed
+$d^4/d\xi^4$ candidates before taking the absolute $M_4$ ratio. The claim
+boundary remains false for directed-rounded shared-domain status,
+$S_{37}$ dependency-preserving division, shifted $R_{\varepsilon,43}$ closure,
+and retained branch. The mathematical advance is narrower but concrete: the
+H39/y44 route can now distinguish "no source-term derivative provider" from
+"live source-term jet provider present but non-certifying," and the next
+certificate is the directed-rounded replacement of those same source-term
+slots rather than another synthetic gate.
+
+The analytic scaffold now also performs the candidate $S_{37}$ division replay
+from those same source-term slots. For each complete selected row, it converts
+the supplied $N_{38}^{(4)}$ upper bound into a cubic Taylor numerator-remainder
+width, adds the cubic graph-plus-midpoint width, checks the resulting numerator
+envelope against the row-local `target_s37_division_numerator_width_lower`, and
+then divides by the inherited solve-slope lower bound to compare with the
+selected $h_{38}$ residual target. This is still not a
+dependency-preserving $S_{37}$ certificate, because the live derivative inputs
+remain finite-stencil midpoint jets. The advance is that the scaffold no longer
+stops at "fits $M_4$"; it now tests whether the same candidate derivative
+inputs would also survive the concrete $S_{37}$ division budget, while missing
+inputs remain null rather than being silently treated as zero remainder.
+
+The same boundary now has a degree-four Lagrange source-term interpolant
+normal-form check. For each selected row and each nonconstant source term, the
+diagnostic builds the five-node interpolant on the live producer stencil, reads
+the fourth derivative as $24$ times the quartic coefficient, verifies agreement
+with the fourth divided difference, and feeds the resulting term intervals into
+the existing scaffold and $S_{37}$ division replay. On the live requested-y44
+rows, the maximum interpolant $N_{38}^{(4)}$ ratio is
+$5.483112580155718\times10^{-11}$ against the row-local $M_4$ ceiling, the
+maximum interpolant-to-true-stream gap is
+$6.011687092222812\times10^{-11}$ of that ceiling, and the maximum
+interpolant-to-finite-jet gap is
+$8.446099606345556\times10^{-20}$ of that ceiling. This is not a
+directed-rounded true-stream certificate; it proves only that the small
+source-term derivative seen by the scaffold is the degree-four interpolant
+identity on the live nodes, so the directed-rounded proof can target the same
+source-term slots instead of another finite-difference artifact.
+
+The engine now preserves source-term interval endpoints through the same path
+and tests the intervalized Lagrange replacement. Each H38 producer sample
+exports `numerator_term_intervals`, and the H39 row-local diagnostic applies
+the five Lagrange $d^4/d\xi^4$ weights to those intervals for
+$\delta^2\nu^{-2}$, $\sin\phi$, and $\sin\delta$ before summing the signed
+source-term enclosure. This provider is emitted and same-domain matched, but
+it is not a closure certificate: the maximum row-local ratio is
+$2.1184411320931636\times10^5$, the scaffold and $S_{37}$ replay both report
+`exceeds`, and the intervalized enclosure still contains the midpoint
+interpolant with zero gap. The new conclusion is sharper than "need tighter
+intervals": the current node intervals lose about $3.86\times10^{15}$ relative
+to the midpoint derivative, with term ratios about $3.26\times10^4$,
+$7.62\times10^4$, and $1.03\times10^5$ for the three nonconstant source terms.
+The next executable proof object is therefore a dependency-preserving,
+directed-rounded source-term derivative enclosure through the H38 producer
+image, not another midpoint interpolant or an independent h-row box.

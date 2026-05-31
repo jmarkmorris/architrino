@@ -167,19 +167,48 @@ fixed-period diagnostic now sharpen the route:
   rational Hermite coefficients, outward rational trigonometric bounds, exact
   gamma stationarity, and no gamma residual cap, proving the finite sampled
   row-system upper bound
-  $\gamma\le -2.20499517531647\times 10^{-10}$.
+  $\gamma\le -2.20499517531647\times 10^{-10}$;
+- the continuous-collar lift verifies that the active sampled rows are embedded
+  in the declared continuous collar/speed target, so the sampled obstruction
+  lifts by sample-subset inclusion for this generic same-itinerary Hermite
+  route;
+- the period-coupled Hermite screen adds a period tangent and separator
+  speed-contact locks but still returns best
+  $\gamma_{\mathrm{sample}}=-2.20865843237662\times 10^{-10}$;
+- the velocity-first Bernstein screen hard-codes the fixed-separator
+  field-speed sign corridor at the control level but still returns best
+  $\gamma_{\mathrm{sample}}=-0.0126050167182319$.
 
 The next solver should therefore:
 
-1. treat generic same-itinerary Hermite basis enrichment as closed at the
-   finite sampled level unless a continuous-in-collar lift is explicitly built;
-2. either freeze a new repaired packet identity around a genuinely different
-   same-itinerary structural ansatz or explicitly reopen the itinerary;
-3. assemble the signed gap derivative matrix $A$ for the selected orientations
+1. treat generic same-itinerary Hermite basis enrichment as closed for this
+   repair route;
+2. treat the bounded period-coupled Hermite and fixed-separator
+   velocity-corridor structural screens as obstructed;
+3. either instantiate the larger nonlinear fold-coordinate collocation target
+   or use `fresh_v10_higher_fold_itinerary_rebuild_target.v0.md` as the
+   explicit 12-root itinerary-rebuild target, with
+   `candidate_cycle_packet_report.fresh-v10-higher-fold-12-root-rebuild-v0.md`
+   as its diagnostic seed surface,
+   `fresh_v10_higher_fold_root_tube_certificate.v0.md` as the binary64
+   root-count audit surface, and
+   `fresh_v10_higher_fold_root_tube_interval_certificate.v0.md` as the
+   proof-grade root-count topology certificate, plus the proof-interval
+   v1/v2/v3/v4/v5 sidecars under `fresh-v10-higher-fold-12-root-rebuild-v0`: v1
+   certifies 270 exact-rational coarse range-empty rows, v2 certifies 1,062
+   row-specific trigonometric range-empty rows, v3 certifies those 1,062
+   range-empty rows plus 26 root-complement monotone diagonal exclusions, and
+   v4 records 42 simple-root receiver subwindow certificates while consuming 0
+   parent simple-root rows. v5 audits those 42 regular residual parents,
+   certifies 571 simple-root receiver cells, misses 773 cells, and consumes 0
+   parent rows. The branch still leaves 162 rows `split_required` across 42
+   parent complement-coverage rows, 8 periodic endpoint/complement rows, and
+   112 fold-layer rows;
+4. assemble the signed gap derivative matrix $A$ for the selected orientations
    above;
-4. keep the structural constraint matrix $B=DC(\mathbf a_0)$, including section,
+5. keep the structural constraint matrix $B=DC(\mathbf a_0)$, including section,
    symmetry, separator, matching, and neutral-coordinate rows;
-5. solve
+6. solve
    $$
    B\xi=0,
    \qquad
@@ -187,7 +216,7 @@ The next solver should therefore:
    $$
    together with finite field-speed-itinerary inequalities inside that
    constrained solve;
-6. emit a candidate packet only after the same deformation also preserves or
+7. emit a candidate packet only after the same deformation also preserves or
    recomputes the simple-root and empty-row certificates.
 
 This is the shortest path toward closure because it attacks the actual
@@ -197,7 +226,7 @@ around the same overlap geometry.
 ## Capture Decision
 
 Priority-only. This packet is not corpus-ready and should not be promoted into
-AAA prose. It provides the next strict finite target for the proof-program
+$\mathbb{A}\mathbb{A}\mathbb{A}$ prose. It provides the next strict finite target for the proof-program
 queue: repair the candidate until the 10 parent-complement strips have certified
-positive null-coordinate gaps, then rerun the proof-interval pre-ledger before
-any branch-chart construction.
+positive null-coordinate gaps, then run the applicable proof-interval preledger
+for that repaired or successor packet before any branch-chart construction.

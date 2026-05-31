@@ -8,6 +8,7 @@ These files are not app-facing corpus chapters. They are working material for te
 
 - [50-word-descriptions.md](50-word-descriptions.md): short descriptions constrained to 50 words each.
 - [elevator-stories.md](elevator-stories.md): short spoken-story versions for different audiences.
+- [early-learning.md](early-learning.md): age-banded curriculum sketch for introducing $\mathbb{A}\mathbb{A}\mathbb{A}$ concepts to children with AI-assisted learning.
 - [250-word-to-one-page-descriptions.md](250-word-to-one-page-descriptions.md): longer descriptions for profiles, handouts, posts, or short pages.
 - [technical-brief-master-equation.md](technical-brief-master-equation.md): longer technical brief with the master equation, definitions, interpretation, and validation burden.
 - [outreach-plan.md](outreach-plan.md): audience, channel, and return-on-investment planning template.

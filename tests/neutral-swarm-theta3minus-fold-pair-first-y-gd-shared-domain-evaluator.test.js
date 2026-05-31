@@ -33,6 +33,7 @@ import {
   buildH39PolynomialHRowGraphIntervalResidualDiagnosticCandidate,
   buildH39PolynomialHRowGraphResidualDiagnosticCandidate,
   buildH39RecurrenceRefinedSubcoverPressureDiagnostic,
+  buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate,
   validateH39CorrelatedResidualWidthDiagnostic,
   validateH39H38NumeratorGraphLocalPartitionDiagnostic,
   validateH39H38NumeratorGraphResidualBudgetDiagnostic,
@@ -61,6 +62,7 @@ import {
   validateH39H38Y44SourceCovarianceSplitM4RefinementLadder,
   validateH39H38Y44SignedAffineTargetEnvelopeDiagnostic,
   validateH39RequestedY44ProducerImageBudgetComparison,
+  validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold,
   validateH39PolynomialHRowGraphIntervalResidualDiagnostic,
   validateH39PolynomialHRowGraphResidualDiagnostic,
   validateH39RecurrenceRefinedSubcoverPressureDiagnostic,
@@ -4802,6 +4804,847 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
       .row_local_n38_s37_graph_remainder_target_interpretation,
     "same-domain-n38-graph-remainder-has-row-local-s37-headroom-but-raw-interval-hull-exceeds-it"
   );
+  assert.equal(
+    rowLocalCollarReplay
+      .row_local_n38_cubic_taylor_graph_remainder_target_available,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay.all_row_local_n38_taylor_graph_degrees_cubic,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_cubic_taylor_graph_plus_midpoint_widths_inside_s37_target,
+    true
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_cubic_taylor_graph_interval_width_to_s37_target <
+      1e-9
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_cubic_taylor_graph_plus_midpoint_width_to_s37_target <
+      1e-9
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .min_row_local_n38_cubic_taylor_same_domain_remainder_width_budget > 1e17
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_cubic_taylor_interval_residual_width_to_same_domain_remainder_budget >
+      5e6
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .row_local_n38_cubic_taylor_graph_remainder_target_interpretation,
+    "same-domain-n38-cubic-taylor-remainder-has-row-local-s37-headroom-but-raw-interval-hull-exceeds-it"
+  );
+  assert.equal(
+    rowLocalCollarReplay.row_local_n38_taylor_proxy_target_available,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_observed_m4_proxies_inside_remainder_budget,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_cubic_m4_proxies_have_directed_rounded_inflation_headroom,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_directed_m4_sufficiency_screens_ready,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_directed_m4_reduces_to_n38_fourth_derivative,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_true_stream_bridges_target_fourth_derivative,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_analytic_derivative_provider_scaffolds_emitted,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_source_term_xi_jet_providers_emitted,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_source_term_xi_jet_providers_fit_m4_target,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_source_term_xi_lagrange_interpolant_providers_emitted,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_source_term_xi_lagrange_interpolant_providers_fit_m4_target,
+    true
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_observed_m4_proxy_to_required_budget < 1e-10
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_observed_m4_proxy_remainder_width_to_budget < 1e-10
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_observed_nonuniform_fourth_derivative_proxy < 3e8
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .min_row_local_n38_required_fourth_derivative_upper_for_remainder_budget >
+      5e19
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .min_row_local_n38_cubic_m4_proxy_allowed_inflation_factor > 1e10
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .min_row_local_n38_cubic_m4_proxy_absolute_headroom > 5e19
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .min_row_local_n38_cubic_m4_proxy_remaining_remainder_width_budget > 1e17
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .min_row_local_n38_directed_m4_sufficient_upper_bound > 5e19
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_directed_m4_sufficient_width_to_budget <=
+      1 + 1e-12
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_true_stream_m4_to_required_budget >= 0
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_cubic_graph_m4_to_required_budget >= 0
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_true_minus_residual_signed_m4_gap_to_required >= 0
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_source_term_xi_jet_to_required_upper_ratio <
+      1e-6
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_source_term_xi_jet_signed_gap_to_required >= 0
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_source_term_xi_lagrange_interpolant_to_required_upper_ratio <
+      1e-9
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_source_term_xi_lagrange_interpolant_signed_gap_to_required <
+      1e-9
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required <
+      1e-18
+  );
+  assert.equal(
+    rowLocalCollarReplay.row_local_n38_taylor_proxy_target_interpretation,
+    "observed-row-local-n38-m4-proxy-fits-same-domain-remainder-budget"
+  );
+  assert.equal(
+    rowLocalCollarReplay.row_local_n38_cubic_m4_headroom_interpretation,
+    "observed-row-local-n38-cubic-m4-proxy-has-directed-rounded-inflation-headroom"
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .row_local_n38_directed_m4_sufficiency_screen_interpretation,
+    "directed-rounded-m4-bound-below-row-local-ceiling-would-close-cubic-taylor-remainder"
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .row_local_n38_directed_m4_normal_form_interpretation,
+    "cubic-q3-removes-fit-derivative-burden; certify-true-N38-fourth-derivative"
+  );
+  assert.equal(
+    rowLocalCollarReplay.row_local_n38_true_stream_bridge_interpretation,
+    "true-N38-fourth-derivative-certificate-is-the-remaining-proof-object"
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .row_local_n38_analytic_derivative_provider_interpretation,
+    "analytic-chain-rule-provider-scaffold-ready-for-directed-rounding"
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .row_local_n38_source_term_xi_jet_provider_interpretation,
+    "finite-stencil-source-term-xi-jet-provider-fits-row-local-m4-target-candidate"
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .row_local_n38_source_term_xi_lagrange_interpolant_provider_interpretation,
+    "degree-four-source-term-interpolant-provider-fits-row-local-m4-target-candidate"
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_source_term_xi_lagrange_interpolant_providers_emitted,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_source_term_xi_lagrange_interpolant_providers_fit_m4_target,
+    true
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_source_term_xi_lagrange_interpolant_to_required_upper_ratio <
+      1e-9
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required <
+      1e-18
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_source_term_xi_intervalized_lagrange_providers_emitted,
+    true
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .all_row_local_n38_source_term_xi_intervalized_lagrange_providers_fit_m4_target,
+    false
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio >
+      2e5
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio <
+      2.2e5
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .max_row_local_n38_source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
+    0
+  );
+  assert.ok(
+    rowLocalCollarReplay
+      .max_row_local_n38_source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor >
+      1e15
+  );
+  assert.equal(
+    rowLocalCollarReplay
+      .row_local_n38_source_term_xi_intervalized_lagrange_provider_interpretation,
+    "intervalized-source-term-lagrange-provider-emitted-but-open"
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_source_term_xi_intervalized_lagrange_providers_emitted,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_source_term_xi_intervalized_lagrange_providers_fit_m4_target,
+    false
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio >
+      2e5
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
+    0
+  );
+  const finiteStencilSourceTermD4Inputs =
+    rowLocalCollarReplay.row_replays.flatMap((row) => {
+      const jet =
+        row.row_center_n38_s37_collar_diagnostic
+          .row_local_n38_source_term_xi_jet_provider_candidate;
+      assert.equal(
+        jet.provider_kind,
+        "finite-stencil-source-term-xi-jet-provider-candidate"
+      );
+      assert.equal(
+        jet.proof_status,
+        "finite-stencil-midpoint-jet-not-directed-rounded"
+      );
+      assert.deepEqual(jet.source_terms, [
+        "delta_squared_speed",
+        "sin_phi",
+        "sin_delta",
+      ]);
+      assert.equal(jet.derivative_order, 4);
+      assert.equal(jet.source_y_order, 42);
+      assert.equal(jet.source_term_xi_jet_rows.length, 3);
+      assert.equal(jet.source_term_derivative_inputs_for_scaffold.length, 3);
+      assert.equal(jet.source_term_xi_jet_fits_m4_target, true);
+      assert.ok(jet.source_term_xi_jet_to_required_upper_ratio < 1e-6);
+      assert.equal(
+        jet.claim_boundary.certifies_n38_fourth_derivative_bound,
+        false
+      );
+      assert.equal(
+        jet.claim_boundary.certifies_directed_rounded_shared_domain,
+        false
+      );
+      return jet.source_term_derivative_inputs_for_scaffold;
+    });
+  const interpolantSourceTermD4Inputs =
+    rowLocalCollarReplay.row_replays.flatMap((row) => {
+      const interpolant =
+        row.row_center_n38_s37_collar_diagnostic
+          .row_local_n38_source_term_xi_lagrange_interpolant_provider_candidate;
+      assert.equal(
+        interpolant.provider_kind,
+        "degree-four-lagrange-source-term-xi-interpolant-provider-candidate"
+      );
+      assert.equal(
+        interpolant.proof_status,
+        "degree-four-lagrange-interpolant-midpoint-jet-not-directed-rounded"
+      );
+      assert.equal(
+        interpolant.status,
+        "row-local-n38-source-term-lagrange-interpolant-provider-fits-m4-target"
+      );
+      assert.deepEqual(interpolant.source_terms, [
+        "delta_squared_speed",
+        "sin_phi",
+        "sin_delta",
+      ]);
+      assert.equal(interpolant.derivative_order, 4);
+      assert.equal(interpolant.interpolation_node_count, 5);
+      assert.equal(interpolant.source_y_order, 42);
+      assert.equal(
+        interpolant.source_term_xi_lagrange_interpolant_rows.length,
+        3
+      );
+      assert.equal(
+        interpolant.source_term_derivative_inputs_for_scaffold.length,
+        3
+      );
+      assert.equal(
+        interpolant.source_term_xi_lagrange_interpolant_fits_m4_target,
+        true
+      );
+      assert.ok(
+        interpolant
+          .source_term_xi_lagrange_interpolant_to_required_upper_ratio < 1e-9
+      );
+      assert.ok(
+        interpolant
+          .source_term_xi_lagrange_interpolant_signed_gap_to_required < 1e-9
+      );
+      assert.ok(
+        interpolant
+          .source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required <
+          1e-18
+      );
+      assert.ok(
+        interpolant
+          .true_stream_lagrange_to_finite_stencil_signed_gap_to_required <
+          1e-18
+      );
+      interpolant.source_term_xi_lagrange_interpolant_rows.forEach(
+        (termRow) => {
+          assert.equal(termRow.lagrange_polynomial_degree, 4);
+          assert.equal(termRow.lagrange_coefficients.length, 5);
+          assert.ok(
+            termRow.lagrange_to_divided_difference_signed_gap_to_required <
+              1e-18
+          );
+        }
+      );
+      assert.equal(
+        interpolant.claim_boundary.certifies_n38_fourth_derivative_bound,
+        false
+      );
+      assert.equal(
+        interpolant.claim_boundary.certifies_directed_rounded_shared_domain,
+        false
+      );
+      return interpolant.source_term_derivative_inputs_for_scaffold;
+    });
+  const intervalizedSourceTermD4Inputs =
+    rowLocalCollarReplay.row_replays.flatMap((row) => {
+      const intervalized =
+        row.row_center_n38_s37_collar_diagnostic
+          .row_local_n38_source_term_xi_intervalized_lagrange_provider_candidate;
+      assert.equal(
+        intervalized.provider_kind,
+        "intervalized-degree-four-lagrange-source-term-xi-provider-candidate"
+      );
+      assert.equal(
+        intervalized.proof_status,
+        "source-term-node-intervals-propagated-through-lagrange-weights-not-directed-rounded-same-domain"
+      );
+      assert.equal(
+        intervalized.status,
+        "row-local-n38-source-term-intervalized-lagrange-provider-exceeds-m4-target"
+      );
+      assert.deepEqual(intervalized.source_terms, [
+        "delta_squared_speed",
+        "sin_phi",
+        "sin_delta",
+      ]);
+      assert.equal(intervalized.derivative_order, 4);
+      assert.equal(intervalized.interpolation_node_count, 5);
+      assert.equal(intervalized.source_y_order, 42);
+      assert.equal(
+        intervalized.source_term_xi_intervalized_lagrange_rows.length,
+        3
+      );
+      assert.equal(
+        intervalized.source_term_derivative_inputs_for_scaffold.length,
+        3
+      );
+      assert.equal(
+        intervalized.source_term_xi_intervalized_lagrange_fits_m4_target,
+        false
+      );
+      assert.ok(
+        intervalized
+          .source_term_xi_intervalized_lagrange_to_required_upper_ratio >
+          2e5
+      );
+      assert.equal(
+        intervalized
+          .source_term_xi_intervalized_lagrange_contains_midpoint_estimate,
+        true
+      );
+      assert.equal(
+        intervalized
+          .source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
+        0
+      );
+      intervalized.source_term_xi_intervalized_lagrange_rows.forEach(
+        (termRow) => {
+          assert.equal(termRow.node_value_intervals.length, 5);
+          assert.equal(termRow.lagrange_fourth_derivative_weights.length, 5);
+          assert.equal(termRow.weighted_node_interval_rows.length, 5);
+          assert.ok(
+            termRow.intervalized_lagrange_fourth_derivative_to_required_ratio >
+              1e4
+          );
+          assert.equal(
+            termRow.midpoint_estimate_inside_intervalized_derivative,
+            true
+          );
+        }
+      );
+      assert.equal(
+        intervalized.claim_boundary.certifies_n38_fourth_derivative_bound,
+        false
+      );
+      assert.equal(
+        intervalized.claim_boundary.certifies_directed_rounded_shared_domain,
+        false
+      );
+      return intervalized.source_term_derivative_inputs_for_scaffold;
+    });
+  const finiteStencilAnalyticProviderScaffold =
+    buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate({
+      producerRowLocalCollarReplay: rowLocalCollarReplay,
+      sourceTermDerivativeInputs: finiteStencilSourceTermD4Inputs,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
+      finiteStencilAnalyticProviderScaffold
+    ),
+    []
+  );
+  assert.equal(
+    finiteStencilAnalyticProviderScaffold.complete_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    finiteStencilAnalyticProviderScaffold
+      .all_rows_have_source_term_derivative_inputs,
+    true
+  );
+  assert.equal(
+    finiteStencilAnalyticProviderScaffold.all_complete_rows_close_m4_target,
+    true
+  );
+  assert.equal(
+    finiteStencilAnalyticProviderScaffold
+      .all_complete_rows_close_s37_division_target,
+    true
+  );
+  assert.ok(
+    finiteStencilAnalyticProviderScaffold
+      .max_n38_d4_to_required_upper_ratio < 1e-6
+  );
+  assert.ok(
+    finiteStencilAnalyticProviderScaffold
+      .max_s37_division_total_numerator_width_to_target < 1e-6
+  );
+  assert.ok(
+    finiteStencilAnalyticProviderScaffold
+      .max_s37_division_h38_residual_width_to_target < 1e-6
+  );
+  assert.equal(
+    finiteStencilAnalyticProviderScaffold.proof_status,
+    "candidate-only-source-term-inputs-present-not-directed-rounded-certified"
+  );
+  assert.equal(
+    finiteStencilAnalyticProviderScaffold
+      .s37_division_bridge_proof_status,
+    "candidate-only-s37-division-replay-not-directed-rounded-certified"
+  );
+  assert.equal(
+    finiteStencilAnalyticProviderScaffold.interpretation,
+    "source-term-d4-inputs-fit-row-local-m4-ceiling-candidate"
+  );
+  assert.equal(
+    finiteStencilAnalyticProviderScaffold
+      .s37_division_bridge_interpretation,
+    "source-term-d4-candidate-fits-row-local-s37-division-target"
+  );
+  assert.equal(
+    finiteStencilAnalyticProviderScaffold.claim_boundary
+      .certifies_n38_fourth_derivative_bound,
+    false
+  );
+  const interpolantAnalyticProviderScaffold =
+    buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate({
+      producerRowLocalCollarReplay: rowLocalCollarReplay,
+      sourceTermDerivativeInputs: interpolantSourceTermD4Inputs,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
+      interpolantAnalyticProviderScaffold
+    ),
+    []
+  );
+  assert.equal(
+    interpolantAnalyticProviderScaffold.complete_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    interpolantAnalyticProviderScaffold
+      .all_rows_have_source_term_derivative_inputs,
+    true
+  );
+  assert.equal(
+    interpolantAnalyticProviderScaffold.all_complete_rows_close_m4_target,
+    true
+  );
+  assert.equal(
+    interpolantAnalyticProviderScaffold
+      .all_complete_rows_close_s37_division_target,
+    true
+  );
+  assert.ok(
+    interpolantAnalyticProviderScaffold
+      .max_n38_d4_to_required_upper_ratio < 1e-9
+  );
+  assert.ok(
+    interpolantAnalyticProviderScaffold
+      .max_s37_division_total_numerator_width_to_target < 1e-9
+  );
+  assert.ok(
+    interpolantAnalyticProviderScaffold
+      .max_s37_division_h38_residual_width_to_target < 1e-9
+  );
+  assert.equal(
+    interpolantAnalyticProviderScaffold.proof_status,
+    "candidate-only-source-term-inputs-present-not-directed-rounded-certified"
+  );
+  assert.equal(
+    interpolantAnalyticProviderScaffold
+      .s37_division_bridge_proof_status,
+    "candidate-only-s37-division-replay-not-directed-rounded-certified"
+  );
+  assert.equal(
+    interpolantAnalyticProviderScaffold.s37_division_bridge_interpretation,
+    "source-term-d4-candidate-fits-row-local-s37-division-target"
+  );
+  assert.equal(
+    interpolantAnalyticProviderScaffold.claim_boundary
+      .certifies_n38_fourth_derivative_bound,
+    false
+  );
+  const intervalizedAnalyticProviderScaffold =
+    buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate({
+      producerRowLocalCollarReplay: rowLocalCollarReplay,
+      sourceTermDerivativeInputs: intervalizedSourceTermD4Inputs,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
+      intervalizedAnalyticProviderScaffold
+    ),
+    []
+  );
+  assert.equal(
+    intervalizedAnalyticProviderScaffold.complete_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    intervalizedAnalyticProviderScaffold
+      .all_rows_have_source_term_derivative_inputs,
+    true
+  );
+  assert.equal(
+    intervalizedAnalyticProviderScaffold.all_complete_rows_close_m4_target,
+    false
+  );
+  assert.equal(
+    intervalizedAnalyticProviderScaffold
+      .all_complete_rows_close_s37_division_target,
+    false
+  );
+  assert.ok(
+    intervalizedAnalyticProviderScaffold
+      .max_n38_d4_to_required_upper_ratio > 2e5
+  );
+  assert.ok(
+    intervalizedAnalyticProviderScaffold
+      .max_s37_division_total_numerator_width_to_target > 2e5
+  );
+  assert.equal(
+    intervalizedAnalyticProviderScaffold.interpretation,
+    "source-term-d4-inputs-exceed-row-local-m4-ceiling-candidate"
+  );
+  assert.equal(
+    intervalizedAnalyticProviderScaffold.s37_division_bridge_interpretation,
+    "source-term-d4-candidate-exceeds-row-local-s37-division-target"
+  );
+  assert.equal(
+    intervalizedAnalyticProviderScaffold.claim_boundary
+      .certifies_n38_fourth_derivative_bound,
+    false
+  );
+  const missingAnalyticProviderScaffold =
+    buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate({
+      producerRowLocalCollarReplay: rowLocalCollarReplay,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
+      missingAnalyticProviderScaffold
+    ),
+    []
+  );
+  assert.equal(
+    missingAnalyticProviderScaffold.selected_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(missingAnalyticProviderScaffold.complete_row_count, 0);
+  assert.equal(
+    missingAnalyticProviderScaffold
+      .all_rows_have_source_term_derivative_inputs,
+    false
+  );
+  assert.equal(
+    missingAnalyticProviderScaffold.all_complete_rows_close_m4_target,
+    false
+  );
+  assert.equal(
+    missingAnalyticProviderScaffold
+      .all_complete_rows_close_s37_division_target,
+    false
+  );
+  assert.equal(
+    missingAnalyticProviderScaffold.max_n38_d4_to_required_upper_ratio,
+    null
+  );
+  assert.equal(
+    missingAnalyticProviderScaffold
+      .max_s37_division_total_numerator_width_to_target,
+    null
+  );
+  assert.equal(
+    missingAnalyticProviderScaffold
+      .max_s37_division_h38_residual_width_to_target,
+    null
+  );
+  assert.equal(
+    missingAnalyticProviderScaffold.proof_status,
+    "candidate-only-no-directed-rounded-source-term-inputs"
+  );
+  assert.equal(
+    missingAnalyticProviderScaffold.s37_division_bridge_proof_status,
+    "candidate-only-s37-division-replay-source-term-inputs-missing"
+  );
+  assert.equal(
+    missingAnalyticProviderScaffold.interpretation,
+    "source-term-d4-inputs-missing-for-directed-rounded-provider"
+  );
+  assert.equal(
+    missingAnalyticProviderScaffold.s37_division_bridge_interpretation,
+    "source-term-d4-inputs-missing-for-s37-division-replay"
+  );
+  assert.equal(
+    missingAnalyticProviderScaffold.claim_boundary
+      .certifies_n38_fourth_derivative_bound,
+    false
+  );
+  missingAnalyticProviderScaffold.row_scaffolds.forEach((row) => {
+    assert.equal(row.missing_source_term_derivative_input_count, 3);
+    assert.equal(row.all_source_term_derivative_inputs_available, false);
+    assert.equal(row.n38_fourth_derivative_interval_from_source_terms, null);
+    assert.equal(row.n38_fourth_derivative_abs_upper, null);
+    assert.equal(row.n38_d4_to_required_upper_ratio, null);
+    assert.equal(
+      row.row_local_s37_division_bridge_status,
+      "row-local-source-term-d4-candidate-missing-s37-division-inputs"
+    );
+    assert.equal(
+      row.row_local_s37_division_total_numerator_width_upper,
+      null
+    );
+    assert.equal(
+      row.row_local_s37_division_h38_residual_width_upper,
+      null
+    );
+    assert.equal(
+      row.row_status,
+      "row-local-n38-analytic-derivative-inputs-missing"
+    );
+  });
+  const syntheticSourceTermD4Inputs = rowLocalCollarReplay.row_replays.flatMap(
+    (row) => {
+      const requiredUpper = Number(
+        row.row_center_n38_s37_collar_diagnostic
+          .row_local_n38_directed_m4_sufficient_upper_bound
+      );
+      const sourceYOrder =
+        row.row_center_n38_s37_collar_diagnostic
+          .row_local_n38_analytic_derivative_provider_scaffold
+          .coefficient_extraction_order;
+      return ["delta_squared_speed", "sin_phi", "sin_delta"].map((term) => ({
+        cell_id: row.row_replay_context.cell_id,
+        speed_interval: row.row_replay_context.speed_interval,
+        xi_interval: row.row_replay_context.xi_interval,
+        source_y_order: sourceYOrder,
+        term,
+        derivative_interval_d4: [0, requiredUpper / 12],
+        dependency_chain: "synthetic-directed-rounded-placeholder",
+      }));
+    }
+  );
+  const syntheticAnalyticProviderScaffold =
+    buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate({
+      producerRowLocalCollarReplay: rowLocalCollarReplay,
+      sourceTermDerivativeInputs: syntheticSourceTermD4Inputs,
+    });
+  assert.deepEqual(
+    validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
+      syntheticAnalyticProviderScaffold
+    ),
+    []
+  );
+  assert.equal(
+    syntheticAnalyticProviderScaffold.complete_row_count,
+    rowLocalCollarReplay.selected_row_count
+  );
+  assert.equal(
+    syntheticAnalyticProviderScaffold
+      .all_rows_have_source_term_derivative_inputs,
+    true
+  );
+  assert.equal(
+    syntheticAnalyticProviderScaffold.all_complete_rows_close_m4_target,
+    true
+  );
+  assert.equal(
+    syntheticAnalyticProviderScaffold
+      .all_complete_rows_close_s37_division_target,
+    true
+  );
+  assert.ok(
+    syntheticAnalyticProviderScaffold.max_n38_d4_to_required_upper_ratio <
+      0.26
+  );
+  assert.ok(
+    syntheticAnalyticProviderScaffold
+      .max_s37_division_total_numerator_width_to_target < 0.26
+  );
+  assert.ok(
+    syntheticAnalyticProviderScaffold
+      .max_s37_division_h38_residual_width_to_target < 0.26
+  );
+  assert.equal(
+    syntheticAnalyticProviderScaffold.proof_status,
+    "candidate-only-source-term-inputs-present-not-directed-rounded-certified"
+  );
+  assert.equal(
+    syntheticAnalyticProviderScaffold.s37_division_bridge_proof_status,
+    "candidate-only-s37-division-replay-not-directed-rounded-certified"
+  );
+  assert.equal(
+    syntheticAnalyticProviderScaffold.interpretation,
+    "source-term-d4-inputs-fit-row-local-m4-ceiling-candidate"
+  );
+  assert.equal(
+    syntheticAnalyticProviderScaffold.s37_division_bridge_interpretation,
+    "source-term-d4-candidate-fits-row-local-s37-division-target"
+  );
+  assert.equal(
+    syntheticAnalyticProviderScaffold.claim_boundary
+      .certifies_n38_fourth_derivative_bound,
+    false
+  );
+  syntheticAnalyticProviderScaffold.row_scaffolds.forEach((row) => {
+    assert.equal(row.source_term_derivative_input_count, 3);
+    assert.equal(row.missing_source_term_derivative_input_count, 0);
+    assert.equal(row.all_source_term_derivative_inputs_available, true);
+    assert.ok(row.n38_d4_to_required_upper_ratio < 0.26);
+    assert.equal(row.closes_row_local_m4_target, true);
+    assert.equal(
+      row.row_local_s37_division_bridge_status,
+      "row-local-source-term-d4-candidate-fits-s37-division-target"
+    );
+    assert.ok(
+      row.row_local_s37_division_total_numerator_width_to_target < 0.26
+    );
+    assert.ok(
+      row.row_local_s37_division_h38_residual_width_to_target < 0.26
+    );
+    assert.equal(row.row_local_s37_division_closes_numerator_target, true);
+    assert.equal(
+      row.row_local_s37_division_closes_h38_residual_target,
+      true
+    );
+    assert.equal(
+      row.row_status,
+      "row-local-n38-analytic-derivative-inputs-fit-m4-target"
+    );
+    row.source_term_derivative_input_slots.forEach((slot) => {
+      assert.equal(slot.derivative_input_available, true);
+      assert.equal(slot.matches_same_domain, true);
+      assert.equal(
+        slot.dependency_chain,
+        "synthetic-directed-rounded-placeholder"
+      );
+    });
+  });
   rowLocalCollarReplay.row_replays.forEach((row) => {
     assert.equal(
       row.row_center_collar_safety_search.safety_search_status,
@@ -4871,6 +5714,30 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
         .same_domain_n38_graph_remainder_target_status,
       "row-local-n38-graph-remainder-target-has-headroom"
     );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic.polynomial_degree,
+      2
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_taylor_polynomial_degree,
+      3
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_taylor_graph_degree,
+      3
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_taylor_remainder_order,
+      4
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_m4_proxy_target_kind,
+      "cubic-row-local-n38-taylor-remainder"
+    );
     assert.ok(
       row.row_center_n38_s37_collar_diagnostic
         .n38_midpoint_residual_width_to_row_local_s37_target < 1e-9
@@ -4890,6 +5757,201 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     assert.ok(
       row.row_center_n38_s37_collar_diagnostic
         .n38_interval_residual_width_to_same_domain_remainder_budget > 5e6
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .n38_taylor_graph_plus_midpoint_inside_row_local_s37_target,
+      true
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_taylor_graph_remainder_target_status,
+      "row-local-n38-cubic-taylor-remainder-target-has-headroom"
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .n38_taylor_graph_plus_midpoint_width_to_row_local_s37_target < 1e-9
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_taylor_same_domain_remainder_width_budget > 1e17
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .n38_taylor_interval_residual_width_to_same_domain_remainder_budget >
+        5e6
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_taylor_proxy_basis,
+      "cubic-row-local-n38-taylor-graph"
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_taylor_proxy_polynomial_degree,
+      3
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_taylor_proxy_proof_status,
+      "finite-difference-proxy-not-directed-rounded"
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_taylor_proxy_sample_count,
+      5
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_observed_m4_proxy_inside_remainder_budget,
+      true
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_observed_m4_proxy_status,
+      "row-local-n38-observed-m4-proxy-inside-remainder-budget"
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_cubic_m4_headroom_status,
+      "row-local-n38-cubic-m4-proxy-has-directed-rounded-inflation-headroom"
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_directed_m4_sufficiency_screen_status,
+      "row-local-n38-directed-m4-sufficiency-screen-ready"
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_taylor_q3_fourth_derivative_vanishes,
+      true
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_directed_m4_reduces_to_n38_fourth_derivative,
+      true
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_true_stream_bridge_target_kind,
+      "same-domain-directed-rounded-true-N38-fourth-derivative"
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_true_stream_evaluator_candidate,
+      "evaluateH38RecurrenceNumeratorBeforeSolve"
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_true_stream_finite_difference_probe_certifies_derivative,
+      false
+    );
+    assert.ok(
+      [
+        "row-local-n38-true-stream-finite-difference-probe-inside-m4-ceiling",
+        "row-local-n38-true-stream-finite-difference-probe-is-not-certificate-route",
+      ].includes(
+        row.row_center_n38_s37_collar_diagnostic
+          .row_local_n38_true_stream_finite_difference_probe_status
+      )
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_true_stream_m4_to_required_budget >= 0
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_cubic_graph_m4_to_required_budget >= 0
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_analytic_derivative_provider_scaffold_status,
+      "row-local-n38-analytic-derivative-provider-scaffold-emitted"
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_analytic_derivative_provider_kind,
+      "chain-rule-coefficient-extraction-provider"
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_analytic_derivative_provider_proof_status,
+      "candidate-only-no-directed-rounded-chain-rule-intervals"
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_analytic_provider_certifies_n38_fourth_derivative,
+      false
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_analytic_derivative_provider_scaffold
+        .coefficient_extraction_commutes_with_xi_derivative,
+      true
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_analytic_derivative_provider_scaffold
+        .required_xi_derivative_order,
+      4
+    );
+    assert.deepEqual(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_analytic_derivative_provider_scaffold
+        .source_terms_requiring_xi_derivatives,
+      ["delta_squared_speed", "sin_phi", "sin_delta"]
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_observed_m4_proxy_to_required_budget < 1e-10
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_cubic_m4_proxy_allowed_inflation_factor > 1e10
+    );
+    assert.ok(
+      Math.abs(
+        row.row_center_n38_s37_collar_diagnostic
+          .row_local_n38_cubic_m4_proxy_allowed_inflation_factor *
+          row.row_center_n38_s37_collar_diagnostic
+            .row_local_n38_observed_m4_proxy_to_required_budget -
+          1
+      ) < 1e-12
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_observed_m4_proxy_remainder_width_to_budget < 1e-10
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_required_fourth_derivative_upper_for_remainder_budget >
+        5e19
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_observed_nonuniform_fourth_derivative_proxy < 3e8
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_cubic_m4_proxy_absolute_headroom > 5e19
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_cubic_m4_proxy_remaining_remainder_width_budget > 1e17
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_directed_m4_sufficient_upper_bound > 5e19
+    );
+    assert.ok(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_directed_m4_sufficient_width_to_budget <=
+        1 + 1e-12
+    );
+    assert.equal(
+      row.row_center_n38_s37_collar_diagnostic
+        .row_local_n38_directed_m4_sufficiency_certifies_remainder,
+      false
     );
   });
   assert.equal(
@@ -5100,6 +6162,156 @@ test("h39 terminal affine-zeta endpoint provider replay crosses the provider bou
     route.certificate_route_metrics
       .affine_floor_requested_y44_row_local_max_n38_interval_residual_width_to_same_domain_remainder_budget >
       5e6
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_n38_cubic_taylor_graph_remainder_target_available,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_taylor_graph_degrees_cubic,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_cubic_taylor_graph_plus_midpoint_widths_inside_s37_target,
+    true
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_cubic_taylor_graph_interval_width_to_s37_target <
+      1e-9
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_cubic_taylor_graph_plus_midpoint_width_to_s37_target <
+      1e-9
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_min_n38_cubic_taylor_same_domain_remainder_width_budget >
+      1e17
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_cubic_taylor_interval_residual_width_to_same_domain_remainder_budget >
+      5e6
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_n38_taylor_proxy_target_available,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_observed_m4_proxies_inside_remainder_budget,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_cubic_m4_proxies_have_directed_rounded_inflation_headroom,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_directed_m4_sufficiency_screens_ready,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_directed_m4_reduces_to_n38_fourth_derivative,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_true_stream_bridges_target_fourth_derivative,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_analytic_derivative_provider_scaffolds_emitted,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_source_term_xi_jet_providers_emitted,
+    true
+  );
+  assert.equal(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_all_n38_source_term_xi_jet_providers_fit_m4_target,
+    true
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_observed_m4_proxy_to_required_budget <
+      1e-10
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_observed_m4_proxy_remainder_width_to_budget <
+      1e-10
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_observed_nonuniform_fourth_derivative_proxy <
+      3e8
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_min_n38_required_fourth_derivative_upper_for_remainder_budget >
+      5e19
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_min_n38_cubic_m4_proxy_allowed_inflation_factor >
+      1e10
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_min_n38_cubic_m4_proxy_absolute_headroom >
+      5e19
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_min_n38_cubic_m4_proxy_remaining_remainder_width_budget >
+      1e17
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_min_n38_directed_m4_sufficient_upper_bound >
+      5e19
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_directed_m4_sufficient_width_to_budget <=
+      1 + 1e-12
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_true_stream_m4_to_required_budget >=
+      0
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_cubic_graph_m4_to_required_budget >=
+      0
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_true_minus_residual_signed_m4_gap_to_required >=
+      0
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_source_term_xi_jet_to_required_upper_ratio <
+      1e-6
+  );
+  assert.ok(
+    route.certificate_route_metrics
+      .affine_floor_requested_y44_row_local_max_n38_source_term_xi_jet_signed_gap_to_required >=
+      0
   );
   assert.ok(
     producerBudgetComparison

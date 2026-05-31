@@ -120,6 +120,15 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUC
 export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_N38_S37_COLLAR_DIAGNOSTIC_SCHEMA =
   "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-row-local-n38-s37-collar-diagnostic/v1";
 
+export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_N38_ANALYTIC_DERIVATIVE_PROVIDER_SCAFFOLD_SCHEMA =
+  "neutral-swarm-theta3minus-fold-pair-first-y-gd-h39-requested-y44-row-local-n38-analytic-derivative-provider-scaffold/v1";
+
+const H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS = Object.freeze([
+  "delta_squared_speed",
+  "sin_phi",
+  "sin_delta",
+]);
+
 const H38_NUMERATOR_Y_ORDER =
   THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS.r43_source_shift - 1;
 
@@ -2227,6 +2236,14 @@ function h38SolveWidthFactorizationProfileForRows({
         term.coefficient_width,
       ])
     );
+    const numeratorTermIntervals = Object.fromEntries(
+      sourceTermSummary.expression_terms.map((term) => [
+        term.term,
+        Array.isArray(term.coefficient)
+          ? term.coefficient.map(Number)
+          : term.coefficient,
+      ])
+    );
     const numeratorSourceTermMidpointSum = Object.values(
       numeratorTermMidpoints
     ).reduce((total, value) => total + Number(value), 0);
@@ -2262,6 +2279,7 @@ function h38SolveWidthFactorizationProfileForRows({
         sourceTermSummary.midpoint_n38_expression_midpoint,
       numerator_term_midpoints: numeratorTermMidpoints,
       numerator_term_widths: numeratorTermWidths,
+      numerator_term_intervals: numeratorTermIntervals,
       numerator_source_term_midpoint_sum: numeratorSourceTermMidpointSum,
       numerator_source_term_sum_to_interval_midpoint_gap: Math.abs(
         numeratorSourceTermMidpointSum - numeratorMidpoint
@@ -2936,6 +2954,232 @@ function fourthDifferenceStencilMetrics({
     nonuniform_fourth_derivative_estimate: nonuniformEstimate,
     uniform_fourth_derivative_to_required_ratio: uniformRatio,
     nonuniform_fourth_derivative_to_required_ratio: nonuniformRatio,
+  };
+}
+
+function degreeFourInterpolantFourthDerivativeMetrics({
+  xiMidpoints,
+  values,
+  requiredFourthDerivativeUpper,
+  finiteStencilSignedEstimate = null,
+}) {
+  if (
+    !Array.isArray(xiMidpoints) ||
+    xiMidpoints.length !== 5 ||
+    !xiMidpoints.every(Number.isFinite) ||
+    !Array.isArray(values) ||
+    values.length !== 5 ||
+    !values.every(Number.isFinite)
+  ) {
+    return null;
+  }
+  for (let left = 0; left < xiMidpoints.length; left += 1) {
+    for (let right = left + 1; right < xiMidpoints.length; right += 1) {
+      if (!finitePositive(Math.abs(xiMidpoints[right] - xiMidpoints[left]))) {
+        return null;
+      }
+    }
+  }
+  const points = xiMidpoints.map((x, index) => ({
+    x,
+    y: values[index],
+  }));
+  let coefficients;
+  try {
+    coefficients = lagrangeInterpolationPolynomialCoefficients(points);
+  } catch (_error) {
+    return null;
+  }
+  if (
+    !Array.isArray(coefficients) ||
+    coefficients.length !== 5 ||
+    !coefficients.every(Number.isFinite)
+  ) {
+    return null;
+  }
+  const quarticCoefficient = Number(coefficients[4]);
+  const fourthDerivativeSignedEstimate = 24 * quarticCoefficient;
+  if (!Number.isFinite(fourthDerivativeSignedEstimate)) {
+    return null;
+  }
+  const nodeReplayMaxAbsGap = Math.max(
+    ...points.map((point) =>
+      Math.abs(polynomialValue(coefficients, point.x) - point.y)
+    )
+  );
+  const fourthDerivativeAbsEstimate = Math.abs(
+    fourthDerivativeSignedEstimate
+  );
+  const ratio = finitePositive(requiredFourthDerivativeUpper)
+    ? fourthDerivativeAbsEstimate / requiredFourthDerivativeUpper
+    : null;
+  const finiteStencilSignedGap = Number.isFinite(
+    Number(finiteStencilSignedEstimate)
+  )
+    ? Math.abs(
+        fourthDerivativeSignedEstimate -
+          Number(finiteStencilSignedEstimate)
+      )
+    : null;
+  const finiteStencilSignedGapToRequired =
+    finiteNonnegative(finiteStencilSignedGap) &&
+    finitePositive(requiredFourthDerivativeUpper)
+      ? finiteStencilSignedGap / requiredFourthDerivativeUpper
+      : null;
+  return {
+    interpolant_degree: 4,
+    interpolant_coefficients: coefficients,
+    interpolant_quartic_coefficient: quarticCoefficient,
+    interpolant_fourth_derivative_signed_estimate:
+      fourthDerivativeSignedEstimate,
+    interpolant_fourth_derivative_abs_estimate:
+      fourthDerivativeAbsEstimate,
+    interpolant_fourth_derivative_to_required_ratio: ratio,
+    interpolant_node_replay_max_abs_gap: nodeReplayMaxAbsGap,
+    interpolant_to_finite_stencil_signed_gap: finiteStencilSignedGap,
+    interpolant_to_finite_stencil_signed_gap_to_required:
+      finiteStencilSignedGapToRequired,
+  };
+}
+
+function finiteOrderedIntervalOrNull(interval) {
+  if (!Array.isArray(interval) || interval.length !== 2) {
+    return null;
+  }
+  const resolved = interval.map(Number);
+  if (
+    !Number.isFinite(resolved[0]) ||
+    !Number.isFinite(resolved[1]) ||
+    resolved[0] > resolved[1]
+  ) {
+    return null;
+  }
+  return resolved;
+}
+
+function intervalContainsNumber(interval, value) {
+  const resolvedInterval = finiteOrderedIntervalOrNull(interval);
+  const resolvedValue = Number(value);
+  return (
+    resolvedInterval !== null &&
+    Number.isFinite(resolvedValue) &&
+    resolvedInterval[0] <= resolvedValue &&
+    resolvedValue <= resolvedInterval[1]
+  );
+}
+
+function intervalDistanceToNumber(interval, value) {
+  const resolvedInterval = finiteOrderedIntervalOrNull(interval);
+  const resolvedValue = Number(value);
+  if (resolvedInterval === null || !Number.isFinite(resolvedValue)) {
+    return null;
+  }
+  if (resolvedValue < resolvedInterval[0]) {
+    return resolvedInterval[0] - resolvedValue;
+  }
+  if (resolvedValue > resolvedInterval[1]) {
+    return resolvedValue - resolvedInterval[1];
+  }
+  return 0;
+}
+
+function lagrangeFourthDerivativeWeightsForNodes(xiMidpoints) {
+  if (
+    !Array.isArray(xiMidpoints) ||
+    xiMidpoints.length !== 5 ||
+    !xiMidpoints.every(Number.isFinite)
+  ) {
+    return null;
+  }
+  const weights = xiMidpoints.map((xi, index) => {
+    let denominator = 1;
+    xiMidpoints.forEach((xj, otherIndex) => {
+      if (otherIndex !== index) {
+        denominator *= xi - xj;
+      }
+    });
+    return finitePositive(Math.abs(denominator))
+      ? 24 / denominator
+      : null;
+  });
+  return weights.every(Number.isFinite) ? weights : null;
+}
+
+function degreeFourIntervalizedInterpolantFourthDerivativeMetrics({
+  xiMidpoints,
+  valueIntervals,
+  requiredFourthDerivativeUpper,
+  midpointSignedEstimate = null,
+}) {
+  if (
+    !Array.isArray(valueIntervals) ||
+    valueIntervals.length !== 5 ||
+    !finitePositive(requiredFourthDerivativeUpper)
+  ) {
+    return null;
+  }
+  const weights = lagrangeFourthDerivativeWeightsForNodes(xiMidpoints);
+  const intervals = valueIntervals.map(finiteOrderedIntervalOrNull);
+  if (weights === null || !intervals.every((interval) => interval !== null)) {
+    return null;
+  }
+  const weightedRows = intervals.map((interval, index) => {
+    const weight = weights[index];
+    const derivativeIntervalContribution = root.scaleInterval(
+      interval,
+      weight
+    );
+    return {
+      node_index: index,
+      xi_midpoint: xiMidpoints[index],
+      value_interval: interval,
+      value_interval_width: intervalWidth(interval),
+      lagrange_fourth_derivative_weight: weight,
+      weighted_derivative_interval: derivativeIntervalContribution,
+      weighted_derivative_abs_upper: intervalAbsUpper(
+        derivativeIntervalContribution
+      ),
+    };
+  });
+  const derivativeInterval = weightedRows
+    .map((row) => row.weighted_derivative_interval)
+    .reduce((total, interval) => root.addIntervals(total, interval), [0, 0]);
+  const derivativeAbsUpper = intervalAbsUpper(derivativeInterval);
+  const derivativeWidth = intervalWidth(derivativeInterval);
+  const ratio =
+    finiteNonnegative(derivativeAbsUpper) &&
+    finitePositive(requiredFourthDerivativeUpper)
+      ? derivativeAbsUpper / requiredFourthDerivativeUpper
+      : null;
+  const midpointResolved = Number(midpointSignedEstimate);
+  const midpointAvailable = Number.isFinite(midpointResolved);
+  const midpointInsideInterval =
+    midpointAvailable &&
+    intervalContainsNumber(derivativeInterval, midpointResolved);
+  const midpointGap = midpointAvailable
+    ? intervalDistanceToNumber(derivativeInterval, midpointResolved)
+    : null;
+  const midpointAbs = midpointAvailable ? Math.abs(midpointResolved) : null;
+  return {
+    interpolation_node_count: 5,
+    lagrange_fourth_derivative_weights: weights,
+    weighted_node_interval_rows: weightedRows,
+    derivative_interval_d4: derivativeInterval,
+    derivative_interval_width: derivativeWidth,
+    derivative_abs_upper: derivativeAbsUpper,
+    derivative_to_required_ratio: ratio,
+    midpoint_signed_estimate: midpointAvailable ? midpointResolved : null,
+    midpoint_estimate_inside_derivative_interval: midpointInsideInterval,
+    midpoint_estimate_gap_to_derivative_interval: midpointGap,
+    midpoint_estimate_gap_to_required:
+      finiteNonnegative(midpointGap) &&
+      finitePositive(requiredFourthDerivativeUpper)
+        ? midpointGap / requiredFourthDerivativeUpper
+        : null,
+    interval_abs_upper_to_midpoint_abs_ratio:
+      finitePositive(midpointAbs) && finiteNonnegative(derivativeAbsUpper)
+        ? derivativeAbsUpper / midpointAbs
+        : null,
   };
 }
 
@@ -7632,6 +7876,15 @@ function h38NumeratorGraphResidualProfile({
       xi_midpoint: intervalMidpoint(sample.xi_interval),
       numerator_interval: numeratorInterval,
       numerator_midpoint: intervalMidpoint(numeratorInterval),
+      numerator_expression_midpoint:
+        sample.numerator_expression_midpoint ?? null,
+      numerator_term_midpoints: sample.numerator_term_midpoints ?? null,
+      numerator_term_widths: sample.numerator_term_widths ?? null,
+      numerator_term_intervals: sample.numerator_term_intervals ?? null,
+      numerator_source_term_midpoint_sum:
+        sample.numerator_source_term_midpoint_sum ?? null,
+      numerator_source_term_sum_to_interval_midpoint_gap:
+        sample.numerator_source_term_sum_to_interval_midpoint_gap ?? null,
       numerator_interval_width: intervalWidth(numeratorInterval),
       graph_interval: graphInterval,
       graph_interval_width: intervalWidth(graphInterval),
@@ -12030,6 +12283,238 @@ export function buildH39SuccessorSuffixTransitionCertificateRouteCandidate({
         requestedY44ProducerImageBudgetComparison
           ?.producer_row_local_collar_replay
           ?.max_row_local_n38_interval_residual_width_to_same_domain_remainder_budget ??
+        null,
+      affine_floor_requested_y44_row_local_n38_cubic_taylor_graph_remainder_target_available:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.row_local_n38_cubic_taylor_graph_remainder_target_available ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_taylor_graph_degrees_cubic:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_taylor_graph_degrees_cubic ?? null,
+      affine_floor_requested_y44_row_local_all_n38_cubic_taylor_graph_plus_midpoint_widths_inside_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_cubic_taylor_graph_plus_midpoint_widths_inside_s37_target ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_cubic_taylor_graph_interval_width_to_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_cubic_taylor_graph_interval_width_to_s37_target ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_cubic_taylor_midpoint_residual_width_to_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_cubic_taylor_midpoint_residual_width_to_s37_target ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_cubic_taylor_interval_residual_width_to_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_cubic_taylor_interval_residual_width_to_s37_target ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_cubic_taylor_graph_plus_midpoint_width_to_s37_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_cubic_taylor_graph_plus_midpoint_width_to_s37_target ??
+        null,
+      affine_floor_requested_y44_row_local_min_n38_cubic_taylor_same_domain_remainder_width_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.min_row_local_n38_cubic_taylor_same_domain_remainder_width_budget ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_cubic_taylor_interval_residual_width_to_same_domain_remainder_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_cubic_taylor_interval_residual_width_to_same_domain_remainder_budget ??
+        null,
+      affine_floor_requested_y44_row_local_n38_taylor_proxy_target_available:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.row_local_n38_taylor_proxy_target_available ?? null,
+      affine_floor_requested_y44_row_local_all_n38_observed_m4_proxies_inside_remainder_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_observed_m4_proxies_inside_remainder_budget ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_cubic_m4_proxies_have_directed_rounded_inflation_headroom:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_cubic_m4_proxies_have_directed_rounded_inflation_headroom ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_observed_m4_proxy_to_required_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_observed_m4_proxy_to_required_budget ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_observed_m4_proxy_remainder_width_to_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_observed_m4_proxy_remainder_width_to_budget ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_observed_nonuniform_fourth_derivative_proxy:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_observed_nonuniform_fourth_derivative_proxy ??
+        null,
+      affine_floor_requested_y44_row_local_min_n38_required_fourth_derivative_upper_for_remainder_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.min_row_local_n38_required_fourth_derivative_upper_for_remainder_budget ??
+        null,
+      affine_floor_requested_y44_row_local_min_n38_cubic_m4_proxy_allowed_inflation_factor:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.min_row_local_n38_cubic_m4_proxy_allowed_inflation_factor ??
+        null,
+      affine_floor_requested_y44_row_local_min_n38_cubic_m4_proxy_absolute_headroom:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.min_row_local_n38_cubic_m4_proxy_absolute_headroom ?? null,
+      affine_floor_requested_y44_row_local_min_n38_cubic_m4_proxy_remaining_remainder_width_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.min_row_local_n38_cubic_m4_proxy_remaining_remainder_width_budget ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_directed_m4_sufficiency_screens_ready:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_directed_m4_sufficiency_screens_ready ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_directed_m4_reduces_to_n38_fourth_derivative:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_directed_m4_reduces_to_n38_fourth_derivative ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_true_stream_bridges_target_fourth_derivative:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_true_stream_bridges_target_fourth_derivative ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_analytic_derivative_provider_scaffolds_emitted:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_analytic_derivative_provider_scaffolds_emitted ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_source_term_xi_jet_providers_emitted:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_source_term_xi_jet_providers_emitted ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_source_term_xi_jet_providers_fit_m4_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_source_term_xi_jet_providers_fit_m4_target ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_source_term_xi_lagrange_interpolant_providers_emitted:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_source_term_xi_lagrange_interpolant_providers_emitted ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_source_term_xi_lagrange_interpolant_providers_fit_m4_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_source_term_xi_lagrange_interpolant_providers_fit_m4_target ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_source_term_xi_intervalized_lagrange_providers_emitted:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_source_term_xi_intervalized_lagrange_providers_emitted ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_source_term_xi_intervalized_lagrange_providers_fit_m4_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_source_term_xi_intervalized_lagrange_providers_fit_m4_target ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_total_xi_intervalized_lagrange_providers_emitted:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_total_xi_intervalized_lagrange_providers_emitted ??
+        null,
+      affine_floor_requested_y44_row_local_all_n38_total_xi_intervalized_lagrange_providers_fit_m4_target:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.all_row_local_n38_total_xi_intervalized_lagrange_providers_fit_m4_target ??
+        null,
+      affine_floor_requested_y44_row_local_min_n38_directed_m4_sufficient_upper_bound:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.min_row_local_n38_directed_m4_sufficient_upper_bound ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_directed_m4_sufficient_width_to_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_directed_m4_sufficient_width_to_budget ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_true_stream_m4_to_required_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_true_stream_m4_to_required_budget ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_cubic_graph_m4_to_required_budget:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_cubic_graph_m4_to_required_budget ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_true_minus_residual_signed_m4_gap_to_required:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_true_minus_residual_signed_m4_gap_to_required ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_source_term_xi_jet_to_required_upper_ratio:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_source_term_xi_jet_to_required_upper_ratio ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_source_term_xi_jet_signed_gap_to_required:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_source_term_xi_jet_signed_gap_to_required ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_source_term_xi_lagrange_interpolant_to_required_upper_ratio:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_source_term_xi_lagrange_interpolant_to_required_upper_ratio ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_source_term_xi_lagrange_interpolant_signed_gap_to_required:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_source_term_xi_lagrange_interpolant_signed_gap_to_required ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_total_xi_intervalized_lagrange_to_required_upper_ratio:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_total_xi_intervalized_lagrange_to_required_upper_ratio ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_total_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_total_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required ??
+        null,
+      affine_floor_requested_y44_row_local_max_n38_total_xi_intervalized_lagrange_to_midpoint_abs_loss_factor:
+        requestedY44ProducerImageBudgetComparison
+          ?.producer_row_local_collar_replay
+          ?.max_row_local_n38_total_xi_intervalized_lagrange_to_midpoint_abs_loss_factor ??
         null,
       affine_floor_requested_xi_interval_cover_count:
         xiZetaScanEntry?.xi_interval_cover_summary?.interval_count ?? null,
@@ -31183,31 +31668,57 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
       certificate_interpretation: certificateInterpretation,
     };
   };
-  const rowLocalN38S37Profile = (() => {
+  const rowLocalN38S37UnavailableProfile = (polynomialDegree = null) => ({
+    available: false,
+    polynomial_degree: polynomialDegree,
+    solve_width_profile: null,
+    numerator_polynomial_diagnostic: null,
+    numerator_residual_profile: null,
+    sample_by_cell_id: new Map(),
+  });
+  const rowLocalN38S37SolveWidthProfile = (() => {
     try {
-      const polynomialDegree = Math.max(
-        1,
-        Math.min(3, Number(setup?.polynomialDegree ?? 2))
-      );
-      const solveWidthProfile = h38SolveWidthFactorizationProfileForRows({
-        targetSpeedInterval: setup.targetSpeedInterval,
-        rows: setup.comparisonRows,
-        branch,
-        transportProfile: setup.transportProfile,
-      });
+      return {
+        available: true,
+        solve_width_profile: h38SolveWidthFactorizationProfileForRows({
+          targetSpeedInterval: setup.targetSpeedInterval,
+          rows: setup.comparisonRows,
+          branch,
+          transportProfile: setup.transportProfile,
+        }),
+      };
+    } catch {
+      return {
+        available: false,
+        solve_width_profile: null,
+      };
+    }
+  })();
+  const rowLocalN38S37ProfileForDegree = (requestedDegree) => {
+    const polynomialDegree = Math.max(
+      1,
+      Math.min(3, Number(requestedDegree ?? 2))
+    );
+    if (rowLocalN38S37SolveWidthProfile.available !== true) {
+      return rowLocalN38S37UnavailableProfile(polynomialDegree);
+    }
+    try {
       const numeratorPolynomialDiagnostic =
         h38NumeratorPolynomialDegreeDiagnostics({
-          solveWidthProfile,
+          solveWidthProfile:
+            rowLocalN38S37SolveWidthProfile.solve_width_profile,
           degrees: [polynomialDegree],
         })[0];
       const numeratorResidualProfile = h38NumeratorGraphResidualProfile({
-        solveWidthProfile,
+        solveWidthProfile:
+          rowLocalN38S37SolveWidthProfile.solve_width_profile,
         numeratorPolynomialDiagnostic,
       });
       return {
         available: true,
         polynomial_degree: polynomialDegree,
-        solve_width_profile: solveWidthProfile,
+        solve_width_profile:
+          rowLocalN38S37SolveWidthProfile.solve_width_profile,
         numerator_polynomial_diagnostic: numeratorPolynomialDiagnostic,
         numerator_residual_profile: numeratorResidualProfile,
         sample_by_cell_id: new Map(
@@ -31218,16 +31729,14 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
         ),
       };
     } catch {
-      return {
-        available: false,
-        polynomial_degree: null,
-        solve_width_profile: null,
-        numerator_polynomial_diagnostic: null,
-        numerator_residual_profile: null,
-        sample_by_cell_id: new Map(),
-      };
+      return rowLocalN38S37UnavailableProfile(polynomialDegree);
     }
-  })();
+  };
+  const rowLocalN38S37Profile = rowLocalN38S37ProfileForDegree(
+    setup?.polynomialDegree ?? 2
+  );
+  const rowLocalN38S37TaylorProfile =
+    rowLocalN38S37ProfileForDegree(3);
   const rowLocalN38S37GraphRemainderTargetForRow = ({
     targetNumeratorWidthLower,
     graphIntervalWidth,
@@ -31268,6 +31777,1153 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
         "Certify a same-domain N38 graph remainder width below the remaining row-local S37 numerator budget before forming h38=-N38/S37.",
     };
   };
+  const rowLocalN38S37TaylorGraphRemainderTargetForRow = ({
+    targetNumeratorWidthLower,
+    taylorGraphIntervalWidth,
+    taylorMidpointResidualAbs,
+    taylorIntervalResidualWidth,
+  }) => {
+    const graphPlusMidpointWidth =
+      Number(taylorGraphIntervalWidth) +
+      2 * Math.abs(Number(taylorMidpointResidualAbs));
+    const remainderWidthBudget =
+      Number(targetNumeratorWidthLower) - graphPlusMidpointWidth;
+    const targetPositive = finitePositive(targetNumeratorWidthLower);
+    const budgetPositive = finitePositive(remainderWidthBudget);
+    const graphPlusMidpointInside =
+      targetPositive && graphPlusMidpointWidth <= targetNumeratorWidthLower;
+    return {
+      n38_taylor_graph_plus_midpoint_width: graphPlusMidpointWidth,
+      n38_taylor_graph_plus_midpoint_width_to_row_local_s37_target:
+        targetPositive ? graphPlusMidpointWidth / targetNumeratorWidthLower : null,
+      row_local_n38_taylor_same_domain_remainder_width_budget:
+        Number.isFinite(remainderWidthBudget) ? Math.max(0, remainderWidthBudget) : null,
+      row_local_n38_taylor_same_domain_remainder_width_budget_to_s37_target:
+        targetPositive && Number.isFinite(remainderWidthBudget)
+          ? Math.max(0, remainderWidthBudget) / targetNumeratorWidthLower
+          : null,
+      n38_taylor_interval_residual_width_to_same_domain_remainder_budget:
+        budgetPositive && Number.isFinite(Number(taylorIntervalResidualWidth))
+          ? Number(taylorIntervalResidualWidth) / remainderWidthBudget
+          : null,
+      n38_taylor_graph_plus_midpoint_inside_row_local_s37_target:
+        graphPlusMidpointInside,
+      row_local_n38_taylor_graph_remainder_target_status:
+        graphPlusMidpointInside && budgetPositive
+          ? "row-local-n38-cubic-taylor-remainder-target-has-headroom"
+          : "row-local-n38-cubic-taylor-remainder-target-open",
+      row_local_n38_taylor_graph_remainder_acceptance_inequality:
+        "n38_cubic_taylor_graph_interval_width + 2*abs(n38_cubic_taylor_midpoint_residual) + same_domain_cubic_taylor_remainder_width <= target_s37_division_numerator_width_lower",
+      row_local_n38_taylor_graph_remainder_certificate_route:
+        "Certify a same-domain cubic N38 Taylor remainder width below the remaining row-local S37 numerator budget before forming h38=-N38/S37.",
+    };
+  };
+  const rowLocalN38TaylorProxyTargetForRow = ({
+    profile,
+    sample,
+    sameDomainRemainderWidthBudget,
+  }) => {
+    const stencilSamples =
+      profile?.numerator_residual_profile?.samples ?? [];
+    const xiMidpoints = stencilSamples.map((entry) =>
+      Number(entry.xi_midpoint)
+    );
+    const numeratorValues = stencilSamples.map((entry) =>
+      Number(entry.numerator_midpoint)
+    );
+    const graphValues = stencilSamples.map((entry) =>
+      Number(entry.graph_midpoint)
+    );
+    const residualValues = stencilSamples.map((entry) =>
+      Number(entry.midpoint_residual)
+    );
+    const xiHalfWidth = Array.isArray(sample?.xi_interval)
+      ? intervalWidth(sample.xi_interval) / 2
+      : null;
+    const remainderAbsUpperBudget = finiteNonnegative(
+      sameDomainRemainderWidthBudget
+    )
+      ? Number(sameDomainRemainderWidthBudget) / 2
+      : null;
+    const requiredFourthDerivativeUpper =
+      fourthDerivativeUpperForTaylorRemainder({
+        remainderUpper: remainderAbsUpperBudget,
+        xiHalfWidth,
+      });
+    const stencilMetrics = fourthDifferenceStencilMetrics({
+      xiMidpoints,
+      values: residualValues,
+      requiredFourthDerivativeUpper,
+    });
+    const trueStreamStencilMetrics = fourthDifferenceStencilMetrics({
+      xiMidpoints,
+      values: numeratorValues,
+      requiredFourthDerivativeUpper,
+    });
+    const cubicGraphStencilMetrics = fourthDifferenceStencilMetrics({
+      xiMidpoints,
+      values: graphValues,
+      requiredFourthDerivativeUpper,
+    });
+    const observedNonuniformM4 = finiteNonnegative(
+      stencilMetrics?.nonuniform_fourth_derivative_estimate
+    )
+      ? Number(stencilMetrics.nonuniform_fourth_derivative_estimate)
+      : null;
+    const observedUniformM4 = finiteNonnegative(
+      stencilMetrics?.uniform_fourth_derivative_estimate
+    )
+      ? Number(stencilMetrics.uniform_fourth_derivative_estimate)
+      : null;
+    const observedM4 = finiteNonnegative(observedNonuniformM4)
+      ? observedNonuniformM4
+      : observedUniformM4;
+    const trueStreamNonuniformM4 = finiteNonnegative(
+      trueStreamStencilMetrics?.nonuniform_fourth_derivative_estimate
+    )
+      ? Number(trueStreamStencilMetrics.nonuniform_fourth_derivative_estimate)
+      : null;
+    const cubicGraphNonuniformM4 = finiteNonnegative(
+      cubicGraphStencilMetrics?.nonuniform_fourth_derivative_estimate
+    )
+      ? Number(cubicGraphStencilMetrics.nonuniform_fourth_derivative_estimate)
+      : null;
+    const trueStreamM4ToRequired =
+      finitePositive(requiredFourthDerivativeUpper) &&
+      finiteNonnegative(trueStreamNonuniformM4)
+        ? Number(trueStreamNonuniformM4) /
+          Number(requiredFourthDerivativeUpper)
+        : null;
+    const cubicGraphM4ToRequired =
+      finitePositive(requiredFourthDerivativeUpper) &&
+      finiteNonnegative(cubicGraphNonuniformM4)
+        ? Number(cubicGraphNonuniformM4) /
+          Number(requiredFourthDerivativeUpper)
+        : null;
+    const residualSignedM4 =
+      stencilMetrics?.nonuniform_fourth_derivative_signed_estimate ?? null;
+    const trueStreamSignedM4 =
+      trueStreamStencilMetrics
+        ?.nonuniform_fourth_derivative_signed_estimate ?? null;
+    const cubicGraphSignedM4 =
+      cubicGraphStencilMetrics
+        ?.nonuniform_fourth_derivative_signed_estimate ?? null;
+    const trueMinusResidualSignedM4Gap =
+      Number.isFinite(Number(trueStreamSignedM4)) &&
+      Number.isFinite(Number(residualSignedM4))
+        ? Math.abs(Number(trueStreamSignedM4) - Number(residualSignedM4))
+        : null;
+    const trueMinusResidualSignedM4GapToRequired =
+      finitePositive(requiredFourthDerivativeUpper) &&
+      finiteNonnegative(trueMinusResidualSignedM4Gap)
+        ? Number(trueMinusResidualSignedM4Gap) /
+          Number(requiredFourthDerivativeUpper)
+        : null;
+    const trueStreamFiniteDifferenceProbeStatus =
+      finiteNonnegative(trueStreamM4ToRequired) &&
+      trueStreamM4ToRequired <= 1 &&
+      finiteNonnegative(cubicGraphM4ToRequired) &&
+      cubicGraphM4ToRequired <= 1
+        ? "row-local-n38-true-stream-finite-difference-probe-inside-m4-ceiling"
+        : "row-local-n38-true-stream-finite-difference-probe-is-not-certificate-route";
+    const sourceTermXiJetRows =
+      H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map((term) => {
+        const values = stencilSamples.map((entry) =>
+          Number(entry?.numerator_term_midpoints?.[term])
+        );
+        const metrics = fourthDifferenceStencilMetrics({
+          xiMidpoints,
+          values,
+          requiredFourthDerivativeUpper,
+        });
+        const signedEstimate =
+          metrics?.nonuniform_fourth_derivative_signed_estimate ?? null;
+        const derivativeInterval =
+          Number.isFinite(Number(signedEstimate))
+            ? pointInterval(Number(signedEstimate))
+            : null;
+        const derivativeAbsUpper =
+          derivativeInterval === null
+            ? null
+            : intervalAbsUpper(derivativeInterval);
+        return {
+          term,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          stencil_sample_count: stencilSamples.length,
+          xi_midpoint_span:
+            xiMidpoints.length === 5
+              ? [xiMidpoints[0], xiMidpoints[4]]
+              : null,
+          midpoint_values: values.every(Number.isFinite) ? values : [],
+          uniform_fourth_derivative_signed_estimate:
+            metrics?.uniform_fourth_derivative_signed_estimate ?? null,
+          nonuniform_fourth_derivative_signed_estimate:
+            signedEstimate,
+          nonuniform_fourth_derivative_abs_estimate:
+            metrics?.nonuniform_fourth_derivative_estimate ?? null,
+          nonuniform_fourth_derivative_to_required_ratio:
+            metrics?.nonuniform_fourth_derivative_to_required_ratio ??
+            null,
+          derivative_interval_d4: derivativeInterval,
+          derivative_abs_upper: derivativeAbsUpper,
+          dependency_chain:
+            "finite-stencil midpoint source-term jet from evaluateH38RecurrenceNumeratorBeforeSolve; not directed-rounded",
+        };
+      });
+    const sourceTermXiJetInputsComplete =
+      sourceTermXiJetRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      sourceTermXiJetRows.every(
+        (row) => row.derivative_interval_d4 !== null
+      );
+    const sourceTermXiJetInterval =
+      sourceTermXiJetInputsComplete
+        ? sourceTermXiJetRows
+            .map((row) => row.derivative_interval_d4)
+            .reduce(
+              (total, interval) => root.addIntervals(total, interval),
+              [0, 0]
+            )
+        : null;
+    const sourceTermXiJetAbsUpper =
+      sourceTermXiJetInterval === null
+        ? null
+        : intervalAbsUpper(sourceTermXiJetInterval);
+    const sourceTermXiJetToRequired =
+      sourceTermXiJetAbsUpper !== null &&
+      finiteNonnegative(sourceTermXiJetAbsUpper) &&
+      finitePositive(requiredFourthDerivativeUpper)
+        ? Number(sourceTermXiJetAbsUpper) /
+          Number(requiredFourthDerivativeUpper)
+        : null;
+    const sourceTermXiJetFitsM4 =
+      finiteNonnegative(sourceTermXiJetToRequired) &&
+      sourceTermXiJetToRequired <= 1;
+    const sourceTermXiJetSignedGapToTrueStream =
+      sourceTermXiJetInterval !== null &&
+      Number.isFinite(Number(trueStreamSignedM4))
+        ? Math.abs(
+            intervalMidpoint(sourceTermXiJetInterval) -
+              Number(trueStreamSignedM4)
+          )
+        : null;
+    const sourceTermXiJetSignedGapToRequired =
+      finiteNonnegative(sourceTermXiJetSignedGapToTrueStream) &&
+      finitePositive(requiredFourthDerivativeUpper)
+        ? Number(sourceTermXiJetSignedGapToTrueStream) /
+          Number(requiredFourthDerivativeUpper)
+        : null;
+    const sourceTermXiJetProviderCandidate = {
+      status: sourceTermXiJetInputsComplete
+        ? sourceTermXiJetFitsM4
+          ? "row-local-n38-source-term-finite-stencil-xi-jet-provider-fits-m4-target"
+          : "row-local-n38-source-term-finite-stencil-xi-jet-provider-exceeds-m4-target"
+        : "row-local-n38-source-term-finite-stencil-xi-jet-provider-unavailable",
+      provider_kind:
+        "finite-stencil-source-term-xi-jet-provider-candidate",
+      proof_status:
+        "finite-stencil-midpoint-jet-not-directed-rounded",
+      evaluator_source:
+        "evaluateH38RecurrenceNumeratorBeforeSolve",
+      cell_id: sample?.cell_id ?? null,
+      speed_interval: Array.isArray(sample?.speed_interval)
+        ? sample.speed_interval.map(Number)
+        : null,
+      xi_interval: Array.isArray(sample?.xi_interval)
+        ? sample.xi_interval.map(Number)
+        : null,
+      source_terms: [...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS],
+      source_terms_with_zero_fourth_xi_derivative: ["constant_minus_two"],
+      derivative_order: 4,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      stencil_sample_count: stencilSamples.length,
+      xi_midpoint_span:
+        xiMidpoints.length === 5 ? [xiMidpoints[0], xiMidpoints[4]] : null,
+      required_fourth_derivative_upper:
+        requiredFourthDerivativeUpper,
+      source_term_xi_jet_rows: sourceTermXiJetRows,
+      source_term_derivative_inputs_for_scaffold:
+        sourceTermXiJetRows.map((row) => ({
+          cell_id: sample?.cell_id ?? null,
+          speed_interval: Array.isArray(sample?.speed_interval)
+            ? sample.speed_interval.map(Number)
+            : null,
+          xi_interval: Array.isArray(sample?.xi_interval)
+            ? sample.xi_interval.map(Number)
+            : null,
+          term: row.term,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          derivative_interval_d4: row.derivative_interval_d4,
+          dependency_chain: row.dependency_chain,
+        })),
+      source_term_xi_jet_interval: sourceTermXiJetInterval,
+      source_term_xi_jet_abs_upper: sourceTermXiJetAbsUpper,
+      source_term_xi_jet_to_required_upper_ratio:
+        sourceTermXiJetToRequired,
+      source_term_xi_jet_fits_m4_target: sourceTermXiJetFitsM4,
+      source_term_xi_jet_signed_gap_to_true_stream:
+        sourceTermXiJetSignedGapToTrueStream,
+      source_term_xi_jet_signed_gap_to_required:
+        sourceTermXiJetSignedGapToRequired,
+      certificate_route:
+        "Replace these finite-stencil midpoint jets with directed-rounded same-domain source-term xi-derivative intervals, then feed the same slots into the analytic derivative-provider scaffold.",
+      claim_boundary: {
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+    const trueStreamLagrangeMetrics =
+      degreeFourInterpolantFourthDerivativeMetrics({
+        xiMidpoints,
+        values: numeratorValues,
+        requiredFourthDerivativeUpper,
+        finiteStencilSignedEstimate: trueStreamSignedM4,
+      });
+    const sourceTermMidpointSumValues =
+      xiMidpoints.length === 5
+        ? stencilSamples.map((entry) =>
+            H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.reduce(
+              (total, term) =>
+                total + Number(entry?.numerator_term_midpoints?.[term]),
+              0
+            )
+          )
+        : [];
+    const sourceTermMidpointSumReplayMaxAbsGap =
+      sourceTermMidpointSumValues.length === numeratorValues.length &&
+      sourceTermMidpointSumValues.every(Number.isFinite) &&
+      numeratorValues.every(Number.isFinite)
+        ? Math.max(
+            ...sourceTermMidpointSumValues.map((value, index) =>
+              Math.abs(value - numeratorValues[index])
+            )
+          )
+        : null;
+    const sourceTermXiLagrangeInterpolantRows =
+      sourceTermXiJetRows.map((jetRow) => {
+        const metrics = degreeFourInterpolantFourthDerivativeMetrics({
+          xiMidpoints,
+          values: jetRow.midpoint_values,
+          requiredFourthDerivativeUpper,
+          finiteStencilSignedEstimate:
+            jetRow.nonuniform_fourth_derivative_signed_estimate,
+        });
+        const signedEstimate =
+          metrics?.interpolant_fourth_derivative_signed_estimate ?? null;
+        const derivativeInterval =
+          Number.isFinite(Number(signedEstimate))
+            ? pointInterval(Number(signedEstimate))
+            : null;
+        const derivativeAbsUpper =
+          derivativeInterval === null
+            ? null
+            : intervalAbsUpper(derivativeInterval);
+        return {
+          term: jetRow.term,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          interpolation_node_count: stencilSamples.length,
+          xi_midpoint_span:
+            xiMidpoints.length === 5
+              ? [xiMidpoints[0], xiMidpoints[4]]
+              : null,
+          midpoint_values: jetRow.midpoint_values,
+          lagrange_polynomial_degree:
+            metrics?.interpolant_degree ?? null,
+          lagrange_coefficients:
+            metrics?.interpolant_coefficients ?? [],
+          lagrange_quartic_coefficient:
+            metrics?.interpolant_quartic_coefficient ?? null,
+          lagrange_fourth_derivative_signed_estimate:
+            signedEstimate,
+          lagrange_fourth_derivative_abs_estimate:
+            metrics?.interpolant_fourth_derivative_abs_estimate ?? null,
+          lagrange_fourth_derivative_to_required_ratio:
+            metrics?.interpolant_fourth_derivative_to_required_ratio ??
+            null,
+          divided_difference_fourth_derivative_signed_estimate:
+            jetRow.nonuniform_fourth_derivative_signed_estimate,
+          lagrange_to_divided_difference_signed_gap:
+            metrics?.interpolant_to_finite_stencil_signed_gap ?? null,
+          lagrange_to_divided_difference_signed_gap_to_required:
+            metrics
+              ?.interpolant_to_finite_stencil_signed_gap_to_required ??
+            null,
+          lagrange_node_replay_max_abs_gap:
+            metrics?.interpolant_node_replay_max_abs_gap ?? null,
+          derivative_interval_d4: derivativeInterval,
+          derivative_abs_upper: derivativeAbsUpper,
+          dependency_chain:
+            "degree-four Lagrange source-term interpolant on the live H38 producer stencil; not directed-rounded",
+        };
+      });
+    const sourceTermXiLagrangeInterpolantInputsComplete =
+      sourceTermXiLagrangeInterpolantRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      sourceTermXiLagrangeInterpolantRows.every(
+        (row) => row.derivative_interval_d4 !== null
+      );
+    const sourceTermXiLagrangeInterpolantInterval =
+      sourceTermXiLagrangeInterpolantInputsComplete
+        ? sourceTermXiLagrangeInterpolantRows
+            .map((row) => row.derivative_interval_d4)
+            .reduce(
+              (total, interval) => root.addIntervals(total, interval),
+              [0, 0]
+            )
+        : null;
+    const sourceTermXiLagrangeInterpolantAbsUpper =
+      sourceTermXiLagrangeInterpolantInterval === null
+        ? null
+        : intervalAbsUpper(sourceTermXiLagrangeInterpolantInterval);
+    const sourceTermXiLagrangeInterpolantToRequired =
+      sourceTermXiLagrangeInterpolantAbsUpper !== null &&
+      finiteNonnegative(sourceTermXiLagrangeInterpolantAbsUpper) &&
+      finitePositive(requiredFourthDerivativeUpper)
+        ? Number(sourceTermXiLagrangeInterpolantAbsUpper) /
+          Number(requiredFourthDerivativeUpper)
+        : null;
+    const sourceTermXiLagrangeInterpolantFitsM4 =
+      finiteNonnegative(sourceTermXiLagrangeInterpolantToRequired) &&
+      sourceTermXiLagrangeInterpolantToRequired <= 1;
+    const sourceTermXiLagrangeInterpolantSignedGapToTrueStream =
+      sourceTermXiLagrangeInterpolantInterval !== null &&
+      Number.isFinite(
+        Number(
+          trueStreamLagrangeMetrics
+            ?.interpolant_fourth_derivative_signed_estimate
+        )
+      )
+        ? Math.abs(
+            intervalMidpoint(sourceTermXiLagrangeInterpolantInterval) -
+              Number(
+                trueStreamLagrangeMetrics
+                  .interpolant_fourth_derivative_signed_estimate
+              )
+          )
+        : null;
+    const sourceTermXiLagrangeInterpolantSignedGapToRequired =
+      finiteNonnegative(
+        sourceTermXiLagrangeInterpolantSignedGapToTrueStream
+      ) && finitePositive(requiredFourthDerivativeUpper)
+        ? Number(sourceTermXiLagrangeInterpolantSignedGapToTrueStream) /
+          Number(requiredFourthDerivativeUpper)
+        : null;
+    const sourceTermXiLagrangeInterpolantToFiniteJetSignedGap =
+      sourceTermXiLagrangeInterpolantInterval !== null &&
+      sourceTermXiJetInterval !== null
+        ? Math.abs(
+            intervalMidpoint(sourceTermXiLagrangeInterpolantInterval) -
+              intervalMidpoint(sourceTermXiJetInterval)
+          )
+        : null;
+    const sourceTermXiLagrangeInterpolantToFiniteJetSignedGapToRequired =
+      finiteNonnegative(
+        sourceTermXiLagrangeInterpolantToFiniteJetSignedGap
+      ) && finitePositive(requiredFourthDerivativeUpper)
+        ? Number(sourceTermXiLagrangeInterpolantToFiniteJetSignedGap) /
+          Number(requiredFourthDerivativeUpper)
+        : null;
+    const sourceTermXiLagrangeInterpolantProviderCandidate = {
+      status: sourceTermXiLagrangeInterpolantInputsComplete
+        ? sourceTermXiLagrangeInterpolantFitsM4
+          ? "row-local-n38-source-term-lagrange-interpolant-provider-fits-m4-target"
+          : "row-local-n38-source-term-lagrange-interpolant-provider-exceeds-m4-target"
+        : "row-local-n38-source-term-lagrange-interpolant-provider-unavailable",
+      provider_kind:
+        "degree-four-lagrange-source-term-xi-interpolant-provider-candidate",
+      proof_status:
+        "degree-four-lagrange-interpolant-midpoint-jet-not-directed-rounded",
+      evaluator_source:
+        "evaluateH38RecurrenceNumeratorBeforeSolve",
+      normal_form_identity:
+        "The fourth derivative of the five-node degree-four source-term interpolant is 24 times its quartic coefficient and must match the fourth divided difference on the same xi nodes.",
+      cell_id: sample?.cell_id ?? null,
+      speed_interval: Array.isArray(sample?.speed_interval)
+        ? sample.speed_interval.map(Number)
+        : null,
+      xi_interval: Array.isArray(sample?.xi_interval)
+        ? sample.xi_interval.map(Number)
+        : null,
+      source_terms: [...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS],
+      source_terms_with_zero_fourth_xi_derivative: ["constant_minus_two"],
+      derivative_order: 4,
+      interpolation_node_count: stencilSamples.length,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      xi_midpoint_span:
+        xiMidpoints.length === 5 ? [xiMidpoints[0], xiMidpoints[4]] : null,
+      required_fourth_derivative_upper:
+        requiredFourthDerivativeUpper,
+      true_stream_lagrange_fourth_derivative_signed_estimate:
+        trueStreamLagrangeMetrics
+          ?.interpolant_fourth_derivative_signed_estimate ?? null,
+      true_stream_lagrange_to_finite_stencil_signed_gap:
+        trueStreamLagrangeMetrics
+          ?.interpolant_to_finite_stencil_signed_gap ?? null,
+      true_stream_lagrange_to_finite_stencil_signed_gap_to_required:
+        trueStreamLagrangeMetrics
+          ?.interpolant_to_finite_stencil_signed_gap_to_required ??
+        null,
+      source_term_midpoint_sum_replay_max_abs_gap:
+        sourceTermMidpointSumReplayMaxAbsGap,
+      source_term_xi_lagrange_interpolant_rows:
+        sourceTermXiLagrangeInterpolantRows,
+      source_term_derivative_inputs_for_scaffold:
+        sourceTermXiLagrangeInterpolantRows.map((row) => ({
+          cell_id: sample?.cell_id ?? null,
+          speed_interval: Array.isArray(sample?.speed_interval)
+            ? sample.speed_interval.map(Number)
+            : null,
+          xi_interval: Array.isArray(sample?.xi_interval)
+            ? sample.xi_interval.map(Number)
+            : null,
+          term: row.term,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          derivative_interval_d4: row.derivative_interval_d4,
+          dependency_chain: row.dependency_chain,
+        })),
+      source_term_xi_lagrange_interpolant_interval:
+        sourceTermXiLagrangeInterpolantInterval,
+      source_term_xi_lagrange_interpolant_abs_upper:
+        sourceTermXiLagrangeInterpolantAbsUpper,
+      source_term_xi_lagrange_interpolant_to_required_upper_ratio:
+        sourceTermXiLagrangeInterpolantToRequired,
+      source_term_xi_lagrange_interpolant_fits_m4_target:
+        sourceTermXiLagrangeInterpolantFitsM4,
+      source_term_xi_lagrange_interpolant_signed_gap_to_true_stream:
+        sourceTermXiLagrangeInterpolantSignedGapToTrueStream,
+      source_term_xi_lagrange_interpolant_signed_gap_to_required:
+        sourceTermXiLagrangeInterpolantSignedGapToRequired,
+      source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap:
+        sourceTermXiLagrangeInterpolantToFiniteJetSignedGap,
+      source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required:
+        sourceTermXiLagrangeInterpolantToFiniteJetSignedGapToRequired,
+      certificate_route:
+        "Promote this interpolant identity only after replacing midpoint samples with directed-rounded same-domain source-term derivative intervals on the full xi domain.",
+      claim_boundary: {
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+    const sourceTermXiIntervalizedLagrangeRows =
+      sourceTermXiLagrangeInterpolantRows.map((lagrangeRow) => {
+        const termValueIntervals = stencilSamples.map((entry) =>
+          finiteOrderedIntervalOrNull(
+            entry?.numerator_term_intervals?.[lagrangeRow.term]
+          )
+        );
+        const metrics =
+          degreeFourIntervalizedInterpolantFourthDerivativeMetrics({
+            xiMidpoints,
+            valueIntervals: termValueIntervals,
+            requiredFourthDerivativeUpper,
+            midpointSignedEstimate:
+              lagrangeRow.lagrange_fourth_derivative_signed_estimate,
+          });
+        return {
+          term: lagrangeRow.term,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          interpolation_node_count: stencilSamples.length,
+          xi_midpoint_span:
+            xiMidpoints.length === 5
+              ? [xiMidpoints[0], xiMidpoints[4]]
+              : null,
+          node_value_intervals: termValueIntervals.every(
+            (interval) => interval !== null
+          )
+            ? termValueIntervals
+            : [],
+          node_value_interval_widths: termValueIntervals.every(
+            (interval) => interval !== null
+          )
+            ? termValueIntervals.map(intervalWidth)
+            : [],
+          midpoint_values: lagrangeRow.midpoint_values,
+          lagrange_fourth_derivative_weights:
+            metrics?.lagrange_fourth_derivative_weights ?? [],
+          weighted_node_interval_rows:
+            metrics?.weighted_node_interval_rows ?? [],
+          intervalized_lagrange_fourth_derivative_interval:
+            metrics?.derivative_interval_d4 ?? null,
+          intervalized_lagrange_fourth_derivative_width:
+            metrics?.derivative_interval_width ?? null,
+          intervalized_lagrange_fourth_derivative_abs_upper:
+            metrics?.derivative_abs_upper ?? null,
+          intervalized_lagrange_fourth_derivative_to_required_ratio:
+            metrics?.derivative_to_required_ratio ?? null,
+          midpoint_lagrange_fourth_derivative_signed_estimate:
+            metrics?.midpoint_signed_estimate ?? null,
+          midpoint_estimate_inside_intervalized_derivative:
+            metrics?.midpoint_estimate_inside_derivative_interval ?? false,
+          midpoint_estimate_gap_to_intervalized_derivative:
+            metrics?.midpoint_estimate_gap_to_derivative_interval ?? null,
+          midpoint_estimate_gap_to_required:
+            metrics?.midpoint_estimate_gap_to_required ?? null,
+          intervalized_abs_upper_to_midpoint_abs_ratio:
+            metrics?.interval_abs_upper_to_midpoint_abs_ratio ?? null,
+          derivative_interval_d4: metrics?.derivative_interval_d4 ?? null,
+          derivative_abs_upper: metrics?.derivative_abs_upper ?? null,
+          dependency_chain:
+            "source-term node intervals propagated through five-node Lagrange d4 weights; not directed-rounded same-domain",
+        };
+      });
+    const sourceTermXiIntervalizedLagrangeInputsComplete =
+      sourceTermXiIntervalizedLagrangeRows.length ===
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      sourceTermXiIntervalizedLagrangeRows.every(
+        (row) => row.derivative_interval_d4 !== null
+      );
+    const sourceTermXiIntervalizedLagrangeInterval =
+      sourceTermXiIntervalizedLagrangeInputsComplete
+        ? sourceTermXiIntervalizedLagrangeRows
+            .map((row) => row.derivative_interval_d4)
+            .reduce(
+              (total, interval) => root.addIntervals(total, interval),
+              [0, 0]
+            )
+        : null;
+    const sourceTermXiIntervalizedLagrangeAbsUpper =
+      sourceTermXiIntervalizedLagrangeInterval === null
+        ? null
+        : intervalAbsUpper(sourceTermXiIntervalizedLagrangeInterval);
+    const sourceTermXiIntervalizedLagrangeToRequired =
+      sourceTermXiIntervalizedLagrangeAbsUpper !== null &&
+      finiteNonnegative(sourceTermXiIntervalizedLagrangeAbsUpper) &&
+      finitePositive(requiredFourthDerivativeUpper)
+        ? Number(sourceTermXiIntervalizedLagrangeAbsUpper) /
+          Number(requiredFourthDerivativeUpper)
+        : null;
+    const sourceTermXiIntervalizedLagrangeFitsM4 =
+      finiteNonnegative(sourceTermXiIntervalizedLagrangeToRequired) &&
+      sourceTermXiIntervalizedLagrangeToRequired <= 1;
+    const sourceTermXiIntervalizedLagrangeMidpointEstimate =
+      sourceTermXiLagrangeInterpolantInterval === null
+        ? null
+        : intervalMidpoint(sourceTermXiLagrangeInterpolantInterval);
+    const sourceTermXiIntervalizedLagrangeContainsMidpointEstimate =
+      sourceTermXiIntervalizedLagrangeInterval !== null &&
+      sourceTermXiIntervalizedLagrangeMidpointEstimate !== null &&
+      intervalContainsNumber(
+        sourceTermXiIntervalizedLagrangeInterval,
+        sourceTermXiIntervalizedLagrangeMidpointEstimate
+      );
+    const sourceTermXiIntervalizedLagrangeGapToMidpointEstimate =
+      sourceTermXiIntervalizedLagrangeInterval !== null &&
+      sourceTermXiIntervalizedLagrangeMidpointEstimate !== null
+        ? intervalDistanceToNumber(
+            sourceTermXiIntervalizedLagrangeInterval,
+            sourceTermXiIntervalizedLagrangeMidpointEstimate
+          )
+        : null;
+    const sourceTermXiIntervalizedLagrangeGapToMidpointEstimateToRequired =
+      finiteNonnegative(
+        sourceTermXiIntervalizedLagrangeGapToMidpointEstimate
+      ) && finitePositive(requiredFourthDerivativeUpper)
+        ? Number(sourceTermXiIntervalizedLagrangeGapToMidpointEstimate) /
+          Number(requiredFourthDerivativeUpper)
+        : null;
+    const sourceTermXiIntervalizedLagrangeToMidpointAbsLossFactor =
+      finitePositive(
+        Math.abs(Number(sourceTermXiIntervalizedLagrangeMidpointEstimate))
+      ) && finiteNonnegative(sourceTermXiIntervalizedLagrangeAbsUpper)
+        ? sourceTermXiIntervalizedLagrangeAbsUpper /
+          Math.abs(Number(sourceTermXiIntervalizedLagrangeMidpointEstimate))
+        : null;
+    const sourceTermXiIntervalizedLagrangeProviderCandidate = {
+      status: sourceTermXiIntervalizedLagrangeInputsComplete
+        ? sourceTermXiIntervalizedLagrangeFitsM4
+          ? "row-local-n38-source-term-intervalized-lagrange-provider-fits-m4-target"
+          : "row-local-n38-source-term-intervalized-lagrange-provider-exceeds-m4-target"
+        : "row-local-n38-source-term-intervalized-lagrange-provider-unavailable",
+      provider_kind:
+        "intervalized-degree-four-lagrange-source-term-xi-provider-candidate",
+      proof_status:
+        "source-term-node-intervals-propagated-through-lagrange-weights-not-directed-rounded-same-domain",
+      evaluator_source:
+        "evaluateH38RecurrenceNumeratorBeforeSolve",
+      normal_form_identity:
+        "The intervalized source-term provider applies the same five-node degree-four Lagrange d4 weights directly to each node coefficient interval before any absolute Cauchy envelope.",
+      cell_id: sample?.cell_id ?? null,
+      speed_interval: Array.isArray(sample?.speed_interval)
+        ? sample.speed_interval.map(Number)
+        : null,
+      xi_interval: Array.isArray(sample?.xi_interval)
+        ? sample.xi_interval.map(Number)
+        : null,
+      source_terms: [...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS],
+      source_terms_with_zero_fourth_xi_derivative: ["constant_minus_two"],
+      derivative_order: 4,
+      interpolation_node_count: stencilSamples.length,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      xi_midpoint_span:
+        xiMidpoints.length === 5 ? [xiMidpoints[0], xiMidpoints[4]] : null,
+      required_fourth_derivative_upper:
+        requiredFourthDerivativeUpper,
+      source_term_xi_intervalized_lagrange_rows:
+        sourceTermXiIntervalizedLagrangeRows,
+      source_term_derivative_inputs_for_scaffold:
+        sourceTermXiIntervalizedLagrangeRows.map((row) => ({
+          cell_id: sample?.cell_id ?? null,
+          speed_interval: Array.isArray(sample?.speed_interval)
+            ? sample.speed_interval.map(Number)
+            : null,
+          xi_interval: Array.isArray(sample?.xi_interval)
+            ? sample.xi_interval.map(Number)
+            : null,
+          term: row.term,
+          source_y_order: H38_NUMERATOR_Y_ORDER,
+          derivative_interval_d4: row.derivative_interval_d4,
+          dependency_chain: row.dependency_chain,
+        })),
+      source_term_xi_intervalized_lagrange_interval:
+        sourceTermXiIntervalizedLagrangeInterval,
+      source_term_xi_intervalized_lagrange_abs_upper:
+        sourceTermXiIntervalizedLagrangeAbsUpper,
+      source_term_xi_intervalized_lagrange_to_required_upper_ratio:
+        sourceTermXiIntervalizedLagrangeToRequired,
+      source_term_xi_intervalized_lagrange_fits_m4_target:
+        sourceTermXiIntervalizedLagrangeFitsM4,
+      source_term_xi_intervalized_lagrange_midpoint_estimate:
+        sourceTermXiIntervalizedLagrangeMidpointEstimate,
+      source_term_xi_intervalized_lagrange_contains_midpoint_estimate:
+        sourceTermXiIntervalizedLagrangeContainsMidpointEstimate,
+      source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate:
+        sourceTermXiIntervalizedLagrangeGapToMidpointEstimate,
+      source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required:
+        sourceTermXiIntervalizedLagrangeGapToMidpointEstimateToRequired,
+      source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor:
+        sourceTermXiIntervalizedLagrangeToMidpointAbsLossFactor,
+      certificate_route:
+        "If this intervalized same-node Lagrange provider fits, the remaining step is directed-rounded producer-image provenance for the node coefficient intervals; if it exceeds, the exact interval dependency loss is localized to these node source-term intervals.",
+      claim_boundary: {
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+    const totalN38NodeValueIntervals = stencilSamples.map((entry) =>
+      finiteOrderedIntervalOrNull(entry?.numerator_interval)
+    );
+    const totalN38IntervalizedLagrangeMetrics =
+      degreeFourIntervalizedInterpolantFourthDerivativeMetrics({
+        xiMidpoints,
+        valueIntervals: totalN38NodeValueIntervals,
+        requiredFourthDerivativeUpper,
+        midpointSignedEstimate:
+          trueStreamLagrangeMetrics
+            ?.interpolant_fourth_derivative_signed_estimate,
+      });
+    const totalN38IntervalizedLagrangeInterval =
+      totalN38IntervalizedLagrangeMetrics?.derivative_interval_d4 ?? null;
+    const totalN38IntervalizedLagrangeAbsUpper =
+      totalN38IntervalizedLagrangeMetrics?.derivative_abs_upper ?? null;
+    const totalN38IntervalizedLagrangeToRequired =
+      totalN38IntervalizedLagrangeMetrics?.derivative_to_required_ratio ??
+      null;
+    const totalN38IntervalizedLagrangeFitsM4 =
+      finiteNonnegative(totalN38IntervalizedLagrangeToRequired) &&
+      totalN38IntervalizedLagrangeToRequired <= 1;
+    const totalN38IntervalizedLagrangeMidpointEstimate =
+      totalN38IntervalizedLagrangeMetrics?.midpoint_signed_estimate ?? null;
+    const totalN38IntervalizedLagrangeGapToMidpointEstimate =
+      totalN38IntervalizedLagrangeMetrics
+        ?.midpoint_estimate_gap_to_derivative_interval ?? null;
+    const totalN38IntervalizedLagrangeGapToMidpointEstimateToRequired =
+      totalN38IntervalizedLagrangeMetrics
+        ?.midpoint_estimate_gap_to_required ?? null;
+    const totalN38IntervalizedLagrangeToMidpointAbsLossFactor =
+      totalN38IntervalizedLagrangeMetrics
+        ?.interval_abs_upper_to_midpoint_abs_ratio ?? null;
+    const totalN38IntervalizedLagrangeInputsComplete =
+      totalN38IntervalizedLagrangeMetrics !== null &&
+      totalN38IntervalizedLagrangeInterval !== null;
+    const totalN38IntervalizedLagrangeProviderCandidate = {
+      status: totalN38IntervalizedLagrangeInputsComplete
+        ? totalN38IntervalizedLagrangeFitsM4
+          ? "row-local-n38-total-intervalized-lagrange-provider-fits-m4-target"
+          : "row-local-n38-total-intervalized-lagrange-provider-exceeds-m4-target"
+        : "row-local-n38-total-intervalized-lagrange-provider-unavailable",
+      provider_kind:
+        "intervalized-degree-four-total-n38-xi-provider-candidate",
+      proof_status:
+        "total-n38-node-intervals-propagated-through-lagrange-weights-not-directed-rounded-continuous-domain",
+      evaluator_source:
+        "evaluateH38RecurrenceNumeratorBeforeSolve",
+      normal_form_identity:
+        "Apply the five-node degree-four Lagrange d4 weights directly to the total signed N38 node intervals, preserving intra-node source cancellation before any termwise derivative interval split.",
+      source_expression:
+        "N38=[y^42](delta^2*nu^{-2}-2+sin(phi)+sin(delta)) with h38=0",
+      cell_id: sample?.cell_id ?? null,
+      speed_interval: Array.isArray(sample?.speed_interval)
+        ? sample.speed_interval.map(Number)
+        : null,
+      xi_interval: Array.isArray(sample?.xi_interval)
+        ? sample.xi_interval.map(Number)
+        : null,
+      source_terms: [...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS],
+      source_terms_with_zero_fourth_xi_derivative: ["constant_minus_two"],
+      derivative_order: 4,
+      interpolation_node_count: stencilSamples.length,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      xi_midpoint_span:
+        xiMidpoints.length === 5 ? [xiMidpoints[0], xiMidpoints[4]] : null,
+      required_fourth_derivative_upper:
+        requiredFourthDerivativeUpper,
+      node_value_intervals: totalN38NodeValueIntervals.every(
+        (interval) => interval !== null
+      )
+        ? totalN38NodeValueIntervals
+        : [],
+      node_value_interval_widths: totalN38NodeValueIntervals.every(
+        (interval) => interval !== null
+      )
+        ? totalN38NodeValueIntervals.map(intervalWidth)
+        : [],
+      midpoint_values: numeratorValues.every(Number.isFinite)
+        ? numeratorValues
+        : [],
+      lagrange_fourth_derivative_weights:
+        totalN38IntervalizedLagrangeMetrics
+          ?.lagrange_fourth_derivative_weights ?? [],
+      weighted_node_interval_rows:
+        totalN38IntervalizedLagrangeMetrics?.weighted_node_interval_rows ?? [],
+      total_n38_intervalized_lagrange_interval:
+        totalN38IntervalizedLagrangeInterval,
+      total_n38_intervalized_lagrange_width:
+        totalN38IntervalizedLagrangeMetrics?.derivative_interval_width ??
+        null,
+      total_n38_intervalized_lagrange_abs_upper:
+        totalN38IntervalizedLagrangeAbsUpper,
+      total_n38_intervalized_lagrange_to_required_upper_ratio:
+        totalN38IntervalizedLagrangeToRequired,
+      total_n38_intervalized_lagrange_fits_m4_target:
+        totalN38IntervalizedLagrangeFitsM4,
+      total_n38_intervalized_lagrange_midpoint_estimate:
+        totalN38IntervalizedLagrangeMidpointEstimate,
+      total_n38_intervalized_lagrange_contains_midpoint_estimate:
+        totalN38IntervalizedLagrangeMetrics
+          ?.midpoint_estimate_inside_derivative_interval ?? false,
+      total_n38_intervalized_lagrange_gap_to_midpoint_estimate:
+        totalN38IntervalizedLagrangeGapToMidpointEstimate,
+      total_n38_intervalized_lagrange_gap_to_midpoint_estimate_to_required:
+        totalN38IntervalizedLagrangeGapToMidpointEstimateToRequired,
+      total_n38_intervalized_lagrange_to_midpoint_abs_loss_factor:
+        totalN38IntervalizedLagrangeToMidpointAbsLossFactor,
+      derivative_interval_d4: totalN38IntervalizedLagrangeInterval,
+      derivative_abs_upper: totalN38IntervalizedLagrangeAbsUpper,
+      dependency_chain:
+        "total signed N38 node intervals propagated through five-node Lagrange d4 weights; preserves intra-node source cancellation but is not a continuous directed-rounded derivative enclosure",
+      certificate_route:
+        "If this total-N38 intervalized provider fits, the remaining proof object is a continuous directed-rounded producer-image derivative enclosure; if it exceeds, the remaining width is already present after intra-node source cancellation.",
+      claim_boundary: {
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+    const analyticDerivativeProviderScaffold = {
+      status:
+        "row-local-n38-analytic-derivative-provider-scaffold-emitted",
+      provider_kind: "chain-rule-coefficient-extraction-provider",
+      proof_status:
+        "candidate-only-no-directed-rounded-chain-rule-intervals",
+      evaluator_source:
+        "evaluateH38RecurrenceNumeratorBeforeSolve",
+      source_expression:
+        "N38=[y^42](delta^2*nu^{-2}-2+sin(phi)+sin(delta)) with h38=0",
+      source_terms_requiring_xi_derivatives: [
+        "delta_squared_speed",
+        "sin_phi",
+        "sin_delta",
+      ],
+      source_terms_with_zero_fourth_xi_derivative: ["constant_minus_two"],
+      required_xi_derivative_order: 4,
+      coefficient_extraction_order: H38_NUMERATOR_Y_ORDER,
+      coefficient_extraction_commutes_with_xi_derivative: true,
+      coefficient_extraction_identity:
+        "d^4/dxi^4 [y^42] S(y,xi) = [y^42] d^4S(y,xi)/dxi^4 on the same xi domain",
+      derivative_input_families: {
+        inverse_speed_squared:
+          "directed-rounded xi derivatives of nu(xi)^-2 through order 4",
+        delta_series:
+          "directed-rounded xi derivatives of each delta_y coefficient through order 4, with h38 fixed to zero before differentiation",
+        phi_series:
+          "directed-rounded xi derivatives of each phi_y coefficient through order 4, with phi h-row signs preserved",
+      },
+      delta_squared_speed_fourth_derivative_formula:
+        "sum_{a+b+c=4} 4!/(a!b!c!) * (nu^-2)^(a) * delta^(b) * delta^(c), then extract y^42",
+      sin_phi_fourth_derivative_formula:
+        "sin(phi)'''' = sin(phi)^(4)*phi1^4 + 6*sin(phi)^(3)*phi1^2*phi2 + 3*sin(phi)^(2)*phi2^2 + 4*sin(phi)^(2)*phi1*phi3 + sin(phi)^(1)*phi4, then extract y^42",
+      sin_delta_fourth_derivative_formula:
+        "sin(delta)'''' = sin(delta)^(4)*delta1^4 + 6*sin(delta)^(3)*delta1^2*delta2 + 3*sin(delta)^(2)*delta2^2 + 4*sin(delta)^(2)*delta1*delta3 + sin(delta)^(1)*delta4, then extract y^42",
+      analytic_provider_acceptance_inequality:
+        "accept only if directed-rounded abs([y^42] d^4N38_source/dxi^4) <= row_local_n38_directed_m4_sufficient_upper_bound on the same xi interval",
+      missing_directed_rounded_inputs: [
+        "same-domain xi-derivative intervals for nu^-2",
+        "same-domain xi-derivative intervals for delta_y coefficients",
+        "same-domain xi-derivative intervals for phi_y coefficients",
+        "directed-rounded coefficient extraction for the y^42 fourth-derivative source",
+      ],
+      certifies_n38_fourth_derivative: false,
+    };
+    const observedM4ToRequired =
+      finitePositive(requiredFourthDerivativeUpper) &&
+      finiteNonnegative(observedM4)
+        ? Number(observedM4) / Number(requiredFourthDerivativeUpper)
+        : null;
+    const observedRemainderUpper =
+      taylorRemainderUpperFromFourthDerivative({
+        fourthDerivativeUpper: observedM4,
+        xiHalfWidth,
+      });
+    const observedRemainderWidth = finiteNonnegative(observedRemainderUpper)
+      ? 2 * Number(observedRemainderUpper)
+      : null;
+    const observedRemainderWidthToBudget =
+      finitePositive(sameDomainRemainderWidthBudget) &&
+      finiteNonnegative(observedRemainderWidth)
+        ? Number(observedRemainderWidth) /
+          Number(sameDomainRemainderWidthBudget)
+        : null;
+    const m4ProxyAllowedInflationFactor =
+      finitePositive(observedM4ToRequired) ? 1 / observedM4ToRequired : null;
+    const m4ProxyAbsoluteHeadroom =
+      finitePositive(requiredFourthDerivativeUpper) &&
+      finiteNonnegative(observedM4)
+        ? Number(requiredFourthDerivativeUpper) - Number(observedM4)
+        : null;
+    const m4ProxyRemainingRemainderWidthBudget =
+      finitePositive(sameDomainRemainderWidthBudget) &&
+      finiteNonnegative(observedRemainderWidth)
+        ? Number(sameDomainRemainderWidthBudget) -
+          Number(observedRemainderWidth)
+        : null;
+    const directedM4SufficientRemainderUpper =
+      taylorRemainderUpperFromFourthDerivative({
+        fourthDerivativeUpper: requiredFourthDerivativeUpper,
+        xiHalfWidth,
+      });
+    const directedM4SufficientRemainderWidth = finiteNonnegative(
+      directedM4SufficientRemainderUpper
+    )
+      ? 2 * Number(directedM4SufficientRemainderUpper)
+      : null;
+    const directedM4SufficientWidthToBudget =
+      finitePositive(sameDomainRemainderWidthBudget) &&
+      finiteNonnegative(directedM4SufficientRemainderWidth)
+        ? Number(directedM4SufficientRemainderWidth) /
+          Number(sameDomainRemainderWidthBudget)
+        : null;
+    const directedM4SufficiencyScreenReady =
+      finitePositive(requiredFourthDerivativeUpper) &&
+      finitePositive(sameDomainRemainderWidthBudget) &&
+      finiteNonnegative(directedM4SufficientWidthToBudget) &&
+      directedM4SufficientWidthToBudget <= 1 + 1e-12;
+    const observedProxyInside =
+      finiteNonnegative(observedM4ToRequired) &&
+      observedM4ToRequired <= 1 &&
+      finiteNonnegative(observedRemainderWidthToBudget) &&
+      observedRemainderWidthToBudget <= 1;
+    return {
+      row_local_n38_taylor_proxy_basis:
+        "cubic-row-local-n38-taylor-graph",
+      row_local_n38_taylor_proxy_polynomial_degree:
+        profile?.polynomial_degree ?? null,
+      row_local_n38_taylor_graph_degree:
+        profile?.polynomial_degree ?? null,
+      row_local_n38_taylor_remainder_order: 4,
+      row_local_n38_m4_proxy_target_kind:
+        "cubic-row-local-n38-taylor-remainder",
+      row_local_n38_taylor_proxy_proof_status:
+        "finite-difference-proxy-not-directed-rounded",
+      row_local_n38_taylor_proxy_sample_count: stencilSamples.length,
+      row_local_n38_taylor_proxy_xi_half_width: xiHalfWidth,
+      row_local_n38_taylor_proxy_xi_step:
+        stencilMetrics?.xi_step ?? null,
+      row_local_n38_taylor_proxy_max_xi_step_deviation:
+        stencilMetrics?.max_xi_step_deviation ?? null,
+      row_local_n38_same_domain_remainder_abs_upper_budget:
+        remainderAbsUpperBudget,
+      row_local_n38_required_fourth_derivative_upper_for_remainder_budget:
+        requiredFourthDerivativeUpper,
+      row_local_n38_observed_uniform_fourth_derivative_proxy:
+        observedUniformM4,
+      row_local_n38_observed_nonuniform_fourth_derivative_proxy:
+        observedNonuniformM4,
+      row_local_n38_observed_m4_proxy_to_required_budget:
+        observedM4ToRequired,
+      row_local_n38_observed_m4_proxy_remainder_width:
+        observedRemainderWidth,
+      row_local_n38_observed_m4_proxy_remainder_width_to_budget:
+        observedRemainderWidthToBudget,
+      row_local_n38_cubic_m4_proxy_allowed_inflation_factor:
+        m4ProxyAllowedInflationFactor,
+      row_local_n38_cubic_m4_proxy_absolute_headroom:
+        m4ProxyAbsoluteHeadroom,
+      row_local_n38_cubic_m4_proxy_remaining_remainder_width_budget:
+        m4ProxyRemainingRemainderWidthBudget,
+      row_local_n38_directed_m4_sufficiency_screen_status:
+        directedM4SufficiencyScreenReady
+          ? "row-local-n38-directed-m4-sufficiency-screen-ready"
+          : "row-local-n38-directed-m4-sufficiency-screen-open",
+      row_local_n38_directed_m4_sufficient_upper_bound:
+        requiredFourthDerivativeUpper,
+      row_local_n38_directed_m4_sufficient_remainder_width:
+        directedM4SufficientRemainderWidth,
+      row_local_n38_directed_m4_sufficient_width_to_budget:
+        directedM4SufficientWidthToBudget,
+      row_local_n38_directed_m4_sufficiency_condition:
+        "A same-domain directed-rounded upper bound for |d^4(N38-q3)/dxi^4| closes this row-local Taylor remainder if it is <= row_local_n38_directed_m4_sufficient_upper_bound.",
+      row_local_n38_taylor_q3_fourth_derivative_vanishes: true,
+      row_local_n38_directed_m4_reduces_to_n38_fourth_derivative: true,
+      row_local_n38_directed_m4_exact_reduction:
+        "Because q3 is cubic, d^4(N38-q3)/dxi^4 equals d^4(N38)/dxi^4 on the same xi domain.",
+      row_local_n38_true_stream_bridge_target_kind:
+        "same-domain-directed-rounded-true-N38-fourth-derivative",
+      row_local_n38_true_stream_evaluator_candidate:
+        "evaluateH38RecurrenceNumeratorBeforeSolve",
+      row_local_n38_true_stream_finite_difference_probe_status:
+        trueStreamFiniteDifferenceProbeStatus,
+      row_local_n38_true_stream_nonuniform_fourth_derivative_proxy:
+        trueStreamNonuniformM4,
+      row_local_n38_true_stream_m4_to_required_budget:
+        trueStreamM4ToRequired,
+      row_local_n38_cubic_graph_nonuniform_fourth_derivative_probe:
+        cubicGraphNonuniformM4,
+      row_local_n38_cubic_graph_m4_to_required_budget:
+        cubicGraphM4ToRequired,
+      row_local_n38_true_minus_residual_signed_m4_gap:
+        trueMinusResidualSignedM4Gap,
+      row_local_n38_true_minus_residual_signed_m4_gap_to_required:
+        trueMinusResidualSignedM4GapToRequired,
+      row_local_n38_true_stream_finite_difference_probe_certifies_derivative:
+        false,
+      row_local_n38_true_stream_certificate_route:
+        "Differentiate the analytic N38 recurrence stream with shared xi dependency using directed-rounded interval arithmetic; do not rely on raw true-stream finite differences when the cubic graph cancellation is numerically ill-conditioned.",
+      row_local_n38_source_term_xi_jet_provider_candidate:
+        sourceTermXiJetProviderCandidate,
+      row_local_n38_source_term_xi_jet_provider_status:
+        sourceTermXiJetProviderCandidate.status,
+      row_local_n38_source_term_xi_jet_provider_proof_status:
+        sourceTermXiJetProviderCandidate.proof_status,
+      row_local_n38_source_term_xi_jet_provider_kind:
+        sourceTermXiJetProviderCandidate.provider_kind,
+      row_local_n38_source_term_xi_jet_to_required_upper_ratio:
+        sourceTermXiJetProviderCandidate
+          .source_term_xi_jet_to_required_upper_ratio,
+      row_local_n38_source_term_xi_jet_fits_m4_target:
+        sourceTermXiJetProviderCandidate
+          .source_term_xi_jet_fits_m4_target,
+      row_local_n38_source_term_xi_jet_signed_gap_to_required:
+        sourceTermXiJetProviderCandidate
+          .source_term_xi_jet_signed_gap_to_required,
+      row_local_n38_source_term_xi_jet_certifies_n38_fourth_derivative:
+        false,
+      row_local_n38_source_term_xi_lagrange_interpolant_provider_candidate:
+        sourceTermXiLagrangeInterpolantProviderCandidate,
+      row_local_n38_source_term_xi_lagrange_interpolant_provider_status:
+        sourceTermXiLagrangeInterpolantProviderCandidate.status,
+      row_local_n38_source_term_xi_lagrange_interpolant_provider_proof_status:
+        sourceTermXiLagrangeInterpolantProviderCandidate.proof_status,
+      row_local_n38_source_term_xi_lagrange_interpolant_provider_kind:
+        sourceTermXiLagrangeInterpolantProviderCandidate.provider_kind,
+      row_local_n38_source_term_xi_lagrange_interpolant_to_required_upper_ratio:
+        sourceTermXiLagrangeInterpolantProviderCandidate
+          .source_term_xi_lagrange_interpolant_to_required_upper_ratio,
+      row_local_n38_source_term_xi_lagrange_interpolant_fits_m4_target:
+        sourceTermXiLagrangeInterpolantProviderCandidate
+          .source_term_xi_lagrange_interpolant_fits_m4_target,
+      row_local_n38_source_term_xi_lagrange_interpolant_signed_gap_to_required:
+        sourceTermXiLagrangeInterpolantProviderCandidate
+          .source_term_xi_lagrange_interpolant_signed_gap_to_required,
+      row_local_n38_source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required:
+        sourceTermXiLagrangeInterpolantProviderCandidate
+          .source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required,
+      row_local_n38_source_term_xi_lagrange_interpolant_certifies_n38_fourth_derivative:
+        false,
+      row_local_n38_source_term_xi_intervalized_lagrange_provider_candidate:
+        sourceTermXiIntervalizedLagrangeProviderCandidate,
+      row_local_n38_source_term_xi_intervalized_lagrange_provider_status:
+        sourceTermXiIntervalizedLagrangeProviderCandidate.status,
+      row_local_n38_source_term_xi_intervalized_lagrange_provider_proof_status:
+        sourceTermXiIntervalizedLagrangeProviderCandidate.proof_status,
+      row_local_n38_source_term_xi_intervalized_lagrange_provider_kind:
+        sourceTermXiIntervalizedLagrangeProviderCandidate.provider_kind,
+      row_local_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio:
+        sourceTermXiIntervalizedLagrangeProviderCandidate
+          .source_term_xi_intervalized_lagrange_to_required_upper_ratio,
+      row_local_n38_source_term_xi_intervalized_lagrange_fits_m4_target:
+        sourceTermXiIntervalizedLagrangeProviderCandidate
+          .source_term_xi_intervalized_lagrange_fits_m4_target,
+      row_local_n38_source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required:
+        sourceTermXiIntervalizedLagrangeProviderCandidate
+          .source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
+      row_local_n38_source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor:
+        sourceTermXiIntervalizedLagrangeProviderCandidate
+          .source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor,
+      row_local_n38_source_term_xi_intervalized_lagrange_certifies_n38_fourth_derivative:
+        false,
+      row_local_n38_total_xi_intervalized_lagrange_provider_candidate:
+        totalN38IntervalizedLagrangeProviderCandidate,
+      row_local_n38_total_xi_intervalized_lagrange_provider_status:
+        totalN38IntervalizedLagrangeProviderCandidate.status,
+      row_local_n38_total_xi_intervalized_lagrange_provider_proof_status:
+        totalN38IntervalizedLagrangeProviderCandidate.proof_status,
+      row_local_n38_total_xi_intervalized_lagrange_provider_kind:
+        totalN38IntervalizedLagrangeProviderCandidate.provider_kind,
+      row_local_n38_total_xi_intervalized_lagrange_to_required_upper_ratio:
+        totalN38IntervalizedLagrangeProviderCandidate
+          .total_n38_intervalized_lagrange_to_required_upper_ratio,
+      row_local_n38_total_xi_intervalized_lagrange_fits_m4_target:
+        totalN38IntervalizedLagrangeProviderCandidate
+          .total_n38_intervalized_lagrange_fits_m4_target,
+      row_local_n38_total_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required:
+        totalN38IntervalizedLagrangeProviderCandidate
+          .total_n38_intervalized_lagrange_gap_to_midpoint_estimate_to_required,
+      row_local_n38_total_xi_intervalized_lagrange_to_midpoint_abs_loss_factor:
+        totalN38IntervalizedLagrangeProviderCandidate
+          .total_n38_intervalized_lagrange_to_midpoint_abs_loss_factor,
+      row_local_n38_total_xi_intervalized_lagrange_certifies_n38_fourth_derivative:
+        false,
+      row_local_n38_analytic_derivative_provider_scaffold:
+        analyticDerivativeProviderScaffold,
+      row_local_n38_analytic_derivative_provider_scaffold_status:
+        analyticDerivativeProviderScaffold.status,
+      row_local_n38_analytic_derivative_provider_kind:
+        analyticDerivativeProviderScaffold.provider_kind,
+      row_local_n38_analytic_derivative_provider_proof_status:
+        analyticDerivativeProviderScaffold.proof_status,
+      row_local_n38_analytic_provider_acceptance_inequality:
+        analyticDerivativeProviderScaffold
+          .analytic_provider_acceptance_inequality,
+      row_local_n38_analytic_provider_certifies_n38_fourth_derivative:
+        analyticDerivativeProviderScaffold.certifies_n38_fourth_derivative,
+      row_local_n38_directed_m4_sufficiency_certifies_remainder:
+        false,
+      row_local_n38_directed_m4_missing_proof_object:
+        "same-domain directed-rounded fourth-derivative upper bound for the cubic N38 Taylor residual",
+      row_local_n38_observed_m4_proxy_inside_remainder_budget:
+        observedProxyInside,
+      row_local_n38_observed_m4_proxy_status: observedProxyInside
+        ? "row-local-n38-observed-m4-proxy-inside-remainder-budget"
+        : "row-local-n38-observed-m4-proxy-exceeds-remainder-budget",
+      row_local_n38_cubic_m4_headroom_status:
+        observedProxyInside && finitePositive(m4ProxyAllowedInflationFactor)
+          ? "row-local-n38-cubic-m4-proxy-has-directed-rounded-inflation-headroom"
+          : "row-local-n38-cubic-m4-proxy-headroom-open",
+      row_local_n38_cubic_m4_directed_rounding_sufficient_condition:
+        "A directed-rounded same-domain bound on |d^4(N38-q3)/dxi^4| may be inflated by the allowed factor over this observed proxy and still fit the row-local S37 numerator budget.",
+    };
+  };
   const rowLocalN38S37CollarDiagnosticForRow = ({
     row,
     rowContext,
@@ -31276,7 +32932,8 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
     if (
       target === null ||
       target === undefined ||
-      rowLocalN38S37Profile.available !== true
+      rowLocalN38S37Profile.available !== true ||
+      rowLocalN38S37TaylorProfile.available !== true
     ) {
       return null;
     }
@@ -31291,6 +32948,17 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
     if (sample === null) {
       return null;
     }
+    const taylorSample =
+      rowLocalN38S37TaylorProfile.sample_by_cell_id.get(row.cell_id) ??
+      rowLocalN38S37TaylorProfile.numerator_residual_profile.samples.find(
+        (candidate) =>
+          Number(candidate?.xi_midpoint) ===
+          Number(rowContext?.noise_coordinate)
+      ) ??
+      null;
+    if (taylorSample === null) {
+      return null;
+    }
     const targetNumeratorWidthLower = Number(
       target.target_s37_division_numerator_width_lower
     );
@@ -31302,6 +32970,19 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
     const intervalResidualWidth = Number(sample.interval_residual_width);
     const graphIntervalWidth = Number(sample.graph_interval_width);
     const numeratorIntervalWidth = Number(sample.numerator_interval_width);
+    const taylorMidpointResidualAbs = Math.abs(
+      Number(taylorSample.midpoint_residual)
+    );
+    const taylorMidpointResidualWidth = 2 * taylorMidpointResidualAbs;
+    const taylorIntervalResidualWidth = Number(
+      taylorSample.interval_residual_width
+    );
+    const taylorGraphIntervalWidth = Number(
+      taylorSample.graph_interval_width
+    );
+    const taylorNumeratorIntervalWidth = Number(
+      taylorSample.numerator_interval_width
+    );
     const targetNumeratorHalfWidthLower = targetNumeratorWidthLower / 2;
     const ratioToTarget = (value) =>
       finitePositive(targetNumeratorWidthLower) && Number.isFinite(value)
@@ -31333,6 +33014,20 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
         midpointResidualAbs,
         intervalResidualWidth,
       });
+    const taylorGraphRemainderTarget =
+      rowLocalN38S37TaylorGraphRemainderTargetForRow({
+        targetNumeratorWidthLower,
+        taylorGraphIntervalWidth,
+        taylorMidpointResidualAbs,
+        taylorIntervalResidualWidth,
+      });
+    const taylorProxyTarget = rowLocalN38TaylorProxyTargetForRow({
+      profile: rowLocalN38S37TaylorProfile,
+      sample: taylorSample,
+      sameDomainRemainderWidthBudget:
+        taylorGraphRemainderTarget
+          .row_local_n38_taylor_same_domain_remainder_width_budget,
+    });
     return {
       schema:
         THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_N38_S37_COLLAR_DIAGNOSTIC_SCHEMA,
@@ -31347,6 +33042,8 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
       speed_interval: row.speed_interval,
       xi_interval: row.xi_interval,
       polynomial_degree: rowLocalN38S37Profile.polynomial_degree,
+      row_local_n38_taylor_polynomial_degree:
+        rowLocalN38S37TaylorProfile.polynomial_degree,
       target_residual_coordinate_half_width:
         target.target_residual_coordinate_half_width,
       target_h38_residual_half_width:
@@ -31373,6 +33070,21 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
         ratioToTarget(intervalResidualWidth),
       n38_numerator_interval_width_to_row_local_s37_target:
         ratioToTarget(numeratorIntervalWidth),
+      n38_taylor_graph_interval_width: taylorGraphIntervalWidth,
+      n38_taylor_midpoint_residual: taylorSample.midpoint_residual,
+      n38_taylor_midpoint_residual_abs: taylorMidpointResidualAbs,
+      n38_taylor_midpoint_residual_width: taylorMidpointResidualWidth,
+      n38_taylor_interval_residual: taylorSample.interval_residual,
+      n38_taylor_interval_residual_width: taylorIntervalResidualWidth,
+      n38_taylor_numerator_interval_width: taylorNumeratorIntervalWidth,
+      n38_taylor_graph_interval_width_to_row_local_s37_target:
+        ratioToTarget(taylorGraphIntervalWidth),
+      n38_taylor_midpoint_residual_width_to_row_local_s37_target:
+        ratioToTarget(taylorMidpointResidualWidth),
+      n38_taylor_interval_residual_width_to_row_local_s37_target:
+        ratioToTarget(taylorIntervalResidualWidth),
+      n38_taylor_numerator_interval_width_to_row_local_s37_target:
+        ratioToTarget(taylorNumeratorIntervalWidth),
       n38_midpoint_residual_inside_row_local_s37_target:
         midpointInsideTarget,
       n38_graph_interval_inside_row_local_s37_target:
@@ -31380,6 +33092,8 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
       current_n38_interval_residual_inside_row_local_s37_target:
         intervalResidualInsideTarget,
       ...graphRemainderTarget,
+      ...taylorGraphRemainderTarget,
+      ...taylorProxyTarget,
       s37_dependency_status: s37DependencyStatus,
       certificate_interpretation:
         intervalResidualInsideTarget
@@ -31680,6 +33394,157 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
       (target) =>
         target.graph_plus_midpoint_inside_row_local_s37_target === true
     );
+  const allN38TaylorGraphPlusMidpointInside =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.n38_taylor_graph_plus_midpoint_inside_row_local_s37_target ===
+        true
+    );
+  const allN38TaylorGraphDegreesCubic =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) => target.row_local_n38_taylor_graph_degree === 3
+    );
+  const allN38TaylorProxiesInside =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.row_local_n38_observed_m4_proxy_inside_remainder_budget ===
+        true
+    );
+  const allN38CubicM4ProxiesHaveInflationHeadroom =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.row_local_n38_cubic_m4_headroom_status ===
+        "row-local-n38-cubic-m4-proxy-has-directed-rounded-inflation-headroom"
+    );
+  const allN38DirectedM4SufficiencyScreensReady =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.row_local_n38_directed_m4_sufficiency_screen_status ===
+        "row-local-n38-directed-m4-sufficiency-screen-ready"
+    );
+  const allN38DirectedM4ReducesToN38FourthDerivative =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.row_local_n38_taylor_q3_fourth_derivative_vanishes === true &&
+        target.row_local_n38_directed_m4_reduces_to_n38_fourth_derivative ===
+          true
+    );
+  const allN38TrueStreamBridgesTargetFourthDerivative =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.row_local_n38_true_stream_bridge_target_kind ===
+          "same-domain-directed-rounded-true-N38-fourth-derivative" &&
+        target.row_local_n38_true_stream_evaluator_candidate ===
+          "evaluateH38RecurrenceNumeratorBeforeSolve" &&
+        target
+          .row_local_n38_true_stream_finite_difference_probe_certifies_derivative ===
+          false
+    );
+  const allN38AnalyticDerivativeProviderScaffoldsEmitted =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.row_local_n38_analytic_derivative_provider_scaffold_status ===
+          "row-local-n38-analytic-derivative-provider-scaffold-emitted" &&
+        target.row_local_n38_analytic_derivative_provider_kind ===
+          "chain-rule-coefficient-extraction-provider" &&
+        target.row_local_n38_analytic_derivative_provider_proof_status ===
+          "candidate-only-no-directed-rounded-chain-rule-intervals" &&
+        target
+          .row_local_n38_analytic_provider_certifies_n38_fourth_derivative ===
+          false
+    );
+  const allN38SourceTermXiJetProvidersEmitted =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.row_local_n38_source_term_xi_jet_provider_kind ===
+          "finite-stencil-source-term-xi-jet-provider-candidate" &&
+        target.row_local_n38_source_term_xi_jet_provider_proof_status ===
+          "finite-stencil-midpoint-jet-not-directed-rounded" &&
+        target
+          .row_local_n38_source_term_xi_jet_certifies_n38_fourth_derivative ===
+          false
+    );
+  const allN38SourceTermXiJetProvidersFitM4Target =
+    allN38SourceTermXiJetProvidersEmitted &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target.row_local_n38_source_term_xi_jet_fits_m4_target === true
+    );
+  const allN38SourceTermXiLagrangeInterpolantProvidersEmitted =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target
+          .row_local_n38_source_term_xi_lagrange_interpolant_provider_kind ===
+          "degree-four-lagrange-source-term-xi-interpolant-provider-candidate" &&
+        target
+          .row_local_n38_source_term_xi_lagrange_interpolant_provider_proof_status ===
+          "degree-four-lagrange-interpolant-midpoint-jet-not-directed-rounded" &&
+        target
+          .row_local_n38_source_term_xi_lagrange_interpolant_certifies_n38_fourth_derivative ===
+          false
+    );
+  const allN38SourceTermXiLagrangeInterpolantProvidersFitM4Target =
+    allN38SourceTermXiLagrangeInterpolantProvidersEmitted &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target
+          .row_local_n38_source_term_xi_lagrange_interpolant_fits_m4_target ===
+        true
+    );
+  const allN38SourceTermXiIntervalizedLagrangeProvidersEmitted =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target
+          .row_local_n38_source_term_xi_intervalized_lagrange_provider_kind ===
+          "intervalized-degree-four-lagrange-source-term-xi-provider-candidate" &&
+        target
+          .row_local_n38_source_term_xi_intervalized_lagrange_provider_proof_status ===
+          "source-term-node-intervals-propagated-through-lagrange-weights-not-directed-rounded-same-domain" &&
+        target
+          .row_local_n38_source_term_xi_intervalized_lagrange_certifies_n38_fourth_derivative ===
+          false
+    );
+  const allN38SourceTermXiIntervalizedLagrangeProvidersFitM4Target =
+    allN38SourceTermXiIntervalizedLagrangeProvidersEmitted &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target
+          .row_local_n38_source_term_xi_intervalized_lagrange_fits_m4_target ===
+        true
+    );
+  const allN38TotalXiIntervalizedLagrangeProvidersEmitted =
+    n38S37CollarDiagnostics.length > 0 &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target
+          .row_local_n38_total_xi_intervalized_lagrange_provider_kind ===
+          "intervalized-degree-four-total-n38-xi-provider-candidate" &&
+        target
+          .row_local_n38_total_xi_intervalized_lagrange_provider_proof_status ===
+          "total-n38-node-intervals-propagated-through-lagrange-weights-not-directed-rounded-continuous-domain" &&
+        target
+          .row_local_n38_total_xi_intervalized_lagrange_certifies_n38_fourth_derivative ===
+          false
+    );
+  const allN38TotalXiIntervalizedLagrangeProvidersFitM4Target =
+    allN38TotalXiIntervalizedLagrangeProvidersEmitted &&
+    n38S37CollarDiagnostics.every(
+      (target) =>
+        target
+          .row_local_n38_total_xi_intervalized_lagrange_fits_m4_target ===
+        true
+    );
   return {
     schema:
       THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA,
@@ -31819,6 +33684,160 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
       maxN38S37DiagnosticNumber(
         "n38_interval_residual_width_to_same_domain_remainder_budget"
       ),
+    row_local_n38_cubic_taylor_graph_remainder_target_available:
+      n38S37CollarDiagnostics.length === rowReplays.length &&
+      n38S37CollarDiagnostics.length > 0,
+    all_row_local_n38_taylor_graph_degrees_cubic:
+      allN38TaylorGraphDegreesCubic,
+    all_row_local_n38_cubic_taylor_graph_plus_midpoint_widths_inside_s37_target:
+      allN38TaylorGraphPlusMidpointInside,
+    max_row_local_n38_cubic_taylor_graph_interval_width_to_s37_target:
+      maxN38S37DiagnosticNumber(
+        "n38_taylor_graph_interval_width_to_row_local_s37_target"
+      ),
+    max_row_local_n38_cubic_taylor_midpoint_residual_width_to_s37_target:
+      maxN38S37DiagnosticNumber(
+        "n38_taylor_midpoint_residual_width_to_row_local_s37_target"
+      ),
+    max_row_local_n38_cubic_taylor_interval_residual_width_to_s37_target:
+      maxN38S37DiagnosticNumber(
+        "n38_taylor_interval_residual_width_to_row_local_s37_target"
+      ),
+    max_row_local_n38_cubic_taylor_graph_plus_midpoint_width_to_s37_target:
+      maxN38S37DiagnosticNumber(
+        "n38_taylor_graph_plus_midpoint_width_to_row_local_s37_target"
+      ),
+    min_row_local_n38_cubic_taylor_same_domain_remainder_width_budget:
+      minPositiveN38S37DiagnosticNumber(
+        "row_local_n38_taylor_same_domain_remainder_width_budget"
+      ),
+    max_row_local_n38_cubic_taylor_interval_residual_width_to_same_domain_remainder_budget:
+      maxN38S37DiagnosticNumber(
+        "n38_taylor_interval_residual_width_to_same_domain_remainder_budget"
+      ),
+    row_local_n38_taylor_proxy_target_available:
+      n38S37CollarDiagnostics.length === rowReplays.length &&
+      n38S37CollarDiagnostics.length > 0,
+    all_row_local_n38_observed_m4_proxies_inside_remainder_budget:
+      allN38TaylorProxiesInside,
+    all_row_local_n38_cubic_m4_proxies_have_directed_rounded_inflation_headroom:
+      allN38CubicM4ProxiesHaveInflationHeadroom,
+    all_row_local_n38_directed_m4_sufficiency_screens_ready:
+      allN38DirectedM4SufficiencyScreensReady,
+    all_row_local_n38_directed_m4_reduces_to_n38_fourth_derivative:
+      allN38DirectedM4ReducesToN38FourthDerivative,
+    all_row_local_n38_true_stream_bridges_target_fourth_derivative:
+      allN38TrueStreamBridgesTargetFourthDerivative,
+    all_row_local_n38_analytic_derivative_provider_scaffolds_emitted:
+      allN38AnalyticDerivativeProviderScaffoldsEmitted,
+    all_row_local_n38_source_term_xi_jet_providers_emitted:
+      allN38SourceTermXiJetProvidersEmitted,
+    all_row_local_n38_source_term_xi_jet_providers_fit_m4_target:
+      allN38SourceTermXiJetProvidersFitM4Target,
+    all_row_local_n38_source_term_xi_lagrange_interpolant_providers_emitted:
+      allN38SourceTermXiLagrangeInterpolantProvidersEmitted,
+    all_row_local_n38_source_term_xi_lagrange_interpolant_providers_fit_m4_target:
+      allN38SourceTermXiLagrangeInterpolantProvidersFitM4Target,
+    all_row_local_n38_source_term_xi_intervalized_lagrange_providers_emitted:
+      allN38SourceTermXiIntervalizedLagrangeProvidersEmitted,
+    all_row_local_n38_source_term_xi_intervalized_lagrange_providers_fit_m4_target:
+      allN38SourceTermXiIntervalizedLagrangeProvidersFitM4Target,
+    all_row_local_n38_total_xi_intervalized_lagrange_providers_emitted:
+      allN38TotalXiIntervalizedLagrangeProvidersEmitted,
+    all_row_local_n38_total_xi_intervalized_lagrange_providers_fit_m4_target:
+      allN38TotalXiIntervalizedLagrangeProvidersFitM4Target,
+    max_row_local_n38_observed_m4_proxy_to_required_budget:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_observed_m4_proxy_to_required_budget"
+      ),
+    max_row_local_n38_observed_m4_proxy_remainder_width_to_budget:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_observed_m4_proxy_remainder_width_to_budget"
+      ),
+    max_row_local_n38_observed_nonuniform_fourth_derivative_proxy:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_observed_nonuniform_fourth_derivative_proxy"
+      ),
+    min_row_local_n38_required_fourth_derivative_upper_for_remainder_budget:
+      minPositiveN38S37DiagnosticNumber(
+        "row_local_n38_required_fourth_derivative_upper_for_remainder_budget"
+      ),
+    min_row_local_n38_cubic_m4_proxy_allowed_inflation_factor:
+      minPositiveN38S37DiagnosticNumber(
+        "row_local_n38_cubic_m4_proxy_allowed_inflation_factor"
+      ),
+    min_row_local_n38_cubic_m4_proxy_absolute_headroom:
+      minPositiveN38S37DiagnosticNumber(
+        "row_local_n38_cubic_m4_proxy_absolute_headroom"
+      ),
+    min_row_local_n38_cubic_m4_proxy_remaining_remainder_width_budget:
+      minPositiveN38S37DiagnosticNumber(
+        "row_local_n38_cubic_m4_proxy_remaining_remainder_width_budget"
+      ),
+    min_row_local_n38_directed_m4_sufficient_upper_bound:
+      minPositiveN38S37DiagnosticNumber(
+        "row_local_n38_directed_m4_sufficient_upper_bound"
+      ),
+    max_row_local_n38_directed_m4_sufficient_width_to_budget:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_directed_m4_sufficient_width_to_budget"
+      ),
+    max_row_local_n38_true_stream_m4_to_required_budget:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_true_stream_m4_to_required_budget"
+      ),
+    max_row_local_n38_cubic_graph_m4_to_required_budget:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_cubic_graph_m4_to_required_budget"
+      ),
+    max_row_local_n38_true_minus_residual_signed_m4_gap_to_required:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_true_minus_residual_signed_m4_gap_to_required"
+      ),
+    max_row_local_n38_source_term_xi_jet_to_required_upper_ratio:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_source_term_xi_jet_to_required_upper_ratio"
+      ),
+    max_row_local_n38_source_term_xi_jet_signed_gap_to_required:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_source_term_xi_jet_signed_gap_to_required"
+      ),
+    max_row_local_n38_source_term_xi_lagrange_interpolant_to_required_upper_ratio:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_source_term_xi_lagrange_interpolant_to_required_upper_ratio"
+      ),
+    max_row_local_n38_source_term_xi_lagrange_interpolant_signed_gap_to_required:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_source_term_xi_lagrange_interpolant_signed_gap_to_required"
+      ),
+    max_row_local_n38_source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required"
+      ),
+    max_row_local_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio"
+      ),
+    max_row_local_n38_source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required"
+      ),
+    max_row_local_n38_source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor"
+      ),
+    max_row_local_n38_total_xi_intervalized_lagrange_to_required_upper_ratio:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_total_xi_intervalized_lagrange_to_required_upper_ratio"
+      ),
+    max_row_local_n38_total_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_total_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required"
+      ),
+    max_row_local_n38_total_xi_intervalized_lagrange_to_midpoint_abs_loss_factor:
+      maxN38S37DiagnosticNumber(
+        "row_local_n38_total_xi_intervalized_lagrange_to_midpoint_abs_loss_factor"
+      ),
     row_local_n38_s37_collar_interpretation:
       allN38S37IntervalResidualsInside
         ? "current-n38-interval-residuals-fit-row-local-s37-target"
@@ -31831,6 +33850,62 @@ function h39RequestedY44ProducerRowLocalCollarReplay({
         : allN38GraphPlusMidpointInside
           ? "same-domain-n38-graph-remainder-target-already-covered-by-current-interval-hull"
           : "same-domain-n38-graph-remainder-target-open",
+    row_local_n38_cubic_taylor_graph_remainder_target_interpretation:
+      allN38TaylorGraphPlusMidpointInside && !allN38S37IntervalResidualsInside
+        ? "same-domain-n38-cubic-taylor-remainder-has-row-local-s37-headroom-but-raw-interval-hull-exceeds-it"
+        : allN38TaylorGraphPlusMidpointInside
+          ? "same-domain-n38-cubic-taylor-remainder-target-already-covered-by-current-interval-hull"
+          : "same-domain-n38-cubic-taylor-remainder-target-open",
+    row_local_n38_taylor_proxy_target_interpretation:
+      allN38TaylorProxiesInside && allN38TaylorGraphPlusMidpointInside
+        ? "observed-row-local-n38-m4-proxy-fits-same-domain-remainder-budget"
+        : "observed-row-local-n38-m4-proxy-still-exceeds-same-domain-remainder-budget",
+    row_local_n38_cubic_m4_headroom_interpretation:
+      allN38CubicM4ProxiesHaveInflationHeadroom &&
+      allN38TaylorGraphPlusMidpointInside
+        ? "observed-row-local-n38-cubic-m4-proxy-has-directed-rounded-inflation-headroom"
+        : "observed-row-local-n38-cubic-m4-proxy-headroom-open",
+    row_local_n38_directed_m4_sufficiency_screen_interpretation:
+      allN38DirectedM4SufficiencyScreensReady &&
+      allN38TaylorGraphPlusMidpointInside
+        ? "directed-rounded-m4-bound-below-row-local-ceiling-would-close-cubic-taylor-remainder"
+        : "directed-rounded-m4-sufficiency-screen-open",
+    row_local_n38_directed_m4_normal_form_interpretation:
+      allN38DirectedM4ReducesToN38FourthDerivative
+        ? "cubic-q3-removes-fit-derivative-burden; certify-true-N38-fourth-derivative"
+        : "cubic-q3-fourth-derivative-reduction-open",
+    row_local_n38_true_stream_bridge_interpretation:
+      allN38TrueStreamBridgesTargetFourthDerivative
+        ? "true-N38-fourth-derivative-certificate-is-the-remaining-proof-object"
+        : "true-N38-fourth-derivative-bridge-open",
+    row_local_n38_analytic_derivative_provider_interpretation:
+      allN38AnalyticDerivativeProviderScaffoldsEmitted
+        ? "analytic-chain-rule-provider-scaffold-ready-for-directed-rounding"
+        : "analytic-chain-rule-provider-scaffold-open",
+    row_local_n38_source_term_xi_jet_provider_interpretation:
+      allN38SourceTermXiJetProvidersFitM4Target
+        ? "finite-stencil-source-term-xi-jet-provider-fits-row-local-m4-target-candidate"
+        : allN38SourceTermXiJetProvidersEmitted
+          ? "finite-stencil-source-term-xi-jet-provider-emitted-but-open"
+          : "finite-stencil-source-term-xi-jet-provider-open",
+    row_local_n38_source_term_xi_lagrange_interpolant_provider_interpretation:
+      allN38SourceTermXiLagrangeInterpolantProvidersFitM4Target
+        ? "degree-four-source-term-interpolant-provider-fits-row-local-m4-target-candidate"
+        : allN38SourceTermXiLagrangeInterpolantProvidersEmitted
+          ? "degree-four-source-term-interpolant-provider-emitted-but-open"
+          : "degree-four-source-term-interpolant-provider-open",
+    row_local_n38_source_term_xi_intervalized_lagrange_provider_interpretation:
+      allN38SourceTermXiIntervalizedLagrangeProvidersFitM4Target
+        ? "intervalized-source-term-lagrange-provider-fits-row-local-m4-target-candidate"
+        : allN38SourceTermXiIntervalizedLagrangeProvidersEmitted
+          ? "intervalized-source-term-lagrange-provider-emitted-but-open"
+          : "intervalized-source-term-lagrange-provider-open",
+    row_local_n38_total_xi_intervalized_lagrange_provider_interpretation:
+      allN38TotalXiIntervalizedLagrangeProvidersFitM4Target
+        ? "intervalized-total-n38-lagrange-provider-fits-row-local-m4-target-candidate"
+        : allN38TotalXiIntervalizedLagrangeProvidersEmitted
+          ? "intervalized-total-n38-lagrange-provider-emitted-but-open"
+          : "intervalized-total-n38-lagrange-provider-open",
     row_local_collar_replay_interpretation:
       allRequestedCollarsClose && !anyCurrentIntervalCloses
         ? "requested-budget-collar-closes-but-current-row-intervals-need-producer-certificate"
@@ -32035,6 +34110,664 @@ export function buildH39RequestedY44ProducerImageBudgetComparisonCandidate({
       retained_branch: false,
     },
   };
+}
+
+function h39RequestedY44NormalizedDerivativeInputEntries(
+  sourceTermDerivativeInputs
+) {
+  if (Array.isArray(sourceTermDerivativeInputs)) {
+    return sourceTermDerivativeInputs;
+  }
+  if (
+    sourceTermDerivativeInputs !== null &&
+    typeof sourceTermDerivativeInputs === "object"
+  ) {
+    return Object.entries(sourceTermDerivativeInputs).flatMap(
+      ([cellId, termMap]) => {
+        if (Array.isArray(termMap)) {
+          return termMap.map((entry) => ({
+            ...entry,
+            cell_id: entry?.cell_id ?? cellId,
+          }));
+        }
+        if (termMap !== null && typeof termMap === "object") {
+          return Object.entries(termMap).map(([term, entry]) => ({
+            ...entry,
+            cell_id: entry?.cell_id ?? cellId,
+            term: entry?.term ?? term,
+          }));
+        }
+        return [];
+      }
+    );
+  }
+  return [];
+}
+
+function h39RequestedY44NullableOrderedInterval(name, interval) {
+  if (interval === null || interval === undefined) {
+    return null;
+  }
+  try {
+    return numericOrderedInterval(name, interval);
+  } catch {
+    return null;
+  }
+}
+
+function h39RequestedY44SameInterval(left, right) {
+  const resolvedLeft = h39RequestedY44NullableOrderedInterval("left", left);
+  const resolvedRight = h39RequestedY44NullableOrderedInterval("right", right);
+  if (resolvedLeft === null || resolvedRight === null) {
+    return false;
+  }
+  return (
+    Number(resolvedLeft[0]) === Number(resolvedRight[0]) &&
+    Number(resolvedLeft[1]) === Number(resolvedRight[1])
+  );
+}
+
+function h39RequestedY44SourceTermDerivativeInputSlot({
+  entries,
+  rowContext,
+  term,
+}) {
+  const input = entries.find((entry) => {
+    if (String(entry?.term ?? entry?.source_term ?? "") !== term) {
+      return false;
+    }
+    if (
+      entry?.cell_id !== undefined &&
+      String(entry.cell_id) !== String(rowContext?.cell_id)
+    ) {
+      return false;
+    }
+    if (
+      entry?.source_y_order !== undefined &&
+      Number(entry.source_y_order) !== H38_NUMERATOR_Y_ORDER
+    ) {
+      return false;
+    }
+    return true;
+  });
+  const derivativeInterval = h39RequestedY44NullableOrderedInterval(
+    `${term}.derivative_interval_d4`,
+    input?.derivative_interval_d4 ??
+      input?.xi_derivative_interval_d4 ??
+      input?.d4_interval
+  );
+  const cellIdMatches =
+    input !== undefined &&
+    (input?.cell_id === undefined ||
+      String(input.cell_id) === String(rowContext?.cell_id));
+  const sourceYOrderMatches =
+    input !== undefined &&
+    (input?.source_y_order === undefined ||
+      Number(input.source_y_order) === H38_NUMERATOR_Y_ORDER);
+  const speedIntervalMatches =
+    input === undefined || input?.speed_interval === undefined
+      ? input !== undefined
+      : h39RequestedY44SameInterval(
+          input.speed_interval,
+          rowContext?.speed_interval
+        );
+  const xiIntervalMatches =
+    input === undefined || input?.xi_interval === undefined
+      ? input !== undefined
+      : h39RequestedY44SameInterval(input.xi_interval, rowContext?.xi_interval);
+  const matchesSameDomain =
+    input !== undefined &&
+    cellIdMatches &&
+    sourceYOrderMatches &&
+    speedIntervalMatches &&
+    xiIntervalMatches;
+  return {
+    term,
+    derivative_input_available:
+      input !== undefined && derivativeInterval !== null,
+    derivative_interval_d4: derivativeInterval,
+    derivative_abs_upper:
+      derivativeInterval === null ? null : intervalAbsUpper(derivativeInterval),
+    dependency_chain:
+      input?.dependency_chain ??
+      input?.analytic_dependency_chain ??
+      null,
+    same_domain_checks: {
+      cell_id_matches: cellIdMatches,
+      source_y_order_matches: sourceYOrderMatches,
+      speed_interval_matches: speedIntervalMatches,
+      xi_interval_matches: xiIntervalMatches,
+    },
+    matches_same_domain: matchesSameDomain,
+  };
+}
+
+export function buildH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffoldCandidate({
+  producerRowLocalCollarReplay,
+  sourceTermDerivativeInputs = [],
+} = {}) {
+  if (
+    producerRowLocalCollarReplay?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_PRODUCER_COLLAR_REPLAY_SCHEMA
+  ) {
+    throw new Error(
+      "producerRowLocalCollarReplay must be an H39 requested-y44 row-local producer collar replay"
+    );
+  }
+  const entries = h39RequestedY44NormalizedDerivativeInputEntries(
+    sourceTermDerivativeInputs
+  );
+  const rowScaffolds = producerRowLocalCollarReplay.row_replays.map((row) => {
+    const rowContext = row.row_replay_context;
+    const diagnostic = row.row_center_n38_s37_collar_diagnostic;
+    const requiredUpper = Number(
+      diagnostic?.row_local_n38_directed_m4_sufficient_upper_bound ??
+        diagnostic?.row_local_n38_required_fourth_derivative_upper_for_remainder_budget
+    );
+    const slots = H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.map((term) =>
+      h39RequestedY44SourceTermDerivativeInputSlot({
+        entries,
+        rowContext,
+        term,
+      })
+    );
+    const complete =
+      slots.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+      slots.every(
+        (slot) =>
+          slot.derivative_input_available === true &&
+          slot.matches_same_domain === true
+      );
+    const sourceTermD4Interval = complete
+      ? slots
+          .map((slot) => slot.derivative_interval_d4)
+          .reduce(
+            (total, interval) => root.addIntervals(total, interval),
+            [0, 0]
+          )
+      : null;
+    const n38D4AbsUpper =
+      sourceTermD4Interval === null
+        ? null
+        : intervalAbsUpper(sourceTermD4Interval);
+    const ratio =
+      n38D4AbsUpper !== null &&
+      finiteNonnegative(n38D4AbsUpper) &&
+      finitePositive(requiredUpper)
+        ? n38D4AbsUpper / requiredUpper
+        : null;
+    const closes = ratio !== null && ratio <= 1;
+    const xiHalfWidth = Array.isArray(rowContext?.xi_interval)
+      ? intervalWidth(rowContext.xi_interval) / 2
+      : null;
+    const numeratorRemainderAbsUpper =
+      n38D4AbsUpper === null
+        ? null
+        : taylorRemainderUpperFromFourthDerivative({
+            fourthDerivativeUpper: n38D4AbsUpper,
+            xiHalfWidth,
+          });
+    const numeratorRemainderWidthUpper =
+      numeratorRemainderAbsUpper !== null &&
+      finiteNonnegative(numeratorRemainderAbsUpper)
+        ? 2 * Number(numeratorRemainderAbsUpper)
+        : null;
+    const taylorGraphPlusMidpointWidth = finiteNonnegative(
+      diagnostic?.n38_taylor_graph_plus_midpoint_width
+    )
+      ? Number(diagnostic.n38_taylor_graph_plus_midpoint_width)
+      : null;
+    const totalS37NumeratorWidthUpper =
+      taylorGraphPlusMidpointWidth !== null &&
+      numeratorRemainderWidthUpper !== null &&
+      finiteNonnegative(taylorGraphPlusMidpointWidth) &&
+      finiteNonnegative(numeratorRemainderWidthUpper)
+        ? Number(taylorGraphPlusMidpointWidth) +
+          Number(numeratorRemainderWidthUpper)
+        : null;
+    const targetS37NumeratorWidthLower = finitePositive(
+      diagnostic?.target_s37_division_numerator_width_lower
+    )
+      ? Number(diagnostic.target_s37_division_numerator_width_lower)
+      : null;
+    const totalS37NumeratorWidthToTarget =
+      totalS37NumeratorWidthUpper !== null &&
+      finiteNonnegative(totalS37NumeratorWidthUpper) &&
+      finitePositive(targetS37NumeratorWidthLower)
+        ? Number(totalS37NumeratorWidthUpper) /
+          Number(targetS37NumeratorWidthLower)
+        : null;
+    const solveSlopeInterval = h39RequestedY44NullableOrderedInterval(
+      "solve_slope_interval",
+      diagnostic?.solve_slope_interval
+    );
+    const solveSlopeAbsLower =
+      solveSlopeInterval === null ? null : intervalAbsLower(solveSlopeInterval);
+    const targetH38ResidualWidth = finiteNonnegative(
+      diagnostic?.target_h38_residual_half_width
+    )
+      ? 2 * Number(diagnostic.target_h38_residual_half_width)
+      : null;
+    const solvedH38ResidualWidthUpper =
+      totalS37NumeratorWidthUpper !== null &&
+      finiteNonnegative(totalS37NumeratorWidthUpper) &&
+      finitePositive(solveSlopeAbsLower)
+        ? Number(totalS37NumeratorWidthUpper) / Number(solveSlopeAbsLower)
+        : null;
+    const solvedH38ResidualWidthToTarget =
+      solvedH38ResidualWidthUpper !== null &&
+      finiteNonnegative(solvedH38ResidualWidthUpper) &&
+      finitePositive(targetH38ResidualWidth)
+        ? Number(solvedH38ResidualWidthUpper) /
+          Number(targetH38ResidualWidth)
+        : null;
+    const s37DivisionClosesNumeratorTarget =
+      totalS37NumeratorWidthToTarget !== null &&
+      totalS37NumeratorWidthToTarget <= 1;
+    const s37DivisionClosesH38Target =
+      solvedH38ResidualWidthToTarget !== null &&
+      solvedH38ResidualWidthToTarget <= 1;
+    return {
+      row_index: rowContext.row_index,
+      comparison_row_index: rowContext.comparison_row_index,
+      source_subcover_row_index: rowContext.source_subcover_row_index,
+      cell_id: rowContext.cell_id,
+      speed_interval: rowContext.speed_interval,
+      xi_interval: rowContext.xi_interval,
+      source_y_order: H38_NUMERATOR_Y_ORDER,
+      required_xi_derivative_order: 4,
+      row_local_n38_directed_m4_sufficient_upper_bound: requiredUpper,
+      source_term_derivative_input_slots: slots,
+      source_term_derivative_input_count: slots.filter(
+        (slot) => slot.derivative_input_available === true
+      ).length,
+      missing_source_term_derivative_input_count: slots.filter(
+        (slot) => slot.derivative_input_available !== true
+      ).length,
+      all_source_term_derivative_inputs_available: complete,
+      constant_minus_two_fourth_derivative_interval: [0, 0],
+      n38_fourth_derivative_interval_from_source_terms:
+        sourceTermD4Interval,
+      n38_fourth_derivative_abs_upper: n38D4AbsUpper,
+      n38_d4_to_required_upper_ratio: ratio,
+      closes_row_local_m4_target: closes,
+      row_local_s37_division_bridge_kind:
+        "source-term-d4-cubic-taylor-s37-division-bridge",
+      row_local_s37_division_bridge_proof_status:
+        complete
+          ? "candidate-only-source-term-d4-not-directed-rounded"
+          : "candidate-only-source-term-d4-inputs-missing",
+      row_local_s37_division_xi_half_width: xiHalfWidth,
+      row_local_s37_division_n38_taylor_remainder_abs_upper:
+        numeratorRemainderAbsUpper,
+      row_local_s37_division_n38_taylor_remainder_width_upper:
+        numeratorRemainderWidthUpper,
+      row_local_s37_division_cubic_graph_plus_midpoint_width:
+        taylorGraphPlusMidpointWidth,
+      row_local_s37_division_total_numerator_width_upper:
+        totalS37NumeratorWidthUpper,
+      row_local_s37_division_target_numerator_width_lower:
+        targetS37NumeratorWidthLower,
+      row_local_s37_division_total_numerator_width_to_target:
+        totalS37NumeratorWidthToTarget,
+      row_local_s37_division_solve_slope_interval: solveSlopeInterval,
+      row_local_s37_division_solve_slope_abs_lower: solveSlopeAbsLower,
+      row_local_s37_division_target_h38_residual_width:
+        targetH38ResidualWidth,
+      row_local_s37_division_h38_residual_width_upper:
+        solvedH38ResidualWidthUpper,
+      row_local_s37_division_h38_residual_width_to_target:
+        solvedH38ResidualWidthToTarget,
+      row_local_s37_division_closes_numerator_target:
+        s37DivisionClosesNumeratorTarget,
+      row_local_s37_division_closes_h38_residual_target:
+        s37DivisionClosesH38Target,
+      row_local_s37_division_bridge_status: complete
+        ? s37DivisionClosesNumeratorTarget && s37DivisionClosesH38Target
+          ? "row-local-source-term-d4-candidate-fits-s37-division-target"
+          : "row-local-source-term-d4-candidate-exceeds-s37-division-target"
+        : "row-local-source-term-d4-candidate-missing-s37-division-inputs",
+      row_status: complete
+        ? closes
+          ? "row-local-n38-analytic-derivative-inputs-fit-m4-target"
+          : "row-local-n38-analytic-derivative-inputs-exceed-m4-target"
+        : "row-local-n38-analytic-derivative-inputs-missing",
+      claim_boundary: {
+        certifies_n38_fourth_derivative_bound: false,
+        certifies_s37_dependency_preserving_division: false,
+        certifies_shifted_R43_outer_bound: false,
+        certifies_directed_rounded_shared_domain: false,
+        retained_branch: false,
+      },
+    };
+  });
+  const completeRows = rowScaffolds.filter(
+    (row) => row.all_source_term_derivative_inputs_available === true
+  );
+  const ratios = completeRows
+    .map((row) => Number(row.n38_d4_to_required_upper_ratio))
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const allRowsComplete =
+    rowScaffolds.length > 0 && completeRows.length === rowScaffolds.length;
+  const allCompleteRowsClose =
+    completeRows.length > 0 &&
+    completeRows.every((row) => row.closes_row_local_m4_target === true);
+  const s37DivisionNumeratorRatios = completeRows
+    .map((row) =>
+      Number(row.row_local_s37_division_total_numerator_width_to_target)
+    )
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const s37DivisionH38Ratios = completeRows
+    .map((row) =>
+      Number(row.row_local_s37_division_h38_residual_width_to_target)
+    )
+    .filter((value) => Number.isFinite(value) && value >= 0);
+  const allCompleteRowsCloseS37Division =
+    completeRows.length > 0 &&
+    completeRows.every(
+      (row) =>
+        row.row_local_s37_division_closes_numerator_target === true &&
+        row.row_local_s37_division_closes_h38_residual_target === true
+    );
+  return {
+    schema:
+      THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_N38_ANALYTIC_DERIVATIVE_PROVIDER_SCAFFOLD_SCHEMA,
+    status:
+      "h39-requested-y44-row-local-n38-analytic-derivative-provider-scaffold-candidate-emitted",
+    evaluation_level:
+      "candidate-h39-requested-y44-row-local-n38-analytic-derivative-provider-scaffold",
+    provider_kind: "chain-rule-coefficient-extraction-provider",
+    evaluator_source: "evaluateH38RecurrenceNumeratorBeforeSolve",
+    source_expression:
+      "N38=[y^42](delta^2*nu^{-2}-2+sin(phi)+sin(delta)) with h38=0",
+    source_terms: [...H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS],
+    source_terms_with_zero_fourth_xi_derivative: ["constant_minus_two"],
+    required_xi_derivative_order: 4,
+    coefficient_extraction_order: H38_NUMERATOR_Y_ORDER,
+    coefficient_extraction_commutes_with_xi_derivative: true,
+    source_term_derivative_inputs_received_count: entries.length,
+    selected_row_count: rowScaffolds.length,
+    complete_row_count: completeRows.length,
+    row_scaffolds: rowScaffolds,
+    all_rows_have_source_term_derivative_inputs: allRowsComplete,
+    all_complete_rows_close_m4_target: allCompleteRowsClose,
+    all_complete_rows_close_s37_division_target:
+      allCompleteRowsCloseS37Division,
+    max_n38_d4_to_required_upper_ratio:
+      ratios.length > 0 ? Math.max(...ratios) : null,
+    max_s37_division_total_numerator_width_to_target:
+      s37DivisionNumeratorRatios.length > 0
+        ? Math.max(...s37DivisionNumeratorRatios)
+        : null,
+    max_s37_division_h38_residual_width_to_target:
+      s37DivisionH38Ratios.length > 0
+        ? Math.max(...s37DivisionH38Ratios)
+        : null,
+    proof_status: allRowsComplete
+      ? "candidate-only-source-term-inputs-present-not-directed-rounded-certified"
+      : "candidate-only-no-directed-rounded-source-term-inputs",
+    s37_division_bridge_proof_status: allRowsComplete
+      ? "candidate-only-s37-division-replay-not-directed-rounded-certified"
+      : "candidate-only-s37-division-replay-source-term-inputs-missing",
+    interpretation: allRowsComplete
+      ? allCompleteRowsClose
+        ? "source-term-d4-inputs-fit-row-local-m4-ceiling-candidate"
+        : "source-term-d4-inputs-exceed-row-local-m4-ceiling-candidate"
+      : "source-term-d4-inputs-missing-for-directed-rounded-provider",
+    s37_division_bridge_interpretation: allRowsComplete
+      ? allCompleteRowsCloseS37Division
+        ? "source-term-d4-candidate-fits-row-local-s37-division-target"
+        : "source-term-d4-candidate-exceeds-row-local-s37-division-target"
+      : "source-term-d4-inputs-missing-for-s37-division-replay",
+    claim_boundary: {
+      certifies_n38_fourth_derivative_bound: false,
+      certifies_s37_dependency_preserving_division: false,
+      certifies_shifted_R43_outer_bound: false,
+      certifies_directed_rounded_shared_domain: false,
+      retained_branch: false,
+    },
+  };
+}
+
+export function validateH39RequestedY44RowLocalN38AnalyticDerivativeProviderScaffold(
+  artifact
+) {
+  const errors = [];
+  const hasFiniteOrderedInterval = (interval) =>
+    Array.isArray(interval) &&
+    interval.length === 2 &&
+    Number.isFinite(Number(interval[0])) &&
+    Number.isFinite(Number(interval[1])) &&
+    Number(interval[0]) <= Number(interval[1]);
+  const sameTerms = (terms) =>
+    Array.isArray(terms) &&
+    terms.length === H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every(
+      (term, index) => terms[index] === term
+    );
+  if (
+    artifact?.schema !==
+    THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_N38_ANALYTIC_DERIVATIVE_PROVIDER_SCAFFOLD_SCHEMA
+  ) {
+    errors.push("schema must match h39 requested-y44 analytic derivative provider scaffold");
+  }
+  if (
+    artifact?.status !==
+    "h39-requested-y44-row-local-n38-analytic-derivative-provider-scaffold-candidate-emitted"
+  ) {
+    errors.push("status must identify a candidate analytic derivative provider scaffold");
+  }
+  if (
+    artifact?.evaluation_level !==
+    "candidate-h39-requested-y44-row-local-n38-analytic-derivative-provider-scaffold" ||
+    artifact?.provider_kind !== "chain-rule-coefficient-extraction-provider" ||
+    artifact?.evaluator_source !== "evaluateH38RecurrenceNumeratorBeforeSolve" ||
+    artifact?.source_expression !==
+      "N38=[y^42](delta^2*nu^{-2}-2+sin(phi)+sin(delta)) with h38=0" ||
+    !sameTerms(artifact?.source_terms) ||
+    artifact?.required_xi_derivative_order !== 4 ||
+    artifact?.coefficient_extraction_order !== H38_NUMERATOR_Y_ORDER ||
+    artifact?.coefficient_extraction_commutes_with_xi_derivative !== true
+  ) {
+    errors.push("analytic provider scaffold metadata must identify the H38 source-term chain rule route");
+  }
+  const rows = artifact?.row_scaffolds;
+  if (
+    !Array.isArray(rows) ||
+    !Number.isInteger(artifact?.selected_row_count) ||
+    artifact.selected_row_count !== rows.length ||
+    !Number.isInteger(artifact?.complete_row_count) ||
+    artifact.complete_row_count < 0 ||
+    artifact.complete_row_count > rows.length
+  ) {
+    errors.push("row scaffold counts must be finite and consistent");
+  } else {
+    rows.forEach((row, index) => {
+      const slots = row?.source_term_derivative_input_slots;
+      if (
+        !Number.isInteger(row?.row_index) ||
+        !Number.isInteger(row?.comparison_row_index) ||
+        !Number.isInteger(row?.source_subcover_row_index) ||
+        typeof row?.cell_id !== "string" ||
+        !hasFiniteOrderedInterval(row?.speed_interval) ||
+        !hasFiniteOrderedInterval(row?.xi_interval) ||
+        row?.source_y_order !== H38_NUMERATOR_Y_ORDER ||
+        row?.required_xi_derivative_order !== 4 ||
+        !finitePositive(
+          row?.row_local_n38_directed_m4_sufficient_upper_bound
+        ) ||
+        !sameTerms(slots?.map((slot) => slot.term)) ||
+        !Number.isInteger(row?.source_term_derivative_input_count) ||
+        !Number.isInteger(row?.missing_source_term_derivative_input_count) ||
+        row.source_term_derivative_input_count +
+          row.missing_source_term_derivative_input_count !==
+          H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length ||
+        typeof row?.all_source_term_derivative_inputs_available !==
+          "boolean" ||
+        !hasFiniteOrderedInterval(
+          row?.constant_minus_two_fourth_derivative_interval
+        ) ||
+        typeof row?.closes_row_local_m4_target !== "boolean" ||
+        row?.row_local_s37_division_bridge_kind !==
+          "source-term-d4-cubic-taylor-s37-division-bridge" ||
+        ![
+          "candidate-only-source-term-d4-not-directed-rounded",
+          "candidate-only-source-term-d4-inputs-missing",
+        ].includes(row?.row_local_s37_division_bridge_proof_status) ||
+        !finitePositive(row?.row_local_s37_division_xi_half_width) ||
+        !finiteNonnegative(
+          row?.row_local_s37_division_cubic_graph_plus_midpoint_width
+        ) ||
+        !finitePositive(
+          row?.row_local_s37_division_target_numerator_width_lower
+        ) ||
+        !hasFiniteOrderedInterval(
+          row?.row_local_s37_division_solve_slope_interval
+        ) ||
+        !finitePositive(row?.row_local_s37_division_solve_slope_abs_lower) ||
+        !finitePositive(row?.row_local_s37_division_target_h38_residual_width) ||
+        typeof row?.row_local_s37_division_closes_numerator_target !==
+          "boolean" ||
+        typeof row?.row_local_s37_division_closes_h38_residual_target !==
+          "boolean" ||
+        ![
+          "row-local-source-term-d4-candidate-fits-s37-division-target",
+          "row-local-source-term-d4-candidate-exceeds-s37-division-target",
+          "row-local-source-term-d4-candidate-missing-s37-division-inputs",
+        ].includes(row?.row_local_s37_division_bridge_status) ||
+        ![
+          "row-local-n38-analytic-derivative-inputs-fit-m4-target",
+          "row-local-n38-analytic-derivative-inputs-exceed-m4-target",
+          "row-local-n38-analytic-derivative-inputs-missing",
+        ].includes(row?.row_status)
+      ) {
+        errors.push(`row ${index} analytic derivative scaffold fields must be finite and candidate-only`);
+        return;
+      }
+      slots.forEach((slot, slotIndex) => {
+        if (
+          typeof slot?.derivative_input_available !== "boolean" ||
+          (slot.derivative_input_available === true &&
+            (!hasFiniteOrderedInterval(slot?.derivative_interval_d4) ||
+              !finiteNonnegative(slot?.derivative_abs_upper))) ||
+          (slot.derivative_input_available !== true &&
+            (slot?.derivative_interval_d4 !== null ||
+              slot?.derivative_abs_upper !== null)) ||
+          !["string", "object"].includes(typeof slot?.dependency_chain) ||
+          typeof slot?.matches_same_domain !== "boolean" ||
+          typeof slot?.same_domain_checks?.cell_id_matches !== "boolean" ||
+          typeof slot?.same_domain_checks?.source_y_order_matches !==
+            "boolean" ||
+          typeof slot?.same_domain_checks?.speed_interval_matches !==
+            "boolean" ||
+          typeof slot?.same_domain_checks?.xi_interval_matches !== "boolean"
+        ) {
+          errors.push(`row ${index} slot ${slotIndex} derivative input slot must be valid`);
+        }
+      });
+      if (row.all_source_term_derivative_inputs_available === true) {
+        if (
+          !hasFiniteOrderedInterval(
+            row?.n38_fourth_derivative_interval_from_source_terms
+          ) ||
+          !finiteNonnegative(row?.n38_fourth_derivative_abs_upper) ||
+          !finiteNonnegative(row?.n38_d4_to_required_upper_ratio) ||
+          !finiteNonnegative(
+            row?.row_local_s37_division_n38_taylor_remainder_abs_upper
+          ) ||
+          !finiteNonnegative(
+            row?.row_local_s37_division_n38_taylor_remainder_width_upper
+          ) ||
+          !finiteNonnegative(
+            row?.row_local_s37_division_total_numerator_width_upper
+          ) ||
+          !finiteNonnegative(
+            row?.row_local_s37_division_total_numerator_width_to_target
+          ) ||
+          !finiteNonnegative(
+            row?.row_local_s37_division_h38_residual_width_upper
+          ) ||
+          !finiteNonnegative(
+            row?.row_local_s37_division_h38_residual_width_to_target
+          )
+        ) {
+          errors.push(`row ${index} complete analytic derivative sum must be finite`);
+        }
+      } else if (
+        row?.n38_fourth_derivative_interval_from_source_terms !== null ||
+        row?.n38_fourth_derivative_abs_upper !== null ||
+        row?.n38_d4_to_required_upper_ratio !== null ||
+        row?.row_local_s37_division_n38_taylor_remainder_abs_upper !== null ||
+        row?.row_local_s37_division_n38_taylor_remainder_width_upper !== null ||
+        row?.row_local_s37_division_total_numerator_width_upper !== null ||
+        row?.row_local_s37_division_total_numerator_width_to_target !== null ||
+        row?.row_local_s37_division_h38_residual_width_upper !== null ||
+        row?.row_local_s37_division_h38_residual_width_to_target !== null
+      ) {
+        errors.push(`row ${index} incomplete analytic derivative sum must remain null`);
+      }
+      if (
+        row?.claim_boundary?.certifies_n38_fourth_derivative_bound !== false ||
+        row?.claim_boundary?.certifies_s37_dependency_preserving_division !==
+          false ||
+        row?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+        row?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+          false ||
+        row?.claim_boundary?.retained_branch !== false
+      ) {
+        errors.push(`row ${index} claim boundary must remain open`);
+      }
+    });
+  }
+  if (
+    typeof artifact?.all_rows_have_source_term_derivative_inputs !==
+      "boolean" ||
+    typeof artifact?.all_complete_rows_close_m4_target !== "boolean" ||
+    typeof artifact?.all_complete_rows_close_s37_division_target !==
+      "boolean" ||
+    (artifact?.max_n38_d4_to_required_upper_ratio !== null &&
+      !finiteNonnegative(artifact?.max_n38_d4_to_required_upper_ratio)) ||
+    (artifact?.max_s37_division_total_numerator_width_to_target !== null &&
+      !finiteNonnegative(
+        artifact?.max_s37_division_total_numerator_width_to_target
+      )) ||
+    (artifact?.max_s37_division_h38_residual_width_to_target !== null &&
+      !finiteNonnegative(
+        artifact?.max_s37_division_h38_residual_width_to_target
+      )) ||
+    ![
+      "candidate-only-source-term-inputs-present-not-directed-rounded-certified",
+      "candidate-only-no-directed-rounded-source-term-inputs",
+    ].includes(artifact?.proof_status) ||
+    ![
+      "candidate-only-s37-division-replay-not-directed-rounded-certified",
+      "candidate-only-s37-division-replay-source-term-inputs-missing",
+    ].includes(artifact?.s37_division_bridge_proof_status) ||
+    ![
+      "source-term-d4-inputs-fit-row-local-m4-ceiling-candidate",
+      "source-term-d4-inputs-exceed-row-local-m4-ceiling-candidate",
+      "source-term-d4-inputs-missing-for-directed-rounded-provider",
+    ].includes(artifact?.interpretation) ||
+    ![
+      "source-term-d4-candidate-fits-row-local-s37-division-target",
+      "source-term-d4-candidate-exceeds-row-local-s37-division-target",
+      "source-term-d4-inputs-missing-for-s37-division-replay",
+    ].includes(artifact?.s37_division_bridge_interpretation)
+  ) {
+    errors.push("aggregate analytic derivative scaffold fields must be coherent");
+  }
+  if (
+    artifact?.claim_boundary?.certifies_n38_fourth_derivative_bound !== false ||
+    artifact?.claim_boundary?.certifies_s37_dependency_preserving_division !==
+      false ||
+    artifact?.claim_boundary?.certifies_shifted_R43_outer_bound !== false ||
+    artifact?.claim_boundary?.certifies_directed_rounded_shared_domain !==
+      false ||
+    artifact?.claim_boundary?.retained_branch !== false
+  ) {
+    errors.push("claim boundary must keep analytic derivative and shifted closure open");
+  }
+  return errors;
 }
 
 function h39H38Y44ProducerCenteredIntervalReplay({
@@ -32431,6 +35164,7 @@ function h39H38Y44ProducerCenteredNumeratorCollarTarget({
         sample.numerator_expression_midpoint ?? null,
       numerator_term_midpoints: sample.numerator_term_midpoints ?? null,
       numerator_term_widths: sample.numerator_term_widths ?? null,
+      numerator_term_intervals: sample.numerator_term_intervals ?? null,
       numerator_source_term_midpoint_sum:
         sample.numerator_source_term_midpoint_sum ?? null,
       numerator_source_term_sum_to_interval_midpoint_gap:
@@ -39920,6 +42654,158 @@ export function validateH39SuccessorSuffixTransitionCertificateRouteCandidate(
       metrics
         .affine_floor_requested_y44_row_local_max_n38_interval_residual_width_to_same_domain_remainder_budget
     ) ||
+    metrics
+      .affine_floor_requested_y44_row_local_n38_cubic_taylor_graph_remainder_target_available !==
+      true ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_taylor_graph_degrees_cubic !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_cubic_taylor_graph_plus_midpoint_widths_inside_s37_target !==
+      "boolean" ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_cubic_taylor_graph_interval_width_to_s37_target
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_cubic_taylor_midpoint_residual_width_to_s37_target
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_cubic_taylor_interval_residual_width_to_s37_target
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_cubic_taylor_graph_plus_midpoint_width_to_s37_target
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_min_n38_cubic_taylor_same_domain_remainder_width_budget
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_cubic_taylor_interval_residual_width_to_same_domain_remainder_budget
+    ) ||
+    metrics
+      .affine_floor_requested_y44_row_local_n38_taylor_proxy_target_available !==
+      true ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_observed_m4_proxies_inside_remainder_budget !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_cubic_m4_proxies_have_directed_rounded_inflation_headroom !==
+      "boolean" ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_observed_m4_proxy_to_required_budget
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_observed_m4_proxy_remainder_width_to_budget
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_observed_nonuniform_fourth_derivative_proxy
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_min_n38_required_fourth_derivative_upper_for_remainder_budget
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_min_n38_cubic_m4_proxy_allowed_inflation_factor
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_min_n38_cubic_m4_proxy_absolute_headroom
+    ) ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_min_n38_cubic_m4_proxy_remaining_remainder_width_budget
+    ) ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_directed_m4_sufficiency_screens_ready !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_directed_m4_reduces_to_n38_fourth_derivative !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_true_stream_bridges_target_fourth_derivative !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_analytic_derivative_provider_scaffolds_emitted !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_source_term_xi_jet_providers_emitted !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_source_term_xi_jet_providers_fit_m4_target !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_source_term_xi_lagrange_interpolant_providers_emitted !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_source_term_xi_lagrange_interpolant_providers_fit_m4_target !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_source_term_xi_intervalized_lagrange_providers_emitted !==
+      "boolean" ||
+    typeof metrics
+      .affine_floor_requested_y44_row_local_all_n38_source_term_xi_intervalized_lagrange_providers_fit_m4_target !==
+      "boolean" ||
+    !finitePositive(
+      metrics
+        .affine_floor_requested_y44_row_local_min_n38_directed_m4_sufficient_upper_bound
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_directed_m4_sufficient_width_to_budget
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_true_stream_m4_to_required_budget
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_cubic_graph_m4_to_required_budget
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_true_minus_residual_signed_m4_gap_to_required
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_source_term_xi_jet_to_required_upper_ratio
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_source_term_xi_jet_signed_gap_to_required
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_source_term_xi_lagrange_interpolant_to_required_upper_ratio
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_source_term_xi_lagrange_interpolant_signed_gap_to_required
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required
+    ) ||
+    !finiteNonnegative(
+      metrics
+        .affine_floor_requested_y44_row_local_max_n38_source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor
+    ) ||
     metrics.affine_floor_requested_xi_interval_cover_count !==
       route?.comparison_row_count ||
     !finiteNonnegative(
@@ -47397,6 +50283,366 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
       "selected-producer-row-needs-directed-rounded-width-contraction",
       "selected-producer-row-width-contraction-target-unresolved",
     ].includes(target?.certificate_interpretation);
+  const sourceTermXiJetProviderCandidateValid = (provider, diagnostic) =>
+    [
+      "row-local-n38-source-term-finite-stencil-xi-jet-provider-fits-m4-target",
+      "row-local-n38-source-term-finite-stencil-xi-jet-provider-exceeds-m4-target",
+      "row-local-n38-source-term-finite-stencil-xi-jet-provider-unavailable",
+    ].includes(provider?.status) &&
+    provider?.provider_kind ===
+      "finite-stencil-source-term-xi-jet-provider-candidate" &&
+    provider?.proof_status ===
+      "finite-stencil-midpoint-jet-not-directed-rounded" &&
+    provider?.evaluator_source === "evaluateH38RecurrenceNumeratorBeforeSolve" &&
+    provider?.cell_id === diagnostic?.cell_id &&
+    hasFiniteInterval(provider?.speed_interval) &&
+    hasFiniteInterval(provider?.xi_interval) &&
+    Array.isArray(provider?.source_terms) &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every((term) =>
+      provider.source_terms.includes(term)
+    ) &&
+    Array.isArray(provider?.source_terms_with_zero_fourth_xi_derivative) &&
+    provider.source_terms_with_zero_fourth_xi_derivative.includes(
+      "constant_minus_two"
+    ) &&
+    provider?.derivative_order === 4 &&
+    provider?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+    provider?.stencil_sample_count === 5 &&
+    hasFiniteInterval(provider?.xi_midpoint_span) &&
+    finitePositive(provider?.required_fourth_derivative_upper) &&
+    Array.isArray(provider?.source_term_xi_jet_rows) &&
+    provider.source_term_xi_jet_rows.length ===
+      H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    provider.source_term_xi_jet_rows.every(
+      (row) =>
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(row?.term) &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.stencil_sample_count === 5 &&
+        hasFiniteInterval(row?.xi_midpoint_span) &&
+        Array.isArray(row?.midpoint_values) &&
+        row.midpoint_values.length === 5 &&
+        row.midpoint_values.every((value) => Number.isFinite(Number(value))) &&
+        Number.isFinite(
+          Number(row?.uniform_fourth_derivative_signed_estimate)
+        ) &&
+        Number.isFinite(
+          Number(row?.nonuniform_fourth_derivative_signed_estimate)
+        ) &&
+        finiteNonnegative(row?.nonuniform_fourth_derivative_abs_estimate) &&
+        finiteNonnegative(
+          row?.nonuniform_fourth_derivative_to_required_ratio
+        ) &&
+        hasFiniteInterval(row?.derivative_interval_d4) &&
+        finiteNonnegative(row?.derivative_abs_upper) &&
+        typeof row?.dependency_chain === "string"
+    ) &&
+    Array.isArray(provider?.source_term_derivative_inputs_for_scaffold) &&
+    provider.source_term_derivative_inputs_for_scaffold.length ===
+      H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    provider.source_term_derivative_inputs_for_scaffold.every(
+      (input) =>
+        input?.cell_id === diagnostic?.cell_id &&
+        hasFiniteInterval(input?.speed_interval) &&
+        hasFiniteInterval(input?.xi_interval) &&
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(input?.term) &&
+        input?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        hasFiniteInterval(input?.derivative_interval_d4) &&
+        typeof input?.dependency_chain === "string"
+    ) &&
+    hasFiniteInterval(provider?.source_term_xi_jet_interval) &&
+    finiteNonnegative(provider?.source_term_xi_jet_abs_upper) &&
+    finiteNonnegative(
+      provider?.source_term_xi_jet_to_required_upper_ratio
+    ) &&
+    typeof provider?.source_term_xi_jet_fits_m4_target === "boolean" &&
+    finiteNonnegative(
+      provider?.source_term_xi_jet_signed_gap_to_true_stream
+    ) &&
+    finiteNonnegative(provider?.source_term_xi_jet_signed_gap_to_required) &&
+    typeof provider?.certificate_route === "string" &&
+    provider?.claim_boundary?.certifies_n38_fourth_derivative_bound ===
+      false &&
+    provider?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    provider?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    provider?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    provider?.claim_boundary?.retained_branch === false;
+  const sourceTermXiLagrangeInterpolantProviderCandidateValid = (
+    provider,
+    diagnostic
+  ) =>
+    [
+      "row-local-n38-source-term-lagrange-interpolant-provider-fits-m4-target",
+      "row-local-n38-source-term-lagrange-interpolant-provider-exceeds-m4-target",
+      "row-local-n38-source-term-lagrange-interpolant-provider-unavailable",
+    ].includes(provider?.status) &&
+    provider?.provider_kind ===
+      "degree-four-lagrange-source-term-xi-interpolant-provider-candidate" &&
+    provider?.proof_status ===
+      "degree-four-lagrange-interpolant-midpoint-jet-not-directed-rounded" &&
+    provider?.evaluator_source === "evaluateH38RecurrenceNumeratorBeforeSolve" &&
+    typeof provider?.normal_form_identity === "string" &&
+    provider?.cell_id === diagnostic?.cell_id &&
+    hasFiniteInterval(provider?.speed_interval) &&
+    hasFiniteInterval(provider?.xi_interval) &&
+    Array.isArray(provider?.source_terms) &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every((term) =>
+      provider.source_terms.includes(term)
+    ) &&
+    Array.isArray(provider?.source_terms_with_zero_fourth_xi_derivative) &&
+    provider.source_terms_with_zero_fourth_xi_derivative.includes(
+      "constant_minus_two"
+    ) &&
+    provider?.derivative_order === 4 &&
+    provider?.interpolation_node_count === 5 &&
+    provider?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+    hasFiniteInterval(provider?.xi_midpoint_span) &&
+    finitePositive(provider?.required_fourth_derivative_upper) &&
+    Number.isFinite(
+      Number(provider?.true_stream_lagrange_fourth_derivative_signed_estimate)
+    ) &&
+    finiteNonnegative(
+      provider?.true_stream_lagrange_to_finite_stencil_signed_gap
+    ) &&
+    finiteNonnegative(
+      provider?.true_stream_lagrange_to_finite_stencil_signed_gap_to_required
+    ) &&
+    finiteNonnegative(provider?.source_term_midpoint_sum_replay_max_abs_gap) &&
+    Array.isArray(provider?.source_term_xi_lagrange_interpolant_rows) &&
+    provider.source_term_xi_lagrange_interpolant_rows.length ===
+      H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    provider.source_term_xi_lagrange_interpolant_rows.every(
+      (row) =>
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(row?.term) &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.interpolation_node_count === 5 &&
+        hasFiniteInterval(row?.xi_midpoint_span) &&
+        Array.isArray(row?.midpoint_values) &&
+        row.midpoint_values.length === 5 &&
+        row.midpoint_values.every((value) => Number.isFinite(Number(value))) &&
+        row?.lagrange_polynomial_degree === 4 &&
+        Array.isArray(row?.lagrange_coefficients) &&
+        row.lagrange_coefficients.length === 5 &&
+        row.lagrange_coefficients.every((value) =>
+          Number.isFinite(Number(value))
+        ) &&
+        Number.isFinite(Number(row?.lagrange_quartic_coefficient)) &&
+        Number.isFinite(
+          Number(row?.lagrange_fourth_derivative_signed_estimate)
+        ) &&
+        finiteNonnegative(row?.lagrange_fourth_derivative_abs_estimate) &&
+        finiteNonnegative(
+          row?.lagrange_fourth_derivative_to_required_ratio
+        ) &&
+        Number.isFinite(
+          Number(row?.divided_difference_fourth_derivative_signed_estimate)
+        ) &&
+        finiteNonnegative(
+          row?.lagrange_to_divided_difference_signed_gap
+        ) &&
+        finiteNonnegative(
+          row?.lagrange_to_divided_difference_signed_gap_to_required
+        ) &&
+        finiteNonnegative(row?.lagrange_node_replay_max_abs_gap) &&
+        hasFiniteInterval(row?.derivative_interval_d4) &&
+        finiteNonnegative(row?.derivative_abs_upper) &&
+        typeof row?.dependency_chain === "string"
+    ) &&
+    Array.isArray(provider?.source_term_derivative_inputs_for_scaffold) &&
+    provider.source_term_derivative_inputs_for_scaffold.length ===
+      H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    provider.source_term_derivative_inputs_for_scaffold.every(
+      (input) =>
+        input?.cell_id === diagnostic?.cell_id &&
+        hasFiniteInterval(input?.speed_interval) &&
+        hasFiniteInterval(input?.xi_interval) &&
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(input?.term) &&
+        input?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        hasFiniteInterval(input?.derivative_interval_d4) &&
+        typeof input?.dependency_chain === "string"
+    ) &&
+    hasFiniteInterval(
+      provider?.source_term_xi_lagrange_interpolant_interval
+    ) &&
+    finiteNonnegative(
+      provider?.source_term_xi_lagrange_interpolant_abs_upper
+    ) &&
+    finiteNonnegative(
+      provider?.source_term_xi_lagrange_interpolant_to_required_upper_ratio
+    ) &&
+    typeof provider
+      ?.source_term_xi_lagrange_interpolant_fits_m4_target === "boolean" &&
+    finiteNonnegative(
+      provider?.source_term_xi_lagrange_interpolant_signed_gap_to_true_stream
+    ) &&
+    finiteNonnegative(
+      provider?.source_term_xi_lagrange_interpolant_signed_gap_to_required
+    ) &&
+    finiteNonnegative(
+      provider?.source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap
+    ) &&
+    finiteNonnegative(
+      provider
+        ?.source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required
+    ) &&
+    typeof provider?.certificate_route === "string" &&
+    provider?.claim_boundary?.certifies_n38_fourth_derivative_bound ===
+      false &&
+    provider?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    provider?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    provider?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    provider?.claim_boundary?.retained_branch === false;
+  const sourceTermXiIntervalizedLagrangeProviderCandidateValid = (
+    provider,
+    diagnostic
+  ) =>
+    [
+      "row-local-n38-source-term-intervalized-lagrange-provider-fits-m4-target",
+      "row-local-n38-source-term-intervalized-lagrange-provider-exceeds-m4-target",
+      "row-local-n38-source-term-intervalized-lagrange-provider-unavailable",
+    ].includes(provider?.status) &&
+    provider?.provider_kind ===
+      "intervalized-degree-four-lagrange-source-term-xi-provider-candidate" &&
+    provider?.proof_status ===
+      "source-term-node-intervals-propagated-through-lagrange-weights-not-directed-rounded-same-domain" &&
+    provider?.evaluator_source === "evaluateH38RecurrenceNumeratorBeforeSolve" &&
+    typeof provider?.normal_form_identity === "string" &&
+    provider?.cell_id === diagnostic?.cell_id &&
+    hasFiniteInterval(provider?.speed_interval) &&
+    hasFiniteInterval(provider?.xi_interval) &&
+    Array.isArray(provider?.source_terms) &&
+    H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.every((term) =>
+      provider.source_terms.includes(term)
+    ) &&
+    Array.isArray(provider?.source_terms_with_zero_fourth_xi_derivative) &&
+    provider.source_terms_with_zero_fourth_xi_derivative.includes(
+      "constant_minus_two"
+    ) &&
+    provider?.derivative_order === 4 &&
+    provider?.interpolation_node_count === 5 &&
+    provider?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+    hasFiniteInterval(provider?.xi_midpoint_span) &&
+    finitePositive(provider?.required_fourth_derivative_upper) &&
+    Array.isArray(provider?.source_term_xi_intervalized_lagrange_rows) &&
+    provider.source_term_xi_intervalized_lagrange_rows.length ===
+      H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    provider.source_term_xi_intervalized_lagrange_rows.every(
+      (row) =>
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(row?.term) &&
+        row?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        row?.interpolation_node_count === 5 &&
+        hasFiniteInterval(row?.xi_midpoint_span) &&
+        Array.isArray(row?.node_value_intervals) &&
+        row.node_value_intervals.length === 5 &&
+        row.node_value_intervals.every(hasFiniteInterval) &&
+        Array.isArray(row?.node_value_interval_widths) &&
+        row.node_value_interval_widths.length === 5 &&
+        row.node_value_interval_widths.every(finiteNonnegative) &&
+        Array.isArray(row?.midpoint_values) &&
+        row.midpoint_values.length === 5 &&
+        row.midpoint_values.every((value) => Number.isFinite(Number(value))) &&
+        Array.isArray(row?.lagrange_fourth_derivative_weights) &&
+        row.lagrange_fourth_derivative_weights.length === 5 &&
+        row.lagrange_fourth_derivative_weights.every((value) =>
+          Number.isFinite(Number(value))
+        ) &&
+        Array.isArray(row?.weighted_node_interval_rows) &&
+        row.weighted_node_interval_rows.length === 5 &&
+        row.weighted_node_interval_rows.every(
+          (entry) =>
+            Number.isInteger(entry?.node_index) &&
+            entry.node_index >= 0 &&
+            entry.node_index < 5 &&
+            Number.isFinite(Number(entry?.xi_midpoint)) &&
+            hasFiniteInterval(entry?.value_interval) &&
+            finiteNonnegative(entry?.value_interval_width) &&
+            Number.isFinite(
+              Number(entry?.lagrange_fourth_derivative_weight)
+            ) &&
+            hasFiniteInterval(entry?.weighted_derivative_interval) &&
+            finiteNonnegative(entry?.weighted_derivative_abs_upper)
+        ) &&
+        hasFiniteInterval(
+          row?.intervalized_lagrange_fourth_derivative_interval
+        ) &&
+        finiteNonnegative(
+          row?.intervalized_lagrange_fourth_derivative_width
+        ) &&
+        finiteNonnegative(
+          row?.intervalized_lagrange_fourth_derivative_abs_upper
+        ) &&
+        finiteNonnegative(
+          row?.intervalized_lagrange_fourth_derivative_to_required_ratio
+        ) &&
+        Number.isFinite(
+          Number(row?.midpoint_lagrange_fourth_derivative_signed_estimate)
+        ) &&
+        typeof row?.midpoint_estimate_inside_intervalized_derivative ===
+          "boolean" &&
+        finiteNonnegative(
+          row?.midpoint_estimate_gap_to_intervalized_derivative
+        ) &&
+        finiteNonnegative(row?.midpoint_estimate_gap_to_required) &&
+        nullableFiniteNonnegative(
+          row?.intervalized_abs_upper_to_midpoint_abs_ratio
+        ) &&
+        hasFiniteInterval(row?.derivative_interval_d4) &&
+        finiteNonnegative(row?.derivative_abs_upper) &&
+        typeof row?.dependency_chain === "string"
+    ) &&
+    Array.isArray(provider?.source_term_derivative_inputs_for_scaffold) &&
+    provider.source_term_derivative_inputs_for_scaffold.length ===
+      H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.length &&
+    provider.source_term_derivative_inputs_for_scaffold.every(
+      (input) =>
+        input?.cell_id === diagnostic?.cell_id &&
+        hasFiniteInterval(input?.speed_interval) &&
+        hasFiniteInterval(input?.xi_interval) &&
+        H39_REQUESTED_Y44_N38_ANALYTIC_SOURCE_TERMS.includes(input?.term) &&
+        input?.source_y_order === H38_NUMERATOR_Y_ORDER &&
+        hasFiniteInterval(input?.derivative_interval_d4) &&
+        typeof input?.dependency_chain === "string"
+    ) &&
+    hasFiniteInterval(
+      provider?.source_term_xi_intervalized_lagrange_interval
+    ) &&
+    finiteNonnegative(
+      provider?.source_term_xi_intervalized_lagrange_abs_upper
+    ) &&
+    finiteNonnegative(
+      provider?.source_term_xi_intervalized_lagrange_to_required_upper_ratio
+    ) &&
+    typeof provider
+      ?.source_term_xi_intervalized_lagrange_fits_m4_target === "boolean" &&
+    Number.isFinite(
+      Number(provider?.source_term_xi_intervalized_lagrange_midpoint_estimate)
+    ) &&
+    typeof provider
+      ?.source_term_xi_intervalized_lagrange_contains_midpoint_estimate ===
+      "boolean" &&
+    finiteNonnegative(
+      provider?.source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate
+    ) &&
+    finiteNonnegative(
+      provider
+        ?.source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required
+    ) &&
+    nullableFiniteNonnegative(
+      provider
+        ?.source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor
+    ) &&
+    typeof provider?.certificate_route === "string" &&
+    provider?.claim_boundary?.certifies_n38_fourth_derivative_bound ===
+      false &&
+    provider?.claim_boundary
+      ?.certifies_s37_dependency_preserving_division === false &&
+    provider?.claim_boundary?.certifies_shifted_R43_outer_bound === false &&
+    provider?.claim_boundary?.certifies_directed_rounded_shared_domain ===
+      false &&
+    provider?.claim_boundary?.retained_branch === false;
   const rowLocalN38S37CollarDiagnosticValid = (diagnostic) =>
     diagnostic?.schema ===
       THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_REQUESTED_Y44_ROW_LOCAL_N38_S37_COLLAR_DIAGNOSTIC_SCHEMA &&
@@ -47414,6 +50660,11 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     Number.isInteger(diagnostic?.polynomial_degree) &&
     diagnostic.polynomial_degree >= 1 &&
     diagnostic.polynomial_degree <= 3 &&
+    diagnostic?.row_local_n38_taylor_polynomial_degree === 3 &&
+    diagnostic?.row_local_n38_taylor_graph_degree === 3 &&
+    diagnostic?.row_local_n38_taylor_remainder_order === 4 &&
+    diagnostic?.row_local_n38_m4_proxy_target_kind ===
+      "cubic-row-local-n38-taylor-remainder" &&
     finitePositive(diagnostic?.target_residual_coordinate_half_width) &&
     finitePositive(diagnostic?.target_h38_residual_half_width) &&
     hasFiniteInterval(diagnostic?.solve_slope_interval) &&
@@ -47445,6 +50696,28 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
     finitePositive(
       diagnostic?.n38_numerator_interval_width_to_row_local_s37_target
     ) &&
+    finiteNonnegative(diagnostic?.n38_taylor_graph_interval_width) &&
+    Number.isFinite(Number(diagnostic?.n38_taylor_midpoint_residual)) &&
+    finiteNonnegative(diagnostic?.n38_taylor_midpoint_residual_abs) &&
+    finiteNonnegative(diagnostic?.n38_taylor_midpoint_residual_width) &&
+    hasFiniteInterval(diagnostic?.n38_taylor_interval_residual) &&
+    finitePositive(diagnostic?.n38_taylor_interval_residual_width) &&
+    finitePositive(diagnostic?.n38_taylor_numerator_interval_width) &&
+    finiteNonnegative(
+      diagnostic?.n38_taylor_graph_interval_width_to_row_local_s37_target
+    ) &&
+    finiteNonnegative(
+      diagnostic
+        ?.n38_taylor_midpoint_residual_width_to_row_local_s37_target
+    ) &&
+    finitePositive(
+      diagnostic
+        ?.n38_taylor_interval_residual_width_to_row_local_s37_target
+    ) &&
+    finitePositive(
+      diagnostic
+        ?.n38_taylor_numerator_interval_width_to_row_local_s37_target
+    ) &&
     finiteNonnegative(diagnostic?.n38_graph_plus_midpoint_width) &&
     finiteNonnegative(
       diagnostic?.n38_graph_plus_midpoint_width_to_row_local_s37_target
@@ -47460,6 +50733,296 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
       diagnostic
         ?.n38_interval_residual_width_to_same_domain_remainder_budget
     ) &&
+    finiteNonnegative(diagnostic?.n38_taylor_graph_plus_midpoint_width) &&
+    finiteNonnegative(
+      diagnostic
+        ?.n38_taylor_graph_plus_midpoint_width_to_row_local_s37_target
+    ) &&
+    finiteNonnegative(
+      diagnostic
+        ?.row_local_n38_taylor_same_domain_remainder_width_budget
+    ) &&
+    finiteNonnegative(
+      diagnostic
+        ?.row_local_n38_taylor_same_domain_remainder_width_budget_to_s37_target
+    ) &&
+    finitePositive(
+      diagnostic
+        ?.n38_taylor_interval_residual_width_to_same_domain_remainder_budget
+    ) &&
+    diagnostic?.row_local_n38_taylor_proxy_basis ===
+      "cubic-row-local-n38-taylor-graph" &&
+    diagnostic?.row_local_n38_taylor_proxy_polynomial_degree === 3 &&
+    diagnostic?.row_local_n38_taylor_proxy_proof_status ===
+      "finite-difference-proxy-not-directed-rounded" &&
+    diagnostic?.row_local_n38_taylor_proxy_sample_count === 5 &&
+    finitePositive(diagnostic?.row_local_n38_taylor_proxy_xi_half_width) &&
+    finitePositive(diagnostic?.row_local_n38_taylor_proxy_xi_step) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_taylor_proxy_max_xi_step_deviation
+    ) &&
+    finitePositive(
+      diagnostic?.row_local_n38_same_domain_remainder_abs_upper_budget
+    ) &&
+    finitePositive(
+      diagnostic
+        ?.row_local_n38_required_fourth_derivative_upper_for_remainder_budget
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_observed_uniform_fourth_derivative_proxy
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_observed_nonuniform_fourth_derivative_proxy
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_observed_m4_proxy_to_required_budget
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_observed_m4_proxy_remainder_width
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_observed_m4_proxy_remainder_width_to_budget
+    ) &&
+    finitePositive(
+      diagnostic?.row_local_n38_cubic_m4_proxy_allowed_inflation_factor
+    ) &&
+    finitePositive(
+      diagnostic?.row_local_n38_cubic_m4_proxy_absolute_headroom
+    ) &&
+    finitePositive(
+      diagnostic
+        ?.row_local_n38_cubic_m4_proxy_remaining_remainder_width_budget
+    ) &&
+    [
+      "row-local-n38-directed-m4-sufficiency-screen-ready",
+      "row-local-n38-directed-m4-sufficiency-screen-open",
+    ].includes(
+      diagnostic?.row_local_n38_directed_m4_sufficiency_screen_status
+    ) &&
+    finitePositive(
+      diagnostic?.row_local_n38_directed_m4_sufficient_upper_bound
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_directed_m4_sufficient_remainder_width
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_directed_m4_sufficient_width_to_budget
+    ) &&
+    typeof diagnostic?.row_local_n38_directed_m4_sufficiency_condition ===
+      "string" &&
+    diagnostic?.row_local_n38_taylor_q3_fourth_derivative_vanishes ===
+      true &&
+    diagnostic
+      ?.row_local_n38_directed_m4_reduces_to_n38_fourth_derivative ===
+      true &&
+    typeof diagnostic?.row_local_n38_directed_m4_exact_reduction ===
+      "string" &&
+    diagnostic?.row_local_n38_true_stream_bridge_target_kind ===
+      "same-domain-directed-rounded-true-N38-fourth-derivative" &&
+    diagnostic?.row_local_n38_true_stream_evaluator_candidate ===
+      "evaluateH38RecurrenceNumeratorBeforeSolve" &&
+    [
+      "row-local-n38-true-stream-finite-difference-probe-inside-m4-ceiling",
+      "row-local-n38-true-stream-finite-difference-probe-is-not-certificate-route",
+    ].includes(
+      diagnostic?.row_local_n38_true_stream_finite_difference_probe_status
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_true_stream_nonuniform_fourth_derivative_proxy
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_true_stream_m4_to_required_budget
+    ) &&
+    finiteNonnegative(
+      diagnostic
+        ?.row_local_n38_cubic_graph_nonuniform_fourth_derivative_probe
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_cubic_graph_m4_to_required_budget
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_true_minus_residual_signed_m4_gap
+    ) &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_true_minus_residual_signed_m4_gap_to_required
+    ) &&
+    diagnostic
+      ?.row_local_n38_true_stream_finite_difference_probe_certifies_derivative ===
+      false &&
+    typeof diagnostic?.row_local_n38_true_stream_certificate_route ===
+      "string" &&
+    sourceTermXiJetProviderCandidateValid(
+      diagnostic?.row_local_n38_source_term_xi_jet_provider_candidate,
+      diagnostic
+    ) &&
+    [
+      "row-local-n38-source-term-finite-stencil-xi-jet-provider-fits-m4-target",
+      "row-local-n38-source-term-finite-stencil-xi-jet-provider-exceeds-m4-target",
+      "row-local-n38-source-term-finite-stencil-xi-jet-provider-unavailable",
+    ].includes(
+      diagnostic?.row_local_n38_source_term_xi_jet_provider_status
+    ) &&
+    diagnostic?.row_local_n38_source_term_xi_jet_provider_kind ===
+      "finite-stencil-source-term-xi-jet-provider-candidate" &&
+    diagnostic?.row_local_n38_source_term_xi_jet_provider_proof_status ===
+      "finite-stencil-midpoint-jet-not-directed-rounded" &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_source_term_xi_jet_to_required_upper_ratio
+    ) &&
+    typeof diagnostic?.row_local_n38_source_term_xi_jet_fits_m4_target ===
+      "boolean" &&
+    finiteNonnegative(
+      diagnostic?.row_local_n38_source_term_xi_jet_signed_gap_to_required
+    ) &&
+    diagnostic
+      ?.row_local_n38_source_term_xi_jet_certifies_n38_fourth_derivative ===
+      false &&
+    sourceTermXiLagrangeInterpolantProviderCandidateValid(
+      diagnostic
+        ?.row_local_n38_source_term_xi_lagrange_interpolant_provider_candidate,
+      diagnostic
+    ) &&
+    [
+      "row-local-n38-source-term-lagrange-interpolant-provider-fits-m4-target",
+      "row-local-n38-source-term-lagrange-interpolant-provider-exceeds-m4-target",
+      "row-local-n38-source-term-lagrange-interpolant-provider-unavailable",
+    ].includes(
+      diagnostic
+        ?.row_local_n38_source_term_xi_lagrange_interpolant_provider_status
+    ) &&
+    diagnostic
+      ?.row_local_n38_source_term_xi_lagrange_interpolant_provider_kind ===
+      "degree-four-lagrange-source-term-xi-interpolant-provider-candidate" &&
+    diagnostic
+      ?.row_local_n38_source_term_xi_lagrange_interpolant_provider_proof_status ===
+      "degree-four-lagrange-interpolant-midpoint-jet-not-directed-rounded" &&
+    finiteNonnegative(
+      diagnostic
+        ?.row_local_n38_source_term_xi_lagrange_interpolant_to_required_upper_ratio
+    ) &&
+    typeof diagnostic
+      ?.row_local_n38_source_term_xi_lagrange_interpolant_fits_m4_target ===
+      "boolean" &&
+    finiteNonnegative(
+      diagnostic
+        ?.row_local_n38_source_term_xi_lagrange_interpolant_signed_gap_to_required
+    ) &&
+    finiteNonnegative(
+      diagnostic
+        ?.row_local_n38_source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required
+    ) &&
+    diagnostic
+      ?.row_local_n38_source_term_xi_lagrange_interpolant_certifies_n38_fourth_derivative ===
+      false &&
+    sourceTermXiIntervalizedLagrangeProviderCandidateValid(
+      diagnostic
+        ?.row_local_n38_source_term_xi_intervalized_lagrange_provider_candidate,
+      diagnostic
+    ) &&
+    [
+      "row-local-n38-source-term-intervalized-lagrange-provider-fits-m4-target",
+      "row-local-n38-source-term-intervalized-lagrange-provider-exceeds-m4-target",
+      "row-local-n38-source-term-intervalized-lagrange-provider-unavailable",
+    ].includes(
+      diagnostic
+        ?.row_local_n38_source_term_xi_intervalized_lagrange_provider_status
+    ) &&
+    diagnostic
+      ?.row_local_n38_source_term_xi_intervalized_lagrange_provider_kind ===
+      "intervalized-degree-four-lagrange-source-term-xi-provider-candidate" &&
+    diagnostic
+      ?.row_local_n38_source_term_xi_intervalized_lagrange_provider_proof_status ===
+      "source-term-node-intervals-propagated-through-lagrange-weights-not-directed-rounded-same-domain" &&
+    finiteNonnegative(
+      diagnostic
+        ?.row_local_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio
+    ) &&
+    typeof diagnostic
+      ?.row_local_n38_source_term_xi_intervalized_lagrange_fits_m4_target ===
+      "boolean" &&
+    finiteNonnegative(
+      diagnostic
+        ?.row_local_n38_source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required
+    ) &&
+    nullableFiniteNonnegative(
+      diagnostic
+        ?.row_local_n38_source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor
+    ) &&
+    diagnostic
+      ?.row_local_n38_source_term_xi_intervalized_lagrange_certifies_n38_fourth_derivative ===
+      false &&
+    diagnostic
+      ?.row_local_n38_analytic_derivative_provider_scaffold_status ===
+      "row-local-n38-analytic-derivative-provider-scaffold-emitted" &&
+    diagnostic?.row_local_n38_analytic_derivative_provider_kind ===
+      "chain-rule-coefficient-extraction-provider" &&
+    diagnostic?.row_local_n38_analytic_derivative_provider_proof_status ===
+      "candidate-only-no-directed-rounded-chain-rule-intervals" &&
+    diagnostic
+      ?.row_local_n38_analytic_provider_certifies_n38_fourth_derivative ===
+      false &&
+    typeof diagnostic?.row_local_n38_analytic_provider_acceptance_inequality ===
+      "string" &&
+    diagnostic?.row_local_n38_analytic_derivative_provider_scaffold?.status ===
+      "row-local-n38-analytic-derivative-provider-scaffold-emitted" &&
+    diagnostic?.row_local_n38_analytic_derivative_provider_scaffold
+      ?.provider_kind === "chain-rule-coefficient-extraction-provider" &&
+    diagnostic?.row_local_n38_analytic_derivative_provider_scaffold
+      ?.proof_status ===
+      "candidate-only-no-directed-rounded-chain-rule-intervals" &&
+    diagnostic?.row_local_n38_analytic_derivative_provider_scaffold
+      ?.evaluator_source === "evaluateH38RecurrenceNumeratorBeforeSolve" &&
+    Array.isArray(
+      diagnostic?.row_local_n38_analytic_derivative_provider_scaffold
+        ?.source_terms_requiring_xi_derivatives
+    ) &&
+    [
+      "delta_squared_speed",
+      "sin_phi",
+      "sin_delta",
+    ].every((term) =>
+      diagnostic.row_local_n38_analytic_derivative_provider_scaffold.source_terms_requiring_xi_derivatives.includes(
+        term
+      )
+    ) &&
+    diagnostic?.row_local_n38_analytic_derivative_provider_scaffold
+      ?.required_xi_derivative_order === 4 &&
+    diagnostic?.row_local_n38_analytic_derivative_provider_scaffold
+      ?.coefficient_extraction_order === H38_NUMERATOR_Y_ORDER &&
+    diagnostic?.row_local_n38_analytic_derivative_provider_scaffold
+      ?.coefficient_extraction_commutes_with_xi_derivative === true &&
+    typeof diagnostic?.row_local_n38_analytic_derivative_provider_scaffold
+      ?.delta_squared_speed_fourth_derivative_formula === "string" &&
+    typeof diagnostic?.row_local_n38_analytic_derivative_provider_scaffold
+      ?.sin_phi_fourth_derivative_formula === "string" &&
+    typeof diagnostic?.row_local_n38_analytic_derivative_provider_scaffold
+      ?.sin_delta_fourth_derivative_formula === "string" &&
+    Array.isArray(
+      diagnostic?.row_local_n38_analytic_derivative_provider_scaffold
+        ?.missing_directed_rounded_inputs
+    ) &&
+    diagnostic.row_local_n38_analytic_derivative_provider_scaffold
+      .missing_directed_rounded_inputs.length >= 3 &&
+    diagnostic?.row_local_n38_analytic_derivative_provider_scaffold
+      ?.certifies_n38_fourth_derivative === false &&
+    diagnostic?.row_local_n38_directed_m4_sufficiency_certifies_remainder ===
+      false &&
+    typeof diagnostic?.row_local_n38_directed_m4_missing_proof_object ===
+      "string" &&
+    typeof diagnostic
+      ?.row_local_n38_observed_m4_proxy_inside_remainder_budget ===
+      "boolean" &&
+    [
+      "row-local-n38-observed-m4-proxy-inside-remainder-budget",
+      "row-local-n38-observed-m4-proxy-exceeds-remainder-budget",
+    ].includes(diagnostic?.row_local_n38_observed_m4_proxy_status) &&
+    [
+      "row-local-n38-cubic-m4-proxy-has-directed-rounded-inflation-headroom",
+      "row-local-n38-cubic-m4-proxy-headroom-open",
+    ].includes(diagnostic?.row_local_n38_cubic_m4_headroom_status) &&
+    typeof diagnostic
+      ?.row_local_n38_cubic_m4_directed_rounding_sufficient_condition ===
+      "string" &&
     typeof diagnostic
       ?.n38_midpoint_residual_inside_row_local_s37_target === "boolean" &&
     typeof diagnostic?.n38_graph_interval_inside_row_local_s37_target ===
@@ -47469,6 +51032,9 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
       "boolean" &&
     typeof diagnostic
       ?.graph_plus_midpoint_inside_row_local_s37_target === "boolean" &&
+    typeof diagnostic
+      ?.n38_taylor_graph_plus_midpoint_inside_row_local_s37_target ===
+      "boolean" &&
     [
       "row-local-n38-graph-remainder-target-has-headroom",
       "row-local-n38-graph-remainder-target-open",
@@ -47480,6 +51046,18 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
       "string" &&
     typeof diagnostic
       ?.same_domain_n38_graph_remainder_certificate_route === "string" &&
+    [
+      "row-local-n38-cubic-taylor-remainder-target-has-headroom",
+      "row-local-n38-cubic-taylor-remainder-target-open",
+    ].includes(
+      diagnostic?.row_local_n38_taylor_graph_remainder_target_status
+    ) &&
+    typeof diagnostic
+      ?.row_local_n38_taylor_graph_remainder_acceptance_inequality ===
+      "string" &&
+    typeof diagnostic
+      ?.row_local_n38_taylor_graph_remainder_certificate_route ===
+      "string" &&
     [
       "current-n38-interval-residual-inside-row-local-s37-target",
       "n38-midpoint-graph-fits-row-local-s37-target-but-interval-hull-needs-directed-rounded-remainder",
@@ -47682,6 +51260,143 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
       replay
         ?.max_row_local_n38_interval_residual_width_to_same_domain_remainder_budget
     ) &&
+    replay?.row_local_n38_cubic_taylor_graph_remainder_target_available ===
+      true &&
+    typeof replay?.all_row_local_n38_taylor_graph_degrees_cubic ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_cubic_taylor_graph_plus_midpoint_widths_inside_s37_target ===
+      "boolean" &&
+    finiteNonnegative(
+      replay
+        ?.max_row_local_n38_cubic_taylor_graph_interval_width_to_s37_target
+    ) &&
+    finiteNonnegative(
+      replay
+        ?.max_row_local_n38_cubic_taylor_midpoint_residual_width_to_s37_target
+    ) &&
+    finitePositive(
+      replay
+        ?.max_row_local_n38_cubic_taylor_interval_residual_width_to_s37_target
+    ) &&
+    finiteNonnegative(
+      replay
+        ?.max_row_local_n38_cubic_taylor_graph_plus_midpoint_width_to_s37_target
+    ) &&
+    finitePositive(
+      replay
+        ?.min_row_local_n38_cubic_taylor_same_domain_remainder_width_budget
+    ) &&
+    finitePositive(
+      replay
+        ?.max_row_local_n38_cubic_taylor_interval_residual_width_to_same_domain_remainder_budget
+    ) &&
+    replay?.row_local_n38_taylor_proxy_target_available === true &&
+    typeof replay
+      ?.all_row_local_n38_observed_m4_proxies_inside_remainder_budget ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_cubic_m4_proxies_have_directed_rounded_inflation_headroom ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_directed_m4_sufficiency_screens_ready ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_directed_m4_reduces_to_n38_fourth_derivative ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_true_stream_bridges_target_fourth_derivative ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_analytic_derivative_provider_scaffolds_emitted ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_source_term_xi_jet_providers_emitted ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_source_term_xi_jet_providers_fit_m4_target ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_source_term_xi_lagrange_interpolant_providers_emitted ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_source_term_xi_lagrange_interpolant_providers_fit_m4_target ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_source_term_xi_intervalized_lagrange_providers_emitted ===
+      "boolean" &&
+    typeof replay
+      ?.all_row_local_n38_source_term_xi_intervalized_lagrange_providers_fit_m4_target ===
+      "boolean" &&
+    finiteNonnegative(
+      replay?.max_row_local_n38_observed_m4_proxy_to_required_budget
+    ) &&
+    finiteNonnegative(
+      replay?.max_row_local_n38_observed_m4_proxy_remainder_width_to_budget
+    ) &&
+    finiteNonnegative(
+      replay?.max_row_local_n38_observed_nonuniform_fourth_derivative_proxy
+    ) &&
+    finitePositive(
+      replay
+        ?.min_row_local_n38_required_fourth_derivative_upper_for_remainder_budget
+    ) &&
+    finitePositive(
+      replay?.min_row_local_n38_cubic_m4_proxy_allowed_inflation_factor
+    ) &&
+    finitePositive(
+      replay?.min_row_local_n38_cubic_m4_proxy_absolute_headroom
+    ) &&
+    finitePositive(
+      replay
+        ?.min_row_local_n38_cubic_m4_proxy_remaining_remainder_width_budget
+    ) &&
+    finitePositive(
+      replay?.min_row_local_n38_directed_m4_sufficient_upper_bound
+    ) &&
+    finiteNonnegative(
+      replay?.max_row_local_n38_directed_m4_sufficient_width_to_budget
+    ) &&
+    finiteNonnegative(
+      replay?.max_row_local_n38_true_stream_m4_to_required_budget
+    ) &&
+    finiteNonnegative(
+      replay?.max_row_local_n38_cubic_graph_m4_to_required_budget
+    ) &&
+    finiteNonnegative(
+      replay
+        ?.max_row_local_n38_true_minus_residual_signed_m4_gap_to_required
+    ) &&
+    finiteNonnegative(
+      replay?.max_row_local_n38_source_term_xi_jet_to_required_upper_ratio
+    ) &&
+    finiteNonnegative(
+      replay?.max_row_local_n38_source_term_xi_jet_signed_gap_to_required
+    ) &&
+    finiteNonnegative(
+      replay
+        ?.max_row_local_n38_source_term_xi_lagrange_interpolant_to_required_upper_ratio
+    ) &&
+    finiteNonnegative(
+      replay
+        ?.max_row_local_n38_source_term_xi_lagrange_interpolant_signed_gap_to_required
+    ) &&
+    finiteNonnegative(
+      replay
+        ?.max_row_local_n38_source_term_xi_lagrange_interpolant_to_finite_jet_signed_gap_to_required
+    ) &&
+    finiteNonnegative(
+      replay
+        ?.max_row_local_n38_source_term_xi_intervalized_lagrange_to_required_upper_ratio
+    ) &&
+    finiteNonnegative(
+      replay
+        ?.max_row_local_n38_source_term_xi_intervalized_lagrange_gap_to_midpoint_estimate_to_required
+    ) &&
+    nullableFiniteNonnegative(
+      replay
+        ?.max_row_local_n38_source_term_xi_intervalized_lagrange_to_midpoint_abs_loss_factor
+    ) &&
     [
       "current-n38-interval-residuals-fit-row-local-s37-target",
       "n38-midpoint-graph-fits-but-interval-remainder-needs-directed-rounding",
@@ -47693,6 +51408,67 @@ export function validateH39RequestedY44ProducerImageBudgetComparison(
       "same-domain-n38-graph-remainder-target-open",
     ].includes(
       replay?.row_local_n38_s37_graph_remainder_target_interpretation
+    ) &&
+    [
+      "same-domain-n38-cubic-taylor-remainder-has-row-local-s37-headroom-but-raw-interval-hull-exceeds-it",
+      "same-domain-n38-cubic-taylor-remainder-target-already-covered-by-current-interval-hull",
+      "same-domain-n38-cubic-taylor-remainder-target-open",
+    ].includes(
+      replay
+        ?.row_local_n38_cubic_taylor_graph_remainder_target_interpretation
+    ) &&
+    [
+      "observed-row-local-n38-m4-proxy-fits-same-domain-remainder-budget",
+      "observed-row-local-n38-m4-proxy-still-exceeds-same-domain-remainder-budget",
+    ].includes(replay?.row_local_n38_taylor_proxy_target_interpretation) &&
+    [
+      "observed-row-local-n38-cubic-m4-proxy-has-directed-rounded-inflation-headroom",
+      "observed-row-local-n38-cubic-m4-proxy-headroom-open",
+    ].includes(replay?.row_local_n38_cubic_m4_headroom_interpretation) &&
+    [
+      "directed-rounded-m4-bound-below-row-local-ceiling-would-close-cubic-taylor-remainder",
+      "directed-rounded-m4-sufficiency-screen-open",
+    ].includes(
+      replay?.row_local_n38_directed_m4_sufficiency_screen_interpretation
+    ) &&
+    [
+      "cubic-q3-removes-fit-derivative-burden; certify-true-N38-fourth-derivative",
+      "cubic-q3-fourth-derivative-reduction-open",
+    ].includes(
+      replay?.row_local_n38_directed_m4_normal_form_interpretation
+    ) &&
+    [
+      "true-N38-fourth-derivative-certificate-is-the-remaining-proof-object",
+      "true-N38-fourth-derivative-bridge-open",
+    ].includes(replay?.row_local_n38_true_stream_bridge_interpretation) &&
+    [
+      "analytic-chain-rule-provider-scaffold-ready-for-directed-rounding",
+      "analytic-chain-rule-provider-scaffold-open",
+    ].includes(
+      replay?.row_local_n38_analytic_derivative_provider_interpretation
+    ) &&
+    [
+      "finite-stencil-source-term-xi-jet-provider-fits-row-local-m4-target-candidate",
+      "finite-stencil-source-term-xi-jet-provider-emitted-but-open",
+      "finite-stencil-source-term-xi-jet-provider-open",
+    ].includes(
+      replay?.row_local_n38_source_term_xi_jet_provider_interpretation
+    ) &&
+    [
+      "degree-four-source-term-interpolant-provider-fits-row-local-m4-target-candidate",
+      "degree-four-source-term-interpolant-provider-emitted-but-open",
+      "degree-four-source-term-interpolant-provider-open",
+    ].includes(
+      replay
+        ?.row_local_n38_source_term_xi_lagrange_interpolant_provider_interpretation
+    ) &&
+    [
+      "intervalized-source-term-lagrange-provider-fits-row-local-m4-target-candidate",
+      "intervalized-source-term-lagrange-provider-emitted-but-open",
+      "intervalized-source-term-lagrange-provider-open",
+    ].includes(
+      replay
+        ?.row_local_n38_source_term_xi_intervalized_lagrange_provider_interpretation
     ) &&
     [
       "requested-budget-collar-closes-but-current-row-intervals-need-producer-certificate",
